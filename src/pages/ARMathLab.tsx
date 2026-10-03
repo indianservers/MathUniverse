@@ -1,4 +1,9 @@
-import { useEffect, useMemo, useRef, useState, type PointerEvent, type ReactNode } from "react";
+import ARWorldTracking, { type ARTrackingHandle } from "../ar-math-lab/ARTrackedScene";
+import { flushSync } from "react-dom";
+import ARCameraHands from "../ar-math-lab/ARCameraHands";
+import { cameraErrorMessage, requestEnvironmentCameraStream, stopCameraTracks } from "../ar-math-lab/arCameraSession";
+import ARExplorationPanel from "../ar-math-lab/ARExplorationPanel";
+import { useEffect, useMemo, useRef, useState, type PointerEvent, type ReactNode, type RefObject } from "react";
 import { Line, OrbitControls, Text } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import * as THREE from "three";
@@ -21,6 +26,8 @@ import { calibrationDisclosure, identityARCalibration } from "../ar-math-lab/arC
 
 const initialExample = arMathExamples[0];
 const objectTypeLabels: Record<ARObjectType, string> = {
+  planar_graph: "2D graph / construction",
+  geometry_construction: "3D geometry construction",
   explicit_surface: "Explicit surface",
   parametric_surface: "Parametric surface",
   parametric_curve: "Parametric curve",
@@ -137,6 +144,8 @@ export default function ARMathLab() {
   const [quizResults, setQuizResults] = useState<Record<string, boolean>>({});
   const mountedRef = useRef(true);
   const cameraStreamRef = useRef<MediaStream | null>(null);
+  const cameraRequestRef = useRef<AbortController | null>(null);
+  const trackedARRef = useRef<ARTrackingHandle>(null);
 
   const selectedExample = useMemo(() => arMathExamples.find((example) => example.id === selectedExampleId) ?? initialExample, [selectedExampleId]);
   const classification = useMemo(() => classifyEquationInput(input), [input]);
@@ -179,9 +188,12 @@ export default function ARMathLab() {
     };
   }, []);
 
-  useEffect(() => () => {
-    mountedRef.current = false;
-    releaseCameraStream();
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      releaseCameraStream();
+    };
   }, []);
 
   useEffect(() => {
@@ -273,11 +285,16 @@ export default function ARMathLab() {
   }
 
   async function startARSession() {
-    if (!navigator.mediaDevices?.getUserMedia) {
-      setSessionState((state) => ({ ...state, mode: "3d-preview", status: "unsupported", cameraPermission: "denied", errorMessage: "Camera access is not available in this browser.", infoMessage: "3D Preview Mode is active." }));
-      return;
-    }
-    await startCameraBackedMode("ar", "Camera AR is active.", "browser-camera-ar");
+    releaseCameraStream();
+    flushSync(() => {
+      setCameraStream(null);
+      setSessionState(state=>({...state,mode:"3d-preview",status:"ready",errorMessage:undefined,infoMessage:"Surface AR: scan a floor or table, then tap to place your object."}));
+      if (!selectedGraph && !selectedSolid) {
+        if (classification.type === "geometry_solid") generateSolid();
+        else generateGraph();
+      }
+    });
+    await trackedARRef.current?.start();
   }
 
   async function stopARSession() {
@@ -293,15 +310,19 @@ export default function ARMathLab() {
   }
 
   async function startCameraBackedMode(mode: "ar" | "camera-preview", infoMessage: string, reason: string) {
-    if (!navigator.mediaDevices?.getUserMedia) {
-      setSessionState((state) => ({ ...state, mode: "3d-preview", status: "unsupported", cameraPermission: "denied", errorMessage: "Camera access is not available in this browser.", infoMessage: "3D Preview Mode is active." }));
+    if (cameraRequestRef.current) return;
+    if (!window.isSecureContext || !navigator.mediaDevices?.getUserMedia) {
+      setSessionState((state) => ({ ...state, mode: "3d-preview", status: "unsupported", cameraPermission: "unknown", errorMessage: !window.isSecureContext ? "Camera AR requires HTTPS. Open this page over HTTPS on your phone; an HTTP local-network address cannot access the camera." : "Camera access is unavailable in this browser. Open this page in Chrome or Edge with a camera enabled.", infoMessage: "3D Preview Mode is active." }));
       return;
     }
+    releaseCameraStream();
+    setCameraStream(null);
+    const request = new AbortController();
+    cameraRequestRef.current = request;
     setSessionState((state) => ({ ...state, mode, status: "starting", cameraPermission: "prompt", errorMessage: undefined, infoMessage: "Requesting rear camera permission..." }));
     try {
-      releaseCameraStream();
-      const stream = await requestEnvironmentCameraStream();
-      if (!mountedRef.current) {
+      const stream = await requestEnvironmentCameraStream(navigator.mediaDevices, request.signal);
+      if (!mountedRef.current || request.signal.aborted || cameraRequestRef.current !== request) {
         stopCameraTracks(stream);
         return;
       }
@@ -310,10 +331,13 @@ export default function ARMathLab() {
       setSessionState((state) => ({ ...state, mode, status: "active", cameraPermission: "granted", errorMessage: undefined, infoMessage }));
       emitLearning("mode_changed", selectedObjectId, { mode, reason });
     } catch (error) {
+      if (!mountedRef.current || request.signal.aborted || cameraRequestRef.current !== request) return;
       releaseCameraStream();
       setCameraStream(null);
-      setSessionState((state) => ({ ...state, mode: "3d-preview", status: "error", cameraPermission: "denied", errorMessage: cameraErrorMessage(error), infoMessage: "3D Preview Mode is active." }));
+      setSessionState((state) => ({ ...state, mode: "3d-preview", status: "error", cameraPermission: error instanceof Error && error.name === "NotAllowedError" ? "denied" : "unknown", errorMessage: cameraErrorMessage(error), infoMessage: "3D Preview Mode is active." }));
       emitLearning("error_occurred", selectedObjectId, { area: mode, message: cameraErrorMessage(error), reason });
+    } finally {
+      if (cameraRequestRef.current === request) cameraRequestRef.current = null;
     }
   }
 
@@ -334,6 +358,8 @@ export default function ARMathLab() {
   }
 
   function releaseCameraStream() {
+    cameraRequestRef.current?.abort();
+    cameraRequestRef.current = null;
     stopCameraTracks(cameraStreamRef.current);
     cameraStreamRef.current = null;
   }
@@ -653,12 +679,20 @@ export default function ARMathLab() {
           <div className="max-w-4xl">
             <p className="flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300 sm:text-xs sm:tracking-[0.22em]"><ScanLine className="h-4 w-4" /> Mobile camera AR</p>
             <h1 className="mt-1 text-2xl font-black tracking-tight sm:text-3xl">AR Math Lab</h1>
-            <p className="mt-1 max-w-3xl text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300 sm:text-sm">Create 3D math objects, tap AR, then move graphs, solids, and drawn constructions on the live camera.</p>
+            <p className="mt-1 max-w-3xl text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300 sm:text-sm">Create math objects, tap AR, scan a surface, and place them in your room. Walk around anchored objects on a supported device.</p>
           </div>
         </header>
 
         <section className="grid gap-3 xl:grid-cols-[380px_minmax(0,1fr)] 2xl:grid-cols-[400px_minmax(0,1fr)]">
           <aside className="order-2 min-w-0 space-y-3 xl:order-1 xl:sticky xl:top-3 xl:max-h-[calc(100dvh-1.5rem)] xl:overflow-y-auto xl:pr-1 xl:self-start">
+            <ARExplorationPanel selectedGraph={selectedGraph} onAddGraph={(graph) => {
+              setGeneratedGraphs((graphs) => [graph, ...graphs]);
+              setSelectedGraphId(graph.id);
+              setSelectedSolidId(undefined);
+              setSceneState((state) => ({ ...state, placementReady: true, selectedObjectId: graph.id }));
+              setSessionState((state) => ({ ...state, errorMessage: undefined, infoMessage: `${graph.name} added to the AR scene.` }));
+              emitLearning("graph_generated", graph.id, { equation: graph.equation, renderer: graph.geometry.kind });
+            }} />
             <ARControlPanel
               activeToolTab={activeToolTab}
               animations={animations}
@@ -756,7 +790,9 @@ export default function ARMathLab() {
           </aside>
 
           <div className="order-1 min-w-0 space-y-3 xl:order-2">
-            <ARScene mathObject={currentObject} cameraStream={cameraStream} generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} sessionState={sessionState} onAddMeasurement={addMeasurement} onSceneChange={updateScene} />
+            {sessionState.status === "starting" && <div role="status" className="rounded-xl border border-cyan-300 bg-cyan-50 p-3 text-sm text-slate-900"><p>Waiting for camera access. Allow the browser permission prompt. If you already allowed it, wait for the camera to connect.</p><button type="button" className="mt-2 min-h-11 rounded border border-slate-400 px-3 font-bold" onClick={() => activate3DPreview("Camera request cancelled. 3D Preview Mode is active.")}>Cancel camera request</button></div>}
+            {sessionState.errorMessage && <div role="alert" className="rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-slate-900"><p>{sessionState.errorMessage}</p><div className="mt-2 flex flex-wrap gap-2"><button type="button" className="min-h-11 rounded border border-slate-400 px-3 font-bold" onClick={() => void startCameraPreview()}>Retry camera</button><button type="button" className="min-h-11 rounded border border-slate-400 px-3" onClick={() => activate3DPreview()}>Use 3D preview</button></div></div>}
+            <ARScene trackedARRef={trackedARRef} mathObject={currentObject} cameraStream={cameraStream} generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} sessionState={sessionState} onAddMeasurement={addMeasurement} onSceneChange={updateScene} />
             <MobileQuickActions
               sessionState={sessionState}
               onActivate3D={() => activate3DPreview()}
@@ -774,13 +810,18 @@ export default function ARMathLab() {
   );
 }
 
-export function ARScene({ mathObject, cameraStream, generatedGraphs, generatedSolids, measurements, onAddMeasurement, onSceneChange, sceneState, selectedGraph, selectedSolid, sessionState }: { mathObject: ARMathObject; cameraStream: MediaStream | null; generatedGraphs: ARGeneratedGraphObject[]; generatedSolids: ARGeneratedGeometrySolid[]; measurements: ARMeasurement[]; onAddMeasurement: (type?: ARMeasurementType) => void; onSceneChange: (delta: Partial<ARSceneState>) => void; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid; sessionState: ARSessionState }) {
+export function ARScene({ trackedARRef, mathObject, cameraStream, generatedGraphs, generatedSolids, measurements, onAddMeasurement, onSceneChange, sceneState, selectedGraph, selectedSolid, sessionState }: { trackedARRef?: RefObject<ARTrackingHandle>; mathObject: ARMathObject; cameraStream: MediaStream | null; generatedGraphs: ARGeneratedGraphObject[]; generatedSolids: ARGeneratedGeometrySolid[]; measurements: ARMeasurement[]; onAddMeasurement: (type?: ARMeasurementType) => void; onSceneChange: (delta: Partial<ARSceneState>) => void; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid; sessionState: ARSessionState }) {
+  const [trackedActive, setTrackedActive] = useState(false);
   const mode = sessionState.mode === "none" ? "3d-preview" : sessionState.mode;
   return (
     <section data-testid="ar-scene" className="relative overflow-hidden rounded-[1.5rem] border border-cyan-200/80 bg-slate-950 text-white shadow-2xl shadow-cyan-950/20 sm:rounded-[2rem]">
       {mode === "camera-preview" ? <ARCameraPreview mathObject={mathObject} mode="camera-preview" onAddMeasurement={onAddMeasurement} onSceneChange={onSceneChange} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} stream={cameraStream} /> : null}
       {mode === "ar" ? <ARCameraPreview mathObject={mathObject} mode="ar" onAddMeasurement={onAddMeasurement} onSceneChange={onSceneChange} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} stream={cameraStream} /> : null}
-      {mode === "3d-preview" ? <ARFallbackViewer generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} mathObject={mathObject} sceneState={sceneState} /> : null}
+      {mode === "3d-preview" && !trackedActive ? <ARFallbackViewer generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} mathObject={mathObject} sceneState={sceneState} /> : null}
+      <ARWorldTracking ref={trackedARRef} onSessionChange={setTrackedActive} hasObject={!!selectedGraph || !!selectedSolid}>
+        {selectedGraph && <ARGraphObject graph={selectedGraph} sceneState={sceneState} />}
+        {selectedSolid && <ARGeometrySolid solid={selectedSolid} sceneState={sceneState} />}
+      </ARWorldTracking>
     </section>
   );
 }
@@ -944,6 +985,7 @@ export function ARCameraPreview({ mathObject, mode, onAddMeasurement, onSceneCha
       <ARPlacementMarker mode={mode} sceneState={sceneState} />
       <ARLiveCamera3DOverlay mathObject={mathObject} phoneView={phoneView} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} />
       <OverlayLabel mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} />
+      <ARCameraHands video={videoRef} stream={stream} scene={sceneState} onChange={onSceneChange} objectId={selectedGraph?.id ?? selectedSolid?.id ?? null} />
       <LiveCameraToolDock
         activeTool={drawTool}
         color={sceneState.objectColor}
@@ -1047,7 +1089,7 @@ function LiveCameraToolDock({
   ];
   const swatches = ["#22d3ee", "#a78bfa", "#fb7185", "#facc15", "#34d399", "#f8fafc"];
   return (
-    <div className="absolute left-2 top-2 z-10 max-h-[calc(100%-4.5rem)] max-w-[calc(100%-1rem)] overflow-y-auto rounded-2xl border border-white/20 bg-black/64 p-2 shadow-xl backdrop-blur sm:left-3 sm:top-3">
+    <div className="absolute left-2 top-28 z-10 max-h-[calc(100%-11rem)] max-w-[calc(100%-1rem)] overflow-y-auto rounded-2xl border border-white/20 bg-black/64 p-2 shadow-xl backdrop-blur sm:left-3">
       <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-6">
         {tools.map((tool) => (
           <button key={tool.id} type="button" className={`${activeTool === tool.id ? "bg-cyan-400 text-slate-950" : "bg-white/10 text-white"} min-h-10 rounded-xl px-2 text-[10px] font-black`} onClick={() => onSelectTool(tool.id)}>
@@ -1176,7 +1218,7 @@ function PreviewScene({ generatedGraphs, generatedSolids, measurements, mathObje
   return (
     <group>
       {sceneState.showGrid ? <gridHelper args={[8, 16, "#22d3ee", "#334155"]} /> : null}
-      {sceneState.showAxes ? <axesHelper args={[3.5]} /> : null}
+      {sceneState.showAxes && mathObject.type !== "planar_graph" ? <axesHelper args={[3.5]} /> : null}
       <mesh position={[0, 0.02, 0]}>
         <sphereGeometry args={[0.07, 24, 24]} />
         <meshStandardMaterial color="#facc15" emissive="#facc15" emissiveIntensity={0.55} />
@@ -1199,18 +1241,18 @@ function PreviewScene({ generatedGraphs, generatedSolids, measurements, mathObje
           <torusGeometry args={[0.82, 0.025, 12, 64]} />
           <meshStandardMaterial color="#c084fc" emissive="#7c3aed" emissiveIntensity={0.28} />
         </mesh>
-        {sceneState.showLabels ? (
+        {sceneState.showLabels && mathObject.type !== "planar_graph" ? (
           <Text position={[0, 0.9, 0]} fontSize={0.18} color="#e0f2fe" anchorX="center" anchorY="middle">
             {objectTypeLabels[mathObject.type]}
           </Text>
         ) : null}
       </group>
       )}
-      {sceneState.showLabels ? (
+      {sceneState.showLabels && mathObject.type !== "planar_graph" ? (
         <>
           <Text position={[3.8, 0.12, 0]} fontSize={0.16} color="#67e8f9">x</Text>
-          <Text position={[0, 3.55, 0]} fontSize={0.16} color="#bbf7d0">y</Text>
-          <Text position={[0, 0.12, 3.8]} fontSize={0.16} color="#fda4af">z</Text>
+          <Text position={[0, 3.55, 0]} fontSize={0.16} color="#bbf7d0">z</Text>
+          <Text position={[0, 0.12, 3.8]} fontSize={0.16} color="#fda4af">y</Text>
         </>
       ) : null}
     </group>
@@ -1391,6 +1433,11 @@ export function ARGraphObject({ graph, sceneState }: { graph: ARGeneratedGraphOb
   return (
     <group position={sceneState.objectPosition} rotation={sceneState.objectRotation} scale={sceneState.objectScale}>
       <group position={transform.position} rotation={transform.rotation} scale={transform.scale}>
+        {graph.type === "planar_graph" && sceneState.showAxes && <group>
+          <Line points={[[graph.settings.xRange[0],0,0],[graph.settings.xRange[1],0,0]]} color="#67e8f9" lineWidth={1} />
+          <Line points={[[0,graph.settings.yRange[0],0],[0,graph.settings.yRange[1],0]]} color="#bbf7d0" lineWidth={1} />
+          {sceneState.showLabels && <><Text position={[graph.settings.xRange[1]+.2,0,0]} fontSize={.2} color="#67e8f9">x</Text><Text position={[0,graph.settings.yRange[1]+.2,0]} fontSize={.2} color="#bbf7d0">y</Text></>}
+        </group>}
         {graph.geometry.kind === "surface" ? <ARMathSurface graph={graph} sceneState={sceneState} /> : <ARParametricCurve graph={graph} sceneState={sceneState} />}
         {sceneState.showLabels ? (
           <Text position={[0, 2.4, 0]} fontSize={0.16} color="#e0f2fe" anchorX="center" anchorY="middle" maxWidth={4}>
@@ -1408,7 +1455,7 @@ export function ARMathSurface({ graph, sceneState }: { graph: ARGeneratedGraphOb
   return (
     <group>
       <mesh>
-        <bufferGeometry>
+        <bufferGeometry onUpdate={(buffer) => buffer.computeVertexNormals()}>
           <bufferAttribute attach="attributes-position" args={[new Float32Array(geometry.vertices), 3]} />
           {geometry.colors ? <bufferAttribute attach="attributes-color" args={[new Float32Array(geometry.colors), 3]} /> : null}
           <bufferAttribute attach="index" args={[new Uint32Array(geometry.indices), 1]} />
@@ -1442,16 +1489,18 @@ export function ARMathSurface({ graph, sceneState }: { graph: ARGeneratedGraphOb
 export function ARParametricCurve({ graph, sceneState }: { graph: ARGeneratedGraphObject; sceneState: ARSceneState }) {
   if (graph.geometry.kind !== "curve") return null;
   const geometry = graph.geometry;
+  const linePoints = (geometry.segments ?? [geometry.points]).flatMap((segment) => segment.slice(1).flatMap((point, index) => [segment[index], point]));
   return (
     <group>
-      <Line points={geometry.points} color={sceneState.objectColor} lineWidth={Math.max(1, graph.settings.curveThickness * 80 * sceneState.objectContrast)} />
+      {linePoints.length > 1 && <Line segments points={linePoints} color={sceneState.objectColor} lineWidth={Math.max(1, graph.settings.curveThickness * 80 * sceneState.objectContrast)} />}
+      {!!geometry.regionPoints?.length && <points><bufferGeometry><bufferAttribute attach="attributes-position" args={[new Float32Array(geometry.regionPoints.flat()), 3]} /></bufferGeometry><pointsMaterial color={sceneState.objectColor} size={0.07} transparent opacity={0.28} depthWrite={false} /></points>}
       {(graph.settings.pointMarkers || graph.settings.curveStyle === "line-points") ? geometry.points.filter((_, index) => index % Math.max(1, Math.floor(geometry.points.length / 64)) === 0).map((point, index) => (
         <mesh key={`${point.join("-")}-${index}`} position={point}>
           <sphereGeometry args={[0.035, 12, 12]} />
           <meshStandardMaterial color="#facc15" emissive="#facc15" emissiveIntensity={0.25} />
         </mesh>
       )) : null}
-      {sceneState.showLabels ? <Text position={[0, -0.35, 0]} fontSize={0.13} color="#bae6fd">parametric curve</Text> : null}
+      {sceneState.showLabels ? <Text position={[0, -0.35, 0]} fontSize={0.13} color="#bae6fd">{graph.type === "planar_graph" ? "2D coordinate plane" : "parametric curve"}</Text> : null}
     </group>
   );
 }
@@ -1491,7 +1540,7 @@ export function ARStatusPanel({ sessionState, support }: { sessionState: ARSessi
       <div data-testid="ar-status-panel" className="grid grid-cols-2 gap-2">
         <StatusBadge label="mode" value={sessionState.mode} tone={sessionState.status === "active" ? "ready" : "idle"} />
         <StatusBadge label="status" value={sessionState.status} tone={sessionState.status === "active" || sessionState.status === "ready" ? "ready" : "idle"} />
-        <StatusBadge label="browser AR" value={support.cameraAvailable ? "ready" : "fallback"} tone={support.cameraAvailable ? "ready" : "idle"} />
+        <StatusBadge label="surface AR" value={support.immersiveARSupported ? "supported" : "unavailable"} tone={support.immersiveARSupported ? "ready" : "idle"} />
         <StatusBadge label="camera permission" value={sessionState.cameraPermission} tone={sessionState.cameraPermission === "granted" ? "ready" : "idle"} />
         <StatusBadge label="secure" value={support.isSecureContext ? "yes" : "no"} tone={support.isSecureContext ? "ready" : "idle"} />
         <StatusBadge label="WebGL" value={support.webGLAvailable ? "yes" : "no"} tone={support.webGLAvailable ? "ready" : "idle"} />
@@ -1524,7 +1573,7 @@ function MobileQuickActions({ sessionState, onActivate3D, onCreateQuickGraph, on
       </div>
       <div className="grid grid-cols-5 gap-1.5">
         <MobileActionButton label="AR" icon={<ScanLine className="h-4 w-4" />} onClick={onStartAR} primary />
-        <MobileActionButton label="Camera" icon={<Camera className="h-4 w-4" />} onClick={onStartCamera} />
+        <MobileActionButton label="Overlay" icon={<Camera className="h-4 w-4" />} onClick={onStartCamera} />
         <MobileActionButton label="3D" icon={<Cuboid className="h-4 w-4" />} onClick={onActivate3D} />
         <MobileActionButton label="Graph" icon={<Sparkles className="h-4 w-4" />} onClick={onGenerateGraph} primary />
         <MobileActionButton label="Place" icon={<Move3D className="h-4 w-4" />} onClick={onPlaceObject} primary />
@@ -1644,7 +1693,7 @@ export function ARControlPanel(props: {
         <ARStatusPanel sessionState={sessionState} support={support} />
         <div className="hidden grid-cols-2 gap-2 xl:grid">
           <ControlButton label="Start AR" icon={<ScanLine className="h-4 w-4" />} onClick={props.onStartAR} primary disabled={sessionState.status === "starting"} />
-          <ControlButton label="Camera" icon={<Camera className="h-4 w-4" />} onClick={props.onStartCamera} />
+          <ControlButton label="Camera overlay" icon={<Camera className="h-4 w-4" />} onClick={props.onStartCamera} />
           <ControlButton label="3D Preview" icon={<Cuboid className="h-4 w-4" />} onClick={() => props.onActivate3D()} />
           <ControlButton label="Exit" icon={<X className="h-4 w-4" />} onClick={props.onExit} />
           <ControlButton label="Reset Scene" icon={<RotateCcw className="h-4 w-4" />} onClick={props.onResetScene} />
@@ -2422,8 +2471,9 @@ export function ARHelpPanel() {
     <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/5">
       <p className="flex items-center gap-2 text-sm font-black"><HelpCircle className="h-4 w-4 text-violet-500" />Interactive AR Help</p>
       <ul className="mt-2 space-y-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
-        <li>- AR Mode uses the phone camera with an interactive 3D math overlay.</li>
-        <li>- Drag with one finger to place the object; use two fingers to scale and rotate.</li>
+        <li>- AR scans a floor or table. Tap the surface ring to place your math object, then walk around it.</li>
+        <li>- Use Reposition, Display scale, and Rotate controls to adjust the surface-placed object.</li>
+        <li>- Camera overlay is a separate fallback: drag to place on screen; pinch to resize and rotate. It does not track surfaces.</li>
         <li>- 3D Preview works on every supported desktop browser and is best for practice before using AR.</li>
         <li>- Use Practice Studio to load a task, place the object, walk around, measure, capture evidence, and explain.</li>
         <li>- Use Performance Mode on phones if surfaces or animations feel slow.</li>
@@ -2497,49 +2547,6 @@ function formulaSummaryForOverlay(solid: ARGeneratedGeometrySolid) {
   return solid.calculatedValues.formulas.slice(0, 2).map((line) => line.result).join(" - ");
 }
 
-async function requestEnvironmentCameraStream() {
-  const mediaDevices = navigator.mediaDevices;
-  if (!mediaDevices?.getUserMedia) throw new Error("Camera access is not available.");
-  const attempts: MediaStreamConstraints[] = [
-    { video: { facingMode: { exact: "environment" }, width: { ideal: 1280, max: 1920 }, height: { ideal: 720, max: 1080 } }, audio: false },
-    { video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false },
-    { video: { facingMode: "environment" }, audio: false },
-    { video: { width: { ideal: 960 }, height: { ideal: 540 } }, audio: false },
-    { video: true, audio: false },
-  ];
-  let lastError: unknown;
-  for (const constraints of attempts) {
-    try {
-      return await getCameraStreamWithTimeout(mediaDevices, constraints, 6000);
-    } catch (error) {
-      lastError = error;
-    }
-  }
-  throw lastError;
-}
-
-function getCameraStreamWithTimeout(mediaDevices: MediaDevices, constraints: MediaStreamConstraints, timeoutMs: number) {
-  let timedOut = false;
-  const request = mediaDevices.getUserMedia(constraints).then((stream) => {
-    if (timedOut) {
-      stopCameraTracks(stream);
-      throw new Error("Camera request timed out.");
-    }
-    return stream;
-  });
-  const timeout = new Promise<MediaStream>((_, reject) => {
-    window.setTimeout(() => {
-      timedOut = true;
-      reject(new Error("Camera request timed out."));
-    }, timeoutMs);
-  });
-  return Promise.race([request, timeout]);
-}
-
-function stopCameraTracks(stream: MediaStream | null) {
-  stream?.getTracks().forEach((track) => track.stop());
-}
-
 function readPracticeCompletion() {
   try {
     const raw = localStorage.getItem("ar-math-lab-practice-completed");
@@ -2548,17 +2555,6 @@ function readPracticeCompletion() {
   } catch {
     return [];
   }
-}
-
-function cameraErrorMessage(error: unknown) {
-  const name = error instanceof DOMException ? error.name : "";
-  const message = error instanceof Error ? error.message : "";
-  if (name === "NotAllowedError") return "Camera permission was denied. Enable camera access or use 3D Preview Mode.";
-  if (name === "NotFoundError") return "No camera was found on this device.";
-  if (name === "NotReadableError") return "Camera is already being used by another application.";
-  if (name === "OverconstrainedError") return "The rear camera constraints failed, and the fallback camera request also failed. 3D Preview Mode is available.";
-  if (message.toLowerCase().includes("timeout")) return "Camera permission did not finish in time. Check the browser permission prompt, then tap Camera again.";
-  return "Unable to start camera preview. 3D Preview Mode is available.";
 }
 
 function isLearningEventType(value: string): value is ARLearningEventType {

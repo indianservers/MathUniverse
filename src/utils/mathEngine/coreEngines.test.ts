@@ -7,7 +7,15 @@ import { describe as describeData, quartiles, standardDeviation } from "./statis
 
 describe("Math Lab core engine safeguards", () => {
   it("samples bounded 2D functions and supports descending value tables", () => {
-    expect(sampleFunction("x^2", -2, 2, 99_999).points).toHaveLength(5000);
+    const points = sampleFunction("x^2", -2, 2, 99_999).points;
+    expect(points.length).toBeGreaterThan(80);
+    expect(points.length).toBeLessThanOrEqual(2400);
+    expect(points[0].x).toBe(-2);
+    expect(points.at(-1)?.x).toBe(2);
+    for (const point of points) {
+      expect(point.valid).toBe(true);
+      expect(point.y).toBeCloseTo(point.x ** 2, 10);
+    }
     expect(generateTableValues("x", 2, -2, 1).rows.map((row) => row.x)).toEqual([2, 1, 0, -1, -2]);
     expect(generateTableValues("not valid", -1, 1, 1).rows).toHaveLength(0);
   });

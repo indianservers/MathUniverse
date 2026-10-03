@@ -4,6 +4,8 @@ test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true
 
 test("3D graph panel closes cleanly and the scene survives layer and camera interactions", async ({ page }) => {
   test.setTimeout(120_000);
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/math-lab/3d-graphing");
   const root = page.locator(".graph-studio-3d-shell");
   await expect(root).toBeVisible({ timeout: 30_000 });
@@ -63,4 +65,5 @@ test("3D graph panel closes cleanly and the scene survives layer and camera inte
   await expect.poll(() => canvas.evaluate((element) => element.getBoundingClientRect().width)).toBeGreaterThan(700);
   await page.setViewportSize({ width: 390, height: 844 });
   await expect.poll(() => canvas.evaluate((element) => element.getBoundingClientRect().height)).toBeGreaterThan(500);
+  expect(errors).toEqual([]);
 });

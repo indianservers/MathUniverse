@@ -30,8 +30,7 @@ export default function MathWorkspaceCard({
 }) {
   const theme = mathWorkspaceCardTheme[workspace.id];
   return (
-    <Link
-      to={workspace.route}
+    <article
       className="math-workspace-card mwc-card"
       data-workspace={workspace.id}
       style={
@@ -43,6 +42,7 @@ export default function MathWorkspaceCard({
         } as CSSProperties
       }
     >
+      <Link to={workspace.route} className="mwc-main-link" aria-label={`Open ${workspace.name} workspace`} />
       <span className="mwc-formula" aria-hidden="true">
         {workspace.formula}
       </span>
@@ -59,8 +59,9 @@ export default function MathWorkspaceCard({
           ))}
         </span>
         <WorkspaceCTA />
+        {workspace.id === "graphs-3d" && <Link to="/modules/ar-math-lab" className="mwc-cta mwc-ar-link"><span>AR</span><span className="mwc-cta-arrow" aria-hidden="true">→</span></Link>}
       </div>
       <WorkspaceIllustration id={workspace.id} className="mwc-art" />
-    </Link>
+    </article>
   );
 }

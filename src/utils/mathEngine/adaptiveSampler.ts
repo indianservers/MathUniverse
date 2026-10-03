@@ -18,28 +18,16 @@ export function sampleExplicitAdaptive(
   const points: AdaptiveSample[] = [];
 
   push(points, xs[0]!, ys[0]!);
-  for (let index = 1; index < xs.length && points.length < MAX_POINTS; index += 1) {
+  for (let index = 1; index < xs.length; index += 1) {
     const x0 = xs[index - 1]!;
     const x1 = xs[index]!;
     const y0 = ys[index - 1]!;
     const y1 = ys[index]!;
-    const nextY = ys[index + 1];
-    if (
-      index < ys.length - 1 &&
-      Number.isFinite(y0) &&
-      Number.isFinite(y1) &&
-      Number.isFinite(nextY)
-    ) {
-      const leftSlope = (y1 - y0) / Math.max(1e-12, x1 - x0);
-      const rightSlope = (nextY - y1) / Math.max(1e-12, xs[index + 1]! - x1);
-      if (Math.abs(leftSlope - rightSlope) > 0.85) {
-        const pad = Math.min((x1 - x0) / 3, span / 80);
-        refine(fn, x0, x1 - pad, y0, evaluate(fn, x1 - pad), 0, points, vertical);
-        refine(fn, x1 - pad, x1 + pad, evaluate(fn, x1 - pad), evaluate(fn, x1 + pad), 0, points, vertical);
-        continue;
-      }
-    }
-    refine(fn, x0, x1, y0, y1, 0, points, vertical);
+    // Reserve sampling capacity for every seed interval, including the far end
+    // of domains that start with undefined values or a steep asymptote.
+    const limit = points.length + Math.floor((MAX_POINTS - 1) / seeds) - 1;
+    refine(fn, x0, x1, y0, y1, 0, points, vertical, limit);
+    if (points.at(-1)?.x !== x1) push(points, x1, y1);
   }
 
   return points;
@@ -54,9 +42,9 @@ function refine(
   depth: number,
   out: AdaptiveSample[],
   vertical: number,
+  limit: number,
 ) {
-  if (out.length >= MAX_POINTS) {
-    push(out, x1, y1);
+  if (out.length >= limit) {
     return;
   }
 
@@ -66,8 +54,12 @@ function refine(
     if (depth < MAX_DEPTH && x1 - x0 > 1e-8) {
       const xm = (x0 + x1) / 2;
       const ym = evaluate(fn, xm);
-      refine(fn, x0, xm, y0, ym, depth + 1, out, vertical);
-      refine(fn, xm, x1, ym, y1, depth + 1, out, vertical);
+      if (!finite0 && !finite1 && !Number.isFinite(ym)) {
+        push(out, x1, y1);
+        return;
+      }
+      refine(fn, x0, xm, y0, ym, depth + 1, out, vertical, limit);
+      refine(fn, xm, x1, ym, y1, depth + 1, out, vertical, limit);
       return;
     }
     push(out, x1, y1);
@@ -91,8 +83,8 @@ function refine(
     x1 - x0 > 1e-7;
 
   if (shouldSplit) {
-    refine(fn, x0, xm, y0, ym, depth + 1, out, vertical);
-    refine(fn, xm, x1, ym, y1, depth + 1, out, vertical);
+    refine(fn, x0, xm, y0, ym, depth + 1, out, vertical, limit);
+    refine(fn, xm, x1, ym, y1, depth + 1, out, vertical, limit);
     return;
   }
 

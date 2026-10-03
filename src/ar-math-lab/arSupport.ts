@@ -123,7 +123,8 @@ function recommendMode(
     | "webGLAvailable"
   >,
 ): ARRenderMode {
-  if (status.immersiveARSupported && status.cameraAvailable) return "ar";
+  if (!status.isSecureContext) return "3d-preview";
+  if (status.immersiveARSupported) return "ar";
   if (status.cameraAvailable) return "camera-preview";
   return "3d-preview";
 }
@@ -143,7 +144,7 @@ function buildSupportWarnings(
     warnings.push(
       "Live camera AR requires HTTPS or a secure localhost context.",
     );
-  if (!status.cameraAvailable)
+  if (!status.cameraAvailable && !status.immersiveARSupported)
     warnings.push(
       "Camera access is not available. 3D Preview Mode will be used.",
     );
@@ -165,11 +166,13 @@ function buildSupportMessage(
     | "webGLAvailable"
   >,
 ) {
+  if (!status.isSecureContext)
+    return "Live camera AR requires HTTPS or secure localhost. Use HTTPS when opening the page from another device.";
   if (!status.webGLAvailable)
     return "WebGL is unavailable. The page will keep controls visible, but 3D rendering may not work.";
+  if (status.immersiveARSupported)
+    return "Surface AR is available. Tap AR, scan a floor or table, then tap the ring to place your object and walk around it.";
   if (status.cameraAvailable)
-    return "Browser AR is ready. Start AR to use the live mobile camera with interactive 3D math.";
-  if (!status.isSecureContext)
-    return "Live camera AR requires HTTPS or secure context.";
+    return "Camera overlay is available. It requests camera access and places objects on screen. Surface AR requires a compatible device/browser.";
   return "Camera access is not available. 3D Preview Mode will be used.";
 }

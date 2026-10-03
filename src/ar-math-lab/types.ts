@@ -1,4 +1,6 @@
 export type ARObjectType =
+  | "planar_graph"
+  | "geometry_construction"
   | "explicit_surface"
   | "parametric_surface"
   | "parametric_curve"
@@ -99,6 +101,8 @@ export type EquationClassificationResult = {
   dependentVariables?: string[];
   parameters?: string[];
   suggestedRenderer?:
+    | "planar_curve"
+    | "implicit_surface_mesh"
     | "surface_mesh"
     | "parametric_surface_mesh"
     | "curve_3d"
@@ -206,6 +210,8 @@ export type ARGraphGeometry =
   | {
       kind: "curve";
       points: [number, number, number][];
+      segments?: [number, number, number][][];
+      regionPoints?: [number, number, number][];
       valueStats: { invalidPointCount: number };
       warnings: string[];
     };

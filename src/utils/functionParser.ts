@@ -10,7 +10,8 @@ type Token =
   | { type: "rightParen" };
 
 const functions = new Set(["sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "sec", "csc", "cot", "ln", "log", "exp", "sqrt", "cbrt", "abs", "floor", "ceil", "round", "sign", "sinc"]);
-const precedence: Record<string, number> = { "+": 1, "-": 1, "*": 2, "/": 2, "^": 3, "u-": 4 };
+const knownNames = [...functions, "pi", "x", "y", "z", "e"].sort((a, b) => b.length - a.length);
+const precedence: Record<string, number> = { "+": 1, "-": 1, "*": 2, "/": 2, "^": 3, "u-": 3 };
 const rightAssociative = new Set(["^", "u-"]);
 
 export function compileFunctionExpression(input: string) {
@@ -91,18 +92,18 @@ function splitTopLevel(input: string) {
   return values.filter(Boolean);
 }
 
-function normalize(input: string, allowZ = false) {
+function normalize(input: string) {
   const expression = input
     .trim()
     .replace(/^y\s*=/i, "")
+    .replace(/\u2212/g, "-")
     .replace(/\u00f7/g, "/")
     .replace(/\u00d7/g, "*")
     .replace(/\u03c0/g, "pi")
     .replace(/\u00b2/g, "^2")
     .replace(/\u00b3/g, "^3")
     .replace(/\s+/g, "")
-    .toLowerCase()
-    .replace(new RegExp(`(\\d|\\)|x|y${allowZ ? "|z" : ""}|pi|e)(?=(x|y${allowZ ? "|z" : ""}|pi|e|sin|cos|tan|asin|acos|atan|sinh|cosh|tanh|sec|csc|cot|ln|log|exp|sqrt|cbrt|abs|floor|ceil|round|sign|sinc|\\())`, "g"), "$1*");
+    .toLowerCase();
   const forbidden = /(window|document|globalthis|process|fetch|eval|function|constructor|import|=>|;|=|\{|\}|\[|\])/i;
   if (!expression) throw new Error("Enter a function of x");
   if (forbidden.test(expression)) throw new Error("Unsupported expression");
@@ -111,14 +112,15 @@ function normalize(input: string, allowZ = false) {
 }
 
 function tokenize(input: string, allowY = false, allowZ = false): Token[] {
-  const expression = normalize(input, allowZ);
+  const expression = normalize(input);
   const tokens: Token[] = [];
   let index = 0;
   while (index < expression.length) {
     const char = expression[index];
     if (/\d|\./.test(char)) {
-      let raw = "";
-      while (index < expression.length && /[\d.]/.test(expression[index])) raw += expression[index++];
+      const raw = expression.slice(index).match(/^(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?/)?.[0];
+      if (!raw) throw new Error("Invalid number");
+      index += raw.length;
       const value = Number(raw);
       if (!Number.isFinite(value)) throw new Error("Invalid number");
       tokens.push({ type: "number", value });
@@ -127,12 +129,18 @@ function tokenize(input: string, allowY = false, allowZ = false): Token[] {
     if (/[a-z]/.test(char)) {
       let name = "";
       while (index < expression.length && /[a-z]/.test(expression[index])) name += expression[index++];
-      if (name === "x") tokens.push({ type: "variable" });
-      else if (name === "y" && allowY) tokens.push({ type: "variableY" } as Token);
-      else if (name === "z" && allowZ) tokens.push({ type: "variableZ" } as Token);
-      else if (name === "pi" || name === "e") tokens.push({ type: "constant", value: name });
-      else if (functions.has(name)) tokens.push({ type: "function", value: name });
-      else throw new Error(`Unsupported name: ${name}`);
+      // Recognize whole function names before splitting adjacent variables.
+      while (name) {
+        const known = knownNames.find((candidate) => name.startsWith(candidate));
+        if (!known) throw new Error(`Unsupported name: ${name}`);
+        if (known === "x") tokens.push({ type: "variable" });
+        else if (known === "y" && allowY) tokens.push({ type: "variableY" });
+        else if (known === "z" && allowZ) tokens.push({ type: "variableZ" });
+        else if (known === "pi" || known === "e") tokens.push({ type: "constant", value: known });
+        else if (functions.has(known)) tokens.push({ type: "function", value: known });
+        else throw new Error(`Unsupported name: ${known}`);
+        name = name.slice(known.length);
+      }
       continue;
     }
     if (char === "(") tokens.push({ type: "leftParen" });
@@ -144,7 +152,16 @@ function tokenize(input: string, allowY = false, allowZ = false): Token[] {
     } else throw new Error("Invalid token");
     index += 1;
   }
-  return tokens;
+  const expanded: Token[] = [];
+  const endsValue = (t: Token) => ["number", "variable", "variableY", "variableZ", "constant", "rightParen"].includes(t.type);
+  const startsValue = (t: Token) => ["number", "variable", "variableY", "variableZ", "constant", "function", "leftParen"].includes(t.type);
+  for (const token of tokens) {
+    const previous = expanded.at(-1);
+    if (previous?.type === "number" && token.type === "number") throw new Error("Invalid number");
+    if (previous && endsValue(previous) && startsValue(token)) expanded.push({ type: "operator", value: "*" });
+    expanded.push(token);
+  }
+  return expanded;
 }
 
 function toRpn(tokens: Token[]) {
@@ -154,7 +171,7 @@ function toRpn(tokens: Token[]) {
     if (token.type === "number" || token.type === "constant" || token.type === "variable" || token.type === "variableY" || token.type === "variableZ") output.push(token);
     else if (token.type === "function") operators.push(token);
     else if (token.type === "operator") {
-      while (operators.length) {
+      while (token.value !== "u-" && operators.length) {
         const top = operators[operators.length - 1];
         if (top.type === "function" || (top.type === "operator" && (precedence[top.value] > precedence[token.value] || (precedence[top.value] === precedence[token.value] && !rightAssociative.has(token.value))))) output.push(operators.pop()!);
         else break;
@@ -173,6 +190,15 @@ function toRpn(tokens: Token[]) {
     if (token.type === "leftParen" || token.type === "rightParen") throw new Error("Mismatched parentheses");
     output.push(token);
   }
+  let depth = 0;
+  for (const token of output) {
+    if (token.type === "function" || token.type === "operator") {
+      const operands = token.type === "function" || (token.type === "operator" && token.value === "u-") ? 1 : 2;
+      if (depth < operands) throw new Error("Missing operand or function argument");
+      depth = depth - operands + 1;
+    } else depth += 1;
+  }
+  if (depth !== 1) throw new Error("Invalid expression");
   return output;
 }
 
@@ -201,7 +227,19 @@ function evaluateRpn(rpn: Token[], x: number, y = 0, z = 0) {
         if (token.value === "-") stack.push(left - right);
         if (token.value === "*") stack.push(left * right);
         if (token.value === "/") stack.push(left / right);
-        if (token.value === "^") stack.push(Math.pow(left, right));
+        if (token.value === "^") {
+          let value = Math.pow(left, right);
+          if (left < 0 && !Number.isInteger(right)) {
+            for (let denominator = 3; denominator <= 99; denominator += 2) {
+              const numerator = Math.round(right * denominator);
+              if (Math.abs(right - numerator / denominator) < 1e-12) {
+                value = (Math.abs(numerator) % 2 ? -1 : 1) * Math.pow(-left, right);
+                break;
+              }
+            }
+          }
+          stack.push(value);
+        }
       }
     }
   });

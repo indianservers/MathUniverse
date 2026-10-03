@@ -200,7 +200,7 @@ export default function MathLabGraphingCalculator() {
   const exactIntersections = useMemo(() => { const visible = functions.filter((item) => item.visible); return visible.length >= 2 ? buildExactIntersections(visible[0].input, visible[1].input) : undefined; }, [functions]);
   const numericData = useMemo(() => numericGraphData(dataRows), [dataRows]);
   const regression = useMemo(() => regressionModel(numericData, regressionKind), [numericData, regressionKind]);
-  const asymptotes = useMemo(() => selected ? detectGraphAsymptotes(selected.points, view.xMin, view.xMax) : { vertical: [], horizontal: [] }, [selected, view.xMax, view.xMin]);
+  const asymptotes = useMemo(() => selected ? detectGraphAsymptotes(selected.points, view.xMin, view.xMax, selectedResolvedInput) : { vertical: [], horizontal: [] }, [selected, selectedResolvedInput, view.xMax, view.xMin]);
   const dataPoints = useMemo<GraphSample[]>(() => numericData.map((point) => ({ ...point, valid: true })), [numericData]);
   const regressionPoints = useMemo<GraphSample[]>(() => regression?.line.map((point) => ({ ...point, valid: true })) ?? [], [regression]);
   const graphSeries = useMemo(() => [
@@ -556,8 +556,8 @@ function SavedGraphList({ saved, onLoad, onDelete }: { saved: SavedGraphWorkspac
   );
 }
 
-function sampleGraphExpression(input: string, xMin: number, xMax: number, samples: number, yMin = xMin, yMax = xMax): GraphExpressionSample {
-  const normalized = input.trim().replace(/\u00b2/g, "^2").replace(/\u00b3/g, "^3").replace(/\u03b8/g, "theta").replace(/\s+/g, "");
+export function sampleGraphExpression(input: string, xMin: number, xMax: number, samples: number, yMin = xMin, yMax = xMax): GraphExpressionSample {
+  const normalized = input.trim().toLowerCase().replace(/\u00b2/g, "^2").replace(/\u00b3/g, "^3").replace(/\u03b8/g, "theta").replace(/\s+/g, "");
   const listMatch = normalized.match(/^\[(.+)\]$/);
   if (listMatch && listMatch[1].split(",").every((item) => /^-?\d+(?:\.\d+)?$/.test(item.trim()))) {
     const values = listMatch[1].split(",").map(Number);
@@ -594,8 +594,8 @@ function sampleGraphExpression(input: string, xMin: number, xMax: number, sample
   const parametric = normalized.match(/^x=(.+),y=(.+)$/i);
   if (parametric) {
     try {
-      const xFn = compileFunctionExpression(parametric[1].replace(/\bt\b/g, "x"));
-      const yFn = compileFunctionExpression(parametric[2].replace(/\bt\b/g, "x"));
+      const xFn = compileFunctionExpression(parametric[1].replace(/(?<![a-z])t\b/g, "x"));
+      const yFn = compileFunctionExpression(parametric[2].replace(/(?<![a-z])t\b/g, "x"));
       const count = Math.max(240, Math.floor(samples / 2));
       const points = Array.from({ length: count }, (_, index) => {
         const t = -Math.PI * 2 + index / Math.max(1, count - 1) * Math.PI * 4;
@@ -623,12 +623,13 @@ function sampleGraphExpression(input: string, xMin: number, xMax: number, sample
       return { points: [], normalized, style: "line", error: error instanceof Error ? error.message : "Invalid polar graph." };
     }
   }
-  const sideways = normalized.match(/^x=(.+)$/i);
+  // A bare expression in y is a sideways function, x = f(y).
+  const sideways = normalized.match(/^x=(.+)$/i) ?? (/\by\b/.test(normalized) && !/[=<>]/.test(normalized) && !/\bx\b/.test(normalized) ? [normalized, normalized] : null);
   if (sideways) {
     try {
-      const fn = compileFunctionExpression(sideways[1].replace(/\by\b/g, "x"));
+      const fn = compileFunctionExpression(sideways[1].replace(/(?<![a-z])y\b/g, "x"));
       const points = Array.from({ length: samples }, (_, index) => {
-        const y = xMin + index / Math.max(1, samples - 1) * (xMax - xMin);
+        const y = yMin + index / Math.max(1, samples - 1) * (yMax - yMin);
         const x = fn(y);
         return Number.isFinite(x) ? { x, y, valid: true } : { x: y, y: null, valid: false };
       });

@@ -1,0 +1,21 @@
+import { describe,it,expect } from 'vitest';
+import { ARHandGestureEngine, landmarkPinch, type HandTransform, type PinchHand } from './arHandGestures';
+const base:HandTransform={position:[0,0,0],rotation:[0,0,0],scale:1};
+const hand=(x:number,y=0,id='Left',ratio=.1):PinchHand=>({id,point:{x,y,z:0},ratio});
+describe('AR hand interactions',()=>{
+ it('acquires without jumping then follows a one-hand pinch',()=>{const e=new ARHandGestureEngine();expect(e.update([hand(.3)],base,true)).toBeNull();expect(e.update([hand(.4,.1)],base,true)?.position).toEqual([.8000000000000003,-.8,0]);});
+ it('does not grab open fingers',()=>{const e=new ARHandGestureEngine();expect(e.update([hand(0,0,'Left',.6)],base)).toBeNull();expect(e.update([hand(.1,0,'Left',.6)],base)).toBeNull();});
+ it('uses pinch hysteresis and releases at open fingers',()=>{const e=new ARHandGestureEngine();e.update([hand(0)],base);expect(e.update([hand(.1,0,'Left',.4)],base)).not.toBeNull();expect(e.update([hand(.2,0,'Left',.6)],base)).toBeNull();expect(e.update([hand(.3)],base)).toBeNull();});
+ it('rebaselines after lost tracking',()=>{const e=new ARHandGestureEngine();e.update([hand(0)],base);e.update([],base);expect(e.update([hand(.9)],base)).toBeNull();});
+ it('rebaselines when a second hand arrives or leaves',()=>{const e=new ARHandGestureEngine();e.update([hand(0)],base);expect(e.update([hand(0),hand(.5,0,'Right')],base)).toBeNull();expect(e.update([hand(.1)],base)).toBeNull();});
+ it('two hands resize with a bounded scale change',()=>{const e=new ARHandGestureEngine();e.update([hand(0),hand(.4,0,'Right')],base,true);expect(e.update([hand(0),hand(.6,0,'Right')],base,true)?.scale).toBeCloseTo(1.15);});
+ it('two hands rotate in the camera plane',()=>{const e=new ARHandGestureEngine();e.update([hand(0),hand(.4,0,'Right')],base,true);expect(e.update([hand(0),hand(.3,.3,'Right')],base,true)?.rotation[2]).toBeCloseTo(Math.PI/4);});
+ it('sorts hands consistently when detection order changes',()=>{const e=new ARHandGestureEngine();e.update([hand(0),hand(.4,0,'Right')],base);expect(e.update([hand(.5,0,'Right'),hand(.1)],base)?.position[0]).toBeCloseTo(.1);});
+ it('rejects sudden tracking jumps',()=>{const e=new ARHandGestureEngine();e.update([hand(0)],base,true);expect(e.update([hand(.9)],base,true)).toBeNull();expect(e.update([hand(.91)],base,true)).toBeNull();});
+ it('reset stops a grab',()=>{const e=new ARHandGestureEngine();e.update([hand(0)],base);e.reset();expect(e.update([hand(.1)],base)).toBeNull();});
+ it('preserves camera depth while dragging',()=>{const e=new ARHandGestureEngine();e.update([hand(0)],base,true);expect(e.update([hand(.1)],{...base,position:[0,0,-6]},true)?.position[2]).toBe(-6);});
+ it('keeps scale within bounds',()=>{const e=new ARHandGestureEngine();e.update([hand(0),hand(.4,0,'Right')],base);expect(e.update([hand(0),hand(.5,0,'Right')],{...base,scale:5})?.scale).toBe(5);});
+ it.each([NaN,Infinity,-Infinity])('rejects nonfinite coordinates %s',value=>{const e=new ARHandGestureEngine();expect(e.update([hand(value)],base)).toBeNull();});
+ it('maps complete camera landmarks into a normalized pinch',()=>{const p=Array.from({length:21},()=>({x:.2,y:.2,z:0}));p[9]={x:.2,y:.4,z:0};p[4]={x:.3,y:.2,z:0};p[8]={x:.32,y:.2,z:0};expect(landmarkPinch(p,'Left')?.ratio).toBeCloseTo(.1);});
+ it('rejects incomplete or collapsed landmark sets',()=>{expect(landmarkPinch([],'Left')).toBeNull();expect(landmarkPinch(Array.from({length:21},()=>({x:0,y:0,z:0})),'Left')).toBeNull();});
+});

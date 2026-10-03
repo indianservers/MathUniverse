@@ -228,7 +228,11 @@ export default function FunctionGraphCanvas({
   function handlePointerEnd(event: PointerEvent<SVGSVGElement>) {
     pointersRef.current.delete(event.pointerId);
     pinchRef.current = null;
-    dragRef.current = null;
+    const remaining = [...pointersRef.current.values()][0];
+    dragRef.current = remaining ? { clientX: remaining.x, clientY: remaining.y, view } : null;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
   }
 
   const handleWheel = useCallback(

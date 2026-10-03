@@ -105,3 +105,43 @@ test("2D graph intersections update when expressions change or are removed", asy
   await page.getByRole("button", { name: "Delete", exact: true }).click();
   await expect(graph.locator('g[aria-label^="intersection at"]')).toHaveCount(0);
 });
+
+
+test("touch editing accepts y powers without uncaught exceptions", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.goto("/workspace/graph");
+  await page.getByRole("button", { name: "Expressions menu" }).click();
+  const input = page.getByRole("textbox", { name: "Function 1", exact: true });
+  await input.tap();
+  await input.fill("Y^2");
+  await expect(input).toHaveAttribute("aria-invalid", "false");
+  await input.fill("Y^2=X");
+  await expect(input).toHaveAttribute("aria-invalid", "false");
+  await input.fill("Y^");
+  await expect(input).toHaveAttribute("aria-invalid", "true");
+  await input.fill("x=Y\u00b2");
+  await expect(input).toHaveAttribute("aria-invalid", "false");
+  await page.getByRole("button", { name: "Collapse Expressions & Layers" }).tap();
+  await expect(page.getByRole("img", { name: /Interactive function graph/ })).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+
+test("mobile built-in functions and unfinished input recover without sliders", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", error => errors.push(error.message));
+  await page.goto("/workspace/graph");
+  await page.getByRole("button", { name: "Expressions menu" }).tap();
+  const input = page.getByRole("textbox", { name: "Function 1", exact: true });
+  for (const expression of ["exp(x)", "sec(x)", "sinc(x)", "x=2y", "-x^2"]) {
+    await input.fill(expression);
+    await expect(input).toHaveAttribute("aria-invalid", "false");
+    await expect(page.locator(".gs3d-variable")).toHaveCount(0);
+  }
+  await input.fill("sin()");
+  await expect(input).toHaveAttribute("aria-invalid", "true");
+  await input.fill("exp(-x^2)");
+  await expect(input).toHaveAttribute("aria-invalid", "false");
+  expect(errors).toEqual([]);
+});

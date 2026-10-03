@@ -973,17 +973,7 @@ function ExpressionCard({
           event.preventDefault();
           setMenu(true);
         }}
-        onPointerDown={(event) => {
-          if (event.pointerType !== "touch") return;
-          const timer = window.setTimeout(() => setMenu(true), 480);
-          const release = () => {
-            window.clearTimeout(timer);
-            event.currentTarget.removeEventListener("pointerup", release);
-            event.currentTarget.removeEventListener("pointercancel", release);
-          };
-          event.currentTarget.addEventListener("pointerup", release);
-          event.currentTarget.addEventListener("pointercancel", release);
-        }}
+
       >
       <GripVertical />
       <input
@@ -1001,6 +991,9 @@ function ExpressionCard({
           aria-label={`Function ${index + 1}`}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? errorId : undefined}
+          autoCapitalize="off"
+          autoCorrect="off"
+          spellCheck={false}
           value={item.input}
           readOnly={item.locked}
           onChange={(event) => onUpdate({ input: event.target.value })}

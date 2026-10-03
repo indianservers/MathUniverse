@@ -43,9 +43,22 @@
   pointer-events: none;
 }
 
+.mwc-main-link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+.mwc-main-link:focus-visible {
+  outline: 3px solid var(--mwc-accent);
+  outline-offset: -3px;
+}
+
 .mwc-copy {
   position: relative;
-  z-index: 1;
+  z-index: 3;
+  pointer-events: none;
   display: flex;
   min-width: 0;
   height: 100%;
@@ -145,6 +158,18 @@
   font-size: 13px;
   font-weight: 800;
   box-shadow: 0 8px 18px color-mix(in srgb, var(--mwc-accent) 28%, transparent);
+}
+
+.mwc-ar-link {
+  position: relative;
+  pointer-events: auto;
+  margin-top: 8px;
+  text-decoration: none;
+}
+
+.mwc-ar-link:focus-visible {
+  outline: 3px solid var(--mwc-accent);
+  outline-offset: 3px;
 }
 
 .mwc-cta-arrow {

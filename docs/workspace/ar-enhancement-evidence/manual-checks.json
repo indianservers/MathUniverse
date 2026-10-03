@@ -1,0 +1,149 @@
+{
+  "date": "2026-10-03",
+  "viewport": "390x844 for functional checks;1280x900 for context screenshots",
+  "graphChecks": [
+    {
+      "expression": "y=x^2-4",
+      "canvas": 2,
+      "errors": [],
+      "overflow": false,
+      "preview": true,
+      "status": [
+        "Graph added. Use the existing camera/AR controls to place it."
+      ]
+    },
+    {
+      "expression": "x=y^2",
+      "canvas": 2,
+      "errors": [],
+      "overflow": false,
+      "preview": true,
+      "status": [
+        "Graph added. Use the existing camera/AR controls to place it."
+      ]
+    },
+    {
+      "expression": "y^2=x",
+      "canvas": 2,
+      "errors": [],
+      "overflow": false,
+      "preview": true,
+      "status": [
+        "Graph added. Use the existing camera/AR controls to place it."
+      ]
+    },
+    {
+      "expression": "y>sin(x)",
+      "canvas": 2,
+      "errors": [],
+      "overflow": false,
+      "preview": true,
+      "status": [
+        "Graph added. Use the existing camera/AR controls to place it."
+      ]
+    },
+    {
+      "expression": "r=2cos(3theta)",
+      "canvas": 2,
+      "errors": [],
+      "overflow": false,
+      "preview": true,
+      "status": [
+        "Graph added. Use the existing camera/AR controls to place it."
+      ]
+    },
+    {
+      "expression": "y=1/x",
+      "canvas": 2,
+      "errors": [],
+      "overflow": false,
+      "preview": true,
+      "status": [
+        "Graph added. Use the existing camera/AR controls to place it."
+      ]
+    },
+    {
+      "expression": "x=2cos(t),y=3sin(t)",
+      "canvas": 2,
+      "errors": [],
+      "overflow": false,
+      "preview": true,
+      "status": [
+        "Graph added. Use the existing camera/AR controls to place it."
+      ]
+    },
+    {
+      "expression": "y=x+",
+      "canvas": 2,
+      "errors": [
+        "Missing operand or function argument"
+      ],
+      "overflow": false,
+      "preview": true,
+      "status": [
+        "Graph added. Use the existing camera/AR controls to place it."
+      ]
+    },
+    {
+      "expression": "x*y*z=1",
+      "errors": [],
+      "overflow": false,
+      "status": [
+        "Graph added. Use the existing camera/AR controls to place it."
+      ]
+    },
+    {
+      "expression": "x^2+y^2-z^2=1",
+      "errors": [],
+      "overflow": false,
+      "status": [
+        "Graph added. Use the existing camera/AR controls to place it."
+      ]
+    },
+    {
+      "expression": "z=x^2",
+      "errors": [],
+      "overflow": false,
+      "status": [
+        "Graph added. Use the existing camera/AR controls to place it."
+      ]
+    },
+    {
+      "expression": "x=cos(t),y=sin(t),z=t/4",
+      "errors": [],
+      "overflow": false,
+      "status": [
+        "Graph added. Use the existing camera/AR controls to place it."
+      ]
+    },
+    {
+      "expression": "x=(2+cos(v))*cos(u),y=(2+cos(v))*sin(u),z=sin(v)",
+      "errors": [],
+      "overflow": false,
+      "status": [
+        "Graph added. Use the existing camera/AR controls to place it."
+      ]
+    }
+  ],
+  "geometryChecks": [
+    "3-4-5 metrics and centers verified",
+    "circle intersections verified",
+    "regular hexagon metrics verified",
+    "rotation and undo/redo verified",
+    "prism extrusion verified"
+  ],
+  "additionalChecks": [
+    "torus section retained original surface",
+    "x^2-4 at x=1: y=-3, slope=2, signed integral=43.3333 over[-5,5]",
+    "tangent added to scene"
+  ],
+  "console": [],
+  "limitations": [
+    "Camera/hardware world tracking not tested"
+  ],
+  "trackedARBrowserStatus": [
+    "Prism added to the scene.",
+    "Tracked AR is unavailable here. Camera overlay and 3D preview remain available."
+  ],
+  "finalConsole": []
+}

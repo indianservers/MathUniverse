@@ -56,7 +56,12 @@ export function detectGraphAsymptotes(
   points: GraphSample[],
   xMin: number,
   xMax: number,
+  expression?: string,
 ): GraphAsymptotes {
+  let evaluate: ((x: number) => number) | undefined;
+  if (expression !== undefined) {
+    try { evaluate = compileFunctionExpression(expression); } catch { return { vertical: [], horizontal: [] }; }
+  }
   const vertical: number[] = [];
   const span = xMax - xMin;
   for (let index = 1; index < points.length; index += 1) {
@@ -67,7 +72,22 @@ export function detectGraphAsymptotes(
       (previous.y !== null &&
         current.y !== null &&
         Math.abs(current.y - previous.y) > Math.max(40, span * 8));
-    if (discontinuity) vertical.push((previous.x + current.x) / 2);
+    if (discontinuity) {
+      let candidate = (previous.x + current.x) / 2;
+      if (evaluate) {
+        let low = previous.x, high = current.x;
+        const magnitude = (x: number) => { const y = evaluate!(x); return Number.isNaN(y) ? 0 : Math.abs(y); };
+        for (let step = 0; step < 48; step++) {
+          const l = low + (high-low)/3, r = high - (high-low)/3;
+          if (magnitude(l) > magnitude(r)) high = r; else low = l;
+        }
+        candidate = (low + high)/2;
+        const delta = Math.max(1e-5, span * 1e-5);
+        const coarse = Math.max(magnitude(candidate-delta), magnitude(candidate+delta));
+        const fine = Math.max(magnitude(candidate-delta/10), magnitude(candidate+delta/10));
+        if (!Number.isFinite(fine) || fine > Math.max(40, coarse * 2)) vertical.push(candidate);
+      } else vertical.push(candidate);
+    }
   }
   const valid = points.filter(
     (point): point is GraphSample & { y: number } =>
@@ -75,12 +95,18 @@ export function detectGraphAsymptotes(
   );
   const horizontal: number[] = [];
   const edge = Math.max(4, Math.floor(valid.length * 0.025));
-  for (const sample of [valid.slice(0, edge), valid.slice(-edge)]) {
+  for (const [side, sample] of [[-1, valid.slice(0, edge)], [1, valid.slice(-edge)]] as const) {
     if (sample.length < 3) continue;
     const mean =
       sample.reduce((sum, point) => sum + point.y, 0) / sample.length;
     const spread = Math.max(...sample.map((point) => Math.abs(point.y - mean)));
-    if (spread < Math.max(0.04, Math.abs(mean) * 0.015)) horizontal.push(mean);
+    if (spread < Math.max(0.04, Math.abs(mean) * 0.015)) {
+      if (evaluate) {
+        const scale = Math.max(1, Math.abs(xMin), Math.abs(xMax), span);
+        const distant = [1000, 2000, 4000].map(factor => evaluate!(side * scale * factor));
+        if (distant.every(Number.isFinite) && Math.max(...distant)-Math.min(...distant) < 1e-4 * (1+Math.abs(distant[2]))) horizontal.push(distant[2]);
+      } else horizontal.push(mean);
+    }
   }
   return {
     vertical: dedupe(vertical, span / 100),

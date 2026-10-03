@@ -1,3 +1,5 @@
+import { generateARPlanarGraph, resolveARParameters } from "./arExplorationEngine";
+import { sampleImplicitSurface } from "../graph-studio/graph3dAdvanced";
 import { classifyEquationInput } from "./arEquationClassifier";
 import type {
   ARGeneratedGraphObject,
@@ -27,6 +29,8 @@ export type ParameterSliderSpec = {
 
 const supportedFunctions: Record<string, (...values: number[]) => number> = {
   sin: Math.sin,
+  sinh: Math.sinh, cosh: Math.cosh, tanh: Math.tanh, cbrt: Math.cbrt, sign: Math.sign,
+  sec: x => 1 / Math.cos(x), csc: x => 1 / Math.sin(x), cot: x => 1 / Math.tan(x),
   cos: Math.cos,
   tan: Math.tan,
   asin: Math.asin,
@@ -40,7 +44,7 @@ const supportedFunctions: Record<string, (...values: number[]) => number> = {
   floor: Math.floor,
   ceil: Math.ceil,
   round: Math.round,
-  pow: Math.pow,
+  pow: realARPower,
   min: Math.min,
   max: Math.max,
 };
@@ -52,7 +56,7 @@ const precedence: Record<string, number> = {
   "*": 2,
   "/": 2,
   "^": 3,
-  "u-": 4,
+  "u-": 3,
 };
 const rightAssociative = new Set(["^", "u-"]);
 const blockedExpressionTokens =
@@ -141,6 +145,9 @@ export function generateARGraphObject(
   settings: ARGraphSettings,
   parameters: Record<string, number>,
 ): ARGeneratedGraphObject {
+  for (const range of [settings.xRange, settings.yRange, settings.tRange, settings.uRange, settings.vRange]) {
+    if (!range.every(Number.isFinite) || range[0] >= range[1]) throw new Error("Graph ranges must increase and be finite.");
+  }
   const classification = classifyEquationInput(input);
   if (
     classification.errors?.length &&
@@ -154,7 +161,16 @@ export function generateARGraphObject(
   };
 
   let geometry: ARGraphGeometry;
-  if (classification.suggestedRenderer === "surface_mesh") {
+  if (classification.suggestedRenderer === "planar_curve") {
+    geometry = generateARPlanarGraph(input, settings, effectiveParameters);
+  } else if (classification.suggestedRenderer === "implicit_surface_mesh") {
+    const range = Math.max(...settings.xRange.map(Math.abs), ...settings.yRange.map(Math.abs));
+    const mesh = sampleImplicitSurface(resolveARParameters(input, effectiveParameters), range, Math.min(40, settings.resolutionX));
+    if (mesh.error || !mesh.indices.length) throw new Error(mesh.error ?? "No implicit surface in this range.");
+    const vertices: number[] = [];
+    for (let i = 0; i < mesh.positions.length; i += 3) vertices.push(mesh.positions[i], mesh.positions[i + 2], mesh.positions[i + 1]);
+    geometry = { kind: "surface", vertices, indices: mesh.indices, valueStats: { minZ: mesh.minZ ?? 0, maxZ: mesh.maxZ ?? 0, invalidPointCount: 0 }, warnings: classification.warnings ?? [] };
+  } else if (classification.suggestedRenderer === "surface_mesh") {
     geometry = generateExplicitSurfaceMesh({
       expression: stripLeftSide(input, "z"),
       xRange: settings.xRange,
@@ -226,7 +242,7 @@ export function generateARGraphObject(
   }
 
   return {
-    id: `ar-graph-${Date.now()}`,
+    id: `ar-graph-${crypto.randomUUID()}`,
     name: graphNameFor(classification),
     equation: input,
     type: classification.type,
@@ -330,20 +346,30 @@ export function generateParametricCurve(options: {
   const samples = clampInteger(options.samples, 20, 800);
   const points: [number, number, number][] = [];
   let invalidPointCount = 0;
+  const rawSegments: [number, number, number][][] = [];
+  let current: [number, number, number][] = [];
   for (let index = 0; index < samples; index += 1) {
     const t = lerp(options.tRange, index / Math.max(1, samples - 1));
     const scope = { t, ...options.parameters };
     const x = safeEval(fx, scope);
     const y = safeEval(fy, scope);
     const z = safeEval(fz, scope);
-    if (x === null || y === null || z === null) invalidPointCount += 1;
-    else points.push([x, z, y]);
+    if (x === null || y === null || z === null) {
+      invalidPointCount += 1;
+      if (current.length) rawSegments.push(current);
+      current = [];
+    } else { const point: [number, number, number] = [x, z, y]; points.push(point); current.push(point); }
   }
-  if (points.length < 2)
+  if (current.length) rawSegments.push(current);
+  if (points.length < 2 || !rawSegments.some(segment => segment.length > 1))
     throw new Error("The parametric curve has too few finite points.");
+  const normalized = normalizePoints(points);
+  let offset = 0;
+  const segments = rawSegments.map(segment => { const result = normalized.slice(offset, offset + segment.length); offset += segment.length; return result; });
   return {
     kind: "curve",
-    points: normalizePoints(points),
+    points: normalized,
+    segments,
     valueStats: { invalidPointCount },
     warnings: buildWarnings(invalidPointCount, samples, samples),
   };
@@ -426,7 +452,7 @@ function normalizeExpression(input: string) {
     .replace(/\s+/g, "")
     .replace(/e\^\(/g, "exp(")
     .replace(/e\^([A-Za-z0-9]+)/g, "exp($1)")
-    .replace(/(\d|\))(?=([A-Za-z]|\())/g, "$1*");
+    .replace(/\u2212/g, "-");
   if (!value)
     throw new Error(
       "The equation could not be parsed. Check brackets, operators, and variables.",
@@ -474,9 +500,9 @@ function tokenize(expression: string): Token[] {
   while (index < expression.length) {
     const char = expression[index];
     if (/\d|\./.test(char)) {
-      let raw = "";
-      while (index < expression.length && /[\d.]/.test(expression[index]))
-        raw += expression[index++];
+      const raw = expression.slice(index).match(/^(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?/)?.[0];
+      if (!raw) throw new Error("Invalid number");
+      index += raw.length;
       const value = Number(raw);
       if (!Number.isFinite(value)) throw new Error("Invalid number");
       tokens.push({ type: "number", value });
@@ -515,7 +541,14 @@ function tokenize(expression: string): Token[] {
     } else throw new Error("Invalid token");
     index += 1;
   }
-  return tokens;
+  const multiplied: Token[] = [];
+  for (const token of tokens) {
+    const previous = multiplied.at(-1);
+    if (previous?.type === "number" && token.type === "number") throw new Error("Invalid number");
+    if (previous && ["number", "name", "rightParen"].includes(previous.type) && ["number", "name", "function", "leftParen"].includes(token.type)) multiplied.push({type:"operator",value:"*"});
+    multiplied.push(token);
+  }
+  return multiplied;
 }
 
 function toRpn(tokens: Token[]) {
@@ -531,7 +564,7 @@ function toRpn(tokens: Token[]) {
       )
         output.push(operators.pop() as RpnToken);
     } else if (token.type === "operator") {
-      while (operators.length) {
+      while (operators.length && token.value !== "u-") {
         const top = operators[operators.length - 1];
         if (
           top.type === "function" ||
@@ -563,6 +596,13 @@ function toRpn(tokens: Token[]) {
       throw new Error("Mismatched parentheses");
     output.push(token as RpnToken);
   }
+  let depth = 0;
+  for (const token of output) {
+    const operands = token.type === "function" ? (functionArity[token.value] ?? 1) : token.type === "operator" ? (token.value === "u-" ? 1 : 2) : 0;
+    if (depth < operands) throw new Error("Missing operand or function argument");
+    depth += 1 - operands;
+  }
+  if (depth !== 1) throw new Error("Invalid expression");
   return output;
 }
 
@@ -593,7 +633,7 @@ function evaluateRpn(rpn: RpnToken[], scope: Record<string, number>) {
         if (token.value === "-") stack.push(left - right);
         if (token.value === "*") stack.push(left * right);
         if (token.value === "/") stack.push(left / right);
-        if (token.value === "^") stack.push(Math.pow(left, right));
+        if (token.value === "^") stack.push(realARPower(left, right));
       }
     }
   });
@@ -677,6 +717,8 @@ function buildWarnings(
 }
 
 function graphNameFor(classification: EquationClassificationResult) {
+  if (classification.suggestedRenderer === "planar_curve") return "2D graph";
+  if (classification.suggestedRenderer === "implicit_surface_mesh") return "Implicit surface";
   if (classification.suggestedRenderer === "curve_3d")
     return "Parametric curve";
   if (classification.suggestedRenderer === "parametric_surface_mesh")
@@ -696,4 +738,14 @@ function clampInteger(value: number, min: number, max: number) {
 
 function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
+}
+
+function realARPower(base: number, exponent: number) {
+  const ordinary = Math.pow(base, exponent);
+  if (!Number.isNaN(ordinary) || base >= 0 || !Number.isFinite(exponent)) return ordinary;
+  for (let denominator = 3; denominator <= 99; denominator += 2) {
+    const numerator = Math.round(exponent * denominator);
+    if (Math.abs(exponent - numerator / denominator) < 1e-12) return (Math.abs(numerator) % 2 ? -1 : 1) * Math.pow(-base, exponent);
+  }
+  return ordinary;
 }

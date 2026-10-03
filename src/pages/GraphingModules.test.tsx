@@ -5,7 +5,7 @@ import { MathWorkspacesHomeSection } from "../components/workspace/MathWorkspace
 import { navSections } from "../components/layout/navItems";
 import { mathWorkspaces } from "../workspace/mathWorkspaces";
 import MathLab3DGraphing from "./MathLab3DGraphing";
-import MathLabGraphingCalculator from "./MathLabGraphingCalculator";
+import MathLabGraphingCalculator, { sampleGraphExpression } from "./MathLabGraphingCalculator";
 import { buildExactGraphAnalysis } from "../graph-studio/exactGraphAnalysis";
 import { fitGraphView, zoomGraphView } from "../graph-studio/graphViewUtils";
 
@@ -105,5 +105,21 @@ describe("graphing workspaces", () => {
     expect(html).toContain("Open project file");
     expect(html).toContain("Paraboloid");
     expect(html).toContain("Offline ready");
+  });
+});
+
+
+describe("mobile expression sampling", () => {
+  it("accepts uppercase and superscript sideways functions over the y viewport", () => {
+    for (const expression of ["Y^2", "y\u00b2", "X=Y^2"]) {
+      const result = sampleGraphExpression(expression, -2, 2, 40, -7, 9);
+      expect(result.error).toBeUndefined();
+      expect(result.points[0]).toEqual({ x: 49, y: -7, valid: true });
+      expect(result.points.at(-1)).toEqual({ x: 81, y: 9, valid: true });
+    }
+  });
+  it("plots uppercase implicit equations and handles unfinished input", () => {
+    expect(sampleGraphExpression("Y^2=X", -5, 5, 100).points.length).toBeGreaterThan(0);
+    expect(sampleGraphExpression("Y^", -5, 5, 100).error).toBeTruthy();
   });
 });

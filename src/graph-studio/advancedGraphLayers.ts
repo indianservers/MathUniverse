@@ -94,8 +94,8 @@ export function sampleAdvancedGraphExpression(
 function sampleParametricRange(args: string[]) {
   if (args.length !== 4)
     throw new Error("Use param(x(t), y(t), t minimum, t maximum).");
-  const xFn = compileFunctionExpression(args[0].replace(/\bt\b/gi, "x"));
-  const yFn = compileFunctionExpression(args[1].replace(/\bt\b/gi, "x"));
+  const xFn = compileFunctionExpression(args[0].replace(/(?<![a-z])t\b/gi, "x"));
+  const yFn = compileFunctionExpression(args[1].replace(/(?<![a-z])t\b/gi, "x"));
   const start = parseBound(args[2]);
   const end = parseBound(args[3]);
   if (!(end > start))
@@ -118,7 +118,7 @@ function sampleSequence(args: string[]) {
     args[2] === undefined ? start + 20 : integer(args[2], "Sequence end");
   if (end < start) throw new Error("Sequence end must be at least the start.");
   const count = Math.min(MAX_DISCRETE_TERMS, end - start + 1);
-  const fn = compileFunctionExpression(args[0].replace(/\bn\b/gi, "x"));
+  const fn = compileFunctionExpression(args[0].replace(/(?<![a-z])n\b/gi, "x"));
   return Array.from({ length: count }, (_, index) => {
     const n = start + index;
     const y = fn(n);
@@ -141,7 +141,7 @@ function sampleRecurrence(args: string[]) {
   if (!Number.isFinite(value))
     throw new Error("Recurrence initial value must be numeric.");
   const next = compileTwoVariableExpression(
-    args[1].replace(/\bprev\b/gi, "x").replace(/\bn\b/gi, "y"),
+    args[1].replace(/(?<![a-z])prev\b/gi, "x").replace(/(?<![a-z])n\b/gi, "y"),
   );
   const points: GraphSample[] = [];
   for (let n = 0; n < count; n += 1) {
@@ -161,6 +161,7 @@ function sampleContours(args: string[], min: number, max: number) {
       "Use contour(expression, level) or contour(expression, level1;level2).",
     );
   const fn = compileTwoVariableExpression(args[0]);
+  if (args[1].split(";").some(level => !level.trim() || !Number.isFinite(Number(level)))) throw new Error("Contour levels must be numeric.");
   const levels = args[1]
     .split(";")
     .map(Number)

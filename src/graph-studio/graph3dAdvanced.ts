@@ -31,7 +31,8 @@ export function normalizeImplicitEquation(input: string) {
   if (separator < 0) return source;
   const left = source.slice(0, separator).trim();
   const right = source.slice(separator + 1).trim();
-  return `(${left})-(${right || "0"})`;
+  if (!left || !right) throw new Error("Both sides of an implicit equation are required.");
+  return `(${left})-(${right})`;
 }
 
 export function sampleImplicitSurface(
@@ -347,7 +348,18 @@ export function sampleAdaptiveExplicitSurface(
     } catch {
       return;
     }
-    if (!values.every(Number.isFinite)) return;
+    if (!values.every(Number.isFinite)) {
+      // A cell crossing a real-domain boundary can still contain a valid
+      // island or strip. Refine these cells before discarding them.
+      if (depth < maxDepth + 4 && values.some(Number.isFinite)) {
+        const xm = (x0 + x1) / 2, ym = (y0 + y1) / 2;
+        addCell(x0, xm, y0, ym, depth + 1);
+        addCell(xm, x1, y0, ym, depth + 1);
+        addCell(xm, x1, ym, y1, depth + 1);
+        addCell(x0, xm, ym, y1, depth + 1);
+      }
+      return;
+    }
     const bilinearCenter = (values[0] + values[1] + values[2] + values[3]) / 4;
     const curvature = Math.abs(values[4] - bilinearCenter);
     const localSpan =
@@ -551,13 +563,13 @@ function polygonizeTetrahedron(
 
 function compileParametric2D(expression: string) {
   return compileTwoVariableExpression(
-    expression.replace(/\bu\b/gi, "x").replace(/\bv\b/gi, "y"),
+    expression.replace(/(?<![a-z])u\b/gi, "x").replace(/(?<![a-z])v\b/gi, "y"),
   );
 }
 
 function compileParametric1D(expression: string) {
   const compiled = compileTwoVariableExpression(
-    expression.replace(/\bt\b/gi, "x"),
+    expression.replace(/(?<![a-z])t\b/gi, "x"),
   );
   return (t: number) => compiled(t, 0);
 }

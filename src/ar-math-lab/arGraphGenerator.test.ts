@@ -78,10 +78,10 @@ describe("AR Math Lab graph generator", () => {
     expect(specs.find((spec) => spec.key === "k")?.min).toBeGreaterThan(0);
   });
 
-  it("rejects unsupported implicit equations with a helpful error", () => {
-    expect(() =>
-      generateARGraphObject("x^2 + y^2 + z = 4", defaultGraphSettings, {}),
-    ).toThrow(/not yet supported/i);
+  it("meshes general implicit equations in AR", () => {
+    const graph = generateARGraphObject("x^2 + y^2 + z = 4", defaultGraphSettings, {});
+    expect(graph.geometry.kind).toBe("surface");
+    if (graph.geometry.kind === "surface") expect(graph.geometry.indices.length).toBeGreaterThan(0);
   });
 
   it.each([

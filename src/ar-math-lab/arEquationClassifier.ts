@@ -174,6 +174,13 @@ export function classifyEquationInput(
     );
   }
 
+  if (!/\bz\b/i.test(normalizedInput) && (!normalizedInput.includes(",") || /^x\s*=.+,\s*y\s*=/i.test(normalizedInput)) && (/^[yr]\s*=/i.test(normalizedInput) || /^[xy]\s*=/i.test(normalizedInput) || /[=<>]/.test(normalizedInput) || /^[0-9(.+-]|^(sin|cos|tan|sqrt|abs|exp|ln|log|x|y)\b/i.test(normalizedInput))) {
+    return result("planar_graph", normalizedInput, "high", variables, [], "3d-preview", "A 2D graph on an AR coordinate plane.", {
+      suggestedRenderer: "planar_curve", parameters, suggestedParameters: suggestedParameterValues(parameters),
+      educationalHint: "Explore this graph on a vertical coordinate plane, then position it in the camera scene.",
+    });
+  }
+
   if (looksLikeExplicitSurface(lower)) {
     const ranges = inferExplicitRanges(lower);
     return result(
@@ -230,18 +237,17 @@ export function classifyEquationInput(
       );
     }
     return result(
-      "implicit_surface_unsupported",
+      "implicit_surface",
       normalizedInput,
       "medium",
       variables,
       [],
       "3d-preview",
-      "This implicit equation is not yet supported in AR rendering. Try z = f(x, y), a parametric equation, or a standard shape such as x^2 + y^2 + z^2 = 9.",
+      "General implicit surface: a numerical zero-level mesh in the selected cube.",
       {
-        suggestedRenderer: "unsupported",
-        errors: [
-          "This implicit equation is not yet supported in AR rendering.",
-        ],
+        suggestedRenderer: "implicit_surface_mesh", parameters,
+        suggestedParameters: suggestedParameterValues(parameters),
+        warnings: ["Implicit meshes are numerical approximations; features smaller than a grid cell can be missed."],
       },
     );
   }
@@ -299,7 +305,7 @@ function result(
 }
 
 function looksLikeExplicitSurface(lower: string) {
-  return /^z\s*=/.test(lower) && /\bx\b/.test(lower) && /\by\b/.test(lower);
+  return /^z\s*=/.test(lower) && !lower.includes(",");
 }
 
 function looksLikeParametricCurve(lower: string) {
@@ -307,7 +313,7 @@ function looksLikeParametricCurve(lower: string) {
     /\bx\s*=/.test(lower) &&
     /\by\s*=/.test(lower) &&
     /\bz\s*=/.test(lower) &&
-    /\bt\b/.test(lower) &&
+    /(?<![a-z])t(?![a-z])/.test(lower) &&
     !/\bu\b|\bv\b/.test(lower)
   );
 }
@@ -317,14 +323,13 @@ function looksLikeParametricSurface(lower: string) {
     /\bx\s*=/.test(lower) &&
     /\by\s*=/.test(lower) &&
     /\bz\s*=/.test(lower) &&
-    (/\bu\b/.test(lower) || /\bv\b/.test(lower))
+    (/(?<![a-z])u(?![a-z])/.test(lower) || /(?<![a-z])v(?![a-z])/.test(lower))
   );
 }
 
 function looksLikeImplicitSurface(lower: string) {
   return (
-    /\bx\b/.test(lower) &&
-    /\by\b/.test(lower) &&
+    /\b[xyz]\b/.test(lower) &&
     /=/.test(lower) &&
     !/^z\s*=/.test(lower)
   );
@@ -355,7 +360,7 @@ function collectParameters(input: string, variables: string[]) {
   const variableSet = new Set([...variables, "x", "y", "z", "t", "u", "v"]);
   return Array.from(
     new Set(
-      Array.from(input.matchAll(/\b[A-Za-z]\b/g))
+      Array.from(input.replace(/(?:\d+(?:\.\d*)?|\.\d+)[eE][+-]?\d+/g, "0").matchAll(/(?<![A-Za-z])[A-Za-z](?![A-Za-z])/g))
         .map((match) => match[0])
         .filter(
           (name) =>
@@ -414,7 +419,7 @@ function explicitHint(lower: string) {
 
 function classifyRecognizedImplicit(lower: string): {
   message: string;
-  renderer: "predefined_sphere" | "predefined_cylinder" | "predefined_cone";
+  renderer: "predefined_sphere" | "predefined_cylinder" | "predefined_cone" | "implicit_surface_mesh";
   parameters: string[];
   parameterValues: Record<string, number>;
   ranges: Partial<Record<"u" | "v", [number, number]>>;
@@ -448,7 +453,7 @@ function classifyRecognizedImplicit(lower: string): {
   if (/x\^2\s*\+\s*y\^2\s*=.*z\^2/.test(lower)) {
     return {
       message: "Recognized a cone from x^2 + y^2 = k z^2.",
-      renderer: "predefined_cone" as const,
+      renderer: "implicit_surface_mesh" as const,
       parameters: ["h"],
       parameterValues: { h: 2 },
       ranges: { u: [0, Math.PI * 2], v: [0, 2] },

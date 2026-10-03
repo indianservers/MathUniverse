@@ -1194,6 +1194,9 @@ function ExpressionCard({
                 <input
                   key={axis}
                   aria-label={`${surface.name} ${axis} component`}
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck={false}
                   value={surface.components[axis]}
                   onChange={(event) =>
                     onChange({
@@ -1211,6 +1214,9 @@ function ExpressionCard({
             <input
               autoFocus
               aria-label={`Edit ${surface.name} expression`}
+              autoCapitalize="off"
+              autoCorrect="off"
+              spellCheck={false}
               value={surface.expression}
               onChange={(event) =>
                 onChange({

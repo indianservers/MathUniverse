@@ -2,6 +2,16 @@ import { describe, expect, it } from "vitest";
 import { detectARSupport } from "./arSupport";
 
 describe("detectARSupport", () => {
+  it("does not promise working camera AR before permission", async () => {
+    const status = await detectARSupport({isSecureContext:true,createCanvas:webGLCanvas,navigator:{mediaDevices:{getUserMedia:async()=>({}) as MediaStream}}});
+    expect(status.message).toContain("requests camera access");
+    expect(status.message).not.toContain("AR is ready");
+  });
+  it("requires secure context even if a host exposes camera APIs", async () => {
+    const status=await detectARSupport({isSecureContext:false,createCanvas:webGLCanvas,navigator:{mediaDevices:{getUserMedia:async()=>({}) as MediaStream}}});
+    expect(status.recommendedMode).toBe("3d-preview");
+    expect(status.message).toContain("HTTPS");
+  });
   function webGLCanvas() {
     return {
       getContext: (name: string) => (name === "webgl2" ? {} : null),

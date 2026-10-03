@@ -413,7 +413,7 @@ export default function MathLab3DGraphing() {
             {sliceEnabled && supportsDifferential && <SlicePlane axis={sliceAxis} value={sliceX} range={Math.max(xRange, yRange)} samples={surface} color={graphTheme.crossSection} onChange={setSliceX} />}
             {sliceEnabled && supportsDifferential && <SliceCurve axis={sliceAxis} value={sliceX} samples={surface} color={graphTheme.crossSection} />}
             {clipEnabled && <ClipPlane axis={clipAxis} value={clipValue} range={Math.max(xRange, yRange)} />}
-            {surfaceDifferential && <SurfaceDifferentialGeometry analysis={surfaceDifferential} scale={Math.max(0.7, Math.min(xRange, yRange) * 0.22)} theme={graphTheme} />}
+            {surfaceDifferential && <SurfaceDifferentialGeometry analysis={surfaceDifferential} scale={Math.max(0.7, Math.min(xRange, yRange) * 0.22)} verticalScaleFactor={verticalScale(surface)} theme={graphTheme} />}
             {criticalPoints.map((point, index) => <CriticalPointMarker key={`${point.x}-${point.y}-${index}`} point={point} theme={graphTheme} />)}
             {volumePartner && <VolumeBetweenSurfaces top={surface} bottom={sampledSurfaces.find((sampled) => sampled.item.id === volumePartner.id)?.samples} theme={graphTheme} />}
             {contourLines.map((line, index) => line.length > 1 ? <Line key={`contour-${index}`} points={line.map((point) => [point.x, point.z * verticalScale(surface), point.y] as [number, number, number])} color={graphTheme.crossSection} lineWidth={2} /> : null)}
@@ -744,12 +744,12 @@ export default function MathLab3DGraphing() {
   }
 
   function deleteSurface(surfaceId: string) {
-    setSurfaces((current) => {
-      const index = current.findIndex((item) => item.id === surfaceId);
-      const next = current.filter((item) => item.id !== surfaceId);
-      if (surfaceId === selectedSurfaceId) setSelectedSurfaceId(next[Math.min(Math.max(index, 0), next.length - 1)]?.id ?? "");
-      return next;
-    });
+    const index = surfaces.findIndex((item) => item.id === surfaceId);
+    const next = surfaces.filter((item) => item.id !== surfaceId);
+    setSurfaces(next);
+    if (surfaceId === selectedSurfaceId) {
+      setSelectedSurfaceId(next[Math.min(Math.max(index, 0), next.length - 1)]?.id ?? "");
+    }
   }
 }
 
@@ -765,8 +765,8 @@ function buildAdvancedLayer(surface: Graph3DSurface, variables: GraphStudioVaria
       return { mesh, error: mesh.error };
     }
     const coordinateExpression = surface.coordinateMode === "cylindrical"
-      ? expression.replace(/\br\b/gi, "u").replace(/\btheta\b/gi, "v")
-      : expression.replace(/\btheta\b/gi, "u").replace(/\bphi\b/gi, "v");
+      ? expression.replace(/(?<![a-z])r\b/gi, "u").replace(/(?<![a-z])theta\b/gi, "v")
+      : expression.replace(/(?<![a-z])theta\b/gi, "u").replace(/(?<![a-z])phi\b/gi, "v");
     try {
       const mesh = sampleCoordinateSurface(coordinateExpression, surface.coordinateMode, { uMin: surface.uMin, uMax: surface.uMax, vMin: surface.vMin, vMax: surface.vMax }, resolution);
       return { mesh, error: mesh.error };
@@ -791,11 +791,11 @@ function buildAdvancedLayer(surface: Graph3DSurface, variables: GraphStudioVaria
 }
 
 function layerVariableExpressions(surface: Graph3DSurface) {
-  if (surface.kind === "parametric") return Object.values(surface.components).map((value) => value.replace(/\bu\b/gi, "x").replace(/\bv\b/gi, "y"));
-  if (surface.kind === "curve") return Object.values(surface.components).map((value) => value.replace(/\bt\b/gi, "x"));
+  if (surface.kind === "parametric") return Object.values(surface.components).map((value) => value.replace(/(?<![a-z])u\b/gi, "x").replace(/(?<![a-z])v\b/gi, "y"));
+  if (surface.kind === "curve") return Object.values(surface.components).map((value) => value.replace(/(?<![a-z])t\b/gi, "x"));
   if (surface.kind === "vector-field") return Object.values(surface.components);
-  if (surface.coordinateMode === "cylindrical") return [surface.expression.replace(/\br\b/gi, "x").replace(/\btheta\b/gi, "y")];
-  if (surface.coordinateMode === "spherical") return [surface.expression.replace(/\brho\b/gi, "x").replace(/\btheta\b/gi, "x").replace(/\bphi\b/gi, "y")];
+  if (surface.coordinateMode === "cylindrical") return [surface.expression.replace(/(?<![a-z])r\b/gi, "x").replace(/(?<![a-z])theta\b/gi, "y")];
+  if (surface.coordinateMode === "spherical") return [surface.expression.replace(/(?<![a-z])rho\b/gi, "x").replace(/(?<![a-z])theta\b/gi, "x").replace(/(?<![a-z])phi\b/gi, "y")];
   return [surface.expression];
 }
 
@@ -1091,10 +1091,11 @@ function CrossSectionChart({ axis, value, samples, theme }: { axis: SliceAxis; v
   </section>;
 }
 
-function SurfaceDifferentialGeometry({ analysis, scale, theme }: { analysis: SurfaceDifferential; scale: number; theme: Graph3DTheme }) {
-  const { x, y, z } = analysis.point;
-  const fx = analysis.gradient.x;
-  const fy = analysis.gradient.y;
+function SurfaceDifferentialGeometry({ analysis, scale, verticalScaleFactor, theme }: { analysis: SurfaceDifferential; scale: number; verticalScaleFactor: number; theme: Graph3DTheme }) {
+  const { x, y } = analysis.point;
+  const z = analysis.point.z * verticalScaleFactor;
+  const fx = analysis.gradient.x * verticalScaleFactor;
+  const fy = analysis.gradient.y * verticalScaleFactor;
   const geometry = useMemo(() => {
     const vertices = [
       x - scale, z - fx * scale - fy * scale, y - scale,
@@ -1108,8 +1109,9 @@ function SurfaceDifferentialGeometry({ analysis, scale, theme }: { analysis: Sur
     result.computeVertexNormals();
     return result;
   }, [fx, fy, scale, x, y, z]);
-  const normalEnd: [number, number, number] = [x + analysis.normal[0] * scale * 1.8, z + analysis.normal[1] * scale * 1.8, y + analysis.normal[2] * scale * 1.8];
-  const gradientLength = Math.max(1e-8, analysis.gradient.magnitude);
+  const normalLength = Math.hypot(fx, 1, fy);
+  const normalEnd: [number, number, number] = [x - fx / normalLength * scale * 1.8, z + scale * 1.8 / normalLength, y - fy / normalLength * scale * 1.8];
+  const gradientLength = Math.max(1e-8, Math.hypot(fx, fy));
   const gradientEnd: [number, number, number] = [x + fx / gradientLength * scale * 1.8, z + gradientLength * scale * 0.65, y + fy / gradientLength * scale * 1.8];
   return <group>
     <mesh geometry={geometry}><meshStandardMaterial color={theme.crossSection} transparent opacity={0.26} side={THREE.DoubleSide} /></mesh>

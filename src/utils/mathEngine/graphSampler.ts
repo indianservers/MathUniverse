@@ -21,8 +21,7 @@ export function normalizeFunctionInput(input: string) {
     .replace(/\u00f7/g, "/")
     .replace(/\u00d7/g, "*")
     .replace(/\u03c0/g, "pi")
-    .replace(/\s+/g, "")
-    .replace(/(\d|\)|x|pi|e)(?=(x|pi|e|sin|cos|tan|asin|acos|atan|ln|log|exp|sqrt|cbrt|abs|floor|ceil|\())/gi, "$1*");
+    .replace(/\s+/g, "");
 }
 
 export function compileFunction(input: string): CompileResult {
@@ -76,21 +75,65 @@ export function generateTableValues(input: string, start = -5, end = 5, step = 1
 }
 
 export function approximateRoots(input: string, xMin = -10, xMax = 10) {
-  const sampled = sampleFunction(input, xMin, xMax, 600);
-  if (sampled.error) return { roots: [] as number[], error: sampled.error };
+  const compiled = compileFunction(input);
+  if (!compiled.fn) return { roots: [] as number[], error: compiled.error };
+  const fn = compiled.fn;
+  const points = sampleFunction(input, xMin, xMax, 600).points;
   const roots: number[] = [];
-  const points = sampled.points;
-  for (let index = 1; index < points.length; index += 1) {
-    const prev = points[index - 1];
-    const curr = points[index];
-    if (!prev.valid || !curr.valid || prev.y === null || curr.y === null) continue;
-    if (Math.abs(curr.y) < 0.015) roots.push(curr.x);
-    if (prev.y * curr.y < 0) {
-      const root = prev.x - (prev.y * (curr.x - prev.x)) / (curr.y - prev.y);
-      roots.push(root);
+  const evaluate = (x: number) => { try { return fn(x); } catch { return NaN; } };
+  const accept = (x: number) => {
+    const integer = Math.round(x);
+    const snapped = Math.abs(integer - x) < 1e-8 && evaluate(integer) === 0 ? integer : Number(x.toPrecision(12));
+    if (Math.abs(snapped - x) < 1e-8 && evaluate(snapped) === 0) x = snapped;
+    const residual = evaluate(x);
+    const delta = Math.max(1e-6, Math.abs(x) * 1e-7);
+    const left = evaluate(x - delta), right = evaluate(x + delta);
+    // Floating-point underflow produces zero plateaus, not isolated roots.
+    if (residual === 0 && Number.isFinite(left) && Number.isFinite(right) && (left === 0 || right === 0)) return;
+    const side = Number.isFinite(right) ? 1 : -1;
+    const coarse = Number.isFinite(left) && Number.isFinite(right) ? Math.abs(right - left) : Math.abs(evaluate(x + side * 2 * delta) - evaluate(x + side * delta));
+    const fine = Number.isFinite(left) && Number.isFinite(right) ? Math.abs(evaluate(x + delta / 2) - evaluate(x - delta / 2)) : Math.abs(evaluate(x + side * delta) - evaluate(x + side * delta / 2));
+    const continuous = Number.isFinite(coarse) && Number.isFinite(fine) && (coarse < 1e-7 || fine < coarse * 0.999);
+    if (continuous && Number.isFinite(residual) && Math.abs(residual) <= 1e-12 && !roots.some(r => Math.abs(r - x) < 1e-5)) roots.push(x);
+  };
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    const previous = points[i - 1];
+    if (previous && previous.valid !== p.valid) {
+      let low = previous.x, high = p.x;
+      for (let step = 0; step < 48; step++) {
+        const mid = (low + high) / 2;
+        if (Number.isFinite(evaluate(mid)) === previous.valid) low = mid; else high = mid;
+      }
+      accept(previous.valid ? low : high);
+    }
+    if (!p.valid || p.y === null) continue;
+    const prev = points[i - 1];
+    const next = points[i + 1];
+    if (p.y === 0 && ((prev?.valid && prev.y !== 0) || (next?.valid && next.y !== 0))) accept(p.x);
+    if (prev?.valid && prev.y !== null && prev.y * p.y < 0) {
+      let low = prev.x, high = p.x, lowValue = prev.y;
+      for (let step = 0; step < 48; step++) {
+        const mid = (low + high) / 2, value = evaluate(mid);
+        if (!Number.isFinite(value)) break;
+        if (value === 0) { low = high = mid; break; }
+        if (Math.sign(value) === Math.sign(lowValue)) { low = mid; lowValue = value; } else high = mid;
+      }
+      accept((low + high) / 2);
+    }
+    // Refine isolated local minima of |f| to find tangent roots without
+    // treating the small positive tails of exponentials as zeroes.
+    if (prev?.valid && next?.valid && prev.y !== null && next.y !== null &&
+        Math.abs(p.y) < Math.abs(prev.y) && Math.abs(p.y) <= Math.abs(next.y)) {
+      let low = prev.x, high = next.x;
+      for (let step = 0; step < 80; step++) {
+        const l = low + (high - low) / 3, r = high - (high - low) / 3;
+        if (Math.abs(evaluate(l)) < Math.abs(evaluate(r))) high = r; else low = l;
+      }
+      accept((low + high) / 2);
     }
   }
-  return { roots: dedupeRounded(roots).slice(0, 12) };
+  return { roots: roots.sort((a,b) => a-b).slice(0, 12) };
 }
 
 export function approximateYIntercept(input: string) {

@@ -16,6 +16,11 @@ const BUILT_INS = new Set([
   "sinh",
   "cosh",
   "tanh",
+  "sec",
+  "csc",
+  "cot",
+  "sign",
+  "sinc",
   "sqrt",
   "cbrt",
   "abs",
@@ -43,11 +48,11 @@ const BUILT_INS = new Set([
 export function detectGraphVariables(expressions: string[]) {
   const names = new Set<string>();
   expressions.forEach((expression) => {
-    const rightSide = expression.replace(/^\s*[xyzr]\s*=\s*/i, "");
+    const rightSide = expression.replace(/^\s*[xyzr]\s*=\s*/i, "").replace(/(?:\d+(?:\.\d*)?|\.\d+)[eE][+-]?\d+/g, "0");
     rightSide.match(/[A-Za-z][A-Za-z0-9_]*/g)?.forEach((token) => {
       const normalized = token.toLowerCase();
-      if (normalized === "t" && /^\s*param\s*\(/i.test(expression)) return;
-      if (!BUILT_INS.has(normalized)) names.add(token);
+      if (normalized === "t" && (/^\s*param\s*\(/i.test(expression) || /^\s*x\s*=.+,\s*y\s*=/i.test(expression))) return;
+      if (!BUILT_INS.has(normalized) || (normalized === "n" && !/^\s*(seq|recur)\s*\(/i.test(expression))) names.add(token);
     });
   });
   return [...names].filter((name) => name.length <= 12).sort();
@@ -91,7 +96,7 @@ export function substituteGraphVariables(
     const escaped = variable.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const safeValue = Number.isFinite(variable.value) ? variable.value : 0;
     return result.replace(
-      new RegExp(`\\b${escaped}\\b`, "g"),
+      new RegExp(`(?<![A-Za-z_])${escaped}(?![A-Za-z0-9_])`, "g"),
       `(${Number(safeValue.toFixed(10))})`,
     );
   }, expression);
