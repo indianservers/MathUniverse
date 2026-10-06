@@ -256,7 +256,7 @@
   font-size: 15px;
 }
 .arc320-results article:nth-child(2) strong,
-.arc320-results article:nth-child(2)b {
+.arc320-results article:nth-child(2) b {
   color: #168a46;
 }
 .arc320-plot .success {

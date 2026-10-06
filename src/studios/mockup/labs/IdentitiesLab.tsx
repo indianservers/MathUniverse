@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useEffect, useRef, type PointerEvent as ReactPointerEvent } from "react";
 import { MockupLearningStrip } from "../MockupStudioChrome";
 import type { StudioMockupPage } from "../studioMockupCatalog";
 import {
@@ -138,17 +139,17 @@ function doubleProofSteps(theta: number, form: DoubleForm, sine: number, cosine:
 export function IdentitiesLab({ page }: { page: StudioMockupPage }) {
   const { tabs, mode, setMode } = useLabMode(page);
   const session = useTrigSession();
-  const [theta, setTheta] = useState(session.theta || 40);
-  const [phi, setPhi] = useState(30);
-  const [proofView, setProofView] = useState<"Unit Circle" | "Triangle" | "Algebra">("Unit Circle");
-  const [identityKey, setIdentityKey] = useState(0);
-  const [doubleForm, setDoubleForm] = useState<DoubleForm>("sin");
-  const [step, setStep] = useState(2);
-  const [challengeMode, setChallengeMode] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const [sweep, setSweep] = useState(1);
-  const [checkAnswer, setCheckAnswer] = useState("");
-  const [checkStatus, setCheckStatus] = useState("");
+  const [theta, setTheta] = useStudioState("IdentitiesLab:IdentitiesLab:theta", session.theta || 40);
+  const [phi, setPhi] = useStudioState("IdentitiesLab:IdentitiesLab:phi", 30);
+  const [proofView, setProofView] = useStudioState<"Unit Circle" | "Triangle" | "Algebra">("IdentitiesLab:IdentitiesLab:proofView", "Unit Circle");
+  const [identityKey, setIdentityKey] = useStudioState("IdentitiesLab:IdentitiesLab:identityKey", 0);
+  const [doubleForm, setDoubleForm] = useStudioState<DoubleForm>("IdentitiesLab:IdentitiesLab:doubleForm", "sin");
+  const [step, setStep] = useStudioState("IdentitiesLab:IdentitiesLab:step", 2);
+  const [challengeMode, setChallengeMode] = useStudioState("IdentitiesLab:IdentitiesLab:challengeMode", false);
+  const [playing, setPlaying] = useStudioState("IdentitiesLab:IdentitiesLab:playing", false);
+  const [sweep, setSweep] = useStudioState("IdentitiesLab:IdentitiesLab:sweep", 1);
+  const [checkAnswer, setCheckAnswer] = useStudioState("IdentitiesLab:IdentitiesLab:checkAnswer", "");
+  const [checkStatus, setCheckStatus] = useStudioState("IdentitiesLab:IdentitiesLab:checkStatus", "");
   const drag = useRef(false);
 
   const setAngle = (value: number) => {

@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import {
   Copy,
   Contrast,
@@ -102,19 +103,19 @@ export function GeometryLabShell({
 }) {
   const reducedMotion = useReducedMotion();
   const helpId = useId();
-  const [zoom, setZoom] = useState(1);
-  const [panX, setPanX] = useState(0);
-  const [panY, setPanY] = useState(0);
-  const [contrast, setContrast] = useState(false);
-  const [largeLabels, setLargeLabels] = useState(() => readGeoSession().largeLabels);
+  const [zoom, setZoom] = useStudioState("geometryLabUx:GeometryLabShell:zoom", 1);
+  const [panX, setPanX] = useStudioState("geometryLabUx:GeometryLabShell:panX", 0);
+  const [panY, setPanY] = useStudioState("geometryLabUx:GeometryLabShell:panY", 0);
+  const [contrast, setContrast] = useStudioState("geometryLabUx:GeometryLabShell:contrast", false);
+  const [largeLabels, setLargeLabels] = useStudioState("geometryLabUx:GeometryLabShell:largeLabels", () => readGeoSession().largeLabels);
   useEffect(() => onGeoSession(() => setLargeLabels(readGeoSession().largeLabels)), []);
-  const [compact, setCompact] = useState(false);
-  const [inspectorOpen, setInspectorOpen] = useState(false);
+  const [compact, setCompact] = useStudioState("geometryLabUx:GeometryLabShell:compact", false);
+  const [inspectorOpen, setInspectorOpen] = useStudioState("geometryLabUx:GeometryLabShell:inspectorOpen", false);
   const [helpOpen, setHelpOpen] = useState(false);
   const [status, setStatus] = useState("");
-  const [unitHint, setUnitHint] = useState<"deg" | "rad">("deg");
-  const [highlight, setHighlight] = useState<string | null>(null);
-  const [challengeFlash, setChallengeFlash] = useState(false);
+  const [unitHint, setUnitHint] = useStudioState<"deg" | "rad">("geometryLabUx:GeometryLabShell:unitHint", "deg");
+  const [highlight, setHighlight] = useStudioState<string | null>("geometryLabUx:GeometryLabShell:highlight", null);
+  const [challengeFlash, setChallengeFlash] = useStudioState("geometryLabUx:GeometryLabShell:challengeFlash", false);
 
   const announce = useCallback((text: string) => {
     setStatus(text);

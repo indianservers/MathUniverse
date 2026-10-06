@@ -1,0 +1,3319 @@
+[
+  {
+    "route": "/geometry/construction",
+    "modes": [
+      {
+        "name": "Live Object Tree",
+        "passed": true
+      },
+      {
+        "name": "Measurements",
+        "passed": true
+      },
+      {
+        "name": "Dependencies",
+        "passed": true
+      },
+      {
+        "name": "Proof Explanation",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/geometry/transformations",
+    "modes": [
+      {
+        "name": "Translate",
+        "passed": true
+      },
+      {
+        "name": "Rotate",
+        "passed": true
+      },
+      {
+        "name": "Reflect",
+        "passed": true
+      },
+      {
+        "name": "Dilate",
+        "passed": true
+      },
+      {
+        "name": "Compose",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/geometry/proofs",
+    "modes": [
+      {
+        "name": "Pythagoras",
+        "passed": true
+      },
+      {
+        "name": "Angle Sum",
+        "passed": true
+      },
+      {
+        "name": "Circle Theorems",
+        "passed": true
+      },
+      {
+        "name": "Similarity",
+        "passed": true
+      },
+      {
+        "name": "Area Proofs",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/geometry/ar",
+    "modes": [
+      {
+        "name": "Select",
+        "passed": true
+      },
+      {
+        "name": "Point",
+        "passed": true
+      },
+      {
+        "name": "Line",
+        "passed": true
+      },
+      {
+        "name": "Circle",
+        "passed": true
+      },
+      {
+        "name": "Polygon",
+        "passed": true
+      },
+      {
+        "name": "3D Solid",
+        "passed": true
+      },
+      {
+        "name": "Plane",
+        "passed": true
+      },
+      {
+        "name": "Measure",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/trigonometry/unit-circle",
+    "modes": [
+      {
+        "name": "Angles",
+        "passed": true
+      },
+      {
+        "name": "Unit Circle",
+        "passed": true
+      },
+      {
+        "name": "Quadrants",
+        "passed": true
+      },
+      {
+        "name": "Exact Values",
+        "passed": true
+      },
+      {
+        "name": "Reference Angles",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/trigonometry/right-triangle",
+    "modes": [
+      {
+        "name": "Solve Triangle",
+        "passed": true
+      },
+      {
+        "name": "Ratios",
+        "passed": true
+      },
+      {
+        "name": "Pythagoras",
+        "passed": true
+      },
+      {
+        "name": "Similarity",
+        "passed": true
+      },
+      {
+        "name": "Special Triangles",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/trigonometry/graphs",
+    "modes": [
+      {
+        "name": "Sine",
+        "passed": true
+      },
+      {
+        "name": "Cosine",
+        "passed": true
+      },
+      {
+        "name": "Tangent",
+        "passed": true
+      },
+      {
+        "name": "Transformations",
+        "passed": true
+      },
+      {
+        "name": "Comparison",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/trigonometry/identities",
+    "modes": [
+      {
+        "name": "Pythagorean",
+        "passed": true
+      },
+      {
+        "name": "Angle Sum",
+        "passed": true
+      },
+      {
+        "name": "Double Angle",
+        "passed": true
+      },
+      {
+        "name": "Half Angle",
+        "passed": true
+      },
+      {
+        "name": "Product-Sum",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/trigonometry/inverse",
+    "modes": [
+      {
+        "name": "Arcsin",
+        "passed": true
+      },
+      {
+        "name": "Arccos",
+        "passed": true
+      },
+      {
+        "name": "Arctan",
+        "passed": true
+      },
+      {
+        "name": "Principal Values",
+        "passed": true
+      },
+      {
+        "name": "Compositions",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/trigonometry/oblique",
+    "modes": [
+      {
+        "name": "Sine Law",
+        "passed": true
+      },
+      {
+        "name": "Cosine Law",
+        "passed": true
+      },
+      {
+        "name": "Area",
+        "passed": true
+      },
+      {
+        "name": "SSA Ambiguous Case",
+        "passed": true
+      },
+      {
+        "name": "Solve Triangle",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/trigonometry/waves",
+    "modes": [
+      {
+        "name": "Simple Wave",
+        "passed": true
+      },
+      {
+        "name": "Superposition",
+        "passed": true
+      },
+      {
+        "name": "Harmonics",
+        "passed": true
+      },
+      {
+        "name": "Beats",
+        "passed": true
+      },
+      {
+        "name": "Phase",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/trigonometry/applications",
+    "modes": [
+      {
+        "name": "Heights & Distances",
+        "passed": true
+      },
+      {
+        "name": "Bearings",
+        "passed": true
+      },
+      {
+        "name": "Navigation",
+        "passed": true
+      },
+      {
+        "name": "Surveying",
+        "passed": true
+      },
+      {
+        "name": "Periodic Models",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/trigonometry/ar",
+    "modes": [
+      {
+        "name": "Height Measurement",
+        "passed": true
+      },
+      {
+        "name": "Distance",
+        "passed": true
+      },
+      {
+        "name": "Angle",
+        "passed": true
+      },
+      {
+        "name": "Triangle Overlay",
+        "passed": true
+      },
+      {
+        "name": "Unit Circle",
+        "passed": true
+      },
+      {
+        "name": "Wave Projection",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/linear-algebra/determinants",
+    "modes": [
+      {
+        "name": "2D Area",
+        "passed": true
+      },
+      {
+        "name": "3D Volume",
+        "passed": true
+      },
+      {
+        "name": "Cofactor",
+        "passed": true
+      },
+      {
+        "name": "Orientation",
+        "passed": true
+      },
+      {
+        "name": "Singularity",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/linear-algebra/vector-spaces",
+    "modes": [
+      {
+        "name": "Span",
+        "passed": true
+      },
+      {
+        "name": "Independence",
+        "passed": true
+      },
+      {
+        "name": "Basis",
+        "passed": true
+      },
+      {
+        "name": "Subspaces",
+        "passed": true
+      },
+      {
+        "name": "Coordinates",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/linear-algebra/cayley-hamilton",
+    "modes": [
+      {
+        "name": "Theorem",
+        "passed": true
+      },
+      {
+        "name": "Powers",
+        "passed": true
+      },
+      {
+        "name": "Inverse",
+        "passed": true
+      },
+      {
+        "name": "Three by three",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/linear-algebra/diagonalization",
+    "modes": [
+      {
+        "name": "Workflow",
+        "passed": true
+      },
+      {
+        "name": "Visual",
+        "passed": true
+      },
+      {
+        "name": "Three by three",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/linear-algebra/quadratic-forms",
+    "modes": [
+      {
+        "name": "Classify",
+        "passed": true
+      },
+      {
+        "name": "Contours",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/linear-algebra/principal-axes",
+    "modes": [
+      {
+        "name": "Axes",
+        "passed": true
+      },
+      {
+        "name": "Canonical",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/linear-algebra/matrix-factorizations",
+    "modes": [
+      {
+        "name": "LU",
+        "passed": true
+      },
+      {
+        "name": "Pivoted LU",
+        "passed": true
+      },
+      {
+        "name": "QR",
+        "passed": true
+      },
+      {
+        "name": "SVD",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/linear-algebra/similarity",
+    "modes": [
+      {
+        "name": "Invariants",
+        "passed": true
+      },
+      {
+        "name": "Bases",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/linear-algebra/jordan-form",
+    "modes": [
+      {
+        "name": "Chain",
+        "passed": true
+      },
+      {
+        "name": "Block",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/motion",
+    "modes": [
+      {
+        "name": "Projectile",
+        "passed": true
+      },
+      {
+        "name": "Vehicle",
+        "passed": true
+      },
+      {
+        "name": "Pursuit",
+        "passed": true
+      },
+      {
+        "name": "Drag",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/population",
+    "modes": [
+      {
+        "name": "Exponential",
+        "passed": true
+      },
+      {
+        "name": "Logistic",
+        "passed": true
+      },
+      {
+        "name": "Harvesting",
+        "passed": true
+      },
+      {
+        "name": "Age Structured",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/epidemics",
+    "modes": [
+      {
+        "name": "SIR",
+        "passed": true
+      },
+      {
+        "name": "SEIR",
+        "passed": true
+      },
+      {
+        "name": "Vaccination",
+        "passed": true
+      },
+      {
+        "name": "Interventions",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/finance",
+    "modes": [
+      {
+        "name": "Savings",
+        "passed": true
+      },
+      {
+        "name": "Loans",
+        "passed": true
+      },
+      {
+        "name": "Investments",
+        "passed": true
+      },
+      {
+        "name": "Inflation",
+        "passed": true
+      },
+      {
+        "name": "Annuities",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/optimization",
+    "modes": [
+      {
+        "name": "Production Planning",
+        "passed": true
+      },
+      {
+        "name": "Transport",
+        "passed": true
+      },
+      {
+        "name": "Design",
+        "passed": true
+      },
+      {
+        "name": "Allocation",
+        "passed": true
+      },
+      {
+        "name": "Scheduling",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/networks",
+    "modes": [
+      {
+        "name": "Dijkstra",
+        "passed": true
+      },
+      {
+        "name": "A*",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/regression",
+    "modes": [
+      {
+        "name": "Scatter & Fit",
+        "passed": true
+      },
+      {
+        "name": "Residuals",
+        "passed": true
+      },
+      {
+        "name": "Diagnostics",
+        "passed": true
+      },
+      {
+        "name": "Prediction",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/periodic",
+    "modes": [
+      {
+        "name": "Tides",
+        "passed": true
+      },
+      {
+        "name": "Seasons",
+        "passed": true
+      },
+      {
+        "name": "Daylight",
+        "passed": true
+      },
+      {
+        "name": "Sound",
+        "passed": true
+      },
+      {
+        "name": "Cycles",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/numerical",
+    "modes": [
+      {
+        "name": "Monte Carlo",
+        "passed": true
+      },
+      {
+        "name": "Iteration",
+        "passed": true
+      },
+      {
+        "name": "Random Walk",
+        "passed": true
+      },
+      {
+        "name": "Differential Approx.",
+        "passed": true
+      },
+      {
+        "name": "Sensitivity",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/comparison",
+    "modes": [
+      {
+        "name": "Compare",
+        "passed": true
+      },
+      {
+        "name": "Residuals",
+        "passed": true
+      },
+      {
+        "name": "Selection",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/discrete-world/number-sense",
+    "modes": [
+      {
+        "name": "Integers",
+        "passed": true
+      },
+      {
+        "name": "Fractions",
+        "passed": true
+      },
+      {
+        "name": "Decimals",
+        "passed": true
+      },
+      {
+        "name": "Ratios",
+        "passed": true
+      },
+      {
+        "name": "Powers",
+        "passed": true
+      },
+      {
+        "name": "Scales",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/discrete-world/primes",
+    "modes": [
+      {
+        "name": "Sieve of Eratosthenes",
+        "passed": true
+      },
+      {
+        "name": "Factor Tree",
+        "passed": true
+      },
+      {
+        "name": "GCD & LCM",
+        "passed": true
+      },
+      {
+        "name": "Divisibility Rules",
+        "passed": true
+      },
+      {
+        "name": "Prime Patterns",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/discrete-world/modular-arithmetic",
+    "modes": [
+      {
+        "name": "Clock Arithmetic",
+        "passed": true
+      },
+      {
+        "name": "Congruence",
+        "passed": true
+      },
+      {
+        "name": "Inverses",
+        "passed": true
+      },
+      {
+        "name": "Linear Congruences",
+        "passed": true
+      },
+      {
+        "name": "Cycles",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/discrete-world/logic",
+    "modes": [
+      {
+        "name": "Circuit",
+        "passed": true
+      },
+      {
+        "name": "Truth Table",
+        "passed": true
+      },
+      {
+        "name": "Equivalence",
+        "passed": true
+      },
+      {
+        "name": "CNF/DNF",
+        "passed": true
+      },
+      {
+        "name": "SAT",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/discrete-world/sets",
+    "modes": [
+      {
+        "name": "Venn Diagram",
+        "passed": true
+      },
+      {
+        "name": "Operations",
+        "passed": true
+      },
+      {
+        "name": "Cartesian Products",
+        "passed": true
+      },
+      {
+        "name": "Relations",
+        "passed": true
+      },
+      {
+        "name": "Functions",
+        "passed": true
+      },
+      {
+        "name": "Equivalence",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/discrete-world/graphs",
+    "modes": [
+      {
+        "name": "Paths",
+        "passed": true
+      },
+      {
+        "name": "Connectivity",
+        "passed": true
+      },
+      {
+        "name": "Coloring",
+        "passed": true
+      },
+      {
+        "name": "Spanning Trees",
+        "passed": true
+      },
+      {
+        "name": "Flows",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/discrete-world/algorithms",
+    "modes": [
+      {
+        "name": "Sorting",
+        "passed": true
+      },
+      {
+        "name": "Searching",
+        "passed": true
+      },
+      {
+        "name": "Euclid",
+        "passed": true
+      },
+      {
+        "name": "Graph Traversal",
+        "passed": true
+      },
+      {
+        "name": "Complexity",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/discrete-world/cryptography",
+    "modes": [
+      {
+        "name": "Caesar",
+        "passed": true
+      },
+      {
+        "name": "Affine",
+        "passed": true
+      },
+      {
+        "name": "Vigenère",
+        "passed": true
+      },
+      {
+        "name": "RSA Concept",
+        "passed": true
+      },
+      {
+        "name": "Diffie-Hellman",
+        "passed": true
+      },
+      {
+        "name": "Hashing",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/limits",
+    "modes": [
+      {
+        "name": "Limits",
+        "passed": true
+      },
+      {
+        "name": "Continuity",
+        "passed": true
+      },
+      {
+        "name": "Discontinuities",
+        "passed": true
+      },
+      {
+        "name": "Asymptotes",
+        "passed": true
+      },
+      {
+        "name": "L'Hôpital",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/derivatives",
+    "modes": [
+      {
+        "name": "Tangent",
+        "passed": true
+      },
+      {
+        "name": "Rules",
+        "passed": true
+      },
+      {
+        "name": "Chain Rule",
+        "passed": true
+      },
+      {
+        "name": "Implicit",
+        "passed": true
+      },
+      {
+        "name": "Higher Order",
+        "passed": true
+      },
+      {
+        "name": "Linearization",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/derivative-applications",
+    "modes": [
+      {
+        "name": "Motion",
+        "passed": true
+      },
+      {
+        "name": "Related Rates",
+        "passed": true
+      },
+      {
+        "name": "Curve Analysis",
+        "passed": true
+      },
+      {
+        "name": "Optimization",
+        "passed": true
+      },
+      {
+        "name": "Mean Value",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/integration",
+    "modes": [
+      {
+        "name": "Antiderivative",
+        "passed": true
+      },
+      {
+        "name": "Definite Integral",
+        "passed": true
+      },
+      {
+        "name": "FTC",
+        "passed": true
+      },
+      {
+        "name": "Riemann Sums",
+        "passed": true
+      },
+      {
+        "name": "Numerical",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/integral-applications",
+    "modes": [
+      {
+        "name": "Area Between Curves",
+        "passed": true
+      },
+      {
+        "name": "Volumes",
+        "passed": true
+      },
+      {
+        "name": "Arc Length",
+        "passed": true
+      },
+      {
+        "name": "Surface Area",
+        "passed": true
+      },
+      {
+        "name": "Work",
+        "passed": true
+      },
+      {
+        "name": "Fluid Force",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/integration-techniques",
+    "modes": [
+      {
+        "name": "Substitution",
+        "passed": true
+      },
+      {
+        "name": "By Parts",
+        "passed": true
+      },
+      {
+        "name": "Partial Fractions",
+        "passed": true
+      },
+      {
+        "name": "Trig Integrals",
+        "passed": true
+      },
+      {
+        "name": "Trig Substitution",
+        "passed": true
+      },
+      {
+        "name": "Improper",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/differential-equations",
+    "modes": [
+      {
+        "name": "Slope Fields",
+        "passed": true
+      },
+      {
+        "name": "Initial Value",
+        "passed": true
+      },
+      {
+        "name": "Separable",
+        "passed": true
+      },
+      {
+        "name": "Growth Models",
+        "passed": true
+      },
+      {
+        "name": "Euler",
+        "passed": true
+      },
+      {
+        "name": "RK4",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/series-parametric-polar",
+    "modes": [
+      {
+        "name": "Sequences",
+        "passed": true
+      },
+      {
+        "name": "Convergence",
+        "passed": true
+      },
+      {
+        "name": "Power Series",
+        "passed": true
+      },
+      {
+        "name": "Taylor",
+        "passed": true
+      },
+      {
+        "name": "Parametric",
+        "passed": true
+      },
+      {
+        "name": "Polar",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/jacobians-coordinate-transformations",
+    "modes": [
+      {
+        "name": "Grid",
+        "passed": true
+      },
+      {
+        "name": "Polar",
+        "passed": true
+      },
+      {
+        "name": "Cylindrical",
+        "passed": true
+      },
+      {
+        "name": "Spherical",
+        "passed": true
+      },
+      {
+        "name": "Change of Variables",
+        "passed": true
+      },
+      {
+        "name": "Singular",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/beta-gamma",
+    "modes": [
+      {
+        "name": "Gamma",
+        "passed": true
+      },
+      {
+        "name": "Beta",
+        "passed": true
+      },
+      {
+        "name": "Engineering Integrals",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/series-tests",
+    "modes": [
+      {
+        "name": "Selector",
+        "passed": true
+      },
+      {
+        "name": "Ratio and Root",
+        "passed": true
+      },
+      {
+        "name": "Comparison",
+        "passed": true
+      },
+      {
+        "name": "Alternating",
+        "passed": true
+      },
+      {
+        "name": "Raabe and Log",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/curve-tracing",
+    "modes": [
+      {
+        "name": "Cartesian",
+        "passed": true
+      },
+      {
+        "name": "Polar",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/taylor-two-variables",
+    "modes": [
+      {
+        "name": "Linear",
+        "passed": true
+      },
+      {
+        "name": "Quadratic",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/lagrange-multipliers",
+    "modes": [
+      {
+        "name": "Circle",
+        "passed": true
+      },
+      {
+        "name": "Line",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/change-order-integration",
+    "modes": [
+      {
+        "name": "Triangle",
+        "passed": true
+      },
+      {
+        "name": "Split region",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/centroid-center-of-mass",
+    "modes": [
+      {
+        "name": "Uniform",
+        "passed": true
+      },
+      {
+        "name": "Variable density",
+        "passed": true
+      },
+      {
+        "name": "Triangle",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/moments-of-inertia",
+    "modes": [
+      {
+        "name": "Rectangle",
+        "passed": true
+      },
+      {
+        "name": "Disk",
+        "passed": true
+      },
+      {
+        "name": "Annulus",
+        "passed": true
+      },
+      {
+        "name": "Triangle",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/multiple-integral-applications",
+    "modes": [
+      {
+        "name": "Area",
+        "passed": true
+      },
+      {
+        "name": "Volume",
+        "passed": true
+      },
+      {
+        "name": "Average value",
+        "passed": true
+      },
+      {
+        "name": "Triple integrals",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/motion",
+    "modes": [
+      {
+        "name": "Motion",
+        "passed": true
+      },
+      {
+        "name": "Related Rates",
+        "passed": true
+      },
+      {
+        "name": "Curve Analysis",
+        "passed": true
+      },
+      {
+        "name": "Optimization",
+        "passed": true
+      },
+      {
+        "name": "Mean Value",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/integrals",
+    "modes": [
+      {
+        "name": "Antiderivative",
+        "passed": true
+      },
+      {
+        "name": "Definite Integral",
+        "passed": true
+      },
+      {
+        "name": "FTC",
+        "passed": true
+      },
+      {
+        "name": "Riemann Sums",
+        "passed": true
+      },
+      {
+        "name": "Numerical",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/proof-problems",
+    "modes": [
+      {
+        "name": "Antiderivative",
+        "passed": true
+      },
+      {
+        "name": "Definite Integral",
+        "passed": true
+      },
+      {
+        "name": "FTC",
+        "passed": true
+      },
+      {
+        "name": "Riemann Sums",
+        "passed": true
+      },
+      {
+        "name": "Numerical",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/series-blocks",
+    "modes": [
+      {
+        "name": "Sequences",
+        "passed": true
+      },
+      {
+        "name": "Convergence",
+        "passed": true
+      },
+      {
+        "name": "Power Series",
+        "passed": true
+      },
+      {
+        "name": "Taylor",
+        "passed": true
+      },
+      {
+        "name": "Parametric",
+        "passed": true
+      },
+      {
+        "name": "Polar",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/applications",
+    "modes": [
+      {
+        "name": "Motion",
+        "passed": true
+      },
+      {
+        "name": "Related Rates",
+        "passed": true
+      },
+      {
+        "name": "Curve Analysis",
+        "passed": true
+      },
+      {
+        "name": "Optimization",
+        "passed": true
+      },
+      {
+        "name": "Mean Value",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/calculus/formulas",
+    "modes": [
+      {
+        "name": "Substitution",
+        "passed": true
+      },
+      {
+        "name": "By Parts",
+        "passed": true
+      },
+      {
+        "name": "Partial Fractions",
+        "passed": true
+      },
+      {
+        "name": "Trig Integrals",
+        "passed": true
+      },
+      {
+        "name": "Trig Substitution",
+        "passed": true
+      },
+      {
+        "name": "Improper",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "route": "/geometry",
+    "modes": []
+  },
+  {
+    "route": "/geometry/circles",
+    "modes": []
+  },
+  {
+    "route": "/geometry/triangles",
+    "modes": [
+      {
+        "name": "Triangle ExplorerSides, angles, area & classification",
+        "passed": true,
+        "verification": "aria-selected"
+      },
+      {
+        "name": "CongruenceSSS, SAS, ASA, AAS & RHS",
+        "passed": true,
+        "verification": "aria-selected"
+      },
+      {
+        "name": "SimilarityScale factors & proportional sides",
+        "passed": true,
+        "verification": "aria-selected"
+      },
+      {
+        "name": "CentersCentroid, circumcenter, incenter & orthocenter",
+        "passed": true,
+        "verification": "aria-selected"
+      },
+      {
+        "name": "InequalitiesTriangle inequality & side-angle relations",
+        "passed": true,
+        "verification": "aria-selected"
+      }
+    ]
+  },
+  {
+    "route": "/geometry/coordinate",
+    "modes": []
+  },
+  {
+    "route": "/geometry/polygons",
+    "modes": [
+      {
+        "name": "Regular PolygonBuild & explore regular n-gons",
+        "passed": true,
+        "verification": "aria-selected"
+      },
+      {
+        "name": "Interior AnglesAngle sums, exterior angles & relationships",
+        "passed": true,
+        "verification": "aria-selected"
+      },
+      {
+        "name": "TessellationTile the plane with polygons",
+        "passed": true,
+        "verification": "aria-selected"
+      },
+      {
+        "name": "AreaDecompose, measure & compare area",
+        "passed": true,
+        "verification": "aria-selected"
+      },
+      {
+        "name": "DiagonalsExplore connections between vertices",
+        "passed": true,
+        "verification": "aria-selected"
+      }
+    ]
+  },
+  {
+    "route": "/geometry/measurement",
+    "modes": [
+      {
+        "name": "Length",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "Angle",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "Area",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "Perimeter",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "Scale",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "Error",
+        "passed": true,
+        "verification": "selected class"
+      }
+    ]
+  },
+  {
+    "route": "/shapes",
+    "modes": [
+      {
+        "name": "Explore",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "Properties",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "Formulas",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "Compare",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "Learn",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "In Simple words",
+        "passed": true,
+        "verification": "selected class"
+      }
+    ]
+  },
+  {
+    "route": "/trigonometry",
+    "modes": []
+  },
+  {
+    "route": "/linear-algebra",
+    "modes": []
+  },
+  {
+    "route": "/linear-algebra/vectors",
+    "modes": []
+  },
+  {
+    "route": "/linear-algebra/matrices",
+    "modes": []
+  },
+  {
+    "route": "/linear-algebra/row-reduction",
+    "modes": []
+  },
+  {
+    "route": "/linear-algebra/linear-transforms",
+    "modes": []
+  },
+  {
+    "route": "/linear-algebra/eigenvectors",
+    "modes": []
+  },
+  {
+    "route": "/linear-algebra/orthogonality",
+    "modes": []
+  },
+  {
+    "route": "/linear-algebra/least-squares",
+    "modes": []
+  },
+  {
+    "route": "/linear-algebra/playground",
+    "modes": []
+  },
+  {
+    "route": "/complex-numbers",
+    "modes": []
+  },
+  {
+    "route": "/complex-numbers/arithmetic",
+    "modes": [
+      {
+        "name": "Add",
+        "passed": true,
+        "surfaceHash": "b49745a5a0cf91f494c88eaf9a2d1374bda9a3ea45647881add176c030d2d4b9"
+      },
+      {
+        "name": "Subtract",
+        "passed": true,
+        "surfaceHash": "4541bc4f5bf548fbc5efd75bc2958870b2b31091f738082a07d73c8af742616b"
+      },
+      {
+        "name": "Multiply",
+        "passed": true,
+        "surfaceHash": "d8203301584f8426fd58529279541f9be4e2990e44afc53e163ba4453c853319"
+      },
+      {
+        "name": "Divide",
+        "passed": true,
+        "surfaceHash": "4fbd5d8da0321cf73407d1087072b2063f8eff95ad1f8a283c11c62e1a6df92c"
+      },
+      {
+        "name": "Conjugate",
+        "passed": true,
+        "surfaceHash": "89a225328bd0430aed70ec1b388cdef4d573c257ed4756841d10b90a0ec44e22"
+      }
+    ]
+  },
+  {
+    "route": "/complex-numbers/argand-plane",
+    "modes": [
+      {
+        "name": "Plot",
+        "passed": true,
+        "surfaceHash": "84d22f571519bd772d279bceffd23af449a110de81891e6636d06e6a2624b1d2"
+      },
+      {
+        "name": "Modulus",
+        "passed": true,
+        "surfaceHash": "73563b1f39092735fca8b433ac75844b8d4f83cbe329379431b8a7fb62ea3d76"
+      },
+      {
+        "name": "Argument",
+        "passed": true,
+        "surfaceHash": "d8516baaee40211ee9ebbdb572401bcc360da1e0fed12aa6b2738b4f61ca41f8"
+      },
+      {
+        "name": "Conjugate",
+        "passed": true,
+        "surfaceHash": "004d408647ffe7985847478ff1c90a390de972de4f506081741ef5f9c0744f58"
+      },
+      {
+        "name": "Distance",
+        "passed": true,
+        "surfaceHash": "717aa8defb3f8b423bfa75dd256a4370e07ee49c8fb75f0f30d0019d5930642b"
+      },
+      {
+        "name": "Locus",
+        "passed": true,
+        "surfaceHash": "087ae7590876052de3b9af3871a2119bb9a1fb9c516856dbb02585d4586eb079"
+      }
+    ]
+  },
+  {
+    "route": "/complex-numbers/polar-forms",
+    "modes": [
+      {
+        "name": "Rectangular",
+        "passed": true,
+        "surfaceHash": "f318b5a0270fe8645259db7122fd4b32c1f8318e23052604b19ad75686599266"
+      },
+      {
+        "name": "Polar",
+        "passed": true,
+        "surfaceHash": "c6f225617af6080bd6137ec3d241d013ee0bf068266733d3433273873f9764eb"
+      },
+      {
+        "name": "Exponential",
+        "passed": true,
+        "surfaceHash": "0f2d8fed797db04bf96284c3b6d841f4eb2d499fa440aca8de59e44b28ed8a04"
+      }
+    ]
+  },
+  {
+    "route": "/complex-numbers/rotation",
+    "modes": [
+      {
+        "name": "Rotate",
+        "passed": true,
+        "surfaceHash": "0c7617505311599be2baa6697fde7163dfe57e86a9bd30442aad44e1097928b9"
+      },
+      {
+        "name": "Scale",
+        "passed": true,
+        "surfaceHash": "279cc6c5b65156fbca62eff58de6ed21fba11f1d03e02998d4b97eb973c377f9"
+      },
+      {
+        "name": "Sequence",
+        "passed": true,
+        "surfaceHash": "3ce052f28ebe8dc22f98d4aa316b1856dcaf1739e67351289031c3e8bf9b4a80"
+      }
+    ]
+  },
+  {
+    "route": "/complex-numbers/roots",
+    "modes": [
+      {
+        "name": "Square Roots",
+        "passed": true,
+        "surfaceHash": "9ea5b11af1f860e74247408e620a4cb50dc9d6027b0a4822dd324f6d9bdd6425"
+      },
+      {
+        "name": "nth Roots",
+        "passed": true,
+        "surfaceHash": "e027f0bcfea96304b91122efa714dfd148fa58da5d27fedb2d2354fa84b15efb"
+      },
+      {
+        "name": "Roots of Unity",
+        "passed": true,
+        "surfaceHash": "41067bf6b20aa293d18240ee85470a5579a52a222c9b03d9943499cb78b93ed6"
+      },
+      {
+        "name": "Polynomial Roots",
+        "passed": true,
+        "surfaceHash": "56b7b59bd86b92405014cb4c1cfe8bfe8d42d74d2e77a8123bfb53714362dafb"
+      }
+    ]
+  },
+  {
+    "route": "/complex-numbers/euler",
+    "modes": [
+      {
+        "name": "Unit Circle",
+        "passed": true,
+        "surfaceHash": "e851723da5332c2304217ced6a2af6edc09b600e323cbf24a454d53b65588f35"
+      },
+      {
+        "name": "Helix",
+        "passed": true,
+        "surfaceHash": "2d5e106ade665dc020929421e8bfa20c8c0a3e8ae1203e92ab4c3d935911ce3c"
+      },
+      {
+        "name": "Projections",
+        "passed": true,
+        "surfaceHash": "60cf6d8d32a82d9f651a16a602b3c5a32c92dd366acf1feded129d13305b7677"
+      },
+      {
+        "name": "Taylor",
+        "passed": true,
+        "surfaceHash": "d971758ad474845a1ecb27149e4900ac55b99f93fa5bc5031fbc01eadf357fd9"
+      }
+    ]
+  },
+  {
+    "route": "/complex-numbers/loci",
+    "modes": [
+      {
+        "name": "Circle Loci",
+        "passed": true,
+        "surfaceHash": "0b594740e1a34c68155692cd82821d713fc452e58fce6ec519669e243867bdd1"
+      },
+      {
+        "name": "Line Loci",
+        "passed": true,
+        "surfaceHash": "22c7545b655490015ad84bde1a9575ba0768bd5ea7995ba6e3fbc2c7110f7b33"
+      },
+      {
+        "name": "Möbius",
+        "passed": true,
+        "surfaceHash": "5e90d0e877c62be0a511d52fdd2fbdd53a44e3ad2ac1913f57a7d571ee807e92"
+      },
+      {
+        "name": "Inversion",
+        "passed": true,
+        "surfaceHash": "ccc969b2f9cc34df7e437291cc79a74cf5c6265616912afc67d084fd84f39e77"
+      },
+      {
+        "name": "Affine Map",
+        "passed": true,
+        "surfaceHash": "47e3bd4a979f7ab8ec870da99405b4f3ce73557e3d8288fdb82e6357241282a3"
+      }
+    ]
+  },
+  {
+    "route": "/complex-numbers/fractals",
+    "modes": [
+      {
+        "name": "Mandelbrot Set",
+        "passed": true,
+        "surfaceHash": "280d6a04a1627e07d19776ebbd39403f44d6c251d9cdf9bfc8f6a60a4cd12f80"
+      },
+      {
+        "name": "Julia Set",
+        "passed": true,
+        "surfaceHash": "44c9382b463561fe8b691c45465b3b328a011277c66d6cc507dd74951f79643e"
+      }
+    ]
+  },
+  {
+    "route": "/complex-numbers/waves-circuits",
+    "modes": [
+      {
+        "name": "Phasors",
+        "passed": true,
+        "surfaceHash": "d9014d5b953ac7abcbd877f580ad41474ad30fed1dd841f10ac6b97377f3db08"
+      },
+      {
+        "name": "AC Circuits",
+        "passed": true,
+        "surfaceHash": "d3bf7db8e9c041ca6385c35fef8c0d87c23aac24e812a6f8441006b365e037b3"
+      },
+      {
+        "name": "Signal Rotation",
+        "passed": true,
+        "surfaceHash": "1e4600548155a522e23bbffda74c8f8624643e7478f10a0fc9409e27682bc5ad"
+      },
+      {
+        "name": "Impedance",
+        "passed": true,
+        "surfaceHash": "ae96debfd53eebacc7dbcb5a1969b03ef5a1d06b913942699e4156f5b1aa66e5"
+      }
+    ]
+  },
+  {
+    "route": "/mathematical-modelling",
+    "modes": []
+  },
+  {
+    "route": "/discrete-world",
+    "modes": []
+  },
+  {
+    "route": "/discrete-world/combinatorics",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/data-explorer",
+    "modes": [
+      {
+        "name": "Overview",
+        "passed": true,
+        "surfaceHash": "dcb94d8717122856d8411ad6b07950f608ac4cfbd808f922b1fa190500aca7d6"
+      },
+      {
+        "name": "Pairwise",
+        "passed": true,
+        "surfaceHash": "dcb94d8717122856d8411ad6b07950f608ac4cfbd808f922b1fa190500aca7d6"
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/descriptive",
+    "modes": [
+      {
+        "name": "Center",
+        "passed": true,
+        "surfaceHash": "6f5333a28f5271b8e719e9228cef53ad2c7a3e0cc6e65a1b50d49610e8fde4eb"
+      },
+      {
+        "name": "Spread",
+        "passed": true,
+        "surfaceHash": "3deb0726ab8c5a31aa14fec166cbd6bc689603ad19b3b6909c29204043717fce"
+      },
+      {
+        "name": "Shape",
+        "passed": true,
+        "surfaceHash": "531bdc91e9b40e5a9d863435650b497e949e126a246772900e9e955d4906d7e3"
+      },
+      {
+        "name": "Outliers",
+        "passed": true,
+        "surfaceHash": "531bdc91e9b40e5a9d863435650b497e949e126a246772900e9e955d4906d7e3"
+      },
+      {
+        "name": "Grouped",
+        "passed": true,
+        "surfaceHash": "531bdc91e9b40e5a9d863435650b497e949e126a246772900e9e955d4906d7e3"
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/interactive-distributions",
+    "modes": [
+      {
+        "name": "Normal",
+        "passed": true,
+        "surfaceHash": "4a09bf3573971dbedd43029abb50c826b075698fbab7c2cdcc2a3ae7f846d995"
+      },
+      {
+        "name": "Binomial",
+        "passed": true,
+        "surfaceHash": "4a09bf3573971dbedd43029abb50c826b075698fbab7c2cdcc2a3ae7f846d995"
+      },
+      {
+        "name": "Poisson",
+        "passed": true,
+        "surfaceHash": "4a09bf3573971dbedd43029abb50c826b075698fbab7c2cdcc2a3ae7f846d995"
+      },
+      {
+        "name": "Exponential",
+        "passed": true,
+        "surfaceHash": "4a09bf3573971dbedd43029abb50c826b075698fbab7c2cdcc2a3ae7f846d995"
+      },
+      {
+        "name": "t",
+        "passed": true,
+        "surfaceHash": "4a09bf3573971dbedd43029abb50c826b075698fbab7c2cdcc2a3ae7f846d995"
+      },
+      {
+        "name": "Chi-square",
+        "passed": true,
+        "surfaceHash": "4a09bf3573971dbedd43029abb50c826b075698fbab7c2cdcc2a3ae7f846d995"
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/experiments",
+    "modes": [
+      {
+        "name": "Coins",
+        "passed": true,
+        "surfaceHash": "155c9877b6ced4ab4ea03d86997d27a917d36fbd957adb9a02b2215d1405cb98"
+      },
+      {
+        "name": "Dice",
+        "passed": true,
+        "surfaceHash": "155c9877b6ced4ab4ea03d86997d27a917d36fbd957adb9a02b2215d1405cb98"
+      },
+      {
+        "name": "Cards",
+        "passed": true,
+        "surfaceHash": "155c9877b6ced4ab4ea03d86997d27a917d36fbd957adb9a02b2215d1405cb98"
+      },
+      {
+        "name": "Spinner",
+        "passed": true,
+        "surfaceHash": "155c9877b6ced4ab4ea03d86997d27a917d36fbd957adb9a02b2215d1405cb98"
+      },
+      {
+        "name": "Conditional",
+        "passed": true,
+        "surfaceHash": "155c9877b6ced4ab4ea03d86997d27a917d36fbd957adb9a02b2215d1405cb98"
+      },
+      {
+        "name": "Bayes",
+        "passed": true,
+        "surfaceHash": "155c9877b6ced4ab4ea03d86997d27a917d36fbd957adb9a02b2215d1405cb98"
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/counting",
+    "modes": [
+      {
+        "name": "Permutations",
+        "passed": true,
+        "surfaceHash": "0908911bd24dc2b6e39147b84a680ba9fa111f3ed2362bde6d9757fcefaadffd"
+      },
+      {
+        "name": "Combinations",
+        "passed": true,
+        "surfaceHash": "0908911bd24dc2b6e39147b84a680ba9fa111f3ed2362bde6d9757fcefaadffd"
+      },
+      {
+        "name": "Arrangements",
+        "passed": true,
+        "surfaceHash": "0908911bd24dc2b6e39147b84a680ba9fa111f3ed2362bde6d9757fcefaadffd"
+      },
+      {
+        "name": "Multisets",
+        "passed": true,
+        "surfaceHash": "0908911bd24dc2b6e39147b84a680ba9fa111f3ed2362bde6d9757fcefaadffd"
+      },
+      {
+        "name": "Counting Tree",
+        "passed": true,
+        "surfaceHash": "0908911bd24dc2b6e39147b84a680ba9fa111f3ed2362bde6d9757fcefaadffd"
+      },
+      {
+        "name": "Binomial Coefficients",
+        "passed": true,
+        "surfaceHash": "0908911bd24dc2b6e39147b84a680ba9fa111f3ed2362bde6d9757fcefaadffd"
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/clt",
+    "modes": [
+      {
+        "name": "Population",
+        "passed": true,
+        "surfaceHash": "35fb62280a484687754c6caa3e7f0f3de45e6d23085d3f4efd3dfa726c8ddcc4"
+      },
+      {
+        "name": "Sampling",
+        "passed": true,
+        "surfaceHash": "35fb62280a484687754c6caa3e7f0f3de45e6d23085d3f4efd3dfa726c8ddcc4"
+      },
+      {
+        "name": "CLT",
+        "passed": true,
+        "surfaceHash": "35fb62280a484687754c6caa3e7f0f3de45e6d23085d3f4efd3dfa726c8ddcc4"
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/confidence-intervals",
+    "modes": [
+      {
+        "name": "Mean",
+        "passed": true,
+        "surfaceHash": "3f374230e612b2771019371ff2a0971226587c2e228cf8a5eedd563b1b459b05"
+      },
+      {
+        "name": "Proportion",
+        "passed": true,
+        "surfaceHash": "3f374230e612b2771019371ff2a0971226587c2e228cf8a5eedd563b1b459b05"
+      },
+      {
+        "name": "Two-sample",
+        "passed": true,
+        "surfaceHash": "3f374230e612b2771019371ff2a0971226587c2e228cf8a5eedd563b1b459b05"
+      },
+      {
+        "name": "Bootstrap",
+        "passed": true,
+        "surfaceHash": "3f374230e612b2771019371ff2a0971226587c2e228cf8a5eedd563b1b459b05"
+      }
+    ]
+  },
+  {
+    "route": "/discrete-world/number-patterns",
+    "modes": [
+      {
+        "name": "Figurate NumbersShape numbers in nature",
+        "passed": true,
+        "verification": "aria-pressed"
+      },
+      {
+        "name": "Recursive SequencesDefine and explore sequences",
+        "passed": true,
+        "verification": "aria-pressed"
+      },
+      {
+        "name": "Pascal TriangleCombinations & patterns",
+        "passed": true,
+        "verification": "aria-pressed"
+      },
+      {
+        "name": "FractalsSelf-similarity & infinite patterns",
+        "passed": true,
+        "verification": "aria-pressed"
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/hypothesis",
+    "modes": [
+      {
+        "name": "One Sample Mean",
+        "passed": true,
+        "surfaceHash": "ede48f21edd117a44fc6de91ca11bb4bf5d6690a0f33bf583fcb1ef140234174"
+      },
+      {
+        "name": "Two Sample Mean",
+        "passed": true,
+        "surfaceHash": "ede48f21edd117a44fc6de91ca11bb4bf5d6690a0f33bf583fcb1ef140234174"
+      },
+      {
+        "name": "Proportion",
+        "passed": true,
+        "surfaceHash": "ede48f21edd117a44fc6de91ca11bb4bf5d6690a0f33bf583fcb1ef140234174"
+      },
+      {
+        "name": "Chi-Square",
+        "passed": true,
+        "surfaceHash": "ede48f21edd117a44fc6de91ca11bb4bf5d6690a0f33bf583fcb1ef140234174"
+      },
+      {
+        "name": "Permutation Test",
+        "passed": true,
+        "surfaceHash": "ede48f21edd117a44fc6de91ca11bb4bf5d6690a0f33bf583fcb1ef140234174"
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/correlation",
+    "modes": [
+      {
+        "name": "Linear Fit",
+        "passed": true,
+        "surfaceHash": "b0466e322a194efc9838c00cb8414665cd9d32b2c08abdf4002d3db9170fd24e"
+      },
+      {
+        "name": "Residuals",
+        "passed": true,
+        "surfaceHash": "b0466e322a194efc9838c00cb8414665cd9d32b2c08abdf4002d3db9170fd24e"
+      },
+      {
+        "name": "Prediction",
+        "passed": true,
+        "surfaceHash": "b0466e322a194efc9838c00cb8414665cd9d32b2c08abdf4002d3db9170fd24e"
+      }
+    ]
+  },
+  {
+    "route": "/differential-equations",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/anova",
+    "modes": [
+      {
+        "name": "Group Comparison",
+        "passed": true,
+        "surfaceHash": "f849fce67ca682b509d625e33d79221693eb4e79e14e5ec4c579015afd6dc19c"
+      },
+      {
+        "name": "Variation Decomposition",
+        "passed": true,
+        "surfaceHash": "f849fce67ca682b509d625e33d79221693eb4e79e14e5ec4c579015afd6dc19c"
+      },
+      {
+        "name": "Design Canvas",
+        "passed": true,
+        "surfaceHash": "f849fce67ca682b509d625e33d79221693eb4e79e14e5ec4c579015afd6dc19c"
+      },
+      {
+        "name": "Diagnostics",
+        "passed": true,
+        "surfaceHash": "f849fce67ca682b509d625e33d79221693eb4e79e14e5ec4c579015afd6dc19c"
+      }
+    ]
+  },
+  {
+    "route": "/differential-equations/explorer",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/slope-fields",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/initial-value",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/separable",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/homogeneous-first-order",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/exact",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/linear-first-order",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/bernoulli",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/method-selector",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/euler",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/heun",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/rk4",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/higher-order-linear",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/growth-models",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/undetermined-coefficients",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/cauchy-euler",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/variation-of-parameters",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/phase-plane",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/systems",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/mechanical-oscillations",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/lcr-circuit",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/newton-cooling",
+    "modes": []
+  },
+  {
+    "route": "/algebraic-structures",
+    "modes": []
+  },
+  {
+    "route": "/algebra",
+    "modes": []
+  },
+  {
+    "route": "/number-systems",
+    "modes": []
+  },
+  {
+    "route": "/calculus",
+    "modes": []
+  },
+  {
+    "route": "/set-theory",
+    "modes": []
+  },
+  {
+    "route": "/graph-theory",
+    "modes": [
+      {
+        "name": "Build",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Representations",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Algorithms",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Properties",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Learn & Validate",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/algebra/expressions",
+    "modes": [
+      {
+        "name": "Simplify",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Expand",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Factor",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Combine Terms",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/algebra/equations",
+    "modes": [
+      {
+        "name": "Linear",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Quadratic",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Absolute Value",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Inequalities",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/algebra/polynomials",
+    "modes": [
+      {
+        "name": "Roots",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Factors",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Division",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "End Behavior",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Multiplicity",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/algebra/functions",
+    "modes": [
+      {
+        "name": "Families",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Transformations",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Composition",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Inverse",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Piecewise",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/algebra/systems",
+    "modes": [
+      {
+        "name": "Graphing",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Substitution",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Elimination",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Matrices",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Inequalities",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/algebra/sequences",
+    "modes": [
+      {
+        "name": "Arithmetic",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Geometric",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Recursive",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Sigma",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Patterns",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/algebra/proof",
+    "modes": [
+      {
+        "name": "Identities",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Equation Proof",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Induction",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Inequality",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Counterexample",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/algebra/exponents-logs",
+    "modes": [
+      {
+        "name": "Exponent Laws",
+        "passed": true,
+        "verification": "aria-pressed"
+      },
+      {
+        "name": "Radicals",
+        "passed": true,
+        "verification": "aria-pressed"
+      },
+      {
+        "name": "Exponential & Logs",
+        "passed": true,
+        "verification": "aria-pressed"
+      },
+      {
+        "name": "Equations",
+        "passed": false,
+        "error": "locator.click: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav[aria-label*=\"mode\" i],nav.cs-tabs,nav.gt-tabs').first().locator('button').nth(3)\u001b[22m\n\u001b[2m    - locator resolved to <"
+      }
+    ]
+  },
+  {
+    "route": "/algebra/advanced",
+    "modes": []
+  },
+  {
+    "route": "/algebra/cas",
+    "modes": [
+      {
+        "name": "Solve",
+        "passed": true,
+        "verification": "aria-pressed"
+      },
+      {
+        "name": "Simplify",
+        "passed": true,
+        "verification": "aria-pressed"
+      },
+      {
+        "name": "Factor",
+        "passed": true,
+        "verification": "aria-pressed"
+      },
+      {
+        "name": "Expand",
+        "passed": true,
+        "verification": "aria-pressed"
+      },
+      {
+        "name": "Substitute",
+        "passed": true,
+        "verification": "aria-pressed"
+      },
+      {
+        "name": "Differentiate",
+        "passed": false,
+        "error": "locator.click: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav[aria-label*=\"mode\" i],nav.cs-tabs,nav.gt-tabs').first().locator('button').nth(5)\u001b[22m\n\u001b[2m    - locator resolved to <"
+      }
+    ]
+  },
+  {
+    "route": "/algebraic-structures/structure-test",
+    "modes": []
+  },
+  {
+    "route": "/algebra/classic",
+    "modes": []
+  },
+  {
+    "route": "/algebraic-structures/cayley-tables",
+    "modes": []
+  },
+  {
+    "route": "/algebraic-structures/semigroups-monoids",
+    "modes": []
+  },
+  {
+    "route": "/algebraic-structures/posets-lattices",
+    "modes": []
+  },
+  {
+    "route": "/algebraic-structures/boolean-algebra",
+    "modes": []
+  },
+  {
+    "route": "/algebra/algebraic-structures",
+    "modes": []
+  },
+  {
+    "route": "/number-systems/rational",
+    "modes": [
+      {
+        "name": "Fraction",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Decimal",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Number line",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/number-systems/irrational",
+    "modes": [
+      {
+        "name": "Surds",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "root 2 vs 9",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "pi and e",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/number-systems/real-line",
+    "modes": [
+      {
+        "name": "Density",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Zoom",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Insert",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/number-systems/hierarchy",
+    "modes": [
+      {
+        "name": "Nested sets",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "3D",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/number-systems/concepts",
+    "modes": [
+      {
+        "name": "Mini canvases",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/number-systems/practice",
+    "modes": [
+      {
+        "name": "Quiz",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Accuracy",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/number-systems/accuracy",
+    "modes": [
+      {
+        "name": "Quiz",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "Accuracy",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/number-systems/space",
+    "modes": [
+      {
+        "name": "Nested sets",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "3D",
+        "passed": true,
+        "surfaceHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  {
+    "route": "/geometry/solids",
+    "modes": [
+      {
+        "name": "Explore",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "Properties",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "Formulas",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "Compare",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "Learn",
+        "passed": true,
+        "verification": "selected class"
+      },
+      {
+        "name": "In Simple words",
+        "passed": true,
+        "verification": "selected class"
+      }
+    ]
+  },
+  {
+    "route": "/trigonometry/formula-visualizer",
+    "modes": []
+  },
+  {
+    "route": "/calculus/multivariable-vector",
+    "modes": []
+  },
+  {
+    "route": "/calculus/practice",
+    "modes": []
+  },
+  {
+    "route": "/calculus/advanced",
+    "modes": []
+  },
+  {
+    "route": "/calculus/atlas",
+    "modes": []
+  },
+  {
+    "route": "/mathematical-modelling/advanced",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/module",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/sampling",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/inference",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/regression",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/bayesian",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/stochastic",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/advanced-models",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/survey-sampling",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/design-of-experiments",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/quality-control",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/time-series",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/nonparametric",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/multivariate-analysis",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/advanced-inference",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/official-statistics",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/survival-analysis",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/actuarial-reliability",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/statistical-computing",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/applied-modelling",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/school-statistics",
+    "modes": []
+  },
+  {
+    "route": "/set-theory/set-builder",
+    "modes": []
+  },
+  {
+    "route": "/set-theory/venn-diagram-engine",
+    "modes": []
+  },
+  {
+    "route": "/set-theory/relations",
+    "modes": []
+  },
+  {
+    "route": "/set-theory/hasse-diagram",
+    "modes": []
+  },
+  {
+    "route": "/set-theory/functions",
+    "modes": []
+  },
+  {
+    "route": "/set-theory/representations",
+    "modes": []
+  },
+  {
+    "route": "/set-theory/practice",
+    "modes": []
+  },
+  {
+    "route": "/geometry/points-lines-rays",
+    "modes": []
+  },
+  {
+    "route": "/geometry/angles",
+    "modes": []
+  },
+  {
+    "route": "/geometry/parallel-lines",
+    "modes": []
+  },
+  {
+    "route": "/geometry/pythagorean-theorem",
+    "modes": []
+  },
+  {
+    "route": "/geometry/triangle-congruence",
+    "modes": []
+  },
+  {
+    "route": "/geometry/similar-triangles",
+    "modes": []
+  },
+  {
+    "route": "/geometry/quadrilaterals",
+    "modes": []
+  },
+  {
+    "route": "/geometry/arcs-sectors",
+    "modes": []
+  },
+  {
+    "route": "/geometry/chords-secants",
+    "modes": []
+  },
+  {
+    "route": "/geometry/tangents",
+    "modes": []
+  },
+  {
+    "route": "/geometry/coordinate-geometry",
+    "modes": []
+  },
+  {
+    "route": "/geometry/symmetry",
+    "modes": []
+  },
+  {
+    "route": "/geometry/area-perimeter",
+    "modes": []
+  },
+  {
+    "route": "/geometry/surface-area-volume",
+    "modes": []
+  },
+  {
+    "route": "/geometry/mensuration-3d",
+    "modes": []
+  },
+  {
+    "route": "/geometry/geometric-constructions",
+    "modes": []
+  },
+  {
+    "route": "/geometry/trig-in-geometry",
+    "modes": []
+  },
+  {
+    "route": "/geometry/loci",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/trigonometric-functions",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/right-triangle-ratios",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/degree-radian",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/special-angles",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/quadrant-signs",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/sine-graph",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/cosine-graph",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/tangent-graph",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/reciprocal-graphs",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/reciprocal-ratios",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/pythagorean-identity",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/complementary-angles",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/sum-difference",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/double-angle",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/half-angle",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/product-to-sum",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/inverse-trig",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/triple-angle",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/inverse-principal-values",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/trig-equations",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/general-solutions",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/trig-inequalities",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/height-distance",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/law-of-sines",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/bearings-navigation",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/law-of-cosines",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/ambiguous-case",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/trig-triangle-area",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/polar-roses",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/polar-coordinates",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/complex-de-moivre",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/trig-limits",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/trig-derivatives",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/orthogonality",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/trig-integrals",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/spherical-trigonometry",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/fourier-trig-series",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/hyperbolic-functions",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/wave-amplitude",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/wave-period-frequency",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/phase-shift",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/eclipse-trigonometry",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/inquiry-experiments",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/real-world-waves",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/bernoulli",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/categorical",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/discrete-uniform",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/binomial",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/geometric",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/negative-binomial",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/hypergeometric",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/poisson",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/poisson-binomial",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/beta-binomial",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/zipf",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/continuous-uniform",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/normal",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/exponential",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/gamma",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/beta",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/chi-square",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/student-t",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/f",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/lognormal",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/weibull",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/cauchy",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/laplace",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/logistic",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/pareto",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/rayleigh",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/distributions/triangular",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/equation-explorer",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/direction-fields",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/homogeneous",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/growth",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/oscillations",
+    "modes": []
+  }
+]

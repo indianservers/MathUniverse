@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useStudioState } from "../phase1/StudioModelProvider";
+import { useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import AlgebraLabHeading from "./AlgebraLabHeading";
 import { workbenchTools } from "./algebraStudioCatalog";
@@ -49,14 +50,14 @@ export default function AlgebraEnhancementWorkbench() {
   const focus = params.get("tool") ?? "";
   const query = params.get("q") ?? "";
   const group = params.get("group") ?? "all";
-  const [leftExpr, setLeftExpr] = useState("(t+b)^2");
-  const [rightExpr, setRightExpr] = useState("t^2+b^2");
+  const [leftExpr, setLeftExpr] = useStudioState("AlgebraEnhancementWorkbench:AlgebraEnhancementWorkbench:leftExpr", "(t+b)^2");
+  const [rightExpr, setRightExpr] = useStudioState("AlgebraEnhancementWorkbench:AlgebraEnhancementWorkbench:rightExpr", "t^2+b^2");
   const shared = useAlgebraHistory({
     a: Number(params.get("a")) || 1,
     b: Number(params.get("b")) || 1,
     c: Number(params.get("c")) || -2,
     x: Number(params.get("x")) || 2,
-  });
+  }, "AlgebraEnhancementWorkbench.tsx:AlgebraEnhancementWorkbench");
   const { a, b, c, x } = shared.state;
   const setA = (value: number) => shared.replace({ ...shared.state, a: value });
   const setB = (value: number) => shared.replace({ ...shared.state, b: value });

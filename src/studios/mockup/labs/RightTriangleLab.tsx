@@ -1,5 +1,6 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { Expand, Grid3X3, Maximize2, MoreHorizontal, MousePointer2, Pencil, RotateCcw, Spline, Type, ZoomIn, ZoomOut } from "lucide-react";
-import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
+import { useEffect, useMemo, useRef, type PointerEvent } from "react";
 import { MockupLearningStrip } from "../MockupStudioChrome";
 import type { StudioMockupPage } from "../studioMockupCatalog";
 import { ChallengeBox, ChipRow, Field, Segmented, StatusOk, StepList, clamp, fmt, useLabMode } from "../studioLabKit";
@@ -75,21 +76,21 @@ function squarePoints(x1: number, y1: number, x2: number, y2: number, outward: 1
 
 export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
   const { tabs, mode, setMode } = useLabMode(page, MODES);
-  const [known, setKnown] = useState<Known>("angle-side");
-  const [units, setUnits] = useState<Units>("deg");
-  const [angleA, setAngleA] = useState(35);
-  const [opp, setOpp] = useState(7);
-  const [hyp, setHyp] = useState(12);
-  const [adj, setAdj] = useState(Math.sqrt(95));
-  const [ori, setOri] = useState<Ori>("std");
-  const [example, setExample] = useState<Example>("custom");
-  const [scale, setScale] = useState(1.5);
-  const [locked, setLocked] = useState(false);
-  const [tool, setTool] = useState<Tool>("select");
-  const [labels, setLabels] = useState(true);
-  const [measure, setMeasure] = useState(true);
-  const [trace, setTrace] = useState(false);
-  const [canvasZoom, setCanvasZoom] = useState(FIT_ZOOM);
+  const [known, setKnown] = useStudioState<Known>("RightTriangleLab:RightTriangleLab:known", "angle-side");
+  const [units, setUnits] = useStudioState<Units>("RightTriangleLab:RightTriangleLab:units", "deg");
+  const [angleA, setAngleA] = useStudioState("RightTriangleLab:RightTriangleLab:angleA", 35);
+  const [opp, setOpp] = useStudioState("RightTriangleLab:RightTriangleLab:opp", 7);
+  const [hyp, setHyp] = useStudioState("RightTriangleLab:RightTriangleLab:hyp", 12);
+  const [adj, setAdj] = useStudioState("RightTriangleLab:RightTriangleLab:adj", Math.sqrt(95));
+  const [ori, setOri] = useStudioState<Ori>("RightTriangleLab:RightTriangleLab:ori", "std");
+  const [example, setExample] = useStudioState<Example>("RightTriangleLab:RightTriangleLab:example", "custom");
+  const [scale, setScale] = useStudioState("RightTriangleLab:RightTriangleLab:scale", 1.5);
+  const [locked, setLocked] = useStudioState("RightTriangleLab:RightTriangleLab:locked", false);
+  const [tool, setTool] = useStudioState<Tool>("RightTriangleLab:RightTriangleLab:tool", "select");
+  const [labels, setLabels] = useStudioState("RightTriangleLab:RightTriangleLab:labels", true);
+  const [measure, setMeasure] = useStudioState("RightTriangleLab:RightTriangleLab:measure", true);
+  const [trace, setTrace] = useStudioState("RightTriangleLab:RightTriangleLab:trace", false);
+  const [canvasZoom, setCanvasZoom] = useStudioState("RightTriangleLab:RightTriangleLab:canvasZoom", FIT_ZOOM);
   const drag = useRef<"A" | "B" | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const geometryRef = useRef<SVGGElement>(null);

@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import {
   Ruler,
   Triangle,
@@ -77,24 +78,24 @@ function cornerTick(x: number, y: number, dx: 1 | -1, dy: 1 | -1, color: string)
 
 export default function MeasurementLab({ page }: { page: StudioMockupPage }) {
   const { mode, panel, setMode, setPanel } = useMeasurementWorkspace();
-  const [rects, setRects] = useState<AaRect[]>(defaultRects);
-  const [selected, setSelected] = useState("r1");
-  const [unit, setUnit] = useState<UnitId>("cm");
-  const [precision, setPrecision] = useState(0.01);
-  const [snap, setSnap] = useState<"grid" | "point" | "off">("grid");
-  const [rulers, setRulers] = useState(true);
+  const [rects, setRects] = useStudioState<AaRect[]>("MeasurementLab:MeasurementLab:rects", defaultRects);
+  const [selected, setSelected] = useStudioState("MeasurementLab:MeasurementLab:selected", "r1");
+  const [unit, setUnit] = useStudioState<UnitId>("MeasurementLab:MeasurementLab:unit", "cm");
+  const [precision, setPrecision] = useStudioState("MeasurementLab:MeasurementLab:precision", 0.01);
+  const [snap, setSnap] = useStudioState<"grid" | "point" | "off">("MeasurementLab:MeasurementLab:snap", "grid");
+  const [rulers, setRulers] = useStudioState("MeasurementLab:MeasurementLab:rulers", true);
   const [showDecomp, setShowDecomp] = useState(true);
   const [showDims, setShowDims] = useState(true);
   const [showProtractor, setShowProtractor] = useState(true);
   const [showGrid, setShowGrid] = useState(true);
   const [showConstruction, setShowConstruction] = useState(false);
-  const [decompose, setDecompose] = useState<"auto" | "manual">("auto");
-  const [scaleK, setScaleK] = useState(1);
-  const [zoom, setZoom] = useState(1);
-  const [tool, setTool] = useState<"select" | "measure" | "shape" | "text">("select");
-  const [headerHost, setHeaderHost] = useState<HTMLElement | null>(null);
+  const [decompose, setDecompose] = useStudioState<"auto" | "manual">("MeasurementLab:MeasurementLab:decompose", "auto");
+  const [scaleK, setScaleK] = useStudioState("MeasurementLab:MeasurementLab:scaleK", 1);
+  const [zoom, setZoom] = useStudioState("MeasurementLab:MeasurementLab:zoom", 1);
+  const [tool, setTool] = useStudioState<"select" | "measure" | "shape" | "text">("MeasurementLab:MeasurementLab:tool", "select");
+  const [headerHost, setHeaderHost] = useStudioState<HTMLElement | null>("MeasurementLab:MeasurementLab:headerHost", null);
   const [hoverId, setHoverId] = useState<string | null>(null);
-  const [convKind, setConvKind] = useState<"area" | "length">("area");
+  const [convKind, setConvKind] = useStudioState<"area" | "length">("MeasurementLab:MeasurementLab:convKind", "area");
   const drag = useRef<Handle | { type: "move"; rectId: string; x0: number; y0: number; rx: number; ry: number } | null>(null);
 
   useEffect(() => { setHeaderHost(document.getElementById("msk-lab-tools")); }, []);

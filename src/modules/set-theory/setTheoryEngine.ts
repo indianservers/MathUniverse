@@ -72,7 +72,7 @@ export function powerSet(values: string[]) {
 }
 
 export function pairKey([a, b]: OrderedPair) {
-  return `${a}->${b}`;
+  return JSON.stringify([a,b]);
 }
 
 export function parsePairs(input: string): OrderedPair[] {
@@ -158,7 +158,7 @@ export function functionProperties(domain: string[], codomain: string[], pairs: 
   const codomainSet = new Set(codomain);
   const allPairsStayInsideSets = pairs.every(([a, b]) => domainSet.has(a) && codomainSet.has(b));
   const imageByDomain = new Map<string, string[]>();
-  pairs.forEach(([a, b]) => {
+  Array.from(new Map(pairs.map(pair=>[pairKey(pair),pair])).values()).forEach(([a, b]) => {
     if (domainSet.has(a) && codomainSet.has(b)) {
       imageByDomain.set(a, [...(imageByDomain.get(a) ?? []), b]);
     }

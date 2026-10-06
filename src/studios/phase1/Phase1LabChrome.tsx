@@ -2,7 +2,7 @@ import { useEffect, type ReactNode } from "react";
 import { MockupLearningStrip } from "../mockup/MockupStudioChrome";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { useLabMode } from "../mockup/studioLabKit";
-import { useStudioFigure } from "./useStudioFigure";
+import StudioModelTools from "./StudioModelTools";
 
 export function Phase1LabChrome({
   page,
@@ -47,19 +47,7 @@ export function Phase1LabChrome({
 }
 
 function DefaultKernelBar() {
-  const fig = useStudioFigure({ k: 1 });
-  return (
-    <FigureToolbar
-      canUndo={fig.canUndo}
-      canRedo={fig.canRedo}
-      exact={fig.exact}
-      onUndo={fig.undo}
-      onRedo={fig.redo}
-      onReset={fig.reset}
-      onShare={() => void fig.share()}
-      onExact={fig.setExact}
-    />
-  );
+  return <StudioModelTools />;
 }
 
 export function FigureToolbar({

@@ -1,5 +1,6 @@
+import StudioLearningOutlet from "../../studios/curriculum/StudioLearningOutlet";
 import { useEffect, useRef, useState } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import MobileLearningDock from "./MobileLearningDock";
 import { navItems } from "./navItems";
@@ -136,6 +137,8 @@ export default function AppLayout() {
   const isDifferentialEquationsStudioRoute =
     location.pathname === "/differential-equations" ||
     location.pathname.startsWith("/differential-equations/");
+  const isLearningStudioRoute = /^\/(?:number-systems|algebraic-structures|discrete-world|set-theory|graph-theory|probability-statistics|studios)(?:\/|$)/.test(location.pathname)
+    || /^\/math-lab\/(?:continued-fractions|famous-problems|stats-inference|differential-equations|special-functions)\/?$/.test(location.pathname);
   const currentMathWorkspace = findMathWorkspace(location.pathname);
   const isCompassTarget = location.pathname === "/lessons/geometry/221-compass";
   const isSemicircleTarget =
@@ -259,16 +262,16 @@ export default function AppLayout() {
   if (isVisualProofLessonRoute) {
     return (
       <main id="main-content" className="h-dvh overflow-hidden bg-[#fbfaf6]">
-        <Outlet />
+        <StudioLearningOutlet />
         <UndoToastHost />
       </main>
     );
   }
 
-  if (isCalculusLabRoute || isModellingStudioRoute || isGeometryStudioRoute || isTrigonometryStudioRoute || isAlgebraStudioRoute || isLinearAlgebraStudioRoute || isComplexNumbersStudioRoute || isDifferentialEquationsStudioRoute) {
+  if (isLearningStudioRoute || isCalculusLabRoute || isModellingStudioRoute || isGeometryStudioRoute || isTrigonometryStudioRoute || isAlgebraStudioRoute || isLinearAlgebraStudioRoute || isComplexNumbersStudioRoute || isDifferentialEquationsStudioRoute) {
     return (
       <main id="main-content" className="h-dvh min-h-0 overflow-hidden bg-slate-50">
-        <Outlet />
+        <StudioLearningOutlet />
         <UndoToastHost />
       </main>
     );
@@ -282,11 +285,11 @@ export default function AppLayout() {
       >
         {currentMathWorkspace ? (
           <MathWorkspaceLayout workspace={currentMathWorkspace}>
-            <Outlet />
+            <StudioLearningOutlet />
           </MathWorkspaceLayout>
         ) : (
           <div className="math-workspace-page h-full min-h-0 overflow-hidden">
-            <Outlet />
+            <StudioLearningOutlet />
           </div>
         )}
         <UndoToastHost />
@@ -314,7 +317,7 @@ export default function AppLayout() {
                 key={location.pathname}
                 className="page-transition min-h-screen min-w-0 overflow-x-clip"
               >
-                <Outlet />
+                <StudioLearningOutlet />
               </div>
             </main>
             <AppFooter />
@@ -363,7 +366,7 @@ export default function AppLayout() {
               className="page-transition min-w-0 space-y-1.5 overflow-x-clip"
             >
               <InlinePageNav showBack={showBack} hidden={hasOwnStudioBreadcrumb} />
-              <Outlet />
+              <StudioLearningOutlet />
               {!hasOwnStudioBreadcrumb && !location.pathname.startsWith("/lessons") && configForPath(location.pathname) ? <StudioLessonLinks pathname={location.pathname} /> : null}
             </div>
           </main>

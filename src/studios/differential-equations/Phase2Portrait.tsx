@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useMemo, useRef, useState, type PointerEvent } from "react";
 import { Maximize2, Minus, Plus, RotateCcw } from "lucide-react";
 import { contourSegments } from "./firstOrderMath";
@@ -11,9 +12,9 @@ export function Phase2Portrait({ field, starts, backgroundStarts = emptyStarts, 
   equilibrium?: XY; separatrices?: XY[][]; label?: string;
 }) {
   const svgRef = useRef<SVGSVGElement>(null);
-  const [zoom, setZoom] = useState(1), [offset, setOffset] = useState<XY>({ x: 0, y: 0 });
+  const [zoom, setZoom] = useStudioState("Phase2Portrait:Phase2Portrait:zoom", 1), [offset, setOffset] = useStudioState<XY>("Phase2Portrait:Phase2Portrait:offset", { x: 0, y: 0 });
   const [drag, setDrag] = useState<{ kind: "point"; index: number } | { kind: "pan"; x: number; y: number; offset: XY } | null>(null);
-  const [inspector, setInspector] = useState<XY | null>(null);
+  const [inspector, setInspector] = useStudioState<XY | null>("Phase2Portrait:Phase2Portrait:inspector", null);
   const width = 600, height = 430, pad = 35;
   const scale = 3.5 / zoom;
   const bounds = { xMin: offset.x - scale, xMax: offset.x + scale, yMin: offset.y - scale * .69, yMax: offset.y + scale * .69 };

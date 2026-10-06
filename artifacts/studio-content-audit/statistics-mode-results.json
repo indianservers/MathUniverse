@@ -1,0 +1,338 @@
+[
+  {
+    "route": "/probability-statistics/interactive-distributions",
+    "modes": [
+      {
+        "mode": "Normal",
+        "chart": "Normal curve",
+        "live": "P(a < X < b)\n0.683\n68% band\nμ ± σ\nChallenge\n\nP(−1<Z<1) for standard normal is about 0.68. Enter 0.68.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"-3\" max=\"3\" step=\"0.1\" value=\"0\">",
+          "<input type=\"range\" min=\"0.4\" max=\"2.5\" step=\"0.1\" value=\"1\">",
+          "<input type=\"range\" min=\"-4\" max=\"4\" step=\"0.1\" value=\"-1\">",
+          "<input type=\"range\" min=\"-4\" max=\"4\" step=\"0.1\" value=\"1\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Binomial",
+        "chart": "Normal curve",
+        "live": "P(a < X < b)\n0.683\n68% band\nμ ± σ\nChallenge\n\nP(−1<Z<1) for standard normal is about 0.68. Enter 0.68.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"-3\" max=\"3\" step=\"0.1\" value=\"0\">",
+          "<input type=\"range\" min=\"0.4\" max=\"2.5\" step=\"0.1\" value=\"1\">",
+          "<input type=\"range\" min=\"-4\" max=\"4\" step=\"0.1\" value=\"-1\">",
+          "<input type=\"range\" min=\"-4\" max=\"4\" step=\"0.1\" value=\"1\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Poisson",
+        "chart": "Normal curve",
+        "live": "P(a < X < b)\n0.683\n68% band\nμ ± σ\nChallenge\n\nP(−1<Z<1) for standard normal is about 0.68. Enter 0.68.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"-3\" max=\"3\" step=\"0.1\" value=\"0\">",
+          "<input type=\"range\" min=\"0.4\" max=\"2.5\" step=\"0.1\" value=\"1\">",
+          "<input type=\"range\" min=\"-4\" max=\"4\" step=\"0.1\" value=\"-1\">",
+          "<input type=\"range\" min=\"-4\" max=\"4\" step=\"0.1\" value=\"1\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Exponential",
+        "chart": "Normal curve",
+        "live": "P(a < X < b)\n0.683\n68% band\nμ ± σ\nChallenge\n\nP(−1<Z<1) for standard normal is about 0.68. Enter 0.68.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"-3\" max=\"3\" step=\"0.1\" value=\"0\">",
+          "<input type=\"range\" min=\"0.4\" max=\"2.5\" step=\"0.1\" value=\"1\">",
+          "<input type=\"range\" min=\"-4\" max=\"4\" step=\"0.1\" value=\"-1\">",
+          "<input type=\"range\" min=\"-4\" max=\"4\" step=\"0.1\" value=\"1\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "t",
+        "chart": "Normal curve",
+        "live": "P(a < X < b)\n0.683\n68% band\nμ ± σ\nChallenge\n\nP(−1<Z<1) for standard normal is about 0.68. Enter 0.68.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"-3\" max=\"3\" step=\"0.1\" value=\"0\">",
+          "<input type=\"range\" min=\"0.4\" max=\"2.5\" step=\"0.1\" value=\"1\">",
+          "<input type=\"range\" min=\"-4\" max=\"4\" step=\"0.1\" value=\"-1\">",
+          "<input type=\"range\" min=\"-4\" max=\"4\" step=\"0.1\" value=\"1\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Chi-square",
+        "chart": "Normal curve",
+        "live": "P(a < X < b)\n0.683\n68% band\nμ ± σ\nChallenge\n\nP(−1<Z<1) for standard normal is about 0.68. Enter 0.68.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"-3\" max=\"3\" step=\"0.1\" value=\"0\">",
+          "<input type=\"range\" min=\"0.4\" max=\"2.5\" step=\"0.1\" value=\"1\">",
+          "<input type=\"range\" min=\"-4\" max=\"4\" step=\"0.1\" value=\"-1\">",
+          "<input type=\"range\" min=\"-4\" max=\"4\" step=\"0.1\" value=\"1\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/experiments",
+    "modes": [
+      {
+        "mode": "Coins",
+        "chart": "Dice sum histogram 2-12",
+        "live": "P(sum=7)\n0.167\nChallenge\n\nP(sum=7) with two fair dice = 6/36. Enter 0.167.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"6\" max=\"72\" step=\"6\" value=\"36\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Dice",
+        "chart": "Dice sum histogram 2-12",
+        "live": "P(sum=7)\n0.167\nChallenge\n\nP(sum=7) with two fair dice = 6/36. Enter 0.167.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"6\" max=\"72\" step=\"6\" value=\"36\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Cards",
+        "chart": "Dice sum histogram 2-12",
+        "live": "P(sum=7)\n0.167\nChallenge\n\nP(sum=7) with two fair dice = 6/36. Enter 0.167.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"6\" max=\"72\" step=\"6\" value=\"36\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Spinner",
+        "chart": "Dice sum histogram 2-12",
+        "live": "P(sum=7)\n0.167\nChallenge\n\nP(sum=7) with two fair dice = 6/36. Enter 0.167.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"6\" max=\"72\" step=\"6\" value=\"36\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Conditional",
+        "chart": "Dice sum histogram 2-12",
+        "live": "P(sum=7)\n0.167\nChallenge\n\nP(sum=7) with two fair dice = 6/36. Enter 0.167.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"6\" max=\"72\" step=\"6\" value=\"36\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Bayes",
+        "chart": "Dice sum histogram 2-12",
+        "live": "P(sum=7)\n0.167\nChallenge\n\nP(sum=7) with two fair dice = 6/36. Enter 0.167.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"6\" max=\"72\" step=\"6\" value=\"36\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/hypothesis",
+    "modes": [
+      {
+        "mode": "One Sample Mean",
+        "chart": "Rejection region",
+        "live": "Reject H0?\nYes\nChallenge\n\nIf p=0.02 and α=0.05, reject H0? Enter 1 for yes.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"0.001\" max=\"0.2\" step=\"0.001\" value=\"0.02\">",
+          "<input type=\"range\" min=\"0.01\" max=\"0.1\" step=\"0.01\" value=\"0.05\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Two Sample Mean",
+        "chart": "Rejection region",
+        "live": "Reject H0?\nYes\nChallenge\n\nIf p=0.02 and α=0.05, reject H0? Enter 1 for yes.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"0.001\" max=\"0.2\" step=\"0.001\" value=\"0.02\">",
+          "<input type=\"range\" min=\"0.01\" max=\"0.1\" step=\"0.01\" value=\"0.05\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Proportion",
+        "chart": "Rejection region",
+        "live": "Reject H0?\nYes\nChallenge\n\nIf p=0.02 and α=0.05, reject H0? Enter 1 for yes.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"0.001\" max=\"0.2\" step=\"0.001\" value=\"0.02\">",
+          "<input type=\"range\" min=\"0.01\" max=\"0.1\" step=\"0.01\" value=\"0.05\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Chi-Square",
+        "chart": "Rejection region",
+        "live": "Reject H0?\nYes\nChallenge\n\nIf p=0.02 and α=0.05, reject H0? Enter 1 for yes.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"0.001\" max=\"0.2\" step=\"0.001\" value=\"0.02\">",
+          "<input type=\"range\" min=\"0.01\" max=\"0.1\" step=\"0.01\" value=\"0.05\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Permutation Test",
+        "chart": "Rejection region",
+        "live": "Reject H0?\nYes\nChallenge\n\nIf p=0.02 and α=0.05, reject H0? Enter 1 for yes.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"0.001\" max=\"0.2\" step=\"0.001\" value=\"0.02\">",
+          "<input type=\"range\" min=\"0.01\" max=\"0.1\" step=\"0.01\" value=\"0.05\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/confidence-intervals",
+    "modes": [
+      {
+        "mode": "Mean",
+        "chart": "Capture intervals",
+        "live": "z × 10/√30 width\n7.16\nCaptured μ=50\n4 of 12\nTarget capture\n95 of 100\nChallenge\n\nA 95% CI aims to capture μ in 95 of 100 samples. Enter 95.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"80\" max=\"99\" step=\"1\" value=\"95\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Proportion",
+        "chart": "Capture intervals",
+        "live": "z × 10/√30 width\n7.16\nCaptured μ=50\n4 of 12\nTarget capture\n95 of 100\nChallenge\n\nA 95% CI aims to capture μ in 95 of 100 samples. Enter 95.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"80\" max=\"99\" step=\"1\" value=\"95\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Two-sample",
+        "chart": "Capture intervals",
+        "live": "z × 10/√30 width\n7.16\nCaptured μ=50\n4 of 12\nTarget capture\n95 of 100\nChallenge\n\nA 95% CI aims to capture μ in 95 of 100 samples. Enter 95.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"80\" max=\"99\" step=\"1\" value=\"95\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Bootstrap",
+        "chart": "Capture intervals",
+        "live": "z × 10/√30 width\n7.16\nCaptured μ=50\n4 of 12\nTarget capture\n95 of 100\nChallenge\n\nA 95% CI aims to capture μ in 95 of 100 samples. Enter 95.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"80\" max=\"99\" step=\"1\" value=\"95\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/correlation",
+    "modes": [
+      {
+        "mode": "Linear Fit",
+        "chart": "Correlation scatter",
+        "live": "r\n-0.99\nChallenge\n\nIf all points are on a line with positive slope, r is 1. Enter 1.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"-1\" max=\"1\" step=\"0.05\" value=\"0.8\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Residuals",
+        "chart": "Correlation scatter",
+        "live": "r\n-0.99\nChallenge\n\nIf all points are on a line with positive slope, r is 1. Enter 1.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"-1\" max=\"1\" step=\"0.05\" value=\"0.8\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Prediction",
+        "chart": "Correlation scatter",
+        "live": "r\n-0.99\nChallenge\n\nIf all points are on a line with positive slope, r is 1. Enter 1.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"-1\" max=\"1\" step=\"0.05\" value=\"0.8\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/anova",
+    "modes": [
+      {
+        "mode": "Group Comparison",
+        "chart": null,
+        "live": "MSB = var(means)\n0.67\nMSW\n1\nF = MSB/MSW\n0.67\nChallenge\n\nIf all group means are equal, F is near 1. Enter 1.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"1\" max=\"10\" step=\"0.1\" value=\"4\">",
+          "<input type=\"range\" min=\"1\" max=\"10\" step=\"0.1\" value=\"6\">",
+          "<input type=\"range\" min=\"1\" max=\"10\" step=\"0.1\" value=\"5\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Variation Decomposition",
+        "chart": null,
+        "live": "MSB = var(means)\n0.67\nMSW\n1\nF = MSB/MSW\n0.67\nChallenge\n\nIf all group means are equal, F is near 1. Enter 1.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"1\" max=\"10\" step=\"0.1\" value=\"4\">",
+          "<input type=\"range\" min=\"1\" max=\"10\" step=\"0.1\" value=\"6\">",
+          "<input type=\"range\" min=\"1\" max=\"10\" step=\"0.1\" value=\"5\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Design Canvas",
+        "chart": null,
+        "live": "MSB = var(means)\n0.67\nMSW\n1\nF = MSB/MSW\n0.67\nChallenge\n\nIf all group means are equal, F is near 1. Enter 1.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"1\" max=\"10\" step=\"0.1\" value=\"4\">",
+          "<input type=\"range\" min=\"1\" max=\"10\" step=\"0.1\" value=\"6\">",
+          "<input type=\"range\" min=\"1\" max=\"10\" step=\"0.1\" value=\"5\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Diagnostics",
+        "chart": null,
+        "live": "MSB = var(means)\n0.67\nMSW\n1\nF = MSB/MSW\n0.67\nChallenge\n\nIf all group means are equal, F is near 1. Enter 1.\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"1\" max=\"10\" step=\"0.1\" value=\"4\">",
+          "<input type=\"range\" min=\"1\" max=\"10\" step=\"0.1\" value=\"6\">",
+          "<input type=\"range\" min=\"1\" max=\"10\" step=\"0.1\" value=\"5\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/probability-statistics/data-explorer",
+    "modes": [
+      {
+        "mode": "Overview",
+        "chart": "Histogram",
+        "live": "Mean score\n69.2\nn\n10\nChallenge\n\nMedian of 1,2,3?\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"4\" max=\"40\" step=\"1\" value=\"10\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      },
+      {
+        "mode": "Pairwise",
+        "chart": "Histogram",
+        "live": "Mean score\n69.2\nn\n10\nChallenge\n\nMedian of 1,2,3?\n\nCheck",
+        "inputs": [
+          "<input type=\"range\" min=\"4\" max=\"40\" step=\"1\" value=\"10\">",
+          "<input placeholder=\"1 or √2/2\" aria-label=\"Challenge answer\" value=\"\">"
+        ]
+      }
+    ]
+  }
+]

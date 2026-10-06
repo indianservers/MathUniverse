@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import { useStudioState } from "../studios/phase1/StudioModelProvider";
+import { useEffect, useMemo } from "react";
 import { BookOpen, CheckCircle2, Grid3X3, Lightbulb, Pause, Play, RotateCcw, Target } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { compileFunctionExpression, compileTwoVariableExpression } from "../utils/functionParser";
@@ -72,10 +73,10 @@ function c(title:string,formula:string,note:string,expression:string|undefined,a
 export default function CalculusConceptStudio({page,mode}:{page:ConceptPage;mode:string}) {
   const config=configs[page][mode]??Object.values(configs[page])[0];
   const [params,setParams]=useSearchParams();
-  const [expression,setExpression]=useState(config.expression??"");
-  const [draft,setDraft]=useState(config.expression??"");
-  const [a,setA]=useState(config.a[1]); const [b,setB]=useState(config.b?.[1]??0); const [n,setN]=useState(config.n?.[1]??20);
-  const [playing,setPlaying]=useState(false); const [speed,setSpeed]=useState(1); const [grid,setGrid]=useState(true); const [learning,setLearning]=useState("Explore");
+  const [expression,setExpression]=useStudioState("CalculusConceptStudio:CalculusConceptStudio:expression", config.expression??"");
+  const [draft,setDraft]=useStudioState("CalculusConceptStudio:CalculusConceptStudio:draft", config.expression??"");
+  const [a,setA]=useStudioState("CalculusConceptStudio:CalculusConceptStudio:a", config.a[1]); const [b,setB]=useStudioState("CalculusConceptStudio:CalculusConceptStudio:b", config.b?.[1]??0); const [n,setN]=useStudioState("CalculusConceptStudio:CalculusConceptStudio:n", config.n?.[1]??20);
+  const [playing,setPlaying]=useStudioState("CalculusConceptStudio:CalculusConceptStudio:playing", false); const [speed,setSpeed]=useStudioState("CalculusConceptStudio:CalculusConceptStudio:speed", 1); const [grid,setGrid]=useStudioState("CalculusConceptStudio:CalculusConceptStudio:grid", true); const [learning,setLearning]=useStudioState("CalculusConceptStudio:CalculusConceptStudio:learning", "Explore");
   useEffect(()=>{setExpression(config.expression??"");setDraft(config.expression??"");setA(config.a[1]);setB(config.b?.[1]??0);setN(config.n?.[1]??20);setPlaying(false);setLearning("Explore")},[config]);
   useEffect(()=>{const next=new URLSearchParams(params);next.set("mode",mode);next.set("v_a",tidy(a));next.set("v_b",tidy(b));next.set("v_n",String(Math.round(n)));if(expression)next.set("v_expression",expression);if(next.toString()!==params.toString())setParams(next,{replace:true})},[a,b,expression,mode,n,params,setParams]);
   useEffect(()=>{if(!playing)return;const timer=window.setInterval(()=>{if(config.n)setN(value=>value>=config.n![3]?config.n![2]:value+config.n![4]);else setA(value=>value>=config.a[3]?config.a[2]:round(value+config.a[4]*speed,3))},90);return()=>window.clearInterval(timer)},[config,playing,speed]);

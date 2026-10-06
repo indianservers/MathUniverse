@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useStudioState } from "../phase1/StudioModelProvider";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import MathExpression from "../../components/ui/MathExpression";
 import { MathArrow, StudioMath3D, type Vec3 } from "../shared/studioMath3D";
@@ -58,14 +59,14 @@ function toThree(x: number, y: number, z: number): Vec3 {
 }
 
 export function JacobianLab({ mode }: { mode: string }) {
-  const [u, setU] = useState(0.6);
-  const [v, setV] = useState(0.4);
-  const [r, setR] = useState(1.4);
-  const [theta, setTheta] = useState(0.8);
-  const [height, setHeight] = useState(0.8);
-  const [rho, setRho] = useState(1.6);
-  const [phi, setPhi] = useState(1.1);
-  const [view, setView] = useState<"cartesian" | "polar" | "diamond">("polar");
+  const [u, setU] = useStudioState("CalculusSpecialLabs:JacobianLab:u", 0.6);
+  const [v, setV] = useStudioState("CalculusSpecialLabs:JacobianLab:v", 0.4);
+  const [r, setR] = useStudioState("CalculusSpecialLabs:JacobianLab:r", 1.4);
+  const [theta, setTheta] = useStudioState("CalculusSpecialLabs:JacobianLab:theta", 0.8);
+  const [height, setHeight] = useStudioState("CalculusSpecialLabs:JacobianLab:height", 0.8);
+  const [rho, setRho] = useStudioState("CalculusSpecialLabs:JacobianLab:rho", 1.6);
+  const [phi, setPhi] = useStudioState("CalculusSpecialLabs:JacobianLab:phi", 1.1);
+  const [view, setView] = useStudioState<"cartesian" | "polar" | "diamond">("CalculusSpecialLabs:JacobianLab:view", "polar");
   const cell = mode === "singular"
     ? { x: u * u, y: v, jacobian: 2 * u }
     : { x: (u + 0.35 * v), y: v, jacobian: 1 };
@@ -153,11 +154,11 @@ export function JacobianLab({ mode }: { mode: string }) {
 }
 
 export function BetaGammaLab({ mode }: { mode: string }) {
-  const [s, setS] = useState(2);
-  const [p, setP] = useState(2);
-  const [q, setQ] = useState(3);
-  const [m, setM] = useState(2);
-  const [n, setN] = useState(2);
+  const [s, setS] = useStudioState("CalculusSpecialLabs:BetaGammaLab:s", 2);
+  const [p, setP] = useStudioState("CalculusSpecialLabs:BetaGammaLab:p", 2);
+  const [q, setQ] = useStudioState("CalculusSpecialLabs:BetaGammaLab:q", 3);
+  const [m, setM] = useStudioState("CalculusSpecialLabs:BetaGammaLab:m", 2);
+  const [n, setN] = useStudioState("CalculusSpecialLabs:BetaGammaLab:n", 2);
   const gammaValues = useMemo(() => Array.from({ length: 80 }, (_, index) => gammaIntegrand(s, 0.05 + (index / 79) * 10)), [s]);
   const betaValues = useMemo(() => Array.from({ length: 80 }, (_, index) => betaIntegrand(p, q, 0.02 + (index / 79) * 0.96)), [p, q]);
   const gamma = gammaNumeric(s);

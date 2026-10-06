@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState } from "react";
 import {
   chordThroughPoint, clamp, constrainInside, constrainOutside, dist, fmt, nearlyEqual, powerOfPoint, radicalAxisX, tangentContactPoints, tangentLength,
@@ -29,8 +30,8 @@ export default function PowerOfPointLab() {
   const [lines, setLines] = usePersisted("pow.lines", true);
   const [similar, setSimilar] = usePersisted("pow.sim", true);
   const [status, setStatus] = useState<"idle" | "pass" | "fail">("idle");
-  const [collapsed, setCollapsed] = useState(false);
-  const [focused, setFocused] = useState<string | null>("P");
+  const [collapsed, setCollapsed] = useStudioState("PowerOfPointLab:PowerOfPointLab:collapsed", false);
+  const [focused, setFocused] = useStudioState<string | null>("PowerOfPointLab:PowerOfPointLab:focused", "P");
 
   useEffect(() => { registerUndo(() => { setKind("chord"); setPx(1.2); setPy(0.8); }); }, [registerUndo, setKind, setPx, setPy]);
 

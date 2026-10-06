@@ -1,3 +1,4 @@
+import { useStudioState, useStudioModel } from "../phase1/StudioModelProvider";
 import AlgebraLabHeading, { ExactBadge } from "./AlgebraLabHeading";
 import { FlaskConical, Lightbulb, Sparkles, Target, Trophy } from "lucide-react";
 import { useEffect, useMemo, useState, type DragEvent, type KeyboardEvent, type PointerEvent, type ReactNode } from "react";
@@ -38,6 +39,7 @@ import { useAlgebraHistory } from "./useAlgebraHistory";
 export const fmt = (n: number) => formatAlgebraNumber(n);
 export function Card({ title, children }: { title: string; children: ReactNode }) { return <section className="alg-card"><h2>{title}</h2>{children}</section>; }
 export function Numeric({ label, value, onChange, min = -20, max = 20, step = 1, onCommit }: { label: string; value: number; onChange: (n: number) => void; min?: number; max?: number; step?: number; onCommit?: (n: number) => void }) {
+  const model = useStudioModel();
   const [draft, setDraft] = useState(String(value));
   useEffect(() => setDraft(String(value)), [value]);
   const apply = (raw: string, commit = false) => {
@@ -47,7 +49,7 @@ export function Numeric({ label, value, onChange, min = -20, max = 20, step = 1,
     onChange(next);
     if (commit) onCommit?.(next);
   };
-  return <label className="alg-field">{label}<input type="number" min={min} max={max} step={step} value={draft} onChange={(e) => apply(e.target.value)} onBlur={() => { if (draft === "" || !Number.isFinite(Number(draft))) setDraft(String(value)); else onCommit?.(Number(draft)); }} /></label>;
+  return <label className="alg-field">{label}<input type="number" min={min} max={max} step={step} value={draft} onFocus={() => model?.ledger.beginGesture()} onChange={(e) => apply(e.target.value)} onBlur={() => { if (draft === "" || !Number.isFinite(Number(draft))) setDraft(String(value)); else onCommit?.(Number(draft)); model?.ledger.endGesture(); }} /></label>;
 }
 export function Result({ children }: { children: ReactNode }) { return <output className="alg-live-expression" aria-live="polite">{children}</output>; }
 export function Plot({
@@ -285,12 +287,12 @@ const help = {
 export function ExpressionsLab() {
   const modes = ["Simplify", "Expand", "Factor", "Combine Terms"];
   const [mode, setMode] = useStudioMode("mode", modes, "Simplify");
-  const tiles = useAlgebraHistory([1, 1, -2]);
-  const [draft, setDraft] = useState("(x-1)*(x+2)");
-  const [subX, setSubX] = useState(2);
-  const [subY, setSubY] = useState(5);
-  const [groups, setGroups] = useState<{ a: number[]; b: number[] }>({ a: [], b: [] });
-  const [focus, setFocus] = useState("Observe tiles, the area model, and equivalent forms.");
+  const tiles = useAlgebraHistory([1, 1, -2], "AlgebraInteractiveLabs.tsx:ExpressionsLab");
+  const [draft, setDraft] = useStudioState("AlgebraInteractiveLabs:ExpressionsLab:draft", "(x-1)*(x+2)");
+  const [subX, setSubX] = useStudioState("AlgebraInteractiveLabs:ExpressionsLab:subX", 2);
+  const [subY, setSubY] = useStudioState("AlgebraInteractiveLabs:ExpressionsLab:subY", 5);
+  const [groups, setGroups] = useStudioState<{ a: number[]; b: number[] }>("AlgebraInteractiveLabs:ExpressionsLab:groups", { a: [], b: [] });
+  const [focus, setFocus] = useStudioState("AlgebraInteractiveLabs:ExpressionsLab:focus", "Observe tiles, the area model, and equivalent forms.");
   const [a, b, c] = tiles.state;
   const expression = `${a}*x^2+(${b})*x+(${c})`;
   const pretty = prettyQuadratic(a, b, c);
@@ -454,9 +456,9 @@ export function ExpressionsLab() {
 export function FunctionsLab() {
   const modes = ["Families", "Transformations", "Composition", "Inverse", "Piecewise"];
   const [mode, setMode] = useStudioMode("mode", modes, "Families");
-  const history = useAlgebraHistory({ family: "x^2", a: 1.5, h: 2, k: -1, probe: 2, composeFg: true });
+  const history = useAlgebraHistory({ family: "x^2", a: 1.5, h: 2, k: -1, probe: 2, composeFg: true }, "AlgebraInteractiveLabs.tsx:FunctionsLab");
   const { family, a, h, k, probe, composeFg } = history.state;
-  const [focus, setFocus] = useState("Watch the graph stretch, shift, and flip.");
+  const [focus, setFocus] = useStudioState("AlgebraInteractiveLabs:FunctionsLab:focus", "Watch the graph stretch, shift, and flip.");
   const base = (x: number) => {
     if (family === "x") return x;
     if (family === "abs(x)") return Math.abs(x);
@@ -507,9 +509,9 @@ export function FunctionsLab() {
 export function PolynomialsLab() {
   const modes = ["Roots", "Factors", "Division", "End Behavior", "Multiplicity"];
   const [mode, setMode] = useStudioMode("mode", modes, "Roots");
-  const history = useAlgebraHistory({ roots: [-3, -1, 2, 4, 0], degree: 4, scale: 0.08, divisor: -1, extra: "x-1" });
+  const history = useAlgebraHistory({ roots: [-3, -1, 2, 4, 0], degree: 4, scale: 0.08, divisor: -1, extra: "x-1" }, "AlgebraInteractiveLabs.tsx:PolynomialsLab");
   const { roots, degree, scale, divisor, extra } = history.state;
-  const [focus, setFocus] = useState("Roots pin the graph to the axis.");
+  const [focus, setFocus] = useStudioState("AlgebraInteractiveLabs:PolynomialsLab:focus", "Roots pin the graph to the axis.");
   const selected = roots.slice(0, degree);
   const coefficients = polynomialFromRoots(selected).map((c) => c * scale);
   const expression = `${scale}*${selected.map((r) => `(x-(${r}))`).join("*")}`;
@@ -536,10 +538,10 @@ export function PolynomialsLab() {
 export function SystemsLab() {
   const modes = ["Graphing", "Substitution", "Elimination", "Matrices", "Inequalities"];
   const [mode, setMode] = useStudioMode("mode", modes, "Graphing");
-  const history = useAlgebraHistory({ m1: 2, b1: 1, m2: -1, b2: 4, xProbe: 0, yProbe: 0 });
+  const history = useAlgebraHistory({ m1: 2, b1: 1, m2: -1, b2: 4, xProbe: 0, yProbe: 0 }, "AlgebraInteractiveLabs.tsx:SystemsLab");
   const { m1, b1, m2, b2, xProbe, yProbe } = history.state;
-  const [focus, setFocus] = useState("Two lines meet, miss, or coincide.");
-  const [matrix, setMatrix] = useState([[m1, -1, -b1], [m2, -1, -b2]]);
+  const [focus, setFocus] = useStudioState("AlgebraInteractiveLabs:SystemsLab:focus", "Two lines meet, miss, or coincide.");
+  const [matrix, setMatrix] = useStudioState("AlgebraInteractiveLabs:SystemsLab:matrix", [[m1, -1, -b1], [m2, -1, -b2]]);
   const solution = slopeInterceptSystem(m1, b1, m2, b2);
   const setLive = (patch: Partial<typeof history.state>) => history.replace({ ...history.state, ...patch });
   const syncMatrix = (state: typeof history.state) => setMatrix([[state.m1, -1, -state.b1], [state.m2, -1, -state.b2]]);
@@ -559,9 +561,9 @@ export function SystemsLab() {
 export function ExponentsLab() {
   const modes = ["Exponent Laws", "Radicals", "Exponential & Logs", "Equations"];
   const [mode, setMode] = useStudioMode("mode", modes, "Exponent Laws");
-  const history = useAlgebraHistory({ base: 2, point: 2, n: 2, radicand: 72, target: 64, law: "Product" });
+  const history = useAlgebraHistory({ base: 2, point: 2, n: 2, radicand: 72, target: 64, law: "Product" }, "AlgebraInteractiveLabs.tsx:ExponentsLab");
   const { base, point, n, radicand, target, law } = history.state;
-  const [focus, setFocus] = useState("Exponential and log are reflections.");
+  const [focus, setFocus] = useStudioState("AlgebraInteractiveLabs:ExponentsLab:focus", "Exponential and log are reflections.");
   const valid = base > 0 && base !== 1;
   const laws: Record<string, [number, number, string]> = { Product: [base ** point * base ** n, base ** (point + n), "aᵐ · aⁿ = aᵐ⁺ⁿ"], Quotient: [snapNearZero(base ** n) === 0 ? Number.NaN : base ** point / base ** n, base ** (point - n), "aᵐ / aⁿ = aᵐ⁻ⁿ"], Power: [(base ** point) ** n, base ** (point * n), "(aᵐ)ⁿ = aᵐⁿ"], Negative: [base ** -n, snapNearZero(base ** n) === 0 ? Number.NaN : 1 / base ** n, "a⁻ⁿ = 1/aⁿ"], Zero: [base ** 0, 1, "a⁰ = 1"] };
   const squareForm = n === 2 ? simplifySquareRadical(radicand) : null;
@@ -575,9 +577,9 @@ export function ExponentsLab() {
 export function SequencesLab() {
   const modes = ["Arithmetic", "Geometric", "Recursive", "Sigma", "Patterns"];
   const [mode, setMode] = useStudioMode("mode", modes, "Arithmetic");
-  const history = useAlgebraHistory({ first: 3, parameter: 4, count: 10, recurrence: "fibonacci" as "fibonacci" | "arithmetic" | "geometric", family: "Arithmetic" as "Arithmetic" | "Geometric" | "Patterns" });
+  const history = useAlgebraHistory({ first: 3, parameter: 4, count: 10, recurrence: "fibonacci" as "fibonacci" | "arithmetic" | "geometric", family: "Arithmetic" as "Arithmetic" | "Geometric" | "Patterns" }, "AlgebraInteractiveLabs.tsx:SequencesLab");
   const { first, parameter, count, recurrence, family } = history.state;
-  const [focus, setFocus] = useState("Terms step by a fixed difference or ratio.");
+  const [focus, setFocus] = useStudioState("AlgebraInteractiveLabs:SequencesLab:focus", "Terms step by a fixed difference or ratio.");
   const chooseMode = (next: string) => {
     setMode(next);
     if (next === "Arithmetic" || next === "Geometric" || next === "Patterns") {
@@ -611,10 +613,10 @@ export { default as ProofLab } from "./AlgebraProofLab";
 export function CasGateway() {
   const modes = ["Solve", "Simplify", "Factor", "Expand", "Substitute", "Differentiate"];
   const [mode, setMode] = useStudioMode("mode", modes, "Solve");
-  const history = useAlgebraHistory({ draft: "2*x^2-8*x-10", x: 2, y: 1, result: "", entries: [] as Array<{ mode: string; input: string; output: string }> });
+  const history = useAlgebraHistory({ draft: "2*x^2-8*x-10", x: 2, y: 1, result: "", entries: [] as Array<{ mode: string; input: string; output: string }> }, "AlgebraInteractiveLabs.tsx:CasGateway");
   const { draft, x, y, result, entries } = history.state;
-  const [focus, setFocus] = useState("Each operation rewrites the expression.");
-  const [candidate, setCandidate] = useState("");
+  const [focus, setFocus] = useStudioState("AlgebraInteractiveLabs:CasGateway:focus", "Each operation rewrites the expression.");
+  const [candidate, setCandidate] = useStudioState("AlgebraInteractiveLabs:CasGateway:candidate", "");
   const residual = (value: number) => {
     const left = draft.split("=")[0] ?? draft;
     const evaluated = evaluateAlgebraExpression(left, { x: value, y });

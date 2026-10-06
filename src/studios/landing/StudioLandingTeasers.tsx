@@ -1,4 +1,5 @@
-import { useMemo, useState, type PointerEvent, type ReactNode, type SyntheticEvent } from "react";
+import { useStudioState } from "../phase1/StudioModelProvider";
+import { useMemo, type PointerEvent, type ReactNode, type SyntheticEvent } from "react";
 import { Link } from "react-router-dom";
 import { writeTrigSession, useTrigSession } from "../mockup/trigStudioSession";
 
@@ -16,7 +17,7 @@ function Frame({ label, children, dark = false }: { label: string; children: Rea
 }
 
 export function BisectorTeaser() {
-  const [ax, setAx] = useState(36);
+  const [ax, setAx] = useStudioState("StudioLandingTeasers:BisectorTeaser:ax", 36);
   const bx = 244;
   const mid = (ax + bx) / 2;
   return (
@@ -39,7 +40,7 @@ export function BisectorTeaser() {
 }
 
 export function CongruencePairTeaser() {
-  const [kind, setKind] = useState<"SSS" | "SAS" | "ASA">("SSS");
+  const [kind, setKind] = useStudioState<"SSS" | "SAS" | "ASA">("StudioLandingTeasers:CongruencePairTeaser:kind", "SSS");
   return (
     <Frame label="Congruence pair picker">
       <svg viewBox="0 0 160 72" className="sl-svg">
@@ -57,7 +58,7 @@ export function CongruencePairTeaser() {
 }
 
 export function NetsSolidsTeaser() {
-  const [net, setNet] = useState(false);
+  const [net, setNet] = useStudioState("StudioLandingTeasers:NetsSolidsTeaser:net", false);
   return (
     <Frame label="Nets versus solids">
       <svg viewBox="0 0 160 72" className="sl-svg">
@@ -82,7 +83,7 @@ export function ExactValueRoulette() {
     { deg: 45, sin: "√2/2" },
     { deg: 60, sin: "√3/2" },
   ];
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useStudioState("StudioLandingTeasers:ExactValueRoulette:index", 0);
   const item = values[index]!;
   return (
     <Frame label="Exact-value roulette" dark>
@@ -94,7 +95,7 @@ export function ExactValueRoulette() {
 
 export function WaveCircleToggle() {
   const session = useTrigSession();
-  const [wave, setWave] = useState(false);
+  const [wave, setWave] = useStudioState("StudioLandingTeasers:WaveCircleToggle:wave", false);
   const rad = (session.theta * Math.PI) / 180;
   return (
     <Frame label="Wave versus circle" dark>
@@ -119,7 +120,7 @@ export function WaveCircleToggle() {
 }
 
 export function IdentityHoldTeaser() {
-  const [theta, setTheta] = useState(40);
+  const [theta, setTheta] = useStudioState("StudioLandingTeasers:IdentityHoldTeaser:theta", 40);
   const rad = (theta * Math.PI) / 180;
   const hold = Math.sin(rad) ** 2 + Math.cos(rad) ** 2;
   return (
@@ -172,7 +173,7 @@ export function EigenStayTeaser() {
 }
 
 export function RankNullityTeaser() {
-  const [free, setFree] = useState(false);
+  const [free, setFree] = useStudioState("StudioLandingTeasers:RankNullityTeaser:free", false);
   return (
     <Frame label="Rank and nullity">
       <p className="sl-kicker">{free ? "rank 1 · free var 1 · line of solutions" : "rank 2 · unique solution"}</p>
@@ -182,7 +183,7 @@ export function RankNullityTeaser() {
 }
 
 export function LeastSquaresTeaser() {
-  const [y, setY] = useState(18);
+  const [y, setY] = useStudioState("StudioLandingTeasers:LeastSquaresTeaser:y", 18);
   return (
     <Frame label="Least-squares residual">
       <svg viewBox="0 0 160 72" className="sl-svg" onPointerMove={(event) => {
@@ -214,7 +215,7 @@ export function MultiplyByITeaser({ re, im, onRotate }: { re: number; im: number
 }
 
 export function RootsOfUnityTeaser() {
-  const [n, setN] = useState(5);
+  const [n, setN] = useStudioState("StudioLandingTeasers:RootsOfUnityTeaser:n", 5);
   const pts = Array.from({ length: n }, (_, i) => {
     const a = (2 * Math.PI * i) / n - Math.PI / 2;
     return `${80 + Math.cos(a) * 26},${36 + Math.sin(a) * 26}`;
@@ -233,7 +234,7 @@ export function RootsOfUnityTeaser() {
 }
 
 export function JuliaThumbTeaser() {
-  const [c, setC] = useState(-0.4);
+  const [c, setC] = useStudioState("StudioLandingTeasers:JuliaThumbTeaser:c", -0.4);
   return (
     <Frame label="Julia thumbnail">
       <svg viewBox="0 0 160 72" className="sl-svg">
@@ -250,7 +251,7 @@ export function JuliaThumbTeaser() {
 }
 
 export function PhasorTeaser() {
-  const [lag, setLag] = useState(30);
+  const [lag, setLag] = useStudioState("StudioLandingTeasers:PhasorTeaser:lag", 30);
   const rad = (lag * Math.PI) / 180;
   return (
     <Frame label="Phasor clock">
@@ -266,7 +267,7 @@ export function PhasorTeaser() {
 }
 
 export function R0NeedleTeaser() {
-  const [r0, setR0] = useState(1.4);
+  const [r0, setR0] = useStudioState("StudioLandingTeasers:R0NeedleTeaser:r0", 1.4);
   return (
     <Frame label="R0 needle">
       <p className={`sl-kicker ${r0 < 1 ? "is-ok" : "is-warn"}`}>R₀ = {r0.toFixed(2)} · {r0 < 1 ? "fades" : "outbreak"}</p>
@@ -276,7 +277,7 @@ export function R0NeedleTeaser() {
 }
 
 export function FeasibleRegionTeaser() {
-  const [cut, setCut] = useState(90);
+  const [cut, setCut] = useStudioState("StudioLandingTeasers:FeasibleRegionTeaser:cut", 90);
   return (
     <Frame label="Feasible region">
       <svg viewBox="0 0 160 72" className="sl-svg">
@@ -288,7 +289,7 @@ export function FeasibleRegionTeaser() {
 }
 
 export function TrafficEdgeTeaser() {
-  const [closed, setClosed] = useState(false);
+  const [closed, setClosed] = useStudioState("StudioLandingTeasers:TrafficEdgeTeaser:closed", false);
   return (
     <Frame label="Traffic closure">
       <svg viewBox="0 0 160 72" className="sl-svg">
@@ -302,7 +303,7 @@ export function TrafficEdgeTeaser() {
 }
 
 export function MonteCarloPiTeaser() {
-  const [n, setN] = useState(40);
+  const [n, setN] = useStudioState("StudioLandingTeasers:MonteCarloPiTeaser:n", 40);
   const inside = Math.round(n * 0.78);
   return (
     <Frame label="Monte Carlo pi">
@@ -313,7 +314,7 @@ export function MonteCarloPiTeaser() {
 }
 
 export function SieveTeaser() {
-  const [struck, setStruck] = useState<number[]>([]);
+  const [struck, setStruck] = useStudioState<number[]>("StudioLandingTeasers:SieveTeaser:struck", []);
   const cells = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   return (
     <Frame label="Live sieve">
@@ -328,7 +329,7 @@ export function SieveTeaser() {
 }
 
 export function ClockHopTeaser() {
-  const [k, setK] = useState(5);
+  const [k, setK] = useStudioState("StudioLandingTeasers:ClockHopTeaser:k", 5);
   const ang = (k / 12) * 2 * Math.PI - Math.PI / 2;
   return (
     <Frame label="Clock hops">
@@ -343,7 +344,7 @@ export function ClockHopTeaser() {
 }
 
 export function MeanMedianTeaser() {
-  const [outlier, setOutlier] = useState(9);
+  const [outlier, setOutlier] = useStudioState("StudioLandingTeasers:MeanMedianTeaser:outlier", 9);
   const data = [2, 3, 4, 4, outlier];
   const mean = data.reduce((a, b) => a + b, 0) / data.length;
   const sorted = [...data].sort((a, b) => a - b);
@@ -382,7 +383,7 @@ export function BalanceScaleTeaser() {
 }
 
 export function FactorTilesTeaser() {
-  const [grouped, setGrouped] = useState(false);
+  const [grouped, setGrouped] = useStudioState("StudioLandingTeasers:FactorTilesTeaser:grouped", false);
   return (
     <Frame label="Factor tiles">
       <div className={`sl-tiles${grouped ? " is-grouped" : ""}`}>
@@ -394,7 +395,7 @@ export function FactorTilesTeaser() {
 }
 
 export function CasExpandTeaser() {
-  const [out, setOut] = useState("");
+  const [out, setOut] = useStudioState("StudioLandingTeasers:CasExpandTeaser:out", "");
   return (
     <Frame label="CAS expand">
       <p className="sl-mono">expand((x+2)³)</p>
@@ -417,7 +418,7 @@ export function EpsilonDeltaTeaser() {
 }
 
 export function SecantTangentTeaser() {
-  const [h, setH] = useState(1.2);
+  const [h, setH] = useStudioState("StudioLandingTeasers:SecantTangentTeaser:h", 1.2);
   return (
     <Frame label="Secant to tangent">
       <svg viewBox="0 0 160 72" className="sl-svg">
@@ -430,7 +431,7 @@ export function SecantTangentTeaser() {
 }
 
 export function RiemannChipsTeaser() {
-  const [kind, setKind] = useState<"left" | "mid" | "right">("mid");
+  const [kind, setKind] = useStudioState<"left" | "mid" | "right">("StudioLandingTeasers:RiemannChipsTeaser:kind", "mid");
   return (
     <Frame label="Riemann type">
       <div className="sl-chips">
@@ -523,8 +524,8 @@ export function hasLandingTeaser(studioId: string, labId: string) {
 
 export function LandingTeaser({ studioId, labId }: { studioId: string; labId: string }) {
   const key = `${studioId}:${labId}`;
-  const [k, setK] = useState(0.5);
-  const [z, setZ] = useState({ re: 2, im: 1 });
+  const [k, setK] = useStudioState("StudioLandingTeasers:LandingTeaser:k", 0.5);
+  const [z, setZ] = useStudioState("StudioLandingTeasers:LandingTeaser:z", { re: 2, im: 1 });
   const session = useTrigSession();
   const art = useMemo(() => {
     if (key === "geometry:construction") return <BisectorTeaser />;

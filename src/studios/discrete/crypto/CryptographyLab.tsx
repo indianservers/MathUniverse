@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useEffect } from "react";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import { ChallengeBox, LiveRow, Panel, SliderRow, StatusOk } from "../../mockup/studioLabKit";
 import { FigureToolbar, Phase1LabChrome } from "../../phase1/Phase1LabChrome";
@@ -10,12 +11,12 @@ const initial: Fig = { p: 61, q: 53, e: 17, m: 72, shift: 3, a: 5, b: 8 };
 
 export default function CryptographyLab({ page }: { page: StudioMockupPage }) {
   const fig = useStudioFigure(initial);
-  const [plain, setPlain] = useState("HELLO MATH");
-  const [key, setKey] = useState("KEY");
-  const [rsaMessage, setRsaMessage] = useState("MATH");
-  const [rsaStage, setRsaStage] = useState(0);
-  const [rsaPlaying, setRsaPlaying] = useState(false);
-  const [challengeE, setChallengeE] = useState(7);
+  const [plain, setPlain] = useStudioState("CryptographyLab:CryptographyLab:plain", "HELLO MATH");
+  const [key, setKey] = useStudioState("CryptographyLab:CryptographyLab:key", "KEY");
+  const [rsaMessage, setRsaMessage] = useStudioState("CryptographyLab:CryptographyLab:rsaMessage", "MATH");
+  const [rsaStage, setRsaStage] = useStudioState("CryptographyLab:CryptographyLab:rsaStage", 0);
+  const [rsaPlaying, setRsaPlaying] = useStudioState("CryptographyLab:CryptographyLab:rsaPlaying", false);
+  const [challengeE, setChallengeE] = useStudioState("CryptographyLab:CryptographyLab:challengeE", 7);
   const n = fig.state.p * fig.state.q;
   const phi = (fig.state.p - 1) * (fig.state.q - 1);
   const d = modInverse(fig.state.e, phi);

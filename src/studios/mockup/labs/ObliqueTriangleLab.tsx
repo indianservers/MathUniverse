@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useState, type PointerEvent, type ReactNode } from "react";
 import { MockupLearningStrip } from "../MockupStudioChrome";
 import type { StudioMockupPage } from "../studioMockupCatalog";
@@ -88,12 +89,12 @@ function Toggle({ checked, onChange, children }: { checked: boolean; onChange: (
 
 export function ObliqueTriangleLab({ page }: { page: StudioMockupPage }) {
   const { tabs, mode, setMode } = useLabMode(page);
-  const [points, setPoints] = useState<Record<Vertex, Point>>(placeTriangle(7.8, 10.5, 69.7));
+  const [points, setPoints] = useStudioState<Record<Vertex, Point>>("ObliqueTriangleLab:ObliqueTriangleLab:points", placeTriangle(7.8, 10.5, 69.7));
   const [dragging, setDragging] = useState<Vertex | null>(null);
   const [showCircle, setShowCircle] = useState(true);
   const [showAltitudes, setShowAltitudes] = useState(false);
   const [showSecond, setShowSecond] = useState(true);
-  const [known, setKnown] = useState<Record<KnownValue, boolean>>({ a: true, b: true, c: true, A: true, B: true, C: false });
+  const [known, setKnown] = useStudioState<Record<KnownValue, boolean>>("ObliqueTriangleLab:ObliqueTriangleLab:known", { a: true, b: true, c: true, A: true, B: true, C: false });
   const A = points.A;
   const B = points.B;
   const C = points.C;

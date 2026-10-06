@@ -1,3 +1,4 @@
+import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -61,21 +62,21 @@ const MODE_INFO: Record<DeMode, { title: string; formula: string; note: string; 
 export default function CalculusDifferentialEquationsStudio({ mode }: { mode: string }) {
   const active = isDeMode(mode) ? mode : "slope";
   const info = MODE_INFO[active];
-  const [expression, setExpression] = useState(info.expression);
-  const [draft, setDraft] = useState(info.expression);
-  const [x0, setX0] = useState(0);
-  const [y0, setY0] = useState(1);
-  const [h, setH] = useState(active === "euler" || active === "rk4" ? 0.25 : 0.2);
-  const [k, setK] = useState(0.6);
-  const [rate, setRate] = useState(0.8);
-  const [capacity, setCapacity] = useState(10);
-  const [time, setTime] = useState(active === "growth" ? 4 : 3);
-  const [target, setTarget] = useState(2);
+  const [expression, setExpression] = useStudioState("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:expression", info.expression);
+  const [draft, setDraft] = useStudioState("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:draft", info.expression);
+  const [x0, setX0] = useStudioState("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:x0", 0);
+  const [y0, setY0] = useStudioState("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:y0", 1);
+  const [h, setH] = useStudioState("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:h", active === "euler" || active === "rk4" ? 0.25 : 0.2);
+  const [k, setK] = useStudioState("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:k", 0.6);
+  const [rate, setRate] = useStudioState("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:rate", 0.8);
+  const [capacity, setCapacity] = useStudioState("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:capacity", 10);
+  const [time, setTime] = useStudioState("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:time", active === "growth" ? 4 : 3);
+  const [target, setTarget] = useStudioState("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:target", 2);
   const [showGrid, setShowGrid] = useState(true);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(1);
-  const [learning, setLearning] = useState<LearningTab>("Observe");
-  const [challengeNote, setChallengeNote] = useState("");
+  const [playing, setPlaying] = useStudioState("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:playing", false);
+  const [speed, setSpeed] = useStudioState("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:speed", 1);
+  const [learning, setLearning] = useStudioState<LearningTab>("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:learning", "Observe");
+  const [challengeNote, setChallengeNote] = useStudioState("CalculusDifferentialEquationsStudio:CalculusDifferentialEquationsStudio:challengeNote", "");
   const previousMode = useRef(active);
 
   useEffect(() => {

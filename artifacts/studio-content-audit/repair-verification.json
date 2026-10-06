@@ -1,0 +1,732 @@
+[
+  {
+    "route": "/algebra",
+    "errors": [],
+    "modes": [],
+    "title": "Welcome to Algebra Studio",
+    "enhancements": 0,
+    "words": 304,
+    "overflow": false
+  },
+  {
+    "route": "/algebraic-structures",
+    "errors": [],
+    "modes": [],
+    "title": "Algebraic Structures Studio",
+    "enhancements": 0,
+    "words": 270,
+    "overflow": false
+  },
+  {
+    "route": "/trigonometry",
+    "errors": [],
+    "modes": [],
+    "title": "Trigonometry Studio",
+    "enhancements": 0,
+    "words": 454,
+    "overflow": false
+  },
+  {
+    "route": "/geometry",
+    "errors": [],
+    "modes": [],
+    "title": "Geometry Studio",
+    "enhancements": 0,
+    "words": 808,
+    "overflow": false
+  },
+  {
+    "route": "/calculus",
+    "errors": [],
+    "modes": [],
+    "title": "Welcome to Calculus Studio",
+    "enhancements": 0,
+    "words": 386,
+    "overflow": false
+  },
+  {
+    "route": "/number-systems",
+    "errors": [],
+    "modes": [],
+    "title": "Welcome to Number Systems Studio",
+    "enhancements": 0,
+    "words": 301,
+    "overflow": false
+  },
+  {
+    "route": "/linear-algebra",
+    "errors": [],
+    "modes": [],
+    "title": "Linear Algebra Studio",
+    "enhancements": 0,
+    "words": 458,
+    "overflow": false
+  },
+  {
+    "route": "/complex-numbers",
+    "errors": [],
+    "modes": [],
+    "title": "Welcome to Complex Numbers Studio",
+    "enhancements": 0,
+    "words": 453,
+    "overflow": false
+  },
+  {
+    "route": "/mathematical-modelling",
+    "errors": [],
+    "modes": [],
+    "title": "Mathematical Modelling Studio",
+    "enhancements": 0,
+    "words": 601,
+    "overflow": false
+  },
+  {
+    "route": "/discrete-world",
+    "errors": [],
+    "modes": [],
+    "title": "Number & Discrete Mathematics Studio",
+    "enhancements": 0,
+    "words": 594,
+    "overflow": false
+  },
+  {
+    "route": "/set-theory",
+    "errors": [],
+    "modes": [],
+    "title": "Set Theory Studio",
+    "enhancements": 0,
+    "words": 3828,
+    "overflow": false
+  },
+  {
+    "route": "/graph-theory",
+    "errors": [],
+    "modes": [],
+    "title": "Graph Theory Studio",
+    "enhancements": 0,
+    "words": 1114,
+    "overflow": false
+  },
+  {
+    "route": "/probability-statistics",
+    "errors": [],
+    "modes": [],
+    "title": "Statistics & Probability Studio",
+    "enhancements": 0,
+    "words": 537,
+    "overflow": false
+  },
+  {
+    "route": "/differential-equations",
+    "errors": [],
+    "modes": [],
+    "title": "Differential Equations Studio",
+    "enhancements": 0,
+    "words": 641,
+    "overflow": false
+  },
+  {
+    "route": "/studios/algebra/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Algebra Studio · Learning path",
+    "enhancements": 0,
+    "words": 282,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/algebraic-structures/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Algebraic Structures Studio · Learning path",
+    "enhancements": 0,
+    "words": 313,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/geometry/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Geometry Studio · Learning path",
+    "enhancements": 0,
+    "words": 375,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/trigonometry/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Trigonometry Studio · Learning path",
+    "enhancements": 0,
+    "words": 317,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/calculus/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Calculus Studio · Learning path",
+    "enhancements": 0,
+    "words": 342,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/number-systems/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Number Systems Studio · Learning path",
+    "enhancements": 0,
+    "words": 282,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/linear-algebra/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Linear Algebra Studio · Learning path",
+    "enhancements": 0,
+    "words": 336,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/complex-numbers/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Complex Numbers Studio · Learning path",
+    "enhancements": 0,
+    "words": 295,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/mathematical-modelling/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Mathematical Modelling Studio · Learning path",
+    "enhancements": 0,
+    "words": 304,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/discrete-world/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Number & Discrete Mathematics Studio · Learning path",
+    "enhancements": 0,
+    "words": 306,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/set-theory/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Set Theory and Relations · Learning path",
+    "enhancements": 0,
+    "words": 323,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/graph-theory/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Graph Theory · Learning path",
+    "enhancements": 0,
+    "words": 326,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/probability-statistics/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Statistics & Probability Studio · Learning path",
+    "enhancements": 0,
+    "words": 436,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/differential-equations/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Differential Equations Studio · Learning path",
+    "enhancements": 0,
+    "words": 398,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/continued-fractions/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Continued Fractions Lab · Learning path",
+    "enhancements": 0,
+    "words": 276,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/famous-problems/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Famous Problems Atlas · Learning path",
+    "enhancements": 0,
+    "words": 305,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/stats-inference/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Statistics Inference Studio · Learning path",
+    "enhancements": 0,
+    "words": 301,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/studios/special-functions/curriculum",
+    "errors": [],
+    "modes": [],
+    "title": "Special Functions Gallery · Learning path",
+    "enhancements": 0,
+    "words": 286,
+    "overflow": false,
+    "modelChanges": true,
+    "undoEnabled": true,
+    "undoRestores": true
+  },
+  {
+    "route": "/math-lab/continued-fractions",
+    "errors": [],
+    "modes": [],
+    "title": "Advanced Concept Studios",
+    "enhancements": 0,
+    "words": 1101,
+    "overflow": false
+  },
+  {
+    "route": "/math-lab/famous-problems",
+    "errors": [],
+    "modes": [],
+    "title": "Advanced Concept Studios",
+    "enhancements": 0,
+    "words": 1147,
+    "overflow": false
+  },
+  {
+    "route": "/math-lab/stats-inference",
+    "errors": [],
+    "modes": [],
+    "title": "Advanced Concept Studios",
+    "enhancements": 0,
+    "words": 1552,
+    "overflow": false
+  },
+  {
+    "route": "/math-lab/special-functions",
+    "errors": [],
+    "modes": [],
+    "title": "Advanced Concept Studios",
+    "enhancements": 0,
+    "words": 1390,
+    "overflow": false
+  },
+  {
+    "route": "/math-lab/differential-equations",
+    "errors": [],
+    "modes": [],
+    "title": "Advanced Concept Studios",
+    "enhancements": 0,
+    "words": 1423,
+    "overflow": false
+  },
+  {
+    "route": "/geometry?tab=advanced",
+    "errors": [],
+    "modes": [],
+    "title": "Geometry Studio",
+    "enhancements": 25,
+    "words": 377,
+    "overflow": false
+  },
+  {
+    "route": "/complex-numbers?tab=advanced",
+    "errors": [],
+    "modes": [],
+    "title": "Advanced Complex Numbers Workbench",
+    "enhancements": 25,
+    "words": 183,
+    "overflow": false
+  },
+  {
+    "route": "/trigonometry?tab=advanced",
+    "errors": [],
+    "modes": [],
+    "title": "Trigonometry Studio",
+    "enhancements": 25,
+    "words": 398,
+    "overflow": false
+  },
+  {
+    "route": "/probability-statistics?tab=advanced",
+    "errors": [],
+    "modes": [],
+    "title": "Statistics & Probability Studio",
+    "enhancements": 25,
+    "words": 349,
+    "overflow": false
+  },
+  {
+    "route": "/linear-algebra?tab=advanced",
+    "errors": [],
+    "modes": [],
+    "title": "Linear Algebra Studio",
+    "enhancements": 25,
+    "words": 469,
+    "overflow": false
+  },
+  {
+    "route": "/mathematical-modelling/advanced",
+    "errors": [],
+    "modes": [],
+    "title": "Advanced Mathematical Modelling",
+    "enhancements": 25,
+    "words": 171,
+    "overflow": false
+  },
+  {
+    "route": "/discrete-world?workbench=advanced",
+    "errors": [],
+    "modes": [],
+    "title": "Number & Discrete Mathematics Studio",
+    "enhancements": 25,
+    "words": 371,
+    "overflow": false
+  },
+  {
+    "route": "/algebra/exponents-logs?mode=Equations",
+    "errors": [],
+    "modes": [
+      {
+        "name": "Exponent Laws",
+        "pressed": "true"
+      },
+      {
+        "name": "Radicals",
+        "pressed": "false"
+      },
+      {
+        "name": "Exponential & Logs",
+        "pressed": "false"
+      },
+      {
+        "name": "Equations",
+        "pressed": "false"
+      }
+    ],
+    "title": "Exponents Radicals & Logarithms Lab",
+    "enhancements": 0,
+    "words": 159,
+    "overflow": false
+  },
+  {
+    "route": "/algebra/cas?mode=Differentiate",
+    "errors": [],
+    "modes": [
+      {
+        "name": "Solve",
+        "pressed": "false"
+      },
+      {
+        "name": "Simplify",
+        "pressed": "false"
+      },
+      {
+        "name": "Factor",
+        "pressed": "false"
+      },
+      {
+        "name": "Expand",
+        "pressed": "false"
+      },
+      {
+        "name": "Substitute",
+        "pressed": "false"
+      },
+      {
+        "name": "Differentiate",
+        "pressed": "false"
+      }
+    ],
+    "title": "CAS Step Explorer — candidate verification",
+    "enhancements": 0,
+    "words": 191,
+    "overflow": false
+  },
+  {
+    "route": "/probability-statistics/data-explorer",
+    "errors": [],
+    "modes": [
+      {
+        "name": "Overview",
+        "pressed": "true"
+      },
+      {
+        "name": "Pairwise",
+        "pressed": "false"
+      }
+    ],
+    "title": "Data Explorer",
+    "enhancements": 0,
+    "words": 1894,
+    "overflow": false
+  },
+  {
+    "route": "/probability-statistics/descriptive",
+    "errors": [],
+    "modes": [
+      {
+        "name": "Center",
+        "pressed": "true"
+      },
+      {
+        "name": "Spread",
+        "pressed": "false"
+      },
+      {
+        "name": "Shape",
+        "pressed": "false"
+      },
+      {
+        "name": "Outliers",
+        "pressed": "false"
+      },
+      {
+        "name": "Grouped",
+        "pressed": "false"
+      }
+    ],
+    "title": "Descriptive Statistics Lab",
+    "enhancements": 0,
+    "words": 1858,
+    "overflow": false
+  },
+  {
+    "route": "/probability-statistics/experiments",
+    "errors": [],
+    "modes": [
+      {
+        "name": "Coins",
+        "pressed": "true"
+      },
+      {
+        "name": "Dice",
+        "pressed": "false"
+      },
+      {
+        "name": "Cards",
+        "pressed": "false"
+      },
+      {
+        "name": "Spinner",
+        "pressed": "false"
+      },
+      {
+        "name": "Conditional",
+        "pressed": "false"
+      },
+      {
+        "name": "Bayes",
+        "pressed": "false"
+      }
+    ],
+    "title": "Probability Experiments Lab",
+    "enhancements": 0,
+    "words": 1839,
+    "overflow": false
+  },
+  {
+    "route": "/probability-statistics/interactive-distributions",
+    "errors": [],
+    "modes": [
+      {
+        "name": "Normal",
+        "pressed": "true"
+      },
+      {
+        "name": "Binomial",
+        "pressed": "false"
+      },
+      {
+        "name": "Poisson",
+        "pressed": "false"
+      },
+      {
+        "name": "Exponential",
+        "pressed": "false"
+      },
+      {
+        "name": "t",
+        "pressed": "false"
+      },
+      {
+        "name": "Chi-square",
+        "pressed": "false"
+      }
+    ],
+    "title": "Interactive Distributions Lab",
+    "enhancements": 0,
+    "words": 1837,
+    "overflow": false
+  },
+  {
+    "route": "/probability-statistics/confidence-intervals",
+    "errors": [],
+    "modes": [
+      {
+        "name": "Mean",
+        "pressed": "true"
+      },
+      {
+        "name": "Proportion",
+        "pressed": "false"
+      },
+      {
+        "name": "Two-sample",
+        "pressed": "false"
+      },
+      {
+        "name": "Bootstrap",
+        "pressed": "false"
+      }
+    ],
+    "title": "Confidence Intervals Lab",
+    "enhancements": 0,
+    "words": 1876,
+    "overflow": false
+  },
+  {
+    "route": "/probability-statistics/hypothesis",
+    "errors": [],
+    "modes": [
+      {
+        "name": "One Sample Mean",
+        "pressed": "true"
+      },
+      {
+        "name": "Two Sample Mean",
+        "pressed": "false"
+      },
+      {
+        "name": "Proportion",
+        "pressed": "false"
+      },
+      {
+        "name": "Chi-Square",
+        "pressed": "false"
+      },
+      {
+        "name": "Permutation Test",
+        "pressed": "false"
+      }
+    ],
+    "title": "Hypothesis Testing Lab",
+    "enhancements": 0,
+    "words": 1903,
+    "overflow": false
+  },
+  {
+    "route": "/probability-statistics/correlation",
+    "errors": [],
+    "modes": [
+      {
+        "name": "Linear Fit",
+        "pressed": "true"
+      },
+      {
+        "name": "Residuals",
+        "pressed": "false"
+      },
+      {
+        "name": "Prediction",
+        "pressed": "false"
+      }
+    ],
+    "title": "Correlation & Regression Lab",
+    "enhancements": 0,
+    "words": 1876,
+    "overflow": false
+  },
+  {
+    "route": "/probability-statistics/anova",
+    "errors": [],
+    "modes": [
+      {
+        "name": "Group Comparison",
+        "pressed": "true"
+      },
+      {
+        "name": "Variation Decomposition",
+        "pressed": "false"
+      },
+      {
+        "name": "Design Canvas",
+        "pressed": "false"
+      },
+      {
+        "name": "Diagnostics",
+        "pressed": "false"
+      }
+    ],
+    "title": "ANOVA & Experimental Design Lab",
+    "enhancements": 0,
+    "words": 1907,
+    "overflow": false
+  }
+]

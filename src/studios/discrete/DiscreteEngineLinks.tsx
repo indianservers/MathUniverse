@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
@@ -37,7 +38,7 @@ export function DiscreteSetsLinkLab({ page }: { page: StudioMockupPage }) {
 }
 
 export function DiscreteGraphsLinkLab({ page }: { page: StudioMockupPage }) {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useStudioState("DiscreteEngineLinks:DiscreteGraphsLinkLab:step", 0);
   const shortest = dijkstraSteps();
   const spanning = kruskalSteps();
   const positions: Record<string, [number, number]> = { A: [55, 55], B: [150, 40], C: [105, 140], D: [250, 55], E: [290, 140] };

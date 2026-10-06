@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useState } from "react";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import { ChallengeBox, LiveRow, Panel, SliderRow, StatusOk, StepList, clamp } from "../../mockup/studioLabKit";
@@ -10,7 +11,7 @@ const initial: Fig = { a: 3, b: 4, tear: 0.4, arc: 80, k: 2 };
 
 export default function ProofsLab({ page }: { page: StudioMockupPage }) {
   const fig = useStudioFigure(initial);
-  const [checked, setChecked] = useState<Record<string, boolean>>({});
+  const [checked, setChecked] = useStudioState<Record<string, boolean>>("ProofsLab:ProofsLab:checked", {});
   return (
     <Phase1LabChrome
       page={page}
@@ -124,7 +125,7 @@ export default function ProofsLab({ page }: { page: StudioMockupPage }) {
                   );
                 })}
               </ol>
-              <ChallengeBox
+              <ChallengeBox kind="live"
                 prompt={mode === "Pythagoras" ? "In a 3-4-5 triangle, hypotenuse is?" : mode === "Angle Sum" ? "Angle sum of a triangle (degrees)?" : "Read the live value for this proof."}
                 expected={expected}
                 hint="Match the live figure, not a remembered slogan."

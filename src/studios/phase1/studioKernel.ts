@@ -49,8 +49,10 @@ export function challengeMatches(answer: string, expected: number, tolerance = 0
   if (!text) return false;
   let value = Number(text);
   if (text.includes("/")) {
-    const [num, den] = text.split("/");
-    if (num && den && Number(den) !== 0) value = Number(num) / Number(den);
+    const parts = text.split("/");
+    const [num, den] = parts;
+    if (parts.length !== 2 || !num || !den || !Number.isFinite(Number(num)) || !Number.isFinite(Number(den)) || Number(den) === 0) return false;
+    value = Number(num) / Number(den);
   }
   return Number.isFinite(value) && Math.abs(value - expected) < tolerance;
 }

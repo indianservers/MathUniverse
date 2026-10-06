@@ -1,3 +1,4 @@
+import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import {
   Check,
   ChevronRight,
@@ -132,26 +133,26 @@ export default function CalculusLimitsStudio({ mode }: { mode: string }) {
   const activeMode = isLimitMode(mode) ? mode : "limits";
   const config = modeConfigs[activeMode];
   const initialExpression = params.get("v_expression") || config.expression;
-  const [expression, setExpression] = useState(initialExpression);
-  const [draft, setDraft] = useState(initialExpression);
-  const [a, setA] = useState(numberParam(params.get("v_a"), config.point));
+  const [expression, setExpression] = useStudioState("CalculusLimitsStudio:CalculusLimitsStudio:expression", initialExpression);
+  const [draft, setDraft] = useStudioState("CalculusLimitsStudio:CalculusLimitsStudio:draft", initialExpression);
+  const [a, setA] = useStudioState("CalculusLimitsStudio:CalculusLimitsStudio:a", numberParam(params.get("v_a"), config.point));
   const initialDistance = clamp(numberParam(params.get("v_b"), config.distance), 0.01, 2);
-  const [leftDistance, setLeftDistance] = useState(clamp(numberParam(params.get("v_left"), initialDistance), 0.01, 2));
-  const [rightDistance, setRightDistance] = useState(clamp(numberParam(params.get("v_right"), initialDistance), 0.01, 2));
-  const [samples, setSamples] = useState(clamp(Math.round(numberParam(params.get("v_n"), 20)), 20, 200));
+  const [leftDistance, setLeftDistance] = useStudioState("CalculusLimitsStudio:CalculusLimitsStudio:leftDistance", clamp(numberParam(params.get("v_left"), initialDistance), 0.01, 2));
+  const [rightDistance, setRightDistance] = useStudioState("CalculusLimitsStudio:CalculusLimitsStudio:rightDistance", clamp(numberParam(params.get("v_right"), initialDistance), 0.01, 2));
+  const [samples, setSamples] = useStudioState("CalculusLimitsStudio:CalculusLimitsStudio:samples", clamp(Math.round(numberParam(params.get("v_n"), 20)), 20, 200));
   const [showArrows, setShowArrows] = useState(true);
-  const [tracePath, setTracePath] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(1);
-  const [definedValue, setDefinedValue] = useState<number | null>(() => {
+  const [tracePath, setTracePath] = useStudioState("CalculusLimitsStudio:CalculusLimitsStudio:tracePath", false);
+  const [playing, setPlaying] = useStudioState("CalculusLimitsStudio:CalculusLimitsStudio:playing", false);
+  const [speed, setSpeed] = useStudioState("CalculusLimitsStudio:CalculusLimitsStudio:speed", 1);
+  const [definedValue, setDefinedValue] = useStudioState<number | null>("CalculusLimitsStudio:CalculusLimitsStudio:definedValue", () => {
     const value = params.get("v_defined");
     return value === null ? null : numberParam(value, 0);
   });
-  const [lockDelta, setLockDelta] = useState(true);
-  const [epsilon, setEpsilon] = useState(0.25);
-  const [viewport, setViewport] = useState(config.viewport);
-  const [trace, setTrace] = useState<{ x: number; y: number } | null>(null);
-  const [challengeNote, setChallengeNote] = useState("");
+  const [lockDelta, setLockDelta] = useStudioState("CalculusLimitsStudio:CalculusLimitsStudio:lockDelta", true);
+  const [epsilon, setEpsilon] = useStudioState("CalculusLimitsStudio:CalculusLimitsStudio:epsilon", 0.25);
+  const [viewport, setViewport] = useStudioState("CalculusLimitsStudio:CalculusLimitsStudio:viewport", config.viewport);
+  const [trace, setTrace] = useStudioState<{ x: number; y: number } | null>("CalculusLimitsStudio:CalculusLimitsStudio:trace", null);
+  const [challengeNote, setChallengeNote] = useStudioState("CalculusLimitsStudio:CalculusLimitsStudio:challengeNote", "");
   const previousMode = useRef(activeMode);
 
   const compiled = useMemo(() => compileExpression(expression), [expression]);

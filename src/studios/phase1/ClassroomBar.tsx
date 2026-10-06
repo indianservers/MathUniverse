@@ -1,13 +1,14 @@
+import { useStudioState } from "./StudioModelProvider";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { activityLink, joinActivity, makeClassCode, pauseActivity, pushSnapshot, startActivity, type ClassroomActivity } from "./studioClassroom";
 
 export function ClassroomBar() {
   const [params, setParams] = useSearchParams();
-  const [code, setCode] = useState(params.get("class") ?? "");
-  const [nick, setNick] = useState("Ada");
+  const [code, setCode] = useStudioState("ClassroomBar:ClassroomBar:code", params.get("class") ?? "");
+  const [nick, setNick] = useStudioState("ClassroomBar:ClassroomBar:nick", "Ada");
   const [status, setStatus] = useState("");
-  const [joined, setJoined] = useState<ClassroomActivity | null>(null);
+  const [joined, setJoined] = useStudioState<ClassroomActivity | null>("ClassroomBar:ClassroomBar:joined", null);
 
   useEffect(() => {
     const fromUrl = params.get("class");

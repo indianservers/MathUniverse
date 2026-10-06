@@ -1,0 +1,11 @@
+import { chromium } from '@playwright/test';
+const b=await chromium.launch({headless:true});const p=await b.newPage();
+await p.goto('http://127.0.0.1:5173/studios/algebra/curriculum');
+const a=p.locator('.guided-course article');await a.getByLabel('Challenge answer').fill('999');await a.getByRole('button',{name:'Check',exact:true}).click();
+if(!await p.getByText('Numeric exercises solved: 0/5.',{exact:false}).isVisible())throw Error('Wrong answer changed progress');
+await a.getByLabel('Challenge answer').fill('1');await a.getByRole('button',{name:'Check',exact:true}).click();
+await p.getByText('Numeric exercises solved: 1/5.',{exact:false}).waitFor();
+await p.reload();await p.getByText('Numeric exercises solved: 1/5.',{exact:false}).waitFor();
+await p.getByRole('navigation',{name:'Guided lessons',exact:true}).getByRole('button').nth(1).click();
+if(await p.locator('.guided-course article').getByLabel('Challenge answer').inputValue()!=='')throw Error('Answer leaked across lessons');
+console.log('Wrong-answer rejection, saved completion and lesson answer reset passed.');await b.close();

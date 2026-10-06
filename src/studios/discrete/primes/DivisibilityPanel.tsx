@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useMemo } from "react";
 import { Field, LiveRow, Panel, Segmented } from "../../mockup/studioLabKit";
 import { ChallengeCard, Feedback, PlaybackBar, Tip, useStepPlayer } from "./primesUi";
 import {
@@ -26,18 +27,18 @@ type Props = {
 };
 
 export default function DivisibilityPanel({ n, setN, teacherReveal, onTestPrime }: Props) {
-  const [divisor, setDivisor] = useState(2);
-  const [custom, setCustom] = useState("13");
-  const [compare, setCompare] = useState(false);
-  const [step, setStep] = useState(0);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(3);
-  const [build, setBuild] = useState(["1", "2", "3", "5"]);
-  const [challengeKey, setChallengeKey] = useState(0);
-  const [raw, setRaw] = useState(String(n));
-  const [feedback, setFeedback] = useState<{ ok: boolean; text: string } | null>(null);
-  const [placesOn, setPlacesOn] = useState(true);
-  const [primeNote, setPrimeNote] = useState("");
+  const [divisor, setDivisor] = useStudioState("DivisibilityPanel:DivisibilityPanel:divisor", 2);
+  const [custom, setCustom] = useStudioState("DivisibilityPanel:DivisibilityPanel:custom", "13");
+  const [compare, setCompare] = useStudioState("DivisibilityPanel:DivisibilityPanel:compare", false);
+  const [step, setStep] = useStudioState("DivisibilityPanel:DivisibilityPanel:step", 0);
+  const [playing, setPlaying] = useStudioState("DivisibilityPanel:DivisibilityPanel:playing", false);
+  const [speed, setSpeed] = useStudioState("DivisibilityPanel:DivisibilityPanel:speed", 3);
+  const [build, setBuild] = useStudioState("DivisibilityPanel:DivisibilityPanel:build", ["1", "2", "3", "5"]);
+  const [challengeKey, setChallengeKey] = useStudioState("DivisibilityPanel:DivisibilityPanel:challengeKey", 0);
+  const [raw, setRaw] = useStudioState("DivisibilityPanel:DivisibilityPanel:raw", String(n));
+  const [feedback, setFeedback] = useStudioState<{ ok: boolean; text: string } | null>("DivisibilityPanel:DivisibilityPanel:feedback", null);
+  const [placesOn, setPlacesOn] = useStudioState("DivisibilityPanel:DivisibilityPanel:placesOn", true);
+  const [primeNote, setPrimeNote] = useStudioState("DivisibilityPanel:DivisibilityPanel:primeNote", "");
 
   const result = divisibilityTest(n, divisor);
   const info = digitInfo(n);

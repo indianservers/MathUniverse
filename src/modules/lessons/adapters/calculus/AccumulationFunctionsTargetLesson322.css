@@ -338,7 +338,7 @@
   border-color: #b8e6e7;
   background: #f6ffff;
 }
-.acc322-metrics article:nth-child(2)b,
+.acc322-metrics article:nth-child(2) b,
 .acc322-metrics article:nth-child(2) strong {
   color: #07929e;
 }
@@ -346,7 +346,7 @@
   border-color: #dac8ef;
   background: #fdfaff;
 }
-.acc322-metrics article:nth-child(3)b,
+.acc322-metrics article:nth-child(3) b,
 .acc322-metrics article:nth-child(3) strong {
   color: #7342ca;
 }
@@ -354,7 +354,7 @@
   border-color: #f0d8af;
   background: #fffbf2;
 }
-.acc322-metrics article:nth-child(4)b,
+.acc322-metrics article:nth-child(4) b,
 .acc322-metrics article:nth-child(4) strong {
   color: #d26a00;
 }

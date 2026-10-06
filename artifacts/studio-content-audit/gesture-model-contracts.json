@@ -1,0 +1,47 @@
+[
+  {
+    "route": "/algebra/expressions",
+    "title": "Expressions & Algebra Tiles Lab",
+    "overflow": false,
+    "height": 1595,
+    "text": "e like terms: x² +x −2\n✓\nUnlike terms stay unlike: x² does not add to x\n✓\nRewrite: -2+x+x^2\n✓\nFactor: (−x − 2)(−x + 1)\n✓\n8. Explanation\n\nYou built x² +x −2. The area model shows the expression as the sum of its terms. Factoring matches the model when the CAS or integer search finds binomials. Garden-plot reading: x² is the square plot, x strips are borders, units are leftover squares.\n\nFactored form: (−x − 2)(−x + 1)\n✓\nPrediction Challenge\n\nSimplify: write an expression equivalent to x² +x −2.\n\nPress Enter to submit. Equivalent forms are accepted.\n\nYour answer\nCheck answer\nNew Challenge\n0\nOBSERVE\nSee how tiles combine and form areas and expressions.\nUNDERSTAND\nUse the area model to connect terms, factors, and geometry.\nWHY\nWhy does factoring work? Explore patterns and structure.\nTRY\nBuild your own expressions and factor them.\nCHALLENGE\nCan you create an expression with these constraints?",
+    "before": "2",
+    "changed": "3",
+    "undo": "2",
+    "redo": "3",
+    "shared": true,
+    "restored": true,
+    "mobileOverflow": false,
+    "errors": []
+  },
+  {
+    "route": "/algebra/equations",
+    "title": "Equations & Inequalities Lab",
+    "overflow": false,
+    "height": 720,
+    "text": "Number Line\nx = -6\n-6\n-5\n-4\n-3\n-2\n-1\n0\n1\n2\n3\n4\n5\n6\nSolution (in interval notation)\n{-6}\n\n Solution  Not included\n\nSolution & Validation\n\nCandidate x = -6\n\nCheck in original equation\n\n3(-6) + 5 ≟ 2(-6) − 1\n\n-13 = -13 Valid solution ✓\n\nExtraneous check No restrictions detected. ✓\n\nCheck candidate in the original 3x + 5 = 2x − 1 at x = -6.\n\nWhy it works\n\nWe applied the same operations to both sides of the equation, which preserves equality at every step. The balance stayed level, so both sides remained equivalent. Substituting back confirms the solution.\n\nOBSERVE\nWatch how the scale stays balanced at every step.\nUNDERSTAND\nOperations done to one side must be done to the other. a = b ⇒ a + c = b + c\nWHY\nEquality is preserved by applying inverse operations to isolate x.\nTRY\nCreate your own equation and solve it step by step.\nNew Equation\nCHALLENGE\nSolve and check: 3x + 5 = 2x − 1\nChallenge Me",
+    "before": "3",
+    "changed": "4",
+    "undo": "3",
+    "redo": "4",
+    "shared": true,
+    "restored": true,
+    "mobileOverflow": false,
+    "errors": []
+  },
+  {
+    "route": "/geometry/triangles",
+    "title": "Triangles Lab",
+    "overflow": false,
+    "height": 720,
+    "text": " angles; similarity preserves angles and scales every length by one factor.\n\nHow to work it\n\nUse SSS, SAS, ASA, or AAS for congruence, and AA or proportional sides for similarity. Centers arise from intersecting special lines: medians, perpendicular bisectors, or altitudes.\n\nWatch for\n\nSSA does not always determine a unique triangle; it can produce two configurations.\n\nThree worked examples\n\nUse the lab controls to test these relationships.\n\n1\nRoof truss\n\nSides 3,4,5 make a right triangle because 3²+4²=5².\n\nArea is 3·4/2=6 square units.\n2\nScale model\n\nA 2-3-4 triangle enlarged by factor 3 becomes 6-9-12.\n\nPerimeter triples while area grows ninefold.\n3\nCentroid\n\nVertices (0,0),(6,0),(0,3).\n\nMedian intersection is ((0+6+0)/3,(0+0+3)/3)=(2,1).\nTest it in the live lab\n\nUse transformations to move one triangle onto the other.\n\nWhy does SSS guarantee triangle congruence?\nBack to lab controls ↑",
+    "before": "6.15",
+    "changed": "6.25",
+    "undo": "6.15",
+    "redo": "6.25",
+    "shared": true,
+    "restored": true,
+    "mobileOverflow": false,
+    "errors": []
+  }
+]

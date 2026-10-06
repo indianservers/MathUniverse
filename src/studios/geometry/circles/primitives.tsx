@@ -58,7 +58,7 @@ export function CircleSvg({
 }: {
   children: ReactNode;
   ariaLabel: string;
-  svgRef?: RefObject<SVGSVGElement | null>;
+  svgRef?: RefObject<SVGSVGElement>;
   unitLabel?: string;
   focused?: string | null;
   onPointerDown?: (event: PointerEvent<SVGSVGElement>) => void;
@@ -122,7 +122,7 @@ export function RadiusLine({ origin, point, color = "#147df2" }: { origin: Vec; 
   return <line x1={O.x} y1={O.y} x2={P.x} y2={P.y} stroke={color} strokeWidth="1.8" />;
 }
 
-export function TangentLine({ point, direction, length = 4.6, color = "#f59e0b" }: { point: Vec; direction: Vec; length?: number }) {
+export function TangentLine({ point, direction, length = 4.6, color = "#f59e0b" }: { point: Vec; direction: Vec; length?: number; color?: string }) {
   const dirLen = Math.hypot(direction.x, direction.y) || 1;
   const ux = (direction.x / dirLen) * length;
   const uy = (direction.y / dirLen) * length;

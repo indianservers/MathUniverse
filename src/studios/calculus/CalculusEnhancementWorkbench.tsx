@@ -1,4 +1,5 @@
-import { useState, type ReactNode } from "react";
+import { useStudioState } from "../phase1/StudioModelProvider";
+import { type ReactNode } from "react";
 import * as calc from "./calculusEnhancementEngine";
 
 function Tool({ id, title, children }: { id: string; title: string; children: ReactNode }) {
@@ -12,8 +13,8 @@ function fmt(value: number) {
 }
 
 export default function CalculusEnhancementWorkbench() {
-  const [a, setA] = useState(1), [b, setB] = useState(2), [x, setX] = useState(1), [epsilon, setEpsilon] = useState(.1), [n, setN] = useState(20);
-  const [selected, setSelected] = useState("CALC-01");
+  const [a, setA] = useStudioState("CalculusEnhancementWorkbench:CalculusEnhancementWorkbench:a", 1), [b, setB] = useStudioState("CalculusEnhancementWorkbench:CalculusEnhancementWorkbench:b", 2), [x, setX] = useStudioState("CalculusEnhancementWorkbench:CalculusEnhancementWorkbench:x", 1), [epsilon, setEpsilon] = useStudioState("CalculusEnhancementWorkbench:CalculusEnhancementWorkbench:epsilon", .1), [n, setN] = useStudioState("CalculusEnhancementWorkbench:CalculusEnhancementWorkbench:n", 20);
+  const [selected, setSelected] = useStudioState("CalculusEnhancementWorkbench:CalculusEnhancementWorkbench:selected", "CALC-01");
   const fn = (t: number) => a * t * t + b * t;
   const derivative = (t: number) => 2 * a * t + b;
   const positiveN = Math.max(2, Math.round(Math.abs(n)));

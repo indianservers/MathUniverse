@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useState } from "react";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { StatusOk, clamp, fmt } from "../mockup/studioLabKit";
@@ -19,7 +20,7 @@ const initial = {
 };
 
 export default function VectorSpacesLab({ page }: { page: StudioMockupPage }) {
-  const [s, setS] = useState(initial);
+  const [s, setS] = useStudioState("VectorSpacesLab:VectorSpacesLab:s", initial);
   const [show, setShow] = useState({ span: true, axes: true, grid: true, proj: true });
   const cols = [s.v1, s.v2, s.v3].filter((_, i) => s.on[i]);
   const A = [

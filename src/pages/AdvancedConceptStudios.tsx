@@ -1,3 +1,4 @@
+import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import { Binary, BookOpen, ChartSpline, FunctionSquare, Sigma } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -5,6 +6,7 @@ import type { ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FormulaBlock, MathLabLayout, ResultCard } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
+import { proportionInterval, normalCdf } from "../studios/statistics/statisticsCore";
 
 type StudioId = "continued-fractions" | "famous-problems" | "stats-inference" | "differential-equations" | "special-functions";
 
@@ -156,8 +158,8 @@ function StudioNotes() {
 }
 
 function ContinuedFractionsLab() {
-  const [source, setSource] = useState("sqrt2");
-  const [terms, setTerms] = useState(8);
+  const [source, setSource] = useStudioState("AdvancedConceptStudios:ContinuedFractionsLab:source", "sqrt2");
+  const [terms, setTerms] = useStudioState("AdvancedConceptStudios:ContinuedFractionsLab:terms", 8);
   const value = source === "pi" ? Math.PI : source === "e" ? Math.E : source === "phi" ? (1 + Math.sqrt(5)) / 2 : Math.sqrt(2);
   const data = useMemo(() => continuedFraction(value, terms), [terms, value]);
   const last = data[data.length - 1];
@@ -221,15 +223,13 @@ function FamousProblemsAtlas() {
 }
 
 function StatsInferenceStudio() {
-  const [sampleSize, setSampleSize] = useState(120);
-  const [successes, setSuccesses] = useState(72);
-  const [confidence, setConfidence] = useState(95);
+  const [sampleSize, setSampleSize] = useStudioState("AdvancedConceptStudios:StatsInferenceStudio:sampleSize", 120);
+  const [successes, setSuccesses] = useStudioState("AdvancedConceptStudios:StatsInferenceStudio:successes", 72);
+  const [confidence, setConfidence] = useStudioState("AdvancedConceptStudios:StatsInferenceStudio:confidence", 95);
   const cappedSuccesses = Math.min(successes, sampleSize);
-  const z = confidence === 90 ? 1.645 : confidence === 99 ? 2.576 : 1.96;
   const phat = cappedSuccesses / sampleSize;
-  const se = Math.sqrt((phat * (1 - phat)) / sampleSize);
-  const margin = z * se;
   const testZ = (phat - 0.5) / Math.sqrt(0.25 / sampleSize);
+  const interval = proportionInterval(cappedSuccesses, sampleSize, confidence / 100);
 
   return (
     <div className="grid gap-3 xl:grid-cols-[320px_minmax(0,1fr)]">
@@ -240,17 +240,20 @@ function StatsInferenceStudio() {
       </ControlPanel>
       <div className="grid gap-3 md:grid-cols-3">
         <Metric label="Sample proportion" value={phat.toFixed(3)} />
-        <Metric label={`${confidence}% interval`} value={`${Math.max(0, phat - margin).toFixed(3)} to ${Math.min(1, phat + margin).toFixed(3)}`} />
+        <Metric label={`${confidence}% Wilson interval`} value={`${interval.lower.toFixed(3)} to ${interval.upper.toFixed(3)}`} />
         <Metric label="z vs p0 = 0.5" value={testZ.toFixed(2)} />
+        <Metric label="Two-sided score-test p-value" value={(2 * (1 - normalCdf(Math.abs(testZ)))).toFixed(5)} />
+        <p className="text-sm">Wilson score intervals remain informative at zero successes or all successes. Independent binomial trials are assumed; the score-test normal approximation needs adequate expected counts. Confidence describes the long-run coverage of a procedure.</p>
+        <Link to="/probability-statistics/confidence-intervals" className="tool-button">Compare mean, proportion, Welch and bootstrap intervals</Link>
       </div>
     </div>
   );
 }
 
 function DifferentialEquationsStudio() {
-  const [rate, setRate] = useState(0.4);
-  const [initial, setInitial] = useState(2);
-  const [stepSize, setStepSize] = useState(0.5);
+  const [rate, setRate] = useStudioState("AdvancedConceptStudios:DifferentialEquationsStudio:rate", 0.4);
+  const [initial, setInitial] = useStudioState("AdvancedConceptStudios:DifferentialEquationsStudio:initial", 2);
+  const [stepSize, setStepSize] = useStudioState("AdvancedConceptStudios:DifferentialEquationsStudio:stepSize", 0.5);
   const points = useMemo(() => {
     let y = initial;
     return Array.from({ length: 9 }, (_, index) => {
@@ -282,8 +285,8 @@ function DifferentialEquationsStudio() {
 }
 
 function SpecialFunctionsGallery() {
-  const [a, setA] = useState(2.5);
-  const [b, setB] = useState(3);
+  const [a, setA] = useStudioState("AdvancedConceptStudios:SpecialFunctionsGallery:a", 2.5);
+  const [b, setB] = useStudioState("AdvancedConceptStudios:SpecialFunctionsGallery:b", 3);
   const gammaA = gamma(a);
   const gammaB = gamma(b);
   const beta = (gammaA * gammaB) / gamma(a + b);

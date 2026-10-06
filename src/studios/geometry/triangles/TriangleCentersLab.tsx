@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ChipRow, Field, Panel } from "../../mockup/studioLabKit";
 import {
@@ -45,10 +46,10 @@ export default function TriangleCentersLab({ pulse = "observe" }: { pulse?: stri
   const plane = defaultPlane();
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<"A" | "B" | "C" | null>(null);
-  const [tri, setTri] = useState(EXPLORER_PRESETS.acute);
+  const [tri, setTri] = useStudioState("TriangleCentersLab:TriangleCentersLab:tri", EXPLORER_PRESETS.acute);
   const [mode, setMode] = useState<CenterMode>("centroid");
-  const [advanced, setAdvanced] = useState(false);
-  const [grid, setGrid] = useState(false);
+  const [advanced, setAdvanced] = useStudioState("TriangleCentersLab:TriangleCentersLab:advanced", false);
+  const [grid, setGrid] = useStudioState("TriangleCentersLab:TriangleCentersLab:grid", false);
   const [showCircle, setShowCircle] = useState(true);
   const [showIncircle, setShowIncircle] = useState(true);
 

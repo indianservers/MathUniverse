@@ -1,0 +1,4 @@
+import { chromium } from '@playwright/test';import fs from 'node:fs/promises';
+const b=await chromium.launch({headless:true});const p=await b.newPage({viewport:{width:1440,height:900}});const errors=[];p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error'||m.type()==='warning')errors.push(m.text());});
+for(const path of ['','set-builder','venn-diagram-engine','relations','hasse-diagram','functions','representations','practice']){await p.goto('http://127.0.0.1:5175/set-theory'+(path?'/'+path:''));await p.locator('.st-premium h1').waitFor({timeout:30000});await p.screenshot({path:`artifacts/set-theory-upgrade/${path||'dashboard'}-first.png`,fullPage:true});console.log(path||'dashboard',await p.locator('.st-premium h1').innerText());}
+await fs.writeFile('artifacts/set-theory-upgrade/first-browser-errors.json',JSON.stringify(errors,null,2));console.log(errors);await b.close();

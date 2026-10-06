@@ -1,3 +1,4 @@
+import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import {
   Calculator,
   CheckCircle2,
@@ -141,30 +142,30 @@ export default function CalculusDerivativesStudio({ mode }: { mode: string }) {
   const [params, setParams] = useSearchParams();
   const activeMode = isDerivativeMode(mode) ? mode : "tangent";
   const config = modeConfigs[activeMode];
-  const [expression, setExpression] = useState(
+  const [expression, setExpression] = useStudioState("CalculusDerivativesStudio:CalculusDerivativesStudio:expression",
     params.get("v_expression") || config.expression,
   );
-  const [draft, setDraft] = useState(
+  const [draft, setDraft] = useStudioState("CalculusDerivativesStudio:CalculusDerivativesStudio:draft",
     params.get("v_expression") || config.expression,
   );
-  const [a, setA] = useState(numberParam(params.get("v_a"), 1));
-  const [h, setH] = useState(nonZero(numberParam(params.get("v_b"), 0.5)));
-  const [samples, setSamples] = useState(
+  const [a, setA] = useStudioState("CalculusDerivativesStudio:CalculusDerivativesStudio:a", numberParam(params.get("v_a"), 1));
+  const [h, setH] = useStudioState("CalculusDerivativesStudio:CalculusDerivativesStudio:h", nonZero(numberParam(params.get("v_b"), 0.5)));
+  const [samples, setSamples] = useStudioState("CalculusDerivativesStudio:CalculusDerivativesStudio:samples",
     clamp(Math.round(numberParam(params.get("v_n"), 20)), 12, 120),
   );
-  const [order, setOrder] = useState(
+  const [order, setOrder] = useStudioState("CalculusDerivativesStudio:CalculusDerivativesStudio:order",
     clamp(Math.round(numberParam(params.get("v_order"), 2)), 1, 4),
   );
   const [showTangent, setShowTangent] = useState(true);
   const [showSecant, setShowSecant] = useState(true);
   const [showDerivative, setShowDerivative] = useState(true);
   const [showGrid, setShowGrid] = useState(true);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(1);
-  const [bottomView, setBottomView] = useState<BottomView>("graph");
-  const [viewport, setViewport] = useState(config.range);
-  const [panMode, setPanMode] = useState(false);
-  const [challengeNote, setChallengeNote] = useState("");
+  const [playing, setPlaying] = useStudioState("CalculusDerivativesStudio:CalculusDerivativesStudio:playing", false);
+  const [speed, setSpeed] = useStudioState("CalculusDerivativesStudio:CalculusDerivativesStudio:speed", 1);
+  const [bottomView, setBottomView] = useStudioState<BottomView>("CalculusDerivativesStudio:CalculusDerivativesStudio:bottomView", "graph");
+  const [viewport, setViewport] = useStudioState("CalculusDerivativesStudio:CalculusDerivativesStudio:viewport", config.range);
+  const [panMode, setPanMode] = useStudioState("CalculusDerivativesStudio:CalculusDerivativesStudio:panMode", false);
+  const [challengeNote, setChallengeNote] = useStudioState("CalculusDerivativesStudio:CalculusDerivativesStudio:challengeNote", "");
   const previousMode = useRef(activeMode);
 
   const compiled = useMemo(

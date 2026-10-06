@@ -40,7 +40,7 @@ describe("phase 1 studio labs", () => {
       </MemoryRouter>,
     );
     expect(graphs).toContain("/graph-theory");
-    expect(graphs).toContain("Graph Theory Studio");
+    expect(graphs).toContain("Graph Theory");
   });
 
   it("computes vector-space dimension and fractal orbits", () => {

@@ -1,4 +1,5 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useEffect, type ReactNode } from "react";
 import { MockupLearningStrip } from "../MockupStudioChrome";
 import type { StudioMockupPage } from "../studioMockupCatalog";
 import { ChallengeBox, LiveRow, Panel, SliderRow, StatusOk, fmt, useLabMode } from "../studioLabKit";
@@ -30,18 +31,18 @@ function envelopePoints(a1: number, a2: number, f1: number, f2: number, y0: numb
 
 export function WavesHarmonicsLab({ page }: { page: StudioMockupPage }) {
   const { tabs, mode, setMode } = useLabMode(page);
-  const [amplitude1, setAmplitude1] = useState(1);
-  const [frequency1, setFrequency1] = useState(2);
-  const [phase1, setPhase1] = useState(0);
-  const [vertical1, setVertical1] = useState(0);
-  const [amplitude2, setAmplitude2] = useState(0.7);
-  const [frequency2, setFrequency2] = useState(3);
-  const [phase2, setPhase2] = useState(Math.PI / 4);
-  const [vertical2, setVertical2] = useState(0);
-  const [secondWave, setSecondWave] = useState(true);
-  const [time, setTime] = useState(1.25);
-  const [standingMode, setStandingMode] = useState(3);
-  const [playing, setPlaying] = useState(false);
+  const [amplitude1, setAmplitude1] = useStudioState("WavesHarmonicsLab:WavesHarmonicsLab:amplitude1", 1);
+  const [frequency1, setFrequency1] = useStudioState("WavesHarmonicsLab:WavesHarmonicsLab:frequency1", 2);
+  const [phase1, setPhase1] = useStudioState("WavesHarmonicsLab:WavesHarmonicsLab:phase1", 0);
+  const [vertical1, setVertical1] = useStudioState("WavesHarmonicsLab:WavesHarmonicsLab:vertical1", 0);
+  const [amplitude2, setAmplitude2] = useStudioState("WavesHarmonicsLab:WavesHarmonicsLab:amplitude2", 0.7);
+  const [frequency2, setFrequency2] = useStudioState("WavesHarmonicsLab:WavesHarmonicsLab:frequency2", 3);
+  const [phase2, setPhase2] = useStudioState("WavesHarmonicsLab:WavesHarmonicsLab:phase2", Math.PI / 4);
+  const [vertical2, setVertical2] = useStudioState("WavesHarmonicsLab:WavesHarmonicsLab:vertical2", 0);
+  const [secondWave, setSecondWave] = useStudioState("WavesHarmonicsLab:WavesHarmonicsLab:secondWave", true);
+  const [time, setTime] = useStudioState("WavesHarmonicsLab:WavesHarmonicsLab:time", 1.25);
+  const [standingMode, setStandingMode] = useStudioState("WavesHarmonicsLab:WavesHarmonicsLab:standingMode", 3);
+  const [playing, setPlaying] = useStudioState("WavesHarmonicsLab:WavesHarmonicsLab:playing", false);
 
   useEffect(() => {
     setSecondWave(mode !== "Simple Wave");

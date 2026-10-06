@@ -1,4 +1,5 @@
-import { useMemo, useState, type KeyboardEvent } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useMemo, type KeyboardEvent } from "react";
 import { useSearchParams } from "react-router-dom";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import { usePrimesSession, writePrimesSession } from "../primes/primesSession";
@@ -28,11 +29,11 @@ export default function NumberPatternsLab({ page }: { page: StudioMockupPage }) 
   const [params, setParams] = useSearchParams();
   const mode = parsePatternsMode(params.get("mode"));
   const teacher = usePrimesSession();
-  const [n, setN] = useState(6);
-  const [sides, setSides] = useState(3);
-  const [pascalRows, setPascalRows] = useState(8);
-  const [pascalPattern, setPascalPattern] = useState("None");
-  const [fractalDepth, setFractalDepth] = useState(4);
+  const [n, setN] = useStudioState("NumberPatternsLab:NumberPatternsLab:n", 6);
+  const [sides, setSides] = useStudioState("NumberPatternsLab:NumberPatternsLab:sides", 3);
+  const [pascalRows, setPascalRows] = useStudioState("NumberPatternsLab:NumberPatternsLab:pascalRows", 8);
+  const [pascalPattern, setPascalPattern] = useStudioState("NumberPatternsLab:NumberPatternsLab:pascalPattern", "None");
+  const [fractalDepth, setFractalDepth] = useStudioState("NumberPatternsLab:NumberPatternsLab:fractalDepth", 4);
 
   const setMode = (next: PatternsMode) => {
     setParams((current) => {

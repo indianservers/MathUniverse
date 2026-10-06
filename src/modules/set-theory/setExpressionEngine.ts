@@ -13,7 +13,7 @@ const precedence: Record<SetExpressionOperator, number> = {
   union: 1, or: 1, "symmetric-difference": 2, difference: 3, intersection: 4, and: 4,
 };
 
-export const expressionOperatorLabels: Record<ExpressionToken extends { kind: "operator"; value: infer V } ? V : never, string> = {
+export const expressionOperatorLabels: Record<SetExpressionOperator | "not", string> = {
   union: "Union ∪", intersection: "Intersection ∩", difference: "Difference −", "symmetric-difference": "Symmetric difference △", and: "Logical AND", or: "Logical OR", not: "Logical NOT",
 };
 

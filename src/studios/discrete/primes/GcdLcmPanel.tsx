@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useMemo, useState } from "react";
 import { Field, LiveRow, Panel, Segmented, SliderRow } from "../../mockup/studioLabKit";
 import { ChallengeCard, Feedback, Formula, PlaybackBar, Tip, useStepPlayer } from "./primesUi";
@@ -39,15 +40,15 @@ type Props = {
 };
 
 export default function GcdLcmPanel({ values, setValues, teacherReveal }: Props) {
-  const [method, setMethod] = useState("prime");
-  const [step, setStep] = useState(0);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(3);
-  const [focus, setFocus] = useState<"gcd" | "lcm">("gcd");
-  const [challengeKey, setChallengeKey] = useState(0);
-  const [feedback, setFeedback] = useState<{ ok: boolean; text: string } | null>(null);
-  const [story, setStory] = useState(0);
-  const [bank, setBank] = useState<"left" | "common" | "right" | null>(null);
+  const [method, setMethod] = useStudioState("GcdLcmPanel:GcdLcmPanel:method", "prime");
+  const [step, setStep] = useStudioState("GcdLcmPanel:GcdLcmPanel:step", 0);
+  const [playing, setPlaying] = useStudioState("GcdLcmPanel:GcdLcmPanel:playing", false);
+  const [speed, setSpeed] = useStudioState("GcdLcmPanel:GcdLcmPanel:speed", 3);
+  const [focus, setFocus] = useStudioState<"gcd" | "lcm">("GcdLcmPanel:GcdLcmPanel:focus", "gcd");
+  const [challengeKey, setChallengeKey] = useStudioState("GcdLcmPanel:GcdLcmPanel:challengeKey", 0);
+  const [feedback, setFeedback] = useStudioState<{ ok: boolean; text: string } | null>("GcdLcmPanel:GcdLcmPanel:feedback", null);
+  const [story, setStory] = useStudioState("GcdLcmPanel:GcdLcmPanel:story", 0);
+  const [bank, setBank] = useStudioState<"left" | "common" | "right" | null>("GcdLcmPanel:GcdLcmPanel:bank", null);
   const [dragPrime, setDragPrime] = useState<number | null>(null);
   const nums = values.map((v) => Math.max(1, v));
   const a = nums[0] ?? 84;
@@ -68,7 +69,7 @@ export default function GcdLcmPanel({ values, setValues, teacherReveal }: Props)
     : method === "lists" ? Math.max(divisors(a).length, divisors(b).length, 12)
     : method === "prime" ? nums.length + 2
       : 6;
-  const finished = step >= maxStep || teacherReveal;
+  const finished = step >= maxStep || !!teacherReveal;
 
   useStepPlayer(playing, speed, () => {
     setStep((s) => {

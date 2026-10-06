@@ -1,3 +1,5 @@
+import { useStudioModel, useStudioState } from "../phase1/StudioModelProvider";
+import StudioModelTools from "../phase1/StudioModelTools";
 import { useMemo, useState, type PointerEvent, type ReactNode } from "react";
 import { HelpCircle, RotateCcw, RotateCw, Settings } from "lucide-react";
 import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
@@ -45,6 +47,7 @@ function LabFrame({
   insight: (mode: string) => ReactNode;
 }) {
   const { tabs, mode, setMode } = useLabMode(page);
+  const model = useStudioModel();
   const [helpOpen, setHelpOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   return (
@@ -63,8 +66,8 @@ function LabFrame({
         </nav>
         <div className="cxs-header-actions">
           <StudioCanvasToolbar />
-          <button type="button" aria-label="Undo" disabled><RotateCcw /></button>
-          <button type="button" aria-label="Redo" disabled><RotateCw /></button>
+          <button type="button" aria-label="Undo" disabled={!model?.ledger.past.length} onClick={model?.ledger.undo}><RotateCcw /></button>
+          <button type="button" aria-label="Redo" disabled={!model?.ledger.future.length} onClick={model?.ledger.redo}><RotateCw /></button>
           <button type="button" aria-label="Help" aria-expanded={helpOpen} onClick={() => { setHelpOpen((open) => !open); setSettingsOpen(false); }}><HelpCircle /></button>
           <button type="button" aria-label="Settings" aria-expanded={settingsOpen} onClick={() => { setSettingsOpen((open) => !open); setHelpOpen(false); }}><Settings /></button>
         </div>
@@ -81,7 +84,8 @@ function LabFrame({
       {settingsOpen ? (
         <div className="cxs-card cxs-dialog" role="dialog" aria-label="Settings">
           <h2>Settings</h2>
-          <p className="cxs-note">Grid, snap, and figure history live on the canvas toolbar. Undo/Redo stay disabled until a history stack is added.</p>
+          <p className="cxs-note">Undo and Redo restore model inputs. Reset restores defaults; Share saves the current inputs and mode in a link.</p>
+          <StudioModelTools />
           <p className="cxs-note">Current mode: {mode}</p>
           <button type="button" className="cxs-soft-button" onClick={() => setSettingsOpen(false)}>Close</button>
         </div>
@@ -150,8 +154,8 @@ function Live({ color, label, value }: { color: string; label: string; value: st
 }
 
 function ArgandLab({ page }: { page: StudioMockupPage }) {
-  const [re, setRe] = useState(3);
-  const [im, setIm] = useState(4);
+  const [re, setRe] = useStudioState("ComplexNumbersStudioLabs:ArgandLab:re", 3);
+  const [im, setIm] = useStudioState("ComplexNumbersStudioLabs:ArgandLab:im", 4);
   const r = Math.hypot(re, im);
   const arg = Math.atan2(im, re) * 180 / Math.PI;
   return (
@@ -203,10 +207,10 @@ function ArgandLab({ page }: { page: StudioMockupPage }) {
 }
 
 function ArithmeticLab({ page }: { page: StudioMockupPage }) {
-  const [a, setA] = useState(2.5);
-  const [b, setB] = useState(1.5);
-  const [c, setC] = useState(-1);
-  const [d, setD] = useState(2);
+  const [a, setA] = useStudioState("ComplexNumbersStudioLabs:ArithmeticLab:a", 2.5);
+  const [b, setB] = useStudioState("ComplexNumbersStudioLabs:ArithmeticLab:b", 1.5);
+  const [c, setC] = useStudioState("ComplexNumbersStudioLabs:ArithmeticLab:c", -1);
+  const [d, setD] = useStudioState("ComplexNumbersStudioLabs:ArithmeticLab:d", 2);
   const sum = [a + c, b + d];
   const prod = [a * c - b * d, a * d + b * c];
   const quotDen = c * c + d * d;
@@ -279,9 +283,9 @@ function ArithmeticLab({ page }: { page: StudioMockupPage }) {
 }
 
 function PolarLab({ page }: { page: StudioMockupPage }) {
-  const [re, setRe] = useState(1);
-  const [im, setIm] = useState(1.732);
-  const [branch, setBranch] = useState(-180);
+  const [re, setRe] = useStudioState("ComplexNumbersStudioLabs:PolarLab:re", 1);
+  const [im, setIm] = useStudioState("ComplexNumbersStudioLabs:PolarLab:im", 1.732);
+  const [branch, setBranch] = useStudioState("ComplexNumbersStudioLabs:PolarLab:branch", -180);
   const r = Math.hypot(re, im);
   const raw = Math.atan2(im, re) * 180 / Math.PI;
   let th = raw;
@@ -350,8 +354,8 @@ function PolarLab({ page }: { page: StudioMockupPage }) {
 }
 
 function RotationLab({ page }: { page: StudioMockupPage }) {
-  const [th, setTh] = useState(90);
-  const [mag, setMag] = useState(1);
+  const [th, setTh] = useStudioState("ComplexNumbersStudioLabs:RotationLab:th", 90);
+  const [mag, setMag] = useStudioState("ComplexNumbersStudioLabs:RotationLab:mag", 1);
   const powers = Array.from({ length: 8 }, (_, i) => (i * th) % 360);
   return (
     <LabFrame
@@ -394,9 +398,9 @@ function RotationLab({ page }: { page: StudioMockupPage }) {
 }
 
 function RootsLab({ page }: { page: StudioMockupPage }) {
-  const [n, setN] = useState(6);
-  const [re, setRe] = useState(1);
-  const [im, setIm] = useState(0);
+  const [n, setN] = useStudioState("ComplexNumbersStudioLabs:RootsLab:n", 6);
+  const [re, setRe] = useStudioState("ComplexNumbersStudioLabs:RootsLab:re", 1);
+  const [im, setIm] = useStudioState("ComplexNumbersStudioLabs:RootsLab:im", 0);
   return (
     <LabFrame
       page={page}
@@ -445,8 +449,8 @@ function RootsLab({ page }: { page: StudioMockupPage }) {
 }
 
 function EulerLab({ page }: { page: StudioMockupPage }) {
-  const [th, setTh] = useState(180);
-  const [terms, setTerms] = useState(6);
+  const [th, setTh] = useStudioState("ComplexNumbersStudioLabs:EulerLab:th", 180);
+  const [terms, setTerms] = useStudioState("ComplexNumbersStudioLabs:EulerLab:terms", 6);
   const rad = th * Math.PI / 180;
   const approx = taylorExpITheta(rad, terms);
   const taylor = Array.from({ length: terms }, (_, k) => {
@@ -501,7 +505,7 @@ function EulerLab({ page }: { page: StudioMockupPage }) {
 }
 
 function LociLab({ page }: { page: StudioMockupPage }) {
-  const [r, setR] = useState(2);
+  const [r, setR] = useStudioState("ComplexNumbersStudioLabs:LociLab:r", 2);
   const mobius = (x: number, y: number) => {
     const den = (x + 1) ** 2 + y * y || 1e-6;
     return { u: ((x - 1) * (x + 1) + y * y) / den, v: (2 * y) / den };
@@ -561,10 +565,10 @@ function LociLab({ page }: { page: StudioMockupPage }) {
 }
 
 function FractalsLab({ page }: { page: StudioMockupPage }) {
-  const [cx, setCx] = useState(-0.123);
-  const [cy, setCy] = useState(0.745);
-  const [iter, setIter] = useState(40);
-  const [orbitStep, setOrbitStep] = useState(7);
+  const [cx, setCx] = useStudioState("ComplexNumbersStudioLabs:FractalsLab:cx", -0.123);
+  const [cy, setCy] = useStudioState("ComplexNumbersStudioLabs:FractalsLab:cy", 0.745);
+  const [iter, setIter] = useStudioState("ComplexNumbersStudioLabs:FractalsLab:iter", 40);
+  const [orbitStep, setOrbitStep] = useStudioState("ComplexNumbersStudioLabs:FractalsLab:orbitStep", 7);
   const pts = orbit(0, 0, cx, cy, 18);
   const visibleOrbit = pts.slice(0, orbitStep + 1);
   const escapedAt = pts.findIndex((point) => point.x * point.x + point.y * point.y > 4);
@@ -642,10 +646,10 @@ function FractalGrid({ kind, cx, cy, iter, orbitPts }: { kind: "mandel" | "julia
 }
 
 function CircuitsLab({ page }: { page: StudioMockupPage }) {
-  const [f, setF] = useState(50);
-  const [l, setL] = useState(0.1);
-  const [c, setC] = useState(0.0001);
-  const [R, setR] = useState(40);
+  const [f, setF] = useStudioState("ComplexNumbersStudioLabs:CircuitsLab:f", 50);
+  const [l, setL] = useStudioState("ComplexNumbersStudioLabs:CircuitsLab:l", 0.1);
+  const [c, setC] = useStudioState("ComplexNumbersStudioLabs:CircuitsLab:c", 0.0001);
+  const [R, setR] = useStudioState("ComplexNumbersStudioLabs:CircuitsLab:R", 40);
   const xl = 2 * Math.PI * f * l;
   const xc = 1 / (2 * Math.PI * f * c);
   const X = xl - xc;

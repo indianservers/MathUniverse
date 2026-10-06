@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { SliderRow } from "../../mockup/studioLabKit";
 import {
   fanDiagonals,
@@ -34,13 +35,13 @@ import {
 type AngleSub = "sum" | "regular" | "exterior" | "irregular";
 
 export default function InteriorAnglesLab({ pulse = "observe" }: { pulse?: string }) {
-  const [n, setN] = useState(5);
-  const [sub, setSub] = useState<AngleSub>("sum");
-  const [regular, setRegular] = useState(true);
-  const [fan, setFan] = useState(0);
-  const [walk, setWalk] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [verts, setVerts] = useState<Vec[]>(() => regularPolygonVertices(5, 3.4, 0));
+  const [n, setN] = useStudioState("InteriorAnglesLab:InteriorAnglesLab:n", 5);
+  const [sub, setSub] = useStudioState<AngleSub>("InteriorAnglesLab:InteriorAnglesLab:sub", "sum");
+  const [regular, setRegular] = useStudioState("InteriorAnglesLab:InteriorAnglesLab:regular", true);
+  const [fan, setFan] = useStudioState("InteriorAnglesLab:InteriorAnglesLab:fan", 0);
+  const [walk, setWalk] = useStudioState("InteriorAnglesLab:InteriorAnglesLab:walk", false);
+  const [progress, setProgress] = useStudioState("InteriorAnglesLab:InteriorAnglesLab:progress", 0);
+  const [verts, setVerts] = useStudioState<Vec[]>("InteriorAnglesLab:InteriorAnglesLab:verts", () => regularPolygonVertices(5, 3.4, 0));
   const svgRef = useRef<SVGSVGElement | null>(null);
   const drag = useRef<number | null>(null);
 

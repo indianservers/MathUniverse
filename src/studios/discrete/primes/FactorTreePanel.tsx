@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useEffect, useMemo, useRef } from "react";
 import { Field, LiveRow, Panel, SliderRow } from "../../mockup/studioLabKit";
 import { ChallengeCard, Feedback, Formula, PlaybackBar, Tip, useStepPlayer } from "./primesUi";
 import {
@@ -148,24 +149,24 @@ type Props = {
 type Snap = { nodes: Record<string, Node>; rootId: string; active: string | null };
 
 export default function FactorTreePanel({ n, setN, teacherReveal, onCompareGcd }: Props) {
-  const [nodes, setNodes] = useState<Record<string, Node>>(() => {
+  const [nodes, setNodes] = useStudioState<Record<string, Node>>("FactorTreePanel:FactorTreePanel:nodes", () => {
     const id = nextId();
     return { [id]: { id, value: n } };
   });
-  const [rootId, setRootId] = useState(() => Object.keys(nodes)[0]!);
-  const [active, setActive] = useState<string | null>(() => (isPrime(n) ? null : Object.keys(nodes)[0]!));
-  const [aIn, setAIn] = useState("2");
-  const [bIn, setBIn] = useState("42");
-  const [gcdB, setGcdB] = useState("60");
-  const [feedback, setFeedback] = useState<{ ok: boolean; text: string } | null>(null);
-  const [zoom, setZoom] = useState(1);
-  const [pan, setPan] = useState({ x: 0, y: 0 });
-  const [compare, setCompare] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(3);
-  const [challengeKey, setChallengeKey] = useState(0);
-  const [inputError, setInputError] = useState("");
-  const [history, setHistory] = useState<Snap[]>([]);
+  const [rootId, setRootId] = useStudioState("FactorTreePanel:FactorTreePanel:rootId", () => Object.keys(nodes)[0]!);
+  const [active, setActive] = useStudioState<string | null>("FactorTreePanel:FactorTreePanel:active", () => (isPrime(n) ? null : Object.keys(nodes)[0]!));
+  const [aIn, setAIn] = useStudioState("FactorTreePanel:FactorTreePanel:aIn", "2");
+  const [bIn, setBIn] = useStudioState("FactorTreePanel:FactorTreePanel:bIn", "42");
+  const [gcdB, setGcdB] = useStudioState("FactorTreePanel:FactorTreePanel:gcdB", "60");
+  const [feedback, setFeedback] = useStudioState<{ ok: boolean; text: string } | null>("FactorTreePanel:FactorTreePanel:feedback", null);
+  const [zoom, setZoom] = useStudioState("FactorTreePanel:FactorTreePanel:zoom", 1);
+  const [pan, setPan] = useStudioState("FactorTreePanel:FactorTreePanel:pan", { x: 0, y: 0 });
+  const [compare, setCompare] = useStudioState("FactorTreePanel:FactorTreePanel:compare", false);
+  const [playing, setPlaying] = useStudioState("FactorTreePanel:FactorTreePanel:playing", false);
+  const [speed, setSpeed] = useStudioState("FactorTreePanel:FactorTreePanel:speed", 3);
+  const [challengeKey, setChallengeKey] = useStudioState("FactorTreePanel:FactorTreePanel:challengeKey", 0);
+  const [inputError, setInputError] = useStudioState("FactorTreePanel:FactorTreePanel:inputError", "");
+  const [history, setHistory] = useStudioState<Snap[]>("FactorTreePanel:FactorTreePanel:history", []);
 
   const lastN = useRef(n);
   const nodesRef = useRef(nodes);

@@ -1,0 +1,1001 @@
+MATH UNIVERSE: CONTENT AND INTERACTIVE TOOL AUDIT
+6 October 2026 (Asia/Calcutta)
+
+Scope: the 14 main studios, registered subpages, catalogued geometry/trigonometry concepts, distribution detail pages, aliases and advertised advanced states.
+Browser route/state checks: 295/295; failures: 0; uncaught page exceptions: 0.
+Mode pass: 469 selections across 107 routes; 467 passed and 2 failed. Custom names/selected classes were rechecked; the two remaining Algebra failures are reproduced header-button overlaps, documented in algebra-mode-diagnostics.json and screenshots.
+Unit/component/engine checks: 440 passed, 8 failed, across 122 files (116 passed, 6 failed). Four failed assertions are in studio suites and four in adjacent AR/theorem suites.
+Project typecheck: FAILED, 247 TypeScript diagnostics. See typecheck.log.
+Production build: Vite reported a completed build; see build.log for complete output.
+
+METHOD AND LIMITS
+Read the actual App.tsx routes, catalog, dedicated lab dispatchers, selected lab implementations, theory coverage, enhancement manifest and existing tests. Browser checks observed headings, enabled inputs, visual surfaces, catalog modes and a first-slider keyboard change where available. A separate mode pass waits for selected/pressed state. Focused reproductions check actual Reset/Share behavior and statistics calculations. Tests verify content structure and selected math cases, not a universal proof that every explanation and numerical input is correct. Zero detected tabs means that this selector found no shared mode control, not that the page has no interactive tools. No camera/device AR, every drag target, download, classroom action, mobile layout, all invalid-input combinations or exhaustive numerical corpus was exercised.
+
+PRIORITIZED FINDINGS
+1. HIGH: Statistics distribution modes all use the same normal PDF/CDF implementation. Binomial, Poisson, Exponential, t and Chi-square choices do not switch the mathematical distribution. DedicatedStudioLabs.tsx:145 onward; catalog advertises all six. Separate distribution atlas pages are not affected by this specific dispatcher.
+2. HIGH: Statistics ANOVA is a proxy, not sample-based ANOVA: MSB is variance of three editable means divided by 3; MSW is hardcoded to 1; sample counts/degrees of freedom are absent. The challenge claims equal group means imply F near 1, while setting all means equal produces exactly F=0. RemainingStudioLabs.tsx:465-485; studioMockupCatalog.ts:188. Under a null model E(F) near 1 does not mean observed equal means give F=1.
+2a. HIGH: Correlation uses screen-space y coordinates in pearson(), reversing the sign relative to the plotted mathematical axes. At the default r slider value 0.8, the ascending scatter/fit displays r=-0.99. Compute Pearson from model coordinates before mapping them to SVG. RemainingStudioLabs.tsx:443-461; statistics-mode-results.json records the 0.8 input and -0.99 output.
+3. HIGH: Default shared figure toolbar operates on useStudioFigure({k:1}) instead of the displayed lab state. Finance: initial principal 10000, edited to 50000, Reset leaves 50000, Undo remains disabled, Share fig decodes to {k:1}. Reset/exact/history/share cannot be considered implemented for model state through this toolbar. Phase1LabChrome.tsx:49-65. Bind each lab state and setters, or remove unsupported controls.
+3a. MEDIUM: At desktop 1280x720, .alg-header-actions physically intercepts clicks on the Exponents & Logs Equations tab and CAS Differentiate tab. Both buttons are visible and enabled but sit under Reset/Undo controls. Reproduced ordinary clicks, inspected elementsFromPoint, and saved screenshots. Reflow header actions or give mode tabs their own non-overlapping row.
+4. MEDIUM: Confidence-level slider uses only z=1.28 below 95%, 1.96 at 95-98%, and 2.58 at 99%. The observed interval width is 4.67 at both 80% and 90%; 90% should use about 1.645. Capture intervals are deterministic sinusoidal centers, not repeated samples. RemainingStudioLabs.tsx:389-417.
+5. MEDIUM: Statistics experiments always generate two-dice sums despite Coins/Cards/Spinner/Conditional/Bayes tabs. Hypothesis tabs all reuse manually entered p versus alpha; confidence modes do not implement proportion/two-sample/bootstrap intervals; correlation modes do not implement residuals/prediction panels; ANOVA modes do not implement a design canvas or diagnostics. Data Explorer supplies repeated fixed scores controlled by n, with no import/filter/brush tool. Descriptive Stats uses immutable data and only swaps selected labels. RemainingStudioLabs.tsx:287 onward.
+6. MEDIUM: Four advertised advanced states open home with zero enhancement tools: /geometry?tab=advanced, /trigonometry?tab=advanced, /complex-numbers?tab=advanced and /probability-statistics?tab=advanced. Linear Algebra, Discrete and Modelling advanced states expose 25 tools. MockupStudioApp.tsx:19 only recognizes Linear Algebra advanced; check the distinct wrappers for each route.
+7. MEDIUM: Complex Numbers lab frame explicitly disables Undo/Redo for every lab; history is not yet implemented. ComplexNumbersStudioLabs.tsx:68-69 and settings copy. This differs from the fallback toolbar issue because these are the actual routed complex lab components.
+8. MEDIUM: Shared challenges usually compare to catalog.expected with a fixed 0.03 tolerance, then report that the answer matches the live model. Finance, population, modular arithmetic and multiple statistics pages pass page.challenge without supplying current model state. Treat these as separate theory questions or derive prompts/expected values from current state. studioLabKit.tsx:196-211.
+9. MEDIUM: Build/type validation cannot be called clean: 247 project diagnostics include live Algebra, Calculus, Structures, Geometry, Trig and shared 3D code. The studio test failures are kernel presence for Trig Identities, old CLT text, a Linear Algebra home "Open lab" expectation, and the Discrete Graph link title. Some are stale copy assertions rather than demonstrated broken math.
+10. LOW: Algebraic Structures Load example shows "Max on 3" rather than "Max on {0,1,2,3}" because the JSX braces evaluate a comma expression. AlgebraicStructuresLabs.tsx:104.
+11. REPORTING: studioWorldClassScore.ts contains assigned 90+ scores, and studioEnhancementManifest.ts marks whole prefixes implemented. These are not measured audit results; inaccessible advanced states and disconnected controls contradict treating the flags as runtime verification.
+
+STUDIO-BY-STUDIO COVERAGE
+
+ALGEBRA
+Signed tiles, balance operations, function graphs, polynomial roots, systems, exponents/logarithms, sequences, proof steps, CAS, and advanced workbench. Dedicated math tests passed; several source type errors remain. At desktop 1280x720, header action buttons overlap and block the Exponents Equations and CAS Differentiate mode buttons; normal pointer clicks fail.
+Checked route/state entries: 13
+  /algebra
+    Heading: Welcome to Algebra Studio | Launch a topic | Continue experiment
+    Inputs: 1; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /algebra/functions
+    Heading: Functions & Transformations Lab | Transform parameters a, h, k | Parent vs transformed graph
+    Inputs: 6; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /algebra/expressions
+    Heading: Expressions & Algebra Tiles Lab | 1. Drag tiles to build your expression | 2. Expression builder
+    Inputs: 4; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /algebra/equations
+    Heading: Equations & Inequalities Lab | Equation | Balance ModeliShow values↺ Reset
+    Inputs: 9; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /algebra/polynomials
+    Heading: Polynomials Lab | Root & degree builder | Interactive polynomial graph
+    Inputs: 7; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /algebra/systems
+    Heading: Systems of Equations Lab | Linear system | Intersection graph
+    Inputs: 5; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /algebra/exponents-logs
+    Heading: Exponents Radicals & Logarithms Lab | Base, exponent, and target | Exponent Laws model
+    Inputs: 4; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /algebra/sequences
+    Heading: Sequences & Progressions Lab | Sequence rule | Term Table
+    Inputs: 4; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /algebra/cas
+    Heading: CAS Step Explorer — candidate verification | CAS expression | Solve result
+    Inputs: 3; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /algebra/proof
+    Heading: Algebraic Proof Lab | Two-Column Proof Builder | Add Step
+    Inputs: 4; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /algebra/advanced
+    Heading: Advanced Algebra Workbench | 1. Signed algebra tiles | 2. Zero-pair cancellation
+    Inputs: 8; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /algebra/classic
+    Heading: Classic Algebra Models | Linear Equation Visualizer | Current Formula
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /algebra/algebraic-structures -> /algebraic-structures
+    Heading: Algebraic Structures Studio
+    Inputs: 0; mode selections: 0; route: loaded; uncaught exceptions: 0
+
+ALGEBRAIC STRUCTURES
+Axiom tests, editable Cayley tables, semigroups/monoids, Hasse/lattice calculations, Boolean truth tables and K-maps. Shared Share copies only the current URL; no lab-state encoding is implemented there. The Max example label evaluates {0,1,2,3} as a comma expression and displays 3.
+Checked route/state entries: 6
+  /algebraic-structures
+    Heading: Algebraic Structures Studio
+    Inputs: 0; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /algebraic-structures/structure-test
+    Heading: Algebraic Structures Lab | Define a custom operation | Visualization
+    Inputs: 23; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /algebraic-structures/cayley-tables
+    Heading: Algebraic Structures Lab — Cayley Tables | Define the Cayley table | Selected cell interpretation
+    Inputs: 23; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /algebraic-structures/semigroups-monoids
+    Heading: Algebraic Structures Lab — Semigroups & Monoids | Setup: Define a structure | Structure visualizer
+    Inputs: 8; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /algebraic-structures/boolean-algebra
+    Heading: Boolean Algebra | Expression Input | Quick examples
+    Inputs: 3; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /algebraic-structures/posets-lattices
+    Heading: Algebraic Structures Lab — Posets & Lattices | Poset Visualizer (Hasse Diagram) | Lattice Explorer
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+
+GEOMETRY
+Construction, triangles, circles, polygons, transformations, coordinate geometry, measurements, proofs, Shapes Explorer, AR subpage, and individual concept pages. Dedicated engines and theory coverage exist. Advertised advanced URL resolves to home. The shared fallback toolbar is disconnected where a lab does not provide its own toolbar. AR subpage code uses an illustrated scene; its measurement claims are not verified camera tracking.
+Checked route/state entries: 31
+  /geometry
+    Heading: Geometry Studio | Start here: construct a perpendicular bisector in 60 seconds | This week
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/triangles
+    Heading: Triangles Lab | Explorer controls | Live measurements
+    Inputs: 16; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /geometry/polygons
+    Heading: Polygons Lab | Regular polygon | Live measurements
+    Inputs: 14; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /geometry/circles
+    Heading: Circles Lab | Chord controls | Live measurements
+    Inputs: 14; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/transformations
+    Heading: Transformations Lab | Translate | Transformations: learn and explore
+    Inputs: 8; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /geometry/coordinate
+    Heading: Coordinate Geometry Lab | Mode | Objects
+    Inputs: 8; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/measurement
+    Heading: Measurement Lab | Measurement controls | Composite shape summary
+    Inputs: 10; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /geometry/proofs
+    Heading: Theorem & Visual Proof | Pythagoras | Theorems & Proofs: learn and explore
+    Inputs: 5; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /shapes
+    Heading: 2D & 3D Shapes Explorer | Shape Library | Shape Inspector
+    Inputs: 9; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /geometry/ar
+    Heading: Geometry AR Lab | AR tools | Geometry AR: learn and explore
+    Inputs: 5; mode selections: 8; route: loaded; uncaught exceptions: 0
+  /geometry/construction
+    Heading: Construction Workspace | Construct | Live object tree
+    Inputs: 10; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /geometry/solids -> /shapes
+    Heading: 2D & 3D Shapes Explorer | Shape Library | Shape Inspector
+    Inputs: 9; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /geometry?tab=advanced
+    Heading: Geometry Studio | Start here: construct a perpendicular bisector in 60 seconds | This week
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/points-lines-rays
+    Heading: Points, Lines, and Rays | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/parallel-lines
+    Heading: Parallel Lines and Transversals | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/angles
+    Heading: Angles and Rotation | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/pythagorean-theorem
+    Heading: Pythagorean Theorem | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/similar-triangles
+    Heading: Similar Triangles | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/triangle-congruence
+    Heading: Triangle Congruence | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/quadrilaterals
+    Heading: Quadrilaterals | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/arcs-sectors
+    Heading: Arcs and Sectors | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/chords-secants
+    Heading: Chords and Secants | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/coordinate-geometry
+    Heading: Coordinate Geometry | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/tangents
+    Heading: Tangents | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/symmetry
+    Heading: Symmetry | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/area-perimeter
+    Heading: Area and Perimeter | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/mensuration-3d
+    Heading: 3D Mensuration | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/surface-area-volume
+    Heading: Surface Area and Volume | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/loci
+    Heading: Loci | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/trig-in-geometry
+    Heading: Trigonometry in Geometry | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /geometry/geometric-constructions
+    Heading: Geometric Constructions | Interactive Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+
+TRIGONOMETRY
+Unit circle/exact values, right-triangle solving, graphs, identities, inverse branches, oblique triangles, waves, applications, AR and concept pages. Modes have dedicated implementations. Advertised advanced URL resolves to home; kernel-presence assertion fails for identities.
+Checked route/state entries: 56
+  /trigonometry
+    Heading: Trigonometry Studio | Explore Key Topics |  Continue Experiment
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/graphs
+    Heading: Trigonometric Functions & Graphs Studio | Function builder | Values & Insights
+    Inputs: 7; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /trigonometry/identities
+    Heading: Identities & Visual Proofs Studio | Identity explorer | Live substitution
+    Inputs: 4; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /trigonometry/inverse
+    Heading: Inverse Trigonometry Studio | Inverse Trig Functions | 1 Observe
+    Inputs: 9; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /trigonometry/oblique
+    Heading: Oblique Triangle Studio | Triangle Inputs | Selected Law
+    Inputs: 16; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /trigonometry/waves
+    Heading: Waves & Harmonics Studio | Wave Controls | Equations
+    Inputs: 7; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /trigonometry/applications
+    Heading: Trigonometry Applications Studio | Measurement setup | Live values
+    Inputs: 9; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /trigonometry/ar
+    Heading: Trigonometry AR Lab | Height Measurement | AR Lab: learn and explore
+    Inputs: 5; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /trigonometry/right-triangle
+    Heading: Right Triangle Studio | Triangle Inputs | Similar Triangle (Scale: 1.5×)
+    Inputs: 7; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /trigonometry/unit-circle
+    Heading: Unit Circle & Angle Studio | Angle Controls | Angle
+    Inputs: 8; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /trigonometry/formula-visualizer
+    Heading: Trigonometric Formula Visualizer | What is sin theta? | Formula, diagram, graph
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry?tab=advanced
+    Heading: Trigonometry Studio | Explore Key Topics |  Continue Experiment
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/right-triangle-ratios
+    Heading: Right Triangle Ratios | Right Triangle Ratios Triangle + Circle Visualizer | Controls
+    Inputs: 8; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/trigonometric-functions
+    Heading: Trigonometric Functions | Trigonometric Functions | Trigonometric Functions Triangle + Circle Bridge
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/degree-radian
+    Heading: Degrees and Radians | Degrees and Radians Master Visualizer | Classic Concept Lab
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/special-angles
+    Heading: Special Angles | Special Angles Master Visualizer | Classic Concept Lab
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/quadrant-signs
+    Heading: Quadrant Sign Rules | Quadrant Sign Rules Master Visualizer | Classic Concept Lab
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/sine-graph
+    Heading: Sine Graph | Sine Graph Graph Studio | Classic Concept Lab
+    Inputs: 18; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/cosine-graph
+    Heading: Cosine Graph | Cosine Graph Graph Studio | Classic Concept Lab
+    Inputs: 18; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/tangent-graph
+    Heading: Tangent Graph | Tangent Graph Graph Studio | Classic Concept Lab
+    Inputs: 18; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/reciprocal-graphs
+    Heading: Reciprocal Graphs | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/reciprocal-ratios
+    Heading: Sec, Cosec, Cot | Sec, Cosec, Cot Triangle + Circle Visualizer | Controls
+    Inputs: 8; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/pythagorean-identity
+    Heading: Pythagorean Identity | Pythagorean Identity Core Proof Visualizer | Classic Concept Lab
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/complementary-angles
+    Heading: Complementary Angles | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/sum-difference
+    Heading: Sum and Difference Formulas | Sum and Difference Formulas Visual Derivation Lab | Classic Concept Lab
+    Inputs: 8; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/double-angle
+    Heading: Double Angle Formulas | Double Angle Formulas Visual Derivation Lab | Classic Concept Lab
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/half-angle
+    Heading: Half-Angle Formulas | Half-Angle Formulas Visual Derivation Lab | Classic Concept Lab
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/product-to-sum
+    Heading: Product-to-Sum | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/triple-angle
+    Heading: Triple-Angle Formulas | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/inverse-trig
+    Heading: Inverse Trigonometry | Inverse Trigonometry Visual Lab | Original restricted graph
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/inverse-principal-values
+    Heading: Inverse Principal Values | Inverse Principal Values Visual Lab | Original restricted graph
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/trig-equations
+    Heading: Trigonometric Equations | Trigonometric Equations Visual Lab | Original restricted graph
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/general-solutions
+    Heading: General Solutions | General Solutions Visual Lab | Original restricted graph
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/trig-inequalities
+    Heading: Trigonometric Inequalities | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/height-distance
+    Heading: Heights and Distances | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/bearings-navigation
+    Heading: Bearings and Navigation | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/law-of-sines
+    Heading: Law of Sines | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/law-of-cosines
+    Heading: Law of Cosines | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/ambiguous-case
+    Heading: SSA Ambiguous Case | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/trig-triangle-area
+    Heading: Triangle Area Formula | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/polar-coordinates
+    Heading: Polar Coordinates | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/polar-roses
+    Heading: Polar Rose Curves | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/complex-de-moivre
+    Heading: De Moivre's Theorem | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/trig-limits
+    Heading: Trigonometric Limits | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/trig-derivatives
+    Heading: Trig Derivatives | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/trig-integrals
+    Heading: Trig Integrals | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/orthogonality
+    Heading: Orthogonality of Sine and Cosine | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/fourier-trig-series
+    Heading: Fourier Trigonometric Series | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/spherical-trigonometry
+    Heading: Spherical Trigonometry | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/hyperbolic-functions
+    Heading: Hyperbolic Functions | Classic Concept Lab | Core Formula
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/wave-amplitude
+    Heading: Amplitude | Amplitude Graph Studio | Classic Concept Lab
+    Inputs: 18; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/wave-period-frequency
+    Heading: Period and Frequency | Period and Frequency Graph Studio | Classic Concept Lab
+    Inputs: 14; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/phase-shift
+    Heading: Phase Shift | Phase Shift Graph Studio | Classic Concept Lab
+    Inputs: 18; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/eclipse-trigonometry
+    Heading: Eclipse Trigonometry | Solar and Lunar Eclipse Trigonometry | Angular Diameter of a Sphere
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/real-world-waves
+    Heading: Real-World Waves | Wave Applications | Sound waves
+    Inputs: 0; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /trigonometry/inquiry-experiments
+    Heading: 50+ Trigonometry Experiments | Trigonometry Math Lab | 85 Trigonometry Experiments
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+
+CALCULUS
+Limits, derivatives, derivative applications, integration, techniques, applications, ODEs, series/parametric/polar, multivariable/vector, Jacobians, beta/gamma, convergence tests and engineering labs. Advanced workbench is routed. Multiple TypeScript errors remain in shared studio event handlers. Legacy practice and atlas URLs redirect home rather than distinct labs.
+Checked route/state entries: 29
+  /calculus
+    Heading: Welcome to Calculus Studio | Explore by topic | Foundations
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /calculus/limits
+    Heading: Limits & Continuity Studio | 1Function | 2Limit point a
+    Inputs: 10; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /calculus/derivatives
+    Heading: Derivatives Studio | Function | Tangent point
+    Inputs: 4; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /calculus/derivative-applications
+    Heading: Derivative Applications Studio | Open-top box | 3D box model
+    Inputs: 4; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /calculus/integration
+    Heading: Integration & Accumulation Studio | Build the integral | Bounds
+    Inputs: 6; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /calculus/integration-techniques
+    Heading: Integration Techniques Studio | Problem | Suggested substitution
+    Inputs: 3; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /calculus/differential-equations
+    Heading: Differential Equations Studio | 1Slope fields | Slope field with Euler, RK4, and exact
+    Inputs: 6; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /calculus/integral-applications
+    Heading: Integral Applications Studio | 1 Controls | Area between curves
+    Inputs: 10; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /calculus/series-parametric-polar
+    Heading: Series, Parametric & Polar Studio | 1 Controls | Taylor approximation for sin x
+    Inputs: 7; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /calculus/multivariable-vector
+    Heading: Multivariable & Vector Calculus Studio | Controls | 3D Surface & Geometry
+    Inputs: 9; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /calculus/beta-gamma
+    Heading: Beta & Gamma Functions | Gamma integrand | Keep the parameters positive
+    Inputs: 1; mode selections: 3; route: loaded; uncaught exceptions: 0
+  /calculus/jacobians-coordinate-transformations
+    Heading: Jacobians & Coordinate Transformations | Grid and its image | What the determinant scales
+    Inputs: 2; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /calculus/series-tests
+    Heading: Named Convergence Tests | Choose a test | converges
+    Inputs: 1; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /calculus/curve-tracing
+    Heading: Engineering Curve Tracing | Cartesian checklist | y = x³ / (x² − 1)
+    Inputs: 3; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /calculus/taylor-two-variables
+    Heading: Taylor Expansion in Two Variables | Tangent plane | Values
+    Inputs: 5; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /calculus/lagrange-multipliers
+    Heading: Lagrange Multipliers | Constraint circle | Gradients are parallel
+    Inputs: 2; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /calculus/centroid-center-of-mass
+    Heading: Centroid and Center of Mass | Balance point | (1.000, 0.500)
+    Inputs: 2; mode selections: 3; route: loaded; uncaught exceptions: 0
+  /calculus/change-order-integration
+    Heading: Change of Order | Triangle, two orders | Area 0.5
+    Inputs: 1; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /calculus/moments-of-inertia
+    Heading: Moments of Inertia | Mass moment about the origin | Formula
+    Inputs: 0; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /calculus/multiple-integral-applications
+    Heading: Multiple Integral Applications | area | UI, UX, and content upgrades
+    Inputs: 3; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /calculus/integrals -> /calculus/integration
+    Heading: Integration & Accumulation Studio | Build the integral | Bounds
+    Inputs: 6; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /calculus/advanced
+    Heading: Advanced Calculus Workbench | Advanced Calculus Workbench | 1. Epsilon–delta bands
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /calculus/motion -> /calculus/derivative-applications
+    Heading: Derivative Applications Studio | Position, velocity & acceleration | Motion along a line
+    Inputs: 2; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /calculus/practice -> /calculus
+    Heading: Welcome to Calculus Studio | Explore by topic | Foundations
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /calculus/proof-problems -> /calculus/integration
+    Heading: Integration & Accumulation Studio | Build the integral | Bounds
+    Inputs: 6; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /calculus/series-blocks -> /calculus/series-parametric-polar
+    Heading: Series, Parametric & Polar Studio | 1 Controls | Taylor approximation for sin x
+    Inputs: 7; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /calculus/atlas -> /calculus
+    Heading: Welcome to Calculus Studio | Explore by topic | Foundations
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /calculus/formulas -> /calculus/integration-techniques
+    Heading: Integration Techniques Studio | Problem | Suggested substitution
+    Inputs: 3; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /calculus/applications -> /calculus/derivative-applications
+    Heading: Derivative Applications Studio | Open-top box | 3D box model
+    Inputs: 4; mode selections: 5; route: loaded; uncaught exceptions: 0
+
+NUMBER SYSTEMS
+Rational/irrational numbers, real line, hierarchy, concepts and practice, plus formula visualizer. Dedicated lab components and page/session tests passed. No blocker was established in the checked routes; this is not a certification of every input combination.
+Checked route/state entries: 9
+  /number-systems
+    Heading: Welcome to Number Systems Studio | Continue | Pinned lessons
+    Inputs: 1; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /number-systems/rational
+    Heading: Rational numbers | Class labs | Lessons for this studio
+    Inputs: 4; mode selections: 3; route: loaded; uncaught exceptions: 0
+  /number-systems/irrational
+    Heading: Irrational numbers | Class labs | Lessons for this studio
+    Inputs: 3; mode selections: 3; route: loaded; uncaught exceptions: 0
+  /number-systems/real-line
+    Heading: Real number line | Class labs | Lessons for this studio
+    Inputs: 4; mode selections: 3; route: loaded; uncaught exceptions: 0
+  /number-systems/hierarchy
+    Heading: Number hierarchy | Class labs | Lessons for this studio
+    Inputs: 2; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /number-systems/concepts
+    Heading: Concept cards | Natural numbers | Whole numbers
+    Inputs: 2; mode selections: 1; route: loaded; uncaught exceptions: 0
+  /number-systems/accuracy -> /number-systems/practice
+    Heading: Practice & accuracy | Class labs | Lessons for this studio
+    Inputs: 2; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /number-systems/practice
+    Heading: Practice & accuracy | Class labs | Lessons for this studio
+    Inputs: 2; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /number-systems/space -> /number-systems/hierarchy
+    Heading: Number hierarchy | Class labs | Lessons for this studio
+    Inputs: 2; mode selections: 2; route: loaded; uncaught exceptions: 0
+
+LINEAR ALGEBRA
+Vectors, matrix editing, elimination, linear maps, determinants, span/basis, eigenvectors, orthogonality, least squares, playground, Cayley-Hamilton, diagonalization, quadratic forms/principal axes, factorization, similarity and Jordan form. Advanced workbench has 25 exposed tools. Local custom controls mean catalog mode labels are not all exposed by one shared tab control.
+Checked route/state entries: 19
+  /linear-algebra
+    Heading: Linear Algebra Studio | Matrix theory | Eigenstructure
+    Inputs: 1; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /linear-algebra/vectors
+    Heading: Vectors Lab | Vectors | Operations
+    Inputs: 11; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /linear-algebra/matrices
+    Heading: Matrices & Operations Lab | Matrix A (m × n) 2 × 3 | Matrix B (n × p) 3 × 2
+    Inputs: 12; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /linear-algebra/row-reduction
+    Heading: Systems & Row Reduction Lab | Augmented matrix [A | b] | Row operations
+    Inputs: 12; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /linear-algebra/linear-transforms
+    Heading: Linear Transformations Lab | Transformation | Apply to
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /linear-algebra/determinants
+    Heading: Determinants Lab | Matrix A | Basis vectors (columns of A)
+    Inputs: 4; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /linear-algebra/vector-spaces
+    Heading: Vector Spaces & Basis Lab | Candidate vectors in R³ | Show / hide
+    Inputs: 7; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /linear-algebra/eigenvectors
+    Heading: Eigenvalues & Eigenvectors Lab | Matrix A | Display options
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /linear-algebra/orthogonality
+    Heading: Orthogonality & Projections Lab | Inputs | Gram–Schmidt (from v, u, n)
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /linear-algebra/least-squares
+    Heading: Least Squares Lab | Data & Model | Data with best-fit line
+    Inputs: 1; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /linear-algebra/playground
+    Heading: 2D & 3D Transformation Playground | Transformation matrix | Quick presets
+    Inputs: 10; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /linear-algebra/cayley-hamilton
+    Heading: Cayley–Hamilton Lab | Characteristic polynomial | What the identity says
+    Inputs: 5; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /linear-algebra/diagonalization
+    Heading: Diagonalization Lab | A = P D P⁻¹ | Check
+    Inputs: 4; mode selections: 3; route: loaded; uncaught exceptions: 0
+  /linear-algebra/quadratic-forms
+    Heading: Quadratic Forms Lab | Quadratic form | Canonical form
+    Inputs: 5; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /linear-algebra/principal-axes
+    Heading: Principal Axes Lab | Principal axes | Canonical form
+    Inputs: 5; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /linear-algebra/matrix-factorizations
+    Heading: Matrix Factorizations Lab | LU | Factors
+    Inputs: 9; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /linear-algebra/similarity
+    Heading: Similar Matrices Lab | B = P⁻¹ A P | Shared invariants
+    Inputs: 8; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /linear-algebra/jordan-form
+    Heading: Jordan Form Lab | Jordan chain | A = P J P⁻¹
+    Inputs: 0; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /linear-algebra?mode=advanced
+    Heading: Linear Algebra Studio | Advanced Linear Algebra Workbench | 1. Coordinates in a chosen basis
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+
+COMPLEX NUMBERS
+Argand drag, arithmetic, polar form, rotation, roots, Euler, loci, fractals and circuits. Actual routed lab frame explicitly disables Undo/Redo until a history stack is added. Challenges are fixed catalog questions. Advertised advanced URL resolves home.
+Checked route/state entries: 11
+  /complex-numbers/argand-plane
+    Heading: Argand Plane Lab | Plot z | ARGAND PLANE
+    Inputs: 3; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /complex-numbers
+    Heading: Welcome to Complex Numbers Studio | Launch a topic |  Continue Experiment
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /complex-numbers/arithmetic
+    Heading: Complex Arithmetic & Geometry Lab | Vectors (drag points) | PARALLELOGRAM LAW
+    Inputs: 5; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /complex-numbers/polar-forms
+    Heading: Polar & Exponential Forms Lab | Always in sync | POLAR & EXPONENTIAL
+    Inputs: 6; mode selections: 3; route: loaded; uncaught exceptions: 0
+  /complex-numbers/rotation
+    Heading: Multiplication as Rotation Lab | Multiply by e^{iθ} | MULTIPLICATION AS ROTATION
+    Inputs: 3; mode selections: 3; route: loaded; uncaught exceptions: 0
+  /complex-numbers/roots
+    Heading: Roots of Complex Numbers Lab | nth roots of z | ROOTS OF UNITY
+    Inputs: 4; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /complex-numbers/euler
+    Heading: Euler's Formula Lab | e^{iθ} | EULER'S FORMULA
+    Inputs: 3; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /complex-numbers/loci
+    Heading: Loci & Transformations Lab | Circle Loci | LOCI & TRANSFORMS
+    Inputs: 2; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /complex-numbers/fractals
+    Heading: Mandelbrot & Julia Sets Lab | Fractal controls | MANDELBROT & JULIA
+    Inputs: 5; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /complex-numbers/waves-circuits
+    Heading: Applications to Waves & Circuits Lab | RLC in the plane | PHASOR DIAGRAM
+    Inputs: 5; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /complex-numbers?tab=advanced
+    Heading: Welcome to Complex Numbers Studio | Launch a topic |  Continue Experiment
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+
+MATHEMATICAL MODELLING
+Motion, population, epidemics, finance, optimization, networks, regression, periodic/numerical models, comparison and routed 25-tool advanced workbench. Finance Reset/Undo/Share are disconnected in the default kernel toolbar; other default-toolbar labs inherit the same architectural limitation. Several catalog challenges remain fixed.
+Checked route/state entries: 12
+  /mathematical-modelling
+    Heading: Mathematical Modelling Studio | Explore modelling domains | Popular scenarios & datasets
+    Inputs: 3; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /mathematical-modelling/motion
+    Heading: Motion Modelling Lab | Scenario | Simulation view
+    Inputs: 9; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /mathematical-modelling/population
+    Heading: Population Growth Lab | Assumptions & parameters | Population over time
+    Inputs: 7; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /mathematical-modelling/epidemics
+    Heading: Epidemic Modelling Lab | Parameters | Compartment flow (live)
+    Inputs: 11; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /mathematical-modelling/finance
+    Heading: Finance & Compound Interest Lab | Assumptions & parameters | Account growth over time
+    Inputs: 8; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /mathematical-modelling/optimization
+    Heading: Optimization Modelling Lab | Decision variables | Feasible region & objective
+    Inputs: 7; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /mathematical-modelling/regression
+    Heading: Regression & Prediction Lab | Dataset | Scatter & fit
+    Inputs: 6; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /mathematical-modelling/networks
+    Heading: Networks & Routing Lab | Route setup | City network
+    Inputs: 6; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /mathematical-modelling/periodic
+    Heading: Periodic Phenomena Lab | Assumptions & parameters | Tide time series & model comparison
+    Inputs: 7; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /mathematical-modelling/numerical
+    Heading: Numerical Experiments Lab | Experiment | Monte Carlo simulation
+    Inputs: 4; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /mathematical-modelling/comparison
+    Heading: Model Comparison & Error Lab | Data & assumptions | Observed vs models
+    Inputs: 6; mode selections: 3; route: loaded; uncaught exceptions: 0
+  /mathematical-modelling/advanced
+    Heading: Advanced Mathematical Modelling | 1. Question-to-equations workflow | 2. Physical-unit validation
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+
+NUMBER & DISCRETE MATHEMATICS
+Number sense, primes, modular arithmetic, patterns, combinatorics, logic, links to Set/Graph Theory, algorithms and cryptography. Legacy ?workbench=advanced exposes 25 tools; other legacy workbenches are separate surfaces. The modular lab uses the fallback kernel toolbar and a fixed catalog challenge. Combinatorics has source type errors.
+Checked route/state entries: 12
+  /discrete-world
+    Heading: Number & Discrete Mathematics Studio | Explore by Topic | Opt-in figure snapshots
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /discrete-world/number-sense
+    Heading: Number Sense & Number Lines Lab | Integers | Exit ticket
+    Inputs: 12; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /discrete-world/modular-arithmetic
+    Heading: Modular Arithmetic Lab | Clock Arithmetic | Modular Arithmetic: learn and explore
+    Inputs: 4; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /discrete-world/primes
+    Heading: Factors, Primes & Divisibility Lab | Sieve of Eratosthenes | Primes & Factors: learn and explore
+    Inputs: 7; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /discrete-world/number-patterns
+    Heading: Number Patterns Lab | Figurate Numbers | Triangular Number T_6
+    Inputs: 9; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /discrete-world/combinatorics
+    Heading: Combinatorics Lab | Arrangement setup | Arrangement stage
+    Inputs: 3; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /discrete-world/logic
+    Heading: Mathematical Logic Lab | Circuit | Logic: learn and explore
+    Inputs: 4; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /discrete-world/sets
+    Heading: Sets & Relations Lab | Venn Diagram | Sets & Relations: learn and explore
+    Inputs: 2; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /discrete-world/graphs
+    Heading: Graph Theory & Networks Lab | Paths | Algorithm race: shortest paths and minimum spanning tree
+    Inputs: 1; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /discrete-world/algorithms
+    Heading: Algorithms Lab | Sorting | Algorithms: learn and explore
+    Inputs: 4; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /discrete-world/cryptography
+    Heading: Cryptography Playground | Caesar | Cryptography: learn and explore
+    Inputs: 5; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /discrete-world?workbench=advanced
+    Heading: Number & Discrete Mathematics Studio | Advanced Discrete Mathematics Workbench | 1. Visual set operations
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+
+SET THEORY AND RELATIONS
+Seven focused pages: set builder, Venn engine, relations/matrices, Hasse diagram, function mappings, representations and practice. Shared store, parsing and relation/set engines are implemented and their selected unit tests passed. No route-level runtime error found.
+Checked route/state entries: 8
+  /set-theory
+    Heading: Set Theory Studio | Interactive Set Builder | A U B
+    Inputs: 21; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /set-theory/set-builder
+    Heading: Set Theory Studio | Interactive Set Builder | A U B
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /set-theory/venn-diagram-engine
+    Heading: Set Theory Studio | Venn Diagram Engine | Build an expression, then watch it resolve
+    Inputs: 16; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /set-theory/relations
+    Heading: Set Theory Studio | Relation Visualization | Core Identity
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /set-theory/hasse-diagram
+    Heading: Set Theory Studio | Ordering Visualizer | Core Identity
+    Inputs: 1; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /set-theory/functions
+    Heading: Set Theory Studio | Function Mapping Studio | Core Identity
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /set-theory/representations
+    Heading: Set Theory Studio | Discrete Structure Representation | Core Identity
+    Inputs: 1; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /set-theory/practice
+    Heading: Set Theory Studio | Interactive Challenges and AI Hint Engine | Core Identity
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+
+GRAPH THEORY
+One studio route with Build, Representations, Algorithms, Properties and Learn/Validate sections. Graph editing, templates, graph metrics, matrices, algorithm stepping and sharing have dedicated engines. Graph-engine tests passed; a discrete-link label assertion is stale/failing.
+Checked route/state entries: 1
+  /graph-theory
+    Heading: Graph Theory Studio | Graph type | Create
+    Inputs: 18; mode selections: 5; route: loaded; uncaught exceptions: 0
+
+STATISTICS & PROBABILITY
+Ten core labs plus roadmap, distribution atlas/detail pages, inference/sampling, Bayesian/stochastic/advanced-model pages and syllabus completion pages. Core labs have major mismatches between advertised modes and actual models; distribution-detail pages are a separate, richer implementation. Advanced home query does not mount the existing workbench.
+Checked route/state entries: 60
+  /probability-statistics
+    Heading: Statistics & Probability Studio | Explore by Topic |  Continue
+    Inputs: 3; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/data-explorer
+    Heading: Data Explorer | Dataset | Data Explorer: learn and explore
+    Inputs: 3; mode selections: 2; route: loaded; uncaught exceptions: 0
+  /probability-statistics/descriptive
+    Heading: Descriptive Statistics Lab | Center & spread | Descriptive Stats: learn and explore
+    Inputs: 2; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /probability-statistics/interactive-distributions
+    Heading: Interactive Distributions Lab | Distribution | Distributions: learn and explore
+    Inputs: 6; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /probability-statistics/experiments
+    Heading: Probability Experiments Lab | Dice | Probability Experiments: learn and explore
+    Inputs: 3; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /probability-statistics/counting
+    Heading: Combinatorics Lab | nPr / nCr | Combinatorics: learn and explore
+    Inputs: 4; mode selections: 6; route: loaded; uncaught exceptions: 0
+  /probability-statistics/clt
+    Heading: Sampling & Central Limit Theorem Lab | Sampling controls | A: n = 5
+    Inputs: 5; mode selections: 3; route: loaded; uncaught exceptions: 0
+  /probability-statistics/confidence-intervals
+    Heading: Confidence Intervals Lab | Confidence | Confidence Intervals: learn and explore
+    Inputs: 3; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /probability-statistics/hypothesis
+    Heading: Hypothesis Testing Lab | Test | Hypothesis Testing: learn and explore
+    Inputs: 4; mode selections: 5; route: loaded; uncaught exceptions: 0
+  /probability-statistics/correlation
+    Heading: Correlation & Regression Lab | Fit | Regression: learn and explore
+    Inputs: 3; mode selections: 3; route: loaded; uncaught exceptions: 0
+  /probability-statistics/anova
+    Heading: ANOVA & Experimental Design Lab | Group means | ANOVA & Design: learn and explore
+    Inputs: 5; mode selections: 4; route: loaded; uncaught exceptions: 0
+  /probability-statistics/module
+    Heading: Probability & Statistics Module | Concept Studios and Interactive Tools | Distributions
+    Inputs: 1; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions
+    Heading: Distribution Atlas | Find a Distribution | Bernoulli Distribution
+    Inputs: 2; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/sampling
+    Heading: Sampling Distributions Studio | Core formula | Sampling Controls
+    Inputs: 9; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/inference
+    Heading: Inference & Hypothesis Testing Studio | Core formula | Inference Controls
+    Inputs: 9; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/regression
+    Heading: Regression Diagnostics Studio | Core formula | Regression Controls
+    Inputs: 9; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/bayesian
+    Heading: Bayesian Reasoning Studio | Core formula | Bayes Controls
+    Inputs: 9; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/stochastic
+    Heading: Stochastic Processes Studio | Core formula | Process Controls
+    Inputs: 9; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/advanced-models
+    Heading: Advanced Statistical Models Studio | Core formula | Advanced Model Controls
+    Inputs: 9; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/survey-sampling
+    Heading: Survey Sampling Studio | Core formula | Live Controls
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/design-of-experiments
+    Heading: Design of Experiments Studio | Core formula | Live Controls
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/quality-control
+    Heading: Statistical Quality Control Studio | Core formula | Live Controls
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/time-series
+    Heading: Time Series Studio | Core formula | Live Controls
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/nonparametric
+    Heading: Nonparametric Tests Studio | Core formula | Live Controls
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/multivariate-analysis
+    Heading: Multivariate Analysis Expansion | Core formula | Live Controls
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/advanced-inference
+    Heading: Advanced Inference Expansion | Core formula | Live Controls
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/official-statistics
+    Heading: Survey and Official Statistics Studio | Core formula | Live Controls
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/survival-analysis
+    Heading: Biostatistics and Survival Analysis Studio | Core formula | Live Controls
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/actuarial-reliability
+    Heading: Actuarial and Reliability Statistics Studio | Core formula | Live Controls
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/statistical-computing
+    Heading: Statistical Computing Lab | Core formula | Live Controls
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/applied-modelling
+    Heading: Applied Modelling Workflows Studio | Core formula | Live Controls
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/school-statistics
+    Heading: School-Level Statistics Polish | Core formula | Live Controls
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics?tab=advanced
+    Heading: Statistics & Probability Studio | Explore by Topic |  Continue
+    Inputs: 3; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/bernoulli
+    Heading: Bernoulli Distribution | Bernoulli Distribution | Parameters
+    Inputs: 3; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/categorical
+    Heading: Categorical Distribution | Categorical Distribution | Parameters
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/discrete-uniform
+    Heading: Discrete Uniform Distribution | Discrete Uniform Distribution | Parameters
+    Inputs: 3; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/binomial
+    Heading: Binomial Distribution | Binomial Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/geometric
+    Heading: Geometric Distribution | Geometric Distribution | Parameters
+    Inputs: 3; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/negative-binomial
+    Heading: Negative Binomial Distribution | Negative Binomial Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/hypergeometric
+    Heading: Hypergeometric Distribution | Hypergeometric Distribution | Parameters
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/poisson
+    Heading: Poisson Distribution | Poisson Distribution | Parameters
+    Inputs: 3; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/zipf
+    Heading: Zipf Distribution | Zipf Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/beta-binomial
+    Heading: Beta-Binomial Distribution | Beta-Binomial Distribution | Parameters
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/poisson-binomial
+    Heading: Poisson-Binomial Distribution | Poisson-Binomial Distribution | Parameters
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/continuous-uniform
+    Heading: Continuous Uniform Distribution | Continuous Uniform Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/normal
+    Heading: Normal Distribution | Normal Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/exponential
+    Heading: Exponential Distribution | Exponential Distribution | Parameters
+    Inputs: 3; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/gamma
+    Heading: Gamma Distribution | Gamma Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/beta
+    Heading: Beta Distribution | Beta Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/chi-square
+    Heading: Chi-Square Distribution | Chi-Square Distribution | Parameters
+    Inputs: 3; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/student-t
+    Heading: Student t Distribution | Student t Distribution | Parameters
+    Inputs: 3; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/f
+    Heading: F Distribution | F Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/lognormal
+    Heading: Lognormal Distribution | Lognormal Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/weibull
+    Heading: Weibull Distribution | Weibull Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/cauchy
+    Heading: Cauchy Distribution | Cauchy Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/laplace
+    Heading: Laplace Distribution | Laplace Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/logistic
+    Heading: Logistic Distribution | Logistic Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/pareto
+    Heading: Pareto Distribution | Pareto Distribution | Parameters
+    Inputs: 5; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/rayleigh
+    Heading: Rayleigh Distribution | Rayleigh Distribution | Parameters
+    Inputs: 3; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /probability-statistics/distributions/triangular
+    Heading: Triangular Distribution | Triangular Distribution | Parameters
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+
+DIFFERENTIAL EQUATIONS
+22 dedicated labs and five friendly aliases covering classification, slope fields, IVPs, first-order methods, numerical solvers, higher-order methods, systems/phase plane, oscillations, LCR and cooling. Routed implementations use Phase1Pages/Phase2Pages. Dedicated DE tests passed; no runtime exception in route checks.
+Checked route/state entries: 28
+  /differential-equations
+    Heading: Differential Equations Studio | All interactive labs | Foundations
+    Inputs: 1; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/explorer
+    Heading: Equation Explorer | Differential Equation | Equation Classification
+    Inputs: 9; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/slope-fields
+    Heading: Direction Fields | Differential Equation | Initial Conditions
+    Inputs: 13; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/initial-value
+    Heading: Initial Value | 1. Define the Differential Equation | 2. Set the Initial Condition
+    Inputs: 12; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/separable
+    Heading: Separable | Enter a Differential Equation | Step-by-Step Solution
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/homogeneous-first-order
+    Heading: Homogeneous | Equation Input | Homogeneous Form Check
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/exact
+    Heading: Exact | Input Differential Equation | Exactness Test
+    Inputs: 6; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/method-selector
+    Heading: Method Selector | 1  Analyze Your Equation | Equation Type & Features
+    Inputs: 10; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/linear-first-order
+    Heading: Linear First-Order | Equation Input | Step-by-Step Solution
+    Inputs: 9; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/bernoulli
+    Heading: Bernoulli | Equation Input | Solution Behavior
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/euler
+    Heading: Euler | Equation Setup | Display options
+    Inputs: 12; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/heun
+    Heading: Heun | Equation Setup | Display options
+    Inputs: 14; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/rk4
+    Heading: RK4 | Equation Setup | Display options
+    Inputs: 15; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/higher-order-linear
+    Heading: Higher-Order Linear | Equation Input | Example problems
+    Inputs: 10; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/growth-models
+    Heading: Growth | Model Setup | Differential Equation
+    Inputs: 8; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/undetermined-coefficients
+    Heading: Undetermined Coefficients | Input Differential Equation | Forcing term type
+    Inputs: 9; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/systems
+    Heading: Systems | System Input | Matrix A
+    Inputs: 9; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/variation-of-parameters
+    Heading: Variation of Parameters | Input Differential Equation | Plot options
+    Inputs: 7; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/cauchy-euler
+    Heading: Cauchy–Euler | Equation Input | Quick examples
+    Inputs: 8; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/phase-plane
+    Heading: Phase Plane | System of Differential Equations | Examples
+    Inputs: 10; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/mechanical-oscillations
+    Heading: Oscillations | Oscillation Model | Model preset
+    Inputs: 11; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/lcr-circuit
+    Heading: LCR Circuit | Circuit Model | Analysis mode
+    Inputs: 12; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/newton-cooling
+    Heading: Newton Cooling | Model Setup | Differential equation
+    Inputs: 10; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/equation-explorer
+    Heading: Equation Explorer | Differential Equation | Equation Classification
+    Inputs: 9; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/direction-fields
+    Heading: Direction Fields | Differential Equation | Initial Conditions
+    Inputs: 13; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/homogeneous
+    Heading: Homogeneous | Equation Input | Homogeneous Form Check
+    Inputs: 4; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/oscillations
+    Heading: Oscillations | Oscillation Model | Model preset
+    Inputs: 11; mode selections: 0; route: loaded; uncaught exceptions: 0
+  /differential-equations/growth
+    Heading: Growth | Model Setup | Differential Equation
+    Inputs: 8; mode selections: 0; route: loaded; uncaught exceptions: 0
+
+TEST FAILURES
+ FAIL  src/pages/ARMathLab.test.tsx > ARMathLab > renders the Phase 6 route shell
+ FAIL  src/pages/TheoremLibraryPage.test.tsx > TheoremLibraryPage > renders an all-theorems page with category links
+ FAIL  src/pages/TheoremLibraryPage.test.tsx > TheoremLibraryPage > renders a theorem category subpage
+ FAIL  src/pages/TheoremLibraryPage.test.tsx > TheoremLibraryPage > renders a universal interactive visual proof for every theorem detail page
+ FAIL  src/studios/audit/studioWorldClassScore.test.tsx > studio world-class score bar > scored mockup labs expose the figure kernel and a unique mode canvas
+ FAIL  src/studios/mockup/liveMathSmoke.test.tsx > live math lab smoke > computes statistics and discrete live values
+ FAIL  src/studios/mockup/MockupStudioApp.test.tsx > MockupStudioApp > renders geometry home and a nested lab
+ FAIL  src/studios/phase1/phase1Labs.test.tsx > phase 1 studio labs > rewires discrete sets and graphs to dedicated engines
+
+FAILED MODE CHECKS
+/algebra/exponents-logs / Equations: locator.click: Timeout 7000ms exceeded.
+Call log:
+[2m  - waiting for locator('nav[aria-label*="mode" i],nav.cs-tabs,nav.gt-tabs').first().locator('button').nth(3)[22m
+[2m    - locator resolved to <
+/algebra/cas / Differentiate: locator.click: Timeout 7000ms exceeded.
+Call log:
+[2m  - waiting for locator('nav[aria-label*="mode" i],nav.cs-tabs,nav.gt-tabs').first().locator('button').nth(5)[22m
+[2m    - locator resolved to <
+
+EVIDENCE FILES
+inventory.json: complete checked route/state list
+browser-results.json: headings, controls, initial interactions, errors and redirects
+mode-results.json: awaited mode selection assertions
+focused-results.json: reset/share/CI/ANOVA/advanced reproductions
+statistics-mode-results.json: selected statistics modes and resulting chart/output/input surfaces
+algebra-mode-diagnostics.json, cas-mode.png and exponents-logs-mode.png: blocked mode button evidence
+tests.log, typecheck.log, build.log: current command results
+
+No application source was modified by this audit.

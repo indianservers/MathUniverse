@@ -132,7 +132,7 @@ export default function TransformationsLab({ page }: { page: StudioMockupPage })
               <LiveRow color="#08b9dd" label="Isometry?" value={iso ? "Yes · distances kept" : "No · dilation"} />
               <StatusOk>{mode === "Compose" ? "Maps apply translate, then rotate, then dilate (right to left on the stack)." : `${mode} is applied to every vertex.`}</StatusOk>
               <StepList items={[`${mode} determines every image point uniquely.`, "Drag A to see the invariant.", "Share the URL to restore this figure."]} />
-              <ChallengeBox
+              <ChallengeBox kind="live"
                 prompt={mode === "Rotate" ? "Rotation of 180° around origin sends (1,0) to x=?" : "What is the live translation x (or k if dilating)?"}
                 expected={mode === "Rotate" ? -1 : expected}
                 hint={mode === "Rotate" ? "Halfway around the origin." : "Read the live T or k value."}

@@ -1,3 +1,4 @@
+import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import SectionCard from "../components/ui/SectionCard";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
@@ -134,7 +135,7 @@ const examMoves = [
 export default function Calculus({ page = "overview" }: { page?: CalculusPage }) {
   const topic = topics.find((item) => item.id === "calculus")!;
   const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
-  const [level, setLevel] = useState<CalculusLevel>("All");
+  const [level, setLevel] = useStudioState<CalculusLevel>("Calculus:Calculus:level", "All");
   const [mode, setMode] = useState<StudyMode>("Learn");
   const [query, setQuery] = useState("");
   useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);

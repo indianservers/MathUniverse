@@ -1,0 +1,333 @@
+[
+  {
+    "name": "Finance toolbar reset",
+    "initial": "10000",
+    "edited": "50000",
+    "afterReset": "50000",
+    "undoDisabled": true
+  },
+  {
+    "name": "Finance share figure state",
+    "url": "http://127.0.0.1:4317/mathematical-modelling/finance?fig=eyJrIjoxfQ",
+    "figure": "eyJrIjoxfQ"
+  },
+  {
+    "name": "Confidence widths 80 and 90 percent",
+    "level": "90",
+    "at80": "z × 10/√30 width\n4.67\nCaptured μ=50\n3 of 12\nTarget capture\n80 of 100\nChallenge\n\nA 95% CI aims to capture μ in 95 of 100 samples. Enter 95.\n\nCheck",
+    "at90": "z × 10/√30 width\n4.67\nCaptured μ=50\n3 of 12\nTarget capture\n90 of 100\nChallenge\n\nA 95% CI aims to capture μ in 95 of 100 samples. Enter 95.\n\nCheck"
+  },
+  {
+    "name": "ANOVA equal means",
+    "live": "MSB = var(means)\n0\nMSW\n1\nF = MSB/MSW\n0\nChallenge\n\nIf all group means are equal, F is near 1. Enter 1.\n\nCheck"
+  },
+  {
+    "name": "Advanced routing /geometry?tab=advanced",
+    "heading": [
+      "Geometry Studio"
+    ],
+    "enhancementTools": 0
+  },
+  {
+    "name": "Advanced routing /trigonometry?tab=advanced",
+    "heading": [
+      "Trigonometry Studio"
+    ],
+    "enhancementTools": 0
+  },
+  {
+    "name": "Advanced routing /mathematical-modelling/advanced",
+    "heading": [
+      "Advanced Mathematical Modelling"
+    ],
+    "enhancementTools": 25
+  },
+  {
+    "name": "Advanced routing /probability-statistics?tab=advanced",
+    "heading": [
+      "Statistics & Probability Studio"
+    ],
+    "enhancementTools": 0
+  },
+  {
+    "name": "Advanced routing /complex-numbers?tab=advanced",
+    "heading": [
+      "Welcome to Complex Numbers Studio"
+    ],
+    "enhancementTools": 0
+  },
+  {
+    "name": "Advanced routing /linear-algebra?mode=advanced",
+    "heading": [
+      "Linear Algebra Studio",
+      "Advanced Linear Algebra Workbench"
+    ],
+    "enhancementTools": 25
+  },
+  {
+    "name": "Advanced routing /discrete-world?workbench=advanced",
+    "heading": [
+      "Number & Discrete Mathematics Studio",
+      "Advanced Discrete Mathematics Workbench"
+    ],
+    "enhancementTools": 25
+  },
+  {
+    "name": "Mode traversal /algebra/expressions",
+    "checks": [
+      {
+        "name": "Simplify",
+        "pressed": "true",
+        "selected": null
+      },
+      {
+        "name": "Expand",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Factor",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Combine Terms",
+        "pressed": "false",
+        "selected": null
+      }
+    ]
+  },
+  {
+    "name": "Mode traversal /algebra/equations",
+    "checks": [
+      {
+        "name": "Linear",
+        "pressed": "true",
+        "selected": null
+      },
+      {
+        "name": "Quadratic",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Absolute Value",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Inequalities",
+        "pressed": "false",
+        "selected": null
+      }
+    ]
+  },
+  {
+    "name": "Mode traversal /algebra/functions",
+    "checks": [
+      {
+        "name": "Families",
+        "pressed": "true",
+        "selected": null
+      },
+      {
+        "name": "Transformations",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Composition",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Inverse",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Piecewise",
+        "pressed": "false",
+        "selected": null
+      }
+    ]
+  },
+  {
+    "name": "Mode traversal /algebra/polynomials",
+    "checks": [
+      {
+        "name": "Roots",
+        "pressed": "true",
+        "selected": null
+      },
+      {
+        "name": "Factors",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Division",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "End Behavior",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Multiplicity",
+        "pressed": "false",
+        "selected": null
+      }
+    ]
+  },
+  {
+    "name": "Mode traversal /algebra/systems",
+    "checks": [
+      {
+        "name": "Graphing",
+        "pressed": "true",
+        "selected": null
+      },
+      {
+        "name": "Substitution",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Elimination",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Matrices",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Inequalities",
+        "pressed": "false",
+        "selected": null
+      }
+    ]
+  },
+  {
+    "name": "Mode traversal /algebra/exponents-logs",
+    "error": "locator.click: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav[aria-label*=\"mode\" i] button,[role=tablist] [role=tab]').filter({ hasText: 'Equations' }).first()\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"\" type=\"button\" ari"
+  },
+  {
+    "name": "Mode traversal /algebra/sequences",
+    "checks": [
+      {
+        "name": "Arithmetic",
+        "pressed": "true",
+        "selected": null
+      },
+      {
+        "name": "Geometric",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Recursive",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Sigma",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Patterns",
+        "pressed": "true",
+        "selected": null
+      }
+    ]
+  },
+  {
+    "name": "Mode traversal /algebra/proof",
+    "checks": [
+      {
+        "name": "Identities",
+        "pressed": "true",
+        "selected": null
+      },
+      {
+        "name": "Equation Proof",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Induction",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Inequality",
+        "pressed": "false",
+        "selected": null
+      },
+      {
+        "name": "Counterexample",
+        "pressed": "true",
+        "selected": null
+      }
+    ]
+  },
+  {
+    "name": "Mode traversal /algebra/cas",
+    "error": "locator.click: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav[aria-label*=\"mode\" i] button,[role=tablist] [role=tab]').filter({ hasText: 'Differentiate' }).first()\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"\" type=\"button\""
+  },
+  {
+    "name": "Mode traversal /algebraic-structures/structure-test",
+    "checks": []
+  },
+  {
+    "name": "Mode traversal /algebraic-structures/cayley-tables",
+    "checks": []
+  },
+  {
+    "name": "Mode traversal /algebraic-structures/semigroups-monoids",
+    "checks": []
+  },
+  {
+    "name": "Mode traversal /algebraic-structures/posets-lattices",
+    "checks": []
+  },
+  {
+    "name": "Mode traversal /algebraic-structures/boolean-algebra",
+    "checks": []
+  },
+  {
+    "name": "Mode traversal /graph-theory",
+    "checks": [
+      {
+        "name": "Build",
+        "pressed": null,
+        "selected": "true"
+      },
+      {
+        "name": "Representations",
+        "pressed": null,
+        "selected": "true"
+      },
+      {
+        "name": "Algorithms",
+        "pressed": null,
+        "selected": "true"
+      },
+      {
+        "name": "Properties",
+        "pressed": null,
+        "selected": "true"
+      },
+      {
+        "name": "Learn & Validate",
+        "pressed": null,
+        "selected": "true"
+      }
+    ]
+  }
+]

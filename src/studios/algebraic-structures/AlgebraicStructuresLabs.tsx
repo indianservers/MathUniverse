@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { Check, GitFork, GitMerge, Grid3X3, HelpCircle, Share2, ToggleLeft, Trophy } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { Link, useSearchParams } from "react-router-dom";
@@ -31,6 +32,7 @@ export const structureTabs = [
   { id: "semigroups-monoids", label: "Semigroups & Monoids", hint: "Explore closure & identity", to: "/algebraic-structures/semigroups-monoids" },
   { id: "posets-lattices", label: "Posets & Lattices", hint: "Visualize order structures", to: "/algebraic-structures/posets-lattices" },
   { id: "boolean-algebra", label: "Boolean Algebra", hint: "Logic and sets", to: "/algebraic-structures/boolean-algebra" },
+  { id: "groups-rings-fields", label: "Groups, Rings & Fields", hint: "Cosets, units and quotients", to: "/algebraic-structures/groups-rings-fields" },
 ] as const;
 
 export type AlgebraicStructuresPage = (typeof structureTabs)[number]["id"];
@@ -101,7 +103,7 @@ export function LabToolbar({
         <option value="z4">Cyclic group Z₄</option>
         <option value="z5">Cyclic group Z₅</option>
         <option value="and">Boolean AND</option>
-        <option value="max">Max on {0,1,2,3}</option>
+        <option value="max">Max on {"{0,1,2,3}"}</option>
         <option value="random">Random magma</option>
       </select>
       <button className="as-ghost" type="button" onClick={onReset}>Reset</button>
@@ -121,7 +123,7 @@ function CycleGraph({ elements, table, identity }: { elements: string[]; table: 
   const cx = 160;
   const cy = 120;
   const r = 78;
-  const [shift, setShift] = useState<Record<string, { x: number; y: number }>>({});
+  const [shift, setShift] = useStudioState<Record<string, { x: number; y: number }>>("AlgebraicStructuresLabs:CycleGraph:shift", {});
   const drag = useRef<string | null>(null);
   const layout = elements.map((el, index) => {
     const angle = -Math.PI / 2 + (index * 2 * Math.PI) / n;
@@ -175,7 +177,7 @@ function AssocPlay({ elements, table }: { elements: string[]; table: OperationTa
   const bc = table[b]?.[c] ?? "?";
   const left = table[ab]?.[c] ?? "?";
   const right = table[a]?.[bc] ?? "?";
-  const [phase, setPhase] = useState(0);
+  const [phase, setPhase] = useStudioState("AlgebraicStructuresLabs:AssocPlay:phase", 0);
   return (
     <div className="as-assoc" data-phase={phase}>
       <p>Associativity animation: (ab)c vs a(bc)</p>
@@ -205,15 +207,16 @@ function PropertyList({ info }: { info: StructureClassification }) {
           <div><b>{item.title}</b><small>{item.detail}</small></div>
         </div>
       ))}
-      <div className="as-ok"><Check /><span>{info.abelian ? "(S, *) is an abelian group. This structure is isomorphic to Zₙ (addition modulo n)." : info.group ? "(S, *) is a group." : info.monoid ? "This is a monoid." : info.semigroup ? "This is a semigroup." : info.magma ? "This is a magma (closed)." : "Not closed."}</span></div>
+      <div className="as-ok"><Check /><span>{info.abelian ? "(S, *) is an abelian group. It is cyclic only if one element generates the whole group." : info.group ? "(S, *) is a group." : info.monoid ? "This is a monoid." : info.semigroup ? "This is a semigroup." : info.magma ? "This is a magma (closed)." : "Not closed."}</span></div>
       {info.failures[0] ? <p className="as-note">Not a group because {info.failures[0]}</p> : null}
     </div>
   );
 }
 
-function Challenge({ prompt, expected, hint }: { prompt: string; expected: string; hint: string }) {
+function Challenge({ prompt, expected, hint, kind = "live" }: { prompt: string; expected: string; hint: string; kind?: "concept" | "live" }) {
   const [answer, setAnswer] = useState("");
   const [status, setStatus] = useState("");
+  useEffect(() => { setAnswer(""); setStatus(""); }, [prompt, expected]);
   return (
     <section className="as-card as-challenge">
       <h2><Trophy /> Challenge</h2>
@@ -222,7 +225,7 @@ function Challenge({ prompt, expected, hint }: { prompt: string; expected: strin
       <div className="as-check-row">
         <button className="as-cta" type="button" onClick={() => {
           const normalize = (value: string) => value.replace(/\s/g, "").replace(/∧/g, ",").toLowerCase();
-          setStatus(normalize(answer) === normalize(expected) ? "Correct — that matches the live model." : hint);
+          setStatus(answer.trim() && normalize(answer) === normalize(expected) ? kind === "live" ? "Correct — that matches the current model." : "Correct — this concept check is solved." : hint);
         }}>Check</button>
         <button className="as-ghost" type="button" onClick={() => setStatus(hint)}>Hint</button>
       </div>
@@ -294,12 +297,12 @@ function maxTable(size: number) {
 function useZ4() {
   const seed = modularTable(4, "add");
   const [params] = useSearchParams();
-  const [setText, setSetText] = useState(seed.elements.join(", "));
+  const [setText, setSetText] = useStudioState("AlgebraicStructuresLabs:useZ4:setText", seed.elements.join(", "));
   const [table, setTable] = useState<OperationTable>(seed.table);
-  const [left, setLeft] = useState("1");
-  const [right, setRight] = useState("3");
-  const [result, setResult] = useState(seed.table["1"]?.["3"] ?? "0");
-  const [help, setHelp] = useState("");
+  const [left, setLeft] = useStudioState("AlgebraicStructuresLabs:useZ4:left", "1");
+  const [right, setRight] = useStudioState("AlgebraicStructuresLabs:useZ4:right", "3");
+  const [result, setResult] = useStudioState("AlgebraicStructuresLabs:useZ4:result", seed.table["1"]?.["3"] ?? "0");
+  const [help, setHelp] = useStudioState("AlgebraicStructuresLabs:useZ4:help", "");
   const elements = parseSet(setText, seed.elements);
   const info = useMemo(() => classifyOperation(elements, rebuildOperationTable(elements, table)), [elements, table]);
   const load = (kind: string) => {
@@ -345,14 +348,16 @@ function useZ4() {
       window.removeEventListener("as-lab-help", onHelp);
     };
   });
-  return { setText, setSetText, elements, table, setTable, left, setLeft, right, setRight, result, setResult, info, load, reset: () => load("z4"), help, likeZn: info.abelian && info.group };
+  return { setText, setSetText, elements, table, setTable, left, setLeft, right, setRight, result, setResult, info, load, reset: () => load("z4"), help, likeZn: elements.length>0 && elements.every((a,i)=>a===String(i)&&elements.every((b,j)=>table[a]?.[b]===String((i+j)%elements.length))) };
 }
 
 export function StructureTestLab() {
   const state = useZ4();
-  const [view, setView] = useState<"graph" | "cayley" | "diagram">("graph");
-  const [auto, setAuto] = useState(true);
-  const product = state.table["2"]?.["3"] ?? state.table[state.left]?.[state.right] ?? "";
+  const [view, setView] = useStudioState<"graph" | "cayley" | "diagram">("AlgebraicStructuresLabs:StructureTestLab:view", "graph");
+  const [auto, setAuto] = useStudioState("AlgebraicStructuresLabs:StructureTestLab:auto", true);
+  const challengeA = state.elements.includes("2") ? "2" : state.elements[0] ?? state.left;
+  const challengeB = state.elements.includes("3") ? "3" : state.elements[1] ?? challengeA;
+  const product = state.table[challengeA]?.[challengeB] ?? "";
   return (
     <div>
       <div className="as-grid-3">
@@ -414,7 +419,7 @@ export function StructureTestLab() {
             <tbody>{state.elements.map((el) => <tr key={el}><td>{el}</td><td>{state.info.inverseOf[el] ?? "—"}</td><td>{state.info.identity ? `${el} * ${state.info.inverseOf[el] ?? "?"} = ${state.info.identity}` : "—"}</td></tr>)}</tbody>
           </table>
         </section>
-        <Challenge prompt={`Using the current operation table, what is 2 * 3?`} expected={product} hint="Read the Cayley cell at row 2, column 3 (or pick another pair if 2 and 3 are missing)." />
+        <Challenge prompt={`Using the current operation table, what is ${challengeA} * ${challengeB}?`} expected={product} hint={`Read the Cayley cell at row ${challengeA}, column ${challengeB}.`} />
       </div>
     </div>
   );
@@ -422,8 +427,8 @@ export function StructureTestLab() {
 
 export function CayleyTablesLab() {
   const state = useZ4();
-  const [cellA, setCellA] = useState("2");
-  const [cellB, setCellB] = useState("3");
+  const [cellA, setCellA] = useStudioState("AlgebraicStructuresLabs:CayleyTablesLab:cellA", "2");
+  const [cellB, setCellB] = useStudioState("AlgebraicStructuresLabs:CayleyTablesLab:cellB", "3");
   const entry = state.table[cellA]?.[cellB] ?? "";
   return (
     <div>
@@ -449,7 +454,7 @@ export function CayleyTablesLab() {
           <CayleyGrid elements={state.elements} table={state.table} onChange={state.setTable} hot={[cellA, cellB]} />
           <h2>Structure visualization</h2>
           <CycleGraph elements={state.elements} table={state.table} identity={state.info.identity} />
-          <div className="as-note">{state.likeZn ? "This table matches addition modulo 4 (Z₄)." : "Custom table — homomorphism to Z₂ only holds for mod-4 addition."}</div>
+          <div className="as-note">{state.likeZn ? `This table matches addition modulo ${state.elements.length}.` : "Custom table — homomorphism to Z₂ only holds for mod-4 addition."}</div>
         </section>
         <div>
           <section className="as-card">
@@ -485,7 +490,7 @@ export function CayleyTablesLab() {
             <label className="as-field">Column<select value={cellB} onChange={(event) => setCellB(event.target.value)}>{state.elements.map((el) => <option key={el}>{el}</option>)}</select></label>
           </div>
         </section>
-        <Challenge prompt="Using the current Cayley table, what is 3 * 2?" expected={state.table["3"]?.["2"] ?? entry} hint="Read the cell at row 3, column 2." />
+        <Challenge prompt={`Using the current Cayley table, what is ${state.elements.includes("3") ? "3" : (state.elements[0] ?? "")} * ${state.elements.includes("2") ? "2" : (state.elements[1] ?? "")}?`} expected={state.table[state.elements.includes("3") ? "3" : (state.elements[0] ?? "")]?.[state.elements.includes("2") ? "2" : (state.elements[1] ?? "")] ?? entry} hint="Read the cell for the two stated elements." />
       </div>
     </div>
   );
@@ -493,9 +498,9 @@ export function CayleyTablesLab() {
 
 export function SemigroupsMonoidsLab() {
   const state = useZ4();
-  const [example, setExample] = useState("z4");
-  const [testE, setTestE] = useState("0");
-  const [view, setView] = useState<"graph" | "cayley" | "assoc">("graph");
+  const [example, setExample] = useStudioState("AlgebraicStructuresLabs:SemigroupsMonoidsLab:example", "z4");
+  const [testE, setTestE] = useStudioState("AlgebraicStructuresLabs:SemigroupsMonoidsLab:testE", "0");
+  const [view, setView] = useStudioState<"graph" | "cayley" | "assoc">("AlgebraicStructuresLabs:SemigroupsMonoidsLab:view", "graph");
   const identityHolds = state.elements.every((x) => state.table[testE]?.[x] === x && state.table[x]?.[testE] === x);
   return (
     <div>
@@ -568,18 +573,18 @@ export function SemigroupsMonoidsLab() {
         </section>
       </div>
       <div style={{ marginTop: 12 }}>
-        <Challenge prompt="Using the current structure, find the inverse of 3." expected={state.info.inverseOf["3"] ?? "none"} hint="Find b such that 3 * b is the identity, or write none." />
+        <Challenge prompt={`Using the current structure, find the inverse of ${state.elements.includes("3") ? "3" : (state.elements[0] ?? "")}.`} expected={state.info.inverseOf[state.elements.includes("3") ? "3" : (state.elements[0] ?? "")] ?? "none"} hint="Find an element whose product with the stated element is the identity, or write none." />
       </div>
     </div>
   );
 }
 
 export function PosetsLatticesLab() {
-  const [setText, setSetText] = useState("0, a, b, 1");
-  const [relText, setRelText] = useState("0 ≤ a, 0 ≤ b, a ≤ 1, b ≤ 1");
-  const [meetA, setMeetA] = useState("a");
-  const [meetB, setMeetB] = useState("b");
-  const [nodes, setNodes] = useState<Record<string, [number, number]>>({ "1": [180, 48], a: [90, 140], b: [270, 140], "0": [180, 232] });
+  const [setText, setSetText] = useStudioState("AlgebraicStructuresLabs:PosetsLatticesLab:setText", "0, a, b, 1");
+  const [relText, setRelText] = useStudioState("AlgebraicStructuresLabs:PosetsLatticesLab:relText", "0 ≤ a, 0 ≤ b, a ≤ 1, b ≤ 1");
+  const [meetA, setMeetA] = useStudioState("AlgebraicStructuresLabs:PosetsLatticesLab:meetA", "a");
+  const [meetB, setMeetB] = useStudioState("AlgebraicStructuresLabs:PosetsLatticesLab:meetB", "b");
+  const [nodes, setNodes] = useStudioState<Record<string, [number, number]>>("AlgebraicStructuresLabs:PosetsLatticesLab:nodes", { "1": [180, 48], a: [90, 140], b: [270, 140], "0": [180, 232] });
   const drag = useRef<string | null>(null);
   const elements = parseSet(setText, ["0", "a", "b", "1"]);
   const pairs = relText
@@ -675,13 +680,13 @@ export function PosetsLatticesLab() {
 }
 
 export function BooleanAlgebraLab() {
-  const [expr, setExpr] = useState("A & (!B | C)");
-  const [law, setLaw] = useState<"de-morgan" | "distributive" | "associative" | "complement">("de-morgan");
-  const [a, setA] = useState(true);
-  const [b, setB] = useState(false);
-  const [c, setC] = useState(true);
-  const [view, setView] = useState<"simp" | "truth" | "kmap">("simp");
-  const [group, setGroup] = useState<Record<string, boolean>>({});
+  const [expr, setExpr] = useStudioState("AlgebraicStructuresLabs:BooleanAlgebraLab:expr", "A & (!B | C)");
+  const [law, setLaw] = useStudioState<"de-morgan" | "distributive" | "associative" | "complement">("AlgebraicStructuresLabs:BooleanAlgebraLab:law", "de-morgan");
+  const [a, setA] = useStudioState("AlgebraicStructuresLabs:BooleanAlgebraLab:a", true);
+  const [b, setB] = useStudioState("AlgebraicStructuresLabs:BooleanAlgebraLab:b", false);
+  const [c, setC] = useStudioState("AlgebraicStructuresLabs:BooleanAlgebraLab:c", true);
+  const [view, setView] = useStudioState<"simp" | "truth" | "kmap">("AlgebraicStructuresLabs:BooleanAlgebraLab:view", "simp");
+  const [group, setGroup] = useStudioState<Record<string, boolean>>("AlgebraicStructuresLabs:BooleanAlgebraLab:group", {});
   const analysis = useMemo(() => {
     try {
       return { ...simplifyBooleanExpression(expr), error: "" };
@@ -794,7 +799,7 @@ export function BooleanAlgebraLab() {
           <h2>Generated Circuit Layers</h2>
           <div className="as-layers">{layers.map((layer, index) => <span key={index}>Layer {index + 1}: {layer.map((item) => item.label).join(", ")}</span>)}</div>
         </section>
-        <Challenge prompt="Simplify the following Boolean expression to minimal form: !(A | B) & (A | !C)" expected={(() => { try { return simplifyBooleanExpression("!(A | B) & (A | !C)").simplified.replace(/\s/g, ""); } catch { return "!A&!B"; } })()} hint="De Morgan: !(A | B) = !A & !B, then absorb with (A | !C)." />
+        <Challenge kind="concept" prompt="Simplify the following Boolean expression to minimal form: !(A | B) & (A | !C)" expected={(() => { try { return simplifyBooleanExpression("!(A | B) & (A | !C)").simplified.replace(/\s/g, ""); } catch { return "!A&!B"; } })()} hint="De Morgan: !(A | B) = !A & !B, then absorb with (A | !C)." />
       </div>
     </div>
   );

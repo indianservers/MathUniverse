@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useMemo, useRef, useState, type PointerEvent } from "react";
 import { Maximize2, Minus, Plus, RotateCcw } from "lucide-react";
 
@@ -62,8 +63,8 @@ export function Phase1Graph({
   height?: number;
   label?: string;
 }) {
-  const [zoom, setZoom] = useState(1);
-  const [offset, setOffset] = useState<Point>({ x: 0, y: 0 });
+  const [zoom, setZoom] = useStudioState("Phase1Graph:Phase1Graph:zoom", 1);
+  const [offset, setOffset] = useStudioState<Point>("Phase1Graph:Phase1Graph:offset", { x: 0, y: 0 });
   const [drag, setDrag] = useState<{ kind: "point"; index: number } | { kind: "pan"; clientX: number; clientY: number; offset: Point } | null>(null);
   const [hover, setHover] = useState<Point | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);

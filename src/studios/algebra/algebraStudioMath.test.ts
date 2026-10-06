@@ -111,6 +111,8 @@ describe("Algebra Studio shared math", () => {
     expect(geometricSeriesSum(5, 1, 4)).toBe(20);
   });
 
+  it("does not certify sample matches or rounded near-zero differences as identities",()=>{expect(expressionsEquivalent('(x-1)*(x-2)*(x-3)*(x-4)','0')).toBe(false);expect(expressionsEquivalent('0.0000000000001','0')).toBe(false);});
+
   it("treats expanded and factored forms as equivalent", () => {
     expect(expressionsEquivalent("(x-1)*(x+2)", "x^2+x-2")).toBe(true);
     expect(expressionsEquivalent("2x+2", "2(x+1)")).toBe(true);

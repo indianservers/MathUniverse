@@ -1,4 +1,5 @@
-import { useMemo, useState, type KeyboardEvent } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useMemo, type KeyboardEvent } from "react";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import { MockupLearningStrip } from "../../mockup/MockupStudioChrome";
 import { useLabMode } from "../../mockup/studioLabKit";
@@ -14,12 +15,12 @@ import "./PrimesLab.css";
 export default function PrimesLab({ page }: { page: StudioMockupPage }) {
   const { tabs, mode, setMode } = useLabMode(page);
   const teacher = usePrimesSession();
-  const [sieveN, setSieveN] = useState(30);
-  const [sieveStep, setSieveStep] = useState(0);
-  const [treeN, setTreeN] = useState(84);
-  const [gcdValues, setGcdValues] = useState([84, 60]);
-  const [divN, setDivN] = useState(123456);
-  const [patternN, setPatternN] = useState(100);
+  const [sieveN, setSieveN] = useStudioState("PrimesLab:PrimesLab:sieveN", 30);
+  const [sieveStep, setSieveStep] = useStudioState("PrimesLab:PrimesLab:sieveStep", 0);
+  const [treeN, setTreeN] = useStudioState("PrimesLab:PrimesLab:treeN", 84);
+  const [gcdValues, setGcdValues] = useStudioState("PrimesLab:PrimesLab:gcdValues", [84, 60]);
+  const [divN, setDivN] = useStudioState("PrimesLab:PrimesLab:divN", 123456);
+  const [patternN, setPatternN] = useStudioState("PrimesLab:PrimesLab:patternN", 100);
 
   const go = (next: PrimesMode) => setMode(next);
 

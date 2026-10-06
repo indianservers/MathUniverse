@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useState } from "react";
 import { GeometryLabShell } from "../geometryLabUx";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
@@ -59,7 +60,7 @@ const GOALS: Record<TriangleModeId, string> = {
 
 export default function TrianglesLab({ page }: { page: StudioMockupPage }) {
   const { mode, setMode, modes } = useTriangleLabMode();
-  const [pulse, setPulse] = useState("observe");
+  const [pulse, setPulse] = useStudioState("TrianglesLab:TrianglesLab:pulse", "observe");
   const current = modes.find((item) => item.id === mode) ?? modes[0]!;
   const strip = STRIPS[mode];
 

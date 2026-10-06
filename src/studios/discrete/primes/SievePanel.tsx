@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useMemo, useState } from "react";
 import { Field, LiveRow, Panel, SliderRow } from "../../mockup/studioLabKit";
 import { ChallengeCard, Feedback, PlaybackBar, Tip, copyText, useStepPlayer } from "./primesUi";
@@ -29,14 +30,14 @@ type Props = {
 };
 
 export default function SievePanel({ n, setN, step, setStep, teacherReveal, showAlgorithm, pauseEachStep, onExploreFactor }: Props) {
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(3);
-  const [selectMode, setSelectMode] = useState(false);
-  const [focus, setFocus] = useState<number | null>(null);
-  const [feedback, setFeedback] = useState<{ ok: boolean; text: string } | null>(null);
-  const [challengeKey, setChallengeKey] = useState(0);
+  const [playing, setPlaying] = useStudioState("SievePanel:SievePanel:playing", false);
+  const [speed, setSpeed] = useStudioState("SievePanel:SievePanel:speed", 3);
+  const [selectMode, setSelectMode] = useStudioState("SievePanel:SievePanel:selectMode", false);
+  const [focus, setFocus] = useStudioState<number | null>("SievePanel:SievePanel:focus", null);
+  const [feedback, setFeedback] = useStudioState<{ ok: boolean; text: string } | null>("SievePanel:SievePanel:feedback", null);
+  const [challengeKey, setChallengeKey] = useStudioState("SievePanel:SievePanel:challengeKey", 0);
   const [copied, setCopied] = useState("");
-  const [sound, setSound] = useState(false);
+  const [sound, setSound] = useStudioState("SievePanel:SievePanel:sound", false);
   const reduced = useReducedMotion();
 
   const model = useMemo(() => applySieveSteps(n, step), [n, step]);

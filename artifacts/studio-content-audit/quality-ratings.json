@@ -1,0 +1,192 @@
+[
+  {
+    "id": "algebra",
+    "name": "Algebra Studio",
+    "content": 86,
+    "tools": 87,
+    "mathematics": 85,
+    "ui": 86,
+    "overall": 86,
+    "remaining": "Broaden parameterized inequality and rational-function practice."
+  },
+  {
+    "id": "algebraic-structures",
+    "name": "Algebraic Structures Studio",
+    "content": 80,
+    "tools": 80,
+    "mathematics": 83,
+    "ui": 82,
+    "overall": 81.3,
+    "remaining": "Residue-ring tools cover a family; permutation groups and extension fields need dedicated models."
+  },
+  {
+    "id": "geometry",
+    "name": "Geometry Studio",
+    "content": 86,
+    "tools": 88,
+    "mathematics": 84,
+    "ui": 84,
+    "overall": 85.5,
+    "remaining": "More formal proofs and constrained conic constructions remain."
+  },
+  {
+    "id": "trigonometry",
+    "name": "Trigonometry Studio",
+    "content": 87,
+    "tools": 89,
+    "mathematics": 86,
+    "ui": 86,
+    "overall": 87,
+    "remaining": "Expand Fourier convergence and polar-curve exercises."
+  },
+  {
+    "id": "calculus",
+    "name": "Calculus Studio",
+    "content": 86,
+    "tools": 87,
+    "mathematics": 84,
+    "ui": 83,
+    "overall": 85,
+    "remaining": "Add general symbolic convergence and vector-calculus proof practice."
+  },
+  {
+    "id": "number-systems",
+    "name": "Number Systems Studio",
+    "content": 81,
+    "tools": 80,
+    "mathematics": 83,
+    "ui": 83,
+    "overall": 81.8,
+    "remaining": "Add arbitrary-precision representation and rounding exercises."
+  },
+  {
+    "id": "linear-algebra",
+    "name": "Linear Algebra Studio",
+    "content": 87,
+    "tools": 89,
+    "mathematics": 86,
+    "ui": 85,
+    "overall": 86.8,
+    "remaining": "Advanced workbenches need richer graphical feedback."
+  },
+  {
+    "id": "complex-numbers",
+    "name": "Complex Numbers Studio",
+    "content": 84,
+    "tools": 86,
+    "mathematics": 84,
+    "ui": 83,
+    "overall": 84.3,
+    "remaining": "Complex integration and analytic continuation need dedicated contour models."
+  },
+  {
+    "id": "mathematical-modelling",
+    "name": "Mathematical Modelling Studio",
+    "content": 84,
+    "tools": 88,
+    "mathematics": 81,
+    "ui": 83,
+    "overall": 84,
+    "remaining": "Add external-data fitting and out-of-sample validation workflows."
+  },
+  {
+    "id": "discrete-world",
+    "name": "Number & Discrete Mathematics Studio",
+    "content": 86,
+    "tools": 87,
+    "mathematics": 84,
+    "ui": 83,
+    "overall": 85,
+    "remaining": "More algorithm traces and graded proof exercises remain."
+  },
+  {
+    "id": "set-theory",
+    "name": "Set Theory and Relations",
+    "content": 80,
+    "tools": 80,
+    "mathematics": 83,
+    "ui": 82,
+    "overall": 81.3,
+    "remaining": "Infinite cardinality and axiomatic set theory remain introductory."
+  },
+  {
+    "id": "graph-theory",
+    "name": "Graph Theory",
+    "content": 83,
+    "tools": 85,
+    "mathematics": 85,
+    "ui": 82,
+    "overall": 83.8,
+    "remaining": "Add a dedicated flow/matching visualization in this studio."
+  },
+  {
+    "id": "probability-statistics",
+    "name": "Statistics & Probability Studio",
+    "content": 90,
+    "tools": 90,
+    "mathematics": 91,
+    "ui": 86,
+    "overall": 89.3,
+    "remaining": "Advanced inference assumptions need more automated diagnostics and power tools."
+  },
+  {
+    "id": "differential-equations",
+    "name": "Differential Equations Studio",
+    "content": 87,
+    "tools": 89,
+    "mathematics": 87,
+    "ui": 85,
+    "overall": 87,
+    "remaining": "PDE and boundary-value tools cover separated modes rather than general solvers."
+  },
+  {
+    "id": "continued-fractions",
+    "name": "Continued Fractions Lab",
+    "content": 80,
+    "tools": 79,
+    "mathematics": 85,
+    "ui": 82,
+    "overall": 81.5,
+    "remaining": "Expand quadratic irrational and Pell equation solvers."
+  },
+  {
+    "id": "famous-problems",
+    "name": "Famous Problems Atlas",
+    "content": 77,
+    "tools": 69,
+    "mathematics": 81,
+    "ui": 82,
+    "overall": 77.3,
+    "remaining": "Atlas and finite experiments cannot establish open conjectures."
+  },
+  {
+    "id": "stats-inference",
+    "name": "Statistics Inference Studio",
+    "content": 83,
+    "tools": 81,
+    "mathematics": 88,
+    "ui": 83,
+    "overall": 83.8,
+    "remaining": "Focused companion; richer procedures are in Statistics & Probability."
+  },
+  {
+    "id": "special-functions",
+    "name": "Special Functions Gallery",
+    "content": 79,
+    "tools": 76,
+    "mathematics": 82,
+    "ui": 82,
+    "overall": 79.8,
+    "remaining": "More recurrence, orthogonality and numerical error tools remain."
+  },
+  {
+    "id": "advanced-differential-equations",
+    "name": "Advanced Differential Equations Lab",
+    "content": 79,
+    "tools": 78,
+    "mathematics": 84,
+    "ui": 82,
+    "overall": 80.8,
+    "remaining": "Companion demonstration; full methods live in the main Differential Equations Studio."
+  }
+]

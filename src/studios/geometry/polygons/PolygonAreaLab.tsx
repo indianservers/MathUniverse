@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SliderRow } from "../../mockup/studioLabKit";
 import {
@@ -32,19 +33,19 @@ import {
 type AreaSub = "regular" | "decomposition" | "composite" | "coordinate";
 
 export default function PolygonAreaLab({ pulse = "observe" }: { pulse?: string }) {
-  const [sub, setSub] = useState<AreaSub>("regular");
-  const [n, setN] = useState(6);
-  const [R, setR] = useState(3.6);
+  const [sub, setSub] = useStudioState<AreaSub>("PolygonAreaLab:PolygonAreaLab:sub", "regular");
+  const [n, setN] = useStudioState("PolygonAreaLab:PolygonAreaLab:n", 6);
+  const [R, setR] = useStudioState("PolygonAreaLab:PolygonAreaLab:R", 3.6);
   const [showApothem, setShowApothem] = useState(true);
-  const [wedges, setWedges] = useState(6);
-  const [shape, setShape] = useState("l-shape");
+  const [wedges, setWedges] = useStudioState("PolygonAreaLab:PolygonAreaLab:wedges", 6);
+  const [shape, setShape] = useStudioState("PolygonAreaLab:PolygonAreaLab:shape", "l-shape");
   const [showParts, setShowParts] = useState(true);
   const [showDims, setShowDims] = useState(true);
   const [tableOpen, setTableOpen] = useState(false);
-  const [verts, setVerts] = useState<Vec[]>(() => [
+  const [verts, setVerts] = useStudioState<Vec[]>("PolygonAreaLab:PolygonAreaLab:verts", () => [
     { x: -3, y: -2 }, { x: 3, y: -2 }, { x: 2.2, y: 2.4 }, { x: -0.4, y: 3.1 }, { x: -3.2, y: 1.2 },
   ]);
-  const [grid, setGrid] = useState<Vec[]>(() => [
+  const [grid, setGrid] = useStudioState<Vec[]>("PolygonAreaLab:PolygonAreaLab:grid", () => [
     { x: -2, y: -2 }, { x: 3, y: -2 }, { x: 3, y: 1 }, { x: 0, y: 3 }, { x: -2, y: 2 },
   ]);
   const drag = useRef<number | null>(null);

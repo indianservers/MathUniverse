@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState } from "react";
 import { SliderRow } from "../../mockup/studioLabKit";
 import {
@@ -38,11 +39,11 @@ const PRESETS = [
 type HL = "interior" | "exterior" | "apothem" | "radius" | "side" | "diagonals" | "area" | "center" | "circle" | null;
 
 export default function RegularPolygonLab({ pulse = "observe" }: { pulse?: string }) {
-  const [n, setN] = useState(8);
-  const [R, setR] = useState(4);
-  const [rot, setRot] = useState(0);
-  const [opacity, setOpacity] = useState(0.16);
-  const [advanced, setAdvanced] = useState(false);
+  const [n, setN] = useStudioState("RegularPolygonLab:RegularPolygonLab:n", 8);
+  const [R, setR] = useStudioState("RegularPolygonLab:RegularPolygonLab:R", 4);
+  const [rot, setRot] = useStudioState("RegularPolygonLab:RegularPolygonLab:rot", 0);
+  const [opacity, setOpacity] = useStudioState("RegularPolygonLab:RegularPolygonLab:opacity", 0.16);
+  const [advanced, setAdvanced] = useStudioState("RegularPolygonLab:RegularPolygonLab:advanced", false);
   const [showCenter, setShowCenter] = useState(true);
   const [showCircle, setShowCircle] = useState(true);
   const [showApothem, setShowApothem] = useState(true);
@@ -51,8 +52,8 @@ export default function RegularPolygonLab({ pulse = "observe" }: { pulse?: strin
   const [showInterior, setShowInterior] = useState(true);
   const [showExterior, setShowExterior] = useState(false);
   const [showLabels, setShowLabels] = useState(true);
-  const [highlight, setHL] = useState<HL>(null);
-  const [challengeN, setChallengeN] = useState(8);
+  const [highlight, setHL] = useStudioState<HL>("RegularPolygonLab:RegularPolygonLab:highlight", null);
+  const [challengeN, setChallengeN] = useStudioState("RegularPolygonLab:RegularPolygonLab:challengeN", 8);
 
   const m = useMemo(() => regularMetrics(n, R), [n, R]);
   const verts = useMemo(() => regularPolygonVertices(n, R, rot), [n, R, rot]);

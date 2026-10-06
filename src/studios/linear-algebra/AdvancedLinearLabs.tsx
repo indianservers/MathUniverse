@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
@@ -57,9 +58,9 @@ function setEntry(matrix: Mat, row: number, col: number, value: number) {
 }
 
 export function CayleyHamiltonLab({ page }: { page: StudioMockupPage }) {
-  const [A, setA] = useState<Mat>([[1, 1], [0, 1]]);
-  const [B, setB] = useState<Mat>([[1, 1, 0], [0, 2, 1], [0, 0, 3]]);
-  const [exponent, setExponent] = useState(4);
+  const [A, setA] = useStudioState<Mat>("AdvancedLinearLabs:CayleyHamiltonLab:A", [[1, 1], [0, 1]]);
+  const [B, setB] = useStudioState<Mat>("AdvancedLinearLabs:CayleyHamiltonLab:B", [[1, 1, 0], [0, 2, 1], [0, 0, 3]]);
+  const [exponent, setExponent] = useStudioState("AdvancedLinearLabs:CayleyHamiltonLab:exponent", 4);
   const report = useMemo(() => cayleyHamilton(A), [A]);
   const cubic = useMemo(() => cayleyHamilton(B), [B]);
   const powers = powerCoefficients2(report.trace, report.determinant, exponent);
@@ -109,9 +110,9 @@ export function CayleyHamiltonLab({ page }: { page: StudioMockupPage }) {
 }
 
 export function DiagonalizationLab({ page }: { page: StudioMockupPage }) {
-  const [A, setA] = useState<Mat>([[2, 1], [0, 3]]);
-  const [preset, setPreset] = useState(0);
-  const [stage, setStage] = useState(2);
+  const [A, setA] = useStudioState<Mat>("AdvancedLinearLabs:DiagonalizationLab:A", [[2, 1], [0, 3]]);
+  const [preset, setPreset] = useStudioState("AdvancedLinearLabs:DiagonalizationLab:preset", 0);
+  const [stage, setStage] = useStudioState("AdvancedLinearLabs:DiagonalizationLab:stage", 2);
   const info = useMemo(() => diagonalize2(A), [A]);
   const cube = diagonal3Presets[preset];
   const samples = useMemo(() => {
@@ -180,11 +181,11 @@ export function DiagonalizationLab({ page }: { page: StudioMockupPage }) {
 }
 
 export function QuadraticFormsLab({ page }: { page: StudioMockupPage }) {
-  const [a, setA] = useState(2);
-  const [b, setB] = useState(0.4);
-  const [c, setC] = useState(1);
-  const [x, setX] = useState(0.8);
-  const [y, setY] = useState(-0.3);
+  const [a, setA] = useStudioState("AdvancedLinearLabs:QuadraticFormsLab:a", 2);
+  const [b, setB] = useStudioState("AdvancedLinearLabs:QuadraticFormsLab:b", 0.4);
+  const [c, setC] = useStudioState("AdvancedLinearLabs:QuadraticFormsLab:c", 1);
+  const [x, setX] = useStudioState("AdvancedLinearLabs:QuadraticFormsLab:x", 0.8);
+  const [y, setY] = useStudioState("AdvancedLinearLabs:QuadraticFormsLab:y", -0.3);
   const form = classifyQuadratic(a, b, c);
   const axes = principalAxes(a, b, c);
   const value = quadraticValue(a, b, c, x, y);
@@ -234,8 +235,8 @@ export function QuadraticFormsLab({ page }: { page: StudioMockupPage }) {
 }
 
 export function FactorizationLab({ page }: { page: StudioMockupPage }) {
-  const [A, setA] = useState<Mat>([[0, 2, 1], [1, 1, 0], [2, 0, 1]]);
-  const [svdStage, setSvdStage] = useState(0);
+  const [A, setA] = useStudioState<Mat>("AdvancedLinearLabs:FactorizationLab:A", [[0, 2, 1], [1, 1, 0], [2, 0, 1]]);
+  const [svdStage, setSvdStage] = useStudioState("AdvancedLinearLabs:FactorizationLab:svdStage", 0);
   const lu = useMemo(() => luFactor(A), [A]);
   const qr = useMemo(() => qrFactor(A.slice(0, 2).map((row) => row.slice(0, 2))), [A]);
   const svd = useMemo(() => svd2(A.slice(0, 2).map((row) => row.slice(0, 2))), [A]);
@@ -300,8 +301,8 @@ export function FactorizationLab({ page }: { page: StudioMockupPage }) {
 }
 
 export function SimilarityLab({ page }: { page: StudioMockupPage }) {
-  const [A, setA] = useState<Mat>([[2, 1], [0, 3]]);
-  const [P, setP] = useState<Mat>([[1, 1], [0, 1]]);
+  const [A, setA] = useStudioState<Mat>("AdvancedLinearLabs:SimilarityLab:A", [[2, 1], [0, 3]]);
+  const [P, setP] = useStudioState<Mat>("AdvancedLinearLabs:SimilarityLab:P", [[1, 1], [0, 1]]);
   const [showBases, setShowBases] = useState(true);
   const result = useMemo(() => similarMatrix(A, P), [A, P]);
   return (
@@ -337,7 +338,7 @@ export function SimilarityLab({ page }: { page: StudioMockupPage }) {
 }
 
 export function JordanLab({ page }: { page: StudioMockupPage }) {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useStudioState("AdvancedLinearLabs:JordanLab:index", 0);
   const preset = jordanPresets[index];
   const check = useMemo(() => jordanCheck(preset), [preset]);
   return (

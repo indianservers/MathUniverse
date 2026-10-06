@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState } from "react";
 import { Activity, BarChart3, CircleDot, Gauge, MoveUpRight, Play, RotateCcw, Thermometer, Waves, Zap } from "lucide-react";
 import { compileTwoVariableExpression } from "../../utils/functionParser";
@@ -23,9 +24,9 @@ function choiceTabs(items: string[], chosen: string, onClick: (item: string) => 
 function classDescription(kind: string) { if (kind.includes("sink") || kind === "stable node" || kind === "stable spiral") return "Nearby trajectories approach the equilibrium."; if (kind.includes("source") || kind === "unstable node" || kind === "unstable spiral") return "Nearby trajectories move away from the equilibrium."; if (kind === "saddle") return "Trajectories approach along one direction and depart along another."; if (kind === "center") return "Nearby trajectories form closed periodic orbits in the linear model."; return "Inspect the eigenvalues and trajectories for local behavior."; }
 
 export function SystemsPhase2() {
-  const [preset, setPreset] = useState("spiral-sink");
-  const [a, setA] = useState(-1), [b, setB] = useState(-1), [c, setC] = useState(1), [d, setD] = useState(-1);
-  const [initial, setInitial] = useState<XY>({ x: 1, y: 0 }); const [view, setView] = useState("Both Views");
+  const [preset, setPreset] = useStudioState("Phase2DynamicsLabs:SystemsPhase2:preset", "spiral-sink");
+  const [a, setA] = useStudioState("Phase2DynamicsLabs:SystemsPhase2:a", -1), [b, setB] = useStudioState("Phase2DynamicsLabs:SystemsPhase2:b", -1), [c, setC] = useStudioState("Phase2DynamicsLabs:SystemsPhase2:c", 1), [d, setD] = useStudioState("Phase2DynamicsLabs:SystemsPhase2:d", -1);
+  const [initial, setInitial] = useStudioState<XY>("Phase2DynamicsLabs:SystemsPhase2:initial", { x: 1, y: 0 }); const [view, setView] = useStudioState("Phase2DynamicsLabs:SystemsPhase2:view", "Both Views");
   const [showField, setShowField] = useState(true), [showTrajectories, setShowTrajectories] = useState(true);
   const predator = preset === "predator-prey";
   const field: VectorField = useMemo(() => predator ? (x, y) => [x * (1 - y), y * (x - 1)] : (x, y) => [a * x + b * y, c * x + d * y], [a, b, c, d, predator]);
@@ -52,8 +53,8 @@ const phasePresets = [
   { id: "vdp", label: "Van der Pol", f: "y", g: "(1-x^2)*y-x", start: { x: 2, y: .5 }, eq: { x: 0, y: 0 } },
 ];
 export function PhasePlanePhase2() {
-  const [preset, setPreset] = useState("spiral-sink"), [fText, setFText] = useState("-x-y"), [gText, setGText] = useState("x-y");
-  const [points, setPoints] = useState<XY[]>([{ x: 2, y: .5 }]);
+  const [preset, setPreset] = useStudioState("Phase2DynamicsLabs:PhasePlanePhase2:preset", "spiral-sink"), [fText, setFText] = useStudioState("Phase2DynamicsLabs:PhasePlanePhase2:fText", "-x-y"), [gText, setGText] = useStudioState("Phase2DynamicsLabs:PhasePlanePhase2:gText", "x-y");
+  const [points, setPoints] = useStudioState<XY[]>("Phase2DynamicsLabs:PhasePlanePhase2:points", [{ x: 2, y: .5 }]);
   const [showField, setShowField] = useState(true), [showTrajectories, setShowTrajectories] = useState(true), [showNullclines, setShowNullclines] = useState(true), [showEquilibria, setShowEquilibria] = useState(true), [showSeparatrices, setShowSeparatrices] = useState(false);
   const compiled = useMemo(() => { try { const f = compileTwoVariableExpression(fText.replace(/[−–]/g, "-")); const g = compileTwoVariableExpression(gText.replace(/[−–]/g, "-")); if (![f(0.31, .47), g(.31, .47)].every(Number.isFinite)) throw new Error("The vector field is not defined near the sample point."); return { field: ((x: number, y: number) => [f(x, y), g(x, y)]) as VectorField, error: "" }; } catch (error) { return { field: null, error: error instanceof Error ? error.message : "Invalid vector field." }; } }, [fText, gText]);
   const field: VectorField = useMemo(() => compiled.field ?? ((_x: number, _y: number) => [0, 0]), [compiled.field]);
@@ -82,10 +83,10 @@ const oscillationPresets = [
   { id: "resonance", label: "Resonance", m: 1, c: .12, k: 4, force: 1, omega: 2 },
 ];
 export function OscillationsPhase2() {
-  const [preset, setPreset] = useState("forced");
-  const [m, setM] = useState(1), [c, setC] = useState(.2), [k, setK] = useState(4), [force, setForce] = useState(1), [omegaDrive, setOmegaDrive] = useState(1.5);
-  const [x0, setX0] = useState(1), [v0, setV0] = useState(0), [time, setTime] = useState(1), [playing, setPlaying] = useState(false);
-  const [view, setView] = useState("Displacement"), [compare, setCompare] = useState(true), [showEnergy, setShowEnergy] = useState(true);
+  const [preset, setPreset] = useStudioState("Phase2DynamicsLabs:OscillationsPhase2:preset", "forced");
+  const [m, setM] = useStudioState("Phase2DynamicsLabs:OscillationsPhase2:m", 1), [c, setC] = useStudioState("Phase2DynamicsLabs:OscillationsPhase2:c", .2), [k, setK] = useStudioState("Phase2DynamicsLabs:OscillationsPhase2:k", 4), [force, setForce] = useStudioState("Phase2DynamicsLabs:OscillationsPhase2:force", 1), [omegaDrive, setOmegaDrive] = useStudioState("Phase2DynamicsLabs:OscillationsPhase2:omegaDrive", 1.5);
+  const [x0, setX0] = useStudioState("Phase2DynamicsLabs:OscillationsPhase2:x0", 1), [v0, setV0] = useStudioState("Phase2DynamicsLabs:OscillationsPhase2:v0", 0), [time, setTime] = useStudioState("Phase2DynamicsLabs:OscillationsPhase2:time", 1), [playing, setPlaying] = useStudioState("Phase2DynamicsLabs:OscillationsPhase2:playing", false);
+  const [view, setView] = useStudioState("Phase2DynamicsLabs:OscillationsPhase2:view", "Displacement"), [compare, setCompare] = useStudioState("Phase2DynamicsLabs:OscillationsPhase2:compare", true), [showEnergy, setShowEnergy] = useState(true);
   useEffect(() => {
     if (!playing) return;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -124,10 +125,10 @@ const circuitPresets = [
   { id: "pulse", label: "Pulse Response", l: .5, r: .6, cap: .1, amplitude: 0, omega: 2, mode: "Free Response" },
 ];
 export function LcrPhase2() {
-  const [l, setL] = useState(.5), [r, setR] = useState(1), [cap, setCap] = useState(.1);
-  const [amplitude, setAmplitude] = useState(1), [omega, setOmega] = useState(2), [q0, setQ0] = useState(1), [i0, setI0] = useState(0);
-  const [mode, setMode] = useState("Free Response"), [view, setView] = useState("Charge q(t)"), [showCurrent, setShowCurrent] = useState(true), [compare, setCompare] = useState(false), [showVoltages, setShowVoltages] = useState(true);
-  const [time, setTime] = useState(2);
+  const [l, setL] = useStudioState("Phase2DynamicsLabs:LcrPhase2:l", .5), [r, setR] = useStudioState("Phase2DynamicsLabs:LcrPhase2:r", 1), [cap, setCap] = useStudioState("Phase2DynamicsLabs:LcrPhase2:cap", .1);
+  const [amplitude, setAmplitude] = useStudioState("Phase2DynamicsLabs:LcrPhase2:amplitude", 1), [omega, setOmega] = useStudioState("Phase2DynamicsLabs:LcrPhase2:omega", 2), [q0, setQ0] = useStudioState("Phase2DynamicsLabs:LcrPhase2:q0", 1), [i0, setI0] = useStudioState("Phase2DynamicsLabs:LcrPhase2:i0", 0);
+  const [mode, setMode] = useState("Free Response"), [view, setView] = useStudioState("Phase2DynamicsLabs:LcrPhase2:view", "Charge q(t)"), [showCurrent, setShowCurrent] = useState(true), [compare, setCompare] = useStudioState("Phase2DynamicsLabs:LcrPhase2:compare", false), [showVoltages, setShowVoltages] = useState(true);
+  const [time, setTime] = useStudioState("Phase2DynamicsLabs:LcrPhase2:time", 2);
   const load = (id: string) => { const item = circuitPresets.find((entry) => entry.id === id); if (!item) return; setL(item.l); setR(item.r); setCap(item.cap); setAmplitude(item.amplitude); setOmega(item.omega); setMode(item.mode); setQ0(1); setI0(0); setTime(0); };
   const appliedForce = mode === "Free Response" ? 0 : amplitude;
   const sample = (t: number, resistance = r) => oscillatorSample(l, resistance, 1 / cap, q0, i0, t, appliedForce, omega);
@@ -160,8 +161,8 @@ const coolingPresets = [
   { id: "warming", label: "Warming Object", initial: 5, ambient: 25, k: .09 },
 ];
 export function NewtonCoolingPhase2() {
-  const [preset, setPreset] = useState("coffee"), [initial, setInitial] = useState(90), [ambient, setAmbient] = useState(20), [k, setK] = useState(.1), [timeMax, setTimeMax] = useState(60), [time, setTime] = useState(15);
-  const [view, setView] = useState("Temperature"), [showRate, setShowRate] = useState(true), [compare, setCompare] = useState(false), [showEquilibrium, setShowEquilibrium] = useState(true), [showField, setShowField] = useState(true);
+  const [preset, setPreset] = useStudioState("Phase2DynamicsLabs:NewtonCoolingPhase2:preset", "coffee"), [initial, setInitial] = useStudioState("Phase2DynamicsLabs:NewtonCoolingPhase2:initial", 90), [ambient, setAmbient] = useStudioState("Phase2DynamicsLabs:NewtonCoolingPhase2:ambient", 20), [k, setK] = useStudioState("Phase2DynamicsLabs:NewtonCoolingPhase2:k", .1), [timeMax, setTimeMax] = useStudioState("Phase2DynamicsLabs:NewtonCoolingPhase2:timeMax", 60), [time, setTime] = useStudioState("Phase2DynamicsLabs:NewtonCoolingPhase2:time", 15);
+  const [view, setView] = useStudioState("Phase2DynamicsLabs:NewtonCoolingPhase2:view", "Temperature"), [showRate, setShowRate] = useState(true), [compare, setCompare] = useStudioState("Phase2DynamicsLabs:NewtonCoolingPhase2:compare", false), [showEquilibrium, setShowEquilibrium] = useState(true), [showField, setShowField] = useState(true);
   const load = (id: string) => { const item = coolingPresets.find((entry) => entry.id === id); if (!item) return; setPreset(id); setInitial(item.initial); setAmbient(item.ambient); setK(item.k); setTime(15); };
   const reset = () => { load("coffee"); setTimeMax(60); setView("Temperature"); };
   const temperature = newtonTemperature(initial, ambient, k, time);

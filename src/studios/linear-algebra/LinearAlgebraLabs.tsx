@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState, type PointerEvent, type ReactNode } from "react";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { ExtraFrame, StatusOk, clamp, fmt } from "../mockup/studioLabKit";
@@ -147,12 +148,12 @@ function sub3(a: number[], b: number[]): [number, number, number] {
 const vecInit = { ax: 2, ay: 1, az: 3, bx: -1, by: 2, bz: 1 };
 
 function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
-  const [s, setS] = useState(vecInit);
-  const [view, setView] = useState<"2D" | "3D">("3D");
-  const [op, setOp] = useState("Dot");
-  const [k, setK] = useState(2);
+  const [s, setS] = useStudioState("LinearAlgebraLabs:VectorsLab:s", vecInit);
+  const [view, setView] = useStudioState<"2D" | "3D">("LinearAlgebraLabs:VectorsLab:view", "3D");
+  const [op, setOp] = useStudioState("LinearAlgebraLabs:VectorsLab:op", "Dot");
+  const [k, setK] = useStudioState("LinearAlgebraLabs:VectorsLab:k", 2);
   const [show, setShow] = useState({ para: true, result: true, components: true, angle: true });
-  const [selected, setSelected] = useState<"a" | "b">("a");
+  const [selected, setSelected] = useStudioState<"a" | "b">("LinearAlgebraLabs:VectorsLab:selected", "a");
   const a = [s.ax, s.ay, s.az];
   const b = [s.bx, s.by, s.bz];
   const sum = [s.ax + s.bx, s.ay + s.by, s.az + s.bz];
@@ -346,9 +347,9 @@ function VectorsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode
 }
 
 function MatricesLab({ page }: { page: StudioMockupPage }) {
-  const [A, setA] = useState([[1, 2, -1], [0, 3, 4]]);
-  const [B, setB] = useState([[2, 1], [0, -1], [3, 2]]);
-  const [animate, setAnimate] = useState(false);
+  const [A, setA] = useStudioState("LinearAlgebraLabs:MatricesLab:A", [[1, 2, -1], [0, 3, 4]]);
+  const [B, setB] = useStudioState("LinearAlgebraLabs:MatricesLab:B", [[2, 1], [0, -1], [3, 2]]);
+  const [animate, setAnimate] = useStudioState("LinearAlgebraLabs:MatricesLab:animate", false);
   const ops = ["Multiply", "Add", "Inverse", "Transpose", "Block"];
   const product = multiply(A, B);
   const sum = addMatrices(A, resizeMatrix(B, A.length, A[0]?.length ?? 0));
@@ -434,11 +435,11 @@ function MatricesLab({ page }: { page: StudioMockupPage }) {
 }
 
 function RowReductionLab({ page }: { page: StudioMockupPage }) {
-  const [A, setA] = useState([[1, 2, -1], [0, 1, 1], [2, -1, 1]]);
-  const [b, setB] = useState([3, 2, 1]);
-  const [cursor, setCursor] = useState(3);
-  const [exact, setExact] = useState(true);
-  const [rowOps, setRowOps] = useState<string[]>([]);
+  const [A, setA] = useStudioState("LinearAlgebraLabs:RowReductionLab:A", [[1, 2, -1], [0, 1, 1], [2, -1, 1]]);
+  const [b, setB] = useStudioState("LinearAlgebraLabs:RowReductionLab:b", [3, 2, 1]);
+  const [cursor, setCursor] = useStudioState("LinearAlgebraLabs:RowReductionLab:cursor", 3);
+  const [exact, setExact] = useStudioState("LinearAlgebraLabs:RowReductionLab:exact", true);
+  const [rowOps, setRowOps] = useStudioState<string[]>("LinearAlgebraLabs:RowReductionLab:rowOps", []);
   const steps = useMemo(() => rrefAugmented(A, b), [A, b]);
   const cls = classifySystem(A, b);
   const shown = steps[clamp(cursor, 0, steps.length - 1)] ?? steps[0]!;
@@ -589,9 +590,9 @@ function RowReductionLab({ page }: { page: StudioMockupPage }) {
 }
 
 function LinearTransformsLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
-  const [M, setM] = useState<Mat2>([[1.5, 0.5], [-1, 2]]);
-  const [t, setT] = useState(0.65);
-  const [shape, setShape] = useState<"custom" | "unit">("custom");
+  const [M, setM] = useStudioState<Mat2>("LinearAlgebraLabs:LinearTransformsLab:M", [[1.5, 0.5], [-1, 2]]);
+  const [t, setT] = useStudioState("LinearAlgebraLabs:LinearTransformsLab:t", 0.65);
+  const [shape, setShape] = useStudioState<"custom" | "unit">("LinearAlgebraLabs:LinearTransformsLab:shape", "custom");
   const spec = eigen2(M);
   const Mt: Mat2 = [[lerp(1, M[0][0], t), lerp(0, M[0][1], t)], [lerp(0, M[1][0], t), lerp(1, M[1][1], t)]];
   const det = det2(M);
@@ -682,7 +683,7 @@ function LinearTransformsLab({ page, extra }: { page: StudioMockupPage; extra?: 
 }
 
 function DeterminantsLab({ page }: { page: StudioMockupPage }) {
-  const [A, setA] = useState<Mat2>([[1, 2], [-1, 3]]);
+  const [A, setA] = useStudioState<Mat2>("LinearAlgebraLabs:DeterminantsLab:A", [[1, 2], [-1, 3]]);
   const [showUnit, setShowUnit] = useState(true);
   const [showGrid, setShowGrid] = useState(true);
   const det = det2(A);
@@ -750,12 +751,12 @@ function DeterminantsLab({ page }: { page: StudioMockupPage }) {
 
 function EigenLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
   const init: Mat2 = [[2, 1], [0, 3]];
-  const [M, setM] = useState<Mat2>(init);
+  const [M, setM] = useStudioState<Mat2>("LinearAlgebraLabs:EigenLab:M", init);
   const [show, setShow] = useState({ field: true, circle: true, eigen: true, axis: true, grid: true });
-  const [steps, setSteps] = useState(2);
-  const [k, setK] = useState(0);
-  const [speed, setSpeed] = useState("1.0x");
-  const [playing, setPlaying] = useState(false);
+  const [steps, setSteps] = useStudioState("LinearAlgebraLabs:EigenLab:steps", 2);
+  const [k, setK] = useStudioState("LinearAlgebraLabs:EigenLab:k", 0);
+  const [speed, setSpeed] = useStudioState("LinearAlgebraLabs:EigenLab:speed", "1.0x");
+  const [playing, setPlaying] = useStudioState("LinearAlgebraLabs:EigenLab:playing", false);
   const [dragBasis, setDragBasis] = useState<0 | 1 | null>(null);
   const spec = eigen2(M);
   const det = det2(M);
@@ -938,10 +939,10 @@ function EigenLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }
 }
 
 function OrthoLab({ page }: { page: StudioMockupPage }) {
-  const [v, setV] = useState<[number, number, number]>([2, 1, 2]);
-  const [u, setU] = useState<[number, number, number]>([1, 2, 0]);
-  const [n, setN] = useState<[number, number, number]>([1, 1, 1]);
-  const [step, setStep] = useState(1);
+  const [v, setV] = useStudioState<[number, number, number]>("LinearAlgebraLabs:OrthoLab:v", [2, 1, 2]);
+  const [u, setU] = useStudioState<[number, number, number]>("LinearAlgebraLabs:OrthoLab:u", [1, 2, 0]);
+  const [n, setN] = useStudioState<[number, number, number]>("LinearAlgebraLabs:OrthoLab:n", [1, 1, 1]);
+  const [step, setStep] = useStudioState("LinearAlgebraLabs:OrthoLab:step", 1);
   const pu = mag3(u) ? scale3(u, dot3(v, u) / mag3(u) ** 2) : [0, 0, 0];
   const ru = sub3(v, pu);
   const pn = mag3(n) ? sub3(v, scale3(n, dot3(v, n) / mag3(n) ** 2)) : v;
@@ -1016,7 +1017,7 @@ function seedPoints() {
 }
 
 function LeastSquaresLab({ page }: { page: StudioMockupPage }) {
-  const [pts, setPts] = useState(seedPoints);
+  const [pts, setPts] = useStudioState("LinearAlgebraLabs:LeastSquaresLab:pts", seedPoints);
   const [drag, setDrag] = useState<number | null>(null);
   const [showFit, setShowFit] = useState(true);
   const [showResiduals, setShowResiduals] = useState(true);
@@ -1120,11 +1121,11 @@ function ident3(): number[][] {
 }
 
 function PlaygroundLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
-  const [A, setA] = useState([[1.2, 0.6, 0.2], [-0.4, 1.1, 0.3], [0.1, -0.2, 0.9]]);
-  const [t, setT] = useState(0.65);
-  const [stack, setStack] = useState(["Rotate Z (30°)", "Shear X (0.6)"]);
+  const [A, setA] = useStudioState("LinearAlgebraLabs:PlaygroundLab:A", [[1.2, 0.6, 0.2], [-0.4, 1.1, 0.3], [0.1, -0.2, 0.9]]);
+  const [t, setT] = useStudioState("LinearAlgebraLabs:PlaygroundLab:t", 0.65);
+  const [stack, setStack] = useStudioState("LinearAlgebraLabs:PlaygroundLab:stack", ["Rotate Z (30°)", "Shear X (0.6)"]);
   const [showGrid, setShowGrid] = useState(true);
-  const [snapAxes, setSnapAxes] = useState(false);
+  const [snapAxes, setSnapAxes] = useStudioState("LinearAlgebraLabs:PlaygroundLab:snapAxes", false);
   const det = det3(A);
   const M2: Mat2 = [[lerp(1, A[0]?.[0] ?? 1, t), lerp(0, A[0]?.[1] ?? 0, t)], [lerp(0, A[1]?.[0] ?? 0, t), lerp(1, A[1]?.[1] ?? 1, t)]];
 

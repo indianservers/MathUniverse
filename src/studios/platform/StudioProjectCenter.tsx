@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { shareStudio, copyStudioLink } from "../../utils/shareStudio";
 import { useMemo, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
@@ -17,13 +18,13 @@ function Output({ children, label = "Computed result" }: { children: unknown; la
 }
 
 export default function StudioProjectCenter() {
-  const [loaded, setLoaded] = useState(() => { try { return typeof window === "undefined" ? null : readProjectDeepLink(window.location.href); } catch { return null; } });
-  const [title, setTitle] = useState(loaded?.title ?? "Cross-studio investigation");
-  const [notice, setNotice] = useState("");
-  const [viewport, setViewport] = useState(960);
-  const [points, setPoints] = useState(80_000);
+  const [loaded, setLoaded] = useStudioState("StudioProjectCenter:StudioProjectCenter:loaded", () => { try { return typeof window === "undefined" ? null : readProjectDeepLink(window.location.href); } catch { return null; } });
+  const [title, setTitle] = useStudioState("StudioProjectCenter:StudioProjectCenter:title", loaded?.title ?? "Cross-studio investigation");
+  const [notice, setNotice] = useStudioState("StudioProjectCenter:StudioProjectCenter:notice", "");
+  const [viewport, setViewport] = useStudioState("StudioProjectCenter:StudioProjectCenter:viewport", 960);
+  const [points, setPoints] = useStudioState("StudioProjectCenter:StudioProjectCenter:points", 80_000);
   const [answer, setAnswer] = useState(1);
-  const [history, setHistory] = useState<ProjectHistory<{ title: string }>>(() => createHistory({ title: loaded?.title ?? "Cross-studio investigation" }));
+  const [history, setHistory] = useStudioState<ProjectHistory<{ title: string }>>("StudioProjectCenter:StudioProjectCenter:history", () => createHistory({ title: loaded?.title ?? "Cross-studio investigation" }));
   const project = useMemo(() => {
     if (loaded) return { ...loaded, title };
     const next = createStudioProject(title, "algebra");

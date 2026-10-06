@@ -1,3 +1,4 @@
+import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import {
   ArrowLeft,
   ArrowRight,
@@ -220,18 +221,18 @@ export default function CalculusIntegrationTechniquesStudio({ mode }: Props) {
   const config = techniques[technique];
   const initialLower = numberParam(params.get("v_b"), config.defaults[0]);
   const initialUpper = numberParam(params.get("v_a"), config.defaults[1]);
-  const [lower, setLower] = useState(Math.min(initialLower, initialUpper));
-  const [upper, setUpper] = useState(Math.max(initialLower, initialUpper));
-  const [resolution, setResolution] = useState(
+  const [lower, setLower] = useStudioState("CalculusIntegrationTechniquesStudio:CalculusIntegrationTechniquesStudio:lower", Math.min(initialLower, initialUpper));
+  const [upper, setUpper] = useStudioState("CalculusIntegrationTechniquesStudio:CalculusIntegrationTechniquesStudio:upper", Math.max(initialLower, initialUpper));
+  const [resolution, setResolution] = useStudioState("CalculusIntegrationTechniquesStudio:CalculusIntegrationTechniquesStudio:resolution",
     clamp(Math.round(numberParam(params.get("v_n"), 20)), 8, 80),
   );
-  const [step, setStep] = useState(
+  const [step, setStep] = useStudioState("CalculusIntegrationTechniquesStudio:CalculusIntegrationTechniquesStudio:step",
     clamp(Math.round(numberParam(params.get("v_step"), 2)), 1, 6),
   );
   const [showBounds, setShowBounds] = useState(true);
-  const [selectedPart, setSelectedPart] = useState(0);
-  const [tipsOpen, setTipsOpen] = useState(false);
-  const [challengeNote, setChallengeNote] = useState("");
+  const [selectedPart, setSelectedPart] = useStudioState("CalculusIntegrationTechniquesStudio:CalculusIntegrationTechniquesStudio:selectedPart", 0);
+  const [tipsOpen, setTipsOpen] = useStudioState("CalculusIntegrationTechniquesStudio:CalculusIntegrationTechniquesStudio:tipsOpen", false);
+  const [challengeNote, setChallengeNote] = useStudioState("CalculusIntegrationTechniquesStudio:CalculusIntegrationTechniquesStudio:challengeNote", "");
   const previousTechnique = useRef(technique);
 
   useEffect(() => {

@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState } from "react";
 import {
   ENUM_DISPLAY_CAP,
@@ -43,21 +44,21 @@ export default function ArrangementsLab({
   pulse: string;
 }) {
   const kind = parseArrKind(kindRaw);
-  const [collapsed, setCollapsed] = useState(false);
-  const [n, setN] = useState(4);
-  const [r, setR] = useState(3);
-  const [word, setWord] = useState("BANANA");
-  const [playing, setPlaying] = useState(false);
-  const [highlight, setHighlight] = useState(0);
-  const [ch, setCh] = useState(0);
+  const [collapsed, setCollapsed] = useStudioState("ArrangementsLab:ArrangementsLab:collapsed", false);
+  const [n, setN] = useStudioState("ArrangementsLab:ArrangementsLab:n", 4);
+  const [r, setR] = useStudioState("ArrangementsLab:ArrangementsLab:r", 3);
+  const [word, setWord] = useStudioState("ArrangementsLab:ArrangementsLab:word", "BANANA");
+  const [playing, setPlaying] = useStudioState("ArrangementsLab:ArrangementsLab:playing", false);
+  const [highlight, setHighlight] = useStudioState("ArrangementsLab:ArrangementsLab:highlight", 0);
+  const [ch, setCh] = useStudioState("ArrangementsLab:ArrangementsLab:ch", 0);
   const items = letters(kind === "repetition" ? Math.min(n, 4) : n);
-  const [order, setOrder] = useState<string[]>(() => [...items]);
-  const [slots, setSlots] = useState<(string | null)[]>(() => items.map(() => null));
+  const [order, setOrder] = useStudioState<string[]>("ArrangementsLab:ArrangementsLab:order", () => [...items]);
+  const [slots, setSlots] = useStudioState<(string | null)[]>("ArrangementsLab:ArrangementsLab:slots", () => items.map(() => null));
   const [drag, setDrag] = useState<string | null>(null);
-  const [rotation, setRotation] = useState(0);
-  const [lockA, setLockA] = useState(true);
-  const [listMode, setListMode] = useState<"grid" | "sequence" | "tree">("grid");
-  const [repeatOn, setRepeatOn] = useState(true);
+  const [rotation, setRotation] = useStudioState("ArrangementsLab:ArrangementsLab:rotation", 0);
+  const [lockA, setLockA] = useStudioState("ArrangementsLab:ArrangementsLab:lockA", true);
+  const [listMode, setListMode] = useStudioState<"grid" | "sequence" | "tree">("ArrangementsLab:ArrangementsLab:listMode", "grid");
+  const [repeatOn, setRepeatOn] = useStudioState("ArrangementsLab:ArrangementsLab:repeatOn", true);
 
   useEffect(() => {
     if (kind === "all") {

@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useCallback, useEffect, useMemo } from "react";
 import { SliderRow } from "../../mockup/studioLabKit";
 import {
   allDiagonals,
@@ -34,13 +35,13 @@ type DiagSub = "from-vertex" | "all" | "triangulation" | "intersections";
 const PALETTE = ["#147df2", "#8b45f4", "#08b9dd", "#f59e0b", "#10b981", "#ef4444", "#6366f1", "#0f766e"];
 
 export default function DiagonalsLab({ pulse = "observe" }: { pulse?: string }) {
-  const [n, setN] = useState(8);
-  const [vertex, setVertex] = useState(0);
-  const [sub, setSub] = useState<DiagSub>("from-vertex");
-  const [animate, setAnimate] = useState(true);
-  const [progress, setProgress] = useState(1);
-  const [colorByVertex, setColorByVertex] = useState(true);
-  const [labelHits, setLabelHits] = useState(false);
+  const [n, setN] = useStudioState("DiagonalsLab:DiagonalsLab:n", 8);
+  const [vertex, setVertex] = useStudioState("DiagonalsLab:DiagonalsLab:vertex", 0);
+  const [sub, setSub] = useStudioState<DiagSub>("DiagonalsLab:DiagonalsLab:sub", "from-vertex");
+  const [animate, setAnimate] = useStudioState("DiagonalsLab:DiagonalsLab:animate", true);
+  const [progress, setProgress] = useStudioState("DiagonalsLab:DiagonalsLab:progress", 1);
+  const [colorByVertex, setColorByVertex] = useStudioState("DiagonalsLab:DiagonalsLab:colorByVertex", true);
+  const [labelHits, setLabelHits] = useStudioState("DiagonalsLab:DiagonalsLab:labelHits", false);
 
   const verts = useMemo(() => regularPolygonVertices(n, 3.6, 0), [n]);
   const screen = verts.map((p) => toScreen(p, 50));

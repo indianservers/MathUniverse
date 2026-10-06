@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import { useStudioState } from "./StudioModelProvider";
+import { useEffect, useMemo } from "react";
 import FunctionGraphCanvas, { type FunctionGraphView } from "../../components/math-lab/FunctionGraphCanvas";
 import { sampleFunction } from "../../utils/mathEngine/graphSampler";
 
@@ -16,8 +17,8 @@ type Props = {
 
 export default function StudioGraphWidget({ expressions, labels, traceX, onTraceChange, view, compact = true }: Props) {
   const preset = view ?? DEFAULT_VIEW;
-  const [box, setView] = useState<FunctionGraphView>(preset);
-  const [x, setTrace] = useState(traceX ?? 0);
+  const [box, setView] = useStudioState<FunctionGraphView>("StudioGraphWidget:StudioGraphWidget:box", preset);
+  const [x, setTrace] = useStudioState("StudioGraphWidget:StudioGraphWidget:x", traceX ?? 0);
   useEffect(() => {
     setView(preset);
   }, [preset.xMax, preset.xMin, preset.yMax, preset.yMin]);

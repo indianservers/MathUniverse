@@ -24,9 +24,9 @@ describe("live math lab smoke", () => {
   });
 
   it("computes statistics and discrete live values", () => {
-    expect(html("/probability-statistics/data-explorer?set=dice", "statistics")).toContain("Dice faces");
-    expect(html("/probability-statistics/clt", "statistics")).toContain("SE = 10/√n");
-    expect(html("/probability-statistics/anova", "statistics")).toContain("F = MSB/MSW");
+    expect(html("/probability-statistics/data-explorer?set=dice", "statistics")).toContain("Numeric observations");
+    expect(html("/probability-statistics/clt", "statistics")).toContain("standard error is 10/√n");
+    expect(html("/probability-statistics/anova", "statistics")).toContain("F = MS");
     expect(html("/discrete-world/sets", "discrete")).toContain("|A ∪ B| for A={1,2,3}");
     expect(html("/discrete-world/graphs?mode=Coloring", "discrete")).toContain("tab=algorithms");
     expect(html("/discrete-world/graphs?mode=Connectivity", "discrete")).toContain("tab=properties");

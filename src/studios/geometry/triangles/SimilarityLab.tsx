@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ChipRow, Field, Panel, Segmented, SliderRow } from "../../mockup/studioLabKit";
 import {
@@ -28,12 +29,12 @@ export default function SimilarityLab({ pulse = "observe" }: { pulse?: string })
   const plane = defaultPlane();
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<"A" | "B" | "C" | null>(null);
-  const [base, setBase] = useState({ A: { x: 3.4, y: 5.4 }, B: { x: 1.5, y: 1.5 }, C: { x: 6.6, y: 1.7 } });
-  const [k, setK] = useState(1.5);
-  const [rot, setRot] = useState(12);
-  const [shiftX, setShiftX] = useState(8.4);
-  const [shiftY, setShiftY] = useState(0.15);
-  const [crit, setCrit] = useState<Crit>("AA");
+  const [base, setBase] = useStudioState("SimilarityLab:SimilarityLab:base", { A: { x: 3.4, y: 5.4 }, B: { x: 1.5, y: 1.5 }, C: { x: 6.6, y: 1.7 } });
+  const [k, setK] = useStudioState("SimilarityLab:SimilarityLab:k", 1.5);
+  const [rot, setRot] = useStudioState("SimilarityLab:SimilarityLab:rot", 12);
+  const [shiftX, setShiftX] = useStudioState("SimilarityLab:SimilarityLab:shiftX", 8.4);
+  const [shiftY, setShiftY] = useStudioState("SimilarityLab:SimilarityLab:shiftY", 0.15);
+  const [crit, setCrit] = useStudioState<Crit>("SimilarityLab:SimilarityLab:crit", "AA");
   const [showRatios, setShowRatios] = useState(true);
 
   const def = useMemo(() => {

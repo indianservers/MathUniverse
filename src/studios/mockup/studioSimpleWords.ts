@@ -1,6 +1,9 @@
 /** Short, hand-written plain-language explanations for every studio topic. */
 export const studioSimpleWords: Record<string, Record<string, string>> = {
   "differential-equations": {
+    laplace: "A Laplace transform repackages a changing signal into a form where derivatives become algebra. Keep the starting value, solve the algebraic equation, then transform back. A delayed input appears only after its switch-on time.",
+    pde: "Heat and waves change across both space and time. A sine shape fits between fixed zero endpoints. Heat smooths the shape away, while an ideal wave makes it oscillate. More complicated shapes need many modes together.",
+    "boundary-values": "Fixing both ends of a curve can allow only special shapes. For a vibrating string those shapes are sine waves that fit exactly inside the interval. Their allowed eigenvalues depend on the mode number and the interval length.",
     home: "A differential equation tells us how something changes. If we know its starting value and the rule for its change, we can predict its future path. Think of temperature cooling, money growing, or a spring moving.",
     explorer: "First ask what is changing and which derivative appears. A first derivative describes a rate; a second derivative often describes acceleration. Some equations are linear and easier to solve, while others need different tools.",
     "slope-fields": "Imagine a tiny arrow at every point on a graph. Each arrow shows which way a solution should move there. Follow the arrows from a starting point to sketch the solution without finding a formula.",

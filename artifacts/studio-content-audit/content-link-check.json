@@ -1,0 +1,172 @@
+[
+  {
+    "href": "/algebra/equations?mode=Inequalities",
+    "missing": false,
+    "heading": "Equations & Inequalities Lab"
+  },
+  {
+    "href": "/algebra/equations",
+    "missing": false,
+    "heading": "Equations & Inequalities Lab"
+  },
+  {
+    "href": "/algebra/functions",
+    "missing": false,
+    "heading": "Functions & Transformations Lab"
+  },
+  {
+    "href": "/algebra/polynomials",
+    "missing": false,
+    "heading": "Polynomials Lab"
+  },
+  {
+    "href": "/algebra/sequences",
+    "missing": false,
+    "heading": "Sequences & Progressions Lab"
+  },
+  {
+    "href": "/algebraic-structures/cayley-tables",
+    "missing": false,
+    "heading": "Algebraic Structures Lab — Cayley Tables"
+  },
+  {
+    "href": "/algebraic-structures/groups-rings-fields",
+    "missing": false,
+    "heading": "Groups, Rings & Fields Lab"
+  },
+  {
+    "href": "/geometry/triangles",
+    "missing": false,
+    "heading": "Triangles Lab"
+  },
+  {
+    "href": "/geometry/circles",
+    "missing": false,
+    "heading": "Circles Lab"
+  },
+  {
+    "href": "/geometry?tab=advanced",
+    "missing": false,
+    "heading": "Geometry Studio"
+  },
+  {
+    "href": "/geometry/transformations",
+    "missing": false,
+    "heading": "Transformations Lab"
+  },
+  {
+    "href": "/geometry/measurement",
+    "missing": false,
+    "heading": "Measurement Lab"
+  },
+  {
+    "href": "/trigonometry/unit-circle",
+    "missing": false,
+    "heading": "Unit Circle & Angle Studio"
+  },
+  {
+    "href": "/trigonometry?tab=advanced",
+    "missing": false,
+    "heading": "Trigonometry Studio"
+  },
+  {
+    "href": "/trigonometry/inverse",
+    "missing": false,
+    "heading": "Inverse Trigonometry Studio"
+  },
+  {
+    "href": "/trigonometry/graphs",
+    "missing": false,
+    "heading": "Trigonometric Functions & Graphs Studio"
+  },
+  {
+    "href": "/trigonometry/waves",
+    "missing": false,
+    "heading": "Waves & Harmonics Studio"
+  },
+  {
+    "href": "/calculus",
+    "missing": false,
+    "heading": "Welcome to Calculus Studio"
+  },
+  {
+    "href": "/number-systems",
+    "missing": false,
+    "heading": "Welcome to Number Systems Studio"
+  },
+  {
+    "href": "/linear-algebra",
+    "missing": false,
+    "heading": "Linear Algebra Studio"
+  },
+  {
+    "href": "/complex-numbers",
+    "missing": false,
+    "heading": "Welcome to Complex Numbers Studio"
+  },
+  {
+    "href": "/mathematical-modelling",
+    "missing": false,
+    "heading": "Mathematical Modelling Studio"
+  },
+  {
+    "href": "/discrete-world",
+    "missing": false,
+    "heading": "Number & Discrete Mathematics Studio"
+  },
+  {
+    "href": "/set-theory",
+    "missing": false,
+    "heading": "Set Theory Studio"
+  },
+  {
+    "href": "/graph-theory",
+    "missing": false,
+    "heading": "Graph Theory Studio"
+  },
+  {
+    "href": "/probability-statistics",
+    "missing": false,
+    "heading": "Statistics & Probability Studio"
+  },
+  {
+    "href": "/differential-equations",
+    "missing": false,
+    "heading": "Differential Equations Studio"
+  },
+  {
+    "href": "/differential-equations/pde",
+    "missing": false,
+    "heading": "Heat & Wave Equation Modes"
+  },
+  {
+    "href": "/math-lab/continued-fractions",
+    "missing": false,
+    "heading": "Advanced Concept Studios"
+  },
+  {
+    "href": "/math-lab/famous-problems",
+    "missing": false,
+    "heading": "Advanced Concept Studios"
+  },
+  {
+    "href": "/geometry",
+    "missing": false,
+    "heading": "Geometry Studio"
+  },
+  {
+    "href": "/math-lab/stats-inference",
+    "missing": false,
+    "heading": "Advanced Concept Studios"
+  },
+  {
+    "href": "/math-lab/special-functions",
+    "missing": false,
+    "heading": "Advanced Concept Studios"
+  },
+  {
+    "href": "/math-lab/differential-equations",
+    "missing": false,
+    "heading": "Advanced Concept Studios"
+  }
+]

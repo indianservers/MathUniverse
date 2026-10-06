@@ -1,0 +1,166 @@
+ M src/App.tsx
+ M src/components/layout/AppLayout.tsx
+ M src/components/layout/navItems.ts
+ M src/modules/lessons/adapters/SystemsInequalitiesTargetLesson127.css
+ M src/modules/lessons/adapters/calculus/AccumulationFunctionsTargetLesson322.css
+ M src/modules/lessons/adapters/calculus/ArcLengthTargetLesson320.css
+ M src/modules/lessons/adapters/calculus/ShellMethodTargetLesson319.css
+ M src/modules/set-theory/SetTheoryModule.tsx
+ M src/pages/AdvancedConceptStudios.tsx
+ M src/pages/AlgebraicStructuresStudio.tsx
+ M src/pages/Calculus.tsx
+ M src/pages/CalculusConceptStudio.tsx
+ M src/pages/CalculusDerivativeApplicationsStudio.tsx
+ M src/pages/CalculusDerivativesStudio.tsx
+ M src/pages/CalculusDifferentialEquationsStudio.tsx
+ M src/pages/CalculusEnhancementIdeas.tsx
+ M src/pages/CalculusIntegrationStudio.tsx
+ M src/pages/CalculusIntegrationTechniquesStudio.tsx
+ M src/pages/CalculusLimitsStudio.tsx
+ M src/pages/CalculusMultivariableStudio.tsx
+ M src/pages/CalculusStudio.tsx
+ M src/pages/ComplexNumbersStudio.tsx
+ M src/pages/DifferentialEquations.tsx
+ M src/pages/NumberSystems.tsx
+ M src/studios/algebra/AlgebraEnhancementWorkbench.tsx
+ M src/studios/algebra/AlgebraInteractiveLabs.tsx
+ M src/studios/algebra/AlgebraLabHeading.tsx
+ M src/studios/algebra/AlgebraProofLab.tsx
+ M src/studios/algebra/EquationsLab.tsx
+ M src/studios/algebra/algebraStudioMath.test.ts
+ M src/studios/algebra/algebraStudioMath.ts
+ M src/studios/algebra/useAlgebraHistory.ts
+ M src/studios/algebraic-structures/AlgebraicStructuresLabs.tsx
+ M src/studios/audit/studioWorldClassScore.test.tsx
+ M src/studios/audit/studioWorldClassScore.ts
+ M src/studios/calculus/CalculusEnhancementWorkbench.tsx
+ M src/studios/calculus/CalculusSpecialLabs.tsx
+ M src/studios/calculus/EngineeringCalculusLabs.tsx
+ M src/studios/complex/ComplexAdvancedLabs.tsx
+ M src/studios/complex/ComplexEnhancementWorkbench.tsx
+ M src/studios/complex/ComplexNumbersLabs.tsx
+ M src/studios/complex/ComplexNumbersStudioLabs.tsx
+ M src/studios/complex/ComplexTargetLabs.tsx
+ M src/studios/complex/FractalsLab.tsx
+ M src/studios/differential-equations/DifferentialEquationsHome.tsx
+ M src/studios/differential-equations/DifferentialEquationsLabs.tsx
+ M src/studios/differential-equations/DifferentialEquationsStudio.test.tsx
+ M src/studios/differential-equations/EngineeringLabs.tsx
+ M src/studios/differential-equations/Phase1Graph.tsx
+ M src/studios/differential-equations/Phase1Labs.tsx
+ M src/studios/differential-equations/Phase2DynamicsLabs.tsx
+ M src/studios/differential-equations/Phase2NumericLabs.tsx
+ M src/studios/differential-equations/Phase2Portrait.tsx
+ M src/studios/differential-equations/Phase2SymbolicLabs.tsx
+ M src/studios/discrete/DiscreteEngineLinks.tsx
+ M src/studios/discrete/DiscreteEnhancementWorkbench.tsx
+ M src/studios/discrete/algorithms/AlgorithmsLab.tsx
+ M src/studios/discrete/combinatorics/ArrangementsLab.tsx
+ M src/studios/discrete/combinatorics/CombinatoricsLab.tsx
+ M src/studios/discrete/combinatorics/GeneratingTreeLab.tsx
+ M src/studios/discrete/combinatorics/InclusionExclusionLab.tsx
+ M src/studios/discrete/combinatorics/PigeonholeLab.tsx
+ M src/studios/discrete/combinatorics/SelectionsLab.tsx
+ M src/studios/discrete/combinatorics/combinatoricsMath.ts
+ M src/studios/discrete/combinatorics/combinatoricsMode.ts
+ M src/studios/discrete/crypto/CryptographyLab.tsx
+ M src/studios/discrete/number-sense/NumberSenseLab.tsx
+ M src/studios/discrete/patterns/FiguratePanel.tsx
+ M src/studios/discrete/patterns/FractalsPanel.tsx
+ M src/studios/discrete/patterns/NumberPatternsLab.tsx
+ M src/studios/discrete/patterns/PascalPanel.tsx
+ M src/studios/discrete/patterns/RecursivePanel.tsx
+ M src/studios/discrete/patterns/patternsUi.tsx
+ M src/studios/discrete/primes/DivisibilityPanel.tsx
+ M src/studios/discrete/primes/FactorTreePanel.tsx
+ M src/studios/discrete/primes/GcdLcmPanel.tsx
+ M src/studios/discrete/primes/PrimePatternsPanel.tsx
+ M src/studios/discrete/primes/PrimesLab.tsx
+ M src/studios/discrete/primes/SievePanel.tsx
+ M src/studios/discrete/primes/primesUi.tsx
+ M src/studios/geometry/GeometryAccuracyWorkbench.tsx
+ M src/studios/geometry/GeometryEnhancementWorkbench.tsx
+ M src/studios/geometry/GeometryTheoremWorkbench.tsx
+ M src/studios/geometry/SolidStudioNet.tsx
+ M src/studios/geometry/circles/AnglesLab.tsx
+ M src/studios/geometry/circles/ArcsSectorsLab.tsx
+ M src/studios/geometry/circles/ChordsLab.tsx
+ M src/studios/geometry/circles/PowerOfPointLab.tsx
+ M src/studios/geometry/circles/TangentsLab.tsx
+ M src/studios/geometry/circles/primitives.tsx
+ M src/studios/geometry/construction/ConstructionLab.tsx
+ M src/studios/geometry/coordinate/CoordinateLab.tsx
+ M src/studios/geometry/geometryLabUx.tsx
+ M src/studios/geometry/measurement/MeasurementLab.tsx
+ M src/studios/geometry/polygons/DiagonalsLab.tsx
+ M src/studios/geometry/polygons/InteriorAnglesLab.tsx
+ M src/studios/geometry/polygons/PolygonAreaLab.tsx
+ M src/studios/geometry/polygons/PolygonsLab.tsx
+ M src/studios/geometry/polygons/RegularPolygonLab.tsx
+ M src/studios/geometry/polygons/TessellationLab.tsx
+ M src/studios/geometry/polygons/tessellation/TessellationLab.tsx
+ M src/studios/geometry/proofs/ProofsLab.tsx
+ M src/studios/geometry/solids/SolidsStudioLab.tsx
+ M src/studios/geometry/transformations/TransformationsLab.tsx
+ M src/studios/geometry/triangles/CongruenceLab.tsx
+ M src/studios/geometry/triangles/SimilarityLab.tsx
+ M src/studios/geometry/triangles/TriangleCentersLab.tsx
+ M src/studios/geometry/triangles/TriangleExplorerLab.tsx
+ M src/studios/geometry/triangles/TriangleInequalitiesLab.tsx
+ M src/studios/geometry/triangles/TrianglesLab.tsx
+ M src/studios/landing/StudioLandingExtras.tsx
+ M src/studios/landing/StudioLandingTeasers.tsx
+ M src/studios/linear-algebra/AdvancedLinearLabs.tsx
+ M src/studios/linear-algebra/LinearAlgebraEnhancementWorkbench.tsx
+ M src/studios/linear-algebra/LinearAlgebraLabs.tsx
+ M src/studios/linear-algebra/VectorSpacesLab.tsx
+ M src/studios/linear-algebra/linearAlgebraUi.tsx
+ M src/studios/mockup/MockupStudioApp.test.tsx
+ M src/studios/mockup/MockupStudioApp.tsx
+ M src/studios/mockup/labs/ApplicationsLab.tsx
+ M src/studios/mockup/labs/DedicatedStudioLabs.tsx
+ M src/studios/mockup/labs/IdentitiesLab.tsx
+ M src/studios/mockup/labs/InverseTrigLab.tsx
+ M src/studios/mockup/labs/ModellingLabs.tsx
+ M src/studios/mockup/labs/ObliqueTriangleLab.tsx
+ M src/studios/mockup/labs/RemainingStudioLabs.tsx
+ M src/studios/mockup/labs/RightTriangleLab.tsx
+ M src/studios/mockup/labs/TrigonometryConceptLabs.tsx
+ M src/studios/mockup/labs/UnitCircleLab.tsx
+ M src/studios/mockup/labs/WavesHarmonicsLab.tsx
+ M src/studios/mockup/liveMathSmoke.test.tsx
+ M src/studios/mockup/studioLabKit.tsx
+ M src/studios/mockup/studioMockupCatalog.ts
+ M src/studios/mockup/studioSimpleWords.ts
+ M src/studios/mockup/studioTheoryContent.ts
+ M src/studios/modelling/ModellingEnhancementWorkbench.tsx
+ M src/studios/number-systems/NumberSystemsLabs.tsx
+ M src/studios/phase1/ClassroomBar.tsx
+ M src/studios/phase1/Phase1LabChrome.tsx
+ M src/studios/phase1/StudioGraphWidget.tsx
+ M src/studios/phase1/phase1Labs.test.tsx
+ M src/studios/phase1/studioKernel.ts
+ M src/studios/phase1/useStudioFigure.ts
+ M src/studios/platform/StudioProjectCenter.tsx
+ M src/studios/shared/studioMath3D.tsx
+ M src/studios/statistics/SamplingCltLab.tsx
+ M src/studios/statistics/StatisticsEnhancementWorkbench.tsx
+ M src/studios/trigonometry/TrigonometryEnhancementWorkbench.tsx
+?? artifacts/set-theory-upgrade/
+?? artifacts/studio-content-audit/
+?? scripts/connect-algebra-history.mjs
+?? scripts/connect-studio-models.mjs
+?? scripts/repair-studio-challenges.mjs
+?? src/studios/algebraic-structures/GroupsRingsFieldsLab.test.ts
+?? src/studios/algebraic-structures/GroupsRingsFieldsLab.tsx
+?? src/studios/audit/studioQualityRatings.ts
+?? src/studios/curriculum/
+?? src/studios/differential-equations/EnrichmentLabs.test.ts
+?? src/studios/differential-equations/EnrichmentLabs.tsx
+?? src/studios/phase1/StudioModelProvider.tsx
+?? src/studios/phase1/StudioModelTools.tsx
+?? src/studios/phase1/modelLedger.test.ts
+?? src/studios/phase1/modelLedger.ts
+?? src/studios/statistics/StatisticsCoreLabs.tsx
+?? src/studios/statistics/statisticsCore.test.ts
+?? src/studios/statistics/statisticsCore.ts

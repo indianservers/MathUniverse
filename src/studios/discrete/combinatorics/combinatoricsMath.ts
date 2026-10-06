@@ -181,7 +181,7 @@ export function evenOccupancy(objects: number, boxes: number): number[] {
 export function worstOccupancy(objects: number, boxes: number): number[] {
   if (boxes <= 0) return [];
   if (objects <= boxes) return Array.from({ length: boxes }, (_, i) => (i < objects ? 1 : 0));
-  const dist = Array.from({ length: boxes }, (_, i) => (i === 0 ? 0 : 1));
+  const dist: number[] = Array.from({ length: boxes }, (_, i) => (i === 0 ? 0 : 1));
   dist[0] = objects - (boxes - 1);
   return dist;
 }

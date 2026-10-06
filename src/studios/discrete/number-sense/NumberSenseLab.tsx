@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState, type FormEvent, type KeyboardEvent } from "react";
 import { useSearchParams } from "react-router-dom";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
@@ -145,52 +146,52 @@ export default function NumberSenseLab({ page }: { page: StudioMockupPage }) {
   const teacher = useNumberSenseSession();
   const current = (NUMBER_SENSE_MODES.includes(mode as NumberSenseMode) ? mode : "Integers") as NumberSenseMode;
 
-  const [intA, setIntA] = useState(Number(params.get("ia")) || DEFAULTS.integers.a);
-  const [intB, setIntB] = useState(Number(params.get("ib")) || DEFAULTS.integers.b);
-  const [intStart, setIntStart] = useState(DEFAULTS.integers.start);
-  const [intHop, setIntHop] = useState(DEFAULTS.integers.hop);
+  const [intA, setIntA] = useStudioState("NumberSenseLab:NumberSenseLab:intA", Number(params.get("ia")) || DEFAULTS.integers.a);
+  const [intB, setIntB] = useStudioState("NumberSenseLab:NumberSenseLab:intB", Number(params.get("ib")) || DEFAULTS.integers.b);
+  const [intStart, setIntStart] = useStudioState("NumberSenseLab:NumberSenseLab:intStart", DEFAULTS.integers.start);
+  const [intHop, setIntHop] = useStudioState("NumberSenseLab:NumberSenseLab:intHop", DEFAULTS.integers.hop);
   const [showNegCompare, setShowNegCompare] = useState(false);
-  const [selected, setSelected] = useState("a");
-  const [hopShown, setHopShown] = useState(DEFAULTS.integers.hop);
+  const [selected, setSelected] = useStudioState("NumberSenseLab:NumberSenseLab:selected", "a");
+  const [hopShown, setHopShown] = useStudioState("NumberSenseLab:NumberSenseLab:hopShown", DEFAULTS.integers.hop);
 
-  const [num, setNum] = useState(DEFAULTS.fractions.num);
-  const [den, setDen] = useState(DEFAULTS.fractions.den);
-  const [k, setK] = useState(DEFAULTS.fractions.k);
-  const [fracNeg, setFracNeg] = useState(false);
+  const [num, setNum] = useStudioState("NumberSenseLab:NumberSenseLab:num", DEFAULTS.fractions.num);
+  const [den, setDen] = useStudioState("NumberSenseLab:NumberSenseLab:den", DEFAULTS.fractions.den);
+  const [k, setK] = useStudioState("NumberSenseLab:NumberSenseLab:k", DEFAULTS.fractions.k);
+  const [fracNeg, setFracNeg] = useStudioState("NumberSenseLab:NumberSenseLab:fracNeg", false);
   const [showCompareFracs, setShowCompareFracs] = useState(true);
 
-  const [dec, setDec] = useState(DEFAULTS.decimals.value);
-  const [roundTo, setRoundTo] = useState(DEFAULTS.decimals.roundTo);
-  const [decSnap, setDecSnap] = useState(0.01);
+  const [dec, setDec] = useStudioState("NumberSenseLab:NumberSenseLab:dec", DEFAULTS.decimals.value);
+  const [roundTo, setRoundTo] = useStudioState("NumberSenseLab:NumberSenseLab:roundTo", DEFAULTS.decimals.roundTo);
+  const [decSnap, setDecSnap] = useStudioState("NumberSenseLab:NumberSenseLab:decSnap", 0.01);
 
-  const [ratioA, setRatioA] = useState(Number(params.get("a")) || DEFAULTS.ratios.a);
-  const [ratioB, setRatioB] = useState(Number(params.get("b")) || DEFAULTS.ratios.b);
-  const [ratioK, setRatioK] = useState(Number(params.get("k")) || DEFAULTS.ratios.k);
-  const [ratioC, setRatioC] = useState(0);
-  const [swapRatio, setSwapRatio] = useState(false);
-  const [ratioView, setRatioView] = useState<"tape" | "double" | "lattice">("double");
-  const [partWhole, setPartWhole] = useState(false);
-  const [ratioCursor, setRatioCursor] = useState(1);
+  const [ratioA, setRatioA] = useStudioState("NumberSenseLab:NumberSenseLab:ratioA", Number(params.get("a")) || DEFAULTS.ratios.a);
+  const [ratioB, setRatioB] = useStudioState("NumberSenseLab:NumberSenseLab:ratioB", Number(params.get("b")) || DEFAULTS.ratios.b);
+  const [ratioK, setRatioK] = useStudioState("NumberSenseLab:NumberSenseLab:ratioK", Number(params.get("k")) || DEFAULTS.ratios.k);
+  const [ratioC, setRatioC] = useStudioState("NumberSenseLab:NumberSenseLab:ratioC", 0);
+  const [swapRatio, setSwapRatio] = useStudioState("NumberSenseLab:NumberSenseLab:swapRatio", false);
+  const [ratioView, setRatioView] = useStudioState<"tape" | "double" | "lattice">("NumberSenseLab:NumberSenseLab:ratioView", "double");
+  const [partWhole, setPartWhole] = useStudioState("NumberSenseLab:NumberSenseLab:partWhole", false);
+  const [ratioCursor, setRatioCursor] = useStudioState("NumberSenseLab:NumberSenseLab:ratioCursor", 1);
 
-  const [base, setBase] = useState<2 | 3 | 5 | 10>(DEFAULTS.powers.base);
-  const [exp, setExp] = useState(DEFAULTS.powers.exp);
-  const [powerLog, setPowerLog] = useState(DEFAULTS.powers.logScale);
-  const [splitPower, setSplitPower] = useState(false);
+  const [base, setBase] = useStudioState<2 | 3 | 5 | 10>("NumberSenseLab:NumberSenseLab:base", DEFAULTS.powers.base);
+  const [exp, setExp] = useStudioState("NumberSenseLab:NumberSenseLab:exp", DEFAULTS.powers.exp);
+  const [powerLog, setPowerLog] = useStudioState("NumberSenseLab:NumberSenseLab:powerLog", DEFAULTS.powers.logScale);
+  const [splitPower, setSplitPower] = useStudioState("NumberSenseLab:NumberSenseLab:splitPower", false);
 
-  const [zoom, setZoom] = useState(Number(params.get("zoom")) || DEFAULTS.scales.zoom);
-  const [scaleLog, setScaleLog] = useState(DEFAULTS.scales.logScale);
-  const [kmPerCm, setKmPerCm] = useState(DEFAULTS.scales.kmPerCm);
-  const [mapCm, setMapCm] = useState(DEFAULTS.scales.cm);
-  const [length, setLength] = useState(DEFAULTS.scales.length);
-  const [fromUnit, setFromUnit] = useState<LengthUnit>("cm");
-  const [toUnit, setToUnit] = useState<LengthUnit>("m");
-  const [pan, setPan] = useState(0);
-  const [drawK, setDrawK] = useState(3);
+  const [zoom, setZoom] = useStudioState("NumberSenseLab:NumberSenseLab:zoom", Number(params.get("zoom")) || DEFAULTS.scales.zoom);
+  const [scaleLog, setScaleLog] = useStudioState("NumberSenseLab:NumberSenseLab:scaleLog", DEFAULTS.scales.logScale);
+  const [kmPerCm, setKmPerCm] = useStudioState("NumberSenseLab:NumberSenseLab:kmPerCm", DEFAULTS.scales.kmPerCm);
+  const [mapCm, setMapCm] = useStudioState("NumberSenseLab:NumberSenseLab:mapCm", DEFAULTS.scales.cm);
+  const [length, setLength] = useStudioState("NumberSenseLab:NumberSenseLab:length", DEFAULTS.scales.length);
+  const [fromUnit, setFromUnit] = useStudioState<LengthUnit>("NumberSenseLab:NumberSenseLab:fromUnit", "cm");
+  const [toUnit, setToUnit] = useStudioState<LengthUnit>("NumberSenseLab:NumberSenseLab:toUnit", "m");
+  const [pan, setPan] = useStudioState("NumberSenseLab:NumberSenseLab:pan", 0);
+  const [drawK, setDrawK] = useStudioState("NumberSenseLab:NumberSenseLab:drawK", 3);
 
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(3);
+  const [playing, setPlaying] = useStudioState("NumberSenseLab:NumberSenseLab:playing", false);
+  const [speed, setSpeed] = useStudioState("NumberSenseLab:NumberSenseLab:speed", 3);
   const [toast, setToast] = useState("");
-  const [quest, setQuest] = useState<string[]>([]);
+  const [quest, setQuest] = useStudioState<string[]>("NumberSenseLab:NumberSenseLab:quest", []);
   const history = useRef<Array<() => void>>([]);
   const xpOnce = useRef(false);
 

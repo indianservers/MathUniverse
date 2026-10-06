@@ -1,4 +1,5 @@
-import { useState, type ReactNode } from "react";
+import { useStudioState } from "../phase1/StudioModelProvider";
+import { type ReactNode } from "react";
 import * as la from "./linearAlgebraEnhancementEngine";
 
 function Tool({ id, title, children }: { id: string; title: string; children: ReactNode }) {
@@ -44,11 +45,11 @@ function mat(values: number[][]) {
 }
 
 export default function LinearAlgebraEnhancementWorkbench() {
-  const [a, setA] = useState(2);
-  const [b, setB] = useState(1);
-  const [c, setC] = useState(1);
-  const [d, setD] = useState(3);
-  const [csv, setCsv] = useState("1,2\n3,4");
+  const [a, setA] = useStudioState("LinearAlgebraEnhancementWorkbench:LinearAlgebraEnhancementWorkbench:a", 2);
+  const [b, setB] = useStudioState("LinearAlgebraEnhancementWorkbench:LinearAlgebraEnhancementWorkbench:b", 1);
+  const [c, setC] = useStudioState("LinearAlgebraEnhancementWorkbench:LinearAlgebraEnhancementWorkbench:c", 1);
+  const [d, setD] = useStudioState("LinearAlgebraEnhancementWorkbench:LinearAlgebraEnhancementWorkbench:d", 3);
+  const [csv, setCsv] = useStudioState("LinearAlgebraEnhancementWorkbench:LinearAlgebraEnhancementWorkbench:csv", "1,2\n3,4");
   const m: [[number, number], [number, number]] = [[a, b], [c, d]];
   const v: [number, number] = [a, b];
   const w: [number, number] = [c, d];

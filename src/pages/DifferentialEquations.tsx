@@ -26,11 +26,12 @@ const groups: Array<{ label: string; ids: string[] }> = [
   { label: "Numerical methods", ids: ["euler", "heun", "rk4"] },
   { label: "Higher-order equations", ids: ["higher-order-linear", "undetermined-coefficients", "variation-of-parameters", "cauchy-euler"] },
   { label: "Systems & trajectories", ids: ["systems", "phase-plane"] },
+  { label: "Transforms and PDEs", ids: ["laplace", "boundary-values", "pde"] },
   { label: "Engineering models", ids: ["mechanical-oscillations", "lcr-circuit", "newton-cooling"] },
 ];
 
 const icons: Record<string, LucideIcon> = {
-  home: Home, explorer: Search, "slope-fields": Sparkles,
+  laplace: Sigma, pde: Waves, "boundary-values": Compass, home: Home, explorer: Search, "slope-fields": Sparkles,
   "initial-value": Compass, "method-selector": GitBranch,
   separable: FunctionSquare, "homogeneous-first-order": Waves,
   exact: Sigma, "linear-first-order": LineChart, bernoulli: Activity,
@@ -44,7 +45,7 @@ const icons: Record<string, LucideIcon> = {
 };
 
 const phase1Icons: Record<string, LucideIcon> = {
-  home: Home, explorer: ScanSearch, "method-selector": Route,
+  laplace: Sigma, pde: Waves, "boundary-values": Compass, home: Home, explorer: ScanSearch, "method-selector": Route,
   "slope-fields": MoveUpRight, "initial-value": CircleDot,
   separable: Split, "homogeneous-first-order": Layers3,
   exact: ListChecks, "linear-first-order": ChartSpline,
@@ -157,7 +158,7 @@ export default function DifferentialEquations() {
               <span className="de-nav-heading">{group.label}</span>
               {group.ids.map((id) => {
                 const item = pageById(id);
-                const Icon = phase1 ? phase1Icons[id] : icons[id];
+                const Icon = (phase1 ? phase1Icons[id] : icons[id]) ?? FlaskConical;
                 if (!item) return null;
                 return <NavLink key={id} to={differentialEquationRouteFor(id)} end={id === "home"} title={phase1 ? (id === "home" ? "Differential Equations Home" : item.label) : undefined} aria-label={phase1 ? (id === "home" ? "Differential Equations Home" : item.label) : undefined} className={({ isActive }) => `de-nav-link${isActive || page.id === id ? " active" : ""}`}>
                   <Icon aria-hidden="true" size={17} strokeWidth={2} /><span>{phase1 && id === "home" ? "Differential Equations Home" : item.label}</span>
@@ -194,7 +195,7 @@ export default function DifferentialEquations() {
           {page.id === "home" ? <DifferentialEquationsHome studio={studio} /> : (
             <>
               <div className="de-lab-heading">
-                <div><p className="de-eyebrow"><Link to={studio.basePath}>Studio Home</Link><ChevronRight size={14} />{phase1 ? phase1Headings[page.id].title : page.label}</p><h1>{phase1 ? phase1Headings[page.id].title : page.title}</h1><p>{phase1 ? phase1Headings[page.id].description : page.description}</p></div>
+                <div><p className="de-eyebrow"><Link to={studio.basePath}>Studio Home</Link><ChevronRight size={14} />{phase1 ? (phase1Headings[page.id]?.title ?? page.title) : page.label}</p><h1>{phase1 ? (phase1Headings[page.id]?.title ?? page.title) : page.title}</h1><p>{phase1 ? (phase1Headings[page.id]?.description ?? page.description) : page.description}</p></div>
                 {phase2Ids.has(page.id) && <blockquote className="de2-heading-quote">“{phase2Quotes[page.id]}”</blockquote>}
                 <span className="de-heading-mark"><HeadingIcon size={36} /></span>
               </div>

@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useMemo, useState } from "react";
 import { LiveRow, Panel, Segmented, SliderRow } from "../../mockup/studioLabKit";
 import { ChallengeCard, Feedback, PlaybackBar, Tip, useStepPlayer } from "./primesUi";
@@ -48,20 +49,20 @@ type Props = {
 const GRID_MAX = 1000;
 
 export default function PrimePatternsPanel({ n, setN, teacherReveal, onInspect }: Props) {
-  const [view, setView] = useState("grid");
-  const [cols, setCols] = useState(10);
-  const [mod, setMod] = useState(6);
-  const [pairKind, setPairKind] = useState<"twin" | "cousin" | "sexy">("twin");
-  const [focus, setFocus] = useState<number | null>(null);
-  const [step, setStep] = useState(40);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(3);
-  const [zoom, setZoom] = useState(1);
-  const [pan, setPan] = useState({ x: 0, y: 0 });
-  const [challengeKey, setChallengeKey] = useState(0);
-  const [feedback, setFeedback] = useState<{ ok: boolean; text: string } | null>(null);
+  const [view, setView] = useStudioState("PrimePatternsPanel:PrimePatternsPanel:view", "grid");
+  const [cols, setCols] = useStudioState("PrimePatternsPanel:PrimePatternsPanel:cols", 10);
+  const [mod, setMod] = useStudioState("PrimePatternsPanel:PrimePatternsPanel:mod", 6);
+  const [pairKind, setPairKind] = useStudioState<"twin" | "cousin" | "sexy">("PrimePatternsPanel:PrimePatternsPanel:pairKind", "twin");
+  const [focus, setFocus] = useStudioState<number | null>("PrimePatternsPanel:PrimePatternsPanel:focus", null);
+  const [step, setStep] = useStudioState("PrimePatternsPanel:PrimePatternsPanel:step", 40);
+  const [playing, setPlaying] = useStudioState("PrimePatternsPanel:PrimePatternsPanel:playing", false);
+  const [speed, setSpeed] = useStudioState("PrimePatternsPanel:PrimePatternsPanel:speed", 3);
+  const [zoom, setZoom] = useStudioState("PrimePatternsPanel:PrimePatternsPanel:zoom", 1);
+  const [pan, setPan] = useStudioState("PrimePatternsPanel:PrimePatternsPanel:pan", { x: 0, y: 0 });
+  const [challengeKey, setChallengeKey] = useStudioState("PrimePatternsPanel:PrimePatternsPanel:challengeKey", 0);
+  const [feedback, setFeedback] = useStudioState<{ ok: boolean; text: string } | null>("PrimePatternsPanel:PrimePatternsPanel:feedback", null);
   const [hoverUlam, setHoverUlam] = useState<string>("");
-  const [evenN, setEvenN] = useState(28);
+  const [evenN, setEvenN] = useStudioState("PrimePatternsPanel:PrimePatternsPanel:evenN", 28);
 
   const cap = Math.min(view === "ulam" ? 5000 : 2500, Math.max(10, n));
   const gridCap = Math.min(cap, GRID_MAX);

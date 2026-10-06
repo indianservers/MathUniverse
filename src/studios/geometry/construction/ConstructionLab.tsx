@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import {
   Circle as CircleIcon,
   Grid3X3,
@@ -108,29 +109,29 @@ function historyLabel(obj: GeomObject, objects: GeomObject[]) {
 
 export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
   const { panel, setPanel } = useConstructionPanel();
-  const [objects, setObjects] = useState<GeomObject[]>(defaultConstruction);
-  const [past, setPast] = useState<GeomObject[][]>([]);
-  const [future, setFuture] = useState<GeomObject[][]>([]);
-  const [tool, setTool] = useState<ToolId>("select");
-  const [picks, setPicks] = useState<string[]>([]);
-  const [selected, setSelected] = useState<string | null>("C");
+  const [objects, setObjects] = useStudioState<GeomObject[]>("ConstructionLab:ConstructionLab:objects", defaultConstruction);
+  const [past, setPast] = useStudioState<GeomObject[][]>("ConstructionLab:ConstructionLab:past", []);
+  const [future, setFuture] = useStudioState<GeomObject[][]>("ConstructionLab:ConstructionLab:future", []);
+  const [tool, setTool] = useStudioState<ToolId>("ConstructionLab:ConstructionLab:tool", "select");
+  const [picks, setPicks] = useStudioState<string[]>("ConstructionLab:ConstructionLab:picks", []);
+  const [selected, setSelected] = useStudioState<string | null>("ConstructionLab:ConstructionLab:selected", "C");
   const [hover, setHover] = useState<string | null>(null);
-  const [highlight, setHighlight] = useState<string[]>([]);
+  const [highlight, setHighlight] = useStudioState<string[]>("ConstructionLab:ConstructionLab:highlight", []);
   const [openGroups, setOpenGroups] = useState<string[]>(["Select", "Points", "Lines", "Circles"]);
-  const [grid, setGrid] = useState<"off" | "cartesian" | "dots">("cartesian");
-  const [snap, setSnap] = useState(true);
-  const [labels, setLabels] = useState(true);
-  const [compassOnly, setCompassOnly] = useState(false);
-  const [radiusLock, setRadiusLock] = useState(false);
-  const [lockedR, setLockedR] = useState(2);
-  const [measureMode, setMeasureMode] = useState<"decimal" | "exact" | "both">("both");
-  const [angleUnit, setAngleUnit] = useState<"deg" | "rad">("deg");
-  const [fullChain, setFullChain] = useState(true);
-  const [proofStep, setProofStep] = useState(0);
-  const [stepAll, setStepAll] = useState(true);
+  const [grid, setGrid] = useStudioState<"off" | "cartesian" | "dots">("ConstructionLab:ConstructionLab:grid", "cartesian");
+  const [snap, setSnap] = useStudioState("ConstructionLab:ConstructionLab:snap", true);
+  const [labels, setLabels] = useStudioState("ConstructionLab:ConstructionLab:labels", true);
+  const [compassOnly, setCompassOnly] = useStudioState("ConstructionLab:ConstructionLab:compassOnly", false);
+  const [radiusLock, setRadiusLock] = useStudioState("ConstructionLab:ConstructionLab:radiusLock", false);
+  const [lockedR, setLockedR] = useStudioState("ConstructionLab:ConstructionLab:lockedR", 2);
+  const [measureMode, setMeasureMode] = useStudioState<"decimal" | "exact" | "both">("ConstructionLab:ConstructionLab:measureMode", "both");
+  const [angleUnit, setAngleUnit] = useStudioState<"deg" | "rad">("ConstructionLab:ConstructionLab:angleUnit", "deg");
+  const [fullChain, setFullChain] = useStudioState("ConstructionLab:ConstructionLab:fullChain", true);
+  const [proofStep, setProofStep] = useStudioState("ConstructionLab:ConstructionLab:proofStep", 0);
+  const [stepAll, setStepAll] = useStudioState("ConstructionLab:ConstructionLab:stepAll", true);
   const [toast, setToast] = useState("");
-  const [headerHost, setHeaderHost] = useState<HTMLElement | null>(null);
-  const [cam, setCam] = useState({ ox: 360, oy: 270, s: 72 });
+  const [headerHost, setHeaderHost] = useStudioState<HTMLElement | null>("ConstructionLab:ConstructionLab:headerHost", null);
+  const [cam, setCam] = useStudioState("ConstructionLab:ConstructionLab:cam", { ox: 360, oy: 270, s: 72 });
   const drag = useRef<{ id: string; moved: boolean } | null>(null);
   const pan = useRef<{ x: number; y: number; ox: number; oy: number } | null>(null);
   const space = useRef(false);
@@ -403,7 +404,7 @@ export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
           {displayName(obj, objects)}
           {world[id]?.undefinedReason ? " — undefined" : ""}
         </button>
-        {kids.length ? <ul>{kids.map((k) => renderTree(k, depth + 1))}</ul> : null}
+        {kids.length ? <ul>{kids.map((k) => renderTree(k.id, depth + 1))}</ul> : null}
       </li>
     );
   };

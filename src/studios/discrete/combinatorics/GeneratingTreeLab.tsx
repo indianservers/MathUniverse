@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState } from "react";
 import {
   combination,
@@ -34,17 +35,17 @@ export default function GeneratingTreeLab({
   pulse: string;
 }) {
   const kind = parseTreeKind(kindRaw);
-  const [collapsed, setCollapsed] = useState(false);
-  const [depth, setDepth] = useState(3);
-  const [visible, setVisible] = useState(1);
-  const [playing, setPlaying] = useState(false);
+  const [collapsed, setCollapsed] = useStudioState("GeneratingTreeLab:GeneratingTreeLab:collapsed", false);
+  const [depth, setDepth] = useStudioState("GeneratingTreeLab:GeneratingTreeLab:depth", 3);
+  const [visible, setVisible] = useStudioState("GeneratingTreeLab:GeneratingTreeLab:visible", 1);
+  const [playing, setPlaying] = useStudioState("GeneratingTreeLab:GeneratingTreeLab:playing", false);
   const [hover, setHover] = useState("");
-  const [hideInvalid, setHideInvalid] = useState(true);
-  const [pan, setPan] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-  const [n, setN] = useState(3);
-  const [r, setR] = useState(2);
-  const [ch, setCh] = useState(0);
+  const [hideInvalid, setHideInvalid] = useStudioState("GeneratingTreeLab:GeneratingTreeLab:hideInvalid", true);
+  const [pan, setPan] = useStudioState("GeneratingTreeLab:GeneratingTreeLab:pan", { x: 0, y: 0 });
+  const [zoom, setZoom] = useStudioState("GeneratingTreeLab:GeneratingTreeLab:zoom", 1);
+  const [n, setN] = useStudioState("GeneratingTreeLab:GeneratingTreeLab:n", 3);
+  const [r, setR] = useStudioState("GeneratingTreeLab:GeneratingTreeLab:r", 2);
+  const [ch, setCh] = useStudioState("GeneratingTreeLab:GeneratingTreeLab:ch", 0);
 
   useEffect(() => {
     if (kind === "binary" || kind === "restricted") { setDepth(3); setVisible(1); }

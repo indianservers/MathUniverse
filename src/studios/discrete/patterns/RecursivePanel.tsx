@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useMemo, useState } from "react";
 import { ChallengeBox, NControl, usePlayer } from "./patternsUi";
 import {
@@ -18,19 +19,19 @@ const KINDS = ["Arithmetic", "Geometric", "Fibonacci", "Custom", "Differences", 
 type Props = { teacherReveal?: boolean; hideFormula?: boolean; onOpenPascalFib?: () => void };
 
 export default function RecursivePanel({ teacherReveal, hideFormula, onOpenPascalFib }: Props) {
-  const [kind, setKind] = useState<(typeof KINDS)[number]>("Arithmetic");
-  const [a1, setA1] = useState(3);
-  const [d, setD] = useState(4);
-  const [rText, setRText] = useState("3");
-  const [terms, setTerms] = useState(8);
+  const [kind, setKind] = useStudioState<(typeof KINDS)[number]>("RecursivePanel:RecursivePanel:kind", "Arithmetic");
+  const [a1, setA1] = useStudioState("RecursivePanel:RecursivePanel:a1", 3);
+  const [d, setD] = useStudioState("RecursivePanel:RecursivePanel:d", 4);
+  const [rText, setRText] = useStudioState("RecursivePanel:RecursivePanel:rText", "3");
+  const [terms, setTerms] = useStudioState("RecursivePanel:RecursivePanel:terms", 8);
   const [shown, setShown] = useState(8);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(3);
-  const [a2, setA2] = useState(1);
-  const [rule, setRule] = useState("a[n-1]+a[n-2]");
-  const [rawSeq, setRawSeq] = useState("1, 4, 9, 16, 25");
-  const [fibView, setFibView] = useState("sequence");
-  const [challengeKey, setChallengeKey] = useState(0);
+  const [playing, setPlaying] = useStudioState("RecursivePanel:RecursivePanel:playing", false);
+  const [speed, setSpeed] = useStudioState("RecursivePanel:RecursivePanel:speed", 3);
+  const [a2, setA2] = useStudioState("RecursivePanel:RecursivePanel:a2", 1);
+  const [rule, setRule] = useStudioState("RecursivePanel:RecursivePanel:rule", "a[n-1]+a[n-2]");
+  const [rawSeq, setRawSeq] = useStudioState("RecursivePanel:RecursivePanel:rawSeq", "1, 4, 9, 16, 25");
+  const [fibView, setFibView] = useStudioState("RecursivePanel:RecursivePanel:fibView", "sequence");
+  const [challengeKey, setChallengeKey] = useStudioState("RecursivePanel:RecursivePanel:challengeKey", 0);
   const ratio = parseRatio(rText);
   const arith = generateArithmeticSequence(a1, d, terms);
   const geo = ratio.ok ? generateGeometricSequence(a1, ratio.value, terms) : [];
@@ -195,5 +196,5 @@ function PredictInner({ values, teacherReveal }: { values: number[]; teacherReve
   const hide = Math.floor(values.length / 2);
   const expected = values[hide]!;
   const shown = values.map((v, i) => (i === hide ? "?" : String(v))).join(", ");
-  return <ChallengeBox prompt={`Fill the gap: ${shown}`} expected={expected} hint="Use the live difference table on the Differences tab." onNew={() => undefined} reveal={teacherReveal} />;
+  return <ChallengeBox kind="live" prompt={`Fill the gap: ${shown}`} expected={expected} hint="Use the live difference table on the Differences tab." onNew={() => undefined} reveal={teacherReveal} />;
 }

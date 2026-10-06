@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -9,7 +10,7 @@ import {
 import "./studioLanding.css";
 
 export function ClassPinPanel({ onPush }: { onPush?: (route: string) => void }) {
-  const [pin, setPin] = useState(readClassPin);
+  const [pin, setPin] = useStudioState("StudioLandingExtras:ClassPinPanel:pin", readClassPin);
   return (
     <section className="sl-pin" aria-label="Local class pin">
       <h3>Local class pin</h3>

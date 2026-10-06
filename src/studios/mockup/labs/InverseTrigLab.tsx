@@ -1,31 +1,17 @@
-import { useState } from "react";
-import { MockupLearningStrip } from "../MockupStudioChrome";
-import type { StudioMockupPage } from "../studioMockupCatalog";
-import { useLabMode } from "../studioLabKit";
-import InverseTrigTargetLesson265 from "../../../modules/lessons/adapters/InverseTrigTargetLesson265";
-
-export function InverseTrigLab({ page }: { page: StudioMockupPage }) {
-  const { tabs, mode, setMode } = useLabMode(page);
-  const [resetToken, setResetToken] = useState(0);
-
-  return (
-    <>
-      <nav className="msk-tabs trig-target-tabs inv-target-tabs" aria-label="Inverse trigonometry modes">
-        {tabs.map((item) => (
-          <button key={item} type="button" className={item === mode ? "active" : ""} aria-pressed={item === mode} onClick={() => setMode(item)}>
-            {item}
-          </button>
-        ))}
-      </nav>
-      <div className="msk-lab trig-target-lab inv-target-lab is-git-target" data-lab-mode={mode} data-mode-canvas={mode} data-inv-mode={mode}>
-        <InverseTrigTargetLesson265 resetToken={resetToken} onInteraction={() => setResetToken((n) => n + 1)} />
-        <p className="inv-target-sr">Unit Circle Mapping · arcsin(sin θ) is not the identity</p>
-      </div>
-      <div className="trig-target-footer inv-target-footer">
-        <MockupLearningStrip page={page} mode={mode} />
-      </div>
-    </>
-  );
+import { useStudioState } from '../../phase1/StudioModelProvider';
+import { Phase1LabChrome } from '../../phase1/Phase1LabChrome';
+import type { StudioMockupPage } from '../studioMockupCatalog';
+import { ChallengeBox, Field, LiveRow, Panel, SliderRow, fmt } from '../studioLabKit';
+export function InverseTrigLab({page}:{page:StudioMockupPage}){
+  const [input,setInput]=useStudioState('inverse:input',.5),[theta,setTheta]=useStudioState('inverse:theta',150),[inverse,setInverse]=useStudioState('inverse:function','Arcsin'),[unit,setUnit]=useStudioState('inverse:unit','degrees');
+  return <Phase1LabChrome page={page}>{mode=>{
+    const name=['Arcsin','Arccos','Arctan'].includes(mode)?mode:inverse,fn=name==='Arcsin'?Math.asin:name==='Arccos'?Math.acos:Math.atan,forward=name==='Arcsin'?Math.sin:name==='Arccos'?Math.cos:Math.tan;
+    const composed=mode==='Principal Values'||mode==='Compositions',angle=theta*Math.PI/180,valid=name==='Arctan'||Math.abs(input)<=1,atPole=name==='Arctan'&&Math.abs(Math.cos(angle))<1e-10;
+    const result=composed?atPole?NaN:fn(forward(angle)):valid?fn(input):NaN,display=(value:number)=>unit==='degrees'?value*180/Math.PI:value;
+    const domain=name==='Arctan'?'All real inputs':'[−1, 1]',range=name==='Arcsin'?'[−π/2, π/2]':name==='Arccos'?'[0, π]':'(−π/2, π/2)';
+    const xmin=composed?-360:name==='Arctan'?-5:-1,xmax=composed?360:name==='Arctan'?5:1;
+    const points=Array.from({length:301},(_,i)=>{const x=xmin+(xmax-xmin)*i/300;const y=composed?fn(forward(x*Math.PI/180)):fn(x);return `${40+(x-xmin)/(xmax-xmin)*460},${160-y/Math.PI*130}`;}).join(' ');
+    return <div data-inv-mode={mode} className="inverse-model-panels"><Panel title="Inverse model controls">{composed?<><Field label="Inverse function"><select value={inverse} onChange={e=>setInverse(e.target.value)}>{['Arcsin','Arccos','Arctan'].map(n=><option key={n}>{n}</option>)}</select></Field><SliderRow label="Original angle θ (degrees)" value={theta} min={-360} max={360} step={1} onChange={setTheta}/></>:<SliderRow label="Function input x" value={input} min={name==='Arctan'?-5:-1} max={name==='Arctan'?5:1} step={.01} onChange={setInput}/>}<Field label="Output angle unit"><select value={unit} onChange={e=>setUnit(e.target.value)}><option value="degrees">Degrees</option><option value="radians">Radians</option></select></Field><p>Input domain: {domain}. Principal output range: {range} radians.</p></Panel><Panel title={composed?'Composition and principal-branch folding':`${name} principal branch`}><svg viewBox="0 0 540 320" className="statistics-chart" role="img" aria-label={`${name} ${composed?'composition':'inverse function'} graph`}><path d="M40 20V290H510M40 160H510" stroke="#94a3b8" fill="none"/><polyline points={points} fill="none" stroke="#0891b2" strokeWidth="2"/>{Number.isFinite(result)?<circle cx={40+((composed?theta:input)-xmin)/(xmax-xmin)*460} cy={160-result/Math.PI*130} r="6" fill="#7c3aed"/>:null}<text x="40" y="310" fill="currentColor" fontSize="12">Horizontal: {composed?'original angle in degrees':'input x'} {xmin} to {xmax}; vertical: angle in radians</text></svg><p>Unit Circle Mapping · arcsin(sin θ) is not the identity on unrestricted angles.</p>{mode==='Compositions'?<p>The forward-after-inverse composition returns the original input on the inverse domain: sin(arcsin x)=x. The inverse-after-forward composition folds angles into the chosen principal range.</p>:mode==='Principal Values'?<p>The inverse selects a principal angle even when the original angle lies outside its range. The selected branch makes the restricted forward function one-to-one.</p>:<p>Reflect the restricted forward graph across y=x to obtain this inverse branch. {name==='Arctan'?'Its limiting angles ±π/2 are approached but never attained.':'The endpoints of the input and output domains are included.'}</p>}</Panel><Panel title="Live value and reasoning"><LiveRow label="Selected function" value={name}/><LiveRow label={composed?'Original θ':'Input x'} value={composed?`${theta}°`:fmt(input)}/><LiveRow label="Principal angle" value={`${fmt(display(result),6)} ${unit==='degrees'?'°':'rad'}`}/>{!Number.isFinite(result)?<p role="alert">{atPole?'The tangent is undefined at this angle, so this composition is undefined.':'This input lies outside the real inverse-function domain.'}</p>:<ChallengeBox kind="live" prompt={`Principal ${name.toLowerCase()} result in ${unit} for the current input? Round to 3 decimal places.`} expected={display(result)} tolerance={.001} hint={`Select an angle in ${range}; do not return an unrestricted original angle.`}/>}<h3>Worked example</h3><p>sin 150°=1/2, but arcsin(1/2)=30°. By contrast, sin(arcsin(1/2))=1/2.</p><h3>Common mistake</h3><p>An inverse function is not a reciprocal: arcsin x differs from 1/sin x. State the angle unit and branch. A tangent pole is not a valid input to a composition.</p></Panel></div>;
+  }}</Phase1LabChrome>;
 }
-
 export default InverseTrigLab;

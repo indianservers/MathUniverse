@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import {
   ArrowUpRight,
   Camera,
@@ -122,36 +123,36 @@ function toolPrompt(tool: Tool, pending: Vec | null, refTarget: string | null): 
 
 export default function CoordinateLab({ page }: { page: StudioMockupPage }) {
   const { mode, setMode } = useCoordLabMode();
-  const [tool, setTool] = useState<Tool>("select");
-  const [scene, setScene] = useState<Scene>(EMPTY);
-  const [snap, setSnap] = useState(true);
+  const [tool, setTool] = useStudioState<Tool>("CoordinateLab:CoordinateLab:tool", "select");
+  const [scene, setScene] = useStudioState<Scene>("CoordinateLab:CoordinateLab:scene", EMPTY);
+  const [snap, setSnap] = useStudioState("CoordinateLab:CoordinateLab:snap", true);
   const [showGrid, setShowGrid] = useState(true);
-  const [axesOnly, setAxesOnly] = useState(false);
-  const [spacing, setSpacing] = useState(1);
-  const [fraction, setFraction] = useState(true);
-  const [right, setRight] = useState<RightTab>("measure");
-  const [activeDist, setActiveDist] = useState<DistPair>("AB");
-  const [ratioM, setRatioM] = useState(1);
-  const [ratioN, setRatioN] = useState(1);
-  const [pending, setPending] = useState<Vec | null>(null);
-  const [ghost, setGhost] = useState<Vec | null>(null);
+  const [axesOnly, setAxesOnly] = useStudioState("CoordinateLab:CoordinateLab:axesOnly", false);
+  const [spacing, setSpacing] = useStudioState("CoordinateLab:CoordinateLab:spacing", 1);
+  const [fraction, setFraction] = useStudioState("CoordinateLab:CoordinateLab:fraction", true);
+  const [right, setRight] = useStudioState<RightTab>("CoordinateLab:CoordinateLab:right", "measure");
+  const [activeDist, setActiveDist] = useStudioState<DistPair>("CoordinateLab:CoordinateLab:activeDist", "AB");
+  const [ratioM, setRatioM] = useStudioState("CoordinateLab:CoordinateLab:ratioM", 1);
+  const [ratioN, setRatioN] = useStudioState("CoordinateLab:CoordinateLab:ratioN", 1);
+  const [pending, setPending] = useStudioState<Vec | null>("CoordinateLab:CoordinateLab:pending", null);
+  const [ghost, setGhost] = useStudioState<Vec | null>("CoordinateLab:CoordinateLab:ghost", null);
   const [hover, setHover] = useState<Vec | null>(null);
-  const [selected, setSelected] = useState<string>("A");
-  const [history, setHistory] = useState<Scene[]>([EMPTY]);
-  const [histIndex, setHistIndex] = useState(0);
-  const [cam, setCam] = useState<Cam>({ cx: 0, cy: 0, zoom: 1 });
-  const [refTarget, setRefTarget] = useState<"ell" | "em" | "ab" | null>(null);
-  const [pulseP, setPulseP] = useState(false);
+  const [selected, setSelected] = useStudioState<string>("CoordinateLab:CoordinateLab:selected", "A");
+  const [history, setHistory] = useStudioState<Scene[]>("CoordinateLab:CoordinateLab:history", [EMPTY]);
+  const [histIndex, setHistIndex] = useStudioState("CoordinateLab:CoordinateLab:histIndex", 0);
+  const [cam, setCam] = useStudioState<Cam>("CoordinateLab:CoordinateLab:cam", { cx: 0, cy: 0, zoom: 1 });
+  const [refTarget, setRefTarget] = useStudioState<"ell" | "em" | "ab" | null>("CoordinateLab:CoordinateLab:refTarget", null);
+  const [pulseP, setPulseP] = useStudioState("CoordinateLab:CoordinateLab:pulseP", false);
   const [hoverStep, setHoverStep] = useState<string | null>(null);
-  const [announce, setAnnounce] = useState("Coordinate plane ready. Drag A, B, or C.");
+  const [announce, setAnnounce] = useStudioState("CoordinateLab:CoordinateLab:announce", "Coordinate plane ready. Drag A, B, or C.");
   const [toast, setToast] = useState("");
-  const [coach, setCoach] = useState(() => {
+  const [coach, setCoach] = useStudioState("CoordinateLab:CoordinateLab:coach", () => {
     try { return localStorage.getItem(COACH_KEY) !== "1"; } catch { return true; }
   });
-  const [challengeOpen, setChallengeOpen] = useState(false);
-  const [challengeOk, setChallengeOk] = useState<boolean | null>(null);
-  const [sheet, setSheet] = useState<Sheet>("plane");
-  const [headerHost, setHeaderHost] = useState<HTMLElement | null>(null);
+  const [challengeOpen, setChallengeOpen] = useStudioState("CoordinateLab:CoordinateLab:challengeOpen", false);
+  const [challengeOk, setChallengeOk] = useStudioState<boolean | null>("CoordinateLab:CoordinateLab:challengeOk", null);
+  const [sheet, setSheet] = useStudioState<Sheet>("CoordinateLab:CoordinateLab:sheet", "plane");
+  const [headerHost, setHeaderHost] = useStudioState<HTMLElement | null>("CoordinateLab:CoordinateLab:headerHost", null);
   const drag = useRef<string | null>(null);
   const pan = useRef<{ x: number; y: number; cx: number; cy: number } | null>(null);
   const space = useRef(false);

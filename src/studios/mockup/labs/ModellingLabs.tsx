@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import type { StudioMockupPage } from "../studioMockupCatalog";
 import { ChallengeBox, Field, LiveRow, Panel, SliderRow, StatusOk, clamp, fmt, useLabMode } from "../studioLabKit";
@@ -139,13 +140,13 @@ function iterateMap(n: number, seed: number) {
 }
 
 function MotionLab({ page }: { page: StudioMockupPage }) {
-  const [v0, setV0] = useState(22);
-  const [th, setTh] = useState(45);
-  const [g, setG] = useState(9.81);
-  const [k, setK] = useState(0.02);
-  const [y0, setY0] = useState(1.5);
-  const [tPlay, setTPlay] = useState(1.23);
-  const [scenario, setScenario] = useState("Soccer Kick");
+  const [v0, setV0] = useStudioState("ModellingLabs:MotionLab:v0", 22);
+  const [th, setTh] = useStudioState("ModellingLabs:MotionLab:th", 45);
+  const [g, setG] = useStudioState("ModellingLabs:MotionLab:g", 9.81);
+  const [k, setK] = useStudioState("ModellingLabs:MotionLab:k", 0.02);
+  const [y0, setY0] = useStudioState("ModellingLabs:MotionLab:y0", 1.5);
+  const [tPlay, setTPlay] = useStudioState("ModellingLabs:MotionLab:tPlay", 1.23);
+  const [scenario, setScenario] = useStudioState("ModellingLabs:MotionLab:scenario", "Soccer Kick");
   const a = useMemo(() => projectile(v0, th, g, 0, y0), [v0, th, g, y0]);
   const b = useMemo(() => projectile(v0, th, g, k, y0), [v0, th, g, k, y0]);
   const tMax = Math.max(a.at(-1)?.t ?? 1, b.at(-1)?.t ?? 1);
@@ -268,11 +269,11 @@ function MotionLab({ page }: { page: StudioMockupPage }) {
 }
 
 function PopulationLab({ page }: { page: StudioMockupPage }) {
-  const [p0, setP0] = useState(100);
-  const [r, setR] = useState(0.35);
-  const [k, setK] = useState(5000);
-  const [h, setH] = useState(0);
-  const [T, setT] = useState(50);
+  const [p0, setP0] = useStudioState("ModellingLabs:PopulationLab:p0", 100);
+  const [r, setR] = useStudioState("ModellingLabs:PopulationLab:r", 0.35);
+  const [k, setK] = useStudioState("ModellingLabs:PopulationLab:k", 5000);
+  const [h, setH] = useStudioState("ModellingLabs:PopulationLab:h", 0);
+  const [T, setT] = useStudioState("ModellingLabs:PopulationLab:T", 50);
   const exp = useMemo(() => Array.from({ length: 81 }, (_, i) => p0 * Math.exp(r * (i * T / 80))), [p0, r, T]);
   const log = useMemo(() => Array.from({ length: 81 }, (_, i) => {
     const t = i * T / 80;
@@ -355,15 +356,15 @@ function PopulationLab({ page }: { page: StudioMockupPage }) {
 
 function EpidemicLab({ page }: { page: StudioMockupPage }) {
   const { mode } = useLabMode(page);
-  const [beta, setBeta] = useState(0.45);
-  const [gamma, setGamma] = useState(0.15);
-  const [vax, setVax] = useState(0.02);
-  const [i0, setI0] = useState(50);
-  const [n, setN] = useState(100000);
-  const [day, setDay] = useState(200);
-  const [interventionDay, setInterventionDay] = useState(40);
-  const [interventionDuration, setInterventionDuration] = useState(60);
-  const [reduction, setReduction] = useState(0.5);
+  const [beta, setBeta] = useStudioState("ModellingLabs:EpidemicLab:beta", 0.45);
+  const [gamma, setGamma] = useStudioState("ModellingLabs:EpidemicLab:gamma", 0.15);
+  const [vax, setVax] = useStudioState("ModellingLabs:EpidemicLab:vax", 0.02);
+  const [i0, setI0] = useStudioState("ModellingLabs:EpidemicLab:i0", 50);
+  const [n, setN] = useStudioState("ModellingLabs:EpidemicLab:n", 100000);
+  const [day, setDay] = useStudioState("ModellingLabs:EpidemicLab:day", 200);
+  const [interventionDay, setInterventionDay] = useStudioState("ModellingLabs:EpidemicLab:interventionDay", 40);
+  const [interventionDuration, setInterventionDuration] = useStudioState("ModellingLabs:EpidemicLab:interventionDuration", 60);
+  const [reduction, setReduction] = useStudioState("ModellingLabs:EpidemicLab:reduction", 0.5);
   const r0 = beta / gamma;
   const seir = mode === "SEIR";
   const pts = useMemo(() => epidemicScenario({ beta, gamma, vaccination: vax, infected: i0, population: n, seir, interventionDay, interventionEndDay: interventionDay + interventionDuration, reduction }), [beta, gamma, vax, i0, n, seir, interventionDay, interventionDuration, reduction]);
@@ -371,7 +372,7 @@ function EpidemicLab({ page }: { page: StudioMockupPage }) {
   const peakI = Math.max(...pts.map((p) => p.i));
   const path = (key: "s" | "i" | "r" | "e", color: string) => <polyline points={pts.map((p, idx) => `${20 + idx * 1.9},${210 - (p[key] / n) * 170}`).join(" ")} fill="none" stroke={color} strokeWidth="2.2" />;
   const last = pts[Math.min(day, pts.length - 1)] ?? pts.at(-1)!;
-  const [tick, setTick] = useState(0);
+  const [tick, setTick] = useStudioState("ModellingLabs:EpidemicLab:tick", 0);
   useEffect(() => {
     const id = window.setInterval(() => setTick((t) => t + 1), 80);
     return () => window.clearInterval(id);
@@ -441,12 +442,12 @@ function EpidemicLab({ page }: { page: StudioMockupPage }) {
 }
 
 function FinanceLab({ page }: { page: StudioMockupPage }) {
-  const [p0, setP0] = useState(10000);
-  const [contrib, setContrib] = useState(500);
-  const [rate, setRate] = useState(0.06);
-  const [fee, setFee] = useState(0.005);
-  const [inf, setInf] = useState(0.025);
-  const [years, setYears] = useState(30);
+  const [p0, setP0] = useStudioState("ModellingLabs:FinanceLab:p0", 10000);
+  const [contrib, setContrib] = useStudioState("ModellingLabs:FinanceLab:contrib", 500);
+  const [rate, setRate] = useStudioState("ModellingLabs:FinanceLab:rate", 0.06);
+  const [fee, setFee] = useStudioState("ModellingLabs:FinanceLab:fee", 0.005);
+  const [inf, setInf] = useStudioState("ModellingLabs:FinanceLab:inf", 0.025);
+  const [years, setYears] = useStudioState("ModellingLabs:FinanceLab:years", 30);
   const n = 12;
   const series = useMemo(() => {
     const pts: Array<{ y: number; nom: number; real: number; paid: number }> = [];
@@ -495,7 +496,7 @@ function FinanceLab({ page }: { page: StudioMockupPage }) {
             <LiveRow color="#8b45f4" label="Future value (real)" value={`$${fmt(last.real, 0)}`} />
             <LiveRow color="#10b981" label="Total contributions" value={`$${fmt(last.paid, 0)}`} />
             <StatusOk>Most growth comes from interest. Inflation cuts real value.</StatusOk>
-            <ChallengeBox
+            <ChallengeBox kind="live"
               prompt={rate === 0 ? `Live FV at 0% interest is? Round to dollars.` : page.challenge.prompt}
               expected={rate === 0 ? Math.round(fv) : page.challenge.expected}
               hint={rate === 0 ? "No interest: principal plus deposits." : page.challenge.hint}
@@ -508,11 +509,11 @@ function FinanceLab({ page }: { page: StudioMockupPage }) {
 }
 
 function OptimizationLab({ page }: { page: StudioMockupPage }) {
-  const [labor, setLabor] = useState(100);
-  const [material, setMaterial] = useState(80);
-  const [machine, setMachine] = useState(90);
-  const [profitA, setProfitA] = useState(50);
-  const [profitB, setProfitB] = useState(40);
+  const [labor, setLabor] = useStudioState("ModellingLabs:OptimizationLab:labor", 100);
+  const [material, setMaterial] = useStudioState("ModellingLabs:OptimizationLab:material", 80);
+  const [machine, setMachine] = useStudioState("ModellingLabs:OptimizationLab:machine", 90);
+  const [profitA, setProfitA] = useStudioState("ModellingLabs:OptimizationLab:profitA", 50);
+  const [profitB, setProfitB] = useStudioState("ModellingLabs:OptimizationLab:profitB", 40);
   const constraints = [{ name: "Labor", a: 2, b: 1, limit: labor }, { name: "Machine", a: 1, b: 1, limit: machine }, { name: "Material", a: 0, b: 1, limit: material }];
   const solution = solveLinearProgram(constraints, { x: profitA, y: profitB });
   const px = (x: number) => 40 + x * 3;
@@ -565,11 +566,11 @@ function OptimizationLab({ page }: { page: StudioMockupPage }) {
 }
 
 function NetworksLab({ page }: { page: StudioMockupPage }) {
-  const [algo, setAlgo] = useState("Dijkstra");
-  const [traffic, setTraffic] = useState(0.62);
-  const [closed, setClosed] = useState(0.1);
-  const [origin, setOrigin] = useState("A");
-  const [dest, setDest] = useState("E");
+  const [algo, setAlgo] = useStudioState("ModellingLabs:NetworksLab:algo", "Dijkstra");
+  const [traffic, setTraffic] = useStudioState("ModellingLabs:NetworksLab:traffic", 0.62);
+  const [closed, setClosed] = useStudioState("ModellingLabs:NetworksLab:closed", 0.1);
+  const [origin, setOrigin] = useStudioState("ModellingLabs:NetworksLab:origin", "A");
+  const [dest, setDest] = useStudioState("ModellingLabs:NetworksLab:dest", "E");
   const graph = useMemo(() => trafficGraph(traffic, closed), [traffic, closed]);
   const dij = useMemo(() => shortestRoute(graph, origin, dest), [graph, origin, dest]);
   const ast = useMemo(() => astarRoute(graph, origin, dest), [graph, origin, dest]);
@@ -620,10 +621,10 @@ function NetworksLab({ page }: { page: StudioMockupPage }) {
 }
 
 function RegressionLab({ page }: { page: StudioMockupPage }) {
-  const [deg, setDeg] = useState(2);
-  const [split, setSplit] = useState(0.7);
-  const [xPred, setXPred] = useState(28);
-  const [pts, setPts] = useState(() => Array.from({ length: 40 }, (_, i) => {
+  const [deg, setDeg] = useStudioState("ModellingLabs:RegressionLab:deg", 2);
+  const [split, setSplit] = useStudioState("ModellingLabs:RegressionLab:split", 0.7);
+  const [xPred, setXPred] = useStudioState("ModellingLabs:RegressionLab:xPred", 28);
+  const [pts, setPts] = useStudioState("ModellingLabs:RegressionLab:pts", () => Array.from({ length: 40 }, (_, i) => {
     const x = -8 + i * 1.2;
     const y = -0.04 * x * x + 18 * x + 80 + Math.sin(i) * 40;
     return { x, y };
@@ -688,11 +689,11 @@ function RegressionLab({ page }: { page: StudioMockupPage }) {
 }
 
 function PeriodicLab({ page }: { page: StudioMockupPage }) {
-  const [A, setA] = useState(1.35);
-  const [T, setPer] = useState(12.42);
-  const [phi, setPhi] = useState(0.45);
-  const [d, setD] = useState(0.1);
-  const [a2, setA2] = useState(0.28);
+  const [A, setA] = useStudioState("ModellingLabs:PeriodicLab:A", 1.35);
+  const [T, setPer] = useStudioState("ModellingLabs:PeriodicLab:T", 12.42);
+  const [phi, setPhi] = useStudioState("ModellingLabs:PeriodicLab:phi", 0.45);
+  const [d, setD] = useStudioState("ModellingLabs:PeriodicLab:d", 0.1);
+  const [a2, setA2] = useStudioState("ModellingLabs:PeriodicLab:a2", 0.28);
   const pts = Array.from({ length: 120 }, (_, i) => {
     const t = i / 8;
     const yA = d + A * Math.sin(2 * Math.PI * t / T + phi);
@@ -747,8 +748,8 @@ function seeded(n: number, seed: number) {
 }
 
 function NumericalLab({ page }: { page: StudioMockupPage }) {
-  const [n, setN] = useState(400);
-  const [seed, setSeed] = useState(12345);
+  const [n, setN] = useStudioState("ModellingLabs:NumericalLab:n", 400);
+  const [seed, setSeed] = useStudioState("ModellingLabs:NumericalLab:seed", 12345);
   const sample = useMemo(() => seeded(Math.min(n, 900), seed), [n, seed]);
   const walk = useMemo(() => randomWalk(Math.min(n, 400), seed), [n, seed]);
   const iterates = useMemo(() => iterateMap(n, seed), [n, seed]);
@@ -804,9 +805,9 @@ function NumericalLab({ page }: { page: StudioMockupPage }) {
 }
 
 function ComparisonLab({ page }: { page: StudioMockupPage }) {
-  const [split, setSplit] = useState(0.7);
-  const [pen, setPen] = useState(0.1);
-  const [data, setData] = useState(sampleGrowth);
+  const [split, setSplit] = useStudioState("ModellingLabs:ComparisonLab:split", 0.7);
+  const [pen, setPen] = useStudioState("ModellingLabs:ComparisonLab:pen", 0.1);
+  const [data, setData] = useStudioState("ModellingLabs:ComparisonLab:data", sampleGrowth);
   const { xs, ys } = data;
   const cut = Math.floor(xs.length * split);
   const tx = xs.slice(cut);

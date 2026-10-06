@@ -1,3 +1,4 @@
+import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import { useMemo, useState } from "react";
 import {
   enhancementCounts,
@@ -16,7 +17,7 @@ const kindLabel: Record<EnhancementKind, string> = {
 };
 
 export default function CalculusEnhancementIdeas({ page }: { page: CalculusStudioPage }) {
-  const [kind, setKind] = useState<EnhancementKind | "all">("all");
+  const [kind, setKind] = useStudioState<EnhancementKind | "all">("CalculusEnhancementIdeas:CalculusEnhancementIdeas:kind", "all");
   const [open, setOpen] = useState(page !== "home");
   const items = useMemo(() => {
     const list = enhancementsFor(page);

@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState } from "react";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { clamp, fmt } from "../mockup/studioLabKit";
@@ -9,16 +10,16 @@ import {
 import { EulerHelix, StudioMath3D } from "../shared/studioMath3D";
 
 export function EulerLab({ page }: { page: StudioMockupPage }) {
-  const [theta, setTheta] = useState(Math.PI);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(1);
-  const [cycles, setCycles] = useState(3);
-  const [terms, setTerms] = useState(7);
+  const [theta, setTheta] = useStudioState("ComplexAdvancedLabs:EulerLab:theta", Math.PI);
+  const [playing, setPlaying] = useStudioState("ComplexAdvancedLabs:EulerLab:playing", false);
+  const [speed, setSpeed] = useStudioState("ComplexAdvancedLabs:EulerLab:speed", 1);
+  const [cycles, setCycles] = useStudioState("ComplexAdvancedLabs:EulerLab:cycles", 3);
+  const [terms, setTerms] = useStudioState("ComplexAdvancedLabs:EulerLab:terms", 7);
   const [showCircle, setShowCircle] = useState(true);
   const [showHelix, setShowHelix] = useState(true);
   const [showPoint, setShowPoint] = useState(true);
   const [showAxes, setShowAxes] = useState(true);
-  const [grid, setGrid] = useState(true);
+  const [grid, setGrid] = useStudioState("ComplexAdvancedLabs:EulerLab:grid", true);
   useEffect(() => {
     if (!playing) return undefined;
     const id = window.setInterval(() => setTheta((t) => (t + 0.04 * speed) % (Math.PI * 2)), 40);
@@ -211,20 +212,20 @@ function TracePanel({ theta, cycles, showPoint }: { theta: number; cycles: numbe
 const LOCUS_MODES = ["Circle Loci", "Line Loci", "Möbius", "Inversion", "Affine Map"] as const;
 
 export function LociLab({ page }: { page: StudioMockupPage }) {
-  const [cx, setCx] = useState(1);
-  const [cy, setCy] = useState(-1);
-  const [r, setR] = useState(2);
-  const [th, setTh] = useState(1.23);
-  const [playing, setPlaying] = useState(false);
+  const [cx, setCx] = useStudioState("ComplexAdvancedLabs:LociLab:cx", 1);
+  const [cy, setCy] = useStudioState("ComplexAdvancedLabs:LociLab:cy", -1);
+  const [r, setR] = useStudioState("ComplexAdvancedLabs:LociLab:r", 2);
+  const [th, setTh] = useStudioState("ComplexAdvancedLabs:LociLab:th", 1.23);
+  const [playing, setPlaying] = useStudioState("ComplexAdvancedLabs:LociLab:playing", false);
   const [showLocus, setShowLocus] = useState(true);
   const [showCenter, setShowCenter] = useState(true);
   const [showGrid, setShowGrid] = useState(true);
-  const [trail, setTrail] = useState(8);
-  const [a, setA] = useState<C>({ re: 1, im: 1 });
-  const [b, setB] = useState<C>({ re: 1, im: 0 });
-  const [c, setC] = useState<C>({ re: 0, im: 1 });
-  const [d, setD] = useState<C>({ re: 1, im: -1 });
-  const [kind, setKind] = useState<"Möbius" | "Inversion" | "Affine" | "Rotation" | "Scaling">("Möbius");
+  const [trail, setTrail] = useStudioState("ComplexAdvancedLabs:LociLab:trail", 8);
+  const [a, setA] = useStudioState<C>("ComplexAdvancedLabs:LociLab:a", { re: 1, im: 1 });
+  const [b, setB] = useStudioState<C>("ComplexAdvancedLabs:LociLab:b", { re: 1, im: 0 });
+  const [c, setC] = useStudioState<C>("ComplexAdvancedLabs:LociLab:c", { re: 0, im: 1 });
+  const [d, setD] = useStudioState<C>("ComplexAdvancedLabs:LociLab:d", { re: 1, im: -1 });
+  const [kind, setKind] = useStudioState<"Möbius" | "Inversion" | "Affine" | "Rotation" | "Scaling">("ComplexAdvancedLabs:LociLab:kind", "Möbius");
   useEffect(() => {
     if (!playing) return undefined;
     const id = window.setInterval(() => setTh((t) => (t + 0.04) % (Math.PI * 2)), 40);
@@ -399,17 +400,17 @@ export function LociLab({ page }: { page: StudioMockupPage }) {
 }
 
 export function CircuitsLab({ page }: { page: StudioMockupPage }) {
-  const [f, setF] = useState(60);
-  const [R, setR] = useState(100);
-  const [L, setL] = useState(0.15);
-  const [Ccap, setCcap] = useState(0.0001);
-  const [Vrms, setVrms] = useState(10);
-  const [phiV, setPhiV] = useState(0);
-  const [wt, setWt] = useState(45);
-  const [cycles, setCycles] = useState(2);
-  const [playing, setPlaying] = useState(false);
-  const [grid, setGrid] = useState(true);
-  const [labels, setLabels] = useState(true);
+  const [f, setF] = useStudioState("ComplexAdvancedLabs:CircuitsLab:f", 60);
+  const [R, setR] = useStudioState("ComplexAdvancedLabs:CircuitsLab:R", 100);
+  const [L, setL] = useStudioState("ComplexAdvancedLabs:CircuitsLab:L", 0.15);
+  const [Ccap, setCcap] = useStudioState("ComplexAdvancedLabs:CircuitsLab:Ccap", 0.0001);
+  const [Vrms, setVrms] = useStudioState("ComplexAdvancedLabs:CircuitsLab:Vrms", 10);
+  const [phiV, setPhiV] = useStudioState("ComplexAdvancedLabs:CircuitsLab:phiV", 0);
+  const [wt, setWt] = useStudioState("ComplexAdvancedLabs:CircuitsLab:wt", 45);
+  const [cycles, setCycles] = useStudioState("ComplexAdvancedLabs:CircuitsLab:cycles", 2);
+  const [playing, setPlaying] = useStudioState("ComplexAdvancedLabs:CircuitsLab:playing", false);
+  const [grid, setGrid] = useStudioState("ComplexAdvancedLabs:CircuitsLab:grid", true);
+  const [labels, setLabels] = useStudioState("ComplexAdvancedLabs:CircuitsLab:labels", true);
   useEffect(() => {
     if (!playing) return undefined;
     const id = window.setInterval(() => setWt((t) => (t + 3) % 360), 40);

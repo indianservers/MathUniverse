@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useState } from "react";
 import { ceilDivision, evenOccupancy, occupancyMax, randomOccupancy, worstOccupancy } from "./combinatoricsMath";
 import { parsePigKind } from "./combinatoricsMode";
@@ -26,15 +27,15 @@ export default function PigeonholeLab({
   pulse: string;
 }) {
   const kind = parsePigKind(kindRaw);
-  const [collapsed, setCollapsed] = useState(false);
-  const [n, setN] = useState(5);
-  const [m, setM] = useState(4);
-  const [dist, setDist] = useState<number[]>([2, 1, 1, 1]);
+  const [collapsed, setCollapsed] = useStudioState("PigeonholeLab:PigeonholeLab:collapsed", false);
+  const [n, setN] = useStudioState("PigeonholeLab:PigeonholeLab:n", 5);
+  const [m, setM] = useStudioState("PigeonholeLab:PigeonholeLab:m", 4);
+  const [dist, setDist] = useStudioState<number[]>("PigeonholeLab:PigeonholeLab:dist", [2, 1, 1, 1]);
   const [mode, setMode] = useState("manual");
-  const [unplaced, setUnplaced] = useState(0);
+  const [unplaced, setUnplaced] = useStudioState("PigeonholeLab:PigeonholeLab:unplaced", 0);
   const [drag, setDrag] = useState<"tray" | number | null>(null);
-  const [ch, setCh] = useState(0);
-  const [preset, setPreset] = useState("months");
+  const [ch, setCh] = useStudioState("PigeonholeLab:PigeonholeLab:ch", 0);
+  const [preset, setPreset] = useStudioState("PigeonholeLab:PigeonholeLab:preset", "months");
 
   const applyDist = (next: number[]) => {
     setDist(next);

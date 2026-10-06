@@ -17,16 +17,19 @@ export function ChallengeBox({
   hint,
   onNew,
   reveal,
+  kind = "concept",
 }: {
   prompt: string;
   expected: number | string;
   hint: string;
   onNew: () => void;
   reveal?: boolean;
+  kind?: "concept" | "live";
 }) {
   const [answer, setAnswer] = useState("");
   const [status, setStatus] = useState("");
   const [ok, setOk] = useState<boolean | null>(null);
+  useEffect(() => { setAnswer(""); setStatus(""); setOk(null); }, [prompt, expected]);
   return (
     <div className="np-challenge">
       <b>Challenge</b>
@@ -38,9 +41,9 @@ export function ChallengeBox({
           const right = String(expected).trim().toLowerCase().replace(/\s+/g, "");
           const num = Number(left);
           const target = typeof expected === "number" ? expected : Number(right);
-          const match = left === right || (Number.isFinite(num) && num === target);
+          const match = !!left && (left === right || (Number.isFinite(num) && num === target));
           setOk(match);
-          setStatus(match ? "Correct — that matches the live calculation." : hint);
+          setStatus(match ? kind === "live" ? "Correct — that matches the current calculation." : "Correct — the stated challenge is solved." : hint);
         }}>Check</button>
         <button type="button" className="np-ghost" onClick={() => { setAnswer(""); setStatus(""); setOk(null); onNew(); }}>New</button>
       </div>

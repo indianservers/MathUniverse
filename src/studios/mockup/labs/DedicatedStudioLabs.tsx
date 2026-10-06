@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useEffect, useRef, type PointerEvent, type ReactNode } from "react";
 import type { StudioMockupPage } from "../studioMockupCatalog";
 import { Phase1LabChrome } from "../../phase1/Phase1LabChrome";
 import {
@@ -26,8 +27,10 @@ import { InverseTrigLab as TargetInverseTrigLab } from "./InverseTrigLab";
 import { TrigGraphsLab as TargetTrigGraphsLab } from "./TrigonometryConceptLabs";
 import { ObliqueTriangleLab as TargetObliqueTriangleLab } from "./ObliqueTriangleLab";
 import { WavesHarmonicsLab as TargetWavesHarmonicsLab } from "./WavesHarmonicsLab";
+import StatisticsCoreLab, { hasStatisticsCoreLab } from "../../statistics/StatisticsCoreLabs";
 
 export default function DedicatedStudioLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
+  if (page.route.startsWith("/probability-statistics") && hasStatisticsCoreLab(page.id)) return <StatisticsCoreLab page={page} />;
   if (page.route.includes("mathematical-modelling") && page.id !== "home") return <ModellingStudioLab page={page} />;
   if (page.route.includes("linear-algebra") && page.id !== "home") return <LinearAlgebraLab page={page} extra={extra} />;
   if (page.route.startsWith("/differential-equations") && page.id !== "home") return <DifferentialEquationsLab page={page} />;
@@ -55,12 +58,12 @@ function LabChrome({ page, children }: { page: StudioMockupPage; children: React
 }
 
 function ModularLab({ page }: { page: StudioMockupPage }) {
-  const [a, setA] = useState(5);
-  const [n, setN] = useState(12);
-  const [b, setB] = useState(10);
-  const [m, setM] = useState(5);
-  const [r, setR] = useState(3);
-  const [tick, setTick] = useState(0);
+  const [a, setA] = useStudioState("DedicatedStudioLabs:ModularLab:a", 5);
+  const [n, setN] = useStudioState("DedicatedStudioLabs:ModularLab:n", 12);
+  const [b, setB] = useStudioState("DedicatedStudioLabs:ModularLab:b", 10);
+  const [m, setM] = useStudioState("DedicatedStudioLabs:ModularLab:m", 5);
+  const [r, setR] = useStudioState("DedicatedStudioLabs:ModularLab:r", 3);
+  const [tick, setTick] = useStudioState("DedicatedStudioLabs:ModularLab:tick", 0);
   const hops = hopCycle(a, n);
   const inv = inverseMod(a, n);
   const linear = solveLinear(a, b, n);
@@ -133,55 +136,14 @@ function ModularLab({ page }: { page: StudioMockupPage }) {
   );
 }
 
-function DistributionsLab({ page }: { page: StudioMockupPage }) {
-  const [mu, setMu] = useState(0);
-  const [sigma, setSigma] = useState(1);
-  const [lo, setLo] = useState(-1);
-  const [hi, setHi] = useState(1);
-  const pdf = (x: number) => Math.exp(-0.5 * ((x - mu) / sigma) ** 2) / (sigma * Math.sqrt(2 * Math.PI));
-  const cdf = (z: number) => {
-    const sign = z < 0 ? -1 : 1;
-    const a = Math.abs(z) / Math.SQRT2;
-    const t = 1 / (1 + 0.3275911 * a);
-    const erf = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-a * a);
-    return 0.5 * (1 + sign * erf);
-  };
-  const p = cdf((hi - mu) / sigma) - cdf((lo - mu) / sigma);
-  const pts = Array.from({ length: 121 }, (_, i) => {
-    const x = mu - 4 * sigma + (i / 120) * 8 * sigma;
-    return `${20 + i * 4},${200 - pdf(x) * 160 * sigma}`;
-  }).join(" ");
-  return (
-    <LabChrome page={page}>
-      <Panel title="Distribution">
-        <SliderRow label="Mean μ" value={mu} min={-3} max={3} step={0.1} onChange={setMu} />
-        <SliderRow label="σ" value={sigma} min={0.4} max={2.5} step={0.1} onChange={setSigma} />
-        <SliderRow label="Shade a" value={lo} min={-4} max={4} step={0.1} onChange={setLo} />
-        <SliderRow label="Shade b" value={hi} min={-4} max={4} step={0.1} onChange={setHi} />
-      </Panel>
-      <section className="msk-panel msk-canvas">
-        <svg className="msk-graph" viewBox="0 0 520 240" role="img" aria-label="Normal curve">
-          <rect width="520" height="240" fill="#f8fbff" />
-          <polyline points={pts} fill="none" stroke="#8b45f4" strokeWidth="2.2" />
-        </svg>
-      </section>
-      <aside className="msk-panel msk-live">
-        <LiveRow color="#8b45f4" label="P(a < X < b)" value={fmt(p, 3)} />
-        <LiveRow color="#08b9dd" label="68% band" value="μ ± σ" />
-        <ChallengeBox {...page.challenge} />
-      </aside>
-    </LabChrome>
-  );
-}
-
 function SmartTopicLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
   const { mode } = useLabMode(page);
-  const [a, setA] = useState(2.5);
-  const [b, setB] = useState(1.5);
-  const [n, setN] = useState(8);
-  const [playing, setPlaying] = useState(false);
+  const [a, setA] = useStudioState("DedicatedStudioLabs:SmartTopicLab:a", 2.5);
+  const [b, setB] = useStudioState("DedicatedStudioLabs:SmartTopicLab:b", 1.5);
+  const [n, setN] = useStudioState("DedicatedStudioLabs:SmartTopicLab:n", 8);
+  const [playing, setPlaying] = useStudioState("DedicatedStudioLabs:SmartTopicLab:playing", false);
   const tRef = useRef(0);
-  const [t, setT] = useState(0);
+  const [t, setT] = useStudioState("DedicatedStudioLabs:SmartTopicLab:t", 0);
 
   useEffect(() => {
     if (!playing) return;

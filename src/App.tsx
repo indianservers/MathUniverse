@@ -14,6 +14,8 @@ import SeoMetadata from "./components/seo/SeoMetadata";
 import { formulaVisualizerConfigs } from "./data/formulaVisualizerRoutes";
 import { differentialEquationRouteAliases } from "./studios/differential-equations/routes";
 import StandaloneStudioTheory from "./studios/mockup/StandaloneStudioTheory";
+import { StudioModelProvider } from "./studios/phase1/StudioModelProvider";
+import StudioCurriculum from "./studios/curriculum/StudioCurriculum";
 
 const routeChunkReloadPrefix = "math-universe-route-chunk-reload:";
 const routeChunkReloadWindowMs = 30_000;
@@ -379,9 +381,11 @@ export default function App() {
       <SeoMetadata />
       <RouteProgressBar />
       <Suspense fallback={<RouteFallback />}>
-        <Routes>
+        <StudioModelProvider key={location.pathname}><Routes>
           <Route element={<AppLayout />}>
             <Route index element={<Home />} />
+            <Route path="studios/curriculum" element={<StudioCurriculum />} />
+            <Route path="studios/:studioId/curriculum" element={<StudioCurriculum />} />
             <Route
               path="accuracy-certification"
               element={<AccuracyCertification />}
@@ -427,6 +431,7 @@ export default function App() {
             <Route path="algebra/advanced" element={<AlgebraStudio />} />
             <Route path="algebra/classic" element={<AlgebraClassic />} />
             <Route path="algebraic-structures" element={<AlgebraicStructuresStudio page="home" />} />
+            <Route path="algebraic-structures/groups-rings-fields" element={<AlgebraicStructuresStudio page="groups-rings-fields" />} />
             <Route path="algebraic-structures/structure-test" element={<AlgebraicStructuresStudio page="structure-test" />} />
             <Route path="algebraic-structures/cayley-tables" element={<AlgebraicStructuresStudio page="cayley-tables" />} />
             <Route path="algebraic-structures/semigroups-monoids" element={<AlgebraicStructuresStudio page="semigroups-monoids" />} />
@@ -729,6 +734,7 @@ export default function App() {
               <Route key={`la-${slug}`} path={`linear-algebra/${slug}`} element={<LinearAlgebra />} />
             ))}
             <Route path="differential-equations" element={<DifferentialEquations />} />
+            {["laplace", "pde", "boundary-values"].map(slug => <Route key={slug} path={`differential-equations/${slug}`} element={<DifferentialEquations />} />)}
             {["explorer", "method-selector", "slope-fields", "initial-value", "separable", "homogeneous-first-order", "exact", "linear-first-order", "bernoulli", "growth-models", "euler", "heun", "rk4", "higher-order-linear", "undetermined-coefficients", "variation-of-parameters", "cauchy-euler", "systems", "phase-plane", "mechanical-oscillations", "lcr-circuit", "newton-cooling", ...Object.keys(differentialEquationRouteAliases)].map((slug) => (
               <Route key={`de-${slug}`} path={`differential-equations/${slug}`} element={<DifferentialEquations />} />
             ))}
@@ -1041,7 +1047,7 @@ export default function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
-        <StandaloneStudioTheory />
+        <StandaloneStudioTheory /></StudioModelProvider>
       </Suspense>
     </AppErrorBoundary>
   );

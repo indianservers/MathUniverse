@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useEffect, useMemo, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useReducedMotion } from "../../../hooks/useReducedMotion";
 import { ChipRow, Field, Panel, Segmented } from "../../mockup/studioLabKit";
@@ -78,22 +79,22 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
   const triRef = useRef<TrianglePts>(EXPLORER_PRESETS.scalene);
   const panDrag = useRef<{ x: number; y: number; panX: number; panY: number } | null>(null);
   const [params, setParams] = useSearchParams();
-  const [tri, setTri] = useState<TrianglePts>(() => parseTriangle(params.get("t")) ?? EXPLORER_PRESETS.scalene);
-  const [preset, setPreset] = useState("scalene");
-  const [sub, setSub] = useState<Sub>("explore");
-  const [base, setBase] = useState<Base>("BC");
-  const [layers, setLayers] = useState(() => parseLayers(params.get("layers")) ?? {
+  const [tri, setTri] = useStudioState<TrianglePts>("TriangleExplorerLab:TriangleExplorerLab:tri", () => parseTriangle(params.get("t")) ?? EXPLORER_PRESETS.scalene);
+  const [preset, setPreset] = useStudioState("TriangleExplorerLab:TriangleExplorerLab:preset", "scalene");
+  const [sub, setSub] = useStudioState<Sub>("TriangleExplorerLab:TriangleExplorerLab:sub", "explore");
+  const [base, setBase] = useStudioState<Base>("TriangleExplorerLab:TriangleExplorerLab:base", "BC");
+  const [layers, setLayers] = useStudioState("TriangleExplorerLab:TriangleExplorerLab:layers", () => parseLayers(params.get("layers")) ?? {
     sides: true, angles: true, altitudes: false, median: false, bisector: false, perp: false, grid: true, coords: false, arcs: true,
   });
-  const [anim, setAnim] = useState(false);
-  const [areaFormula, setAreaFormula] = useState("bh");
-  const [snap, setSnap] = useState<SnapMode>(() => parseSnap(params.get("snap")));
-  const [lock, setLock] = useState<LockMode>("none");
-  const [selected, setSelected] = useState<"A" | "B" | "C">("C");
-  const [history, setHistory] = useState<TrianglePts[]>([parseTriangle(params.get("t")) ?? EXPLORER_PRESETS.scalene]);
-  const [histIndex, setHistIndex] = useState(0);
-  const [coach, setCoach] = useState(() => !readGeoSession().coachDismissed);
-  const [warn, setWarn] = useState("");
+  const [anim, setAnim] = useStudioState("TriangleExplorerLab:TriangleExplorerLab:anim", false);
+  const [areaFormula, setAreaFormula] = useStudioState("TriangleExplorerLab:TriangleExplorerLab:areaFormula", "bh");
+  const [snap, setSnap] = useStudioState<SnapMode>("TriangleExplorerLab:TriangleExplorerLab:snap", () => parseSnap(params.get("snap")));
+  const [lock, setLock] = useStudioState<LockMode>("TriangleExplorerLab:TriangleExplorerLab:lock", "none");
+  const [selected, setSelected] = useStudioState<"A" | "B" | "C">("TriangleExplorerLab:TriangleExplorerLab:selected", "C");
+  const [history, setHistory] = useStudioState<TrianglePts[]>("TriangleExplorerLab:TriangleExplorerLab:history", [parseTriangle(params.get("t")) ?? EXPLORER_PRESETS.scalene]);
+  const [histIndex, setHistIndex] = useStudioState("TriangleExplorerLab:TriangleExplorerLab:histIndex", 0);
+  const [coach, setCoach] = useStudioState("TriangleExplorerLab:TriangleExplorerLab:coach", () => !readGeoSession().coachDismissed);
+  const [warn, setWarn] = useStudioState("TriangleExplorerLab:TriangleExplorerLab:warn", "");
 
   const m = useMemo(() => measureTriangle(tri.A, tri.B, tri.C), [tri]);
   const reference = useMemo(() => measureTriangle(SPECIAL["3-4-5"].A, SPECIAL["3-4-5"].B, SPECIAL["3-4-5"].C), []);

@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useMemo, useState } from "react";
 import { ChallengeBox, NControl, usePlayer } from "./patternsUi";
 import {
@@ -41,14 +42,14 @@ type Props = {
 
 export default function FiguratePanel({ n, setN, sides, setSides, teacherReveal, hideFormula, onOpenPascal }: Props) {
   const [shown, setShown] = useState(n);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(3);
+  const [playing, setPlaying] = useStudioState("FiguratePanel:FiguratePanel:playing", false);
+  const [speed, setSpeed] = useStudioState("FiguratePanel:FiguratePanel:speed", 3);
   const [showNumbers, setShowNumbers] = useState(true);
   const [showFormula, setShowFormula] = useState(true);
-  const [insight, setInsight] = useState("formula");
-  const [compare, setCompare] = useState(4);
-  const [generalK, setGeneralK] = useState(8);
-  const [challengeKey, setChallengeKey] = useState(0);
+  const [insight, setInsight] = useStudioState("FiguratePanel:FiguratePanel:insight", "formula");
+  const [compare, setCompare] = useStudioState("FiguratePanel:FiguratePanel:compare", 4);
+  const [generalK, setGeneralK] = useStudioState("FiguratePanel:FiguratePanel:generalK", 8);
+  const [challengeKey, setChallengeKey] = useStudioState("FiguratePanel:FiguratePanel:challengeKey", 0);
   const k = sides === 0 ? generalK : sides;
   const value = polygonalNumber(k, n);
   const visible = Math.min(shown, n);

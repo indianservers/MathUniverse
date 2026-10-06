@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useState } from "react";
 import { useStudioMode } from "../../hooks/useStudioMode";
 
@@ -12,9 +13,9 @@ const examples = [
 export default function GeometryAccuracyWorkbench() {
   const [selected, select] = useStudioMode("example", examples.map((e) => e.id), "distance");
   const example = examples.find((e) => e.id === selected)!;
-  const [search, setSearch] = useState(""), [category, setCategory] = useState("All"), [step, setStep] = useState(0), [precision, setPrecision] = useState(2), [panel, setPanel] = useState("Validate");
-  const [grid, setGrid] = useState(true), [labels, setLabels] = useState(true), [showSteps, setShowSteps] = useState(true), [answer, setAnswer] = useState(""), [feedback, setFeedback] = useState("");
-  const [attempts, setAttempts] = useState<Record<string, boolean>>({});
+  const [search, setSearch] = useState(""), [category, setCategory] = useStudioState("GeometryAccuracyWorkbench:GeometryAccuracyWorkbench:category", "All"), [step, setStep] = useStudioState("GeometryAccuracyWorkbench:GeometryAccuracyWorkbench:step", 0), [precision, setPrecision] = useStudioState("GeometryAccuracyWorkbench:GeometryAccuracyWorkbench:precision", 2), [panel, setPanel] = useState("Validate");
+  const [grid, setGrid] = useStudioState("GeometryAccuracyWorkbench:GeometryAccuracyWorkbench:grid", true), [labels, setLabels] = useStudioState("GeometryAccuracyWorkbench:GeometryAccuracyWorkbench:labels", true), [showSteps, setShowSteps] = useState(true), [answer, setAnswer] = useState(""), [feedback, setFeedback] = useStudioState("GeometryAccuracyWorkbench:GeometryAccuracyWorkbench:feedback", "");
+  const [attempts, setAttempts] = useStudioState<Record<string, boolean>>("GeometryAccuracyWorkbench:GeometryAccuracyWorkbench:attempts", {});
   const choose = (id: string) => { select(id); setStep(0); setAnswer(""); setFeedback(""); };
   const rounded = Number(example.value.toFixed(precision));
   const check = () => { if (!answer.trim() || !Number.isFinite(Number(answer))) { setFeedback("Enter a numeric answer first."); return; } const correct = Math.abs(Number(answer) - example.value) <= 0.01; setFeedback(correct ? "Correct within tolerance." : "Not yet. Check the formula and try again."); setAttempts((old) => ({ ...old, [selected]: correct })); };

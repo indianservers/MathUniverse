@@ -106,6 +106,7 @@ export function ChallengeCard({
   const [answer, setAnswer] = useState("");
   const [status, setStatus] = useState("");
   const [ok, setOk] = useState<boolean | null>(null);
+  useEffect(() => { setAnswer(""); setStatus(""); setOk(null); }, [prompt, expected]);
   return (
     <div className="msk-challenge">
       <span>Challenge</span>
@@ -122,11 +123,11 @@ export function ChallengeCard({
           const right = String(expected).trim().toLowerCase().replace(/\s+/g, "");
           const numeric = Number(left.replace(/,/g, ""));
           const target = typeof expected === "number" ? expected : Number(right);
-          const match = check
+          const match = !!left && (check
             ? check(answer)
-            : left === right || (Number.isFinite(numeric) && Number.isFinite(target) && numeric === target);
+            : left === right || (Number.isFinite(numeric) && Number.isFinite(target) && numeric === target));
           setOk(match);
-          setStatus(match ? "Correct — that matches the live calculation." : hint);
+          setStatus(match ? "Correct — the stated challenge is solved." : hint);
         }}>Check</button>
         <button type="button" className="msk-soft" onClick={() => { setAnswer(""); setStatus(""); setOk(null); onNew(); }}>New challenge</button>
       </div>

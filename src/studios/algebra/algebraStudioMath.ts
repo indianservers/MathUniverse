@@ -89,7 +89,7 @@ function zeroLike(value: string) {
   const trimmed = value.replace(/\s+/g, "");
   if (trimmed === "0" || trimmed === "0.0") return true;
   const numeric = Number(trimmed);
-  return Number.isFinite(numeric) && Math.abs(numeric) < 1e-8;
+  return Number.isFinite(numeric) && numeric === 0;
 }
 
 export function expressionsEquivalent(left: string, right: string) {
@@ -100,25 +100,9 @@ export function expressionsEquivalent(left: string, right: string) {
     const difference = engine(`(${a})-(${b})`);
     if (zeroLike(difference.expand().toString()) || zeroLike(difference.toString())) return true;
   } catch {
-    /* fall through to numeric sampling */
+    // An unverified symbolic difference cannot certify an identity.
   }
-  const samples = [-3, -1, 0, 1, 2, 4, 0.5, -2.5];
-  const fnA = compileSafeFunction(a);
-  const fnB = compileSafeFunction(b);
-  if (fnA && fnB) {
-    return samples.every((x) => {
-      try {
-        const leftValue = fnA(x);
-        const rightValue = fnB(x);
-        if (!Number.isFinite(leftValue) && !Number.isFinite(rightValue)) return true;
-        return Number.isFinite(leftValue) && Number.isFinite(rightValue) && Math.abs(leftValue - rightValue) < 1e-6;
-      } catch {
-        return false;
-      }
-    });
-  }
-  const numeric = evaluateAlgebraExpression(`(${a})-(${b})`);
-  return numeric.ok && Math.abs(numeric.value) < 1e-8;
+  return false;
 }
 
 export function answersMatchChallenge(answer: string, expected: string | number) {
@@ -383,7 +367,7 @@ export function classifyProofReason(statement: string, goal = "(a+b)^2") {
   return { valid: true as const, suggested: "Distributive property", reason: "identity" as const };
 }
 
-export function reasonMatchesStep(reason: string, classification: ReturnType<typeof classifyProofReason>) {
+export function reasonMatchesStep(reason: string, classification: { valid: boolean; reason: string; suggested: string }) {
   const text = reason.toLowerCase();
   if (!classification.valid) return false;
   if (classification.reason === "square") return text.includes("square");

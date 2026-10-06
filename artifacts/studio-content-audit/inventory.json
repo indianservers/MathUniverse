@@ -1,0 +1,1739 @@
+[
+  {
+    "route": "/geometry",
+    "title": "Geometry Studio",
+    "modes": []
+  },
+  {
+    "route": "/geometry/construction",
+    "title": "Construction Workspace",
+    "modes": [
+      "Live Object Tree",
+      "Measurements",
+      "Dependencies",
+      "Proof Explanation"
+    ]
+  },
+  {
+    "route": "/geometry/triangles",
+    "title": "Triangles Lab",
+    "modes": [
+      "Triangle Explorer",
+      "Congruence",
+      "Similarity",
+      "Centers",
+      "Inequalities"
+    ]
+  },
+  {
+    "route": "/geometry/circles",
+    "title": "Circles Lab",
+    "modes": [
+      "Chords",
+      "Tangents",
+      "Angles",
+      "Power of a Point",
+      "Arcs & Sectors"
+    ]
+  },
+  {
+    "route": "/geometry/polygons",
+    "title": "Polygons Lab",
+    "modes": [
+      "Regular Polygon",
+      "Interior Angles",
+      "Tessellation",
+      "Area",
+      "Diagonals"
+    ]
+  },
+  {
+    "route": "/geometry/transformations",
+    "title": "Transformations Lab",
+    "modes": [
+      "Translate",
+      "Rotate",
+      "Reflect",
+      "Dilate",
+      "Compose"
+    ]
+  },
+  {
+    "route": "/geometry/coordinate",
+    "title": "Coordinate Geometry Lab",
+    "modes": [
+      "Distance",
+      "Midpoint",
+      "Slope",
+      "Section Formula",
+      "Locus"
+    ]
+  },
+  {
+    "route": "/geometry/measurement",
+    "title": "Measurement Lab",
+    "modes": [
+      "Length",
+      "Angle",
+      "Area",
+      "Perimeter",
+      "Scale",
+      "Error"
+    ]
+  },
+  {
+    "route": "/geometry/proofs",
+    "title": "Theorem & Visual Proof",
+    "modes": [
+      "Pythagoras",
+      "Angle Sum",
+      "Circle Theorems",
+      "Similarity",
+      "Area Proofs"
+    ]
+  },
+  {
+    "route": "/shapes",
+    "title": "2D & 3D Shapes Explorer",
+    "modes": [
+      "Cylinders",
+      "Cones",
+      "Spheres",
+      "Nets",
+      "Cross-sections"
+    ]
+  },
+  {
+    "route": "/geometry/ar",
+    "title": "Geometry AR Lab",
+    "modes": [
+      "Select",
+      "Point",
+      "Line",
+      "Circle",
+      "Polygon",
+      "3D Solid",
+      "Plane",
+      "Measure"
+    ]
+  },
+  {
+    "route": "/trigonometry",
+    "title": "Trigonometry Studio",
+    "modes": []
+  },
+  {
+    "route": "/trigonometry/unit-circle",
+    "title": "Unit Circle & Angle Studio",
+    "modes": [
+      "Angles",
+      "Unit Circle",
+      "Quadrants",
+      "Exact Values",
+      "Reference Angles"
+    ]
+  },
+  {
+    "route": "/trigonometry/right-triangle",
+    "title": "Right Triangle Studio",
+    "modes": [
+      "Solve Triangle",
+      "Ratios",
+      "Pythagoras",
+      "Similarity",
+      "Special Triangles"
+    ]
+  },
+  {
+    "route": "/trigonometry/graphs",
+    "title": "Trigonometric Functions & Graphs Studio",
+    "modes": [
+      "Sine",
+      "Cosine",
+      "Tangent",
+      "Transformations",
+      "Comparison"
+    ]
+  },
+  {
+    "route": "/trigonometry/identities",
+    "title": "Identities & Visual Proofs Studio",
+    "modes": [
+      "Pythagorean",
+      "Angle Sum",
+      "Double Angle",
+      "Half Angle",
+      "Product-Sum"
+    ]
+  },
+  {
+    "route": "/trigonometry/inverse",
+    "title": "Inverse Trigonometry Studio",
+    "modes": [
+      "Arcsin",
+      "Arccos",
+      "Arctan",
+      "Principal Values",
+      "Compositions"
+    ]
+  },
+  {
+    "route": "/trigonometry/oblique",
+    "title": "Oblique Triangle Studio",
+    "modes": [
+      "Sine Law",
+      "Cosine Law",
+      "Area",
+      "SSA Ambiguous Case",
+      "Solve Triangle"
+    ]
+  },
+  {
+    "route": "/trigonometry/waves",
+    "title": "Waves & Harmonics Studio",
+    "modes": [
+      "Simple Wave",
+      "Superposition",
+      "Harmonics",
+      "Beats",
+      "Phase"
+    ]
+  },
+  {
+    "route": "/trigonometry/applications",
+    "title": "Trigonometry Applications Studio",
+    "modes": [
+      "Heights & Distances",
+      "Bearings",
+      "Navigation",
+      "Surveying",
+      "Periodic Models"
+    ]
+  },
+  {
+    "route": "/trigonometry/ar",
+    "title": "Trigonometry AR Lab",
+    "modes": [
+      "Height Measurement",
+      "Distance",
+      "Angle",
+      "Triangle Overlay",
+      "Unit Circle",
+      "Wave Projection"
+    ]
+  },
+  {
+    "route": "/linear-algebra",
+    "title": "Linear Algebra Studio",
+    "modes": []
+  },
+  {
+    "route": "/linear-algebra/vectors",
+    "title": "Vectors Lab",
+    "modes": [
+      "Dot",
+      "Cross",
+      "Projections",
+      "Add",
+      "Subtract",
+      "Scale"
+    ]
+  },
+  {
+    "route": "/linear-algebra/matrices",
+    "title": "Matrices & Operations Lab",
+    "modes": [
+      "Multiply",
+      "Add",
+      "Inverse",
+      "Transpose",
+      "Block"
+    ]
+  },
+  {
+    "route": "/linear-algebra/row-reduction",
+    "title": "Systems & Row Reduction Lab",
+    "modes": [
+      "3D View",
+      "2D View",
+      "Pivot Map"
+    ]
+  },
+  {
+    "route": "/linear-algebra/linear-transforms",
+    "title": "Linear Transformations Lab",
+    "modes": [
+      "Identity",
+      "R90",
+      "Scale X",
+      "Shear",
+      "2D",
+      "3D"
+    ]
+  },
+  {
+    "route": "/linear-algebra/determinants",
+    "title": "Determinants Lab",
+    "modes": [
+      "2D Area",
+      "3D Volume",
+      "Cofactor",
+      "Orientation",
+      "Singularity"
+    ]
+  },
+  {
+    "route": "/linear-algebra/vector-spaces",
+    "title": "Vector Spaces & Basis Lab",
+    "modes": [
+      "Span",
+      "Independence",
+      "Basis",
+      "Subspaces",
+      "Coordinates"
+    ]
+  },
+  {
+    "route": "/linear-algebra/eigenvectors",
+    "title": "Eigenvalues & Eigenvectors Lab",
+    "modes": [
+      "2D View",
+      "3D View",
+      "Phase Portrait"
+    ]
+  },
+  {
+    "route": "/linear-algebra/orthogonality",
+    "title": "Orthogonality & Projections Lab",
+    "modes": [
+      "3D View",
+      "Vector Decomp",
+      "2D Projections"
+    ]
+  },
+  {
+    "route": "/linear-algebra/least-squares",
+    "title": "Least Squares Lab",
+    "modes": [
+      "Fit",
+      "Residuals",
+      "Column Space"
+    ]
+  },
+  {
+    "route": "/linear-algebra/playground",
+    "title": "2D & 3D Transformation Playground",
+    "modes": [
+      "2D Canvas",
+      "3D Canvas",
+      "Compose"
+    ]
+  },
+  {
+    "route": "/linear-algebra/cayley-hamilton",
+    "title": "Cayley–Hamilton Lab",
+    "modes": [
+      "Theorem",
+      "Powers",
+      "Inverse",
+      "Three by three"
+    ]
+  },
+  {
+    "route": "/linear-algebra/diagonalization",
+    "title": "Diagonalization Lab",
+    "modes": [
+      "Workflow",
+      "Visual",
+      "Three by three"
+    ]
+  },
+  {
+    "route": "/linear-algebra/quadratic-forms",
+    "title": "Quadratic Forms Lab",
+    "modes": [
+      "Classify",
+      "Contours"
+    ]
+  },
+  {
+    "route": "/linear-algebra/principal-axes",
+    "title": "Principal Axes Lab",
+    "modes": [
+      "Axes",
+      "Canonical"
+    ]
+  },
+  {
+    "route": "/linear-algebra/matrix-factorizations",
+    "title": "Matrix Factorizations Lab",
+    "modes": [
+      "LU",
+      "Pivoted LU",
+      "QR",
+      "SVD"
+    ]
+  },
+  {
+    "route": "/linear-algebra/similarity",
+    "title": "Similar Matrices Lab",
+    "modes": [
+      "Invariants",
+      "Bases"
+    ]
+  },
+  {
+    "route": "/linear-algebra/jordan-form",
+    "title": "Jordan Form Lab",
+    "modes": [
+      "Chain",
+      "Block"
+    ]
+  },
+  {
+    "route": "/complex-numbers",
+    "title": "Complex Numbers Studio",
+    "modes": []
+  },
+  {
+    "route": "/complex-numbers/argand-plane",
+    "title": "Argand Plane Lab",
+    "modes": [
+      "Plot",
+      "Modulus",
+      "Argument",
+      "Conjugate",
+      "Distance",
+      "Locus"
+    ]
+  },
+  {
+    "route": "/complex-numbers/arithmetic",
+    "title": "Complex Arithmetic & Geometry Lab",
+    "modes": [
+      "Add",
+      "Subtract",
+      "Multiply",
+      "Divide",
+      "Conjugate"
+    ]
+  },
+  {
+    "route": "/complex-numbers/polar-forms",
+    "title": "Polar & Exponential Forms Lab",
+    "modes": [
+      "Rectangular",
+      "Polar",
+      "Exponential"
+    ]
+  },
+  {
+    "route": "/complex-numbers/rotation",
+    "title": "Multiplication as Rotation Lab",
+    "modes": [
+      "Rotate",
+      "Scale",
+      "Sequence"
+    ]
+  },
+  {
+    "route": "/complex-numbers/roots",
+    "title": "Roots of Complex Numbers Lab",
+    "modes": [
+      "Square Roots",
+      "nth Roots",
+      "Roots of Unity",
+      "Polynomial Roots"
+    ]
+  },
+  {
+    "route": "/complex-numbers/euler",
+    "title": "Euler's Formula Lab",
+    "modes": [
+      "Unit Circle",
+      "Helix",
+      "Projections",
+      "Taylor"
+    ]
+  },
+  {
+    "route": "/complex-numbers/loci",
+    "title": "Loci & Transformations Lab",
+    "modes": [
+      "Circle Loci",
+      "Line Loci",
+      "Möbius",
+      "Inversion",
+      "Affine Map"
+    ]
+  },
+  {
+    "route": "/complex-numbers/fractals",
+    "title": "Mandelbrot & Julia Sets Lab",
+    "modes": [
+      "Mandelbrot Set",
+      "Julia Set"
+    ]
+  },
+  {
+    "route": "/complex-numbers/waves-circuits",
+    "title": "Applications to Waves & Circuits Lab",
+    "modes": [
+      "Phasors",
+      "AC Circuits",
+      "Signal Rotation",
+      "Impedance"
+    ]
+  },
+  {
+    "route": "/mathematical-modelling",
+    "title": "Mathematical Modelling Studio",
+    "modes": []
+  },
+  {
+    "route": "/mathematical-modelling/motion",
+    "title": "Motion Modelling Lab",
+    "modes": [
+      "Projectile",
+      "Vehicle",
+      "Pursuit",
+      "Drag"
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/population",
+    "title": "Population Growth Lab",
+    "modes": [
+      "Exponential",
+      "Logistic",
+      "Harvesting",
+      "Age Structured"
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/epidemics",
+    "title": "Epidemic Modelling Lab",
+    "modes": [
+      "SIR",
+      "SEIR",
+      "Vaccination",
+      "Interventions"
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/finance",
+    "title": "Finance & Compound Interest Lab",
+    "modes": [
+      "Savings",
+      "Loans",
+      "Investments",
+      "Inflation",
+      "Annuities"
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/optimization",
+    "title": "Optimization Modelling Lab",
+    "modes": [
+      "Production Planning",
+      "Transport",
+      "Design",
+      "Allocation",
+      "Scheduling"
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/networks",
+    "title": "Networks & Routing Lab",
+    "modes": [
+      "Dijkstra",
+      "A*"
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/regression",
+    "title": "Regression & Prediction Lab",
+    "modes": [
+      "Scatter & Fit",
+      "Residuals",
+      "Diagnostics",
+      "Prediction"
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/periodic",
+    "title": "Periodic Phenomena Lab",
+    "modes": [
+      "Tides",
+      "Seasons",
+      "Daylight",
+      "Sound",
+      "Cycles"
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/numerical",
+    "title": "Numerical Experiments Lab",
+    "modes": [
+      "Monte Carlo",
+      "Iteration",
+      "Random Walk",
+      "Differential Approx.",
+      "Sensitivity"
+    ]
+  },
+  {
+    "route": "/mathematical-modelling/comparison",
+    "title": "Model Comparison & Error Lab",
+    "modes": [
+      "Compare",
+      "Residuals",
+      "Selection"
+    ]
+  },
+  {
+    "route": "/discrete-world",
+    "title": "Number & Discrete Mathematics Studio",
+    "modes": []
+  },
+  {
+    "route": "/discrete-world/number-sense",
+    "title": "Number Sense & Number Lines Lab",
+    "modes": [
+      "Integers",
+      "Fractions",
+      "Decimals",
+      "Ratios",
+      "Powers",
+      "Scales"
+    ]
+  },
+  {
+    "route": "/discrete-world/primes",
+    "title": "Factors, Primes & Divisibility Lab",
+    "modes": [
+      "Sieve of Eratosthenes",
+      "Factor Tree",
+      "GCD & LCM",
+      "Divisibility Rules",
+      "Prime Patterns"
+    ]
+  },
+  {
+    "route": "/discrete-world/modular-arithmetic",
+    "title": "Modular Arithmetic Lab",
+    "modes": [
+      "Clock Arithmetic",
+      "Congruence",
+      "Inverses",
+      "Linear Congruences",
+      "Cycles"
+    ]
+  },
+  {
+    "route": "/discrete-world/number-patterns",
+    "title": "Number Patterns Lab",
+    "modes": [
+      "Figurate",
+      "Recursive",
+      "Pascal Triangle",
+      "Fractals"
+    ]
+  },
+  {
+    "route": "/discrete-world/combinatorics",
+    "title": "Combinatorics Lab",
+    "modes": [
+      "Arrangements",
+      "Selections",
+      "Pigeonhole",
+      "Inclusion-Exclusion",
+      "Generating Tree"
+    ]
+  },
+  {
+    "route": "/discrete-world/logic",
+    "title": "Mathematical Logic Lab",
+    "modes": [
+      "Circuit",
+      "Truth Table",
+      "Equivalence",
+      "CNF/DNF",
+      "SAT"
+    ]
+  },
+  {
+    "route": "/discrete-world/sets",
+    "title": "Sets & Relations Lab",
+    "modes": [
+      "Venn Diagram",
+      "Operations",
+      "Cartesian Products",
+      "Relations",
+      "Functions",
+      "Equivalence"
+    ]
+  },
+  {
+    "route": "/discrete-world/graphs",
+    "title": "Graph Theory & Networks Lab",
+    "modes": [
+      "Paths",
+      "Connectivity",
+      "Coloring",
+      "Spanning Trees",
+      "Flows"
+    ]
+  },
+  {
+    "route": "/discrete-world/algorithms",
+    "title": "Algorithms Lab",
+    "modes": [
+      "Sorting",
+      "Searching",
+      "Euclid",
+      "Graph Traversal",
+      "Complexity"
+    ]
+  },
+  {
+    "route": "/discrete-world/cryptography",
+    "title": "Cryptography Playground",
+    "modes": [
+      "Caesar",
+      "Affine",
+      "Vigenère",
+      "RSA Concept",
+      "Diffie-Hellman",
+      "Hashing"
+    ]
+  },
+  {
+    "route": "/probability-statistics",
+    "title": "Statistics & Probability Studio",
+    "modes": []
+  },
+  {
+    "route": "/probability-statistics/data-explorer",
+    "title": "Data Explorer",
+    "modes": [
+      "Overview",
+      "Pairwise"
+    ]
+  },
+  {
+    "route": "/probability-statistics/descriptive",
+    "title": "Descriptive Statistics Lab",
+    "modes": [
+      "Center",
+      "Spread",
+      "Shape",
+      "Outliers",
+      "Grouped"
+    ]
+  },
+  {
+    "route": "/probability-statistics/interactive-distributions",
+    "title": "Interactive Distributions Lab",
+    "modes": [
+      "Normal",
+      "Binomial",
+      "Poisson",
+      "Exponential",
+      "t",
+      "Chi-square"
+    ]
+  },
+  {
+    "route": "/probability-statistics/experiments",
+    "title": "Probability Experiments Lab",
+    "modes": [
+      "Coins",
+      "Dice",
+      "Cards",
+      "Spinner",
+      "Conditional",
+      "Bayes"
+    ]
+  },
+  {
+    "route": "/probability-statistics/counting",
+    "title": "Combinatorics Lab",
+    "modes": [
+      "Permutations",
+      "Combinations",
+      "Arrangements",
+      "Multisets",
+      "Counting Tree",
+      "Binomial Coefficients"
+    ]
+  },
+  {
+    "route": "/probability-statistics/clt",
+    "title": "Sampling & Central Limit Theorem Lab",
+    "modes": [
+      "Population",
+      "Sampling",
+      "CLT"
+    ]
+  },
+  {
+    "route": "/probability-statistics/confidence-intervals",
+    "title": "Confidence Intervals Lab",
+    "modes": [
+      "Mean",
+      "Proportion",
+      "Two-sample",
+      "Bootstrap"
+    ]
+  },
+  {
+    "route": "/probability-statistics/hypothesis",
+    "title": "Hypothesis Testing Lab",
+    "modes": [
+      "One Sample Mean",
+      "Two Sample Mean",
+      "Proportion",
+      "Chi-Square",
+      "Permutation Test"
+    ]
+  },
+  {
+    "route": "/probability-statistics/correlation",
+    "title": "Correlation & Regression Lab",
+    "modes": [
+      "Linear Fit",
+      "Residuals",
+      "Prediction"
+    ]
+  },
+  {
+    "route": "/probability-statistics/anova",
+    "title": "ANOVA & Experimental Design Lab",
+    "modes": [
+      "Group Comparison",
+      "Variation Decomposition",
+      "Design Canvas",
+      "Diagnostics"
+    ]
+  },
+  {
+    "route": "/differential-equations",
+    "title": "Differential Equations Studio",
+    "modes": []
+  },
+  {
+    "route": "/differential-equations/laplace",
+    "title": "Laplace Transforms & Step Responses",
+    "modes": [
+      "Time domain",
+      "Transform domain"
+    ]
+  },
+  {
+    "route": "/differential-equations/pde",
+    "title": "Heat & Wave Equation Modes",
+    "modes": [
+      "Heat equation",
+      "Wave equation"
+    ]
+  },
+  {
+    "route": "/differential-equations/boundary-values",
+    "title": "Boundary-Value Eigenfunctions",
+    "modes": [
+      "Eigenvalues",
+      "Eigenfunctions"
+    ]
+  },
+  {
+    "route": "/differential-equations/explorer",
+    "title": "Differential Equation Explorer",
+    "modes": [
+      "Order",
+      "Linear",
+      "Family"
+    ]
+  },
+  {
+    "route": "/differential-equations/slope-fields",
+    "title": "Direction Fields & Solution Curves",
+    "modes": [
+      "Slope field",
+      "Curves"
+    ]
+  },
+  {
+    "route": "/differential-equations/initial-value",
+    "title": "Initial Value Problems",
+    "modes": [
+      "IVP"
+    ]
+  },
+  {
+    "route": "/differential-equations/separable",
+    "title": "Separable Equations",
+    "modes": [
+      "Separate"
+    ]
+  },
+  {
+    "route": "/differential-equations/homogeneous-first-order",
+    "title": "Homogeneous First-Order Equations",
+    "modes": [
+      "v = y/x"
+    ]
+  },
+  {
+    "route": "/differential-equations/exact",
+    "title": "Exact Differential Equations",
+    "modes": [
+      "Exactness",
+      "Potential"
+    ]
+  },
+  {
+    "route": "/differential-equations/linear-first-order",
+    "title": "Linear Equations & Integrating Factor",
+    "modes": [
+      "Integrating factor"
+    ]
+  },
+  {
+    "route": "/differential-equations/bernoulli",
+    "title": "Bernoulli Equations",
+    "modes": [
+      "Substitution"
+    ]
+  },
+  {
+    "route": "/differential-equations/method-selector",
+    "title": "First-Order Method Selector",
+    "modes": [
+      "Diagnose"
+    ]
+  },
+  {
+    "route": "/differential-equations/euler",
+    "title": "Euler Method",
+    "modes": [
+      "Euler"
+    ]
+  },
+  {
+    "route": "/differential-equations/heun",
+    "title": "Improved Euler / Heun",
+    "modes": [
+      "Heun"
+    ]
+  },
+  {
+    "route": "/differential-equations/rk4",
+    "title": "Runge–Kutta RK4",
+    "modes": [
+      "RK4"
+    ]
+  },
+  {
+    "route": "/differential-equations/growth-models",
+    "title": "Growth and Decay",
+    "modes": [
+      "Growth"
+    ]
+  },
+  {
+    "route": "/differential-equations/higher-order-linear",
+    "title": "Higher-Order Linear ODEs",
+    "modes": [
+      "Roots",
+      "Initial conditions"
+    ]
+  },
+  {
+    "route": "/differential-equations/undetermined-coefficients",
+    "title": "Method of Undetermined Coefficients",
+    "modes": [
+      "Trial",
+      "Resonance"
+    ]
+  },
+  {
+    "route": "/differential-equations/variation-of-parameters",
+    "title": "Variation of Parameters",
+    "modes": [
+      "Wronskian"
+    ]
+  },
+  {
+    "route": "/differential-equations/cauchy-euler",
+    "title": "Cauchy–Euler Equations",
+    "modes": [
+      "Indicial"
+    ]
+  },
+  {
+    "route": "/differential-equations/systems",
+    "title": "Systems of First-Order ODEs",
+    "modes": [
+      "Eigenvalues",
+      "Portrait"
+    ]
+  },
+  {
+    "route": "/differential-equations/phase-plane",
+    "title": "Phase Plane Explorer",
+    "modes": [
+      "Click",
+      "Field"
+    ]
+  },
+  {
+    "route": "/differential-equations/mechanical-oscillations",
+    "title": "Mechanical Oscillations",
+    "modes": [
+      "Damping ratio"
+    ]
+  },
+  {
+    "route": "/differential-equations/lcr-circuit",
+    "title": "LCR Circuits",
+    "modes": [
+      "RLC"
+    ]
+  },
+  {
+    "route": "/differential-equations/newton-cooling",
+    "title": "Newton Cooling",
+    "modes": [
+      "Exponential"
+    ]
+  },
+  {
+    "route": "/algebra"
+  },
+  {
+    "route": "/algebraic-structures"
+  },
+  {
+    "route": "/calculus"
+  },
+  {
+    "route": "/number-systems"
+  },
+  {
+    "route": "/set-theory"
+  },
+  {
+    "route": "/graph-theory"
+  },
+  {
+    "route": "/algebra/expressions"
+  },
+  {
+    "route": "/algebra/equations"
+  },
+  {
+    "route": "/algebra/functions"
+  },
+  {
+    "route": "/algebra/polynomials"
+  },
+  {
+    "route": "/algebra/systems"
+  },
+  {
+    "route": "/algebra/exponents-logs"
+  },
+  {
+    "route": "/algebra/sequences"
+  },
+  {
+    "route": "/algebra/proof"
+  },
+  {
+    "route": "/algebra/cas"
+  },
+  {
+    "route": "/algebra/advanced"
+  },
+  {
+    "route": "/algebra/classic"
+  },
+  {
+    "route": "/algebraic-structures/structure-test"
+  },
+  {
+    "route": "/algebraic-structures/cayley-tables"
+  },
+  {
+    "route": "/algebraic-structures/semigroups-monoids"
+  },
+  {
+    "route": "/algebraic-structures/posets-lattices"
+  },
+  {
+    "route": "/algebraic-structures/boolean-algebra"
+  },
+  {
+    "route": "/algebra/algebraic-structures"
+  },
+  {
+    "route": "/geometry/solids"
+  },
+  {
+    "route": "/number-systems/rational"
+  },
+  {
+    "route": "/number-systems/irrational"
+  },
+  {
+    "route": "/number-systems/real-line"
+  },
+  {
+    "route": "/number-systems/hierarchy"
+  },
+  {
+    "route": "/number-systems/concepts"
+  },
+  {
+    "route": "/number-systems/practice"
+  },
+  {
+    "route": "/number-systems/accuracy"
+  },
+  {
+    "route": "/number-systems/space"
+  },
+  {
+    "route": "/trigonometry/formula-visualizer"
+  },
+  {
+    "route": "/calculus/limits"
+  },
+  {
+    "route": "/calculus/derivatives"
+  },
+  {
+    "route": "/calculus/derivative-applications"
+  },
+  {
+    "route": "/calculus/integration"
+  },
+  {
+    "route": "/calculus/integration-techniques"
+  },
+  {
+    "route": "/calculus/integral-applications"
+  },
+  {
+    "route": "/calculus/differential-equations"
+  },
+  {
+    "route": "/calculus/series-parametric-polar"
+  },
+  {
+    "route": "/calculus/multivariable-vector"
+  },
+  {
+    "route": "/calculus/jacobians-coordinate-transformations"
+  },
+  {
+    "route": "/calculus/beta-gamma"
+  },
+  {
+    "route": "/calculus/series-tests"
+  },
+  {
+    "route": "/calculus/curve-tracing"
+  },
+  {
+    "route": "/calculus/taylor-two-variables"
+  },
+  {
+    "route": "/calculus/lagrange-multipliers"
+  },
+  {
+    "route": "/calculus/change-order-integration"
+  },
+  {
+    "route": "/calculus/centroid-center-of-mass"
+  },
+  {
+    "route": "/calculus/moments-of-inertia"
+  },
+  {
+    "route": "/calculus/multiple-integral-applications"
+  },
+  {
+    "route": "/calculus/advanced"
+  },
+  {
+    "route": "/calculus/integrals"
+  },
+  {
+    "route": "/calculus/motion"
+  },
+  {
+    "route": "/calculus/practice"
+  },
+  {
+    "route": "/calculus/proof-problems"
+  },
+  {
+    "route": "/calculus/series-blocks"
+  },
+  {
+    "route": "/calculus/atlas"
+  },
+  {
+    "route": "/calculus/formulas"
+  },
+  {
+    "route": "/calculus/applications"
+  },
+  {
+    "route": "/mathematical-modelling/advanced"
+  },
+  {
+    "route": "/probability-statistics/module"
+  },
+  {
+    "route": "/probability-statistics/distributions"
+  },
+  {
+    "route": "/probability-statistics/sampling"
+  },
+  {
+    "route": "/probability-statistics/inference"
+  },
+  {
+    "route": "/probability-statistics/regression"
+  },
+  {
+    "route": "/probability-statistics/bayesian"
+  },
+  {
+    "route": "/probability-statistics/stochastic"
+  },
+  {
+    "route": "/probability-statistics/advanced-models"
+  },
+  {
+    "route": "/probability-statistics/survey-sampling"
+  },
+  {
+    "route": "/probability-statistics/design-of-experiments"
+  },
+  {
+    "route": "/probability-statistics/quality-control"
+  },
+  {
+    "route": "/probability-statistics/time-series"
+  },
+  {
+    "route": "/probability-statistics/nonparametric"
+  },
+  {
+    "route": "/probability-statistics/multivariate-analysis"
+  },
+  {
+    "route": "/probability-statistics/advanced-inference"
+  },
+  {
+    "route": "/probability-statistics/official-statistics"
+  },
+  {
+    "route": "/probability-statistics/survival-analysis"
+  },
+  {
+    "route": "/probability-statistics/actuarial-reliability"
+  },
+  {
+    "route": "/probability-statistics/statistical-computing"
+  },
+  {
+    "route": "/probability-statistics/applied-modelling"
+  },
+  {
+    "route": "/probability-statistics/school-statistics"
+  },
+  {
+    "route": "/set-theory/set-builder"
+  },
+  {
+    "route": "/set-theory/venn-diagram-engine"
+  },
+  {
+    "route": "/set-theory/relations"
+  },
+  {
+    "route": "/set-theory/hasse-diagram"
+  },
+  {
+    "route": "/set-theory/functions"
+  },
+  {
+    "route": "/set-theory/representations"
+  },
+  {
+    "route": "/set-theory/practice"
+  },
+  {
+    "route": "/geometry/points-lines-rays",
+    "title": "Points, Lines, and Rays"
+  },
+  {
+    "route": "/geometry/angles",
+    "title": "Angles and Rotation"
+  },
+  {
+    "route": "/geometry/parallel-lines",
+    "title": "Parallel Lines and Transversals"
+  },
+  {
+    "route": "/geometry/pythagorean-theorem",
+    "title": "Pythagorean Theorem"
+  },
+  {
+    "route": "/geometry/triangle-congruence",
+    "title": "Triangle Congruence"
+  },
+  {
+    "route": "/geometry/similar-triangles",
+    "title": "Similar Triangles"
+  },
+  {
+    "route": "/geometry/quadrilaterals",
+    "title": "Quadrilaterals"
+  },
+  {
+    "route": "/geometry/arcs-sectors",
+    "title": "Arcs and Sectors"
+  },
+  {
+    "route": "/geometry/chords-secants",
+    "title": "Chords and Secants"
+  },
+  {
+    "route": "/geometry/tangents",
+    "title": "Tangents"
+  },
+  {
+    "route": "/geometry/coordinate-geometry",
+    "title": "Coordinate Geometry"
+  },
+  {
+    "route": "/geometry/symmetry",
+    "title": "Symmetry"
+  },
+  {
+    "route": "/geometry/area-perimeter",
+    "title": "Area and Perimeter"
+  },
+  {
+    "route": "/geometry/mensuration-3d",
+    "title": "3D Mensuration"
+  },
+  {
+    "route": "/geometry/surface-area-volume",
+    "title": "Surface Area and Volume"
+  },
+  {
+    "route": "/geometry/geometric-constructions",
+    "title": "Geometric Constructions"
+  },
+  {
+    "route": "/geometry/loci",
+    "title": "Loci"
+  },
+  {
+    "route": "/geometry/trig-in-geometry",
+    "title": "Trigonometry in Geometry"
+  },
+  {
+    "route": "/trigonometry/trigonometric-functions",
+    "title": "Trigonometric Functions"
+  },
+  {
+    "route": "/trigonometry/right-triangle-ratios",
+    "title": "Right Triangle Ratios"
+  },
+  {
+    "route": "/trigonometry/degree-radian",
+    "title": "Degrees and Radians"
+  },
+  {
+    "route": "/trigonometry/special-angles",
+    "title": "Special Angles"
+  },
+  {
+    "route": "/trigonometry/quadrant-signs",
+    "title": "Quadrant Sign Rules"
+  },
+  {
+    "route": "/trigonometry/sine-graph",
+    "title": "Sine Graph"
+  },
+  {
+    "route": "/trigonometry/cosine-graph",
+    "title": "Cosine Graph"
+  },
+  {
+    "route": "/trigonometry/tangent-graph",
+    "title": "Tangent Graph"
+  },
+  {
+    "route": "/trigonometry/reciprocal-graphs",
+    "title": "Reciprocal Graphs"
+  },
+  {
+    "route": "/trigonometry/reciprocal-ratios",
+    "title": "Sec, Cosec, Cot"
+  },
+  {
+    "route": "/trigonometry/pythagorean-identity",
+    "title": "Pythagorean Identity"
+  },
+  {
+    "route": "/trigonometry/complementary-angles",
+    "title": "Complementary Angles"
+  },
+  {
+    "route": "/trigonometry/sum-difference",
+    "title": "Sum and Difference Formulas"
+  },
+  {
+    "route": "/trigonometry/double-angle",
+    "title": "Double Angle Formulas"
+  },
+  {
+    "route": "/trigonometry/half-angle",
+    "title": "Half-Angle Formulas"
+  },
+  {
+    "route": "/trigonometry/product-to-sum",
+    "title": "Product-to-Sum"
+  },
+  {
+    "route": "/trigonometry/triple-angle",
+    "title": "Triple-Angle Formulas"
+  },
+  {
+    "route": "/trigonometry/inverse-trig",
+    "title": "Inverse Trigonometry"
+  },
+  {
+    "route": "/trigonometry/inverse-principal-values",
+    "title": "Inverse Principal Values"
+  },
+  {
+    "route": "/trigonometry/trig-equations",
+    "title": "Trigonometric Equations"
+  },
+  {
+    "route": "/trigonometry/general-solutions",
+    "title": "General Solutions"
+  },
+  {
+    "route": "/trigonometry/trig-inequalities",
+    "title": "Trigonometric Inequalities"
+  },
+  {
+    "route": "/trigonometry/height-distance",
+    "title": "Heights and Distances"
+  },
+  {
+    "route": "/trigonometry/bearings-navigation",
+    "title": "Bearings and Navigation"
+  },
+  {
+    "route": "/trigonometry/law-of-sines",
+    "title": "Law of Sines"
+  },
+  {
+    "route": "/trigonometry/law-of-cosines",
+    "title": "Law of Cosines"
+  },
+  {
+    "route": "/trigonometry/ambiguous-case",
+    "title": "SSA Ambiguous Case"
+  },
+  {
+    "route": "/trigonometry/trig-triangle-area",
+    "title": "Triangle Area Formula"
+  },
+  {
+    "route": "/trigonometry/polar-coordinates",
+    "title": "Polar Coordinates"
+  },
+  {
+    "route": "/trigonometry/polar-roses",
+    "title": "Polar Rose Curves"
+  },
+  {
+    "route": "/trigonometry/complex-de-moivre",
+    "title": "De Moivre's Theorem"
+  },
+  {
+    "route": "/trigonometry/trig-limits",
+    "title": "Trigonometric Limits"
+  },
+  {
+    "route": "/trigonometry/trig-derivatives",
+    "title": "Trig Derivatives"
+  },
+  {
+    "route": "/trigonometry/trig-integrals",
+    "title": "Trig Integrals"
+  },
+  {
+    "route": "/trigonometry/orthogonality",
+    "title": "Orthogonality of Sine and Cosine"
+  },
+  {
+    "route": "/trigonometry/fourier-trig-series",
+    "title": "Fourier Trigonometric Series"
+  },
+  {
+    "route": "/trigonometry/spherical-trigonometry",
+    "title": "Spherical Trigonometry"
+  },
+  {
+    "route": "/trigonometry/hyperbolic-functions",
+    "title": "Hyperbolic Functions"
+  },
+  {
+    "route": "/trigonometry/wave-amplitude",
+    "title": "Amplitude"
+  },
+  {
+    "route": "/trigonometry/wave-period-frequency",
+    "title": "Period and Frequency"
+  },
+  {
+    "route": "/trigonometry/phase-shift",
+    "title": "Phase Shift"
+  },
+  {
+    "route": "/trigonometry/eclipse-trigonometry",
+    "title": "Eclipse Trigonometry"
+  },
+  {
+    "route": "/trigonometry/real-world-waves",
+    "title": "Real-World Waves"
+  },
+  {
+    "route": "/trigonometry/inquiry-experiments",
+    "title": "50+ Trigonometry Experiments"
+  },
+  {
+    "route": "/probability-statistics/distributions/bernoulli",
+    "title": "Bernoulli Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/categorical",
+    "title": "Categorical Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/discrete-uniform",
+    "title": "Discrete Uniform Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/binomial",
+    "title": "Binomial Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/geometric",
+    "title": "Geometric Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/negative-binomial",
+    "title": "Negative Binomial Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/hypergeometric",
+    "title": "Hypergeometric Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/poisson",
+    "title": "Poisson Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/poisson-binomial",
+    "title": "Poisson-Binomial Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/beta-binomial",
+    "title": "Beta-Binomial Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/zipf",
+    "title": "Zipf Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/continuous-uniform",
+    "title": "Continuous Uniform Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/normal",
+    "title": "Normal Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/exponential",
+    "title": "Exponential Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/gamma",
+    "title": "Gamma Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/beta",
+    "title": "Beta Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/chi-square",
+    "title": "Chi-Square Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/student-t",
+    "title": "Student t Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/f",
+    "title": "F Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/lognormal",
+    "title": "Lognormal Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/weibull",
+    "title": "Weibull Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/cauchy",
+    "title": "Cauchy Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/laplace",
+    "title": "Laplace Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/logistic",
+    "title": "Logistic Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/pareto",
+    "title": "Pareto Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/rayleigh",
+    "title": "Rayleigh Distribution"
+  },
+  {
+    "route": "/probability-statistics/distributions/triangular",
+    "title": "Triangular Distribution"
+  },
+  {
+    "route": "/differential-equations/equation-explorer"
+  },
+  {
+    "route": "/differential-equations/direction-fields"
+  },
+  {
+    "route": "/differential-equations/homogeneous"
+  },
+  {
+    "route": "/differential-equations/growth"
+  },
+  {
+    "route": "/differential-equations/oscillations"
+  },
+  {
+    "route": "/geometry?tab=advanced"
+  },
+  {
+    "route": "/trigonometry?tab=advanced"
+  },
+  {
+    "route": "/complex-numbers?tab=advanced"
+  },
+  {
+    "route": "/probability-statistics?tab=advanced"
+  },
+  {
+    "route": "/linear-algebra?mode=advanced"
+  },
+  {
+    "route": "/discrete-world?workbench=advanced"
+  },
+  {
+    "route": "/studios/algebra/curriculum"
+  },
+  {
+    "route": "/studios/algebraic-structures/curriculum"
+  },
+  {
+    "route": "/studios/geometry/curriculum"
+  },
+  {
+    "route": "/studios/trigonometry/curriculum"
+  },
+  {
+    "route": "/studios/calculus/curriculum"
+  },
+  {
+    "route": "/studios/number-systems/curriculum"
+  },
+  {
+    "route": "/studios/linear-algebra/curriculum"
+  },
+  {
+    "route": "/studios/complex-numbers/curriculum"
+  },
+  {
+    "route": "/studios/mathematical-modelling/curriculum"
+  },
+  {
+    "route": "/studios/discrete-world/curriculum"
+  },
+  {
+    "route": "/studios/set-theory/curriculum"
+  },
+  {
+    "route": "/studios/graph-theory/curriculum"
+  },
+  {
+    "route": "/studios/probability-statistics/curriculum"
+  },
+  {
+    "route": "/studios/differential-equations/curriculum"
+  },
+  {
+    "route": "/studios/continued-fractions/curriculum"
+  },
+  {
+    "route": "/studios/famous-problems/curriculum"
+  },
+  {
+    "route": "/studios/stats-inference/curriculum"
+  },
+  {
+    "route": "/studios/special-functions/curriculum"
+  },
+  {
+    "route": "/math-lab/continued-fractions"
+  },
+  {
+    "route": "/math-lab/famous-problems"
+  },
+  {
+    "route": "/math-lab/stats-inference"
+  },
+  {
+    "route": "/math-lab/special-functions"
+  },
+  {
+    "route": "/math-lab/differential-equations"
+  }
+]

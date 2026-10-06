@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useStudioState } from "../phase1/StudioModelProvider";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import MathExpression from "../../components/ui/MathExpression";
 import CalculusDifferentialEquationsStudio from "../../pages/CalculusDifferentialEquationsStudio";
@@ -34,6 +35,7 @@ import { NumericalPhase2 } from "./Phase2NumericLabs";
 import { CauchyEulerPhase2, HigherOrderPhase2, UndeterminedPhase2, VariationPhase2 } from "./Phase2SymbolicLabs";
 import { LcrPhase2, NewtonCoolingPhase2, OscillationsPhase2, PhasePlanePhase2, SystemsPhase2 } from "./Phase2DynamicsLabs";
 import "./differentialEquations.css";
+import EnrichmentLab from "./EnrichmentLabs";
 
 const embedded: Record<string, string> = {
   "slope-fields": "slope",
@@ -45,6 +47,7 @@ const embedded: Record<string, string> = {
 };
 
 export default function DifferentialEquationsLab({ page }: { page: StudioMockupPage }) {
+  if (["laplace", "pde", "boundary-values"].includes(page.id)) return <EnrichmentLab page={page} />;
   if (page.id === "explorer") return <EquationExplorerPhase1 />;
   if (page.id === "method-selector") return <MethodSelectorPhase1 />;
   if (page.id === "slope-fields") return <DirectionFieldsPhase1 />;
@@ -122,8 +125,8 @@ function Plot({
 }
 
 function ExplorerLab() {
-  const [id, setId] = useState(explorerExamples[0].id);
-  const [draft, setDraft] = useState(explorerExamples[0].equation);
+  const [id, setId] = useStudioState("DifferentialEquationsLabs:ExplorerLab:id", explorerExamples[0].id);
+  const [draft, setDraft] = useStudioState("DifferentialEquationsLabs:ExplorerLab:draft", explorerExamples[0].equation);
   const matched = explorerExamples.find((item) => normalizeEquation(item.equation) === normalizeEquation(draft));
   const inspection = inspectEquation(draft);
   const curves = matched?.field ? [0.5, 1.5].map((y0) => integrateField(matched.field!, 0.2, y0, 2.6)) : [];
@@ -163,9 +166,9 @@ function ExplorerLab() {
 }
 
 function MethodSelectorLab() {
-  const [id, setId] = useState(methodPresets[0].id);
-  const [draft, setDraft] = useState(methodPresets[0].equation);
-  const [guess, setGuess] = useState<MethodId | null>(null);
+  const [id, setId] = useStudioState("DifferentialEquationsLabs:MethodSelectorLab:id", methodPresets[0].id);
+  const [draft, setDraft] = useStudioState("DifferentialEquationsLabs:MethodSelectorLab:draft", methodPresets[0].equation);
+  const [guess, setGuess] = useStudioState<MethodId | null>("DifferentialEquationsLabs:MethodSelectorLab:guess", null);
   const matched = methodPresets.find((item) => normalizeEquation(item.equation) === normalizeEquation(draft));
   const applicable = matched ? applicableMethods(matched) : [];
   const correct = guess != null && applicable.includes(guess);
@@ -206,8 +209,8 @@ function MethodSelectorLab() {
 }
 
 function HomogeneousLab() {
-  const [id, setId] = useState(homogeneousPresets[0].id);
-  const [step, setStep] = useState(0);
+  const [id, setId] = useStudioState("DifferentialEquationsLabs:HomogeneousLab:id", homogeneousPresets[0].id);
+  const [step, setStep] = useStudioState("DifferentialEquationsLabs:HomogeneousLab:step", 0);
   const preset = homogeneousPresets.find((item) => item.id === id) ?? homogeneousPresets[0];
   const curves = useMemo(() => [0.6, 1.2, -0.8].map((y0) => integrateField(preset.field, 0.4, y0, 2.8)), [preset]);
   return (
@@ -239,8 +242,8 @@ function HomogeneousLab() {
 }
 
 function ExactLab() {
-  const [id, setId] = useState(exactPresets[0].id);
-  const [level, setLevel] = useState(2);
+  const [id, setId] = useStudioState("DifferentialEquationsLabs:ExactLab:id", exactPresets[0].id);
+  const [level, setLevel] = useStudioState("DifferentialEquationsLabs:ExactLab:level", 2);
   const preset = exactPresets.find((item) => item.id === id) ?? exactPresets[0];
   const segments = preset.exact ? contourSegments(preset.field, level) : [];
   return (
@@ -276,9 +279,9 @@ function ExactLab() {
 }
 
 function LinearLab() {
-  const [id, setId] = useState(linearPresets[0].id);
-  const [x0, setX0] = useState(0);
-  const [y0, setY0] = useState(1);
+  const [id, setId] = useStudioState("DifferentialEquationsLabs:LinearLab:id", linearPresets[0].id);
+  const [x0, setX0] = useStudioState("DifferentialEquationsLabs:LinearLab:x0", 0);
+  const [y0, setY0] = useStudioState("DifferentialEquationsLabs:LinearLab:y0", 1);
   const preset = linearPresets.find((item) => item.id === id) ?? linearPresets[0];
   const singular = preset.id === "xsq" || preset.id === "power";
   const safeX0 = singular ? Math.max(0.4, x0) : x0;
@@ -326,8 +329,8 @@ function LinearLab() {
 }
 
 function BernoulliLab() {
-  const [index, setIndex] = useState(2);
-  const [constant, setConstant] = useState(1);
+  const [index, setIndex] = useStudioState("DifferentialEquationsLabs:BernoulliLab:index", 2);
+  const [constant, setConstant] = useStudioState("DifferentialEquationsLabs:BernoulliLab:constant", 1);
   const item = bernoulliCases[index] ?? bernoulliCases[2];
   const curve = item.solution ? [Array.from({ length: 70 }, (_, i) => {
     const x = -1 + (i / 69) * 2.4;
@@ -362,9 +365,9 @@ function BernoulliLab() {
 }
 
 function HeunLab() {
-  const [h, setH] = useState(0.4);
-  const [y0, setY0] = useState(1);
-  const [steps, setSteps] = useState(6);
+  const [h, setH] = useStudioState("DifferentialEquationsLabs:HeunLab:h", 0.4);
+  const [y0, setY0] = useStudioState("DifferentialEquationsLabs:HeunLab:y0", 1);
+  const [steps, setSteps] = useStudioState("DifferentialEquationsLabs:HeunLab:steps", 6);
   const safeH = Number.isFinite(h) && h > 0 ? h : 0.4;
   const rows = compareMethods(0, y0, safeH, steps);
   const finer = compareMethods(0, y0, safeH / 2, steps * 2);

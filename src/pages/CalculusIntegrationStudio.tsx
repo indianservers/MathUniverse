@@ -1,3 +1,4 @@
+import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import { useEffect, useMemo, useState } from "react";
 import {
   BarChart3,
@@ -64,19 +65,19 @@ const modeCopy: Record<string, { title: string; eyebrow: string; explanation: st
 export default function CalculusIntegrationStudio({ mode }: Props) {
   const [params, setParams] = useSearchParams();
   const initialMethod = parseMethod(params.get("v_method"));
-  const [expression, setExpression] = useState(params.get("v_function") || "x^2");
-  const [draft, setDraft] = useState(params.get("v_function") || "x^2");
-  const [lower, setLower] = useState(numberParam(params.get("v_lower_a"), -2));
-  const [upper, setUpper] = useState(numberParam(params.get("v_upper_b"), 3));
-  const [partitions, setPartitions] = useState(enforcePartitionCount(numberParam(params.get("v_partitions_n"), 12), initialMethod));
-  const [method, setMethod] = useState<IntegrationMethod>(initialMethod);
-  const [constant, setConstant] = useState(0);
-  const [probe, setProbe] = useState(numberParam(params.get("v_probe_x"), 1));
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(1);
+  const [expression, setExpression] = useStudioState("CalculusIntegrationStudio:CalculusIntegrationStudio:expression", params.get("v_function") || "x^2");
+  const [draft, setDraft] = useStudioState("CalculusIntegrationStudio:CalculusIntegrationStudio:draft", params.get("v_function") || "x^2");
+  const [lower, setLower] = useStudioState("CalculusIntegrationStudio:CalculusIntegrationStudio:lower", numberParam(params.get("v_lower_a"), -2));
+  const [upper, setUpper] = useStudioState("CalculusIntegrationStudio:CalculusIntegrationStudio:upper", numberParam(params.get("v_upper_b"), 3));
+  const [partitions, setPartitions] = useStudioState("CalculusIntegrationStudio:CalculusIntegrationStudio:partitions", enforcePartitionCount(numberParam(params.get("v_partitions_n"), 12), initialMethod));
+  const [method, setMethod] = useStudioState<IntegrationMethod>("CalculusIntegrationStudio:CalculusIntegrationStudio:method", initialMethod);
+  const [constant, setConstant] = useStudioState("CalculusIntegrationStudio:CalculusIntegrationStudio:constant", 0);
+  const [probe, setProbe] = useStudioState("CalculusIntegrationStudio:CalculusIntegrationStudio:probe", numberParam(params.get("v_probe_x"), 1));
+  const [playing, setPlaying] = useStudioState("CalculusIntegrationStudio:CalculusIntegrationStudio:playing", false);
+  const [speed, setSpeed] = useStudioState("CalculusIntegrationStudio:CalculusIntegrationStudio:speed", 1);
   const [showGrid, setShowGrid] = useState(true);
-  const [expanded, setExpanded] = useState(false);
-  const [learning, setLearning] = useState<LearningMode>("Observe");
+  const [expanded, setExpanded] = useStudioState("CalculusIntegrationStudio:CalculusIntegrationStudio:expanded", false);
+  const [learning, setLearning] = useStudioState<LearningMode>("CalculusIntegrationStudio:CalculusIntegrationStudio:learning", "Observe");
 
   const compiled = useMemo(() => {
     try { return { fn: compileFunctionExpression(expression), error: "" }; }
@@ -303,7 +304,7 @@ function ResultCard({ label, value, tone = "plain" }: { label: string; value: st
 function EmptyResults() { return <p className="ci-empty">Results appear when the function and interval are valid.</p>; }
 
 function LearningBar({ active, onChange, mode, result }: { active: LearningMode; onChange: (value: LearningMode) => void; mode: string; result: IntegrationResult | null }) {
-  const [challengeNote, setChallengeNote] = useState("");
+  const [challengeNote, setChallengeNote] = useStudioState("CalculusIntegrationStudio:LearningBar:challengeNote", "");
   const tabs: LearningMode[] = ["Observe", "Understand", "Why", "Try", "Challenge"];
   const copy: Record<LearningMode, string> = {
     Observe: modeCopy[mode]?.explanation ?? modeCopy.definite.explanation,

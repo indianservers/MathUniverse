@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { MockupLearningStrip } from "../MockupStudioChrome";
 import type { StudioMockupPage } from "../studioMockupCatalog";
@@ -121,14 +122,14 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
   const { tabs, mode, setMode } = useLabMode(page, MODES);
   const session = useTrigSession();
   const units = session.units;
-  const [angle, setAngle] = useState(session.theta);
-  const [dir, setDir] = useState<"ccw" | "cw">("ccw");
+  const [angle, setAngle] = useStudioState("UnitCircleLab:UnitCircleLab:angle", session.theta);
+  const [dir, setDir] = useStudioState<"ccw" | "cw">("UnitCircleLab:UnitCircleLab:dir", "ccw");
   const [showRef, setShowRef] = useState(true);
   const [showX, setShowX] = useState(true);
   const [showY, setShowY] = useState(true);
   const [showTan, setShowTan] = useState(true);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(1);
+  const [playing, setPlaying] = useStudioState("UnitCircleLab:UnitCircleLab:playing", false);
+  const [speed, setSpeed] = useStudioState("UnitCircleLab:UnitCircleLab:speed", 1);
 
   useEffect(() => {
     setAngle(session.theta);

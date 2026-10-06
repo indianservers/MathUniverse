@@ -43,6 +43,7 @@ const labGroups = [
   { title: "Numerical methods", ids: ["euler", "heun", "rk4"] },
   { title: "Higher-order equations", ids: ["higher-order-linear", "undetermined-coefficients", "variation-of-parameters", "cauchy-euler"] },
   { title: "Systems and trajectories", ids: ["systems", "phase-plane"] },
+  { title: "Transforms, boundary values and PDEs", ids: ["laplace", "boundary-values", "pde"] },
   { title: "Engineering models", ids: ["mechanical-oscillations", "lcr-circuit", "newton-cooling"] },
 ];
 

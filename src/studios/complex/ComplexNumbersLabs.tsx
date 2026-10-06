@@ -1,4 +1,5 @@
-import { useState, type ReactNode } from "react";
+import { useStudioState } from "../phase1/StudioModelProvider";
+import { type ReactNode } from "react";
 import { Phase1LabChrome } from "../phase1/Phase1LabChrome";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { ChallengeBox, ExtraFrame, LiveRow, Panel, SliderRow, clamp, fmt } from "../mockup/studioLabKit";
@@ -57,8 +58,8 @@ export default function ComplexNumbersLab({ page, extra }: { page: StudioMockupP
 }
 
 function ArgandLab({ page, extra }: { page: StudioMockupPage; extra?: ReactNode }) {
-  const [re, setRe] = useState(3);
-  const [im, setIm] = useState(4);
+  const [re, setRe] = useStudioState("ComplexNumbersLabs:ArgandLab:re", 3);
+  const [im, setIm] = useStudioState("ComplexNumbersLabs:ArgandLab:im", 4);
   const r = Math.hypot(re, im);
   const arg = Math.atan2(im, re) * 180 / Math.PI;
   return (

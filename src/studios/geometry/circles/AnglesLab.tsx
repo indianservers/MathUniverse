@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useState } from "react";
 import {
   angleBetween, angleOf, clamp, clampToComplementaryArc, constrainOnCircle, constrainOutside, dist, fmt, lineIntersection, minorArcDeg, nearlyEqual, perp, pointOnCircle, stepOnComplementaryArc, toDeg, toRad, type Vec,
@@ -32,8 +33,8 @@ export default function AnglesLab({ active }: { active: boolean }) {
   const [animate, setAnimate] = usePersisted("ang.anim", false);
   const [preset, setPreset] = usePersisted("ang.preset", "same");
   const [status, setStatus] = useState<"idle" | "pass" | "fail">("idle");
-  const [collapsed, setCollapsed] = useState(false);
-  const [focused, setFocused] = useState<string | null>("C");
+  const [collapsed, setCollapsed] = useStudioState("AnglesLab:AnglesLab:collapsed", false);
+  const [focused, setFocused] = useStudioState<string | null>("AnglesLab:AnglesLab:focused", "C");
   const [px, setPx] = usePersisted("ang.px", 8.4);
   const [py, setPy] = usePersisted("ang.py", 1.6);
 

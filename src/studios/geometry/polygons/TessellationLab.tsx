@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useEffect } from "react";
 import RegularTessellationLab from "./tessellation/TessellationLab";
 import { ChallengePanel, Controls, FormulaCard, LivePanel, MeasureRow, PresetGrid, PropertyCard, VIEW, fmtDeg } from "./polygonUi";
 import { interiorAngleRegular, regularPolygonName, tessellationAngleCheck } from "./polygonMath";
@@ -26,16 +27,16 @@ function poly(cx: number, cy: number, n: number, r: number, rot = -90) {
 }
 
 export default function TessellationLab({ pulse = "observe" }: { pulse?: string }) {
-  const [sub, setSub] = useState<TessSub>("regular");
-  const [semi, setSemi] = useState("6.6.6");
-  const [custom, setCustom] = useState<Tile>("4");
-  const [stampRot, setStampRot] = useState(0);
-  const [stamps, setStamps] = useState<Array<{ x: number; y: number; kind: Tile; rot: number }>>([
+  const [sub, setSub] = useStudioState<TessSub>("TessellationLab:TessellationLab:sub", "regular");
+  const [semi, setSemi] = useStudioState("TessellationLab:TessellationLab:semi", "6.6.6");
+  const [custom, setCustom] = useStudioState<Tile>("TessellationLab:TessellationLab:custom", "4");
+  const [stampRot, setStampRot] = useStudioState("TessellationLab:TessellationLab:stampRot", 0);
+  const [stamps, setStamps] = useStudioState<Array<{ x: number; y: number; kind: Tile; rot: number }>>("TessellationLab:TessellationLab:stamps", [
     { x: 220, y: 180, kind: "4", rot: 0 },
     { x: 256, y: 180, kind: "4", rot: 0 },
     { x: 220, y: 216, kind: "4", rot: 0 },
   ]);
-  const [n, setN] = useState(6);
+  const [n, setN] = useStudioState("TessellationLab:TessellationLab:n", 6);
   const test = tessellationAngleCheck(n);
 
   useEffect(() => {

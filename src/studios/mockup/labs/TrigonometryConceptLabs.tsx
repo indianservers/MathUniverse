@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import { compileFunctionExpression } from "../../../utils/functionParser";
 import { Phase1LabChrome } from "../../phase1/Phase1LabChrome";
@@ -119,18 +120,18 @@ function Grid({ width = 560, height = 400 }: { width?: number; height?: number }
 }
 
 export function TrigGraphsLab({ page }: { page: StudioMockupPage }) {
-  const [family, setFamily] = useState<TrigFamily>("Sine");
-  const [amplitude, setAmplitude] = useState(2);
-  const [frequency, setFrequency] = useState(1.5);
-  const [phase, setPhase] = useState(Math.PI / 6);
-  const [vertical, setVertical] = useState(0.5);
-  const [playing, setPlaying] = useState(false);
-  const [trace, setTrace] = useState(true);
+  const [family, setFamily] = useStudioState<TrigFamily>("TrigonometryConceptLabs:TrigGraphsLab:family", "Sine");
+  const [amplitude, setAmplitude] = useStudioState("TrigonometryConceptLabs:TrigGraphsLab:amplitude", 2);
+  const [frequency, setFrequency] = useStudioState("TrigonometryConceptLabs:TrigGraphsLab:frequency", 1.5);
+  const [phase, setPhase] = useStudioState("TrigonometryConceptLabs:TrigGraphsLab:phase", Math.PI / 6);
+  const [vertical, setVertical] = useStudioState("TrigonometryConceptLabs:TrigGraphsLab:vertical", 0.5);
+  const [playing, setPlaying] = useStudioState("TrigonometryConceptLabs:TrigGraphsLab:playing", false);
+  const [trace, setTrace] = useStudioState("TrigonometryConceptLabs:TrigGraphsLab:trace", true);
   const [showGrid, setShowGrid] = useState(true);
-  const [angleUnit, setAngleUnit] = useState<"Radians" | "Degrees">("Radians");
-  const [time, setTime] = useState(Math.PI / 3);
-  const [graphSource, setGraphSource] = useState<"Preset" | "Custom">("Preset");
-  const [customExpression, setCustomExpression] = useState("");
+  const [angleUnit, setAngleUnit] = useStudioState<"Radians" | "Degrees">("TrigonometryConceptLabs:TrigGraphsLab:angleUnit", "Radians");
+  const [time, setTime] = useStudioState("TrigonometryConceptLabs:TrigGraphsLab:time", Math.PI / 3);
+  const [graphSource, setGraphSource] = useStudioState<"Preset" | "Custom">("TrigonometryConceptLabs:TrigGraphsLab:graphSource", "Preset");
+  const [customExpression, setCustomExpression] = useStudioState("TrigonometryConceptLabs:TrigGraphsLab:customExpression", "");
   const graphHandle = useRef<"A" | "D" | null>(null);
   const customFunction = useMemo(() => {
     if (!customExpression.trim()) return { evaluate: null, error: "Enter a function of x." };

@@ -1,0 +1,242 @@
+[
+  {
+    "route": "dashboard",
+    "width": 1366,
+    "overflow": false
+  },
+  {
+    "route": "set-builder",
+    "width": 1366,
+    "overflow": false
+  },
+  {
+    "route": "venn-diagram-engine",
+    "width": 1366,
+    "overflow": false
+  },
+  {
+    "route": "relations",
+    "width": 1366,
+    "overflow": false
+  },
+  {
+    "route": "hasse-diagram",
+    "width": 1366,
+    "overflow": false
+  },
+  {
+    "route": "functions",
+    "width": 1366,
+    "overflow": false
+  },
+  {
+    "route": "representations",
+    "width": 1366,
+    "overflow": false
+  },
+  {
+    "route": "practice",
+    "width": 1366,
+    "overflow": false
+  },
+  {
+    "route": "dashboard",
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "route": "set-builder",
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "route": "venn-diagram-engine",
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "route": "relations",
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "route": "hasse-diagram",
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "route": "functions",
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "route": "representations",
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "route": "practice",
+    "width": 1440,
+    "overflow": false
+  },
+  {
+    "route": "dashboard",
+    "width": 1600,
+    "overflow": false
+  },
+  {
+    "route": "set-builder",
+    "width": 1600,
+    "overflow": false
+  },
+  {
+    "route": "venn-diagram-engine",
+    "width": 1600,
+    "overflow": false
+  },
+  {
+    "route": "relations",
+    "width": 1600,
+    "overflow": false
+  },
+  {
+    "route": "hasse-diagram",
+    "width": 1600,
+    "overflow": false
+  },
+  {
+    "route": "functions",
+    "width": 1600,
+    "overflow": false
+  },
+  {
+    "route": "representations",
+    "width": 1600,
+    "overflow": false
+  },
+  {
+    "route": "practice",
+    "width": 1600,
+    "overflow": false
+  },
+  {
+    "route": "dashboard",
+    "width": 1920,
+    "overflow": false
+  },
+  {
+    "route": "set-builder",
+    "width": 1920,
+    "overflow": false
+  },
+  {
+    "route": "venn-diagram-engine",
+    "width": 1920,
+    "overflow": false
+  },
+  {
+    "route": "relations",
+    "width": 1920,
+    "overflow": false
+  },
+  {
+    "route": "hasse-diagram",
+    "width": 1920,
+    "overflow": false
+  },
+  {
+    "route": "functions",
+    "width": 1920,
+    "overflow": false
+  },
+  {
+    "route": "representations",
+    "width": 1920,
+    "overflow": false
+  },
+  {
+    "route": "practice",
+    "width": 1920,
+    "overflow": false
+  },
+  {
+    "route": "dashboard",
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "route": "set-builder",
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "route": "venn-diagram-engine",
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "route": "relations",
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "route": "hasse-diagram",
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "route": "functions",
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "route": "representations",
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "route": "practice",
+    "width": 768,
+    "overflow": false
+  },
+  {
+    "route": "dashboard",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "route": "set-builder",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "route": "venn-diagram-engine",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "route": "relations",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "route": "hasse-diagram",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "route": "functions",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "route": "representations",
+    "width": 390,
+    "overflow": false
+  },
+  {
+    "route": "practice",
+    "width": 390,
+    "overflow": false
+  }
+]

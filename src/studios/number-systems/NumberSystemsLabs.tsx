@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import StudioHomeButtons from "../../components/ui/StudioHomeButtons";
@@ -240,8 +241,8 @@ export function LabChrome({
 
 export function RationalLab({ onComplete }: LabProps) {
   const { mode } = useNumberMode("rational");
-  const [p, setP] = useState(5);
-  const [q, setQ] = useState(8);
+  const [p, setP] = useStudioState("NumberSystemsLabs:RationalLab:p", 5);
+  const [q, setQ] = useStudioState("NumberSystemsLabs:RationalLab:q", 8);
   const reduced = normalizeRational(p, q);
   const value = p / Math.max(1, q);
   const terminating = terminatingDenominator(reduced.denominator);
@@ -282,8 +283,8 @@ export function RationalLab({ onComplete }: LabProps) {
 
 export function IrrationalLab({ onComplete }: LabProps) {
   const { mode } = useNumberMode("irrational");
-  const [root, setRoot] = useState(2);
-  const [example, setExample] = useState<"root" | "pi" | "e">("root");
+  const [root, setRoot] = useStudioState("NumberSystemsLabs:IrrationalLab:root", 2);
+  const [example, setExample] = useStudioState<"root" | "pi" | "e">("NumberSystemsLabs:IrrationalLab:example", "root");
   useEffect(() => {
     if (mode === "pi and e") setExample("pi");
     if (mode === "root 2 vs 9") setRoot(2);
@@ -342,9 +343,9 @@ export function IrrationalLab({ onComplete }: LabProps) {
 
 export function RealLineLab({ onComplete }: LabProps) {
   const { mode } = useNumberMode("real-line");
-  const [rational, setRational] = useState(0.625);
-  const [irrational, setIrrational] = useState(Math.SQRT2);
-  const [extras, setExtras] = useState<number[]>([]);
+  const [rational, setRational] = useStudioState("NumberSystemsLabs:RealLineLab:rational", 0.625);
+  const [irrational, setIrrational] = useStudioState("NumberSystemsLabs:RealLineLab:irrational", Math.SQRT2);
+  const [extras, setExtras] = useStudioState<number[]>("NumberSystemsLabs:RealLineLab:extras", []);
   const midpoint = (rational + irrational) / 2;
   const values = [
     { label: "rational", value: rational, color: "#06b6d4" },
@@ -377,9 +378,9 @@ export function RealLineLab({ onComplete }: LabProps) {
 export function HierarchyLab({ onComplete }: LabProps) {
   const { mode } = useNumberMode("hierarchy");
   const view = mode === "3D" ? "space" : "sets";
-  const [selected, setSelected] = useState("R");
-  const [camera, setCamera] = useState<[number, number, number]>([5, 3.4, 6.5]);
-  const [ready, setReady] = useState(false);
+  const [selected, setSelected] = useStudioState("NumberSystemsLabs:HierarchyLab:selected", "R");
+  const [camera, setCamera] = useStudioState<[number, number, number]>("NumberSystemsLabs:HierarchyLab:camera", [5, 3.4, 6.5]);
+  const [ready, setReady] = useStudioState("NumberSystemsLabs:HierarchyLab:ready", false);
   useEffect(() => {
     if (view !== "space") return;
     setReady(false);
@@ -537,8 +538,8 @@ const QUIZ = [
 ];
 
 export function PracticeLab({ onComplete }: LabProps) {
-  const [index, setIndex] = useState(0);
-  const [score, setScore] = useState(0);
+  const [index, setIndex] = useStudioState("NumberSystemsLabs:PracticeLab:index", 0);
+  const [score, setScore] = useStudioState("NumberSystemsLabs:PracticeLab:score", 0);
   const item = QUIZ[index];
   return (
     <LabChrome title="Practice & accuracy" summary="Classify the current number, then read the short definition. This is a check, not a wall of validation notes." lesson={LESSONS.rational} page="practice">
@@ -577,9 +578,9 @@ export function PracticeLab({ onComplete }: LabProps) {
 }
 
 function CompleteCheck({ prompt, answer, onPass, failLab }: { prompt: string; answer: string; onPass: () => void; failLab?: { to: string; label: string } }) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useStudioState("NumberSystemsLabs:CompleteCheck:value", "");
   const [status, setStatus] = useState("");
-  const [failed, setFailed] = useState(false);
+  const [failed, setFailed] = useStudioState("NumberSystemsLabs:CompleteCheck:failed", false);
   return (
     <form
       className="ns-check"

@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useState } from "react";
 import { regionTotals, surveyToRegions, threeSetUnion, twoSetUnion } from "./combinatoricsMath";
 import { parseIeKind } from "./combinatoricsMode";
@@ -21,19 +22,19 @@ export default function InclusionExclusionLab({
   pulse: string;
 }) {
   const kind = parseIeKind(kindRaw);
-  const [collapsed, setCollapsed] = useState(false);
-  const [a, setA] = useState(20);
-  const [b, setB] = useState(15);
-  const [c, setC] = useState(18);
-  const [ab, setAb] = useState(5);
-  const [ac, setAc] = useState(4);
-  const [bc, setBc] = useState(3);
-  const [abc, setAbc] = useState(2);
-  const [universe, setU] = useState(50);
-  const [regions, setRegions] = useState({ a: 12, b: 8, c: 6, ab: 4, ac: 3, bc: 2, abc: 2 });
-  const [step, setStep] = useState(0);
+  const [collapsed, setCollapsed] = useStudioState("InclusionExclusionLab:InclusionExclusionLab:collapsed", false);
+  const [a, setA] = useStudioState("InclusionExclusionLab:InclusionExclusionLab:a", 20);
+  const [b, setB] = useStudioState("InclusionExclusionLab:InclusionExclusionLab:b", 15);
+  const [c, setC] = useStudioState("InclusionExclusionLab:InclusionExclusionLab:c", 18);
+  const [ab, setAb] = useStudioState("InclusionExclusionLab:InclusionExclusionLab:ab", 5);
+  const [ac, setAc] = useStudioState("InclusionExclusionLab:InclusionExclusionLab:ac", 4);
+  const [bc, setBc] = useStudioState("InclusionExclusionLab:InclusionExclusionLab:bc", 3);
+  const [abc, setAbc] = useStudioState("InclusionExclusionLab:InclusionExclusionLab:abc", 2);
+  const [universe, setU] = useStudioState("InclusionExclusionLab:InclusionExclusionLab:universe", 50);
+  const [regions, setRegions] = useStudioState("InclusionExclusionLab:InclusionExclusionLab:regions", { a: 12, b: 8, c: 6, ab: 4, ac: 3, bc: 2, abc: 2 });
+  const [step, setStep] = useStudioState("InclusionExclusionLab:InclusionExclusionLab:step", 0);
   const [showCounts, setShowCounts] = useState(true);
-  const [ch, setCh] = useState(0);
+  const [ch, setCh] = useStudioState("InclusionExclusionLab:InclusionExclusionLab:ch", 0);
 
   useEffect(() => {
     if (kind === "two") { setA(20); setB(15); setAb(5); setU(50); setStep(0); }

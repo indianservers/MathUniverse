@@ -35,7 +35,7 @@ export function parseComboMode(raw: string | null | undefined): ComboModeId {
   if (!raw) return "arrangements";
   const token = normalize(raw);
   const match = COMBO_MODES.find(
-    (mode) => mode.id === token || mode.label.toLowerCase() === token || mode.aliases.includes(token) || mode.aliases.includes(token.replace(/ /g, "-")),
+    (mode) => mode.id === token || mode.label.toLowerCase() === token || (mode.aliases as readonly string[]).includes(token) || (mode.aliases as readonly string[]).includes(token.replace(/ /g, "-")),
   );
   return match?.id ?? "arrangements";
 }

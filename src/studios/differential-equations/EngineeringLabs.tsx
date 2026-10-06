@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import MathExpression from "../../components/ui/MathExpression";
@@ -67,11 +68,11 @@ function RootPlane({ real, imag, label }: { real: number[]; imag: number[]; labe
 }
 
 export function HigherOrderLab() {
-  const [a, setA] = useState(1);
-  const [b, setB] = useState(0);
-  const [c, setC] = useState(1);
-  const [y0, setY0] = useState(1);
-  const [v0, setV0] = useState(0);
+  const [a, setA] = useStudioState("EngineeringLabs:HigherOrderLab:a", 1);
+  const [b, setB] = useStudioState("EngineeringLabs:HigherOrderLab:b", 0);
+  const [c, setC] = useStudioState("EngineeringLabs:HigherOrderLab:c", 1);
+  const [y0, setY0] = useStudioState("EngineeringLabs:HigherOrderLab:y0", 1);
+  const [v0, setV0] = useStudioState("EngineeringLabs:HigherOrderLab:v0", 0);
   const roots = characteristic(a, b, c);
   const constants = secondOrderConstants(a, b, c, y0, v0);
   const curve = useMemo(() => [samples((x) => homogeneousValue(a, b, c, y0, v0, x), -1, 3)], [a, b, c, y0, v0]);
@@ -118,8 +119,8 @@ export function HigherOrderLab() {
 }
 
 export function UndeterminedLab() {
-  const [id, setId] = useState(undeterminedPresets[0].id);
-  const [step, setStep] = useState(0);
+  const [id, setId] = useStudioState("EngineeringLabs:UndeterminedLab:id", undeterminedPresets[0].id);
+  const [step, setStep] = useStudioState("EngineeringLabs:UndeterminedLab:step", 0);
   const preset = undeterminedPresets.find((item) => item.id === id) ?? undeterminedPresets[0];
   const curve = useMemo(() => [samples(preset.particular, -1, 2)], [preset]);
   return (
@@ -150,7 +151,7 @@ export function UndeterminedLab() {
 }
 
 export function VariationLab() {
-  const [id, setId] = useState(variationPresets[0].id);
+  const [id, setId] = useStudioState("EngineeringLabs:VariationLab:id", variationPresets[0].id);
   const preset = variationPresets.find((item) => item.id === id) ?? variationPresets[0];
   const curves = useMemo(() => [
     samples(preset.y1Value, 0.2, 1.2),
@@ -184,9 +185,9 @@ export function CauchyEulerLab() {
     { id: "real", label: "x² y'' + x y' − y = 0", a: 1, b: 1, c: -1 },
     { id: "complex", label: "x² y'' + x y' + y = 0", a: 1, b: 1, c: 1 },
   ];
-  const [id, setId] = useState(presets[0].id);
-  const [c1, setC1] = useState(1);
-  const [c2, setC2] = useState(0.4);
+  const [id, setId] = useStudioState("EngineeringLabs:CauchyEulerLab:id", presets[0].id);
+  const [c1, setC1] = useStudioState("EngineeringLabs:CauchyEulerLab:c1", 1);
+  const [c2, setC2] = useStudioState("EngineeringLabs:CauchyEulerLab:c2", 0.4);
   const preset = presets.find((item) => item.id === id) ?? presets[0];
   const roots = cauchyIndicial(preset.a, preset.b, preset.c);
   const curve = useMemo(() => [samples((x) => cauchyValue(preset.a, preset.b, preset.c, c1, c2, x), 0.2, 4)], [preset, c1, c2]);
@@ -258,7 +259,7 @@ function Portrait({ a, b, c, d, starts }: { a: number; b: number; c: number; d: 
 }
 
 export function SystemsLab() {
-  const [id, setId] = useState(systemPresets[0].id);
+  const [id, setId] = useStudioState("EngineeringLabs:SystemsLab:id", systemPresets[0].id);
   const preset = systemPresets.find((item) => item.id === id) ?? systemPresets[0];
   const info = classifySystem(preset.a, preset.b, preset.c, preset.d);
   return (
@@ -290,8 +291,8 @@ export function SystemsLab() {
 }
 
 export function PhasePlaneLab() {
-  const [presetId, setPresetId] = useState("spiral");
-  const [start, setStart] = useState<[number, number]>([1.2, 0.4]);
+  const [presetId, setPresetId] = useStudioState("EngineeringLabs:PhasePlaneLab:presetId", "spiral");
+  const [start, setStart] = useStudioState<[number, number]>("EngineeringLabs:PhasePlaneLab:start", [1.2, 0.4]);
   const [showField, setShowField] = useState(true);
   const preset = systemPresets.find((item) => item.id === presetId) ?? systemPresets[2];
   const info = classifySystem(preset.a, preset.b, preset.c, preset.d);
@@ -337,13 +338,13 @@ export function PhasePlaneLab() {
 }
 
 export function MechanicalLab() {
-  const [mass, setMass] = useState(1);
-  const [damping, setDamping] = useState(0.4);
-  const [stiffness, setStiffness] = useState(4);
-  const [x0, setX0] = useState(1);
-  const [v0, setV0] = useState(0);
-  const [time, setTime] = useState(1.2);
-  const [forced, setForced] = useState(false);
+  const [mass, setMass] = useStudioState("EngineeringLabs:MechanicalLab:mass", 1);
+  const [damping, setDamping] = useStudioState("EngineeringLabs:MechanicalLab:damping", 0.4);
+  const [stiffness, setStiffness] = useStudioState("EngineeringLabs:MechanicalLab:stiffness", 4);
+  const [x0, setX0] = useStudioState("EngineeringLabs:MechanicalLab:x0", 1);
+  const [v0, setV0] = useStudioState("EngineeringLabs:MechanicalLab:v0", 0);
+  const [time, setTime] = useStudioState("EngineeringLabs:MechanicalLab:time", 1.2);
+  const [forced, setForced] = useStudioState("EngineeringLabs:MechanicalLab:forced", false);
   const sample = oscillatorSample(mass, damping, stiffness, x0, v0, time, forced ? 1 : 0, 1.2);
   const curve = useMemo(() => [samples((t) => oscillatorSample(mass, damping, stiffness, x0, v0, t, forced ? 1 : 0, 1.2).x, 0, 8)], [mass, damping, stiffness, x0, v0, forced]);
   const offset = 160 + Math.max(-70, Math.min(70, sample.x * 36));
@@ -376,10 +377,10 @@ export function MechanicalLab() {
 }
 
 export function LcrLab() {
-  const [resistance, setResistance] = useState(2);
-  const [inductance, setInductance] = useState(1);
-  const [capacitance, setCapacitance] = useState(0.25);
-  const [time, setTime] = useState(1);
+  const [resistance, setResistance] = useStudioState("EngineeringLabs:LcrLab:resistance", 2);
+  const [inductance, setInductance] = useStudioState("EngineeringLabs:LcrLab:inductance", 1);
+  const [capacitance, setCapacitance] = useStudioState("EngineeringLabs:LcrLab:capacitance", 0.25);
+  const [time, setTime] = useStudioState("EngineeringLabs:LcrLab:time", 1);
   const stiffness = 1 / capacitance;
   const sample = oscillatorSample(inductance, resistance, stiffness, 1, 0, time);
   const charge = useMemo(() => [samples((t) => oscillatorSample(inductance, resistance, stiffness, 1, 0, t).x, 0, 8)], [inductance, resistance, stiffness]);
@@ -414,10 +415,10 @@ export function LcrLab() {
 }
 
 export function NewtonCoolingLab() {
-  const [initial, setInitial] = useState(90);
-  const [ambient, setAmbient] = useState(22);
-  const [k, setK] = useState(0.3);
-  const [time, setTime] = useState(2);
+  const [initial, setInitial] = useStudioState("EngineeringLabs:NewtonCoolingLab:initial", 90);
+  const [ambient, setAmbient] = useStudioState("EngineeringLabs:NewtonCoolingLab:ambient", 22);
+  const [k, setK] = useStudioState("EngineeringLabs:NewtonCoolingLab:k", 0.3);
+  const [time, setTime] = useStudioState("EngineeringLabs:NewtonCoolingLab:time", 2);
   const temperature = newtonTemperature(initial, ambient, k, time);
   const curve = useMemo(() => [samples((t) => newtonTemperature(initial, ambient, k, t), 0, 12)], [initial, ambient, k]);
   const height = 20 + ((temperature - 0) / 120) * 70;

@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { useEffect, useMemo, useRef } from "react";
 import { ChipRow, Field, Panel, SliderRow, StatusOk } from "../../mockup/studioLabKit";
 import {
   almostEqual,
@@ -40,21 +41,21 @@ export default function CongruenceLab({ pulse = "observe" }: { pulse?: string })
   const plane = defaultPlane(720, 460);
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<"A" | "B" | "C" | null>(null);
-  const [test, setTest] = useState<Test>("SSS");
-  const [swap, setSwap] = useState(false);
-  const [ab, setAb] = useState(5.2);
-  const [bc, setBc] = useState(6.4);
-  const [ca, setCa] = useState(4.8);
-  const [angA, setAngA] = useState(52);
-  const [angB, setAngB] = useState(58);
-  const [hyp, setHyp] = useState(6.5);
-  const [leg, setLeg] = useState(3.9);
-  const [rot, setRot] = useState(8);
-  const [ssaA, setSsaA] = useState(40);
-  const [ssaAopp, setSsaAopp] = useState(3.1);
-  const [ssaB, setSsaB] = useState(4.4);
-  const [labels, setLabels] = useState(true);
-  const [free, setFree] = useState({ A: { x: 2.4, y: 6.6 }, B: { x: 1.5, y: 1.5 }, C: { x: 7.2, y: 1.6 } });
+  const [test, setTest] = useStudioState<Test>("CongruenceLab:CongruenceLab:test", "SSS");
+  const [swap, setSwap] = useStudioState("CongruenceLab:CongruenceLab:swap", false);
+  const [ab, setAb] = useStudioState("CongruenceLab:CongruenceLab:ab", 5.2);
+  const [bc, setBc] = useStudioState("CongruenceLab:CongruenceLab:bc", 6.4);
+  const [ca, setCa] = useStudioState("CongruenceLab:CongruenceLab:ca", 4.8);
+  const [angA, setAngA] = useStudioState("CongruenceLab:CongruenceLab:angA", 52);
+  const [angB, setAngB] = useStudioState("CongruenceLab:CongruenceLab:angB", 58);
+  const [hyp, setHyp] = useStudioState("CongruenceLab:CongruenceLab:hyp", 6.5);
+  const [leg, setLeg] = useStudioState("CongruenceLab:CongruenceLab:leg", 3.9);
+  const [rot, setRot] = useStudioState("CongruenceLab:CongruenceLab:rot", 8);
+  const [ssaA, setSsaA] = useStudioState("CongruenceLab:CongruenceLab:ssaA", 40);
+  const [ssaAopp, setSsaAopp] = useStudioState("CongruenceLab:CongruenceLab:ssaAopp", 3.1);
+  const [ssaB, setSsaB] = useStudioState("CongruenceLab:CongruenceLab:ssaB", 4.4);
+  const [labels, setLabels] = useStudioState("CongruenceLab:CongruenceLab:labels", true);
+  const [free, setFree] = useStudioState("CongruenceLab:CongruenceLab:free", { A: { x: 2.4, y: 6.6 }, B: { x: 1.5, y: 1.5 }, C: { x: 7.2, y: 1.6 } });
 
   const map = swapMap(swap);
   const leftOrigin = { x: 1.2, y: 1.5 };

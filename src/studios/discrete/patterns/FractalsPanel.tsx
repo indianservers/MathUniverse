@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ChallengeBox, NControl, usePlayer } from "./patternsUi";
 import {
@@ -23,15 +24,15 @@ type Props = {
 };
 
 export default function FractalsPanel({ depth, setDepth, teacherReveal, onOpenPascal }: Props) {
-  const [kind, setKind] = useState<(typeof KINDS)[number]>("Sierpiński");
+  const [kind, setKind] = useStudioState<(typeof KINDS)[number]>("FractalsPanel:FractalsPanel:kind", "Sierpiński");
   const [shown, setShown] = useState(depth);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(2);
-  const [angle, setAngle] = useState(28);
-  const [ratio, setRatio] = useState(72);
-  const [branches, setBranches] = useState(2);
-  const [pascalRows, setPascalRows] = useState(16);
-  const [challengeKey, setChallengeKey] = useState(0);
+  const [playing, setPlaying] = useStudioState("FractalsPanel:FractalsPanel:playing", false);
+  const [speed, setSpeed] = useStudioState("FractalsPanel:FractalsPanel:speed", 2);
+  const [angle, setAngle] = useStudioState("FractalsPanel:FractalsPanel:angle", 28);
+  const [ratio, setRatio] = useStudioState("FractalsPanel:FractalsPanel:ratio", 72);
+  const [branches, setBranches] = useStudioState("FractalsPanel:FractalsPanel:branches", 2);
+  const [pascalRows, setPascalRows] = useStudioState("FractalsPanel:FractalsPanel:pascalRows", 16);
+  const [challengeKey, setChallengeKey] = useStudioState("FractalsPanel:FractalsPanel:challengeKey", 0);
   const maxD = kind === "Koch" ? 6 : kind === "Tree" ? 10 : kind === "Sierpiński" ? 8 : 8;
   const d = Math.min(depth, maxD);
 

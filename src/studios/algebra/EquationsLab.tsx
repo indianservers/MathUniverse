@@ -1,3 +1,4 @@
+import { useStudioState, useStudioModel } from "../phase1/StudioModelProvider";
 import { Eye, HelpCircle, Lightbulb, Pencil, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import AlgebraLabHeading from "./AlgebraLabHeading";
@@ -26,15 +27,16 @@ import { useAlgebraHistory } from "./useAlgebraHistory";
 const fmt = (n: number) => formatAlgebraNumber(n);
 
 function Numeric({ label, value, onChange, min = -20, max = 20, step = 1, onCommit }: { label: string; value: number; onChange: (n: number) => void; min?: number; max?: number; step?: number; onCommit?: (n: number) => void }) {
+  const model = useStudioModel();
   const [draft, setDraft] = useState(String(value));
   useEffect(() => { setDraft(String(value)); }, [value]);
   return (
     <label className="alg-field">{label}
-      <input type="number" min={min} max={max} step={step} value={draft} onChange={(e) => {
+      <input type="number" min={min} max={max} step={step} value={draft} onFocus={() => model?.ledger.beginGesture()} onChange={(e) => {
         setDraft(e.target.value);
         if (e.target.value === "" || !Number.isFinite(Number(e.target.value))) return;
         onChange(Math.max(min, Math.min(max, Number(e.target.value))));
-      }} onBlur={() => { if (draft === "" || !Number.isFinite(Number(draft))) setDraft(String(value)); else onCommit?.(Number(draft)); }} />
+      }} onBlur={() => { if (draft === "" || !Number.isFinite(Number(draft))) setDraft(String(value)); else onCommit?.(Number(draft)); model?.ledger.endGesture(); }} />
     </label>
   );
 }
@@ -65,7 +67,7 @@ export default function EquationsLab() {
     challengeChecked: false,
     quadraticMethod: "Quadratic formula",
     infoOpen: false,
-  });
+  }, "EquationsLab.tsx:EquationsLab");
   const { a, b, c, d, operand, activeOp, relation, autoBalance, notice, steps, showValues, goal, draft, challengeOn, challengeAnswer, challengeChecked, origA, origB, origC, origD, quadraticMethod, infoOpen } = history.state;
   const linear = describeLinearSolution(a, b, c, d);
   const left = formatLinearSide(a, b);
@@ -101,7 +103,7 @@ export default function EquationsLab() {
   const operate = (operation: "Add" | "Subtract" | "Multiply" | "Divide") => {
     const applied = applyBalanceOperation({ a, b, c, d }, operation, operand, relation);
     if (!applied.ok) { setCoeff({ notice: applied.error, activeOp: operation }); return; }
-    const label = "delta" in applied ? formatBalanceTerm(applied.delta) : formatBalanceTerm(applied.term);
+    const label = applied.delta !== undefined ? formatBalanceTerm(applied.delta) : formatBalanceTerm(applied.term);
     commitEq(applied.state, `${operation} ${formatBalanceTerm(applied.term)} from both sides → ${formatLinearSide(applied.state.a, applied.state.b)} = ${formatLinearSide(applied.state.c, applied.state.d)}`, {
       activeOp: operation,
       relation: mode === "Inequalities" ? applied.relation : relation,
@@ -394,7 +396,7 @@ export default function EquationsLab() {
           <div>
             <b>Try</b>
             <small>Create your own equation and solve it step by step.</small>
-            <button type="button" onClick={newEquation}>New Equation</button>
+            <button type="button" onClick={() => newEquation()}>New Equation</button>
           </div>
         </div>
         <div>

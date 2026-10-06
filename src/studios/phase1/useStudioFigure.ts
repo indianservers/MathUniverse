@@ -1,11 +1,18 @@
 import { useCallback, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { useStudioModel, useStudioState } from "./StudioModelProvider";
 import { useAlgebraHistory } from "../algebra/useAlgebraHistory";
 import { decodeFigState, encodeFigState, formatExactApprox } from "./studioKernel";
 
 export function useStudioFigure<T extends object>(initial: T) {
   const [params, setParams] = useSearchParams();
-  const history = useAlgebraHistory(decodeFigState(params.get("fig"), initial));
+  const { pathname } = useLocation();
+  const model = useStudioModel();
+  const decoded = decodeFigState(params.get("fig"), initial);
+  const legacy = 'version' in decoded ? initial : decoded;
+  const key = `figure:${pathname}`;
+  const [connected, setConnected] = useStudioState(key, legacy);
+  const history = useAlgebraHistory(legacy, "legacy-figure", false);
   const [exact, setExact] = useState(params.get("exact") !== "0");
 
   const persist = useCallback((state: T, nextExact = exact) => {
@@ -38,6 +45,19 @@ export function useStudioFigure<T extends object>(initial: T) {
     persist(history.state, value);
   };
 
+  if (model) return {
+    state: connected,
+    commit: (next: T | ((prev: T) => T)) => { const value = typeof next === 'function' ? next(connected) : next; setConnected(value); return value; },
+    undo: () => { model.ledger.undo(); return model.ledger.values[key] as T; },
+    redo: () => { model.ledger.redo(); return model.ledger.values[key] as T; },
+    reset: () => { model.ledger.reset(); return model.ledger.values[key] as T; },
+    canUndo: !!model.ledger.past.length,
+    canRedo: !!model.ledger.future.length,
+    exact: model.exact,
+    setExact: model.setExact,
+    share: model.share,
+    format: (n: number, digits = 4) => formatExactApprox(n, model.exact, digits),
+  };
   return {
     state: history.state,
     commit,

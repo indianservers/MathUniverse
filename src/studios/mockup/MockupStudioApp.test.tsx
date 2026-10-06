@@ -27,7 +27,7 @@ describe("MockupStudioApp", () => {
     expect(lin).toContain("Open Playground");
     expect(lin).toContain("Continue your last experiment");
     expect(lin).toContain("0 of 17 studios explored");
-    expect(lin).not.toContain("Open lab");
+    expect(lin).toContain("/linear-algebra/vectors");
     expect(lin).not.toContain("Start here");
     expect(lin).not.toContain("Teacher mode");
     const cx = renderToString(<MemoryRouter initialEntries={["/complex-numbers"]}><MockupStudioApp studioId="complex-numbers" /></MemoryRouter>);

@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
@@ -29,8 +30,8 @@ function solidMeasures(kind: string, r: number, h: number) {
 }
 
 export default function SolidsStudioLab({ page }: { page: StudioMockupPage }) {
-  const [r, setR] = useState(1);
-  const [h, setH] = useState(2);
+  const [r, setR] = useStudioState("SolidsStudioLab:SolidsStudioLab:r", 1);
+  const [h, setH] = useStudioState("SolidsStudioLab:SolidsStudioLab:h", 2);
   return (
     <Phase1LabChrome page={page}>
       {(mode) => {

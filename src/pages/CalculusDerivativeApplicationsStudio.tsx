@@ -1,3 +1,4 @@
+import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import { useEffect, useState } from "react";
 import {
   Activity,
@@ -27,18 +28,18 @@ const modeInfo: Record<string, { title: string; subtitle: string }> = {
 
 export default function CalculusDerivativeApplicationsStudio({ mode }: Props) {
   const [params, setParams] = useSearchParams();
-  const [time, setTime] = useState(numberParam(params.get("v_time"), 1.5));
-  const [radius, setRadius] = useState(numberParam(params.get("v_radius"), 3));
-  const [radiusRate, setRadiusRate] = useState(numberParam(params.get("v_radius_rate"), 0.5));
-  const [curveX, setCurveX] = useState(numberParam(params.get("v_curve_x"), 0.75));
-  const [width, setWidth] = useState(numberParam(params.get("v_width"), 24));
-  const [length, setLength] = useState(numberParam(params.get("v_length"), 36));
-  const [cut, setCut] = useState(numberParam(params.get("v_cut"), 4.2));
-  const [mvtA, setMvtA] = useState(numberParam(params.get("v_mvt_a"), 0));
-  const [mvtB, setMvtB] = useState(numberParam(params.get("v_mvt_b"), 3));
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(1);
-  const [learning, setLearning] = useState<LearningMode>("Experiment");
+  const [time, setTime] = useStudioState("CalculusDerivativeApplicationsStudio:CalculusDerivativeApplicationsStudio:time", numberParam(params.get("v_time"), 1.5));
+  const [radius, setRadius] = useStudioState("CalculusDerivativeApplicationsStudio:CalculusDerivativeApplicationsStudio:radius", numberParam(params.get("v_radius"), 3));
+  const [radiusRate, setRadiusRate] = useStudioState("CalculusDerivativeApplicationsStudio:CalculusDerivativeApplicationsStudio:radiusRate", numberParam(params.get("v_radius_rate"), 0.5));
+  const [curveX, setCurveX] = useStudioState("CalculusDerivativeApplicationsStudio:CalculusDerivativeApplicationsStudio:curveX", numberParam(params.get("v_curve_x"), 0.75));
+  const [width, setWidth] = useStudioState("CalculusDerivativeApplicationsStudio:CalculusDerivativeApplicationsStudio:width", numberParam(params.get("v_width"), 24));
+  const [length, setLength] = useStudioState("CalculusDerivativeApplicationsStudio:CalculusDerivativeApplicationsStudio:length", numberParam(params.get("v_length"), 36));
+  const [cut, setCut] = useStudioState("CalculusDerivativeApplicationsStudio:CalculusDerivativeApplicationsStudio:cut", numberParam(params.get("v_cut"), 4.2));
+  const [mvtA, setMvtA] = useStudioState("CalculusDerivativeApplicationsStudio:CalculusDerivativeApplicationsStudio:mvtA", numberParam(params.get("v_mvt_a"), 0));
+  const [mvtB, setMvtB] = useStudioState("CalculusDerivativeApplicationsStudio:CalculusDerivativeApplicationsStudio:mvtB", numberParam(params.get("v_mvt_b"), 3));
+  const [playing, setPlaying] = useStudioState("CalculusDerivativeApplicationsStudio:CalculusDerivativeApplicationsStudio:playing", false);
+  const [speed, setSpeed] = useStudioState("CalculusDerivativeApplicationsStudio:CalculusDerivativeApplicationsStudio:speed", 1);
+  const [learning, setLearning] = useStudioState<LearningMode>("CalculusDerivativeApplicationsStudio:CalculusDerivativeApplicationsStudio:learning", "Experiment");
   const info = modeInfo[mode] ?? modeInfo.optimization;
   const feasibleMax = Math.max(0.2, Math.min(width, length) / 2 - 0.1);
   const optimum = optimalCut(width, length);

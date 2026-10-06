@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "mcq",
+    "set",
+    "number",
+    "notation",
+    "drag",
+    "diagram",
+    "true-false"
+  ],
+  "errors": []
+}

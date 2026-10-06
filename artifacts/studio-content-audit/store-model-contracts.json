@@ -1,0 +1,18 @@
+[
+  {
+    "route": "/graph-theory",
+    "errors": [],
+    "changed": true,
+    "undo": true,
+    "redo": true,
+    "restore": true
+  },
+  {
+    "route": "/set-theory",
+    "errors": [],
+    "changed": true,
+    "undo": true,
+    "redo": true,
+    "restore": true
+  }
+]

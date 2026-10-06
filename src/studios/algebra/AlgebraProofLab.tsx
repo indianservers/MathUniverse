@@ -1,5 +1,6 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { AlertTriangle, Check, Eye, FlaskConical, HelpCircle, Lightbulb, Maximize2, RotateCcw, RotateCw, Sparkles, Trophy } from "lucide-react";
-import { useMemo, useState, type CSSProperties } from "react";
+import { useMemo, type CSSProperties } from "react";
 import AlgebraLabHeading from "./AlgebraLabHeading";
 import { useStudioMode } from "../../hooks/useStudioMode";
 import {
@@ -125,7 +126,7 @@ function identityHoldsAtSamples(left: string, right: string) {
 
 function identityTarget(statement: string, previous: string, index: number) {
   const normalized = withTimes(statement);
-  if (!identityHoldsAtSamples(normalized, "(a+b)^2") && !identityHoldsAtSamples(normalized, "a^2+2*a*b+b^2")) {
+  if (!expressionsEquivalent(normalized, "(a+b)^2") && !expressionsEquivalent(normalized, "a^2+2*a*b+b^2")) {
     return { valid: false as const, suggested: "", reason: "not-equivalent" as const };
   }
   if (index === 0 || normalized.replace(/\s/g, "") === "(a+b)^2") {
@@ -172,10 +173,10 @@ export default function ProofLab() {
     challengeOn: false,
     challengeAnswer: "",
     challengeChecked: false,
-  });
+  }, "AlgebraProofLab.tsx:ProofLab");
   const { steps, draft, template, selected, a, b, n, numeric, challengeOn, challengeAnswer, challengeChecked } = history.state;
-  const [focusTile, setFocusTile] = useState<"a2" | "ab" | "b2" | null>(null);
-  const [expanded, setExpanded] = useState(false);
+  const [focusTile, setFocusTile] = useStudioState<"a2" | "ab" | "b2" | null>("AlgebraProofLab:ProofLab:focusTile", null);
+  const [expanded, setExpanded] = useStudioState("AlgebraProofLab:ProofLab:expanded", false);
 
   const patch = (next: Partial<ProofState>, commit = true) => {
     const value = { ...history.state, ...next };
@@ -239,7 +240,8 @@ export default function ProofLab() {
   };
 
   const switchMode = (next: string) => {
-    setMode(next);
+    if (!modes.includes(next as ProofMode)) return;
+    setMode(next as ProofMode);
     history.reset({ ...history.state, steps: seed(next as ProofMode), selected: 0, numeric: "", challengeOn: false, challengeChecked: false, challengeAnswer: "" });
   };
 

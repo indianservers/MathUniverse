@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Field, Panel, Segmented, SliderRow } from "../../mockup/studioLabKit";
 import {
@@ -31,12 +32,12 @@ export default function TriangleInequalitiesLab({ pulse = "observe" }: { pulse?:
   const svgRef = useRef<SVGSVGElement>(null);
   const drag = useRef<"A" | "B" | "C" | null>(null);
   const [mode, setMode] = useState<Mode>("inequality");
-  const [a, setA] = useState(5);
-  const [b, setB] = useState(6);
-  const [c, setC] = useState(7);
-  const [hinge, setHinge] = useState(0.27);
-  const [animate, setAnimate] = useState(false);
-  const [tri, setTri] = useState(EXPLORER_PRESETS.scalene);
+  const [a, setA] = useStudioState("TriangleInequalitiesLab:TriangleInequalitiesLab:a", 5);
+  const [b, setB] = useStudioState("TriangleInequalitiesLab:TriangleInequalitiesLab:b", 6);
+  const [c, setC] = useStudioState("TriangleInequalitiesLab:TriangleInequalitiesLab:c", 7);
+  const [hinge, setHinge] = useStudioState("TriangleInequalitiesLab:TriangleInequalitiesLab:hinge", 0.27);
+  const [animate, setAnimate] = useStudioState("TriangleInequalitiesLab:TriangleInequalitiesLab:animate", false);
+  const [tri, setTri] = useStudioState("TriangleInequalitiesLab:TriangleInequalitiesLab:tri", EXPLORER_PRESETS.scalene);
 
   const tests = triangleInequality(a, b, c);
   const m = measureTriangle(tri.A, tri.B, tri.C);

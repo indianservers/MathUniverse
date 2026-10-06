@@ -1,3 +1,4 @@
+import GroupsRingsFieldsLab from '../studios/algebraic-structures/GroupsRingsFieldsLab';
 import { Link, useLocation } from "react-router-dom";
 import StudioHomeButtons from "../components/ui/StudioHomeButtons";
 import { StudioCanvasToolbar } from "../components/ui/StudioCanvasToolbar";
@@ -18,6 +19,7 @@ import "./AlgebraStudio.css";
 import "./AlgebraicStructuresStudio.css";
 
 const titles: Record<AlgebraicStructuresPage, { title: string; subtitle: string; crumb?: string }> = {
+  "groups-rings-fields": {title: "Groups, Rings & Fields Lab", subtitle: "Compute subgroups, cosets, units, ideals and quotient maps in residue rings."},
   home: {
     title: "Algebraic Structures Studio",
     subtitle: "Launch a lab: test axioms, edit Cayley tables, walk semigroups, posets, and Boolean algebra.",
@@ -81,6 +83,7 @@ export default function AlgebraicStructuresStudio({ page = "home" }: { page?: Al
             <b>{meta.title}</b>
             <small>{meta.subtitle}</small>
           </div>
+          {page === "groups-rings-fields" ? <GroupsRingsFieldsLab /> : null}
           {page === "home" ? <StructuresHome /> : null}
           {page === "structure-test" ? <StructureTestLab /> : null}
           {page === "cayley-tables" ? <CayleyTablesLab /> : null}

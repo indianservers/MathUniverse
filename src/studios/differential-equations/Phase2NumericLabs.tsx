@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useMemo, useState } from "react";
 import { Activity, ArrowRight, BarChart3, Download, HelpCircle, RotateCcw, Target } from "lucide-react";
 import { Card, CheckBox, ExampleChips, Formula, Notice, Slider } from "./Phase1Labs";
@@ -24,17 +25,17 @@ function csvDownload(method: Method, rows: NumericStep[]) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 export function NumericalPhase2({ method }: { method: Method }) {
-  const [rule, setRule] = useState("x-y");
-  const [x0, setX0] = useState(0); const [y0, setY0] = useState(1);
-  const [h, setH] = useState(method === "rk4" ? 0.2 : 0.5);
-  const [count, setCount] = useState(method === "rk4" ? 20 : method === "heun" ? 6 : 8);
-  const [current, setCurrent] = useState(0);
+  const [rule, setRule] = useStudioState("Phase2NumericLabs:NumericalPhase2:rule", "x-y");
+  const [x0, setX0] = useStudioState("Phase2NumericLabs:NumericalPhase2:x0", 0); const [y0, setY0] = useStudioState("Phase2NumericLabs:NumericalPhase2:y0", 1);
+  const [h, setH] = useStudioState("Phase2NumericLabs:NumericalPhase2:h", method === "rk4" ? 0.2 : 0.5);
+  const [count, setCount] = useStudioState("Phase2NumericLabs:NumericalPhase2:count", method === "rk4" ? 20 : method === "heun" ? 6 : 8);
+  const [current, setCurrent] = useStudioState("Phase2NumericLabs:NumericalPhase2:current", 0);
   const [showExact, setShowExact] = useState(true); const [showEuler, setShowEuler] = useState(method !== "euler");
   const [showHeun, setShowHeun] = useState(method === "rk4"); const [showPredictor, setShowPredictor] = useState(true);
   const [showNodes, setShowNodes] = useState(true); const [showGrid, setShowGrid] = useState(true);
   const [showTangent, setShowTangent] = useState(true); const [showError, setShowError] = useState(false);
-  const [compareAll, setCompareAll] = useState(true);
-  const [inspector, setInspector] = useState<{ x: number; y: number } | null>(null);
+  const [compareAll, setCompareAll] = useStudioState("Phase2NumericLabs:NumericalPhase2:compareAll", true);
+  const [inspector, setInspector] = useStudioState<{ x: number; y: number } | null>("Phase2NumericLabs:NumericalPhase2:inspector", null);
   const compiled = useMemo(() => compileNumericRule(rule), [rule]);
   const exact = useMemo(() => exactNumericSolution(rule, x0, y0), [rule, x0, y0]);
   const rows = useMemo(() => compiled.fn ? numericSteps(compiled.fn, x0, y0, h, count, exact) : [], [compiled.fn, x0, y0, h, count, exact]);

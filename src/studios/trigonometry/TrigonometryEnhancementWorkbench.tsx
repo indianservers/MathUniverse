@@ -1,4 +1,5 @@
-import { useState, type ReactNode } from "react";
+import { useStudioState } from "../phase1/StudioModelProvider";
+import { type ReactNode } from "react";
 import * as trig from "./trigonometryEnhancementEngine";
 
 function Tool({ id, title, children }: { id: string; title: string; children: ReactNode }) {
@@ -8,7 +9,7 @@ function Output({ children }: { children: unknown }) { return <output className=
 function Input({ label, value, onChange, step = 1 }: { label: string; value: number; onChange: (value: number) => void; step?: number }) { return <label className="grid gap-1 text-xs font-bold text-slate-700 dark:text-slate-200"><span>{label}</span><input className="h-10 rounded-lg border border-slate-200 bg-white px-2 dark:border-white/10 dark:bg-slate-900" type="number" step={step} value={value} onChange={(event) => onChange(Number(event.target.value))} /></label>; }
 
 export default function TrigonometryEnhancementWorkbench() {
-  const [degrees, setDegrees] = useState(45), [amplitude, setAmplitude] = useState(2), [frequency, setFrequency] = useState(1), [secondary, setSecondary] = useState(30), [harmonics, setHarmonics] = useState(6);
+  const [degrees, setDegrees] = useStudioState("TrigonometryEnhancementWorkbench:TrigonometryEnhancementWorkbench:degrees", 45), [amplitude, setAmplitude] = useStudioState("TrigonometryEnhancementWorkbench:TrigonometryEnhancementWorkbench:amplitude", 2), [frequency, setFrequency] = useStudioState("TrigonometryEnhancementWorkbench:TrigonometryEnhancementWorkbench:frequency", 1), [secondary, setSecondary] = useStudioState("TrigonometryEnhancementWorkbench:TrigonometryEnhancementWorkbench:secondary", 30), [harmonics, setHarmonics] = useStudioState("TrigonometryEnhancementWorkbench:TrigonometryEnhancementWorkbench:harmonics", 6);
   const angle = trig.toRadians(degrees, "degrees"), beta = trig.toRadians(secondary, "degrees"), count = Math.max(1, Math.min(20, Math.round(Math.abs(harmonics))));
   return <div className="space-y-4 p-1">
     <section className="rounded-xl border border-cyan-200 bg-gradient-to-r from-cyan-50 to-violet-50 p-4 dark:border-cyan-400/20 dark:from-cyan-950/40 dark:to-violet-950/40"><h1 className="text-xl font-black">Advanced Trigonometry Workbench</h1><p className="mt-1 text-sm text-slate-600 dark:text-slate-300">Twenty-five synchronized circular, triangular, wave, phasor, and advanced trigonometry tools.</p></section>

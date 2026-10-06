@@ -416,7 +416,7 @@ export const navSections: NavSection[] = [
         ],
       },
       {
-        title: "Statistics (separate app)",
+        title: "Statistics & Probability",
         route: "/probability-statistics",
         icon: "BarChart3",
         description: "Statistics lives in a dedicated app. Studios here do not include AR or stats labs.",

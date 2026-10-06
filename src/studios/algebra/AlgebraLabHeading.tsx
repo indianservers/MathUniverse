@@ -2,6 +2,7 @@ import { HelpCircle, RotateCcw, RotateCw, Settings } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { useLocation } from "react-router-dom";
 import { useTheme } from "../../hooks/useTheme";
+import { useStudioModel } from "../phase1/StudioModelProvider";
 import MathExpression from "../../components/ui/MathExpression";
 import { firstTryHelp, glossary, misconceptions, vignettes } from "./algebraStudioCatalog";
 import {
@@ -20,13 +21,13 @@ export default function AlgebraLabHeading({
   modes,
   mode,
   onMode,
-  onUndo,
-  onRedo,
-  canUndo = false,
-  canRedo = false,
-  onReset,
+  onUndo: providedUndo,
+  onRedo: providedRedo,
+  canUndo: providedCanUndo = false,
+  canRedo: providedCanRedo = false,
+  onReset: providedReset,
   helpTitle = "Explore this lab",
-  helpBody = "Select a mode and change its parameters to recompute the model. Use the result and graph together. Challenges check the current values; CAS and proof entry accept expressions with powers such as x^2.",
+  helpBody = "Select a mode and change its parameters to recompute the model. Concept checks use the stated example; live-model challenges use the current inputs. CAS and proof entry accept expressions with powers such as x^2.",
   labId,
   undoCaption,
 }: {
@@ -46,6 +47,12 @@ export default function AlgebraLabHeading({
   undoCaption?: string;
 }) {
   const location = useLocation();
+  const model = useStudioModel();
+  const onUndo = providedUndo ?? model?.ledger.undo;
+  const onRedo = providedRedo ?? model?.ledger.redo;
+  const onReset = providedReset ?? model?.ledger.reset;
+  const canUndo = providedUndo ? providedCanUndo : !!model?.ledger.past.length;
+  const canRedo = providedRedo ? providedCanRedo : !!model?.ledger.future.length;
   const [panel, setPanel] = useState<"Help" | "Settings" | "Jump" | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
   const [experimentName, setExperimentName] = useState("");

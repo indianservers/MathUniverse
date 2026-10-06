@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useState } from "react";
 import {
   arcLength, chordLengthFromCentral, circumference, constrainOnCircle, dist, fmt, nearlyEqual, pointOnCircle, sectorArea, segmentArea, toDeg, toRad, type Vec,
@@ -17,11 +18,11 @@ export default function ArcsSectorsLab({ active }: { active: boolean }) {
   const [labels, setLabels] = usePersisted("arc.lab", true);
   const [showBoth, setBoth] = usePersisted("arc.both", true);
   const [sweep, setSweep] = usePersisted("arc.sw", false);
-  const [display, setDisplay] = useState(120);
+  const [display, setDisplay] = useStudioState("ArcsSectorsLab:ArcsSectorsLab:display", 120);
   const [status, setStatus] = useState<"idle" | "pass" | "fail">("idle");
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useStudioState("ArcsSectorsLab:ArcsSectorsLab:collapsed", false);
   const [challenge, setChallenge] = usePersisted("arc.ch", 0);
-  const [focused, setFocused] = useState<string | null>("B");
+  const [focused, setFocused] = useStudioState<string | null>("ArcsSectorsLab:ArcsSectorsLab:focused", "B");
 
   useEffect(() => {
     if (!sweep || !active) { setDisplay(theta); return; }

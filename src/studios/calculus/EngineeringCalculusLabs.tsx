@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import { useStudioState } from "../phase1/StudioModelProvider";
+import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import {
   annulusInertia,
@@ -83,8 +84,8 @@ function Plot({ points, label }: { points: Array<{ x: number; y: number } | null
 }
 
 export function SeriesTestsLab({ mode }: { mode: string }) {
-  const [seriesId, setSeriesId] = useState(seriesCases[0].id);
-  const [test, setTest] = useState("ratio");
+  const [seriesId, setSeriesId] = useStudioState("EngineeringCalculusLabs:SeriesTestsLab:seriesId", seriesCases[0].id);
+  const [test, setTest] = useStudioState("EngineeringCalculusLabs:SeriesTestsLab:test", "ratio");
   const series = seriesCases.find((item) => item.id === seriesId) ?? seriesCases[0];
   const result = runNamedTest(series, test);
   const ratios = useMemo(() => Array.from({ length: 12 }, (_, index) => {
@@ -127,12 +128,12 @@ export function SeriesTestsLab({ mode }: { mode: string }) {
 }
 
 export function CurveTracingLab({ mode }: { mode: string }) {
-  const [curve, setCurve] = useState<"rational" | "cusp" | "folium">("rational");
-  const [polar, setPolar] = useState<"cardioid" | "limacon" | "rose" | "lemniscate" | "spiral">("cardioid");
-  const [theta, setTheta] = useState(0.8);
-  const [play, setPlay] = useState(false);
-  const [layers, setLayers] = useState({ asymptotes: true, derivative: true });
-  const [reveal, setReveal] = useState(3);
+  const [curve, setCurve] = useStudioState<"rational" | "cusp" | "folium">("EngineeringCalculusLabs:CurveTracingLab:curve", "rational");
+  const [polar, setPolar] = useStudioState<"cardioid" | "limacon" | "rose" | "lemniscate" | "spiral">("EngineeringCalculusLabs:CurveTracingLab:polar", "cardioid");
+  const [theta, setTheta] = useStudioState("EngineeringCalculusLabs:CurveTracingLab:theta", 0.8);
+  const [play, setPlay] = useStudioState("EngineeringCalculusLabs:CurveTracingLab:play", false);
+  const [layers, setLayers] = useStudioState("EngineeringCalculusLabs:CurveTracingLab:layers", { asymptotes: true, derivative: true });
+  const [reveal, setReveal] = useStudioState("EngineeringCalculusLabs:CurveTracingLab:reveal", 3);
   useEffect(() => {
     if (!play) return undefined;
     const timer = window.setInterval(() => setTheta((value) => (value + 0.08) % (Math.PI * 2)), 80);
@@ -273,11 +274,11 @@ function hessianVerdict(gradient: number[], hessian: number[][]) {
 }
 
 export function TaylorTwoLab({ mode }: { mode: string }) {
-  const [kind, setKind] = useState<"exp" | "trig" | "poly">("exp");
-  const [a, setA] = useState(0);
-  const [b, setB] = useState(0);
-  const [h, setH] = useState(0.3);
-  const [k, setK] = useState(-0.2);
+  const [kind, setKind] = useStudioState<"exp" | "trig" | "poly">("EngineeringCalculusLabs:TaylorTwoLab:kind", "exp");
+  const [a, setA] = useStudioState("EngineeringCalculusLabs:TaylorTwoLab:a", 0);
+  const [b, setB] = useStudioState("EngineeringCalculusLabs:TaylorTwoLab:b", 0);
+  const [h, setH] = useStudioState("EngineeringCalculusLabs:TaylorTwoLab:h", 0.3);
+  const [k, setK] = useStudioState("EngineeringCalculusLabs:TaylorTwoLab:k", -0.2);
   const data = kind === "exp" ? taylorExp(a, b, h, k) : kind === "trig" ? taylorTrig(a, b, h, k) : taylorPolynomialExpansion(a, b, h, k);
   const approx = mode === "linear" ? data.linear : data.quadratic;
   return (
@@ -311,8 +312,8 @@ export function TaylorTwoLab({ mode }: { mode: string }) {
 }
 
 export function LagrangeLab({ mode }: { mode: string }) {
-  const [radius, setRadius] = useState(1);
-  const [angle, setAngle] = useState(Math.PI / 4);
+  const [radius, setRadius] = useStudioState("EngineeringCalculusLabs:LagrangeLab:radius", 1);
+  const [angle, setAngle] = useStudioState("EngineeringCalculusLabs:LagrangeLab:angle", Math.PI / 4);
   const circle = lagrangeCircle(radius);
   const line = lagrangeLine();
   const point = mode === "line"
@@ -345,7 +346,7 @@ export function LagrangeLab({ mode }: { mode: string }) {
 }
 
 export function ChangeOrderLab({ mode }: { mode: string }) {
-  const [slice, setSlice] = useState(0.45);
+  const [slice, setSlice] = useStudioState("EngineeringCalculusLabs:ChangeOrderLab:slice", 0.45);
   const simple = triangleOrder();
   const split = splitRegionOrder();
   const info = mode === "split" ? split : simple;
@@ -373,9 +374,9 @@ export function ChangeOrderLab({ mode }: { mode: string }) {
 }
 
 export function CentroidLab({ mode }: { mode: string }) {
-  const [width, setWidth] = useState(2);
-  const [height, setHeight] = useState(1);
-  const [slope, setSlope] = useState(0.5);
+  const [width, setWidth] = useStudioState("EngineeringCalculusLabs:CentroidLab:width", 2);
+  const [height, setHeight] = useStudioState("EngineeringCalculusLabs:CentroidLab:height", 1);
+  const [slope, setSlope] = useStudioState("EngineeringCalculusLabs:CentroidLab:slope", 0.5);
   const uniform = rectangleCentroid(width, height);
   const variable = variableDensityCentroid(width, height, mode === "density" ? slope : 0);
   const triangle = rightTriangleCentroid();
@@ -405,8 +406,8 @@ export function CentroidLab({ mode }: { mode: string }) {
 }
 
 export function InertiaLab({ mode }: { mode: string }) {
-  const [radius, setRadius] = useState(1.4);
-  const [inner, setInner] = useState(0.6);
+  const [radius, setRadius] = useStudioState("EngineeringCalculusLabs:InertiaLab:radius", 1.4);
+  const [inner, setInner] = useStudioState("EngineeringCalculusLabs:InertiaLab:inner", 0.6);
   const rectangle = rectangleInertia(2, 1, 1);
   const disk = diskInertia(radius, 1);
   const ring = annulusInertia(inner, radius, 1);
@@ -433,9 +434,9 @@ export function InertiaLab({ mode }: { mode: string }) {
 }
 
 export function IntegralApplicationsLab({ mode }: { mode: string }) {
-  const [a, setA] = useState(2);
-  const [radius, setRadius] = useState(1);
-  const [height, setHeight] = useState(2);
+  const [a, setA] = useStudioState("EngineeringCalculusLabs:IntegralApplicationsLab:a", 2);
+  const [radius, setRadius] = useStudioState("EngineeringCalculusLabs:IntegralApplicationsLab:radius", 1);
+  const [height, setHeight] = useStudioState("EngineeringCalculusLabs:IntegralApplicationsLab:height", 2);
   const box = boxTriple(a, a, a);
   return (
     <div className="odes-lab">

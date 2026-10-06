@@ -1,5 +1,6 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { Link } from "react-router-dom";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import { ChallengeBox, LiveRow, Panel, SliderRow, StatusOk } from "../../mockup/studioLabKit";
 import { FigureToolbar, Phase1LabChrome } from "../../phase1/Phase1LabChrome";
@@ -20,7 +21,7 @@ const SEED = [38, 27, 43, 3, 9, 10, 19, 27, 38, 43, 55, 61, 66, 82, 93, 7, 22, 3
 
 export default function AlgorithmsLab({ page }: { page: StudioMockupPage }) {
   const fig = useStudioFigure(initial);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useStudioState("AlgorithmsLab:AlgorithmsLab:step", 1);
   const data = SEED.slice(0, fig.state.n);
   const bubble = useMemo(() => bubbleSortFrames(data), [data]);
   const merge = useMemo(() => mergeSortFrames(data), [data]);

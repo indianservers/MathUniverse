@@ -1,8 +1,9 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useState } from "react";
 import type { StudioSolid } from "./solidStudioModel";
 
 export default function SolidStudioNet({ solid, size, height }: { solid: StudioSolid; size: number; height: number }) {
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useStudioState("SolidStudioNet:SolidStudioNet:selected", 0);
   const s = size, w = solid === "cuboid" ? size * 0.72 : size, h = solid === "cube" ? size : height;
   const faces: Array<{ name: string; points: string; area: number }> = [];
   const rectangle = (name: string, x: number, y: number, a: number, b: number) => faces.push({ name, points: `${x},${y} ${x + a},${y} ${x + a},${y + b} ${x},${y + b}`, area: a * b });

@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useMemo, useState } from "react";
 import { BookOpen, CheckCircle2, GitBranch, Layers3, Sigma, Sparkles } from "lucide-react";
 import { compileFunctionExpression } from "../../utils/functionParser";
@@ -33,8 +34,8 @@ function Tabs({ items, selected, onSelect }: { items: string[]; selected: string
 function CoefficientInputs({ a, b, c, onA, onB, onC }: { a: number; b: number; c: number; onA: (n: number) => void; onB: (n: number) => void; onC: (n: number) => void }) { return <div className="de2-data-grid"><label>y′′ coefficient<input type="number" step="0.1" value={a} onChange={(event) => onA(Number(event.target.value))} /></label><label>y′ coefficient<input type="number" step="0.1" value={b} onChange={(event) => onB(Number(event.target.value))} /></label><label>y coefficient<input type="number" step="0.1" value={c} onChange={(event) => onC(Number(event.target.value))} /></label></div>; }
 
 export function HigherOrderPhase2() {
-  const [a, setA] = useState(1), [b, setB] = useState(-3), [c, setC] = useState(2);
-  const [forcing, setForcing] = useState("e^x"); const [y0, setY0] = useState(1), [v0, setV0] = useState(0);
+  const [a, setA] = useStudioState("Phase2SymbolicLabs:HigherOrderPhase2:a", 1), [b, setB] = useStudioState("Phase2SymbolicLabs:HigherOrderPhase2:b", -3), [c, setC] = useStudioState("Phase2SymbolicLabs:HigherOrderPhase2:c", 2);
+  const [forcing, setForcing] = useStudioState("Phase2SymbolicLabs:HigherOrderPhase2:forcing", "e^x"); const [y0, setY0] = useStudioState("Phase2SymbolicLabs:HigherOrderPhase2:y0", 1), [v0, setV0] = useStudioState("Phase2SymbolicLabs:HigherOrderPhase2:v0", 0);
   const [tab, setTab] = useState("Characteristic Equation"); const [showHomogeneous, setShowHomogeneous] = useState(true), [showParticular, setShowParticular] = useState(true), [showTotal, setShowTotal] = useState(true);
   const roots = characteristic(a, b, c); const constants = secondOrderConstants(a, b, c, y0, v0);
   const compiled = useMemo(() => compileForcing(forcing), [forcing]);
@@ -88,9 +89,9 @@ function trialGuess(forcing: string, a: number, b: number, c: number) {
 }
 
 export function UndeterminedPhase2() {
-  const [a, setA] = useState(1), [b, setB] = useState(-3), [c, setC] = useState(2), [forcing, setForcing] = useState("e^x");
+  const [a, setA] = useStudioState("Phase2SymbolicLabs:UndeterminedPhase2:a", 1), [b, setB] = useStudioState("Phase2SymbolicLabs:UndeterminedPhase2:b", -3), [c, setC] = useStudioState("Phase2SymbolicLabs:UndeterminedPhase2:c", 2), [forcing, setForcing] = useStudioState("Phase2SymbolicLabs:UndeterminedPhase2:forcing", "e^x");
   const [showH, setShowH] = useState(true), [showP, setShowP] = useState(true), [showTotal, setShowTotal] = useState(true);
-  const [checkResonance, setCheckResonance] = useState(true);
+  const [checkResonance, setCheckResonance] = useStudioState("Phase2SymbolicLabs:UndeterminedPhase2:checkResonance", true);
   const compiled = useMemo(() => compileForcing(forcing), [forcing]);
   const guess = trialGuess(forcing, a, b, c);
   const trialBasis: TrialBasis[] = [];
@@ -129,7 +130,7 @@ const variationInputs = [
   { label: "y′′ + 4y = x", p: 0, q: 4, g: "x", id: "custom" },
 ];
 export function VariationPhase2() {
-  const [pText, setP] = useState("0"), [qText, setQ] = useState("1"), [g, setG] = useState("sec(x)");
+  const [pText, setP] = useStudioState("Phase2SymbolicLabs:VariationPhase2:pText", "0"), [qText, setQ] = useStudioState("Phase2SymbolicLabs:VariationPhase2:qText", "1"), [g, setG] = useStudioState("Phase2SymbolicLabs:VariationPhase2:g", "sec(x)");
   const [showBasis, setShowBasis] = useState(true), [showW, setShowW] = useState(true), [showParticular, setShowParticular] = useState(true);
   const pCompiled = useMemo(() => compileForcing(pText), [pText]);
   const qCompiled = useMemo(() => compileForcing(qText), [qText]);
@@ -162,8 +163,8 @@ const cauchyPresets = [
   { label: "Repeated Roots", a: -3, b: 4 }, { label: "Distinct Roots", a: 1, b: -1 }, { label: "Complex Roots", a: 1, b: 1 }, { label: "Damped Power", a: 3, b: 2 },
 ];
 export function CauchyEulerPhase2() {
-  const [a, setA] = useState(-3), [b, setB] = useState(4), [c1, setC1] = useState(1), [c2, setC2] = useState(0.5);
-  const [showGrid, setShowGrid] = useState(true), [showLegend, setShowLegend] = useState(true), [logAxis, setLogAxis] = useState(false);
+  const [a, setA] = useStudioState("Phase2SymbolicLabs:CauchyEulerPhase2:a", -3), [b, setB] = useStudioState("Phase2SymbolicLabs:CauchyEulerPhase2:b", 4), [c1, setC1] = useStudioState("Phase2SymbolicLabs:CauchyEulerPhase2:c1", 1), [c2, setC2] = useStudioState("Phase2SymbolicLabs:CauchyEulerPhase2:c2", 0.5);
+  const [showGrid, setShowGrid] = useState(true), [showLegend, setShowLegend] = useState(true), [logAxis, setLogAxis] = useStudioState("Phase2SymbolicLabs:CauchyEulerPhase2:logAxis", false);
   const roots = cauchyIndicial(1, a, b);
   const solution = roots.kind === "repeated" ? `y=C_1x^{${numberText(roots.r1 ?? 0)}}+C_2x^{${numberText(roots.r1 ?? 0)}}\\ln x` : roots.kind === "complex" ? `y=x^{${numberText(roots.alpha ?? 0)}}[C_1\\cos(${numberText(roots.beta ?? 0)}\\ln x)+C_2\\sin(${numberText(roots.beta ?? 0)}\\ln x)]` : `y=C_1x^{${numberText(roots.r1 ?? 0)}}+C_2x^{${numberText(roots.r2 ?? 0)}}`;
   const values = [-1, 0, 1, 2].map((offset, index) => ({ label: `C₂ = ${numberText(c2 + offset)}`, color: [blue, orange, violet, green][index], points: samplePoints((x) => cauchyValue(1, a, b, c1, c2 + offset, x), logAxis ? 0.1 : 0.2, 5) }));

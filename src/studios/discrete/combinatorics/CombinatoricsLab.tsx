@@ -1,4 +1,5 @@
-import { useState, type KeyboardEvent } from "react";
+import { useStudioState } from "../../phase1/StudioModelProvider";
+import { type KeyboardEvent } from "react";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import ArrangementsLab from "./ArrangementsLab";
 import GeneratingTreeLab from "./GeneratingTreeLab";
@@ -104,7 +105,7 @@ const STRIPS: Record<ComboModeId, Array<{ title: string; text: string; action: s
 
 export default function CombinatoricsLab({ page }: { page: StudioMockupPage }) {
   const { mode, kind, setMode, setKind } = useComboLabMode();
-  const [pulse, setPulse] = useState("observe");
+  const [pulse, setPulse] = useStudioState("CombinatoricsLab:CombinatoricsLab:pulse", "observe");
   const meta = comboModeMeta(mode);
 
   const onKey = (event: KeyboardEvent) => {

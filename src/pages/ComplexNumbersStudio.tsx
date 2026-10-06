@@ -28,6 +28,7 @@ import {
   useComplexSession,
 } from "../studios/complex/complexStudioSession";
 import ComplexNumbersStudioLabs from "../studios/complex/ComplexNumbersStudioLabs";
+import ComplexEnhancementWorkbench from "../studios/complex/ComplexEnhancementWorkbench";
 import { studioMockups } from "../studios/mockup/studioMockupCatalog";
 import { studioLabMeta } from "../studios/mockup/studioLabMeta";
 import "./ComplexNumbersStudio.css";
@@ -93,7 +94,7 @@ export default function ComplexNumbersStudio() {
     <main className="cxs-studio" data-complex-studio="dedicated">
       <ComplexSidebar page={page} />
       <section className="cxs-stage" data-testid="complex-scroll-pane">
-        {page === "home" ? <StudioHome /> : <ComplexNumbersStudioLabs pageId={page} />}
+        {new URLSearchParams(location.search).get("tab") === "advanced" || new URLSearchParams(location.search).get("mode") === "advanced" ? <ComplexEnhancementWorkbench /> : page === "home" ? <StudioHome /> : <ComplexNumbersStudioLabs pageId={page} />}
       </section>
     </main>
   );

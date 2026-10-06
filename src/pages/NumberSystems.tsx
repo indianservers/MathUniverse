@@ -1,3 +1,4 @@
+import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import { Hash, Home, Search } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate, useSearchParams } from "react-router-dom";
@@ -47,7 +48,7 @@ export default function NumberSystems() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const page = pageFromPath(location.pathname);
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useStudioState("NumberSystems:NumberSystems:progress", 0);
 
   useEffect(() => {
     const tab = params.get("tab");
@@ -104,9 +105,9 @@ export default function NumberSystems() {
 function StudioHome({ progress }: { progress: number }) {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
-  const [band, setBand] = useState<NumberClassBand>(readClassBand);
-  const [shareStatus, setShareStatus] = useState("");
-  const [coachStep, setCoachStep] = useState(0);
+  const [band, setBand] = useStudioState<NumberClassBand>("NumberSystems:StudioHome:band", readClassBand);
+  const [shareStatus, setShareStatus] = useStudioState("NumberSystems:StudioHome:shareStatus", "");
+  const [coachStep, setCoachStep] = useStudioState("NumberSystems:StudioHome:coachStep", 0);
   const done = completedLabs();
   const resume = lastNumberSystemsRoute();
   const resumeLabel = nav.find((item) => item.route === resume)?.label ?? "Rational";

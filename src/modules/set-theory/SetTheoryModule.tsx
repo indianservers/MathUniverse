@@ -1,3 +1,4 @@
+import {useStudioState} from '../../studios/phase1/StudioModelProvider';
 import "reactflow/dist/style.css";
 import { forceCenter, forceLink, forceManyBody, forceSimulation } from "d3";
 import { motion } from "framer-motion";
@@ -27,6 +28,7 @@ import {
   type OrderedPair,
   type SetOperation,
 } from "./setTheoryEngine";
+import { parseRoster } from "./premium/math";
 import { useSetTheoryStore, type SetTheoryState } from "./setTheoryStore";
 import { evaluateSetExpression, expressionOperatorLabels, expressionSteps, formatSetExpression, parseSetExpression, type ExpressionToken, type SetExpressionOperator } from "./setExpressionEngine";
 
@@ -598,7 +600,7 @@ function VennEngine({
 }: SetTheoryState & { compact?: boolean; expanded?: boolean; result: string[] }) {
   const regions = venn3Regions(setA, setB, setC);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [circles, setCircles] = useState<VennSetCircle[]>(() => getPresetCircleLayout("overlap", 3));
+  const [circles, setCircles] = useStudioState<VennSetCircle[]>("set-theory:venn-circles", () => getPresetCircleLayout("overlap", 3));
   const [dragLocked, setDragLocked] = useState(false);
   const [boundaryLock, setBoundaryLock] = useState(true);
   const [selectedSetId, setSelectedSetId] = useState<VennSetId>("A");
@@ -614,7 +616,7 @@ function VennEngine({
   const [showPlaying, setShowPlaying] = useState(false);
   const [showSpeed, setShowSpeed] = useState<"slow" | "normal" | "fast">("normal");
   const [autoPlay, setAutoPlay] = useState(false);
-  const [setNames, setSetNames] = useState<VennSetName[]>([
+  const [setNames, setSetNames] = useStudioState<VennSetName[]>("set-theory:venn-labels", [
     { id: "A", shortLabel: "A", displayName: "Math Lovers" },
     { id: "B", shortLabel: "B", displayName: "Science Lovers" },
     { id: "C", shortLabel: "C", displayName: "Coding Lovers" },
@@ -855,7 +857,7 @@ function VennEngine({
         </g>
         {operation === "complement" && <rect x={vennUniverseBounds.x + 5} y={vennUniverseBounds.y + 5} width={vennUniverseBounds.width - 10} height={vennUniverseBounds.height - 10} rx="16" fill="#facc15" opacity="0.16" />}
         {operation === "union" && (
-          <motion.g animate={{ opacity: playbackStep % 2 ? 0.95 : 0.6 }} transition={{ duration: 0.6 }}>
+          <motion.g initial={{opacity:0.6}} animate={{ opacity: playbackStep % 2 ? 0.95 : 0.6 }} transition={{ duration: 0.6 }}>
             {circles.filter((circle) => circle.id === "A" || circle.id === "B").map((circle) => (
               <circle key={`union-${circle.id}`} cx={circle.cx} cy={circle.cy} r={circle.r + 5} fill="none" stroke="#facc15" strokeWidth="7" strokeDasharray="16 10" filter="url(#venn-union-glow)" opacity="0.88" />
             ))}
@@ -1356,30 +1358,34 @@ function ChallengePanel({ challenge, onRandom, onMiss }: { challenge: ReturnType
   const [revealed, setRevealed] = useState(false);
   const [guess, setGuess] = useState("");
   const [missed, setMissed] = useState(false);
+  const [correct, setCorrect] = useState(false);
   return (
-    <SectionCard title="Interactive Challenges and AI Hint Engine" description="Random problem generation with local rule-based hints.">
+    <SectionCard title="Interactive Challenges and Local Hints" description="Random problem generation with local rule-based hints.">
       <div className="flex flex-wrap items-center gap-2">
-        <button className="action-primary" type="button" onClick={() => { setRevealed(false); setMissed(false); setGuess(""); onRandom(); }}><Dices className="h-4 w-4" /> Random problem</button>
+        <button className="action-primary" type="button" onClick={() => { setRevealed(false); setMissed(false); setCorrect(false); setGuess(""); onRandom(); }}><Dices className="h-4 w-4" /> Random problem</button>
         <button className="tool-button" type="button" onClick={() => setRevealed(true)}><BrainCircuit className="h-4 w-4" /> Hint</button>
       </div>
       <div className="mt-3 rounded-xl bg-slate-100 p-4 font-mono text-sm dark:bg-white/10">Given A = {"{"}{challenge.a.join(", ")}{"}"} and B = {"{"}{challenge.b.join(", ")}{"}"}, compute {challenge.operation}.</div>
       <form className="mt-3 flex flex-wrap gap-2" onSubmit={(event) => {
         event.preventDefault();
-        const parsed = guess.split(/[\s,]+/).map((item) => item.trim()).filter(Boolean).sort().join(",");
+        let parsed: string;
+        try { parsed = parseRoster(guess).sort().join(","); } catch { setMissed(true); setCorrect(false); return; }
         const expected = [...challenge.answer].sort().join(",");
         if (parsed === expected) {
           setMissed(false);
-          setRevealed(true);
+          setCorrect(true);
           return;
         }
         setMissed(true);
+        setCorrect(false);
         onMiss?.(challenge.operation);
       }}>
         <input value={guess} onChange={(e) => setGuess(e.target.value)} aria-label="Your set answer" placeholder="elements, comma separated" />
         <button className="action-primary" type="submit">Check</button>
       </form>
-      {missed ? <div className="mt-3 rounded-xl bg-amber-100 p-3 text-sm font-semibold text-amber-900">Wrong — the Venn engine now highlights {challenge.operation}. <Link className="underline" to={`/set-theory/venn-diagram-engine?op=${challenge.operation}`}>Open the Venn diagram engine</Link> and read the glowing region.</div> : null}
-      {revealed && <div className="mt-3 rounded-xl bg-cyan-100 p-3 text-sm font-semibold text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100"><Check className="mr-2 inline h-4 w-4" />Think element by element. Answer: {"{"}{challenge.answer.join(", ")}{"}"}</div>}
+      {missed ? <div className="mt-3 rounded-xl bg-amber-100 p-3 text-sm font-semibold text-amber-900">Check the given rosters again. Explore {challenge.operation} in the visual lab. <Link className="underline" to={`/set-theory/venn-diagram-engine?op=${challenge.operation}`}>Open the Venn diagram engine</Link> and enter these question sets to compare.</div> : null}
+      {revealed && <div className="mt-3 rounded-xl bg-cyan-100 p-3 text-sm font-semibold text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100"><Check className="mr-2 inline h-4 w-4" />Test each element: union keeps either membership, intersection keeps both, difference keeps A without B, and symmetric difference keeps exactly one.</div>}
+      {correct ? <p role="status">Correct. Your roster equals the result for the sets given in this question.</p> : null}
     </SectionCard>
   );
 }

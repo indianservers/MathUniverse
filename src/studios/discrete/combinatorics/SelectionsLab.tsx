@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState } from "react";
 import {
   combination,
@@ -41,14 +42,14 @@ export default function SelectionsLab({
   pulse: string;
 }) {
   const kind = parseSelKind(kindRaw);
-  const [collapsed, setCollapsed] = useState(false);
-  const [n, setN] = useState(6);
-  const [r, setR] = useState(3);
-  const [picked, setPicked] = useState<string[]>(["A", "C", "E"]);
+  const [collapsed, setCollapsed] = useStudioState("SelectionsLab:SelectionsLab:collapsed", false);
+  const [n, setN] = useStudioState("SelectionsLab:SelectionsLab:n", 6);
+  const [r, setR] = useStudioState("SelectionsLab:SelectionsLab:r", 3);
+  const [picked, setPicked] = useStudioState<string[]>("SelectionsLab:SelectionsLab:picked", ["A", "C", "E"]);
   const [hover, setHover] = useState<{ n: number; k: number } | null>({ n: 6, k: 3 });
-  const [orderMatters, setOrderMatters] = useState(false);
-  const [scoops, setScoops] = useState([2, 1, 1]);
-  const [ch, setCh] = useState(0);
+  const [orderMatters, setOrderMatters] = useStudioState("SelectionsLab:SelectionsLab:orderMatters", false);
+  const [scoops, setScoops] = useStudioState("SelectionsLab:SelectionsLab:scoops", [2, 1, 1]);
+  const [ch, setCh] = useStudioState("SelectionsLab:SelectionsLab:ch", 0);
   const items = letters(n);
   const pascal = useMemo(() => pascalTriangle(8), []);
 

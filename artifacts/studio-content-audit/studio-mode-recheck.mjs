@@ -1,0 +1,7 @@
+import fs from 'node:fs';
+import {chromium,expect} from '@playwright/test';
+const path='artifacts/studio-content-audit/mode-results.json';
+const records=JSON.parse(fs.readFileSync(path,'utf8'));
+const browser=await chromium.launch({headless:true});const page=await browser.newPage();page.setDefaultTimeout(7000);
+for(const record of records.filter(r=>r.modes.some(m=>!m.passed))){await page.goto('http://127.0.0.1:4317'+record.route,{waitUntil:'domcontentloaded'});await page.locator('h1,h2').first().waitFor();const nav=page.locator('nav[aria-label*="mode" i],nav.cs-tabs,nav.gt-tabs').first();const buttons=nav.locator('button');const names=await buttons.allTextContents();const checks=[];for(let i=0;i<names.length;i++){const b=buttons.nth(i);try{await b.click();const selected=await b.getAttribute('aria-selected');const pressed=await b.getAttribute('aria-pressed');if(selected!==null)await expect(b).toHaveAttribute('aria-selected','true');else if(pressed!==null)await expect(b).toHaveAttribute('aria-pressed','true');else await expect(b).toHaveClass(/active|selected|is-on/);checks.push({name:names[i],passed:true,verification:selected!==null?'aria-selected':pressed!==null?'aria-pressed':'selected class'});}catch(e){checks.push({name:names[i],passed:false,error:e.message.slice(0,200)});}}record.modes=checks;console.log(record.route,checks.filter(c=>!c.passed).length,'unresolved');}
+await browser.close();fs.writeFileSync(path,JSON.stringify(records,null,2));

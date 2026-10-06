@@ -1,4 +1,5 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useStudioState } from "../phase1/StudioModelProvider";
+import { useEffect, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import {
   Download, Bookmark, Flame, Grid3X3, HelpCircle, Moon, Play, Redo2, RotateCcw, Settings, Share2, Star, Sun,
@@ -65,7 +66,7 @@ export function LinearLabHeader({
   speed?: string;
   onSpeed?: (s: string) => void;
 }) {
-  const [host, setHost] = useState<HTMLElement | null>(null);
+  const [host, setHost] = useStudioState<HTMLElement | null>("linearAlgebraUi:LinearLabHeader:host", null);
   const session = useLinearSession();
   useEffect(() => { setHost(document.getElementById("msk-lab-tools")); }, []);
   const id = page.id;

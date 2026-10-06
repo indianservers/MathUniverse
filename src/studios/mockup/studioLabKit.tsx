@@ -1,4 +1,4 @@
-import { useState, type PointerEventHandler, type ReactNode } from "react";
+import { useEffect, useRef, useState, type PointerEventHandler, type ReactNode } from "react";
 import { useLocation } from "react-router-dom";
 import { useStudioMode } from "../../hooks/useStudioMode";
 import { MockupLearningStrip } from "./MockupStudioChrome";
@@ -6,11 +6,11 @@ import type { StudioMockupPage } from "./studioMockupCatalog";
 import { trigModeChallenge } from "./trigStudioCopy";
 import { awardTrigXp, markTrigComplete } from "./trigStudioSession";
 import { markComplexComplete } from "../complex/complexStudioSession";
+import { readExactPreference } from "../phase1/StudioModelProvider";
+import { formatExactApprox } from "../phase1/studioKernel";
 
 export function fmt(n: number, digits = 4) {
-  if (!Number.isFinite(n)) return "—";
-  const factor = 10 ** digits;
-  return String(Math.round(n * factor) / factor);
+  return formatExactApprox(n, readExactPreference(), digits);
 }
 
 export function clamp(n: number, min: number, max: number) {
@@ -169,8 +169,10 @@ export function parseChallengeAnswer(raw: string) {
   if (text === "sqrt2/2" || text === "√2/2") return Math.SQRT1_2;
   if (text === "sqrt3/2" || text === "√3/2") return Math.sqrt(3) / 2;
   if (text.includes("/")) {
-    const [num, den] = text.split("/");
-    if (num && den && Number(den) !== 0) return Number(num) / Number(den);
+    const parts = text.split("/");
+    const [num, den] = parts;
+    if (parts.length === 2 && num && den && Number.isFinite(Number(num)) && Number.isFinite(Number(den)) && Number(den) !== 0) return Number(num) / Number(den);
+    return Number.NaN;
   }
   return Number(text);
 }
@@ -184,6 +186,8 @@ export function ChallengeBox({
   onCorrect,
   page,
   mode,
+  kind = "concept",
+  tolerance = 0.005,
 }: {
   prompt?: string;
   expected?: number;
@@ -193,23 +197,29 @@ export function ChallengeBox({
   onCorrect?: () => void;
   page?: StudioMockupPage;
   mode?: string;
+  kind?: "concept" | "live";
+  tolerance?: number;
 }) {
   const resolved = page ? trigModeChallenge(page, mode) : { prompt: prompt ?? "", expected: expected ?? 0, hint: hint ?? "" };
   const [answer, setAnswer] = useState("");
   const [status, setStatus] = useState("");
   const [ok, setOk] = useState(false);
   const location = useLocation();
+  const awarded = useRef(false);
+  useEffect(() => { setAnswer(""); setStatus(""); setOk(false); awarded.current = false; }, [resolved.prompt, resolved.expected]);
   if (!resolved.prompt || resolved.prompt === "0") return null;
   return (
     <div className="msk-challenge">
-      <span>Challenge</span>
+      <span>{kind === "live" ? "Live-model challenge" : "Concept check"}</span>
       <p>{resolved.prompt}</p>
       <input value={answer} placeholder={placeholder} onChange={(event) => { setAnswer(event.target.value); setStatus(""); }} aria-label="Challenge answer" />
       <button className="msk-cta" type="button" onClick={() => {
-        const correct = Math.abs(parseChallengeAnswer(answer) - resolved.expected) < 0.03;
+        const parsed = parseChallengeAnswer(answer);
+        const correct = Number.isFinite(parsed) && Math.abs(parsed - resolved.expected) <= tolerance;
         setOk(correct);
-        setStatus(correct ? "Correct — that matches the live model." : resolved.hint);
-        if (correct) {
+        setStatus(correct ? kind === "live" ? "Correct — that matches the current model." : "Correct — this concept check is solved." : resolved.hint || "Try again. Check the calculation and rounding.");
+        if (correct && !awarded.current) {
+          awarded.current = true;
           const route = page?.route ?? location.pathname;
           if (route.includes("/trigonometry/") && page) {
             awardTrigXp(10);

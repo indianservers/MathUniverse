@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState, type KeyboardEvent, type PointerEvent, type ReactNode } from "react";
 import { useSearchParams } from "react-router-dom";
 import { MockupLearningStrip } from "../MockupStudioChrome";
@@ -99,19 +100,19 @@ function Compass({ bearing }: { bearing: number }) {
 export function ApplicationsLab({ page }: { page: StudioMockupPage }) {
   const { tabs, mode, setMode } = useLabMode(page);
   const [params] = useSearchParams();
-  const [distanceValue, setDistanceValue] = useState(90);
-  const [eyeHeight, setEyeHeight] = useState(1.7);
-  const [elevation, setElevation] = useState(45);
-  const [baseElevation, setBaseElevation] = useState(0);
-  const [bearing, setBearing] = useState(58.2);
-  const [observerX, setObserverX] = useState(104);
-  const [secondStation, setSecondStation] = useState(240);
-  const [animateMeasurement, setAnimateMeasurement] = useState(true);
+  const [distanceValue, setDistanceValue] = useStudioState("ApplicationsLab:ApplicationsLab:distanceValue", 90);
+  const [eyeHeight, setEyeHeight] = useStudioState("ApplicationsLab:ApplicationsLab:eyeHeight", 1.7);
+  const [elevation, setElevation] = useStudioState("ApplicationsLab:ApplicationsLab:elevation", 45);
+  const [baseElevation, setBaseElevation] = useStudioState("ApplicationsLab:ApplicationsLab:baseElevation", 0);
+  const [bearing, setBearing] = useStudioState("ApplicationsLab:ApplicationsLab:bearing", 58.2);
+  const [observerX, setObserverX] = useStudioState("ApplicationsLab:ApplicationsLab:observerX", 104);
+  const [secondStation, setSecondStation] = useStudioState("ApplicationsLab:ApplicationsLab:secondStation", 240);
+  const [animateMeasurement, setAnimateMeasurement] = useStudioState("ApplicationsLab:ApplicationsLab:animateMeasurement", true);
   const [dragging, setDragging] = useState<"observer" | "target" | "station" | null>(null);
-  const [units, setUnits] = useState<"m" | "ft">("m");
-  const [instrument, setInstrument] = useState<"Theodolite" | "Clinometer">("Theodolite");
-  const [sightKind, setSightKind] = useState<"elevation" | "depression">("elevation");
-  const [presetId, setPresetId] = useState("tower");
+  const [units, setUnits] = useStudioState<"m" | "ft">("ApplicationsLab:ApplicationsLab:units", "m");
+  const [instrument, setInstrument] = useStudioState<"Theodolite" | "Clinometer">("ApplicationsLab:ApplicationsLab:instrument", "Theodolite");
+  const [sightKind, setSightKind] = useStudioState<"elevation" | "depression">("ApplicationsLab:ApplicationsLab:sightKind", "elevation");
+  const [presetId, setPresetId] = useStudioState("ApplicationsLab:ApplicationsLab:presetId", "tower");
   const [copied, setCopied] = useState(false);
 
   const unitScale = units === "ft" ? METERS_TO_FEET : 1;

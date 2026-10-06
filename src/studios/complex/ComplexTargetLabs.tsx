@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useEffect, useState } from "react";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { clamp, fmt } from "../mockup/studioLabKit";
@@ -20,15 +21,15 @@ function nearZero(z: C) {
 }
 
 export function ComplexArithmeticLab({ page }: { page: StudioMockupPage }) {
-  const [z1, setZ1] = useState<C>({ re: 2.5, im: 1.5 });
-  const [z2, setZ2] = useState<C>({ re: -1, im: 2 });
-  const [grid, setGrid] = useState(true);
-  const [axes, setAxes] = useState(true);
-  const [ticks, setTicks] = useState(true);
-  const [para, setPara] = useState(true);
-  const [proj, setProj] = useState(true);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(1);
+  const [z1, setZ1] = useStudioState<C>("ComplexTargetLabs:ComplexArithmeticLab:z1", { re: 2.5, im: 1.5 });
+  const [z2, setZ2] = useStudioState<C>("ComplexTargetLabs:ComplexArithmeticLab:z2", { re: -1, im: 2 });
+  const [grid, setGrid] = useStudioState("ComplexTargetLabs:ComplexArithmeticLab:grid", true);
+  const [axes, setAxes] = useStudioState("ComplexTargetLabs:ComplexArithmeticLab:axes", true);
+  const [ticks, setTicks] = useStudioState("ComplexTargetLabs:ComplexArithmeticLab:ticks", true);
+  const [para, setPara] = useStudioState("ComplexTargetLabs:ComplexArithmeticLab:para", true);
+  const [proj, setProj] = useStudioState("ComplexTargetLabs:ComplexArithmeticLab:proj", true);
+  const [playing, setPlaying] = useStudioState("ComplexTargetLabs:ComplexArithmeticLab:playing", false);
+  const [speed, setSpeed] = useStudioState("ComplexTargetLabs:ComplexArithmeticLab:speed", 1);
 
   return (
     <ComplexLabChrome page={page}>
@@ -211,14 +212,14 @@ function ArithmeticFigure({
 }
 
 export function PolarLab({ page }: { page: StudioMockupPage }) {
-  const [re, setRe] = useState(2);
-  const [im, setIm] = useState(1.5);
-  const [linked, setLinked] = useState(true);
-  const [branch, setBranch] = useState(-180);
-  const [grid, setGrid] = useState(true);
-  const [axes, setAxes] = useState(true);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(1);
+  const [re, setRe] = useStudioState("ComplexTargetLabs:PolarLab:re", 2);
+  const [im, setIm] = useStudioState("ComplexTargetLabs:PolarLab:im", 1.5);
+  const [linked, setLinked] = useStudioState("ComplexTargetLabs:PolarLab:linked", true);
+  const [branch, setBranch] = useStudioState("ComplexTargetLabs:PolarLab:branch", -180);
+  const [grid, setGrid] = useStudioState("ComplexTargetLabs:PolarLab:grid", true);
+  const [axes, setAxes] = useStudioState("ComplexTargetLabs:PolarLab:axes", true);
+  const [playing, setPlaying] = useStudioState("ComplexTargetLabs:PolarLab:playing", false);
+  const [speed, setSpeed] = useStudioState("ComplexTargetLabs:PolarLab:speed", 1);
   const r = Math.hypot(re, im);
   const th = wrapDeg((Math.atan2(im, re) * 180) / Math.PI, branch);
   const setPolar = (nr: number, nth: number) => {
@@ -343,17 +344,17 @@ export function PolarLab({ page }: { page: StudioMockupPage }) {
 }
 
 export function RotationLab({ page }: { page: StudioMockupPage }) {
-  const [a, setA] = useState(1.5);
-  const [b, setB] = useState(1);
-  const [r, setR] = useState(1.4);
-  const [th, setTh] = useState(60);
-  const [n, setN] = useState(8);
+  const [a, setA] = useStudioState("ComplexTargetLabs:RotationLab:a", 1.5);
+  const [b, setB] = useStudioState("ComplexTargetLabs:RotationLab:b", 1);
+  const [r, setR] = useStudioState("ComplexTargetLabs:RotationLab:r", 1.4);
+  const [th, setTh] = useStudioState("ComplexTargetLabs:RotationLab:th", 60);
+  const [n, setN] = useStudioState("ComplexTargetLabs:RotationLab:n", 8);
   const [showSeq, setShowSeq] = useState(true);
   const [showCircles, setShowCircles] = useState(true);
   const [showPath, setShowPath] = useState(true);
-  const [axes, setAxes] = useState(true);
-  const [grid, setGrid] = useState(true);
-  const [labels, setLabels] = useState(true);
+  const [axes, setAxes] = useStudioState("ComplexTargetLabs:RotationLab:axes", true);
+  const [grid, setGrid] = useStudioState("ComplexTargetLabs:RotationLab:grid", true);
+  const [labels, setLabels] = useStudioState("ComplexTargetLabs:RotationLab:labels", true);
   const z: C = { re: a, im: b };
   const w = fromPolar(r, th);
   const wz = mulC(z, w);
@@ -464,15 +465,15 @@ export function RotationLab({ page }: { page: StudioMockupPage }) {
 }
 
 export function RootsLab({ page }: { page: StudioMockupPage }) {
-  const [r, setR] = useState(8);
-  const [th, setTh] = useState(40);
-  const [n, setN] = useState(6);
-  const [all, setAll] = useState(true);
-  const [principal, setPrincipal] = useState(false);
-  const [polygon, setPolygon] = useState(true);
-  const [rotate, setRotate] = useState(false);
-  const [speed, setSpeed] = useState(1);
-  const [form, setForm] = useState<"Polar" | "Rectangular">("Polar");
+  const [r, setR] = useStudioState("ComplexTargetLabs:RootsLab:r", 8);
+  const [th, setTh] = useStudioState("ComplexTargetLabs:RootsLab:th", 40);
+  const [n, setN] = useStudioState("ComplexTargetLabs:RootsLab:n", 6);
+  const [all, setAll] = useStudioState("ComplexTargetLabs:RootsLab:all", true);
+  const [principal, setPrincipal] = useStudioState("ComplexTargetLabs:RootsLab:principal", false);
+  const [polygon, setPolygon] = useStudioState("ComplexTargetLabs:RootsLab:polygon", true);
+  const [rotate, setRotate] = useStudioState("ComplexTargetLabs:RootsLab:rotate", false);
+  const [speed, setSpeed] = useStudioState("ComplexTargetLabs:RootsLab:speed", 1);
+  const [form, setForm] = useStudioState<"Polar" | "Rectangular">("ComplexTargetLabs:RootsLab:form", "Polar");
   useEffect(() => {
     if (!rotate) return undefined;
     const id = window.setInterval(() => setTh((v) => wrapDeg(v + speed)), 40);

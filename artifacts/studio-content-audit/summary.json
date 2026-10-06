@@ -1,0 +1,25 @@
+{
+  "routes": 295,
+  "routeFailures": 0,
+  "runtimeErrorRoutes": 0,
+  "modeSelections": 469,
+  "modeFailures": [
+    {
+      "route": "/algebra/exponents-logs",
+      "name": "Equations",
+      "passed": false,
+      "error": "locator.click: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav[aria-label*=\"mode\" i],nav.cs-tabs,nav.gt-tabs').first().locator('button').nth(3)\u001b[22m\n\u001b[2m    - locator resolved to <"
+    },
+    {
+      "route": "/algebra/cas",
+      "name": "Differentiate",
+      "passed": false,
+      "error": "locator.click: Timeout 7000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav[aria-label*=\"mode\" i],nav.cs-tabs,nav.gt-tabs').first().locator('button').nth(5)\u001b[22m\n\u001b[2m    - locator resolved to <"
+    }
+  ],
+  "typeDiagnostics": 247,
+  "tests": {
+    "passed": 440,
+    "failed": 8
+  }
+}

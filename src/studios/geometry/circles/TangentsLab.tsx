@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useState } from "react";
 import {
   angleBetween, angleOf, clamp, constrainOnCircle, constrainOutside, dist, fmt, nearlyEqual, perp, pointOnCircle, tangentContactPoints, tangentLength, toDeg, toRad, type Vec,
@@ -22,8 +23,8 @@ export default function TangentsLab() {
   const [preset, setPreset] = usePersisted("tan.preset", "two");
   const [status, setStatus] = useState<"idle" | "pass" | "fail">("idle");
   const [challenge, setChallenge] = usePersisted("tan.ch", 0);
-  const [collapsed, setCollapsed] = useState(false);
-  const [focused, setFocused] = useState<string | null>("P");
+  const [collapsed, setCollapsed] = useStudioState("TangentsLab:TangentsLab:collapsed", false);
+  const [focused, setFocused] = useStudioState<string | null>("TangentsLab:TangentsLab:focused", "P");
 
   const T = pointOnCircle(origin, r, toRad(tDeg));
   const tanDir = perp({ x: T.x - origin.x, y: T.y - origin.y });

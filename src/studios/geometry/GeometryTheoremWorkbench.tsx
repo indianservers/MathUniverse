@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useEffect, useState } from "react";
 import { useStudioMode } from "../../hooks/useStudioMode";
 
@@ -6,8 +7,8 @@ const f = (value: number) => value.toFixed(3);
 export default function GeometryTheoremWorkbench({ theorems }: { theorems: Theorem[] }) {
   const [selected, select] = useStudioMode("theorem", theorems.map((t) => t.id), "angle-sum");
   const theorem = theorems.find((t) => t.id === selected)!;
-  const [search, setSearch] = useState(""), [category, setCategory] = useState("All"), [step, setStep] = useState(0), [playing, setPlaying] = useState(false), [x, setX] = useState(3), [height, setHeight] = useState(4), [ratio, setRatio] = useState(0.5), [angle, setAngle] = useState(60);
-  const [labels, setLabels] = useState(true), [construction, setConstruction] = useState(true), [arcs, setArcs] = useState(true), [drag, setDrag] = useState(false), [panel, setPanel] = useState("Statement");
+  const [search, setSearch] = useState(""), [category, setCategory] = useStudioState("GeometryTheoremWorkbench:GeometryTheoremWorkbench:category", "All"), [step, setStep] = useStudioState("GeometryTheoremWorkbench:GeometryTheoremWorkbench:step", 0), [playing, setPlaying] = useStudioState("GeometryTheoremWorkbench:GeometryTheoremWorkbench:playing", false), [x, setX] = useStudioState("GeometryTheoremWorkbench:GeometryTheoremWorkbench:x", 3), [height, setHeight] = useStudioState("GeometryTheoremWorkbench:GeometryTheoremWorkbench:height", 4), [ratio, setRatio] = useStudioState("GeometryTheoremWorkbench:GeometryTheoremWorkbench:ratio", 0.5), [angle, setAngle] = useStudioState("GeometryTheoremWorkbench:GeometryTheoremWorkbench:angle", 60);
+  const [labels, setLabels] = useStudioState("GeometryTheoremWorkbench:GeometryTheoremWorkbench:labels", true), [construction, setConstruction] = useStudioState("GeometryTheoremWorkbench:GeometryTheoremWorkbench:construction", true), [arcs, setArcs] = useStudioState("GeometryTheoremWorkbench:GeometryTheoremWorkbench:arcs", true), [drag, setDrag] = useState(false), [panel, setPanel] = useState("Statement");
   useEffect(() => { if (!playing) return; const id = window.setInterval(() => setStep((s) => (s + 1) % theorem.steps.length), 900); return () => clearInterval(id); }, [playing, theorem.steps.length]);
   const h = selected === "thales" ? 4 * Math.sin(angle * Math.PI / 180) : height;
   const apex = selected === "thales" ? 4 + 4 * Math.cos(angle * Math.PI / 180) : x;

@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useState } from "react";
 import {
   angleOf, chordLengthFromCentral, clamp, constrainOnCircle, dist, fmt, midpoint, minorArcDeg, nearlyEqual, pointOnCircle, toDeg, toRad, type Vec,
@@ -32,8 +33,8 @@ export default function ChordsLab() {
   const [preset, setPreset] = usePersisted("chords.preset", "compare");
   const [challenge, setChallenge] = usePersisted("chords.ch", 0);
   const [status, setStatus] = useState<"idle" | "pass" | "fail">("idle");
-  const [collapsed, setCollapsed] = useState(false);
-  const [focused, setFocused] = useState<string | null>("A");
+  const [collapsed, setCollapsed] = useStudioState("ChordsLab:ChordsLab:collapsed", false);
+  const [focused, setFocused] = useStudioState<string | null>("ChordsLab:ChordsLab:focused", "A");
 
   const snapshot = () => {
     const s = { aDeg, bDeg, cDeg, dDeg, origin, r };

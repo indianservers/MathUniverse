@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { GeometryLabShell } from "../geometryLabUx";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import DiagonalsLab from "./DiagonalsLab";
@@ -93,7 +94,7 @@ const STRIPS: Record<PolygonModeId, Array<{ title: string; text: string; action:
 
 export default function PolygonsLab({ page }: { page: StudioMockupPage }) {
   const { mode, setMode } = usePolygonLabMode();
-  const [pulse, setPulse] = useState("observe");
+  const [pulse, setPulse] = useStudioState("PolygonsLab:PolygonsLab:pulse", "observe");
   const current = POLYGON_MODES.find((item) => item.id === mode) ?? POLYGON_MODES[0]!;
   const strip = STRIPS[mode];
 

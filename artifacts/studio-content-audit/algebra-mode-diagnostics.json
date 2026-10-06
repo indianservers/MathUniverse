@@ -1,0 +1,82 @@
+[
+  {
+    "route": "/algebra/exponents-logs",
+    "error": "locator.click: Timeout 3000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav[aria-label*=\"mode\" i]').first().locator('button').nth(3)\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"\" type=\"button\" aria-pressed=\"false\">Equations</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"></path> from <div class=\"alg-header-actions\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"></path> from <div class=\"alg-header-actions\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    6 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"></path> from <div class=\"alg-header-actions\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n",
+    "detail": {
+      "text": "Equations",
+      "rect": {
+        "x": 1106.28125,
+        "y": 21,
+        "width": 77.34375,
+        "height": 40
+      },
+      "aria": "false",
+      "atCenter": [
+        {
+          "tag": "path",
+          "class": {},
+          "text": ""
+        },
+        {
+          "tag": "svg",
+          "class": {},
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "class": "",
+          "text": ""
+        },
+        {
+          "tag": "DIV",
+          "class": "alg-header-actions",
+          "text": ""
+        }
+      ],
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    }
+  },
+  {
+    "route": "/algebra/cas",
+    "error": "locator.click: Timeout 3000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav[aria-label*=\"mode\" i]').first().locator('button').nth(5)\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"\" type=\"button\" aria-pressed=\"false\">Differentiate</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <button disabled type=\"button\" aria-label=\"Undo\">…</button> from <div class=\"alg-header-actions\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <button disabled type=\"button\" aria-label=\"Undo\">…</button> from <div class=\"alg-header-actions\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    5 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <button disabled type=\"button\" aria-label=\"Undo\">…</button> from <div class=\"alg-header-actions\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n",
+    "detail": {
+      "text": "Differentiate",
+      "rect": {
+        "x": 1090.546875,
+        "y": 3,
+        "width": 94.125,
+        "height": 40
+      },
+      "aria": "false",
+      "atCenter": [
+        {
+          "tag": "BUTTON",
+          "class": "",
+          "text": ""
+        },
+        {
+          "tag": "DIV",
+          "class": "alg-header-actions",
+          "text": ""
+        },
+        {
+          "tag": "BUTTON",
+          "class": "",
+          "text": "Differentiate"
+        },
+        {
+          "tag": "HEADER",
+          "class": "alg-header alg-header-sticky",
+          "text": "Skip to graphCAS Step Explorer — candidate verificationComputer Algebr"
+        }
+      ],
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    }
+  }
+]

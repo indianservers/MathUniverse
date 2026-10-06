@@ -1,3 +1,4 @@
+import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import { Line, OrbitControls, Text } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
@@ -83,35 +84,35 @@ export default function CalculusMultivariableStudio() {
       ? requestedMode
       : "partial";
   const major = majorForMode(mode);
-  const [expression, setExpression] = useState(
+  const [expression, setExpression] = useStudioState("CalculusMultivariableStudio:CalculusMultivariableStudio:expression",
     () => params.get("v_expression") || "x^2-y^2",
   );
-  const [draft, setDraft] = useState(
+  const [draft, setDraft] = useStudioState("CalculusMultivariableStudio:CalculusMultivariableStudio:draft",
     () => params.get("v_expression") || "x^2-y^2",
   );
-  const [surfaceLayers, setSurfaceLayers] = useState<SurfaceLayer[]>(() =>
+  const [surfaceLayers, setSurfaceLayers] = useStudioState<SurfaceLayer[]>("CalculusMultivariableStudio:CalculusMultivariableStudio:surfaceLayers", () =>
     parseSurfaceLayers(params.get("v_surfaces")),
   );
-  const [nextLayerId, setNextLayerId] = useState(5);
-  const [a, setA] = useState(() =>
+  const [nextLayerId, setNextLayerId] = useStudioState("CalculusMultivariableStudio:CalculusMultivariableStudio:nextLayerId", 5);
+  const [a, setA] = useStudioState("CalculusMultivariableStudio:CalculusMultivariableStudio:a", () =>
     numberParam(params.get("v_a"), 1, -2.5, 2.5),
   );
-  const [b, setB] = useState(() =>
+  const [b, setB] = useStudioState("CalculusMultivariableStudio:CalculusMultivariableStudio:b", () =>
     numberParam(params.get("v_b"), 0.5, -2.5, 2.5),
   );
-  const [density, setDensity] = useState(() =>
+  const [density, setDensity] = useStudioState("CalculusMultivariableStudio:CalculusMultivariableStudio:density", () =>
     Math.round(numberParam(params.get("v_n"), 20, 8, 32)),
   );
-  const [xSlice, setXSlice] = useState(true);
-  const [ySlice, setYSlice] = useState(true);
+  const [xSlice, setXSlice] = useStudioState("CalculusMultivariableStudio:CalculusMultivariableStudio:xSlice", true);
+  const [ySlice, setYSlice] = useStudioState("CalculusMultivariableStudio:CalculusMultivariableStudio:ySlice", true);
   const [showGradient, setShowGradient] = useState(true);
   const [showPlane, setShowPlane] = useState(true);
-  const [animate, setAnimate] = useState(false);
-  const [speed, setSpeed] = useState(1);
-  const [cameraTool, setCameraTool] = useState<CameraTool>("rotate");
-  const [cameraKey, setCameraKey] = useState(0);
-  const [learning, setLearning] = useState<LearningTab>("ideas");
-  const [checkVisible, setCheckVisible] = useState(false);
+  const [animate, setAnimate] = useStudioState("CalculusMultivariableStudio:CalculusMultivariableStudio:animate", false);
+  const [speed, setSpeed] = useStudioState("CalculusMultivariableStudio:CalculusMultivariableStudio:speed", 1);
+  const [cameraTool, setCameraTool] = useStudioState<CameraTool>("CalculusMultivariableStudio:CalculusMultivariableStudio:cameraTool", "rotate");
+  const [cameraKey, setCameraKey] = useStudioState("CalculusMultivariableStudio:CalculusMultivariableStudio:cameraKey", 0);
+  const [learning, setLearning] = useStudioState<LearningTab>("CalculusMultivariableStudio:CalculusMultivariableStudio:learning", "ideas");
+  const [checkVisible, setCheckVisible] = useStudioState("CalculusMultivariableStudio:CalculusMultivariableStudio:checkVisible", false);
   const compiled = useMemo(() => compileSurface(expression), [expression]);
   const extraSurfaces = useMemo(
     () =>
@@ -918,7 +919,7 @@ function SceneRotator({
   speed: number;
   children: React.ReactNode;
 }) {
-  const [angle, setAngle] = useState(0);
+  const [angle, setAngle] = useStudioState("CalculusMultivariableStudio:SceneRotator:angle", 0);
   useEffect(() => {
     if (!active) return;
     const timer = window.setInterval(

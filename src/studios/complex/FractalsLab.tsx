@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
+import { useStudioState } from "../phase1/StudioModelProvider";
+import { useEffect, useMemo, useRef, type PointerEvent } from "react";
 import type { StudioMockupPage } from "../mockup/studioMockupCatalog";
 import { clamp, fmt } from "../mockup/studioLabKit";
 import { ComplexLabChrome, CxCol, CxLive, CxSlider, CxToggle } from "./ComplexLabChrome";
@@ -120,17 +121,17 @@ function FractalView({
 }
 
 export default function FractalsLab({ page }: { page: StudioMockupPage }) {
-  const [cx, setCx] = useState(-0.123);
-  const [cy, setCy] = useState(0.745);
-  const [iter, setIter] = useState(120);
-  const [escapeR, setEscapeR] = useState(2);
-  const [palette, setPalette] = useState<Palette>("spectrum");
-  const [smooth, setSmooth] = useState(true);
-  const [interior, setInterior] = useState(true);
-  const [linkC, setLinkC] = useState(true);
-  const [jx, setJx] = useState(-0.123);
-  const [jy, setJy] = useState(0.745);
-  const [orbitStep, setOrbitStep] = useState(7);
+  const [cx, setCx] = useStudioState("FractalsLab:FractalsLab:cx", -0.123);
+  const [cy, setCy] = useStudioState("FractalsLab:FractalsLab:cy", 0.745);
+  const [iter, setIter] = useStudioState("FractalsLab:FractalsLab:iter", 120);
+  const [escapeR, setEscapeR] = useStudioState("FractalsLab:FractalsLab:escapeR", 2);
+  const [palette, setPalette] = useStudioState<Palette>("FractalsLab:FractalsLab:palette", "spectrum");
+  const [smooth, setSmooth] = useStudioState("FractalsLab:FractalsLab:smooth", true);
+  const [interior, setInterior] = useStudioState("FractalsLab:FractalsLab:interior", true);
+  const [linkC, setLinkC] = useStudioState("FractalsLab:FractalsLab:linkC", true);
+  const [jx, setJx] = useStudioState("FractalsLab:FractalsLab:jx", -0.123);
+  const [jy, setJy] = useStudioState("FractalsLab:FractalsLab:jy", 0.745);
+  const [orbitStep, setOrbitStep] = useStudioState("FractalsLab:FractalsLab:orbitStep", 7);
   const pts = useMemo(() => orbit(0, 0, cx, cy, 18), [cx, cy]);
   const visibleOrbit = pts.slice(0, orbitStep + 1);
   const inside = juliaConnected(cx, cy);

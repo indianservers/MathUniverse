@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useStudioState } from "../studios/phase1/StudioModelProvider";
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import StudioGraphWidget from "../studios/phase1/StudioGraphWidget";
 import {
@@ -135,10 +136,10 @@ function modeList(...items: string[]) {
 
 export default function CalculusStudio({ page = "home" }: { page?: CalculusStudioPage }) {
   const location = useLocation();
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
-  const [settings, setSettings] = useState<StudioSettings>(loadSettings);
-  const [dialog, setDialog] = useState<"help" | "shortcuts" | "settings" | null>(null);
+  const [drawerOpen, setDrawerOpen] = useStudioState("CalculusStudio:CalculusStudio:drawerOpen", false);
+  const [collapsed, setCollapsed] = useStudioState("CalculusStudio:CalculusStudio:collapsed", false);
+  const [settings, setSettings] = useStudioState<StudioSettings>("CalculusStudio:CalculusStudio:settings", loadSettings);
+  const [dialog, setDialog] = useStudioState<"help" | "shortcuts" | "settings" | null>("CalculusStudio:CalculusStudio:dialog", null);
   const [params] = useSearchParams();
   const activePage = pageMeta[page] ? page : "home";
   const mode = params.get("mode") ?? pageMeta[activePage].modes[0]?.id ?? "";
@@ -332,9 +333,9 @@ function StudioHome() {
   const navigate = useNavigate();
   const last = loadLastExperiment();
   const progress = progressSummary();
-  const [challenge, setChallenge] = useState(loadChallenge);
-  const [guess, setGuess] = useState(challenge.guess);
-  const [checked, setChecked] = useState(challenge.solved);
+  const [challenge, setChallenge] = useStudioState("CalculusStudio:StudioHome:challenge", loadChallenge);
+  const [guess, setGuess] = useStudioState("CalculusStudio:StudioHome:guess", challenge.guess);
+  const [checked, setChecked] = useStudioState("CalculusStudio:StudioHome:checked", challenge.solved);
   const labsExplored = new Set(progress.done.map((id) => id.split(":")[0])).size;
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -490,7 +491,7 @@ function StudioLab({ page, reduced }: { page: Exclude<CalculusStudioPage, "home"
       return sp;
     }, { replace: true });
   };
-  const onTabKey = (event: KeyboardEvent<HTMLDivElement>) => {
+  const onTabKey = (event: ReactKeyboardEvent<HTMLDivElement>) => {
     const index = meta.modes.findIndex((item) => item.id === mode);
     if (event.key === "ArrowRight") {
       event.preventDefault();
@@ -561,20 +562,20 @@ function StudioLab({ page, reduced }: { page: Exclude<CalculusStudioPage, "home"
 }
 
 function InteractiveLab({ page, mode, reduced }: { page: Exclude<CalculusStudioPage, "home">; mode: string; reduced: boolean }) {
-  const [expression, setExpression] = useState(defaultExpression(page, mode));
-  const [draft, setDraft] = useState(defaultExpression(page, mode));
-  const [a, setA] = useState(page === "integration" || page === "integral-applications" ? -2 : page === "derivatives" ? 1 : page === "series-parametric-polar" ? Math.PI / 4 : 0);
-  const [b, setB] = useState(page === "integration" || page === "integral-applications" ? 3 : page === "differential-equations" ? 1 : 2);
-  const [delta, setDelta] = useState(page === "derivatives" ? 0.5 : 0.1);
-  const [n, setN] = useState(page === "series-parametric-polar" ? 7 : 12);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(1);
-  const [trace, setTrace] = useState(true);
+  const [expression, setExpression] = useStudioState("CalculusStudio:InteractiveLab:expression", defaultExpression(page, mode));
+  const [draft, setDraft] = useStudioState("CalculusStudio:InteractiveLab:draft", defaultExpression(page, mode));
+  const [a, setA] = useStudioState("CalculusStudio:InteractiveLab:a", page === "integration" || page === "integral-applications" ? -2 : page === "derivatives" ? 1 : page === "series-parametric-polar" ? Math.PI / 4 : 0);
+  const [b, setB] = useStudioState("CalculusStudio:InteractiveLab:b", page === "integration" || page === "integral-applications" ? 3 : page === "differential-equations" ? 1 : 2);
+  const [delta, setDelta] = useStudioState("CalculusStudio:InteractiveLab:delta", page === "derivatives" ? 0.5 : 0.1);
+  const [n, setN] = useStudioState("CalculusStudio:InteractiveLab:n", page === "series-parametric-polar" ? 7 : 12);
+  const [playing, setPlaying] = useStudioState("CalculusStudio:InteractiveLab:playing", false);
+  const [speed, setSpeed] = useStudioState("CalculusStudio:InteractiveLab:speed", 1);
+  const [trace, setTrace] = useStudioState("CalculusStudio:InteractiveLab:trace", true);
   const [showAux, setShowAux] = useState(true);
-  const [learning, setLearning] = useState("Observe");
+  const [learning, setLearning] = useStudioState("CalculusStudio:InteractiveLab:learning", "Observe");
   const [toast, setToast] = useState("");
-  const [challengeNote, setChallengeNote] = useState("");
-  const [riemann, setRiemann] = useState<"left" | "mid" | "right" | "trap">("mid");
+  const [challengeNote, setChallengeNote] = useStudioState("CalculusStudio:InteractiveLab:challengeNote", "");
+  const [riemann, setRiemann] = useStudioState<"left" | "mid" | "right" | "trap">("CalculusStudio:InteractiveLab:riemann", "mid");
   const compiled = useMemo(() => compileOne(expression), [expression]);
   const field = useMemo(() => {
     try { return { fn: compileTwoVariableExpression(expression), error: "" }; }
@@ -802,7 +803,7 @@ function SeriesLab({ mode, n, a, trace, showAux }: { mode: string; n: number; a:
   const sequences = mode === "sequences";
   const convergence = mode === "convergence";
   const power = mode === "power";
-  const [theta, setTheta] = useState(a);
+  const [theta, setTheta] = useStudioState("CalculusStudio:SeriesLab:theta", a);
   useEffect(() => {
     if (!polar && !parametric) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -867,7 +868,7 @@ function ApplicationsLab({ mode, width, length, x }: { mode: string; width: numb
 }
 
 function TechniqueLab({ mode }: { mode: string }) {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useStudioState("CalculusStudio:TechniqueLab:step", 1);
   return (
     <div className="cs-technique">
       {[{ title: "Original Integral", body: "Integral from 0 to 2 of x sqrt(x^2 + 1) dx" }, { title: mode === "parts" ? "Choose u and dv" : mode === "partial" ? "Cover-up constants" : mode === "improper" ? "Finite cutoff" : "Substitute", body: mode === "parts" ? "u = x, dv = sqrt(x^2+1) dx" : mode === "partial" ? "A/(x-1)+B/(x+1)" : mode === "improper" ? "∫_1^b → ∫_1^∞" : "u = x^2 + 1, du = 2x dx" }, { title: "Transformed Integral", body: "1/2 Integral from 1 to 5 of u^(1/2) du = 3.3939" }].map((item, index) => (

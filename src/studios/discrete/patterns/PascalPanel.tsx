@@ -1,3 +1,4 @@
+import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useMemo, useState } from "react";
 import { ChallengeBox, NControl, usePlayer } from "./patternsUi";
 import { binomialExpansion, combination, hockeyStick, pascalTriangle, rowSum } from "./patternsMath";
@@ -29,13 +30,13 @@ export default function PascalPanel({ rows, setRows, teacherReveal, hideFormula,
   const maxRow = Math.min(30, Math.max(0, rows));
   const triangle = useMemo(() => pascalTriangle(maxRow + 1), [maxRow]);
   const [shownRows, setShownRows] = useState(maxRow + 1);
-  const [playing, setPlaying] = useState(false);
-  const [speed, setSpeed] = useState(3);
-  const [sel, setSel] = useState({ n: Math.min(6, maxRow), k: 2 });
-  const [modN, setModN] = useState(0);
+  const [playing, setPlaying] = useStudioState("PascalPanel:PascalPanel:playing", false);
+  const [speed, setSpeed] = useStudioState("PascalPanel:PascalPanel:speed", 3);
+  const [sel, setSel] = useStudioState("PascalPanel:PascalPanel:sel", { n: Math.min(6, maxRow), k: 2 });
+  const [modN, setModN] = useStudioState("PascalPanel:PascalPanel:modN", 0);
   const [showVals, setShowVals] = useState(true);
-  const [pat, setPat] = useState<(typeof PATTERNS)[number]>("None");
-  const [challengeKey, setChallengeKey] = useState(0);
+  const [pat, setPat] = useStudioState<(typeof PATTERNS)[number]>("PascalPanel:PascalPanel:pat", "None");
+  const [challengeKey, setChallengeKey] = useStudioState("PascalPanel:PascalPanel:challengeKey", 0);
   const activePat = (pattern as (typeof PATTERNS)[number]) ?? pat;
   const setActivePat = (id: (typeof PATTERNS)[number]) => {
     setPat(id);

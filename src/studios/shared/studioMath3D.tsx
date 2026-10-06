@@ -1,6 +1,7 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, type ReactNode } from "react";
 import * as THREE from "three";
 import "./studioMath3D.css";
 
@@ -21,7 +22,7 @@ export function StudioMath3D({
   camera?: Vec3;
   compact?: boolean;
 }) {
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useStudioState("studioMath3D:StudioMath3D:ready", false);
   useEffect(() => {
     setReady(true);
   }, []);

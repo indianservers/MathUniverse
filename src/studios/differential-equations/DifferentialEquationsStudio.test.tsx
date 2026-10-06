@@ -20,8 +20,8 @@ describe("Differential Equations Studio", () => {
       <MemoryRouter><DifferentialEquationsHome studio={studioMockups["differential-equations"]} /></MemoryRouter>,
     );
     expect((home.match(/class="de-feature-card/g) ?? [])).toHaveLength(12);
-    expect((home.match(/class="de-lab-card tone-/g) ?? [])).toHaveLength(22);
-    expect((home.match(/class="de-artwork"/g) ?? []).length).toBeGreaterThanOrEqual(22);
+    expect((home.match(/class="de-lab-card tone-/g) ?? [])).toHaveLength(25);
+    expect((home.match(/class="de-artwork"/g) ?? []).length).toBeGreaterThanOrEqual(25);
     for (const id of studioMockups["differential-equations"].pages.filter((item) => item.id !== "home").map((item) => item.id)) {
       expect(home).toContain(`data-lab-id="${id}"`);
     }

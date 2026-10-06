@@ -1,3 +1,4 @@
+import { useStudioState } from "../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Activity, ArrowRight, BookOpen, Check, ChevronDown, Compass, GitBranch, Lightbulb, Plus, RotateCcw, Search, Sparkles, Target, Trash2 } from "lucide-react";
@@ -53,15 +54,15 @@ const explorerExamples = [
 ];
 
 export function EquationExplorerPhase1() {
-  const [equation, setEquation] = useState(explorerExamples[0].value);
-  const [r, setR] = useState(0.8);
-  const [capacity, setCapacity] = useState(5);
-  const [parameterA, setParameterA] = useState(1);
-  const [parameterB, setParameterB] = useState(1);
-  const [x0, setX0] = useState(0);
-  const [y0, setY0] = useState(1);
-  const [xMax, setXMax] = useState(10);
-  const [view, setView] = useState<"Both" | "Solutions" | "Direction Field">("Both");
+  const [equation, setEquation] = useStudioState("Phase1Labs:EquationExplorerPhase1:equation", explorerExamples[0].value);
+  const [r, setR] = useStudioState("Phase1Labs:EquationExplorerPhase1:r", 0.8);
+  const [capacity, setCapacity] = useStudioState("Phase1Labs:EquationExplorerPhase1:capacity", 5);
+  const [parameterA, setParameterA] = useStudioState("Phase1Labs:EquationExplorerPhase1:parameterA", 1);
+  const [parameterB, setParameterB] = useStudioState("Phase1Labs:EquationExplorerPhase1:parameterB", 1);
+  const [x0, setX0] = useStudioState("Phase1Labs:EquationExplorerPhase1:x0", 0);
+  const [y0, setY0] = useStudioState("Phase1Labs:EquationExplorerPhase1:y0", 1);
+  const [xMax, setXMax] = useStudioState("Phase1Labs:EquationExplorerPhase1:xMax", 10);
+  const [view, setView] = useStudioState<"Both" | "Solutions" | "Direction Field">("Phase1Labs:EquationExplorerPhase1:view", "Both");
   const [showEquilibria, setShowEquilibria] = useState(true);
   const [showSelected, setShowSelected] = useState(true);
   const logistic = /\br\s*\*?\s*y\s*\*?\s*\(\s*1\s*-\s*y\s*\/\s*K\s*\)/i.test(equation);
@@ -100,12 +101,12 @@ function detectFeatures(text: string): Record<FeatureKey, boolean> {
   return { higher: /y''|d\^2y/.test(n), linear: /y'[^=]*[+-][^=]*y=|dy\/dx[^=]*[+-][^=]*y=/.test(n) && !/y\^|y²/.test(n), separable: /xy|x\*y|y'=y|dy\/dx=xy/.test(n), exact: /dx.*dy/.test(n), homogeneous: /\(x[+-]y\)\/\(x[+-]y\)|y\/x|x\/y/.test(n), bernoulli: /y\^|y²/.test(n) && /y'|dy\/dx/.test(n), numerical: false };
 }
 export function MethodSelectorPhase1() {
-  const [equation, setEquation] = useState("y' + 2y = e^x");
-  const [features, setFeatures] = useState<Record<FeatureKey, boolean>>(() => detectFeatures("y' + 2y = e^x"));
-  const [selected, setSelected] = useState<FeatureKey>("linear");
+  const [equation, setEquation] = useStudioState("Phase1Labs:MethodSelectorPhase1:equation", "y' + 2y = e^x");
+  const [features, setFeatures] = useStudioState<Record<FeatureKey, boolean>>("Phase1Labs:MethodSelectorPhase1:features", () => detectFeatures("y' + 2y = e^x"));
+  const [selected, setSelected] = useStudioState<FeatureKey>("Phase1Labs:MethodSelectorPhase1:selected", "linear");
   const [showMore, setShowMore] = useState(false);
-  const [analyzed, setAnalyzed] = useState(true);
-  const [autonomous, setAutonomous] = useState("No");
+  const [analyzed, setAnalyzed] = useStudioState("Phase1Labs:MethodSelectorPhase1:analyzed", true);
+  const [autonomous, setAutonomous] = useStudioState("Phase1Labs:MethodSelectorPhase1:autonomous", "No");
   const ranked = useMemo(() => { const noSymbolic = !featureLabels.some((item) => item.id !== "numerical" && features[item.id]); return featureLabels.map((item) => ({ ...item, score: features.higher ? (item.id === "higher" ? 95 : 10) : item.id === "higher" ? 10 : item.id === "numerical" ? (noSymbolic || features.numerical ? 90 : 30) : features[item.id] ? (item.id === "linear" ? 95 : 88) : 20 })).sort((a, b) => b.score - a.score); }, [features]);
   const chooseEquation = (value: string) => { setEquation(value); const detected = detectFeatures(value); setFeatures(detected); setSelected(featureLabels.find((item) => detected[item.id])?.id ?? "numerical"); setAnalyzed(false); };
   return <div className="de1-page"><div className="de1-lead-strip"><span><Search /> Equation Analysis <small>Identify key features</small></span><span><GitBranch /> Decision Tree <small>Visual guidance</small></span><span><Compass /> Recommended Methods <small>Based on your equation</small></span></div>
@@ -120,17 +121,17 @@ const fieldExamples = [
   { label: "sin(x) − y", value: "sin(x)-y" }, { label: "y(1 − y)", value: "y*(1-y)" },
 ];
 export function DirectionFieldsPhase1() {
-  const [expression, setExpression] = useState("y-x");
-  const [points, setPoints] = useState<Point[]>([{ x: -2, y: 1 }, { x: 1.5, y: -1 }]);
-  const [density, setDensity] = useState(20);
+  const [expression, setExpression] = useStudioState("Phase1Labs:DirectionFieldsPhase1:expression", "y-x");
+  const [points, setPoints] = useStudioState<Point[]>("Phase1Labs:DirectionFieldsPhase1:points", [{ x: -2, y: 1 }, { x: 1.5, y: -1 }]);
+  const [density, setDensity] = useStudioState("Phase1Labs:DirectionFieldsPhase1:density", 20);
   const [showField, setShowField] = useState(true);
   const [showSolutions, setShowSolutions] = useState(true);
   const [showAxes, setShowAxes] = useState(true);
   const [showGrid, setShowGrid] = useState(false);
   const [showNullcline, setShowNullcline] = useState(true);
-  const [inspector, setInspector] = useState<Point>({ x: 0.83, y: 0.42 });
-  const [progress, setProgress] = useState(1);
-  const [playing, setPlaying] = useState(false);
+  const [inspector, setInspector] = useStudioState<Point>("Phase1Labs:DirectionFieldsPhase1:inspector", { x: 0.83, y: 0.42 });
+  const [progress, setProgress] = useStudioState("Phase1Labs:DirectionFieldsPhase1:progress", 1);
+  const [playing, setPlaying] = useStudioState("Phase1Labs:DirectionFieldsPhase1:playing", false);
   const reducedMotion = useReducedMotion();
   useEffect(() => {
     if (!playing || reducedMotion) return;
@@ -163,11 +164,11 @@ export function DirectionFieldsPhase1() {
 
 const ivpExamples = [{ label: "y′ = x − y", value: "x-y" }, { label: "y′ = y(1 − y)", value: "y*(1-y)" }, { label: "y′ = sin(x)", value: "sin(x)" }, { label: "y′ = x²", value: "x^2" }];
 export function InitialValuePhase1() {
-  const [expression, setExpression] = useState("x-y");
-  const [x0, setX0] = useState(0);
-  const [y0, setY0] = useState(1);
-  const [steps, setSteps] = useState(50);
-  const [density, setDensity] = useState(20);
+  const [expression, setExpression] = useStudioState("Phase1Labs:InitialValuePhase1:expression", "x-y");
+  const [x0, setX0] = useStudioState("Phase1Labs:InitialValuePhase1:x0", 0);
+  const [y0, setY0] = useStudioState("Phase1Labs:InitialValuePhase1:y0", 1);
+  const [steps, setSteps] = useStudioState("Phase1Labs:InitialValuePhase1:steps", 50);
+  const [density, setDensity] = useStudioState("Phase1Labs:InitialValuePhase1:density", 20);
   const [showField, setShowField] = useState(true);
   const [showSolution, setShowSolution] = useState(true);
   const [showGrid, setShowGrid] = useState(false);
@@ -198,12 +199,12 @@ const separableCases = [
   { label: "y′ = y/x", equation: "y/x", form: "y/x", separate: "\\frac{dy}{y}=\\frac{dx}{x}", integrate: "\\ln|y|=\\ln|x|+C", solution: "y=Cx\\quad(x\\ne 0)", fn: (x: number, c: number) => x === 0 ? Number.NaN : c * x },
 ];
 export function SeparablePhase1() {
-  const [equation, setEquation] = useState(separableCases[0].equation);
-  const [constant, setConstant] = useState(1);
+  const [equation, setEquation] = useStudioState("Phase1Labs:SeparablePhase1:equation", separableCases[0].equation);
+  const [constant, setConstant] = useStudioState("Phase1Labs:SeparablePhase1:constant", 1);
   const [showGrid, setShowGrid] = useState(true);
   const [showAxes, setShowAxes] = useState(true);
   const [showLegend, setShowLegend] = useState(true);
-  const [reveal, setReveal] = useState(true);
+  const [reveal, setReveal] = useStudioState("Phase1Labs:SeparablePhase1:reveal", true);
   const selected = separableCases.find((item) => normalizeEquation(item.equation) === normalizeEquation(equation));
   const compiled = useMemo(() => compileSlope(equation), [equation]);
   const series: GraphSeries[] = selected ? [-2, -1, -0.5, 0.5, 1, 2].map((c, index) => ({ label: `C = ${fmt(c, 1)}`, color: ["#ed5b3b", orange, "#a577ed", "#60a5fa", blue, violet][index], points: sampleCurve((x) => selected.fn(x, c), -3, 3) })) : compiled.fn ? [constant - 0.5, constant, constant + 0.5].map((y0, index) => ({ label: `y(0) = ${fmt(y0, 1)}`, color: [orange, blue, violet][index], points: rk4Curve(compiled.fn!, { x: 0, y: y0 }, { xMin: -3, xMax: 3, yMin: -6, yMax: 6 }) })) : [];
@@ -218,10 +219,10 @@ export function SeparablePhase1() {
 }
 
 export function HomogeneousPhase1() {
-  const [equation, setEquation] = useState(homogeneousPresets[0].label.replace(/^dy\/dx\s*=\s*/, ""));
-  const [substitution, setSubstitution] = useState<"y = vx" | "x = vy">("y = vx");
-  const [constant, setConstant] = useState(1);
-  const [scale, setScale] = useState(2);
+  const [equation, setEquation] = useStudioState("Phase1Labs:HomogeneousPhase1:equation", homogeneousPresets[0].label.replace(/^dy\/dx\s*=\s*/, ""));
+  const [substitution, setSubstitution] = useStudioState<"y = vx" | "x = vy">("Phase1Labs:HomogeneousPhase1:substitution", "y = vx");
+  const [constant, setConstant] = useStudioState("Phase1Labs:HomogeneousPhase1:constant", 1);
+  const [scale, setScale] = useStudioState("Phase1Labs:HomogeneousPhase1:scale", 2);
   const preset = homogeneousPresets.find((item) => normalizeEquation(item.label.replace(/^dy\/dx\s*=\s*/, "")) === normalizeEquation(equation));
   const compiled = useMemo(() => compileSlope(equation), [equation]);
   const field = compiled.fn ?? (() => Number.NaN);
@@ -244,12 +245,12 @@ export function HomogeneousPhase1() {
 }
 
 export function ExactPhase1() {
-  const [m, setM] = useState("2*x*y");
-  const [n, setN] = useState("x^2");
-  const [level, setLevel] = useState(2);
+  const [m, setM] = useStudioState("Phase1Labs:ExactPhase1:m", "2*x*y");
+  const [n, setN] = useStudioState("Phase1Labs:ExactPhase1:n", "x^2");
+  const [level, setLevel] = useStudioState("Phase1Labs:ExactPhase1:level", 2);
   const [showLevels, setShowLevels] = useState(true);
   const [showField, setShowField] = useState(false);
-  const [selected, setSelected] = useState("mockup");
+  const [selected, setSelected] = useStudioState("Phase1Labs:ExactPhase1:selected", "mockup");
   const mCompiled = useMemo(() => compileSlope(m), [m]);
   const nCompiled = useMemo(() => compileSlope(n), [n]);
   const partial = (fn: (x: number, y: number) => number, x: number, y: number, dx: number, dy: number) => (fn(x + dx, y + dy) - fn(x - dx, y - dy)) / (2 * Math.max(Math.abs(dx), Math.abs(dy)));
@@ -271,14 +272,14 @@ const linearExamples = [
   { label: "y′ + y = sin(x)", p: "1", q: "sin(x)" },
 ];
 export function LinearFirstOrderPhase1() {
-  const [pText, setPText] = useState("x");
-  const [qText, setQText] = useState("sin(x)");
-  const [constant, setConstant] = useState(0.5);
+  const [pText, setPText] = useStudioState("Phase1Labs:LinearFirstOrderPhase1:pText", "x");
+  const [qText, setQText] = useStudioState("Phase1Labs:LinearFirstOrderPhase1:qText", "sin(x)");
+  const [constant, setConstant] = useStudioState("Phase1Labs:LinearFirstOrderPhase1:constant", 0.5);
   const [showSolution, setShowSolution] = useState(true);
   const [showForcing, setShowForcing] = useState(true);
   const [showField, setShowField] = useState(false);
   const [showSteps, setShowSteps] = useState(true);
-  const [understanding, setUnderstanding] = useState<"Key Ideas" | "Behavior" | "Examples">("Key Ideas");
+  const [understanding, setUnderstanding] = useStudioState<"Key Ideas" | "Behavior" | "Examples">("Phase1Labs:LinearFirstOrderPhase1:understanding", "Key Ideas");
   const p = useMemo(() => { try { const fn = compileFunctionExpression(pText); fn(0.4); return { fn, error: "" }; } catch (error) { return { fn: null, error: error instanceof Error ? error.message : "Invalid P(x)" }; } }, [pText]);
   const q = useMemo(() => { try { const fn = compileFunctionExpression(qText); fn(0.4); return { fn, error: "" }; } catch (error) { return { fn: null, error: error instanceof Error ? error.message : "Invalid Q(x)" }; } }, [qText]);
   const field = (x: number, y: number) => q.fn && p.fn ? q.fn(x) - p.fn(x) * y : Number.NaN;
@@ -299,10 +300,10 @@ const bernoulliExamples = [
   { label: "y′ + y = y", p: "1", q: "1", n: 1 },
 ];
 export function BernoulliPhase1() {
-  const [pText, setPText] = useState("2*x");
-  const [qText, setQText] = useState("x");
-  const [n, setN] = useState(2);
-  const [y0, setY0] = useState(1);
+  const [pText, setPText] = useStudioState("Phase1Labs:BernoulliPhase1:pText", "2*x");
+  const [qText, setQText] = useStudioState("Phase1Labs:BernoulliPhase1:qText", "x");
+  const [n, setN] = useStudioState("Phase1Labs:BernoulliPhase1:n", 2);
+  const [y0, setY0] = useStudioState("Phase1Labs:BernoulliPhase1:y0", 1);
   const [showGrid, setShowGrid] = useState(true);
   const [showLegend, setShowLegend] = useState(true);
   const p = useMemo(() => { try { const fn = compileFunctionExpression(pText); fn(0.3); return { fn, error: "" }; } catch (error) { return { fn: null, error: error instanceof Error ? error.message : "Invalid P(x)" }; } }, [pText]);
@@ -317,12 +318,12 @@ export function BernoulliPhase1() {
 type GrowthModel = "Exponential Growth" | "Exponential Decay" | "Logistic Growth";
 export function GrowthPhase1() {
   const [model, setModel] = useState<GrowthModel>("Logistic Growth");
-  const [rate, setRate] = useState(0.6);
-  const [capacity, setCapacity] = useState(1000);
-  const [initial, setInitial] = useState(50);
-  const [timeMax, setTimeMax] = useState(50);
-  const [scenario, setScenario] = useState("Population");
-  const [view, setView] = useState<"Model" | "Exact Solution" | "Slope Field" | "Compare">("Model");
+  const [rate, setRate] = useStudioState("Phase1Labs:GrowthPhase1:rate", 0.6);
+  const [capacity, setCapacity] = useStudioState("Phase1Labs:GrowthPhase1:capacity", 1000);
+  const [initial, setInitial] = useStudioState("Phase1Labs:GrowthPhase1:initial", 50);
+  const [timeMax, setTimeMax] = useStudioState("Phase1Labs:GrowthPhase1:timeMax", 50);
+  const [scenario, setScenario] = useStudioState("Phase1Labs:GrowthPhase1:scenario", "Population");
+  const [view, setView] = useStudioState<"Model" | "Exact Solution" | "Slope Field" | "Compare">("Phase1Labs:GrowthPhase1:view", "Model");
   const [showExponential, setShowExponential] = useState(true);
   const [showCapacity, setShowCapacity] = useState(true);
   const [showPoints, setShowPoints] = useState(false);
