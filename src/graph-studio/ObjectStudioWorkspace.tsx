@@ -1,3 +1,4 @@
+import { GeometryAppearanceControls, type GeometryPaint } from "../components/workspace/GeometryAppearance";
 import {
   ChevronDown,
   ChevronLeft,
@@ -69,7 +70,7 @@ export type ObjectStudioTool =
   "select" | "move" | "rotate" | "scale" | "orbit" | "pan" | "zoom";
 export type ObjectStudioInspectorTab = "transform" | "appearance" | "functions" | "vectors";
 export type ObjectStudioDockTab = "properties" | "measurements" | "timeline";
-export type ObjectStudioTransform = {
+export type ObjectStudioTransform = GeometryPaint & {
   position: [number, number, number];
   rotation: [number, number, number];
   scale: number;
@@ -123,6 +124,7 @@ type Props = {
   };
   onUndo: () => void;
   onRedo: () => void;
+  shareControl?: ReactNode;
   onSave: () => void;
   onLoad: () => void;
   onExport: () => void;
@@ -189,7 +191,7 @@ export default function ObjectStudioWorkspace(props: Props) {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [fps, setFps] = useState(60);
   const [chromeTheme, setChromeTheme] = useState<WorkspaceChromeTheme>(() =>
-    readWorkspaceChromeTheme(CHROME_THEME_STORAGE_KEYS.geometry3d),
+    readWorkspaceChromeTheme(CHROME_THEME_STORAGE_KEYS.geometry3d, "light"),
   );
   const overlay = useWorkspaceOverlay();
   const leftPanelRef = useRef<HTMLElement>(null);
@@ -340,7 +342,7 @@ export default function ObjectStudioWorkspace(props: Props) {
             onClick={props.onRedo}
             disabled={!props.canRedo}
           />
-          <TopAction label="Save" icon={<Save />} onClick={props.onSave} />
+          <TopAction label="Save" icon={<Save />} onClick={props.onSave} />{props.shareControl}
           <TopAction
             label="Export"
             icon={<Download />}
@@ -1406,7 +1408,7 @@ function AppearanceInspector({
   return (
     <div className="os-inspector-fields">
       <div className="os-field-group">
-        <h3>Appearance</h3>
+        <h3>Appearance</h3><GeometryAppearanceControls value={selected.transform} lines={false} onChange={patch=>props.onTransform(selected.id,patch)}/>
         <label className="os-color">
           <span>Colour</span>
           <input

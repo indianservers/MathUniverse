@@ -1,3 +1,5 @@
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { constructionLessonScene } from "../geometryStudioScenes";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import {
   Circle as CircleIcon,
@@ -469,7 +471,7 @@ export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
         </aside>
 
         <section className="clab-stage">
-          <svg
+          <GeometryLessonCanvas pointStep={snap ? 0.5 : 0.1} editablePointIds={objects.filter(o => o.kind === "freePoint" && !o.locked).map(o => o.id)} onPointChange={(id, point) => { const target = snapWorld({ x: (point.x - cam.ox) / cam.s, y: (cam.oy - point.y) / cam.s }); setObjects(previous => previous.map(o => o.id === id ? { ...o, params: { ...o.params, x: target.x, y: target.y } } : o)); }} scene={constructionLessonScene(objects, world, VIEW.w, VIEW.h, toScreen)}
             ref={svgRef}
             className={`clab-svg${space.current ? " is-pan" : ""}`}
             viewBox={`0 0 ${VIEW.w} ${VIEW.h}`}
@@ -552,7 +554,7 @@ export default function ConstructionLab({ page }: { page: StudioMockupPage }) {
                 </g>
               );
             })}
-          </svg>
+          </GeometryLessonCanvas>
           <div className="clab-zoom">
             <button type="button" aria-label="Zoom in" onClick={() => zoom(1.15)}><ZoomIn size={15} /></button>
             <button type="button" aria-label="Zoom out" onClick={() => zoom(1 / 1.15)}><ZoomOut size={15} /></button>

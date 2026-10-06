@@ -1,0 +1,13 @@
+
+C:\Indian Servers\Math Universe Visualizations\src\components\workspace\ShareExportControl.tsx
+  112:5  warning  React Hook useMemo has unnecessary dependencies: 'open' and 'view'. Either exclude them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\MathWorkspace.tsx
+  347:118  warning  React Hook useMemo has a missing dependency: 'embedded'. Either include it or remove the dependency array    react-hooks/exhaustive-deps
+  349:128  warning  React Hook useMemo has a missing dependency: 'embedded'. Either include it or remove the dependency array    react-hooks/exhaustive-deps
+  455:6    warning  React Hook useEffect has a missing dependency: 'embedded'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  522:6    warning  React Hook useEffect has a missing dependency: 'embedded'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  526:6    warning  React Hook useEffect has a missing dependency: 'embedded'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+✖ 6 problems (0 errors, 6 warnings)
+

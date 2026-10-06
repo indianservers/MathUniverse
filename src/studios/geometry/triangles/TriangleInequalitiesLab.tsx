@@ -1,3 +1,5 @@
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { triangleLessonScene } from "../geometryLessonScene";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Field, Panel, Segmented, SliderRow } from "../../mockup/studioLabKit";
@@ -146,7 +148,7 @@ export default function TriangleInequalitiesLab({ pulse = "observe" }: { pulse?:
         </Panel>
       }
       canvas={
-        <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label={`Triangle inequality construction. ${tests.valid ? "Valid triangle." : tests.degenerate ? "Degenerate: sides form a line." : "Cannot form a triangle."}`}>
+        <GeometryLessonCanvas onPointChange={(id, point) => { if (mode !== "inequality" && (id === "A" || id === "B" || id === "C")) setTri(current => ({ ...current, [id]: fromSvg(plane, point.x, point.y) })); }} scene={triangleLessonScene(plane, mode === "inequality" ? [{ A: hingeGeom.P, B: hingeGeom.Q, C: hingeGeom.R }] : [tri], p => toSvg(plane, p))} ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label={`Triangle inequality construction. ${tests.valid ? "Valid triangle." : tests.degenerate ? "Degenerate: sides form a line." : "Cannot form a triangle."}`}>
           {mode === "inequality" ? (
             <g>
               {tests.valid && hingeGeom.meets ? (
@@ -186,7 +188,7 @@ export default function TriangleInequalitiesLab({ pulse = "observe" }: { pulse?:
               <g onPointerDown={startDrag("C")}><DraggableVertex plane={plane} p={tri.C} label="C" /></g>
             </>
           )}
-        </svg>
+        </GeometryLessonCanvas>
       }
       insights={
         <InsightStack

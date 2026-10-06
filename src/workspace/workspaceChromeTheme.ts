@@ -11,14 +11,14 @@ export function isWorkspaceChromeTheme(value: string): value is WorkspaceChromeT
   return (WORKSPACE_CHROME_THEMES as readonly string[]).includes(value);
 }
 
-export function readWorkspaceChromeTheme(storageKey: string): WorkspaceChromeTheme {
-  if (typeof window === "undefined") return "default";
+export function readWorkspaceChromeTheme(storageKey: string, fallback: WorkspaceChromeTheme = "default"): WorkspaceChromeTheme {
+  if (typeof window === "undefined") return fallback;
   try {
     const raw = window.localStorage.getItem(storageKey);
     if (raw === "dark") return "default";
-    return raw && isWorkspaceChromeTheme(raw) ? raw : "default";
+    return raw && isWorkspaceChromeTheme(raw) ? raw : fallback;
   } catch {
-    return "default";
+    return fallback;
   }
 }
 

@@ -1,3 +1,5 @@
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { polygonLessonScene } from "../geometryLessonScene";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import { SliderRow } from "../../mockup/studioLabKit";
@@ -133,7 +135,7 @@ export default function InteriorAnglesLab({ pulse = "observe" }: { pulse?: strin
       </Controls>
 
       <section className="msk-panel msk-canvas poly-stage">
-        <svg ref={svgRef} className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label="Interior angles lab">
+        <GeometryLessonCanvas onPointChange={(id, point) => { const index = Number(id.split("-v")[1]); if (!Number.isInteger(index)) return; setRegular(false); setVerts(geometry.points.map((p, i) => i === index ? fromScreen(point.x, point.y, 48) : p)); }} scene={polygonLessonScene(VIEW.w, VIEW.h, [geometry.screen])} ref={svgRef} className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label="Interior angles lab">
           <rect width={VIEW.w} height={VIEW.h} fill="none" />
           {sub === "sum" || sub === "regular" ? geometry.triangles.map((tri, i) => {
             const pts = tri.map((p) => toScreen(p, 48));
@@ -180,7 +182,7 @@ export default function InteriorAnglesLab({ pulse = "observe" }: { pulse?: strin
           <text x="20" y="28" fill="#0f172a" fontSize="14" fontWeight="800">
             {sub === "sum" ? "Triangulation proof" : sub === "exterior" ? "Walking exterior angles" : sub === "irregular" ? "Irregular interior angles" : "Equal interior angles"}
           </text>
-        </svg>
+        </GeometryLessonCanvas>
       </section>
 
       <LivePanel title="Angle investigation">

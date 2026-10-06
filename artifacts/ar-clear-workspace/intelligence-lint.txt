@@ -1,0 +1,7 @@
+
+C:\Indian Servers\Math Universe Visualizations\src\ar-math-lab\ARCameraHands.tsx
+  91:112  warning  The ref value 'engine.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'engine.current' to a variable inside the effect, and use that variable in the cleanup function    react-hooks/exhaustive-deps
+  91:137  warning  The ref value 'spatial.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'spatial.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+
+✖ 2 problems (0 errors, 2 warnings)
+

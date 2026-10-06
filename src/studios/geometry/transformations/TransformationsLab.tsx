@@ -1,3 +1,5 @@
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { transformationLessonScene } from "../geometryStudioScenes";
 import { useMemo, useState, type PointerEvent } from "react";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import { ChallengeBox, LiveRow, Panel, SliderRow, StatusOk, StepList } from "../../mockup/studioLabKit";
@@ -86,7 +88,7 @@ export default function TransformationsLab({ page }: { page: StudioMockupPage })
               <p className="msk-note">Drag vertex A or B, or the translation handle T. B and C are also editable numbers. Undo, share, and exact labels stay on the figure.</p>
             </Panel>
             <section className="msk-panel msk-canvas">
-              <svg
+              <GeometryLessonCanvas scene={transformationLessonScene(mode, pre, image, t)} onPointChange={(id, point) => { const x = (point.x - 210) / 70, y = (200 - point.y) / 70; if (id === "T") fig.commit({ ...fig.state, tx: x, ty: y }); if (id === "A" || id === "B" || id === "C") fig.commit({ ...fig.state, [`${id.toLowerCase()}x`]: x, [`${id.toLowerCase()}y`]: y }); }}
                 className="msk-graph is-interactive"
                 viewBox="0 0 420 280"
                 role="img"
@@ -123,7 +125,7 @@ export default function TransformationsLab({ page }: { page: StudioMockupPage })
                 })}
                 <circle cx={toSvg(t).x} cy={toSvg(t).y} r="6" fill="#f59e0b" />
                 <text x={toSvg(t).x + 8} y={toSvg(t).y} fill="#b45309" fontSize="11">T</text>
-              </svg>
+              </GeometryLessonCanvas>
             </section>
             <aside className="msk-panel msk-live">
               <LiveRow color="#147df2" label="Pre-image" value="△ABC" />

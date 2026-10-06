@@ -1,4 +1,5 @@
 import { Link2, Lock, RotateCcw, Unlock } from "lucide-react";
+import { GeometryAppearanceControls } from './GeometryAppearance';
 import { useEffect, useState } from "react";
 import type {
   MathObject,
@@ -378,6 +379,7 @@ export default function InspectorPanel({
         <p className="text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
           Style
         </p>
+        <GeometryAppearanceControls value={object.style??{}} onChange={updateStyle} lines={object.dimension!=='3d'}/>
         <div className="mt-2 grid grid-cols-2 gap-2">
           <label className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
             Color

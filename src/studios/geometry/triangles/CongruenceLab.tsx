@@ -1,3 +1,5 @@
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { triangleLessonScene } from "../geometryLessonScene";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef } from "react";
 import { ChipRow, Field, Panel, SliderRow, StatusOk } from "../../mockup/studioLabKit";
@@ -10,6 +12,7 @@ import {
   constructSAS,
   constructSSS,
   defaultPlane,
+  toSvg,
   fromSvg,
   measureTriangle,
   ssaSolutions,
@@ -189,7 +192,7 @@ export default function CongruenceLab({ pulse = "observe" }: { pulse?: string })
         </Panel>
       }
       canvas={
-        <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label={`Two corresponding triangles. ${test}${test === "SSA" ? " is not a congruence test." : congruent ? ` match.` : " parts not yet equal."}`}>
+        <GeometryLessonCanvas scene={triangleLessonScene(plane, [L, R], p => toSvg(plane, p))} ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label={`Two corresponding triangles. ${test}${test === "SSA" ? " is not a congruence test." : congruent ? ` match.` : " parts not yet equal."}`}>
           <polygon points={polyPoints(plane, [L.A, L.B, L.C])} fill="rgba(20,125,242,.10)" stroke="#147df2" strokeWidth="2.1" />
           <polygon points={polyPoints(plane, [R.A, R.B, R.C])} fill="rgba(139,69,244,.10)" stroke="#8b45f4" strokeWidth="2.1" />
           <SideTickMark plane={plane} a={L.A} b={L.B} count={1} color="#147df2" />
@@ -220,7 +223,7 @@ export default function CongruenceLab({ pulse = "observe" }: { pulse?: string })
           <DraggableVertex plane={plane} p={R.A} label={map.A} color="#8b45f4" />
           <DraggableVertex plane={plane} p={R.B} label={map.B} color="#8b45f4" />
           <DraggableVertex plane={plane} p={R.C} label={map.C} color="#8b45f4" />
-        </svg>
+        </GeometryLessonCanvas>
       }
       insights={
         <InsightStack

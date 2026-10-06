@@ -1,0 +1,2 @@
+import { chromium } from '@playwright/test';
+const browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('http://127.0.0.1:5175/workspace/geometry?v_size_stroke=8&v_opacity=1&v_radius=2');await page.waitForTimeout(3500);console.log(await page.locator('body').innerText());console.log('ERRORS',errors);await page.screenshot({path:'artifacts/geometry-appearance/initial.png'});await browser.close();

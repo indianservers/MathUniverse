@@ -1,3 +1,4 @@
+import { polygonLessonScene } from "../geometryLessonScene";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useState } from "react";
 import { SliderRow } from "../../mockup/studioLabKit";
@@ -92,7 +93,7 @@ export default function RegularPolygonLab({ pulse = "observe" }: { pulse?: strin
         <Toggle checked={showLabels} onChange={setShowLabels}>Show vertex labels</Toggle>
       </Controls>
 
-      <Stage
+      <Stage scene={polygonLessonScene(640, 460, [screen])}
         label={`Regular ${regularPolygonName(n)}`}
       >
         {showCircle || on("circle") ? (

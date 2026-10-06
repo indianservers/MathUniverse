@@ -1,0 +1,179 @@
+Share
+2D Geometry Workspace
+
+Circle Theorem Exploration
+
+Construct
+Measure
+DEFAULT
+GLOW
+LIGHT
+Geometry Tools
+
+Move tool ready
+
+•••
+Find a tool
+FAVORITES
+Move
+Point
+Line
+Circle
+Polygon
+BASIC TOOLS
+Move
+Point
+Segment
+Line
+Ray
+Vector
+Circle
+Polygon
+Angle
+EDIT
+Freehand
+Text
+Image
+Move Canvas
+CONSTRUCT
+Parallel
+Perp.
+Perp. Bisector
+Angle Bisector
+Midpoint
+Intersect
+Fixed Length
+Point on Circle
+Circle Radius
+Circle 3 Points
+SHAPES
+Triangle
+Rectangle
+Square
+Pentagon
+Hexagon
+Parallelogram
+Trapezoid
+Rhombus
+Kite
+Circle Shape
+Semicircle
+Parabola
+Ellipse
+Hyperbola
+CURVES
+Tangent
+Polar
+Locus
+Regular Polygon
+Arc
+Sector
+Compass
+TRANSFORM
+Mirror
+Rotate 45
+Dilate 1.5x
+Translate
+SELECTION
+Select All Points
+Move Selected
+Rotate Selected
+Dilate Selected
+Size -
+Size +
+Show / Hide
+Lock
+Reflect
+Trace
+Stop Trace
+Clear Trace
+FILE / IMAGE
+Delete
+Undo
+Redo
+Reset
+Save
+Load / Import
+Add Image
+1 unit = 40 grid pixels, origin at board center
+Grid
+Axes
+Units
+Labels
+Measures
+Grid snap
+Object snap
+Contrast
+RANGE
+x -8…8 · y -5…5.5
+-7
+-6
+-5
+-4
+-3
+-2
+-1
+1
+2
+3
+4
+5
+6
+7
+5
+4
+3
+2
+1
+-1
+-2
+-3
+-4
+0
+x
+y
+Drag points to explore · Shift for multi-select · Esc to clear
+Touch mode supports direct manipulation with 44 pixel controls.
+Selected:
+None
+Move
+Size
+Size
+Trace
+Lock
+Hide
+Delete
+Objects & Algebra
+0 objects
+Objects
+Algebra
+Layers
+All objects
+Points
+Lines
+Circles
+Polygons
+Visible
+Hidden
+
+Create geometry objects to populate the registry.
+
+Object Inspector
+No selection
+Properties
+Style
+Relations
+Object Properties
+
+Select a point, line, circle, or polygon to modify x/y, size, color, visibility, lock, duplicate, restore, or delete.
+
+Image Layer
+
+Use Add Image to place a picture on the geometry board. Click an image to edit size, opacity, and lock state.
+
+Offline
+60 FPS
+0 constraints
+0 points
+Snap on
+ERRORS []

@@ -17,6 +17,7 @@ import { symbolicDerivative, trySymbolic } from "../utils/symbolic";
 import { createMathWorkspacePayload, type MathWorkspacePayload } from "../workspace/mathWorkspaces";
 import { readWorkspaceTransfer, saveWorkspaceTransfer } from "../workspace/workspaceTransfer";
 import { useReducedMotion } from "../hooks/useReducedMotion";
+import { readEmbeddedGraphState, saveEmbeddedGraphState, type EmbeddedGraphOptions } from "../workspace/embeddedWorkspace";
 import { createGraph3DSurface, migrateGraph3DSurfaces, type Graph3DKeyframe, type Graph3DLayerKind, type Graph3DSurface, type SurfacePalette } from "../graph-studio/graph3dSurfaceModel";
 import {
   findCriticalPoints,
@@ -105,36 +106,41 @@ const GRAPH_3D_STORAGE_KEY = "math-universe-saved-3d-graphs";
 const EMPTY_SURFACE = createGraph3DSurface("0");
 const EMPTY_SAMPLES: SurfaceSampleResult = { grid: [], minZ: null, maxZ: null };
 
-export default function MathLab3DGraphing() {
+export default function MathLab3DGraphing({ embedded }: { embedded?: EmbeddedGraphOptions } = {}) {
   const reducedMotion = useReducedMotion();
   const location = useLocation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const routePayload = (location.state as { mathWorkspacePayload?: MathWorkspacePayload } | null)?.mathWorkspacePayload;
-  const incomingPayload = useMemo(() => routePayload ?? readWorkspaceTransfer("graphs-3d"), [routePayload]);
-  const [surfaces, setSurfaces] = useState<Graph3DSurface[]>(() => [createGraph3DSurface(incomingPayload?.objectType === "surface" ? incomingPayload.value : "sin(x) * cos(y)")]);
-  const [selectedSurfaceId, setSelectedSurfaceId] = useState(() => surfaces[0].id);
-  const [xRange, setXRange] = useState(3);
-  const [yRange, setYRange] = useState(3);
-  const [resolution, setResolution] = useState(44);
-  const [showGrid, setShowGrid] = useState(true);
+  const incomingPayload = useMemo(() => embedded ? undefined : routePayload ?? readWorkspaceTransfer("graphs-3d"), [routePayload, embedded?.activityId]);
+  const [embeddedState] = useState(() => readEmbeddedGraphState<Graph3DWorkspaceState>(embedded, "3d") ?? (location.state as { embeddedGraphScene?: Graph3DWorkspaceState } | null)?.embeddedGraphScene);
+  const [surfaces, setSurfaces] = useState<Graph3DSurface[]>(() => embeddedState?.surfaces ?? (embedded ? embedded.expressions.map(expression => createGraph3DSurface(expression)) : [createGraph3DSurface(incomingPayload?.objectType === "surface" ? incomingPayload.value : "sin(x) * cos(y)")]));
+  useEffect(() => {
+    if (!embedded?.expressionRevision) return;
+    setSurfaces(previous => embedded.expressions.map((expression, index) => ({ ...(previous[index] ?? createGraph3DSurface(expression, index)), expression })));
+  }, [embedded?.expressionRevision]);
+  const [selectedSurfaceId, setSelectedSurfaceId] = useState(() => embeddedState?.selectedSurfaceId ?? surfaces[0]?.id ?? "");
+  const [xRange, setXRange] = useState(() => embeddedState?.xRange ?? 3);
+  const [yRange, setYRange] = useState(() => embeddedState?.yRange ?? 3);
+  const [resolution, setResolution] = useState(() => embeddedState?.resolution ?? 44);
+  const [showGrid, setShowGrid] = useState(() => embeddedState?.showGrid ?? true);
   const [showBase, setShowBase] = useState(true);
-  const [showAxes, setShowAxes] = useState(true);
-  const [showInfiniteAxes, setShowInfiniteAxes] = useState(false);
+  const [showAxes, setShowAxes] = useState(() => embeddedState?.showAxes ?? true);
+  const [showInfiniteAxes, setShowInfiniteAxes] = useState(() => embeddedState?.showInfiniteAxes ?? false);
   const [showLabels, setShowLabels] = useState(true);
   const [autoRotate, setAutoRotate] = useState(false);
   const [objectPosition, setObjectPosition] = useState<ObjectPosition>(initialObjectPosition);
   const [cameraKey, setCameraKey] = useState(0);
-  const [sliceEnabled, setSliceEnabled] = useState(false);
-  const [sliceX, setSliceX] = useState(0);
-  const [referenceObject, setReferenceObject] = useState<ReferenceObjectKind>("none");
-  const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([4, 3.2, 6]);
+  const [sliceEnabled, setSliceEnabled] = useState(() => embeddedState?.sliceEnabled ?? false);
+  const [sliceX, setSliceX] = useState(() => embeddedState?.sliceX ?? 0);
+  const [referenceObject, setReferenceObject] = useState<ReferenceObjectKind>(() => embeddedState?.referenceObject ?? "none");
+  const [cameraPosition, setCameraPosition] = useState<[number, number, number]>(() => embeddedState?.cameraPosition ?? [4, 3.2, 6]);
   const cameraCaptureRef = useRef<[number, number, number]>([4, 3.2, 6]);
   const [savedGraphs, setSavedGraphs] = useState<SavedGraphWorkspace<Graph3DWorkspaceState>[]>(() => readSavedGraphWorkspaces(GRAPH_3D_STORAGE_KEY));
-  const [graphVariables, setGraphVariables] = useState<GraphStudioVariable[]>([]);
+  const [graphVariables, setGraphVariables] = useState<GraphStudioVariable[]>(() => embeddedState?.variables ?? []);
   const [sliceAxis, setSliceAxis] = useState<SliceAxis>("x");
   const [analysisPoint, setAnalysisPoint] = useState({ x: 0, y: 0 });
-  const [keyframes, setKeyframes] = useState<Graph3DKeyframe[]>([]);
+  const [keyframes, setKeyframes] = useState<Graph3DKeyframe[]>(() => embeddedState?.keyframes ?? []);
   const [keyframesPlaying, setKeyframesPlaying] = useState(false);
   const [exactPartial, setExactPartial] = useState<string | null>(null);
   const [studioTool, setStudioTool] = useState<Studio3DTool>("select");
@@ -158,7 +164,13 @@ export default function MathLab3DGraphing() {
   const graphTheme = getGraph3DTheme(graphThemeId);
 
   const graphStudioState = useMemo<Graph3DWorkspaceState>(() => ({ surfaces, selectedSurfaceId, xRange, yRange, resolution, showGrid, showAxes, showInfiniteAxes, sliceEnabled, sliceX, referenceObject, variables: graphVariables, cameraPosition, keyframes }), [cameraPosition, graphVariables, keyframes, referenceObject, resolution, selectedSurfaceId, showAxes, showGrid, showInfiniteAxes, sliceEnabled, sliceX, surfaces, xRange, yRange]);
+  useEffect(() => {
+    if (!embedded) return;
+    const timeout = window.setTimeout(() => saveEmbeddedGraphState(embedded, "3d", graphStudioState), 120);
+    return () => window.clearTimeout(timeout);
+  }, [embedded?.activityId, graphStudioState]);
   const graphStudio = useGraphStudioProject({
+    persist: !embedded,
     dimension: "3d",
     initialName: "Graph Studio 3D",
     state: graphStudioState,

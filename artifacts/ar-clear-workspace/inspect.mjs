@@ -1,0 +1,1 @@
+import {chromium} from '@playwright/test';const b=await chromium.launch();const p=await b.newPage();await p.goto('http://127.0.0.1:5178/modules/ar-math-lab');await p.waitForTimeout(700);console.log((await p.locator('button').allTextContents()).filter(t=>/camera|AR/i.test(t)));console.log((await p.locator('body').innerText()).slice(0,650));await b.close();

@@ -1,4 +1,5 @@
-import { persistWorkspaceChromeTheme, WORKSPACE_CHROME_LABELS, type WorkspaceChromeTheme } from "../../workspace/workspaceChromeTheme";
+import { Moon, Sparkles, Sun } from "lucide-react";
+import { persistWorkspaceChromeTheme, type WorkspaceChromeTheme } from "../../workspace/workspaceChromeTheme";
 
 type Props = {
   theme: WorkspaceChromeTheme;
@@ -7,23 +8,20 @@ type Props = {
 };
 
 export default function WorkspaceChromeThemeToggle({ theme, storageKey, onChange }: Props) {
+  // Keep the legacy stored "default" identifier compatible while naming it Dark in the UI.
+  const label = theme === "default" ? "Dark" : theme === "light" ? "Light" : "Glow";
+  const Icon = theme === "default" ? Moon : theme === "light" ? Sun : Sparkles;
+  const cycleTheme = () => {
+    const next = theme === "light" ? "default" : theme === "default" ? "glow" : "light";
+    persistWorkspaceChromeTheme(storageKey, next);
+    onChange(next);
+  };
+
   return (
-    <div className="workspace-chrome-theme-toggle" role="group" aria-label="Workspace color theme">
-      {(["default", "glow", "light"] as const).map((item) => (
-        <button
-          key={item}
-          type="button"
-          aria-pressed={theme === item}
-          title={WORKSPACE_CHROME_LABELS[item]}
-          aria-label={`${WORKSPACE_CHROME_LABELS[item]} theme`}
-          onClick={() => {
-            persistWorkspaceChromeTheme(storageKey, item);
-            onChange(item);
-          }}
-        >
-          {WORKSPACE_CHROME_LABELS[item]}
-        </button>
-      ))}
-    </div>
+    <button type="button" className="studio-theme-button workspace-chrome-theme-toggle"
+      aria-label={`Theme: ${label}`} title={`Theme: ${label} — click to change`}
+      onClick={cycleTheme}>
+      <Icon size={18} />
+    </button>
   );
 }

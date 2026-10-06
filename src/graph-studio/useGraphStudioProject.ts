@@ -16,6 +16,7 @@ import type {
 type Options<TState> = {
   dimension: GraphStudioDimension;
   initialName: string;
+  persist?: boolean;
   state: TState;
   applyState: (state: TState, variables: GraphStudioVariable[]) => void;
 };
@@ -23,6 +24,7 @@ type Options<TState> = {
 export function useGraphStudioProject<TState>({
   dimension,
   initialName,
+  persist = true,
   state,
   applyState,
 }: Options<TState>) {
@@ -61,12 +63,13 @@ export function useGraphStudioProject<TState>({
   }, [state]);
 
   useEffect(() => {
+    if (!persist) return;
     const timer = window.setTimeout(() => {
       saveGraphStudioProject({ ...project, state });
       setProjects(readGraphStudioProjects<TState>(dimension));
     }, 900);
     return () => window.clearTimeout(timer);
-  }, [dimension, project, state]);
+  }, [dimension, persist, project, state]);
 
   const updateProject = (patch: Partial<GraphStudioProject<TState>>) =>
     setProject((current) => ({ ...current, ...patch }));

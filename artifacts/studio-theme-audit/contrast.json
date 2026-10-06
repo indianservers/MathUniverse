@@ -1,0 +1,92 @@
+[
+  {
+    "route": "/workspace/graph",
+    "theme": "Light",
+    "issues": []
+  },
+  {
+    "route": "/workspace/graph",
+    "theme": "Dark",
+    "issues": []
+  },
+  {
+    "route": "/workspace/graph",
+    "theme": "Glow",
+    "issues": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "theme": "Light",
+    "issues": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "theme": "Dark",
+    "issues": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "theme": "Glow",
+    "issues": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "theme": "Light",
+    "issues": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "theme": "Dark",
+    "issues": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "theme": "Glow",
+    "issues": []
+  },
+  {
+    "route": "/workspace/3d",
+    "theme": "Light",
+    "issues": []
+  },
+  {
+    "route": "/workspace/3d",
+    "theme": "Dark",
+    "issues": []
+  },
+  {
+    "route": "/workspace/3d",
+    "theme": "Glow",
+    "issues": []
+  },
+  {
+    "route": "/workspace/data/cas",
+    "theme": "Light",
+    "issues": []
+  },
+  {
+    "route": "/workspace/data/cas",
+    "theme": "Dark",
+    "issues": []
+  },
+  {
+    "route": "/workspace/data/cas",
+    "theme": "Glow",
+    "issues": []
+  },
+  {
+    "route": "/shapes",
+    "theme": "Light",
+    "issues": []
+  },
+  {
+    "route": "/shapes",
+    "theme": "Dark",
+    "issues": []
+  },
+  {
+    "route": "/shapes",
+    "theme": "Glow",
+    "issues": []
+  }
+]

@@ -1,0 +1,3 @@
+import {chromium} from '@playwright/test'; const b=await chromium.launch();const p=await b.newPage({viewport:{width:1600,height:1100}});await p.goto('http://127.0.0.1:5175/workspace/3d');await p.waitForTimeout(1800);await p.locator('.gs3d-inspector-tabs button').filter({hasText:/appearance/i}).click(); console.log(await p.locator('.os-inspector-scroll').innerText()); await p.getByLabel('Geometry paint',{exact:true}).selectOption('gradient');await p.getByLabel('Geometry paint',{exact:true}).selectOption('pattern');await p.getByLabel('Geometry pattern',{exact:true}).selectOption('grid'); console.log('PASS',await p.locator('.object-studio-shell').getAttribute('data-chrome-theme'));await p.screenshot({path:'artifacts/geometry-appearance/3d.png'});await b.close();
+
+

@@ -217,6 +217,7 @@ export type ARGraphGeometry =
     };
 
 export type ARGeneratedGraphObject = {
+  semanticType?: "vector" | "polygon" | "graph";
   id: string;
   name: string;
   equation: string;

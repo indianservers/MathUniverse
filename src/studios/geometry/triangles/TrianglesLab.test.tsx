@@ -24,8 +24,8 @@ describe("Triangles Lab", () => {
     expect(html).toContain("Related labs");
     expect(html).toContain("/geometry/polygons");
     expect(html).toContain("/shapes?shape=triangle");
-    expect(html).toContain("Copy measurements");
-    expect(html).toContain("Keyboard shortcuts");
+    expect(html).toContain("Figure smartbar");
+    expect(html).toContain("More figure tools");
     expect(html).toContain("Goal:");
     expect(html).toContain("Next lab: Circles");
   });

@@ -1,4 +1,5 @@
 import StatisticsCoreLab from "../../statistics/StatisticsCoreLabs";
+import GeometryARWorkspace from "../../geometry/GeometryARWorkspace";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, type ReactNode } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -198,9 +199,7 @@ function ArLab({ page, kind }: { page: StudioMockupPage; kind: "geometry" | "tri
             <ElevationTriangle dist={dist} height={height} />
           </StudioMath3D>
         ) : (
-          <StudioMath3D label="Room AR overlay">
-            <ArRoomScene dist={dist} elev={elev} scale={scale} />
-          </StudioMath3D>
+          <GeometryARWorkspace key={active} mode={active} scale={scale}><StudioMath3D label="Room AR overlay"><ArRoomScene dist={dist} elev={elev} scale={scale} /></StudioMath3D></GeometryARWorkspace>
         )}
         </div>
       </section>

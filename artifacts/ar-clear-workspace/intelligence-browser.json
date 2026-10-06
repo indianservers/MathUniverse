@@ -1,0 +1,45 @@
+{
+  "replay": [
+    {
+      "name": "grab cube",
+      "text": "90 frames. 78 held frames; 0 mathematical edits.\n\nTime\tIntent\tConfidence\tTarget\tPhase\tTransform / mathematical edit\n0\texplore\t0.63\tfixture-object\tapproach\tXYZ 0.00, 0.00, 0.00 · si"
+    },
+    {
+      "name": "rotate cube",
+      "text": "90 frames. 78 held frames; 0 mathematical edits.\n\nTime\tIntent\tConfidence\tTarget\tPhase\tTransform / mathematical edit\n0\texplore\t0.63\tfixture-object\tapproach\tXYZ 0.00, 0.00, 0.00 · si"
+    },
+    {
+      "name": "resize sphere",
+      "text": "90 frames. 76 held frames; 59 mathematical edits.\n\nTime\tIntent\tConfidence\tTarget\tPhase\tTransform / mathematical edit\n0\texplore\t0.51\tfixture-object\tapproach\tXYZ 0.00, 0.00, 0.00 · s"
+    },
+    {
+      "name": "edit vector",
+      "text": "90 frames. 78 held frames; 58 mathematical edits.\n\nTime\tIntent\tConfidence\tTarget\tPhase\tTransform / mathematical edit\n0\texplore\t0.66\tfixture-object\tapproach\tXYZ 0.00, 0.00, 0.00 · s"
+    },
+    {
+      "name": "move graph",
+      "text": "90 frames. 78 held frames; 0 mathematical edits.\n\nTime\tIntent\tConfidence\tTarget\tPhase\tTransform / mathematical edit\n0\texplore\t0.63\tfixture-object\tapproach\tXYZ 0.00, 0.00, 0.00 · si"
+    },
+    {
+      "name": "inspect graph",
+      "text": "90 frames. 0 held frames; 0 mathematical edits.\n\nTime\tIntent\tConfidence\tTarget\tPhase\tTransform / mathematical edit\n0\tpoint\t0.69\tfixture-object\thover\tXYZ 0.00, 0.00, 0.00 · size 1.0"
+    },
+    {
+      "name": "accidental movement",
+      "text": "90 frames. 0 held frames; 0 mathematical edits.\n\nTime\tIntent\tConfidence\tTarget\tPhase\tTransform / mathematical edit\n0\tidle\t0.00\tnone\tidle\tXYZ 0.00, 0.00, 0.00 · size 1.00\n233\tidle\t0"
+    },
+    {
+      "name": "hand crossing",
+      "text": "90 frames. 42 held frames; 0 mathematical edits.\n\nTime\tIntent\tConfidence\tTarget\tPhase\tTransform / mathematical edit\n0\texplore\t0.44\tfixture-object\tapproach\tXYZ 0.00, 0.00, 0.00 · si"
+    },
+    {
+      "name": "tracking loss",
+      "text": "90 frames. 78 held frames; 0 mathematical edits.\n\nTime\tIntent\tConfidence\tTarget\tPhase\tTransform / mathematical edit\n0\texplore\t0.63\tfixture-object\tapproach\tXYZ 0.00, 0.00, 0.00 · si"
+    }
+  ],
+  "status": "Show your whole hand in good light.",
+  "recording": "Feature recording exported",
+  "errors": [],
+  "stageButtons": 0,
+  "mobileOverflow": false
+}

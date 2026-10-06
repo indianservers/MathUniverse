@@ -1,3 +1,5 @@
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { lessonScene } from "../geometryLessonScene";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect } from "react";
 import RegularTessellationLab from "./tessellation/TessellationLab";
@@ -79,7 +81,7 @@ export default function TessellationLab({ pulse = "observe" }: { pulse?: string 
         <SliderRow label="Angle test n" value={n} min={3} max={12} step={1} onChange={setN} />
       </Controls>
       <section className="msk-panel msk-canvas poly-stage">
-        <svg className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label="Tessellation extras"
+        <GeometryLessonCanvas activityId={`tessellation-${sub}-${semi}-${custom}`} scene={lessonScene(VIEW.w, VIEW.h).result()} className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label="Tessellation extras"
           onClick={(event) => {
             if (sub !== "custom") return;
             const rect = event.currentTarget.getBoundingClientRect();
@@ -90,12 +92,12 @@ export default function TessellationLab({ pulse = "observe" }: { pulse?: string 
           }}
         >
           <rect width={VIEW.w} height={VIEW.h} fill="none" />
-          {sub === "semiregular" ? <SemiPattern id={semi} /> : null}
+          {sub === "semiregular" ? SemiPattern({ id: semi }) : null}
           {sub === "custom" ? stamps.map((s, i) => (
             <polygon key={i} points={poly(s.x, s.y, Number(s.kind), s.kind === "6" ? 22 : 18, s.rot - 90)} fill="rgba(8,185,221,.16)" stroke="#0891b2" />
           )) : null}
           <text x="20" y="26" fill="#0f172a" fontSize="14" fontWeight="800">{sub === "semiregular" ? `Vertex figure ${semi}` : "Custom repeating patch"}</text>
-        </svg>
+        </GeometryLessonCanvas>
       </section>
       <LivePanel title="Vertex test">
         <MeasureRow color="#147df2" label="n" value={regularPolygonName(n)} />

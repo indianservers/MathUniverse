@@ -1,3 +1,6 @@
+import WorkspaceChromeThemeToggle from "../components/workspace/WorkspaceChromeThemeToggle";
+import { readWorkspaceChromeTheme, type WorkspaceChromeTheme } from "../workspace/workspaceChromeTheme";
+import { GeometryAppearanceControls, type GeometryPaint } from "../components/workspace/GeometryAppearance";
 import { OrbitControls } from "@react-three/drei";
 import { type ThreeEvent, useFrame } from "@react-three/fiber";
 import { AlertTriangle, Box, Braces, Camera, Check, CheckCircle2, ChevronDown, Circle, CircleDot, Copy, Download, Eraser, Eye, EyeOff, FileText, Filter, FunctionSquare, Grid3X3, Home, Info, Keyboard, LineChart, ListTree, Magnet, Maximize2, Menu, Mic, MoreHorizontal, MousePointer2, Move, Orbit, PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen, Pentagon, Pin, Play, Plus, Presentation, Redo2, Rotate3D, RotateCcw, Ruler, Save, Search, Settings, Share2, Sigma, Slash, SlidersHorizontal, Sparkles, Table2, Trash2, Undo2, User, WandSparkles, X, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
@@ -31,6 +34,7 @@ import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import MathExpression from "../components/ui/MathExpression";
+import { affineConstraintPoint } from "../workspace/geometryAffineConstraint";
 import FunctionGraphCanvas, { type FunctionGraphSeries, type FunctionGraphView } from "../components/math-lab/FunctionGraphCanvas";
 import { approximateRoots, sampleFunction } from "../utils/mathEngine/graphSampler";
 import { roundTo } from "../utils/math";
@@ -164,7 +168,7 @@ type WorkspaceImage = { id: string; name: string; src: string; x: number; y: num
 type SurfaceKind = "paraboloid" | "saddle" | "wave" | "plane" | "ripple" | "cone-surface" | "custom-z" | "parametric" | "implicit";
 type SolidKind = "cube" | "cuboid" | "sphere" | "ellipsoid" | "hemisphere" | "cylinder" | "cone" | "frustum" | "torus" | "tube" | "capsule" | "prism" | "pyramid" | "tetrahedron" | "octahedron" | "dodecahedron" | "wedge" | "polyhedron";
 type ThreeObjectId = "surface" | "solid" | "slice" | "point" | "vector" | "line3d" | "plane3d" | "sphere3d" | "cone3d" | "cylinder3d" | "prism3d" | "pyramid3d" | "polyhedron3d";
-type Transform3D = { position: [number, number, number]; rotation: [number, number, number]; scale: number; visible: boolean; color: string; name?: string; locked?: boolean; trace?: boolean; dimensions?: [number, number, number]; opacity?: number; material?: "matte" | "glass" | "wireframe" };
+type Transform3D = GeometryPaint & { position: [number, number, number]; rotation: [number, number, number]; scale: number; visible: boolean; color: string; name?: string; locked?: boolean; trace?: boolean; dimensions?: [number, number, number]; opacity?: number; material?: "matte" | "glass" | "wireframe" };
 type Added3DRenderKind = "surface" | "solid" | "slice" | "point" | "vector" | "line3d" | "plane3d";
 type Added3DObject = { id: string; label: string; baseId: ThreeObjectId; render: Added3DRenderKind; solid?: SolidKind; surface?: SurfaceKind; transform: Transform3D };
 type CameraPreset3D = "free" | "top" | "front" | "right" | "isometric";
@@ -330,13 +334,19 @@ function resolveInitialWorkspaceViewFromRoute(fallback: WorkspaceView): Workspac
   return fallback;
 }
 
-export default function MathWorkspace({ initialView = "graph", singleView = false, dataPage = "overview" }: { initialView?: WorkspaceView; singleView?: boolean; dataPage?: DataWorkspacePage }) {
+export type EmbeddedMathWorkspace = {
+  activityId: string;
+  initialScene: unknown;
+  onSceneChange?: (scene: unknown) => void;
+};
+
+export default function MathWorkspace({ initialView = "graph", singleView = false, dataPage = "overview", embedded }: { initialView?: WorkspaceView; singleView?: boolean; dataPage?: DataWorkspacePage; embedded?: EmbeddedMathWorkspace }) {
   const location = useLocation();
   const navigate = useNavigate();
   const routePayload = (location.state as { mathWorkspacePayload?: MathWorkspacePayload } | null)?.mathWorkspacePayload;
-  const routeInitialView = useMemo(() => resolveInitialWorkspaceViewFromRoute(initialView), [initialView]);
+  const routeInitialView = useMemo(() => embedded ? initialView : resolveInitialWorkspaceViewFromRoute(initialView), [initialView, embedded?.activityId]);
   const transferTarget = routeInitialView === "graph" ? "graphs" : routeInitialView === "3d" ? "graphs-3d" : routeInitialView === "geometry" ? "geometry" : "cas";
-  const incomingWorkspacePayload = useMemo(() => routePayload ?? readWorkspaceTransfer(transferTarget), [routePayload, transferTarget]);
+  const incomingWorkspacePayload = useMemo(() => embedded ? undefined : routePayload ?? readWorkspaceTransfer(transferTarget), [routePayload, transferTarget, embedded?.activityId]);
   const [input, setInput] = useState("plot sin(x)");
   const [results, setResults] = useState<ResultCard[]>([]);
   const [plots, setPlots] = useState<PlotItem[]>(() => {
@@ -441,10 +451,11 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   }, [routeInitialView]);
 
   useEffect(() => {
-    saveCasNotebookState(casNotebookState);
-  }, [casNotebookState]);
+    if (!embedded) saveCasNotebookState(casNotebookState);
+  }, [casNotebookState, embedded?.activityId]);
 
   useEffect(() => {
+    if (embedded) return;
     const match = window.location.hash.match(/project=([^&]+)/);
     if (!match) return;
     try {
@@ -489,6 +500,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const dynamicHealth = useMemo(() => graphHealthSummary(dynamicGraph), [dynamicGraph]);
 
   useEffect(() => {
+    if (embedded) return;
     const editedProperties = unifiedWorkspaceObjects
       .map((object) => {
         const ref = liveRefFromMathObject(object);
@@ -510,7 +522,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   }, [unifiedWorkspaceObjects]);
 
   useEffect(() => {
-    upsertUnifiedWorkspaceObjects(evaluatedLiveWorkspaceObjects);
+    if (!embedded) upsertUnifiedWorkspaceObjects(evaluatedLiveWorkspaceObjects);
   }, [evaluatedLiveWorkspaceObjects, upsertUnifiedWorkspaceObjects]);
 
   const commandSummary = useMemo(() => commandRegistrySummary(), []);
@@ -1715,16 +1727,16 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const saveConstruction = () => {
-    localStorage.setItem("math-universe-workspace-construction", JSON.stringify({ construction, geometryGraphSettings }));
+    localStorage.setItem(embedded ? `geometry-studio-workspace:${embedded.activityId}` : "math-universe-workspace-construction", JSON.stringify(embedded ? { workspaceSnapshot: snapshot(), geometryCamera } : { construction, geometryGraphSettings }));
     setProjectStatus("Geometry construction saved in this browser.");
   };
   const snapshot = (): WorkspaceSnapshot => ({ input, results, plots, construction, geometryGraphSettings, lockedGeometryIds, surface, surfaceExpression, cameraPreset3d, sceneAnimationSpeed, solid, surfaceScale, height3d, crossSection, showSurface, showSolid, autoRotate3d, zoom3d, transforms3d, added3dObjects, deletedBase3dIds, images: workspaceImages, spreadsheet, tableRange: { start: tableStart, end: tableEnd, step: tableStep }, guidedMode, guidedPhase, teachingMode, revealStep, controlsLocked, highContrastMode, performanceMode, protocol, activityJournal, presentationNotes, objectProperties: objectPropertyOverrides });
   const saveWorkspace = () => {
-    localStorage.setItem("math-universe-workspace-full", JSON.stringify(snapshot()));
+    localStorage.setItem(embedded ? `geometry-studio-workspace:${embedded.activityId}` : "math-universe-workspace-full", JSON.stringify(embedded ? { workspaceSnapshot: snapshot(), geometryCamera } : snapshot()));
     setProjectStatus("Workspace saved in this browser.");
   };
   const restoreWorkspaceSnapshot = (data: WorkspaceSnapshot) => {
-    setInput(data.input);
+    setInput(data.input ?? "");
     setResults(data.results ?? []);
     setPlots(data.plots ?? []);
     setConstruction(normalizeConstruction(data.construction ?? initialConstruction));
@@ -1768,13 +1780,15 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     setRedoStack([]);
   };
   const loadWorkspace = () => {
-    const saved = localStorage.getItem("math-universe-workspace-full");
+    const saved = localStorage.getItem(embedded ? `geometry-studio-workspace:${embedded.activityId}` : "math-universe-workspace-full");
     if (!saved) {
       setProjectStatus("No saved workspace found in this browser yet.");
       return;
     }
     try {
-      restoreWorkspaceSnapshot(JSON.parse(saved) as WorkspaceSnapshot);
+      const parsed = JSON.parse(saved);
+      restoreWorkspaceSnapshot(embedded ? parsed.workspaceSnapshot : parsed);
+      if (embedded && parsed.geometryCamera) setGeometryCamera(parsed.geometryCamera);
       setProjectStatus("Saved workspace loaded.");
     } catch {
       setProjectStatus("Saved workspace could not be loaded. The stored project data is invalid.");
@@ -2103,7 +2117,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     }
     if (ref.kind === "3d") {
       const material = style.material === "glass" || style.material === "wireframe" || style.material === "matte" ? style.material : undefined;
-      update3dTransform(ref.id, { color: color ?? undefined, opacity: style.opacity, material });
+      update3dTransform(ref.id, { color: color ?? undefined, opacity: style.opacity, material, paint: style.paint, secondaryColor: style.secondaryColor, pattern: style.pattern });
       return;
     }
     setConstruction((current) => {
@@ -2115,6 +2129,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           color: color ?? existing.color,
           fill: style.fill ?? existing.fill,
           strokeWidth: style.strokeWidth ?? existing.strokeWidth,
+          lineStyle: style.lineStyle ?? existing.lineStyle,
+          paint: style.paint ?? existing.paint,
+          secondaryColor: style.secondaryColor ?? existing.secondaryColor,
+          pattern: style.pattern ?? existing.pattern,
           opacity: style.opacity ?? existing.opacity,
           labelMode: style.labelVisible === false ? "hidden" : existing.labelMode,
         },
@@ -2488,6 +2506,39 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     canMerge: false,
   };
 
+  // Embedded activities hydrate only their own scene and never consume another
+  // workspace's pending transfer or save over the standalone project.
+  const embeddedHydrated = useRef(false);
+  const embeddedCallback = useRef(embedded?.onSceneChange);
+  embeddedCallback.current = embedded?.onSceneChange;
+  useEffect(() => {
+    const routeScene = (location.state as { embeddedWorkspaceScene?: unknown } | null)?.embeddedWorkspaceScene;
+    if (!embedded && !routeScene) return;
+    let scene = embedded?.initialScene ?? routeScene;
+    if (embedded) {
+      try { const saved = localStorage.getItem(`geometry-studio-workspace:${embedded.activityId}`); if (saved) scene = JSON.parse(saved); } catch { /* Use the supplied example if storage is unavailable or invalid. */ }
+    }
+    if (!scene || typeof scene !== "object" || !("workspaceSnapshot" in scene)) return;
+    const record = scene as { workspaceSnapshot: WorkspaceSnapshot; geometryCamera?: GeometryCamera };
+    if (!record.workspaceSnapshot || typeof record.workspaceSnapshot !== "object") return;
+    restoreWorkspaceSnapshot(record.workspaceSnapshot);
+    if (record.geometryCamera) setGeometryCamera(record.geometryCamera);
+    embeddedHydrated.current = true;
+    // The host remounts the workspace when changing activities or resetting.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [embedded?.activityId]);
+  useEffect(() => {
+    if (!embedded || !embeddedHydrated.current) return;
+    const timeout = window.setTimeout(() => {
+      const scene = { workspaceSnapshot: snapshot(), geometryCamera, workspaceType: portableWorkspaceType };
+      try { localStorage.setItem(`geometry-studio-workspace:${embedded.activityId}`, JSON.stringify(scene)); } catch { /* The workspace remains editable without storage. */ }
+      embeddedCallback.current?.(scene);
+    }, 120);
+    return () => window.clearTimeout(timeout);
+    // Persist the scene fields used by geometry activities, including clearing.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [embedded?.activityId, construction, geometryCamera, geometryGraphSettings, workspaceImages, transforms3d, solid, surface, surfaceExpression, surfaceScale, height3d, crossSection, showSurface, showSolid, added3dObjects, deletedBase3dIds]);
+
   const openPortableWorkspaceImport = () => {
     if (portableImportInputRef.current) portableImportInputRef.current.value = "";
     portableImportInputRef.current?.click();
@@ -2532,7 +2583,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         aria-label="Import workspace file"
         onChange={(event) => void importPortableWorkspaceFile(event.target.files?.[0] ?? null)}
       />
-      {singleViewStudio && !singleViewCasStudio && <ShareExportControl adapter={portableAdapter} />}
+
       {!singleViewStudio && <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} docked={singleView} />}
       {!singleView && <TopicHeader title="Math Workspace" subtitle="A unified workspace for graphing, commands, results, and dynamic geometric construction." difficulty="All levels" estimatedMinutes={45} />}
 
@@ -2811,6 +2862,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
 
       {workspaceView === "3d" && (
         <ObjectStudioWorkspace
+          shareControl={<ShareExportControl adapter={portableAdapter} className="portable-share-inline" />}
           vectorWorkbench={<VectorWorkbench3D a={vectorA3d} b={vectorB3d} view={vectorView3d} visible={vectorWorkbenchVisible} focus={vectorFocus3d} onA={setVectorA3d} onB={setVectorB3d} onView={setVectorView3d} onVisible={setVectorWorkbenchVisible} onFocus={setVectorFocus3d} />}
           vectorFocus={vectorFocus3d}
           onVectorFocus={setVectorFocus3d}
@@ -2921,6 +2973,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
 
       {workspaceView === "geometry" && (singleView ? (
         <GeometryWorkspacePanel
+          shareControl={<ShareExportControl adapter={portableAdapter} className="portable-share-inline" />}
           activeTool={tool}
           construction={construction}
           selectedGeometry={selectedGeometry}
@@ -3009,6 +3062,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       ) : (
         <SectionCard title="Geometry Constructor" description="Create points, lines, circles, polygons, drag points, and inspect live measurements.">
           <GeometryWorkspacePanel
+          shareControl={<ShareExportControl adapter={portableAdapter} className="portable-share-inline" />}
             activeTool={tool}
             construction={construction}
             selectedGeometry={selectedGeometry}
@@ -4616,10 +4670,10 @@ function liveWorkspaceStyle(row: AlgebraObjectRow, plots: PlotItem[], constructi
   }
   if (row.ref.kind === "3d") {
     const transform = liveTransform3d(row.ref.id, transforms3d, added3dObjects);
-    return { color: transform?.color ?? "#8b5cf6", stroke: transform?.color ?? "#8b5cf6", opacity: transform?.opacity ?? 1, material: transform?.material ?? "matte", labelVisible: true };
+    return { ...transform, color: transform?.color ?? "#8b5cf6", stroke: transform?.color ?? "#8b5cf6", opacity: transform?.opacity ?? 1, material: transform?.material ?? "matte", labelVisible: true };
   }
   const style = geometryStyleForRef(row.ref, construction);
-  return { color: style?.color ?? "#06b6d4", fill: style?.fill, stroke: style?.color ?? "#0f172a", strokeWidth: style?.strokeWidth ?? 2, opacity: style?.opacity ?? 1, labelVisible: style?.labelMode !== "hidden" };
+  return { ...style, lineStyle: style?.lineStyle ?? (style?.dashArray ? "dashed" : "solid"), color: style?.color ?? "#06b6d4", fill: style?.fill, stroke: style?.color ?? "#0f172a", strokeWidth: style?.strokeWidth ?? 2, opacity: style?.opacity ?? 1, labelVisible: style?.labelMode !== "hidden" };
 }
 
 function liveWorkspaceTransform(row: AlgebraObjectRow, transforms3d: Record<ThreeObjectId, Transform3D>, added3dObjects: Added3DObject[]): Partial<MathTransform> | undefined {
@@ -5288,6 +5342,7 @@ const CAS_DOCK_TOOLS: Array<{ label: string; operation?: NotebookOperation; rout
 ];
 
 function CasStudioWorkspaceV2(props: CasStudioWorkspaceProps) {
+  const [chromeTheme,setChromeTheme]=useState<WorkspaceChromeTheme>(()=>readWorkspaceChromeTheme("math-universe-chrome-cas","light"));
   const {
     state, selectedCell, composerInput, composerOperation, onSelectCell, onUpdateCell, onRunCell, onAddCell,
     onDuplicateCell, onDeleteCell, onReorderCells, onReset, onModeChange, onAssumptionsChange,
@@ -5455,11 +5510,11 @@ function CasStudioWorkspaceV2(props: CasStudioWorkspaceProps) {
     setMobilePanel((panel) => panel === "result" ? "canvas" : "result");
   };
 
-  return <div className={`cas-studio-shell cas-studio-v2 mobile-panel-${mobilePanel} ${leftPaneOpen ? "is-left-pane-open" : ""} ${rightPaneOpen ? "is-right-pane-open" : ""} ${historyPaneOpen ? "is-history-pane-open" : ""}`} data-testid="workspace-cas-studio">
+  return <div data-chrome-theme={chromeTheme} className={`cas-studio-shell cas-studio-v2 mobile-panel-${mobilePanel} ${leftPaneOpen ? "is-left-pane-open" : ""} ${rightPaneOpen ? "is-right-pane-open" : ""} ${historyPaneOpen ? "is-history-pane-open" : ""}`} data-testid="workspace-cas-studio">
     <header className="cas-app-header">
       <div className="cas-brand"><span><Sigma /></span><strong>Computer Algebra Studio</strong></div>
       <input className="cas-workspace-title" value={workspaceTitle} onChange={(event) => setWorkspaceTitle(event.target.value)} aria-label="Workspace title" />
-      <div className="cas-header-actions">
+      <div className="cas-header-actions"><WorkspaceChromeThemeToggle theme={chromeTheme} storageKey="math-universe-chrome-cas" onChange={setChromeTheme}/>
         <button type="button" onClick={onUndo} aria-label="Undo" title="Undo"><Undo2 /></button><button type="button" onClick={onRedo} aria-label="Redo" title="Redo"><Redo2 /></button>
         <button type="button" className="cas-pane-toggle" onClick={toggleLeftPane} aria-expanded={leftPaneOpen || mobilePanel === "objects"} aria-controls="cas-object-explorer" title={leftPaneOpen ? "Collapse object explorer" : "Open object explorer"}>{leftPaneOpen ? <PanelLeftClose /> : <PanelLeftOpen />}<span>Objects</span></button>
         <button type="button" className="cas-pane-toggle" onClick={toggleRightPane} aria-expanded={rightPaneOpen || mobilePanel === "result"} aria-controls="cas-result-inspector" title={rightPaneOpen ? "Collapse result inspector" : "Open result inspector"}>{rightPaneOpen ? <PanelRightClose /> : <PanelRightOpen />}<span>Results</span></button>
@@ -7596,7 +7651,7 @@ function GeometryObjectPanel({ selected, construction, locked, onPointChange, on
   const point = selected?.type === "point" ? pointById(construction.points, selected.id) : null;
   const radius = selected?.type === "circle" ? circleRadiusUnits(construction, selected.id) : null;
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+    <div className="geometry-object-properties rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
       <div className="flex items-center justify-between gap-2">
         <h3 className="font-bold">Object Properties</h3>
         {selected && <span className="rounded-full bg-cyan-100 px-3 py-1 text-xs font-bold text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100">{selected.type}</span>}
@@ -7618,14 +7673,14 @@ function GeometryObjectPanel({ selected, construction, locked, onPointChange, on
             </>
           )}
           {radius !== null && <SliderControl label="Radius" value={radius} min={0.25} max={8} step={0.05} onChange={onRadiusChange} />}
-          <div className="grid grid-cols-[1fr_92px] gap-3">
-            <SliderControl label="Size / stroke" value={style.size ?? style.strokeWidth ?? 9} min={2} max={24} step={1} onChange={(value) => onStyleChange(selected.type === "point" ? { ...style, size: value } : { ...style, strokeWidth: value })} />
+          <div className="grid grid-cols-1 gap-3">
+            <GeometryAppearanceControls value={{...style,lineStyle:style.lineStyle??(style.dashArray?"dashed":"solid")}} onChange={patch=>onStyleChange({...style,...patch,dashArray:patch.lineStyle==="solid"?"":patch.lineStyle==="dashed"?"12 8":patch.lineStyle==="dotted"?"2 7":style.dashArray})}/><SliderControl label="Size / stroke" value={style.size ?? style.strokeWidth ?? 9} min={2} max={24} step={1} onChange={(value) => onStyleChange(selected.type === "point" ? { ...style, size: value } : { ...style, strokeWidth: value })} />
             <label className="rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
               Color
               <input type="color" value={style.color ?? geometryDefaultColor[selected.type]} onChange={(event) => onStyleChange({ ...style, color: event.target.value })} className="mt-2 h-10 w-full rounded-lg border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-900" />
             </label>
           </div>
-          <div className="grid grid-cols-[1fr_92px] gap-3">
+          <div className="grid grid-cols-1 gap-3">
             <SliderControl label="Opacity" value={style.opacity ?? 1} min={0.1} max={1} step={0.05} onChange={(value) => onStyleChange({ ...style, opacity: value })} />
             <label className="rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
               Fill
@@ -8104,7 +8159,20 @@ function ConstructedSolid3D({ kind, transform, eventProps }: { kind: SolidKind; 
 }
 
 function ObjectMaterial({ transform }: { transform: Transform3D }) {
-  return <meshStandardMaterial color={transform.color} transparent opacity={transform.opacity ?? 0.8} roughness={transform.material === "glass" ? 0.12 : 0.42} metalness={transform.material === "glass" ? 0.18 : 0.05} wireframe={transform.material === "wireframe"} side={THREE.DoubleSide} />;
+  const texture=useMemo(()=>{
+    if(!transform.paint||transform.paint==='solid'||typeof document==='undefined')return null;
+    const canvas=document.createElement('canvas');canvas.width=256;canvas.height=256;const ctx=canvas.getContext('2d');if(!ctx)return null;
+    const secondary=transform.secondaryColor??'#06b6d4';
+    if(transform.paint==='gradient'){const gradient=ctx.createLinearGradient(0,0,256,256);gradient.addColorStop(0,transform.color);gradient.addColorStop(1,secondary);ctx.fillStyle=gradient;ctx.fillRect(0,0,256,256);}
+    else{ctx.fillStyle=transform.color;ctx.fillRect(0,0,256,256);ctx.fillStyle=secondary;ctx.strokeStyle=secondary;ctx.lineWidth=8;
+      if(transform.pattern==='dots'){for(let x=16;x<256;x+=32)for(let y=16;y<256;y+=32){ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.fill();}}
+      else if(transform.pattern==='grid'){for(let v=0;v<256;v+=32){ctx.fillRect(v,0,3,256);ctx.fillRect(0,v,256,3);}}
+      else{for(let v=-256;v<512;v+=32){ctx.beginPath();ctx.moveTo(v,0);ctx.lineTo(v+256,256);ctx.stroke();}}
+    }
+    const map=new THREE.CanvasTexture(canvas);map.colorSpace=THREE.SRGBColorSpace;return map;
+  },[transform.paint,transform.pattern,transform.color,transform.secondaryColor]);
+  useEffect(()=>()=>{texture?.dispose();},[texture]);
+  return <meshStandardMaterial map={texture} color={texture?'#ffffff':transform.color} transparent opacity={transform.opacity ?? 0.8} roughness={transform.material === "glass" ? 0.12 : 0.42} metalness={transform.material === "glass" ? 0.18 : 0.05} wireframe={transform.material === "wireframe"} side={THREE.DoubleSide} />;
 }
 
 function IntersectionOverlays3D({ transforms, crossSection }: { transforms: Record<ThreeObjectId, Transform3D>; crossSection: number }) {
@@ -8975,6 +9043,10 @@ function solveConstruction(construction: Construction, draggedPointId?: string):
   let points = construction.points;
   for (let iteration = 0; iteration < 3; iteration += 1) {
     for (const constraint of construction.constraints) {
+      if (constraint.type === "affine") {
+        const next = affineConstraintPoint(constraint, points);
+        if (next) points = updatePoint(points, constraint.point, next);
+      }
       if (constraint.type === "midpoint") {
         const a = pointById(points, constraint.a), b = pointById(points, constraint.b);
         if (a && b) points = updatePoint(points, constraint.point, { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 });

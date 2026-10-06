@@ -1,3 +1,5 @@
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import type { LessonScene } from "../geometryLessonScene";
 import { useEffect, useMemo, useRef, useState, type PointerEvent, type ReactNode } from "react";
 import { fmt } from "../../mockup/studioLabKit";
 import { clamp, type Vec } from "./polygonMath";
@@ -17,10 +19,11 @@ export function pointsAttr(points: Array<{ x: number; y: number }>): string {
 }
 
 export function clientToSvg(svg: SVGSVGElement, event: { clientX: number; clientY: number }) {
-  const rect = svg.getBoundingClientRect();
-  const x = ((event.clientX - rect.left) / rect.width) * VIEW.w;
-  const y = ((event.clientY - rect.top) / rect.height) * VIEW.h;
-  return { x, y };
+  const matrix = svg.getScreenCTM();
+  if (!matrix) return { x: 0, y: 0 };
+  const point = svg.createSVGPoint(); point.x = event.clientX; point.y = event.clientY;
+  const local = point.matrixTransform(matrix.inverse());
+  return { x: local.x, y: local.y };
 }
 
 export function Toggle({
@@ -243,13 +246,13 @@ function yClamp(n: number) {
   return clamp(n, 20, VIEW.h - 20);
 }
 
-export function Stage({ children, label, footer, toolbar }: { children: ReactNode; label: string; footer?: ReactNode; toolbar?: ReactNode }) {
+export function Stage({ children, label, footer, toolbar, scene }: { children: ReactNode; label: string; footer?: ReactNode; toolbar?: ReactNode; scene: LessonScene }) {
   return (
     <section className="msk-panel msk-canvas poly-stage" id="lab-canvas">
       {toolbar}
-      <svg className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label={label}>
+      <GeometryLessonCanvas scene={scene} className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label={label}>
         {children}
-      </svg>
+      </GeometryLessonCanvas>
       {footer}
     </section>
   );

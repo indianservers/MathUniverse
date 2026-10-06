@@ -1,0 +1,54 @@
+right-triangle?mode=Pythagoras [
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' }
+]
+zoom PASS
+Squares fit [ true, true, true ]
+unit-circle [
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' }
+]
+Tick anchors [
+  [ '40', 'middle' ],
+  [ '110', 'middle' ],
+  [ '180', 'middle' ],
+  [ '250', 'middle' ],
+  [ '320', 'middle' ],
+  [ '390', 'middle' ],
+  [ '460', 'middle' ]
+]
+graphs [
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' }
+]
+identities [
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' }
+]
+inverse [
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' }
+]
+oblique [
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' }
+]
+waves [
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' }
+]
+applications [
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' },
+  { bg: 'rgb(255, 255, 255)', fg: 'rgb(7, 22, 65)' }
+]
+errors []

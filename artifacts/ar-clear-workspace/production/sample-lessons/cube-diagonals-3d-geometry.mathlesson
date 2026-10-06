@@ -1,0 +1,405 @@
+{
+  "fileHeader": {
+    "magic": "MATHAPP_PORTABLE_FILE",
+    "fileKind": "lesson",
+    "fileExtension": ".mathlesson",
+    "mimeType": "application/vnd.mathapp.lesson",
+    "schemaVersion": 1,
+    "minimumReaderVersion": "1.0.0",
+    "createdByApp": "Math Universe",
+    "createdByAppVersion": "1.0.1"
+  },
+  "workspace": {
+    "type": "3d-geometry",
+    "typeLabel": "3D Geometry",
+    "engine": "math-universe-three-workspace",
+    "engineVersion": "1.0.1"
+  },
+  "document": {
+    "id": "4aae57f9-e101-4671-bf60-07eaca434da6",
+    "title": "Cube Face and Space Diagonals",
+    "description": "Compare face diagonals with the diagonal passing through the cube's interior.",
+    "author": {
+      "name": "Math Universe",
+      "organization": "Sample Lesson Library"
+    },
+    "createdAt": "2026-08-20T10:30:00.000Z",
+    "updatedAt": "2026-08-20T10:30:00.000Z",
+    "language": "en",
+    "tags": [
+      "cube",
+      "diagonal",
+      "pythagoras",
+      "3d"
+    ],
+    "difficulty": "intermediate",
+    "gradeLevel": [
+      "8",
+      "9",
+      "10"
+    ],
+    "subject": "Mathematics",
+    "topic": "Solid Geometry",
+    "estimatedDurationMinutes": 20
+  },
+  "preview": {
+    "thumbnailIncluded": true,
+    "thumbnailDataUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIj48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgcng9IjI4IiBmaWxsPSIjMDcxMTFmIi8+PHBhdGggZD0iTTAgMjgwIFExNjAgODAgMzIwIDIxMCBUNjQwIDkwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4YjVjZjYiIHN0cm9rZS13aWR0aD0iMTAiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSIyMTAiIHI9IjEzIiBmaWxsPSIjZmJiZjI0Ii8+PHRleHQgeD0iMzIiIHk9IjU4IiBmaWxsPSIjZTZmYmZmIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPkN1YmUgRmFjZSBhbmQgU3BhY2UgRGlhZ29uYWxzPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIzMzAiIGZpbGw9IiM5M2M1ZmQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCI+TWF0aCBVbml2ZXJzZSBzYW1wbGUgbGVzc29uPC90ZXh0Pjwvc3ZnPg==",
+    "objectCount": 3,
+    "expressionCount": 1,
+    "hasSolution": true
+  },
+  "scene": {
+    "workspaceSnapshot": {
+      "input": "",
+      "results": [],
+      "plots": [],
+      "construction": {
+        "points": [],
+        "lines": [],
+        "circles": [],
+        "polygons": [],
+        "arcs": [],
+        "loci": [],
+        "constraints": []
+      },
+      "geometryGraphSettings": {
+        "showGrid": true,
+        "showAxes": true,
+        "showUnitLabels": true,
+        "showPointLabels": true,
+        "showMeasurements": true,
+        "highContrastGrid": false,
+        "snapToGrid": true,
+        "snapToObjects": true
+      },
+      "lockedGeometryIds": [],
+      "surface": "paraboloid",
+      "surfaceExpression": "x^2+y^2",
+      "cameraPreset3d": "isometric",
+      "sceneAnimationSpeed": 0,
+      "solid": "cube",
+      "surfaceScale": 1,
+      "height3d": 2.5,
+      "crossSection": 0,
+      "showSurface": false,
+      "showSolid": true,
+      "autoRotate3d": false,
+      "zoom3d": 1,
+      "transforms3d": {
+        "solid": {
+          "name": "Cube",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 1,
+          "visible": true,
+          "color": "#8b5cf6",
+          "dimensions": [
+            3,
+            3,
+            3
+          ],
+          "opacity": 0.78,
+          "material": "glass"
+        }
+      },
+      "added3dObjects": [],
+      "deletedBase3dIds": [],
+      "images": [],
+      "protocol": []
+    },
+    "workspaceType": "3d-geometry"
+  },
+  "lesson": {
+    "lessonId": "6cd1eedb-ae92-45d6-bac9-49cdc74e3c8a",
+    "title": "Cube Face and Space Diagonals",
+    "shortDescription": "Compare face diagonals with the diagonal passing through the cube's interior.",
+    "subject": "Mathematics",
+    "workspaceType": "3d-geometry",
+    "topic": "Solid Geometry",
+    "subtopic": "Cube diagonals",
+    "difficulty": "intermediate",
+    "gradeLevel": [
+      "8",
+      "9",
+      "10"
+    ],
+    "learningObjectives": [
+      "For a cube of side 3, face diagonals have length 3√2 and space diagonals have length 3√3."
+    ],
+    "prerequisites": [
+      "Basic coordinate and algebra fluency"
+    ],
+    "instructions": [
+      "Identify a diagonal on one square face.",
+      "Create a diagonal joining opposite cube vertices.",
+      "Compare their lengths for side length 3."
+    ],
+    "hints": [
+      "A face diagonal stays within one square face.",
+      "Use the Pythagorean theorem twice.",
+      "For side s, face diagonal = s√2 and space diagonal = s√3."
+    ],
+    "checkpoints": [],
+    "solutionSteps": [
+      "Draw a face diagonal and compute √(3²+3²)=3√2.",
+      "Combine that diagonal with a perpendicular edge.",
+      "Compute √((3√2)²+3²)=3√3."
+    ],
+    "expectedResult": "For a cube of side 3, face diagonals have length 3√2 and space diagonals have length 3√3.",
+    "teacherNotes": "Invite students to explain why the visual and symbolic results agree.",
+    "estimatedDurationMinutes": 20,
+    "maximumScore": 100,
+    "attemptLimit": null,
+    "allowSolutionView": true,
+    "tags": [
+      "cube",
+      "diagonal",
+      "pythagoras",
+      "3d"
+    ],
+    "initialScene": {
+      "workspaceSnapshot": {
+        "input": "",
+        "results": [],
+        "plots": [],
+        "construction": {
+          "points": [],
+          "lines": [],
+          "circles": [],
+          "polygons": [],
+          "arcs": [],
+          "loci": [],
+          "constraints": []
+        },
+        "geometryGraphSettings": {
+          "showGrid": true,
+          "showAxes": true,
+          "showUnitLabels": true,
+          "showPointLabels": true,
+          "showMeasurements": true,
+          "highContrastGrid": false,
+          "snapToGrid": true,
+          "snapToObjects": true
+        },
+        "lockedGeometryIds": [],
+        "surface": "paraboloid",
+        "surfaceExpression": "x^2+y^2",
+        "cameraPreset3d": "isometric",
+        "sceneAnimationSpeed": 0,
+        "solid": "cube",
+        "surfaceScale": 1,
+        "height3d": 2.5,
+        "crossSection": 0,
+        "showSurface": false,
+        "showSolid": true,
+        "autoRotate3d": false,
+        "zoom3d": 1,
+        "transforms3d": {
+          "solid": {
+            "name": "Cube",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "visible": true,
+            "color": "#8b5cf6",
+            "dimensions": [
+              3,
+              3,
+              3
+            ],
+            "opacity": 0.78,
+            "material": "glass"
+          }
+        },
+        "added3dObjects": [],
+        "deletedBase3dIds": [],
+        "images": [],
+        "protocol": []
+      },
+      "workspaceType": "3d-geometry"
+    },
+    "solutionScene": {
+      "workspaceSnapshot": {
+        "input": "",
+        "results": [],
+        "plots": [],
+        "construction": {
+          "points": [],
+          "lines": [],
+          "circles": [],
+          "polygons": [],
+          "arcs": [],
+          "loci": [],
+          "constraints": []
+        },
+        "geometryGraphSettings": {
+          "showGrid": true,
+          "showAxes": true,
+          "showUnitLabels": true,
+          "showPointLabels": true,
+          "showMeasurements": true,
+          "highContrastGrid": false,
+          "snapToGrid": true,
+          "snapToObjects": true
+        },
+        "lockedGeometryIds": [],
+        "surface": "paraboloid",
+        "surfaceExpression": "x^2+y^2",
+        "cameraPreset3d": "isometric",
+        "sceneAnimationSpeed": 0,
+        "solid": "cube",
+        "surfaceScale": 1,
+        "height3d": 2.5,
+        "crossSection": 0,
+        "showSurface": false,
+        "showSolid": true,
+        "autoRotate3d": false,
+        "zoom3d": 1,
+        "transforms3d": {
+          "solid": {
+            "name": "Cube",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "visible": true,
+            "color": "#8b5cf6",
+            "dimensions": [
+              3,
+              3,
+              3
+            ],
+            "opacity": 0.78,
+            "material": "glass"
+          }
+        },
+        "added3dObjects": [
+          {
+            "id": "face-diagonal-1",
+            "label": "Face diagonal AC",
+            "baseId": "line3d",
+            "render": "line3d",
+            "transform": {
+              "name": "AC",
+              "position": [
+                0,
+                1.5,
+                0
+              ],
+              "rotation": [
+                0,
+                45,
+                0
+              ],
+              "scale": 1,
+              "visible": true,
+              "color": "#22d3ee",
+              "dimensions": [
+                4.24,
+                0.05,
+                0.05
+              ],
+              "opacity": 1,
+              "material": "matte"
+            }
+          },
+          {
+            "id": "face-diagonal-2",
+            "label": "Face diagonal BD",
+            "baseId": "line3d",
+            "render": "line3d",
+            "transform": {
+              "name": "BD",
+              "position": [
+                0,
+                -1.5,
+                0
+              ],
+              "rotation": [
+                0,
+                -45,
+                0
+              ],
+              "scale": 1,
+              "visible": true,
+              "color": "#34d399",
+              "dimensions": [
+                4.24,
+                0.05,
+                0.05
+              ],
+              "opacity": 1,
+              "material": "matte"
+            }
+          },
+          {
+            "id": "space-diagonal",
+            "label": "Space diagonal AG",
+            "baseId": "line3d",
+            "render": "line3d",
+            "transform": {
+              "name": "AG",
+              "position": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                35.264,
+                45,
+                0
+              ],
+              "scale": 1,
+              "visible": true,
+              "color": "#fbbf24",
+              "dimensions": [
+                5.196,
+                0.07,
+                0.07
+              ],
+              "opacity": 1,
+              "material": "matte"
+            }
+          }
+        ],
+        "deletedBase3dIds": [],
+        "images": [],
+        "protocol": []
+      },
+      "workspaceType": "3d-geometry"
+    },
+    "openMode": "practice"
+  },
+  "metadata": {
+    "sample": true,
+    "license": "CC BY 4.0"
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "contentHash": "24ccd3e298d625dba725da3f9e08d15e34301c6c3b04348ffd3ab137030a6839"
+  }
+}

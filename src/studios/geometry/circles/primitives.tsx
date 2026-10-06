@@ -1,4 +1,6 @@
-import { useCallback, useRef, useState, type KeyboardEvent, type PointerEvent, type ReactNode, type RefObject } from "react";
+import { Children, isValidElement, useCallback, useRef, useState, type KeyboardEvent, type PointerEvent, type ReactNode, type RefObject } from "react";
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { lessonScene, type LessonPoint } from "../geometryLessonScene";
 import MathExpression from "../../../components/ui/MathExpression";
 import { dist, fmt, midpoint, type Vec } from "./circleMath";
 
@@ -13,11 +15,11 @@ export function svgToMath(p: Vec, frame = CIRCLE_VB): Vec {
 }
 
 export function clientToSvg(svg: SVGSVGElement, event: PointerEvent, frame = CIRCLE_VB): Vec {
-  const rect = svg.getBoundingClientRect();
-  return {
-    x: ((event.clientX - rect.left) / Math.max(1, rect.width)) * frame.w,
-    y: ((event.clientY - rect.top) / Math.max(1, rect.height)) * frame.h,
-  };
+  const matrix = svg.getScreenCTM();
+  if (!matrix) return { x: 0, y: 0 };
+  const point = svg.createSVGPoint(); point.x = event.clientX; point.y = event.clientY;
+  const local = point.matrixTransform(matrix.inverse());
+  return { x: local.x, y: local.y };
 }
 
 export function useSvgDrag(onMove: (id: string, math: Vec, fine: boolean) => void, onSelect?: (id: string) => void) {
@@ -76,7 +78,11 @@ export function CircleSvg({
     if (event.key === "ArrowDown") { event.preventDefault(); onKeyMove(focused, 0, -step); }
   };
   return (
-    <svg
+    <GeometryLessonCanvas scene={circleLessonScene(children)} onPointChange={(id, screen) => {
+      if (!onKeyMove) return;
+      const original = circleLessonScene(children).construction.points.find(p => p.id === id);
+      if (original) onKeyMove(id, (screen.x - original.x) / scale, (original.y - screen.y) / scale);
+    }}
       ref={svgRef}
       className="clab-svg is-interactive"
       viewBox={`0 0 ${w} ${h}`}
@@ -101,8 +107,56 @@ export function CircleSvg({
         ))}
       </g>
       {children}
-    </svg>
+    </GeometryLessonCanvas>
   );
+}
+
+/** Adapt the declarative circle geometry; keep teaching overlays in lesson view. */
+export function circleLessonScene(children: ReactNode) {
+  const scene = lessonScene(CIRCLE_VB.w, CIRCLE_VB.h, mathToSvg, CIRCLE_VB.scale);
+  const elements: Array<{ type: unknown; props: Record<string, unknown> }> = [];
+  const visit = (nodes: ReactNode) => Children.forEach(nodes, node => {
+    if (!isValidElement<Record<string, unknown>>(node)) return;
+    elements.push({ type: node.type, props: node.props });
+    if (node.props.children) visit(node.props.children as ReactNode);
+  });
+  visit(children);
+  const named = elements.filter(e => e.type === DraggablePoint).map(e => ({ ...(e.props.point as Vec), id: String(e.props.dragId ?? e.props.label ?? ""), label: String(e.props.label ?? ""), color: e.props.color as string | undefined }));
+  const point = (value: Vec): LessonPoint => named.find(p => dist(p, value) < 1e-7) ?? value;
+  named.forEach(p => scene.point(p));
+  let primaryCircle: string | undefined;
+  let primary: { origin: Vec; radius: number } | undefined;
+  elements.forEach(({ type, props: p }) => {
+    const style = { color: p.color as string | undefined, strokeWidth: Number(p.width ?? 2.3), dashArray: p.dashed ? "6 4" : undefined };
+    if (type === CircleOutline) {
+      const id = scene.circle(point(p.origin as Vec), Number(p.radius), style);
+      if (!primaryCircle) { primaryCircle = id; primary = { origin: p.origin as Vec, radius: Number(p.radius) }; }
+    } else if (type === ChordLine || type === GhostChord) {
+      scene.line(point(p.a as Vec), point(p.b as Vec), type === GhostChord ? { color: "#94a3b8", dashArray: "6 4" } : style);
+    } else if (type === RadiusLine) {
+      scene.line(point(p.origin as Vec), point(p.point as Vec), style);
+    } else if (type === FilledTriangle) {
+      scene.polygon([point(p.a as Vec), point(p.b as Vec), point(p.c as Vec)], { fill: p.color as string, color: "transparent" });
+    } else if (type === TangentLine) {
+      const origin = p.point as Vec, dir = p.direction as Vec;
+      const k = Number(p.length ?? 4.6) / (Math.hypot(dir.x, dir.y) || 1);
+      scene.line({ x: origin.x - dir.x * k, y: origin.y - dir.y * k }, { x: origin.x + dir.x * k, y: origin.y + dir.y * k }, style);
+    } else if (type === ArcPath) {
+      const origin = p.origin as Vec, r = Number(p.radius);
+      const at = (angle: number) => ({ x: origin.x + r * Math.cos(angle), y: origin.y + r * Math.sin(angle) });
+      scene.construction.arcs.push({ id: `lesson-arc-${scene.construction.arcs.length}`, center: scene.point(point(origin)), start: scene.point(point(at(Number(p.startRad)))), end: scene.point(point(at(Number(p.endRad)))), sector: Boolean(p.fill), style: { ...style, fill: p.fill as string | undefined } });
+    }
+  });
+  if (primaryCircle && primary) {
+    const radiusHandle = named.find(p => p.id === "R");
+    const circle = scene.construction.circles.find(c => c.id === primaryCircle);
+    if (circle && radiusHandle) circle.edge = radiusHandle.id!;
+  }
+  if (primaryCircle && primary) named.forEach(p => {
+    if (Math.abs(dist(p, primary!.origin) - primary!.radius) < 1e-7 && p.id !== "R") scene.construction.constraints.push({ id: `on-circle-${p.id}`, type: "on-circle", point: p.id!, circle: primaryCircle! });
+  });
+  if (named.some(p => p.id === "M") && named.some(p => p.id === "A") && named.some(p => p.id === "B")) scene.construction.constraints.push({ id: "chord-midpoint", type: "midpoint", a: "A", b: "B", point: "M" });
+  return scene.result();
 }
 
 export function CircleOutline({ origin, radius, dashed, color = "#08b9dd" }: { origin: Vec; radius: number; dashed?: boolean; color?: string }) {
@@ -174,13 +228,13 @@ export function RightAngleMarker({ origin, point, tangentDir }: { origin: Vec; p
   return <polyline points={`${p1.x},${p1.y} ${p2.x},${p2.y} ${p3.x},${p3.y}`} fill="none" stroke="#10b981" strokeWidth="2" />;
 }
 
-export function LengthBadge({ a, b, text, color = "#0f2747" }: { a: Vec; b: Vec; text: string; color?: string }) {
+export function LengthBadge({ a, b, text, color = "#0f2747", offsetY = 0 }: { a: Vec; b: Vec; text: string; color?: string; offsetY?: number }) {
   const m = mathToSvg(midpoint(a, b));
-  const w = Math.max(36, text.length * 7);
+  const w = Math.max(36, text.length * 9);
   return (
     <g>
-      <rect x={m.x - w / 2} y={m.y - 18} width={w} height="16" rx="7" fill="#ffffffee" stroke="#dce7f4" />
-      <text x={m.x} y={m.y - 6} fontSize="10" fontWeight="800" fill={color} textAnchor="middle">{text}</text>
+      <rect x={m.x - w / 2} y={m.y - 24 + offsetY} width={w} height="24" rx="7" fill="#ffffffee" stroke="#dce7f4" />
+      <text x={m.x} y={m.y - 7 + offsetY} fontSize="13" fontWeight="800" fill={color} textAnchor="middle">{text}</text>
     </g>
   );
 }

@@ -1,0 +1,651 @@
+/* Container layouts reuse the native mobile drawers inside narrow lesson panels. */
+@container geometry-embed (min-width: 0px) {
+
+  .gs2d-table-dock,
+  .gs2d-data-dock {
+    grid-template-columns: 1fr;
+    overflow: auto;
+  }
+  .gs2d-table-wrap {
+    min-height: 100px;
+  }
+
+
+    .geometry-studio-shell {
+      grid-template-columns: 1fr;
+      grid-template-rows: 54px minmax(0, 1fr) 34px;
+      grid-template-areas:
+        "top"
+        "main"
+        "status";
+    }
+
+    .geometry-studio-rail,
+    .geometry-top-actions span {
+      display: none;
+    }
+
+    .geometry-studio-topbar {
+      gap: 6px;
+      padding-inline: 8px;
+    }
+
+    .geometry-top-actions {
+      min-width: 0;
+      flex: 1 1 auto;
+      justify-content: flex-end;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .geometry-top-actions::-webkit-scrollbar,
+    .geometry-statusbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .geometry-top-actions button {
+      flex: 0 0 40px;
+      padding-inline: 0;
+    }
+
+    .geometry-studio-main {
+      grid-template-rows: minmax(0, 1fr) 62px;
+      padding: 0.35rem;
+    }
+
+    .geometry-bottom-dock {
+      display: none;
+    }
+    .geometry-mobile-tools {
+      right: 8px;
+      bottom: 40px;
+      left: 8px;
+    }
+    .geometry-canvas-hint {
+      bottom: 62px;
+      max-width: calc(100% - 32px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .geometry-statusbar {
+      min-width: 0;
+      gap: 10px;
+      overflow-x: auto;
+      padding-inline: 8px;
+      white-space: nowrap;
+    }
+    .geometry-statusbar button {
+      flex: 0 0 auto;
+      margin-left: 0;
+    }
+
+    .geometry-theme-toggle button {
+      flex: 0 0 32px;
+    }
+  
+}
+@container geometry-embed (min-width: 0px) {
+
+  .mws-root[data-mws-mobile="true"].graph-studio-3d-shell,
+  .mws-root[data-mws-mobile="true"].object-studio-shell {
+    height: var(--mws-vvh, 100dvh);
+    min-height: var(--mws-vvh, 100dvh);
+    padding-bottom: env(safe-area-inset-bottom);
+    grid-template-rows: 48px minmax(0, 1fr) 22px 64px;
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-topbar {
+    min-height: 48px;
+    padding: 4px 8px 4px max(8px, env(safe-area-inset-left));
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-panel-reveal,
+  .mws-root[data-mws-mobile="true"] .gs3d-status,
+  .mws-root[data-mws-mobile="true"] .gs3d-mobile-nav {
+    display: none !important;
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-mobile-menu {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 10px;
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-mobile-menu[aria-pressed="true"] {
+    background: #22d3ee;
+    color: #082f49;
+    box-shadow: inset 0 0 0 1px #67e8f9;
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-left-panel,
+  .mws-root[data-mws-mobile="true"] .gs3d-right-panel {
+    top: auto;
+    right: 8px;
+    bottom: calc(72px + env(safe-area-inset-bottom));
+    left: 8px;
+    width: auto;
+    max-height: min(52dvh, 420px);
+    border-radius: 16px 16px 8px 8px;
+    transition:
+      transform var(--mws-open) var(--mws-ease),
+      opacity var(--mws-open) var(--mws-ease);
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-left-panel:not(.open),
+  .mws-root[data-mws-mobile="true"] .gs3d-right-panel:not(.open) {
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-left-panel.open,
+  .mws-root[data-mws-mobile="true"] .gs3d-right-panel.open {
+    opacity: 1;
+    transform: none;
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-right-panel.vector-lab-active {
+    top: 52px;
+    max-height: none;
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-dock {
+    right: 8px;
+    left: 8px;
+    bottom: calc(72px + env(safe-area-inset-bottom));
+    border-radius: 16px 16px 8px 8px;
+    max-height: min(42dvh, 320px);
+  }
+
+  .mws-toolbar {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    position: sticky;
+    z-index: 120;
+    grid-area: mobile;
+    gap: 4px;
+    margin: 0 8px calc(6px + env(safe-area-inset-bottom));
+    border: 1px solid rgba(34, 211, 238, 0.28);
+    border-radius: 16px;
+    background: rgba(3, 10, 22, 0.94);
+    padding: 4px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(16px);
+  }
+
+  .mws-toolbar button {
+    display: flex;
+    min-height: 48px;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    border-radius: 12px;
+    color: #9eb6c9;
+    font-size: 10px;
+    font-weight: 800;
+  }
+
+  .mws-toolbar button.is-active {
+    background: rgba(34, 211, 238, 0.16);
+    color: #ecfeff;
+    box-shadow: inset 0 0 0 1px #67e8f9;
+  }
+
+  .mws-toolbar button.is-open {
+    color: #ecfeff;
+    box-shadow: inset 0 -3px 0 #22d3ee;
+  }
+
+  .mws-toolbar button.is-active .mws-toolbar-icon {
+    transform: translateY(-1px);
+  }
+
+  .mws-toolbar button.is-active .mws-toolbar-icon svg {
+    stroke-width: 2.6;
+  }
+
+  .mws-toolbar svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mws-sheet {
+    display: grid;
+    position: fixed;
+    z-index: 130;
+    right: 8px;
+    bottom: calc(72px + env(safe-area-inset-bottom));
+    left: 8px;
+    max-height: min(58dvh, 460px);
+    grid-template-rows: 18px auto minmax(0, 1fr);
+    overflow: hidden;
+    border: 1px solid rgba(34, 211, 238, 0.28);
+    border-radius: 18px 18px 10px 10px;
+    background: rgba(4, 12, 24, 0.97);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .mws-sheet-handle,
+  .mws-root[data-mws-mobile="true"] .gs3d-left-panel.open::before,
+  .mws-root[data-mws-mobile="true"] .gs3d-right-panel.open::before {
+    content: "";
+    display: block;
+    width: 42px;
+    height: 4px;
+    margin: 8px auto 0;
+    border-radius: 99px;
+    background: rgba(148, 163, 184, 0.55);
+  }
+
+  .mws-root[data-mws-mobile="true"] .gs3d-left-panel.open::before,
+  .mws-root[data-mws-mobile="true"] .gs3d-right-panel.open::before {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 21px);
+    margin: 8px 0 0;
+    pointer-events: none;
+  }
+
+  .mws-sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 12px 8px;
+  }
+
+  .mws-sheet-header h2 {
+    color: #f8fafc;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .mws-sheet-header button,
+  .mws-inspector-actions button {
+    min-height: 40px;
+    min-width: 44px;
+    padding: 0 10px;
+    border-radius: 10px;
+    color: #67e8f9;
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  .mws-sheet-body {
+    overflow: auto;
+    padding: 0 12px 12px;
+  }
+
+  .mws-sheet-body button {
+    display: flex;
+    width: 100%;
+    min-height: 44px;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.65);
+    padding: 0 12px;
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .mws-inspector {
+    display: flex;
+    position: absolute;
+    z-index: 80;
+    right: 10px;
+    bottom: calc(78px + env(safe-area-inset-bottom));
+    left: 10px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border: 1px solid rgba(34, 211, 238, 0.22);
+    border-radius: 14px;
+    background: rgba(2, 8, 19, 0.9);
+    padding: 8px 10px;
+    pointer-events: auto;
+  }
+
+  .mws-inspector-copy {
+    min-width: 0;
+  }
+
+  .mws-inspector-copy strong {
+    display: block;
+    color: #f8fafc;
+    font-size: 12px;
+  }
+
+  .mws-inspector-copy span,
+  .mws-inspector-copy dt {
+    color: #94a3b8;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .mws-inspector-copy dl {
+    display: flex;
+    gap: 12px;
+    margin: 2px 0 0;
+  }
+
+  .mws-inspector-copy dd {
+    margin: 0;
+    color: #e2e8f0;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .mws-root[data-mws-mobile="true"] input:focus,
+  .mws-root[data-mws-mobile="true"] textarea:focus {
+    scroll-margin-bottom: calc(var(--mws-keyboard, 0px) + 88px);
+  }
+
+}
+@container geometry-embed (min-width: 0px) {
+
+  .geometry-studio-shell.mws-root {
+    height: var(--mws-vvh, 100dvh);
+    min-height: var(--mws-vvh, 100dvh);
+  }
+
+  .geometry-studio-shell.mws-root .geometry-mobile-overflow {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border-radius: 10px;
+  }
+
+  .geometry-studio-shell.mws-root .geometry-mobile-overflow[aria-pressed="true"] {
+    background: #22d3ee;
+    color: #082f49;
+  }
+
+  .geometry-studio-shell.mws-root .geometry-drawer-backdrop {
+    display: none !important;
+  }
+
+  .geometry-studio-shell.mws-root .geometry-mobile-drawer {
+    display: grid;
+    position: fixed;
+    z-index: 140;
+    right: 8px;
+    bottom: calc(86px + env(safe-area-inset-bottom));
+    left: 8px;
+    max-height: min(56dvh, 460px);
+    grid-template-rows: 18px auto minmax(0, 1fr);
+    overflow: hidden;
+    border: 1px solid rgba(34, 211, 238, 0.28);
+    border-radius: 18px 18px 10px 10px;
+    background: rgba(4, 12, 24, 0.97);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .geometry-drawer-handle {
+    width: 42px;
+    height: 4px;
+    margin: 8px auto 0;
+    border-radius: 99px;
+    background: rgba(148, 163, 184, 0.55);
+  }
+
+  .geometry-mobile-drawer header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 4px 10px 8px;
+  }
+
+  .geometry-mobile-drawer header nav {
+    display: flex;
+    gap: 4px;
+  }
+
+  .geometry-mobile-drawer header nav button,
+  .geometry-mobile-drawer header > button {
+    min-height: 40px;
+    min-width: 44px;
+    padding: 0 10px;
+    border-radius: 10px;
+    color: #9eb6c9;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: capitalize;
+  }
+
+  .geometry-mobile-drawer header nav button.active {
+    background: rgba(34, 211, 238, 0.16);
+    color: #ecfeff;
+    box-shadow: inset 0 0 0 1px #67e8f9;
+  }
+
+  .geometry-drawer-content {
+    overflow: auto;
+    padding: 0 10px 12px;
+  }
+
+  .geometry-studio-shell.mws-root .geometry-mobile-tools {
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    padding: 4px;
+    border-radius: 16px;
+  }
+
+  .geometry-studio-shell.mws-root .geometry-mobile-tools button.active {
+    background: rgba(34, 211, 238, 0.16);
+    color: #ecfeff;
+    box-shadow: inset 0 0 0 1px #67e8f9;
+  }
+
+  .geometry-studio-shell.mws-root .geometry-context-toolbar {
+    left: 8px;
+    right: 8px;
+    bottom: calc(78px + env(safe-area-inset-bottom));
+    max-width: none;
+  }
+
+}
+@container geometry-embed (min-width: 0px) {
+
+  .math-workspace-layout:has(.mws-root[data-mws-mobile="true"]) {
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  body:has(.mws-root[data-mws-mobile="true"]) .math-workspace-mobile-dock,
+  body:has(.mws-root[data-mws-mobile="true"]) nav[aria-label="Mobile learning shortcuts"] {
+    display: none !important;
+  }
+
+}
+
+.geo-lesson-editor, .geo-embedded-graph-body { container: geometry-embed / inline-size; }
+.geo-lesson-editor .geometry-studio-shell { grid-template-columns: minmax(0, 1fr) !important; grid-template-rows: 54px minmax(0, 1fr) 34px !important; grid-template-areas: "top" "main" "status" !important; }
+.geo-lesson-editor .geometry-studio-toolbox, .geo-lesson-editor .geometry-studio-right, .geo-lesson-editor .geometry-studio-rail, .geo-lesson-editor .geometry-pane-resizer { display: none !important; }
+.geo-lesson-editor .geometry-canvas-stage { min-height: 0; }
+.geo-lesson-editor .geometry-studio-shell.mws-root .geometry-mobile-tools { display: flex !important; left: 8px; right: 8px; }
+.geo-lesson-editor .geometry-pane-controls { display: none; }
+.geo-lesson-editor .graph-studio-3d-shell.mws-root, .geo-embedded-graph-body .graph-studio-3d-shell.mws-root { height: 100% !important; min-height: 0 !important; }
+
+.geo-lesson-editor .geometry-studio-shell.mws-root { height: 100% !important; min-height: 0 !important; }
+.geo-lesson-editor .geometry-studio-shell.mws-root .geometry-mobile-drawer { position: absolute !important; bottom: 102px !important; }
+.geo-lesson-editor .geometry-studio-topbar h1, .geo-lesson-editor .geometry-studio-topbar p, .geo-lesson-editor .geometry-top-actions span { display: none; }
+.geo-lesson-editor .geometry-studio-topbar { min-width: 0; overflow: auto; }
+
+@container geometry-embed (min-width: 0px) {
+
+  .graph-studio-3d-shell,
+  .graph-studio-3d-shell:not(.has-left),
+  .graph-studio-3d-shell:not(.has-right),
+  .graph-studio-3d-shell:not(.has-left):not(.has-right) {
+    grid-template-areas: "top" "canvas" "status" "mobile";
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 54px minmax(0, 1fr) 26px 58px;
+  }
+  .graph-studio-surface-shell,
+  .graph-studio-surface-shell:not(.has-left),
+  .graph-studio-surface-shell:not(.has-right),
+  .graph-studio-surface-shell:not(.has-left):not(.has-right) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .gs3d-topbar {
+    grid-template-columns: auto minmax(80px, 1fr) auto;
+    padding: 5px 8px;
+  }
+  .gs3d-brand strong,
+  .gs3d-modes,
+  .gs3d-top-actions .gs3d-top-action:not(:nth-last-child(2)),
+  .gs3d-top-actions .relative:last-child {
+    display: none;
+  }
+  .gs3d-mark {
+    width: 34px;
+    height: 34px;
+  }
+  .gs3d-mobile-menu {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    color: white;
+  }
+  .gs3d-navrail {
+    display: none;
+  }
+  .gs3d-left-panel,
+  .gs3d-right-panel {
+    position: fixed;
+    z-index: 90;
+    top: 54px;
+    bottom: 58px;
+    width: min(86vw, 320px);
+    box-shadow: 0 20px 60px #000c;
+  }
+  .gs3d-left-panel {
+    left: 0;
+  }
+  .gs3d-right-panel {
+    right: 0;
+  }
+  .gs3d-canvas-zone {
+    grid-area: canvas;
+  }
+  .gs3d-dock {
+    position: fixed;
+    z-index: 85;
+    right: 0;
+    bottom: 58px;
+    left: 0;
+    height: min(42vh, 300px);
+    transform: translateY(0);
+    box-shadow: 0 -20px 50px #0009;
+  }
+  .gs3d-dock:not(.open) {
+    height: 38px;
+  }
+  .gs3d-dock:not(.open) .gs3d-dock-tabs button:not(.collapse) {
+    display: none;
+  }
+  .gs3d-dock:not(.open) .gs3d-dock-tabs button.collapse {
+    min-width: 44px;
+    margin-left: auto;
+  }
+  .gs3d-dock-content {
+    overflow-y: auto;
+  }
+  .gs3d-status {
+    grid-area: status;
+    gap: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .gs3d-status span:nth-of-type(n + 3) {
+    display: none;
+  }
+  .gs3d-mobile-nav {
+    grid-area: mobile;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid var(--gs-border);
+    background: #06111f;
+  }
+  .gs3d-mobile-nav button {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    color: #9eb1c3;
+    font-size: 9px;
+    font-weight: 700;
+  }
+  .gs3d-mobile-nav svg {
+    width: 18px;
+  }
+  .gs3d-mobile-nav .portable-share-inline {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  .gs3d-mobile-nav .portable-share-trigger {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+  .gs3d-interaction-hint {
+    display: none;
+  }
+  .gs3d-canvas-tools {
+    top: 58px;
+    left: 8px;
+  }
+  .gs3d-view-menu {
+    top: 8px;
+    left: 8px;
+  }
+  .gs3d-canvas-actions {
+    top: 8px;
+    right: 8px;
+  }
+  .gs3d-timeline,
+  .gs3d-slice-dock {
+    display: grid;
+    height: auto;
+    grid-template-columns: 42px 1fr;
+    align-items: center;
+  }
+  .gs3d-timeline .scrubber,
+  .gs3d-slice-dock > input,
+  .gs3d-cross-preview {
+    grid-column: 1 / -1;
+  }
+  .gs3d-values-dock {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+.geo-lesson-editor .graph-studio-3d-shell, .geo-embedded-graph-body .graph-studio-3d-shell { width: 100% !important; max-width: 100%; grid-template-columns: minmax(0, 1fr) !important; grid-template-rows: 48px minmax(0, 1fr) 22px 64px !important; grid-template-areas: "top" "canvas" "status" "mobile" !important; }
+.geo-lesson-editor .gs3d-canvas-zone, .geo-embedded-graph-body .gs3d-canvas-zone { width: auto !important; min-width: 0; }
+.geo-lesson-editor .gs3d-left-panel, .geo-lesson-editor .gs3d-right-panel, .geo-embedded-graph-body .gs3d-left-panel, .geo-embedded-graph-body .gs3d-right-panel { position: absolute; }
+.geo-lesson-editor .mws-toolbar, .geo-embedded-graph-body .mws-toolbar { display: flex !important; }
+.geo-lesson-editor .geometry-studio-shell.mws-root .geometry-mobile-overflow { display: grid !important; }
+.geo-lesson-editor .geometry-studio-shell.mws-root .geometry-mobile-drawer { display: grid !important; }
+
+.geo-lesson-editor .mws-sheet, .geo-embedded-graph-body .mws-sheet { display: grid !important; position: absolute; }
+.geo-lesson-editor .mws-inspector, .geo-embedded-graph-body .mws-inspector { display: flex !important; position: absolute; }
+.geo-lesson-editor .mws-sheet-handle, .geo-embedded-graph-body .mws-sheet-handle { display: block !important; }

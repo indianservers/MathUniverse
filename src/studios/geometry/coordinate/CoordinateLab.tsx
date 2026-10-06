@@ -1,3 +1,6 @@
+import GeometryEmbeddedGraph from "../GeometryEmbeddedGraph";
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { coordinateLessonScene } from "../geometryStudioScenes";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import {
   ArrowUpRight,
@@ -239,11 +242,11 @@ export default function CoordinateLab({ page }: { page: StudioMockupPage }) {
   const clientToView = (event: { clientX: number; clientY: number }) => {
     const svg = svgRef.current;
     if (!svg) return { x: 0, y: 0 };
-    const rect = svg.getBoundingClientRect();
-    return {
-      x: ((event.clientX - rect.left) / rect.width) * VIEW.w,
-      y: ((event.clientY - rect.top) / rect.height) * VIEW.h,
-    };
+    const matrix = svg.getScreenCTM();
+    if (!matrix) return { x: 0, y: 0 };
+    const point = svg.createSVGPoint(); point.x = event.clientX; point.y = event.clientY;
+    const local = point.matrixTransform(matrix.inverse());
+    return { x: local.x, y: local.y };
   };
   const clientToWorld = (event: { clientX: number; clientY: number }) => snapWorld(fromScreen(clientToView(event).x, clientToView(event).y, cam));
 
@@ -556,7 +559,7 @@ export default function CoordinateLab({ page }: { page: StudioMockupPage }) {
 
         <section className="coord-stage">
           {prompt ? <div className="coord-banner" role="status">{prompt}<button type="button" onClick={() => { setTool("select"); setPending(null); setRefTarget(null); }}>Cancel</button></div> : null}
-          <svg
+          <GeometryLessonCanvas pointStep={snap ? spacing : 0.1} onPointChange={(id, point) => { const next = snapWorld(fromScreen(point.x, point.y, cam)); push({ ...scene, points: scene.points.map(p => p.id === id ? { ...p, ...next } : p) }, "Point moved."); }} scene={coordinateLessonScene(scene, VIEW.w, VIEW.h, p => toScreen(p, cam))}
             ref={svgRef}
             className={`coord-svg${tool !== "select" && tool !== "clear" ? " is-place" : ""}`}
             viewBox={`0 0 ${VIEW.w} ${VIEW.h}`}
@@ -688,7 +691,7 @@ export default function CoordinateLab({ page }: { page: StudioMockupPage }) {
                 </g>
               );
             })}
-          </svg>
+          </GeometryLessonCanvas>
 
           {hover ? <div className="coord-float coord-hover">({uMinus(hover.x, fraction)}, {uMinus(hover.y, fraction)})</div> : null}
           {mode === "locus" && (
@@ -826,6 +829,7 @@ export default function CoordinateLab({ page }: { page: StudioMockupPage }) {
           </section>
         </aside>
       </div>
+      <GeometryEmbeddedGraph key={mode} activityId={`coordinate:${mode}`} title="Plot the current lines" expressions={scene.lines.filter(line => line.visible).map(line => `${line.m}*x+(${line.b})`)} />
       <section className="msk-strip" aria-label="Learning loop">
         <div><b>Observe</b><small>{page.learning.observe}</small></div>
         <div><b>Understand</b><small>{page.learning.understand}</small></div>

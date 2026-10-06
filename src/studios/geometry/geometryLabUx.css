@@ -46,3 +46,6 @@
   .geo-print-prompt{display:block!important;padding:16px;border:1px dashed #94a3b8;font-size:16px;font-weight:800}
   html.geo-print-worksheet .tri-print-hide,html.geo-print-worksheet .tri-canvas text{display:none!important}
 }
+
+.geo-lab-ux {grid-template-columns:minmax(0,1fr);}
+.geo-lab-body {min-width:0;max-width:100%;}

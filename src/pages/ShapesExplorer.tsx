@@ -1,4 +1,5 @@
-import { Award, Box, Camera, Check, ChevronDown, Cuboid, Download, Eye, Filter, Grid3X3, Heart, History, Mic, Moon, PanelLeftClose, PanelLeftOpen, Palette, Pause, Play, Printer, RefreshCw, Redo2, RotateCcw, RotateCw, Ruler, Search, Settings, Shapes, SlidersHorizontal, Sparkles, Star, Sun, Undo2, Volume2, Wand2, X, ZoomIn, ZoomOut } from "lucide-react";
+import WorkspaceChromeThemeToggle from "../components/workspace/WorkspaceChromeThemeToggle";
+import { Award, Box, Camera, Check, ChevronDown, Cuboid, Download, Eye, Filter, Grid3X3, Heart, History, Mic, PanelLeftClose, PanelLeftOpen, Palette, Pause, Play, Printer, RefreshCw, Redo2, RotateCcw, RotateCw, Ruler, Search, Settings, Shapes, SlidersHorizontal, Sparkles, Star, Undo2, Volume2, Wand2, X, ZoomIn, ZoomOut } from "lucide-react";
 import { OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { ReactNode, useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
@@ -42,7 +43,7 @@ export type ShapeDefinition = {
 type Metrics = Record<string, number>;
 type ShapeToolMode = "rotate" | "pan" | "measure" | "grid";
 type ShapeUnit = "units" | "mm" | "cm" | "m" | "in";
-type ShapesTheme = "dark" | "light";
+type ShapesTheme = "dark" | "light" | "glow";
 type ShapeSort = "name" | "dimension" | "complexity" | "vertices";
 type ShapeHistorySnapshot = {
   a: number;
@@ -64,8 +65,8 @@ type ShapeHistorySnapshot = {
 
 const SHAPES_PREFERENCES_KEY = "math-universe-shapes-preferences-v2";
 const savedShapesTheme = (): ShapesTheme => {
-  try { return JSON.parse(localStorage.getItem(SHAPES_PREFERENCES_KEY) ?? "{}").theme === "light" ? "light" : "dark"; }
-  catch { return "dark"; }
+  try { const saved=JSON.parse(localStorage.getItem(SHAPES_PREFERENCES_KEY) ?? "{}").theme; return saved === "dark" || saved === "glow" ? saved : "light"; }
+  catch { return "light"; }
 };
 const unitScale: Record<ShapeUnit, number> = { units: 1, mm: 10, cm: 1, m: 0.01, in: 0.3937008 };
 
@@ -380,14 +381,14 @@ export default function ShapesExplorer() {
             }}>{tab}</button>
           ))}
         </nav>
-        <div className="shapes-mobile-quick-actions"><button type="button" className="shapes-icon-button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`} title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}>{theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}</button><button type="button" className="shapes-icon-button" onClick={() => setExportOpen(true)} aria-label="Export shape"><Download className="h-4 w-4" /></button><button type="button" className="shapes-icon-button" onClick={() => setSettingsOpen(true)} aria-label="Workspace settings"><Settings className="h-4 w-4" /></button><button ref={inspectorTriggerRef} type="button" className="shapes-mobile-properties shapes-icon-button" onClick={openMobileInspector} aria-haspopup="dialog" aria-expanded={mobileInspectorOpen}><SlidersHorizontal className="h-4 w-4" /><span>Properties</span></button></div>
+        <div className="shapes-mobile-quick-actions"><WorkspaceChromeThemeToggle theme={theme==="dark"?"default":theme} storageKey="math-universe-shapes-theme" onChange={next=>setTheme(next==="default"?"dark":next)}/><button type="button" className="shapes-icon-button" onClick={() => setExportOpen(true)} aria-label="Export shape"><Download className="h-4 w-4" /></button><button type="button" className="shapes-icon-button" onClick={() => setSettingsOpen(true)} aria-label="Workspace settings"><Settings className="h-4 w-4" /></button><button ref={inspectorTriggerRef} type="button" className="shapes-mobile-properties shapes-icon-button" onClick={openMobileInspector} aria-haspopup="dialog" aria-expanded={mobileInspectorOpen}><SlidersHorizontal className="h-4 w-4" /><span>Properties</span></button></div>
         <div className="shapes-top-actions">
           <button type="button" className="shapes-toolbar-button" onClick={undoShape} disabled={!historyStack.length} title="Undo"><Undo2 className="h-4 w-4" /></button>
           <button type="button" className="shapes-toolbar-button" onClick={redoShape} disabled={!redoStack.length} title="Redo"><Redo2 className="h-4 w-4" /></button>
           <button type="button" className={favoriteIds.has(selected.id) ? "shapes-toolbar-button is-active" : "shapes-toolbar-button"} onClick={toggleFavorite}><Star className="h-4 w-4" />Favourite</button>
           <button type="button" className="shapes-toolbar-button" onClick={resetView}><RefreshCw className="h-4 w-4" />Reset</button>
           <button type="button" className="shapes-toolbar-button" onClick={() => setExportOpen(true)}><Download className="h-4 w-4" />Export</button>
-          <button type="button" className="shapes-icon-button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`} title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}>{theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}</button>
+          <WorkspaceChromeThemeToggle theme={theme==="dark"?"default":theme} storageKey="math-universe-shapes-theme" onChange={next=>setTheme(next==="default"?"dark":next)}/>
           <button type="button" className="shapes-toolbar-button" onClick={() => setSettingsOpen(true)}><Settings className="h-4 w-4" />Settings</button>
         </div>
       </header>
@@ -1228,7 +1229,7 @@ function FormulaDependencyPanel({ shape, entries, highlighted, onHighlight }: { 
 }
 
 function ShapeSettingsDialog({ theme, unit, precision, highContrast, largeLabels, colorblind, reducedMotion, onTheme, onUnit, onPrecision, onHighContrast, onLargeLabels, onColorblind, onClose }: { theme: ShapesTheme; unit: ShapeUnit; precision: number; highContrast: boolean; largeLabels: boolean; colorblind: boolean; reducedMotion: boolean; onTheme: (theme: ShapesTheme) => void; onUnit: (unit: ShapeUnit) => void; onPrecision: (value: number) => void; onHighContrast: (value: boolean) => void; onLargeLabels: (value: boolean) => void; onColorblind: (value: boolean) => void; onClose: () => void }) {
-  return <div className="shapes-modal-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}><section className="shapes-modal" role="dialog" aria-modal="true" aria-label="Shape Explorer settings"><header><h2>Workspace settings</h2><button type="button" onClick={onClose} aria-label="Close settings"><X /></button></header><label>Appearance<select value={theme} onChange={(event) => onTheme(event.target.value as ShapesTheme)}><option value="dark">Dark theme</option><option value="light">Light theme</option></select></label><label>Measurement unit<select value={unit} onChange={(event) => onUnit(event.target.value as ShapeUnit)}><option value="units">Abstract units</option><option value="mm">Millimetres</option><option value="cm">Centimetres</option><option value="m">Metres</option><option value="in">Inches</option></select></label><label>Decimal precision<select value={precision} onChange={(event) => onPrecision(Number(event.target.value))}>{[0, 1, 2, 3, 4].map((value) => <option key={value} value={value}>{value} places</option>)}</select></label><label className="shapes-setting-toggle"><span>High contrast</span><input type="checkbox" checked={highContrast} onChange={(event) => onHighContrast(event.target.checked)} /></label><label className="shapes-setting-toggle"><span>Larger labels</span><input type="checkbox" checked={largeLabels} onChange={(event) => onLargeLabels(event.target.checked)} /></label><label className="shapes-setting-toggle"><span>Color-blind safe palette</span><input type="checkbox" checked={colorblind} onChange={(event) => onColorblind(event.target.checked)} /></label><p>Reduced motion follows your device setting and is currently {reducedMotion ? "enabled" : "disabled"}.</p></section></div>;
+  return <div className="shapes-modal-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}><section className="shapes-modal" role="dialog" aria-modal="true" aria-label="Shape Explorer settings"><header><h2>Workspace settings</h2><button type="button" onClick={onClose} aria-label="Close settings"><X /></button></header><label>Appearance<select value={theme} onChange={(event) => onTheme(event.target.value as ShapesTheme)}><option value="glow">Glow theme</option><option value="dark">Dark theme</option><option value="light">Light theme</option></select></label><label>Measurement unit<select value={unit} onChange={(event) => onUnit(event.target.value as ShapeUnit)}><option value="units">Abstract units</option><option value="mm">Millimetres</option><option value="cm">Centimetres</option><option value="m">Metres</option><option value="in">Inches</option></select></label><label>Decimal precision<select value={precision} onChange={(event) => onPrecision(Number(event.target.value))}>{[0, 1, 2, 3, 4].map((value) => <option key={value} value={value}>{value} places</option>)}</select></label><label className="shapes-setting-toggle"><span>High contrast</span><input type="checkbox" checked={highContrast} onChange={(event) => onHighContrast(event.target.checked)} /></label><label className="shapes-setting-toggle"><span>Larger labels</span><input type="checkbox" checked={largeLabels} onChange={(event) => onLargeLabels(event.target.checked)} /></label><label className="shapes-setting-toggle"><span>Color-blind safe palette</span><input type="checkbox" checked={colorblind} onChange={(event) => onColorblind(event.target.checked)} /></label><p>Reduced motion follows your device setting and is currently {reducedMotion ? "enabled" : "disabled"}.</p></section></div>;
 }
 
 function ShapeExportDialog({ shape, metrics, summary, onClose }: { shape: ShapeDefinition; metrics: Metrics; summary: () => void; onClose: () => void }) {

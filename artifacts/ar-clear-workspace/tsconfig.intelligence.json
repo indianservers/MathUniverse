@@ -1,0 +1,1 @@
+{"extends":"../../tsconfig.app.json","compilerOptions":{"types":["vite/client"]},"include":["../../src/ar-math-lab/hand-intelligence/**/*","../../src/ar-math-lab/ARCameraHands.tsx","../../src/ar-math-lab/ARTrackedScene.tsx"],"exclude":[]}

@@ -1,43 +1,11 @@
-import { renderToString } from "react-dom/server";
-import { MemoryRouter } from "react-router-dom";
-import { describe, expect, it } from "vitest";
-import NumberSystems from "./NumberSystems";
-
-const routes = [
-  ["/number-systems", "Welcome to Number Systems Studio"],
-  ["/number-systems/rational", "Rational numbers"],
-  ["/number-systems/irrational", "Irrational numbers"],
-  ["/number-systems/real-line", "Real number line"],
-  ["/number-systems/hierarchy", "Number hierarchy"],
-  ["/number-systems/concepts", "Concept cards"],
-  ["/number-systems/practice", "Practice &amp; accuracy"],
-] as const;
-
-describe("Number Systems Studio", () => {
-  it.each(routes)("renders %s", (route, heading) => {
-    const html = renderToString(<MemoryRouter initialEntries={[route]}><NumberSystems /></MemoryRouter>);
-    expect(html).toContain(heading);
-    expect(html).toContain("Number Systems Studio navigation");
-  });
-
-  it("keeps the home cards linked to dedicated labs", () => {
-    const html = renderToString(<MemoryRouter initialEntries={["/number-systems"]}><NumberSystems /></MemoryRouter>);
-    for (const href of ["/number-systems/rational", "/number-systems/irrational", "/number-systems/real-line", "/number-systems/hierarchy", "/number-systems/formula-visualizer"]) {
-      expect(html).toContain(`href="${href}"`);
-    }
-    expect(html).toContain("Progress counts only completed checks");
-    expect(html).toContain("Nested number sets");
-    expect(html).toContain("ℕ ⊂ W");
-  });
-
-  it("exposes real mode tabs and concept mini canvases", () => {
-    const rational = renderToString(<MemoryRouter initialEntries={["/number-systems/rational"]}><NumberSystems /></MemoryRouter>);
-    expect(rational).toContain("Fraction");
-    expect(rational).toContain("Decimal");
-    expect(rational).toContain("Number line");
-    const concepts = renderToString(<MemoryRouter initialEntries={["/number-systems/concepts"]}><NumberSystems /></MemoryRouter>);
-    expect(concepts).toContain("ns-mini-canvas");
-    const practice = renderToString(<MemoryRouter initialEntries={["/number-systems/practice"]}><NumberSystems /></MemoryRouter>);
-    expect(practice).toContain("Is 0.125 rational?");
-  });
+import { renderToString } from 'react-dom/server';
+import { MemoryRouter } from 'react-router-dom';
+import { describe, expect, it } from 'vitest';
+import NumberSystems from './NumberSystems';
+import {labs,route} from '../studios/number-systems/premium/catalog';
+const render=(path:string)=>renderToString(<MemoryRouter initialEntries={[path]}><NumberSystems/></MemoryRouter>);
+describe('Number Systems Studio',()=>{
+ it.each(labs)('renders the $title lab',lab=>{const html=render(route(lab.id));expect(html).toContain('np-studio');expect(html).toContain('Theory / Learn');expect(html).toContain('Number Systems Studio navigation');expect(html).toContain('np-lab-content');});
+ it('links all twelve labs from whole home cards',()=>{const html=render('/number-systems');for(const lab of labs)expect(html).toContain(`class="np-home-card${lab.id==='fundamentals'?' featured':` lab-${lab.id}`}" href="${route(lab.id)}"`);expect(html).toContain('Your Learning Path');expect(html).toContain('Progress counts only completed checks');});
+ it('preserves the existing concept and practice workbenches',()=>{expect(render('/number-systems/concepts')).toContain('ns-mini-canvas');expect(render('/number-systems/practice')).toContain('Is 0.125 rational?');expect(render('/number-systems/rational?legacy=1')).toContain('Rational numbers');});
 });

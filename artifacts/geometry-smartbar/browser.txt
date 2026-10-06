@@ -1,0 +1,9 @@
+triangles hover / zoom / fit / one row / export PASS
+polygons hover / zoom / fit / one row / export PASS
+circles hover / zoom / fit / one row / export PASS
+coordinates hover / zoom / fit / one row / export PASS
+measurement hover / zoom / fit / one row / export PASS
+construction hover / zoom / fit / one row / export PASS
+transformations hover / zoom / fit / one row / export PASS
+proofs hover / zoom / fit / one row / export PASS
+ERRORS []

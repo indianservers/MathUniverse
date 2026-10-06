@@ -1,0 +1,785 @@
+{
+  "report": [
+    {
+      "route": "/workspace/graph",
+      "theme": "Light",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "x^2 - 4",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "sin(x)",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "0",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "4",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        }
+      ],
+      "tiles": []
+    },
+    {
+      "route": "/workspace/graph",
+      "theme": "Dark",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "x^2 - 4",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "sin(x)",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "0",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "4",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        }
+      ],
+      "tiles": []
+    },
+    {
+      "route": "/workspace/graph",
+      "theme": "Glow",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "x^2 - 4",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "sin(x)",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "0",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "4",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        }
+      ],
+      "tiles": []
+    },
+    {
+      "route": "/workspace/graph",
+      "width": 1920,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/graph",
+      "width": 1536,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/graph",
+      "width": 1366,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/graph",
+      "width": 1280,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/graph",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "route": "/math-lab/3d-graphing",
+      "theme": "Light",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "Surface 1",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        }
+      ],
+      "tiles": []
+    },
+    {
+      "route": "/math-lab/3d-graphing",
+      "theme": "Dark",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "Surface 1",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        }
+      ],
+      "tiles": []
+    },
+    {
+      "route": "/math-lab/3d-graphing",
+      "theme": "Glow",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "Surface 1",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        }
+      ],
+      "tiles": []
+    },
+    {
+      "route": "/math-lab/3d-graphing",
+      "width": 1920,
+      "overflow": false
+    },
+    {
+      "route": "/math-lab/3d-graphing",
+      "width": 1536,
+      "overflow": false
+    },
+    {
+      "route": "/math-lab/3d-graphing",
+      "width": 1366,
+      "overflow": false
+    },
+    {
+      "route": "/math-lab/3d-graphing",
+      "width": 1280,
+      "overflow": false
+    },
+    {
+      "route": "/math-lab/3d-graphing",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/geometry",
+      "theme": "Light",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        }
+      ],
+      "tiles": []
+    },
+    {
+      "route": "/workspace/geometry",
+      "theme": "Dark",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        }
+      ],
+      "tiles": []
+    },
+    {
+      "route": "/workspace/geometry",
+      "theme": "Glow",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        }
+      ],
+      "tiles": []
+    },
+    {
+      "route": "/workspace/geometry",
+      "width": 1920,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/geometry",
+      "width": 1536,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/geometry",
+      "width": 1366,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/geometry",
+      "width": 1280,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/geometry",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/3d",
+      "theme": "Light",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "3",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "0",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "2.6",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "3",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "0",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "2.6",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        }
+      ],
+      "tiles": [
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        }
+      ]
+    },
+    {
+      "route": "/workspace/3d",
+      "theme": "Dark",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "3",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "0",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "2.6",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "3",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "0",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "2.6",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        }
+      ],
+      "tiles": [
+        {
+          "bg": "rgb(20, 32, 51)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "bg": "rgb(20, 32, 51)",
+          "text": "rgb(230, 237, 247)"
+        }
+      ]
+    },
+    {
+      "route": "/workspace/3d",
+      "theme": "Glow",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "3",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "0",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "2.6",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "3",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "0",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "2.6",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        }
+      ],
+      "tiles": [
+        {
+          "bg": "rgb(17, 36, 59)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "bg": "rgb(17, 36, 59)",
+          "text": "rgb(228, 242, 255)"
+        }
+      ]
+    },
+    {
+      "route": "/workspace/3d",
+      "width": 1920,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/3d",
+      "width": 1536,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/3d",
+      "width": 1366,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/3d",
+      "width": 1280,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/3d",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/data/cas",
+      "theme": "Light",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "cas-workspace-title",
+          "value": "Untitled Workspace",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "a := 3",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "x^2-5*x+6",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "x^2-5*x+6=0",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "x+y=5; x-y=1",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "Solve[x^3 - 3*x = 2, x]",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        }
+      ],
+      "tiles": []
+    },
+    {
+      "route": "/workspace/data/cas",
+      "theme": "Dark",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "cas-workspace-title",
+          "value": "Untitled Workspace",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "a := 3",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "x^2-5*x+6",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "x^2-5*x+6=0",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "x+y=5; x-y=1",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "Solve[x^3 - 3*x = 2, x]",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        }
+      ],
+      "tiles": []
+    },
+    {
+      "route": "/workspace/data/cas",
+      "theme": "Glow",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "cas-workspace-title",
+          "value": "Untitled Workspace",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "a := 3",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "x^2-5*x+6",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "x^2-5*x+6=0",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "x+y=5; x-y=1",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "Solve[x^3 - 3*x = 2, x]",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        }
+      ],
+      "tiles": []
+    },
+    {
+      "route": "/workspace/data/cas",
+      "width": 1920,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/data/cas",
+      "width": 1536,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/data/cas",
+      "width": 1366,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/data/cas",
+      "width": 1280,
+      "overflow": false
+    },
+    {
+      "route": "/workspace/data/cas",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "route": "/shapes",
+      "theme": "Light",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        },
+        {
+          "class": "",
+          "value": "4",
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(21, 38, 61)"
+        }
+      ],
+      "tiles": [
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(51, 75, 102)"
+        },
+        {
+          "bg": "rgb(255, 255, 255)",
+          "text": "rgb(51, 75, 102)"
+        }
+      ]
+    },
+    {
+      "route": "/shapes",
+      "theme": "Dark",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "class": "",
+          "value": "4",
+          "bg": "rgb(16, 30, 49)",
+          "text": "rgb(230, 237, 247)"
+        }
+      ],
+      "tiles": [
+        {
+          "bg": "rgb(20, 32, 51)",
+          "text": "rgb(230, 237, 247)"
+        },
+        {
+          "bg": "rgb(20, 32, 51)",
+          "text": "rgb(230, 237, 247)"
+        }
+      ]
+    },
+    {
+      "route": "/shapes",
+      "theme": "Glow",
+      "overflow": false,
+      "inputs": [
+        {
+          "class": "",
+          "value": "",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "class": "",
+          "value": "4",
+          "bg": "rgb(13, 32, 54)",
+          "text": "rgb(228, 242, 255)"
+        }
+      ],
+      "tiles": [
+        {
+          "bg": "rgb(17, 36, 59)",
+          "text": "rgb(228, 242, 255)"
+        },
+        {
+          "bg": "rgb(17, 36, 59)",
+          "text": "rgb(228, 242, 255)"
+        }
+      ]
+    },
+    {
+      "route": "/shapes",
+      "width": 1920,
+      "overflow": false
+    },
+    {
+      "route": "/shapes",
+      "width": 1536,
+      "overflow": false
+    },
+    {
+      "route": "/shapes",
+      "width": 1366,
+      "overflow": false
+    },
+    {
+      "route": "/shapes",
+      "width": 1280,
+      "overflow": false
+    },
+    {
+      "route": "/shapes",
+      "width": 1024,
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

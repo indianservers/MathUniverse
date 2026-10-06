@@ -4,20 +4,8 @@ import { useStudioState } from '../../../studios/phase1/StudioModelProvider';
 import { useSetTheoryStore } from '../setTheoryStore';
 import { maskMatches, setText, type Expression } from './math';
 import { Button } from './components';
-export type Circle={id:'A'|'B'|'C';x:number;y:number;r:number};
-export type Point={x:number;y:number};
-export const defaultCircles:Circle[]=[{id:'A',x:265,y:200,r:143},{id:'B',x:435,y:200,r:143},{id:'C',x:350,y:323,r:143}];
+import { defaultCircles, inside, layoutElements, type Circle, type Point } from './vennLayout';
 const colors=['#189aff','#ef49d6','#00cba3'];
-const inside=(p:Point,c:Circle)=>Math.hypot(p.x-c.x,p.y-c.y)<c.r;
-const pointMask=(p:Point,c:Circle[])=>c.reduce((mask,circle,i)=>mask|(inside(p,circle)?1<<i:0),0);
-export function layoutElements(u:string[],a:string[],b:string[],c:string[],circles:Circle[]):Record<string,Point>{
- const positioned:Record<string,Point>={},byMask:Record<number,string[]>={};u.forEach(item=>{const mask=(a.includes(item)?1:0)|(b.includes(item)?2:0)|(c.includes(item)?4:0);(byMask[mask]??=[]).push(item);});
- for(const [maskText,items] of Object.entries(byMask)){const mask=Number(maskText),candidates:Point[]=[];for(let y=55;y<465;y+=13)for(let x=50;x<675;x+=13)if(pointMask({x,y},circles)===mask)candidates.push({x,y});
-  const preferred=mask?circles.filter((_,i)=>mask&(1<<i)).reduce((p,c,_,all)=>({x:p.x+c.x/all.length,y:p.y+c.y/all.length}),{x:0,y:0}):{x:85,y:425};
-  candidates.sort((p,q)=>Math.hypot(p.x-preferred.x,p.y-preferred.y)-Math.hypot(q.x-preferred.x,q.y-preferred.y));
-  items.forEach((item,i)=>{const chosen=candidates.find(p=>Object.values(positioned).every(q=>Math.hypot(p.x-q.x,p.y-q.y)>32));if(chosen)positioned[item]=chosen;else positioned[item]=candidates[Math.min(i*7,candidates.length-1)]??{x:42+i*35,y:470};});
- }return positioned;
-}
 export function VennCanvas({expression,names,compact=false,controller}:{expression:Expression;names:string[];compact?:boolean;controller?:(api:VennApi)=>React.ReactNode}){
  const store=useSetTheoryStore(),uid=useId().replace(/:/g,''),svgRef=useRef<SVGSVGElement>(null),fullRef=useRef<HTMLDivElement>(null);
  const [circles,setCircles]=useStudioState<Circle[]>('set-theory:premium:circles',defaultCircles),[zoom,setZoom]=useState(1),[dragging,setDragging]=useState(true),[boundary,setBoundary]=useState(true),[pulse,setPulse]=useState(0);

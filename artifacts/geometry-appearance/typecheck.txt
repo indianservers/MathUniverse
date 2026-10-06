@@ -1,0 +1,51 @@
+src/components/workspace/panels/GeometryWorkspacePanel.tsx(585,40): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(type: "keydown", listener: (this: Window, ev: KeyboardEvent) => any, options?: boolean | AddEventListenerOptions | undefined): void', gave the following error.
+    Argument of type '(event: KeyboardEvent) => void' is not assignable to parameter of type '(this: Window, ev: KeyboardEvent) => any'.
+      Types of parameters 'event' and 'ev' are incompatible.
+        Type 'KeyboardEvent' is missing the following properties from type 'KeyboardEvent<Element>': locale, nativeEvent, isDefaultPrevented, isPropagationStopped, persist
+  Overload 2 of 2, '(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions | undefined): void', gave the following error.
+    Argument of type '(event: KeyboardEvent) => void' is not assignable to parameter of type 'EventListenerOrEventListenerObject'.
+      Type '(event: KeyboardEvent) => void' is not assignable to type 'EventListener'.
+        Types of parameters 'event' and 'evt' are incompatible.
+          Type 'Event' is missing the following properties from type 'KeyboardEvent<Element>': altKey, charCode, ctrlKey, code, and 15 more.
+src/components/workspace/panels/GeometryWorkspacePanel.tsx(586,56): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(type: "keydown", listener: (this: Window, ev: KeyboardEvent) => any, options?: boolean | EventListenerOptions | undefined): void', gave the following error.
+    Argument of type '(event: KeyboardEvent) => void' is not assignable to parameter of type '(this: Window, ev: KeyboardEvent) => any'.
+      Types of parameters 'event' and 'ev' are incompatible.
+        Type 'KeyboardEvent' is missing the following properties from type 'KeyboardEvent<Element>': locale, nativeEvent, isDefaultPrevented, isPropagationStopped, persist
+  Overload 2 of 2, '(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions | undefined): void', gave the following error.
+    Argument of type '(event: KeyboardEvent) => void' is not assignable to parameter of type 'EventListenerOrEventListenerObject'.
+      Type '(event: KeyboardEvent) => void' is not assignable to type 'EventListener'.
+        Types of parameters 'event' and 'evt' are incompatible.
+          Type 'Event' is missing the following properties from type 'KeyboardEvent<Element>': altKey, charCode, ctrlKey, code, and 15 more.
+src/components/workspace/panels/GeometryWorkspacePanel.tsx(2274,7): error TS2322: Type 'RefObject<HTMLElement | null>' is not assignable to type 'LegacyRef<HTMLElement> | undefined'.
+  Type 'RefObject<HTMLElement | null>' is not assignable to type 'RefObject<HTMLElement>'.
+    Type 'HTMLElement | null' is not assignable to type 'HTMLElement'.
+      Type 'null' is not assignable to type 'HTMLElement'.
+src/components/workspace/panels/GeometryWorkspacePanel.tsx(2639,12): error TS2322: Type '{ children: string; key: keyof GeometryGraphSettings; type: "button"; onClick: () => void; className: string; "aria-pressed": number | boolean | "fixed" | "off" | "polar" | ... 4 more ... | undefined; "data-testid": string; }' is not assignable to type 'DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>'.
+  Type '{ children: string; key: keyof GeometryGraphSettings; type: "button"; onClick: () => void; className: string; "aria-pressed": number | boolean | "fixed" | "off" | "polar" | ... 4 more ... | undefined; "data-testid": string; }' is not assignable to type 'ButtonHTMLAttributes<HTMLButtonElement>'.
+    Types of property '"aria-pressed"' are incompatible.
+      Type 'number | boolean | "fixed" | "off" | "polar" | "cartesian" | "isometric" | "automatic" | "snap" | undefined' is not assignable to type 'boolean | "false" | "true" | "mixed" | undefined'.
+        Type 'number' is not assignable to type 'boolean | "false" | "true" | "mixed" | undefined'.
+src/hooks/useCanvasZoomLock.ts(24,36): error TS2345: Argument of type '(event: WheelEvent) => void' is not assignable to parameter of type 'EventListenerOrEventListenerObject'.
+  Type '(event: WheelEvent) => void' is not assignable to type 'EventListener'.
+    Types of parameters 'event' and 'evt' are incompatible.
+      Type 'Event' is missing the following properties from type 'WheelEvent': deltaMode, deltaX, deltaY, deltaZ, and 30 more.
+src/hooks/useCanvasZoomLock.ts(28,41): error TS2345: Argument of type '(event: WheelEvent) => void' is not assignable to parameter of type 'EventListenerOrEventListenerObject'.
+  Type '(event: WheelEvent) => void' is not assignable to type 'EventListener'.
+    Types of parameters 'event' and 'evt' are incompatible.
+      Type 'Event' is missing the following properties from type 'WheelEvent': deltaMode, deltaX, deltaY, deltaZ, and 30 more.
+src/pages/MathWorkspace.tsx(9040,11): error TS2367: This comparison appears to be unintentional because the types '"parallel" | "perpendicular" | "midpoint" | "fixed-length" | "on-circle" | "intersection"' and '"affine"' have no overlap.
+src/pages/MathWorkspace.tsx(9042,59): error TS2339: Property 'point' does not exist on type 'never'.
+src/workspace/coreObjects.ts(248,5): error TS2322: Type '{ expression: any; domain: { u: [number, number]; v: [number, number]; } | undefined; type: "line" | "segment" | "ray"; start: MathVec3; end: MathVec3; } | { expression: any; domain: { ...; } | undefined; type: "circle" | "sphere"; center: MathVec3; radius: number; } | { ...; }' is not assignable to type 'MathObjectGeometry'.
+  Object literal may only specify known properties, and 'expression' does not exist in type '{ type: "line" | "segment" | "ray"; start: MathVec3; end: MathVec3; }'.
+src/workspace/coreObjects.ts(248,26): error TS2339: Property 'expression' does not exist on type '{ type: "line" | "segment" | "ray"; start: MathVec3; end: MathVec3; } | { type: "circle" | "sphere"; center: MathVec3; radius: number; } | { type: "surface"; expression: string; domain?: { ...; } | undefined; }'.
+  Property 'expression' does not exist on type '{ type: "line" | "segment" | "ray"; start: MathVec3; end: MathVec3; }'.
+src/workspace/coreObjects.ts(249,22): error TS2339: Property 'domain' does not exist on type '{ type: "line" | "segment" | "ray"; start: MathVec3; end: MathVec3; } | { type: "circle" | "sphere"; center: MathVec3; radius: number; } | { type: "surface"; expression: string; domain?: { ...; } | undefined; }'.
+  Property 'domain' does not exist on type '{ type: "line" | "segment" | "ray"; start: MathVec3; end: MathVec3; }'.
+src/workspace/coreObjects.ts(249,60): error TS2339: Property 'domain' does not exist on type '{ type: "line" | "segment" | "ray"; start: MathVec3; end: MathVec3; } | { type: "circle" | "sphere"; center: MathVec3; radius: number; } | { type: "surface"; expression: string; domain?: { ...; } | undefined; }'.
+  Property 'domain' does not exist on type '{ type: "line" | "segment" | "ray"; start: MathVec3; end: MathVec3; }'.
+src/workspace/coreObjects.ts(249,98): error TS2339: Property 'domain' does not exist on type '{ type: "line" | "segment" | "ray"; start: MathVec3; end: MathVec3; } | { type: "circle" | "sphere"; center: MathVec3; radius: number; } | { type: "surface"; expression: string; domain?: { ...; } | undefined; }'.
+  Property 'domain' does not exist on type '{ type: "line" | "segment" | "ray"; start: MathVec3; end: MathVec3; }'.
+src/workspace/mobile/MobileWorkspaceShell.tsx(23,25): error TS2540: Cannot assign to 'current' because it is a read-only property.
+src/workspace/mobile/MobileWorkspaceShell.tsx(26,19): error TS2540: Cannot assign to 'current' because it is a read-only property.

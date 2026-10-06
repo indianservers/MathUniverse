@@ -1,0 +1,1 @@
+import {chromium} from '@playwright/test';const b=await chromium.launch();const p=await b.newPage();const result=await p.goto('http://127.0.0.1:5176/number-systems/',{timeout:60000,waitUntil:'domcontentloaded'});console.log(result.status());await p.waitForTimeout(5000);console.log((await p.locator('body').innerText()).slice(0,300));await b.close();

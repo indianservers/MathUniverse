@@ -5,7 +5,7 @@ import {
 } from "./circleMath";
 import { useCircleSession, usePersisted } from "./CircleSession";
 import {
-  ChallengeCard, ChordLine, CircleOutline, CircleSvg, DraggablePoint, FilledTriangle, FormulaCard, GhostChord, LiveRow, MathLine, PresetButton, PropertyCard, RadiusLine, Slider, Toggle, WorkedCard, useSvgDrag,
+  LengthBadge, ChallengeCard, ChordLine, CircleOutline, CircleSvg, DraggablePoint, FilledTriangle, FormulaCard, GhostChord, LiveRow, MathLine, PresetButton, PropertyCard, RadiusLine, Slider, Toggle, WorkedCard, useSvgDrag,
 } from "./primitives";
 
 type Live = { r: number; ab: number; cd: number; om: number; on: number; arc: number; showSecond: boolean };
@@ -134,6 +134,11 @@ export default function ChordsLab() {
           {showPerp ? <ChordLine a={origin} b={M} color="#10b981" dashed /> : null}
           {showSecond ? <ChordLine a={C} b={D} color="#8b45f4" /> : null}
           {showSecond && showPerp ? <ChordLine a={origin} b={N} color="#94a3b8" dashed /> : null}
+          {showMeas && !teacher ? <>
+            <LengthBadge a={A} b={B} text={`AB = ${fmt(ab)} ${unitLabel}`} offsetY={-25} />
+            {showPerp ? <LengthBadge a={origin} b={M} text={`OM = ${fmt(om)} ${unitLabel}`} color="#047857"/> : null}
+            {showSecond ? <LengthBadge a={C} b={D} text={`CD = ${fmt(cd)} ${unitLabel}`} color="#7c3aed"/> : null}
+          </> : null}
           <DraggablePoint point={origin} label="O" color="#0f2747" dragId="O" title="Centre O" />
           <DraggablePoint point={A} label="A" dragId="A" />
           <DraggablePoint point={B} label="B" color="#f59e0b" dragId="B" />

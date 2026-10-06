@@ -1,9 +1,12 @@
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { triangleLessonScene } from "../geometryLessonScene";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ChipRow, Field, Panel, Segmented, SliderRow } from "../../mockup/studioLabKit";
 import {
   clampPoint,
   defaultPlane,
+  toSvg,
   fromSvg,
   measureTriangle,
   rotateTriangle,
@@ -98,7 +101,7 @@ export default function SimilarityLab({ pulse = "observe" }: { pulse?: string })
         </Panel>
       }
       canvas={
-        <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label="Similar triangles ABC and DEF">
+        <GeometryLessonCanvas onPointChange={(id, point) => { if (id === "A" || id === "B" || id === "C") setBase(current => ({ ...current, [id]: fromSvg(plane, point.x, point.y) })); }} scene={triangleLessonScene(plane, [base, def], p => toSvg(plane, p))} ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label="Similar triangles ABC and DEF">
           <polygon points={polyPoints(plane, [base.A, base.B, base.C])} fill="rgba(20,125,242,.10)" stroke="#147df2" strokeWidth="2.1" />
           <polygon points={polyPoints(plane, [def.A, def.B, def.C])} fill="rgba(139,69,244,.10)" stroke="#8b45f4" strokeWidth="2.1" />
           <SideTickMark plane={plane} a={base.A} b={base.B} count={1} />
@@ -119,7 +122,7 @@ export default function SimilarityLab({ pulse = "observe" }: { pulse?: string })
           <DraggableVertex plane={plane} p={def.A} label="D" color="#8b45f4" />
           <DraggableVertex plane={plane} p={def.B} label="E" color="#8b45f4" />
           <DraggableVertex plane={plane} p={def.C} label="F" color="#8b45f4" />
-        </svg>
+        </GeometryLessonCanvas>
       }
       insights={
         <InsightStack

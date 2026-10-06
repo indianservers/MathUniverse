@@ -51,14 +51,14 @@ function exactish(n: number) {
 function SvgExact({ x, y, value }: { x: number; y: number; value: string }) {
   const neg = value.startsWith("−") || value.startsWith("-");
   const body = neg ? value.slice(1) : value;
-  if (!body.includes("/")) return <text x={x} y={y} fill="#fde68a" fontSize="11">{value}</text>;
+  if (!body.includes("/")) return <text x={x} y={y} fill="#92400e" fontSize="11">{value}</text>;
   const [top, bot] = body.split("/");
   return (
     <g>
-      {neg ? <text x={x} y={y} fill="#fde68a" fontSize="11">−</text> : null}
-      <text x={x + (neg ? 8 : 0)} y={y - 7} fill="#fde68a" fontSize="10">{top}</text>
-      <line x1={x + (neg ? 6 : 0)} y1={y - 3} x2={x + (neg ? 30 : 24)} y2={y - 3} stroke="#fde68a" />
-      <text x={x + (neg ? 8 : 0)} y={y + 9} fill="#fde68a" fontSize="10">{bot}</text>
+      {neg ? <text x={x} y={y} fill="#92400e" fontSize="11">−</text> : null}
+      <text x={x + (neg ? 8 : 0)} y={y - 7} fill="#92400e" fontSize="10">{top}</text>
+      <line x1={x + (neg ? 6 : 0)} y1={y - 3} x2={x + (neg ? 30 : 24)} y2={y - 3} stroke="#92400e" />
+      <text x={x + (neg ? 8 : 0)} y={y + 9} fill="#92400e" fontSize="10">{bot}</text>
     </g>
   );
 }
@@ -279,7 +279,7 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
               }
             }}
           >
-            <rect width="500" height="420" fill="#061428" />
+            <rect width="500" height="420" fill="#fff5f8" />
             {[
               { q: 2, x: 18, y: 22, title: "Quadrant II", sign: "(sin +, cos −)" },
               { q: 1, x: 368, y: 22, title: "Quadrant I", sign: "(sin +, cos +)" },
@@ -308,7 +308,7 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
                   return (
                     <g key={`tick-${item.d}`}>
                       <circle cx={cx + Math.cos(rad) * r} cy={cy - Math.sin(rad) * r} r={angle === item.d ? 5 : 3} fill={angle === item.d ? UC_COLORS.anglePoint : UC_COLORS.circle} />
-                      <text x={tx} y={ty} fill="#fde68a" fontSize="10" textAnchor="middle">{item.d}°</text>
+                      <text x={tx} y={ty} fill="#92400e" fontSize="10" textAnchor="middle">{item.d}°</text>
                     </g>
                   );
                 })
@@ -316,13 +316,13 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
             <circle cx={cx} cy={cy} r={r} fill="none" stroke={UC_COLORS.circle} strokeWidth="2" />
             <line x1={cx - r - 20} y1={cy} x2={cx + r + 28} y2={cy} stroke="#64748b" />
             <line x1={cx} y1={cy + r + 16} x2={cx} y2={cy - r - 20} stroke="#64748b" />
-            <text x={cx + r + 8} y={cy - 6} fill="#cbd5e1" fontSize="11">x</text>
-            <text x={cx + 8} y={cy - r - 8} fill="#cbd5e1" fontSize="11">y</text>
-            <text x={cx + r - 2} y={cy + 15} fill="#cbd5e1" fontSize="10">1</text>
-            <text x={cx - r - 14} y={cy + 15} fill="#cbd5e1" fontSize="10">−1</text>
-            <text x={cx - 13} y={cy - r + 8} fill="#cbd5e1" fontSize="10">1</text>
-            <text x={cx - 17} y={cy + r + 1} fill="#cbd5e1" fontSize="10">−1</text>
-            <text x={cx + 6} y={cy + 14} fill="#cbd5e1" fontSize="10">O</text>
+            <text x={cx + r + 8} y={cy - 6} fill="#475569" fontSize="11">x</text>
+            <text x={cx + 8} y={cy - r - 8} fill="#475569" fontSize="11">y</text>
+            <text x={cx + r - 2} y={cy + 15} fill="#475569" fontSize="10">1</text>
+            <text x={cx - r - 14} y={cy + 15} fill="#475569" fontSize="10">−1</text>
+            <text x={cx - 13} y={cy - r + 8} fill="#475569" fontSize="10">1</text>
+            <text x={cx - 17} y={cy + r + 1} fill="#475569" fontSize="10">−1</text>
+            <text x={cx + 6} y={cy + 14} fill="#475569" fontSize="10">O</text>
             {showProjections && showX ? <line className="uc-target-cosine-projection" x1={cx} y1={cy} x2={px} y2={cy} stroke={UC_COLORS.cosine} strokeWidth="2" strokeDasharray="6 4" /> : null}
             {showProjections && showY ? <line className="uc-target-sine-projection" x1={px} y1={cy} x2={px} y2={py} stroke={UC_COLORS.sine} strokeWidth="2" strokeDasharray="6 4" /> : null}
             {showProjections && showX ? <text x={(cx + px) / 2} y={cy + 16} fill={UC_COLORS.cosine} fontSize="11" textAnchor="middle">cos θ</text> : null}
@@ -344,13 +344,13 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
             <circle className="uc-target-angle-point" cx={px} cy={py} r="7" fill={UC_COLORS.anglePoint} stroke="#fff7ed" strokeWidth="2" />
             {showExactLabels ? (
               <>
-                <text x={px + 10} y={py - 22} fill="#fde68a" fontSize="11">(cos θ, sin θ)</text>
+                <text x={px + 10} y={py - 22} fill="#92400e" fontSize="11">(cos θ, sin θ)</text>
                 <SvgExact x={px + 10} y={py - 4} value={exactish(live.cos)} />
-                <text x={px + 52} y={py - 4} fill="#fde68a" fontSize="11">,</text>
+                <text x={px + 52} y={py - 4} fill="#92400e" fontSize="11">,</text>
                 <SvgExact x={px + 62} y={py - 4} value={exactish(live.sin)} />
               </>
             ) : (
-              <text x={px + 10} y={py - 8} fill="#fde68a" fontSize="12">{mode === "Angles" ? `${fmt(angle, 0)}°` : `Q${live.q}`}</text>
+              <text x={px + 10} y={py - 8} fill="#92400e" fontSize="12">{mode === "Angles" ? `${fmt(angle, 0)}°` : `Q${live.q}`}</text>
             )}
             {mode === "Reference Angles" ? (
               <text x={cx + 40} y={cy - 8} fill="#c4b5fd" fontSize="12">α = {fmt(live.ref, 0)}°</text>
@@ -359,22 +359,23 @@ export default function UnitCircleLab({ page }: { page: StudioMockupPage }) {
           </svg>
           {showWaves ? (
           <svg className="msk-graph is-dark uc-target-wave-figure" viewBox="0 0 500 140" aria-label="Sine and cosine waves">
-            <rect width="500" height="140" fill="#061428" />
+            <rect width="500" height="140" fill="#fff5f8" />
             <text x="16" y="18" fill={UC_COLORS.sine} fontSize="11">sin θ</text>
             <text x="70" y="18" fill={UC_COLORS.cosine} fontSize="11">cos θ</text>
             <text x="8" y="38" fill="#64748b" fontSize="9">1</text>
             <text x="8" y="74" fill="#64748b" fontSize="9">0</text>
             <text x="4" y="110" fill="#64748b" fontSize="9">−1</text>
             {["−180°", "−90°", "0°", "90°", "180°", "270°", "360°"].map((label, i) => (
-              <text key={label} x={40 + i * 70} y="132" fill="#64748b" fontSize="9">{label}</text>
+              <text key={label} x={40 + i * 70} y="132" textAnchor="middle" fill="#64748b" fontSize="9">{label}</text>
             ))}
+            {[-180,-90,0,90,180,270,360].map(degrees=><line key={degrees} className="uc-target-wave-tick-guide" x1={40+(degrees+180)/540*420} x2={40+(degrees+180)/540*420} y1="28" y2="122" stroke="#e5cbd5" strokeDasharray="2 4" />)}
             <line x1="40" y1="70" x2="480" y2="70" stroke="#334155" />
             <polyline className="uc-target-sine-wave" points={wave} fill="none" stroke={UC_COLORS.sine} strokeWidth="1.8" />
             <polyline className="uc-target-cosine-wave" points={cosWave} fill="none" stroke={UC_COLORS.cosine} strokeWidth="1.8" />
-            <line className="uc-target-wave-cursor" x1={waveX} y1="20" x2={waveX} y2="124" stroke={UC_COLORS.angle} strokeWidth="1.5" strokeDasharray="3 3" />
+            <line className="uc-target-wave-cursor" x1={waveX} y1="20" x2={waveX} y2="118" stroke={UC_COLORS.angle} strokeWidth="1.5" strokeDasharray="3 3" />
             <circle cx={waveX} cy={70 - live.sin * 36} r="4" fill={UC_COLORS.sine} />
             <circle cx={waveX} cy={70 - live.cos * 36} r="4" fill={UC_COLORS.cosine} />
-            <text x={waveX} y="134" fill={UC_COLORS.angle} fontSize="10" fontWeight="700" textAnchor="middle">{fmt(angle, 0)}°</text>
+            <text x={waveX} y="116" fill="#92400e" fontSize="10" fontWeight="700" textAnchor="middle">{fmt(angle, 0)}°</text>
           </svg>
           ) : null}
         </section>

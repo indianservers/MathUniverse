@@ -1,0 +1,8 @@
+circles wheel, fit, readable labels PASS 13.0
+triangles wheel, fit, readable labels PASS 16.2
+polygons wheel, fit, readable labels PASS 13.0
+coordinates wheel, fit, readable labels PASS 17.9
+measurement wheel, fit, readable labels PASS 13.0
+construction wheel, fit, readable labels PASS 15.0
+transformations wheel, fit, readable labels PASS 19.3
+proofs wheel, fit, readable labels PASS 16.5

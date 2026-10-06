@@ -1,3 +1,4 @@
+import "../studios/landing/studioLanding.css";
 import {
   Compass,
   FlaskConical,
@@ -235,7 +236,8 @@ function StudioHome() {
                 {filtered.map((item, index) => {
                   const meta = studioLabMeta("complex-numbers", item.id);
                   return (
-                    <article key={item.id} className="cxs-topic-card">
+                    <article key={item.id} className="cxs-topic-card msk-card-article">
+                      <Link className="msk-card-hit" to={item.route} aria-label={`Open ${item.label}`} />
                       <span className="cxs-topic-number">{index + 1}</span>
                       <Link to={item.route}>
                         <header><TopicPreview id={item.id} /><b>{item.label}</b></header>

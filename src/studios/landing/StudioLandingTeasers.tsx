@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { writeTrigSession, useTrigSession } from "../mockup/trigStudioSession";
 
 export function stopTeaserNav(event: SyntheticEvent) {
-  event.preventDefault();
   event.stopPropagation();
 }
 

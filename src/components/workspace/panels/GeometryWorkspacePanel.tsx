@@ -1,3 +1,5 @@
+import { GeometryPaintDefs, paintId, paintValue, lineDash, type GeometryPaint } from "../GeometryAppearance";
+import WorkspaceSvg from "../WorkspaceSvg";
 import {
   ChevronDown,
   ChevronRight,
@@ -134,7 +136,8 @@ export type GeometryTool =
   | "reset"
   | "save"
   | "load";
-export type GeoStyle = {
+export type GeoStyle = GeometryPaint & {
+  dashArray?: string;
   color?: string;
   fill?: string;
   strokeWidth?: number;
@@ -191,6 +194,7 @@ export type WorkspaceImage = {
   visible?: boolean;
 };
 export type GeoConstraint =
+  | { id: string; type: "affine"; source: string; point: string; matrix: [number, number, number, number, number, number]; offsetPoint?: string; offsetOrigin?: { x: number; y: number } }
   | {
       id: string;
       type: "parallel" | "perpendicular";
@@ -256,7 +260,7 @@ export type GeometryStudioTheme = WorkspaceChromeTheme;
 const GEOMETRY_THEME_STORAGE_KEY = CHROME_THEME_STORAGE_KEYS.geometry;
 
 function readGeometryStudioTheme(): GeometryStudioTheme {
-  return readWorkspaceChromeTheme(GEOMETRY_THEME_STORAGE_KEY);
+  return readWorkspaceChromeTheme(GEOMETRY_THEME_STORAGE_KEY, "light");
 }
 
 function persistGeometryStudioTheme(theme: GeometryStudioTheme) {
@@ -311,6 +315,7 @@ interface GeometryWorkspacePanelProps {
   onStopTrace: () => void;
   onClearTrace: () => void;
   onReset: () => void;
+  shareControl?: ReactNode;
   onSave: () => void;
   onLoad: () => void;
   onExport?: () => void;
@@ -512,6 +517,7 @@ export default function GeometryWorkspacePanel({
   onSave,
   onLoad,
   onExport,
+  shareControl,
   onGraphSettingsChange,
   onZoom,
   onFitView,
@@ -812,6 +818,7 @@ export default function GeometryWorkspacePanel({
           >
             <Settings className="h-4 w-4" />
           </button>
+          {shareControl}
           <WorkspaceChromeThemeToggle
             theme={studioTheme}
             storageKey={GEOMETRY_THEME_STORAGE_KEY}
@@ -2705,7 +2712,7 @@ function GeometryBoard({
     onWheel(event as unknown as WheelEvent<SVGSVGElement>);
   });
   return (
-    <svg
+    <WorkspaceSvg
       ref={boardRef}
       data-testid="workspace-geometry-board"
       data-export="geometry"
@@ -2835,7 +2842,7 @@ function GeometryBoard({
       {construction.points
         .filter((point) => point.style?.visible !== false)
         .map((point) => (
-          <g key={point.id}>
+          <g key={point.id}><GeometryPaintDefs id={paintId("point",point.id)} color={point.style?.color??"#06b6d4"} style={point.style??{}}/>
             {point.style?.trace && (
               <circle
                 cx={point.x}
@@ -2879,7 +2886,7 @@ function GeometryBoard({
                 selectedPointIds.includes(point.id) ||
                 polygonDraft.includes(point.id)
                   ? "#f59e0b"
-                  : (point.style?.color ?? "#06b6d4")
+                  : paintValue(paintId("point",point.id),point.style?.color??"#06b6d4",point.style??{})
               }
               stroke={
                 isSelectedGeometry(selectedGeometry, "point", point.id)
@@ -2907,7 +2914,7 @@ function GeometryBoard({
               )}
           </g>
         ))}
-    </svg>
+    </WorkspaceSvg>
   );
 }
 
@@ -3117,7 +3124,7 @@ function GeometryLine({
         )
       : null;
   return (
-    <g>
+    <g><GeometryPaintDefs id={paintId("line",line.id)} color={color} style={line.style??{}}/>
       {hitWidth && (
         <line
           data-object-type="line"
@@ -3140,7 +3147,7 @@ function GeometryLine({
           y2={endpoints.y2}
           stroke="#67e8f9"
           strokeWidth={Math.max(12, (line.style?.strokeWidth ?? 4) + 8)}
-          strokeDasharray={kind === "line" ? "10 8" : undefined}
+          strokeDasharray={lineDash(line.style ?? {})}
           opacity="0.72"
           filter="url(#geometry-selected-glow-filter)"
           className="geometry-selected-glow"
@@ -3154,14 +3161,12 @@ function GeometryLine({
         y1={endpoints.y1}
         x2={endpoints.x2}
         y2={endpoints.y2}
-        stroke={color}
+        stroke={paintValue(paintId("line",line.id),color,line.style??{})}
         strokeWidth={
-          selected
-            ? Math.max(7, line.style?.strokeWidth ?? 4)
-            : (line.style?.strokeWidth ?? 4)
+          line.style?.strokeWidth ?? 4
         }
-        strokeDasharray={kind === "line" ? "10 8" : undefined}
-        opacity={selected ? 0.95 : (line.style?.opacity ?? 1)}
+        strokeDasharray={lineDash(line.style ?? {})}
+        opacity={line.style?.opacity ?? 1}
         className="cursor-move"
         pointerEvents={hitWidth ? "none" : undefined}
       />
@@ -3178,8 +3183,8 @@ function GeometryLine({
       {arrow && (
         <polygon
           points={arrow}
-          fill={color}
-          opacity={selected ? 0.95 : (line.style?.opacity ?? 1)}
+          fill={paintValue(paintId("line",line.id),color,line.style??{})}
+          opacity={line.style?.opacity ?? 1}
           pointerEvents="none"
         />
       )}
@@ -3187,7 +3192,7 @@ function GeometryLine({
         <text
           x={(a.x + b.x) / 2 + 8}
           y={(a.y + b.y) / 2 - 8}
-          fill={color}
+          fill={paintValue(paintId("line",line.id),color,line.style??{})}
           className="pointer-events-none select-none text-[10px] font-black uppercase"
         >
           {kind}
@@ -3211,7 +3216,7 @@ function GeometryCircle({
   if (!center || !edge || circle.style?.visible === false) return null;
   const radius = distance(center, edge);
   return (
-    <g>
+    <g><GeometryPaintDefs id={paintId("circle",circle.id)} color={circle.style?.color ?? "#06b6d4"} style={circle.style??{}}/>
       {selected && (
         <circle
           cx={center.x}
@@ -3232,12 +3237,11 @@ function GeometryCircle({
         cx={center.x}
         cy={center.y}
         r={radius}
-        fill={circle.style?.fill ?? "rgba(34,211,238,.12)"}
-        stroke={circle.style?.color ?? "#06b6d4"}
+        fill={paintValue(paintId("circle",circle.id),circle.style?.fill??"rgba(34,211,238,.12)",circle.style??{})}
+        strokeDasharray={lineDash(circle.style ?? {})}
+        stroke={paintValue(paintId("circle",circle.id),circle.style?.color??"#06b6d4",circle.style??{})}
         strokeWidth={
-          selected
-            ? Math.max(7, circle.style?.strokeWidth ?? 4)
-            : (circle.style?.strokeWidth ?? 4)
+          circle.style?.strokeWidth ?? 4
         }
         opacity={circle.style?.opacity ?? 1}
         className="cursor-move"
@@ -3261,7 +3265,7 @@ function GeometryPolygon({
   if (polygonPoints.length < 3 || polygon.style?.visible === false) return null;
   const value = polygonPoints.map((point) => `${point.x},${point.y}`).join(" ");
   return (
-    <g>
+    <g><GeometryPaintDefs id={paintId("polygon",polygon.id)} color={polygon.style?.color ?? "#f59e0b"} style={polygon.style??{}}/>
       {selected && (
         <polygon
           points={value}
@@ -3278,14 +3282,12 @@ function GeometryPolygon({
         data-object-type="polygon"
         data-object-id={polygon.id}
         points={value}
-        fill={polygon.style?.fill ?? "rgba(245,158,11,.15)"}
-        stroke={polygon.style?.color ?? "#f59e0b"}
+        fill={paintValue(paintId("polygon",polygon.id),polygon.style?.fill??"rgba(245,158,11,.15)",polygon.style??{})}
+        stroke={paintValue(paintId("polygon",polygon.id),polygon.style?.color??"#f59e0b",polygon.style??{})}
         strokeWidth={
-          selected
-            ? Math.max(7, polygon.style?.strokeWidth ?? 3)
-            : (polygon.style?.strokeWidth ?? 3)
+          polygon.style?.strokeWidth ?? 3
         }
-        opacity={polygon.style?.opacity ?? 1}
+        strokeDasharray={lineDash(polygon.style??{})} opacity={polygon.style?.opacity ?? 1}
         className="cursor-move"
       />
     </g>
@@ -3329,11 +3331,11 @@ function GeometryArc({
     const labelRadius = markerRadius + 20;
     const label = `∠${start.label}${center.label}${end.label} ${roundTo(angleDegrees, 1)}°`;
     return (
-      <g opacity={arc.style?.opacity ?? 1}>
+      <g opacity={arc.style?.opacity ?? 1}><GeometryPaintDefs id={paintId("arc",arc.id)} color={arc.style?.color??"#14b8a6"} style={arc.style??{}}/>
         <path
           d={`M ${start.x} ${start.y} L ${center.x} ${center.y} L ${end.x} ${end.y}`}
           fill="none"
-          stroke={arc.style?.color ?? "#14b8a6"}
+          stroke={paintValue(paintId("arc",arc.id),arc.style?.color??"#14b8a6",arc.style??{})}
           strokeWidth="2.5"
           strokeDasharray="6 5"
           opacity="0.72"
@@ -3347,8 +3349,8 @@ function GeometryArc({
           data-object-id={arc.id}
           d={markerPath}
           fill="none"
-          stroke={arc.style?.color ?? "#14b8a6"}
-          strokeWidth={selected ? 7 : (arc.style?.strokeWidth ?? 5)}
+          stroke={paintValue(paintId("arc",arc.id),arc.style?.color??"#14b8a6",arc.style??{})}
+          strokeWidth={arc.style?.strokeWidth ?? 5} strokeDasharray={lineDash(arc.style??{})}
           strokeLinecap="round"
           className="cursor-move"
         />
@@ -3373,7 +3375,7 @@ function GeometryArc({
     (endAngle - startAngle + Math.PI * 2) % (Math.PI * 2) > Math.PI ? 1 : 0;
   const path = `M ${center.x} ${center.y} L ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArc} 1 ${end.x} ${end.y}${arc.sector ? " Z" : ""}`;
   return (
-    <g>
+    <g><GeometryPaintDefs id={paintId("arc",arc.id)} color={arc.style?.color ?? "#f97316"} style={arc.style??{}}/>
       {selected && (
         <path
           d={path}
@@ -3390,9 +3392,9 @@ function GeometryArc({
         data-object-type="arc"
         data-object-id={arc.id}
         d={path}
-        fill={arc.sector ? (arc.style?.fill ?? "rgba(245,158,11,.16)") : "none"}
-        stroke={arc.style?.color ?? "#14b8a6"}
-        strokeWidth={selected ? 6 : (arc.style?.strokeWidth ?? 4)}
+        fill={arc.sector ? paintValue(paintId("arc",arc.id),arc.style?.fill??"rgba(245,158,11,.16)",arc.style??{}) : "none"}
+        stroke={paintValue(paintId("arc",arc.id),arc.style?.color??"#14b8a6",arc.style??{})}
+        strokeWidth={arc.style?.strokeWidth ?? 4} strokeDasharray={lineDash(arc.style??{})}
         opacity={arc.style?.opacity ?? 1}
         className="cursor-move"
       />
@@ -3412,7 +3414,7 @@ function GeometryLocus({
     .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`)
     .join(" ");
   return (
-    <g>
+    <g><GeometryPaintDefs id={paintId("locus",locus.id)} color={locus.style?.color??"#ec4899"} style={locus.style??{}}/>
       {selected && (
         <path
           d={d}
@@ -3432,7 +3434,8 @@ function GeometryLocus({
         data-object-id={locus.id}
         d={d}
         fill="none"
-        stroke={locus.style?.color ?? "#ec4899"}
+        stroke={paintValue(paintId("locus",locus.id),locus.style?.color??"#ec4899",locus.style??{})}
+        strokeDasharray={lineDash(locus.style)}
         strokeWidth={locus.style?.strokeWidth ?? 4}
         opacity={locus.style?.opacity ?? 0.8}
         strokeLinecap="round"
@@ -3762,7 +3765,7 @@ function HiddenGeometryExport({
       {construction.points
         .filter((point) => point.style?.visible !== false)
         .map((point) => (
-          <g key={point.id}>
+          <g key={point.id}><GeometryPaintDefs id={paintId("point",point.id)} color={point.style?.color??"#06b6d4"} style={point.style??{}}/>
             <circle
               cx={point.x}
               cy={point.y}

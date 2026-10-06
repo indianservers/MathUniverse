@@ -563,7 +563,7 @@ export default function App() {
                 <Route
                   key={config.route}
                   path={config.route.slice(1)}
-                  element={<FormulaVisualizerPage conceptId={config.id} />}
+                  element={config.id === "number-systems" ? <NumberSystems /> : <FormulaVisualizerPage conceptId={config.id} />}
                 />
               ))}
             <Route path="theorems" element={<Theorems />} />
@@ -601,6 +601,13 @@ export default function App() {
             />
             <Route path="shapes" element={<ShapesExplorer />} />
             <Route path="number-systems" element={<NumberSystems />} />
+            <Route path="number-systems/fundamentals" element={<NumberSystems />} />
+            <Route path="number-systems/natural-whole" element={<NumberSystems />} />
+            <Route path="number-systems/integers" element={<NumberSystems />} />
+            <Route path="number-systems/fractions-decimals-percentages" element={<NumberSystems />} />
+            <Route path="number-systems/ordering-comparing" element={<NumberSystems />} />
+            <Route path="number-systems/absolute-distance-intervals" element={<NumberSystems />} />
+            <Route path="number-systems/properties-operations" element={<NumberSystems />} />
             <Route path="number-systems/rational" element={<NumberSystems />} />
             <Route path="number-systems/irrational" element={<NumberSystems />} />
             <Route path="number-systems/real-line" element={<NumberSystems />} />

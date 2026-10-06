@@ -18,7 +18,7 @@ const MAX_ZOOM = 2.4;
 const ZOOM_STEP = 0.15;
 
 function clampCanvasZoom(value: number) {
-  return clamp(Math.round(value * 100) / 100, FIT_ZOOM, MAX_ZOOM);
+  return clamp(Math.round(value * 100) / 100, 0.6, MAX_ZOOM);
 }
 
 function toDeg(value: number, units: Units) {
@@ -101,9 +101,7 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
       if (typeof detail?.zoom !== "number") return;
       const nextZoom = clampCanvasZoom(detail.zoom);
       setCanvasZoom(nextZoom);
-      if (detail.zoom < FIT_ZOOM) {
-        window.dispatchEvent(new CustomEvent<CanvasCommand>("studio-canvas-cmd", { detail: "fit" }));
-      }
+
     };
     window.addEventListener("studio-canvas-view", onCanvasView);
     return () => window.removeEventListener("studio-canvas-view", onCanvasView);
@@ -184,7 +182,7 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
   };
 
   const uX = 44;
-  const uY = 50;
+  const uY = 44;
   const ox = ori === "flipx" ? 570 : 95;
   const oy = ori === "flipy" ? 30 : 470;
   const xDirection = ori === "flipx" ? -1 : 1;
@@ -193,11 +191,19 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
   const Ay = oy;
   const Bx = ox;
   const By = oy + yDirection * solved.b * uY;
-  const triangleCenter = {
-    x: (ox + Ax + Bx) / 3,
-    y: (oy + Ay + By) / 3,
-  };
-  const zoomTransform = `translate(${triangleCenter.x} ${triangleCenter.y}) scale(${canvasZoom}) translate(${-triangleCenter.x} ${-triangleCenter.y})`;
+  const fitPoints = [[ox,oy],[Ax,Ay],[Bx,By]];
+  if (mode === "Pythagoras") {
+    for (const square of [squarePoints(ox,oy,Ax,Ay,1),squarePoints(ox,oy,Bx,By,-1),squarePoints(Ax,Ay,Bx,By,1)]) {
+      for (const point of square.split(" ")) fitPoints.push(point.split(",").map(Number));
+    }
+  }
+  if (mode === "Similarity") fitPoints.push([ox+solved.a*scale*uX,oy-solved.b*scale*uY]);
+  const minX = Math.min(...fitPoints.map(p=>p[0]))-48;
+  const maxX = Math.max(...fitPoints.map(p=>p[0]))+48;
+  const minY = Math.min(...fitPoints.map(p=>p[1]))-48;
+  const maxY = Math.max(...fitPoints.map(p=>p[1]))+48;
+  const fitScale = Math.min(600/(maxX-minX),440/(maxY-minY));
+  const zoomTransform = `translate(320 270) scale(${fitScale*canvasZoom}) translate(${-(minX+maxX)/2} ${-(minY+maxY)/2})`;
   const similar = { a: solved.a * scale, b: solved.b * scale, c: solved.c * scale };
   const pickTool = (next: Tool) => {
     setTool(next);
@@ -296,7 +302,7 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
             <button type="button" className={labels ? "active" : ""} aria-pressed={labels} onClick={() => pickTool("labels")} title="Labels"><span className="msk-tool-a">A</span><span>Labels</span></button>
             <button type="button" className={trace ? "active" : ""} aria-pressed={trace} onClick={() => pickTool("trace")} title="Trace"><Spline /><span>Trace</span></button>
             <button type="button" title="Zoom in" aria-label="Zoom in" onClick={() => changeCanvasZoom("in")}><ZoomIn /></button>
-            <button type="button" title="Zoom out" aria-label="Zoom out" disabled={canvasZoom <= FIT_ZOOM} onClick={() => changeCanvasZoom("out")}><ZoomOut /></button>
+            <button type="button" title="Zoom out" aria-label="Zoom out" disabled={canvasZoom <= 0.6} onClick={() => changeCanvasZoom("out")}><ZoomOut /></button>
             <button type="button" title="Fit canvas" aria-label="Fit canvas" aria-pressed={canvasZoom === FIT_ZOOM} onClick={() => changeCanvasZoom("fit")}><Maximize2 /></button>
             <button type="button" title="Toggle grid" aria-label="Toggle grid" onClick={() => document.documentElement.dataset.canvasGrid = document.documentElement.dataset.canvasGrid === "off" ? "on" : "off"}><Grid3X3 /></button>
             <button type="button" title="Toggle labels" aria-label="Toggle labels" onClick={() => document.documentElement.dataset.canvasLabels = document.documentElement.dataset.canvasLabels === "off" ? "on" : "off"}><Type /></button>
@@ -331,7 +337,7 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
               </pattern>
             </defs>
             <rect width="640" height="500" rx="12" fill="#f9fcff" />
-            <g ref={geometryRef} className="rt-target-geometry" clipPath="url(#rt-target-viewport)" transform={zoomTransform}>
+            <g ref={geometryRef} className="rt-target-geometry" transform={zoomTransform}>
             <rect width="640" height="500" fill="url(#rt-target-major-grid)" className="rt-target-grid" />
             <line x1={ox} y1="12" x2={ox} y2="488" stroke="#334155" strokeWidth="1.1" />
             <line x1="12" y1={oy} x2="628" y2={oy} stroke="#334155" strokeWidth="1.1" />
@@ -342,8 +348,8 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
             {trace ? <polyline points={Array.from({ length: 12 }, (_, i) => `${ox + (solved.a * i / 11) * uX},${oy - (solved.b * i / 11) * uY}`).join(" ")} fill="none" stroke="#94a3b8" strokeDasharray="4 4" /> : null}
             {mode === "Pythagoras" ? (
               <>
-                <polygon points={squarePoints(ox, oy, Ax, Ay, 1)} fill="rgba(20,125,242,.12)" stroke="#147df2" strokeWidth="1.4" />
-                <polygon points={squarePoints(ox, oy, Bx, By, -1)} fill="rgba(139,69,244,.12)" stroke="#8b45f4" strokeWidth="1.4" />
+                <polygon points={squarePoints(ox, oy, Ax, Ay, 1)} fill="rgba(139,69,244,.12)" stroke="#8b45f4" strokeWidth="1.4" />
+                <polygon points={squarePoints(ox, oy, Bx, By, -1)} fill="rgba(20,125,242,.12)" stroke="#147df2" strokeWidth="1.4" />
                 <polygon points={squarePoints(Ax, Ay, Bx, By, 1)} fill="rgba(8,185,221,.12)" stroke="#08b9dd" strokeWidth="1.4" />
               </>
             ) : null}
@@ -356,13 +362,13 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
                 strokeDasharray="6 4"
               />
             ) : null}
-            <line className="rt-target-side-b" x1={ox} y1={oy} x2={Ax} y2={Ay} stroke="#147df2" strokeWidth={mode === "Ratios" ? 3.2 : 2.4} />
-            <line className="rt-target-side-a" x1={ox} y1={oy} x2={Bx} y2={By} stroke="#8b45f4" strokeWidth={mode === "Ratios" ? 3.2 : 2.4} />
+            <line className="rt-target-side-b" x1={ox} y1={oy} x2={Ax} y2={Ay} stroke="#8b45f4" strokeWidth={mode === "Ratios" ? 3.2 : 2.4} />
+            <line className="rt-target-side-a" x1={ox} y1={oy} x2={Bx} y2={By} stroke="#147df2" strokeWidth={mode === "Ratios" ? 3.2 : 2.4} />
             <line className="rt-target-side-c" x1={Ax} y1={Ay} x2={Bx} y2={By} stroke="#08b9dd" strokeWidth={mode === "Ratios" ? 3.2 : 2.4} />
             {mode === "Ratios" ? (
               <>
                 <text x={(Ax + ox) / 2} y={Ay + 36} fill="#147df2" fontSize="12" fontWeight="800">opp</text>
-                <text x={ox - 28} y={(By + oy) / 2} fill="#8b45f4" fontSize="12" fontWeight="800">adj</text>
+                <text x={ox - 28} y={(By + oy) / 2} fill="#147df2" fontSize="12" fontWeight="800">adj</text>
                 <text x={(Ax + Bx) / 2 + 28} y={(Ay + By) / 2 - 28} fill="#08b9dd" fontSize="12" fontWeight="800">hyp</text>
               </>
             ) : null}
@@ -381,8 +387,8 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
             />
             {measure ? (
               <>
-                <text x={(Ax + ox) / 2} y={Ay + 18} fill="#147df2" fontSize="13" fontWeight="700">b = {fmt(solved.b, 2)} cm</text>
-                <text x={ox - 10} y={(By + oy) / 2} fill="#8b45f4" fontSize="13" fontWeight="700" textAnchor="end">{fmt(solved.a, 4)} cm</text>
+                <text x={(Ax + ox) / 2} y={Ay + 18} fill="#8b45f4" fontSize="13" fontWeight="700">a = {fmt(solved.a, 2)} cm</text>
+                <text x={ox - 10} y={(By + oy) / 2} fill="#147df2" fontSize="13" fontWeight="700" textAnchor="end">b = {fmt(solved.b, 2)} cm</text>
                 <text x={(Ax + Bx) / 2 + 12} y={(Ay + By) / 2 - 6} fill="#08b9dd" fontSize="13" fontWeight="700">c = {fmt(solved.c, 2)} cm</text>
                 <text x={Ax - 44} y={Ay - 16} fill="#f59e0b" fontSize="12">{fmt(fromDeg(solved.A, units), 0)}{unitLabel(units)}</text>
                 <text x={Bx + 14} y={By + 26} fill="#8b45f4" fontSize="12">{fmt(fromDeg(solved.B, units), 0)}{unitLabel(units)}</text>
@@ -397,8 +403,8 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
             ) : null}
             <circle className="rt-target-point-a" cx={Ax} cy={Ay} r="8" fill="#f59e0b" stroke="#fff" strokeWidth="2" style={{ cursor: "grab" }} onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); drag.current = "A"; }} />
             <circle className="rt-target-point-b" cx={Bx} cy={By} r="8" fill="#8b45f4" stroke="#fff" strokeWidth="2" style={{ cursor: "grab" }} onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); drag.current = "B"; }} />
-            <text x={ox - 18} y={(By + oy) / 2} fill="#8b45f4" fontSize="14" fontStyle="italic" fontWeight="700">a</text>
-            <text x={(Ax + ox) / 2} y={oy + 32} fill="#147df2" fontSize="14" fontStyle="italic" fontWeight="700">b</text>
+            <text x={ox - 18} y={(By + oy) / 2} fill="#147df2" fontSize="14" fontStyle="italic" fontWeight="700">b</text>
+            <text x={(Ax + ox) / 2} y={oy + 32} fill="#8b45f4" fontSize="14" fontStyle="italic" fontWeight="700">a</text>
             <text x={(Ax + Bx) / 2 + 18} y={(Ay + By) / 2 - 14} fill="#08b9dd" fontSize="14" fontStyle="italic" fontWeight="700">c</text>
             <circle className="rt-target-point-c" cx={ox} cy={oy} r="7" fill="#147df2" stroke="#fff" strokeWidth="2" />
             </g>

@@ -1,0 +1,4 @@
+import {chromium,expect} from '@playwright/test';import fs from 'node:fs';
+const b=await chromium.launch(),c=await b.newContext({viewport:{width:1440,height:900}}),p=await c.newPage(),checks=[];
+await p.goto('http://127.0.0.1:5178/number-systems/properties-operations');await p.locator('.np-studio').waitFor();await p.locator('.np-operation-tiles button').nth(2).click();await expect(p.getByLabel('Closure operation',{exact:true})).toHaveValue('×');checks.push('Operation tiles update the displayed operation');await p.getByRole('button',{name:'How It Works →',exact:true}).click();await expect(p.locator('.np-theory')).toHaveAttribute('open','');await expect(p.locator('.np-theory')).toContainText('Core Idea & Definition');checks.push('Overview opens the actual theory panel');
+fs.writeFileSync('artifacts/number-systems-upgrade/final-controls.json',JSON.stringify(checks,null,2));console.log(checks);await b.close();

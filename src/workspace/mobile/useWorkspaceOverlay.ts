@@ -1,4 +1,6 @@
 import {
+  createContext,
+  useContext,
   useCallback,
   useEffect,
   useMemo,
@@ -23,7 +25,10 @@ export const WORKSPACE_OVERLAY_KEEP_OPEN =
 
 const HISTORY_STATE_KEY = "mwsOverlay";
 
+export const EmbeddedWorkspaceContext = createContext(false);
+
 export function useIsMobileWorkspace(query = MOBILE_WORKSPACE_QUERY) {
+  const embedded = useContext(EmbeddedWorkspaceContext);
   const [isMobile, setIsMobile] = useState(() =>
     typeof window === "undefined"
       ? false
@@ -38,7 +43,7 @@ export function useIsMobileWorkspace(query = MOBILE_WORKSPACE_QUERY) {
     return () => media.removeEventListener("change", sync);
   }, [query]);
 
-  return isMobile;
+  return embedded || isMobile;
 }
 
 export type WorkspaceOverlayApi = {

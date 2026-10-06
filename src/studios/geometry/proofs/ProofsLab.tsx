@@ -1,3 +1,5 @@
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { proofLessonScene } from "../geometryStudioScenes";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useState } from "react";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
@@ -48,7 +50,7 @@ export default function ProofsLab({ page }: { page: StudioMockupPage }) {
               {mode === "Similarity" ? <SliderRow label="Scale k" value={fig.state.k} min={0.5} max={3} step={0.05} onChange={(k) => fig.commit({ ...fig.state, k })} /> : null}
             </Panel>
             <section className="msk-panel msk-canvas">
-              <svg
+              <GeometryLessonCanvas scene={proofLessonScene(mode, fig.state)}
                 className="msk-graph is-interactive"
                 viewBox="0 0 420 240"
                 role="img"
@@ -90,7 +92,7 @@ export default function ProofsLab({ page }: { page: StudioMockupPage }) {
                     <text x="40" y="28" fill="#0f172a" fontSize="13">Area scale k² = {fig.format(sim.area, 2)}</text>
                   </>
                 ) : null}
-              </svg>
+              </GeometryLessonCanvas>
             </section>
             <aside className="msk-panel msk-live">
               {mode === "Pythagoras" || mode === "Area Proofs" ? (

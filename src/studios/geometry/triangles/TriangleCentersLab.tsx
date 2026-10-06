@@ -1,3 +1,5 @@
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { triangleLessonScene } from "../geometryLessonScene";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ChipRow, Field, Panel } from "../../mockup/studioLabKit";
@@ -147,7 +149,7 @@ export default function TriangleCentersLab({ pulse = "observe" }: { pulse?: stri
         </Panel>
       }
       canvas={
-        <svg ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label={`Triangle centers construction. Circumcenter O is ${circLoc}.`}>
+        <GeometryLessonCanvas activityId={`centers-${mode}`} onPointChange={(id, point) => { if (id === "A" || id === "B" || id === "C") setTri(current => ({ ...current, [id]: fromSvg(plane, point.x, point.y) })); }} scene={triangleLessonScene(plane, [tri], p => toSvg(plane, p))} ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label={`Triangle centers construction. Circumcenter O is ${circLoc}.`}>
           {grid ? <GridLayer plane={plane} /> : null}
           <polygon points={polyPoints(plane, [geo.A, geo.B, geo.C])} fill="rgba(20,125,242,.08)" stroke="#147df2" strokeWidth="2.1" />
           {show("centroid") ? (
@@ -202,7 +204,7 @@ export default function TriangleCentersLab({ pulse = "observe" }: { pulse?: stri
           <g onPointerDown={startDrag("A")}><DraggableVertex plane={plane} p={geo.A} label="A" /></g>
           <g onPointerDown={startDrag("B")}><DraggableVertex plane={plane} p={geo.B} label="B" /></g>
           <g onPointerDown={startDrag("C")}><DraggableVertex plane={plane} p={geo.C} label="C" /></g>
-        </svg>
+        </GeometryLessonCanvas>
       }
       insights={
         <InsightStack

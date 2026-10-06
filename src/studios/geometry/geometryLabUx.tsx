@@ -1,18 +1,4 @@
 import { useStudioState } from "../phase1/StudioModelProvider";
-import {
-  Copy,
-  Contrast,
-  Download,
-  HelpCircle,
-  Keyboard,
-  Link2,
-  Maximize2,
-  PanelRight,
-  Printer,
-  Type,
-  ZoomIn,
-  ZoomOut,
-} from "lucide-react";
 import { createContext, useCallback, useContext, useEffect, useId, useMemo, useState, type KeyboardEvent, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
@@ -109,11 +95,11 @@ export function GeometryLabShell({
   const [contrast, setContrast] = useStudioState("geometryLabUx:GeometryLabShell:contrast", false);
   const [largeLabels, setLargeLabels] = useStudioState("geometryLabUx:GeometryLabShell:largeLabels", () => readGeoSession().largeLabels);
   useEffect(() => onGeoSession(() => setLargeLabels(readGeoSession().largeLabels)), []);
-  const [compact, setCompact] = useStudioState("geometryLabUx:GeometryLabShell:compact", false);
+  const [compact] = useStudioState("geometryLabUx:GeometryLabShell:compact", false);
   const [inspectorOpen, setInspectorOpen] = useStudioState("geometryLabUx:GeometryLabShell:inspectorOpen", false);
   const [helpOpen, setHelpOpen] = useState(false);
   const [status, setStatus] = useState("");
-  const [unitHint, setUnitHint] = useStudioState<"deg" | "rad">("geometryLabUx:GeometryLabShell:unitHint", "deg");
+  const [, setUnitHint] = useStudioState<"deg" | "rad">("geometryLabUx:GeometryLabShell:unitHint", "deg");
   const [highlight, setHighlight] = useStudioState<string | null>("geometryLabUx:GeometryLabShell:highlight", null);
   const [challengeFlash, setChallengeFlash] = useStudioState("geometryLabUx:GeometryLabShell:challengeFlash", false);
 
@@ -155,29 +141,6 @@ export function GeometryLabShell({
     const href = typeof window === "undefined" ? "" : window.location.href;
     void copyText(href, "Shareable lab URL copied.");
   }, [announce]);
-
-  const exportSvg = () => {
-    const svg = document.querySelector<SVGSVGElement>(lab === "triangles" ? ".tri-canvas svg" : ".poly-svg");
-    if (!svg) {
-      announce("No figure is ready to export yet.");
-      return;
-    }
-    const blob = new Blob([svg.outerHTML], { type: "image/svg+xml" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${lab}-${mode}.svg`;
-    a.click();
-    URL.revokeObjectURL(url);
-    announce("Figure downloaded as SVG.");
-  };
-
-  const printLab = () => {
-    document.documentElement.classList.add("geo-print-worksheet");
-    window.print();
-    window.setTimeout(() => document.documentElement.classList.remove("geo-print-worksheet"), 500);
-    announce("Print a figure worksheet with a blank angle to find.");
-  };
 
   const fit = () => {
     setZoom(1);
@@ -256,27 +219,6 @@ export function GeometryLabShell({
     <GeoLabUiContext.Provider value={ui}>
       <div className={classes} data-lab={lab} data-lab-mode={mode} data-zoom={zoom} data-pan-x={panX} data-pan-y={panY} style={{ ["--geo-zoom" as string]: String(zoom) }}>
         <a className="geo-skip" href="#lab-canvas">Skip to figure</a>
-        <div className="geo-lab-toolbar geo-lab-toolbar--figure" role="toolbar" aria-label={`${lab} studio tools`}>
-          <div className="geo-lab-tools">
-            <button type="button" onClick={() => setZoom((value) => Math.min(2.2, Math.round((value + 0.1) * 10) / 10))} aria-label="Zoom in"><ZoomIn /></button>
-            <button type="button" onClick={() => setZoom((value) => Math.max(0.7, Math.round((value - 0.1) * 10) / 10))} aria-label="Zoom out"><ZoomOut /></button>
-            <button type="button" onClick={fit} aria-label="Fit figure"><Maximize2 /></button>
-            <button type="button" aria-pressed={contrast} onClick={() => setContrast((value) => !value)} aria-label="High contrast"><Contrast /></button>
-            <button type="button" aria-pressed={largeLabels} onClick={toggleLargeLabels} aria-label="Large labels"><Type /></button>
-            <button type="button" aria-pressed={compact} onClick={() => setCompact((value) => !value)}>{compact ? "Comfortable" : "Compact"}</button>
-            <button type="button" className="geo-inspector-toggle" aria-pressed={inspectorOpen} onClick={() => setInspectorOpen((value) => !value)} aria-label="Toggle measurements panel"><PanelRight /></button>
-            <button type="button" onClick={copyMeasurements} aria-label="Copy measurements"><Copy /></button>
-            <button type="button" onClick={shareSetup} aria-label="Copy shareable URL"><Link2 /></button>
-            <button type="button" onClick={exportSvg} aria-label="Download SVG"><Download /></button>
-            <button type="button" onClick={printLab} aria-label="Print worksheet"><Printer /></button>
-            <button type="button" aria-expanded={helpOpen} aria-controls={helpId} onClick={() => setHelpOpen((open) => !open)} aria-label="Keyboard shortcuts"><Keyboard /><HelpCircle /></button>
-          </div>
-          {lab === "polygons" ? (
-            <p className="geo-unit-hint" data-unit={unitHint}>Angles shown as {unitHint === "deg" ? "degrees" : "radians (π rad = 180°)"}. Press D to switch the reminder.</p>
-          ) : (
-            <p className="geo-unit-hint">Drag a vertex. Arrow keys nudge the selection. Press ? for shortcuts.</p>
-          )}
-        </div>
         <p className="geo-live-summary vis-hidden" aria-live="polite">{liveSummary}</p>
         <div className="geo-lab-body" onKeyDown={onTabKey}>
           {children}

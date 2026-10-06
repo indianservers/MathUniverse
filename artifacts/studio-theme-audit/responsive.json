@@ -1,0 +1,212 @@
+[
+  {
+    "route": "/workspace/graph",
+    "width": 1920,
+    "height": 1080,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/graph",
+    "width": 1536,
+    "height": 864,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/graph",
+    "width": 1366,
+    "height": 768,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/graph",
+    "width": 1280,
+    "height": 720,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/graph",
+    "width": 1024,
+    "height": 768,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "width": 1920,
+    "height": 1080,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "width": 1536,
+    "height": 864,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "width": 1366,
+    "height": 768,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "width": 1280,
+    "height": 720,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "width": 1024,
+    "height": 768,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "width": 1920,
+    "height": 1080,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "width": 1536,
+    "height": 864,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "width": 1366,
+    "height": 768,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "width": 1280,
+    "height": 720,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "width": 1024,
+    "height": 768,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/3d",
+    "width": 1920,
+    "height": 1080,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/3d",
+    "width": 1536,
+    "height": 864,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/3d",
+    "width": 1366,
+    "height": 768,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/3d",
+    "width": 1280,
+    "height": 720,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/3d",
+    "width": 1024,
+    "height": 768,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/data/cas",
+    "width": 1920,
+    "height": 1080,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/data/cas",
+    "width": 1536,
+    "height": 864,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/data/cas",
+    "width": 1366,
+    "height": 768,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/data/cas",
+    "width": 1280,
+    "height": 720,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/workspace/data/cas",
+    "width": 1024,
+    "height": 768,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/shapes",
+    "width": 1920,
+    "height": 1080,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/shapes",
+    "width": 1536,
+    "height": 864,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/shapes",
+    "width": 1366,
+    "height": 768,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/shapes",
+    "width": 1280,
+    "height": 720,
+    "overflow": false,
+    "offscreen": []
+  },
+  {
+    "route": "/shapes",
+    "width": 1024,
+    "height": 768,
+    "overflow": false,
+    "offscreen": []
+  }
+]

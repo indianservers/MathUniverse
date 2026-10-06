@@ -40718,3 +40718,39 @@ html body #main-content .lesson-simple-english h2 {
   }
   .shapes-formulas-card { min-height: 350px; }
 }
+.geometry-paint-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;grid-column:1/-1;padding:10px 0}.geometry-paint-controls label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:700}.geometry-paint-controls select,.geometry-paint-controls input{width:100%;min-height:35px;border:1px solid #94a3b8;border-radius:7px;padding:5px;background:white;color:#152a46}.geometry-studio-shell[data-geometry-theme="light"],.geometry-studio-shell[data-geometry-theme="light"] .geometry-canvas-wrap,.geometry-studio-shell[data-geometry-theme="light"] .geometry-board,.object-studio-shell[data-chrome-theme="light"],.object-studio-shell[data-chrome-theme="light"] .os-canvas,.object-studio-shell[data-chrome-theme="light"] .three-scene-shell{background:#fff!important}
+
+.geometry-studio-shell[data-geometry-theme="light"] .geometry-board-svg,
+.geometry-studio-shell[data-geometry-theme="light"] .geometry-canvas-stage,
+.object-studio-shell[data-chrome-theme="light"] .os-canvas-zone,
+.object-studio-shell[data-chrome-theme="light"] .os-canvas-zone [role="application"] { background: #fff !important; }
+.object-studio-shell[data-chrome-theme="light"] .os-canvas-zone [role="application"] > .pointer-events-none { background: transparent !important; }
+
+.object-studio-shell[data-chrome-theme="light"] .os-field-group,
+.object-studio-shell[data-chrome-theme="light"] .os-measurements > div,
+.object-studio-shell[data-chrome-theme="light"] .os-shape-library button {
+ background: #fff; color: #0f172a; border-color: #dbe3ed;
+}
+.object-studio-shell[data-chrome-theme="light"] .os-field-group label,
+.object-studio-shell[data-chrome-theme="light"] .os-field-group h3,
+.object-studio-shell[data-chrome-theme="light"] .os-scene-objects button,
+.object-studio-shell[data-chrome-theme="light"] .os-object-row,
+.object-studio-shell[data-chrome-theme="light"] .os-measurements span { color: #334155; }
+.object-studio-shell[data-chrome-theme="light"] .os-field-group select,
+.object-studio-shell[data-chrome-theme="light"] .os-field-group input { color: #0f172a; background: #fff; }
+
+.geometry-object-properties { min-width: 0; }
+.geometry-object-properties .geometry-paint-controls { grid-template-columns: 1fr; }
+.geometry-studio-shell[data-geometry-theme="light"] .geometry-object-properties,
+.geometry-studio-shell[data-geometry-theme="light"] .geometry-object-properties label,
+.geometry-studio-shell[data-geometry-theme="light"] .geometry-object-properties span,
+.geometry-studio-shell[data-geometry-theme="light"] .geometry-object-properties button,
+.geometry-studio-shell[data-geometry-theme="light"] .geometry-object-row-main { color: #334155 !important; }
+.geometry-studio-shell[data-geometry-theme="light"] .geometry-object-properties label { background-color: #fff; }
+
+.geometry-studio-shell[data-geometry-theme="light"] .geometry-board-svg text { fill: #0f172a; }
+.geometry-studio-shell[data-geometry-theme="light"] .geometry-studio-left,
+.geometry-studio-shell[data-geometry-theme="light"] .geometry-studio-right,
+.object-studio-shell[data-chrome-theme="light"] .os-left,
+.object-studio-shell[data-chrome-theme="light"] .os-right { background: #fff; }
+

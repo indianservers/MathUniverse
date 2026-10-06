@@ -104,7 +104,7 @@ export function extrudeARPolygon(points:PlanarPoint[],height:number):Extract<ARG
 }
 export function createARConstruction(name:string,geometry:ARGraphGeometry,settings:ARGraphSettings):ARGeneratedGraphObject {
   const type=geometry.kind==="surface"?"geometry_construction":"planar_graph";
-  return {id:crypto.randomUUID(),name,equation:name,type,visible:true,locked:false,transform:{scale:settings.graphScale,rotation:[0,0,0],position:[0,0.45,0]},settings,geometry,parameterValues:{},explanation:"Coordinate construction; dimensions are in graph units, not measured camera distances.",classification:{type,normalizedInput:name,confidence:"high",dimensions:[],variables:[],recommendedMode:"3d-preview",message:name},status:"ready"};
+  return {id:crypto.randomUUID(),name,equation:name,type,semanticType:name==='Polygon construction'?'polygon':undefined,visible:true,locked:false,transform:{scale:settings.graphScale,rotation:[0,0,0],position:[0,0.45,0]},settings,geometry,parameterValues:{},explanation:"Coordinate construction; dimensions are in graph units, not measured camera distances.",classification:{type,normalizedInput:name,confidence:"high",dimensions:[],variables:[],recommendedMode:"3d-preview",message:name},status:"ready"};
 }
 export function sectionARMesh(geometry:ARGraphGeometry,axis:0|1|2,value:number):Extract<ARGraphGeometry,{kind:"curve"}>{
   if(geometry.kind!=="surface")throw new Error("Select a surface for sectioning.");if(!Number.isFinite(value))throw new Error("Section position must be finite.");

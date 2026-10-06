@@ -1,6 +1,7 @@
 import { Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { readEmbeddedGraphState, saveEmbeddedGraphState, type EmbeddedGraphOptions } from "../workspace/embeddedWorkspace";
 import FunctionGraphCanvas, { FunctionGraphView } from "../components/math-lab/FunctionGraphCanvas";
 import { buildGraphingCalculatorWorkspaceObjects } from "../workspace/universalObjectGraph";
 import { useUniversalObjectGraphPublisher } from "../workspace/useUniversalObjectGraphPublisher";
@@ -86,46 +87,57 @@ const EXAMPLES = ["2x + 1", "x^2", "sin(x)", "x^2 + y^2 = 25", "(2, 3)", "seq(n^
 const GRAPH_2D_STORAGE_KEY = "math-universe-saved-2d-graphs";
 const DEFAULT_GRAPH_VIEW: FunctionGraphView = { xMin: -10, xMax: 10, yMin: -10, yMax: 10 };
 
-export default function MathLabGraphingCalculator() {
+export default function MathLabGraphingCalculator({ embedded }: { embedded?: EmbeddedGraphOptions } = {}) {
+  const location = useLocation();
   const [searchParams] = useSearchParams();
-  const prefilledFunction = searchParams.get("q")?.trim();
-  const sharedProject = useMemo(() => readSharedGraph(searchParams.get("project")), [searchParams]);
+  const prefilledFunction = embedded ? undefined : searchParams.get("q")?.trim();
+  const sharedProject = useMemo<Partial<Graph2DWorkspaceState> | null | undefined>(() => readEmbeddedGraphState<Graph2DWorkspaceState>(embedded, "2d") ?? (embedded ? { functions: embedded.expressions.map((input, i) => ({ id: `f${i + 1}`, input, color: COLORS[i % COLORS.length], visible: true })), view: DEFAULT_GRAPH_VIEW } : (location.state as { embeddedGraphScene?: Graph2DWorkspaceState } | null)?.embeddedGraphScene ?? readSharedGraph(searchParams.get("project"))), [embedded?.activityId, location.state, searchParams]);
   const [functions, setFunctions] = useState<FunctionRow[]>(() => sharedProject?.functions?.length ? sharedProject.functions : prefilledFunction ? [
     { id: "f1", input: prefilledFunction, color: COLORS[0], visible: true },
   ] : [
     { id: "f1", input: "x^2 - 4", color: COLORS[0], visible: true },
     { id: "f2", input: "sin(x)", color: COLORS[1], visible: true },
   ]);
+  useEffect(() => {
+    if (!embedded?.expressionRevision) return;
+    setFunctions(previous => embedded.expressions.map((input, index) => ({ ...(previous[index] ?? { id: `f${index+1}`, color: COLORS[index % COLORS.length], visible: true }), input })));
+  }, [embedded?.expressionRevision]);
   const [selectedId, setSelectedId] = useState("f1");
   const [view, setView] = useState<FunctionGraphView>(() => sharedProject?.view ?? DEFAULT_GRAPH_VIEW);
-  const [showGrid, setShowGrid] = useState(true);
-  const [showAxes, setShowAxes] = useState(true);
-  const [traceMode, setTraceMode] = useState(true);
+  const [showGrid, setShowGrid] = useState(() => sharedProject?.showGrid ?? true);
+  const [showAxes, setShowAxes] = useState(() => sharedProject?.showAxes ?? true);
+  const [traceMode, setTraceMode] = useState(() => sharedProject?.traceMode ?? true);
   const [traceX, setTraceX] = useState(0);
   const [tableStart, setTableStart] = useState(-5);
   const [tableEnd, setTableEnd] = useState(5);
   const [tableStep, setTableStep] = useState(1);
   const [showDerivative, setShowDerivative] = useState(false);
   const [showIntegral, setShowIntegral] = useState(false);
-  const [integralStart, setIntegralStart] = useState(-2);
-  const [integralEnd, setIntegralEnd] = useState(2);
+  const [integralStart, setIntegralStart] = useState(() => sharedProject?.integralStart ?? -2);
+  const [integralEnd, setIntegralEnd] = useState(() => sharedProject?.integralEnd ?? 2);
   const [saveName, setSaveName] = useState("My 2D graph");
   const [savedGraphs, setSavedGraphs] = useState<SavedGraphWorkspace<Graph2DWorkspaceState>[]>(() => readSavedGraphWorkspaces(GRAPH_2D_STORAGE_KEY));
-  const [graphVariables, setGraphVariables] = useState<GraphStudioVariable[]>([]);
-  const [dataRows, setDataRows] = useState<GraphDataRow[]>(() => createBlankGraphDataRows());
-  const [showData, setShowData] = useState(true);
-  const [showRegression, setShowRegression] = useState(false);
-  const [showResiduals, setShowResiduals] = useState(false);
-  const [logX, setLogX] = useState(false);
-  const [logY, setLogY] = useState(false);
-  const [regressionKind, setRegressionKind] = useState<RegressionKind>("linear");
-  const [showTaylor, setShowTaylor] = useState(false);
-  const [taylorCenter, setTaylorCenter] = useState(0);
-  const [taylorDegree, setTaylorDegree] = useState(4);
+  const [graphVariables, setGraphVariables] = useState<GraphStudioVariable[]>(() => sharedProject?.variables ?? []);
+  const [dataRows, setDataRows] = useState<GraphDataRow[]>(() => sharedProject?.dataRows ?? createBlankGraphDataRows());
+  const [showData, setShowData] = useState(() => sharedProject?.showData ?? true);
+  const [showRegression, setShowRegression] = useState(() => sharedProject?.showRegression ?? false);
+  const [showResiduals, setShowResiduals] = useState(() => sharedProject?.showResiduals ?? false);
+  const [logX, setLogX] = useState(() => sharedProject?.logX ?? false);
+  const [logY, setLogY] = useState(() => sharedProject?.logY ?? false);
+  const [regressionKind, setRegressionKind] = useState<RegressionKind>(() => sharedProject?.regressionKind ?? "linear");
+  const [showTaylor, setShowTaylor] = useState(() => sharedProject?.showTaylor ?? false);
+  const [taylorCenter, setTaylorCenter] = useState(() => sharedProject?.taylorCenter ?? 0);
+  const [taylorDegree, setTaylorDegree] = useState(() => sharedProject?.taylorDegree ?? 4);
   const [embedOpen, setEmbedOpen] = useState(false);
 
   const graphStudioState = useMemo<Graph2DWorkspaceState>(() => ({ functions, view, showGrid, showAxes, traceMode, integralStart, integralEnd, variables: graphVariables, dataRows, showData, showRegression, showResiduals, logX, logY, regressionKind, showTaylor, taylorCenter, taylorDegree }), [dataRows, functions, graphVariables, integralEnd, integralStart, logX, logY, regressionKind, showAxes, showData, showGrid, showRegression, showResiduals, showTaylor, taylorCenter, taylorDegree, traceMode, view]);
+  useEffect(() => {
+    if (!embedded) return;
+    const timeout = window.setTimeout(() => saveEmbeddedGraphState(embedded, "2d", graphStudioState), 120);
+    return () => window.clearTimeout(timeout);
+  }, [embedded?.activityId, graphStudioState]);
   const graphStudio = useGraphStudioProject({
+    persist: !embedded,
     dimension: "2d",
     initialName: "My Function Study",
     state: graphStudioState,
@@ -235,7 +247,7 @@ export default function MathLabGraphingCalculator() {
       discontinuities,
     },
   }), [discontinuities, plotted, roots.roots, selectedId, table.rows, view, visibleRange, yIntercept.y]);
-  useUniversalObjectGraphPublisher("graphing-calculator", workspaceObjects);
+  useUniversalObjectGraphPublisher("graphing-calculator", workspaceObjects, undefined, !embedded);
 
   return (
     <>

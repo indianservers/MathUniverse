@@ -1,3 +1,5 @@
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { triangleLessonScene } from "../geometryLessonScene";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -395,7 +397,7 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
               <button type="button" className="msk-cta" onClick={() => { setCoach(false); writeGeoSession({ coachDismissed: true }); }}>Got it</button>
             </div>
           ) : null}
-          <svg ref={svgRef} viewBox={`${vx} ${vy} ${vw} ${vh}`} role="img" aria-label={svgLabel} className={ui?.challengeFlash ? "is-success" : ""} onPointerDown={startPan}>
+          <GeometryLessonCanvas onPointChange={(id, point) => { if (id === "A" || id === "B" || id === "C") setTri(current => ({ ...current, [id]: fromSvg(plane, point.x, point.y) })); }} scene={triangleLessonScene(plane, [tri], p => toSvg(plane, p))} ref={svgRef} viewBox={`${vx} ${vy} ${vw} ${vh}`} role="img" aria-label={svgLabel} className={ui?.challengeFlash ? "is-success" : ""} onPointerDown={startPan}>
             {layers.grid ? <GridLayer plane={plane} /> : null}
             <g aria-label="Triangle fill">
               <polygon points={polyPoints(plane, [tri.A, tri.B, tri.C])} fill="rgba(20,125,242,.10)" stroke="#147df2" strokeWidth="2.2" className={hover === "Perimeter" ? "is-hot" : ""} />
@@ -452,7 +454,7 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
                 <text x={cSvg.x + 12} y={cSvg.y + 22} fill="#536381" fontSize="11">({okNum(tri.C.x)}, {okNum(tri.C.y)})</text>
               </>
             ) : null}
-          </svg>
+          </GeometryLessonCanvas>
         </div>
       }
       insights={

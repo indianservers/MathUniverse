@@ -392,3 +392,9 @@
   .msk-sidebar,.msk-classroom,.msk-top,.msk-topic-strip,.msk-aside{display:none !important}
   html[data-print-labels="on"] .msk-graph text{font-size:18px !important}
 }
+
+/* Give every lesson field an explicit, matching foreground and background. */
+.msk-shell:not(.is-dark) :is(input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):not([type="color"]),select,textarea) { background:#fff; color:#071641; -webkit-text-fill-color:#071641; }
+.msk-shell:not(.is-dark) :is(input,textarea)::placeholder { color:#64748b; }
+.msk-shell:not(.is-dark) :is(input,select,textarea):disabled { background:#edf2f7; color:#475569; -webkit-text-fill-color:#475569; opacity:1; }
+.msk-shell.is-dark :is(input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):not([type="color"]),select,textarea) { background:#10243e; color:#f8fafc; -webkit-text-fill-color:#f8fafc; }

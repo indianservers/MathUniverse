@@ -1,0 +1,6 @@
+
+C:\Indian Servers\Math Universe Visualizations\src\components\workspace\ShareExportControl.tsx
+  112:5  warning  React Hook useMemo has unnecessary dependencies: 'open' and 'view'. Either exclude them or remove the dependency array  react-hooks/exhaustive-deps
+
+✖ 1 problem (0 errors, 1 warning)
+

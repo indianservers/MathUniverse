@@ -1,0 +1,2998 @@
+{
+  "version": 1,
+  "coordinateSystem": "normalized-camera-or-XR-local",
+  "frames": [
+    {
+      "label": "grab",
+      "input": {
+        "timestamp": 105101,
+        "camera": true,
+        "selectedObjectId": "target-0",
+        "tool": "auto",
+        "latencyMs": 150,
+        "targets": [
+          {
+            "objectId": "target-0",
+            "semanticType": "cube",
+            "position": [
+              0.511314245433568,
+              0.5121594375819991,
+              0
+            ],
+            "radius": 0.03394273630070388,
+            "depth": 6.084493610634495,
+            "visible": true,
+            "locked": false,
+            "selected": true,
+            "allowedInteractions": {
+              "translate": true,
+              "rotate": true,
+              "scale": true,
+              "editRadius": false,
+              "stretchX": true,
+              "stretchY": true,
+              "stretchZ": true,
+              "sampleSurface": false,
+              "editVector": false,
+              "editVertex": false
+            },
+            "preferredGrabZones": [
+              {
+                "id": "body",
+                "kind": "body",
+                "position": [
+                  0.511314245433568,
+                  0.5121594375819991,
+                  0
+                ],
+                "radius": 0.03394273630070388
+              },
+              {
+                "id": "face-0--1",
+                "kind": "face",
+                "position": [
+                  0.4773715091335358,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  -1,
+                  7.18419606340283e-9,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-0-1",
+                "kind": "face",
+                "position": [
+                  0.5226284908664642,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  0.9999999999999998,
+                  2.155258819106145e-8,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5447587190646617,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.32788368258797235,
+                  0.9447181011775682,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.4792993437353666,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.3255580640150656,
+                  -0.9455220499569338,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5067985675429146,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.9036917723350928,
+                  -0.4281835828401865,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5177970778726427,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.895042824383461,
+                  0.44598020417915063,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "corner-0",
+                "kind": "edge",
+                "position": [
+                  0.4780124173156434,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-1",
+                "kind": "edge",
+                "position": [
+                  0.5439751653687132,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-2",
+                "kind": "edge",
+                "position": [
+                  0.4778408390249455,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-3",
+                "kind": "edge",
+                "position": [
+                  0.544318321950109,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-4",
+                "kind": "edge",
+                "position": [
+                  0.47688186828983437,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-5",
+                "kind": "edge",
+                "position": [
+                  0.5462362634203313,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-6",
+                "kind": "edge",
+                "position": [
+                  0.47669211595808064,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-7",
+                "kind": "edge",
+                "position": [
+                  0.5466157680838387,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              }
+            ],
+            "precisionRequired": 0.8
+          }
+        ],
+        "hands": []
+      },
+      "state": {
+        "timestamp": 105101,
+        "hands": [],
+        "primaryIntent": "idle",
+        "targetConfidence": 0,
+        "intentConfidence": 0,
+        "interactionConfidence": 0,
+        "uncertainty": 1,
+        "phase": "idle",
+        "isStable": false,
+        "targetLocked": false,
+        "activeHandIds": [],
+        "precision": false,
+        "weights": {
+          "translate": 0,
+          "rotate": 0,
+          "scale": 0,
+          "stretch": 0,
+          "depth": 0
+        },
+        "scores": {
+          "grab": 0,
+          "point": 0,
+          "inspect": 0,
+          "release": 1
+        },
+        "reasons": [],
+        "throwAllowed": false
+      },
+      "result": {
+        "transform": null
+      }
+    },
+    {
+      "label": "grab",
+      "input": {
+        "timestamp": 105401.1,
+        "camera": true,
+        "selectedObjectId": "target-0",
+        "tool": "auto",
+        "latencyMs": 150,
+        "targets": [
+          {
+            "objectId": "target-0",
+            "semanticType": "cube",
+            "position": [
+              0.511314245433568,
+              0.5121594375819991,
+              0
+            ],
+            "radius": 0.03394273630070388,
+            "depth": 6.084493610634495,
+            "visible": true,
+            "locked": false,
+            "selected": true,
+            "allowedInteractions": {
+              "translate": true,
+              "rotate": true,
+              "scale": true,
+              "editRadius": false,
+              "stretchX": true,
+              "stretchY": true,
+              "stretchZ": true,
+              "sampleSurface": false,
+              "editVector": false,
+              "editVertex": false
+            },
+            "preferredGrabZones": [
+              {
+                "id": "body",
+                "kind": "body",
+                "position": [
+                  0.511314245433568,
+                  0.5121594375819991,
+                  0
+                ],
+                "radius": 0.03394273630070388
+              },
+              {
+                "id": "face-0--1",
+                "kind": "face",
+                "position": [
+                  0.4773715091335358,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  -1,
+                  7.18419606340283e-9,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-0-1",
+                "kind": "face",
+                "position": [
+                  0.5226284908664642,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  0.9999999999999998,
+                  2.155258819106145e-8,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5447587190646617,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.32788368258797235,
+                  0.9447181011775682,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.4792993437353666,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.3255580640150656,
+                  -0.9455220499569338,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5067985675429146,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.9036917723350928,
+                  -0.4281835828401865,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5177970778726427,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.895042824383461,
+                  0.44598020417915063,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "corner-0",
+                "kind": "edge",
+                "position": [
+                  0.4780124173156434,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-1",
+                "kind": "edge",
+                "position": [
+                  0.5439751653687132,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-2",
+                "kind": "edge",
+                "position": [
+                  0.4778408390249455,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-3",
+                "kind": "edge",
+                "position": [
+                  0.544318321950109,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-4",
+                "kind": "edge",
+                "position": [
+                  0.47688186828983437,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-5",
+                "kind": "edge",
+                "position": [
+                  0.5462362634203313,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-6",
+                "kind": "edge",
+                "position": [
+                  0.47669211595808064,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-7",
+                "kind": "edge",
+                "position": [
+                  0.5466157680838387,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              }
+            ],
+            "precisionRequired": 0.8
+          }
+        ],
+        "hands": []
+      },
+      "state": {
+        "timestamp": 105401.1,
+        "hands": [],
+        "primaryIntent": "idle",
+        "targetConfidence": 0,
+        "intentConfidence": 0,
+        "interactionConfidence": 0,
+        "uncertainty": 1,
+        "phase": "idle",
+        "isStable": false,
+        "targetLocked": false,
+        "activeHandIds": [],
+        "precision": false,
+        "weights": {
+          "translate": 0,
+          "rotate": 0,
+          "scale": 0,
+          "stretch": 0,
+          "depth": 0
+        },
+        "scores": {
+          "grab": 0,
+          "point": 0,
+          "inspect": 0,
+          "release": 1
+        },
+        "reasons": [],
+        "throwAllowed": false
+      },
+      "result": {
+        "transform": null
+      }
+    },
+    {
+      "label": "grab",
+      "input": {
+        "timestamp": 105684.4,
+        "camera": true,
+        "selectedObjectId": "target-0",
+        "tool": "auto",
+        "latencyMs": 150,
+        "targets": [
+          {
+            "objectId": "target-0",
+            "semanticType": "cube",
+            "position": [
+              0.511314245433568,
+              0.5121594375819991,
+              0
+            ],
+            "radius": 0.03394273630070388,
+            "depth": 6.084493610634495,
+            "visible": true,
+            "locked": false,
+            "selected": true,
+            "allowedInteractions": {
+              "translate": true,
+              "rotate": true,
+              "scale": true,
+              "editRadius": false,
+              "stretchX": true,
+              "stretchY": true,
+              "stretchZ": true,
+              "sampleSurface": false,
+              "editVector": false,
+              "editVertex": false
+            },
+            "preferredGrabZones": [
+              {
+                "id": "body",
+                "kind": "body",
+                "position": [
+                  0.511314245433568,
+                  0.5121594375819991,
+                  0
+                ],
+                "radius": 0.03394273630070388
+              },
+              {
+                "id": "face-0--1",
+                "kind": "face",
+                "position": [
+                  0.4773715091335358,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  -1,
+                  7.18419606340283e-9,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-0-1",
+                "kind": "face",
+                "position": [
+                  0.5226284908664642,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  0.9999999999999998,
+                  2.155258819106145e-8,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5447587190646617,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.32788368258797235,
+                  0.9447181011775682,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.4792993437353666,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.3255580640150656,
+                  -0.9455220499569338,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5067985675429146,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.9036917723350928,
+                  -0.4281835828401865,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5177970778726427,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.895042824383461,
+                  0.44598020417915063,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "corner-0",
+                "kind": "edge",
+                "position": [
+                  0.4780124173156434,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-1",
+                "kind": "edge",
+                "position": [
+                  0.5439751653687132,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-2",
+                "kind": "edge",
+                "position": [
+                  0.4778408390249455,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-3",
+                "kind": "edge",
+                "position": [
+                  0.544318321950109,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-4",
+                "kind": "edge",
+                "position": [
+                  0.47688186828983437,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-5",
+                "kind": "edge",
+                "position": [
+                  0.5462362634203313,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-6",
+                "kind": "edge",
+                "position": [
+                  0.47669211595808064,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-7",
+                "kind": "edge",
+                "position": [
+                  0.5466157680838387,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              }
+            ],
+            "precisionRequired": 0.8
+          }
+        ],
+        "hands": []
+      },
+      "state": {
+        "timestamp": 105684.4,
+        "hands": [],
+        "primaryIntent": "idle",
+        "targetConfidence": 0,
+        "intentConfidence": 0,
+        "interactionConfidence": 0,
+        "uncertainty": 1,
+        "phase": "idle",
+        "isStable": false,
+        "targetLocked": false,
+        "activeHandIds": [],
+        "precision": false,
+        "weights": {
+          "translate": 0,
+          "rotate": 0,
+          "scale": 0,
+          "stretch": 0,
+          "depth": 0
+        },
+        "scores": {
+          "grab": 0,
+          "point": 0,
+          "inspect": 0,
+          "release": 1
+        },
+        "reasons": [],
+        "throwAllowed": false
+      },
+      "result": {
+        "transform": null
+      }
+    },
+    {
+      "label": "grab",
+      "input": {
+        "timestamp": 105967.7,
+        "camera": true,
+        "selectedObjectId": "target-0",
+        "tool": "auto",
+        "latencyMs": 150,
+        "targets": [
+          {
+            "objectId": "target-0",
+            "semanticType": "cube",
+            "position": [
+              0.511314245433568,
+              0.5121594375819991,
+              0
+            ],
+            "radius": 0.03394273630070388,
+            "depth": 6.084493610634495,
+            "visible": true,
+            "locked": false,
+            "selected": true,
+            "allowedInteractions": {
+              "translate": true,
+              "rotate": true,
+              "scale": true,
+              "editRadius": false,
+              "stretchX": true,
+              "stretchY": true,
+              "stretchZ": true,
+              "sampleSurface": false,
+              "editVector": false,
+              "editVertex": false
+            },
+            "preferredGrabZones": [
+              {
+                "id": "body",
+                "kind": "body",
+                "position": [
+                  0.511314245433568,
+                  0.5121594375819991,
+                  0
+                ],
+                "radius": 0.03394273630070388
+              },
+              {
+                "id": "face-0--1",
+                "kind": "face",
+                "position": [
+                  0.4773715091335358,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  -1,
+                  7.18419606340283e-9,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-0-1",
+                "kind": "face",
+                "position": [
+                  0.5226284908664642,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  0.9999999999999998,
+                  2.155258819106145e-8,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5447587190646617,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.32788368258797235,
+                  0.9447181011775682,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.4792993437353666,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.3255580640150656,
+                  -0.9455220499569338,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5067985675429146,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.9036917723350928,
+                  -0.4281835828401865,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5177970778726427,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.895042824383461,
+                  0.44598020417915063,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "corner-0",
+                "kind": "edge",
+                "position": [
+                  0.4780124173156434,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-1",
+                "kind": "edge",
+                "position": [
+                  0.5439751653687132,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-2",
+                "kind": "edge",
+                "position": [
+                  0.4778408390249455,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-3",
+                "kind": "edge",
+                "position": [
+                  0.544318321950109,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-4",
+                "kind": "edge",
+                "position": [
+                  0.47688186828983437,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-5",
+                "kind": "edge",
+                "position": [
+                  0.5462362634203313,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-6",
+                "kind": "edge",
+                "position": [
+                  0.47669211595808064,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-7",
+                "kind": "edge",
+                "position": [
+                  0.5466157680838387,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              }
+            ],
+            "precisionRequired": 0.8
+          }
+        ],
+        "hands": []
+      },
+      "state": {
+        "timestamp": 105967.7,
+        "hands": [],
+        "primaryIntent": "idle",
+        "targetConfidence": 0,
+        "intentConfidence": 0,
+        "interactionConfidence": 0,
+        "uncertainty": 1,
+        "phase": "idle",
+        "isStable": false,
+        "targetLocked": false,
+        "activeHandIds": [],
+        "precision": false,
+        "weights": {
+          "translate": 0,
+          "rotate": 0,
+          "scale": 0,
+          "stretch": 0,
+          "depth": 0
+        },
+        "scores": {
+          "grab": 0,
+          "point": 0,
+          "inspect": 0,
+          "release": 1
+        },
+        "reasons": [],
+        "throwAllowed": false
+      },
+      "result": {
+        "transform": null
+      }
+    },
+    {
+      "label": "grab",
+      "input": {
+        "timestamp": 106251,
+        "camera": true,
+        "selectedObjectId": "target-0",
+        "tool": "auto",
+        "latencyMs": 150,
+        "targets": [
+          {
+            "objectId": "target-0",
+            "semanticType": "cube",
+            "position": [
+              0.511314245433568,
+              0.5121594375819991,
+              0
+            ],
+            "radius": 0.03394273630070388,
+            "depth": 6.084493610634495,
+            "visible": true,
+            "locked": false,
+            "selected": true,
+            "allowedInteractions": {
+              "translate": true,
+              "rotate": true,
+              "scale": true,
+              "editRadius": false,
+              "stretchX": true,
+              "stretchY": true,
+              "stretchZ": true,
+              "sampleSurface": false,
+              "editVector": false,
+              "editVertex": false
+            },
+            "preferredGrabZones": [
+              {
+                "id": "body",
+                "kind": "body",
+                "position": [
+                  0.511314245433568,
+                  0.5121594375819991,
+                  0
+                ],
+                "radius": 0.03394273630070388
+              },
+              {
+                "id": "face-0--1",
+                "kind": "face",
+                "position": [
+                  0.4773715091335358,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  -1,
+                  7.18419606340283e-9,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-0-1",
+                "kind": "face",
+                "position": [
+                  0.5226284908664642,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  0.9999999999999998,
+                  2.155258819106145e-8,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5447587190646617,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.32788368258797235,
+                  0.9447181011775682,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.4792993437353666,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.3255580640150656,
+                  -0.9455220499569338,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5067985675429146,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.9036917723350928,
+                  -0.4281835828401865,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5177970778726427,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.895042824383461,
+                  0.44598020417915063,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "corner-0",
+                "kind": "edge",
+                "position": [
+                  0.4780124173156434,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-1",
+                "kind": "edge",
+                "position": [
+                  0.5439751653687132,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-2",
+                "kind": "edge",
+                "position": [
+                  0.4778408390249455,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-3",
+                "kind": "edge",
+                "position": [
+                  0.544318321950109,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-4",
+                "kind": "edge",
+                "position": [
+                  0.47688186828983437,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-5",
+                "kind": "edge",
+                "position": [
+                  0.5462362634203313,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-6",
+                "kind": "edge",
+                "position": [
+                  0.47669211595808064,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-7",
+                "kind": "edge",
+                "position": [
+                  0.5466157680838387,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              }
+            ],
+            "precisionRequired": 0.8
+          }
+        ],
+        "hands": []
+      },
+      "state": {
+        "timestamp": 106251,
+        "hands": [],
+        "primaryIntent": "idle",
+        "targetConfidence": 0,
+        "intentConfidence": 0,
+        "interactionConfidence": 0,
+        "uncertainty": 1,
+        "phase": "idle",
+        "isStable": false,
+        "targetLocked": false,
+        "activeHandIds": [],
+        "precision": false,
+        "weights": {
+          "translate": 0,
+          "rotate": 0,
+          "scale": 0,
+          "stretch": 0,
+          "depth": 0
+        },
+        "scores": {
+          "grab": 0,
+          "point": 0,
+          "inspect": 0,
+          "release": 1
+        },
+        "reasons": [],
+        "throwAllowed": false
+      },
+      "result": {
+        "transform": null
+      }
+    },
+    {
+      "label": "grab",
+      "input": {
+        "timestamp": 106517.6,
+        "camera": true,
+        "selectedObjectId": "target-0",
+        "tool": "auto",
+        "latencyMs": 150,
+        "targets": [
+          {
+            "objectId": "target-0",
+            "semanticType": "cube",
+            "position": [
+              0.511314245433568,
+              0.5121594375819991,
+              0
+            ],
+            "radius": 0.03394273630070388,
+            "depth": 6.084493610634495,
+            "visible": true,
+            "locked": false,
+            "selected": true,
+            "allowedInteractions": {
+              "translate": true,
+              "rotate": true,
+              "scale": true,
+              "editRadius": false,
+              "stretchX": true,
+              "stretchY": true,
+              "stretchZ": true,
+              "sampleSurface": false,
+              "editVector": false,
+              "editVertex": false
+            },
+            "preferredGrabZones": [
+              {
+                "id": "body",
+                "kind": "body",
+                "position": [
+                  0.511314245433568,
+                  0.5121594375819991,
+                  0
+                ],
+                "radius": 0.03394273630070388
+              },
+              {
+                "id": "face-0--1",
+                "kind": "face",
+                "position": [
+                  0.4773715091335358,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  -1,
+                  7.18419606340283e-9,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-0-1",
+                "kind": "face",
+                "position": [
+                  0.5226284908664642,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  0.9999999999999998,
+                  2.155258819106145e-8,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5447587190646617,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.32788368258797235,
+                  0.9447181011775682,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.4792993437353666,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.3255580640150656,
+                  -0.9455220499569338,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5067985675429146,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.9036917723350928,
+                  -0.4281835828401865,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5177970778726427,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.895042824383461,
+                  0.44598020417915063,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "corner-0",
+                "kind": "edge",
+                "position": [
+                  0.4780124173156434,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-1",
+                "kind": "edge",
+                "position": [
+                  0.5439751653687132,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-2",
+                "kind": "edge",
+                "position": [
+                  0.4778408390249455,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-3",
+                "kind": "edge",
+                "position": [
+                  0.544318321950109,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-4",
+                "kind": "edge",
+                "position": [
+                  0.47688186828983437,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-5",
+                "kind": "edge",
+                "position": [
+                  0.5462362634203313,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-6",
+                "kind": "edge",
+                "position": [
+                  0.47669211595808064,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-7",
+                "kind": "edge",
+                "position": [
+                  0.5466157680838387,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              }
+            ],
+            "precisionRequired": 0.8
+          }
+        ],
+        "hands": []
+      },
+      "state": {
+        "timestamp": 106517.6,
+        "hands": [],
+        "primaryIntent": "idle",
+        "targetConfidence": 0,
+        "intentConfidence": 0,
+        "interactionConfidence": 0,
+        "uncertainty": 1,
+        "phase": "idle",
+        "isStable": false,
+        "targetLocked": false,
+        "activeHandIds": [],
+        "precision": false,
+        "weights": {
+          "translate": 0,
+          "rotate": 0,
+          "scale": 0,
+          "stretch": 0,
+          "depth": 0
+        },
+        "scores": {
+          "grab": 0,
+          "point": 0,
+          "inspect": 0,
+          "release": 1
+        },
+        "reasons": [],
+        "throwAllowed": false
+      },
+      "result": {
+        "transform": null
+      }
+    },
+    {
+      "label": "grab",
+      "input": {
+        "timestamp": 106784.3,
+        "camera": true,
+        "selectedObjectId": "target-0",
+        "tool": "auto",
+        "latencyMs": 150,
+        "targets": [
+          {
+            "objectId": "target-0",
+            "semanticType": "cube",
+            "position": [
+              0.511314245433568,
+              0.5121594375819991,
+              0
+            ],
+            "radius": 0.03394273630070388,
+            "depth": 6.084493610634495,
+            "visible": true,
+            "locked": false,
+            "selected": true,
+            "allowedInteractions": {
+              "translate": true,
+              "rotate": true,
+              "scale": true,
+              "editRadius": false,
+              "stretchX": true,
+              "stretchY": true,
+              "stretchZ": true,
+              "sampleSurface": false,
+              "editVector": false,
+              "editVertex": false
+            },
+            "preferredGrabZones": [
+              {
+                "id": "body",
+                "kind": "body",
+                "position": [
+                  0.511314245433568,
+                  0.5121594375819991,
+                  0
+                ],
+                "radius": 0.03394273630070388
+              },
+              {
+                "id": "face-0--1",
+                "kind": "face",
+                "position": [
+                  0.4773715091335358,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  -1,
+                  7.18419606340283e-9,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-0-1",
+                "kind": "face",
+                "position": [
+                  0.5226284908664642,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  0.9999999999999998,
+                  2.155258819106145e-8,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5447587190646617,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.32788368258797235,
+                  0.9447181011775682,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.4792993437353666,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.3255580640150656,
+                  -0.9455220499569338,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5067985675429146,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.9036917723350928,
+                  -0.4281835828401865,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5177970778726427,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.895042824383461,
+                  0.44598020417915063,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "corner-0",
+                "kind": "edge",
+                "position": [
+                  0.4780124173156434,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-1",
+                "kind": "edge",
+                "position": [
+                  0.5439751653687132,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-2",
+                "kind": "edge",
+                "position": [
+                  0.4778408390249455,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-3",
+                "kind": "edge",
+                "position": [
+                  0.544318321950109,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-4",
+                "kind": "edge",
+                "position": [
+                  0.47688186828983437,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-5",
+                "kind": "edge",
+                "position": [
+                  0.5462362634203313,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-6",
+                "kind": "edge",
+                "position": [
+                  0.47669211595808064,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-7",
+                "kind": "edge",
+                "position": [
+                  0.5466157680838387,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              }
+            ],
+            "precisionRequired": 0.8
+          }
+        ],
+        "hands": []
+      },
+      "state": {
+        "timestamp": 106784.3,
+        "hands": [],
+        "primaryIntent": "idle",
+        "targetConfidence": 0,
+        "intentConfidence": 0,
+        "interactionConfidence": 0,
+        "uncertainty": 1,
+        "phase": "idle",
+        "isStable": false,
+        "targetLocked": false,
+        "activeHandIds": [],
+        "precision": false,
+        "weights": {
+          "translate": 0,
+          "rotate": 0,
+          "scale": 0,
+          "stretch": 0,
+          "depth": 0
+        },
+        "scores": {
+          "grab": 0,
+          "point": 0,
+          "inspect": 0,
+          "release": 1
+        },
+        "reasons": [],
+        "throwAllowed": false
+      },
+      "result": {
+        "transform": null
+      }
+    },
+    {
+      "label": "grab",
+      "input": {
+        "timestamp": 107051,
+        "camera": true,
+        "selectedObjectId": "target-0",
+        "tool": "auto",
+        "latencyMs": 150,
+        "targets": [
+          {
+            "objectId": "target-0",
+            "semanticType": "cube",
+            "position": [
+              0.511314245433568,
+              0.5121594375819991,
+              0
+            ],
+            "radius": 0.03394273630070388,
+            "depth": 6.084493610634495,
+            "visible": true,
+            "locked": false,
+            "selected": true,
+            "allowedInteractions": {
+              "translate": true,
+              "rotate": true,
+              "scale": true,
+              "editRadius": false,
+              "stretchX": true,
+              "stretchY": true,
+              "stretchZ": true,
+              "sampleSurface": false,
+              "editVector": false,
+              "editVertex": false
+            },
+            "preferredGrabZones": [
+              {
+                "id": "body",
+                "kind": "body",
+                "position": [
+                  0.511314245433568,
+                  0.5121594375819991,
+                  0
+                ],
+                "radius": 0.03394273630070388
+              },
+              {
+                "id": "face-0--1",
+                "kind": "face",
+                "position": [
+                  0.4773715091335358,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  -1,
+                  7.18419606340283e-9,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-0-1",
+                "kind": "face",
+                "position": [
+                  0.5226284908664642,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  0.9999999999999998,
+                  2.155258819106145e-8,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5447587190646617,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.32788368258797235,
+                  0.9447181011775682,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.4792993437353666,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.3255580640150656,
+                  -0.9455220499569338,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5067985675429146,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.9036917723350928,
+                  -0.4281835828401865,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5177970778726427,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.895042824383461,
+                  0.44598020417915063,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "corner-0",
+                "kind": "edge",
+                "position": [
+                  0.4780124173156434,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-1",
+                "kind": "edge",
+                "position": [
+                  0.5439751653687132,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-2",
+                "kind": "edge",
+                "position": [
+                  0.4778408390249455,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-3",
+                "kind": "edge",
+                "position": [
+                  0.544318321950109,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-4",
+                "kind": "edge",
+                "position": [
+                  0.47688186828983437,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-5",
+                "kind": "edge",
+                "position": [
+                  0.5462362634203313,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-6",
+                "kind": "edge",
+                "position": [
+                  0.47669211595808064,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-7",
+                "kind": "edge",
+                "position": [
+                  0.5466157680838387,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              }
+            ],
+            "precisionRequired": 0.8
+          }
+        ],
+        "hands": []
+      },
+      "state": {
+        "timestamp": 107051,
+        "hands": [],
+        "primaryIntent": "idle",
+        "targetConfidence": 0,
+        "intentConfidence": 0,
+        "interactionConfidence": 0,
+        "uncertainty": 1,
+        "phase": "idle",
+        "isStable": false,
+        "targetLocked": false,
+        "activeHandIds": [],
+        "precision": false,
+        "weights": {
+          "translate": 0,
+          "rotate": 0,
+          "scale": 0,
+          "stretch": 0,
+          "depth": 0
+        },
+        "scores": {
+          "grab": 0,
+          "point": 0,
+          "inspect": 0,
+          "release": 1
+        },
+        "reasons": [],
+        "throwAllowed": false
+      },
+      "result": {
+        "transform": null
+      }
+    },
+    {
+      "label": "grab",
+      "input": {
+        "timestamp": 107351,
+        "camera": true,
+        "selectedObjectId": "target-0",
+        "tool": "auto",
+        "latencyMs": 150,
+        "targets": [
+          {
+            "objectId": "target-0",
+            "semanticType": "cube",
+            "position": [
+              0.511314245433568,
+              0.5121594375819991,
+              0
+            ],
+            "radius": 0.03394273630070388,
+            "depth": 6.084493610634495,
+            "visible": true,
+            "locked": false,
+            "selected": true,
+            "allowedInteractions": {
+              "translate": true,
+              "rotate": true,
+              "scale": true,
+              "editRadius": false,
+              "stretchX": true,
+              "stretchY": true,
+              "stretchZ": true,
+              "sampleSurface": false,
+              "editVector": false,
+              "editVertex": false
+            },
+            "preferredGrabZones": [
+              {
+                "id": "body",
+                "kind": "body",
+                "position": [
+                  0.511314245433568,
+                  0.5121594375819991,
+                  0
+                ],
+                "radius": 0.03394273630070388
+              },
+              {
+                "id": "face-0--1",
+                "kind": "face",
+                "position": [
+                  0.4773715091335358,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  -1,
+                  7.18419606340283e-9,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-0-1",
+                "kind": "face",
+                "position": [
+                  0.5226284908664642,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  0.9999999999999998,
+                  2.155258819106145e-8,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5447587190646617,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.32788368258797235,
+                  0.9447181011775682,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.4792993437353666,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.3255580640150656,
+                  -0.9455220499569338,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5067985675429146,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.9036917723350928,
+                  -0.4281835828401865,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5177970778726427,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.895042824383461,
+                  0.44598020417915063,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "corner-0",
+                "kind": "edge",
+                "position": [
+                  0.4780124173156434,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-1",
+                "kind": "edge",
+                "position": [
+                  0.5439751653687132,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-2",
+                "kind": "edge",
+                "position": [
+                  0.4778408390249455,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-3",
+                "kind": "edge",
+                "position": [
+                  0.544318321950109,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-4",
+                "kind": "edge",
+                "position": [
+                  0.47688186828983437,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-5",
+                "kind": "edge",
+                "position": [
+                  0.5462362634203313,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-6",
+                "kind": "edge",
+                "position": [
+                  0.47669211595808064,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-7",
+                "kind": "edge",
+                "position": [
+                  0.5466157680838387,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              }
+            ],
+            "precisionRequired": 0.8
+          }
+        ],
+        "hands": []
+      },
+      "state": {
+        "timestamp": 107351,
+        "hands": [],
+        "primaryIntent": "idle",
+        "targetConfidence": 0,
+        "intentConfidence": 0,
+        "interactionConfidence": 0,
+        "uncertainty": 1,
+        "phase": "idle",
+        "isStable": false,
+        "targetLocked": false,
+        "activeHandIds": [],
+        "precision": false,
+        "weights": {
+          "translate": 0,
+          "rotate": 0,
+          "scale": 0,
+          "stretch": 0,
+          "depth": 0
+        },
+        "scores": {
+          "grab": 0,
+          "point": 0,
+          "inspect": 0,
+          "release": 1
+        },
+        "reasons": [],
+        "throwAllowed": false
+      },
+      "result": {
+        "transform": null
+      }
+    },
+    {
+      "label": "grab",
+      "input": {
+        "timestamp": 107634.3,
+        "camera": true,
+        "selectedObjectId": "target-0",
+        "tool": "auto",
+        "latencyMs": 150,
+        "targets": [
+          {
+            "objectId": "target-0",
+            "semanticType": "cube",
+            "position": [
+              0.511314245433568,
+              0.5121594375819991,
+              0
+            ],
+            "radius": 0.03394273630070388,
+            "depth": 6.084493610634495,
+            "visible": true,
+            "locked": false,
+            "selected": true,
+            "allowedInteractions": {
+              "translate": true,
+              "rotate": true,
+              "scale": true,
+              "editRadius": false,
+              "stretchX": true,
+              "stretchY": true,
+              "stretchZ": true,
+              "sampleSurface": false,
+              "editVector": false,
+              "editVertex": false
+            },
+            "preferredGrabZones": [
+              {
+                "id": "body",
+                "kind": "body",
+                "position": [
+                  0.511314245433568,
+                  0.5121594375819991,
+                  0
+                ],
+                "radius": 0.03394273630070388
+              },
+              {
+                "id": "face-0--1",
+                "kind": "face",
+                "position": [
+                  0.4773715091335358,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  -1,
+                  7.18419606340283e-9,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-0-1",
+                "kind": "face",
+                "position": [
+                  0.5226284908664642,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  0.9999999999999998,
+                  2.155258819106145e-8,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5447587190646617,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.32788368258797235,
+                  0.9447181011775682,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.4792993437353666,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.3255580640150656,
+                  -0.9455220499569338,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5067985675429146,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.9036917723350928,
+                  -0.4281835828401865,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5177970778726427,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.895042824383461,
+                  0.44598020417915063,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "corner-0",
+                "kind": "edge",
+                "position": [
+                  0.4780124173156434,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-1",
+                "kind": "edge",
+                "position": [
+                  0.5439751653687132,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-2",
+                "kind": "edge",
+                "position": [
+                  0.4778408390249455,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-3",
+                "kind": "edge",
+                "position": [
+                  0.544318321950109,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-4",
+                "kind": "edge",
+                "position": [
+                  0.47688186828983437,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-5",
+                "kind": "edge",
+                "position": [
+                  0.5462362634203313,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-6",
+                "kind": "edge",
+                "position": [
+                  0.47669211595808064,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-7",
+                "kind": "edge",
+                "position": [
+                  0.5466157680838387,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              }
+            ],
+            "precisionRequired": 0.8
+          }
+        ],
+        "hands": []
+      },
+      "state": {
+        "timestamp": 107634.3,
+        "hands": [],
+        "primaryIntent": "idle",
+        "targetConfidence": 0,
+        "intentConfidence": 0,
+        "interactionConfidence": 0,
+        "uncertainty": 1,
+        "phase": "idle",
+        "isStable": false,
+        "targetLocked": false,
+        "activeHandIds": [],
+        "precision": false,
+        "weights": {
+          "translate": 0,
+          "rotate": 0,
+          "scale": 0,
+          "stretch": 0,
+          "depth": 0
+        },
+        "scores": {
+          "grab": 0,
+          "point": 0,
+          "inspect": 0,
+          "release": 1
+        },
+        "reasons": [],
+        "throwAllowed": false
+      },
+      "result": {
+        "transform": null
+      }
+    },
+    {
+      "label": "grab",
+      "input": {
+        "timestamp": 107900.9,
+        "camera": true,
+        "selectedObjectId": "target-0",
+        "tool": "auto",
+        "latencyMs": 150,
+        "targets": [
+          {
+            "objectId": "target-0",
+            "semanticType": "cube",
+            "position": [
+              0.511314245433568,
+              0.5121594375819991,
+              0
+            ],
+            "radius": 0.03394273630070388,
+            "depth": 6.084493610634495,
+            "visible": true,
+            "locked": false,
+            "selected": true,
+            "allowedInteractions": {
+              "translate": true,
+              "rotate": true,
+              "scale": true,
+              "editRadius": false,
+              "stretchX": true,
+              "stretchY": true,
+              "stretchZ": true,
+              "sampleSurface": false,
+              "editVector": false,
+              "editVertex": false
+            },
+            "preferredGrabZones": [
+              {
+                "id": "body",
+                "kind": "body",
+                "position": [
+                  0.511314245433568,
+                  0.5121594375819991,
+                  0
+                ],
+                "radius": 0.03394273630070388
+              },
+              {
+                "id": "face-0--1",
+                "kind": "face",
+                "position": [
+                  0.4773715091335358,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  -1,
+                  7.18419606340283e-9,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-0-1",
+                "kind": "face",
+                "position": [
+                  0.5226284908664642,
+                  0.5121594378258504,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 0,
+                "direction": [
+                  0.9999999999999998,
+                  2.155258819106145e-8,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5447587190646617,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.32788368258797235,
+                  0.9447181011775682,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-1-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.4792993437353666,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 1,
+                "direction": [
+                  -0.3255580640150656,
+                  -0.9455220499569338,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2--1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5067985675429146,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.9036917723350928,
+                  -0.4281835828401865,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "face-2-1",
+                "kind": "face",
+                "position": [
+                  0.5,
+                  0.5177970778726427,
+                  0
+                ],
+                "radius": 0.013577094520281552,
+                "axis": 2,
+                "direction": [
+                  -0.895042824383461,
+                  0.44598020417915063,
+                  0
+                ],
+                "dimension": "side",
+                "value": 5
+              },
+              {
+                "id": "corner-0",
+                "kind": "edge",
+                "position": [
+                  0.4780124173156434,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-1",
+                "kind": "edge",
+                "position": [
+                  0.5439751653687132,
+                  0.538621499917561,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-2",
+                "kind": "edge",
+                "position": [
+                  0.4778408390249455,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-3",
+                "kind": "edge",
+                "position": [
+                  0.544318321950109,
+                  0.47472730705834976,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-4",
+                "kind": "edge",
+                "position": [
+                  0.47688186828983437,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-5",
+                "kind": "edge",
+                "position": [
+                  0.5462362634203313,
+                  0.5512114993731477,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-6",
+                "kind": "edge",
+                "position": [
+                  0.47669211595808064,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              },
+              {
+                "id": "corner-7",
+                "kind": "edge",
+                "position": [
+                  0.5466157680838387,
+                  0.4841083921678012,
+                  0
+                ],
+                "radius": 0.006788547260140776
+              }
+            ],
+            "precisionRequired": 0.8
+          }
+        ],
+        "hands": []
+      },
+      "state": {
+        "timestamp": 107900.9,
+        "hands": [],
+        "primaryIntent": "idle",
+        "targetConfidence": 0,
+        "intentConfidence": 0,
+        "interactionConfidence": 0,
+        "uncertainty": 1,
+        "phase": "idle",
+        "isStable": false,
+        "targetLocked": false,
+        "activeHandIds": [],
+        "precision": false,
+        "weights": {
+          "translate": 0,
+          "rotate": 0,
+          "scale": 0,
+          "stretch": 0,
+          "depth": 0
+        },
+        "scores": {
+          "grab": 0,
+          "point": 0,
+          "inspect": 0,
+          "release": 1
+        },
+        "reasons": [],
+        "throwAllowed": false
+      },
+      "result": {
+        "transform": null
+      }
+    }
+  ]
+}

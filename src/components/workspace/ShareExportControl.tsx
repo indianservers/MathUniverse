@@ -55,6 +55,19 @@ type Props = { adapter: PortableWorkspaceAdapter; className?: string };
 type PanelView = "menu" | "image" | "import" | "lesson";
 
 export default function ShareExportControl({ adapter, className = "" }: Props) {
+  const anchorRef=useRef<HTMLDivElement>(null);
+  const overlay=(node:ReactNode)=>{
+    if(typeof document==='undefined')return node;
+    const root = anchorRef.current?.closest("[data-chrome-theme],[data-shapes-theme],[data-geometry-theme]");
+    const theme = root?.getAttribute("data-chrome-theme")
+      ?? root?.getAttribute("data-shapes-theme")
+      ?? root?.getAttribute("data-geometry-theme")
+      ?? "light";
+    return createPortal(
+      <div className="studio-themed-portal" data-chrome-theme={theme}>{node}</div>,
+      document.body,
+    );
+  };
   const [open, setOpen] = useState(false);
   const [view, setView] = useState<PanelView>("menu");
   const [status, setStatus] = useState("Ready");
@@ -326,6 +339,7 @@ export default function ShareExportControl({ adapter, className = "" }: Props) {
 
   return (
     <div
+      ref={anchorRef}
       className={`portable-share-anchor ${className}`}
       data-portable-export-exclude
     >
@@ -980,10 +994,6 @@ export default function ShareExportControl({ adapter, className = "" }: Props) {
   );
 }
 
-function overlay(node: ReactNode) {
-  if (typeof document === "undefined") return node;
-  return createPortal(node, document.body);
-}
 
 function Action({
   icon,

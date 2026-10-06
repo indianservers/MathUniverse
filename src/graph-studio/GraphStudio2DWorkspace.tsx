@@ -7,6 +7,7 @@ import {
   CircleHelp,
   Code2,
   Copy,
+  Share2,
   Crosshair,
   Download,
   Eye,
@@ -408,7 +409,7 @@ export default function GraphStudio2DWorkspace(
             onClick={props.onRedo}
             disabled={!props.canRedo}
           />
-          <TopAction label="Save" icon={<Save />} onClick={props.onSave} />
+          <TopAction label="Save" icon={<Save />} onClick={props.onSave} /><TopAction label="Share" icon={<Share2 />} onClick={props.onCopyShareLink} />
           <div className="relative" data-workspace-popover>
             <TopAction
               label="Export"

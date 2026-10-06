@@ -1,0 +1,147 @@
+{
+  "results": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "cards": 8,
+      "sidebar": false
+    },
+    {
+      "width": 1600,
+      "height": 900,
+      "overflow": false,
+      "cards": 8,
+      "sidebar": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "cards": 8,
+      "sidebar": false
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "cards": 8,
+      "sidebar": false
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "overflow": false,
+      "cards": 8,
+      "sidebar": false
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "overflow": false,
+      "cards": 8,
+      "sidebar": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "cards": 8,
+      "sidebar": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "cards": 8,
+      "sidebar": false
+    },
+    {
+      "keyboard": "1"
+    },
+    {
+      "dragAngle": "83"
+    },
+    {
+      "tab": "Theory & examples",
+      "selected": "true"
+    },
+    {
+      "tab": "In Simple words",
+      "selected": "true"
+    },
+    {
+      "tab": "Formulas",
+      "selected": "true"
+    },
+    {
+      "tab": "Real-time examples",
+      "selected": "true"
+    },
+    {
+      "tab": "Try these",
+      "selected": "true"
+    },
+    {
+      "href": "/trigonometry/unit-circle"
+    },
+    {
+      "href": "/trigonometry/right-triangle"
+    },
+    {
+      "href": "/trigonometry/graphs"
+    },
+    {
+      "href": "/trigonometry/identities"
+    },
+    {
+      "href": "/trigonometry/inverse"
+    },
+    {
+      "href": "/trigonometry/oblique"
+    },
+    {
+      "href": "/trigonometry/waves"
+    },
+    {
+      "href": "/trigonometry/applications"
+    },
+    {
+      "route": "unit-circle",
+      "lab": 1
+    },
+    {
+      "route": "right-triangle",
+      "lab": 1
+    },
+    {
+      "route": "graphs",
+      "lab": 1
+    },
+    {
+      "route": "identities",
+      "lab": 1
+    },
+    {
+      "route": "inverse",
+      "lab": 1
+    },
+    {
+      "route": "oblique",
+      "lab": 1
+    },
+    {
+      "route": "waves",
+      "lab": 1
+    },
+    {
+      "route": "applications",
+      "lab": 1
+    },
+    {
+      "reducedMotionStable": true
+    }
+  ],
+  "errors": [],
+  "axe": []
+}

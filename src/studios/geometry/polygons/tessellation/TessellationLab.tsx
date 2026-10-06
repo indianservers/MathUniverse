@@ -1,3 +1,5 @@
+import GeometryLessonCanvas from "../../GeometryLessonCanvas";
+import { polygonLessonScene } from "../../geometryLessonScene";
 import { useStudioState } from "../../../phase1/StudioModelProvider";
 import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type WheelEvent as ReactWheelEvent } from "react";
 import { fmt } from "../../../mockup/studioLabKit";
@@ -72,15 +74,16 @@ function sidesOf(kind: ExperimentKind, n: number) {
 
 export default function TessellationLab() {
   const hostRef = useRef<HTMLDivElement>(null);
-  const [sizePx, setSizePx] = useStudioState("TessellationLab:TessellationLab:sizePx", { w: 720, h: 560 });
+  const [sizePx, setSizePx] = useState({ w: 720, h: 360 });
   const [kind, setKind] = useStudioState<ExperimentKind>("TessellationLab:TessellationLab:kind", "triangle");
   const [pattern, setPattern] = useStudioState<AnimationMode>("TessellationLab:TessellationLab:pattern", "expand");
   const [tileSize, setTileSize] = useStudioState("TessellationLab:TessellationLab:tileSize", 56);
+  const [tileLimit, setTileLimit] = useStudioState("TessellationLab:tileLimit", 1200);
   const [speed, setSpeed] = useStudioState<"slow" | "normal" | "fast">("TessellationLab:TessellationLab:speed", "normal");
   const [rotation, setRotation] = useStudioState("TessellationLab:TessellationLab:rotation", 0);
   const [zoom, setZoom] = useStudioState("TessellationLab:TessellationLab:zoom", 1);
   const [pan, setPan] = useStudioState("TessellationLab:TessellationLab:pan", { x: 0, y: 0 });
-  const [playing, setPlaying] = useStudioState("TessellationLab:TessellationLab:playing", true);
+  const [playing, setPlaying] = useState(false);
   const [revealed, setRevealed] = useStudioState("TessellationLab:TessellationLab:revealed", 0);
   const [n, setN] = useStudioState("TessellationLab:TessellationLab:n", 5);
   const [coloring, setColoring] = useStudioState<ColorMode>("TessellationLab:TessellationLab:coloring", "alternating");
@@ -109,7 +112,10 @@ export default function TessellationLab() {
   useEffect(() => {
     const el = hostRef.current;
     if (!el) return;
-    const apply = () => setSizePx({ w: Math.max(280, el.clientWidth), h: Math.max(320, el.clientHeight) });
+    const apply = () => {
+      const w = Math.max(280, Math.round(el.clientWidth)), h = Math.max(240, Math.round(el.clientHeight));
+      setSizePx(previous => previous.w === w && previous.h === h ? previous : { w, h });
+    };
     apply();
     const ro = new ResizeObserver(apply);
     ro.observe(el);
@@ -129,8 +135,8 @@ export default function TessellationLab() {
   const tiles = useMemo(() => {
     if (kind === "experiment" || compare) return [];
     const raw = generateKind(validKind, worldBounds, size);
-    return assignGenerations(raw, validKind, pattern === "sweep" ? "sweep" : "expand");
-  }, [compare, kind, pattern, size, validKind, worldBounds]);
+    return assignGenerations(raw, validKind, pattern === "sweep" ? "sweep" : "expand").sort((a, b) => a.generation - b.generation).slice(0, Math.max(100, Math.min(1200, tileLimit)));
+  }, [compare, kind, pattern, size, tileLimit, validKind, worldBounds]);
 
   const maxGen = useMemo(() => tiles.reduce((m, t) => Math.max(m, t.generation), 0), [tiles]);
   const visible = useMemo(() => {
@@ -147,11 +153,11 @@ export default function TessellationLab() {
 
   useEffect(() => {
     setRevealed(pattern === "instant" ? 999 : 0);
-    setPlaying(pattern !== "instant");
+    setPlaying(false);
     setSelectedTile(null);
     setSelectedVertex(null);
     setSelectedEdge(null);
-  }, [kind, pattern, size, rotation]);
+  }, [kind, pattern, size, rotation, tileLimit]);
 
   useEffect(() => {
     if (!playing || pattern === "instant" || kind === "experiment" || compare) return;
@@ -160,13 +166,14 @@ export default function TessellationLab() {
     const tick = (now: number) => {
       if (now - lastTick.current >= stepMs) {
         lastTick.current = now;
-        setRevealed((value) => (value >= maxGen ? value : value + 1));
+        if (revealed >= maxGen) { setPlaying(false); return; }
+        setRevealed(value => Math.min(maxGen, value + 1));
       }
       frame = window.requestAnimationFrame(tick);
     };
     frame = window.requestAnimationFrame(tick);
     return () => window.cancelAnimationFrame(frame);
-  }, [compare, kind, maxGen, pattern, playing, speed]);
+  }, [compare, kind, maxGen, pattern, playing, revealed, speed]);
 
   useEffect(() => {
     if (preset === "pentagon") {
@@ -331,6 +338,10 @@ export default function TessellationLab() {
             </div>
           </label>
         )}
+        <label className="tlab-slider">
+          <span>Maximum tiles</span>
+          <div><input aria-label="Maximum tiles" type="range" min={100} max={1200} step={100} value={tileLimit} onChange={event => setTileLimit(Number(event.target.value))} /><output>{tileLimit}</output></div>
+        </label>
         <h2>Pattern</h2>
         <div className="tlab-seg" role="group" aria-label="Pattern">
           {([
@@ -354,9 +365,9 @@ export default function TessellationLab() {
           </div>
         </label>
         <div className="tlab-btn-row">
-          <button type="button" className={playing ? "is-on" : ""} onClick={() => setPlaying((v) => !v)}>{playing ? "Pause" : "Play"}</button>
+          <button type="button" className={playing ? "is-on" : ""} onClick={() => { if (!playing && revealed >= maxGen) setRevealed(0); setPlaying(v => !v); }}>{playing ? "Pause" : "Play"}</button>
           <button type="button" onClick={() => { setPlaying(false); setRevealed((v) => Math.min(maxGen, v + 1)); }}>Step</button>
-          <button type="button" onClick={() => { setPan({ x: 0, y: 0 }); setZoom(1); setRevealed(0); setPlaying(pattern !== "instant"); }}>Reset</button>
+          <button type="button" onClick={() => { setPan({ x: 0, y: 0 }); setZoom(1); setRevealed(0); setPlaying(false); }}>Reset</button>
         </div>
         <label className="tlab-toggle"><input type="checkbox" checked={showAngles} onChange={(e) => setShowAngles(e.target.checked)} /> Show vertex angles</label>
         <label className="tlab-toggle"><input type="checkbox" checked={showCenters} onChange={(e) => setShowCenters(e.target.checked)} /> Show tile centers</label>
@@ -402,7 +413,7 @@ export default function TessellationLab() {
           onWheel={onWheel}
         >
           <div className="tlab-hud">
-            <button type="button" className={playing ? "is-on" : ""} onClick={() => setPlaying((v) => !v)}>{playing ? "Pause" : "Play"}</button>
+            <button type="button" className={playing ? "is-on" : ""} onClick={() => { if (!playing && revealed >= maxGen) setRevealed(0); setPlaying(v => !v); }}>{playing ? "Pause" : "Play"}</button>
             <button type="button" onClick={() => setRevealed((v) => Math.min(maxGen, v + 1))}>Step</button>
             <span className="tlab-note" style={{ margin: 0, padding: "6px 8px", background: "#fff", borderRadius: 8 }}>
               {fmt(zoom, 2)}× · gen {pattern === "instant" ? maxGen : Math.min(revealed, maxGen)}/{maxGen} · {visible.length} tiles
@@ -413,7 +424,7 @@ export default function TessellationLab() {
           ) : kind === "experiment" ? (
             <ExperimentView n={n} overlap={overlapMode} onToggleOverlap={() => setOverlapMode((v) => !v)} />
           ) : (
-            <svg className="tlab-svg" viewBox={`0 0 ${sizePx.w} ${sizePx.h}`} role="img" aria-label={`${kindLabel(kind)} tessellation`}>
+            <GeometryLessonCanvas showToolbar={false} fitObjects={false} scene={polygonLessonScene(sizePx.w, sizePx.h, visible.map(tile => tile.vertices.map(p => ({ x: sizePx.w / 2 + pan.x + zoom * (p.x * Math.cos(rotation * Math.PI / 180) - p.y * Math.sin(rotation * Math.PI / 180)), y: sizePx.h / 2 + pan.y + zoom * (p.x * Math.sin(rotation * Math.PI / 180) + p.y * Math.cos(rotation * Math.PI / 180)) }))))} className="tlab-svg" viewBox={`0 0 ${sizePx.w} ${sizePx.h}`} role="img" aria-label={`${kindLabel(kind)} tessellation`}>
               <defs>
                 <pattern id="tlab-grid" width="24" height="24" patternUnits="userSpaceOnUse">
                   <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e4edf6" strokeWidth="1" />
@@ -494,7 +505,7 @@ export default function TessellationLab() {
                     />
                   ))}
               </g>
-            </svg>
+            </GeometryLessonCanvas>
           )}
         </div>
         {showGens && (
@@ -653,7 +664,7 @@ function ExperimentView({ n, overlap, onToggleOverlap }: { n: number; overlap: b
   const gapStart = check.floorCount * check.interior;
   return (
     <div style={{ height: "100%", display: "grid", gridTemplateRows: "1fr auto" }}>
-      <svg className="tlab-svg" viewBox="0 0 420 420" role="img" aria-label="Vertex packing experiment">
+      <GeometryLessonCanvas activityId={`packing-${n}`} scene={polygonLessonScene(420, 420, polys)} className="tlab-svg" viewBox="0 0 420 420" role="img" aria-label="Vertex packing experiment">
         <rect width="420" height="420" fill="#f7fbff" />
         {polys.map((verts, i) => (
           <polygon key={i} points={verts.map((p) => `${p.x},${p.y}`).join(" ")} fill={overlap && i === count - 1 ? "rgba(244,63,94,.18)" : "rgba(20,125,242,.12)"} stroke="#147df2" strokeWidth="1.4" />
@@ -677,7 +688,7 @@ function ExperimentView({ n, overlap, onToggleOverlap }: { n: number; overlap: b
             {check.meetingCount} × {fmt(check.interior, 0)}° = 360°
           </text>
         )}
-      </svg>
+      </GeometryLessonCanvas>
       <div className="tlab-btn-row" style={{ padding: 8 }}>
         <button type="button" className={!overlap ? "is-on" : ""} onClick={onToggleOverlap}>{overlap ? "Show gap" : "Show overlap"}</button>
         <span className="tlab-note">{check.tessellates ? "This n tiles the plane." : "Not a regular monohedral tessellation."}</span>

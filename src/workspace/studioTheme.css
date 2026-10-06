@@ -1,0 +1,365 @@
+/* Semantic chrome for the six mathematics workspaces. Object materials and plot colours remain scene-owned. */
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal)[data-chrome-theme="light"],:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal)[data-shapes-theme="light"] {
+  --studio-bg:#ffffff;
+  --studio-surface:#ffffff;
+  --studio-surface-secondary:#f1f5f9;
+  --studio-surface-elevated:#ffffff;
+  --studio-text:#15263d;
+  --studio-text-secondary:#475569;
+  --studio-text-muted:#52647a;
+  --studio-border:#d5deea;
+  --studio-border-strong:#91a6bd;
+  --studio-input-bg:#ffffff;
+  --studio-input-text:#15263d;
+  --studio-input-placeholder:#52647a;
+  --studio-accent:#08799b;
+  --studio-accent-soft:#e0f3fb;
+  --studio-accent-strong:#055b78;
+  --studio-danger:#b42335;
+  --studio-warning:#945a04;
+  --studio-success:#087546;
+  --studio-shadow:0 6px 22px #17395516;
+  --studio-glow:none;
+  color-scheme:light;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal)[data-chrome-theme="default"],:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal)[data-shapes-theme="dark"] {
+  --studio-bg:#0c1524;
+  --studio-surface:#142033;
+  --studio-surface-secondary:#1b2b42;
+  --studio-surface-elevated:#20334c;
+  --studio-text:#e6edf7;
+  --studio-text-secondary:#c0cde0;
+  --studio-text-muted:#9caec6;
+  --studio-border:#364a63;
+  --studio-border-strong:#627a96;
+  --studio-input-bg:#101e31;
+  --studio-input-text:#e6edf7;
+  --studio-input-placeholder:#9caec6;
+  --studio-accent:#68cde7;
+  --studio-accent-soft:#203e52;
+  --studio-accent-strong:#9de6fa;
+  --studio-danger:#ff8b99;
+  --studio-warning:#f6c675;
+  --studio-success:#71d8aa;
+  --studio-shadow:0 6px 22px #00000040;
+  --studio-glow:none;
+  color-scheme:dark;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal)[data-chrome-theme="glow"],:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal)[data-shapes-theme="glow"] {
+  --studio-bg:#091426;
+  --studio-surface:#11243b;
+  --studio-surface-secondary:#18314c;
+  --studio-surface-elevated:#1b3552;
+  --studio-text:#e4f2ff;
+  --studio-text-secondary:#bfd6ed;
+  --studio-text-muted:#a2bdd9;
+  --studio-border:#355a7c;
+  --studio-border-strong:#6b9bc0;
+  --studio-input-bg:#0d2036;
+  --studio-input-text:#e4f2ff;
+  --studio-input-placeholder:#a2bdd9;
+  --studio-accent:#75dcf4;
+  --studio-accent-soft:#153d54;
+  --studio-accent-strong:#a5edff;
+  --studio-danger:#ff98b3;
+  --studio-warning:#f7cb83;
+  --studio-success:#8ae4bf;
+  --studio-shadow:0 6px 22px #00000040;
+  --studio-glow:0 0 12px #38bdf81c;
+  color-scheme:dark;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal)  {
+  
+ --studio-input-border:var(--studio-border);
+  --studio-button-bg:var(--studio-surface);
+  --studio-button-text:var(--studio-text);
+  --studio-button-hover:var(--studio-surface-secondary);
+  
+ --studio-tool-bg:var(--studio-surface);
+  --studio-tool-text:var(--studio-text);
+  --studio-tool-hover:var(--studio-accent-soft);
+  --studio-tool-selected:var(--studio-accent-soft);
+  --studio-panel-bg:var(--studio-surface);
+  --studio-panel-border:var(--studio-border);
+  
+ background:var(--studio-bg)!important;
+  color:var(--studio-text)!important;
+  scrollbar-color:var(--studio-border-strong) var(--studio-surface-secondary);
+  scrollbar-width:thin;
+  
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) :is(header,aside,nav,.gs3d-panel-scroll,.gs3d-popover,.gs2d-popover,.gs2d-menu,.gs3d-inspector-fields,.os-field-group,.os-property-strip,.os-measurements>div,.gs3d-dock-content,.gs2d-dock-content,.geometry-right-card,.geometry-object-properties,.geometry-tool-palette,.geometry-statusbar,.cas-result-card,.cas-notebook-cell,.cas-composer,.cas-command-palette,.cas-dialog,.cas-menu,.cas-popover,.shapes-modal,.shapes-shape-card,.shapes-shape-tile,.shapes-property-card,.shapes-formula-card,.shapes-bottom-dock,.portable-share-panel,.portable-share-dialog,.portable-embed-panel) {
+  background:var(--studio-panel-bg)!important;
+  color:var(--studio-text)!important;
+  border-color:var(--studio-panel-border)!important;
+  box-shadow:var(--studio-shadow);
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) :is(input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):not([type="color"]),textarea,select,option) {
+  background:var(--studio-input-bg)!important;
+  color:var(--studio-input-text)!important;
+  -webkit-text-fill-color:var(--studio-input-text)!important;
+  caret-color:var(--studio-accent);
+  border-color:var(--studio-input-border)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) :is(input,textarea)::placeholder {
+  color:var(--studio-input-placeholder)!important;
+  -webkit-text-fill-color:var(--studio-input-placeholder)!important;
+  opacity:1;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) :is(label,p,h1,h2,h3,h4,summary,th,td,legend,.os-object-row,.os-scene-objects button,.geometry-object-row-main,.gs3d-axis-label) {
+  color:var(--studio-text)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) :is(small,.gs3d-empty,.gs2d-empty,.os-empty,.shapes-status-bar,.geometry-statusbar,.cas-statusbar) {
+  color:var(--studio-text-secondary)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) button:not(.os-shape-preview) {
+  background-color:var(--studio-button-bg)!important;
+  color:var(--studio-button-text)!important;
+  border-color:var(--studio-border)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) button:hover {
+  background-color:var(--studio-button-hover)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) :is(button[aria-pressed="true"],button[aria-selected="true"],button.active,button.is-active,.os-shape-tile.selected,.shapes-shape-card.is-selected) {
+  background:var(--studio-tool-selected)!important;
+  color:var(--studio-accent-strong)!important;
+  border-color:var(--studio-accent)!important;
+  box-shadow:var(--studio-glow);
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) :is(.os-shape-tile,.os-scene-tools button) {
+  background:var(--studio-tool-bg)!important;
+  color:var(--studio-tool-text)!important;
+  border:1px solid var(--studio-border)!important;
+  box-shadow:var(--studio-shadow);
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) .os-shape-tile:hover {
+  background:var(--studio-tool-hover)!important;
+  border-color:var(--studio-accent)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) :is(button,input,select,textarea):disabled {
+  opacity:1!important;
+  color:var(--studio-text-muted)!important;
+  -webkit-text-fill-color:var(--studio-text-muted)!important;
+  background-color:var(--studio-surface-secondary)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) :is(button,input,select,textarea):focus-visible {
+  outline:2px solid var(--studio-accent)!important;
+  outline-offset:2px;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) :is(button.danger,.is-error,[aria-invalid="true"]) {
+  color:var(--studio-danger)!important;
+  border-color:var(--studio-danger)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) ::selection {
+  background:var(--studio-accent-soft);
+  color:var(--studio-text);
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) * {
+  scrollbar-width:thin;
+  scrollbar-color:var(--studio-border-strong) var(--studio-surface-secondary);
+}
+
+
+
+.studio-theme-button.workspace-chrome-theme-toggle {
+  display:inline-grid;
+  place-items:center;
+  width:36px;
+  height:36px;
+  min-width:36px;
+  padding:7px;
+  border:1px solid var(--studio-border);
+  border-radius:9px;
+  flex:none;
+}
+
+
+:is(.gs3d-top-actions,.gs2d-top-actions,.geometry-top-actions,.cas-header-actions,.shapes-toolbar) {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  min-width:0;
+  flex-wrap:nowrap;
+}
+
+
+:is(.gs3d-top-actions,.gs2d-top-actions,.geometry-top-actions,.cas-header-actions,.shapes-toolbar) .portable-share-anchor  {
+  position:relative!important;
+  inset:auto!important;
+  flex:none;
+}
+
+
+:is(.gs3d-top-actions,.gs2d-top-actions,.geometry-top-actions,.cas-header-actions,.shapes-toolbar) button  {
+  min-height:36px;
+  flex-shrink:0;
+  border-radius:9px;
+}
+
+
+.portable-share-inline .portable-share-trigger  {
+  height:36px;
+  min-height:36px;
+  padding:6px 9px;
+}
+
+
+@media(max-width:1536px) {
+  :is(.gs3d-top-actions,.gs2d-top-actions,.geometry-top-actions,.cas-header-actions,.shapes-toolbar) > button span,.portable-share-inline .portable-share-trigger span  {
+  display:none;
+}
+
+}
+
+
+@media(max-width:1280px) {
+  .cas-global-search {
+  max-width:110px;
+}
+
+.gs3d-project-name {
+  max-width:160px;
+}
+
+.shapes-toolbar-button {
+  font-size:0;
+  gap:0;
+}
+
+.shapes-toolbar-button svg {
+  width:18px;
+  height:18px;
+}
+
+}
+
+
+/* Native panel contents use the same tokens as their containing chrome. */
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) :is(.portable-dialog,.portable-preview,.portable-dropzone,.portable-file-preview,.gs3d-help-popover,.os-search,.os-floating-toolbar,.os-selection-toolbar,.shapes-viewport-card,.shapes-inspector-card,.shapes-formula-entry,.shapes-search-box,.shapes-selected-summary,.shapes-net-strip,.cas-notebook-workspace,.cas-notebook-block,.cas-block-result,.cas-result-box,.cas-global-search,.cas-search,.cas-inspector-section,.cas-history-pane,.cas-sheet-preview,.cas-keyboard,.cas-ai-tutor,.cas-settings-panel,.cas-object-menu>div) {
+  background:var(--studio-surface)!important;
+  color:var(--studio-text)!important;
+  border-color:var(--studio-border)!important;
+}
+
+
+.cas-studio-v2 .cas-studio-center,.cas-studio-v2 .cas-notebook-scroll {
+  background:var(--studio-bg)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell,.geometry-studio-shell,.cas-studio-v2,.shapes-studio-shell,.studio-themed-portal) :is(.os-measurements,.os-field-group,.os-property-strip,.os-search,.shapes-inspector-card,.shapes-formula-entry,.shapes-panel-heading,.shapes-title-lockup,.shapes-selected-summary,.cas-brand,.cas-notebook-toolbar,.cas-block-result,.cas-result-box,.cas-inspector-section,.cas-summary-row,.cas-history-pane,.cas-sheet-preview,.portable-dialog) :is(strong,span,div.katex) {
+  color:var(--studio-text)!important;
+}
+
+
+.shapes-studio-shell .shapes-library-item {
+  background:var(--studio-tool-bg)!important;
+  color:var(--studio-tool-text)!important;
+  border-color:var(--studio-border)!important;
+}
+
+
+.shapes-studio-shell .shapes-library-item.is-active {
+  background:var(--studio-tool-selected)!important;
+  border-color:var(--studio-accent)!important;
+  color:var(--studio-accent-strong)!important;
+}
+
+
+:is(.cas-studio-v2,.studio-themed-portal) :is(.cas-warning,.portable-warning) {
+  background:var(--studio-surface-secondary)!important;
+  color:var(--studio-warning)!important;
+  border-color:var(--studio-warning)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell) {
+  --gs-panel:var(--studio-surface)!important;
+  --gs-panel-2:var(--studio-surface-secondary)!important;
+  --gs-border:var(--studio-border)!important;
+  --gs-muted:var(--studio-text-secondary)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell) :is(.gs3d-panel-section,.gs3d-analysis-table,.gs3d-inspector-group,.gs3d-inspector-content details,.gs3d-exact,.gs2d-selected,.gs2d-exact-result,.gs2d-regression-summary) {
+  background:var(--studio-surface)!important;
+  border-color:var(--studio-border)!important;
+  color:var(--studio-text)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell) :is(.gs3d-inspector-content,.gs3d-panel-scroll,.gs2d-selected,.gs2d-exact-results) :is(strong,b,span,code,.katex) {
+  color:var(--studio-text)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell) .gs3d-analysis-table i {
+  color:var(--studio-text-secondary)!important;
+}
+
+
+:is(.graph-studio-2d-shell,.graph-studio-3d-shell) .gs3d-status {
+  background:var(--studio-surface)!important;
+  color:var(--studio-text-secondary)!important;
+}
+
+
+.object-studio-shell .os-context-toolbar,.geometry-studio-shell .geometry-range-controls {
+  background:var(--studio-surface-elevated)!important;
+  color:var(--studio-text)!important;
+  border-color:var(--studio-border)!important;
+}
+
+
+.shapes-studio-shell [aria-label="Direct dimension handles"] {
+  background:var(--studio-surface-elevated)!important;
+  color:var(--studio-text)!important;
+  border:1px solid var(--studio-border);
+  box-shadow:var(--studio-shadow);
+}
+
+
+.shapes-viewport-toolbar > * {flex-shrink:0;}
+.shapes-viewport-toolbar .shapes-segmented-control button {white-space:nowrap;}
+.shapes-floating-controls,.shapes-stage-labels span,.shapes-measure-overlay,.shapes-axis-cube {background:var(--studio-surface-elevated)!important;color:var(--studio-text)!important;border-color:var(--studio-border)!important;}
+@media(max-width:1280px) {
+  .shapes-mobile-properties span {display:none;}
+  .shapes-mobile-quick-actions {gap:4px;}
+  .shapes-viewport-toolbar {gap:6px;padding-inline:8px;}
+}

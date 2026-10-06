@@ -1,3 +1,5 @@
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { polygonLessonScene } from "../geometryLessonScene";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useCallback, useEffect, useMemo } from "react";
 import { SliderRow } from "../../mockup/studioLabKit";
@@ -86,7 +88,7 @@ export default function DiagonalsLab({ pulse = "observe" }: { pulse?: string }) 
       </Controls>
 
       <section className="msk-panel msk-canvas poly-stage">
-        <svg className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label="Diagonals explorer">
+        <GeometryLessonCanvas scene={polygonLessonScene(VIEW.w, VIEW.h, [screen])} className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label="Diagonals explorer">
           <rect width={VIEW.w} height={VIEW.h} fill="none" />
           <polygon points={pointsAttr(screen)} fill="rgba(20,125,242,.07)" stroke="#147df2" strokeWidth="2.2" />
           {sub === "from-vertex" ? diagsFrom.slice(0, shownFrom).map((line, i) => {
@@ -132,7 +134,7 @@ export default function DiagonalsLab({ pulse = "observe" }: { pulse?: string }) 
           <text x="20" y="28" fontSize="14" fontWeight="800" fill="#0f172a">
             {sub === "from-vertex" ? `Diagonals from ${vertexLabel(vertex)}` : sub === "all" ? "Every diagonal counted twice, then halved" : sub === "triangulation" ? "Fan triangulation" : "Interior intersections"}
           </text>
-        </svg>
+        </GeometryLessonCanvas>
       </section>
 
       <LivePanel title="Diagonal counts">

@@ -1,0 +1,2 @@
+import {defineConfig} from 'vite';import react from '@vitejs/plugin-react';import {resolve} from 'node:path';
+export default defineConfig({plugins:[react()],build:{outDir:'artifacts/ar-clear-workspace/production',emptyOutDir:true,lib:{entry:resolve('src/pages/ARMathLab.tsx'),formats:['es'],fileName:'ar-math-lab'},rollupOptions:{external:['react','react-dom','react-router-dom','three','@react-three/fiber','@react-three/drei']},minify:'esbuild'}});

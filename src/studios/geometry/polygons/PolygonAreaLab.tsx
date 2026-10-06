@@ -1,3 +1,5 @@
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { polygonLessonScene } from "../geometryLessonScene";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SliderRow } from "../../mockup/studioLabKit";
@@ -124,7 +126,7 @@ export default function PolygonAreaLab({ pulse = "observe" }: { pulse?: string }
       </Controls>
 
       <section className="msk-panel msk-canvas poly-stage">
-        <svg ref={svgRef} className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label="Area lab">
+        <GeometryLessonCanvas activityId={`area-${sub}`} scene={polygonLessonScene(VIEW.w, VIEW.h, (sub === "regular" || sub === "decomposition") ? [regularScreen] : sub === "composite" ? composite.parts.map(part => part.points.map(p => toScreen({ x: p.x - 3, y: p.y - 3 }, 38))) : sub === "coordinate" ? [grid.map(p => toScreen(p, 36))] : [irrScreen], sub === "regular" || sub === "decomposition" ? 48 : sub === "composite" ? 38 : sub === "coordinate" ? 36 : 42)} ref={svgRef} className="msk-graph poly-svg" viewBox={`0 0 ${VIEW.w} ${VIEW.h}`} role="img" aria-label="Area lab">
           <rect width={VIEW.w} height={VIEW.h} fill="none" />
           {sub === "regular" ? (
             <g>
@@ -192,7 +194,7 @@ export default function PolygonAreaLab({ pulse = "observe" }: { pulse?: string }
               <text x="20" y="28" fontSize="14" fontWeight="800">Shoelace on a coordinate grid</text>
             </g>
           ) : null}
-        </svg>
+        </GeometryLessonCanvas>
       </section>
 
       <LivePanel title="Area">

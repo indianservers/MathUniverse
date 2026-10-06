@@ -19,7 +19,8 @@ import {
   useGeoSession,
   writeGeoSession,
 } from "./geometryStudioSession";
-import { BisectorTeaser, LandingTeaser, hasLandingTeaser } from "../landing/StudioLandingTeasers";
+import { LandingTeaser, hasLandingTeaser } from "../landing/StudioLandingTeasers";
+import GeometryHomeWorkspace from "./GeometryHomeWorkspace";
 import { ClassPinPanel, FirstHourNote, GeometryWeekStrip } from "../landing/StudioLandingExtras";
 import { firstHourReady } from "../landing/studioLandingSession";
 import "../landing/studioLanding.css";
@@ -110,7 +111,7 @@ export default function GeometryStudioHome({ studio }: { studio: StudioMockupDef
           </div>
         </div>
         <div>
-        <BisectorTeaser />
+        <GeometryHomeWorkspace />
         <ol className="msk-geo-path" aria-label="Suggested sequence">
           {GEO_PATH.map((item, index) => (
             <li key={item.id}>

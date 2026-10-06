@@ -1,6 +1,8 @@
+import type { GeometryPaint } from "../components/workspace/GeometryAppearance";
 import { createUnsupportedWorkspaceAction, type UnsupportedWorkspaceAction } from "./unsupportedWorkspaceAction";
 
-export type GeoStyle = {
+export type GeoStyle = GeometryPaint & {
+  dashArray?: string;
   color?: string;
   fill?: string;
   strokeWidth?: number;

@@ -1,3 +1,6 @@
+import GeometryEmbeddedGraph from "../GeometryEmbeddedGraph";
+import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import { measurementLessonScene } from "../geometryStudioScenes";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import {
   Ruler,
@@ -303,7 +306,12 @@ export default function MeasurementLab({ page }: { page: StudioMockupPage }) {
         </aside>
 
         <section className="mlab-stage">
-          <svg
+          <GeometryLessonCanvas showFullWorkspace={false} pointStep={(snapStep || 0.1) * (scaleK || 1)} onPointChange={(id, point) => {
+            const match = /^(.*)-([ABCD])$/.exec(id); if (!match) return;
+            const world = worldFromSvg(point.x, point.y), origin = { x: 2, y: 1.8 }, k = scaleK || 1;
+            const corners = { A: "nw", B: "ne", C: "se", D: "sw" } as const;
+            setRects(previous => previous.map(r => r.id === match[1] ? resizeRect(r, corners[match[2] as keyof typeof corners], origin.x + (world.x-origin.x)/k, origin.y + (world.y-origin.y)/k, snapStep) : r));
+          }} scene={measurementLessonScene(display, VIEW.w, VIEW.h, toPx)}
             className="mlab-svg"
             viewBox={`0 0 ${VIEW.w} ${VIEW.h}`}
             role="img"
@@ -377,7 +385,7 @@ export default function MeasurementLab({ page }: { page: StudioMockupPage }) {
             {handlesFor(display).map((h) => (
               <circle key={h.id} className="mlab-handle" cx={toPx(h.x)} cy={toPx(h.y)} r="5" fill="#f59e0b" stroke="#fff" />
             ))}
-          </svg>
+          </GeometryLessonCanvas>
           <div className="mlab-zoom">
             <button type="button" aria-label="Zoom in" onClick={() => setZoom((z) => Math.min(1.6, z + 0.1))}><ZoomIn size={16} /></button>
             <button type="button" aria-label="Zoom out" onClick={() => setZoom((z) => Math.max(0.7, z - 0.1))}><ZoomOut size={16} /></button>
@@ -507,6 +515,7 @@ export default function MeasurementLab({ page }: { page: StudioMockupPage }) {
           ) : null}
         </aside>
       </div>
+      <GeometryEmbeddedGraph showFullWorkspace={false} activityId="measurement:area-perimeter" title="Area for a rectangle with perimeter 20" expressions={["x*(10-x) {0 <= x <= 10}", "(6,24)"]} />
       <MockupLearningStrip page={page} />
     </div>
   );

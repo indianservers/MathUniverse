@@ -1202,3 +1202,9 @@
 .msk-trigonometry .app-target-canvas[data-app-mode="Periodic Models"] .trig-target-scene-hint {
   color: #e2e8f0;
 }
+
+.msk-trigonometry .rt-target-frame { transform:none !important; }
+.msk-trigonometry .uc-target-canvas { background:#fff5f8 !important; color:#17243c; }
+.msk-trigonometry .uc-target-canvas .msk-graph { background:#fff5f8; }
+.msk-trigonometry .uc-target-canvas :is(.msk-quad,.msk-quad-sign) { fill:#64748b; }
+.msk-trigonometry .uc-target-canvas :is(.msk-quad.is-on,.msk-quad-sign.is-on) { fill:#17243c; }

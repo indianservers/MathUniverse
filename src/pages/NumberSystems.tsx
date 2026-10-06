@@ -1,6 +1,9 @@
+import NumberPremium from "../studios/number-systems/premium/NumberPremium";
+
+import "../studios/landing/studioLanding.css";
 import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import { Hash, Home, Search } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBreadcrumb";
 import StudioHomeButtons from "../components/ui/StudioHomeButtons";
@@ -43,7 +46,7 @@ const nav: Array<{ id: NumberSystemsPage; label: string; route: string }> = [
   { id: "practice", label: "Practice", route: NUMBER_SYSTEMS_ROUTES.practice },
 ];
 
-export default function NumberSystems() {
+export function LegacyNumberSystems() {
   const location = useLocation();
   const navigate = useNavigate();
   const [params] = useSearchParams();
@@ -66,7 +69,7 @@ export default function NumberSystems() {
     document.title = `${page === "home" ? "Number Systems Studio" : nav.find((item) => item.id === page)?.label ?? "Number Systems"} | Math Universe`;
     if (page !== "home") rememberLastRoute(location.pathname);
     setProgress(studioProgressPercent());
-  }, [location.pathname, page]);
+  }, [location.pathname, page, setProgress]);
 
   const refresh = () => setProgress(studioProgressPercent());
 
@@ -155,7 +158,8 @@ function StudioHome({ progress }: { progress: number }) {
           </div>
           <div className="ns-topic-grid">
             {filtered.map((item, index) => (
-              <article key={item.id} className={`ns-topic ${done.includes(item.id) ? "is-done" : ""}`}>
+              <article key={item.id} className={`ns-topic msk-card-article ${done.includes(item.id) ? "is-done" : ""}`}>
+                <Link className="msk-card-hit" to={NUMBER_SYSTEMS_ROUTES[item.id]} aria-label={`Open ${item.label}`} />
                 <span>{done.includes(item.id) ? "✓" : index + 1}</span>
                 <Link to={NUMBER_SYSTEMS_ROUTES[item.id]}>
                   <b>{item.label}</b>
@@ -167,7 +171,8 @@ function StudioHome({ progress }: { progress: number }) {
                 </Link>
               </article>
             ))}
-            <article className="ns-topic">
+            <article className="ns-topic msk-card-article">
+              <Link className="msk-card-hit" to="/number-systems/formula-visualizer" aria-label="Open Formula visualizer" />
               <span>ƒ</span>
               <Link to="/number-systems/formula-visualizer">
                 <b>Formula visualizer</b>
@@ -210,3 +215,6 @@ function StudioHome({ progress }: { progress: number }) {
     </div>
   );
 }
+
+const RetainedFormulaVisualizer = lazy(() => import("./FormulaVisualizerPage"));
+export default function NumberSystems(){const location=useLocation();const [params]=useSearchParams();if(location.pathname.endsWith("/formula-visualizer")&&params.get("legacy")==="1")return <Suspense fallback={<p>Loading retained formulas…</p>}><RetainedFormulaVisualizer conceptId="number-systems"/></Suspense>;return params.get("legacy")==="1"||["/number-systems/concepts","/number-systems/practice"].includes(location.pathname)?<LegacyNumberSystems/>:<NumberPremium/>;}

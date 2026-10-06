@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import LinearAlgebraEnhancementWorkbench from "../linear-algebra/LinearAlgebraEnhancementWorkbench";
 import GeometryEnhancementWorkbench from "../geometry/GeometryEnhancementWorkbench";
 import TrigonometryEnhancementWorkbench from "../trigonometry/TrigonometryEnhancementWorkbench";
+import TrigonometryHome from "../trigonometry/home/TrigonometryHome";
 import StatisticsEnhancementWorkbench from "../statistics/StatisticsEnhancementWorkbench";
 import ModellingEnhancementWorkbench from "../modelling/ModellingEnhancementWorkbench";
 const advancedWorkbenches: Record<string, () => ReactNode> = {
@@ -29,6 +30,7 @@ export default function MockupStudioApp({
   const page = matchStudioPage(studio, pathname, params.get("mode"));
   const Advanced = advancedWorkbenches[studioId];
   const advanced = !!Advanced && [params.get("mode"), params.get("tab"), params.get("workbench")].includes("advanced");
+  if (studioId === "trigonometry" && page.id === "home" && !advanced) return <TrigonometryHome />;
   return (
     <MockupStudioChrome studio={studio} page={page}>
       {advanced ? <Advanced /> : page.id === "home" ? <MockupStudioHome studio={studio} /> : <MockupInteractiveLab page={page} extra={extras?.[page.id]} />}

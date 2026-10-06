@@ -1,0 +1,740 @@
+{
+  "checks": [
+    {
+      "name": "home: answer graded against live defaults",
+      "pass": true
+    },
+    {
+      "name": "home: repeat award locked",
+      "pass": true
+    },
+    {
+      "name": "home: 25 enhancement checklist",
+      "pass": true
+    },
+    {
+      "name": "fundamentals: answer graded against live defaults",
+      "pass": true
+    },
+    {
+      "name": "fundamentals: repeat award locked",
+      "pass": true
+    },
+    {
+      "name": "fundamentals: 25 enhancement checklist",
+      "pass": true
+    },
+    {
+      "name": "natural-whole: answer graded against live defaults",
+      "pass": true
+    },
+    {
+      "name": "natural-whole: repeat award locked",
+      "pass": true
+    },
+    {
+      "name": "natural-whole: 25 enhancement checklist",
+      "pass": true
+    },
+    {
+      "name": "integers: answer graded against live defaults",
+      "pass": true
+    },
+    {
+      "name": "integers: repeat award locked",
+      "pass": true
+    },
+    {
+      "name": "integers: 25 enhancement checklist",
+      "pass": true
+    },
+    {
+      "name": "rational: answer graded against live defaults",
+      "pass": true
+    },
+    {
+      "name": "rational: repeat award locked",
+      "pass": true
+    },
+    {
+      "name": "rational: 25 enhancement checklist",
+      "pass": true
+    },
+    {
+      "name": "irrational: answer graded against live defaults",
+      "pass": true
+    },
+    {
+      "name": "irrational: repeat award locked",
+      "pass": true
+    },
+    {
+      "name": "irrational: 25 enhancement checklist",
+      "pass": true
+    },
+    {
+      "name": "real-line: answer graded against live defaults",
+      "pass": true
+    },
+    {
+      "name": "real-line: repeat award locked",
+      "pass": true
+    },
+    {
+      "name": "real-line: 25 enhancement checklist",
+      "pass": true
+    },
+    {
+      "name": "hierarchy: answer graded against live defaults",
+      "pass": true
+    },
+    {
+      "name": "hierarchy: repeat award locked",
+      "pass": true
+    },
+    {
+      "name": "hierarchy: 25 enhancement checklist",
+      "pass": true
+    },
+    {
+      "name": "fractions-decimals-percentages: answer graded against live defaults",
+      "pass": true
+    },
+    {
+      "name": "fractions-decimals-percentages: repeat award locked",
+      "pass": true
+    },
+    {
+      "name": "fractions-decimals-percentages: 25 enhancement checklist",
+      "pass": true
+    },
+    {
+      "name": "ordering-comparing: answer graded against live defaults",
+      "pass": true
+    },
+    {
+      "name": "ordering-comparing: repeat award locked",
+      "pass": true
+    },
+    {
+      "name": "ordering-comparing: 25 enhancement checklist",
+      "pass": true
+    },
+    {
+      "name": "absolute-distance-intervals: answer graded against live defaults",
+      "pass": true
+    },
+    {
+      "name": "absolute-distance-intervals: repeat award locked",
+      "pass": true
+    },
+    {
+      "name": "absolute-distance-intervals: 25 enhancement checklist",
+      "pass": true
+    },
+    {
+      "name": "properties-operations: answer graded against live defaults",
+      "pass": true
+    },
+    {
+      "name": "properties-operations: repeat award locked",
+      "pass": true
+    },
+    {
+      "name": "properties-operations: 25 enhancement checklist",
+      "pass": true
+    },
+    {
+      "name": "formula-visualizer: answer graded against live defaults",
+      "pass": true
+    },
+    {
+      "name": "formula-visualizer: repeat award locked",
+      "pass": true
+    },
+    {
+      "name": "formula-visualizer: 25 enhancement checklist",
+      "pass": true
+    },
+    {
+      "name": "integer inputs update result",
+      "pass": true
+    },
+    {
+      "name": "subtract negative live result",
+      "pass": true
+    },
+    {
+      "name": "nudge changes model",
+      "pass": true
+    },
+    {
+      "name": "undo restores displayed input",
+      "pass": true
+    },
+    {
+      "name": "redo restores edited input",
+      "pass": true
+    },
+    {
+      "name": "saved model restored",
+      "pass": true
+    },
+    {
+      "name": "share reload restores live input",
+      "pass": true
+    },
+    {
+      "name": "notebook stores observed model",
+      "pass": true
+    },
+    {
+      "name": "notebook reloads mathematical mode",
+      "pass": true
+    },
+    {
+      "name": "playback reaches computed end",
+      "pass": true
+    },
+    {
+      "name": "hint explains selected operation",
+      "pass": true
+    },
+    {
+      "name": "solution cannot award points",
+      "pass": true
+    },
+    {
+      "name": "invalid integer input prevents stale model",
+      "pass": true
+    },
+    {
+      "name": "keyboard point edit updates field",
+      "pass": true
+    },
+    {
+      "name": "pointer point edit updates field",
+      "pass": true
+    },
+    {
+      "name": "requested 5175 home has live interaction",
+      "pass": true
+    },
+    {
+      "name": "requested 5175 integers has live interaction",
+      "pass": true
+    }
+  ],
+  "layouts": [
+    {
+      "id": "home",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "fundamentals",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "natural-whole",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "integers",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "rational",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "irrational",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "real-line",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "hierarchy",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "fractions-decimals-percentages",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "ordering-comparing",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "absolute-distance-intervals",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "properties-operations",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "formula-visualizer",
+      "width": 1920,
+      "height": 1080,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "home",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "fundamentals",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "natural-whole",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "integers",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "rational",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "irrational",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "real-line",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "hierarchy",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "fractions-decimals-percentages",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "ordering-comparing",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "absolute-distance-intervals",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "properties-operations",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "formula-visualizer",
+      "width": 1440,
+      "height": 900,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "home",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "fundamentals",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "natural-whole",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "integers",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "rational",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "irrational",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "real-line",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "hierarchy",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "fractions-decimals-percentages",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "ordering-comparing",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "absolute-distance-intervals",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "properties-operations",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "formula-visualizer",
+      "width": 1366,
+      "height": 768,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "home",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "fundamentals",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "natural-whole",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "integers",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "rational",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "irrational",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "real-line",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "hierarchy",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "fractions-decimals-percentages",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "ordering-comparing",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "absolute-distance-intervals",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "properties-operations",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "formula-visualizer",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "home",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "fundamentals",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "natural-whole",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "integers",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "rational",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "irrational",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "real-line",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "hierarchy",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "fractions-decimals-percentages",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "ordering-comparing",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "absolute-distance-intervals",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "properties-operations",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "labOverflow": false
+    },
+    {
+      "id": "formula-visualizer",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "labOverflow": false
+    }
+  ],
+  "axe": [
+    {
+      "id": "home",
+      "violations": []
+    },
+    {
+      "id": "fundamentals",
+      "violations": []
+    },
+    {
+      "id": "natural-whole",
+      "violations": []
+    },
+    {
+      "id": "integers",
+      "violations": []
+    },
+    {
+      "id": "rational",
+      "violations": []
+    },
+    {
+      "id": "irrational",
+      "violations": []
+    },
+    {
+      "id": "real-line",
+      "violations": []
+    },
+    {
+      "id": "hierarchy",
+      "violations": []
+    },
+    {
+      "id": "fractions-decimals-percentages",
+      "violations": []
+    },
+    {
+      "id": "ordering-comparing",
+      "violations": []
+    },
+    {
+      "id": "absolute-distance-intervals",
+      "violations": []
+    },
+    {
+      "id": "properties-operations",
+      "violations": []
+    },
+    {
+      "id": "formula-visualizer",
+      "violations": []
+    }
+  ],
+  "errors": []
+}

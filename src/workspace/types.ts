@@ -1,3 +1,4 @@
+import type { GeometryPaint } from "../components/workspace/GeometryAppearance";
 export type MathObjectKind =
   | "expression"
   | "equation"
@@ -31,7 +32,7 @@ export type MathObjectDimension = "2d" | "3d" | "abstract";
 
 export type MathObjectRole = "construction" | "measurement" | "algebra" | "annotation" | "helper" | "result";
 
-export type MathObjectStyle = {
+export type MathObjectStyle = GeometryPaint & {
   color?: string;
   fill?: string;
   stroke?: string;

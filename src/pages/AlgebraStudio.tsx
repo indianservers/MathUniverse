@@ -173,7 +173,8 @@ function StudioHome() {
           <p>Choose a topic to explore with interactive visual models.</p>
           <div className="alg-launch-grid">
             {filtered.map((item, index) => (
-              <article key={item.id} className="alg-launch-card">
+              <article key={item.id} className="alg-launch-card msk-card-article">
+                <Link className="msk-card-hit" to={item.route} aria-label={`Open ${item.label}`} />
                 <Link to={item.route} className="alg-launch-n">{`${index + 1} ${item.label}`}</Link>
                 {item.id === "equations" ? <BalanceScaleTeaser /> : item.id === "expressions" ? <FactorTilesTeaser /> : item.id === "cas" ? <CasExpandTeaser /> : <TopicPreview id={item.id} />}
                 <p>{item.description}</p>

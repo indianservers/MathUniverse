@@ -17,6 +17,7 @@ export function Phase1LabChrome({
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null;
+      if (event.defaultPrevented || target?.closest(".geo-lesson-workspace")) return;
       if (target && /input|textarea|select/i.test(target.tagName)) return;
       const index = tabs.indexOf(mode);
       if (event.key === "ArrowRight" && index >= 0) setMode(tabs[(index + 1) % tabs.length] ?? mode);
@@ -72,6 +73,7 @@ export function FigureToolbar({
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null;
+      if (event.defaultPrevented || target?.closest(".geo-lesson-workspace")) return;
       if (target && /input|textarea|select/i.test(target.tagName)) return;
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "z") {
         event.preventDefault();

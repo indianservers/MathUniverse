@@ -1,0 +1,59 @@
+{
+  "report": [
+    {
+      "route": "/workspace/graph",
+      "inputEdited": "x^2+3",
+      "stateSurvivedThemes": true,
+      "persisted": true,
+      "modal": "Settings opened"
+    },
+    {
+      "route": "/math-lab/3d-graphing",
+      "inputEdited": "sin(x)+cos(y)",
+      "stateSurvivedThemes": true,
+      "persisted": true,
+      "modal": {
+        "background": "rgb(17, 36, 59)",
+        "color": "rgb(228, 242, 255)"
+      }
+    },
+    {
+      "route": "/workspace/geometry",
+      "inputEdited": "circle",
+      "stateSurvivedThemes": true,
+      "persisted": true,
+      "modal": {
+        "background": "rgb(17, 36, 59)",
+        "color": "rgb(228, 242, 255)"
+      }
+    },
+    {
+      "route": "/workspace/3d",
+      "inputEdited": "sphere",
+      "stateSurvivedThemes": true,
+      "persisted": true,
+      "modal": {
+        "background": "rgb(17, 36, 59)",
+        "color": "rgb(228, 242, 255)"
+      }
+    },
+    {
+      "route": "/workspace/data/cas",
+      "inputEdited": "x^2+2*x+1",
+      "stateSurvivedThemes": true,
+      "persisted": true,
+      "modal": {
+        "background": "rgb(17, 36, 59)",
+        "color": "rgb(228, 242, 255)"
+      }
+    },
+    {
+      "route": "/shapes",
+      "inputEdited": "cube",
+      "stateSurvivedThemes": true,
+      "persisted": true,
+      "modal": "Settings opened"
+    }
+  ],
+  "errors": []
+}

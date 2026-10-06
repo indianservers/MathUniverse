@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "Counting dots edit the actual count",
+    "Equivalent scaling preserves ratio and changes both inputs",
+    "Percentage display does not distort input-line scale",
+    "Precision updates rounded root and error",
+    "Endpoint switches govern actual zero membership",
+    "Irrational product is an exact counterexample",
+    "Additional sandbox compares current points and clears stale feedback",
+    "Focus mode reversibly hides supporting panels"
+  ],
+  "errors": []
+}
