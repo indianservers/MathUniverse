@@ -1,0 +1,5 @@
+{
+  "extends": "../tsconfig.app.json",
+  "include": ["../src/studios/trigonometry/identities", "../src/studios/mockup/labs/IdentitiesLab.tsx"],
+  "compilerOptions": { "incremental": false }
+}

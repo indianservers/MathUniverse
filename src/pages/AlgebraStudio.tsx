@@ -1,3 +1,4 @@
+import CinematicHero from "../studios/heroes/CinematicHero";
 import {
   Eye,
   HelpCircle,
@@ -115,7 +116,7 @@ function StudioHome() {
 
   return (
     <div className="alg-page alg-home-target">
-      <header className="alg-home-hero">
+      <CinematicHero id="algebra"><header className="alg-home-hero">
         <div>
           <h1>Welcome to Algebra Studio</h1>
           <p>Explore, connect, and master algebra through interactive visual models.</p>
@@ -132,7 +133,7 @@ function StudioHome() {
             <Settings size={16} />
           </button>
         </div>
-      </header>
+      </header></CinematicHero>
 
       <section className="alg-concept-map alg-concept-map-target" aria-label="Algebra concept map">
         <svg className="alg-map-lines" viewBox="0 0 1100 200" preserveAspectRatio="none" aria-hidden="true">

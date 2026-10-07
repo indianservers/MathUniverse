@@ -38,6 +38,7 @@ export type Graph3DSurface = {
   xMax: number;
   yMin: number;
   yMax: number;
+  displayTransform?: { position: [number,number,number]; rotation: [number,number,number]; scale:number };
   zMin: number;
   zMax: number;
   domainPredicate: string;

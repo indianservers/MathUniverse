@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { studioForPath, curriculumStudios } from './curriculumCatalog';
 import { useStudioModel } from '../phase1/StudioModelProvider';
-import StudioModelTools from '../phase1/StudioModelTools';
+import FocusedLab from './FocusedLab';
 import { useSetTheoryStore } from '../../modules/set-theory/setTheoryStore';
 import { useGraphTheoryStore } from '../../modules/graph-theory/graphTheoryStore';
 import './studioLearning.css';
@@ -28,5 +28,6 @@ export default function StudioLearningOutlet(){
   const curriculumId=/^\/studios\/([^/]+)\/curriculum/.exec(pathname)?.[1];
   const studio=studioForPath(pathname)||curriculumStudios.find(s=>s.id===curriculumId);
   if(!studio)return <Outlet/>;
-  return <div className="studio-learning-host"><StoreBridge id={studio.id}/><nav className="studio-learning-nav" aria-label="Studio learning and model controls"><Link to={studio.base}>Studio</Link><Link to={`/studios/${studio.id}/curriculum`}>Lessons, practice &amp; reference</Link><Link to="/studios/curriculum">All studios</Link><StudioModelTools/></nav><div className="studio-learning-content"><Outlet/></div></div>;
+  const lab=pathname.replace(/\/$/,'')!==studio.base&&!pathname.startsWith('/studios/')||studio.base.startsWith('/math-lab/');
+  return <div className="studio-learning-host"><StoreBridge id={studio.id}/><nav className="studio-learning-nav" aria-label="Studio learning and model controls"><Link to={studio.base}>Studio Home Page</Link><Link to="/">Main App Home Page</Link></nav><div className="studio-learning-content">{lab?<FocusedLab key={pathname}><Outlet/></FocusedLab>:<Outlet/>}</div></div>;
 }

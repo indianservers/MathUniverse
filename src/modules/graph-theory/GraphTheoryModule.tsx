@@ -1,3 +1,4 @@
+import CinematicHero from "../../studios/heroes/CinematicHero";
 import { Link } from "react-router-dom";
 import { forceCenter, forceLink, forceManyBody, forceSimulation } from "d3";
 import { motion } from "framer-motion";
@@ -365,7 +366,7 @@ function GraphTheoryStudio() {
 
   return (
     <main className="gt-studio">
-      <header className="gt-header">
+      <CinematicHero id="graphs"><header className="gt-header">
         <div>
           <StudioHomeButtons studioTo="/graph-theory" />
           <StudioBreadcrumb
@@ -417,7 +418,7 @@ function GraphTheoryStudio() {
           </button>
           <StudioCanvasToolbar />
         </div>
-      </header>
+      </header></CinematicHero>
       <GraphTheoryLanding />
       <nav
         className="gt-tabs"

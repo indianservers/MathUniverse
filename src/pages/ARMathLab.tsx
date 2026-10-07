@@ -3,6 +3,7 @@ import ARCameraHandScene from "../ar-math-lab/hand-intelligence/ARCameraHandScen
 import type { CameraHandRuntime, SemanticEdit } from "../ar-math-lab/hand-intelligence/types";
 import ARWorldTracking, { type ARTrackingHandle } from "../ar-math-lab/ARTrackedScene";
 import { flushSync } from "react-dom";
+import ARHandLandmarkOverlay from "../ar-math-lab/hand-intelligence/ARHandLandmarkOverlay";
 import ARCameraHands from "../ar-math-lab/ARCameraHands";
 import { cameraErrorMessage, requestEnvironmentCameraStream, stopCameraTracks } from "../ar-math-lab/arCameraSession";
 import ARExplorationPanel from "../ar-math-lab/ARExplorationPanel";
@@ -703,6 +704,12 @@ export default function ARMathLab() {
             <p className="mt-1 max-w-3xl text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300 sm:text-sm">Create math objects, tap AR, scan a surface, and place them in your room. Walk around anchored objects on a supported device.</p>
           </div>
         </header>
+        <nav aria-label="AR view modes" data-testid="ar-view-modes" className="grid grid-cols-2 gap-2 rounded-xl border border-cyan-200 bg-white p-2 sm:grid-cols-4">
+          <ControlButton label="Camera + hand gestures" icon={<Camera className="h-4 w-4" />} onClick={startCameraPreview} primary disabled={sessionState.status === "starting"} />
+          <ControlButton label="AR + hand gestures" icon={<ScanLine className="h-4 w-4" />} onClick={startARSession} primary disabled={sessionState.status === "starting"} />
+          <ControlButton label="3D Preview" icon={<Cuboid className="h-4 w-4" />} onClick={() => activate3DPreview()} />
+          <ControlButton label="Exit" icon={<X className="h-4 w-4" />} onClick={exitActiveMode} />
+        </nav>
 
         <section className="grid gap-3 xl:grid-cols-[380px_minmax(0,1fr)] 2xl:grid-cols-[400px_minmax(0,1fr)]">
           <aside className="order-2 min-w-0 space-y-3 xl:order-1 xl:sticky xl:top-3 xl:max-h-[calc(100dvh-1.5rem)] xl:overflow-y-auto xl:pr-1 xl:self-start">
@@ -865,6 +872,9 @@ export function ARCameraPreview({ onSemanticEdit, mathObject, mode, onAddMeasure
   const stageRef = useRef<HTMLDivElement | null>(null);
   const activePointersRef = useRef(new Map<number, { x: number; y: number }>());
   const gestureRef = useRef<{ distance: number; angle: number } | null>(null);
+  const [mirrored,setMirrored]=useState(true);
+  const [showHandPoints,setShowHandPoints]=useState(true);
+  useEffect(()=>{if(stream)setMirrored(stream.getVideoTracks()[0]?.getSettings().facingMode!=="environment");},[stream]);
   const [drawTool, setDrawTool] = useState<CameraDrawTool>("place");
   const [sketchShapes, setSketchShapes] = useState<CameraSketchShape[]>([]);
   const [phoneView, setPhoneView] = useState<PhoneViewState>({ yaw: 0, pitch: 0, roll: 0 });
@@ -957,8 +967,9 @@ export function ARCameraPreview({ onSemanticEdit, mathObject, mode, onAddMeasure
 
     const scaleMultiplier = Math.max(0.82, Math.min(1.18, distance / Math.max(1, previous.distance)));
     const nextScale = Math.min(3, Math.max(0.35, roundTo(sceneState.objectScale * scaleMultiplier, 2)));
-    const nextRotationY = roundTo(sceneState.objectRotation[1] + angle - previous.angle, 2);
-    onSceneChange({ objectScale: nextScale, objectRotation: [sceneState.objectRotation[0], nextRotationY, sceneState.objectRotation[2]], placementReady: true });
+    const screenTurn = Math.atan2(Math.sin(angle - previous.angle), Math.cos(angle - previous.angle));
+    const nextRotationZ = roundTo(sceneState.objectRotation[2] - screenTurn, 2);
+    onSceneChange({ objectScale: nextScale, objectRotation: [sceneState.objectRotation[0], sceneState.objectRotation[1], nextRotationZ], placementReady: true });
   }
 
   async function enablePhoneOrbit() {
@@ -1006,14 +1017,16 @@ export function ARCameraPreview({ onSemanticEdit, mathObject, mode, onAddMeasure
         if (activePointersRef.current.size < 2) gestureRef.current = null;
       }}
     >
-      {stream ? <video ref={videoRef} className="h-full w-full object-cover" autoPlay muted playsInline aria-label="Live camera preview" /> : <div className="grid h-full place-items-center text-center text-sm font-bold text-slate-300">Waiting for camera permission...</div>}
+      {stream ? <video ref={videoRef} className="h-full w-full object-cover" style={{transform:mirrored?"scaleX(-1)":undefined}} autoPlay muted playsInline aria-label="Live camera preview" /> : <div className="grid h-full place-items-center text-center text-sm font-bold text-slate-300">Waiting for camera permission...</div>}
+      {showHandPoints&&<ARHandLandmarkOverlay runtime={handRuntime}/> }
       <CameraSketchOverlay shapes={sketchShapes} />
       <ARPlacementMarker mode={mode} sceneState={sceneState} />
       <ARLiveCamera3DOverlay runtime={handRuntime} mathObject={mathObject} phoneView={phoneView} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} />
     </div>
     <section aria-label="Camera workspace controls" className="space-y-3 border-t border-slate-200 bg-white p-3 text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-white">
       <OverlayLabel mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} />
-      <ARCameraHands stage={stageRef} runtime={handRuntime} onSemanticEdit={onSemanticEdit} drawing={drawTool !== "place" && drawTool !== "rotate"} video={videoRef} stream={stream} scene={sceneState} onChange={onSceneChange} objectId={selectedGraph?.id ?? selectedSolid?.id ?? null} />
+      <div className="flex flex-wrap gap-4 text-xs font-bold"><label><input type="checkbox" checked={mirrored} onChange={e=>setMirrored(e.target.checked)}/> Mirror camera</label><label><input type="checkbox" checked={showHandPoints} onChange={e=>setShowHandPoints(e.target.checked)}/> Show hand points</label></div>
+      <ARCameraHands mirrored={mirrored} stage={stageRef} runtime={handRuntime} onSemanticEdit={onSemanticEdit} drawing={drawTool !== "place" && drawTool !== "rotate"} video={videoRef} stream={stream} scene={sceneState} onChange={onSceneChange} objectId={selectedGraph?.id ?? selectedSolid?.id ?? null} />
       <LiveCameraToolDock
         activeTool={drawTool}
         color={sceneState.objectColor}
@@ -1236,7 +1249,7 @@ function CameraOverlayPlaceholder({ mathObject, sceneState }: { mathObject: ARMa
 export function ARFallbackViewer({ generatedGraphs, generatedSolids, measurements, mathObject, sceneState }: { generatedGraphs: ARGeneratedGraphObject[]; generatedSolids: ARGeneratedGeometrySolid[]; measurements: ARMeasurement[]; mathObject: ARMathObject; sceneState: ARSceneState }) {
   return (
     <div data-testid="ar-fallback-viewer" className="p-3 sm:p-4">
-      <ThreeSceneWrapper height="clamp(440px, calc(100dvh - 170px), 720px)" mobileHeight="clamp(300px, 52dvh, 540px)" cameraPosition={[5, 4, 7]} fov={45} quality="high" chrome="cinematic" sceneLabel="3D Preview Mode" interactionLabel="Drag rotate - pinch or wheel zoom - right drag pan">
+      <ThreeSceneWrapper height="clamp(360px, calc(100dvh - 290px), 720px)" mobileHeight="clamp(300px, 52dvh, 540px)" cameraPosition={[5, 4, 7]} fov={45} quality="high" chrome="cinematic" sceneLabel="3D Preview Mode" interactionLabel="Drag rotate - pinch or wheel zoom - right drag pan">
         <PreviewScene generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} mathObject={mathObject} sceneState={sceneState} />
         <OrbitControls enablePan enableZoom enableDamping dampingFactor={0.08} />
       </ThreeSceneWrapper>
@@ -1577,7 +1590,7 @@ export function ARStatusPanel({ sessionState, support }: { sessionState: ARSessi
   );
 }
 
-function MobileQuickActions({ sessionState, onActivate3D, onCreateQuickGraph, onCreateQuickSolid, onGenerateGraph, onPlaceObject, onStartAR, onStartCamera }: {
+function MobileQuickActions({ sessionState, onCreateQuickGraph, onCreateQuickSolid, onGenerateGraph, onPlaceObject }: {
   sessionState: ARSessionState;
   onActivate3D: () => void;
   onCreateQuickGraph: (expression: string) => void;
@@ -1596,12 +1609,7 @@ function MobileQuickActions({ sessionState, onActivate3D, onCreateQuickGraph, on
         </div>
         {sessionState.status === "starting" ? <span className="shrink-0 rounded-full bg-amber-50 px-2.5 py-1 text-[10px] font-black text-amber-800">opening</span> : null}
       </div>
-      <div className="grid grid-cols-2 gap-2" aria-label="Hand gesture modes">
-        <MobileActionButton label="Camera + hand gestures" icon={<Camera className="h-4 w-4" />} onClick={onStartCamera} primary />
-        <MobileActionButton label="AR + hand gestures" icon={<ScanLine className="h-4 w-4" />} onClick={onStartAR} primary />
-      </div>
-      <div className="mt-2 grid grid-cols-3 gap-1.5">
-        <MobileActionButton label="3D" icon={<Cuboid className="h-4 w-4" />} onClick={onActivate3D} />
+      <div className="mt-2 grid grid-cols-2 gap-1.5">
         <MobileActionButton label="Graph" icon={<Sparkles className="h-4 w-4" />} onClick={onGenerateGraph} primary />
         <MobileActionButton label="Place" icon={<Move3D className="h-4 w-4" />} onClick={onPlaceObject} primary />
       </div>
@@ -1719,10 +1727,6 @@ export function ARControlPanel(props: {
       <div data-testid="ar-control-panel" className="space-y-4">
         <ARStatusPanel sessionState={sessionState} support={support} />
         <div className="hidden grid-cols-2 gap-2 xl:grid">
-          <ControlButton label="Camera + hand gestures" icon={<Camera className="h-4 w-4" />} onClick={props.onStartCamera} primary disabled={sessionState.status === "starting"} />
-          <ControlButton label="AR + hand gestures" icon={<ScanLine className="h-4 w-4" />} onClick={props.onStartAR} primary disabled={sessionState.status === "starting"} />
-          <ControlButton label="3D Preview" icon={<Cuboid className="h-4 w-4" />} onClick={() => props.onActivate3D()} />
-          <ControlButton label="Exit" icon={<X className="h-4 w-4" />} onClick={props.onExit} />
           <ControlButton label="Reset Scene" icon={<RotateCcw className="h-4 w-4" />} onClick={props.onResetScene} />
           <ControlButton label="Place Object" icon={<Move3D className="h-4 w-4" />} onClick={props.onPlaceObject} primary />
         </div>

@@ -1,3 +1,4 @@
+import { KnownGestureCommands } from './KnownHandGestures';
 import { HandFeatureEngine } from './HandFeatureEngine';
 import { SpatialProcessingLayer } from './SpatialProcessingLayer';
 import { angleDelta, average, clamp, distance, dot, length, normalized, RingBuffer, sub } from './math';
@@ -9,11 +10,12 @@ export const idleState=(timestamp=0):HandIntelligenceState=>({timestamp,hands:[]
 export class HandIntelligenceEngine {
   readonly features=new HandFeatureEngine();readonly spatial=new SpatialProcessingLayer();readonly history=new RingBuffer<HandIntelligenceState>(60);
   state=idleState();frame:SpatialFrame={timestamp:0,hands:[],interactions:{contactPoints:[],grabAnchors:[]}};
+  private commands=new KnownGestureCommands();
   private listeners=new Set<(event:IntelligenceEvent)=>void>();private focusSince=0;private focusKey='';private readySince=0;private readyKey='';
   private releaseSince:number|null=null;private secondSince:number|null=null;private intentSince=0;private usages=new Map<string,number>();private pinchThreshold=.30;
   constructor(public profile:IntelligenceProfile='balanced',private model?:IntentModel){}
   subscribe(listener:(event:IntelligenceEvent)=>void){this.listeners.add(listener);return()=>{this.listeners.delete(listener);};}
-  reset(){this.features.reset();this.spatial.reset();this.history.clear();this.state=idleState();this.focusKey='';this.readyKey='';this.releaseSince=null;this.secondSince=null;this.usages.clear();this.pinchThreshold=.30;}
+  reset(){this.commands.reset();this.features.reset();this.spatial.reset();this.history.clear();this.state=idleState();this.focusKey='';this.readyKey='';this.releaseSince=null;this.secondSince=null;this.usages.clear();this.pinchThreshold=.30;}
   setProfile(profile:IntelligenceProfile){this.profile=profile;}
   update(input:IntelligenceFrameInput):HandIntelligenceState {
     if(!Number.isFinite(input.timestamp)||input.timestamp<=this.state.timestamp&&this.history.size)return this.state;
@@ -28,11 +30,11 @@ export class HandIntelligenceEngine {
     const focusDuration=time-this.focusSince;
     const targeted=hands.filter(h=>!h.missing&&this.frame.interactions.contactPoints.some(t=>t.handId===h.id&&t.objectId===target?.objectId&&t.score>.55));
     const primary=old.targetLocked?hands.find(h=>h.id===old.activeHandIds[0]):hands.find(h=>h.id===target?.handId);
-    const closure=(h:HandFeatures)=>Math.max(clamp(1-(h.pinchRatio-this.pinchThreshold)/.35),clamp((h.closure-.45)/.4));
+    const closure=(h:HandFeatures)=>h.pose==='fist'?1:h.pose&&h.pose!=='unknown'?0:Math.max(clamp(1-(h.pinchRatio-this.pinchThreshold)/.35),clamp((h.closure-.45)/.4));
     const grabScore=primary&&target?.affordance?clamp(.25*(old.targetLocked?1:target.contact)+.25*closure(primary)+.2*target.score+.2*clamp(focusDuration/180)+.1*(old.targetLocked?1:0))*(.9+.1*primary.quality):0;
     const held=hands.filter(h=>old.activeHandIds.includes(h.id));
     const quality=held.length?Math.min(...held.map(h=>h.quality)):primary?.quality??0;
-    const opening=primary&&!primary.missing?clamp((primary.pinchRatio-.5)/.3)*(1-clamp(primary.closure)):0;
+    const opening=primary?.pose&&primary.pose!=='unknown'&&primary.pose!=='fist'?1:primary&&!primary.missing?clamp((primary.pinchRatio-.5)/.3)*(1-clamp(primary.closure)):0;
     const releaseScore=clamp(opening*.85+(target?0:.8)+(!held.length?.9:0));
     const unavailable=!primary||primary.missing||primary.quality<.35;
     const permitted=input.tool!=='draw'&&input.tool!=='ui'&&!!target;
@@ -84,6 +86,7 @@ export class HandIntelligenceEngine {
     next.oneHandMode=next.activeHandIds.length===1?(next.precision?'precision':'whole-object'):undefined;
     next.twoHandMode=next.activeHandIds.length===2?(Object.values(next.weights).filter(v=>v>.35).length>1?'combined':next.primaryIntent):undefined;
     next.predictedNextIntent=next.phase==='approach'?'inspect':next.phase==='grab-ready'?'grab':next.phase==='two-hand-ready'?'resize':next.targetLocked?'move':undefined;
+    next.command=this.commands.update(hands,next.targetObjectId,time,next.targetLocked);
     this.emitChanges(old,next);this.state=next;this.history.push(next);return next;
   }
   private motion(next:HandIntelligenceState,old:HandIntelligenceState,input:IntelligenceFrameInput,target:SpatialTarget){

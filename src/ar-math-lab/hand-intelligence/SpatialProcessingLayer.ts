@@ -39,9 +39,10 @@ export class SpatialProcessingLayer {
   }
   static webcamToNDC(p:Vec3):Vec3{return[p[0]*2-1,1-p[1]*2,p[2]];}
   static ndcToWebcam(p:Vec3):Vec3{return[(p[0]+1)/2,(1-p[1])/2,0];}
-  static coverPoint(p:Vec3,videoAspect:number,viewAspect:number):Vec3 {
-    if(videoAspect>viewAspect)return[.5+(p[0]-.5)*videoAspect/viewAspect,p[1],p[2]];
-    return[p[0],.5+(p[1]-.5)*viewAspect/videoAspect,p[2]];
+  static coverPoint(p:Vec3,videoAspect:number,viewAspect:number,mirrored=false):Vec3 {
+    const mapped:Vec3=videoAspect>viewAspect?[.5+(p[0]-.5)*videoAspect/viewAspect,p[1],p[2]]:[p[0],.5+(p[1]-.5)*viewAspect/videoAspect,p[2]];
+    if(mirrored)mapped[0]=1-mapped[0];
+    return mapped;
   }
   static worldToLocal(point:Vec3,origin:Vec3):Vec3{return sub(point,origin);}
   static localToWorld(point:Vec3,origin:Vec3):Vec3{return add(point,origin);}

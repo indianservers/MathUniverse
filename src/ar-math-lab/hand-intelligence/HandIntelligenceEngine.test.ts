@@ -14,7 +14,24 @@ describe('hand intelligence pipeline',()=>{
   });
   it('moves a grabbed graph and infers wrist rotation without separate modes',()=>{
     expect(replaySequence(replayInputs('move graph')).slice(-1)[0]!.transform.position[0]).toBeGreaterThan(.05);
-    expect(replaySequence(replayInputs('rotate cube')).slice(-1)[0]!.transform.rotation[2]).toBeGreaterThan(.1);
+    expect(replaySequence(replayInputs('rotate cube')).slice(-1)[0]!.transform.rotation[2]).toBeLessThan(-.1);
+  });
+  it('converts screen clockwise rotation to world clockwise without reversing XR yaw',()=>{
+    const camera=replayInputs('rotate cube');
+    expect(replaySequence(camera).slice(-1)[0]!.transform.rotation[2]).toBeLessThan(-.1);
+    expect(replaySequence(camera.map(frame=>({...frame,camera:false}))).slice(-1)[0]!.transform.rotation[1]).toBeGreaterThan(.1);
+    const twoHands=replayInputs('grab cube').map((frame,i)=>{
+      const a=Math.max(0,i-40)*.009;
+      return {...frame,hands:[{point:{x:.5-.07*Math.cos(a),y:.5-.07*Math.sin(a),z:0},pinchRatio:.1,handedness:'left'}, {point:{x:.5+.07*Math.cos(a),y:.5+.07*Math.sin(a),z:0},pinchRatio:.1,handedness:'right'}]};
+    });
+    expect(replaySequence(twoHands).slice(-1)[0]!.transform.rotation[2]).toBeLessThan(-.05);
+  });
+  it('mirrors cropped camera points only when the displayed video is mirrored',()=>{
+    const normal=SpatialProcessingLayer.coverPoint([.65,.3,0],16/9,4/3);
+    const mirrored=SpatialProcessingLayer.coverPoint([.65,.3,0],16/9,4/3,true);
+    expect(mirrored[0]).toBeCloseTo(1-normal[0]);expect(mirrored[1]).toBe(normal[1]);
+    const portrait=SpatialProcessingLayer.coverPoint([.2,.7,0],4/3,16/9,true);
+    expect(portrait[0]).toBeCloseTo(.8);expect(portrait[1]).toBeCloseTo(.5+.2*(16/9)/(4/3));
   });
   it('edits mathematical radius and vector endpoints rather than arbitrary meshes',()=>{
     const radius=replaySequence(replayInputs('resize sphere')).flatMap(s=>s.result.semanticEdit?[s.result.semanticEdit]:[]);

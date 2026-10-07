@@ -1208,3 +1208,53 @@
 .msk-trigonometry .uc-target-canvas .msk-graph { background:#fff5f8; }
 .msk-trigonometry .uc-target-canvas :is(.msk-quad,.msk-quad-sign) { fill:#64748b; }
 .msk-trigonometry .uc-target-canvas :is(.msk-quad.is-on,.msk-quad-sign.is-on) { fill:#17243c; }
+
+/* Keep the comparison beside the working triangle rather than the tall controls. */
+.msk-trigonometry .rt-target-stage {
+  align-self: start;
+}
+.msk-trigonometry .rt-target-stage:has(.rt-target-similarity) > .rt-target-frame {
+  height: clamp(280px, 38vh, 400px);
+  aspect-ratio: auto;
+}
+.msk-trigonometry .rt-target-stage .rt-target-similarity {
+  position: static;
+  width: 100%;
+  max-width: none;
+  margin: 6px 0 0;
+  padding: 8px 12px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(160px, 220px);
+  align-items: center;
+  gap: 4px 12px;
+  box-sizing: border-box;
+}
+.msk-trigonometry .rt-target-similarity h3 { grid-column: 1; }
+.msk-trigonometry .rt-target-similarity > svg {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  width: 100%;
+  height: 116px;
+}
+.msk-trigonometry .rt-target-similarity .msk-similar-scale {
+  position: static;
+  width: 100%;
+  height: 24px;
+  clip: auto;
+  grid-column: 1;
+}
+.msk-trigonometry .rt-target-lab .msk-ori button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 34px;
+  min-height: 34px;
+  padding: 4px;
+  border-radius: 6px;
+}
+.msk-trigonometry .rt-target-lab .msk-ori svg { width: 26px; height: 22px; }
+.msk-trigonometry .rt-target-lab .msk-ori button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}

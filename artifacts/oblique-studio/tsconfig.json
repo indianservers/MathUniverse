@@ -1,0 +1,1 @@
+{"extends":"../../tsconfig.app.json","compilerOptions":{"lib":["ES2023","DOM","DOM.Iterable"],"types":["vite/client"]},"include":["../../src/studios/trigonometry/oblique"]}

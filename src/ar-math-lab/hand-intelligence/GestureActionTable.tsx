@@ -1,0 +1,2 @@
+import { gestureActions } from './KnownHandGestures';
+export default function GestureActionTable(){return <><p>Keep the whole hand visible. Hold command signs still; open your palm for a moment before repeating. Pinch remains optional.</p><table className="hand-action-table"><thead><tr><th>Gesture</th><th>Action</th><th>What happens</th></tr></thead><tbody>{gestureActions.map(([icon,pose,action,meaning])=><tr key={pose}><td>{icon} {pose}</td><td>{action}</td><td>{meaning}</td></tr>)}</tbody></table></>;}

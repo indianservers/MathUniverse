@@ -7,6 +7,8 @@ import LinearAlgebraEnhancementWorkbench from "../linear-algebra/LinearAlgebraEn
 import GeometryEnhancementWorkbench from "../geometry/GeometryEnhancementWorkbench";
 import TrigonometryEnhancementWorkbench from "../trigonometry/TrigonometryEnhancementWorkbench";
 import TrigonometryHome from "../trigonometry/home/TrigonometryHome";
+import ObliqueStudio from "../trigonometry/oblique/ObliqueStudio";
+import InverseTrigStudio from "../trigonometry/inverse/InverseTrigStudio";
 import StatisticsEnhancementWorkbench from "../statistics/StatisticsEnhancementWorkbench";
 import ModellingEnhancementWorkbench from "../modelling/ModellingEnhancementWorkbench";
 const advancedWorkbenches: Record<string, () => ReactNode> = {
@@ -30,6 +32,8 @@ export default function MockupStudioApp({
   const page = matchStudioPage(studio, pathname, params.get("mode"));
   const Advanced = advancedWorkbenches[studioId];
   const advanced = !!Advanced && [params.get("mode"), params.get("tab"), params.get("workbench")].includes("advanced");
+  if (studioId === "trigonometry" && (pathname === "/trigonometry/oblique" || pathname.startsWith("/trigonometry/oblique/"))) return <ObliqueStudio />;
+  if (studioId === "trigonometry" && (pathname === "/trigonometry/inverse" || pathname.startsWith("/trigonometry/inverse/"))) return <InverseTrigStudio />;
   if (studioId === "trigonometry" && page.id === "home" && !advanced) return <TrigonometryHome />;
   return (
     <MockupStudioChrome studio={studio} page={page}>

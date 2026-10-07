@@ -1,0 +1,11 @@
+import {chromium,expect} from '@playwright/test';
+const browser=await chromium.launch({headless:true,args:['--use-fake-device-for-media-stream','--use-fake-ui-for-media-stream','--use-gl=angle','--use-angle=swiftshader','--enable-webgl']});const page=await browser.newPage({viewport:{width:1440,height:1000},permissions:['camera']});
+await page.goto('http://127.0.0.1:5175/workspace/3d',{timeout:120000});await page.getByRole('button',{name:'Hand Gestures',exact:true}).waitFor({timeout:120000});await page.getByRole('button',{name:'Hand Gestures',exact:true}).click();await expect(page.locator('.immersive-hud video')).toHaveJSProperty('readyState',4,{timeout:30000});
+const results=await page.evaluate(async()=>{
+ const el=document.querySelector('.immersive-buttons');let fiber=el[Object.keys(el).find(k=>k.startsWith('__reactFiber'))],controller;while(fiber){const v=fiber.memoizedProps?.value;if(v?.adapter&&v?.nativeHands){controller=v;break;}fiber=fiber.return;}if(!controller)throw Error('No controller');
+ const input=[...document.querySelectorAll('.os-right-panel input[type=number]')].at(-1);if(!input)throw Error('No scale control');const rect=input.getBoundingClientRect(),area=controller.adapter.current.element().getBoundingClientRect();const x=(rect.left+rect.width/2-area.left)/area.width,y=(rect.top+rect.height/2-area.top)/area.height;const before=Number(input.value);let locked=0;
+ for(let i=1;i<=110;i++){const drift=Math.max(0,i-70)*.0006;const state=controller.nativeHands([{point:{x:x+drift,y,z:0},pinchRatio:i<25||i>100?1:.1,handedness:'right',confidence:1}],200000+i*34);if(state?.targetLocked)locked++;await new Promise(r=>setTimeout(r,2));}
+ await new Promise(r=>setTimeout(r,200));return {before,after:Number(input.value),locked,inputLabel:input.getAttribute('aria-label')};
+});console.log('inspector gesture',results);expect(results.after).not.toBe(results.before);
+await page.getByRole('button',{name:'Exit immersive modes'}).click();console.log('Undo buttons',await page.getByRole('button',{name:'Undo',exact:true}).count());await page.getByRole('button',{name:'Undo',exact:true}).first().click();console.log('after undo',await page.locator('.os-right-panel input[type=number]').last().inputValue());expect(Number(await page.locator('.os-right-panel input[type=number]').last().inputValue())).toBe(results.before);
+await browser.close();

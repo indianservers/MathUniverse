@@ -1,3 +1,5 @@
+import { identityTransform, transformDelta } from "../workspace/immersive/types";
+import { ImmersiveSettings, ImmersiveToolbar, useImmersiveAdapter, useImmersive } from "../workspace/immersive/ImmersiveInteractionManager";
 import { GeometryAppearanceControls, type GeometryPaint } from "../components/workspace/GeometryAppearance";
 import {
   ChevronDown,
@@ -201,6 +203,27 @@ export default function ObjectStudioWorkspace(props: Props) {
     setViewOpen(false);
     setSettingsOpen(false);
   }, []);
+  const gestureWorking=useRef<{id:string;position:[number,number,number]}|null>(null);
+  const immersive = useImmersive();
+  useImmersiveAdapter({
+    kind:"3d",element:()=>sceneHostRef.current,
+    targets:()=>props.objects.filter(o=>o.transform.visible).map(o=>{
+      const target=immersive?.projected.current.get(o.id);if(!target)return null;
+      return {...target,locked:!!o.transform.locked,selected:o.id===props.selectedId,allowedInteractions:{...target.allowedInteractions,stretchX:true,stretchY:true,stretchZ:true},preferredGrabZones:target.preferredGrabZones.map(zone=>zone.kind==='face'?{...zone,value:o.transform.dimensions?.[zone.axis??0]??1}:zone)};
+    }).filter((t):t is NonNullable<typeof t>=>!!t),
+    transform:()=>identityTransform(),select:props.onSelect,begin:()=>{gestureWorking.current=null;},end:()=>{gestureWorking.current=null;},
+    apply:(state,result,previous)=>{
+      const object=props.objects.find(o=>o.id===state.targetObjectId);if(!object||object.transform.locked)return;
+      if(result.semanticEdit?.kind==='dimension'&&result.semanticEdit.value){const axis=Number(result.semanticEdit.dimension),dims=[...(object.transform.dimensions??[1,1,1])] as [number,number,number];if(![0,1,2].includes(axis))return;dims[axis]=Math.max(.05,Math.min(100,result.semanticEdit.value));if(object.kind.includes('sphere'))dims.fill(dims[axis]);if(object.kind.includes('cylinder')&&axis!==1)dims[0]=dims[2]=dims[axis];props.onTransform(object.id,{dimensions:dims});return;}
+      if(!result.transform)return;
+      const d=transformDelta(result.transform,previous),old=object.transform;
+      if(!gestureWorking.current||gestureWorking.current.id!==object.id)gestureWorking.current={id:object.id,position:[...old.position]};
+      gestureWorking.current.position=gestureWorking.current.position.map((n,i)=>n+d.position[i]) as [number,number,number];
+      const snap=(n:number)=>props.snapEnabled?Math.round(n/props.snapStep)*props.snapStep:n;
+      props.onTransform(object.id,{position:gestureWorking.current.position.map(snap) as [number,number,number],rotation:old.rotation.map((n,i)=>n+d.rotation[i]*180/Math.PI) as [number,number,number],scale:Math.max(.05,Math.min(100,old.scale*d.scale))});
+    },
+    navigate:(_,scale)=>props.onZoom(Math.max(.2,Math.min(5,props.zoom*scale))),
+  });
   useCanvasZoomLock(sceneHostRef);
   useOutsideDismiss({
     enabled: viewOpen || settingsOpen,
@@ -330,6 +353,7 @@ export default function ObjectStudioWorkspace(props: Props) {
           )}
         </div>
         <div className="gs3d-top-actions">
+          <ImmersiveToolbar />
           <TopAction
             label="Undo"
             icon={<Undo2 />}
@@ -364,6 +388,8 @@ export default function ObjectStudioWorkspace(props: Props) {
             />
             {settingsOpen && (
               <div className="gs3d-popover">
+                <ImmersiveSettings/>
+
                 <button type="button" onClick={props.onLoad}>
                   <Layers3 />
                   Load saved scene

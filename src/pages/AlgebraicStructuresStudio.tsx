@@ -1,3 +1,4 @@
+import CinematicHero from "../studios/heroes/CinematicHero";
 import GroupsRingsFieldsLab from '../studios/algebraic-structures/GroupsRingsFieldsLab';
 import { Link, useLocation } from "react-router-dom";
 import StudioHomeButtons from "../components/ui/StudioHomeButtons";
@@ -68,7 +69,7 @@ export default function AlgebraicStructuresStudio({ page = "home" }: { page?: Al
       <section className="alg-stage" data-testid="algebraic-structures-stage">
         <div className="as-lab">
           <StudioHomeButtons studioTo="/algebraic-structures" />
-          <AlgebraLabHeading labId="structures" subtitle={meta.subtitle} onReset={() => window.dispatchEvent(new Event("as-lab-reset"))}>{meta.title}</AlgebraLabHeading>
+          {page === "home" ? <CinematicHero id="structures"><AlgebraLabHeading labId="structures" subtitle={meta.subtitle} onReset={() => window.dispatchEvent(new Event("as-lab-reset"))}>{meta.title}</AlgebraLabHeading></CinematicHero> : <AlgebraLabHeading labId="structures" subtitle={meta.subtitle} onReset={() => window.dispatchEvent(new Event("as-lab-reset"))}>{meta.title}</AlgebraLabHeading>}
           <header className="as-head">
             <div>
               <p className="as-crumb">

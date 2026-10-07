@@ -1,3 +1,4 @@
+import CinematicHero from "../heroes/CinematicHero";
 import {
   Bell,
   Binary,
@@ -375,6 +376,10 @@ function NavIcon({ id, studio }: { id: string; studio?: string }) {
   return <Icon />;
 }
 
+function StudioHeaderTools({ compact, children }: { compact: boolean; children: ReactNode }) {
+  return compact ? <details className="ids-chrome-tools"><summary>Studio tools</summary><div className="msk-tools">{children}</div></details> : <div className="msk-tools">{children}</div>;
+}
+
 export function MockupStudioChrome({
   studio,
   page,
@@ -441,7 +446,7 @@ export function MockupStudioChrome({
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null;
-      const typing = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
+      const typing = target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.tagName === "SELECT" || target.isContentEditable);
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
         setSearchOpen(true);
@@ -460,7 +465,7 @@ export function MockupStudioChrome({
       }
       if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
         event.preventDefault();
-        const step = session.units === "deg" ? 1 : 180 / Math.PI;
+        const step = page.id === "identities" || session.units === "deg" ? 1 : 180 / Math.PI;
         writeTrigSession({ theta: session.theta + (event.key === "ArrowRight" ? step : -step) });
         return;
       }
@@ -472,7 +477,7 @@ export function MockupStudioChrome({
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [isGeo, isTrig, session.theta, session.units]);
+  }, [isGeo, isTrig, session.theta, session.units, page.id]);
 
   const filtered = useMemo(() => {
     if (isGeo) return geometrySearchHits(labs, query);
@@ -555,7 +560,7 @@ export function MockupStudioChrome({
               </nav>
             ) : null}
           </div>
-          <div className="msk-tools">
+          <StudioHeaderTools compact={isTrig && page.id === "identities"}>
             <div id="msk-lab-tools" className="msk-lab-tools" />
             <button type="button" className="msk-theory-jump" onClick={() => document.getElementById(studioTheoryId(studio.id, page.id))?.scrollIntoView({ behavior: "smooth", block: "start" })}><BookOpenCheck />Theory &amp; examples</button>
             {isTrig && page.id !== "home" ? (
@@ -714,7 +719,7 @@ export function MockupStudioChrome({
               <button type="button" aria-label="Settings" onClick={() => setSettingsOpen(true)}><Settings /></button>
             )}
             {isModel ? <button type="button" className="msk-avatar" aria-label="Account"><User /></button> : null}
-          </div>
+          </StudioHeaderTools>
         </header>
         {(isTrig || isGeo || isDiscrete) && page.id !== "home" ? (
           <nav className="msk-topic-strip" aria-label="Topics" ref={stripRef}>
@@ -739,9 +744,10 @@ export function MockupStudioChrome({
           </p>
         ) : null}
         {(isTrig && session.teacherMode) || (isGeo && geoSession.teacherMode) || (isDiscrete && discreteTeacher) || (isLinear && page.id !== "home" && linearSession.teacherMode) ? <p className="msk-teacher-banner">Teacher view: exact values and answers stay visible. Students do not see this banner.</p> : null}
-        <StudioLabBrief studioId={studio.id} page={page} />
-        {children}
-        <StudioTheoryPanel studioId={studio.id} page={page} mode={mode} />
+        {!(isTrig && page.id === "identities") && <StudioLabBrief studioId={studio.id} page={page} />}
+        {page.id === "home" && ["linear-algebra", "complex-numbers", "modelling", "discrete", "statistics"].includes(studio.id) ? <CinematicHero id={studio.id} /> : null}
+        {isGeo && page.id!=="home"?<div data-lab-pane="workspace" className="geometry-focused-workspace">{children}</div>:children}
+        {!(isTrig && page.id === "identities") && <StudioTheoryPanel studioId={studio.id} page={page} mode={mode} />}
         {helpOpen ? (
           <div className="msk-help" role="dialog" aria-label="Keyboard shortcuts">
             <button type="button" className="msk-backdrop" aria-label="Close shortcuts" onClick={() => setHelpOpen(false)} />

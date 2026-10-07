@@ -1,3 +1,4 @@
+import { classifyHandPose } from './KnownHandGestures';
 import type { HandPoint } from '../arHandGestures';
 import type { HandFeatures, IntelligenceProfile, RawHand, Vec3 } from './types';
 import { add, angleDelta, clamp, distance, dot, length, mul, normalized, sub } from './math';
@@ -33,7 +34,7 @@ export class HandFeatureEngine {
       const predictedPosition=add(position,mul(prediction,Math.min(1,predictionLimit/Math.max(length(prediction),1e-6))));
       const quality=clamp(c.confidence*(camera?clamp(c.size/.055,.25,1):1)*(speed>(camera?4:8)?.3:1));
       const id=old?.id??`hand-${++this.serial}`;
-      const feature:HandFeatures={id,handedness:c.handedness,position,predictedPosition,fingertip:c.fingertip,velocity,acceleration,jerk,speed,
+      const feature:HandFeatures={id,pose:c.pose,handedness:c.handedness,position,predictedPosition,fingertip:c.fingertip,velocity,acceleration,jerk,speed,
         angularVelocity:old?angleDelta(c.orientation,old.orientation)/dt:0,curvature:old?1-clamp(dot(normalized(velocity),normalized(old.velocity)),-1,1):0,
         palmNormal:c.normal,orientation:c.orientation,curls:c.curls,pinchRatio:c.pinchRatio,pinchVelocity:old?(c.pinchRatio-old.pinchRatio)/dt:0,
         openScore:c.openScore,closure:c.closure,pointing:c.pointing,quality,stability:clamp(1-speed*.8-(jitter?.15:0)),jitter,embedding:[],timestamp:time,missing:false};
@@ -56,16 +57,16 @@ export class HandFeatureEngine {
       const curls=[4,8,12,16,20].map((tip,i)=>clamp(1-distance(xyz(p[tip]),xyz(p[0]))/(size*(i===0?1.8:2.5))));
       const u=sub(xyz(p[5]),xyz(p[0])),v=sub(xyz(p[17]),xyz(p[0]));
       const normal=normalized([u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]]);const pinchRatio=distance(xyz(p[4]),xyz(p[8]))/size;
-      const position=mul(add(xyz(p[4]),xyz(p[8])),.5);
+      const pose=classifyHandPose(p,camera);const position=pose!=='unknown'&&pose!=='index'?xyz(p[9]):mul(add(xyz(p[4]),xyz(p[8])),.5);
       // MediaPipe relative z is not metric room depth. Camera targeting uses image XY.
       if(camera)position[2]=0;
       const fingertip=xyz(p[8]);if(camera)fingertip[2]=0;
       const extension=(tip:number,pip:number)=>clamp((distance(xyz(p[tip]),xyz(p[0]))/Math.max(distance(xyz(p[pip]),xyz(p[0])),1e-5)-1)*3);
       const pointing=extension(8,6)*(1-(extension(12,10)+extension(16,14)+extension(20,18))/3);
-      return{position,fingertip,size,curls,pinchRatio,normal,orientation:hand.orientation??Math.atan2(p[5].y-p[17].y,p[5].x-p[17].x),confidence:clamp(hand.confidence??.9),handedness:hand.handedness??'unknown',openScore:1-curls.reduce((a,b)=>a+b,0)/5,closure:curls.slice(1).reduce((a,b)=>a+b,0)/4,pointing};
+      return{pose,position,fingertip,size,curls,pinchRatio,normal,orientation:hand.orientation??Math.atan2(p[5].y-p[17].y,p[5].x-p[17].x),confidence:clamp(hand.confidence??.9),handedness:hand.handedness??'unknown',openScore:pose==='open-palm'?1:1-curls.reduce((a,b)=>a+b,0)/5,closure:curls.slice(1).reduce((a,b)=>a+b,0)/4,pointing:pose==='index'?1:pointing};
     }
     if(!hand.point||![hand.point.x,hand.point.y,hand.point.z,hand.pinchRatio].every(Number.isFinite))return null;
     const position=xyz(hand.point);const pinchRatio=hand.pinchRatio??1;
-    return{position,fingertip:position,size:.08,curls:[0,0,0,0,0],pinchRatio,normal:[0,1,0] as Vec3,orientation:hand.orientation??0,confidence:clamp(hand.confidence??1),handedness:hand.handedness??'unknown',openScore:clamp(pinchRatio),closure:clamp(1-pinchRatio),pointing:0};
+    return{pose:undefined,position,fingertip:position,size:.08,curls:[0,0,0,0,0],pinchRatio,normal:[0,1,0] as Vec3,orientation:hand.orientation??0,confidence:clamp(hand.confidence??1),handedness:hand.handedness??'unknown',openScore:clamp(pinchRatio),closure:clamp(1-pinchRatio),pointing:0};
   }
 }

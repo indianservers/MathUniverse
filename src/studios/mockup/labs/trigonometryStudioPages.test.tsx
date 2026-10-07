@@ -60,20 +60,18 @@ describe("trigonometry studio target pages", () => {
     expect(periodic).toContain("predicted tide");
   });
 
-  it("teaches double-angle identities with stacked angles, forms, and the 2sinθ trap", () => {
+  it("teaches double-angle identities with linked rotations, correct periods, and a guided derivation", () => {
     const html = htmlFor("/trigonometry/identities?mode=Double+Angle");
     expect(html).toContain('data-id-mode="Double Angle"');
-    expect(html).toContain('data-double-form="sin"');
-    expect(html).toContain("Purple ray is 2θ");
-    expect(html).toContain("Two wedges stack as θ + θ");
-    expect(html).toContain("2θ is θ stacked on θ, not “twice the sine”");
-    expect(html).toContain("area 2 sinθ cosθ");
-    expect(html).toContain("Common trap");
-    expect(html).toContain("Why the 2 appears");
-    expect(html).toContain("Check this θ");
-    expect(html).toContain("Where tan 2θ breaks");
-    expect(html).toContain(">cos 2θ<");
-    expect(html).toContain(">tan 2θ<");
+    expect(html).toContain("θ + θ");
+    expect(html).toContain("Two products: 2 sin θ cos θ");
+    expect(html).toContain("doubling the angle does not double its sine");
+    expect(html).toContain("Frequency ×2; period ÷2");
+    expect(html).toContain("Guided derivation");
+    expect(html).toContain("Control the live diagram");
+    expect(html).toContain("Numerical agreement is evidence");
+    expect(html).toContain("cos 2θ");
+    expect(html).toContain("tan 2θ");
   });
 
   it("keeps unit circle and right triangle baselines untouched", () => {

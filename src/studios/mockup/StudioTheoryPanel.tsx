@@ -1,4 +1,5 @@
-import { useEffect, useState, type KeyboardEvent } from "react";
+import { LabSectionContext } from '../curriculum/FocusedLab';
+import { useContext, useEffect, useState, type KeyboardEvent } from "react";
 import type { StudioMockupPage } from "./studioMockupCatalog";
 import { studioSimpleWords } from "./studioSimpleWords";
 import { studioTheoryContent } from "./studioTheoryContent";
@@ -16,6 +17,8 @@ const theoryTabs = [
 type TheoryTab = (typeof theoryTabs)[number]["id"];
 
 export default function StudioTheoryPanel({ studioId, page, mode }: { studioId: string; page: Pick<StudioMockupPage, "id" | "label" | "modes"> & Partial<Pick<StudioMockupPage, "learning">>; mode?: string | null }) {
+  const labSection=useContext(LabSectionContext);
+  useEffect(()=>{if(labSection)setActiveTab(labSection==='meaning'?'simple':labSection==='uses'?'live':labSection==='quiz'?'practice':'theory');},[labSection]);
   const [activeTab, setActiveTab] = useState<TheoryTab>("theory");
   const [exampleIndex, setExampleIndex] = useState(0);
   useEffect(() => { setActiveTab("theory"); setExampleIndex(0); }, [studioId, page.id]);

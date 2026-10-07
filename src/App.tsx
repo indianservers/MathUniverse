@@ -617,6 +617,9 @@ export default function App() {
             <Route path="number-systems/accuracy" element={<Navigate to="/number-systems/practice" replace />} />
             <Route path="number-systems/space" element={<Navigate to="/number-systems/hierarchy" replace />} />
             <Route path="trigonometry" element={<Trigonometry />} />
+            {["sine-law", "cosine-law", "area", "ssa-ambiguous-case", "solve-triangle"].map(slug => <Route key={`oblique-${slug}`} path={`trigonometry/oblique/${slug}`} element={<Trigonometry />} />)}
+            <Route path="trigonometry/oblique/*" element={<Trigonometry />} />
+            <Route path="trigonometry/inverse/*" element={<Trigonometry />} />
             {["unit-circle", "right-triangle", "graphs", "identities", "inverse", "oblique", "waves", "applications", "ar"].map((slug) => (
               <Route key={`trig-${slug}`} path={`trigonometry/${slug}`} element={<Trigonometry />} />
             ))}

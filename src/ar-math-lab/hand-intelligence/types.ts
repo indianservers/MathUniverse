@@ -1,3 +1,4 @@
+import type { KnownHandPose, HandCommand } from './KnownHandGestures';
 import type { HandPoint, HandTransform } from '../arHandGestures';
 
 export type Vec3 = [number, number, number];
@@ -6,7 +7,7 @@ export type IntelligenceProfile = 'precision' | 'balanced' | 'play';
 export type InteractionPhase = 'idle' | 'approach' | 'hover' | 'contact' | 'grab-ready' | 'grabbed' | 'two-hand-ready' | 'two-hand-grab' | 'release';
 export type RawHand = { landmarks?: HandPoint[]; point?: HandPoint; pinchRatio?: number; handedness?: string; confidence?: number; orientation?: number; timestamp?: number };
 export type HandFeatures = {
-  id: string; handedness: string; position: Vec3; predictedPosition: Vec3; fingertip: Vec3;
+  pose?: KnownHandPose; id: string; handedness: string; position: Vec3; predictedPosition: Vec3; fingertip: Vec3;
   velocity: Vec3; acceleration: Vec3; jerk: number; speed: number; angularVelocity: number; curvature: number;
   palmNormal: Vec3; orientation: number; curls: number[]; pinchRatio: number; pinchVelocity: number;
   openScore: number; closure: number; pointing: number; quality: number; stability: number;
@@ -22,7 +23,7 @@ export type ObjectAffordance = {
 export type SpatialTarget = { objectId: string; zone: GrabZone; score: number; contact: number; handId: string; affordance: ObjectAffordance };
 export type TransformWeights = { translate: number; rotate: number; scale: number; stretch: number; depth: number };
 export type HandIntelligenceState = {
-  timestamp: number; hands: HandFeatures[]; primaryIntent: HandIntent; targetObjectId?: string;
+  command?: HandCommand; timestamp: number; hands: HandFeatures[]; primaryIntent: HandIntent; targetObjectId?: string;
   targetConfidence: number; intentConfidence: number; interactionConfidence: number; uncertainty: number;
   phase: InteractionPhase; isStable: boolean; targetLocked: boolean; activeHandIds: string[];
   oneHandMode?: string; twoHandMode?: string; predictedNextIntent?: HandIntent; precision: boolean;
@@ -37,4 +38,4 @@ export type IntentPrediction = { probabilities: Partial<Record<HandIntent, numbe
 export type IntentModel = { predict: (features: readonly HandFeatures[], history: readonly HandIntelligenceState[]) => IntentPrediction };
 export type IntelligenceEventName = 'onIntentStart' | 'onIntentUpdate' | 'onIntentEnd' | 'onTargetPredicted' | 'onTargetLocked' | 'onTargetReleased' | 'onGrabStart' | 'onGrabUpdate' | 'onGrabEnd' | 'onTwoHandStart' | 'onTwoHandUpdate' | 'onTwoHandEnd';
 export type IntelligenceEvent = { type: IntelligenceEventName; state: HandIntelligenceState };
-export type CameraHandRuntime = { targets: ObjectAffordance[]; transform: HandTransform; state?: HandIntelligenceState; result?: ManipulationResult };
+export type CameraHandRuntime = { targets: ObjectAffordance[]; transform: HandTransform; state?: HandIntelligenceState; result?: ManipulationResult; landmarks?: HandPoint[][]; landmarksAt?: number };

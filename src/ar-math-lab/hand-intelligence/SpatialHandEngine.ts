@@ -43,7 +43,9 @@ export class SpatialHandEngine {
       semanticEdit={objectId:target.objectId,kind:'dimension',dimension:target.zone.dimension,value:next};
     }else{
       if(allowed.translate&&weights.translate>.15&&state.primaryIntent!=='resize')for(let i=0;i<3;i++)if(!camera||i!==2)position[i]=clamp(position[i]+delta[i]*gain*weights.translate*(camera&&i===1?-1:1),camera?-4:-10,camera?4:10);
-      if(allowed.rotate&&weights.rotate>.2)rotation[camera?2:1]+=clamp(angle,-.15,.15)*weights.rotate;
+      // Camera heading is measured in screen coordinates (Y down). Three.js Z
+      // rotation is counterclockwise in world coordinates (Y up). XR yaw is native.
+      if(allowed.rotate&&weights.rotate>.08)rotation[camera?2:1]+=clamp(angle,-.15,.15)*weights.rotate*(camera?-1:1);
       if(weights.scale>.2){
         if(allowed.editRadius&&target.zone.dimension){const key=`${target.objectId}:${target.zone.dimension}`;const value=this.dimensions.get(key)??target.zone.value??1;
           const next=clamp(value*Math.pow(ratio,weights.scale),.001,100000);this.dimensions.set(key,next);semanticEdit={objectId:target.objectId,kind:'dimension',dimension:target.zone.dimension,value:next};

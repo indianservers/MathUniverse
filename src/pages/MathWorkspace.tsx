@@ -1,3 +1,5 @@
+import { ImmersiveBoundary, useImmersiveAdapter } from "../workspace/immersive/ImmersiveInteractionManager";
+import { identityTransform, screenTarget, transformDelta } from "../workspace/immersive/types";
 import WorkspaceChromeThemeToggle from "../components/workspace/WorkspaceChromeThemeToggle";
 import { readWorkspaceChromeTheme, type WorkspaceChromeTheme } from "../workspace/workspaceChromeTheme";
 import { GeometryAppearanceControls, type GeometryPaint } from "../components/workspace/GeometryAppearance";
@@ -340,7 +342,7 @@ export type EmbeddedMathWorkspace = {
   onSceneChange?: (scene: unknown) => void;
 };
 
-export default function MathWorkspace({ initialView = "graph", singleView = false, dataPage = "overview", embedded }: { initialView?: WorkspaceView; singleView?: boolean; dataPage?: DataWorkspacePage; embedded?: EmbeddedMathWorkspace }) {
+function MathWorkspaceContent({ initialView = "graph", singleView = false, dataPage = "overview", embedded }: { initialView?: WorkspaceView; singleView?: boolean; dataPage?: DataWorkspacePage; embedded?: EmbeddedMathWorkspace }) {
   const location = useLocation();
   const navigate = useNavigate();
   const routePayload = (location.state as { mathWorkspacePayload?: MathWorkspacePayload } | null)?.mathWorkspacePayload;
@@ -537,6 +539,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   });
 
   const recordWorkspaceStep = (label: string, detail: string) => {
+    if (immersive3dTransaction.current) return;
     const step = captureStep(label, detail);
     setUndoStack((current) => [step, ...current].slice(0, 80));
     setRedoStack([]);
@@ -1397,6 +1400,38 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     }
   };
 
+  const immersiveGeometry = useImmersiveAdapter(workspaceView === "geometry" ? {
+    kind: "2d", boardExtent:()=>[geometryCamera.width/(geometryGraphSettings.gridSpacing??40),geometryCamera.height/(geometryGraphSettings.gridSpacing??40)],element: () => svgRef.current,
+    targets: () => {
+      const board = svgRef.current; const rect = board?.getBoundingClientRect(); const matrix = board?.getScreenCTM();
+      if (!rect || !matrix) return [];
+      const targetPoint=(id:string,x:number,y:number,radius:number,locked:boolean,kind:"body"|"vertex"|"edge")=>{const screen=new DOMPoint(x,y).matrixTransform(matrix);return screenTarget(id,(screen.x-rect.left)/rect.width,(screen.y-rect.top)/rect.height,radius,locked,kind);};
+      const points=construction.points.filter(p=>p.style?.visible!==false).map(p=>{const t=targetPoint(p.id,p.x,p.y,.035,lockedGeometryIds.includes(p.id),"vertex");t.allowedInteractions={translate:true};return t;});
+      const objects:SelectedGeometryObject[]=[...construction.lines.map(o=>({type:"line" as const,id:o.id})),...construction.circles.map(o=>({type:"circle" as const,id:o.id})),...construction.polygons.map(o=>({type:"polygon" as const,id:o.id})),...construction.arcs.map(o=>({type:"arc" as const,id:o.id}))];
+      for(const object of objects){const ids=pointIdsForObject(construction,object),ps=construction.points.filter(p=>ids.includes(p.id));if(!ps.length)continue;
+        const x=ps.reduce((sum,p)=>sum+p.x,0)/ps.length,y=ps.reduce((sum,p)=>sum+p.y,0)/ps.length;
+        const target=targetPoint(object.id,x,y,.055,lockedGeometryIds.includes(object.id)||ids.some(id=>lockedGeometryIds.includes(id)),"body");
+        for(let i=0;i<ps.length;i++){const from=ps[i],to=ps[(i+1)%ps.length];for(let j=1;j<8;j++){const zone=targetPoint(object.id,from.x+(to.x-from.x)*j/8,from.y+(to.y-from.y)*j/8,.025,false,"edge");target.preferredGrabZones.push({...zone.preferredGrabZones[0],id:`${object.id}:${i}:${j}`});}}
+        if(object.type==="circle"){const circle=construction.circles.find(c=>c.id===object.id)!,center=construction.points.find(p=>p.id===circle.center)!,edge=construction.points.find(p=>p.id===circle.edge)!;const radius=Math.hypot(edge.x-center.x,edge.y-center.y);for(let i=0;i<24;i++){const t=i*Math.PI/12,zone=targetPoint(object.id,center.x+radius*Math.cos(t),center.y+radius*Math.sin(t),.025,false,"edge");target.preferredGrabZones.push({...zone.preferredGrabZones[0],id:`${object.id}:rim:${i}`});}}
+        points.push(target);
+      }
+      return points;
+    },
+    transform: () => identityTransform(),
+    select: id => { const type=construction.points.some(p=>p.id===id)?"point":construction.lines.some(p=>p.id===id)?"line":construction.circles.some(p=>p.id===id)?"circle":construction.polygons.some(p=>p.id===id)?"polygon":"arc";setSelectedGeometry({type,id});setSelectedPointIds(type==="point"?[id]:pointIdsForObject(construction,{type,id})); },
+    apply: (state,result,previous) => {
+      if (!result.transform || !state.targetObjectId || lockedGeometryIds.includes(state.targetObjectId)) return;
+      const id=state.targetObjectId;const delta=transformDelta(result.transform,previous);
+      const dx=delta.position[0]*geometryCamera.width/8,dy=-delta.position[1]*geometryCamera.height/8;
+      const type=construction.points.some(p=>p.id===id)?"point":construction.lines.some(p=>p.id===id)?"line":construction.circles.some(p=>p.id===id)?"circle":construction.polygons.some(p=>p.id===id)?"polygon":"arc";
+      const ids=type==="point"?[id]:pointIdsForObject(construction,{type,id});if(ids.some(i=>lockedGeometryIds.includes(i)))return;
+      setConstruction(current=>{const ps=current.points.filter(p=>ids.includes(p.id));const center={x:ps.reduce((sum,p)=>sum+p.x,0)/Math.max(1,ps.length),y:ps.reduce((sum,p)=>sum+p.y,0)/Math.max(1,ps.length)};const angle=-delta.rotation[2],cos=Math.cos(angle),sin=Math.sin(angle);
+        const next={...current,points:current.points.map(p=>{if(!ids.includes(p.id))return p;const x=(p.x-center.x)*delta.scale,y=(p.y-center.y)*delta.scale;return {...p,x:center.x+x*cos-y*sin+dx,y:center.y+x*sin+y*cos+dy};})};
+        return ids.reduce((model,pointId)=>recordTraceSampleForPoint(model,pointId),solveConstruction(next,ids[0]));});
+    },
+    navigate: (delta,scale) => setGeometryCamera(c => ({...c,x:c.x-delta[0]*c.width,y:c.y-delta[1]*c.height,width:Math.min(MAX_GEOMETRY_CAMERA_WIDTH,Math.max(80,c.width/scale)),height:Math.min(MAX_GEOMETRY_CAMERA_HEIGHT,Math.max(60,c.height/scale))})),
+  } : null);
+
   const clientToBoard = (event: PointerEvent<SVGSVGElement>) => {
     const svg = svgRef.current;
     if (!svg) return null;
@@ -1623,11 +1658,18 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     return id;
   };
 
+  const immersive3dTransaction = useRef(false);
+  useEffect(() => {
+    const begin = () => { if(workspaceView === "3d" || workspaceView === "geometry") { recordWorkspaceStep("Hand gesture", "Transform object with hand controls."); immersive3dTransaction.current=true; } };
+    const end = () => { immersive3dTransaction.current=false; };
+    window.addEventListener("immersive-transaction-start",begin);window.addEventListener("immersive-transaction-end",end);
+    return () => {window.removeEventListener("immersive-transaction-start",begin);window.removeEventListener("immersive-transaction-end",end);};
+  }, [workspaceView, transforms3d, added3dObjects]);
   const update3dTransform = (id: string, patch: Partial<Transform3D>) => {
     const currentTransform = isBase3dId(id) ? transforms3d[id] : added3dObjects.find((object) => object.id === id)?.transform;
     const changesGeometry = "position" in patch || "rotation" in patch || "scale" in patch || "dimensions" in patch;
     if (!currentTransform || (currentTransform.locked && changesGeometry)) return;
-    recordWorkspaceStep("Edit 3D object", `${currentTransform.name ?? id} transform changed.`);
+    if (!immersive3dTransaction.current) recordWorkspaceStep("Edit 3D object", `${currentTransform.name ?? id} transform changed.`);
     if (isBase3dId(id)) setTransforms3d((current) => ({ ...current, [id]: { ...current[id], ...patch } }));
     else setAdded3dObjects((current) => current.map((object) => object.id === id ? { ...object, label: patch.name ?? object.label, transform: { ...object.transform, ...patch } } : object));
   };
@@ -2902,7 +2944,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               />
               <OrbitControls
                 enableDamping
-                enabled={!drag3d && ["select", "orbit", "pan", "zoom"].includes(objectStudioTool)}
+                enabled={!immersiveGeometry?.session && !drag3d && ["select", "orbit", "pan", "zoom"].includes(objectStudioTool)}
                 enableRotate={objectStudioTool === "select" || objectStudioTool === "orbit"}
                 enablePan={objectStudioTool === "select" || objectStudioTool === "pan"}
                 enableZoom={objectStudioTool === "select" || objectStudioTool === "zoom"}
@@ -7766,6 +7808,7 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
   });
   const transformForId = (id: string) => isBase3dId(id) ? transforms[id] : addedObjects.find((object) => object.id === id)?.transform;
   const selectProps = (id: string) => ({
+    userData: { immersiveId: id },
     onClick: (event: ThreeEvent<MouseEvent>) => { event.stopPropagation(); onSelect(id); },
     onContextMenu: (event: ThreeEvent<MouseEvent>) => onContextMenu(event, id),
     onPointerDown: (event: ThreeEvent<PointerEvent>) => {
@@ -9140,3 +9183,6 @@ function polygonArea(points: GeoPoint[]) {
     return sum + point.x * next.y - next.x * point.y;
   }, 0) / 2);
 }
+
+
+export default function MathWorkspace(props: { initialView?: WorkspaceView; singleView?: boolean; dataPage?: DataWorkspacePage; embedded?: EmbeddedMathWorkspace }) { return <ImmersiveBoundary><MathWorkspaceContent {...props} /></ImmersiveBoundary>; }

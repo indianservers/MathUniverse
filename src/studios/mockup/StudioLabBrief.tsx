@@ -7,6 +7,8 @@ export default function StudioLabBrief({ studioId, page }: { studioId: string; p
   const theory = studioTheoryContent[studioId]?.[page.id];
   if (!theory) return null;
   return (
+    <details className="studio-lab-guide">
+      <summary>Lab guide &amp; try this <span>{page.description}</span></summary>
     <section className="studio-lab-brief" aria-label={`${page.label} lab guide`}>
       <div className="studio-lab-brief__concept">
         <span>ABOUT THIS LAB</span>
@@ -18,5 +20,6 @@ export default function StudioLabBrief({ studioId, page }: { studioId: string; p
         <p>{page.learning.try}{page.learning.try.trim().length < 25 ? ` ${theory.method}` : ""}</p>
       </div>
     </section>
+    </details>
   );
 }

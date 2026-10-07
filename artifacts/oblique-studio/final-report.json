@@ -1,0 +1,149 @@
+{
+  "screens": [
+    {
+      "slug": "overview",
+      "width": 1672,
+      "overflow": false
+    },
+    {
+      "slug": "overview",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "slug": "overview",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "slug": "overview",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "slug": "sine-law",
+      "width": 1672,
+      "overflow": false
+    },
+    {
+      "slug": "sine-law",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "slug": "sine-law",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "slug": "sine-law",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "slug": "cosine-law",
+      "width": 1672,
+      "overflow": false
+    },
+    {
+      "slug": "cosine-law",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "slug": "cosine-law",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "slug": "cosine-law",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "slug": "area",
+      "width": 1672,
+      "overflow": false
+    },
+    {
+      "slug": "area",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "slug": "area",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "slug": "area",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "slug": "ssa-ambiguous-case",
+      "width": 1672,
+      "overflow": false
+    },
+    {
+      "slug": "ssa-ambiguous-case",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "slug": "ssa-ambiguous-case",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "slug": "ssa-ambiguous-case",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "slug": "solve-triangle",
+      "width": 1672,
+      "overflow": false
+    },
+    {
+      "slug": "solve-triangle",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "slug": "solve-triangle",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "slug": "solve-triangle",
+      "width": 390,
+      "overflow": false
+    }
+  ],
+  "controls": [
+    {
+      "unitLinked": true,
+      "liveQuiz": true,
+      "staleQuizDetected": true,
+      "undoRedo": true,
+      "shareRestores": true
+    },
+    {
+      "wholeCardNavigation": true,
+      "back": true,
+      "search": true,
+      "squareUnits": true
+    },
+    {
+      "directRefreshAllLessons": true
+    },
+    {
+      "legacyFigurePreserved": true
+    },
+    {
+      "preservedTabsWork": true
+    }
+  ],
+  "errors": []
+}

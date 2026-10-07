@@ -57,27 +57,46 @@ const ARWorldTracking = forwardRef<ARTrackingHandle,{children:ReactNode;hasObjec
  </div>;
 });
 export default ARWorldTracking;
-function TrackedPlacement({profile,solid,graph,onSemanticEdit,session,children,scale,placement,handsEnabled,onMessage,onError}:{profile:IntelligenceProfile;solid?:ARGeneratedGeometrySolid;graph?:ARGeneratedGraphObject;onSemanticEdit?:(edit:SemanticEdit)=>void;session:XRSession;children:ReactNode;scale:number;placement:number;handsEnabled:boolean;onMessage:(message:string)=>void;onError:(error:unknown)=>void}){
- const {gl}=useThree(),reticle=useRef<THREE.Group>(null),object=useRef<THREE.Group>(null),hitSource=useRef<XRHitTestSource|null>(null),placed=useRef(false);
+export function TrackedPlacement({profile,solid,graph,onSemanticEdit,session,children,scale,placement,handsEnabled,onMessage,onError,onHands,mode="horizontal"}:{onHands?:(hands:RawHand[],time:number)=>void;mode?:"horizontal"|"vertical"|"space";profile:IntelligenceProfile;solid?:ARGeneratedGeometrySolid;graph?:ARGeneratedGraphObject;onSemanticEdit?:(edit:SemanticEdit)=>void;session:XRSession;children:ReactNode;scale:number;placement:number;handsEnabled:boolean;onMessage:(message:string)=>void;onError:(error:unknown)=>void}){
+ const {gl}=useThree(),reticle=useRef<THREE.Group>(null),object=useRef<THREE.Group>(null),hitSource=useRef<XRHitTestSource|null>(null),placed=useRef(false),anchor=useRef<XRAnchor|null>(null),candidateHit=useRef<XRHitTestResult|null>(null);
+ const activePlacement=useRef(true),anchorGeneration=useRef(0);
  const intelligence=useRef(new ARSpatialIntelligence()),lastMessage=useRef('');
+ const handPoints=useRef<THREE.InstancedMesh>(null),handPointMatrix=useRef(new THREE.Matrix4()),handPointColors=useRef([new THREE.Color('#fff476'),new THREE.Color('#fa9cff'),new THREE.Color('#38f5d1')]);
  const report=(text:string)=>{if(lastMessage.current!==text){lastMessage.current=text;onMessage(text);}};
+ const handHistory=useRef<{past:THREE.Matrix4[];future:THREE.Matrix4[];start?:THREE.Matrix4}>({past:[],future:[]});
  const manipulation=useRef<THREE.Group>(null),gestures=useRef(new HandIntelligenceEngine()),solver=useRef(new SpatialHandEngine()),lastCommit=useRef(0);
  useEffect(()=>{gestures.current.setProfile(profile);},[profile]);
- useEffect(()=>{gestures.current.reset();solver.current.reset();if(handsEnabled)onMessage('Place the object first. Pinch nearby to move; two hands resize/rotate. If native hands are unavailable, use hand gestures in camera overlay.');},[handsEnabled,onMessage]);
- useEffect(()=>{let alive=true;gl.xr.enabled=true;gl.xr.setReferenceSpaceType("local");
+ useEffect(()=>{gestures.current.reset();solver.current.reset();if(handsEnabled)onMessage('Place the object first. Close your fist nearby to move; two fists resize/rotate. Open your palm to release. If native hands are unavailable, use hand gestures in camera overlay.');},[handsEnabled,onMessage]);
+ useEffect(()=>{let alive=true;activePlacement.current=true;gl.xr.enabled=true;gl.xr.setReferenceSpaceType("local");
   void (async()=>{try{const requestHitTest=session.requestHitTestSource;if(!requestHitTest)throw new DOMException("Surface hit testing unavailable", "NotSupportedError");await gl.xr.setSession(session);if(!alive)return;const viewer=await session.requestReferenceSpace("viewer");const source=await requestHitTest.call(session,{space:viewer});if(!source)throw new DOMException("Surface hit testing unavailable", "NotSupportedError");if(alive)hitSource.current=source??null;else source?.cancel();}catch(error){if(alive)onError(error);}})();
-  const select=()=>{if(reticle.current?.visible&&object.current){object.current.matrix.copy(reticle.current.matrix);object.current.matrixWorldNeedsUpdate=true;object.current.visible=true;placed.current=true;reticle.current.visible=false;onMessage("Object placed in tracked world space. Walk around it or choose Reposition.");}};
+  const select=()=>{if(reticle.current?.visible&&object.current){object.current.matrix.copy(reticle.current.matrix);object.current.matrixWorldNeedsUpdate=true;object.current.visible=true;placed.current=true;reticle.current.visible=false;
+    const hit=candidateHit.current,generation=++anchorGeneration.current;anchor.current?.delete();anchor.current=null;
+    if(hit?.createAnchor)void hit.createAnchor().then(next=>{if(placed.current&&activePlacement.current&&generation===anchorGeneration.current)anchor.current=next;else next.delete();}).catch(()=>onMessage("Scene placed using device tracking. Spatial anchors are unavailable here."));onMessage("Object placed in tracked world space. Walk around it or choose Reposition.");}};
   session.addEventListener("select",select);
-  return ()=>{alive=false;hitSource.current?.cancel();hitSource.current=null;session.removeEventListener("select",select);};
+  return ()=>{alive=false;activePlacement.current=false;anchorGeneration.current++;anchor.current?.delete();anchor.current=null;hitSource.current?.cancel();hitSource.current=null;session.removeEventListener("select",select);};
  },[gl,session,onMessage,onError]);
- useEffect(()=>{placed.current=false;intelligence.current.reset();lastMessage.current='';gestures.current.reset();solver.current.reset();if(object.current)object.current.visible=false;if(manipulation.current){manipulation.current.position.set(0,0,0);manipulation.current.rotation.set(0,0,0);manipulation.current.scale.setScalar(1);}},[placement]);
- useFrame((state,__,frame)=>{if(!frame||!hitSource.current||!reticle.current)return;reticle.current.visible=false;
+ useEffect(()=>{anchorGeneration.current++;anchor.current?.delete();anchor.current=null;candidateHit.current=null;placed.current=false;intelligence.current.reset();lastMessage.current='';gestures.current.reset();solver.current.reset();if(object.current)object.current.visible=false;if(manipulation.current){manipulation.current.position.set(0,0,0);manipulation.current.rotation.set(0,0,0);manipulation.current.scale.setScalar(1);}},[placement,mode]);
+ useFrame((state,__,frame)=>{if(handPoints.current)handPoints.current.count=0;if(!frame||!hitSource.current||!reticle.current)return;reticle.current.visible=false;
   const reference=gl.xr.getReferenceSpace();if(!reference)return;
   const viewer=frame.getViewerPose(reference);
   const tracked=session.visibilityState==='visible'&&!!viewer&&!viewer.emulatedPosition;
   if(!tracked){intelligence.current.update(state.clock.elapsedTime*1000,false,[]);gestures.current.reset();solver.current.reset();if(object.current)object.current.visible=false;report('Position tracking lost. Hold still, then slowly scan a well-lit, textured area.');return;}
+  let recognizedHands=0;
+  if(handsEnabled&&frame.getJointPose&&handPoints.current){
+   const mesh=handPoints.current;
+   for(const source of Array.from(session.inputSources)){
+    if(!source.hand)continue;let detected=false;
+    const joints:XRHandJoint[]=['wrist','thumb-metacarpal','thumb-phalanx-proximal','thumb-phalanx-distal','thumb-tip',...(['index','middle','ring','pinky'] as const).flatMap(f=>[`${f}-finger-phalanx-proximal`,`${f}-finger-phalanx-intermediate`,`${f}-finger-phalanx-distal`,`${f}-finger-tip`] as XRHandJoint[])];
+    for(const name of joints){const joint=source.hand.get(name);const pose=joint?frame.getJointPose(joint,reference):null;if(!pose||mesh.count>=42)continue;
+     const p=pose.transform.position;handPointMatrix.current.makeTranslation(p.x,p.y,p.z);mesh.setMatrixAt(mesh.count,handPointMatrix.current);mesh.setColorAt(mesh.count,handPointColors.current[name.endsWith('tip')?0:source.handedness==='left'?1:2]);mesh.count++;detected=true;
+    }
+    if(detected)recognizedHands++;
+   }
+   mesh.instanceMatrix.needsUpdate=true;if(mesh.instanceColor)mesh.instanceColor.needsUpdate=true;
+  }
   if(placed.current){
-   if(object.current)object.current.visible=true;report('6DoF tracking active. Object placed; walk around it or use the pose controls.');
+   if(anchor.current&&object.current){const pose=frame.getPose(anchor.current.anchorSpace,reference);if(pose){object.current.matrix.fromArray(pose.transform.matrix);object.current.matrixWorldNeedsUpdate=true;}}
+   if(object.current)object.current.visible=true;report(`6DoF tracking active. ${handsEnabled?`${recognizedHands} hands recognized; colored points show detected joints.`:'Hand gestures paused.'} Object placed; walk around it or use the pose controls.`);
    if(!handsEnabled||!manipulation.current||!object.current||session.visibilityState!=='visible'){gestures.current.reset();solver.current.reset();return;}
    const hands:RawHand[]=[];
    const content=manipulation.current.children[0]?.children[0]??manipulation.current;
@@ -98,6 +117,7 @@ function TrackedPlacement({profile,solid,graph,onSemanticEdit,session,children,s
     hands.push({handedness:source.handedness,landmarks:landmarks.every(p=>p!==null)?landmarks as {x:number;y:number;z:number}[]:undefined,point:{x:point.x,y:point.y,z:point.z},pinchRatio:Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z)/.08,confidence:1,orientation});
    }
    const group=manipulation.current,time=state.clock.elapsedTime*1000;
+   if(onHands){onHands(hands,time);return;}
    const target:ObjectAffordance={objectId:solid?.id??graph?.id??'tracked-object',semanticType:solid?.solidType??graph?.semanticType??'graph',position:center.toArray() as [number,number,number],radius,depth:centerWorld.distanceTo(state.camera.position),visible:true,locked:solid?.locked??graph?.locked,selected:true,precisionRequired:radius<.08?.8:.2,
      allowedInteractions:{translate:true,rotate:true,scale:true,editRadius:!!solid?.dimensions.radius,sampleSurface:!!graph,editVector:graph?.semanticType==='vector',editVertex:graph?.semanticType==='polygon',stretchX:!!solid,stretchY:!!solid,stretchZ:!!solid},preferredGrabZones:[{id:'body',kind:'body',position:center.toArray() as [number,number,number],radius,dimension:solid?.dimensions.radius?'radius':undefined,value:solid?.dimensions.radius?.value}]};
    if(solid){const keys=[solid.dimensions.length?'length':solid.dimensions.side?'side':undefined,solid.dimensions.height?'height':solid.dimensions.side?'side':undefined,solid.dimensions.width?'width':solid.dimensions.side?'side':undefined];
@@ -106,17 +126,25 @@ function TrackedPlacement({profile,solid,graph,onSemanticEdit,session,children,s
    if(graph){const geometry=graph.geometry,count=geometry.kind==='curve'?geometry.points.length:geometry.vertices.length/3;const editable=graph.semanticType==='vector'||graph.semanticType==='polygon';
      for(let index=0;index<count;index+=Math.max(1,Math.floor(count/40))){const p=geometry.kind==='curve'?geometry.points[index]:geometry.vertices.slice(index*3,index*3+3);if(!p?.every(Number.isFinite))continue;const world=new THREE.Vector3(...p as [number,number,number]).applyMatrix4(content.matrixWorld);object.current.worldToLocal(world);target.preferredGrabZones.push({id:`sample-${index}`,kind:editable?(graph.semanticType==='vector'&&index===count-1?'vector':'vertex'):'surface',position:world.toArray() as [number,number,number],radius:radius*.12,index,sample:p as [number,number,number]});}
    }
+   const wasHeld=gestures.current.state.targetLocked;group.updateMatrix();const previousMatrix=group.matrix.clone();
    const intent=gestures.current.update({timestamp:time,hands,targets:[target],selectedObjectId:target.objectId,camera:false,tool:'auto'});
+   const history=handHistory.current;if(intent.targetLocked&&!wasHeld)history.start=previousMatrix;if(!intent.targetLocked&&history.start){history.past.push(history.start);history.past=history.past.slice(-30);history.future=[];history.start=undefined;}
+   if(intent.command){const command=intent.command;let next:THREE.Matrix4|undefined;if(command==='undo'&&history.past.length){history.future.push(previousMatrix);next=history.past.pop();}if(command==='redo'&&history.future.length){history.past.push(previousMatrix);next=history.future.pop();}if(command==='fit'){history.past.push(previousMatrix);history.future=[];next=new THREE.Matrix4();}if(next){next.decompose(group.position,group.quaternion,group.scale);solver.current.reset();report(`${command}: hand transform applied.`);return;}
+    if(command==='help')window.dispatchEvent(new Event('math-hand-guide-toggle'));
+    if(command==='labels'||command==='grid'){const button=[...document.querySelectorAll('button')].find(e=>new RegExp(`^(?:show |hide |toggle )?${command}$`,'i').test((e.getAttribute('aria-label')||e.title||e.textContent||'').trim()));if(button)button.click();else report(`${command} is not available in these tracked AR controls.`);}
+   }
    const result=solver.current.solve(intent,{position:group.position.toArray() as [number,number,number],rotation:[group.rotation.x,group.rotation.y,group.rotation.z],scale:group.scale.x},false,profile);
    if(result.transform){group.position.fromArray(result.transform.position);group.rotation.set(...result.transform.rotation);group.scale.setScalar(result.transform.scale);}
    if(result.semanticEdit&&time-lastCommit.current>120){lastCommit.current=time;onSemanticEdit?.(result.semanticEdit);}
 
    return;
   }
-  const hits=(frame.getHitTestResults(hitSource.current) as XRHitTestResult[]).map(hit=>hit.getPose(reference)?.transform.matrix).filter((matrix):matrix is Float32Array=>!!matrix);
+  if(mode === "space"){const pose=frame.getViewerPose(reference);if(pose){reticle.current.matrix.fromArray(pose.transform.matrix);reticle.current.matrix.multiply(new THREE.Matrix4().makeTranslation(0,0,-1.2));reticle.current.visible=true;report("Free-space placement. Tap to place in front of you.");}return;}
+  const liveHits=frame.getHitTestResults(hitSource.current) as XRHitTestResult[];candidateHit.current=liveHits.find(hit=>{const m=hit.getPose(reference)?.transform.matrix;return !!m&&(mode === "vertical"?Math.abs(m[5])<.4:Math.abs(m[5])>.7);})??null;
+  const hits=liveHits.map(hit=>hit.getPose(reference)?.transform.matrix).filter((matrix):matrix is Float32Array=>!!matrix && (mode === "vertical" ? Math.abs(matrix[5]) < .4 : Math.abs(matrix[5]) > .7));
   const assessment=intelligence.current.update(state.clock.elapsedTime*1000,true,hits);
   if(assessment.matrix){reticle.current.matrix.fromArray(assessment.matrix);reticle.current.matrixWorldNeedsUpdate=true;reticle.current.visible=assessment.ready;}
-  report(assessment.message);
+  report(`${assessment.message}${handsEnabled?` ${recognizedHands} hands recognized.`:''}`);
  });
- return <><group ref={reticle} visible={false} matrixAutoUpdate={false}><mesh rotation={[-Math.PI/2,0,0]}><ringGeometry args={[.08,.1,32]}/><meshBasicMaterial color="#22d3ee" side={THREE.DoubleSide}/></mesh></group><group ref={object} matrixAutoUpdate={false} visible={false}><group ref={manipulation}><group scale={scale}>{children}</group></group></group></>;
+ return <><instancedMesh visible={!onHands} ref={handPoints} args={[undefined,undefined,42]} frustumCulled={false} renderOrder={1000}><sphereGeometry args={[.006,8,6]}/><meshBasicMaterial depthTest={false} depthWrite={false}/></instancedMesh><group ref={reticle} visible={false} matrixAutoUpdate={false}><mesh rotation={[-Math.PI/2,0,0]}><ringGeometry args={[.08,.1,32]}/><meshBasicMaterial color="#22d3ee" side={THREE.DoubleSide}/></mesh></group><group ref={object} matrixAutoUpdate={false} visible={false}><group ref={manipulation}><group scale={scale}>{children}</group></group></group></>;
 }

@@ -1,0 +1,158 @@
+{
+  "routes": [
+    {
+      "slug": "overview",
+      "title": "Inverse Trigonometry",
+      "preserved": 1,
+      "overflow": false,
+      "mobileOverflow": false
+    },
+    {
+      "slug": "arcsin",
+      "title": "Arcsin",
+      "preserved": 1,
+      "overflow": false,
+      "mobileOverflow": false
+    },
+    {
+      "slug": "arccos",
+      "title": "Arccos",
+      "preserved": 1,
+      "overflow": false,
+      "mobileOverflow": false
+    },
+    {
+      "slug": "arctan",
+      "title": "Arctan",
+      "preserved": 1,
+      "overflow": false,
+      "mobileOverflow": false
+    },
+    {
+      "slug": "principal-values",
+      "title": "Principal Values",
+      "preserved": 1,
+      "overflow": false,
+      "mobileOverflow": false
+    },
+    {
+      "slug": "compositions",
+      "title": "Compositions",
+      "preserved": 1,
+      "overflow": false,
+      "mobileOverflow": false
+    }
+  ],
+  "legacy": [
+    {
+      "mode": "Arcsin",
+      "url": "http://127.0.0.1:5178/trigonometry/inverse/arcsin"
+    },
+    {
+      "mode": "Arccos",
+      "url": "http://127.0.0.1:5178/trigonometry/inverse/arccos"
+    },
+    {
+      "mode": "Arctan",
+      "url": "http://127.0.0.1:5178/trigonometry/inverse/arctan"
+    },
+    {
+      "mode": "Principal Values",
+      "url": "http://127.0.0.1:5178/trigonometry/inverse/principal-values"
+    },
+    {
+      "mode": "Compositions",
+      "url": "http://127.0.0.1:5178/trigonometry/inverse/compositions"
+    }
+  ],
+  "interactions": [
+    {
+      "slug": "arcsin",
+      "half": "θ = arcsin(0.50)\n0.5236 rad\n30.00°\nPrincipal angle: π/6"
+    },
+    {
+      "slug": "arcsin",
+      "draggedInput": "0.482761"
+    },
+    {
+      "slug": "arcsin",
+      "clamped": "1"
+    },
+    {
+      "slug": "arcsin",
+      "quiz": "Correct — your answer matches the live model."
+    },
+    {
+      "slug": "arccos",
+      "half": "θ = arccos(0.50)\n1.0472 rad\n60.00°\nPrincipal angle: π/3"
+    },
+    {
+      "slug": "arccos",
+      "draggedInput": "0.482761"
+    },
+    {
+      "slug": "arccos",
+      "clamped": "1"
+    },
+    {
+      "slug": "arccos",
+      "quiz": "Correct — your answer matches the live model."
+    },
+    {
+      "slug": "arctan",
+      "half": "θ = arctan(0.50)\n0.4636 rad\n26.57°\nPrincipal angle: 0.4636 rad"
+    },
+    {
+      "slug": "arctan",
+      "draggedInput": "2.098988"
+    },
+    {
+      "slug": "arctan",
+      "quiz": "Correct — your answer matches the live model."
+    },
+    {
+      "slug": "principal-values",
+      "selectedRanges": 1,
+      "rangeLabel": "arctan: open endpoints, −π/2 to π/2"
+    },
+    {
+      "slug": "principal-values",
+      "pole": "Tangent is undefined at this angle. No principal value exists for this composition."
+    },
+    {
+      "slug": "compositions",
+      "option": "arcsin:direct",
+      "result": "sin(arcsin x) = 0.5000\nBoth functions undo each other for this input."
+    },
+    {
+      "slug": "compositions",
+      "option": "arccos:direct",
+      "result": "cos(arccos x) = -0.2500\nBoth functions undo each other for this input."
+    },
+    {
+      "slug": "compositions",
+      "option": "arctan:direct",
+      "result": "tan(arctan x) = 2.0000\nBoth functions undo each other for this input."
+    },
+    {
+      "slug": "compositions",
+      "option": "arcsin:reverse",
+      "result": "arcsin(sin θ) = π/4 (45.00°)\nThe result folds into the principal range; it is not the original angle."
+    },
+    {
+      "slug": "compositions",
+      "option": "arccos:reverse",
+      "result": "arccos(cos θ) = 3π/4 (135.00°)\nThe result folds into the principal range; it is not the original angle."
+    },
+    {
+      "slug": "compositions",
+      "option": "arctan:reverse",
+      "result": "arctan(tan θ) = −π/4 (-45.00°)\nThe result folds into the principal range; it is not the original angle."
+    },
+    {
+      "slug": "compositions",
+      "pole": "arctan(tan θ) = undefined\nTangent is undefined at odd multiples of π/2."
+    }
+  ],
+  "errors": []
+}

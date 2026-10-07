@@ -1,3 +1,4 @@
+import { ImmersiveSettings, ImmersiveToolbar } from "../../../workspace/immersive/ImmersiveInteractionManager";
 import { GeometryPaintDefs, paintId, paintValue, lineDash, type GeometryPaint } from "../GeometryAppearance";
 import WorkspaceSvg from "../WorkspaceSvg";
 import {
@@ -769,6 +770,7 @@ export default function GeometryWorkspacePanel({
           ))}
         </div>
         <div className="geometry-top-actions">
+          <ImmersiveToolbar />
           <div className="geometry-pane-controls" aria-label="Pane controls">
             <button type="button" onClick={() => resizeActivePane("decrease")} title="Reduce active pane" aria-label="Reduce active pane"><Minus className="h-4 w-4" /></button>
             <button type="button" onClick={() => resizeActivePane("increase")} title="Enlarge active pane" aria-label="Enlarge active pane"><Plus className="h-4 w-4" /></button>
@@ -2430,7 +2432,7 @@ function GeometrySettingsDialog({
             ))}
           </select>
         </label>
-        <div className="geometry-settings-grid">
+        <div className="geometry-settings-grid"><ImmersiveSettings/>
           {(
             [
               "showGrid",

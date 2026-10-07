@@ -1,3 +1,4 @@
+import CinematicHero from "../studios/heroes/CinematicHero";
 import "../studios/landing/studioLanding.css";
 import {
   Compass,
@@ -160,7 +161,7 @@ function StudioHome() {
 
   return (
     <div className="cxs-page cxs-home" data-studio-home="complex-numbers" data-home-layout="target-01">
-      <header className="cxs-header">
+      <CinematicHero id="complex-numbers"><header className="cxs-header">
         <div>
           <StudioHomeButtons studioTo="/complex-numbers" />
           <StudioBreadcrumb crumbs={mathStudioCrumbs({ label: "Complex Numbers", to: "/complex-numbers" })} />
@@ -179,7 +180,7 @@ function StudioHome() {
           />
           <kbd>Ctrl K</kbd>
         </label>
-      </header>
+      </header></CinematicHero>
       <div className="cxs-home-grid">
         <div>
           <section className="cxs-concept-map" aria-label="Complex numbers concept map">

@@ -1,0 +1,294 @@
+{
+  "result": [
+    {
+      "route": "/trigonometry/graphs",
+      "tabs": 5,
+      "sidebars": 0,
+      "overflow": false,
+      "panes": [
+        {
+          "pane": "workspace",
+          "title": "Function builder"
+        },
+        {
+          "pane": "workspace",
+          "title": "Values & Insights"
+        }
+      ],
+      "links": [
+        "Studio Home Page",
+        "Main App Home Page"
+      ]
+    },
+    {
+      "route": "/trigonometry/right-triangle",
+      "tabs": 0,
+      "sidebars": 0,
+      "overflow": false,
+      "panes": [],
+      "links": []
+    },
+    {
+      "route": "/trigonometry/oblique/sine-law",
+      "tabs": 5,
+      "sidebars": 0,
+      "overflow": false,
+      "panes": [
+        {
+          "pane": "workspace",
+          "title": "Interactive Triangle"
+        },
+        {
+          "pane": "workspace",
+          "title": "Solve a Triangle"
+        }
+      ],
+      "links": [
+        "Studio Home Page",
+        "Main App Home Page"
+      ],
+      "sections": {
+        "What it means": 1,
+        "Interactive workspace": 2,
+        "Common use cases": 2,
+        "Quiz": 1,
+        "Theory & more": 2
+      }
+    },
+    {
+      "route": "/trigonometry/oblique/cosine-law",
+      "tabs": 0,
+      "sidebars": 0,
+      "overflow": false,
+      "panes": [],
+      "links": [],
+      "sections": {
+        "What it means": 1,
+        "Interactive workspace": 2,
+        "Common use cases": 1,
+        "Quiz": 1,
+        "Theory & more": 3
+      }
+    },
+    {
+      "route": "/trigonometry/oblique/area",
+      "tabs": 5,
+      "sidebars": 0,
+      "overflow": false,
+      "panes": [
+        {
+          "pane": "workspace",
+          "title": "Interactive Triangle"
+        },
+        {
+          "pane": "workspace",
+          "title": "Calculate the Area"
+        }
+      ],
+      "links": [
+        "Studio Home Page",
+        "Main App Home Page"
+      ],
+      "sections": {
+        "What it means": 1,
+        "Interactive workspace": 2,
+        "Common use cases": 1,
+        "Quiz": 1,
+        "Theory & more": 4
+      }
+    },
+    {
+      "route": "/trigonometry/oblique/ssa-ambiguous-case",
+      "tabs": 5,
+      "sidebars": 0,
+      "overflow": false,
+      "panes": [
+        {
+          "pane": "workspace",
+          "title": "Interactive Triangle Explorer"
+        },
+        {
+          "pane": "workspace",
+          "title": "Check the Case"
+        }
+      ],
+      "links": [
+        "Studio Home Page",
+        "Main App Home Page"
+      ],
+      "sections": {
+        "What it means": 1,
+        "Interactive workspace": 2,
+        "Common use cases": 1,
+        "Quiz": 1,
+        "Theory & more": 3
+      }
+    },
+    {
+      "route": "/trigonometry/oblique/solve-triangle",
+      "tabs": 5,
+      "sidebars": 0,
+      "overflow": false,
+      "panes": [
+        {
+          "pane": "workspace",
+          "title": "Interactive Triangle"
+        },
+        {
+          "pane": "workspace",
+          "title": "Step-by-Step Solver"
+        },
+        {
+          "pane": "workspace",
+          "title": "Known Values and Verification Workspace"
+        }
+      ],
+      "links": [
+        "Studio Home Page",
+        "Main App Home Page"
+      ],
+      "sections": {
+        "What it means": 1,
+        "Interactive workspace": 3,
+        "Common use cases": 1,
+        "Quiz": 1,
+        "Theory & more": 3
+      }
+    },
+    {
+      "route": "/geometry/circles",
+      "tabs": 5,
+      "sidebars": 0,
+      "overflow": false,
+      "panes": [],
+      "links": [
+        "Studio Home Page",
+        "Main App Home Page"
+      ]
+    },
+    {
+      "route": "/number-systems/integers",
+      "tabs": 5,
+      "sidebars": 0,
+      "overflow": false,
+      "panes": [
+        {
+          "pane": "workspace",
+          "title": "Walk with signed numbers"
+        },
+        {
+          "pane": "workspace",
+          "title": "Additional Integer Points Sandbox"
+        },
+        {
+          "pane": "workspace",
+          "title": "Opposites"
+        },
+        {
+          "pane": "workspace",
+          "title": "Absolute Value"
+        },
+        {
+          "pane": "workspace",
+          "title": "Key Ideas"
+        },
+        {
+          "pane": "workspace",
+          "title": "Learn the idea"
+        }
+      ],
+      "links": [
+        "Studio Home Page",
+        "Main App Home Page"
+      ]
+    },
+    {
+      "route": "/calculus/derivatives",
+      "tabs": 5,
+      "sidebars": 0,
+      "overflow": false,
+      "panes": [
+        {
+          "pane": "workspace",
+          "title": "Function"
+        },
+        {
+          "pane": "workspace",
+          "title": "Tangent point"
+        },
+        {
+          "pane": "workspace",
+          "title": "Secant distance"
+        },
+        {
+          "pane": "workspace",
+          "title": "Display"
+        },
+        {
+          "pane": "workspace",
+          "title": "Animation"
+        },
+        {
+          "pane": "workspace",
+          "title": "Live derivative"
+        },
+        {
+          "pane": "workspace",
+          "title": "Slope comparison"
+        },
+        {
+          "pane": "workspace",
+          "title": "Difference quotient"
+        },
+        {
+          "pane": "workspace",
+          "title": "Convergence (h → 0)"
+        },
+        {
+          "pane": "workspace",
+          "title": "Explanation"
+        }
+      ],
+      "links": [
+        "Studio Home Page",
+        "Main App Home Page"
+      ]
+    },
+    {
+      "route": "/",
+      "tabs": 0,
+      "sidebars": 0,
+      "overflow": false,
+      "panes": [],
+      "links": []
+    },
+    {
+      "route": "/trigonometry/inverse/arcsin",
+      "tabs": 5,
+      "sidebars": 0,
+      "overflow": false,
+      "panes": [
+        {
+          "pane": "workspace"
+        },
+        {
+          "pane": "workspace",
+          "title": "Interactive Graph"
+        },
+        {
+          "pane": "workspace",
+          "title": "Unit Circle Intuition"
+        },
+        {
+          "pane": "workspace",
+          "title": "Common Examples"
+        }
+      ],
+      "links": [
+        "Studio Home Page",
+        "Main App Home Page"
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,1 @@
+[{"url":"http://127.0.0.1:5175/trigonometry/inverse/?experiment=overview:arcsin&input=500","output":"90.000°","disabledChallenge":false},{"url":"http://127.0.0.1:5175/trigonometry/inverse/principal-values?experiment=principal:arctan&input=90","output":"undefined","disabledChallenge":true},{"largeRatio":"1000"}]

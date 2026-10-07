@@ -1,3 +1,4 @@
+import CinematicHero from "../studios/heroes/CinematicHero";
 import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import { Binary, BookOpen, ChartSpline, FunctionSquare, Sigma } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -89,6 +90,7 @@ export default function AdvancedConceptStudios() {
       subtitle="Focused interactive coverage for Wolfram-style mathematics categories that were missing or thin."
       notes={<StudioNotes />}
     >
+      <CinematicHero id={activeStudio === "differential-equations" ? "advanced-de" : activeStudio} />
       <SectionCard title="Studio Switcher" description="Open one strand at a time, or use the direct Math Lab links from the side navigation." compact>
         <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-5">
           {studios.map((studio) => {
@@ -113,6 +115,7 @@ export default function AdvancedConceptStudios() {
         </div>
       </SectionCard>
 
+      <div id="hero-workbench" />
       <SectionCard title={active.title} description={active.summary} allowFullscreen>
         {activeStudio === "continued-fractions" && <ContinuedFractionsLab />}
         {activeStudio === "famous-problems" && <FamousProblemsAtlas />}

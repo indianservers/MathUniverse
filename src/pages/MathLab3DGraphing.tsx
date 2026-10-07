@@ -1,3 +1,4 @@
+import { ImmersiveBoundary } from "../workspace/immersive/ImmersiveInteractionManager";
 import { Line, OrbitControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
@@ -106,7 +107,7 @@ const GRAPH_3D_STORAGE_KEY = "math-universe-saved-3d-graphs";
 const EMPTY_SURFACE = createGraph3DSurface("0");
 const EMPTY_SAMPLES: SurfaceSampleResult = { grid: [], minZ: null, maxZ: null };
 
-export default function MathLab3DGraphing({ embedded }: { embedded?: EmbeddedGraphOptions } = {}) {
+function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOptions } = {}) {
   const reducedMotion = useReducedMotion();
   const location = useLocation();
   const navigate = useNavigate();
@@ -416,17 +417,19 @@ export default function MathLab3DGraphing({ embedded }: { embedded?: EmbeddedGra
           <group position={toScenePosition(objectPosition)}>
             {visibleValidSurfaces.map((item) => {
               const samples = sampledSurfaces.find((sampled) => sampled.item.id === item.id)?.samples;
-              return <Graph3DLayer key={item.id} surface={item} samples={samples} advanced={advancedLayers[item.id]} theme={graphTheme} selected={item.id === selectedSurface.id} interactive={item.id === selectedSurface.id && studioTool !== "select"} onPick={handleSurfacePick} clip={clipEnabled ? { axis: clipAxis, value: clipValue } : null} />;
+              return <group key={item.id} userData={{immersiveId:item.id}} position={item.displayTransform?.position} rotation={item.displayTransform?.rotation} scale={item.displayTransform?.scale ?? 1}><Graph3DLayer key={item.id} surface={item} samples={samples} advanced={advancedLayers[item.id]} theme={graphTheme} selected={item.id === selectedSurface.id} interactive={item.id === selectedSurface.id && studioTool !== "select"} onPick={handleSurfacePick} clip={clipEnabled ? { axis: clipAxis, value: clipValue } : null} /></group>;
             })}
             {showBase && <BasePlane size={Math.max(xRange, yRange) * 2.08} theme={graphTheme} />}
             {showGrid && <gridHelper args={[Math.max(xRange, yRange) * 2.2, 18, graphTheme.gridMajor, graphTheme.gridMinor]} />}
             {showAxes && <ThemeAxes scale={Math.max(xRange, yRange) * 1.25} theme={graphTheme} showLabels={showLabels} infinite={showInfiniteAxes} />}
+            <group position={selectedSurface.displayTransform?.position} rotation={selectedSurface.displayTransform?.rotation} scale={selectedSurface.displayTransform?.scale ?? 1}>
             {showLabels && supportsDifferential && <SurfaceLabels scale={Math.max(xRange, yRange) * 1.25} expression={expression} samples={surface} objectPosition={objectPosition} theme={graphTheme} />}
             {sliceEnabled && supportsDifferential && <SlicePlane axis={sliceAxis} value={sliceX} range={Math.max(xRange, yRange)} samples={surface} color={graphTheme.crossSection} onChange={setSliceX} />}
             {sliceEnabled && supportsDifferential && <SliceCurve axis={sliceAxis} value={sliceX} samples={surface} color={graphTheme.crossSection} />}
             {clipEnabled && <ClipPlane axis={clipAxis} value={clipValue} range={Math.max(xRange, yRange)} />}
             {surfaceDifferential && <SurfaceDifferentialGeometry analysis={surfaceDifferential} scale={Math.max(0.7, Math.min(xRange, yRange) * 0.22)} verticalScaleFactor={verticalScale(surface)} theme={graphTheme} />}
             {criticalPoints.map((point, index) => <CriticalPointMarker key={`${point.x}-${point.y}-${index}`} point={point} theme={graphTheme} />)}
+            </group>
             {volumePartner && <VolumeBetweenSurfaces top={surface} bottom={sampledSurfaces.find((sampled) => sampled.item.id === volumePartner.id)?.samples} theme={graphTheme} />}
             {contourLines.map((line, index) => line.length > 1 ? <Line key={`contour-${index}`} points={line.map((point) => [point.x, point.z * verticalScale(surface), point.y] as [number, number, number])} color={graphTheme.crossSection} lineWidth={2} /> : null)}
             {intersectionPoints.slice(0, 180).map((point, index) => <mesh key={`ix-${index}`} position={[point.x, point.z * verticalScale(surface), point.y]}><sphereGeometry args={[0.04, 8, 8]} /><meshBasicMaterial color="#fde047" /></mesh>)}
@@ -1443,3 +1446,5 @@ function FlyController({ enabled }: { enabled: boolean }) {
   });
   return null;
 }
+
+export default function MathLab3DGraphing(props: {embedded?: EmbeddedGraphOptions} = {}) { return <ImmersiveBoundary><MathLab3DGraphingContent {...props} /></ImmersiveBoundary>; }

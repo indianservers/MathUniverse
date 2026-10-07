@@ -1,3 +1,4 @@
+import { ImmersiveThreeScene } from "../../workspace/immersive/ImmersiveThreeScene";
 import { Canvas, useThree } from "@react-three/fiber";
 import { clsx } from "clsx";
 import {
@@ -185,7 +186,7 @@ export default function ThreeSceneWrapper({
                 />
               </>
             )}
-            {children}
+            <ImmersiveThreeScene>{children}</ImmersiveThreeScene>
             <SceneLifecycleGuard />
           </Canvas>
         </Suspense>

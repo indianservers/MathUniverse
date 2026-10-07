@@ -1,0 +1,29 @@
+[
+  {
+    "route": "/workspace/geometry",
+    "tested": true,
+    "lockedFrames": 72,
+    "modelChanged": true,
+    "pointMoved": true
+  },
+  {
+    "route": "/workspace/3d",
+    "tested": true,
+    "lockedFrames": 72,
+    "modelChanged": true,
+    "positionChanged": true
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "tested": true,
+    "lockedFrames": 72,
+    "modelChanged": true,
+    "transformChanged": true
+  },
+  {
+    "route": "/workspace/graph",
+    "tested": true,
+    "lockedFrames": 71,
+    "modelChanged": true
+  }
+]

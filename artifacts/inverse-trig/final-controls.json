@@ -1,0 +1,9 @@
+{
+  "negativeTyping": true,
+  "domainClamping": true,
+  "circleDragging": true,
+  "keyboardSlider": true,
+  "allDashboardCards": true,
+  "preservedTabs": true,
+  "consoleIssues": []
+}

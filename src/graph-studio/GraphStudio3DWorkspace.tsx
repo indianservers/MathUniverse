@@ -1,3 +1,5 @@
+import { identityTransform, transformDelta } from "../workspace/immersive/types";
+import { ImmersiveSettings, ImmersiveToolbar, useImmersiveAdapter, useImmersive } from "../workspace/immersive/ImmersiveInteractionManager";
 import {
   Activity,
   ChevronDown,
@@ -257,6 +259,21 @@ export default function GraphStudio3DWorkspace(
     setHelpOpen(false);
     setViewOpen(false);
   }, []);
+  const immersive = useImmersive();
+  useImmersiveAdapter({
+    kind:"3d",element:()=>sceneHostRef.current,
+    targets:()=>props.surfaces.filter(s=>s.visible).map(s=>{
+      const target=immersive?.projected.current.get(s.id);return target?{...target,semanticType:"surface",allowedInteractions:{translate:true,rotate:true,scale:true,sampleSurface:true}}:null;
+    }).filter((t):t is NonNullable<typeof t>=>!!t),
+    transform:()=>identityTransform(),select:props.onSelectedSurfaceChange,
+    apply:(state,result,previous)=>{
+      if(result.inspection&&state.primaryTarget?.zone.sample){const p=state.primaryTarget.zone.sample;props.onAnalysisPointChange({x:p[0],y:p[2]});}
+      if(!result.transform)return;const d=transformDelta(result.transform,previous);
+      const surface=props.surfaces.find(s=>s.id===state.targetObjectId);if(!surface)return;
+      const old=surface.displayTransform??identityTransform();props.onSurfaceChange(surface.id,{displayTransform:{position:old.position.map((v,i)=>v+d.position[i]) as [number,number,number],rotation:old.rotation.map((v,i)=>v+d.rotation[i]) as [number,number,number],scale:Math.max(.05,Math.min(20,old.scale*d.scale))}});
+    },
+    navigate:(_,scale)=>props.onCameraView([4/scale,3.2/scale,6/scale]),
+  });
   useCanvasZoomLock(sceneHostRef);
   useOutsideDismiss({
     enabled: exportOpen || fileOpen || settingsOpen || helpOpen || viewOpen,
@@ -380,6 +397,7 @@ export default function GraphStudio3DWorkspace(
           )}
         </div>
         <div className="gs3d-top-actions">
+          <ImmersiveToolbar />
           <TopAction
             label="Undo"
             icon={<Undo2 />}
@@ -2434,6 +2452,7 @@ function SettingsMenu({ props }: { props: GraphStudio3DWorkspaceProps }) {
           <option value="paper">Scientific paper</option>
         </select>
       </label>
+      <ImmersiveSettings/>
     </div>
   );
 }

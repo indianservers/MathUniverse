@@ -1,3 +1,4 @@
+import "./pageDensity.css";
 import StudioLearningOutlet from "../../studios/curriculum/StudioLearningOutlet";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -15,7 +16,7 @@ function InlinePageNav({ showBack, hidden = false }: { showBack: boolean; hidden
   const location = useLocation();
   if (location.pathname === "/" || hidden) return null;
   return (
-    <div className="flex items-center gap-2">
+    <div className="app-inline-page-nav flex items-center gap-2">
       {showBack && (
         <button
           type="button"

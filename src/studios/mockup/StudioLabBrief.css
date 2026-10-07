@@ -23,3 +23,4 @@
   .studio-lab-brief { grid-template-columns: 1fr; gap: 10px; padding: 14px; }
   .studio-lab-brief__try { padding: 10px 0 0; border-left: 0; border-top: 1px solid #cfe4f2; }
 }
+.studio-lab-guide{margin:0 0 8px;border:1px solid #d1e4f5;border-radius:10px;background:#f7fbff;color:#123858}.studio-lab-guide>summary{cursor:pointer;padding:7px 12px;font-size:12px;font-weight:750;line-height:1.4}.studio-lab-guide>summary>span{font-weight:400;color:#536d88;margin-left:14px}.studio-lab-guide>summary:focus-visible{outline:3px solid #237de2;outline-offset:2px}.studio-lab-guide .studio-lab-brief{margin:0!important;border:0;border-top:1px solid #d1e4f5;border-radius:0 0 10px 10px}.msk-shell.is-dark .studio-lab-guide{background:#11283a;border-color:#31516c;color:#e3f5ff}.msk-shell.is-dark .studio-lab-guide>summary>span{color:#b0c8db}@media(max-width:600px){.studio-lab-guide>summary>span{display:block;margin:3px 0 0 12px;font-size:11px}}

@@ -1,3 +1,5 @@
+import calculusHomeStyles from "./CalculusStudio.css?inline";
+import CinematicHero from "../studios/heroes/CinematicHero";
 import { useStudioState } from "../studios/phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
@@ -172,6 +174,7 @@ export default function CalculusStudio({ page = "home" }: { page?: CalculusStudi
 
   return (
     <main className={`cs-shell ${settings.theme === "dark" ? "cs-dark" : ""} ${darkNavPages.includes(activePage) ? "cs-nav-dark" : ""} ${settings.graphLight ? "cs-graph-light" : ""} ${settings.collapseControls ? "cs-hide-controls" : ""} ${settings.collapseResults ? "cs-hide-results" : ""}`}>
+      {activePage === "home" ? <style>{calculusHomeStyles}</style> : null}
       {drawerOpen && <button className="cs-backdrop" aria-label="Close Calculus Studio menu" onClick={() => setDrawerOpen(false)} />}
       <StudioSidebar page={activePage} collapsed={collapsed} open={drawerOpen} onCollapse={() => setCollapsed((value) => !value)} onClose={() => setDrawerOpen(false)} />
       <section className="cs-page">
@@ -255,7 +258,7 @@ function StudioHeader({ page, settings, onSettings, onMenu, onDialog }: {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
-  return (
+  const header = (
     <header className={`cs-header${page === "home" ? " cs-header-home" : ""}`}>
       <button className="cs-menu" type="button" onClick={onMenu} aria-label="Open Calculus Studio menu"><Menu /></button>
       <div className="cs-title">
@@ -288,6 +291,7 @@ function StudioHeader({ page, settings, onSettings, onMenu, onDialog }: {
       </div>
     </header>
   );
+  return page === "home" ? <CinematicHero id="calculus">{header}</CinematicHero> : header;
 }
 
 const HOME_TOPIC_CARDS = [

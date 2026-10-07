@@ -1,3 +1,5 @@
+import { identityTransform, screenTarget, transformDelta } from "../workspace/immersive/types";
+import { ImmersiveSettings, ImmersiveToolbar, useImmersiveAdapter } from "../workspace/immersive/ImmersiveInteractionManager";
 import {
   Activity,
   ArrowDown,
@@ -182,6 +184,8 @@ export type GraphStudio2DWorkspaceProps = {
     kind: "point" | "line" | "tangent" | "normal" | "conic",
   ) => void;
   linkedPoint: Point | null;
+  interactivePoints?: Array<{id:string;x:number;y:number}>;
+  onInteractivePointChange?: (id:string,x:number,y:number)=>void;
   canvas: ReactNode;
   roots: number[];
   yIntercept: number | null;
@@ -249,6 +253,28 @@ export default function GraphStudio2DWorkspace(
     setSettingsOpen(false);
     setHelpOpen(false);
   }, []);
+  useImmersiveAdapter({
+    kind:"2d",boardExtent:()=>[props.view.xMax-props.view.xMin,props.view.yMax-props.view.yMin],element:()=>sceneHostRef.current?.querySelector("svg")??sceneHostRef.current,
+    targets:()=>[...(props.interactivePoints??[]).map(p=>{const t=screenTarget(p.id,(p.x-props.view.xMin)/(props.view.xMax-props.view.xMin),1-(p.y-props.view.yMin)/(props.view.yMax-props.view.yMin),.035,!!props.functions.find(f=>f.id===props.selectedId)?.locked,"vertex");t.allowedInteractions={translate:true};return t;}),...props.plotted.filter(f=>f.visible&&!f.error).map(f=>{
+      const points=f.points.filter(p=>p.valid&&p.y!==null&&Number.isFinite(p.y));
+      const target=screenTarget(f.id,.5,.5,.04,!!f.locked,"surface");
+      target.allowedInteractions={sampleSurface:true};
+      target.preferredGrabZones=points.filter((_,i)=>i%Math.max(1,Math.floor(points.length/80))===0).map((p,i)=>({id:`${f.id}:${i}`,kind:"surface",position:[(p.x-props.view.xMin)/(props.view.xMax-props.view.xMin),1-(p.y!-props.view.yMin)/(props.view.yMax-props.view.yMin),0],radius:.025,sample:[p.x,p.y!,0]}));
+      return target;
+    })],
+    transform:()=>identityTransform(),select:id=>{if(!(props.interactivePoints??[]).some(p=>p.id===id))props.onSelect(id);},
+    apply:(state,result,previous)=>{
+      const handle=props.interactivePoints?.find(p=>p.id===state.targetObjectId);
+      if(handle&&result.transform){const d=transformDelta(result.transform,previous);props.onInteractivePointChange?.(handle.id,handle.x+d.position[0]*(props.view.xMax-props.view.xMin)/8,handle.y+d.position[1]*(props.view.yMax-props.view.yMin)/8);return;}
+      const point=result.inspection?.position??state.primaryTarget?.zone.sample;
+      if(point){props.onTraceModeChange(true);props.onTraceXChange(point[0]);}
+    },
+    navigate:(d,scale)=>{
+      const v=props.view,w=(v.xMax-v.xMin)/scale,h=(v.yMax-v.yMin)/scale;
+      const cx=(v.xMax+v.xMin)/2-d[0]*(v.xMax-v.xMin),cy=(v.yMax+v.yMin)/2+d[1]*(v.yMax-v.yMin);
+      props.onViewChange({xMin:cx-w/2,xMax:cx+w/2,yMin:cy-h/2,yMax:cy+h/2});
+    }
+  });
   useCanvasZoomLock(sceneHostRef);
   useOutsideDismiss({
     enabled: exportOpen || settingsOpen || helpOpen,
@@ -352,6 +378,7 @@ export default function GraphStudio2DWorkspace(
           )}
         </div>
         <div className="gs3d-top-actions">
+          <ImmersiveToolbar />
           <div className="gs2d-view-toolbar" aria-label="Graph view controls">
             <span>Cartesian</span>
             <button
@@ -2224,6 +2251,7 @@ function SettingsMenu({ props }: { props: GraphStudio2DWorkspaceProps }) {
         <RotateCcw />
         Reset example
       </button>
+      <ImmersiveSettings/>
     </div>
   );
 }

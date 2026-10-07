@@ -1,3 +1,4 @@
+import { ImmersiveBoundary } from "../workspace/immersive/ImmersiveInteractionManager";
 import { Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
@@ -87,7 +88,7 @@ const EXAMPLES = ["2x + 1", "x^2", "sin(x)", "x^2 + y^2 = 25", "(2, 3)", "seq(n^
 const GRAPH_2D_STORAGE_KEY = "math-universe-saved-2d-graphs";
 const DEFAULT_GRAPH_VIEW: FunctionGraphView = { xMin: -10, xMax: 10, yMin: -10, yMax: 10 };
 
-export default function MathLabGraphingCalculator({ embedded }: { embedded?: EmbeddedGraphOptions } = {}) {
+function MathLabGraphingCalculatorContent({ embedded }: { embedded?: EmbeddedGraphOptions } = {}) {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const prefilledFunction = embedded ? undefined : searchParams.get("q")?.trim();
@@ -313,6 +314,8 @@ export default function MathLabGraphingCalculator({ embedded }: { embedded?: Emb
       onLogXChange={(value) => { setLogX(value); if (value) setView((current) => ({ ...current, xMin: Math.max(0.01, current.xMin), xMax: Math.max(10, current.xMax) })); }}
       onLogYChange={(value) => { setLogY(value); if (value) setView((current) => ({ ...current, yMin: Math.max(0.01, current.yMin), yMax: Math.max(10, current.yMax) })); }}
       onAddConstruction={addConstruction}
+      interactivePoints={[...(interactivePoint ? [interactivePoint] : []), ...(parameterPoint ? [parameterPoint] : [])]}
+      onInteractivePointChange={moveInteractivePoint}
       linkedPoint={interactivePoint ? { x: interactivePoint.x, y: interactivePoint.y } : parameterPoint ? { x: parameterPoint.x, y: parameterPoint.y } : null}
       canvas={<FunctionGraphCanvas series={graphSeries} view={view} onViewChange={setView} onResetView={() => setView(DEFAULT_GRAPH_VIEW)} showGrid={showGrid} showAxes={showAxes} logX={logX} logY={logY} selectedSeriesId={selectedId} traceX={traceMode ? traceX : undefined} onTraceChange={traceMode ? setPrecisionTraceX : undefined} interactivePoints={[...(interactivePoint ? [interactivePoint] : []), ...(parameterPoint ? [parameterPoint] : [])]} onInteractivePointChange={moveInteractivePoint} precisionCrosshair imageLayers={functions.filter((item) => item.visible && isSafeImageUrl(item.imageUrl)).map((item) => ({ id: item.id, href: item.imageUrl!, x: item.imageX ?? -2, y: item.imageY ?? 2, width: item.imageWidth ?? 4, height: item.imageHeight ?? 4, opacity: item.opacity ?? 0.7, label: item.label || item.name || "Graph image" }))} residualSegments={showResiduals && regression ? regression.residuals : []} integralArea={showIntegral && selected ? { points: selected.points, color: selected.color, start: Math.min(integralStart, integralEnd), end: Math.max(integralStart, integralEnd) } : undefined} featurePoints={[...roots.roots.map((x) => ({ x, y: 0, type: "root" as const })), ...(typeof yIntercept.y === "number" ? [{ x: 0, y: yIntercept.y, type: "intercept" as const }] : []), ...extrema.minima.map((point) => ({ ...point, type: "minimum" as const })), ...extrema.maxima.map((point) => ({ ...point, type: "maximum" as const })), ...intersections.map((point) => ({ ...point, type: "intersection" as const }))]} />}
       roots={roots.roots}
@@ -821,3 +824,5 @@ function isSafeImageUrl(value?: string) {
 function sameVariables(current: GraphStudioVariable[], next: GraphStudioVariable[]) {
   return current.length === next.length && current.every((variable, index) => variable.id === next[index]?.id);
 }
+
+export default function MathLabGraphingCalculator(props: {embedded?: EmbeddedGraphOptions} = {}) { return <ImmersiveBoundary><MathLabGraphingCalculatorContent {...props} /></ImmersiveBoundary>; }

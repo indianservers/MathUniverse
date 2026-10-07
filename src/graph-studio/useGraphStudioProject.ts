@@ -40,6 +40,13 @@ export function useGraphStudioProject<TState>({
   const initialStateRef = useRef(state);
   const skipHistoryRef = useRef<string | null>(null);
   const initializedRef = useRef(false);
+  const gestureStart = useRef<TState | null>(null);
+  useEffect(() => {
+    const begin=()=>{gestureStart.current=previousRef.current;};
+    const end=()=>{window.setTimeout(()=>{const before=gestureStart.current;gestureStart.current=null;if(before&&JSON.stringify(before)!==JSON.stringify(previousRef.current)){setUndoStack(items=>[...items.slice(-39),before]);setRedoStack([]);}},0);};
+    window.addEventListener("immersive-transaction-start",begin);window.addEventListener("immersive-transaction-end",end);
+    return()=>{window.removeEventListener("immersive-transaction-start",begin);window.removeEventListener("immersive-transaction-end",end);};
+  }, []);
 
   useLayoutEffect(() => {
     if (!initializedRef.current) {
@@ -56,6 +63,7 @@ export function useGraphStudioProject<TState>({
       }
     }
     if (JSON.stringify(previousRef.current) === JSON.stringify(state)) return;
+    if (gestureStart.current) { previousRef.current=state; return; }
     const previous = previousRef.current;
     setUndoStack((items) => [...items.slice(-39), previous]);
     setRedoStack([]);

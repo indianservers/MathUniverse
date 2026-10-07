@@ -1,0 +1,78 @@
+{
+  "results": [
+    {
+      "slug": "",
+      "before": "30.000°",
+      "after": "36.870°",
+      "restored": "30.000°",
+      "linked": true,
+      "undo": true,
+      "saved": 1,
+      "moved": true,
+      "fit": true,
+      "overflow": false
+    },
+    {
+      "slug": "arcsin",
+      "before": "36.870°",
+      "after": "44.427°",
+      "restored": "36.870°",
+      "linked": true,
+      "undo": true,
+      "saved": 1,
+      "moved": true,
+      "fit": true,
+      "overflow": false
+    },
+    {
+      "slug": "arccos",
+      "before": "60.000°",
+      "after": "53.130°",
+      "restored": "60.000°",
+      "linked": true,
+      "undo": true,
+      "saved": 1,
+      "moved": true,
+      "fit": true,
+      "overflow": false
+    },
+    {
+      "slug": "arctan",
+      "before": "56.310°",
+      "after": "57.995°",
+      "restored": "56.310°",
+      "linked": true,
+      "undo": true,
+      "saved": 1,
+      "moved": true,
+      "fit": true,
+      "overflow": false
+    },
+    {
+      "slug": "principal-values",
+      "before": "30.000°",
+      "after": "15.000°",
+      "restored": "30.000°",
+      "linked": true,
+      "undo": true,
+      "saved": 1,
+      "moved": true,
+      "fit": true,
+      "overflow": false
+    },
+    {
+      "slug": "compositions",
+      "before": "0.500",
+      "after": "0.600",
+      "restored": "0.500",
+      "linked": true,
+      "undo": true,
+      "saved": 1,
+      "moved": true,
+      "fit": true,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "deepLink": "arctan(tan θ) = −π/4 (-45.00°)The result folds into the principal range; it is not the original angle."
+}

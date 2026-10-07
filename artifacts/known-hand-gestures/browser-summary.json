@@ -1,0 +1,30 @@
+[
+  {
+    "route": "/workspace/geometry",
+    "tested": true,
+    "fistHeldFrames": 69,
+    "landmarkOverlay": true,
+    "modelChanged": true
+  },
+  {
+    "route": "/workspace/3d",
+    "tested": true,
+    "fistHeldFrames": 35,
+    "landmarkOverlay": true,
+    "modelChanged": true
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "tested": true,
+    "fistHeldFrames": 3,
+    "landmarkOverlay": true,
+    "modelChanged": true
+  },
+  {
+    "route": "/workspace/graph",
+    "tested": true,
+    "fistHeldFrames": 16,
+    "landmarkOverlay": true,
+    "modelChanged": true
+  }
+]

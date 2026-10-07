@@ -1,3 +1,4 @@
+import CinematicHero from "../heroes/CinematicHero";
 import { useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -90,10 +91,7 @@ export default function DifferentialEquationsHome({ studio }: { studio: StudioMo
   const labs = new Map(studio.pages.map((item) => [item.id, item]));
 
   return <div className="de-home">
-    <section className="de-hero">
-      <div className="de-hero-copy"><span className="de-hero-kicker">EXPLORE · SOLVE · VISUALIZE · APPLY</span><h1>Differential Equations <em>Studio</em></h1><p>From fundamental theory to real-world applications — an interactive learning experience.</p></div>
-      <div className="de-hero-art" aria-hidden="true"><svg viewBox="0 0 330 138"><defs><linearGradient id="de-wave" x1="0" y1="1" x2="1" y2="0"><stop stopColor="#c8e2ff"/><stop offset="1" stopColor="#88afff"/></linearGradient></defs><path d="M0 119 C45 72 74 119 113 66 S190 90 229 34 S284 72 330 14" fill="none" stroke="url(#de-wave)" strokeWidth="3"/><path d="M0 132 C61 93 82 134 137 93 S221 101 261 53 S313 69 330 42" fill="none" stroke="#d8eaff" strokeWidth="2"/><text x="83" y="74">dy</text><path d="M78 82h45" stroke="#1c55ee" strokeWidth="2"/><text x="82" y="111">dx</text><text x="139" y="91">= f(x, y)</text></svg></div>
-    </section>
+    <CinematicHero id="differential-equations" />
 
     <div className="de-feature-grid" aria-label="Explore Differential Equations Studio">
       {features.map((feature, index) => <FeatureCard key={feature.title} feature={feature} number={index + 1} onAction={setPanel} />)}

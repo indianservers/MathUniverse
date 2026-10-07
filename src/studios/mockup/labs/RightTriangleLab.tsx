@@ -266,8 +266,8 @@ export default function RightTriangleLab({ page }: { page: StudioMockupPage }) {
           <Field label="Orientation">
             <div className="msk-ori">
               {(["std", "flipx", "flipy"] as Ori[]).map((item) => (
-                <button key={item} type="button" className={ori === item ? "active" : ""} aria-label={`Orientation ${item}`} onClick={() => setOri(item)}>
-                  <svg viewBox="0 0 32 24"><polygon points={item === "std" ? "4,20 28,20 4,4" : item === "flipx" ? "28,20 4,20 28,4" : "4,4 28,4 4,20"} fill="none" stroke="currentColor" strokeWidth="1.6" /></svg>
+                <button key={item} type="button" className={ori === item ? "active" : ""} aria-label={`Orientation ${item}`} aria-pressed={ori === item} title={item === "std" ? "Right angle at bottom left" : item === "flipx" ? "Right angle at bottom right" : "Right angle at top left"} onClick={() => setOri(item)}>
+                  <svg width="26" height="22" viewBox="0 0 32 24" aria-hidden="true"><polygon points={item === "std" ? "4,20 28,20 4,4" : item === "flipx" ? "28,20 4,20 28,4" : "4,4 28,4 4,20"} fill="none" stroke="currentColor" strokeWidth="1.6" /></svg>
                 </button>
               ))}
             </div>

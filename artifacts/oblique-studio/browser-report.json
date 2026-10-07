@@ -1,0 +1,145 @@
+{
+  "routes": [
+    {
+      "slug": "overview",
+      "title": "Sine & Cosine Laws",
+      "overflow": false,
+      "preservedTabs": 5,
+      "mobileOverflow": false
+    },
+    {
+      "slug": "sine-law",
+      "title": "Sine Law",
+      "overflow": false,
+      "preservedTabs": 5,
+      "mobileOverflow": false
+    },
+    {
+      "slug": "cosine-law",
+      "title": "Cosine Law",
+      "overflow": false,
+      "preservedTabs": 5,
+      "mobileOverflow": false
+    },
+    {
+      "slug": "area",
+      "title": "Area of a Triangle",
+      "overflow": false,
+      "preservedTabs": 5,
+      "mobileOverflow": false
+    },
+    {
+      "slug": "ssa-ambiguous-case",
+      "title": "SSA Ambiguous Case",
+      "overflow": false,
+      "preservedTabs": 5,
+      "mobileOverflow": false
+    },
+    {
+      "slug": "solve-triangle",
+      "title": "Solve Triangle",
+      "overflow": false,
+      "preservedTabs": 5,
+      "mobileOverflow": false
+    }
+  ],
+  "interactions": [
+    {
+      "slug": "sine-law",
+      "keyboardUpdates": true
+    },
+    {
+      "slug": "sine-law",
+      "dragUpdates": true
+    },
+    {
+      "slug": "sine-law",
+      "ASA": true,
+      "SSA": true
+    },
+    {
+      "slug": "cosine-law",
+      "keyboardUpdates": true
+    },
+    {
+      "slug": "cosine-law",
+      "dragUpdates": true
+    },
+    {
+      "slug": "cosine-law",
+      "SAS": true,
+      "SSS": true,
+      "invalidRejected": true
+    },
+    {
+      "slug": "area",
+      "keyboardUpdates": true
+    },
+    {
+      "slug": "area",
+      "dragUpdates": true
+    },
+    {
+      "slug": "area",
+      "area20": true,
+      "cyclicFormulas": true
+    },
+    {
+      "slug": "ssa-ambiguous-case",
+      "keyboardUpdates": true
+    },
+    {
+      "slug": "ssa-ambiguous-case",
+      "dragUpdates": true
+    },
+    {
+      "slug": "ssa-ambiguous-case",
+      "allSixOutcomes": true
+    },
+    {
+      "slug": "solve-triangle",
+      "keyboardUpdates": true
+    },
+    {
+      "slug": "solve-triangle",
+      "dragUpdates": true
+    },
+    {
+      "slug": "solve-triangle",
+      "allCases": true,
+      "steps": true,
+      "invalidRejected": true
+    }
+  ],
+  "legacy": [
+    {
+      "mode": "Sine Law",
+      "url": "http://127.0.0.1:5178/trigonometry/oblique/sine-law"
+    },
+    {
+      "mode": "SineLaw",
+      "url": "http://127.0.0.1:5178/trigonometry/oblique/sine-law"
+    },
+    {
+      "mode": "CosineLaw",
+      "url": "http://127.0.0.1:5178/trigonometry/oblique/cosine-law"
+    },
+    {
+      "mode": "Area",
+      "url": "http://127.0.0.1:5178/trigonometry/oblique/area"
+    },
+    {
+      "mode": "SSA Ambiguous Case",
+      "url": "http://127.0.0.1:5178/trigonometry/oblique/ssa-ambiguous-case"
+    },
+    {
+      "mode": "SSAAmbiguousCase",
+      "url": "http://127.0.0.1:5178/trigonometry/oblique/ssa-ambiguous-case"
+    },
+    {
+      "mode": "SolveTriangle",
+      "url": "http://127.0.0.1:5178/trigonometry/oblique/solve-triangle"
+    }
+  ],
+  "errors": []
+}

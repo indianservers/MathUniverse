@@ -1,0 +1,92 @@
+[
+  {
+    "label": "initial",
+    "fields": [
+      [
+        "Angle A",
+        "48"
+      ],
+      [
+        "Angle B",
+        "62"
+      ],
+      [
+        "Side a (opposite A)",
+        "6.7"
+      ]
+    ],
+    "result": "b = 7.9604, c = 8.472 units\n\nA = 48°, B = 62°, C = 70°\n\nVerify: angles sum to 180° · all triangle inequalities hold"
+  },
+  {
+    "label": "Angle A",
+    "fields": [
+      [
+        "Angle A",
+        "30"
+      ],
+      [
+        "Angle B",
+        "62"
+      ],
+      [
+        "Side a (opposite A)",
+        "6.7"
+      ]
+    ],
+    "result": "b = 11.8315, c = 13.3918 units\n\nA = 30°, B = 62°, C = 88°\n\nVerify: angles sum to 180° · all triangle inequalities hold"
+  },
+  {
+    "label": "Angle B",
+    "fields": [
+      [
+        "Angle A",
+        "30"
+      ],
+      [
+        "Angle B",
+        "45"
+      ],
+      [
+        "Side a (opposite A)",
+        "6.7"
+      ]
+    ],
+    "result": "b = 9.4752, c = 12.9434 units\n\nA = 30°, B = 45°, C = 105°\n\nVerify: angles sum to 180° · all triangle inequalities hold"
+  },
+  {
+    "label": "Side a (opposite A)",
+    "fields": [
+      [
+        "Angle A",
+        "30"
+      ],
+      [
+        "Angle B",
+        "45"
+      ],
+      [
+        "Side a (opposite A)",
+        "10"
+      ]
+    ],
+    "result": "b = 14.1421, c = 19.3185 units\n\nA = 30°, B = 45°, C = 105°\n\nVerify: angles sum to 180° · all triangle inequalities hold"
+  },
+  {
+    "label": "unit",
+    "fields": [
+      [
+        "Angle A",
+        "30"
+      ],
+      [
+        "Angle B",
+        "45"
+      ],
+      [
+        "Side a (opposite A)",
+        "10"
+      ]
+    ],
+    "result": "b = 14.1421, c = 19.3185 m\n\nA = 30°, B = 45°, C = 105°\n\nVerify: angles sum to 180° · all triangle inequalities hold"
+  }
+]

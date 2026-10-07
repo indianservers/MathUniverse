@@ -1,3 +1,4 @@
+import CinematicHero from "../heroes/CinematicHero";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, HelpCircle, Lightbulb, Pencil, Play, Trophy } from "lucide-react";
@@ -85,7 +86,7 @@ export default function GeometryStudioHome({ studio }: { studio: StudioMockupDef
 
   return (
     <>
-      <section className="msk-geo-hero" aria-label="Start here">
+      <CinematicHero id="geometry"><section className="msk-geo-hero" aria-label="Start here">
         <div>
           <p className="msk-geo-kicker">Recommended path</p>
           <h2>Start here: construct a perpendicular bisector in 60 seconds</h2>
@@ -124,7 +125,7 @@ export default function GeometryStudioHome({ studio }: { studio: StudioMockupDef
           ))}
         </ol>
         </div>
-      </section>
+      </section></CinematicHero>
       <GeometryWeekStrip />
       <FirstHourNote completed={session.completed} lastOpenedAt={session.lastOpenedAt} lockedLabel="Proofs and AR" unlockHint="a 2D lab" />
       <p className="sl-banner">Figure of the day: drag the live bisector above, then open Construction. Chord / tangent / angle colors live in <Link to="/lessons">geometry lessons</Link>, not the workspace.</p>

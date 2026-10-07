@@ -1,0 +1,13 @@
+{
+  "syntheticTracking": true,
+  "mirroredPixelAlignment": true,
+  "unmirroredPixelAlignment": true,
+  "noStaleDots": true,
+  "pauseResume": true,
+  "retry": true,
+  "stalledTrackerRecovery": true,
+  "modeButtons": 4,
+  "stageButtons": 0,
+  "mobileOverflow": false,
+  "errors": []
+}
