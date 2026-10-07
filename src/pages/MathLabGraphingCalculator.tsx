@@ -1,4 +1,6 @@
 import { ImmersiveBoundary } from "../workspace/immersive/ImmersiveInteractionManager";
+import { useIntelligenceWorkspace } from '../offline-intelligence/workspaceBridge';
+import { graphExpressions } from '../offline-intelligence/commands';
 import { Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
@@ -104,6 +106,17 @@ function MathLabGraphingCalculatorContent({ embedded }: { embedded?: EmbeddedGra
     setFunctions(previous => embedded.expressions.map((input, index) => ({ ...(previous[index] ?? { id: `f${index+1}`, color: COLORS[index % COLORS.length], visible: true }), input })));
   }, [embedded?.expressionRevision]);
   const [selectedId, setSelectedId] = useState("f1");
+  useIntelligenceWorkspace('graph2d', command => {
+    const base=command.objectId??crypto.randomUUID();
+    if(command.roboControl==='deselect'){setSelectedId('');return;}
+    if(command.roboControl==='delete'){setFunctions(current=>current.filter(row=>!row.id.startsWith(`${base}-`)));return;}
+    if(command.roboControl==='visibility'){setFunctions(current=>current.map(row=>row.id.startsWith(`${base}-`)?{...row,visible:command.roboVisible??true}:row));return;}
+    if(command.roboControl==='select'){setSelectedId(`${base}-0`);return;}
+    if(command.action==='update'&&!functions.some(row=>row.id.startsWith(`${base}-`)))return 'The last Ruhi graph was removed. Create an object again before editing it.';
+    const rows = graphExpressions(command).map((input,i) => ({id:`${base}-${i}`,input,color:command.color,visible:command.roboVisible??true,name:command.roboLabel??command.kind}));
+    setFunctions(current => [...current.filter(row=>!row.id.startsWith(`${base}-`)),...rows]);
+    setSelectedId(rows[0].id);
+  }, !embedded, command=>functions.some(row=>row.id.startsWith(`${command.objectId}-`))?{command}:undefined);
   const [view, setView] = useState<FunctionGraphView>(() => sharedProject?.view ?? DEFAULT_GRAPH_VIEW);
   const [showGrid, setShowGrid] = useState(() => sharedProject?.showGrid ?? true);
   const [showAxes, setShowAxes] = useState(() => sharedProject?.showAxes ?? true);

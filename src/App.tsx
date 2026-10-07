@@ -1,3 +1,5 @@
+import './studios/studioHomeLayout.css';
+import OfflineMathAssistant from './offline-intelligence/OfflineMathAssistant';
 import {
   Component,
   lazy,
@@ -108,6 +110,7 @@ const AlgebraicStructuresStudio = lazyRoute(
   () => import("./pages/AlgebraicStructuresStudio"),
 );
 const AIApplications = lazyRoute(() => import("./pages/AIApplications"));
+const ModelTraining = lazyRoute(() => import("./pages/ModelTraining"));
 const ARMathLab = lazyRoute(() => import("./pages/ARMathLab"));
 const BoardSyllabusVisualizer = lazyRoute(
   () => import("./pages/BoardSyllabusVisualizer"),
@@ -380,6 +383,7 @@ export default function App() {
     <AppErrorBoundary resetKey={location.pathname}>
       <SeoMetadata />
       <RouteProgressBar />
+      <OfflineMathAssistant />
       <Suspense fallback={<RouteFallback />}>
         <StudioModelProvider key={location.pathname}><Routes>
           <Route element={<AppLayout />}>
@@ -758,6 +762,7 @@ export default function App() {
               element={<MatrixOperationsSandbox />}
             />
             <Route path="ai-applications" element={<AIApplications />} />
+            <Route path="model-training" element={<ModelTraining />} />
             <Route
               path="mathematical-modelling"
               element={<MathematicalModellingStudio />}
@@ -1105,3 +1110,4 @@ function RouteFallback() {
     </div>
   );
 }
+

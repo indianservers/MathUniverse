@@ -1,0 +1,56 @@
+/* Home-only layout: labs first, supporting content afterwards. Lab pages keep their controls. */
+.msk-shell[data-lab-id="home"] .msk-stage{display:flex;flex-direction:column;position:relative}
+.msk-shell[data-lab-id="home"] .msk-stage> *{order:4}
+.msk-shell[data-lab-id="home"] .msk-stage>.cinematic-hero{order:0}
+.msk-shell[data-lab-id="home"] .msk-stage>.msk-home{order:1}
+.msk-shell[data-lab-id="home"] .msk-stage>.msk-top{order:-1;padding:0;margin:0;border:0;min-height:0;height:0;background:none}
+.msk-shell[data-lab-id="home"] .msk-top> :not(.msk-menu){display:none}
+.msk-shell[data-lab-id="home"] .msk-top>.msk-menu{position:absolute;right:8px;top:8px;z-index:20}
+.msk-shell[data-lab-id="home"] .msk-stage>.msk-hint{display:none}
+.msk-shell[data-lab-id="home"] .msk-stage>.msk-strip{order:99}
+.alg-home-target{display:flex;flex-direction:column;gap:20px}
+.alg-home-target>.cinematic-hero{order:0}.alg-home-target>.alg-launch-wrap{order:1}
+.alg-home-target>.alg-concept-map{order:3}.alg-home-target>.alg-learning-strip{order:99}
+.cxs-home-grid>div:first-child{display:flex;flex-direction:column;gap:16px}
+.cxs-home-grid>div:first-child>.cxs-launch{order:-1}
+.cs-home-v2>.cs-loop{grid-column:1/-1}
+.de-home{display:flex;flex-direction:column}
+.de-home>.cinematic-hero{order:0}.de-home>.de-all-labs{order:1}.de-home>.de-feature-grid{order:2}
+.as-lab:has(>.hero-structures)>.as-head,.as-lab:has(>.hero-structures)>.msk-dash-banner{display:none}
+.as-lab:has(>.hero-structures)>nav{margin-block:14px}
+.np-main:has(>.hero-number-systems){display:flex;flex-direction:column;gap:18px}
+.np-main:has(>.hero-number-systems)>.cinematic-hero{order:0}
+.np-main:has(>.hero-number-systems)>.np-home-grid,.np-main:has(>.hero-number-systems)>.np-home-bottom-grid{order:1}
+.np-main:has(>.hero-number-systems)>.np-feature-strip{order:99}
+/* Compact footer guidance, scoped to home containers. */
+:is(.msk-shell[data-lab-id="home"] .msk-strip,.alg-home-target .alg-learning-strip,.cs-home-v2 .cs-loop,.cxs-home .cxs-learning-strip,.as-home .as-home-loop,.st-landing .as-home-loop){display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:0;margin:20px 0 0;border:0;background:none}
+:is(.msk-shell[data-lab-id="home"] .msk-strip,.alg-home-target .alg-learning-strip,.cs-home-v2 .cs-loop,.cxs-home .cxs-learning-strip,.as-home .as-home-loop,.st-landing .as-home-loop)> *{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-height:0;padding:10px;border:1px solid #ccdced;border-radius:10px;background:var(--panel,#f8fbff);font-size:11px;box-shadow:none}
+:is(.msk-shell[data-lab-id="home"] .msk-strip,.alg-home-target .alg-learning-strip,.cs-home-v2 .cs-loop,.cxs-home .cxs-learning-strip,.as-home .as-home-loop,.st-landing .as-home-loop) svg{width:16px;height:16px;flex-shrink:0}
+:is(.msk-shell[data-lab-id="home"] .msk-strip,.alg-home-target .alg-learning-strip,.cs-home-v2 .cs-loop,.cxs-home .cxs-learning-strip,.as-home .as-home-loop,.st-landing .as-home-loop) :is(b,strong){font-size:12px;line-height:1.3}
+:is(.msk-shell[data-lab-id="home"] .msk-strip,.alg-home-target .alg-learning-strip,.cs-home-v2 .cs-loop,.cxs-home .cxs-learning-strip,.as-home .as-home-loop,.st-landing .as-home-loop) :is(small,p){font-size:11px;line-height:1.4;margin:0}
+@media(max-width:767px){:is(.msk-shell[data-lab-id="home"] .msk-strip,.alg-home-target .alg-learning-strip,.cs-home-v2 .cs-loop,.cxs-home .cxs-learning-strip,.np-main:has(>.hero-number-systems)>.np-feature-strip){display:none!important}}
+.np-main:has(>.hero-number-systems)>*{order:2}
+.np-main:has(>.hero-number-systems)>.cinematic-hero{order:0}
+.np-main:has(>.hero-number-systems)>.np-home-grid,.np-main:has(>.hero-number-systems)>.np-home-bottom-grid{order:1}
+.np-main:has(>.hero-number-systems)>.np-feature-strip{order:99}
+.np-main:has(>.hero-number-systems)>.np-footer{order:100}
+.msk-shell[data-lab-id="home"] .msk-launch-head .msk-geo-orbit{margin:12px 0;padding:8px;min-height:0;justify-content:flex-start}
+.msk-shell[data-lab-id="home"] .msk-geo-orbit .msk-orbit-core{display:none}
+.msk-shell[data-lab-id="home"] .msk-stage>.studio-lab-guide{order:98}
+.as-lab:has(>.hero-structures)>.studio-home-buttons{display:none}
+
+.as-home,.st-landing{display:flex;flex-direction:column;gap:14px}
+.as-home>.as-home-grid{order:-1}
+.as-home>.as-home-loop,.st-landing>.as-home-loop{order:99}
+@media(max-width:767px){.as-home>.as-home-loop,.st-landing>.as-home-loop{display:none!important}}
+/* The outer home viewport owns document scrolling. Fixed-height lab shells must
+   not clip the hero plus the labs that follow it. */
+.studio-learning-host[data-studio-home]>.studio-learning-content{overflow-y:scroll!important;overflow-x:hidden;scrollbar-gutter:stable;scrollbar-width:auto;scrollbar-color:#8297b2 #edf3fa}
+.studio-learning-host[data-studio-home]>.studio-learning-content::-webkit-scrollbar{width:12px}
+.studio-learning-host[data-studio-home]>.studio-learning-content::-webkit-scrollbar-thumb{background:#8297b2;border:3px solid #edf3fa;border-radius:8px}
+.studio-learning-host[data-studio-home]>.studio-learning-content::-webkit-scrollbar-track{background:#edf3fa}
+.studio-learning-host[data-studio-home] :is(.msk-shell,.msk-stage,.cs-shell,.cs-page,.alg-studio,.alg-stage,.cxs-studio,.cxs-stage){height:auto!important;max-height:none!important;overflow:visible!important}
+.studio-learning-host[data-studio-home] :is(.msk-stage,.cs-page,.alg-stage,.cxs-stage){min-height:0}
+.gt-studio:has(>.hero-graphs){height:auto;max-height:none;overflow:visible;grid-template-rows:auto auto auto}
+.gt-studio:has(>.hero-graphs)>.gt-workspace{min-height:600px}
+@media(max-width:760px){.gt-studio:has(>.hero-graphs)>.gt-workspace{min-height:0}}

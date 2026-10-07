@@ -1,0 +1,182 @@
+{
+  "triangle": {
+    "action": "CREATE",
+    "subAction": "TRIANGLE"
+  },
+  "rectangle": {
+    "action": "CREATE",
+    "subAction": "RECTANGLE"
+  },
+  "square": {
+    "action": "CREATE",
+    "subAction": "SQUARE"
+  },
+  "circle": {
+    "action": "CREATE",
+    "subAction": "CIRCLE"
+  },
+  "ellipse": {
+    "action": "CREATE",
+    "subAction": "ELLIPSE"
+  },
+  "semicircle": {
+    "action": "CREATE",
+    "subAction": "SEMICIRCLE"
+  },
+  "pentagon": {
+    "action": "CREATE",
+    "subAction": "PENTAGON"
+  },
+  "hexagon": {
+    "action": "CREATE",
+    "subAction": "HEXAGON"
+  },
+  "heptagon": {
+    "action": "CREATE",
+    "subAction": "HEPTAGON"
+  },
+  "octagon": {
+    "action": "CREATE",
+    "subAction": "OCTAGON"
+  },
+  "nonagon": {
+    "action": "CREATE",
+    "subAction": "NONAGON"
+  },
+  "decagon": {
+    "action": "CREATE",
+    "subAction": "DECAGON"
+  },
+  "polygon": {
+    "action": "CREATE",
+    "subAction": "POLYGON"
+  },
+  "star": {
+    "action": "CREATE",
+    "subAction": "STAR"
+  },
+  "parallelogram": {
+    "action": "CREATE",
+    "subAction": "PARALLELOGRAM"
+  },
+  "trapezoid": {
+    "action": "CREATE",
+    "subAction": "TRAPEZOID"
+  },
+  "rhombus": {
+    "action": "CREATE",
+    "subAction": "RHOMBUS"
+  },
+  "kite": {
+    "action": "CREATE",
+    "subAction": "KITE"
+  },
+  "cube": {
+    "action": "CREATE",
+    "subAction": "CUBE"
+  },
+  "cuboid": {
+    "action": "CREATE",
+    "subAction": "CUBOID"
+  },
+  "sphere": {
+    "action": "CREATE",
+    "subAction": "SPHERE"
+  },
+  "ellipsoid": {
+    "action": "CREATE",
+    "subAction": "ELLIPSOID"
+  },
+  "hemisphere": {
+    "action": "CREATE",
+    "subAction": "HEMISPHERE"
+  },
+  "cylinder": {
+    "action": "CREATE",
+    "subAction": "CYLINDER"
+  },
+  "cone": {
+    "action": "CREATE",
+    "subAction": "CONE"
+  },
+  "frustum": {
+    "action": "CREATE",
+    "subAction": "FRUSTUM"
+  },
+  "torus": {
+    "action": "CREATE",
+    "subAction": "TORUS"
+  },
+  "tube": {
+    "action": "CREATE",
+    "subAction": "TUBE"
+  },
+  "capsule": {
+    "action": "CREATE",
+    "subAction": "CAPSULE"
+  },
+  "prism": {
+    "action": "CREATE",
+    "subAction": "PRISM"
+  },
+  "pyramid": {
+    "action": "CREATE",
+    "subAction": "PYRAMID"
+  },
+  "tetrahedron": {
+    "action": "CREATE",
+    "subAction": "TETRAHEDRON"
+  },
+  "octahedron": {
+    "action": "CREATE",
+    "subAction": "OCTAHEDRON"
+  },
+  "dodecahedron": {
+    "action": "CREATE",
+    "subAction": "DODECAHEDRON"
+  },
+  "icosahedron": {
+    "action": "CREATE",
+    "subAction": "ICOSAHEDRON"
+  },
+  "wedge": {
+    "action": "CREATE",
+    "subAction": "WEDGE"
+  },
+  "point": {
+    "action": "CREATE",
+    "subAction": "POINT"
+  },
+  "line": {
+    "action": "CREATE",
+    "subAction": "LINE"
+  },
+  "plot": {
+    "action": "PLOT",
+    "subAction": "FUNCTION"
+  },
+  "midpoint": {
+    "action": "FIND",
+    "subAction": "MIDPOINT"
+  },
+  "length": {
+    "action": "FIND",
+    "subAction": "LENGTH"
+  },
+  "tangent": {
+    "action": "CONSTRUCT",
+    "subAction": "TANGENT"
+  },
+  "anchor": {
+    "action": "CREATE",
+    "subAction": "ANCHOR"
+  },
+  "update": {
+    "action": "CHANGE",
+    "subAction": "COLOR"
+  },
+  "unsupported": {
+    "action": "UNSUPPORTED",
+    "subAction": "UNSUPPORTED"
+  }
+}

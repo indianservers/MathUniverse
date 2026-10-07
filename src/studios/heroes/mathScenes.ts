@@ -1,13 +1,17 @@
+
+import { drawStudioObjects } from './drawStudioObjects';
 type C = CanvasRenderingContext2D;
 
 function gamma(x:number):number { const coefficients=[676.5203681218851,-1259.1392167224028,771.3234287776531,-176.6150291621406,12.507343278686905,-.13857109526572012,9.984369578019572e-6,1.5056327351493116e-7]; if(x<.5)return Math.PI/(Math.sin(Math.PI*x)*gamma(1-x));const z=x-1;let a=.9999999999998099;coefficients.forEach((v,i)=>{a+=v/(z+i+1);});const t=z+7.5;return Math.sqrt(2*Math.PI)*t**(z+.5)*Math.exp(-t)*a; }
 function besselJ0(x:number){let term=1,sum=1;for(let k=1;k<60;k++){term*=-(x*x/4)/(k*k);sum+=term;if(Math.abs(term)<1e-13)break;}return sum;}
 const cyan='#36d9ff',purple='#aa72ff',gold='#ffc66a';
 export function drawMathScene(c:C,id:string,width:number,height:number,t:number){
- c.clearRect(0,0,width,height);c.save();const fit=Math.min(width/760,height/360);c.translate((width-760*fit)/2,(height-360*fit)/2);c.scale(fit,fit);
+ const compact=width<520,stageWidth=compact?400:760,stageHeight=compact?760:620;
+ c.clearRect(0,0,width,height);c.save();const fit=Math.min(width/stageWidth,height/stageHeight);c.translate((width-stageWidth*fit)/2,(height-stageHeight*fit)/2);c.scale(fit,fit);
+ c.save();c.translate(compact?30:38,compact?60:150);c.scale(compact?.45:.9,compact?.45:.9);
  const reveal=Math.min(1,t/1.1);c.globalAlpha=reveal;
  const line=(points:number[][],color=cyan,w=2)=>{c.beginPath();const visiblePoints=t<.9?points.slice(0,Math.max(2,Math.ceil(points.length*t/.9))):points;visiblePoints.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.strokeStyle=color;c.lineWidth=w;c.shadowColor=color;c.shadowBlur=w>1?9:0;c.stroke();c.shadowBlur=0;};
- const text=(s:string,x:number,y:number,color='#a7c9ec',size=14)=>{c.save();c.globalAlpha*=Math.min(1,Math.max(0,(t-.45)/.55));c.font=`${size}px Georgia`;c.fillStyle=color;c.fillText(s,x,y);c.restore();};
+ const text=(s:string,x:number,y:number,color='#a7c9ec',size=14)=>{c.save();c.globalAlpha*=Math.min(1,Math.max(0,(t-.45)/.55));c.font=`${size}px "Cambria Math", Georgia, serif`;c.fillStyle=color;c.fillText(s,x,y);c.restore();};
  const dot=(x:number,y:number,r=4,color=cyan)=>{c.fillStyle=color;c.shadowColor=color;c.shadowBlur=15;c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fill();c.shadowBlur=0;};
  const ring=(x:number,y:number,rx:number,ry=rx,color=cyan)=>{c.strokeStyle=color;c.lineWidth=1.5;c.shadowColor=color;c.shadowBlur=8;c.beginPath();c.ellipse(x,y,rx,ry,0,0,Math.PI*2);c.stroke();c.shadowBlur=0;};
  const curve=(f:(x:number)=>number,x0=100,x1=690,color=cyan)=>line(Array.from({length:130},(_,i)=>{const x=x0+(x1-x0)*i/129;return[x,f(x)];}),color);
@@ -24,8 +28,9 @@ export function drawMathScene(c:C,id:string,width:number,height:number,t:number)
   ring(380,148,65,65,purple);for(let k=0;k<4;k++){const a=k*Math.PI/2+angle;dot(380+65*Math.cos(a),148+65*Math.sin(a),6);text(String(k),373+85*Math.cos(a),153+85*Math.sin(a));}text('a ↦ a + 1 (mod 4)',310,242);
   for(let j=0;j<12;j++){const a=j*Math.PI/6+angle;ring(590+38*Math.cos(a),185+17*Math.sin(a),44,23,j%2?purple:cyan);}text('Symmetry preserves structure',485,284);line([[320,290],[370,270],[420,290],[370,312],[320,290]],purple);
  }else if(id==='geometry'){
-  const cx=315,cy=180,r=88;ring(cx,cy,r,r);const pts=[[cx,cy-r],[cx-r*.866,cy+r*.5],[cx+r*.866,cy+r*.5]];line([...pts,pts[0]],gold,2.5);pts.forEach(([x,y],i)=>{dot(x,y);text('ABC'[i],x+10,y-8);});line([[cx,cy-r],[cx,cy+r]],purple);line([[cx-r,cy],[cx+r,cy]],'#6686b1',1);const a=angle;line([[cx,cy],[cx+r*Math.cos(a),cy+r*Math.sin(a)]],cyan);dot(cx+r*Math.cos(a),cy+r*Math.sin(a));line([[cx+r,80],[cx+r,290]],purple);text('Construction → dimension',215,307);
-  const points=Array.from({length:8},(_,i)=>{const x=(i&1?1:-1)*52,z=(i&2?1:-1)*52,y=(i&4?1:-1)*52;return[580+x*Math.cos(a)+z*Math.sin(a),176+y*.85+(-x*Math.sin(a)+z*Math.cos(a))*.35];});points.forEach((p,i)=>[1,2,4].forEach(bit=>{if(!(i&bit))line([p,points[i|bit]],purple);}));ring(578,284,94,24);text('2D ↔ 3D',545,318);
+  const cx=280,cy=164,r=64;ring(cx,cy,r,r);const pts=[[cx,cy-r],[cx-r*.866,cy+r*.5],[cx+r*.866,cy+r*.5]];line([...pts,pts[0]],gold,2.5);pts.forEach(([x,y],i)=>{dot(x,y);text('ABC'[i],x+10,y-8);});line([[cx,cy-r],[cx,cy+r]],purple);line([[cx-r,cy],[cx+r,cy]],'#6686b1',1);const a=angle;line([[cx,cy],[cx+r*Math.cos(a),cy+r*Math.sin(a)]],cyan);dot(cx+r*Math.cos(a),cy+r*Math.sin(a));line([[cx+r,98],[cx+r,231]],purple);text('Construct · measure · prove',208,246,'#a7c9ec',12);
+  const points=Array.from({length:8},(_,i)=>{const x=(i&1?1:-1)*40,z=(i&2?1:-1)*40,y=(i&4?1:-1)*40;return[500+x*Math.cos(a)+z*Math.sin(a),163+y*.85+(-x*Math.sin(a)+z*Math.cos(a))*.35];});points.forEach((p,i)=>[1,2,4].forEach(bit=>{if(!(i&bit))line([p,points[i|bit]],purple);}));text('2D ↔ 3D',474,235,'#a7c9ec',12);
+
  }else if(id==='calculus'){
   axes(135,282);const f=(x:number)=>278-((x-150)/40)**2;const n=5+Math.floor((phase/12)*16),step=430/n;for(let i=0;i<n;i++){const x=150+i*step,y=Math.max(68,f(x+step*.5));c.fillStyle=`rgba(93,103,242,${.14+i/n*.25})`;c.fillRect(x,y,step-1,282-y);line([[x,282],[x,y],[x+step,y]],purple,1);}
   curve(f,145,575);const x=200+(Math.sin(t*.35)+1)*150,y=f(x),m=-(x-150)/800;line([[x-60,y-m*60],[x+60,y+m*60]],gold);dot(x,y,6,gold);text(`f′(x) = ${((x-150)/20).toFixed(2)}`,x+10,y-17);text('Riemann sums → area',420,316,purple);text('n = '+n,605,270);
@@ -58,4 +63,6 @@ export function drawMathScene(c:C,id:string,width:number,height:number,t:number)
  }
  // Slow moving light in the display plinth, separate from the mathematical motion.
  const glow=c.createRadialGradient(410+80*Math.sin(t*.18),327,0,410,327,180);glow.addColorStop(0,'#36b7ff30');glow.addColorStop(1,'#36b7ff00');c.fillStyle=glow;c.fillRect(180,288,460,70);c.restore();
+ drawStudioObjects(c,id,t,compact);c.restore();
 }
+

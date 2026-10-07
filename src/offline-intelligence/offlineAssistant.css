@@ -1,0 +1,52 @@
+.offline-assistant { position:fixed; right:18px; bottom:32px; z-index:75; font-size:14px; }
+.offline-assistant-toggle { position:relative; display:flex; align-items:center; justify-content:center; width:76px; height:88px; padding:0; border:0; background:transparent; color:#155e75; cursor:pointer; touch-action:manipulation; }
+.math-robo { width:76px; height:88px; overflow:visible; filter:drop-shadow(0 5px 8px #0e749035); transition:transform .2s; }
+.offline-assistant-toggle:hover .math-robo { transform:translateY(-4px) rotate(-3deg); }
+.offline-assistant-toggle:focus-visible { outline:3px solid #06b6d4; outline-offset:4px; border-radius:16px; }
+.robo-body { animation:robo-float 4s ease-in-out infinite; transform-origin:70px 80px; }
+.robo-arm { transform-origin:100px 86px; animation:robo-wave 6s ease-in-out infinite; }
+.robo-eyes { transform-origin:72px 44px; animation:robo-blink 5s infinite; filter:drop-shadow(0 0 3px #22d3ee); }
+.math-robo.is-thinking .robo-head { animation:robo-think .8s ease-in-out infinite alternate; transform-origin:72px 75px; }
+.robo-greeting { position:absolute; bottom:100px; right:0; white-space:nowrap; background:#0e7490; color:white; border-radius:12px 12px 3px 12px; padding:6px 10px; font-size:11px; opacity:0; transform:translateY(5px); transition:.2s; pointer-events:none; }
+.offline-assistant-toggle:hover .robo-greeting,.offline-assistant-toggle:focus-visible .robo-greeting { opacity:1; transform:translateY(0); }
+.offline-assistant-body { position:absolute; bottom:104px; right:0; width:420px; max-width:calc(100vw - 24px); max-height:calc(100dvh - 160px); display:flex; flex-direction:column; overflow:hidden; background:#fff; color:#0f172a; border:1px solid #a5d8e2; border-radius:20px; padding:0; box-shadow:0 12px 48px #082f4930; }
+.robo-panel-content { min-height:0; overflow:auto; overscroll-behavior:contain; padding:0 18px 18px; }
+.dark .offline-assistant-body { background:#0f172a; color:#e2e8f0; border-color:#164e63; }
+.robo-panel-header { display:flex; flex-shrink:0; justify-content:space-between; align-items:center; border-bottom:1px solid #94a3b830; padding:14px 18px; background:inherit; z-index:2; }
+.robo-command-guide { margin-top:12px; font-size:12px; }
+.robo-learning { padding:10px; border:1px solid #94a3b840; border-radius:12px; margin:12px 0; }
+.robo-learning summary { cursor:pointer; font-weight:700; font-size:12px; }
+.robo-learning input { width:100%; padding:8px; margin-bottom:10px; border:1px solid #94a3b8; border-radius:8px; background:transparent; color:inherit; }
+.robo-learning input:focus-visible { outline:2px solid #06b6d4; outline-offset:2px; }
+.offline-assistant-body .robo-learning-status { font-size:11px; color:#0891b2; }
+.robo-command-guide input { width:100%; border:1px solid #94a3b8; border-radius:8px; padding:8px; background:transparent; margin-top:6px; }
+.robo-panel-header strong { display:block; font-size:18px; }
+.robo-panel-header span { display:block; font-size:11px; color:#0891b2; margin-top:3px; }
+.robo-panel-header button { border:0; background:#94a3b818; border-radius:50%; width:32px; height:32px; font-size:24px; }
+.offline-assistant-body p { margin:12px 0; line-height:1.55; }
+.offline-assistant-body label { display:block; font-size:12px; font-weight:700; margin-bottom:6px; }
+.offline-assistant-body textarea { width:100%; padding:10px; border:1px solid #94a3b8; border-radius:12px; background:transparent; resize:vertical; }
+.offline-assistant-body textarea:focus { outline:2px solid #06b6d4; outline-offset:2px; }
+.offline-assistant-body form button { background:#0e7490; color:white; border-radius:10px; padding:8px 14px; margin-top:8px; font-weight:700; }
+.offline-assistant-body button:disabled { opacity:.5; }
+.offline-assistant-examples { display:flex; flex-wrap:wrap; gap:6px; margin:12px 0; }
+.offline-assistant-examples button { border:1px solid #94a3b840; background:#06b6d408; border-radius:12px; padding:5px 9px; font-size:11px; }
+.robo-answer { border-top:1px solid #94a3b830; }
+.robo-voice-controls { margin-top:12px; padding:10px; border:1px solid #94a3b840; border-radius:12px; }
+.robo-voice-controls p { font-size:11px; margin:8px 0; }
+.robo-voice-controls select { width:100%; padding:6px; border:1px solid #94a3b8; border-radius:8px; background:inherit; color:inherit; }
+.robo-voice-actions { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.robo-voice-actions button { border:1px solid #0891b2; border-radius:8px; padding:6px 10px; background:#06b6d410; color:inherit; font-size:12px; }
+.robo-answer ol { padding-left:20px; margin-top:10px; }
+.robo-answer li { margin:8px 0; line-height:1.5; }
+.robo-answer summary,.robo-history summary { cursor:pointer; font-weight:700; font-size:12px; }
+.robo-confidence { display:block; font-size:11px; color:#0891b2; margin-bottom:10px; }
+.offline-assistant-body small { display:block; margin-top:12px; font-size:10px; color:#64748b; }
+.offline-assistant-body .geo-embedded-graph-body,.offline-assistant-body .geo-lesson-editor { height:420px; }
+.offline-assistant-body.has-visual { width:900px; }
+@keyframes robo-float { 50% { transform:translateY(-4px); } }
+@keyframes robo-wave { 0%,65%,100% { transform:rotate(0deg); } 75%,85% { transform:rotate(-18deg); } 80%,90% { transform:rotate(5deg); } }
+@keyframes robo-blink { 0%,43%,47%,100% { transform:scaleY(1); } 45% { transform:scaleY(.12); } }
+@keyframes robo-think { to { transform:rotate(6deg); } }
+@media(max-width:600px) { .offline-assistant { right:12px; bottom:66px; } .offline-assistant-toggle { width:64px; height:74px; } .math-robo { width:64px; height:74px; } .robo-greeting { bottom:86px; } .offline-assistant-body { position:fixed; bottom:156px; right:12px; left:12px; width:auto!important; max-height:calc(100dvh - 180px); padding:14px; } }
+@media(prefers-reduced-motion:reduce) { .robo-body,.robo-arm,.robo-eyes,.math-robo.is-thinking .robo-head { animation:none; } .math-robo,.robo-greeting { transition:none; } }

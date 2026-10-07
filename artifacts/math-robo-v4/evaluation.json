@@ -1,0 +1,2220 @@
+{
+  "name": "Math Robo Intelligence",
+  "version": 4,
+  "architecture": "768 → 128 → 64 shared encoder; action, subAction, context-conditioned mode and objectType heads",
+  "trainedAt": "2026-10-07T17:18:07.371Z",
+  "trainingSamples": 1560,
+  "validationSamples": 494,
+  "testSamples": 494,
+  "totalSamples": 2548,
+  "parameters": 116893,
+  "weightBytes": 467572,
+  "epochs": 24,
+  "backend": "cpu",
+  "metrics": {
+    "rows": 494,
+    "actionAccuracy": 0.9251012145748988,
+    "subActionAccuracy": 0.9190283400809717,
+    "modeAccuracy": 1,
+    "objectTypeAccuracy": 0.9757085020242915,
+    "semanticExactMatch": 1,
+    "parameterExtractionAccuracy": 1,
+    "targetResolutionAccuracy": 1,
+    "targetRows": 168,
+    "confusionMatrix": [
+      [
+        232,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        56,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        4,
+        30,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        12,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        4,
+        0,
+        12,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        24,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        20,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        20,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        16
+      ]
+    ],
+    "actionLabels": [
+      "CREATE",
+      "PLOT",
+      "FIND",
+      "CHANGE",
+      "MOVE",
+      "ROTATE",
+      "SCALE",
+      "RESIZE",
+      "REFLECT",
+      "CONSTRUCT",
+      "MARK",
+      "SHOW",
+      "HIDE",
+      "DELETE",
+      "SELECT",
+      "DESELECT",
+      "DUPLICATE",
+      "UNDO",
+      "REDO",
+      "COUNT",
+      "COMPARE",
+      "CHECK"
+    ],
+    "perAction": [
+      {
+        "action": "CREATE",
+        "precision": 0.9789029535864979,
+        "recall": 1,
+        "f1": 0.9893390191897655,
+        "rows": 232
+      },
+      {
+        "action": "PLOT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 4
+      },
+      {
+        "action": "FIND",
+        "precision": 0.7777777777777778,
+        "recall": 1,
+        "f1": 0.8750000000000001,
+        "rows": 56
+      },
+      {
+        "action": "CHANGE",
+        "precision": 0.8823529411764706,
+        "recall": 0.8823529411764706,
+        "f1": 0.8823529411764706,
+        "rows": 34
+      },
+      {
+        "action": "MOVE",
+        "precision": 0.8,
+        "recall": 1,
+        "f1": 0.888888888888889,
+        "rows": 4
+      },
+      {
+        "action": "ROTATE",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 4
+      },
+      {
+        "action": "SCALE",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 4
+      },
+      {
+        "action": "RESIZE",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "rows": 4
+      },
+      {
+        "action": "REFLECT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 12
+      },
+      {
+        "action": "CONSTRUCT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 8
+      },
+      {
+        "action": "MARK",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "rows": 16
+      },
+      {
+        "action": "SHOW",
+        "precision": 0.8571428571428571,
+        "recall": 1,
+        "f1": 0.923076923076923,
+        "rows": 24
+      },
+      {
+        "action": "HIDE",
+        "precision": 1,
+        "recall": 0.25,
+        "f1": 0.4,
+        "rows": 4
+      },
+      {
+        "action": "DELETE",
+        "precision": 0.7272727272727273,
+        "recall": 1,
+        "f1": 0.8421052631578948,
+        "rows": 8
+      },
+      {
+        "action": "SELECT",
+        "precision": 1,
+        "recall": 0.875,
+        "f1": 0.9333333333333333,
+        "rows": 8
+      },
+      {
+        "action": "DESELECT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 4
+      },
+      {
+        "action": "DUPLICATE",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "rows": 4
+      },
+      {
+        "action": "UNDO",
+        "precision": 0.42857142857142855,
+        "recall": 0.75,
+        "f1": 0.5454545454545454,
+        "rows": 4
+      },
+      {
+        "action": "REDO",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "rows": 4
+      },
+      {
+        "action": "COUNT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 20
+      },
+      {
+        "action": "COMPARE",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 20
+      },
+      {
+        "action": "CHECK",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 16
+      }
+    ],
+    "errors": [
+      {
+        "phrase": "Find where the last two lines intersect",
+        "expected": "FIND:INTERSECTION",
+        "predicted": "FIND:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Recolor it blue",
+        "expected": "CHANGE:COLOR",
+        "predicted": "FIND:COLOR",
+        "reason": ""
+      },
+      {
+        "phrase": "Recolor it blue",
+        "expected": "CHANGE:COLOR",
+        "predicted": "FIND:UNIFORM",
+        "reason": ""
+      },
+      {
+        "phrase": "Recolor it blue",
+        "expected": "CHANGE:COLOR",
+        "predicted": "FIND:COLOR",
+        "reason": ""
+      },
+      {
+        "phrase": "Recolor it blue",
+        "expected": "CHANGE:COLOR",
+        "predicted": "FIND:UNIFORM",
+        "reason": ""
+      },
+      {
+        "phrase": "Scale it by 2",
+        "expected": "SCALE:UNIFORM",
+        "predicted": "SCALE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Scale it by 2",
+        "expected": "SCALE:UNIFORM",
+        "predicted": "SCALE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Resize its width to 4",
+        "expected": "RESIZE:OBJECT",
+        "predicted": "CHANGE:WIDTH",
+        "reason": ""
+      },
+      {
+        "phrase": "Resize its width to 4",
+        "expected": "RESIZE:OBJECT",
+        "predicted": "CHANGE:WIDTH",
+        "reason": ""
+      },
+      {
+        "phrase": "Resize its width to 4",
+        "expected": "RESIZE:OBJECT",
+        "predicted": "CHANGE:WIDTH",
+        "reason": ""
+      },
+      {
+        "phrase": "Resize its width to 4",
+        "expected": "RESIZE:OBJECT",
+        "predicted": "CHANGE:WIDTH",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at it",
+        "expected": "MARK:POINT",
+        "predicted": "CREATE:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at it",
+        "expected": "MARK:POINT",
+        "predicted": "CREATE:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at it",
+        "expected": "MARK:POINT",
+        "predicted": "CREATE:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at it",
+        "expected": "MARK:POINT",
+        "predicted": "CREATE:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the midpoint",
+        "expected": "MARK:MIDPOINT",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the midpoint",
+        "expected": "MARK:MIDPOINT",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the midpoint",
+        "expected": "MARK:MIDPOINT",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the midpoint",
+        "expected": "MARK:MIDPOINT",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the center",
+        "expected": "MARK:CENTER",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the center",
+        "expected": "MARK:CENTER",
+        "predicted": "FIND:CENTER",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the center",
+        "expected": "MARK:CENTER",
+        "predicted": "FIND:CENTER",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the center",
+        "expected": "MARK:CENTER",
+        "predicted": "FIND:CENTER",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the intersection",
+        "expected": "MARK:INTERSECTION",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the intersection",
+        "expected": "MARK:INTERSECTION",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the intersection",
+        "expected": "MARK:INTERSECTION",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the intersection",
+        "expected": "MARK:INTERSECTION",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Hide the selected object",
+        "expected": "HIDE:OBJECT",
+        "predicted": "DELETE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Hide the selected object",
+        "expected": "HIDE:OBJECT",
+        "predicted": "DELETE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Hide the selected object",
+        "expected": "HIDE:OBJECT",
+        "predicted": "DELETE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Delete all objects",
+        "expected": "DELETE:ALL",
+        "predicted": "DELETE:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Select the red circle",
+        "expected": "SELECT:OBJECT",
+        "predicted": "MOVE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Select everything",
+        "expected": "SELECT:ALL",
+        "predicted": "SELECT:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Select everything",
+        "expected": "SELECT:ALL",
+        "predicted": "SELECT:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Select everything",
+        "expected": "SELECT:ALL",
+        "predicted": "SELECT:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Select everything",
+        "expected": "SELECT:ALL",
+        "predicted": "SELECT:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Please duplicate it",
+        "expected": "DUPLICATE:OBJECT",
+        "predicted": "SHOW:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Please duplicate it",
+        "expected": "DUPLICATE:OBJECT",
+        "predicted": "SHOW:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Please duplicate it",
+        "expected": "DUPLICATE:OBJECT",
+        "predicted": "SHOW:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Please duplicate it",
+        "expected": "DUPLICATE:OBJECT",
+        "predicted": "SHOW:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Undo that",
+        "expected": "UNDO:LAST",
+        "predicted": "CREATE:LAST",
+        "reason": ""
+      },
+      {
+        "phrase": "Redo the last action",
+        "expected": "REDO:LAST",
+        "predicted": "UNDO:LAST",
+        "reason": ""
+      },
+      {
+        "phrase": "Redo the last action",
+        "expected": "REDO:LAST",
+        "predicted": "UNDO:LAST",
+        "reason": ""
+      },
+      {
+        "phrase": "Redo the last action",
+        "expected": "REDO:LAST",
+        "predicted": "UNDO:LAST",
+        "reason": ""
+      },
+      {
+        "phrase": "Redo the last action",
+        "expected": "REDO:LAST",
+        "predicted": "UNDO:LAST",
+        "reason": ""
+      },
+      {
+        "phrase": "How many points",
+        "expected": "COUNT:POINTS",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many points",
+        "expected": "COUNT:POINTS",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many lines",
+        "expected": "COUNT:LINES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many lines",
+        "expected": "COUNT:LINES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many lines",
+        "expected": "COUNT:LINES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many lines",
+        "expected": "COUNT:LINES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Count all shapes",
+        "expected": "COUNT:SHAPES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many vertices",
+        "expected": "COUNT:VERTICES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many vertices",
+        "expected": "COUNT:VERTICES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many vertices",
+        "expected": "COUNT:VERTICES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many vertices",
+        "expected": "COUNT:VERTICES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Verify that point A is on the line",
+        "expected": "CHECK:POINT_ON_LINE",
+        "predicted": "CHECK:POINT_ON_CIRCLE",
+        "reason": ""
+      },
+      {
+        "phrase": "Verify that point A is on the line",
+        "expected": "CHECK:POINT_ON_LINE",
+        "predicted": "CHECK:POINT_ON_CIRCLE",
+        "reason": ""
+      },
+      {
+        "phrase": "Check if point A is on the circle",
+        "expected": "CHECK:POINT_ON_CIRCLE",
+        "predicted": "CHECK:POINT_ON_LINE",
+        "reason": ""
+      },
+      {
+        "phrase": "Check if point A is on the circle",
+        "expected": "CHECK:POINT_ON_CIRCLE",
+        "predicted": "CHECK:POINT_ON_LINE",
+        "reason": ""
+      },
+      {
+        "phrase": "Are these two lines intersecting",
+        "expected": "CHECK:INTERSECTING",
+        "predicted": "CHECK:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Are these two lines intersecting",
+        "expected": "CHECK:INTERSECTING",
+        "predicted": "CHECK:OBJECT",
+        "reason": ""
+      }
+    ]
+  },
+  "validationMetrics": {
+    "rows": 494,
+    "actionAccuracy": 0.9696356275303644,
+    "subActionAccuracy": 0.9251012145748988,
+    "modeAccuracy": 0.9959514170040485,
+    "objectTypeAccuracy": 0.9838056680161943,
+    "semanticExactMatch": 0.9838056680161943,
+    "parameterExtractionAccuracy": 0.9838056680161943,
+    "targetResolutionAccuracy": 1,
+    "targetRows": 168,
+    "confusionMatrix": [
+      [
+        232,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        56,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        34,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        12,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        16,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        24,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        20,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        20,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        16
+      ]
+    ],
+    "actionLabels": [
+      "CREATE",
+      "PLOT",
+      "FIND",
+      "CHANGE",
+      "MOVE",
+      "ROTATE",
+      "SCALE",
+      "RESIZE",
+      "REFLECT",
+      "CONSTRUCT",
+      "MARK",
+      "SHOW",
+      "HIDE",
+      "DELETE",
+      "SELECT",
+      "DESELECT",
+      "DUPLICATE",
+      "UNDO",
+      "REDO",
+      "COUNT",
+      "COMPARE",
+      "CHECK"
+    ],
+    "perAction": [
+      {
+        "action": "CREATE",
+        "precision": 0.9914529914529915,
+        "recall": 1,
+        "f1": 0.9957081545064378,
+        "rows": 232
+      },
+      {
+        "action": "PLOT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 4
+      },
+      {
+        "action": "FIND",
+        "precision": 0.9491525423728814,
+        "recall": 1,
+        "f1": 0.9739130434782608,
+        "rows": 56
+      },
+      {
+        "action": "CHANGE",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 34
+      },
+      {
+        "action": "MOVE",
+        "precision": 0.4,
+        "recall": 1,
+        "f1": 0.5714285714285715,
+        "rows": 4
+      },
+      {
+        "action": "ROTATE",
+        "precision": 1,
+        "recall": 0.25,
+        "f1": 0.4,
+        "rows": 4
+      },
+      {
+        "action": "SCALE",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "rows": 4
+      },
+      {
+        "action": "RESIZE",
+        "precision": 1,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "rows": 4
+      },
+      {
+        "action": "REFLECT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 12
+      },
+      {
+        "action": "CONSTRUCT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 8
+      },
+      {
+        "action": "MARK",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 16
+      },
+      {
+        "action": "SHOW",
+        "precision": 0.96,
+        "recall": 1,
+        "f1": 0.9795918367346939,
+        "rows": 24
+      },
+      {
+        "action": "HIDE",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 4
+      },
+      {
+        "action": "DELETE",
+        "precision": 1,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "rows": 8
+      },
+      {
+        "action": "SELECT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 8
+      },
+      {
+        "action": "DESELECT",
+        "precision": 1,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "rows": 4
+      },
+      {
+        "action": "DUPLICATE",
+        "precision": 0.8,
+        "recall": 1,
+        "f1": 0.888888888888889,
+        "rows": 4
+      },
+      {
+        "action": "UNDO",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 4
+      },
+      {
+        "action": "REDO",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 4
+      },
+      {
+        "action": "COUNT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 20
+      },
+      {
+        "action": "COMPARE",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 20
+      },
+      {
+        "action": "CHECK",
+        "precision": 0.8888888888888888,
+        "recall": 1,
+        "f1": 0.9411764705882353,
+        "rows": 16
+      }
+    ],
+    "errors": [
+      {
+        "phrase": "Show me a point at (1,2)",
+        "expected": "CREATE:POINT",
+        "predicted": "CREATE:POINT",
+        "reason": "Parser SHOW:OBJECT; parameters differ; target matches"
+      },
+      {
+        "phrase": "Show me a point at (1,2)",
+        "expected": "CREATE:POINT",
+        "predicted": "CREATE:POINT",
+        "reason": "Parser SHOW:OBJECT; parameters differ; target matches"
+      },
+      {
+        "phrase": "Show me a point at (1,2,3)",
+        "expected": "CREATE:POINT",
+        "predicted": "CREATE:POINT",
+        "reason": "Parser SHOW:OBJECT; parameters differ; target matches"
+      },
+      {
+        "phrase": "Show me a point at (1,2,3)",
+        "expected": "CREATE:POINT",
+        "predicted": "CREATE:POINT",
+        "reason": "Parser SHOW:OBJECT; parameters differ; target matches"
+      },
+      {
+        "phrase": "Turn it blue",
+        "expected": "CHANGE:COLOR",
+        "predicted": "CHANGE:COLOR",
+        "reason": "Parser ROTATE:OBJECT; parameters differ; target matches"
+      },
+      {
+        "phrase": "Turn it blue",
+        "expected": "CHANGE:COLOR",
+        "predicted": "CHANGE:UNIFORM",
+        "reason": "Parser ROTATE:OBJECT; parameters differ; target matches"
+      },
+      {
+        "phrase": "Turn it blue",
+        "expected": "CHANGE:COLOR",
+        "predicted": "CHANGE:COLOR",
+        "reason": "Parser ROTATE:OBJECT; parameters differ; target matches"
+      },
+      {
+        "phrase": "Turn it blue",
+        "expected": "CHANGE:COLOR",
+        "predicted": "CHANGE:UNIFORM",
+        "reason": "Parser ROTATE:OBJECT; parameters differ; target matches"
+      },
+      {
+        "phrase": "Rename that circle to C",
+        "expected": "CHANGE:LABEL",
+        "predicted": "CHANGE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Rename that circle to C",
+        "expected": "CHANGE:LABEL",
+        "predicted": "CHANGE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Rename that circle to C",
+        "expected": "CHANGE:LABEL",
+        "predicted": "CHANGE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Turn it 90 degrees",
+        "expected": "ROTATE:OBJECT",
+        "predicted": "MOVE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Turn it 90 degrees",
+        "expected": "ROTATE:OBJECT",
+        "predicted": "MOVE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Turn it 90 degrees",
+        "expected": "ROTATE:OBJECT",
+        "predicted": "MOVE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Double it",
+        "expected": "SCALE:UNIFORM",
+        "predicted": "MOVE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Double it",
+        "expected": "SCALE:UNIFORM",
+        "predicted": "DUPLICATE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Double it",
+        "expected": "SCALE:UNIFORM",
+        "predicted": "MOVE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Double it",
+        "expected": "SCALE:UNIFORM",
+        "predicted": "MOVE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Resize it width 8 height 5",
+        "expected": "RESIZE:OBJECT",
+        "predicted": "CREATE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Resize it width 8 height 5",
+        "expected": "RESIZE:OBJECT",
+        "predicted": "CREATE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Mark now it",
+        "expected": "MARK:POINT",
+        "predicted": "MARK:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Mark now it",
+        "expected": "MARK:POINT",
+        "predicted": "MARK:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Mark now it",
+        "expected": "MARK:POINT",
+        "predicted": "MARK:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Mark now it",
+        "expected": "MARK:POINT",
+        "predicted": "MARK:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Remove it",
+        "expected": "DELETE:OBJECT",
+        "predicted": "FIND:ALL",
+        "reason": ""
+      },
+      {
+        "phrase": "Remove it",
+        "expected": "DELETE:OBJECT",
+        "predicted": "FIND:ALL",
+        "reason": ""
+      },
+      {
+        "phrase": "Remove it",
+        "expected": "DELETE:OBJECT",
+        "predicted": "SHOW:ALL",
+        "reason": ""
+      },
+      {
+        "phrase": "Remove it",
+        "expected": "DELETE:OBJECT",
+        "predicted": "FIND:ALL",
+        "reason": ""
+      },
+      {
+        "phrase": "Clear all",
+        "expected": "DELETE:ALL",
+        "predicted": "DELETE:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Clear all",
+        "expected": "DELETE:ALL",
+        "predicted": "DELETE:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Clear all",
+        "expected": "DELETE:ALL",
+        "predicted": "DELETE:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Deselect everything",
+        "expected": "DESELECT:ALL",
+        "predicted": "CHECK:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Deselect everything",
+        "expected": "DESELECT:ALL",
+        "predicted": "CHECK:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Deselect everything",
+        "expected": "DESELECT:ALL",
+        "predicted": "DESELECT:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Deselect everything",
+        "expected": "DESELECT:ALL",
+        "predicted": "DESELECT:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Count all points",
+        "expected": "COUNT:POINTS",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Count all lines",
+        "expected": "COUNT:LINES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Count all lines",
+        "expected": "COUNT:LINES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Count all lines",
+        "expected": "COUNT:LINES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Count all lines",
+        "expected": "COUNT:LINES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many shapes",
+        "expected": "COUNT:SHAPES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many shapes",
+        "expected": "COUNT:SHAPES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many shapes",
+        "expected": "COUNT:SHAPES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many shapes",
+        "expected": "COUNT:SHAPES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Test equal area",
+        "expected": "CHECK:EQUAL_AREA",
+        "predicted": "CHECK:AREA",
+        "reason": ""
+      },
+      {
+        "phrase": "Test equal area",
+        "expected": "CHECK:EQUAL_AREA",
+        "predicted": "CHECK:AREA",
+        "reason": ""
+      },
+      {
+        "phrase": "Verify intersecting",
+        "expected": "CHECK:INTERSECTING",
+        "predicted": "CHECK:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Verify intersecting",
+        "expected": "CHECK:INTERSECTING",
+        "predicted": "CHECK:OBJECT",
+        "reason": ""
+      }
+    ]
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 11.856529133136457
+    },
+    {
+      "epoch": 2,
+      "loss": 8.629574149694198
+    },
+    {
+      "epoch": 3,
+      "loss": 6.759246449592786
+    },
+    {
+      "epoch": 4,
+      "loss": 5.48019299629407
+    },
+    {
+      "epoch": 5,
+      "loss": 4.387139302033645
+    },
+    {
+      "epoch": 6,
+      "loss": 3.33569801403926
+    },
+    {
+      "epoch": 7,
+      "loss": 2.3395582896012526
+    },
+    {
+      "epoch": 8,
+      "loss": 1.4557444459352737
+    },
+    {
+      "epoch": 9,
+      "loss": 0.8362654643181043
+    },
+    {
+      "epoch": 10,
+      "loss": 0.4793304689419575
+    },
+    {
+      "epoch": 11,
+      "loss": 0.2838048456571041
+    },
+    {
+      "epoch": 12,
+      "loss": 0.18295910327862472
+    },
+    {
+      "epoch": 13,
+      "loss": 0.12395233924572284
+    },
+    {
+      "epoch": 14,
+      "loss": 0.09554738241892595
+    },
+    {
+      "epoch": 15,
+      "loss": 0.07338968045436418
+    },
+    {
+      "epoch": 16,
+      "loss": 0.05892772391820565
+    },
+    {
+      "epoch": 17,
+      "loss": 0.047812649722282705
+    },
+    {
+      "epoch": 18,
+      "loss": 0.040575457173280226
+    },
+    {
+      "epoch": 19,
+      "loss": 0.03434673571624817
+    },
+    {
+      "epoch": 20,
+      "loss": 0.029805688999402218
+    },
+    {
+      "epoch": 21,
+      "loss": 0.025877553205459546
+    },
+    {
+      "epoch": 22,
+      "loss": 0.022758726489085418
+    },
+    {
+      "epoch": 23,
+      "loss": 0.020562497469095085
+    },
+    {
+      "epoch": 24,
+      "loss": 0.01827018145376291
+    }
+  ],
+  "featureVersion": "semantic-hash-768-v4",
+  "durationSeconds": 44.0873275
+}

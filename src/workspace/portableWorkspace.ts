@@ -1,6 +1,6 @@
 export const PORTABLE_FILE_MAGIC = "MATHAPP_PORTABLE_FILE" as const;
 export const PORTABLE_SCHEMA_VERSION = 1 as const;
-export const PORTABLE_APP_VERSION = "1.0.1";
+export const PORTABLE_APP_VERSION = "1.0.2";
 export const WORKSPACE_MIME = "application/vnd.mathapp.workspace";
 export const LESSON_MIME = "application/vnd.mathapp.lesson";
 export const WORKSPACE_EXTENSION = ".mathworkspace";

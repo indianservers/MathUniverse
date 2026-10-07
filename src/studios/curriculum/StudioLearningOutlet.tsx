@@ -28,6 +28,8 @@ export default function StudioLearningOutlet(){
   const curriculumId=/^\/studios\/([^/]+)\/curriculum/.exec(pathname)?.[1];
   const studio=studioForPath(pathname)||curriculumStudios.find(s=>s.id===curriculumId);
   if(!studio)return <Outlet/>;
-  const lab=pathname.replace(/\/$/,'')!==studio.base&&!pathname.startsWith('/studios/')||studio.base.startsWith('/math-lab/');
-  return <div className="studio-learning-host"><StoreBridge id={studio.id}/><nav className="studio-learning-nav" aria-label="Studio learning and model controls"><Link to={studio.base}>Studio Home Page</Link><Link to="/">Main App Home Page</Link></nav><div className="studio-learning-content">{lab?<FocusedLab key={pathname}><Outlet/></FocusedLab>:<Outlet/>}</div></div>;
+  const lab=pathname.replace(/\/$/,'')!==studio.base&&!pathname.startsWith('/studios/');
+  return <div className="studio-learning-host" data-studio-home={pathname.replace(/\/$/,'') === studio.base ? studio.id : undefined}><StoreBridge id={studio.id}/><nav className="studio-learning-nav" aria-label="Studio learning and model controls"><Link to={studio.base}>Studio Home Page</Link><Link to="/">Main App Home Page</Link></nav><div className="studio-learning-content">{lab?<FocusedLab key={pathname}><Outlet/></FocusedLab>:<Outlet/>}</div></div>;
 }
+
+

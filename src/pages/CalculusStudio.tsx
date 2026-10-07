@@ -381,13 +381,7 @@ function StudioHome() {
             </section>
           ))}
         </section>
-        <section className="cs-loop" aria-label="Learning loop">
-          <InfoPill icon={<Eye />} title="Observe" text="Visualize concepts with interactive diagrams." onClick={() => document.getElementById("journey")?.scrollIntoView({ behavior: "smooth" })} />
-          <InfoPill icon={<Lightbulb />} title="Understand" text="Build intuition with clear explanations." onClick={() => navigate("/calculus/limits")} />
-          <InfoPill icon={<CircleHelp />} title="Why" text="Discover the ideas and connections behind." onClick={() => navigate("/calculus/integration?mode=ftc")} />
-          <InfoPill icon={<FlaskConical />} title="Try" text="Experiment, manipulate, and see results live." onClick={() => navigate(last?.route ?? "/calculus/derivatives")} />
-          <InfoPill icon={<Trophy />} title="Challenge" text="Solve problems and test your mastery." onClick={() => document.getElementById("daily-challenge")?.scrollIntoView({ behavior: "smooth" })} />
-        </section>
+
       </div>
       <aside className="cs-home-side">
         <section className="cs-card cs-continue">
@@ -440,6 +434,13 @@ function StudioHome() {
           <p className="cs-xp-row"><span>+ 50 XP</span> <span>+ 1</span></p>
         </section>
       </aside>
+        <section className="cs-loop" aria-label="Learning loop">
+          <InfoPill icon={<Eye />} title="Observe" text="Visualize concepts with interactive diagrams." onClick={() => document.getElementById("journey")?.scrollIntoView({ behavior: "smooth" })} />
+          <InfoPill icon={<Lightbulb />} title="Understand" text="Build intuition with clear explanations." onClick={() => navigate("/calculus/limits")} />
+          <InfoPill icon={<CircleHelp />} title="Why" text="Discover the ideas and connections behind." onClick={() => navigate("/calculus/integration?mode=ftc")} />
+          <InfoPill icon={<FlaskConical />} title="Try" text="Experiment, manipulate, and see results live." onClick={() => navigate(last?.route ?? "/calculus/derivatives")} />
+          <InfoPill icon={<Trophy />} title="Challenge" text="Solve problems and test your mastery." onClick={() => document.getElementById("daily-challenge")?.scrollIntoView({ behavior: "smooth" })} />
+        </section>
     </div>
   );
 }
@@ -1469,3 +1470,4 @@ function fmt(value: number, digits = 2) {
 function pretty(value: string) {
   return value.replace(/\^2/g, "²").replace(/\^3/g, "³").replace(/\*/g, "");
 }
+

@@ -1,6 +1,9 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { drawMathScene } from './mathScenes';
+import { visibleStudioObjects } from './studioObjects';
+
+
 import './cinematicHeroes.css';
 export const heroCatalog: Record<string, [string,string,string,string,string,string]> = {
  algebra:['Algebra Studio','Patterns Become','Powerful','Explore equations, transformations and polynomial patterns through visual reasoning.','/algebra/equations','3x + 5 = 2x − 1  ⇒  x = −6'],
@@ -24,22 +27,29 @@ export const heroCatalog: Record<string, [string,string,string,string,string,str
 };
 export default function CinematicHero({id,children,secondaryHref}:{id:string;children?:ReactNode;secondaryHref?:string}){
  const ref=useRef<HTMLElement>(null),canvas=useRef<HTMLCanvasElement>(null);
+ const clock=useRef(0);
+ const [playing,setPlaying]=useState(true),[replay,setReplay]=useState(0);
+ const [reducedMotion,setReducedMotion]=useState(false);
  const info=heroCatalog[id];
+ const objects=visibleStudioObjects(id);
  useEffect(()=>{
   const host=ref.current,c=canvas.current;if(!host||!c)return;const ctx=c.getContext('2d');if(!ctx)return;
-  let frame=0,visible=false,hidden=document.hidden,elapsed=0,last=0,width=760,height=360;
-  const media=matchMedia('(prefers-reduced-motion: reduce)');let reduced=media.matches;
-  const paint=(time:number)=>{frame=0;if(!visible||hidden)return;if(last)elapsed+=Math.min(.05,(time-last)/1000);last=time;drawMathScene(ctx,id,width,height,reduced?8:elapsed);if(!reduced)frame=requestAnimationFrame(paint);};
+  let frame=0,visible=false,hidden=document.hidden,last=0,lastPaint=0,width=760,height=620;
+  const media=matchMedia('(prefers-reduced-motion: reduce)');let reduced=media.matches;setReducedMotion(reduced);
+  const paint=(time:number)=>{frame=0;if(!visible||hidden)return;if(last&&playing&&!reduced)clock.current+=Math.min(.05,(time-last)/1000);last=time;if(time-lastPaint>=32||!playing||reduced){drawMathScene(ctx,id,width,height,reduced?8:clock.current);lastPaint=time;}if(!reduced&&playing)frame=requestAnimationFrame(paint);};
   const start=()=>{cancelAnimationFrame(frame);last=0;if(visible&&!hidden)frame=requestAnimationFrame(paint);};
   const resize=new ResizeObserver(()=>{const r=c.getBoundingClientRect();width=r.width;height=r.height;const dpr=Math.min(devicePixelRatio||1,1.5);c.width=Math.round(width*dpr);c.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);start();});resize.observe(c);
   const observer=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;host.dataset.active=String(visible);if(visible)host.dataset.entered='true';start();},{threshold:.08});observer.observe(host);
-  const preference=()=>{reduced=media.matches;start();};media.addEventListener('change',preference);
+  const preference=()=>{reduced=media.matches;setReducedMotion(reduced);start();};media.addEventListener('change',preference);
   const visibility=()=>{hidden=document.hidden;start();};document.addEventListener('visibilitychange',visibility);
   return()=>{cancelAnimationFrame(frame);resize.disconnect();observer.disconnect();media.removeEventListener('change',preference);document.removeEventListener('visibilitychange',visibility);};
- },[id]);
+ },[id,playing,replay]);
  if(!info)return null;
- return <section ref={ref} className={`cinematic-hero hero-${id}`} data-hero={id} aria-label={`${info[0]} introduction`} onPointerMove={e=>{const r=e.currentTarget.getBoundingClientRect();e.currentTarget.style.setProperty('--pointer-x',`${(e.clientX-r.left)/r.width*12-6}px`);e.currentTarget.style.setProperty('--pointer-y',`${(e.clientY-r.top)/r.height*8-4}px`);}} onPointerLeave={e=>{e.currentTarget.style.setProperty('--pointer-x','0px');e.currentTarget.style.setProperty('--pointer-y','0px');}}>
+ return <section ref={ref} className={`cinematic-hero hero-${id}`} data-hero={id} aria-label={`${info[0]} introduction`} onPointerMove={e=>{if(!playing||reducedMotion)return;const r=e.currentTarget.getBoundingClientRect();e.currentTarget.style.setProperty('--pointer-x',`${(e.clientX-r.left)/r.width*12-6}px`);e.currentTarget.style.setProperty('--pointer-y',`${(e.clientY-r.top)/r.height*8-4}px`);}} onPointerLeave={e=>{e.currentTarget.style.setProperty('--pointer-x','0px');e.currentTarget.style.setProperty('--pointer-y','0px');}}>
   <div className="cinematic-copy"><span className="cinematic-kicker">{info[0]} · Explore · Visualize</span><h1>{info[1]}<br/><em>{info[2]}</em></h1><p>{info[3]}</p><div className="cinematic-features"><span>◉ Visual intuition</span><span>✧ Real-world ideas</span><span>↗ Hands-on discovery</span></div><div className="cinematic-actions">{info[4].startsWith('#')?<a href={info[4]} className="cinematic-primary">▶ Start Exploring →</a>:<Link to={info[4]} className="cinematic-primary">▶ Start Learning →</Link>}{secondaryHref?<a href={secondaryHref}>Explore All Topics ↓</a>:<button type="button" onClick={()=>{const next=ref.current?.nextElementSibling;next?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}}>Explore All Topics ↓</button>}</div>{children?<details className="cinematic-existing"><summary>More studio controls</summary>{children}</details>:null}</div>
-  <div className="cinematic-scene"><canvas ref={canvas} aria-hidden="true"/><div className="cinematic-equation">{info[5]}</div><span className="cinematic-scene-caption">{info[0]} · A living mathematical world</span></div>
+  <div className="cinematic-scene"><canvas ref={canvas} role="img" aria-label={`${info[0]} animated scene. ${objects.map(o=>o.name).join(', ')}.`}/><div className="cinematic-motion-tools"><span>{objects.length} concept animations</span><button type="button" disabled={reducedMotion} aria-pressed={reducedMotion||!playing} onClick={()=>setPlaying(!playing)}>{reducedMotion?'Reduced motion':playing?'Pause motion':'Resume motion'}</button><button type="button" onClick={()=>{clock.current=0;setReplay(n=>n+1);}}>Replay scene</button></div><div className="cinematic-equation">{info[5]}</div><details className="cinematic-object-key"><summary>Explore the objects</summary><ul>{objects.map(o=><li key={o.name}><b>{o.name}</b><span>{o.formula}</span></li>)}</ul></details></div>
+
  </section>;
 }
+
+

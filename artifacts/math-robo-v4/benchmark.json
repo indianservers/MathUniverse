@@ -1,0 +1,8 @@
+{
+  "environment": "Node v24.13.1, TensorFlow.js CPU (browser benchmarks measured separately)",
+  "inferenceMs": 1.0172750000000088,
+  "parseMs": 0.06795279999999912,
+  "planMs": 0.02243839999999909,
+  "parameters": 116893,
+  "weightBytes": 467572
+}

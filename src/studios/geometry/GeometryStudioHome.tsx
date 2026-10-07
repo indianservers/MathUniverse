@@ -126,9 +126,11 @@ export default function GeometryStudioHome({ studio }: { studio: StudioMockupDef
         </ol>
         </div>
       </section></CinematicHero>
-      <GeometryWeekStrip />
-      <FirstHourNote completed={session.completed} lastOpenedAt={session.lastOpenedAt} lockedLabel="Proofs and AR" unlockHint="a 2D lab" />
-      <p className="sl-banner">Figure of the day: drag the live bisector above, then open Construction. Chord / tangent / angle colors live in <Link to="/lessons">geometry lessons</Link>, not the workspace.</p>
+      <div className="msk-home">
+        <section>
+          <header className="msk-launch-head">
+            <h2>Explore by Topic</h2>
+            <p>Choose a topic to explore with interactive visual models.</p>
       <div className="msk-concept-orbit msk-geo-orbit" aria-label="Filter labs by kind">
         <div className="msk-orbit-core"><span className="msk-mark">G</span><b>GEOMETRY</b></div>
         {TRACKS.map((item) => (
@@ -143,11 +145,6 @@ export default function GeometryStudioHome({ studio }: { studio: StudioMockupDef
           </button>
         ))}
       </div>
-      <div className="msk-home">
-        <section>
-          <header className="msk-launch-head">
-            <h2>Explore by Topic</h2>
-            <p>Choose a topic to explore with interactive visual models.</p>
             <div className="msk-geo-filters" role="group" aria-label="Board">
               {(["all", "NCERT", "Extra"] as const).map((item) => (
                 <button key={item} type="button" className={board === item ? "active" : ""} aria-pressed={board === item} onClick={() => setBoard(item)}>
@@ -234,6 +231,10 @@ export default function GeometryStudioHome({ studio }: { studio: StudioMockupDef
           ) : null}
         </aside>
       </div>
+      <GeometryWeekStrip />
+      <FirstHourNote completed={session.completed} lastOpenedAt={session.lastOpenedAt} lockedLabel="Proofs and AR" unlockHint="a 2D lab" />
+      <p className="sl-banner">Figure of the day: drag the live bisector above, then open Construction. Chord / tangent / angle colors live in <Link to="/lessons">geometry lessons</Link>, not the workspace.</p>
+
       <section className="msk-strip" aria-label="Learning loop for Geometry">
         {strip.map((item) => (
           <div key={item.title}>
@@ -246,3 +247,5 @@ export default function GeometryStudioHome({ studio }: { studio: StudioMockupDef
     </>
   );
 }
+
+

@@ -34,7 +34,7 @@ function InlinePageNav({ showBack, hidden = false }: { showBack: boolean; hidden
 
 const recentToolsKey = "math-universe-recent-tools";
 
-export const HOME_APP_VERSION = "1.001";
+export const HOME_APP_VERSION = "1.02";
 
 export function AppFooter() {
   const year = new Date().getFullYear();

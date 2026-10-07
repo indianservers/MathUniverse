@@ -46,7 +46,8 @@ import {
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import { EmbeddedWorkspaceContext } from "../workspace/mobile/useWorkspaceOverlay";
 import type { FunctionGraphView } from "../components/math-lab/FunctionGraphCanvas";
 import { ExportImageButton } from "../components/ui/UiFeedback";
 import type { GraphSample } from "../utils/mathEngine/graphSampler";
@@ -228,6 +229,7 @@ export type GraphStudio2DWorkspaceProps = {
 export default function GraphStudio2DWorkspace(
   props: GraphStudio2DWorkspaceProps,
 ) {
+  const embedded = useContext(EmbeddedWorkspaceContext);
   const [tab, setTab] = useState<InspectorTab>("analysis");
   const [leftOpen, setLeftOpen] = useState(
     () =>
@@ -699,7 +701,7 @@ export default function GraphStudio2DWorkspace(
         >
           {props.canvas}
         </div>
-        {overlay.isMobile && selected && !overlay.active ? (
+        {overlay.isMobile && !embedded && selected && !overlay.active ? (
           <ContextInspector
             title={`${selected.name ?? selected.label ?? "f"} • Function`}
             subtitle={selected.input}

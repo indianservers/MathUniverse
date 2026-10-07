@@ -1,0 +1,504 @@
+{
+  "testedAt": "2026-10-07T17:55:03.317Z",
+  "app": "http://localhost:9867",
+  "totalCommands": 400,
+  "passed": 400,
+  "failed": 0,
+  "workspaces": [
+    {
+      "mode": "geometry2d",
+      "commands": 100,
+      "passed": 100,
+      "failed": 0,
+      "uniquePhrases": 34,
+      "report": "artifacts/math-robo-400/geometry2d.json"
+    },
+    {
+      "mode": "geometry3d",
+      "commands": 100,
+      "passed": 100,
+      "failed": 0,
+      "uniquePhrases": 31,
+      "report": "artifacts/math-robo-400/geometry3d.json"
+    },
+    {
+      "mode": "graph2d",
+      "commands": 100,
+      "passed": 100,
+      "failed": 0,
+      "uniquePhrases": 31,
+      "report": "artifacts/math-robo-400/graph2d.json"
+    },
+    {
+      "mode": "graph3d",
+      "commands": 100,
+      "passed": 100,
+      "failed": 0,
+      "uniquePhrases": 19,
+      "report": "artifacts/math-robo-400/graph3d.json"
+    }
+  ],
+  "numericChecks": {
+    "total": 30,
+    "passed": 30,
+    "records": [
+      {
+        "mode": "geometry2d",
+        "number": 5,
+        "phrase": "What is its centroid?",
+        "actual": [
+          4,
+          -9.12850042469573e-16
+        ],
+        "expected": [
+          4,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "mode": "geometry2d",
+        "number": 15,
+        "phrase": "What is its area?",
+        "actual": 24,
+        "expected": 24,
+        "passed": true
+      },
+      {
+        "mode": "geometry2d",
+        "number": 25,
+        "phrase": "What is its area?",
+        "actual": 28.27433388,
+        "expected": 28.274333882308138,
+        "passed": true
+      },
+      {
+        "mode": "geometry2d",
+        "number": 35,
+        "phrase": "What is its area?",
+        "actual": 36,
+        "expected": 36,
+        "passed": true
+      },
+      {
+        "mode": "geometry2d",
+        "number": 45,
+        "phrase": "What is its length?",
+        "actual": 10,
+        "expected": 10,
+        "passed": true
+      },
+      {
+        "mode": "geometry2d",
+        "number": 55,
+        "phrase": "What is its centroid?",
+        "actual": [
+          4,
+          -5.427757009278544e-16
+        ],
+        "expected": [
+          4,
+          0
+        ],
+        "passed": true
+      },
+      {
+        "mode": "geometry2d",
+        "number": 65,
+        "phrase": "What is its area?",
+        "actual": 54,
+        "expected": 54,
+        "passed": true
+      },
+      {
+        "mode": "geometry2d",
+        "number": 75,
+        "phrase": "What is its area?",
+        "actual": 201.06192983,
+        "expected": 201.06192982974676,
+        "passed": true
+      },
+      {
+        "mode": "geometry2d",
+        "number": 85,
+        "phrase": "What is its area?",
+        "actual": 121,
+        "expected": 121,
+        "passed": true
+      },
+      {
+        "mode": "geometry2d",
+        "number": 95,
+        "phrase": "What is its length?",
+        "actual": 10,
+        "expected": 10,
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "number": 5,
+        "phrase": "Find its volume",
+        "actual": 4.1887902,
+        "expected": 4.1887902047863905,
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "number": 15,
+        "phrase": "Find its volume",
+        "actual": 64,
+        "expected": 64,
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "number": 25,
+        "phrase": "Find its volume",
+        "actual": 120,
+        "expected": 120,
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "number": 35,
+        "phrase": "Find its volume",
+        "actual": 301.59289474,
+        "expected": 301.59289474462014,
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "number": 45,
+        "phrase": "Find its volume",
+        "actual": 157.07963268,
+        "expected": 157.07963267948966,
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "number": 55,
+        "phrase": "Find its volume",
+        "actual": 904.77868423,
+        "expected": 904.7786842338604,
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "number": 65,
+        "phrase": "Find its volume",
+        "actual": 729,
+        "expected": 729,
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "number": 75,
+        "phrase": "Find its volume",
+        "actual": 240,
+        "expected": 240,
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "number": 85,
+        "phrase": "Find its volume",
+        "actual": 1526.81402964,
+        "expected": 1526.8140296446395,
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "number": 95,
+        "phrase": "Find its volume",
+        "actual": 628.31853072,
+        "expected": 628.3185307179587,
+        "passed": true
+      },
+      {
+        "mode": "graph2d",
+        "number": 2,
+        "phrase": "Find its roots",
+        "actual": [
+          [
+            -1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "expected": [
+          [
+            -1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "passed": true
+      },
+      {
+        "mode": "graph2d",
+        "number": 12,
+        "phrase": "What are the roots?",
+        "actual": [
+          [
+            -2,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "expected": [
+          [
+            -2,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "passed": true
+      },
+      {
+        "mode": "graph2d",
+        "number": 22,
+        "phrase": "Find the x intercepts",
+        "actual": [
+          [
+            -3,
+            0
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "expected": [
+          [
+            -3,
+            0
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "passed": true
+      },
+      {
+        "mode": "graph2d",
+        "number": 32,
+        "phrase": "Calculate its roots",
+        "actual": [
+          [
+            -4,
+            0
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "expected": [
+          [
+            -4,
+            0
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "passed": true
+      },
+      {
+        "mode": "graph2d",
+        "number": 42,
+        "phrase": "Where does it cross the x-axis?",
+        "actual": [
+          [
+            -5,
+            0
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "expected": [
+          [
+            -5,
+            0
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "passed": true
+      },
+      {
+        "mode": "graph2d",
+        "number": 52,
+        "phrase": "Find its roots",
+        "actual": [
+          [
+            -6,
+            0
+          ],
+          [
+            6,
+            0
+          ]
+        ],
+        "expected": [
+          [
+            -6,
+            0
+          ],
+          [
+            6,
+            0
+          ]
+        ],
+        "passed": true
+      },
+      {
+        "mode": "graph2d",
+        "number": 62,
+        "phrase": "What are the roots?",
+        "actual": [
+          [
+            -7,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "expected": [
+          [
+            -7,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "passed": true
+      },
+      {
+        "mode": "graph2d",
+        "number": 72,
+        "phrase": "Find the x intercepts",
+        "actual": [
+          [
+            -8,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        "expected": [
+          [
+            -8,
+            0
+          ],
+          [
+            8,
+            0
+          ]
+        ],
+        "passed": true
+      },
+      {
+        "mode": "graph2d",
+        "number": 82,
+        "phrase": "Calculate its roots",
+        "actual": [
+          [
+            -9,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        "expected": [
+          [
+            -9,
+            0
+          ],
+          [
+            9,
+            0
+          ]
+        ],
+        "passed": true
+      },
+      {
+        "mode": "graph2d",
+        "number": 92,
+        "phrase": "Where does it cross the x-axis?",
+        "actual": [
+          [
+            -10,
+            0
+          ],
+          [
+            10,
+            0
+          ]
+        ],
+        "expected": [
+          [
+            -10,
+            0
+          ],
+          [
+            10,
+            0
+          ]
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "scope": "100 executed NLP requests per workspace, arranged in ten stateful ten-command sequences. Some phrases repeat with different objects/context. Each request checks response and scene count; numeric checks independently verify all 30 mathematical answers. This is controlled regression coverage, not arbitrary-language accuracy or full visual pixel comparison.",
+  "fixedIssues": [
+    "Incomplete triangle destinations previously accepted as zero-distance moves; now request explicit coordinates.",
+    "Plural and hyphenated intercept queries plus crossing-the-axis phrasing.",
+    "Show graph of expressions previously treated as visibility commands.",
+    "Square/cube dimensions are kept uniform when semantic parameters override legacy defaults."
+  ],
+  "checks": [
+    "Object creation, pronouns, absolute/relative movement, color, rotation, queries, hide/show, duplication, original/copy resolution, deletion, undo and counting.",
+    "Read-only queries leave object counts unchanged.",
+    "An ambiguous move is correctly rejected without mutation."
+  ],
+  "testFile": "tests/workspace/mathRobo400.e2e.ts",
+  "unitRegression": "artifacts/math-robo-400/regression.log",
+  "limitations": [
+    "Scene-count assertions cover Robo-inventoried objects. Existing/manual graph layers are not inventoried and are excluded from the count.",
+    "The 3D graph screenshot took several minutes under browser load. One intermediate geometry rerun hit a navigation timeout; the subsequent final run passed.",
+    "These are 400 stateful command executions with repeated phrases in different contexts, not 400 unique unseen-language samples."
+  ],
+  "verification": {
+    "unitRegression": "665 tests passed across 10 files",
+    "scopedTypecheck": "PASS",
+    "targetedLint": "PASS",
+    "workspaceCommandChecks": "See final per-workspace records; expected rejection of incomplete destination counts as a passed safety check."
+  }
+}

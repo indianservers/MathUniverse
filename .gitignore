@@ -5,3 +5,7 @@ dev-dist
 vite.config.d.ts
 vite.config.js
 *.log
+/tmp/
+/test-results/
+**/*.webm
+**/trace.zip

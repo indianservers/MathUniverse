@@ -4,6 +4,50 @@
 
 Math Universe is a browser-based interactive mathematics learning platform covering algebra, geometry, trigonometry, calculus, complex numbers, linear algebra, and AI applications. Statistics is linked directly to the dedicated Anveshak app. It is designed for visual intuition: formulas become sliders, graphs, SVG diagrams, 3D scenes, simulations, and quizzes.
 
+## Offline natural-language drawing
+
+Click the small animated **Math Robo** on any page (accessible name: **Ask Math · Offline**).
+Paste or type a problem to see the solver answer and expandable solution steps.
+The robot waves, blinks, and shows a thinking animation; reduced-motion settings
+disable animations. The header and close button stay visible while the conversation
+scrolls. Close its panel with the close button or Escape.
+On an ordinary page, math questions use
+the existing solver and drawing requests return an editable embedded visual.
+On a workspace page, drawing requests create objects in the active canvas:
+
+| Workspace | Example requests |
+| --- | --- |
+| 2D Graph | `Plot sin(x)`, `Create triangle base 6 height 4`, `Draw a line from (0,2) to (3,0)` |
+| 3D Graph | `Plot z = sin(x)*cos(y)`, `Create a sphere radius 2`, `Draw line (0,0,0) to (2,3,1)` |
+| 2D Geometry | `Create a blue rectagle 6 wide and 4 tall`, `Create circle radius 2 at (1,1)`, `Create point (2,3)` |
+| 3D Geometry | `Create sphere radius 2`, `Create cube size 3`, `Create cylinder radius 2 height 5`, `Draw line (0,0,0) to (2,3,1)` |
+
+The interpreter runs entirely in the browser using deterministic language rules
+and the existing mathematical parsers. It requires no API key, server, or model
+download. It accepts the spelling `rectagle`, named colors, numeric dimensions,
+and coordinate tuples. Workspace edits participate in existing undo and save
+behavior. Embedded visuals provide an **Open full workspace** button and the
+existing workspace editing/export controls. The shared catalog supports 18 flat
+shapes (including triangles, ellipses, stars, regular polygons, and quadrilaterals)
+and 18 solids (including cuboids, ellipsoids, prisms, pyramids, and polyhedra).
+Flat shapes can also be placed in 3D workspaces.
+
+After creating an object, use `resize it to width 8 height 5`, `scale it by 2`,
+`rotate it 45 degrees`, `tilt it 30 degrees around x axis` (3D), `move it right by 2`,
+or `make it purple`. Commands edit the last Robo-created object and preserve its
+workspace identity. Robo reports a clarification if that object was deleted.
+Its searchable **Command library** contains 520 creation and editing examples,
+validated by the offline regression corpus. This is a rule-based interpreter;
+there is no language-model training, download, or network inference.
+
+Unspecified shapes use visible defaults centered at the origin. Requests with
+missing line endpoints or incompatible dimensions receive a clarification.
+Specify `3D` on ordinary pages when requesting a surface; in 3D Graph, `plot`
+already uses that page's dimension. This initial interpreter supports the
+examples above; unrestricted conversation, named-object references, and compound
+construction instructions are not yet supported. Load/install the app before
+working offline so its bundled workspace assets are available.
+
 ## Key Features
 
 - Premium responsive dashboard with topic cards and progress tracking

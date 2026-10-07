@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-07",
+  "model": "TensorFlow.js neural intent classifier with validated geometry and math tools",
+  "learning": "Explicit corrections, retraining with base-example replay, local persistence and reset",
+  "totalChecks": 600,
+  "passed": 600,
+  "homePageTested": false,
+  "workspaces": [
+    {
+      "workspace": "geometry2d",
+      "path": "/workspace/geometry",
+      "uniqueCommands": 150,
+      "passed": 150,
+      "report": "geometry2d.json",
+      "retriedCases": 4
+    },
+    {
+      "workspace": "geometry3d",
+      "path": "/workspace/3d",
+      "uniqueCommands": 150,
+      "passed": 150,
+      "report": "geometry3d.json",
+      "retriedCases": 1
+    },
+    {
+      "workspace": "graph2d",
+      "path": "/workspace/graph",
+      "uniqueCommands": 150,
+      "passed": 150,
+      "report": "graph2d.json",
+      "retriedCases": 0
+    },
+    {
+      "workspace": "graph3d",
+      "path": "/math-lab/3d-graphing",
+      "uniqueCommands": 150,
+      "passed": 150,
+      "report": "graph3d.json",
+      "retriedCases": 1
+    }
+  ],
+  "productionSmokeChecks": {
+    "passed": 10,
+    "total": 10
+  },
+  "unitChecks": {
+    "passed": 636,
+    "total": 636
+  },
+  "starterModel": {
+    "weightsBytes": 143028,
+    "path": "public/models/math-robo-intents-v3/model.json",
+    "trained": true
+  }
+}

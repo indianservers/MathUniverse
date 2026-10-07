@@ -1,6 +1,6 @@
 {
   "name": "math-universe-visualizations",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -61,6 +61,7 @@
     "@mediapipe/tasks-vision": "1.0.1",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.17.10",
+    "@tensorflow/tfjs": "^4.22.0",
     "@types/cytoscape": "^3.21.9",
     "@types/d3": "^7.4.3",
     "clsx": "^2.1.1",

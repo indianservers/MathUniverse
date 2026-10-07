@@ -4,14 +4,14 @@ import { describe, expect, it } from "vitest";
 import { AppFooter, HOME_APP_VERSION } from "./AppLayout";
 
 describe("home page footer", () => {
-  it("shows Version 1.001 on the home page", () => {
+  it("shows Version 1.02 on the home page", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter initialEntries={["/"]}>
         <AppFooter />
       </MemoryRouter>,
     );
-    expect(HOME_APP_VERSION).toBe("1.001");
-    expect(html).toContain("Version 1.001");
+    expect(HOME_APP_VERSION).toBe("1.02");
+    expect(html).toContain("Version 1.02");
     expect(html).toContain('data-testid="home-app-version"');
   });
 
@@ -21,6 +21,6 @@ describe("home page footer", () => {
         <AppFooter />
       </MemoryRouter>,
     );
-    expect(html).not.toContain("Version 1.001");
+    expect(html).not.toContain("Version 1.02");
   });
 });

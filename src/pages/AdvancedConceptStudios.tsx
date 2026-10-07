@@ -85,12 +85,23 @@ export default function AdvancedConceptStudios() {
   const active = studios.find((studio) => studio.id === activeStudio) ?? studios[0];
 
   return (
-    <MathLabLayout
+    <MathLabLayout compactHeader
       title="Advanced Concept Studios"
       subtitle="Focused interactive coverage for Wolfram-style mathematics categories that were missing or thin."
       notes={<StudioNotes />}
     >
       <CinematicHero id={activeStudio === "differential-equations" ? "advanced-de" : activeStudio} />
+
+
+      <div id="hero-workbench" />
+      <SectionCard title={active.title} description={active.summary} allowFullscreen>
+        {activeStudio === "continued-fractions" && <ContinuedFractionsLab />}
+        {activeStudio === "famous-problems" && <FamousProblemsAtlas />}
+        {activeStudio === "stats-inference" && <StatsInferenceStudio />}
+        {activeStudio === "differential-equations" && <DifferentialEquationsStudio />}
+        {activeStudio === "special-functions" && <SpecialFunctionsGallery />}
+      </SectionCard>
+
       <SectionCard title="Studio Switcher" description="Open one strand at a time, or use the direct Math Lab links from the side navigation." compact>
         <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-5">
           {studios.map((studio) => {
@@ -114,16 +125,6 @@ export default function AdvancedConceptStudios() {
           })}
         </div>
       </SectionCard>
-
-      <div id="hero-workbench" />
-      <SectionCard title={active.title} description={active.summary} allowFullscreen>
-        {activeStudio === "continued-fractions" && <ContinuedFractionsLab />}
-        {activeStudio === "famous-problems" && <FamousProblemsAtlas />}
-        {activeStudio === "stats-inference" && <StatsInferenceStudio />}
-        {activeStudio === "differential-equations" && <DifferentialEquationsStudio />}
-        {activeStudio === "special-functions" && <SpecialFunctionsGallery />}
-      </SectionCard>
-
       <ResultCard
         title="Coverage Added"
         result={
@@ -383,3 +384,4 @@ function erf(x: number) {
   const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-a * a);
   return sign * y;
 }
+

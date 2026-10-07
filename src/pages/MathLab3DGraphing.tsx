@@ -10,6 +10,8 @@ import { SurfaceSampleResult, generateSurfaceMeshData, sampleSurface } from "../
 import { deleteGraphWorkspace, readSavedGraphWorkspaces, saveGraphWorkspace, type SavedGraphWorkspace } from "../utils/graphWorkspaceStorage";
 import { analyzeSurfaceDifferential, type SurfaceDifferential } from "../graph-studio/graphIntelligence";
 import GraphStudio3DWorkspace, { type Studio3DTool } from "../graph-studio/GraphStudio3DWorkspace";
+import { useIntelligenceWorkspace } from '../offline-intelligence/workspaceBridge';
+import { intelligenceGraph3dLayers } from '../offline-intelligence/graph3dAdapter';
 import { reconcileGraphVariables, substituteGraphVariables, advanceGraphVariable } from "../graph-studio/expressionEngine";
 import { downloadGraphStudioFile, exportGraphStudioProject } from "../graph-studio/projectStorage";
 import { useGraphStudioProject } from "../graph-studio/useGraphStudioProject";
@@ -121,6 +123,16 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
     setSurfaces(previous => embedded.expressions.map((expression, index) => ({ ...(previous[index] ?? createGraph3DSurface(expression, index)), expression })));
   }, [embedded?.expressionRevision]);
   const [selectedSurfaceId, setSelectedSurfaceId] = useState(() => embeddedState?.selectedSurfaceId ?? surfaces[0]?.id ?? "");
+  useIntelligenceWorkspace('graph3d', command => {
+    const base=command.objectId??crypto.randomUUID();
+    if(command.roboControl==='deselect'){setSelectedSurfaceId('');return;}
+    if(command.roboControl==='delete'){setSurfaces(current=>current.filter(row=>!row.id.startsWith(`${base}-`)));return;}
+    if(command.roboControl==='visibility'){setSurfaces(current=>current.map(row=>row.id.startsWith(`${base}-`)?{...row,visible:command.roboVisible??true}:row));return;}
+    if(command.roboControl==='select'){setSelectedSurfaceId(`${base}-0`);return;}
+    if(command.action==='update'&&!surfaces.some(row=>row.id.startsWith(`${base}-`)))return 'The last Ruhi object was removed. Create an object again before editing it.';
+    const layers=intelligenceGraph3dLayers(command).map((surface,i)=>({...surface,id:`${base}-${i}`,visible:command.roboVisible??true}));
+    setSurfaces(current=>[...current.filter(row=>!row.id.startsWith(`${base}-`)),...layers]);setSelectedSurfaceId(layers[0].id);
+  }, !embedded, command=>surfaces.some(row=>row.id.startsWith(`${command.objectId}-`))?{command}:undefined);
   const [xRange, setXRange] = useState(() => embeddedState?.xRange ?? 3);
   const [yRange, setYRange] = useState(() => embeddedState?.yRange ?? 3);
   const [resolution, setResolution] = useState(() => embeddedState?.resolution ?? 44);
@@ -301,7 +313,7 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
   const portableAdapter: PortableWorkspaceAdapter = {
     workspaceType: "3d-graph",
     engine: "graph-studio-3d",
-    engineVersion: "1.0.1",
+    engineVersion: "1.0.2",
     title: () => graphStudio.project.name || "Graph Studio 3D",
     serializeScene: () => ({
       ...graphStudioState,

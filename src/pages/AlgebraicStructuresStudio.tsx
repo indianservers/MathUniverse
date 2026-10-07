@@ -68,7 +68,7 @@ export default function AlgebraicStructuresStudio({ page = "home" }: { page?: Al
       <AlgebraStudioNav page="structures" pathname={location.pathname} />
       <section className="alg-stage" data-testid="algebraic-structures-stage">
         <div className="as-lab">
-          <StudioHomeButtons studioTo="/algebraic-structures" />
+          {page !== "home" ? <StudioHomeButtons studioTo="/algebraic-structures" /> : null}
           {page === "home" ? <CinematicHero id="structures"><AlgebraLabHeading labId="structures" subtitle={meta.subtitle} onReset={() => window.dispatchEvent(new Event("as-lab-reset"))}>{meta.title}</AlgebraLabHeading></CinematicHero> : <AlgebraLabHeading labId="structures" subtitle={meta.subtitle} onReset={() => window.dispatchEvent(new Event("as-lab-reset"))}>{meta.title}</AlgebraLabHeading>}
           <header className="as-head">
             <div>
@@ -96,3 +96,4 @@ export default function AlgebraicStructuresStudio({ page = "home" }: { page?: Al
     </main>
   );
 }
+

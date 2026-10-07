@@ -1,0 +1,9 @@
+{
+  "environment": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7827.55 Safari/537.36",
+  "cachedModelAcquireMs": 7.100000008940697,
+  "firstInferenceMs": 12,
+  "averageInferenceMs": 0.595,
+  "semanticParseMs": 0.048800000011920926,
+  "planMs": 0.021,
+  "targetResolutionMs": 0.0008000000119209289
+}

@@ -42,6 +42,11 @@ import { approximateRoots, sampleFunction } from "../utils/mathEngine/graphSampl
 import { roundTo } from "../utils/math";
 import { symbolicDerivative, symbolicExpand, symbolicFactor, symbolicIntegral, symbolicLimit, symbolicPartialFractions, symbolicPolynomialDivide, symbolicSimplify, symbolicSolve, symbolicSubstitute, symbolicSystemSolve, trySymbolic } from "../utils/symbolic";
 import { commandExamplesFor, commandRegistrySummary, normalizeCommandName, resolveCommandSpec } from "../workspace/commandRegistry";
+import { useIntelligenceWorkspace } from '../offline-intelligence/workspaceBridge';
+import { addIntelligenceGeometry, nativeGeometryCommands } from '../offline-intelligence/geometryAdapter';
+import { commandTransform3d } from '../offline-intelligence/solidAdapter';
+import type { VisualCommand } from '../offline-intelligence/commands';
+import { createIntelligenceShapeGeometry, intelligenceMeshMeasurement } from '../offline-intelligence/shapeGeometry3d';
 import { validateGraphExpression, isGraphValidationBlocking } from "../workspace/graphValidation";
 import { createAnimationAction, describeTransformAction, parseStyleAction, parseTransformCommand } from "../workspace/actionCommandKernel";
 import { assessConstruction, commandDocsForPackages, objectAwareTutorResponse, productionReadinessPlan, validateGuidedTaskResponse, type UnitLabPackage } from "../workspace/beyondGeoGebraKernel";
@@ -172,7 +177,7 @@ type SolidKind = "cube" | "cuboid" | "sphere" | "ellipsoid" | "hemisphere" | "cy
 type ThreeObjectId = "surface" | "solid" | "slice" | "point" | "vector" | "line3d" | "plane3d" | "sphere3d" | "cone3d" | "cylinder3d" | "prism3d" | "pyramid3d" | "polyhedron3d";
 type Transform3D = GeometryPaint & { position: [number, number, number]; rotation: [number, number, number]; scale: number; visible: boolean; color: string; name?: string; locked?: boolean; trace?: boolean; dimensions?: [number, number, number]; opacity?: number; material?: "matte" | "glass" | "wireframe" };
 type Added3DRenderKind = "surface" | "solid" | "slice" | "point" | "vector" | "line3d" | "plane3d";
-type Added3DObject = { id: string; label: string; baseId: ThreeObjectId; render: Added3DRenderKind; solid?: SolidKind; surface?: SurfaceKind; transform: Transform3D };
+type Added3DObject = { id: string; label: string; baseId: ThreeObjectId; render: Added3DRenderKind; solid?: SolidKind; surface?: SurfaceKind; transform: Transform3D; nlpCommand?: VisualCommand };
 type CameraPreset3D = "free" | "top" | "front" | "right" | "isometric";
 type Preset3DTransform = "center" | "ground" | "unit" | "wide" | "tall" | "xy-plane" | "xz-plane" | "yz-plane";
 type GraphWorkspaceTab = "graph" | "command" | "results" | "objects" | "algebra";
@@ -1676,6 +1681,46 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
   };
 
   const immersive3dTransaction = useRef(false);
+  useIntelligenceWorkspace(workspaceView === '3d' ? 'geometry3d' : 'geometry2d', command => {
+    if(command.roboControl==='deselect'){setSelectedGeometry(null);setSelectedPointIds([]);setSelected3d('');return;}
+    if(command.roboControl==='select'){
+      if(workspaceView==='geometry')setSelectedGeometry({type:command.kind==='circle'?'circle':command.kind==='line'?'line':command.kind==='point'?'point':'polygon',id:command.roboNativeIds?.shape??(command.roboNativeIds?command.roboNativeIds.points[0]:`${command.objectId}-${command.kind==='point'?'p0':'shape'}`)});
+      else setSelected3d(command.objectId!);return;
+    }
+    if(command.roboControl==='delete'||command.roboControl==='visibility'){
+      recordWorkspaceStep(command.roboControl==='delete'?'Delete Robo object':'Set Robo visibility',command.kind);
+      if(workspaceView==='geometry')setConstruction(current=>addIntelligenceGeometry(current,command));
+      else if(command.roboControl==='delete')setAdded3dObjects(current=>current.filter(object=>object.id!==command.objectId));
+      else setAdded3dObjects(current=>current.map(object=>object.id===command.objectId?{...object,transform:{...object.transform,visible:command.roboVisible??true}}:object));
+      return;
+    }
+    if (workspaceView === 'geometry') {
+      if(command.action==='update'&&!construction.points.some(p=>command.roboNativeIds?command.roboNativeIds.points.includes(p.id):p.id.startsWith(`${command.objectId}-`))&&!construction.loci.some(p=>p.id.startsWith(`${command.objectId}-`)))return 'The last Ruhi object was removed. Create an object again before editing it.';
+      recordWorkspaceStep('Draw with offline intelligence', command.kind);
+      setConstruction(current=>solveConstruction(addIntelligenceGeometry(current,command)));
+      return;
+    }
+    const id=command.objectId??crypto.randomUUID();
+    if(command.action==='update'&&!added3dObjects.some(object=>object.id===id))return 'The last Ruhi object was removed. Create an object again before editing it.';
+    const baseId:ThreeObjectId=command.kind==='line'?'line3d':command.kind==='point'?'point':'solid';
+    recordWorkspaceStep(command.action==='update'?'Edit Robo object':'Create Robo object',command.kind);
+      const next:Added3DObject={id,label:command.roboLabel??command.kind,baseId,render:command.kind==='line'?'line3d':command.kind==='point'?'point':'solid',nlpCommand:command.kind==='line'||command.kind==='point'?undefined:command,transform:{...defaultTransforms3d[baseId],...commandTransform3d(command),scale:command.scale??1,visible:command.roboVisible??true,name:command.kind}};
+    setAdded3dObjects(current=>[...current.filter(object=>object.id!==id),next]);setSelected3d(id);setShowSolid(true);
+  }, !embedded && (workspaceView==='geometry'||workspaceView==='3d'), command=>{
+    if(workspaceView==='geometry') {
+        const actual=command.roboNativeIds?command.roboNativeIds.points.flatMap(id=>construction.points.filter(point=>point.id===id)):construction.points.filter(point=>point.id.startsWith(`${command.objectId}-p`));
+      if(!actual.length&&!construction.loci.some(locus=>locus.id.startsWith(`${command.objectId}-`)))return undefined;
+      const vertices=actual.map(point=>[(point.x-320)/40,(210-point.y)/40,0]);
+      if(command.kind==='circle'&&vertices.length>=2) {
+        return {command:{...command,points:[vertices[0].slice(0,2)],radius:Math.hypot(vertices[1][0]-vertices[0][0],vertices[1][1]-vertices[0][1]),scale:1,rotation:[0,0,0]}};
+      }
+        const materialized=command.kind==='line'||command.kind==='point'?{...command,points:vertices.map(p=>p.slice(0,2)),rotation:[0,0,0] as [number,number,number],scale:1}:command;
+        return {command:materialized,vertices:vertices.length?vertices:undefined};
+    }
+    const actual=added3dObjects.find(object=>object.id===command.objectId);
+    if(!actual)return undefined;
+      return {command:{...command,points:command.kind==='line'?command.points:[actual.transform.position],rotation:command.kind==='line'?command.rotation:actual.transform.rotation,scale:actual.transform.scale,color:actual.transform.color,roboVisible:actual.transform.visible}};
+    },()=>workspaceView==='geometry'?{commands:nativeGeometryCommands(construction),selectedIds:selectedGeometry?[selectedGeometry.id.replace(/-(?:shape|p\d+)$/,'')]:undefined}:{commands:added3dObjects.flatMap(o=>o.nlpCommand?[{...o.nlpCommand,objectId:o.id}]:[]),selectedIds:selected3d?[selected3d]:undefined});
   useEffect(() => {
     const begin = () => { if(workspaceView === "3d" || workspaceView === "geometry") { recordWorkspaceStep("Hand gesture", "Transform object with hand controls."); immersive3dTransaction.current=true; } };
     const end = () => { immersive3dTransaction.current=false; };
@@ -2515,7 +2560,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
   const portableAdapter: PortableWorkspaceAdapter = {
     workspaceType: portableWorkspaceType,
     engine: portableWorkspaceType === "cas" ? "math-universe-symbolic-notebook" : portableWorkspaceType === "2d-graph" ? "math-universe-graph-workspace" : portableWorkspaceType === "3d-geometry" ? "math-universe-three-workspace" : "math-universe-geometry-workspace",
-    engineVersion: "1.0.1",
+    engineVersion: "1.0.2",
     title: () => portableWorkspaceType === "cas" ? "Computer Algebra Studio" : portableWorkspaceType === "2d-graph" ? "2D Graph Workspace" : portableWorkspaceType === "3d-geometry" ? "3D Geometry Workspace" : "2D Geometry Workspace",
     serializeScene: () => ({
       workspaceSnapshot: snapshot(),
@@ -2994,6 +3039,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
             selected3d,
             selected3dTransform,
             selected3d === "solid" ? solid : isBase3dId(selected3d) ? threeObjectSolidMap[selected3d] : added3dObjects.find((object) => object.id === selected3d)?.solid,
+            added3dObjects.find(object=>object.id===selected3d)?.nlpCommand,
           )}
           onUndo={undoWorkspace}
           onRedo={redoWorkspace}
@@ -7180,7 +7226,8 @@ function _Workspace3DProjectionPane({ view, selected, transform, surfaceScale, s
   );
 }
 
-function objectStudioMeasurement(selected: string, transform: Transform3D, solid?: SolidKind) {
+function objectStudioMeasurement(selected: string, transform: Transform3D, solid?: SolidKind, nlpCommand?:VisualCommand) {
+  if(nlpCommand)return intelligenceMeshMeasurement(nlpCommand,transform.dimensions??commandTransform3d(nlpCommand).dimensions,transform.scale);
   const kernelMeasurement = object3Measurement(transformToKernelObject(selected, transform));
   const dimensions = (transform.dimensions ?? [1, 1, 1]).map((value) => Math.max(0, value * transform.scale));
   const [width, height, depth] = dimensions;
@@ -7904,6 +7951,7 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
 
 function AddedSceneObject3D({ object, selected, surfaceScale, solidSize, crossSection, performanceMode, eventProps }: { object: Added3DObject; selected: boolean; surfaceScale: number; solidSize: number; crossSection: number; performanceMode: boolean; eventProps: Record<string, unknown> }) {
   if (!object.transform.visible) return null;
+  if(object.nlpCommand) return <TransformGroup3D transform={object.transform} selected={selected}><IntelligenceShapeMesh command={object.nlpCommand} transform={object.transform} eventProps={eventProps}/></TransformGroup3D>;
   if (object.render === "surface") return <TransformGroup3D transform={object.transform} selected={selected}><SurfaceMesh surface={object.surface ?? "paraboloid"} expression="sin(x) * cos(y)" scaleValue={surfaceScale} transform={object.transform} performanceMode={performanceMode} eventProps={eventProps} /></TransformGroup3D>;
   if (object.render === "slice") return <TransformGroup3D transform={{ ...object.transform, position: [object.transform.position[0], crossSection + object.transform.position[1], object.transform.position[2]] }} selected={selected}><CrossSectionPlane color={object.transform.color} eventProps={eventProps} /></TransformGroup3D>;
   if (object.render === "point") return <TransformGroup3D transform={object.transform} selected={selected}><Point3D label={object.transform.name ?? object.label} color={object.transform.color} eventProps={eventProps} /></TransformGroup3D>;
@@ -8180,6 +8228,14 @@ function Line3D({ transform, eventProps }: { transform: Transform3D; eventProps?
       </mesh>
     </group>
   );
+}
+
+function IntelligenceShapeMesh({command,transform,eventProps}:{command:VisualCommand;transform:Transform3D;eventProps?:Record<string,unknown>}) {
+  const geometry=useMemo(()=>createIntelligenceShapeGeometry(command),[command]);
+  useEffect(()=>()=>geometry.dispose(),[geometry]);
+  const base=commandTransform3d(command).dimensions;
+  const dimensions=transform.dimensions??base;
+  return <mesh geometry={geometry} scale={dimensions.map((v,i)=>v/base[i]) as [number,number,number]} {...eventProps}><ObjectMaterial transform={transform}/></mesh>;
 }
 
 function Plane3D({ transform, eventProps }: { transform: Transform3D; eventProps?: Record<string, unknown> }) {

@@ -1,0 +1,1409 @@
+[
+  {
+    "category": "creation",
+    "request": "draw a rectangle, on 2D graph",
+    "kind": "rectangle",
+    "id": 1,
+    "response": "Created 2D rectangle. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Please draw a blue rectangle 6 by 4",
+    "kind": "rectangle",
+    "id": 2,
+    "response": "Created 2D rectangle. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Create a square side 5",
+    "kind": "square",
+    "id": 3,
+    "response": "Created 2D square. Centered at the origin. Width 5, height 5, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Sketch a triangle base 6 height 4",
+    "kind": "triangle",
+    "id": 4,
+    "response": "Created 2D triangle. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Draw a circle radius 3",
+    "kind": "circle",
+    "id": 5,
+    "response": "Created 2D circle. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Create an ellipse width 6 height 4",
+    "kind": "ellipse",
+    "id": 6,
+    "response": "Created 2D ellipse. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Show a semicircle radius 2",
+    "kind": "semicircle",
+    "id": 7,
+    "response": "Created 2D semicircle. Centered at the origin. Width 6, height 4, radius 2.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Add a pentagon radius 3",
+    "kind": "pentagon",
+    "id": 8,
+    "response": "Created 2D pentagon. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Draw a hexagon radius 2",
+    "kind": "hexagon",
+    "id": 9,
+    "response": "Created 2D hexagon. Centered at the origin. Width 6, height 4, radius 2.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Create a heptagon radius 2",
+    "kind": "heptagon",
+    "id": 10,
+    "response": "Created 2D heptagon. Centered at the origin. Width 6, height 4, radius 2.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Make an octagon radius 2",
+    "kind": "octagon",
+    "id": 11,
+    "response": "Created 2D octagon. Centered at the origin. Width 6, height 4, radius 2.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Sketch a nonagon radius 2",
+    "kind": "nonagon",
+    "id": 12,
+    "response": "Created 2D nonagon. Centered at the origin. Width 6, height 4, radius 2.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Draw a decagon radius 2",
+    "kind": "decagon",
+    "id": 13,
+    "response": "Created 2D decagon. Centered at the origin. Width 6, height 4, radius 2.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Create a polygon sides 5 radius 3",
+    "kind": "polygon",
+    "id": 14,
+    "response": "Created 2D polygon. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Show a star radius 3",
+    "kind": "star",
+    "id": 15,
+    "response": "Created 2D star. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Draw a parallelogram width 6 height 3",
+    "kind": "parallelogram",
+    "id": 16,
+    "response": "Created 2D parallelogram. Centered at the origin. Width 6, height 3, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Make a trapezoid width 5 height 3",
+    "kind": "trapezoid",
+    "id": 17,
+    "response": "Created 2D trapezoid. Centered at the origin. Width 5, height 3, radius 3.",
+    "passed": true,
+    "attempts": 2,
+    "priorErrors": [
+      "locator.fill: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('What would you like to create or solve?')\u001b[22m\n\u001b[2m    - locator resolved to <textarea rows=\"3\" id=\"offline-math-request\" placeholder=\"Paste a problem, or try: draw a graph of y = x^2\">Draw a parallelogram width 6 height 3</textarea>\u001b[22m\n\u001b[2m    - fill(\"Make a trapezoid width 5 height 3\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n"
+    ]
+  },
+  {
+    "category": "creation",
+    "request": "Create a rhombus width 4 height 6",
+    "kind": "rhombus",
+    "id": 18,
+    "response": "Created 2D rhombus. Centered at the origin. Width 4, height 6, radius 3.",
+    "passed": true,
+    "attempts": 2,
+    "priorErrors": [
+      "locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Run request', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"submit\">Run request</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - performing click action\u001b[22m\n\u001b[2m    - click action done\u001b[22m\n\u001b[2m    - waiting for scheduled navigations to finish\u001b[22m\n"
+    ]
+  },
+  {
+    "category": "creation",
+    "request": "Add a kite width 4 height 5",
+    "kind": "kite",
+    "id": 19,
+    "response": "Created 2D kite. Centered at the origin. Width 4, height 5, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Create a rectagle 6 wide and 4 tall",
+    "kind": "rectangle",
+    "id": 20,
+    "response": "Created 2D rectangle. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Draw a round outline",
+    "kind": "circle",
+    "id": 21,
+    "response": "Created 2D circle. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Sketch a round shape",
+    "kind": "circle",
+    "id": 22,
+    "response": "Created 2D circle. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Draw a rectangular shape",
+    "kind": "rectangle",
+    "id": 23,
+    "response": "Created 2D rectangle. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Create a three sided shape",
+    "kind": "triangle",
+    "id": 24,
+    "response": "Created 2D triangle. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Sketch a four sided equal shape",
+    "kind": "square",
+    "id": 25,
+    "response": "Created 2D square. Centered at the origin. Width 6, height 6, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Please draw an oval width 6 height 4",
+    "kind": "ellipse",
+    "id": 26,
+    "response": "Created 2D ellipse. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Draw a diamond width 5 height 3",
+    "kind": "rhombus",
+    "id": 27,
+    "response": "Created 2D rhombus. Centered at the origin. Width 5, height 3, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Draw a disk radius 2",
+    "kind": "circle",
+    "id": 28,
+    "response": "Created 2D circle. Centered at the origin. Width 6, height 4, radius 2.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Create a trapezium width 6 height 3",
+    "kind": "trapezoid",
+    "id": 29,
+    "response": "Created 2D trapezoid. Centered at the origin. Width 6, height 3, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "creation",
+    "request": "Can you construct a green triangle base 4 height 3?",
+    "kind": "triangle",
+    "id": 30,
+    "response": "Created 2D triangle. Centered at the origin. Width 4, height 3, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Resize it to width 8 height 5",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 31,
+    "response": "Updated rectangle: size 8 × 5, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Scale it by 2",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 32,
+    "response": "Updated rectangle: size 6 × 4, scale 2; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Double it",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 33,
+    "response": "Updated rectangle: size 6 × 4, scale 2; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Halve it",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 34,
+    "response": "Updated rectangle: size 6 × 4, scale 0.5; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Make it bigger",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 35,
+    "response": "Updated rectangle: size 6 × 4, scale 2; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Make it smaller",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 36,
+    "response": "Updated rectangle: size 6 × 4, scale 0.5; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Increase its size by 25%",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 37,
+    "response": "Updated rectangle: size 6 × 4, scale 1.25; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Reduce its size by 20%",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 38,
+    "response": "Updated rectangle: size 6 × 4, scale 0.8; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Grow it by 10%",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 39,
+    "response": "Updated rectangle: size 6 × 4, scale 1.1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Shrink it by 30%",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 40,
+    "response": "Updated rectangle: size 6 × 4, scale 0.7; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Rotate it 45 degrees",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 41,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 45 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Turn it 90 degrees",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 42,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 90 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Rotate it 30 degrees clockwise",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 43,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, -30 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Rotate it 30 degrees counterclockwise",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 44,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 30 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Rotate it -45 degrees",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 45,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, -45 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Rotate it 1 radians",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 46,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 57.29577951308232 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Move it right by 2",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 47,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Move it left by 3",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 48,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Move it up by 2",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 49,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Move it down by 1",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 50,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Translate it (2,3)",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 51,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Make it blue",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 52,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Recolor it red",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 53,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Color it green",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 54,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Make it purple",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 55,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Colour it orange",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 56,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Make it yellow",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 57,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Make it pink",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 58,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Make it white",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 59,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Make it black",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 60,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Make it cyan",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 61,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Resize it to width 5 height 2",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 62,
+    "response": "Updated rectangle: size 5 × 2, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Enlarge it by 1.5",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 63,
+    "response": "Updated rectangle: size 6 × 4, scale 1.5; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Scale it to 150%",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 64,
+    "response": "Updated rectangle: size 6 × 4, scale 1.5; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Reduce it by 50%",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 65,
+    "response": "Updated rectangle: size 6 × 4, scale 0.5; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Rotate the last rectangle 20 degrees",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 66,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 20 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Move that rectangle right by 4",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 67,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Make the previous rectangle blue",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 68,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Resize the rectangle width 7 height 3",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 69,
+    "response": "Updated rectangle: size 7 × 3, scale 1; rotation 0, 0, 0 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "edit",
+    "request": "Turn that rectangle 180 degrees",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "Updated rectangle",
+    "id": 70,
+    "response": "Updated rectangle: size 6 × 4, scale 1; rotation 0, 0, 180 degrees (x, y, z).",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Draw another rectangle starting from the end of last drawn triangle",
+    "seed": "Draw triangle (0,0) (6,0) (3,4)",
+    "kind": "rectangle",
+    "message": "starting at",
+    "id": 71,
+    "response": "Created 2D rectangle starting at (3, 4), the last vertex of the triangle.",
+    "passed": true,
+    "attempts": 2,
+    "priorErrors": [
+      "\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"starting at\"\u001b[39m\nReceived string:    \u001b[31m\"draw a triangle first so i can use its endpoint.\"\u001b[39m"
+    ]
+  },
+  {
+    "category": "anchor",
+    "request": "Create a square starting from the last vertex of the last triangle",
+    "seed": "Draw triangle (0,0) (6,0) (3,4)",
+    "kind": "square",
+    "message": "starting at",
+    "id": 72,
+    "response": "Created 2D square starting at (3, 4), the last vertex of the triangle.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Draw a triangle starting from the end of that triangle",
+    "seed": "Draw triangle (0,0) (6,0) (3,4)",
+    "kind": "triangle",
+    "message": "starting at",
+    "id": 73,
+    "response": "Created 2D triangle starting at (3, 4), the last vertex of the triangle.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Draw a blue rectangle width 4 height 2 starting from the last vertex of the previous triangle",
+    "seed": "Draw triangle (0,0) (6,0) (3,4)",
+    "kind": "rectangle",
+    "message": "starting at",
+    "id": 74,
+    "response": "Created 2D rectangle starting at (3, 4), the last vertex of the triangle.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Create a green square side 3 starting from the end of the last triangle",
+    "seed": "Draw triangle (0,0) (6,0) (3,4)",
+    "kind": "square",
+    "message": "starting at",
+    "id": 75,
+    "response": "Created 2D square starting at (3, 4), the last vertex of the triangle.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Draw another triangle base 4 height 2 starting from the last vertex of that triangle",
+    "seed": "Draw triangle (0,0) (6,0) (3,4)",
+    "kind": "triangle",
+    "message": "starting at",
+    "id": 76,
+    "response": "Created 2D triangle starting at (3, 4), the last vertex of the triangle.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Draw a rectangle starting from the end of last drawn line",
+    "seed": "Draw line (0,0) to (6,8)",
+    "kind": "rectangle",
+    "message": "starting at",
+    "id": 77,
+    "response": "Created 2D rectangle starting at (6, 8), the last vertex of the line.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Create a square side 2 starting from the end of that line",
+    "seed": "Draw line (0,0) to (6,8)",
+    "kind": "square",
+    "message": "starting at",
+    "id": 78,
+    "response": "Created 2D square starting at (6, 8), the last vertex of the line.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Draw a triangle base 5 height 3 starting from the end of the previous line",
+    "seed": "Draw line (0,0) to (6,8)",
+    "kind": "triangle",
+    "message": "starting at",
+    "id": 79,
+    "response": "Created 2D triangle starting at (6, 8), the last vertex of the line.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Create another rectangle 3 by 2 starting from the end of the last line",
+    "seed": "Draw line (0,0) to (6,8)",
+    "kind": "rectangle",
+    "message": "starting at",
+    "id": 80,
+    "response": "Created 2D rectangle starting at (6, 8), the last vertex of the line.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Draw a purple square side 4 starting from the last vertex of last triangle",
+    "seed": "Draw triangle (0,0) (6,0) (3,4)",
+    "kind": "square",
+    "message": "starting at",
+    "id": 81,
+    "response": "Created 2D square starting at (3, 4), the last vertex of the triangle.",
+    "passed": true,
+    "attempts": 2,
+    "priorErrors": [
+      "\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"starting at\"\u001b[39m\nReceived string:    \u001b[31m\"draw a triangle first so i can use its endpoint.\"\u001b[39m"
+    ]
+  },
+  {
+    "category": "anchor",
+    "request": "Draw a red triangle starting from the end of last triangle",
+    "seed": "Draw triangle (0,0) (6,0) (3,4)",
+    "kind": "triangle",
+    "message": "starting at",
+    "id": 82,
+    "response": "Created 2D triangle starting at (3, 4), the last vertex of the triangle.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Create a rectangle width 8 height 3 starting from the end of previous triangle",
+    "seed": "Draw triangle (0,0) (6,0) (3,4)",
+    "kind": "rectangle",
+    "message": "starting at",
+    "id": 83,
+    "response": "Created 2D rectangle starting at (3, 4), the last vertex of the triangle.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Draw another square starting from the end of last drawn triangle",
+    "seed": "Draw triangle (0,0) (6,0) (3,4)",
+    "kind": "square",
+    "message": "starting at",
+    "id": 84,
+    "response": "Created 2D square starting at (3, 4), the last vertex of the triangle.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Draw a cyan rectangle starting from the end of that line",
+    "seed": "Draw line (0,0) to (6,8)",
+    "kind": "rectangle",
+    "message": "starting at",
+    "id": 85,
+    "response": "Created 2D rectangle starting at (6, 8), the last vertex of the line.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Create a triangle starting from the last corner of the last rectangle",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "triangle",
+    "message": "starting at",
+    "id": 86,
+    "response": "Created 2D triangle starting at (-3, 2), the last vertex of the rectangle.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Draw a square starting from the last corner of that rectangle",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "square",
+    "message": "starting at",
+    "id": 87,
+    "response": "Created 2D square starting at (-3, 2), the last vertex of the rectangle.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Create another rectangle starting from the last corner of previous rectangle",
+    "seed": "Create rectangle 6 by 4",
+    "kind": "rectangle",
+    "message": "starting at",
+    "id": 88,
+    "response": "Created 2D rectangle starting at (-3, 2), the last vertex of the rectangle.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Draw a rectangle 4 by 2 starting from the end of the last triangle",
+    "seed": "Draw triangle (0,0) (6,0) (3,4)",
+    "kind": "rectangle",
+    "message": "starting at",
+    "id": 89,
+    "response": "Created 2D rectangle starting at (3, 4), the last vertex of the triangle.",
+    "passed": true
+  },
+  {
+    "category": "anchor",
+    "request": "Create a square side 6 starting from the last vertex of the previous triangle",
+    "seed": "Draw triangle (0,0) (6,0) (3,4)",
+    "kind": "square",
+    "message": "starting at",
+    "id": 90,
+    "response": "Created 2D square starting at (3, 4), the last vertex of the triangle.",
+    "passed": true
+  },
+  {
+    "category": "query",
+    "request": "what is the mid point of that line",
+    "seed": "Draw line (0,0) to (6,8)",
+    "message": "(3, 4)",
+    "id": 91,
+    "response": "The midpoint of that line is (3, 4).",
+    "passed": true
+  },
+  {
+    "category": "query",
+    "request": "What is the midpoint of the last line?",
+    "seed": "Draw line (0,0) to (6,8)",
+    "message": "(3, 4)",
+    "id": 92,
+    "response": "The midpoint of that line is (3, 4).",
+    "passed": true
+  },
+  {
+    "category": "query",
+    "request": "Find the mid-point of that segment",
+    "seed": "Draw line (0,0) to (6,8)",
+    "message": "(3, 4)",
+    "id": 93,
+    "response": "The midpoint of that line is (3, 4).",
+    "passed": true
+  },
+  {
+    "category": "query",
+    "request": "Tell me the midpoint of the line",
+    "seed": "Draw line (0,0) to (6,8)",
+    "message": "(3, 4)",
+    "id": 94,
+    "response": "The midpoint of that line is (3, 4).",
+    "passed": true
+  },
+  {
+    "category": "query",
+    "request": "Where is the midpoint of the previous line?",
+    "seed": "Draw line (0,0) to (6,8)",
+    "message": "(3, 4)",
+    "id": 95,
+    "response": "The midpoint of that line is (3, 4).",
+    "passed": true
+  },
+  {
+    "category": "query",
+    "request": "Calculate the midpoint of that line",
+    "seed": "Draw line (0,0) to (6,8)",
+    "message": "(3, 4)",
+    "id": 96,
+    "response": "The midpoint of that line is (3, 4).",
+    "passed": true
+  },
+  {
+    "category": "query",
+    "request": "Draw the midpoint of that line",
+    "seed": "Draw line (0,0) to (6,8)",
+    "kind": "point",
+    "message": "(3, 4)",
+    "id": 97,
+    "response": "The midpoint of that line is (3, 4). Marked it in the workspace.",
+    "passed": true
+  },
+  {
+    "category": "query",
+    "request": "Mark the midpoint of the line",
+    "seed": "Draw line (0,0) to (6,8)",
+    "kind": "point",
+    "message": "(3, 4)",
+    "id": 98,
+    "response": "The midpoint of that line is (3, 4). Marked it in the workspace.",
+    "passed": true
+  },
+  {
+    "category": "query",
+    "request": "Create a point at the midpoint of that line",
+    "seed": "Draw line (0,0) to (6,8)",
+    "kind": "point",
+    "message": "(3, 4)",
+    "id": 99,
+    "response": "The midpoint of that line is (3, 4). Marked it in the workspace.",
+    "passed": true
+  },
+  {
+    "category": "query",
+    "request": "What is the length of that line?",
+    "seed": "Draw line (0,0) to (6,8)",
+    "message": "10 units",
+    "id": 100,
+    "response": "The length of that line is 10 units.",
+    "passed": true
+  },
+  {
+    "category": "query",
+    "request": "Measure the length of the last segment",
+    "seed": "Draw line (0,0) to (6,8)",
+    "message": "10 units",
+    "id": 101,
+    "response": "The length of that line is 10 units.",
+    "passed": true
+  },
+  {
+    "category": "query",
+    "request": "What is the distance along that line?",
+    "seed": "Draw line (0,0) to (6,8)",
+    "message": "10 units",
+    "id": 102,
+    "response": "The length of that line is 10 units.",
+    "passed": true
+  },
+  {
+    "category": "tangent",
+    "request": "Draw a tangent to the last circle",
+    "seed": "Create circle radius 3",
+    "kind": "line",
+    "message": "tangent segment",
+    "id": 103,
+    "response": "Drew a tangent segment touching the circle at (3, 0).",
+    "passed": true
+  },
+  {
+    "category": "tangent",
+    "request": "Draw a tangent to that circle at angle 0 degrees",
+    "seed": "Create circle radius 3",
+    "kind": "line",
+    "message": "tangent segment",
+    "id": 104,
+    "response": "Drew a tangent segment touching the circle at (3, 0).",
+    "passed": true
+  },
+  {
+    "category": "tangent",
+    "request": "Create a tangent to the circle at angle 90 degrees",
+    "seed": "Create circle radius 3",
+    "kind": "line",
+    "message": "tangent segment",
+    "id": 105,
+    "response": "Drew a tangent segment touching the circle at (0, 3).",
+    "passed": true
+  },
+  {
+    "category": "tangent",
+    "request": "Draw a tangent at angle 180 degrees to the circle",
+    "seed": "Create circle radius 3",
+    "kind": "line",
+    "message": "tangent segment",
+    "id": 106,
+    "response": "Drew a tangent segment touching the circle at (-3, 0).",
+    "passed": true
+  },
+  {
+    "category": "tangent",
+    "request": "Add a tangent to the previous circle at angle 270 degrees",
+    "seed": "Create circle radius 3",
+    "kind": "line",
+    "message": "tangent segment",
+    "id": 107,
+    "response": "Drew a tangent segment touching the circle at (0, -3).",
+    "passed": true
+  },
+  {
+    "category": "tangent",
+    "request": "Draw a tangent to the circle at angle 45 degrees",
+    "seed": "Create circle radius 3",
+    "kind": "line",
+    "message": "tangent segment",
+    "id": 108,
+    "response": "Drew a tangent segment touching the circle at (2.12132, 2.12132).",
+    "passed": true
+  },
+  {
+    "category": "tangent",
+    "request": "Create a tangent to the circle at angle -45 degrees",
+    "seed": "Create circle radius 3",
+    "kind": "line",
+    "message": "tangent segment",
+    "id": 109,
+    "response": "Drew a tangent segment touching the circle at (2.12132, -2.12132).",
+    "passed": true
+  },
+  {
+    "category": "tangent",
+    "request": "Draw a tangent to that circle at angle 30 degrees",
+    "seed": "Create circle radius 3",
+    "kind": "line",
+    "message": "tangent segment",
+    "id": 110,
+    "response": "Drew a tangent segment touching the circle at (2.598076, 1.5).",
+    "passed": true
+  },
+  {
+    "category": "tangent",
+    "request": "Draw a tangent at (3,0) to the circle",
+    "seed": "Create circle radius 3",
+    "kind": "line",
+    "message": "tangent segment",
+    "id": 111,
+    "response": "Drew a tangent segment touching the circle at (3, 0).",
+    "passed": true
+  },
+  {
+    "category": "tangent",
+    "request": "Draw a tangent to the circle at (0,3)",
+    "seed": "Create circle radius 3",
+    "kind": "line",
+    "message": "tangent segment",
+    "id": 112,
+    "response": "Drew a tangent segment touching the circle at (0, 3).",
+    "passed": true
+  },
+  {
+    "category": "tangent",
+    "request": "Show a tangent to the last circle at angle 60 degrees",
+    "seed": "Create circle radius 3",
+    "kind": "line",
+    "message": "tangent segment",
+    "id": 113,
+    "response": "Drew a tangent segment touching the circle at (1.5, 2.598076).",
+    "passed": true
+  },
+  {
+    "category": "tangent",
+    "request": "Draw a tangent to the circle at angle 120 degrees",
+    "seed": "Create circle radius 3",
+    "kind": "line",
+    "message": "tangent segment",
+    "id": 114,
+    "response": "Drew a tangent segment touching the circle at (-1.5, 2.598076).",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "draw a tangent inside circle",
+    "seed": "Create circle radius 3",
+    "message": "cannot lie inside",
+    "reject": true,
+    "id": 115,
+    "response": "A tangent cannot lie inside a circle: it touches the boundary at one point. Ask “draw a tangent to the last circle at angle 0 degrees”.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Draw a tangent inside the last circle",
+    "seed": "Create circle radius 3",
+    "message": "cannot lie inside",
+    "reject": true,
+    "id": 116,
+    "response": "A tangent cannot lie inside a circle: it touches the boundary at one point. Ask “draw a tangent to the last circle at angle 0 degrees”.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Create circle radius -2",
+    "seed": "Create circle radius 3",
+    "message": "positive",
+    "reject": true,
+    "id": 117,
+    "response": "Dimensions must be positive numbers no greater than 10,000.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Draw square side 0",
+    "seed": "Create circle radius 3",
+    "message": "positive",
+    "reject": true,
+    "id": 118,
+    "response": "Dimensions must be positive numbers no greater than 10,000.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Create circle radius 10001",
+    "seed": "Create circle radius 3",
+    "message": "positive",
+    "reject": true,
+    "id": 119,
+    "response": "Dimensions must be positive numbers no greater than 10,000.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Draw polygon sides 2",
+    "seed": "Create circle radius 3",
+    "message": "integer",
+    "reject": true,
+    "id": 120,
+    "response": "A regular polygon needs an integer number of sides between 3 and 32.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Create polygon sides 33",
+    "seed": "Create circle radius 3",
+    "message": "integer",
+    "reject": true,
+    "id": 121,
+    "response": "A regular polygon needs an integer number of sides between 3 and 32.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Draw polygon sides 3.5",
+    "seed": "Create circle radius 3",
+    "message": "integer",
+    "reject": true,
+    "id": 122,
+    "response": "A regular polygon needs an integer number of sides between 3 and 32.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Draw a line (0,0) to (0,0)",
+    "seed": "Create circle radius 3",
+    "message": "distinct",
+    "reject": true,
+    "id": 123,
+    "response": "A line needs two distinct points. For example, (0,2) and (3,0); use three coordinates per point in 3D.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Draw a point",
+    "seed": "Create circle radius 3",
+    "message": "coordinate",
+    "reject": true,
+    "id": 124,
+    "response": "Give one coordinate for the point, such as (2,3) or (2,3,1).",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Draw line",
+    "seed": "Create circle radius 3",
+    "message": "distinct",
+    "reject": true,
+    "id": 125,
+    "response": "A line needs two distinct points. For example, (0,2) and (3,0); use three coordinates per point in 3D.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Draw tangent at (0,0) to circle",
+    "seed": "Create circle radius 3",
+    "message": "not on the circle",
+    "reject": true,
+    "id": 126,
+    "response": "That point is not on the circle boundary. Give a boundary point or a tangent angle.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Resize it to width -2",
+    "seed": "Create circle radius 3",
+    "message": "positive",
+    "reject": true,
+    "id": 127,
+    "response": "Use positive dimensions and a scale that keeps the object within 10,000 units.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Rotate it 40000 degrees",
+    "seed": "Create circle radius 3",
+    "message": "finite rotation",
+    "reject": true,
+    "id": 128,
+    "response": "Use a finite rotation angle between -36,000 and 36,000 degrees.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Scale it by -3",
+    "seed": "Create circle radius 3",
+    "message": "positive",
+    "reject": true,
+    "id": 129,
+    "response": "Use positive dimensions and a scale that keeps the object within 10,000 units.",
+    "passed": true
+  },
+  {
+    "category": "validation",
+    "request": "Draw line (0,0,0) to (1,1,1)",
+    "seed": "Create circle radius 3",
+    "message": "two coordinates",
+    "reject": true,
+    "id": 130,
+    "response": "Use two coordinates per point in this workspace.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Create point (0,0)",
+    "kind": "point",
+    "id": 131,
+    "response": "Created 2D point. Using your coordinates. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Draw a red point (6,8)",
+    "kind": "point",
+    "id": 132,
+    "response": "Created 2D point. Using your coordinates. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Draw line (0,0) to (6,8)",
+    "kind": "line",
+    "id": 133,
+    "response": "Created 2D line. Using your coordinates. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Draw a segment (6,8) to (0,0)",
+    "kind": "line",
+    "id": 134,
+    "response": "Created 2D line. Using your coordinates. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Create triangle (0,0) (4,0) (2,3)",
+    "kind": "triangle",
+    "id": 135,
+    "response": "Created 2D triangle. Using your coordinates. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Draw polygon (0,0) (4,0) (4,3) (0,3)",
+    "kind": "polygon",
+    "id": 136,
+    "response": "Created 2D polygon. Using your coordinates. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Draw circle radius 2 at (6,8)",
+    "kind": "circle",
+    "id": 137,
+    "response": "Created 2D circle. Using your coordinates. Width 6, height 4, radius 2.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Create rectangle width 3 height 2 centered at (6,8)",
+    "kind": "rectangle",
+    "id": 138,
+    "response": "Created 2D rectangle. Using your coordinates. Width 3, height 2, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Sketch triangle base 5 height 3 centered at (0,0)",
+    "kind": "triangle",
+    "id": 139,
+    "response": "Created 2D triangle. Using your coordinates. Width 5, height 3, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Draw square side 3 at (6,8)",
+    "kind": "square",
+    "id": 140,
+    "response": "Created 2D square. Using your coordinates. Width 3, height 3, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Plot y = x^2",
+    "kind": "plot",
+    "id": 141,
+    "response": "Added 2D graph: y = x^2.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Graph y = sin(x)",
+    "kind": "plot",
+    "id": 142,
+    "response": "Added 2D graph: y = sin(x).",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Draw graph of y = x^3-2*x",
+    "kind": "plot",
+    "id": 143,
+    "response": "Added 2D graph: y = x^3-2*x.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Plot y = cos(x)",
+    "kind": "plot",
+    "id": 144,
+    "response": "Added 2D graph: y = cos(x).",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Create graph of y = exp(-x^2)",
+    "kind": "plot",
+    "id": 145,
+    "response": "Added 2D graph: y = exp(-x^2).",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Draw a blue circle diameter 6",
+    "kind": "circle",
+    "id": 146,
+    "response": "Created 2D circle. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Please create a yellow rectangle 8 by 3",
+    "kind": "rectangle",
+    "id": 147,
+    "response": "Created 2D rectangle. Centered at the origin. Width 8, height 3, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Can you draw a triangle width 7 height 5?",
+    "kind": "triangle",
+    "id": 148,
+    "response": "Created 2D triangle. Centered at the origin. Width 7, height 5, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Add a regular polygon sides 8 radius 3",
+    "kind": "polygon",
+    "id": 149,
+    "response": "Created 2D polygon. Centered at the origin. Width 6, height 4, radius 3.",
+    "passed": true
+  },
+  {
+    "category": "coordinates/graphs",
+    "request": "Draw a purple ellipse width 8 height 4",
+    "kind": "ellipse",
+    "id": 150,
+    "response": "Created 2D ellipse. Centered at the origin. Width 8, height 4, radius 3.",
+    "passed": true
+  }
+]

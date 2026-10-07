@@ -1,0 +1,400 @@
+{"mode":"geometry2d","number":1,"scenario":1,"phrase":"Create a triangle","answer":"Created 2D triangle.","passed":true,"error":"","before":0,"after":1,"milliseconds":400}
+{"mode":"geometry2d","number":2,"scenario":1,"phrase":"Move that triangle to (4,0)","answer":"move triangle.","passed":true,"error":"","before":1,"after":1,"milliseconds":357}
+{"mode":"geometry2d","number":3,"scenario":1,"phrase":"Make it blue","answer":"Changed triangle to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":362}
+{"mode":"geometry2d","number":4,"scenario":1,"phrase":"Move that triangle to point 4","answer":"Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.","passed":true,"error":"","before":1,"after":1,"milliseconds":547}
+{"mode":"geometry2d","number":5,"scenario":1,"phrase":"What is its centroid?","answer":"centroid = [4,-9.12850042469573e-16].","passed":true,"error":"","before":1,"after":1,"milliseconds":293}
+{"mode":"geometry2d","number":6,"scenario":1,"phrase":"Duplicate it","answer":"Duplicated triangle.","passed":true,"error":"","before":1,"after":2,"milliseconds":392}
+{"mode":"geometry2d","number":7,"scenario":1,"phrase":"Make the copy red","answer":"Changed triangle to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":357}
+{"mode":"geometry2d","number":8,"scenario":1,"phrase":"Delete the original","answer":"Deleted triangle.","passed":true,"error":"","before":2,"after":1,"milliseconds":356}
+{"mode":"geometry2d","number":9,"scenario":1,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":437}
+{"mode":"geometry2d","number":10,"scenario":1,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":336}
+{"mode":"geometry2d","number":11,"scenario":2,"phrase":"Draw a rectangle 4 by 6","answer":"Created 2D rectangle.","passed":true,"error":"","before":0,"after":1,"milliseconds":320}
+{"mode":"geometry2d","number":12,"scenario":2,"phrase":"Translate that shape (2,3)","answer":"move rectangle.","passed":true,"error":"","before":1,"after":1,"milliseconds":349}
+{"mode":"geometry2d","number":13,"scenario":2,"phrase":"Change its color to red","answer":"Changed rectangle to red.","passed":true,"error":"","before":1,"after":1,"milliseconds":348}
+{"mode":"geometry2d","number":14,"scenario":2,"phrase":"Rotate it 45 degrees","answer":"rotate rectangle.","passed":true,"error":"","before":1,"after":1,"milliseconds":343}
+{"mode":"geometry2d","number":15,"scenario":2,"phrase":"What is its area?","answer":"area = 24 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":299}
+{"mode":"geometry2d","number":16,"scenario":2,"phrase":"Copy it","answer":"Duplicated rectangle.","passed":true,"error":"","before":1,"after":2,"milliseconds":371}
+{"mode":"geometry2d","number":17,"scenario":2,"phrase":"Make the copy red","answer":"Changed rectangle to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":360}
+{"mode":"geometry2d","number":18,"scenario":2,"phrase":"Delete the original","answer":"Deleted rectangle.","passed":true,"error":"","before":2,"after":1,"milliseconds":344}
+{"mode":"geometry2d","number":19,"scenario":2,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":420}
+{"mode":"geometry2d","number":20,"scenario":2,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":295}
+{"mode":"geometry2d","number":21,"scenario":3,"phrase":"Make a circle radius 3","answer":"Created 2D circle.","passed":true,"error":"","before":0,"after":1,"milliseconds":354}
+{"mode":"geometry2d","number":22,"scenario":3,"phrase":"Move it 2 units left","answer":"move circle.","passed":true,"error":"","before":1,"after":1,"milliseconds":358}
+{"mode":"geometry2d","number":23,"scenario":3,"phrase":"Color that shape green","answer":"Changed circle to green.","passed":true,"error":"","before":1,"after":1,"milliseconds":323}
+{"mode":"geometry2d","number":24,"scenario":3,"phrase":"Rotate it 45 degrees","answer":"rotate circle.","passed":true,"error":"","before":1,"after":1,"milliseconds":360}
+{"mode":"geometry2d","number":25,"scenario":3,"phrase":"What is its area?","answer":"area = 28.27433388 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":325}
+{"mode":"geometry2d","number":26,"scenario":3,"phrase":"Make a copy of it","answer":"Duplicated circle.","passed":true,"error":"","before":1,"after":2,"milliseconds":332}
+{"mode":"geometry2d","number":27,"scenario":3,"phrase":"Make the copy red","answer":"Changed circle to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":355}
+{"mode":"geometry2d","number":28,"scenario":3,"phrase":"Delete the original","answer":"Deleted circle.","passed":true,"error":"","before":2,"after":1,"milliseconds":396}
+{"mode":"geometry2d","number":29,"scenario":3,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":388}
+{"mode":"geometry2d","number":30,"scenario":3,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":296}
+{"mode":"geometry2d","number":31,"scenario":4,"phrase":"Add a square 6 by 6","answer":"Created 2D square.","passed":true,"error":"","before":0,"after":1,"milliseconds":295}
+{"mode":"geometry2d","number":32,"scenario":4,"phrase":"Move that object up 4 units","answer":"move square.","passed":true,"error":"","before":1,"after":1,"milliseconds":287}
+{"mode":"geometry2d","number":33,"scenario":4,"phrase":"Recolor it purple","answer":"Changed square to purple.","passed":true,"error":"","before":1,"after":1,"milliseconds":332}
+{"mode":"geometry2d","number":34,"scenario":4,"phrase":"Rotate it 45 degrees","answer":"rotate square.","passed":true,"error":"","before":1,"after":1,"milliseconds":315}
+{"mode":"geometry2d","number":35,"scenario":4,"phrase":"What is its area?","answer":"area = 36 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":262}
+{"mode":"geometry2d","number":36,"scenario":4,"phrase":"Please duplicate it","answer":"Duplicated square.","passed":true,"error":"","before":1,"after":2,"milliseconds":319}
+{"mode":"geometry2d","number":37,"scenario":4,"phrase":"Make the copy red","answer":"Changed square to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":353}
+{"mode":"geometry2d","number":38,"scenario":4,"phrase":"Delete the original","answer":"Deleted square.","passed":true,"error":"","before":2,"after":1,"milliseconds":354}
+{"mode":"geometry2d","number":39,"scenario":4,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":342}
+{"mode":"geometry2d","number":40,"scenario":4,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":291}
+{"mode":"geometry2d","number":41,"scenario":5,"phrase":"Sketch a line from (0,0) to (6,8)","answer":"Created 2D line.","passed":true,"error":"","before":0,"after":1,"milliseconds":287}
+{"mode":"geometry2d","number":42,"scenario":5,"phrase":"Move it to (4,0)","answer":"move line.","passed":true,"error":"","before":1,"after":1,"milliseconds":357}
+{"mode":"geometry2d","number":43,"scenario":5,"phrase":"Set its color to orange","answer":"Changed line to orange.","passed":true,"error":"","before":1,"after":1,"milliseconds":426}
+{"mode":"geometry2d","number":44,"scenario":5,"phrase":"Rotate it 45 degrees","answer":"rotate line.","passed":true,"error":"","before":1,"after":1,"milliseconds":436}
+{"mode":"geometry2d","number":45,"scenario":5,"phrase":"What is its length?","answer":"length = 10 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":343}
+{"mode":"geometry2d","number":46,"scenario":5,"phrase":"Duplicate that object","answer":"Duplicated line.","passed":true,"error":"","before":1,"after":2,"milliseconds":420}
+{"mode":"geometry2d","number":47,"scenario":5,"phrase":"Make the copy red","answer":"Changed line to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":404}
+{"mode":"geometry2d","number":48,"scenario":5,"phrase":"Delete the original","answer":"Deleted line.","passed":true,"error":"","before":2,"after":1,"milliseconds":322}
+{"mode":"geometry2d","number":49,"scenario":5,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":368}
+{"mode":"geometry2d","number":50,"scenario":5,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":328}
+{"mode":"geometry2d","number":51,"scenario":6,"phrase":"Please draw a triangle","answer":"Created 2D triangle.","passed":true,"error":"","before":0,"after":1,"milliseconds":328}
+{"mode":"geometry2d","number":52,"scenario":6,"phrase":"Move that triangle to (4,0)","answer":"move triangle.","passed":true,"error":"","before":1,"after":1,"milliseconds":361}
+{"mode":"geometry2d","number":53,"scenario":6,"phrase":"Make it blue","answer":"Changed triangle to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":325}
+{"mode":"geometry2d","number":54,"scenario":6,"phrase":"Rotate it 45 degrees","answer":"rotate triangle.","passed":true,"error":"","before":1,"after":1,"milliseconds":330}
+{"mode":"geometry2d","number":55,"scenario":6,"phrase":"What is its centroid?","answer":"centroid = [4,-5.427757009278544e-16].","passed":true,"error":"","before":1,"after":1,"milliseconds":323}
+{"mode":"geometry2d","number":56,"scenario":6,"phrase":"Duplicate it","answer":"Duplicated triangle.","passed":true,"error":"","before":1,"after":2,"milliseconds":354}
+{"mode":"geometry2d","number":57,"scenario":6,"phrase":"Make the copy red","answer":"Changed triangle to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":316}
+{"mode":"geometry2d","number":58,"scenario":6,"phrase":"Delete the original","answer":"Deleted triangle.","passed":true,"error":"","before":2,"after":1,"milliseconds":368}
+{"mode":"geometry2d","number":59,"scenario":6,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":390}
+{"mode":"geometry2d","number":60,"scenario":6,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":272}
+{"mode":"geometry2d","number":61,"scenario":7,"phrase":"Can you create a rectangle 9 by 6","answer":"Created 2D rectangle.","passed":true,"error":"","before":0,"after":1,"milliseconds":299}
+{"mode":"geometry2d","number":62,"scenario":7,"phrase":"Translate that shape (2,3)","answer":"move rectangle.","passed":true,"error":"","before":1,"after":1,"milliseconds":322}
+{"mode":"geometry2d","number":63,"scenario":7,"phrase":"Change its color to red","answer":"Changed rectangle to red.","passed":true,"error":"","before":1,"after":1,"milliseconds":287}
+{"mode":"geometry2d","number":64,"scenario":7,"phrase":"Rotate it 45 degrees","answer":"rotate rectangle.","passed":true,"error":"","before":1,"after":1,"milliseconds":290}
+{"mode":"geometry2d","number":65,"scenario":7,"phrase":"What is its area?","answer":"area = 54 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":274}
+{"mode":"geometry2d","number":66,"scenario":7,"phrase":"Copy it","answer":"Duplicated rectangle.","passed":true,"error":"","before":1,"after":2,"milliseconds":324}
+{"mode":"geometry2d","number":67,"scenario":7,"phrase":"Make the copy red","answer":"Changed rectangle to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":308}
+{"mode":"geometry2d","number":68,"scenario":7,"phrase":"Delete the original","answer":"Deleted rectangle.","passed":true,"error":"","before":2,"after":1,"milliseconds":318}
+{"mode":"geometry2d","number":69,"scenario":7,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":407}
+{"mode":"geometry2d","number":70,"scenario":7,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":288}
+{"mode":"geometry2d","number":71,"scenario":8,"phrase":"Build a circle radius 8","answer":"Created 2D circle.","passed":true,"error":"","before":0,"after":1,"milliseconds":300}
+{"mode":"geometry2d","number":72,"scenario":8,"phrase":"Move it 2 units left","answer":"move circle.","passed":true,"error":"","before":1,"after":1,"milliseconds":290}
+{"mode":"geometry2d","number":73,"scenario":8,"phrase":"Color that shape green","answer":"Changed circle to green.","passed":true,"error":"","before":1,"after":1,"milliseconds":267}
+{"mode":"geometry2d","number":74,"scenario":8,"phrase":"Rotate it 45 degrees","answer":"rotate circle.","passed":true,"error":"","before":1,"after":1,"milliseconds":309}
+{"mode":"geometry2d","number":75,"scenario":8,"phrase":"What is its area?","answer":"area = 201.06192983 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":259}
+{"mode":"geometry2d","number":76,"scenario":8,"phrase":"Make a copy of it","answer":"Duplicated circle.","passed":true,"error":"","before":1,"after":2,"milliseconds":342}
+{"mode":"geometry2d","number":77,"scenario":8,"phrase":"Make the copy red","answer":"Changed circle to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":289}
+{"mode":"geometry2d","number":78,"scenario":8,"phrase":"Delete the original","answer":"Deleted circle.","passed":true,"error":"","before":2,"after":1,"milliseconds":289}
+{"mode":"geometry2d","number":79,"scenario":8,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":350}
+{"mode":"geometry2d","number":80,"scenario":8,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":252}
+{"mode":"geometry2d","number":81,"scenario":9,"phrase":"Show me a square 11 by 6","answer":"Created 2D square.","passed":true,"error":"","before":0,"after":1,"milliseconds":290}
+{"mode":"geometry2d","number":82,"scenario":9,"phrase":"Move that object up 4 units","answer":"move square.","passed":true,"error":"","before":1,"after":1,"milliseconds":339}
+{"mode":"geometry2d","number":83,"scenario":9,"phrase":"Recolor it purple","answer":"Changed square to purple.","passed":true,"error":"","before":1,"after":1,"milliseconds":301}
+{"mode":"geometry2d","number":84,"scenario":9,"phrase":"Rotate it 45 degrees","answer":"rotate square.","passed":true,"error":"","before":1,"after":1,"milliseconds":303}
+{"mode":"geometry2d","number":85,"scenario":9,"phrase":"What is its area?","answer":"area = 121 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":296}
+{"mode":"geometry2d","number":86,"scenario":9,"phrase":"Please duplicate it","answer":"Duplicated square.","passed":true,"error":"","before":1,"after":2,"milliseconds":379}
+{"mode":"geometry2d","number":87,"scenario":9,"phrase":"Make the copy red","answer":"Changed square to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":333}
+{"mode":"geometry2d","number":88,"scenario":9,"phrase":"Delete the original","answer":"Deleted square.","passed":true,"error":"","before":2,"after":1,"milliseconds":327}
+{"mode":"geometry2d","number":89,"scenario":9,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":408}
+{"mode":"geometry2d","number":90,"scenario":9,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":284}
+{"mode":"geometry2d","number":91,"scenario":10,"phrase":"I need a line from (0,0) to (6,8)","answer":"Created 2D line.","passed":true,"error":"","before":0,"after":1,"milliseconds":304}
+{"mode":"geometry2d","number":92,"scenario":10,"phrase":"Move it to (4,0)","answer":"move line.","passed":true,"error":"","before":1,"after":1,"milliseconds":317}
+{"mode":"geometry2d","number":93,"scenario":10,"phrase":"Set its color to orange","answer":"Changed line to orange.","passed":true,"error":"","before":1,"after":1,"milliseconds":277}
+{"mode":"geometry2d","number":94,"scenario":10,"phrase":"Rotate it 45 degrees","answer":"rotate line.","passed":true,"error":"","before":1,"after":1,"milliseconds":305}
+{"mode":"geometry2d","number":95,"scenario":10,"phrase":"What is its length?","answer":"length = 10 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":280}
+{"mode":"geometry2d","number":96,"scenario":10,"phrase":"Duplicate that object","answer":"Duplicated line.","passed":true,"error":"","before":1,"after":2,"milliseconds":306}
+{"mode":"geometry2d","number":97,"scenario":10,"phrase":"Make the copy red","answer":"Changed line to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":296}
+{"mode":"geometry2d","number":98,"scenario":10,"phrase":"Delete the original","answer":"Deleted line.","passed":true,"error":"","before":2,"after":1,"milliseconds":312}
+{"mode":"geometry2d","number":99,"scenario":10,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":362}
+{"mode":"geometry2d","number":100,"scenario":10,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":282}
+{"mode":"geometry3d","number":1,"scenario":1,"phrase":"Create a sphere radius 1 height 6","answer":"Created 3D sphere.","passed":true,"error":"","before":0,"after":1,"milliseconds":433}
+{"mode":"geometry3d","number":2,"scenario":1,"phrase":"Move it up 5 units","answer":"move sphere.","passed":true,"error":"","before":1,"after":1,"milliseconds":391}
+{"mode":"geometry3d","number":3,"scenario":1,"phrase":"Make it blue","answer":"Changed sphere to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":405}
+{"mode":"geometry3d","number":4,"scenario":1,"phrase":"Rotate it 45 degrees","answer":"rotate sphere.","passed":true,"error":"","before":1,"after":1,"milliseconds":352}
+{"mode":"geometry3d","number":5,"scenario":1,"phrase":"Find its volume","answer":"volume = 4.1887902 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":317}
+{"mode":"geometry3d","number":6,"scenario":1,"phrase":"Duplicate it","answer":"Duplicated sphere.","passed":true,"error":"","before":1,"after":2,"milliseconds":433}
+{"mode":"geometry3d","number":7,"scenario":1,"phrase":"Make the copy red","answer":"Changed sphere to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":401}
+{"mode":"geometry3d","number":8,"scenario":1,"phrase":"Delete the original","answer":"Deleted sphere.","passed":true,"error":"","before":2,"after":1,"milliseconds":447}
+{"mode":"geometry3d","number":9,"scenario":1,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":464}
+{"mode":"geometry3d","number":10,"scenario":1,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":411}
+{"mode":"geometry3d","number":11,"scenario":2,"phrase":"Draw a cube width 4 height 6 depth 4","answer":"Created 3D cube.","passed":true,"error":"","before":0,"after":1,"milliseconds":409}
+{"mode":"geometry3d","number":12,"scenario":2,"phrase":"Translate that object (2,3,1)","answer":"move cube.","passed":true,"error":"","before":1,"after":1,"milliseconds":397}
+{"mode":"geometry3d","number":13,"scenario":2,"phrase":"Change its color to red","answer":"Changed cube to red.","passed":true,"error":"","before":1,"after":1,"milliseconds":329}
+{"mode":"geometry3d","number":14,"scenario":2,"phrase":"Rotate it 45 degrees","answer":"rotate cube.","passed":true,"error":"","before":1,"after":1,"milliseconds":350}
+{"mode":"geometry3d","number":15,"scenario":2,"phrase":"Find its volume","answer":"volume = 64 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":341}
+{"mode":"geometry3d","number":16,"scenario":2,"phrase":"Copy it","answer":"Duplicated cube.","passed":true,"error":"","before":1,"after":2,"milliseconds":381}
+{"mode":"geometry3d","number":17,"scenario":2,"phrase":"Make the copy red","answer":"Changed cube to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":420}
+{"mode":"geometry3d","number":18,"scenario":2,"phrase":"Delete the original","answer":"Deleted cube.","passed":true,"error":"","before":2,"after":1,"milliseconds":380}
+{"mode":"geometry3d","number":19,"scenario":2,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":461}
+{"mode":"geometry3d","number":20,"scenario":2,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":393}
+{"mode":"geometry3d","number":21,"scenario":3,"phrase":"Make a cuboid width 5 height 6 depth 4","answer":"Created 3D cuboid.","passed":true,"error":"","before":0,"after":1,"milliseconds":357}
+{"mode":"geometry3d","number":22,"scenario":3,"phrase":"Move it 3 units right","answer":"move cuboid.","passed":true,"error":"","before":1,"after":1,"milliseconds":375}
+{"mode":"geometry3d","number":23,"scenario":3,"phrase":"Color that shape green","answer":"Changed cuboid to green.","passed":true,"error":"","before":1,"after":1,"milliseconds":392}
+{"mode":"geometry3d","number":24,"scenario":3,"phrase":"Rotate it 45 degrees","answer":"rotate cuboid.","passed":true,"error":"","before":1,"after":1,"milliseconds":386}
+{"mode":"geometry3d","number":25,"scenario":3,"phrase":"Find its volume","answer":"volume = 120 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":368}
+{"mode":"geometry3d","number":26,"scenario":3,"phrase":"Make a copy of it","answer":"Duplicated cuboid.","passed":true,"error":"","before":1,"after":2,"milliseconds":401}
+{"mode":"geometry3d","number":27,"scenario":3,"phrase":"Make the copy red","answer":"Changed cuboid to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":448}
+{"mode":"geometry3d","number":28,"scenario":3,"phrase":"Delete the original","answer":"Deleted cuboid.","passed":true,"error":"","before":2,"after":1,"milliseconds":432}
+{"mode":"geometry3d","number":29,"scenario":3,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":449}
+{"mode":"geometry3d","number":30,"scenario":3,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":414}
+{"mode":"geometry3d","number":31,"scenario":4,"phrase":"Add a cylinder radius 4 height 6","answer":"Created 3D cylinder.","passed":true,"error":"","before":0,"after":1,"milliseconds":369}
+{"mode":"geometry3d","number":32,"scenario":4,"phrase":"Move it to (4,0,2)","answer":"move cylinder.","passed":true,"error":"","before":1,"after":1,"milliseconds":482}
+{"mode":"geometry3d","number":33,"scenario":4,"phrase":"Recolor it purple","answer":"Changed cylinder to purple.","passed":true,"error":"","before":1,"after":1,"milliseconds":482}
+{"mode":"geometry3d","number":34,"scenario":4,"phrase":"Rotate it 45 degrees","answer":"rotate cylinder.","passed":true,"error":"","before":1,"after":1,"milliseconds":485}
+{"mode":"geometry3d","number":35,"scenario":4,"phrase":"Find its volume","answer":"volume = 301.59289474 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":419}
+{"mode":"geometry3d","number":36,"scenario":4,"phrase":"Please duplicate it","answer":"Duplicated cylinder.","passed":true,"error":"","before":1,"after":2,"milliseconds":540}
+{"mode":"geometry3d","number":37,"scenario":4,"phrase":"Make the copy red","answer":"Changed cylinder to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":630}
+{"mode":"geometry3d","number":38,"scenario":4,"phrase":"Delete the original","answer":"Deleted cylinder.","passed":true,"error":"","before":2,"after":1,"milliseconds":538}
+{"mode":"geometry3d","number":39,"scenario":4,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":582}
+{"mode":"geometry3d","number":40,"scenario":4,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":583}
+{"mode":"geometry3d","number":41,"scenario":5,"phrase":"Sketch a cone radius 5 height 6","answer":"Created 3D cone.","passed":true,"error":"","before":0,"after":1,"milliseconds":368}
+{"mode":"geometry3d","number":42,"scenario":5,"phrase":"Move that shape 2 units down","answer":"move cone.","passed":true,"error":"","before":1,"after":1,"milliseconds":417}
+{"mode":"geometry3d","number":43,"scenario":5,"phrase":"Set its color to orange","answer":"Changed cone to orange.","passed":true,"error":"","before":1,"after":1,"milliseconds":404}
+{"mode":"geometry3d","number":44,"scenario":5,"phrase":"Rotate it 45 degrees","answer":"rotate cone.","passed":true,"error":"","before":1,"after":1,"milliseconds":431}
+{"mode":"geometry3d","number":45,"scenario":5,"phrase":"Find its volume","answer":"volume = 157.07963268 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":387}
+{"mode":"geometry3d","number":46,"scenario":5,"phrase":"Duplicate that object","answer":"Duplicated cone.","passed":true,"error":"","before":1,"after":2,"milliseconds":446}
+{"mode":"geometry3d","number":47,"scenario":5,"phrase":"Make the copy red","answer":"Changed cone to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":485}
+{"mode":"geometry3d","number":48,"scenario":5,"phrase":"Delete the original","answer":"Deleted cone.","passed":true,"error":"","before":2,"after":1,"milliseconds":414}
+{"mode":"geometry3d","number":49,"scenario":5,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":451}
+{"mode":"geometry3d","number":50,"scenario":5,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":481}
+{"mode":"geometry3d","number":51,"scenario":6,"phrase":"Please draw a sphere radius 6 height 6","answer":"Created 3D sphere.","passed":true,"error":"","before":0,"after":1,"milliseconds":434}
+{"mode":"geometry3d","number":52,"scenario":6,"phrase":"Move it up 5 units","answer":"move sphere.","passed":true,"error":"","before":1,"after":1,"milliseconds":545}
+{"mode":"geometry3d","number":53,"scenario":6,"phrase":"Make it blue","answer":"Changed sphere to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":548}
+{"mode":"geometry3d","number":54,"scenario":6,"phrase":"Rotate it 45 degrees","answer":"rotate sphere.","passed":true,"error":"","before":1,"after":1,"milliseconds":552}
+{"mode":"geometry3d","number":55,"scenario":6,"phrase":"Find its volume","answer":"volume = 904.77868423 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":469}
+{"mode":"geometry3d","number":56,"scenario":6,"phrase":"Duplicate it","answer":"Duplicated sphere.","passed":true,"error":"","before":1,"after":2,"milliseconds":629}
+{"mode":"geometry3d","number":57,"scenario":6,"phrase":"Make the copy red","answer":"Changed sphere to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":689}
+{"mode":"geometry3d","number":58,"scenario":6,"phrase":"Delete the original","answer":"Deleted sphere.","passed":true,"error":"","before":2,"after":1,"milliseconds":591}
+{"mode":"geometry3d","number":59,"scenario":6,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":507}
+{"mode":"geometry3d","number":60,"scenario":6,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":659}
+{"mode":"geometry3d","number":61,"scenario":7,"phrase":"Can you create a cube width 9 height 6 depth 4","answer":"Created 3D cube.","passed":true,"error":"","before":0,"after":1,"milliseconds":418}
+{"mode":"geometry3d","number":62,"scenario":7,"phrase":"Translate that object (2,3,1)","answer":"move cube.","passed":true,"error":"","before":1,"after":1,"milliseconds":488}
+{"mode":"geometry3d","number":63,"scenario":7,"phrase":"Change its color to red","answer":"Changed cube to red.","passed":true,"error":"","before":1,"after":1,"milliseconds":567}
+{"mode":"geometry3d","number":64,"scenario":7,"phrase":"Rotate it 45 degrees","answer":"rotate cube.","passed":true,"error":"","before":1,"after":1,"milliseconds":585}
+{"mode":"geometry3d","number":65,"scenario":7,"phrase":"Find its volume","answer":"volume = 729 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":531}
+{"mode":"geometry3d","number":66,"scenario":7,"phrase":"Copy it","answer":"Duplicated cube.","passed":true,"error":"","before":1,"after":2,"milliseconds":648}
+{"mode":"geometry3d","number":67,"scenario":7,"phrase":"Make the copy red","answer":"Changed cube to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":776}
+{"mode":"geometry3d","number":68,"scenario":7,"phrase":"Delete the original","answer":"Deleted cube.","passed":true,"error":"","before":2,"after":1,"milliseconds":663}
+{"mode":"geometry3d","number":69,"scenario":7,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":682}
+{"mode":"geometry3d","number":70,"scenario":7,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":705}
+{"mode":"geometry3d","number":71,"scenario":8,"phrase":"Build a cuboid width 10 height 6 depth 4","answer":"Created 3D cuboid.","passed":true,"error":"","before":0,"after":1,"milliseconds":402}
+{"mode":"geometry3d","number":72,"scenario":8,"phrase":"Move it 3 units right","answer":"move cuboid.","passed":true,"error":"","before":1,"after":1,"milliseconds":433}
+{"mode":"geometry3d","number":73,"scenario":8,"phrase":"Color that shape green","answer":"Changed cuboid to green.","passed":true,"error":"","before":1,"after":1,"milliseconds":442}
+{"mode":"geometry3d","number":74,"scenario":8,"phrase":"Rotate it 45 degrees","answer":"rotate cuboid.","passed":true,"error":"","before":1,"after":1,"milliseconds":459}
+{"mode":"geometry3d","number":75,"scenario":8,"phrase":"Find its volume","answer":"volume = 240 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":360}
+{"mode":"geometry3d","number":76,"scenario":8,"phrase":"Make a copy of it","answer":"Duplicated cuboid.","passed":true,"error":"","before":1,"after":2,"milliseconds":530}
+{"mode":"geometry3d","number":77,"scenario":8,"phrase":"Make the copy red","answer":"Changed cuboid to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":465}
+{"mode":"geometry3d","number":78,"scenario":8,"phrase":"Delete the original","answer":"Deleted cuboid.","passed":true,"error":"","before":2,"after":1,"milliseconds":458}
+{"mode":"geometry3d","number":79,"scenario":8,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":455}
+{"mode":"geometry3d","number":80,"scenario":8,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":484}
+{"mode":"geometry3d","number":81,"scenario":9,"phrase":"Show me a cylinder radius 9 height 6","answer":"Created 3D cylinder.","passed":true,"error":"","before":0,"after":1,"milliseconds":489}
+{"mode":"geometry3d","number":82,"scenario":9,"phrase":"Move it to (4,0,2)","answer":"move cylinder.","passed":true,"error":"","before":1,"after":1,"milliseconds":720}
+{"mode":"geometry3d","number":83,"scenario":9,"phrase":"Recolor it purple","answer":"Changed cylinder to purple.","passed":true,"error":"","before":1,"after":1,"milliseconds":641}
+{"mode":"geometry3d","number":84,"scenario":9,"phrase":"Rotate it 45 degrees","answer":"rotate cylinder.","passed":true,"error":"","before":1,"after":1,"milliseconds":634}
+{"mode":"geometry3d","number":85,"scenario":9,"phrase":"Find its volume","answer":"volume = 1526.81402964 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":531}
+{"mode":"geometry3d","number":86,"scenario":9,"phrase":"Please duplicate it","answer":"Duplicated cylinder.","passed":true,"error":"","before":1,"after":2,"milliseconds":670}
+{"mode":"geometry3d","number":87,"scenario":9,"phrase":"Make the copy red","answer":"Changed cylinder to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":786}
+{"mode":"geometry3d","number":88,"scenario":9,"phrase":"Delete the original","answer":"Deleted cylinder.","passed":true,"error":"","before":2,"after":1,"milliseconds":748}
+{"mode":"geometry3d","number":89,"scenario":9,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":699}
+{"mode":"geometry3d","number":90,"scenario":9,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":835}
+{"mode":"geometry3d","number":91,"scenario":10,"phrase":"I need a cone radius 10 height 6","answer":"Created 3D cone.","passed":true,"error":"","before":0,"after":1,"milliseconds":500}
+{"mode":"geometry3d","number":92,"scenario":10,"phrase":"Move that shape 2 units down","answer":"move cone.","passed":true,"error":"","before":1,"after":1,"milliseconds":615}
+{"mode":"geometry3d","number":93,"scenario":10,"phrase":"Set its color to orange","answer":"Changed cone to orange.","passed":true,"error":"","before":1,"after":1,"milliseconds":614}
+{"mode":"geometry3d","number":94,"scenario":10,"phrase":"Rotate it 45 degrees","answer":"rotate cone.","passed":true,"error":"","before":1,"after":1,"milliseconds":583}
+{"mode":"geometry3d","number":95,"scenario":10,"phrase":"Find its volume","answer":"volume = 628.31853072 units.","passed":true,"error":"","before":1,"after":1,"milliseconds":522}
+{"mode":"geometry3d","number":96,"scenario":10,"phrase":"Duplicate that object","answer":"Duplicated cone.","passed":true,"error":"","before":1,"after":2,"milliseconds":656}
+{"mode":"geometry3d","number":97,"scenario":10,"phrase":"Make the copy red","answer":"Changed cone to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":758}
+{"mode":"geometry3d","number":98,"scenario":10,"phrase":"Delete the original","answer":"Deleted cone.","passed":true,"error":"","before":2,"after":1,"milliseconds":713}
+{"mode":"geometry3d","number":99,"scenario":10,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":728}
+{"mode":"geometry3d","number":100,"scenario":10,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":742}
+{"mode":"graph2d","number":1,"scenario":1,"phrase":"Plot y=x^2-1","answer":"Created 2D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":256}
+{"mode":"graph2d","number":2,"scenario":1,"phrase":"Find its roots","answer":"roots (numerical, x ∈ [-100,100]) = [[-1,0],[1,0]].","passed":true,"error":"","before":1,"after":1,"milliseconds":200}
+{"mode":"graph2d","number":3,"scenario":1,"phrase":"Make it blue","answer":"Changed plot to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":290}
+{"mode":"graph2d","number":4,"scenario":1,"phrase":"Hide that graph","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":255}
+{"mode":"graph2d","number":5,"scenario":1,"phrase":"Show it","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":238}
+{"mode":"graph2d","number":6,"scenario":1,"phrase":"Duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":219}
+{"mode":"graph2d","number":7,"scenario":1,"phrase":"Make the copy red","answer":"Changed plot to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":219}
+{"mode":"graph2d","number":8,"scenario":1,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":203}
+{"mode":"graph2d","number":9,"scenario":1,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":256}
+{"mode":"graph2d","number":10,"scenario":1,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":172}
+{"mode":"graph2d","number":11,"scenario":2,"phrase":"Graph y=x^2-4","answer":"Created 2D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":201}
+{"mode":"graph2d","number":12,"scenario":2,"phrase":"What are the roots?","answer":"roots (numerical, x ∈ [-100,100]) = [[-2,0],[2,0]].","passed":true,"error":"","before":1,"after":1,"milliseconds":198}
+{"mode":"graph2d","number":13,"scenario":2,"phrase":"Color that graph red","answer":"Changed plot to red.","passed":true,"error":"","before":1,"after":1,"milliseconds":210}
+{"mode":"graph2d","number":14,"scenario":2,"phrase":"Hide that graph","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":197}
+{"mode":"graph2d","number":15,"scenario":2,"phrase":"Show it","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":193}
+{"mode":"graph2d","number":16,"scenario":2,"phrase":"Copy it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":199}
+{"mode":"graph2d","number":17,"scenario":2,"phrase":"Make the copy red","answer":"Changed plot to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":167}
+{"mode":"graph2d","number":18,"scenario":2,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":191}
+{"mode":"graph2d","number":19,"scenario":2,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":256}
+{"mode":"graph2d","number":20,"scenario":2,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":174}
+{"mode":"graph2d","number":21,"scenario":3,"phrase":"Draw a graph of y=x^2-9","answer":"Created 2D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":195}
+{"mode":"graph2d","number":22,"scenario":3,"phrase":"Find the x intercepts","answer":"x intercept (numerical, x ∈ [-100,100]) = [[-3,0],[3,0]].","passed":true,"error":"","before":1,"after":1,"milliseconds":166}
+{"mode":"graph2d","number":23,"scenario":3,"phrase":"Change its color to green","answer":"Changed plot to green.","passed":true,"error":"","before":1,"after":1,"milliseconds":179}
+{"mode":"graph2d","number":24,"scenario":3,"phrase":"Hide that graph","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":188}
+{"mode":"graph2d","number":25,"scenario":3,"phrase":"Show it","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":197}
+{"mode":"graph2d","number":26,"scenario":3,"phrase":"Make a copy of it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":174}
+{"mode":"graph2d","number":27,"scenario":3,"phrase":"Make the copy red","answer":"Changed plot to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":174}
+{"mode":"graph2d","number":28,"scenario":3,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":200}
+{"mode":"graph2d","number":29,"scenario":3,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":227}
+{"mode":"graph2d","number":30,"scenario":3,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":172}
+{"mode":"graph2d","number":31,"scenario":4,"phrase":"Show graph of y=x^2-16","answer":"Created 2D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":177}
+{"mode":"graph2d","number":32,"scenario":4,"phrase":"Calculate its roots","answer":"roots (numerical, x ∈ [-100,100]) = [[-4,0],[4,0]].","passed":true,"error":"","before":1,"after":1,"milliseconds":157}
+{"mode":"graph2d","number":33,"scenario":4,"phrase":"Set its color to purple","answer":"Changed plot to purple.","passed":true,"error":"","before":1,"after":1,"milliseconds":163}
+{"mode":"graph2d","number":34,"scenario":4,"phrase":"Hide that graph","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":191}
+{"mode":"graph2d","number":35,"scenario":4,"phrase":"Show it","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":182}
+{"mode":"graph2d","number":36,"scenario":4,"phrase":"Duplicate that graph","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":205}
+{"mode":"graph2d","number":37,"scenario":4,"phrase":"Make the copy red","answer":"Changed plot to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":171}
+{"mode":"graph2d","number":38,"scenario":4,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":170}
+{"mode":"graph2d","number":39,"scenario":4,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":217}
+{"mode":"graph2d","number":40,"scenario":4,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":154}
+{"mode":"graph2d","number":41,"scenario":5,"phrase":"Please plot y=x^2-25","answer":"Created 2D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":245}
+{"mode":"graph2d","number":42,"scenario":5,"phrase":"Where does it cross the x-axis?","answer":"x intercept (numerical, x ∈ [-100,100]) = [[-5,0],[5,0]].","passed":true,"error":"","before":1,"after":1,"milliseconds":153}
+{"mode":"graph2d","number":43,"scenario":5,"phrase":"Recolor it orange","answer":"Changed plot to orange.","passed":true,"error":"","before":1,"after":1,"milliseconds":155}
+{"mode":"graph2d","number":44,"scenario":5,"phrase":"Hide that graph","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":168}
+{"mode":"graph2d","number":45,"scenario":5,"phrase":"Show it","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":178}
+{"mode":"graph2d","number":46,"scenario":5,"phrase":"Please duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":200}
+{"mode":"graph2d","number":47,"scenario":5,"phrase":"Make the copy red","answer":"Changed plot to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":195}
+{"mode":"graph2d","number":48,"scenario":5,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":180}
+{"mode":"graph2d","number":49,"scenario":5,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":249}
+{"mode":"graph2d","number":50,"scenario":5,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":166}
+{"mode":"graph2d","number":51,"scenario":6,"phrase":"Plot y=x^2-36","answer":"Created 2D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":197}
+{"mode":"graph2d","number":52,"scenario":6,"phrase":"Find its roots","answer":"roots (numerical, x ∈ [-100,100]) = [[-6,0],[6,0]].","passed":true,"error":"","before":1,"after":1,"milliseconds":172}
+{"mode":"graph2d","number":53,"scenario":6,"phrase":"Make it blue","answer":"Changed plot to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":161}
+{"mode":"graph2d","number":54,"scenario":6,"phrase":"Hide that graph","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":170}
+{"mode":"graph2d","number":55,"scenario":6,"phrase":"Show it","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":168}
+{"mode":"graph2d","number":56,"scenario":6,"phrase":"Duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":184}
+{"mode":"graph2d","number":57,"scenario":6,"phrase":"Make the copy red","answer":"Changed plot to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":186}
+{"mode":"graph2d","number":58,"scenario":6,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":206}
+{"mode":"graph2d","number":59,"scenario":6,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":222}
+{"mode":"graph2d","number":60,"scenario":6,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":142}
+{"mode":"graph2d","number":61,"scenario":7,"phrase":"Graph y=x^2-49","answer":"Created 2D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":233}
+{"mode":"graph2d","number":62,"scenario":7,"phrase":"What are the roots?","answer":"roots (numerical, x ∈ [-100,100]) = [[-7,0],[7,0]].","passed":true,"error":"","before":1,"after":1,"milliseconds":173}
+{"mode":"graph2d","number":63,"scenario":7,"phrase":"Color that graph red","answer":"Changed plot to red.","passed":true,"error":"","before":1,"after":1,"milliseconds":186}
+{"mode":"graph2d","number":64,"scenario":7,"phrase":"Hide that graph","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":168}
+{"mode":"graph2d","number":65,"scenario":7,"phrase":"Show it","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":175}
+{"mode":"graph2d","number":66,"scenario":7,"phrase":"Copy it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":172}
+{"mode":"graph2d","number":67,"scenario":7,"phrase":"Make the copy red","answer":"Changed plot to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":183}
+{"mode":"graph2d","number":68,"scenario":7,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":208}
+{"mode":"graph2d","number":69,"scenario":7,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":277}
+{"mode":"graph2d","number":70,"scenario":7,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":169}
+{"mode":"graph2d","number":71,"scenario":8,"phrase":"Draw a graph of y=x^2-64","answer":"Created 2D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":188}
+{"mode":"graph2d","number":72,"scenario":8,"phrase":"Find the x intercepts","answer":"x intercept (numerical, x ∈ [-100,100]) = [[-8,0],[8,0]].","passed":true,"error":"","before":1,"after":1,"milliseconds":175}
+{"mode":"graph2d","number":73,"scenario":8,"phrase":"Change its color to green","answer":"Changed plot to green.","passed":true,"error":"","before":1,"after":1,"milliseconds":177}
+{"mode":"graph2d","number":74,"scenario":8,"phrase":"Hide that graph","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":189}
+{"mode":"graph2d","number":75,"scenario":8,"phrase":"Show it","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":162}
+{"mode":"graph2d","number":76,"scenario":8,"phrase":"Make a copy of it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":170}
+{"mode":"graph2d","number":77,"scenario":8,"phrase":"Make the copy red","answer":"Changed plot to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":169}
+{"mode":"graph2d","number":78,"scenario":8,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":184}
+{"mode":"graph2d","number":79,"scenario":8,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":199}
+{"mode":"graph2d","number":80,"scenario":8,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":168}
+{"mode":"graph2d","number":81,"scenario":9,"phrase":"Show graph of y=x^2-81","answer":"Created 2D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":192}
+{"mode":"graph2d","number":82,"scenario":9,"phrase":"Calculate its roots","answer":"roots (numerical, x ∈ [-100,100]) = [[-9,0],[9,0]].","passed":true,"error":"","before":1,"after":1,"milliseconds":195}
+{"mode":"graph2d","number":83,"scenario":9,"phrase":"Set its color to purple","answer":"Changed plot to purple.","passed":true,"error":"","before":1,"after":1,"milliseconds":277}
+{"mode":"graph2d","number":84,"scenario":9,"phrase":"Hide that graph","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":241}
+{"mode":"graph2d","number":85,"scenario":9,"phrase":"Show it","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":223}
+{"mode":"graph2d","number":86,"scenario":9,"phrase":"Duplicate that graph","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":273}
+{"mode":"graph2d","number":87,"scenario":9,"phrase":"Make the copy red","answer":"Changed plot to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":200}
+{"mode":"graph2d","number":88,"scenario":9,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":198}
+{"mode":"graph2d","number":89,"scenario":9,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":271}
+{"mode":"graph2d","number":90,"scenario":9,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":203}
+{"mode":"graph2d","number":91,"scenario":10,"phrase":"Please plot y=x^2-100","answer":"Created 2D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":192}
+{"mode":"graph2d","number":92,"scenario":10,"phrase":"Where does it cross the x-axis?","answer":"x intercept (numerical, x ∈ [-100,100]) = [[-10,0],[10,0]].","passed":true,"error":"","before":1,"after":1,"milliseconds":169}
+{"mode":"graph2d","number":93,"scenario":10,"phrase":"Recolor it orange","answer":"Changed plot to orange.","passed":true,"error":"","before":1,"after":1,"milliseconds":222}
+{"mode":"graph2d","number":94,"scenario":10,"phrase":"Hide that graph","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":172}
+{"mode":"graph2d","number":95,"scenario":10,"phrase":"Show it","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":197}
+{"mode":"graph2d","number":96,"scenario":10,"phrase":"Please duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":180}
+{"mode":"graph2d","number":97,"scenario":10,"phrase":"Make the copy red","answer":"Changed plot to red.","passed":true,"error":"","before":2,"after":2,"milliseconds":168}
+{"mode":"graph2d","number":98,"scenario":10,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":171}
+{"mode":"graph2d","number":99,"scenario":10,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":223}
+{"mode":"graph2d","number":100,"scenario":10,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":162}
+{"mode":"graph3d","number":1,"scenario":1,"phrase":"Plot z=x^2+y^2+1","answer":"Created 3D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":2532}
+{"mode":"graph3d","number":2,"scenario":1,"phrase":"Make it blue","answer":"Changed plot to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":3424}
+{"mode":"graph3d","number":3,"scenario":1,"phrase":"Move that surface (2,3,1)","answer":"move plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":3054}
+{"mode":"graph3d","number":4,"scenario":1,"phrase":"Rotate it 30 degrees","answer":"rotate plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2623}
+{"mode":"graph3d","number":5,"scenario":1,"phrase":"Hide it","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2754}
+{"mode":"graph3d","number":6,"scenario":1,"phrase":"Show that object","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2679}
+{"mode":"graph3d","number":7,"scenario":1,"phrase":"Duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":2810}
+{"mode":"graph3d","number":8,"scenario":1,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":2508}
+{"mode":"graph3d","number":9,"scenario":1,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":2498}
+{"mode":"graph3d","number":10,"scenario":1,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":1925}
+{"mode":"graph3d","number":11,"scenario":2,"phrase":"Graph z=x^2+y^2+2","answer":"Created 3D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":1875}
+{"mode":"graph3d","number":12,"scenario":2,"phrase":"Make it blue","answer":"Changed plot to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":2304}
+{"mode":"graph3d","number":13,"scenario":2,"phrase":"Move that surface (2,3,1)","answer":"move plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2387}
+{"mode":"graph3d","number":14,"scenario":2,"phrase":"Rotate it 30 degrees","answer":"rotate plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2385}
+{"mode":"graph3d","number":15,"scenario":2,"phrase":"Hide it","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2020}
+{"mode":"graph3d","number":16,"scenario":2,"phrase":"Show that object","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2059}
+{"mode":"graph3d","number":17,"scenario":2,"phrase":"Duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":2227}
+{"mode":"graph3d","number":18,"scenario":2,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":2001}
+{"mode":"graph3d","number":19,"scenario":2,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":2387}
+{"mode":"graph3d","number":20,"scenario":2,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":1873}
+{"mode":"graph3d","number":21,"scenario":3,"phrase":"Draw a graph of z=x^2+y^2+3","answer":"Created 3D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":1925}
+{"mode":"graph3d","number":22,"scenario":3,"phrase":"Make it blue","answer":"Changed plot to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":2261}
+{"mode":"graph3d","number":23,"scenario":3,"phrase":"Move that surface (2,3,1)","answer":"move plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2231}
+{"mode":"graph3d","number":24,"scenario":3,"phrase":"Rotate it 30 degrees","answer":"rotate plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2206}
+{"mode":"graph3d","number":25,"scenario":3,"phrase":"Hide it","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2201}
+{"mode":"graph3d","number":26,"scenario":3,"phrase":"Show that object","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2266}
+{"mode":"graph3d","number":27,"scenario":3,"phrase":"Duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":2942}
+{"mode":"graph3d","number":28,"scenario":3,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":2755}
+{"mode":"graph3d","number":29,"scenario":3,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":3019}
+{"mode":"graph3d","number":30,"scenario":3,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":2344}
+{"mode":"graph3d","number":31,"scenario":4,"phrase":"Please plot z=x^2+y^2+4","answer":"Created 3D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":2251}
+{"mode":"graph3d","number":32,"scenario":4,"phrase":"Make it blue","answer":"Changed plot to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":3064}
+{"mode":"graph3d","number":33,"scenario":4,"phrase":"Move that surface (2,3,1)","answer":"move plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2761}
+{"mode":"graph3d","number":34,"scenario":4,"phrase":"Rotate it 30 degrees","answer":"rotate plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2566}
+{"mode":"graph3d","number":35,"scenario":4,"phrase":"Hide it","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2668}
+{"mode":"graph3d","number":36,"scenario":4,"phrase":"Show that object","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2583}
+{"mode":"graph3d","number":37,"scenario":4,"phrase":"Duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":2746}
+{"mode":"graph3d","number":38,"scenario":4,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":2915}
+{"mode":"graph3d","number":39,"scenario":4,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":2950}
+{"mode":"graph3d","number":40,"scenario":4,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":2170}
+{"mode":"graph3d","number":41,"scenario":5,"phrase":"Show graph of z=x^2+y^2+5","answer":"Created 3D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":2265}
+{"mode":"graph3d","number":42,"scenario":5,"phrase":"Make it blue","answer":"Changed plot to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":2788}
+{"mode":"graph3d","number":43,"scenario":5,"phrase":"Move that surface (2,3,1)","answer":"move plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2750}
+{"mode":"graph3d","number":44,"scenario":5,"phrase":"Rotate it 30 degrees","answer":"rotate plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2180}
+{"mode":"graph3d","number":45,"scenario":5,"phrase":"Hide it","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2722}
+{"mode":"graph3d","number":46,"scenario":5,"phrase":"Show that object","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2514}
+{"mode":"graph3d","number":47,"scenario":5,"phrase":"Duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":2449}
+{"mode":"graph3d","number":48,"scenario":5,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":2482}
+{"mode":"graph3d","number":49,"scenario":5,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":2912}
+{"mode":"graph3d","number":50,"scenario":5,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":2267}
+{"mode":"graph3d","number":51,"scenario":6,"phrase":"Plot z=x^2+y^2+6","answer":"Created 3D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":2298}
+{"mode":"graph3d","number":52,"scenario":6,"phrase":"Make it blue","answer":"Changed plot to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":2912}
+{"mode":"graph3d","number":53,"scenario":6,"phrase":"Move that surface (2,3,1)","answer":"move plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2760}
+{"mode":"graph3d","number":54,"scenario":6,"phrase":"Rotate it 30 degrees","answer":"rotate plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2841}
+{"mode":"graph3d","number":55,"scenario":6,"phrase":"Hide it","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2646}
+{"mode":"graph3d","number":56,"scenario":6,"phrase":"Show that object","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":3263}
+{"mode":"graph3d","number":57,"scenario":6,"phrase":"Duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":3494}
+{"mode":"graph3d","number":58,"scenario":6,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":3577}
+{"mode":"graph3d","number":59,"scenario":6,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":4134}
+{"mode":"graph3d","number":60,"scenario":6,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":4022}
+{"mode":"graph3d","number":61,"scenario":7,"phrase":"Graph z=x^2+y^2+7","answer":"Created 3D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":2462}
+{"mode":"graph3d","number":62,"scenario":7,"phrase":"Make it blue","answer":"Changed plot to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":3284}
+{"mode":"graph3d","number":63,"scenario":7,"phrase":"Move that surface (2,3,1)","answer":"move plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2436}
+{"mode":"graph3d","number":64,"scenario":7,"phrase":"Rotate it 30 degrees","answer":"rotate plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":3106}
+{"mode":"graph3d","number":65,"scenario":7,"phrase":"Hide it","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":3144}
+{"mode":"graph3d","number":66,"scenario":7,"phrase":"Show that object","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2728}
+{"mode":"graph3d","number":67,"scenario":7,"phrase":"Duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":3016}
+{"mode":"graph3d","number":68,"scenario":7,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":2931}
+{"mode":"graph3d","number":69,"scenario":7,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":3607}
+{"mode":"graph3d","number":70,"scenario":7,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":2008}
+{"mode":"graph3d","number":71,"scenario":8,"phrase":"Draw a graph of z=x^2+y^2+8","answer":"Created 3D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":2225}
+{"mode":"graph3d","number":72,"scenario":8,"phrase":"Make it blue","answer":"Changed plot to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":3093}
+{"mode":"graph3d","number":73,"scenario":8,"phrase":"Move that surface (2,3,1)","answer":"move plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2828}
+{"mode":"graph3d","number":74,"scenario":8,"phrase":"Rotate it 30 degrees","answer":"rotate plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2399}
+{"mode":"graph3d","number":75,"scenario":8,"phrase":"Hide it","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2804}
+{"mode":"graph3d","number":76,"scenario":8,"phrase":"Show that object","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2825}
+{"mode":"graph3d","number":77,"scenario":8,"phrase":"Duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":2909}
+{"mode":"graph3d","number":78,"scenario":8,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":2648}
+{"mode":"graph3d","number":79,"scenario":8,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":3572}
+{"mode":"graph3d","number":80,"scenario":8,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":2784}
+{"mode":"graph3d","number":81,"scenario":9,"phrase":"Please plot z=x^2+y^2+9","answer":"Created 3D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":2432}
+{"mode":"graph3d","number":82,"scenario":9,"phrase":"Make it blue","answer":"Changed plot to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":2955}
+{"mode":"graph3d","number":83,"scenario":9,"phrase":"Move that surface (2,3,1)","answer":"move plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2787}
+{"mode":"graph3d","number":84,"scenario":9,"phrase":"Rotate it 30 degrees","answer":"rotate plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2719}
+{"mode":"graph3d","number":85,"scenario":9,"phrase":"Hide it","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2532}
+{"mode":"graph3d","number":86,"scenario":9,"phrase":"Show that object","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2657}
+{"mode":"graph3d","number":87,"scenario":9,"phrase":"Duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":3015}
+{"mode":"graph3d","number":88,"scenario":9,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":3035}
+{"mode":"graph3d","number":89,"scenario":9,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":3344}
+{"mode":"graph3d","number":90,"scenario":9,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":2307}
+{"mode":"graph3d","number":91,"scenario":10,"phrase":"Show graph of z=x^2+y^2+10","answer":"Created 3D plot.","passed":true,"error":"","before":0,"after":1,"milliseconds":2555}
+{"mode":"graph3d","number":92,"scenario":10,"phrase":"Make it blue","answer":"Changed plot to blue.","passed":true,"error":"","before":1,"after":1,"milliseconds":2861}
+{"mode":"graph3d","number":93,"scenario":10,"phrase":"Move that surface (2,3,1)","answer":"move plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2776}
+{"mode":"graph3d","number":94,"scenario":10,"phrase":"Rotate it 30 degrees","answer":"rotate plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2910}
+{"mode":"graph3d","number":95,"scenario":10,"phrase":"Hide it","answer":"Hidden plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2432}
+{"mode":"graph3d","number":96,"scenario":10,"phrase":"Show that object","answer":"Showing plot.","passed":true,"error":"","before":1,"after":1,"milliseconds":2918}
+{"mode":"graph3d","number":97,"scenario":10,"phrase":"Duplicate it","answer":"Duplicated plot.","passed":true,"error":"","before":1,"after":2,"milliseconds":3153}
+{"mode":"graph3d","number":98,"scenario":10,"phrase":"Delete the original","answer":"Deleted plot.","passed":true,"error":"","before":2,"after":1,"milliseconds":2399}
+{"mode":"graph3d","number":99,"scenario":10,"phrase":"Undo that","answer":"Undid the last Robo action.","passed":true,"error":"","before":1,"after":2,"milliseconds":2816}
+{"mode":"graph3d","number":100,"scenario":10,"phrase":"Count objects","answer":"Count = 2.","passed":true,"error":"","before":2,"after":2,"milliseconds":2108}

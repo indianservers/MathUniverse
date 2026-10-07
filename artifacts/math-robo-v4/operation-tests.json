@@ -1,0 +1,710 @@
+[
+  {
+    "action": "CREATE",
+    "subAction": "TRIANGLE",
+    "tested": true,
+    "evidence": "Draw a triangle width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "RECTANGLE",
+    "tested": true,
+    "evidence": "Draw a rectangle 4 by 6"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "SQUARE",
+    "tested": true,
+    "evidence": "Draw a square side 4"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "CIRCLE",
+    "tested": true,
+    "evidence": "Draw a circle radius 5"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "ELLIPSE",
+    "tested": true,
+    "evidence": "Draw a ellipse width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "SEMICIRCLE",
+    "tested": true,
+    "evidence": "Draw a semicircle width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "PENTAGON",
+    "tested": true,
+    "evidence": "Draw a pentagon width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "HEXAGON",
+    "tested": true,
+    "evidence": "Draw a hexagon width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "HEPTAGON",
+    "tested": true,
+    "evidence": "Draw a heptagon width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "OCTAGON",
+    "tested": true,
+    "evidence": "Draw a octagon width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "NONAGON",
+    "tested": true,
+    "evidence": "Draw a nonagon width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "DECAGON",
+    "tested": true,
+    "evidence": "Draw a decagon width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "POLYGON",
+    "tested": true,
+    "evidence": "Draw a polygon width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "STAR",
+    "tested": true,
+    "evidence": "Draw a star width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "PARALLELOGRAM",
+    "tested": true,
+    "evidence": "Draw a parallelogram width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "TRAPEZOID",
+    "tested": true,
+    "evidence": "Draw a trapezoid width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "RHOMBUS",
+    "tested": true,
+    "evidence": "Draw a rhombus width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "KITE",
+    "tested": true,
+    "evidence": "Draw a kite width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "CUBE",
+    "tested": true,
+    "evidence": "Draw a cube side 4"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "CUBOID",
+    "tested": true,
+    "evidence": "Draw a cuboid width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "SPHERE",
+    "tested": true,
+    "evidence": "Draw a sphere radius 5"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "ELLIPSOID",
+    "tested": true,
+    "evidence": "Draw a ellipsoid width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "HEMISPHERE",
+    "tested": true,
+    "evidence": "Draw a hemisphere width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "CYLINDER",
+    "tested": true,
+    "evidence": "Draw a cylinder width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "CONE",
+    "tested": true,
+    "evidence": "Draw a cone width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "FRUSTUM",
+    "tested": true,
+    "evidence": "Draw a frustum width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "TORUS",
+    "tested": true,
+    "evidence": "Draw a torus width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "TUBE",
+    "tested": true,
+    "evidence": "Draw a tube width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "CAPSULE",
+    "tested": true,
+    "evidence": "Draw a capsule width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "PRISM",
+    "tested": true,
+    "evidence": "Draw a prism width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "PYRAMID",
+    "tested": true,
+    "evidence": "Draw a pyramid width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "TETRAHEDRON",
+    "tested": true,
+    "evidence": "Draw a tetrahedron width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "OCTAHEDRON",
+    "tested": true,
+    "evidence": "Draw a octahedron width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "DODECAHEDRON",
+    "tested": true,
+    "evidence": "Draw a dodecahedron width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "ICOSAHEDRON",
+    "tested": true,
+    "evidence": "Draw a icosahedron width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "WEDGE",
+    "tested": true,
+    "evidence": "Draw a wedge width 6 height 4 radius 3"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "POINT",
+    "tested": true,
+    "evidence": "Draw a point at (1,2)"
+  },
+  {
+    "action": "CREATE",
+    "subAction": "LINE",
+    "tested": true,
+    "evidence": "Draw a line from (0,0) to (6,8)"
+  },
+  {
+    "action": "PLOT",
+    "subAction": "FUNCTION",
+    "tested": true,
+    "evidence": "Plot y=x^2"
+  },
+  {
+    "action": "PLOT",
+    "subAction": "SURFACE_3D",
+    "tested": true,
+    "evidence": "Plot z=x^2+y^2"
+  },
+  {
+    "action": "FIND",
+    "subAction": "DISTANCE",
+    "tested": true,
+    "evidence": "Find the distance between A and B"
+  },
+  {
+    "action": "FIND",
+    "subAction": "MIDPOINT",
+    "tested": true,
+    "evidence": "What is its midpoint?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "LENGTH",
+    "tested": true,
+    "evidence": "What is its length?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "AREA",
+    "tested": true,
+    "evidence": "What is its area?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "PERIMETER",
+    "tested": true,
+    "evidence": "What is its perimeter?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "CIRCUMFERENCE",
+    "tested": true,
+    "evidence": "What is its circumference?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "SLOPE",
+    "tested": true,
+    "evidence": "What is its slope?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "CENTER",
+    "tested": true,
+    "evidence": "What is its center?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "RADIUS",
+    "tested": true,
+    "evidence": "What is its radius?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "DIAMETER",
+    "tested": true,
+    "evidence": "What is its diameter?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "CENTROID",
+    "tested": true,
+    "evidence": "What is its centroid?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "VOLUME",
+    "tested": true,
+    "evidence": "What is its volume?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "SURFACE_AREA",
+    "tested": true,
+    "evidence": "What is its surface area?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "INTERSECTION",
+    "tested": true,
+    "evidence": "Where do these two lines intersect?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "ROOTS",
+    "tested": true,
+    "evidence": "What is its roots?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "X_INTERCEPT",
+    "tested": true,
+    "evidence": "What is its x intercept?"
+  },
+  {
+    "action": "FIND",
+    "subAction": "Y_INTERCEPT",
+    "tested": true,
+    "evidence": "What is its y intercept?"
+  },
+  {
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "tested": true,
+    "evidence": "Make it blue"
+  },
+  {
+    "action": "CHANGE",
+    "subAction": "WIDTH",
+    "tested": true,
+    "evidence": "Change its width to 8"
+  },
+  {
+    "action": "CHANGE",
+    "subAction": "HEIGHT",
+    "tested": true,
+    "evidence": "Change its height to 8"
+  },
+  {
+    "action": "CHANGE",
+    "subAction": "DEPTH",
+    "tested": true,
+    "evidence": "Change its depth to 8"
+  },
+  {
+    "action": "CHANGE",
+    "subAction": "RADIUS",
+    "tested": true,
+    "evidence": "Change its radius to 8"
+  },
+  {
+    "action": "CHANGE",
+    "subAction": "DIAMETER",
+    "tested": true,
+    "evidence": "Change its diameter to 8"
+  },
+  {
+    "action": "CHANGE",
+    "subAction": "POSITION",
+    "tested": true,
+    "evidence": "Change its position to (2,3)"
+  },
+  {
+    "action": "CHANGE",
+    "subAction": "COORDINATES",
+    "tested": true,
+    "evidence": "Change its coordinates to (2,3)"
+  },
+  {
+    "action": "CHANGE",
+    "subAction": "LABEL",
+    "tested": true,
+    "evidence": "Rename it to C"
+  },
+  {
+    "action": "MOVE",
+    "subAction": "OBJECT",
+    "tested": true,
+    "evidence": "Move it 3 right and 2 up"
+  },
+  {
+    "action": "ROTATE",
+    "subAction": "OBJECT",
+    "tested": true,
+    "evidence": "Rotate it 45 degrees"
+  },
+  {
+    "action": "SCALE",
+    "subAction": "UNIFORM",
+    "tested": true,
+    "evidence": "Scale it by 2"
+  },
+  {
+    "action": "RESIZE",
+    "subAction": "OBJECT",
+    "tested": true,
+    "evidence": "Resize it width 8 height 5"
+  },
+  {
+    "action": "REFLECT",
+    "subAction": "X_AXIS",
+    "tested": true,
+    "evidence": "Reflect it across the x-axis"
+  },
+  {
+    "action": "REFLECT",
+    "subAction": "Y_AXIS",
+    "tested": true,
+    "evidence": "Reflect it across the y-axis"
+  },
+  {
+    "action": "REFLECT",
+    "subAction": "ORIGIN",
+    "tested": true,
+    "evidence": "Reflect it across the origin"
+  },
+  {
+    "action": "REFLECT",
+    "subAction": "XY_PLANE",
+    "tested": true,
+    "evidence": "Reflect it across the xy-plane"
+  },
+  {
+    "action": "REFLECT",
+    "subAction": "XZ_PLANE",
+    "tested": true,
+    "evidence": "Reflect it across the xz-plane"
+  },
+  {
+    "action": "REFLECT",
+    "subAction": "YZ_PLANE",
+    "tested": true,
+    "evidence": "Reflect it across the yz-plane"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subAction": "PERPENDICULAR",
+    "tested": true,
+    "evidence": "Draw a perpendicular through the midpoint of the last line"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subAction": "PARALLEL",
+    "tested": true,
+    "evidence": "Draw a parallel through the midpoint of the last line"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subAction": "PERPENDICULAR_BISECTOR",
+    "tested": true,
+    "evidence": "Draw a perpendicular bisector through the midpoint of the last line"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subAction": "TANGENT",
+    "tested": true,
+    "evidence": "Draw a tangent to the circle at angle 30 degrees"
+  },
+  {
+    "action": "MARK",
+    "subAction": "POINT",
+    "tested": true,
+    "evidence": "Mark it"
+  },
+  {
+    "action": "MARK",
+    "subAction": "MIDPOINT",
+    "tested": true,
+    "evidence": "Mark the midpoint"
+  },
+  {
+    "action": "MARK",
+    "subAction": "CENTER",
+    "tested": true,
+    "evidence": "Mark the center"
+  },
+  {
+    "action": "MARK",
+    "subAction": "INTERSECTION",
+    "tested": true,
+    "evidence": "Mark the intersection"
+  },
+  {
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "tested": true,
+    "evidence": "Show it"
+  },
+  {
+    "action": "SHOW",
+    "subAction": "CENTER",
+    "tested": true,
+    "evidence": "Show the center"
+  },
+  {
+    "action": "SHOW",
+    "subAction": "MIDPOINT",
+    "tested": true,
+    "evidence": "Show the midpoint"
+  },
+  {
+    "action": "SHOW",
+    "subAction": "RADIUS",
+    "tested": true,
+    "evidence": "Show the radius"
+  },
+  {
+    "action": "SHOW",
+    "subAction": "DIAMETER",
+    "tested": true,
+    "evidence": "Show the diameter"
+  },
+  {
+    "action": "SHOW",
+    "subAction": "INTERSECTION",
+    "tested": true,
+    "evidence": "Show the intersection"
+  },
+  {
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "tested": true,
+    "evidence": "Hide it"
+  },
+  {
+    "action": "DELETE",
+    "subAction": "OBJECT",
+    "tested": true,
+    "evidence": "Delete it"
+  },
+  {
+    "action": "DELETE",
+    "subAction": "ALL",
+    "tested": true,
+    "evidence": "Delete all objects"
+  },
+  {
+    "action": "SELECT",
+    "subAction": "OBJECT",
+    "tested": true,
+    "evidence": "Select the largest circle"
+  },
+  {
+    "action": "SELECT",
+    "subAction": "ALL",
+    "tested": true,
+    "evidence": "Select all"
+  },
+  {
+    "action": "DESELECT",
+    "subAction": "ALL",
+    "tested": true,
+    "evidence": "Deselect all"
+  },
+  {
+    "action": "DUPLICATE",
+    "subAction": "OBJECT",
+    "tested": true,
+    "evidence": "Duplicate it"
+  },
+  {
+    "action": "UNDO",
+    "subAction": "LAST",
+    "tested": true,
+    "evidence": "semanticEngine.test.ts history round-trip test"
+  },
+  {
+    "action": "REDO",
+    "subAction": "LAST",
+    "tested": true,
+    "evidence": "semanticEngine.test.ts history round-trip test"
+  },
+  {
+    "action": "COUNT",
+    "subAction": "OBJECTS",
+    "tested": true,
+    "evidence": "Count objects"
+  },
+  {
+    "action": "COUNT",
+    "subAction": "POINTS",
+    "tested": true,
+    "evidence": "Count points"
+  },
+  {
+    "action": "COUNT",
+    "subAction": "LINES",
+    "tested": true,
+    "evidence": "Count lines"
+  },
+  {
+    "action": "COUNT",
+    "subAction": "SHAPES",
+    "tested": true,
+    "evidence": "Count shapes"
+  },
+  {
+    "action": "COUNT",
+    "subAction": "VERTICES",
+    "tested": true,
+    "evidence": "Count vertices"
+  },
+  {
+    "action": "COMPARE",
+    "subAction": "SIZE",
+    "tested": true,
+    "evidence": "Compare size of these two circles"
+  },
+  {
+    "action": "COMPARE",
+    "subAction": "AREA",
+    "tested": true,
+    "evidence": "Compare area of these two circles"
+  },
+  {
+    "action": "COMPARE",
+    "subAction": "PERIMETER",
+    "tested": true,
+    "evidence": "Compare perimeter of these two circles"
+  },
+  {
+    "action": "COMPARE",
+    "subAction": "LENGTH",
+    "tested": true,
+    "evidence": "Compare length of these two lines"
+  },
+  {
+    "action": "COMPARE",
+    "subAction": "VOLUME",
+    "tested": true,
+    "evidence": "Compare volume of these two spheres"
+  },
+  {
+    "action": "COMPARE",
+    "subAction": "SURFACE_AREA",
+    "tested": true,
+    "evidence": "Compare surface area of these two spheres"
+  },
+  {
+    "action": "CHECK",
+    "subAction": "PARALLEL",
+    "tested": true,
+    "evidence": "Are these two lines parallel"
+  },
+  {
+    "action": "CHECK",
+    "subAction": "PERPENDICULAR",
+    "tested": true,
+    "evidence": "Are these two lines perpendicular"
+  },
+  {
+    "action": "CHECK",
+    "subAction": "EQUAL_LENGTH",
+    "tested": true,
+    "evidence": "Are these two lines equal length"
+  },
+  {
+    "action": "CHECK",
+    "subAction": "EQUAL_AREA",
+    "tested": true,
+    "evidence": "Are these two circles equal area"
+  },
+  {
+    "action": "CHECK",
+    "subAction": "POINT_INSIDE",
+    "tested": true,
+    "evidence": "Is point A inside the circle?"
+  },
+  {
+    "action": "CHECK",
+    "subAction": "POINT_ON_LINE",
+    "tested": true,
+    "evidence": "Is point A on the line"
+  },
+  {
+    "action": "CHECK",
+    "subAction": "POINT_ON_CIRCLE",
+    "tested": true,
+    "evidence": "Is point A on the circle"
+  },
+  {
+    "action": "CHECK",
+    "subAction": "INTERSECTING",
+    "tested": true,
+    "evidence": "Are these two lines intersecting"
+  }
+]

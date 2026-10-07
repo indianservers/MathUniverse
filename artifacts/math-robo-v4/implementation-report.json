@@ -1,0 +1,3127 @@
+{
+  "version": 4,
+  "completedAt": "2026-10-07T17:28:58.697Z",
+  "app": "http://localhost:9867",
+  "trainingPage": "http://localhost:9867/model-training",
+  "changedOrAddedFiles": [
+    "src/math-robo/intelligence/actionRegistry.ts",
+    "src/math-robo/intelligence/commandValidator.ts",
+    "src/math-robo/intelligence/corrections.ts",
+    "src/math-robo/intelligence/executionPlanner.ts",
+    "src/math-robo/intelligence/geometryQueries.ts",
+    "src/math-robo/intelligence/hierarchicalModel.ts",
+    "src/math-robo/intelligence/liveAssistant.ts",
+    "src/math-robo/intelligence/migration.ts",
+    "src/math-robo/intelligence/numberParser.ts",
+    "src/math-robo/intelligence/sampleDataset.ts",
+    "src/math-robo/intelligence/sceneContext.ts",
+    "src/math-robo/intelligence/semanticDataset.ts",
+    "src/math-robo/intelligence/semanticEngine.test.ts",
+    "src/math-robo/intelligence/semanticEngine.ts",
+    "src/math-robo/intelligence/semanticParser.ts",
+    "src/math-robo/intelligence/targetResolver.ts",
+    "src/math-robo/intelligence/training.worker.ts",
+    "src/math-robo/intelligence/types.ts",
+    "src/math-robo/SemanticTrainingLab.tsx",
+    "src/offline-intelligence/bulkTraining.test.ts",
+    "src/offline-intelligence/bulkTraining.ts",
+    "src/offline-intelligence/commands.test.ts",
+    "src/offline-intelligence/commands.ts",
+    "src/offline-intelligence/expressionCorpus.ts",
+    "src/offline-intelligence/geometryAdapter.ts",
+    "src/offline-intelligence/graph3dAdapter.test.ts",
+    "src/offline-intelligence/graph3dAdapter.ts",
+    "src/offline-intelligence/intelligenceCorpus.test.ts",
+    "src/offline-intelligence/languageEngine.ts",
+    "src/offline-intelligence/MathRobot.tsx",
+    "src/offline-intelligence/nlp150.test.ts",
+    "src/offline-intelligence/nlp150Corpus.ts",
+    "src/offline-intelligence/objectConversation.test.ts",
+    "src/offline-intelligence/objectConversation.ts",
+    "src/offline-intelligence/offlineAssistant.css",
+    "src/offline-intelligence/OfflineMathAssistant.tsx",
+    "src/offline-intelligence/roboLearning.test.ts",
+    "src/offline-intelligence/roboLearning.ts",
+    "src/offline-intelligence/roboSpeech.test.ts",
+    "src/offline-intelligence/roboSpeech.ts",
+    "src/offline-intelligence/roboStarterModel.test.ts",
+    "src/offline-intelligence/shapeCatalog.ts",
+    "src/offline-intelligence/shapeGeometry3d.ts",
+    "src/offline-intelligence/solidAdapter.ts",
+    "src/offline-intelligence/trainingDataset.ts",
+    "src/offline-intelligence/workspaceBridge.ts",
+    "src/pages/ModelTraining.tsx",
+    "src/pages/ModelTraining.css",
+    "src/pages/MathWorkspace.tsx",
+    "src/pages/MathLabGraphingCalculator.tsx",
+    "src/pages/MathLab3DGraphing.tsx",
+    "src/App.tsx",
+    "src/components/layout/navItems.ts",
+    "tests/workspace/mathRoboV4.e2e.ts",
+    "tests/workspace/modelTraining.e2e.ts",
+    "scripts/train-math-robo-v4.ts",
+    "scripts/report-math-robo-v4.mjs",
+    "public/models/math-robo-intelligence-v4/action-registry.json",
+    "public/models/math-robo-intelligence-v4/labels.json",
+    "public/models/math-robo-intelligence-v4/metadata.json",
+    "public/models/math-robo-intelligence-v4/model.json",
+    "public/models/math-robo-intelligence-v4/starter.jsonl",
+    "public/models/math-robo-intelligence-v4/training-manifest.json",
+    "public/models/math-robo-intelligence-v4/v3-migration.json",
+    "public/models/math-robo-intelligence-v4/weights.bin",
+    "public/datasets/math-robo-v4-15-samples.jsonl"
+  ],
+  "scopeNote": "Includes earlier Training Lab and offline-assistant files extended during this conversation. Unrelated pre-existing workspace changes are preserved.",
+  "architecture": [
+    "Language normalization and mathematical number parser",
+    "Local multihead TensorFlow.js encoder proposes action/subAction/mode/objectType",
+    "Deterministic semantic parser and personal full-plan corrections",
+    "Read-only live scene inventory, explicit target resolution and ambiguity errors",
+    "Validate all commands and prepare multi-action plan on a scene clone",
+    "Execute through existing 2D/3D geometry and graph adapters; query effects stay empty; undo/redo snapshots"
+  ],
+  "counts": {
+    "registeredLanguageActions": 100,
+    "canonicalImplementedActions": 22,
+    "distinctImplementedSubActions": 90,
+    "supportedExecutorMappings": 118,
+    "registeredOperationEntries": 219
+  },
+  "unsupportedOperations": [
+    {
+      "action": "CREATE",
+      "subAction": "RAY"
+    },
+    {
+      "action": "CREATE",
+      "subAction": "VECTOR"
+    },
+    {
+      "action": "CREATE",
+      "subAction": "PLANE"
+    },
+    {
+      "action": "CREATE",
+      "subAction": "ARC"
+    },
+    {
+      "action": "CREATE",
+      "subAction": "SECTOR"
+    },
+    {
+      "action": "CREATE",
+      "subAction": "RIGHT_TRIANGLE"
+    },
+    {
+      "action": "CREATE",
+      "subAction": "EQUILATERAL_TRIANGLE"
+    },
+    {
+      "action": "CREATE",
+      "subAction": "ISOSCELES_TRIANGLE"
+    },
+    {
+      "action": "FIND",
+      "subAction": "ANGLE"
+    },
+    {
+      "action": "FIND",
+      "subAction": "INCENTER"
+    },
+    {
+      "action": "FIND",
+      "subAction": "CIRCUMCENTER"
+    },
+    {
+      "action": "FIND",
+      "subAction": "ORTHOCENTER"
+    },
+    {
+      "action": "FIND",
+      "subAction": "VERTEX"
+    },
+    {
+      "action": "FIND",
+      "subAction": "MAXIMUM"
+    },
+    {
+      "action": "FIND",
+      "subAction": "MINIMUM"
+    },
+    {
+      "action": "FIND",
+      "subAction": "DOMAIN"
+    },
+    {
+      "action": "FIND",
+      "subAction": "RANGE"
+    },
+    {
+      "action": "FIND",
+      "subAction": "ASYMPTOTE"
+    },
+    {
+      "action": "FIND",
+      "subAction": "PROJECTION"
+    },
+    {
+      "action": "FIND",
+      "subAction": "FOOT_OF_PERPENDICULAR"
+    },
+    {
+      "action": "PLOT",
+      "subAction": "EQUATION"
+    },
+    {
+      "action": "PLOT",
+      "subAction": "INEQUALITY"
+    },
+    {
+      "action": "PLOT",
+      "subAction": "POINTS"
+    },
+    {
+      "action": "PLOT",
+      "subAction": "PARAMETRIC"
+    },
+    {
+      "action": "PLOT",
+      "subAction": "POLAR"
+    },
+    {
+      "action": "PLOT",
+      "subAction": "IMPLICIT"
+    },
+    {
+      "action": "PLOT",
+      "subAction": "PLANE_3D"
+    },
+    {
+      "action": "PLOT",
+      "subAction": "VECTOR_FIELD"
+    },
+    {
+      "action": "STRETCH",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "SHEAR",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "ALIGN",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "DISTRIBUTE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "SNAP",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "CONNECT",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "JOIN",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "SPLIT",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "DIVIDE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "MERGE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "EXTEND",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "TRIM",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "CUT",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "PASTE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "GROUP",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "UNGROUP",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "LOCK",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "UNLOCK",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "CHANGE",
+      "subAction": "OPACITY"
+    },
+    {
+      "action": "CHANGE",
+      "subAction": "LINE_WIDTH"
+    },
+    {
+      "action": "CHANGE",
+      "subAction": "LINE_STYLE"
+    },
+    {
+      "action": "CHANGE",
+      "subAction": "POINT_SIZE"
+    },
+    {
+      "action": "CHANGE",
+      "subAction": "FONT_SIZE"
+    },
+    {
+      "action": "CHANGE",
+      "subAction": "FILL_COLOR"
+    },
+    {
+      "action": "CHANGE",
+      "subAction": "STROKE_COLOR"
+    },
+    {
+      "action": "CHANGE",
+      "subAction": "EQUATION"
+    },
+    {
+      "action": "CHANGE",
+      "subAction": "SLOPE"
+    },
+    {
+      "action": "CHANGE",
+      "subAction": "ANGLE"
+    },
+    {
+      "action": "CHANGE",
+      "subAction": "LENGTH"
+    },
+    {
+      "action": "INCREASE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "DECREASE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "TOGGLE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "CHECK",
+      "subAction": "COLLINEAR"
+    },
+    {
+      "action": "CHECK",
+      "subAction": "CONCURRENT"
+    },
+    {
+      "action": "CHECK",
+      "subAction": "CONGRUENT"
+    },
+    {
+      "action": "CHECK",
+      "subAction": "SIMILAR"
+    },
+    {
+      "action": "CHECK",
+      "subAction": "OVERLAPPING"
+    },
+    {
+      "action": "CHECK",
+      "subAction": "CONTAINMENT"
+    },
+    {
+      "action": "CHECK",
+      "subAction": "TANGENT"
+    },
+    {
+      "action": "SOLVE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "EVALUATE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "SIMPLIFY",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "EXPAND",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "FACTOR",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "SUBSTITUTE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "DIFFERENTIATE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "INTEGRATE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "APPROXIMATE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "ESTIMATE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "ROUND",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "CONVERT",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "CONSTRUCT",
+      "subAction": "ANGLE_BISECTOR"
+    },
+    {
+      "action": "CONSTRUCT",
+      "subAction": "INCIRCLE"
+    },
+    {
+      "action": "CONSTRUCT",
+      "subAction": "CIRCUMCIRCLE"
+    },
+    {
+      "action": "CONSTRUCT",
+      "subAction": "MEDIAN"
+    },
+    {
+      "action": "CONSTRUCT",
+      "subAction": "ALTITUDE"
+    },
+    {
+      "action": "BISECT",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "TRACE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "ANIMATE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "PLAY",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "PAUSE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "STOP",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "STEP",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "SAVE",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "LOAD",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "IMPORT",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "EXPORT",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "ZOOM",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "PAN",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "FOCUS",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "FIT",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "SWITCH",
+      "subAction": "OBJECT"
+    },
+    {
+      "action": "EXPLAIN",
+      "subAction": "OBJECT"
+    }
+  ],
+  "model": {
+    "architecture": "768 → 128 → 64 shared encoder; action, subAction, context-conditioned mode and objectType heads",
+    "parameters": 116893,
+    "weightsFile": "public/models/math-robo-intelligence-v4/weights.bin",
+    "weightsBytes": 467572,
+    "topologyFile": "public/models/math-robo-intelligence-v4/model.json",
+    "topologyBytes": 24933,
+    "indexedDB": "indexeddb://math-robo-intelligence-v4",
+    "v3FallbackPreserved": true
+  },
+  "training": {
+    "rows": 2548,
+    "train": 1560,
+    "validation": 494,
+    "test": 494,
+    "epochs": 24,
+    "durationSeconds": 44.0873275,
+    "split": "Stratified template-family groups targeting 70/15/15; rare classes reserve validation/test families. Actual counts above.",
+    "dataset": "public/models/math-robo-intelligence-v4/starter.jsonl",
+    "samples": "public/datasets/math-robo-v4-15-samples.jsonl"
+  },
+  "metrics": {
+    "rows": 494,
+    "actionAccuracy": 0.9251012145748988,
+    "subActionAccuracy": 0.9190283400809717,
+    "modeAccuracy": 1,
+    "objectTypeAccuracy": 0.9757085020242915,
+    "semanticExactMatch": 1,
+    "parameterExtractionAccuracy": 1,
+    "targetResolutionAccuracy": 1,
+    "targetRows": 168,
+    "confusionMatrix": [
+      [
+        232,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        56,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        4,
+        30,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        12,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        4,
+        0,
+        12,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        24,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        20,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        20,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        16
+      ]
+    ],
+    "actionLabels": [
+      "CREATE",
+      "PLOT",
+      "FIND",
+      "CHANGE",
+      "MOVE",
+      "ROTATE",
+      "SCALE",
+      "RESIZE",
+      "REFLECT",
+      "CONSTRUCT",
+      "MARK",
+      "SHOW",
+      "HIDE",
+      "DELETE",
+      "SELECT",
+      "DESELECT",
+      "DUPLICATE",
+      "UNDO",
+      "REDO",
+      "COUNT",
+      "COMPARE",
+      "CHECK"
+    ],
+    "perAction": [
+      {
+        "action": "CREATE",
+        "precision": 0.9789029535864979,
+        "recall": 1,
+        "f1": 0.9893390191897655,
+        "rows": 232
+      },
+      {
+        "action": "PLOT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 4
+      },
+      {
+        "action": "FIND",
+        "precision": 0.7777777777777778,
+        "recall": 1,
+        "f1": 0.8750000000000001,
+        "rows": 56
+      },
+      {
+        "action": "CHANGE",
+        "precision": 0.8823529411764706,
+        "recall": 0.8823529411764706,
+        "f1": 0.8823529411764706,
+        "rows": 34
+      },
+      {
+        "action": "MOVE",
+        "precision": 0.8,
+        "recall": 1,
+        "f1": 0.888888888888889,
+        "rows": 4
+      },
+      {
+        "action": "ROTATE",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 4
+      },
+      {
+        "action": "SCALE",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 4
+      },
+      {
+        "action": "RESIZE",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "rows": 4
+      },
+      {
+        "action": "REFLECT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 12
+      },
+      {
+        "action": "CONSTRUCT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 8
+      },
+      {
+        "action": "MARK",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "rows": 16
+      },
+      {
+        "action": "SHOW",
+        "precision": 0.8571428571428571,
+        "recall": 1,
+        "f1": 0.923076923076923,
+        "rows": 24
+      },
+      {
+        "action": "HIDE",
+        "precision": 1,
+        "recall": 0.25,
+        "f1": 0.4,
+        "rows": 4
+      },
+      {
+        "action": "DELETE",
+        "precision": 0.7272727272727273,
+        "recall": 1,
+        "f1": 0.8421052631578948,
+        "rows": 8
+      },
+      {
+        "action": "SELECT",
+        "precision": 1,
+        "recall": 0.875,
+        "f1": 0.9333333333333333,
+        "rows": 8
+      },
+      {
+        "action": "DESELECT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 4
+      },
+      {
+        "action": "DUPLICATE",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "rows": 4
+      },
+      {
+        "action": "UNDO",
+        "precision": 0.42857142857142855,
+        "recall": 0.75,
+        "f1": 0.5454545454545454,
+        "rows": 4
+      },
+      {
+        "action": "REDO",
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "rows": 4
+      },
+      {
+        "action": "COUNT",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 20
+      },
+      {
+        "action": "COMPARE",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 20
+      },
+      {
+        "action": "CHECK",
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "rows": 16
+      }
+    ],
+    "errors": [
+      {
+        "phrase": "Find where the last two lines intersect",
+        "expected": "FIND:INTERSECTION",
+        "predicted": "FIND:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Recolor it blue",
+        "expected": "CHANGE:COLOR",
+        "predicted": "FIND:COLOR",
+        "reason": ""
+      },
+      {
+        "phrase": "Recolor it blue",
+        "expected": "CHANGE:COLOR",
+        "predicted": "FIND:UNIFORM",
+        "reason": ""
+      },
+      {
+        "phrase": "Recolor it blue",
+        "expected": "CHANGE:COLOR",
+        "predicted": "FIND:COLOR",
+        "reason": ""
+      },
+      {
+        "phrase": "Recolor it blue",
+        "expected": "CHANGE:COLOR",
+        "predicted": "FIND:UNIFORM",
+        "reason": ""
+      },
+      {
+        "phrase": "Scale it by 2",
+        "expected": "SCALE:UNIFORM",
+        "predicted": "SCALE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Scale it by 2",
+        "expected": "SCALE:UNIFORM",
+        "predicted": "SCALE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Resize its width to 4",
+        "expected": "RESIZE:OBJECT",
+        "predicted": "CHANGE:WIDTH",
+        "reason": ""
+      },
+      {
+        "phrase": "Resize its width to 4",
+        "expected": "RESIZE:OBJECT",
+        "predicted": "CHANGE:WIDTH",
+        "reason": ""
+      },
+      {
+        "phrase": "Resize its width to 4",
+        "expected": "RESIZE:OBJECT",
+        "predicted": "CHANGE:WIDTH",
+        "reason": ""
+      },
+      {
+        "phrase": "Resize its width to 4",
+        "expected": "RESIZE:OBJECT",
+        "predicted": "CHANGE:WIDTH",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at it",
+        "expected": "MARK:POINT",
+        "predicted": "CREATE:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at it",
+        "expected": "MARK:POINT",
+        "predicted": "CREATE:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at it",
+        "expected": "MARK:POINT",
+        "predicted": "CREATE:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at it",
+        "expected": "MARK:POINT",
+        "predicted": "CREATE:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the midpoint",
+        "expected": "MARK:MIDPOINT",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the midpoint",
+        "expected": "MARK:MIDPOINT",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the midpoint",
+        "expected": "MARK:MIDPOINT",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the midpoint",
+        "expected": "MARK:MIDPOINT",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the center",
+        "expected": "MARK:CENTER",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the center",
+        "expected": "MARK:CENTER",
+        "predicted": "FIND:CENTER",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the center",
+        "expected": "MARK:CENTER",
+        "predicted": "FIND:CENTER",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the center",
+        "expected": "MARK:CENTER",
+        "predicted": "FIND:CENTER",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the intersection",
+        "expected": "MARK:INTERSECTION",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the intersection",
+        "expected": "MARK:INTERSECTION",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the intersection",
+        "expected": "MARK:INTERSECTION",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Create a point at the intersection",
+        "expected": "MARK:INTERSECTION",
+        "predicted": "FIND:POINT",
+        "reason": ""
+      },
+      {
+        "phrase": "Hide the selected object",
+        "expected": "HIDE:OBJECT",
+        "predicted": "DELETE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Hide the selected object",
+        "expected": "HIDE:OBJECT",
+        "predicted": "DELETE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Hide the selected object",
+        "expected": "HIDE:OBJECT",
+        "predicted": "DELETE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Delete all objects",
+        "expected": "DELETE:ALL",
+        "predicted": "DELETE:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Select the red circle",
+        "expected": "SELECT:OBJECT",
+        "predicted": "MOVE:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Select everything",
+        "expected": "SELECT:ALL",
+        "predicted": "SELECT:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Select everything",
+        "expected": "SELECT:ALL",
+        "predicted": "SELECT:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Select everything",
+        "expected": "SELECT:ALL",
+        "predicted": "SELECT:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Select everything",
+        "expected": "SELECT:ALL",
+        "predicted": "SELECT:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Please duplicate it",
+        "expected": "DUPLICATE:OBJECT",
+        "predicted": "SHOW:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Please duplicate it",
+        "expected": "DUPLICATE:OBJECT",
+        "predicted": "SHOW:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Please duplicate it",
+        "expected": "DUPLICATE:OBJECT",
+        "predicted": "SHOW:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Please duplicate it",
+        "expected": "DUPLICATE:OBJECT",
+        "predicted": "SHOW:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Undo that",
+        "expected": "UNDO:LAST",
+        "predicted": "CREATE:LAST",
+        "reason": ""
+      },
+      {
+        "phrase": "Redo the last action",
+        "expected": "REDO:LAST",
+        "predicted": "UNDO:LAST",
+        "reason": ""
+      },
+      {
+        "phrase": "Redo the last action",
+        "expected": "REDO:LAST",
+        "predicted": "UNDO:LAST",
+        "reason": ""
+      },
+      {
+        "phrase": "Redo the last action",
+        "expected": "REDO:LAST",
+        "predicted": "UNDO:LAST",
+        "reason": ""
+      },
+      {
+        "phrase": "Redo the last action",
+        "expected": "REDO:LAST",
+        "predicted": "UNDO:LAST",
+        "reason": ""
+      },
+      {
+        "phrase": "How many points",
+        "expected": "COUNT:POINTS",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many points",
+        "expected": "COUNT:POINTS",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many lines",
+        "expected": "COUNT:LINES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many lines",
+        "expected": "COUNT:LINES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many lines",
+        "expected": "COUNT:LINES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many lines",
+        "expected": "COUNT:LINES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Count all shapes",
+        "expected": "COUNT:SHAPES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many vertices",
+        "expected": "COUNT:VERTICES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many vertices",
+        "expected": "COUNT:VERTICES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many vertices",
+        "expected": "COUNT:VERTICES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "How many vertices",
+        "expected": "COUNT:VERTICES",
+        "predicted": "COUNT:OBJECTS",
+        "reason": ""
+      },
+      {
+        "phrase": "Verify that point A is on the line",
+        "expected": "CHECK:POINT_ON_LINE",
+        "predicted": "CHECK:POINT_ON_CIRCLE",
+        "reason": ""
+      },
+      {
+        "phrase": "Verify that point A is on the line",
+        "expected": "CHECK:POINT_ON_LINE",
+        "predicted": "CHECK:POINT_ON_CIRCLE",
+        "reason": ""
+      },
+      {
+        "phrase": "Check if point A is on the circle",
+        "expected": "CHECK:POINT_ON_CIRCLE",
+        "predicted": "CHECK:POINT_ON_LINE",
+        "reason": ""
+      },
+      {
+        "phrase": "Check if point A is on the circle",
+        "expected": "CHECK:POINT_ON_CIRCLE",
+        "predicted": "CHECK:POINT_ON_LINE",
+        "reason": ""
+      },
+      {
+        "phrase": "Are these two lines intersecting",
+        "expected": "CHECK:INTERSECTING",
+        "predicted": "CHECK:OBJECT",
+        "reason": ""
+      },
+      {
+        "phrase": "Are these two lines intersecting",
+        "expected": "CHECK:INTERSECTING",
+        "predicted": "CHECK:OBJECT",
+        "reason": ""
+      }
+    ]
+  },
+  "evaluationCaveats": [
+    "Neural head accuracies and hybrid semantic-parser metrics are separate measurements. The 100% semantic result applies only to these controlled templates, not arbitrary language.",
+    "Mode head is conditioned on the active workspace, so 100% mode accuracy measures consistency.",
+    "Numeric ground truth is authored independently; some single-target labels are parser-derived. Target accuracy measures single-target context rows and does not establish general multi-target language accuracy.",
+    "The shipped model is trained on 2,548 rows. The separate 100K run repeats a small dataset to measure capacity and responsiveness; it adds no linguistic knowledge."
+  ],
+  "benchmarks": {
+    "node": {
+      "environment": "Node v24.13.1, TensorFlow.js CPU (browser benchmarks measured separately)",
+      "inferenceMs": 1.0172750000000088,
+      "parseMs": 0.06795279999999912,
+      "planMs": 0.02243839999999909,
+      "parameters": 116893,
+      "weightBytes": 467572
+    },
+    "browser": {
+      "environment": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7827.55 Safari/537.36",
+      "cachedModelAcquireMs": 7.100000008940697,
+      "firstInferenceMs": 12,
+      "averageInferenceMs": 0.595,
+      "semanticParseMs": 0.048800000011920926,
+      "planMs": 0.021,
+      "targetResolutionMs": 0.0008000000119209289
+    }
+  },
+  "stress100k": {
+    "name": "Math Robo Intelligence",
+    "version": 4,
+    "architecture": "768 → 128 → 64 shared encoder; action, subAction, context-conditioned mode and objectType heads",
+    "trainedAt": "2026-10-07T17:23:57.782Z",
+    "trainingSamples": 75000,
+    "validationSamples": 12500,
+    "testSamples": 12500,
+    "totalSamples": 100000,
+    "parameters": 116893,
+    "weightBytes": 467572,
+    "epochs": 1,
+    "backend": "cpu",
+    "metrics": {
+      "rows": 12500,
+      "actionAccuracy": 1,
+      "subActionAccuracy": 1,
+      "modeAccuracy": 1,
+      "objectTypeAccuracy": 1,
+      "semanticExactMatch": 1,
+      "parameterExtractionAccuracy": 1,
+      "targetResolutionAccuracy": null,
+      "targetRows": 0,
+      "confusionMatrix": [
+        [
+          12500,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "actionLabels": [
+        "CREATE",
+        "PLOT",
+        "FIND",
+        "CHANGE",
+        "MOVE",
+        "ROTATE",
+        "SCALE",
+        "RESIZE",
+        "REFLECT",
+        "CONSTRUCT",
+        "MARK",
+        "SHOW",
+        "HIDE",
+        "DELETE",
+        "SELECT",
+        "DESELECT",
+        "DUPLICATE",
+        "UNDO",
+        "REDO",
+        "COUNT",
+        "COMPARE",
+        "CHECK"
+      ],
+      "perAction": [
+        {
+          "action": "CREATE",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "rows": 12500
+        },
+        {
+          "action": "PLOT",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "FIND",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "CHANGE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "MOVE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "ROTATE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "SCALE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "RESIZE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "REFLECT",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "CONSTRUCT",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "MARK",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "SHOW",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "HIDE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "DELETE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "SELECT",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "DESELECT",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "DUPLICATE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "UNDO",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "REDO",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "COUNT",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "COMPARE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "CHECK",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        }
+      ],
+      "errors": []
+    },
+    "validationMetrics": {
+      "rows": 12500,
+      "actionAccuracy": 1,
+      "subActionAccuracy": 1,
+      "modeAccuracy": 1,
+      "objectTypeAccuracy": 1,
+      "semanticExactMatch": 1,
+      "parameterExtractionAccuracy": 1,
+      "targetResolutionAccuracy": null,
+      "targetRows": 0,
+      "confusionMatrix": [
+        [
+          12500,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "actionLabels": [
+        "CREATE",
+        "PLOT",
+        "FIND",
+        "CHANGE",
+        "MOVE",
+        "ROTATE",
+        "SCALE",
+        "RESIZE",
+        "REFLECT",
+        "CONSTRUCT",
+        "MARK",
+        "SHOW",
+        "HIDE",
+        "DELETE",
+        "SELECT",
+        "DESELECT",
+        "DUPLICATE",
+        "UNDO",
+        "REDO",
+        "COUNT",
+        "COMPARE",
+        "CHECK"
+      ],
+      "perAction": [
+        {
+          "action": "CREATE",
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "rows": 12500
+        },
+        {
+          "action": "PLOT",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "FIND",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "CHANGE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "MOVE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "ROTATE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "SCALE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "RESIZE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "REFLECT",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "CONSTRUCT",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "MARK",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "SHOW",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "HIDE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "DELETE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "SELECT",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "DESELECT",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "DUPLICATE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "UNDO",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "REDO",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "COUNT",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "COMPARE",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        },
+        {
+          "action": "CHECK",
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "rows": 0
+        }
+      ],
+      "errors": []
+    },
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 0.30107547594217554
+      }
+    ],
+    "featureVersion": "semantic-hash-768-v4",
+    "durationSeconds": 109.91
+  },
+  "verification": {
+    "productionBuild": "PASS; existing large-chunk warnings",
+    "scopedTypecheck": "PASS",
+    "targetedLint": "PASS",
+    "unitRegressionLog": "artifacts/math-robo-v4/regression.log",
+    "browserRegression": "10 combined live/legacy/offline tests passed; additional full 100K completion test passed in 2 minutes",
+    "operationCoverage": "artifacts/math-robo-v4/operation-tests.json",
+    "fullProjectTypecheck": "FAIL: existing geometry/mobile/component errors outside the new intelligence module; see typecheck.log",
+    "unitRegression": "662 tests passed across 10 files"
+  },
+  "guarantees": {
+    "inference": "All inference, training and execution are local. No cloud AI APIs or external intelligence dependency.",
+    "context": "Snapshots are read-only data and never executed as commands.",
+    "queries": "Read-only FIND/CHECK/COMPARE/COUNT commands emit no creation effects. Live midpoint, distance, intersection and root tests verified unchanged object counts.",
+    "corrections": "Up to 5,000 full semantic corrections, migrated from legacy storage without whole-model retraining."
+  },
+  "limitations": [
+    "Specialized 3D plane constructions, advanced centers, grouping/shear/camera operations and other unsupported registry entries fail explicitly.",
+    "Graph roots/intersections use bounded numerical search [-100,100]; tangencies and closely spaced roots can be missed.",
+    "Native 2D geometry and Robo-created 3D/graph objects are inventoried; some built-in 3D objects and manually entered graph layers are not exposed to target resolution.",
+    "Undo/redo covers semantic assistant operations; existing gesture and renderer workflows retain their own history.",
+    "Normal embedded mode retains the existing v3 assistant compatibility path.",
+    "IndexedDB models and corrections are browser/origin-specific. Download model.json, weights.bin, labels.json and metadata.json for portability."
+  ]
+}

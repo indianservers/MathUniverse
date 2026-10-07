@@ -63,7 +63,7 @@ export function createMathDocument(
   return {
     documentId: existing?.documentId ?? crypto.randomUUID(),
     schemaVersion: MATH_DOCUMENT_SCHEMA_VERSION,
-    applicationVersion: "1.0.1",
+    applicationVersion: "1.0.2",
     createdAt: existing?.createdAt ?? timestamp,
     modifiedAt: timestamp,
     mathematicalNodes: snapshot.records.map((record) => ({
