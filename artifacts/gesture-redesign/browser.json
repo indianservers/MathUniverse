@@ -1,0 +1,274 @@
+[
+  {
+    "route": "/math-lab/3d-graphing",
+    "original": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "moved": {
+      "position": [
+        0.2975,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "held": {
+      "position": [
+        0.2975,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "reset": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "selectedOnce": "Selected\nSurface 1\nGesture\nIndex\nAction\nSelect next\nDeveloper diagnostics",
+    "cycle": [
+      "X Axis",
+      "Y Axis",
+      "Z Axis",
+      "None"
+    ],
+    "beforeMissing": "Selected\nNone\nGesture\nIndex\nAction\nSelect next\nDeveloper diagnostics",
+    "afterMissing": "Selected\nNone\nGesture\nHand not detected\nAction\nStopped\nDeveloper diagnostics",
+    "sameCanvas": true,
+    "contextLost": 0,
+    "errors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "original": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "moved": {
+      "position": [
+        0.23799999999999993,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "held": {
+      "position": [
+        0.23799999999999993,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "reset": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "selectedOnce": "Selected\nsurface\nGesture\nIndex\nAction\nSelect next\nDeveloper diagnostics",
+    "cycle": [
+      "solid",
+      "slice",
+      "P",
+      "v",
+      "X Axis",
+      "Y Axis",
+      "Z Axis",
+      "None"
+    ],
+    "beforeMissing": "Selected\nNone\nGesture\nIndex\nAction\nSelect next\nDeveloper diagnostics",
+    "afterMissing": "Selected\nNone\nGesture\nHand not detected\nAction\nStopped\nDeveloper diagnostics",
+    "sameCanvas": true,
+    "contextLost": 0,
+    "errors": []
+  },
+  {
+    "route": "/workspace/graph",
+    "original": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "moved": {
+      "position": [
+        0.2975,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "held": {
+      "position": [
+        0.2975,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "reset": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "selectedOnce": "Selected\nEquation x^2 - 4\nGesture\nIndex\nAction\nSelect next\nDeveloper diagnostics",
+    "cycle": [
+      "Equation sin(x)",
+      "X Axis",
+      "Y Axis",
+      "None"
+    ],
+    "beforeMissing": "Selected\nNone\nGesture\nIndex\nAction\nSelect next\nDeveloper diagnostics",
+    "afterMissing": "Selected\nNone\nGesture\nHand not detected\nAction\nStopped\nDeveloper diagnostics",
+    "sameCanvas": true,
+    "contextLost": 0,
+    "errors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "original": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "moved": {
+      "position": [
+        0.2975,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "held": {
+      "position": [
+        0.2975,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "reset": {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": 1
+    },
+    "selectedOnce": "Selected\nPoint A\nGesture\nIndex\nAction\nSelect next\nDeveloper diagnostics",
+    "cycle": [
+      "Point B",
+      "X Axis",
+      "Y Axis",
+      "None"
+    ],
+    "beforeMissing": "Selected\nNone\nGesture\nIndex\nAction\nSelect next\nDeveloper diagnostics",
+    "afterMissing": "Selected\nNone\nGesture\nHand not detected\nAction\nStopped\nDeveloper diagnostics",
+    "sameCanvas": true,
+    "contextLost": 0,
+    "errors": []
+  }
+]

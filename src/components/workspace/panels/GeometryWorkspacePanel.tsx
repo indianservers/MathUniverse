@@ -3003,6 +3003,7 @@ function GeometryGrid({ settings, camera }: { settings: GeometryGraphSettings; c
         <g className="select-none">
           {settings.showAxes && (
             <line
+              data-gesture-axis="X Axis"
               x1={left - unit}
               x2={right + unit}
               y1={origin.y}
@@ -3014,6 +3015,7 @@ function GeometryGrid({ settings, camera }: { settings: GeometryGraphSettings; c
           )}
           {settings.showAxes && (
             <line
+              data-gesture-axis="Y Axis"
               x1={origin.x}
               x2={origin.x}
               y1={top - unit}

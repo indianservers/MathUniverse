@@ -1,5 +1,5 @@
-import { useMemo, useRef, type ReactNode, type RefObject } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useEffect,useMemo, useRef, type ReactNode, type RefObject } from 'react';
+import { useFrame,useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import type { ARGeneratedGeometrySolid, ARGeneratedGraphObject } from '../types';
 import type { CameraHandRuntime, GrabZone, Vec3 } from './types';
@@ -7,6 +7,8 @@ import { clamp, normalized, sub } from './math';
 
 /** Uses the rendered mesh and camera projection, never an assumed centre-of-screen target. */
 export default function ARCameraHandScene({runtime,solid,graph,children}:{runtime:RefObject<CameraHandRuntime>;solid?:ARGeneratedGeometrySolid;graph?:ARGeneratedGraphObject;children:ReactNode}) {
+  const {scene}=useThree(),outline=useMemo(()=>new THREE.BoxHelper(new THREE.Group(),0x08b9dd),[]);
+  useEffect(()=>{outline.visible=false;scene.add(outline);return()=>{scene.remove(outline);outline.geometry.dispose();(outline.material as THREE.Material).dispose();if(runtime.current)runtime.current.gestureObjects=undefined;};},[scene,outline,runtime]);
   const group=useRef<THREE.Group>(null);const scratch=useMemo(()=>({box:new THREE.Box3(),meshBox:new THREE.Box3(),point:new THREE.Vector3(),center:new THREE.Vector3(),size:new THREE.Vector3()}),[]);
   const lastProjection=useRef(0);
   useFrame(({camera,clock})=>{
@@ -14,6 +16,9 @@ export default function ARCameraHandScene({runtime,solid,graph,children}:{runtim
     const transform=live.transform;
     root.position.set(transform.position[0]*.18,transform.position[1]*.13,transform.position[2]);root.rotation.set(...transform.rotation);root.scale.setScalar(transform.scale*.62);root.updateWorldMatrix(true,true);
     if(clock.elapsedTime-lastProjection.current<1/30)return;lastProjection.current=clock.elapsedTime;
+    const selectable:THREE.Object3D[]=[];root.traverse(node=>{if(node.userData.gestureId&&node.visible)selectable.push(node);});
+    live.gestureObjects=selectable.map(node=>({id:String(node.userData.gestureId),name:String(node.userData.gestureName),kind:'3d',capabilities:{move:!node.userData.gestureLocked,scale:!node.userData.gestureLocked,rotate:!node.userData.gestureLocked,tilt:!node.userData.gestureLocked,reset:!node.userData.gestureLocked},read:()=>({position:node.position.toArray() as Vec3,rotation:[node.rotation.x,node.rotation.y,node.rotation.z],scale:node.scale.x}),write:t=>{node.position.fromArray(t.position);node.rotation.set(...t.rotation);node.scale.setScalar(t.scale);},select:selected=>{node.userData.gestureSelected=selected;}}));
+    const chosen=selectable.find(node=>node.userData.gestureSelected);outline.visible=!!chosen;if(chosen)outline.setFromObject(chosen);
     const object=solid??graph;if(!object||!object.visible||object.locked){live.targets=[];return;}
     scratch.box.makeEmpty();let primaryMesh:THREE.Mesh|undefined;
     root.traverse(node=>{const mesh=node as THREE.Mesh;if(!mesh.isMesh||!mesh.geometry||'text' in mesh||mesh.geometry.type==='TextGeometry')return;

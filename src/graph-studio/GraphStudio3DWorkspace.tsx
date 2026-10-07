@@ -261,18 +261,20 @@ export default function GraphStudio3DWorkspace(
   }, []);
   const immersive = useImmersive();
   useImmersiveAdapter({
+    gestureObjects:()=>props.surfaces.filter(s=>s.visible).map(s=>({id:s.id,name:s.name||`Surface ${s.expression}`,kind:'3d',capabilities:{move:true,scale:true,rotate:true,tilt:true,reset:true},read:()=>s.displayTransform??identityTransform(),write:t=>props.onSurfaceChange(s.id,{displayTransform:t}),select:selected=>{if(selected)props.onSelectedSurfaceChange(s.id);}})),
     kind:"3d",element:()=>sceneHostRef.current,
     targets:()=>props.surfaces.filter(s=>s.visible).map(s=>{
-      const target=immersive?.projected.current.get(s.id);return target?{...target,semanticType:"surface",allowedInteractions:{translate:true,rotate:true,scale:true,sampleSurface:true}}:null;
+      const target=immersive?.projected.current.get(s.id);return target?{...target,name:s.name||`Surface ${s.expression}`,semanticType:"surface",allowedInteractions:{translate:true,rotate:true,scale:true,sampleSurface:true}}:null;
     }).filter((t):t is NonNullable<typeof t>=>!!t),
-    transform:()=>identityTransform(),select:props.onSelectedSurfaceChange,
+    transform:id=>props.surfaces.find(s=>s.id===id)?.displayTransform??identityTransform(),select:props.onSelectedSurfaceChange,
     apply:(state,result,previous)=>{
       if(result.inspection&&state.primaryTarget?.zone.sample){const p=state.primaryTarget.zone.sample;props.onAnalysisPointChange({x:p[0],y:p[2]});}
       if(!result.transform)return;const d=transformDelta(result.transform,previous);
       const surface=props.surfaces.find(s=>s.id===state.targetObjectId);if(!surface)return;
       const old=surface.displayTransform??identityTransform();props.onSurfaceChange(surface.id,{displayTransform:{position:old.position.map((v,i)=>v+d.position[i]) as [number,number,number],rotation:old.rotation.map((v,i)=>v+d.rotation[i]) as [number,number,number],scale:Math.max(.05,Math.min(20,old.scale*d.scale))}});
     },
-    navigate:(_,scale)=>props.onCameraView([4/scale,3.2/scale,6/scale]),
+    // Move the existing camera; resetting it remounts and tears down WebGL each frame.
+    navigate:(delta,scale)=>sceneHostRef.current?.dispatchEvent(new CustomEvent('immersive-camera-navigation',{bubbles:true,detail:{delta,scale}})),
   });
   useCanvasZoomLock(sceneHostRef);
   useOutsideDismiss({

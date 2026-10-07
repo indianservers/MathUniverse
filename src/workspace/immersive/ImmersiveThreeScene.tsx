@@ -16,7 +16,8 @@ function ImmersiveNativeBridge(){
  const controller=useImmersive(),{gl}=useThree();
  const gestures=useRef<{time:number;positions:THREE.Vector3[]}>({time:0,positions:[]});const localRoot=useRef<THREE.Group>(null);
  useFrame((_,__,frame)=>{
-  if(!controller?.hands||!controller.session||!frame?.getJointPose||performance.now()-gestures.current.time<32)return;
+  if(!controller?.hands||!controller.session||performance.now()-gestures.current.time<32)return;
+  if(!frame?.getJointPose){gestures.current.time=performance.now();controller.nativeHands([],gestures.current.time);return;}
   gestures.current.time=performance.now();const reference=gl.xr.getReferenceSpace();if(!reference)return;
   const raw:RawHand[]=[],positions:THREE.Vector3[]=[];
   for(const source of Array.from(controller.session.inputSources)){
@@ -24,7 +25,10 @@ function ImmersiveNativeBridge(){
    const joints:XRHandJoint[]=['wrist','thumb-metacarpal','thumb-phalanx-proximal','thumb-phalanx-distal','thumb-tip',...(['index','middle','ring','pinky'] as const).flatMap(f=>[`${f}-finger-phalanx-proximal`,`${f}-finger-phalanx-intermediate`,`${f}-finger-phalanx-distal`,`${f}-finger-tip`] as XRHandJoint[])];
    const points=joints.map(name=>{const joint=source.hand!.get(name);const pose=joint?frame.getJointPose!(joint,reference):null;if(!pose)return null;const p=pose.transform.position;const v=new THREE.Vector3(p.x,p.y,p.z).project(gl.xr.getCamera());return {x:(v.x+1)/2,y:(1-v.y)/2,z:0};});
    const joint=source.hand.get("index-finger-tip"),pose=joint?frame.getJointPose(joint,reference):null;if(pose&&localRoot.current){const p=pose.transform.position;positions.push(localRoot.current.worldToLocal(new THREE.Vector3(p.x,p.y,p.z)));}
-   if(points.every(p=>p!==null))raw.push({landmarks:points as NonNullable<RawHand['landmarks']>,handedness:source.handedness,confidence:1});
+   const wrist=source.hand.get('wrist'),wristPose=wrist?frame.getJointPose(wrist,reference):null;
+   const q=wristPose?.transform.orientation;
+   const relative=q?new THREE.Euler().setFromQuaternion(gl.xr.getCamera().quaternion.clone().invert().multiply(new THREE.Quaternion(q.x,q.y,q.z,q.w)),'YXZ'):undefined;
+   if(points.every(p=>p!==null))raw.push({landmarks:points as NonNullable<RawHand['landmarks']>,handedness:source.handedness,confidence:1,orientation3D:relative?[relative.x,relative.y,-relative.z]:undefined});
   }
   const prior=gestures.current.positions;let motion: {delta:[number,number,number];ratio:number}|undefined;
   if(positions.length&&positions.length===prior.length){const center=(points:THREE.Vector3[])=>points.reduce((a,p)=>a.add(p),new THREE.Vector3()).divideScalar(points.length),delta=center(positions).sub(center(prior));const ratio=positions.length===2?positions[0].distanceTo(positions[1])/Math.max(.001,prior[0].distanceTo(prior[1])):1;if(delta.length()<.5&&ratio>.85&&ratio<1.15)motion={delta:delta.toArray() as [number,number,number],ratio};}
@@ -33,7 +37,24 @@ function ImmersiveNativeBridge(){
  return <group ref={localRoot}/>;
 }
 function ImmersiveThreeBridge(){
- const controller=useImmersive(),{scene,camera,gl}=useThree(),last=useRef(0);const helper=useMemo(()=>new THREE.BoxHelper(new THREE.Group(),0x08b9dd),[]);
+ const controller=useImmersive(),{scene,camera,gl,get}=useThree(),last=useRef(0);const helper=useMemo(()=>new THREE.BoxHelper(new THREE.Group(),0x08b9dd),[]);
+ useEffect(()=>{
+  const navigate=(event:Event)=>{
+   if(!(event.target instanceof Element)||!event.target.contains(gl.domElement))return;
+   const {delta,scale}=(event as CustomEvent<{delta:[number,number,number];scale:number}>).detail;
+   if(!delta.every(Number.isFinite)||!Number.isFinite(scale)||scale<=0)return;
+   // Use camera-local axes so panning follows the current orbit, without replacing Canvas.
+   const pan=new THREE.Vector3(-delta[0],delta[1],0).applyQuaternion(camera.quaternion).multiplyScalar(camera.position.length());
+   const controls=get().controls as unknown as {target?:THREE.Vector3;update?:()=>void}|null;
+   const target=controls?.target??new THREE.Vector3();
+   camera.position.sub(target).multiplyScalar(1/scale).add(target).add(pan);
+   controls?.target?.add(pan);
+   controls?.update?.();
+   camera.updateMatrixWorld();
+  };
+  window.addEventListener('immersive-camera-navigation',navigate);
+  return()=>window.removeEventListener('immersive-camera-navigation',navigate);
+ },[camera,gl,get]);
  useEffect(()=>{helper.visible=false;scene.add(helper);return()=>{scene.remove(helper);helper.geometry.dispose();(helper.material as THREE.Material).dispose();};},[helper,scene]);
  useEffect(()=>{
   if(!controller?.session)return;const background=scene.background;scene.background=null;
@@ -45,6 +66,17 @@ function ImmersiveThreeBridge(){
   if(!controller.hands){helper.visible=false;return;}if(performance.now()-last.current<80)return;last.current=performance.now();
   const groups=new Map<string,THREE.Object3D>();
   scene.traverse(object=>{if(object.userData.immersiveId&&object.visible)groups.set(String(object.userData.immersiveId),object);});
+  const extraIds=new Set<string>();
+  scene.traverse(object=>{
+   if(!object.userData.gestureName)return;
+   let visible=true;for(let p:THREE.Object3D|null=object;p;p=p.parent)if(!p.visible)visible=false;
+   if(!visible)return;
+   const id=`scene:${object.uuid}`;extraIds.add(id);groups.set(id,object);
+   controller.gestureObjects.current.set(id,{id,name:String(object.userData.gestureName),kind:'3d',capabilities:{move:false,scale:false,rotate:false,tilt:false,reset:true},
+    read:()=>({position:object.position.toArray() as [number,number,number],rotation:[object.rotation.x,object.rotation.y,object.rotation.z],scale:object.scale.x}),
+    write:t=>{object.position.fromArray(t.position);object.rotation.set(...t.rotation);object.scale.setScalar(t.scale);},select:()=>undefined});
+  });
+  for(const id of controller.gestureObjects.current.keys())if(!extraIds.has(id))controller.gestureObjects.current.delete(id);
   helper.visible=!!controller.hover.current&&groups.has(controller.hover.current);if(helper.visible)helper.setFromObject(groups.get(controller.hover.current!)!);
   controller.projected.current.clear();
   const project=(p:THREE.Vector3)=>{const v=p.clone().project(controller.session?gl.xr.getCamera():camera);return [(v.x+1)/2,(1-v.y)/2,0] as [number,number,number];};

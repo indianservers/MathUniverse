@@ -821,6 +821,7 @@ function Axes({
     <g>
       {!logY && view.yMin <= 0 && view.yMax >= 0 && (
         <line
+          data-gesture-axis="X Axis"
           x1="0"
           x2={width}
           y1={xAxisY}
@@ -832,6 +833,7 @@ function Axes({
       )}
       {!logX && view.xMin <= 0 && view.xMax >= 0 && (
         <line
+          data-gesture-axis="Y Axis"
           x1={yAxisX}
           x2={yAxisX}
           y1="0"

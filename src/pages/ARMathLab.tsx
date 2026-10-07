@@ -847,8 +847,8 @@ export function ARScene({ onSemanticEdit, trackedARRef, mathObject, cameraStream
       {mode === "ar" ? <ARCameraPreview onSemanticEdit={onSemanticEdit} mathObject={mathObject} mode="ar" onAddMeasurement={onAddMeasurement} onSceneChange={onSceneChange} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} stream={cameraStream} /> : null}
       {mode === "3d-preview" && !trackedActive ? <ARFallbackViewer generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} mathObject={mathObject} sceneState={sceneState} /> : null}
       <ARWorldTracking solid={selectedSolid} graph={selectedGraph} onSemanticEdit={onSemanticEdit} ref={trackedARRef} onSessionChange={setTrackedActive} hasObject={!!selectedGraph || !!selectedSolid}>
-        {selectedGraph && <ARGraphObject graph={selectedGraph} sceneState={sceneState} />}
-        {selectedSolid && <ARGeometrySolid solid={selectedSolid} sceneState={sceneState} />}
+        {selectedGraph && <group userData={{gestureId:selectedGraph.id,gestureName:selectedGraph.name,gestureLocked:selectedGraph.locked}}><ARGraphObject graph={selectedGraph} sceneState={sceneState} /></group>}
+        {selectedSolid && <group userData={{gestureId:selectedSolid.id,gestureName:selectedSolid.name,gestureLocked:selectedSolid.locked}}><ARGeometrySolid solid={selectedSolid} sceneState={sceneState} /></group>}
       </ARWorldTracking>
     </section>
   );
@@ -1026,7 +1026,7 @@ export function ARCameraPreview({ onSemanticEdit, mathObject, mode, onAddMeasure
     <section aria-label="Camera workspace controls" className="space-y-3 border-t border-slate-200 bg-white p-3 text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-white">
       <OverlayLabel mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} />
       <div className="flex flex-wrap gap-4 text-xs font-bold"><label><input type="checkbox" checked={mirrored} onChange={e=>setMirrored(e.target.checked)}/> Mirror camera</label><label><input type="checkbox" checked={showHandPoints} onChange={e=>setShowHandPoints(e.target.checked)}/> Show hand points</label></div>
-      <ARCameraHands mirrored={mirrored} stage={stageRef} runtime={handRuntime} onSemanticEdit={onSemanticEdit} drawing={drawTool !== "place" && drawTool !== "rotate"} video={videoRef} stream={stream} scene={sceneState} onChange={onSceneChange} objectId={selectedGraph?.id ?? selectedSolid?.id ?? null} />
+      <ARCameraHands objectName={selectedGraph?.name??selectedSolid?.name} mirrored={mirrored} stage={stageRef} runtime={handRuntime} onSemanticEdit={onSemanticEdit} drawing={drawTool !== "place" && drawTool !== "rotate"} video={videoRef} stream={stream} scene={sceneState} onChange={onSceneChange} objectId={selectedGraph?.id ?? selectedSolid?.id ?? null} />
       <LiveCameraToolDock
         activeTool={drawTool}
         color={sceneState.objectColor}
@@ -1207,8 +1207,8 @@ function ARLiveCamera3DOverlay({ runtime, mathObject, phoneView, sceneState, sel
         <directionalLight position={[3, 4, 5]} intensity={1.35 * sceneState.objectContrast} />
         <pointLight position={[-2, 1.4, 2]} intensity={0.8 * sceneState.objectContrast} color={sceneState.objectColor} />
         <ARCameraHandScene runtime={runtime} solid={selectedSolid} graph={selectedGraph}>
-        {selectedSolid ? <ARGeometrySolid sceneState={overlaySceneState} solid={selectedSolid} /> : null}
-        {selectedGraph ? <ARGraphObject graph={selectedGraph} sceneState={overlaySceneState} /> : null}
+        {selectedSolid ? <group userData={{gestureId:selectedSolid.id,gestureName:selectedSolid.name,gestureLocked:selectedSolid.locked}}><ARGeometrySolid sceneState={overlaySceneState} solid={selectedSolid} /></group> : null}
+        {selectedGraph ? <group userData={{gestureId:selectedGraph.id,gestureName:selectedGraph.name,gestureLocked:selectedGraph.locked}}><ARGraphObject graph={selectedGraph} sceneState={overlaySceneState} /></group> : null}
         {!selectedSolid && !selectedGraph ? <CameraOverlayPlaceholder mathObject={mathObject} sceneState={overlaySceneState} /> : null}
         </ARCameraHandScene>
       </Canvas>
@@ -1628,7 +1628,7 @@ function MobileActionButton({ icon, label, onClick, primary = false }: { icon: R
     <button
       className={`${primary ? "bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-lg shadow-cyan-500/20" : "bg-slate-50 text-slate-800 ring-1 ring-slate-200"} flex min-h-14 flex-col items-center justify-center gap-1 rounded-2xl px-1 text-[10px] font-black active:scale-[0.98]`}
       type="button"
-      onClick={onClick}
+      onClick={() => onClick()}
     >
       {icon}
       <span>{label}</span>
@@ -2526,14 +2526,14 @@ export function ARFormulaPanel({ classification, selectedExample }: { classifica
 
 function ControlButton({ disabled = false, icon, label, onClick, primary = false }: { disabled?: boolean; icon: JSX.Element; label: string; onClick: () => void; primary?: boolean }) {
   return (
-    <button type="button" disabled={disabled} aria-label={label} onClick={onClick} className={`${primary ? "action-primary" : "tool-button"} min-h-11 justify-center rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 disabled:cursor-not-allowed disabled:opacity-50`}>
+    <button type="button" disabled={disabled} aria-label={label} onClick={() => onClick()} className={`${primary ? "action-primary" : "tool-button"} min-h-11 justify-center rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 disabled:cursor-not-allowed disabled:opacity-50`}>
       {icon}<span className="text-xs">{label}</span>
     </button>
   );
 }
 
 function ToggleButton({ checked, label, onClick }: { checked: boolean; label: string; onClick: () => void }) {
-  return <button type="button" aria-pressed={checked} onClick={onClick} className={checked ? "action-primary min-h-11 justify-center rounded-2xl text-xs" : "tool-button min-h-11 justify-center rounded-2xl text-xs"}>{label}</button>;
+  return <button type="button" aria-pressed={checked} onClick={() => onClick()} className={checked ? "action-primary min-h-11 justify-center rounded-2xl text-xs" : "tool-button min-h-11 justify-center rounded-2xl text-xs"}>{label}</button>;
 }
 
 function StatusBadge({ label, value, tone }: { label: string; value: string; tone: "ready" | "idle" }) {

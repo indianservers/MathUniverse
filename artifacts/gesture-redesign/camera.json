@@ -1,0 +1,212 @@
+{
+  "original": [
+    {
+      "name": "Cube",
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": 1
+      }
+    }
+  ],
+  "selection": "Cube",
+  "moved": [
+    {
+      "name": "Cube",
+      "transform": {
+        "position": [
+          0.2975,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": 1
+      }
+    }
+  ],
+  "held": [
+    {
+      "name": "Cube",
+      "transform": {
+        "position": [
+          0.2975,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": 1
+      }
+    }
+  ],
+  "reset": [
+    {
+      "name": "Cube",
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": 1
+      }
+    }
+  ],
+  "feedback": {
+    "selected": "Cube",
+    "gesture": "OK sign",
+    "action": "Cube restored",
+    "state": "RESET",
+    "detected": true,
+    "stable": true,
+    "confidence": 1,
+    "handedness": "Right"
+  },
+  "trace": [
+    {
+      "pose": "fist",
+      "feedback": {
+        "selected": "Cube",
+        "gesture": "Closed fist",
+        "action": "HOLD",
+        "state": "HOLD",
+        "detected": true,
+        "stable": true,
+        "confidence": 1,
+        "handedness": "Right"
+      },
+      "transform": [
+        {
+          "name": "Cube",
+          "transform": {
+            "position": [
+              0.2975,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1
+          }
+        }
+      ]
+    },
+    {
+      "pose": "fist",
+      "feedback": {
+        "selected": "Cube",
+        "gesture": "Closed fist",
+        "action": "HOLD",
+        "state": "HOLD",
+        "detected": true,
+        "stable": true,
+        "confidence": 1,
+        "handedness": "Right"
+      },
+      "transform": [
+        {
+          "name": "Cube",
+          "transform": {
+            "position": [
+              0.2975,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1
+          }
+        }
+      ]
+    },
+    {
+      "pose": "fist",
+      "feedback": {
+        "selected": "Cube",
+        "gesture": "Closed fist",
+        "action": "HOLD",
+        "state": "HOLD",
+        "detected": true,
+        "stable": true,
+        "confidence": 1,
+        "handedness": "Right"
+      },
+      "transform": [
+        {
+          "name": "Cube",
+          "transform": {
+            "position": [
+              0.2975,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1
+          }
+        }
+      ]
+    },
+    {
+      "pose": "fist",
+      "feedback": {
+        "selected": "Cube",
+        "gesture": "Closed fist",
+        "action": "HOLD",
+        "state": "HOLD",
+        "detected": true,
+        "stable": true,
+        "confidence": 1,
+        "handedness": "Right"
+      },
+      "transform": [
+        {
+          "name": "Cube",
+          "transform": {
+            "position": [
+              0.2975,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1
+          }
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

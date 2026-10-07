@@ -440,7 +440,7 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
           <KeyframeCameraAnimator keyframes={keyframes} playing={keyframesPlaying} onVariables={applyKeyframeVariables} onFinish={() => setKeyframesPlaying(false)} />
           <FlyController enabled={flyMode} />
           <EnableClipping />
-          <OrbitControls enablePan enableZoom enableDamping dampingFactor={0.08} autoRotate={autoRotate && !reducedMotion && !flyMode} autoRotateSpeed={0.7} enabled={!flyMode} />
+          <OrbitControls makeDefault enablePan enableZoom enableDamping dampingFactor={0.08} autoRotate={autoRotate && !reducedMotion && !flyMode} autoRotateSpeed={0.7} enabled={!flyMode} />
         </ThreeSceneWrapper>
       )}
       crossSectionPreview={sliceEnabled && supportsDifferential ? <CrossSectionChart axis={sliceAxis} value={sliceX} samples={surface} theme={graphTheme} /> : undefined}
@@ -1259,9 +1259,9 @@ function ThemeAxes({ scale, theme, showLabels, infinite }: { scale: number; them
   const start = infinite ? -axisScale : 0;
   const lineWidth = infinite ? 3 : 2;
   return <group>
-    <Line points={[[start, 0.012, 0], [axisScale, 0.012, 0]]} color={theme.axes[0]} lineWidth={lineWidth} />
-    <Line points={[[0, 0.012, start], [0, 0.012, axisScale]]} color={theme.axes[1]} lineWidth={lineWidth} />
-    <Line points={[[0, start, 0], [0, axisScale, 0]]} color={theme.axes[2]} lineWidth={lineWidth} />
+    <group userData={{gestureName:'X Axis'}}><Line points={[[start, 0.012, 0], [axisScale, 0.012, 0]]} color={theme.axes[0]} lineWidth={lineWidth} /></group>
+    <group userData={{gestureName:'Y Axis'}}><Line points={[[0, 0.012, start], [0, 0.012, axisScale]]} color={theme.axes[1]} lineWidth={lineWidth} /></group>
+    <group userData={{gestureName:'Z Axis'}}><Line points={[[0, start, 0], [0, axisScale, 0]]} color={theme.axes[2]} lineWidth={lineWidth} /></group>
     {infinite && <InfiniteAxisCaps scale={axisScale} theme={theme} />}
     {showLabels && <><TextSprite text="x" position={[axisScale, 0, 0]} color={theme.axes[0]} /><TextSprite text="y" position={[0, 0, axisScale]} color={theme.axes[1]} /><TextSprite text="z" position={[0, axisScale, 0]} color={theme.axes[2]} /></>}
   </group>;
@@ -1409,7 +1409,7 @@ function ClipPlane({ axis, value, range }: { axis: SliceAxis; value: number; ran
 }
 
 function AnnotationMarker({ annotation }: { annotation: Graph3DAnnotation }) {
-  return <group position={[annotation.x, annotation.z, annotation.y]}><mesh><sphereGeometry args={[0.08, 12, 12]} /><meshStandardMaterial color="#fbbf24" emissive="#f59e0b" emissiveIntensity={0.4} /></mesh></group>;
+  return <group userData={{gestureName:annotation.label||'Annotation'}} position={[annotation.x, annotation.z, annotation.y]}><mesh><sphereGeometry args={[0.08, 12, 12]} /><meshStandardMaterial color="#fbbf24" emissive="#f59e0b" emissiveIntensity={0.4} /></mesh></group>;
 }
 
 function EnableClipping() {

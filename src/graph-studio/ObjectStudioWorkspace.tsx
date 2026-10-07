@@ -206,12 +206,14 @@ export default function ObjectStudioWorkspace(props: Props) {
   const gestureWorking=useRef<{id:string;position:[number,number,number]}|null>(null);
   const immersive = useImmersive();
   useImmersiveAdapter({
+    clearSelection:()=>props.onSelect(''),
     kind:"3d",element:()=>sceneHostRef.current,
     targets:()=>props.objects.filter(o=>o.transform.visible).map(o=>{
       const target=immersive?.projected.current.get(o.id);if(!target)return null;
-      return {...target,locked:!!o.transform.locked,selected:o.id===props.selectedId,allowedInteractions:{...target.allowedInteractions,stretchX:true,stretchY:true,stretchZ:true},preferredGrabZones:target.preferredGrabZones.map(zone=>zone.kind==='face'?{...zone,value:o.transform.dimensions?.[zone.axis??0]??1}:zone)};
+      return {...target,name:o.transform.name||o.label,locked:!!o.transform.locked,selected:o.id===props.selectedId,allowedInteractions:{...target.allowedInteractions,stretchX:true,stretchY:true,stretchZ:true},preferredGrabZones:target.preferredGrabZones.map(zone=>zone.kind==='face'?{...zone,value:o.transform.dimensions?.[zone.axis??0]??1}:zone)};
     }).filter((t):t is NonNullable<typeof t>=>!!t),
-    transform:()=>identityTransform(),select:props.onSelect,begin:()=>{gestureWorking.current=null;},end:()=>{gestureWorking.current=null;},
+    transform:id=>{const t=props.objects.find(o=>o.id===id)?.transform;return t?{position:[...t.position],rotation:t.rotation.map(n=>n*Math.PI/180) as [number,number,number],scale:t.scale}:identityTransform();},select:props.onSelect,begin:()=>{gestureWorking.current=null;},end:()=>{gestureWorking.current=null;},
+    gestureObjects:()=>props.objects.filter(o=>o.transform.visible).map(o=>({id:o.id,name:o.transform.name||o.label,kind:'3d',capabilities:{move:!o.transform.locked,scale:!o.transform.locked,rotate:!o.transform.locked,tilt:!o.transform.locked,reset:!o.transform.locked},read:()=>({position:[...o.transform.position],rotation:o.transform.rotation.map(n=>n*Math.PI/180) as [number,number,number],scale:o.transform.scale}),write:t=>props.onTransform(o.id,{position:t.position,rotation:t.rotation.map(n=>n*180/Math.PI) as [number,number,number],scale:t.scale}),select:selected=>{if(selected)props.onSelect(o.id);}})),
     apply:(state,result,previous)=>{
       const object=props.objects.find(o=>o.id===state.targetObjectId);if(!object||object.transform.locked)return;
       if(result.semanticEdit?.kind==='dimension'&&result.semanticEdit.value){const axis=Number(result.semanticEdit.dimension),dims=[...(object.transform.dimensions??[1,1,1])] as [number,number,number];if(![0,1,2].includes(axis))return;dims[axis]=Math.max(.05,Math.min(100,result.semanticEdit.value));if(object.kind.includes('sphere'))dims.fill(dims[axis]);if(object.kind.includes('cylinder')&&axis!==1)dims[0]=dims[2]=dims[axis];props.onTransform(object.id,{dimensions:dims});return;}

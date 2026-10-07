@@ -1,0 +1,8 @@
+import {useEffect,useState,type RefObject} from 'react';
+import type {CameraHandRuntime} from './types';
+import type {GestureFeedback} from './GestureController';
+export default function GestureHUD({runtime}:{runtime:RefObject<CameraHandRuntime>}){
+ const [feedback,setFeedback]=useState<GestureFeedback>();
+ useEffect(()=>{let prior='';const timer=setInterval(()=>{const value=runtime.current?.gesture;if(!value)return;const rounded={...value,confidence:Math.round(value.confidence*100)/100,angles:value.angles?Object.fromEntries(Object.entries(value.angles).map(([k,v])=>[k,Math.round(v)])) as GestureFeedback['angles']:undefined};const key=JSON.stringify(rounded);if(key!==prior){prior=key;setFeedback(rounded);}},120);return()=>clearInterval(timer);},[runtime]);
+ return <section className="gesture-feedback" aria-label="Hand gesture feedback"><dl><div><dt>Selected</dt><dd>{feedback?.selected??'None'}</dd></div><div><dt>Gesture</dt><dd>{feedback?.gesture??'Hand not detected'}</dd></div><div><dt>Action</dt><dd>{feedback?.action??'Show index finger to select'}</dd></div></dl>{feedback?.angles&&<div className="gesture-orientation">{feedback.state==='ROTATE'?`Yaw ${Math.round(feedback.angles.yaw)}°`:`Forward ${Math.round(feedback.angles.pitch)}° · Left/right ${Math.round(feedback.angles.roll)}°`}</div>}{import.meta.env.DEV&&<details className="gesture-debug"><summary>Developer diagnostics</summary><pre>{JSON.stringify({handDetected:feedback?.detected,handedness:feedback?.handedness,gesture:feedback?.state,confidence:feedback?.confidence,stable:feedback?.stable,angles:feedback?.angles},null,2)}</pre></details>}</section>;
+}

@@ -1,12 +1,14 @@
 import type { HandTransform } from '../../ar-math-lab/arHandGestures';
 import type { HandIntelligenceState, ManipulationResult, ObjectAffordance, Vec3 } from '../../ar-math-lab/hand-intelligence/types';
 export type ImmersiveAdapter = {
+  gestureObjects?: () => import('../../ar-math-lab/hand-intelligence/GestureController').GestureSelectable[];
   kind: '2d' | '3d';
   boardExtent?: () => [number,number];
   element: () => HTMLElement | SVGSVGElement | null;
   targets: () => ObjectAffordance[];
   transform: (id: string) => HandTransform;
   select: (id: string) => void;
+  clearSelection?: () => void;
   apply: (state: HandIntelligenceState, result: ManipulationResult, previous: HandTransform) => void;
   navigate?: (delta: Vec3, scale: number) => void;
   begin?: () => void;

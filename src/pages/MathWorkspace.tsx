@@ -1400,7 +1400,24 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
     }
   };
 
+  const gestureGeometryTransforms=useRef(new Map<string,ReturnType<typeof identityTransform>>());
   const immersiveGeometry = useImmersiveAdapter(workspaceView === "geometry" ? {
+    clearSelection:()=>{setSelectedGeometry(null);setSelectedPointIds([]);},
+    gestureObjects:()=>{
+      const objects:SelectedGeometryObject[]=[...construction.points.map(o=>({type:'point' as const,id:o.id})),...construction.lines.map(o=>({type:'line' as const,id:o.id})),...construction.circles.map(o=>({type:'circle' as const,id:o.id})),...construction.polygons.map(o=>({type:'polygon' as const,id:o.id})),...construction.arcs.map(o=>({type:'arc' as const,id:o.id}))];
+      const registered=objects.map((object,index)=>{
+       const ids=object.type==='point'?[object.id]:pointIdsForObject(construction,object);const locked=lockedGeometryIds.includes(object.id)||ids.some(id=>lockedGeometryIds.includes(id));
+       const name=object.type==='point'?`Point ${construction.points.find(p=>p.id===object.id)?.label||index+1}`:object.type==='polygon'?(ids.length===3?'Triangle':`Polygon (${ids.length} sides)`):object.type[0].toUpperCase()+object.type.slice(1);
+       return {id:object.id,name,kind:'2d' as const,capabilities:{move:!locked,scale:!locked&&object.type!=='point',rotate:!locked&&object.type!=='point',tilt:false,reset:!locked},
+        read:()=>gestureGeometryTransforms.current.get(object.id)??identityTransform(),
+        write:(t:ReturnType<typeof identityTransform>)=>{const old=gestureGeometryTransforms.current.get(object.id)??identityTransform();const d=transformDelta(t,old);gestureGeometryTransforms.current.set(object.id,t);setConstruction(current=>{const ps=current.points.filter(p=>ids.includes(p.id));if(!ps.length)return current;const cx=ps.reduce((n,p)=>n+p.x,0)/ps.length,cy=ps.reduce((n,p)=>n+p.y,0)/ps.length;const a=-d.rotation[2],cos=Math.cos(a),sin=Math.sin(a),units=geometryGraphSettings.gridSpacing??40;return {...current,points:current.points.map(p=>{if(!ids.includes(p.id))return p;const x=(p.x-cx)*d.scale,y=(p.y-cy)*d.scale;return {...p,x:cx+x*cos-y*sin+d.position[0]*units,y:cy+x*sin+y*cos-d.position[1]*units};})};});},
+        captureReset:()=>{const saved=construction.points.filter(p=>ids.includes(p.id)).map(p=>({...p}));const original=gestureGeometryTransforms.current.get(object.id)??identityTransform();return()=>{gestureGeometryTransforms.current.set(object.id,original);setConstruction(current=>({...current,points:current.points.map(p=>saved.find(q=>q.id===p.id)??p)}));};},
+        select:(selected:boolean)=>{if(selected){setSelectedGeometry(object);setSelectedPointIds(ids);}else{setSelectedGeometry(null);setSelectedPointIds([]);}},
+       };
+      });
+      const axes=[...svgRef.current?.querySelectorAll<SVGElement>("[data-gesture-axis]")??[]].map(el=>({id:`geometry-${el.dataset.gestureAxis}`,name:el.dataset.gestureAxis!,kind:"2d" as const,capabilities:{move:false,scale:false,rotate:false,tilt:false,reset:false},read:identityTransform,write:()=>undefined,select:(selected:boolean)=>el.classList.toggle("gesture-axis-selected",selected)}));
+      return [...registered,...axes];
+    },
     kind: "2d", boardExtent:()=>[geometryCamera.width/(geometryGraphSettings.gridSpacing??40),geometryCamera.height/(geometryGraphSettings.gridSpacing??40)],element: () => svgRef.current,
     targets: () => {
       const board = svgRef.current; const rect = board?.getBoundingClientRect(); const matrix = board?.getScreenCTM();
@@ -7952,9 +7969,9 @@ function VectorWorkbenchOverlay3D({ a, b, view, focus }: { a: Vector3Tuple; b: V
 function Axes3D() {
   return (
     <group>
-      <VectorArrow start={[-5, 0, 0]} end={[5, 0, 0]} color="#ef4444" />
-      <VectorArrow start={[0, -0.01, -5]} end={[0, -0.01, 5]} color="#22c55e" />
-      <VectorArrow start={[0, -3, 0]} end={[0, 3, 0]} color="#38bdf8" />
+      <group userData={{gestureName:'X Axis'}}><VectorArrow start={[-5, 0, 0]} end={[5, 0, 0]} color="#ef4444" /></group>
+      <group userData={{gestureName:'Y Axis'}}><VectorArrow start={[0, -0.01, -5]} end={[0, -0.01, 5]} color="#22c55e" /></group>
+      <group userData={{gestureName:'Z Axis'}}><VectorArrow start={[0, -3, 0]} end={[0, 3, 0]} color="#38bdf8" /></group>
     </group>
   );
 }

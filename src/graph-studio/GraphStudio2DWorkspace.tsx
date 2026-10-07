@@ -254,6 +254,18 @@ export default function GraphStudio2DWorkspace(
     setHelpOpen(false);
   }, []);
   useImmersiveAdapter({
+    clearSelection:()=>props.onSelect(''),
+    gestureObjects:()=>[
+      ...props.functions.filter(f=>f.visible).map(f=>{
+       const original=f.transform;const parent=original?.parent??f.input.replace(/^\s*y\s*=\s*/i,'');const capable=!f.locked&&!/^[^=]*=/.test(parent);
+       return {id:f.id,name:f.name||`Equation ${f.input}`,kind:'2d' as const,capabilities:{move:capable,scale:capable,rotate:false,tilt:false,reset:capable},
+        read:()=>({position:[f.transform?.h??0,f.transform?.k??0,0] as [number,number,number],rotation:[0,0,0] as [number,number,number],scale:Math.abs(f.transform?.a??1)}),
+        write:(t:ReturnType<typeof identityTransform>)=>props.onUpdate(f.id,{transform:{parent,a:Math.sign(f.transform?.a??1)*t.scale,b:f.transform?.b??1,h:t.position[0],k:t.position[1],enabled:true}}),
+        captureReset:()=>()=>props.onUpdate(f.id,{transform:original?{...original}:undefined}),select:(selected:boolean)=>{if(selected)props.onSelect(f.id);}};
+      }),
+      ...(props.interactivePoints??[]).map(p=>({id:p.id,name:`Point ${p.id.replace(/[^a-z0-9 ]/gi,' ').split(' ').filter(Boolean).slice(-1)[0]??''}`,kind:'2d' as const,capabilities:{move:!!props.onInteractivePointChange,scale:false,rotate:false,tilt:false,reset:true},read:()=>({position:[p.x,p.y,0] as [number,number,number],rotation:[0,0,0] as [number,number,number],scale:1}),write:(t:ReturnType<typeof identityTransform>)=>props.onInteractivePointChange?.(p.id,t.position[0],t.position[1]),select:()=>undefined})),
+      ...(props.showAxes?['X Axis','Y Axis'].map(name=>({id:`gesture-${name}`,name,kind:'2d' as const,capabilities:{move:false,scale:false,rotate:false,tilt:false,reset:false},read:identityTransform,write:()=>undefined,select:(selected:boolean)=>sceneHostRef.current?.querySelector(`[data-gesture-axis="${name}"]`)?.classList.toggle('gesture-axis-selected',selected)})):[]),
+    ],
     kind:"2d",boardExtent:()=>[props.view.xMax-props.view.xMin,props.view.yMax-props.view.yMin],element:()=>sceneHostRef.current?.querySelector("svg")??sceneHostRef.current,
     targets:()=>[...(props.interactivePoints??[]).map(p=>{const t=screenTarget(p.id,(p.x-props.view.xMin)/(props.view.xMax-props.view.xMin),1-(p.y-props.view.yMin)/(props.view.yMax-props.view.yMin),.035,!!props.functions.find(f=>f.id===props.selectedId)?.locked,"vertex");t.allowedInteractions={translate:true};return t;}),...props.plotted.filter(f=>f.visible&&!f.error).map(f=>{
       const points=f.points.filter(p=>p.valid&&p.y!==null&&Number.isFinite(p.y));

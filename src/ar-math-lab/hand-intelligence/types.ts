@@ -5,8 +5,9 @@ export type Vec3 = [number, number, number];
 export type HandIntent = 'idle' | 'explore' | 'point' | 'touch' | 'grab' | 'move' | 'rotate' | 'resize' | 'stretch' | 'push' | 'pull' | 'inspect' | 'release' | 'ui' | 'unknown';
 export type IntelligenceProfile = 'precision' | 'balanced' | 'play';
 export type InteractionPhase = 'idle' | 'approach' | 'hover' | 'contact' | 'grab-ready' | 'grabbed' | 'two-hand-ready' | 'two-hand-grab' | 'release';
-export type RawHand = { landmarks?: HandPoint[]; point?: HandPoint; pinchRatio?: number; handedness?: string; confidence?: number; orientation?: number; timestamp?: number };
+export type RawHand = { landmarks?: HandPoint[]; point?: HandPoint; pinchRatio?: number; handedness?: string; confidence?: number; orientation?: number; orientation3D?: Vec3; timestamp?: number };
 export type HandFeatures = {
+  orientation3D?: Vec3;
   pose?: KnownHandPose; id: string; handedness: string; position: Vec3; predictedPosition: Vec3; fingertip: Vec3;
   velocity: Vec3; acceleration: Vec3; jerk: number; speed: number; angularVelocity: number; curvature: number;
   palmNormal: Vec3; orientation: number; curls: number[]; pinchRatio: number; pinchVelocity: number;
@@ -15,6 +16,7 @@ export type HandFeatures = {
 };
 export type GrabZone = { id: string; kind: 'body' | 'vertex' | 'edge' | 'face' | 'radius' | 'vector' | 'surface' | 'ui'; position: Vec3; radius: number; axis?: 0 | 1 | 2; direction?: Vec3; index?: number; dimension?: string; value?: number; sample?: Vec3 };
 export type ObjectAffordance = {
+  name?: string;
   objectId: string; semanticType: string; position: Vec3; radius: number; depth: number;
   visible: boolean; occluded?: boolean; locked?: boolean; selected?: boolean;
   allowedInteractions: { translate?: boolean; rotate?: boolean; scale?: boolean; stretchX?: boolean; stretchY?: boolean; stretchZ?: boolean; editVertex?: boolean; editRadius?: boolean; editVector?: boolean; sampleSurface?: boolean; ui?: boolean };
@@ -38,4 +40,4 @@ export type IntentPrediction = { probabilities: Partial<Record<HandIntent, numbe
 export type IntentModel = { predict: (features: readonly HandFeatures[], history: readonly HandIntelligenceState[]) => IntentPrediction };
 export type IntelligenceEventName = 'onIntentStart' | 'onIntentUpdate' | 'onIntentEnd' | 'onTargetPredicted' | 'onTargetLocked' | 'onTargetReleased' | 'onGrabStart' | 'onGrabUpdate' | 'onGrabEnd' | 'onTwoHandStart' | 'onTwoHandUpdate' | 'onTwoHandEnd';
 export type IntelligenceEvent = { type: IntelligenceEventName; state: HandIntelligenceState };
-export type CameraHandRuntime = { targets: ObjectAffordance[]; transform: HandTransform; state?: HandIntelligenceState; result?: ManipulationResult; landmarks?: HandPoint[][]; landmarksAt?: number };
+export type CameraHandRuntime = { gestureObjects?: import('./GestureController').GestureSelectable[]; gesture?: import('./GestureController').GestureFeedback; targets: ObjectAffordance[]; transform: HandTransform; state?: HandIntelligenceState; result?: ManipulationResult; landmarks?: HandPoint[][]; landmarksAt?: number };
