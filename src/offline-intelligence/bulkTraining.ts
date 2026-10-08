@@ -1,3 +1,4 @@
+import {assertTrainingAllowed} from '../math-robo/intelligence/buildPolicy';
 import * as tf from '@tensorflow/tfjs';
 import { features } from './roboLearning';
 import { TRAINING_LABELS, splitRows, type TrainingRow } from './trainingDataset';
@@ -41,6 +42,7 @@ export async function evaluateClassifier(model: tf.LayersModel, rows: TrainingRo
 
 export async function trainClassifier(rows: TrainingRow[], epochs: number, batchSize: number,
   cancelled: () => boolean, progress: (fraction: number, message: string, epoch?: EpochResult) => void) {
+  assertTrainingAllowed();
   const split = splitRows(rows);
   if (!split.train.length || !split.validation.length || !split.test.length) throw new Error('Dataset needs examples in all three splits. Add more varied phrases; duplicate or numeric variants stay in the same split.');
   const learned = new Set(split.train.map(row => row.label));

@@ -1,0 +1,5294 @@
+[
+  {
+    "action": "CREATE",
+    "subaction": "TRIANGLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "triangle"
+    ],
+    "executor": "create:triangle",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "RECTANGLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "width",
+      "height"
+    ],
+    "allowedTypes": [
+      "rectangle"
+    ],
+    "executor": "create:rectangle",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "SQUARE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "width"
+    ],
+    "allowedTypes": [
+      "square"
+    ],
+    "executor": "create:square",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "CIRCLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "radius"
+    ],
+    "allowedTypes": [
+      "circle"
+    ],
+    "executor": "create:circle",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "ELLIPSE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "ellipse"
+    ],
+    "executor": "create:ellipse",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "SEMICIRCLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "semicircle"
+    ],
+    "executor": "create:semicircle",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "PENTAGON",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "pentagon"
+    ],
+    "executor": "create:pentagon",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "HEXAGON",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "hexagon"
+    ],
+    "executor": "create:hexagon",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "HEPTAGON",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "heptagon"
+    ],
+    "executor": "create:heptagon",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "OCTAGON",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "octagon"
+    ],
+    "executor": "create:octagon",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "NONAGON",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "nonagon"
+    ],
+    "executor": "create:nonagon",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "DECAGON",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "decagon"
+    ],
+    "executor": "create:decagon",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "POLYGON",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "polygon"
+    ],
+    "executor": "create:polygon",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "STAR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "star"
+    ],
+    "executor": "create:star",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "PARALLELOGRAM",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "parallelogram"
+    ],
+    "executor": "create:parallelogram",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "TRAPEZOID",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "trapezoid"
+    ],
+    "executor": "create:trapezoid",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "RHOMBUS",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "rhombus"
+    ],
+    "executor": "create:rhombus",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "KITE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "kite"
+    ],
+    "executor": "create:kite",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "CUBE",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "width"
+    ],
+    "allowedTypes": [
+      "cube"
+    ],
+    "executor": "create:cube",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "CUBOID",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "cuboid"
+    ],
+    "executor": "create:cuboid",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "SPHERE",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "radius"
+    ],
+    "allowedTypes": [
+      "sphere"
+    ],
+    "executor": "create:sphere",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "ELLIPSOID",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "ellipsoid"
+    ],
+    "executor": "create:ellipsoid",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "HEMISPHERE",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "hemisphere"
+    ],
+    "executor": "create:hemisphere",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "CYLINDER",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "cylinder"
+    ],
+    "executor": "create:cylinder",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "CONE",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "cone"
+    ],
+    "executor": "create:cone",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "FRUSTUM",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "frustum"
+    ],
+    "executor": "create:frustum",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "TORUS",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "torus"
+    ],
+    "executor": "create:torus",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "TUBE",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "tube"
+    ],
+    "executor": "create:tube",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "CAPSULE",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "capsule"
+    ],
+    "executor": "create:capsule",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "PRISM",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "prism"
+    ],
+    "executor": "create:prism",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "PYRAMID",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "pyramid"
+    ],
+    "executor": "create:pyramid",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "TETRAHEDRON",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "tetrahedron"
+    ],
+    "executor": "create:tetrahedron",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "OCTAHEDRON",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "octahedron"
+    ],
+    "executor": "create:octahedron",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "DODECAHEDRON",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "dodecahedron"
+    ],
+    "executor": "create:dodecahedron",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "ICOSAHEDRON",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "icosahedron"
+    ],
+    "executor": "create:icosahedron",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "WEDGE",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "wedge"
+    ],
+    "executor": "create:wedge",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "POINT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "points"
+    ],
+    "allowedTypes": [
+      "point"
+    ],
+    "executor": "create:point",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "LINE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "points"
+    ],
+    "allowedTypes": [
+      "line"
+    ],
+    "executor": "create:line",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 40,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "PLOT",
+    "subaction": "FUNCTION",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "expression"
+    ],
+    "allowedTypes": [],
+    "executor": "plot:function",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "PLOT",
+    "subaction": "SURFACE_3D",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "expression"
+    ],
+    "allowedTypes": [],
+    "executor": "plot:surface_3d",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "DISTANCE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "find:distance",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "MIDPOINT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "line"
+    ],
+    "executor": "find:midpoint",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 32,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "LENGTH",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "line"
+    ],
+    "executor": "find:length",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 32,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "AREA",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "find:area",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 32,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "PERIMETER",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "find:perimeter",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 32,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "CIRCUMFERENCE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "circle",
+      "sphere"
+    ],
+    "executor": "find:circumference",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 32,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "SLOPE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "line"
+    ],
+    "executor": "find:slope",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 32,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "CENTER",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "find:center",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 32,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "RADIUS",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "circle",
+      "sphere"
+    ],
+    "executor": "find:radius",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 32,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "DIAMETER",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "circle",
+      "sphere"
+    ],
+    "executor": "find:diameter",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 32,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "CENTROID",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "find:centroid",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 32,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "VOLUME",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "find:volume",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "SURFACE_AREA",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "find:surface_area",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "INTERSECTION",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "find:intersection",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 10,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "ROOTS",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "plot"
+    ],
+    "executor": "find:roots",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "X_INTERCEPT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "plot"
+    ],
+    "executor": "find:x_intercept",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "Y_INTERCEPT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "plot"
+    ],
+    "executor": "find:y_intercept",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "COLOR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "color"
+    ],
+    "allowedTypes": [],
+    "executor": "change:color",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 24,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "WIDTH",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "width"
+    ],
+    "allowedTypes": [
+      "rectangle",
+      "square",
+      "triangle",
+      "cuboid",
+      "cube",
+      "cylinder",
+      "cone",
+      "ellipse",
+      "ellipsoid",
+      "polygon"
+    ],
+    "executor": "change:width",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "HEIGHT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "height"
+    ],
+    "allowedTypes": [
+      "rectangle",
+      "square",
+      "triangle",
+      "cuboid",
+      "cube",
+      "cylinder",
+      "cone",
+      "ellipse",
+      "ellipsoid",
+      "polygon"
+    ],
+    "executor": "change:height",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "DEPTH",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "depth"
+    ],
+    "allowedTypes": [
+      "rectangle",
+      "square",
+      "triangle",
+      "cuboid",
+      "cube",
+      "cylinder",
+      "cone",
+      "ellipse",
+      "ellipsoid",
+      "polygon"
+    ],
+    "executor": "change:depth",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 10,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "RADIUS",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "radius"
+    ],
+    "allowedTypes": [
+      "circle",
+      "sphere"
+    ],
+    "executor": "change:radius",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "DIAMETER",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "diameter"
+    ],
+    "allowedTypes": [
+      "circle",
+      "sphere"
+    ],
+    "executor": "change:diameter",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "POSITION",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "position"
+    ],
+    "allowedTypes": [],
+    "executor": "change:position",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "COORDINATES",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "position"
+    ],
+    "allowedTypes": [],
+    "executor": "change:coordinates",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "LABEL",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "label"
+    ],
+    "allowedTypes": [],
+    "executor": "change:label",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "MOVE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "vector"
+    ],
+    "allowedTypes": [],
+    "executor": "move:object",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 24,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "ROTATE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "angle"
+    ],
+    "allowedTypes": [],
+    "executor": "rotate:object",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "SCALE",
+    "subaction": "UNIFORM",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "factor"
+    ],
+    "allowedTypes": [],
+    "executor": "scale:uniform",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "RESIZE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "resize:object",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "REFLECT",
+    "subaction": "X_AXIS",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "reflect:x_axis",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 10,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "REFLECT",
+    "subaction": "Y_AXIS",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "reflect:y_axis",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 10,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "REFLECT",
+    "subaction": "ORIGIN",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "reflect:origin",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 10,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "REFLECT",
+    "subaction": "XY_PLANE",
+    "modes": [
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "reflect:xy_plane",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 10,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "REFLECT",
+    "subaction": "XZ_PLANE",
+    "modes": [
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "reflect:xz_plane",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 10,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "REFLECT",
+    "subaction": "YZ_PLANE",
+    "modes": [
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "reflect:yz_plane",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 10,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subaction": "PERPENDICULAR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "construct:perpendicular",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 10,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subaction": "PARALLEL",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "construct:parallel",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 10,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subaction": "PERPENDICULAR_BISECTOR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "construct:perpendicular_bisector",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 10,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subaction": "TANGENT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "construct:tangent",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 10,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "MARK",
+    "subaction": "POINT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "mark:point",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "MARK",
+    "subaction": "MIDPOINT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "mark:midpoint",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "MARK",
+    "subaction": "CENTER",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "mark:center",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "MARK",
+    "subaction": "INTERSECTION",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "mark:intersection",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "SHOW",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "show:object",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "SHOW",
+    "subaction": "CENTER",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "show:center",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "SHOW",
+    "subaction": "MIDPOINT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "show:midpoint",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "SHOW",
+    "subaction": "RADIUS",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "show:radius",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "SHOW",
+    "subaction": "DIAMETER",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "show:diameter",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "SHOW",
+    "subaction": "INTERSECTION",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "show:intersection",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "HIDE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "hide:object",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "DELETE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "delete:object",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "DELETE",
+    "subaction": "ALL",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "delete:all",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "SELECT",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "select:object",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "SELECT",
+    "subaction": "ALL",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "select:all",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "DESELECT",
+    "subaction": "ALL",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "deselect:all",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "DUPLICATE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "duplicate:object",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "UNDO",
+    "subaction": "LAST",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "undo:last",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "REDO",
+    "subaction": "LAST",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "redo:last",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "COUNT",
+    "subaction": "OBJECTS",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "count:objects",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "COUNT",
+    "subaction": "POINTS",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "count:points",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "COUNT",
+    "subaction": "LINES",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "count:lines",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "COUNT",
+    "subaction": "SHAPES",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "count:shapes",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "COUNT",
+    "subaction": "VERTICES",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "count:vertices",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "COMPARE",
+    "subaction": "SIZE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "compare:size",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 20,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "COMPARE",
+    "subaction": "AREA",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "compare:area",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "COMPARE",
+    "subaction": "PERIMETER",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "compare:perimeter",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "COMPARE",
+    "subaction": "LENGTH",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "compare:length",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 16,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "COMPARE",
+    "subaction": "VOLUME",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "compare:volume",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 8,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "COMPARE",
+    "subaction": "SURFACE_AREA",
+    "modes": [
+      "normal",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "compare:surface_area",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 8,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHECK",
+    "subaction": "PARALLEL",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "check:parallel",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 8,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHECK",
+    "subaction": "PERPENDICULAR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "check:perpendicular",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 8,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHECK",
+    "subaction": "EQUAL_LENGTH",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "check:equal_length",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 8,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHECK",
+    "subaction": "EQUAL_AREA",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "check:equal_area",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 8,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHECK",
+    "subaction": "POINT_INSIDE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "check:point_inside",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 8,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHECK",
+    "subaction": "POINT_ON_LINE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "check:point_on_line",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 8,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHECK",
+    "subaction": "POINT_ON_CIRCLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "check:point_on_circle",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 8,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHECK",
+    "subaction": "INTERSECTING",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "check:intersecting",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 8,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CREATE",
+    "subaction": "RAY",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No matching canonical adapter/validation for this primitive; underlying drawing tools remain available manually."
+  },
+  {
+    "action": "CREATE",
+    "subaction": "VECTOR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No matching canonical adapter/validation for this primitive; underlying drawing tools remain available manually."
+  },
+  {
+    "action": "CREATE",
+    "subaction": "PLANE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No matching canonical adapter/validation for this primitive; underlying drawing tools remain available manually."
+  },
+  {
+    "action": "CREATE",
+    "subaction": "ARC",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No matching canonical adapter/validation for this primitive; underlying drawing tools remain available manually."
+  },
+  {
+    "action": "CREATE",
+    "subaction": "SECTOR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No matching canonical adapter/validation for this primitive; underlying drawing tools remain available manually."
+  },
+  {
+    "action": "CREATE",
+    "subaction": "RIGHT_TRIANGLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No matching canonical adapter/validation for this primitive; underlying drawing tools remain available manually."
+  },
+  {
+    "action": "CREATE",
+    "subaction": "EQUILATERAL_TRIANGLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No matching canonical adapter/validation for this primitive; underlying drawing tools remain available manually."
+  },
+  {
+    "action": "CREATE",
+    "subaction": "ISOSCELES_TRIANGLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No matching canonical adapter/validation for this primitive; underlying drawing tools remain available manually."
+  },
+  {
+    "action": "FIND",
+    "subaction": "ANGLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "find:angle",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "INCENTER",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "triangle"
+    ],
+    "executor": "find:incenter",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "CIRCUMCENTER",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "triangle"
+    ],
+    "executor": "find:circumcenter",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "ORTHOCENTER",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "triangle"
+    ],
+    "executor": "find:orthocenter",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "VERTEX",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "FIND",
+    "subaction": "MAXIMUM",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "FIND",
+    "subaction": "MINIMUM",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "FIND",
+    "subaction": "DOMAIN",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "FIND",
+    "subaction": "RANGE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "FIND",
+    "subaction": "ASYMPTOTE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "FIND",
+    "subaction": "PROJECTION",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "find:projection",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "FOOT_OF_PERPENDICULAR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "CONSTRUCT",
+    "subaction": "ANGLE_BISECTOR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "construct:angle_bisector",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subaction": "INCIRCLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "construct:incircle",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subaction": "CIRCUMCIRCLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "construct:circumcircle",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subaction": "MEDIAN",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "construct:median",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subaction": "ALTITUDE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "construct:altitude",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "OPACITY",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No consistent object/style/constraint adapter across supported workspaces."
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "LINE_WIDTH",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No consistent object/style/constraint adapter across supported workspaces."
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "LINE_STYLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No consistent object/style/constraint adapter across supported workspaces."
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "POINT_SIZE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No consistent object/style/constraint adapter across supported workspaces."
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "FONT_SIZE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No consistent object/style/constraint adapter across supported workspaces."
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "FILL_COLOR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No consistent object/style/constraint adapter across supported workspaces."
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "STROKE_COLOR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No consistent object/style/constraint adapter across supported workspaces."
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "EQUATION",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No consistent object/style/constraint adapter across supported workspaces."
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "SLOPE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [
+      "slope"
+    ],
+    "allowedTypes": [
+      "line"
+    ],
+    "executor": "change:slope",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "ANGLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No consistent object/style/constraint adapter across supported workspaces."
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "LENGTH",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [
+      "length"
+    ],
+    "allowedTypes": [
+      "line"
+    ],
+    "executor": "change:length",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHECK",
+    "subaction": "COLLINEAR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "check:collinear",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHECK",
+    "subaction": "CONCURRENT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "CHECK",
+    "subaction": "CONGRUENT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "CHECK",
+    "subaction": "SIMILAR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "CHECK",
+    "subaction": "OVERLAPPING",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "CHECK",
+    "subaction": "CONTAINMENT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "CHECK",
+    "subaction": "TANGENT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "check:tangent",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "PLOT",
+    "subaction": "EQUATION",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "Needs a distinct graph representation and independently verified mathematical executor; function/surface plots remain supported."
+  },
+  {
+    "action": "PLOT",
+    "subaction": "INEQUALITY",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "Needs a distinct graph representation and independently verified mathematical executor; function/surface plots remain supported."
+  },
+  {
+    "action": "PLOT",
+    "subaction": "POINTS",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "Needs a distinct graph representation and independently verified mathematical executor; function/surface plots remain supported."
+  },
+  {
+    "action": "PLOT",
+    "subaction": "PARAMETRIC",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "Needs a distinct graph representation and independently verified mathematical executor; function/surface plots remain supported."
+  },
+  {
+    "action": "PLOT",
+    "subaction": "POLAR",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "Needs a distinct graph representation and independently verified mathematical executor; function/surface plots remain supported."
+  },
+  {
+    "action": "PLOT",
+    "subaction": "IMPLICIT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "Needs a distinct graph representation and independently verified mathematical executor; function/surface plots remain supported."
+  },
+  {
+    "action": "PLOT",
+    "subaction": "PLANE_3D",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "Needs a distinct graph representation and independently verified mathematical executor; function/surface plots remain supported."
+  },
+  {
+    "action": "PLOT",
+    "subaction": "VECTOR_FIELD",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "Needs a distinct graph representation and independently verified mathematical executor; function/surface plots remain supported."
+  },
+  {
+    "action": "STRETCH",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "SHEAR",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "ALIGN",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No consistent object/style/constraint adapter across supported workspaces."
+  },
+  {
+    "action": "DISTRIBUTE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "SNAP",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "CONNECT",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "JOIN",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "SPLIT",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "DIVIDE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "MERGE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "EXTEND",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [
+      "factor"
+    ],
+    "allowedTypes": [
+      "line"
+    ],
+    "executor": "extend:object",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "TRIM",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "CUT",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "PASTE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "GROUP",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No consistent object/style/constraint adapter across supported workspaces."
+  },
+  {
+    "action": "UNGROUP",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No consistent object/style/constraint adapter across supported workspaces."
+  },
+  {
+    "action": "LOCK",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "lock:object",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "UNLOCK",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unlock:object",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "INCREASE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "DECREASE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "TOGGLE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "SOLVE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "EVALUATE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "SIMPLIFY",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "EXPAND",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "FACTOR",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "SUBSTITUTE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "DIFFERENTIATE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "INTEGRATE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "APPROXIMATE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "ESTIMATE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "ROUND",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "CONVERT",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "BISECT",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "TRACE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "ANIMATE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "PLAY",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "PAUSE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "STOP",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "STEP",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "SAVE",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "LOAD",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "IMPORT",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "EXPORT",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "ZOOM",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "PAN",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "FOCUS",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "FIT",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "SWITCH",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "EXPLAIN",
+    "subaction": "OBJECT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "unsupported",
+    "implemented": false,
+    "parserSupported": false,
+    "validationSupported": false,
+    "verifierSupported": false,
+    "verifierScope": "None",
+    "trainingExamples": 0,
+    "heldOutExecutionEvidence": false,
+    "status": "Explicitly unsupported",
+    "reason": "No deterministic canonical executor and independent verification in this release; requests fail explicitly without changing geometry."
+  },
+  {
+    "action": "FIND",
+    "subaction": "TRIANGLE_TYPE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "triangle"
+    ],
+    "executor": "find:triangle_type",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "LONGEST_SIDE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "triangle"
+    ],
+    "executor": "find:longest_side",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "LARGEST_ANGLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "triangle"
+    ],
+    "executor": "find:largest_angle",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "COORDINATES",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "find:coordinates",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "EQUATION",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [
+      "line"
+    ],
+    "executor": "find:equation",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "FIND",
+    "subaction": "TOUCHING_POINT",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "find:touching_point",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subaction": "PROJECTION",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "construct:projection",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CONSTRUCT",
+    "subaction": "NORMAL",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "construct:normal",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Independent formula/direction/endpoint check plus generic safety",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHECK",
+    "subaction": "POINT_OUTSIDE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "check:point_outside",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHECK",
+    "subaction": "RIGHT_TRIANGLE",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "check:right_triangle",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHECK",
+    "subaction": "EQUAL_ANGLES",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "check:equal_angles",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "CHANGE",
+    "subaction": "RELATION",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [
+      "relation"
+    ],
+    "allowedTypes": [],
+    "executor": "change:relation",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "REFLECT",
+    "subaction": "DIAGONAL",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "reflect:diagonal",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "MARK",
+    "subaction": "SIDE_MIDPOINTS",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "mark:side_midpoints",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  },
+  {
+    "action": "EXPLAIN",
+    "subaction": "PREVIOUS",
+    "modes": [
+      "normal",
+      "geometry2d",
+      "graph2d",
+      "geometry3d",
+      "graph3d"
+    ],
+    "requiredParameters": [],
+    "allowedTypes": [],
+    "executor": "explain:previous",
+    "implemented": true,
+    "parserSupported": true,
+    "validationSupported": true,
+    "verifierSupported": true,
+    "verifierScope": "Generic safety/state checks; specialized isometry invariants where applicable",
+    "trainingExamples": 12,
+    "heldOutExecutionEvidence": true,
+    "status": "Implemented and held-out execution tested"
+  }
+]

@@ -1,0 +1,8 @@
+.articulated-robo [data-part] { will-change: auto; }
+.offline-assistant-toggle:hover .articulated-robo { transform:none; }
+.articulated-robo { touch-action:none; }
+.robo-test-lab { position:fixed; z-index:100; left:12px; top:12px; width:310px; max-height:85vh; overflow:auto; padding:16px; background:#071c2b; color:#d9faff; border:1px solid #22d3ee; border-radius:16px; font:12px system-ui; }
+.robo-test-lab select,.robo-test-lab button,.robo-test-lab input { color:#d9faff; background:#163444; padding:6px; margin:4px; border:1px solid #3e718a; border-radius:5px; max-width:95%; }
+.robo-test-lab pre { white-space:pre-wrap; }
+
+.robo-target-marker { position:fixed; z-index:74; pointer-events:none; width:18px; height:18px; margin:-9px; border:2px solid #06b6d4; border-radius:50%; box-shadow:0 0 0 4px #22d3ee22; display:none; }

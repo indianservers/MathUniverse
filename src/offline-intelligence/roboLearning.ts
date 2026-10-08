@@ -1,3 +1,4 @@
+import {MODEL_TRAINING_ENABLED,assertTrainingAllowed} from '../math-robo/intelligence/buildPolicy';
 import * as tf from '@tensorflow/tfjs';
 import { INTELLIGENCE_EXAMPLES } from './expressionCorpus';
 import { interpretVisualRequest, type IntelligenceMode, type VisualCommand } from './languageEngine';
@@ -52,7 +53,7 @@ export class RoboLearning {
   private model?: tf.LayersModel;
   private queue: Promise<unknown> = Promise.resolve();
   private corrections: Correction[];
-  constructor(private storage?: Storage) { this.corrections = storage ? readCorrections(storage) : []; }
+  constructor(private storage?: Storage) { this.corrections = MODEL_TRAINING_ENABLED&&storage ? readCorrections(storage) : []; }
   get count() { return this.corrections.length; }
   private serial<T>(operation: () => Promise<T>): Promise<T> {
     const next = this.queue.then(operation);
@@ -66,12 +67,12 @@ export class RoboLearning {
     // This small classifier runs faster without shader setup and leaves the GPU to the canvas.
     await tf.setBackend('cpu');
     await tf.ready();
-    if (this.storage && this.storage.getItem(SIGNATURE) === JSON.stringify(this.corrections)) {
+    if (MODEL_TRAINING_ENABLED && this.storage && this.storage.getItem(SIGNATURE) === JSON.stringify(this.corrections)) {
       try {
         const loaded = await tf.loadLayersModel(MODEL);
         if (loaded.inputs[0].shape[1] === FEATURES && loaded.outputs[0].shape[1] === labels.length) {
           this.model = loaded; this.compile();
-          if (this.corrections.length) await this.train(8);
+
           return;
         }
         loaded.dispose();
@@ -81,11 +82,12 @@ export class RoboLearning {
       try {
         this.model=await tf.loadLayersModel(`${import.meta.env.BASE_URL}models/math-robo-intents-v3/model.json`);
         this.compile();
-        if(this.corrections.length)await this.train(8);
+
         await this.persistModel();
         return;
       } catch { this.release(); /* Missing/corrupt starter assets: rebuild locally. */ }
     }
+    if(typeof window!=='undefined'||!MODEL_TRAINING_ENABLED)throw new Error('Bundled model unavailable; deterministic rules remain available.');
     this.model = tf.sequential({layers: [
       tf.layers.dense({inputShape: [FEATURES], units: 64, activation: 'relu', kernelInitializer: tf.initializers.glorotUniform({seed: 17})}),
       tf.layers.dense({units: labels.length, activation: 'softmax', kernelInitializer: tf.initializers.glorotUniform({seed: 23})}),
@@ -95,6 +97,7 @@ export class RoboLearning {
     await this.persistModel();
   }
   private async train(epochs: number) {
+    assertTrainingAllowed();
     const examples: {phrase:string;kind:string}[] = INTELLIGENCE_EXAMPLES.flatMap(example => {
       const command = interpretVisualRequest(example.request, example.mode).command;
       return command?.action === 'create' ? [{phrase: example.request, kind: command.kind}] : [];
@@ -126,7 +129,7 @@ export class RoboLearning {
   }
   ready() { return this.serial(() => this.initialize()); }
   exportModel(handler:tf.io.IOHandler) {
-    return this.serial(async()=>{await this.initialize();return this.model!.save(handler);});
+    return this.serial(async()=>{assertTrainingAllowed();await this.initialize();return this.model!.save(handler);});
   }
   interpret(input: string, mode: IntelligenceMode, previous?: VisualCommand, objects?:RoboObject[]) {
     return this.serial(async () => {
@@ -161,6 +164,7 @@ export class RoboLearning {
   }
   teach(phrase: string, canonical: string, mode: IntelligenceMode) {
     return this.serial(async () => {
+      assertTrainingAllowed();
       if (!phrase.trim() || phrase.length > 500 || !canonical.trim() || canonical.length > 500) throw new Error('Use a phrase and example command of up to 500 characters.');
       const result = interpretVisualRequest(canonical, mode);
       if (!result.command || result.command.action !== 'create') throw new Error('Teach with a complete drawing command, such as “Create circle radius 3”.');
@@ -176,6 +180,7 @@ export class RoboLearning {
   }
   reset() {
     return this.serial(async () => {
+      assertTrainingAllowed();
       this.storage?.removeItem(KEY);
       this.storage?.removeItem(SIGNATURE);
       this.corrections = [];

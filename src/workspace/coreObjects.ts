@@ -238,6 +238,7 @@ export function normalizeGeometry(geometry?: MathObjectGeometry): MathObjectGeom
       radius: geometry.radius === undefined ? undefined : Math.abs(finiteOr(geometry.radius, 0)),
     };
   }
+  if (geometry.type !== 'surface') return geometry;
   const normalizeRange = (range: [number, number]): [number, number] => {
     const first = finiteOr(range[0], -10);
     const second = finiteOr(range[1], 10);

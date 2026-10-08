@@ -1,3 +1,6 @@
+import {registerRoboProjector,svgClientPoint} from '../../math-robo/character/workspaceAdapter';
+import {roboEvents} from '../../math-robo/character/engine';
+import {useEffect} from 'react';
 import type { GraphSample } from "../../utils/mathEngine/graphSampler";
 import { useCallback, useLayoutEffect, useRef, useState, type PointerEvent } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
@@ -126,6 +129,13 @@ export default function FunctionGraphCanvas({
     x: ((axisValue(x, logX) - xMin) / (xMax - xMin)) * WIDTH,
     y: HEIGHT - ((axisValue(y, logY) - yMin) / (yMax - yMin)) * HEIGHT,
   });
+  const roboProjection=useRef(toScreen);roboProjection.current=toScreen;
+  useEffect(()=>registerRoboProjector('graph2d',p=>svgClientPoint(svgRef.current,roboProjection.current(p[0],p[1]))),[]);
+  useEffect(()=>{
+    const selected=series.find(s=>s.id===selectedSeriesId);
+    const point=selected?.points.find(p=>p.y!==null&&Number.isFinite(p.y));
+    if(point)roboEvents.emit({type:'workspace',kind:'selection',target:()=>svgClientPoint(svgRef.current,roboProjection.current(point.x,point.y!))});
+  },[selectedSeriesId,series]);
   const fromScreen = (
     clientX: number,
     clientY: number,
@@ -540,6 +550,7 @@ export default function FunctionGraphCanvas({
                     event.currentTarget,
                   );
                   onInteractivePointChange(point.id, next.x, next.y);
+                  roboEvents.emit({type:'workspace',kind:'movement',target:()=>svgClientPoint(svgRef.current,roboProjection.current(next.x,next.y))});
                 }}
                 onKeyDown={(event) => {
                   if (

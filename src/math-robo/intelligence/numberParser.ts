@@ -1,11 +1,22 @@
 import { compileFunctionExpression } from '../../utils/functionParser';
 const wordValues: Record<string,number> = {zero:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,twenty:20,thirty:30,forty:40,fifty:50,ninety:90};
 export function normalizeLanguage(phrase:string) {
-  return phrase.toLowerCase().replace(/\b(rectagle|circel|perpandicular|perpendiculer|intersecton|radious|diametre|lenght)\b/g, value=>({rectagle:'rectangle',circel:'circle',perpandicular:'perpendicular',perpendiculer:'perpendicular',intersecton:'intersection',radious:'radius',diametre:'diameter',lenght:'length'}[value]!))
+  const typos:Record<string,string>={rectagle:'rectangle',rectangel:'rectangle',circel:'circle',circl:'circle',perpandicular:'perpendicular',perpendiculer:'perpendicular',intersecton:'intersection',radious:'radius',diametre:'diameter',diamter:'diameter',lenght:'length',midpont:'midpoint',paralel:'parallel',triangel:'triangle',coodinate:'coordinate',pls:'please',rad:'radius'};
+  return phrase.toLowerCase().replace(/\b(?:rectagle|rectangel|circel|circl|perpandicular|perpendiculer|intersecton|radious|diametre|diamter|lenght|midpont|paralel|triangel|coodinate|pls|rad)\b/g,value=>typos[value])
+    .replace(/co-ordinate/g,'coordinate').replace(/\b(three|one|two|four|five|six|seven|eight|nine|zero) point (zero|one|two|three|four|five|six|seven|eight|nine)\b/g,(_,a:string,b:string)=>`${wordValues[a]}.${wordValues[b]}`)
+    .replace(/\bnegative\s+/g,'-').replace(/°/g,' degrees').replace(/\bwhat's\b/g,'what is').replace(/\bthat's\b/g,'that is')
+    .replace(/,{2,}/g,' ').replace(/!+/g,'').replace(/\s+/g,' ').trim()
     .replace(/mid[ -]point/g,'midpoint').replace(/one half/g,'0.5').replace(/three quarters/g,'0.75').replace(/minus\s+/g,'-')
-    .replace(/\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|twenty|thirty|forty|fifty|ninety)\b/g, word=>String(wordValues[word]));
+    .replace(/\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|twenty|thirty|forty|fifty|ninety)\b/g, word=>String(wordValues[word]))
+    .replace(/\b(that|this|another|other|previous|first|second|third|fourth|red|blue|green) 1\b/g,'$1 one')
+    .replace(/\bcomma\b/g,',').replace(/\bsquared\b/g,'^2').replace(/\bcubed\b/g,'^3').replace(/\bplus\b/g,'+')
+    .replace(/\bput (?:a |another )?(?:point|dot)\b/g,'create point').replace(/\bdot\b/g,'point')
+    .replace(/\b(right|left|up|down|forward|backward)\s+another\s+/g,'$1 ')
+    .replace(/\b(from|to)\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)(?=\s|[.!?]|$)/g,'$1 ($2,$3)')
+    .replace(/\b(\d+(?:\.\d+)?)\s+x\s+(\d+(?:\.\d+)?)\b/g,'$1 by $2')
+    .replace(/^and (?=(?:its|the|that|this)\b)/,'what is ').replace(/\bdrwa\b/g,'draw').replace(/mid poit/g,'midpoint').replace(/\braduis\b/g,'radius').replace(/\bintigrate\b/g,'integrate').replace(/\b([xyz]) square\b/g,'$1^2');
 }
-export const NUMBER_PATTERN = '-?(?:sqrt\\(\\d+(?:\\.\\d+)?\\)|√\\d+(?:\\.\\d+)?|(?:\\d+(?:\\.\\d+)?\\s*\\*?\\s*)?(?:π|pi)|\\d+(?:\\.\\d+)?(?:\\/\\d+(?:\\.\\d+)?)?)';
+export const NUMBER_PATTERN = '-?(?:sqrt\\(\\d+(?:\\.\\d+)?\\)|√\\d+(?:\\.\\d+)?|(?:\\d+(?:\\.\\d+)?\\s*\\*?\\s*)?(?:π|pi)|\\d+(?:\\.\\d+)?)(?:\\s*\\/\\s*\\d+(?:\\.\\d+)?)?';
 export function parseNumber(value:string):number {
   const normalized=normalizeLanguage(value).trim().replace(/√(\d+(?:\.\d+)?)/g,'sqrt($1)').replace(/π/g,'pi').replace(/(\d)\s*(pi)/g,'$1*$2');
   if (!new RegExp(`^${NUMBER_PATTERN.replace(/π\|pi/,'pi')}$`,'i').test(normalized.replace('*pi','pi'))) throw new Error(`Invalid number: ${value}`);

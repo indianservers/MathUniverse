@@ -9,3 +9,7 @@ vite.config.js
 /test-results/
 **/*.webm
 **/trace.zip
+
+/dist-student/
+/dist-admin/
+/dist-conversation-admin/

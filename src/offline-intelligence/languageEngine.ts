@@ -16,6 +16,10 @@ export type VisualCommand = {
   roboExplicitVertices?: boolean;
   roboNativeIds?: {points:string[];shape?:string};
   roboNativeRow?: boolean;
+  roboVertexLabels?:string[];
+  roboLocked?:boolean;
+  roboSemanticKind?:string;
+  roboDependency?:import('../math-robo/intelligence/workspaceDependencies').RoboDependency;
 };
 export type Interpretation={command?:VisualCommand;message:string};
 export function modeForPath(path:string):IntelligenceMode {

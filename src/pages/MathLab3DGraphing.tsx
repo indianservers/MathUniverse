@@ -1,3 +1,5 @@
+import {roboEvents} from '../math-robo/character/engine';
+import {registerRoboProjector} from '../math-robo/character/workspaceAdapter';
 import { ImmersiveBoundary } from "../workspace/immersive/ImmersiveInteractionManager";
 import { Line, OrbitControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
@@ -10,7 +12,8 @@ import { SurfaceSampleResult, generateSurfaceMeshData, sampleSurface } from "../
 import { deleteGraphWorkspace, readSavedGraphWorkspaces, saveGraphWorkspace, type SavedGraphWorkspace } from "../utils/graphWorkspaceStorage";
 import { analyzeSurfaceDifferential, type SurfaceDifferential } from "../graph-studio/graphIntelligence";
 import GraphStudio3DWorkspace, { type Studio3DTool } from "../graph-studio/GraphStudio3DWorkspace";
-import { useIntelligenceWorkspace } from '../offline-intelligence/workspaceBridge';
+import { useIntelligenceWorkspace,isKnownRoboObject } from '../offline-intelligence/workspaceBridge';
+import {graphCommand} from '../math-robo/intelligence/graphInventory';
 import { intelligenceGraph3dLayers } from '../offline-intelligence/graph3dAdapter';
 import { reconcileGraphVariables, substituteGraphVariables, advanceGraphVariable } from "../graph-studio/expressionEngine";
 import { downloadGraphStudioFile, exportGraphStudioProject } from "../graph-studio/projectStorage";
@@ -125,14 +128,15 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
   const [selectedSurfaceId, setSelectedSurfaceId] = useState(() => embeddedState?.selectedSurfaceId ?? surfaces[0]?.id ?? "");
   useIntelligenceWorkspace('graph3d', command => {
     const base=command.objectId??crypto.randomUUID();
+    const matches=(row:{id:string})=>command.roboNativeRow?row.id===base:row.id.startsWith(`${base}-`);
     if(command.roboControl==='deselect'){setSelectedSurfaceId('');return;}
-    if(command.roboControl==='delete'){setSurfaces(current=>current.filter(row=>!row.id.startsWith(`${base}-`)));return;}
-    if(command.roboControl==='visibility'){setSurfaces(current=>current.map(row=>row.id.startsWith(`${base}-`)?{...row,visible:command.roboVisible??true}:row));return;}
-    if(command.roboControl==='select'){setSelectedSurfaceId(`${base}-0`);return;}
-    if(command.action==='update'&&!surfaces.some(row=>row.id.startsWith(`${base}-`)))return 'The last Ruhi object was removed. Create an object again before editing it.';
-    const layers=intelligenceGraph3dLayers(command).map((surface,i)=>({...surface,id:`${base}-${i}`,visible:command.roboVisible??true}));
-    setSurfaces(current=>[...current.filter(row=>!row.id.startsWith(`${base}-`)),...layers]);setSelectedSurfaceId(layers[0].id);
-  }, !embedded, command=>surfaces.some(row=>row.id.startsWith(`${command.objectId}-`))?{command}:undefined);
+    if(command.roboControl==='delete'){setSurfaces(current=>current.filter(row=>!matches(row)));return;}
+    if(command.roboControl==='visibility'){setSurfaces(current=>current.map(row=>matches(row)?{...row,visible:command.roboVisible??true}:row));return;}
+    if(command.roboControl==='select'){setSelectedSurfaceId(command.roboNativeRow?base:`${base}-0`);return;}
+    if(command.action==='update'&&!surfaces.some(matches))return 'The last Ruhi object was removed. Create an object again before editing it.';
+    const layers=intelligenceGraph3dLayers(command).map((surface,i)=>({...surface,id:command.roboNativeRow&&i===0?base:`${base}-${i}`,visible:command.roboVisible??true}));
+    setSurfaces(current=>[...current.filter(row=>!matches(row)),...layers]);setSelectedSurfaceId(layers[0].id);
+  }, !embedded, command=>{const row=surfaces.find(row=>command.roboNativeRow?row.id===command.objectId:row.id.startsWith(`${command.objectId}-`));return row?{command:{...command,roboVisible:row.visible,color:row.colorLow,points:[row.displayTransform?.position??command.points[0]],scale:row.displayTransform?.scale??command.scale,rotation:row.displayTransform?.rotation?.map(n=>n*180/Math.PI) as [number,number,number]??command.rotation}}:undefined;},()=>({commands:surfaces.filter(row=>row.kind==='explicit'&&!isKnownRoboObject('graph3d',row.id)).map(row=>graphCommand(row.id,row.expression,row.colorLow,row.visible,'3d',row.name,row.displayTransform?.position,row.displayTransform?.rotation?.map(n=>n*180/Math.PI),row.displayTransform?.scale)),selectedIds:selectedSurfaceId?[selectedSurfaceId.replace(/-0$/,'')]:[]}));
   const [xRange, setXRange] = useState(() => embeddedState?.xRange ?? 3);
   const [yRange, setYRange] = useState(() => embeddedState?.yRange ?? 3);
   const [resolution, setResolution] = useState(() => embeddedState?.resolution ?? 44);
@@ -448,7 +452,7 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
             {annotations.map((item) => <AnnotationMarker key={item.id} annotation={item} />)}
             <ReferenceObject kind={referenceObject} scale={Math.max(1.4, Math.min(xRange, yRange) * 0.48)} />
           </group>
-          <CameraPositionTracker onChange={(position) => { cameraCaptureRef.current = position; }} />
+          <CameraPositionTracker selectedId={selectedSurface.id} onChange={(position) => { cameraCaptureRef.current = position; }} />
           <KeyframeCameraAnimator keyframes={keyframes} playing={keyframesPlaying} onVariables={applyKeyframeVariables} onFinish={() => setKeyframesPlaying(false)} />
           <FlyController enabled={flyMode} />
           <EnableClipping />
@@ -998,8 +1002,12 @@ function VolumeBetweenSurfaces({ top, bottom, theme }: { top: SurfaceSampleResul
   return <group>{blocks.map(({ point, bottom: lower }, index) => { const topZ = point.z!; const bottomZ = lower!.z!; const height = Math.max(0.012, Math.abs(topZ - bottomZ) * scale); return <mesh key={`${index}-${point.x}-${point.y}`} position={[point.x, (topZ + bottomZ) * scale / 2, point.y]}><boxGeometry args={[Math.max(0.04, dx * 0.82), height, Math.max(0.04, dy * 0.82)]} /><meshBasicMaterial color={theme.crossSection} transparent opacity={0.055} depthWrite={false} /></mesh>; })}</group>;
 }
 
-function CameraPositionTracker({ onChange }: { onChange: (position: [number, number, number]) => void }) {
-  const { camera } = useThree();
+function CameraPositionTracker({ onChange, selectedId }: { selectedId:string; onChange: (position: [number, number, number]) => void }) {
+  const { camera,gl,scene } = useThree();
+  useEffect(()=>{
+    const project=(p:number[])=>{let selected:THREE.Object3D|undefined;scene.traverse(o=>{if(o.userData.immersiveId===selectedId)selected=o;});let mesh:THREE.Object3D|undefined;selected?.traverse(o=>{if(!mesh&&o instanceof THREE.Mesh)mesh=o;});const v=new THREE.Vector3(p[0],p[2]??0,p[1]);if(mesh){mesh.updateWorldMatrix(true,false);mesh.localToWorld(v);}v.project(camera);if(v.z < -1 || v.z > 1)return;const r=gl.domElement.getBoundingClientRect();return {x:r.left+(v.x+1)*r.width/2,y:r.top+(1-v.y)*r.height/2};};
+    const off=registerRoboProjector('graph3d',project);roboEvents.emit({type:'workspace',kind:'selection',target:()=>project([0,0,0])});return off;
+  },[camera,gl,scene,selectedId]);
   const lastPosition = useRef(new THREE.Vector3(Number.NaN, Number.NaN, Number.NaN));
   useFrame(() => {
     if (camera.position.distanceToSquared(lastPosition.current) < 0.000001) return;

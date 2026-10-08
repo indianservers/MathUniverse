@@ -1,0 +1,4540 @@
+{
+  "passed": 12,
+  "total": 12,
+  "results": [
+    {
+      "name": "Circle distance continuation",
+      "passed": true,
+      "expected": {
+        "count": 1,
+        "position": [
+          3,
+          0
+        ],
+        "radius": 5
+      },
+      "actual": [
+        {
+          "id": "d070e0da-0c78-40ee-9add-c1c5003962a1",
+          "type": "circle",
+          "position": [
+            3,
+            0
+          ],
+          "radius": 5
+        }
+      ],
+      "memory": {
+        "activeTopic": "circle",
+        "currentMode": "geometry2d",
+        "activeSubject": [
+          "d070e0da-0c78-40ee-9add-c1c5003962a1"
+        ],
+        "selectedIds": [],
+        "lastCreated": "d070e0da-0c78-40ee-9add-c1c5003962a1",
+        "lastModified": "d070e0da-0c78-40ee-9add-c1c5003962a1",
+        "lastCreatedIds": [
+          "d070e0da-0c78-40ee-9add-c1c5003962a1"
+        ],
+        "lastModifiedIds": [
+          "d070e0da-0c78-40ee-9add-c1c5003962a1"
+        ],
+        "recentReferences": [
+          "d070e0da-0c78-40ee-9add-c1c5003962a1"
+        ],
+        "recentCommands": [
+          {
+            "id": "a3399114-6f27-40d0-a4a1-4a04db2576f1",
+            "rawPhrase": "Draw a circle radius 5",
+            "normalizedPhrase": "draw a circle radius 5",
+            "detectedAction": "DRAW",
+            "action": "CREATE",
+            "subAction": "CIRCLE",
+            "mode": "geometry2d",
+            "parameters": {
+              "width": 6,
+              "height": 4,
+              "radius": 5,
+              "depth": 3,
+              "sides": 6
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": {
+              "type": "circle"
+            }
+          },
+          {
+            "id": "b829ac15-27f9-43f2-b837-9fd8b58fce6f",
+            "rawPhrase": "Move it right",
+            "normalizedPhrase": "move it right",
+            "detectedAction": "MOVE",
+            "action": "MOVE",
+            "subAction": "OBJECT",
+            "mode": "geometry2d",
+            "parameters": {
+              "vector": [
+                3,
+                0
+              ],
+              "multiple": false,
+              "dx": 0,
+              "dy": 0,
+              "conversationDirection": "right"
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "d070e0da-0c78-40ee-9add-c1c5003962a1"
+          }
+        ],
+        "recentResults": [
+          {
+            "action": "CREATE",
+            "explanation": "Created 2D circle with radius 5."
+          },
+          {
+            "action": "MOVE",
+            "explanation": "move circle."
+          }
+        ],
+        "lastIntent": "MOVE",
+        "lastResponseKind": "MOVE",
+        "turns": [
+          {
+            "text": "Draw a circle radius 5",
+            "kind": "CREATE",
+            "subjectBefore": [],
+            "subjectAfter": [
+              "d070e0da-0c78-40ee-9add-c1c5003962a1"
+            ],
+            "status": "success",
+            "message": "Created 2D circle with radius 5.",
+            "plan": {
+              "rawPhrase": "Draw a circle radius 5",
+              "commands": [
+                {
+                  "id": "a3399114-6f27-40d0-a4a1-4a04db2576f1",
+                  "rawPhrase": "Draw a circle radius 5",
+                  "normalizedPhrase": "draw a circle radius 5",
+                  "detectedAction": "DRAW",
+                  "action": "CREATE",
+                  "subAction": "CIRCLE",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "legacy": {
+                      "kind": "circle",
+                      "dimension": "2d",
+                      "points": [],
+                      "width": 6,
+                      "height": 4,
+                      "depth": 3,
+                      "radius": 5,
+                      "sides": 6,
+                      "color": "#06b6d4",
+                      "rotation": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "scale": 1,
+                      "action": "create",
+                      "fitDimensions": false
+                    },
+                    "width": 6,
+                    "height": 4,
+                    "radius": 5,
+                    "depth": 3,
+                    "sides": 6
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": {
+                    "type": "circle"
+                  }
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "7ef0e8ce-38ee-46c7-8168-504c07b5abd2"
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 0.5,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": true
+          },
+          {
+            "text": "Move it right",
+            "kind": "follow-up",
+            "subjectBefore": [
+              "d070e0da-0c78-40ee-9add-c1c5003962a1"
+            ],
+            "subjectAfter": [
+              "d070e0da-0c78-40ee-9add-c1c5003962a1"
+            ],
+            "pending": {
+              "plan": {
+                "rawPhrase": "Move it right",
+                "commands": [
+                  {
+                    "id": "b829ac15-27f9-43f2-b837-9fd8b58fce6f",
+                    "rawPhrase": "Move it right",
+                    "normalizedPhrase": "move it right",
+                    "detectedAction": "MOVE",
+                    "action": "MOVE",
+                    "subAction": "OBJECT",
+                    "mode": "geometry2d",
+                    "parameters": {
+                      "vector": [
+                        0,
+                        0
+                      ],
+                      "multiple": false,
+                      "dx": 0,
+                      "dy": 0,
+                      "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                      "conversationDirection": "right"
+                    },
+                    "confidence": {
+                      "overall": 1,
+                      "action": 1,
+                      "subAction": 1,
+                      "parameters": 1
+                    },
+                    "source": {
+                      "action": "rule",
+                      "subAction": "rule"
+                    },
+                    "requiresExecution": true,
+                    "target": "d070e0da-0c78-40ee-9add-c1c5003962a1"
+                  }
+                ],
+                "confidence": 1
+              },
+              "index": 0,
+              "slot": "distance",
+              "question": "How far should I move it?",
+              "options": []
+            },
+            "status": "ambiguous",
+            "message": "How far should I move it?",
+            "plan": {
+              "rawPhrase": "Move it right",
+              "commands": [
+                {
+                  "id": "b829ac15-27f9-43f2-b837-9fd8b58fce6f",
+                  "rawPhrase": "Move it right",
+                  "normalizedPhrase": "move it right",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "vector": [
+                      0,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                    "conversationDirection": "right"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "d070e0da-0c78-40ee-9add-c1c5003962a1"
+                }
+              ],
+              "confidence": 1
+            },
+            "resolvedReferences": [
+              "d070e0da-0c78-40ee-9add-c1c5003962a1"
+            ],
+            "missingSlots": [
+              "distance"
+            ],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 0,
+              "contextContinuity": 1
+            },
+            "executed": false
+          },
+          {
+            "text": "3 units",
+            "kind": "MOVE",
+            "subjectBefore": [
+              "d070e0da-0c78-40ee-9add-c1c5003962a1"
+            ],
+            "subjectAfter": [
+              "d070e0da-0c78-40ee-9add-c1c5003962a1"
+            ],
+            "status": "success",
+            "message": "move circle.",
+            "plan": {
+              "rawPhrase": "Move it right",
+              "commands": [
+                {
+                  "id": "b829ac15-27f9-43f2-b837-9fd8b58fce6f",
+                  "rawPhrase": "Move it right",
+                  "normalizedPhrase": "move it right",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "vector": [
+                      3,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "conversationDirection": "right"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "d070e0da-0c78-40ee-9add-c1c5003962a1"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "8a731aad-0638-42b1-b057-0d07de30f591"
+            },
+            "resolvedReferences": [
+              "d070e0da-0c78-40ee-9add-c1c5003962a1"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Circle word-number continuation",
+      "passed": true,
+      "expected": {
+        "count": 1,
+        "position": [
+          -3,
+          0
+        ],
+        "radius": 5
+      },
+      "actual": [
+        {
+          "id": "a74eb1a8-8ecb-4d57-9939-6eb56633eb90",
+          "type": "circle",
+          "position": [
+            -3,
+            0
+          ],
+          "radius": 5
+        }
+      ],
+      "memory": {
+        "activeTopic": "circle",
+        "currentMode": "graph2d",
+        "activeSubject": [
+          "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+        ],
+        "selectedIds": [],
+        "lastCreated": "a74eb1a8-8ecb-4d57-9939-6eb56633eb90",
+        "lastModified": "a74eb1a8-8ecb-4d57-9939-6eb56633eb90",
+        "lastCreatedIds": [
+          "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+        ],
+        "lastModifiedIds": [
+          "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+        ],
+        "recentReferences": [
+          "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+        ],
+        "recentCommands": [
+          {
+            "id": "557e7954-6eec-4874-a19c-6785728bf3e6",
+            "rawPhrase": "Draw a circle radius 5",
+            "normalizedPhrase": "draw a circle radius 5",
+            "detectedAction": "DRAW",
+            "action": "CREATE",
+            "subAction": "CIRCLE",
+            "mode": "graph2d",
+            "parameters": {
+              "width": 6,
+              "height": 4,
+              "radius": 5,
+              "depth": 3,
+              "sides": 6
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": {
+              "type": "circle"
+            }
+          },
+          {
+            "id": "d8c9bef9-511e-4316-bba2-c001f06c6d50",
+            "rawPhrase": "Move it left",
+            "normalizedPhrase": "move it left",
+            "detectedAction": "MOVE",
+            "action": "MOVE",
+            "subAction": "OBJECT",
+            "mode": "graph2d",
+            "parameters": {
+              "vector": [
+                -3,
+                0
+              ],
+              "multiple": false,
+              "dx": 0,
+              "dy": 0,
+              "conversationDirection": "left"
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+          }
+        ],
+        "recentResults": [
+          {
+            "action": "CREATE",
+            "explanation": "Created 2D circle with radius 5."
+          },
+          {
+            "action": "MOVE",
+            "explanation": "move circle."
+          }
+        ],
+        "lastIntent": "MOVE",
+        "lastResponseKind": "MOVE",
+        "turns": [
+          {
+            "text": "Draw a circle radius 5",
+            "kind": "CREATE",
+            "subjectBefore": [],
+            "subjectAfter": [
+              "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+            ],
+            "status": "success",
+            "message": "Created 2D circle with radius 5.",
+            "plan": {
+              "rawPhrase": "Draw a circle radius 5",
+              "commands": [
+                {
+                  "id": "557e7954-6eec-4874-a19c-6785728bf3e6",
+                  "rawPhrase": "Draw a circle radius 5",
+                  "normalizedPhrase": "draw a circle radius 5",
+                  "detectedAction": "DRAW",
+                  "action": "CREATE",
+                  "subAction": "CIRCLE",
+                  "mode": "graph2d",
+                  "parameters": {
+                    "legacy": {
+                      "kind": "circle",
+                      "dimension": "2d",
+                      "points": [],
+                      "width": 6,
+                      "height": 4,
+                      "depth": 3,
+                      "radius": 5,
+                      "sides": 6,
+                      "color": "#06b6d4",
+                      "rotation": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "scale": 1,
+                      "action": "create",
+                      "fitDimensions": false
+                    },
+                    "width": 6,
+                    "height": 4,
+                    "radius": 5,
+                    "depth": 3,
+                    "sides": 6
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": {
+                    "type": "circle"
+                  }
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "4bd34f09-f660-4584-9774-890d73bb4caf"
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 0.5,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": true
+          },
+          {
+            "text": "Move it left",
+            "kind": "follow-up",
+            "subjectBefore": [
+              "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+            ],
+            "subjectAfter": [
+              "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+            ],
+            "pending": {
+              "plan": {
+                "rawPhrase": "Move it left",
+                "commands": [
+                  {
+                    "id": "d8c9bef9-511e-4316-bba2-c001f06c6d50",
+                    "rawPhrase": "Move it left",
+                    "normalizedPhrase": "move it left",
+                    "detectedAction": "MOVE",
+                    "action": "MOVE",
+                    "subAction": "OBJECT",
+                    "mode": "graph2d",
+                    "parameters": {
+                      "vector": [
+                        0,
+                        0
+                      ],
+                      "multiple": false,
+                      "dx": 0,
+                      "dy": 0,
+                      "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                      "conversationDirection": "left"
+                    },
+                    "confidence": {
+                      "overall": 1,
+                      "action": 1,
+                      "subAction": 1,
+                      "parameters": 1
+                    },
+                    "source": {
+                      "action": "rule",
+                      "subAction": "rule"
+                    },
+                    "requiresExecution": true,
+                    "target": "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+                  }
+                ],
+                "confidence": 1
+              },
+              "index": 0,
+              "slot": "distance",
+              "question": "How far should I move it?",
+              "options": []
+            },
+            "status": "ambiguous",
+            "message": "How far should I move it?",
+            "plan": {
+              "rawPhrase": "Move it left",
+              "commands": [
+                {
+                  "id": "d8c9bef9-511e-4316-bba2-c001f06c6d50",
+                  "rawPhrase": "Move it left",
+                  "normalizedPhrase": "move it left",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "graph2d",
+                  "parameters": {
+                    "vector": [
+                      0,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                    "conversationDirection": "left"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+                }
+              ],
+              "confidence": 1
+            },
+            "resolvedReferences": [
+              "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+            ],
+            "missingSlots": [
+              "distance"
+            ],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 0,
+              "contextContinuity": 1
+            },
+            "executed": false
+          },
+          {
+            "text": "three units",
+            "kind": "MOVE",
+            "subjectBefore": [
+              "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+            ],
+            "subjectAfter": [
+              "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+            ],
+            "status": "success",
+            "message": "move circle.",
+            "plan": {
+              "rawPhrase": "Move it left",
+              "commands": [
+                {
+                  "id": "d8c9bef9-511e-4316-bba2-c001f06c6d50",
+                  "rawPhrase": "Move it left",
+                  "normalizedPhrase": "move it left",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "graph2d",
+                  "parameters": {
+                    "vector": [
+                      -3,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "conversationDirection": "left"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "4576c65e-e33c-4060-8396-2490372ca126"
+            },
+            "resolvedReferences": [
+              "a74eb1a8-8ecb-4d57-9939-6eb56633eb90"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Two missing move slots",
+      "passed": true,
+      "expected": {
+        "count": 1,
+        "position": [
+          0,
+          4,
+          0
+        ],
+        "radius": 5
+      },
+      "actual": [
+        {
+          "id": "37672573-0f89-4b53-9be8-b8ee6ba42584",
+          "type": "sphere",
+          "position": [
+            0,
+            4,
+            0
+          ],
+          "radius": 5
+        }
+      ],
+      "memory": {
+        "activeTopic": "sphere",
+        "currentMode": "geometry3d",
+        "activeSubject": [
+          "37672573-0f89-4b53-9be8-b8ee6ba42584"
+        ],
+        "selectedIds": [],
+        "lastCreated": "37672573-0f89-4b53-9be8-b8ee6ba42584",
+        "lastModified": "37672573-0f89-4b53-9be8-b8ee6ba42584",
+        "lastCreatedIds": [
+          "37672573-0f89-4b53-9be8-b8ee6ba42584"
+        ],
+        "lastModifiedIds": [
+          "37672573-0f89-4b53-9be8-b8ee6ba42584"
+        ],
+        "recentReferences": [
+          "37672573-0f89-4b53-9be8-b8ee6ba42584"
+        ],
+        "recentCommands": [
+          {
+            "id": "27fead06-858d-4c18-a828-9486f2c30c87",
+            "rawPhrase": "Draw a sphere radius 5",
+            "normalizedPhrase": "draw a sphere radius 5",
+            "detectedAction": "DRAW",
+            "action": "CREATE",
+            "subAction": "SPHERE",
+            "mode": "geometry3d",
+            "parameters": {
+              "width": 6,
+              "height": 4,
+              "radius": 5,
+              "depth": 3,
+              "sides": 6
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": {
+              "type": "sphere"
+            }
+          },
+          {
+            "id": "5368c3ac-3d80-4920-aa64-184bc308fd0f",
+            "rawPhrase": "Move it",
+            "normalizedPhrase": "move it",
+            "detectedAction": "MOVE",
+            "action": "MOVE",
+            "subAction": "OBJECT",
+            "mode": "geometry3d",
+            "parameters": {
+              "vector": [
+                0,
+                4,
+                0
+              ],
+              "multiple": false,
+              "dx": 0,
+              "dy": 0,
+              "dz": 0,
+              "conversationDirection": "up"
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "37672573-0f89-4b53-9be8-b8ee6ba42584"
+          }
+        ],
+        "recentResults": [
+          {
+            "action": "CREATE",
+            "explanation": "Created 3D sphere with radius 5."
+          },
+          {
+            "action": "MOVE",
+            "explanation": "move sphere."
+          }
+        ],
+        "lastIntent": "MOVE",
+        "lastResponseKind": "MOVE",
+        "turns": [
+          {
+            "text": "Draw a sphere radius 5",
+            "kind": "CREATE",
+            "subjectBefore": [],
+            "subjectAfter": [
+              "37672573-0f89-4b53-9be8-b8ee6ba42584"
+            ],
+            "status": "success",
+            "message": "Created 3D sphere with radius 5.",
+            "plan": {
+              "rawPhrase": "Draw a sphere radius 5",
+              "commands": [
+                {
+                  "id": "27fead06-858d-4c18-a828-9486f2c30c87",
+                  "rawPhrase": "Draw a sphere radius 5",
+                  "normalizedPhrase": "draw a sphere radius 5",
+                  "detectedAction": "DRAW",
+                  "action": "CREATE",
+                  "subAction": "SPHERE",
+                  "mode": "geometry3d",
+                  "parameters": {
+                    "legacy": {
+                      "kind": "sphere",
+                      "dimension": "3d",
+                      "points": [],
+                      "width": 6,
+                      "height": 4,
+                      "depth": 3,
+                      "radius": 5,
+                      "sides": 6,
+                      "color": "#06b6d4",
+                      "rotation": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "scale": 1,
+                      "action": "create",
+                      "fitDimensions": false
+                    },
+                    "width": 6,
+                    "height": 4,
+                    "radius": 5,
+                    "depth": 3,
+                    "sides": 6
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": {
+                    "type": "sphere"
+                  }
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "fe414565-7f96-4620-858e-4fe66acdb8a3"
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 0.5,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": true
+          },
+          {
+            "text": "Move it",
+            "kind": "follow-up",
+            "subjectBefore": [
+              "37672573-0f89-4b53-9be8-b8ee6ba42584"
+            ],
+            "subjectAfter": [
+              "37672573-0f89-4b53-9be8-b8ee6ba42584"
+            ],
+            "pending": {
+              "plan": {
+                "rawPhrase": "Move it",
+                "commands": [
+                  {
+                    "id": "5368c3ac-3d80-4920-aa64-184bc308fd0f",
+                    "rawPhrase": "Move it",
+                    "normalizedPhrase": "move it",
+                    "detectedAction": "MOVE",
+                    "action": "MOVE",
+                    "subAction": "OBJECT",
+                    "mode": "geometry3d",
+                    "parameters": {
+                      "vector": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "multiple": false,
+                      "dx": 0,
+                      "dy": 0,
+                      "dz": 0,
+                      "parseError": "Provide 3 destination coordinates, such as (4,0,0), or a movement direction and distance."
+                    },
+                    "confidence": {
+                      "overall": 1,
+                      "action": 1,
+                      "subAction": 1,
+                      "parameters": 1
+                    },
+                    "source": {
+                      "action": "rule",
+                      "subAction": "rule"
+                    },
+                    "requiresExecution": true,
+                    "target": "37672573-0f89-4b53-9be8-b8ee6ba42584"
+                  }
+                ],
+                "confidence": 1
+              },
+              "index": 0,
+              "slot": "direction",
+              "question": "Which direction should I move it?",
+              "options": []
+            },
+            "status": "ambiguous",
+            "message": "Which direction should I move it?",
+            "plan": {
+              "rawPhrase": "Move it",
+              "commands": [
+                {
+                  "id": "5368c3ac-3d80-4920-aa64-184bc308fd0f",
+                  "rawPhrase": "Move it",
+                  "normalizedPhrase": "move it",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry3d",
+                  "parameters": {
+                    "vector": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "dz": 0,
+                    "parseError": "Provide 3 destination coordinates, such as (4,0,0), or a movement direction and distance."
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "37672573-0f89-4b53-9be8-b8ee6ba42584"
+                }
+              ],
+              "confidence": 1
+            },
+            "resolvedReferences": [
+              "37672573-0f89-4b53-9be8-b8ee6ba42584"
+            ],
+            "missingSlots": [
+              "direction"
+            ],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 0,
+              "contextContinuity": 1
+            },
+            "executed": false
+          },
+          {
+            "text": "up",
+            "kind": "follow-up",
+            "subjectBefore": [
+              "37672573-0f89-4b53-9be8-b8ee6ba42584"
+            ],
+            "subjectAfter": [
+              "37672573-0f89-4b53-9be8-b8ee6ba42584"
+            ],
+            "pending": {
+              "plan": {
+                "rawPhrase": "Move it",
+                "commands": [
+                  {
+                    "id": "5368c3ac-3d80-4920-aa64-184bc308fd0f",
+                    "rawPhrase": "Move it",
+                    "normalizedPhrase": "move it",
+                    "detectedAction": "MOVE",
+                    "action": "MOVE",
+                    "subAction": "OBJECT",
+                    "mode": "geometry3d",
+                    "parameters": {
+                      "vector": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "multiple": false,
+                      "dx": 0,
+                      "dy": 0,
+                      "dz": 0,
+                      "parseError": "Provide 3 destination coordinates, such as (4,0,0), or a movement direction and distance.",
+                      "conversationDirection": "up"
+                    },
+                    "confidence": {
+                      "overall": 1,
+                      "action": 1,
+                      "subAction": 1,
+                      "parameters": 1
+                    },
+                    "source": {
+                      "action": "rule",
+                      "subAction": "rule"
+                    },
+                    "requiresExecution": true,
+                    "target": "37672573-0f89-4b53-9be8-b8ee6ba42584"
+                  }
+                ],
+                "confidence": 1
+              },
+              "index": 0,
+              "slot": "distance",
+              "question": "How far should I move it?",
+              "options": []
+            },
+            "status": "ambiguous",
+            "message": "How far should I move it?",
+            "plan": {
+              "rawPhrase": "Move it",
+              "commands": [
+                {
+                  "id": "5368c3ac-3d80-4920-aa64-184bc308fd0f",
+                  "rawPhrase": "Move it",
+                  "normalizedPhrase": "move it",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry3d",
+                  "parameters": {
+                    "vector": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "dz": 0,
+                    "parseError": "Provide 3 destination coordinates, such as (4,0,0), or a movement direction and distance.",
+                    "conversationDirection": "up"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "37672573-0f89-4b53-9be8-b8ee6ba42584"
+                }
+              ],
+              "confidence": 1
+            },
+            "resolvedReferences": [
+              "37672573-0f89-4b53-9be8-b8ee6ba42584"
+            ],
+            "missingSlots": [
+              "distance"
+            ],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 0,
+              "contextContinuity": 1
+            },
+            "executed": false
+          },
+          {
+            "text": "4 units",
+            "kind": "MOVE",
+            "subjectBefore": [
+              "37672573-0f89-4b53-9be8-b8ee6ba42584"
+            ],
+            "subjectAfter": [
+              "37672573-0f89-4b53-9be8-b8ee6ba42584"
+            ],
+            "status": "success",
+            "message": "move sphere.",
+            "plan": {
+              "rawPhrase": "Move it",
+              "commands": [
+                {
+                  "id": "5368c3ac-3d80-4920-aa64-184bc308fd0f",
+                  "rawPhrase": "Move it",
+                  "normalizedPhrase": "move it",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry3d",
+                  "parameters": {
+                    "vector": [
+                      0,
+                      4,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "dz": 0,
+                    "conversationDirection": "up"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "37672573-0f89-4b53-9be8-b8ee6ba42584"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "3a5779a4-1305-46a3-ba1c-cfb20bbf60b9"
+            },
+            "resolvedReferences": [
+              "37672573-0f89-4b53-9be8-b8ee6ba42584"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Graph 3D pending movement",
+      "passed": true,
+      "expected": {
+        "count": 1,
+        "position": [
+          0,
+          0,
+          7
+        ],
+        "radius": 2
+      },
+      "actual": [
+        {
+          "id": "79fe1175-93a2-4da0-b4b9-4cd250a586e8",
+          "type": "sphere",
+          "position": [
+            0,
+            0,
+            7
+          ],
+          "radius": 2
+        }
+      ],
+      "memory": {
+        "activeTopic": "sphere",
+        "currentMode": "graph3d",
+        "activeSubject": [
+          "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+        ],
+        "selectedIds": [],
+        "lastCreated": "79fe1175-93a2-4da0-b4b9-4cd250a586e8",
+        "lastModified": "79fe1175-93a2-4da0-b4b9-4cd250a586e8",
+        "lastCreatedIds": [
+          "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+        ],
+        "lastModifiedIds": [
+          "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+        ],
+        "recentReferences": [
+          "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+        ],
+        "recentCommands": [
+          {
+            "id": "beb781cf-5b59-487c-a8a9-854de57847ba",
+            "rawPhrase": "Draw a sphere radius 2",
+            "normalizedPhrase": "draw a sphere radius 2",
+            "detectedAction": "DRAW",
+            "action": "CREATE",
+            "subAction": "SPHERE",
+            "mode": "graph3d",
+            "parameters": {
+              "width": 6,
+              "height": 4,
+              "radius": 2,
+              "depth": 3,
+              "sides": 6
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": {
+              "type": "sphere"
+            }
+          },
+          {
+            "id": "648adfc1-17cb-4699-a2df-4e2fe3cef0e9",
+            "rawPhrase": "Move it forward",
+            "normalizedPhrase": "move it forward",
+            "detectedAction": "MOVE",
+            "action": "MOVE",
+            "subAction": "OBJECT",
+            "mode": "graph3d",
+            "parameters": {
+              "vector": [
+                0,
+                0,
+                7
+              ],
+              "multiple": false,
+              "dx": 0,
+              "dy": 0,
+              "dz": 0,
+              "conversationDirection": "forward"
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+          }
+        ],
+        "recentResults": [
+          {
+            "action": "CREATE",
+            "explanation": "Created 3D sphere with radius 2."
+          },
+          {
+            "action": "MOVE",
+            "explanation": "move sphere."
+          }
+        ],
+        "lastIntent": "MOVE",
+        "lastResponseKind": "MOVE",
+        "turns": [
+          {
+            "text": "Draw a sphere radius 2",
+            "kind": "CREATE",
+            "subjectBefore": [],
+            "subjectAfter": [
+              "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+            ],
+            "status": "success",
+            "message": "Created 3D sphere with radius 2.",
+            "plan": {
+              "rawPhrase": "Draw a sphere radius 2",
+              "commands": [
+                {
+                  "id": "beb781cf-5b59-487c-a8a9-854de57847ba",
+                  "rawPhrase": "Draw a sphere radius 2",
+                  "normalizedPhrase": "draw a sphere radius 2",
+                  "detectedAction": "DRAW",
+                  "action": "CREATE",
+                  "subAction": "SPHERE",
+                  "mode": "graph3d",
+                  "parameters": {
+                    "legacy": {
+                      "kind": "sphere",
+                      "dimension": "3d",
+                      "points": [],
+                      "width": 6,
+                      "height": 4,
+                      "depth": 3,
+                      "radius": 2,
+                      "sides": 6,
+                      "color": "#06b6d4",
+                      "rotation": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "scale": 1,
+                      "action": "create",
+                      "fitDimensions": false
+                    },
+                    "width": 6,
+                    "height": 4,
+                    "radius": 2,
+                    "depth": 3,
+                    "sides": 6
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": {
+                    "type": "sphere"
+                  }
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "ed2fba9e-b5c8-44bb-9adc-6b0fb9d61a16"
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 0.5,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": true
+          },
+          {
+            "text": "Move it forward",
+            "kind": "follow-up",
+            "subjectBefore": [
+              "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+            ],
+            "subjectAfter": [
+              "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+            ],
+            "pending": {
+              "plan": {
+                "rawPhrase": "Move it forward",
+                "commands": [
+                  {
+                    "id": "648adfc1-17cb-4699-a2df-4e2fe3cef0e9",
+                    "rawPhrase": "Move it forward",
+                    "normalizedPhrase": "move it forward",
+                    "detectedAction": "MOVE",
+                    "action": "MOVE",
+                    "subAction": "OBJECT",
+                    "mode": "graph3d",
+                    "parameters": {
+                      "vector": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "multiple": false,
+                      "dx": 0,
+                      "dy": 0,
+                      "dz": 0,
+                      "parseError": "Provide 3 destination coordinates, such as (4,0,0), or a movement direction and distance.",
+                      "conversationDirection": "forward"
+                    },
+                    "confidence": {
+                      "overall": 1,
+                      "action": 1,
+                      "subAction": 1,
+                      "parameters": 1
+                    },
+                    "source": {
+                      "action": "rule",
+                      "subAction": "rule"
+                    },
+                    "requiresExecution": true,
+                    "target": "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+                  }
+                ],
+                "confidence": 1
+              },
+              "index": 0,
+              "slot": "distance",
+              "question": "How far should I move it?",
+              "options": []
+            },
+            "status": "ambiguous",
+            "message": "How far should I move it?",
+            "plan": {
+              "rawPhrase": "Move it forward",
+              "commands": [
+                {
+                  "id": "648adfc1-17cb-4699-a2df-4e2fe3cef0e9",
+                  "rawPhrase": "Move it forward",
+                  "normalizedPhrase": "move it forward",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "graph3d",
+                  "parameters": {
+                    "vector": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "dz": 0,
+                    "parseError": "Provide 3 destination coordinates, such as (4,0,0), or a movement direction and distance.",
+                    "conversationDirection": "forward"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+                }
+              ],
+              "confidence": 1
+            },
+            "resolvedReferences": [
+              "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+            ],
+            "missingSlots": [
+              "distance"
+            ],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 0,
+              "contextContinuity": 1
+            },
+            "executed": false
+          },
+          {
+            "text": "7 units",
+            "kind": "MOVE",
+            "subjectBefore": [
+              "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+            ],
+            "subjectAfter": [
+              "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+            ],
+            "status": "success",
+            "message": "move sphere.",
+            "plan": {
+              "rawPhrase": "Move it forward",
+              "commands": [
+                {
+                  "id": "648adfc1-17cb-4699-a2df-4e2fe3cef0e9",
+                  "rawPhrase": "Move it forward",
+                  "normalizedPhrase": "move it forward",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "graph3d",
+                  "parameters": {
+                    "vector": [
+                      0,
+                      0,
+                      7
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "dz": 0,
+                    "conversationDirection": "forward"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "a2a55692-1bd8-4318-b123-642b547ff163"
+            },
+            "resolvedReferences": [
+              "79fe1175-93a2-4da0-b4b9-4cd250a586e8"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Cancel pending movement",
+      "passed": true,
+      "expected": {
+        "count": 1,
+        "position": [
+          0,
+          0
+        ],
+        "radius": 5
+      },
+      "actual": [
+        {
+          "id": "b918c69c-9b85-478b-a2a4-4ac7d81e5a98",
+          "type": "circle",
+          "position": [
+            0,
+            0
+          ],
+          "radius": 5
+        }
+      ],
+      "memory": {
+        "activeTopic": "circle",
+        "currentMode": "geometry2d",
+        "activeSubject": [
+          "b918c69c-9b85-478b-a2a4-4ac7d81e5a98"
+        ],
+        "selectedIds": [],
+        "lastCreated": "b918c69c-9b85-478b-a2a4-4ac7d81e5a98",
+        "lastModified": "b918c69c-9b85-478b-a2a4-4ac7d81e5a98",
+        "lastCreatedIds": [
+          "b918c69c-9b85-478b-a2a4-4ac7d81e5a98"
+        ],
+        "lastModifiedIds": [
+          "b918c69c-9b85-478b-a2a4-4ac7d81e5a98"
+        ],
+        "recentReferences": [
+          "b918c69c-9b85-478b-a2a4-4ac7d81e5a98"
+        ],
+        "recentCommands": [
+          {
+            "id": "8160a15c-61b0-4a8f-a4de-ae625c5131e1",
+            "rawPhrase": "Draw a circle radius 5",
+            "normalizedPhrase": "draw a circle radius 5",
+            "detectedAction": "DRAW",
+            "action": "CREATE",
+            "subAction": "CIRCLE",
+            "mode": "geometry2d",
+            "parameters": {
+              "width": 6,
+              "height": 4,
+              "radius": 5,
+              "depth": 3,
+              "sides": 6
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": {
+              "type": "circle"
+            }
+          }
+        ],
+        "recentResults": [
+          {
+            "action": "CREATE",
+            "explanation": "Created 2D circle with radius 5."
+          }
+        ],
+        "lastResponseKind": "conversation",
+        "turns": [
+          {
+            "text": "Draw a circle radius 5",
+            "kind": "CREATE",
+            "subjectBefore": [],
+            "subjectAfter": [
+              "b918c69c-9b85-478b-a2a4-4ac7d81e5a98"
+            ],
+            "status": "success",
+            "message": "Created 2D circle with radius 5.",
+            "plan": {
+              "rawPhrase": "Draw a circle radius 5",
+              "commands": [
+                {
+                  "id": "8160a15c-61b0-4a8f-a4de-ae625c5131e1",
+                  "rawPhrase": "Draw a circle radius 5",
+                  "normalizedPhrase": "draw a circle radius 5",
+                  "detectedAction": "DRAW",
+                  "action": "CREATE",
+                  "subAction": "CIRCLE",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "legacy": {
+                      "kind": "circle",
+                      "dimension": "2d",
+                      "points": [],
+                      "width": 6,
+                      "height": 4,
+                      "depth": 3,
+                      "radius": 5,
+                      "sides": 6,
+                      "color": "#06b6d4",
+                      "rotation": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "scale": 1,
+                      "action": "create",
+                      "fitDimensions": false
+                    },
+                    "width": 6,
+                    "height": 4,
+                    "radius": 5,
+                    "depth": 3,
+                    "sides": 6
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": {
+                    "type": "circle"
+                  }
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "0e68516a-f913-4a57-8413-ac628061047a"
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 0.5,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": true
+          },
+          {
+            "text": "Move it right",
+            "kind": "follow-up",
+            "subjectBefore": [
+              "b918c69c-9b85-478b-a2a4-4ac7d81e5a98"
+            ],
+            "subjectAfter": [
+              "b918c69c-9b85-478b-a2a4-4ac7d81e5a98"
+            ],
+            "pending": {
+              "plan": {
+                "rawPhrase": "Move it right",
+                "commands": [
+                  {
+                    "id": "744b93bc-224c-43da-a2d3-782f22450269",
+                    "rawPhrase": "Move it right",
+                    "normalizedPhrase": "move it right",
+                    "detectedAction": "MOVE",
+                    "action": "MOVE",
+                    "subAction": "OBJECT",
+                    "mode": "geometry2d",
+                    "parameters": {
+                      "vector": [
+                        0,
+                        0
+                      ],
+                      "multiple": false,
+                      "dx": 0,
+                      "dy": 0,
+                      "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                      "conversationDirection": "right"
+                    },
+                    "confidence": {
+                      "overall": 1,
+                      "action": 1,
+                      "subAction": 1,
+                      "parameters": 1
+                    },
+                    "source": {
+                      "action": "rule",
+                      "subAction": "rule"
+                    },
+                    "requiresExecution": true,
+                    "target": "b918c69c-9b85-478b-a2a4-4ac7d81e5a98"
+                  }
+                ],
+                "confidence": 1
+              },
+              "index": 0,
+              "slot": "distance",
+              "question": "How far should I move it?",
+              "options": []
+            },
+            "status": "ambiguous",
+            "message": "How far should I move it?",
+            "plan": {
+              "rawPhrase": "Move it right",
+              "commands": [
+                {
+                  "id": "744b93bc-224c-43da-a2d3-782f22450269",
+                  "rawPhrase": "Move it right",
+                  "normalizedPhrase": "move it right",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "vector": [
+                      0,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                    "conversationDirection": "right"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "b918c69c-9b85-478b-a2a4-4ac7d81e5a98"
+                }
+              ],
+              "confidence": 1
+            },
+            "resolvedReferences": [
+              "b918c69c-9b85-478b-a2a4-4ac7d81e5a98"
+            ],
+            "missingSlots": [
+              "distance"
+            ],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 0,
+              "contextContinuity": 1
+            },
+            "executed": false
+          },
+          {
+            "text": "no",
+            "kind": "conversation",
+            "subjectBefore": [
+              "b918c69c-9b85-478b-a2a4-4ac7d81e5a98"
+            ],
+            "subjectAfter": [
+              "b918c69c-9b85-478b-a2a4-4ac7d81e5a98"
+            ],
+            "status": "success",
+            "message": "Cancelled the pending command.",
+            "plan": {
+              "rawPhrase": "no",
+              "commands": [],
+              "confidence": 0
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 0,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "Context reset preserves workspace",
+      "passed": true,
+      "expected": {
+        "count": 1,
+        "position": [
+          0,
+          0
+        ],
+        "radius": 5
+      },
+      "actual": [
+        {
+          "id": "38c6e3ca-45e4-48ff-9dda-53cdec03ca0f",
+          "type": "circle",
+          "position": [
+            0,
+            0
+          ],
+          "radius": 5
+        }
+      ],
+      "memory": {
+        "currentMode": "geometry2d",
+        "activeSubject": [],
+        "selectedIds": [],
+        "lastCreated": "38c6e3ca-45e4-48ff-9dda-53cdec03ca0f",
+        "lastModified": "38c6e3ca-45e4-48ff-9dda-53cdec03ca0f",
+        "lastCreatedIds": [
+          "38c6e3ca-45e4-48ff-9dda-53cdec03ca0f"
+        ],
+        "lastModifiedIds": [
+          "38c6e3ca-45e4-48ff-9dda-53cdec03ca0f"
+        ],
+        "recentReferences": [
+          "38c6e3ca-45e4-48ff-9dda-53cdec03ca0f"
+        ],
+        "recentCommands": [],
+        "recentResults": [],
+        "lastResponseKind": "conversation",
+        "turns": [
+          {
+            "text": "Draw a circle radius 5",
+            "kind": "CREATE",
+            "subjectBefore": [],
+            "subjectAfter": [
+              "38c6e3ca-45e4-48ff-9dda-53cdec03ca0f"
+            ],
+            "status": "success",
+            "message": "Created 2D circle with radius 5.",
+            "plan": {
+              "rawPhrase": "Draw a circle radius 5",
+              "commands": [
+                {
+                  "id": "5b3bcd3c-5b79-4a77-97f7-2804c265ab6b",
+                  "rawPhrase": "Draw a circle radius 5",
+                  "normalizedPhrase": "draw a circle radius 5",
+                  "detectedAction": "DRAW",
+                  "action": "CREATE",
+                  "subAction": "CIRCLE",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "legacy": {
+                      "kind": "circle",
+                      "dimension": "2d",
+                      "points": [],
+                      "width": 6,
+                      "height": 4,
+                      "depth": 3,
+                      "radius": 5,
+                      "sides": 6,
+                      "color": "#06b6d4",
+                      "rotation": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "scale": 1,
+                      "action": "create",
+                      "fitDimensions": false
+                    },
+                    "width": 6,
+                    "height": 4,
+                    "radius": 5,
+                    "depth": 3,
+                    "sides": 6
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": {
+                    "type": "circle"
+                  }
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "7884a02c-a828-4afc-b4ad-bb76f43072ce"
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 0.5,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": true
+          },
+          {
+            "text": "Move it right",
+            "kind": "follow-up",
+            "subjectBefore": [
+              "38c6e3ca-45e4-48ff-9dda-53cdec03ca0f"
+            ],
+            "subjectAfter": [
+              "38c6e3ca-45e4-48ff-9dda-53cdec03ca0f"
+            ],
+            "pending": {
+              "plan": {
+                "rawPhrase": "Move it right",
+                "commands": [
+                  {
+                    "id": "7ffd5cff-8c68-4e13-86b1-a957ed9e2fb9",
+                    "rawPhrase": "Move it right",
+                    "normalizedPhrase": "move it right",
+                    "detectedAction": "MOVE",
+                    "action": "MOVE",
+                    "subAction": "OBJECT",
+                    "mode": "geometry2d",
+                    "parameters": {
+                      "vector": [
+                        0,
+                        0
+                      ],
+                      "multiple": false,
+                      "dx": 0,
+                      "dy": 0,
+                      "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                      "conversationDirection": "right"
+                    },
+                    "confidence": {
+                      "overall": 1,
+                      "action": 1,
+                      "subAction": 1,
+                      "parameters": 1
+                    },
+                    "source": {
+                      "action": "rule",
+                      "subAction": "rule"
+                    },
+                    "requiresExecution": true,
+                    "target": "38c6e3ca-45e4-48ff-9dda-53cdec03ca0f"
+                  }
+                ],
+                "confidence": 1
+              },
+              "index": 0,
+              "slot": "distance",
+              "question": "How far should I move it?",
+              "options": []
+            },
+            "status": "ambiguous",
+            "message": "How far should I move it?",
+            "plan": {
+              "rawPhrase": "Move it right",
+              "commands": [
+                {
+                  "id": "7ffd5cff-8c68-4e13-86b1-a957ed9e2fb9",
+                  "rawPhrase": "Move it right",
+                  "normalizedPhrase": "move it right",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "vector": [
+                      0,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                    "conversationDirection": "right"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "38c6e3ca-45e4-48ff-9dda-53cdec03ca0f"
+                }
+              ],
+              "confidence": 1
+            },
+            "resolvedReferences": [
+              "38c6e3ca-45e4-48ff-9dda-53cdec03ca0f"
+            ],
+            "missingSlots": [
+              "distance"
+            ],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 0,
+              "contextContinuity": 1
+            },
+            "executed": false
+          },
+          {
+            "text": "forget that",
+            "kind": "conversation",
+            "subjectBefore": [
+              "38c6e3ca-45e4-48ff-9dda-53cdec03ca0f"
+            ],
+            "subjectAfter": [],
+            "status": "success",
+            "message": "Conversation context cleared. Your workspace objects are still here.",
+            "plan": {
+              "rawPhrase": "forget that",
+              "commands": [],
+              "confidence": 0
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 0,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "Correct radius without duplicate",
+      "passed": true,
+      "expected": {
+        "count": 1,
+        "position": [
+          0,
+          0
+        ],
+        "radius": 5
+      },
+      "actual": [
+        {
+          "id": "810aba9e-66b4-4d6e-aa89-351b22d74a91",
+          "type": "circle",
+          "position": [
+            0,
+            0
+          ],
+          "radius": 5
+        }
+      ],
+      "memory": {
+        "activeTopic": "circle",
+        "currentMode": "geometry2d",
+        "activeSubject": [
+          "810aba9e-66b4-4d6e-aa89-351b22d74a91"
+        ],
+        "selectedIds": [],
+        "lastCreated": "810aba9e-66b4-4d6e-aa89-351b22d74a91",
+        "lastModified": "810aba9e-66b4-4d6e-aa89-351b22d74a91",
+        "lastCreatedIds": [
+          "810aba9e-66b4-4d6e-aa89-351b22d74a91"
+        ],
+        "lastModifiedIds": [
+          "810aba9e-66b4-4d6e-aa89-351b22d74a91"
+        ],
+        "recentReferences": [
+          "810aba9e-66b4-4d6e-aa89-351b22d74a91"
+        ],
+        "recentCommands": [
+          {
+            "id": "305be737-0ccf-4002-9a2e-a10beef1584e",
+            "rawPhrase": "Draw a circle radius 3",
+            "normalizedPhrase": "draw a circle radius 3",
+            "detectedAction": "DRAW",
+            "action": "CREATE",
+            "subAction": "CIRCLE",
+            "mode": "geometry2d",
+            "parameters": {
+              "width": 6,
+              "height": 4,
+              "radius": 3,
+              "depth": 3,
+              "sides": 6
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": {
+              "type": "circle"
+            }
+          },
+          {
+            "id": "251b122a-bba8-469a-a0b3-60ad307598da",
+            "rawPhrase": "Change its radius to 5",
+            "normalizedPhrase": "change its radius to 5",
+            "detectedAction": "CHANGE",
+            "action": "CHANGE",
+            "subAction": "RADIUS",
+            "mode": "geometry2d",
+            "parameters": {
+              "radius": 5
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "810aba9e-66b4-4d6e-aa89-351b22d74a91"
+          }
+        ],
+        "recentResults": [
+          {
+            "action": "CREATE",
+            "explanation": "Created 2D circle with radius 3."
+          },
+          {
+            "action": "CHANGE",
+            "explanation": "Changed circle."
+          }
+        ],
+        "lastIntent": "CHANGE",
+        "lastResponseKind": "CHANGE",
+        "turns": [
+          {
+            "text": "Draw a circle radius 3",
+            "kind": "CREATE",
+            "subjectBefore": [],
+            "subjectAfter": [
+              "810aba9e-66b4-4d6e-aa89-351b22d74a91"
+            ],
+            "status": "success",
+            "message": "Created 2D circle with radius 3.",
+            "plan": {
+              "rawPhrase": "Draw a circle radius 3",
+              "commands": [
+                {
+                  "id": "305be737-0ccf-4002-9a2e-a10beef1584e",
+                  "rawPhrase": "Draw a circle radius 3",
+                  "normalizedPhrase": "draw a circle radius 3",
+                  "detectedAction": "DRAW",
+                  "action": "CREATE",
+                  "subAction": "CIRCLE",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "legacy": {
+                      "kind": "circle",
+                      "dimension": "2d",
+                      "points": [],
+                      "width": 6,
+                      "height": 4,
+                      "depth": 3,
+                      "radius": 3,
+                      "sides": 6,
+                      "color": "#06b6d4",
+                      "rotation": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "scale": 1,
+                      "action": "create",
+                      "fitDimensions": false
+                    },
+                    "width": 6,
+                    "height": 4,
+                    "radius": 3,
+                    "depth": 3,
+                    "sides": 6
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": {
+                    "type": "circle"
+                  }
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "a31102ba-2b65-4477-8cec-659ea306358c"
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 0.5,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": true
+          },
+          {
+            "text": "No make it 5",
+            "kind": "CHANGE",
+            "subjectBefore": [
+              "810aba9e-66b4-4d6e-aa89-351b22d74a91"
+            ],
+            "subjectAfter": [
+              "810aba9e-66b4-4d6e-aa89-351b22d74a91"
+            ],
+            "status": "success",
+            "message": "Changed circle.",
+            "plan": {
+              "rawPhrase": "Change its radius to 5",
+              "commands": [
+                {
+                  "id": "251b122a-bba8-469a-a0b3-60ad307598da",
+                  "rawPhrase": "Change its radius to 5",
+                  "normalizedPhrase": "change its radius to 5",
+                  "detectedAction": "CHANGE",
+                  "action": "CHANGE",
+                  "subAction": "RADIUS",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "radius": 5
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "810aba9e-66b4-4d6e-aa89-351b22d74a91"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "ff7fb4ba-de37-485e-88df-a8c1d59b6eab"
+            },
+            "resolvedReferences": [
+              "810aba9e-66b4-4d6e-aa89-351b22d74a91"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Correct move direction",
+      "passed": true,
+      "expected": {
+        "count": 1,
+        "position": [
+          -3,
+          0
+        ],
+        "radius": 5
+      },
+      "actual": [
+        {
+          "id": "91b0c8b0-4172-4b30-b4c3-952037eecf97",
+          "type": "circle",
+          "position": [
+            -3,
+            0
+          ],
+          "radius": 5
+        }
+      ],
+      "memory": {
+        "activeTopic": "circle",
+        "currentMode": "geometry2d",
+        "activeSubject": [
+          "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+        ],
+        "selectedIds": [],
+        "lastCreated": "91b0c8b0-4172-4b30-b4c3-952037eecf97",
+        "lastModified": "91b0c8b0-4172-4b30-b4c3-952037eecf97",
+        "lastCreatedIds": [
+          "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+        ],
+        "lastModifiedIds": [
+          "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+        ],
+        "recentReferences": [
+          "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+        ],
+        "recentCommands": [
+          {
+            "id": "4486b17d-298c-426e-a9c4-6bbdcd06e864",
+            "rawPhrase": "Draw a circle radius 5",
+            "normalizedPhrase": "draw a circle radius 5",
+            "detectedAction": "DRAW",
+            "action": "CREATE",
+            "subAction": "CIRCLE",
+            "mode": "geometry2d",
+            "parameters": {
+              "width": 6,
+              "height": 4,
+              "radius": 5,
+              "depth": 3,
+              "sides": 6
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": {
+              "type": "circle"
+            }
+          },
+          {
+            "id": "15a1debf-7c85-46a9-8b9e-c76a754b2628",
+            "rawPhrase": "Move it 3 units right",
+            "normalizedPhrase": "move it 3 units right",
+            "detectedAction": "MOVE",
+            "action": "MOVE",
+            "subAction": "OBJECT",
+            "mode": "geometry2d",
+            "parameters": {
+              "vector": [
+                3,
+                0
+              ],
+              "multiple": false,
+              "dx": 3,
+              "dy": 0
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+          },
+          {
+            "id": "15a1debf-7c85-46a9-8b9e-c76a754b2628",
+            "rawPhrase": "Move it 3 units right",
+            "normalizedPhrase": "move it 3 units right",
+            "detectedAction": "MOVE",
+            "action": "MOVE",
+            "subAction": "OBJECT",
+            "mode": "geometry2d",
+            "parameters": {
+              "vector": [
+                -6,
+                0
+              ],
+              "multiple": false,
+              "dx": 3,
+              "dy": 0,
+              "conversationLogicalVector": [
+                -3,
+                0
+              ]
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+          }
+        ],
+        "recentResults": [
+          {
+            "action": "CREATE",
+            "explanation": "Created 2D circle with radius 5."
+          },
+          {
+            "action": "MOVE",
+            "explanation": "move circle."
+          },
+          {
+            "action": "MOVE",
+            "explanation": "move circle."
+          }
+        ],
+        "lastIntent": "MOVE",
+        "lastResponseKind": "MOVE",
+        "turns": [
+          {
+            "text": "Draw a circle radius 5",
+            "kind": "CREATE",
+            "subjectBefore": [],
+            "subjectAfter": [
+              "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+            ],
+            "status": "success",
+            "message": "Created 2D circle with radius 5.",
+            "plan": {
+              "rawPhrase": "Draw a circle radius 5",
+              "commands": [
+                {
+                  "id": "4486b17d-298c-426e-a9c4-6bbdcd06e864",
+                  "rawPhrase": "Draw a circle radius 5",
+                  "normalizedPhrase": "draw a circle radius 5",
+                  "detectedAction": "DRAW",
+                  "action": "CREATE",
+                  "subAction": "CIRCLE",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "legacy": {
+                      "kind": "circle",
+                      "dimension": "2d",
+                      "points": [],
+                      "width": 6,
+                      "height": 4,
+                      "depth": 3,
+                      "radius": 5,
+                      "sides": 6,
+                      "color": "#06b6d4",
+                      "rotation": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "scale": 1,
+                      "action": "create",
+                      "fitDimensions": false
+                    },
+                    "width": 6,
+                    "height": 4,
+                    "radius": 5,
+                    "depth": 3,
+                    "sides": 6
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": {
+                    "type": "circle"
+                  }
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "51bd3782-6621-4844-8152-ec0e5a4798bc"
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 0.5,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": true
+          },
+          {
+            "text": "Move it 3 units right",
+            "kind": "MOVE",
+            "subjectBefore": [
+              "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+            ],
+            "subjectAfter": [
+              "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+            ],
+            "status": "success",
+            "message": "move circle.",
+            "plan": {
+              "rawPhrase": "Move it 3 units right",
+              "commands": [
+                {
+                  "id": "15a1debf-7c85-46a9-8b9e-c76a754b2628",
+                  "rawPhrase": "Move it 3 units right",
+                  "normalizedPhrase": "move it 3 units right",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "vector": [
+                      3,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 3,
+                    "dy": 0
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "5ad06fcf-51af-4fce-9fee-2214bf48b51d"
+            },
+            "resolvedReferences": [
+              "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": true
+          },
+          {
+            "text": "No, left",
+            "kind": "MOVE",
+            "subjectBefore": [
+              "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+            ],
+            "subjectAfter": [
+              "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+            ],
+            "status": "success",
+            "message": "move circle.",
+            "plan": {
+              "rawPhrase": "No, left",
+              "commands": [
+                {
+                  "id": "15a1debf-7c85-46a9-8b9e-c76a754b2628",
+                  "rawPhrase": "Move it 3 units right",
+                  "normalizedPhrase": "move it 3 units right",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "vector": [
+                      -6,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 3,
+                    "dy": 0,
+                    "conversationLogicalVector": [
+                      -3,
+                      0
+                    ]
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+                }
+              ],
+              "confidence": 0,
+              "contextSnapshotId": "a32738f9-324d-4342-891b-e27a1f093876"
+            },
+            "resolvedReferences": [
+              "91b0c8b0-4172-4b30-b4c3-952037eecf97"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 0,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Repeat previous movement",
+      "passed": true,
+      "expected": {
+        "count": 1,
+        "position": [
+          6,
+          0
+        ],
+        "radius": 5
+      },
+      "actual": [
+        {
+          "id": "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e",
+          "type": "circle",
+          "position": [
+            6,
+            0
+          ],
+          "radius": 5
+        }
+      ],
+      "memory": {
+        "activeTopic": "circle",
+        "currentMode": "graph2d",
+        "activeSubject": [
+          "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+        ],
+        "selectedIds": [],
+        "lastCreated": "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e",
+        "lastModified": "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e",
+        "lastCreatedIds": [
+          "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+        ],
+        "lastModifiedIds": [
+          "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+        ],
+        "recentReferences": [
+          "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+        ],
+        "recentCommands": [
+          {
+            "id": "291d5541-b726-47f1-9ae8-05b44c807ace",
+            "rawPhrase": "Draw a circle radius 5",
+            "normalizedPhrase": "draw a circle radius 5",
+            "detectedAction": "DRAW",
+            "action": "CREATE",
+            "subAction": "CIRCLE",
+            "mode": "graph2d",
+            "parameters": {
+              "width": 6,
+              "height": 4,
+              "radius": 5,
+              "depth": 3,
+              "sides": 6
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": {
+              "type": "circle"
+            }
+          },
+          {
+            "id": "27119384-a5a9-4041-880c-9e43c6c8ab69",
+            "rawPhrase": "Move it 3 units right",
+            "normalizedPhrase": "move it 3 units right",
+            "detectedAction": "MOVE",
+            "action": "MOVE",
+            "subAction": "OBJECT",
+            "mode": "graph2d",
+            "parameters": {
+              "vector": [
+                3,
+                0
+              ],
+              "multiple": false,
+              "dx": 3,
+              "dy": 0
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+          },
+          {
+            "id": "27119384-a5a9-4041-880c-9e43c6c8ab69",
+            "rawPhrase": "Move it 3 units right",
+            "normalizedPhrase": "move it 3 units right",
+            "detectedAction": "MOVE",
+            "action": "MOVE",
+            "subAction": "OBJECT",
+            "mode": "graph2d",
+            "parameters": {
+              "vector": [
+                3,
+                0
+              ],
+              "multiple": false,
+              "dx": 3,
+              "dy": 0
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+          }
+        ],
+        "recentResults": [
+          {
+            "action": "CREATE",
+            "explanation": "Created 2D circle with radius 5."
+          },
+          {
+            "action": "MOVE",
+            "explanation": "move circle."
+          },
+          {
+            "action": "MOVE",
+            "explanation": "move circle."
+          }
+        ],
+        "lastIntent": "MOVE",
+        "lastResponseKind": "MOVE",
+        "turns": [
+          {
+            "text": "Draw a circle radius 5",
+            "kind": "CREATE",
+            "subjectBefore": [],
+            "subjectAfter": [
+              "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+            ],
+            "status": "success",
+            "message": "Created 2D circle with radius 5.",
+            "plan": {
+              "rawPhrase": "Draw a circle radius 5",
+              "commands": [
+                {
+                  "id": "291d5541-b726-47f1-9ae8-05b44c807ace",
+                  "rawPhrase": "Draw a circle radius 5",
+                  "normalizedPhrase": "draw a circle radius 5",
+                  "detectedAction": "DRAW",
+                  "action": "CREATE",
+                  "subAction": "CIRCLE",
+                  "mode": "graph2d",
+                  "parameters": {
+                    "legacy": {
+                      "kind": "circle",
+                      "dimension": "2d",
+                      "points": [],
+                      "width": 6,
+                      "height": 4,
+                      "depth": 3,
+                      "radius": 5,
+                      "sides": 6,
+                      "color": "#06b6d4",
+                      "rotation": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "scale": 1,
+                      "action": "create",
+                      "fitDimensions": false
+                    },
+                    "width": 6,
+                    "height": 4,
+                    "radius": 5,
+                    "depth": 3,
+                    "sides": 6
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": {
+                    "type": "circle"
+                  }
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "3698e94c-05cf-4840-bb99-d4ee5b921bb4"
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 0.5,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": true
+          },
+          {
+            "text": "Move it 3 units right",
+            "kind": "MOVE",
+            "subjectBefore": [
+              "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+            ],
+            "subjectAfter": [
+              "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+            ],
+            "status": "success",
+            "message": "move circle.",
+            "plan": {
+              "rawPhrase": "Move it 3 units right",
+              "commands": [
+                {
+                  "id": "27119384-a5a9-4041-880c-9e43c6c8ab69",
+                  "rawPhrase": "Move it 3 units right",
+                  "normalizedPhrase": "move it 3 units right",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "graph2d",
+                  "parameters": {
+                    "vector": [
+                      3,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 3,
+                    "dy": 0
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "a8095c73-30ed-4d38-bc56-3b418eed8172"
+            },
+            "resolvedReferences": [
+              "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": true
+          },
+          {
+            "text": "again",
+            "kind": "MOVE",
+            "subjectBefore": [
+              "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+            ],
+            "subjectAfter": [
+              "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+            ],
+            "status": "success",
+            "message": "move circle.",
+            "plan": {
+              "rawPhrase": "again",
+              "commands": [
+                {
+                  "id": "27119384-a5a9-4041-880c-9e43c6c8ab69",
+                  "rawPhrase": "Move it 3 units right",
+                  "normalizedPhrase": "move it 3 units right",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "graph2d",
+                  "parameters": {
+                    "vector": [
+                      3,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 3,
+                    "dy": 0
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+                }
+              ],
+              "confidence": 0,
+              "contextSnapshotId": "ca7859ff-48d6-49fc-b31a-89db17435dfd"
+            },
+            "resolvedReferences": [
+              "7dcf2b62-3c72-4a5e-a46a-4c0bef3fc35e"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 0,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Numeric area stays separate from object",
+      "passed": true,
+      "expected": {
+        "count": 1,
+        "position": [
+          4,
+          0
+        ]
+      },
+      "actual": [
+        {
+          "id": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c",
+          "type": "rectangle",
+          "position": [
+            4,
+            0
+          ],
+          "radius": 3
+        }
+      ],
+      "memory": {
+        "activeTopic": "rectangle",
+        "currentMode": "geometry2d",
+        "activeSubject": [
+          "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+        ],
+        "selectedIds": [],
+        "lastCreated": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c",
+        "lastModified": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c",
+        "lastCreatedIds": [
+          "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+        ],
+        "lastModifiedIds": [
+          "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+        ],
+        "recentReferences": [
+          "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+        ],
+        "recentCommands": [
+          {
+            "id": "491e6885-9fd1-4933-95f2-7d7666ad3359",
+            "rawPhrase": "Draw a rectangle 4 by 6",
+            "normalizedPhrase": "draw a rectangle 4 by 6",
+            "detectedAction": "DRAW",
+            "action": "CREATE",
+            "subAction": "RECTANGLE",
+            "mode": "geometry2d",
+            "parameters": {
+              "width": 4,
+              "height": 6,
+              "radius": 3,
+              "depth": 3,
+              "sides": 6
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": {
+              "type": "rectangle"
+            }
+          },
+          {
+            "id": "1ce62e0f-fac1-48ef-835b-be9a053a396a",
+            "rawPhrase": "Find its area",
+            "normalizedPhrase": "find its area",
+            "detectedAction": "FIND",
+            "action": "FIND",
+            "subAction": "AREA",
+            "mode": "geometry2d",
+            "parameters": {
+              "multiple": false
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+          },
+          {
+            "id": "bcdbe637-a5ed-433b-8594-84273a125d65",
+            "rawPhrase": "Move it right",
+            "normalizedPhrase": "move it right",
+            "detectedAction": "MOVE",
+            "action": "MOVE",
+            "subAction": "OBJECT",
+            "mode": "geometry2d",
+            "parameters": {
+              "vector": [
+                4,
+                0
+              ],
+              "multiple": false,
+              "dx": 0,
+              "dy": 0,
+              "conversationDirection": "right"
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+          },
+          {
+            "id": "e63d6187-95f6-4695-9d8e-2f7cafd28288",
+            "rawPhrase": "rotate it",
+            "normalizedPhrase": "rotate it",
+            "detectedAction": "ROTATE",
+            "action": "ROTATE",
+            "subAction": "OBJECT",
+            "mode": "geometry2d",
+            "parameters": {
+              "angle": 30,
+              "axis": "z"
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+          },
+          {
+            "id": "04bf6aa8-68a8-4679-a239-16a4840d0f74",
+            "rawPhrase": "Find its area",
+            "normalizedPhrase": "find its area",
+            "detectedAction": "FIND",
+            "action": "FIND",
+            "subAction": "AREA",
+            "mode": "geometry2d",
+            "parameters": {
+              "multiple": false
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+          }
+        ],
+        "recentResults": [
+          {
+            "action": "CREATE",
+            "explanation": "Created 2D rectangle 4 by 6."
+          },
+          {
+            "action": "FIND",
+            "value": 24,
+            "explanation": "Area is calculated from the vertices with the shoelace formula (or triangle cross products in 3D)."
+          },
+          {
+            "action": "MOVE",
+            "value": 24,
+            "explanation": "move rectangle."
+          },
+          {
+            "action": "ROTATE",
+            "value": 24,
+            "explanation": "rotate rectangle."
+          },
+          {
+            "action": "FIND",
+            "value": 24,
+            "explanation": "Area is calculated from the vertices with the shoelace formula (or triangle cross products in 3D)."
+          }
+        ],
+        "lastResponseKind": "conversation",
+        "lastMathResult": {
+          "value": 24,
+          "explanation": "Area is calculated from the vertices with the shoelace formula (or triangle cross products in 3D).",
+          "targets": [
+            "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+          ]
+        },
+        "turns": [
+          {
+            "text": "Draw a rectangle 4 by 6",
+            "kind": "CREATE",
+            "subjectBefore": [],
+            "subjectAfter": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "status": "success",
+            "message": "Created 2D rectangle 4 by 6.",
+            "plan": {
+              "rawPhrase": "Draw a rectangle 4 by 6",
+              "commands": [
+                {
+                  "id": "491e6885-9fd1-4933-95f2-7d7666ad3359",
+                  "rawPhrase": "Draw a rectangle 4 by 6",
+                  "normalizedPhrase": "draw a rectangle 4 by 6",
+                  "detectedAction": "DRAW",
+                  "action": "CREATE",
+                  "subAction": "RECTANGLE",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "legacy": {
+                      "kind": "rectangle",
+                      "dimension": "2d",
+                      "points": [],
+                      "width": 4,
+                      "height": 6,
+                      "depth": 3,
+                      "radius": 3,
+                      "sides": 6,
+                      "color": "#06b6d4",
+                      "rotation": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "scale": 1,
+                      "action": "create",
+                      "fitDimensions": true
+                    },
+                    "width": 4,
+                    "height": 6,
+                    "radius": 3,
+                    "depth": 3,
+                    "sides": 6
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": {
+                    "type": "rectangle"
+                  }
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "90ec1f79-710f-4dae-8f6f-082b6d826dfd"
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 0.5,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": true
+          },
+          {
+            "text": "Find its area",
+            "kind": "FIND",
+            "subjectBefore": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "subjectAfter": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "status": "success",
+            "message": "area = 24 units.",
+            "plan": {
+              "rawPhrase": "Find its area",
+              "commands": [
+                {
+                  "id": "1ce62e0f-fac1-48ef-835b-be9a053a396a",
+                  "rawPhrase": "Find its area",
+                  "normalizedPhrase": "find its area",
+                  "detectedAction": "FIND",
+                  "action": "FIND",
+                  "subAction": "AREA",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "multiple": false
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "4c0b5851-90e1-422c-b7ad-c42ea42469c0"
+            },
+            "resolvedReferences": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": false
+          },
+          {
+            "text": "Move it right",
+            "kind": "follow-up",
+            "subjectBefore": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "subjectAfter": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "pending": {
+              "plan": {
+                "rawPhrase": "Move it right",
+                "commands": [
+                  {
+                    "id": "bcdbe637-a5ed-433b-8594-84273a125d65",
+                    "rawPhrase": "Move it right",
+                    "normalizedPhrase": "move it right",
+                    "detectedAction": "MOVE",
+                    "action": "MOVE",
+                    "subAction": "OBJECT",
+                    "mode": "geometry2d",
+                    "parameters": {
+                      "vector": [
+                        0,
+                        0
+                      ],
+                      "multiple": false,
+                      "dx": 0,
+                      "dy": 0,
+                      "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                      "conversationDirection": "right"
+                    },
+                    "confidence": {
+                      "overall": 1,
+                      "action": 1,
+                      "subAction": 1,
+                      "parameters": 1
+                    },
+                    "source": {
+                      "action": "rule",
+                      "subAction": "rule"
+                    },
+                    "requiresExecution": true,
+                    "target": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+                  }
+                ],
+                "confidence": 1
+              },
+              "index": 0,
+              "slot": "distance",
+              "question": "How far should I move it?",
+              "options": []
+            },
+            "status": "ambiguous",
+            "message": "How far should I move it?",
+            "plan": {
+              "rawPhrase": "Move it right",
+              "commands": [
+                {
+                  "id": "bcdbe637-a5ed-433b-8594-84273a125d65",
+                  "rawPhrase": "Move it right",
+                  "normalizedPhrase": "move it right",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "vector": [
+                      0,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                    "conversationDirection": "right"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+                }
+              ],
+              "confidence": 1
+            },
+            "resolvedReferences": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "missingSlots": [
+              "distance"
+            ],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 0,
+              "contextContinuity": 1
+            },
+            "executed": false
+          },
+          {
+            "text": "4 units",
+            "kind": "MOVE",
+            "subjectBefore": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "subjectAfter": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "status": "success",
+            "message": "move rectangle.",
+            "plan": {
+              "rawPhrase": "Move it right",
+              "commands": [
+                {
+                  "id": "bcdbe637-a5ed-433b-8594-84273a125d65",
+                  "rawPhrase": "Move it right",
+                  "normalizedPhrase": "move it right",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "vector": [
+                      4,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "conversationDirection": "right"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "5bfceab0-8e00-4f01-80d2-2f6e7966b7e5"
+            },
+            "resolvedReferences": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": true
+          },
+          {
+            "text": "Now rotate it",
+            "kind": "follow-up",
+            "subjectBefore": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "subjectAfter": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "pending": {
+              "plan": {
+                "rawPhrase": "rotate it",
+                "commands": [
+                  {
+                    "id": "e63d6187-95f6-4695-9d8e-2f7cafd28288",
+                    "rawPhrase": "rotate it",
+                    "normalizedPhrase": "rotate it",
+                    "detectedAction": "ROTATE",
+                    "action": "ROTATE",
+                    "subAction": "OBJECT",
+                    "mode": "geometry2d",
+                    "parameters": {
+                      "axis": "z"
+                    },
+                    "confidence": {
+                      "overall": 1,
+                      "action": 1,
+                      "subAction": 1,
+                      "parameters": 1
+                    },
+                    "source": {
+                      "action": "rule",
+                      "subAction": "rule"
+                    },
+                    "requiresExecution": true,
+                    "target": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+                  }
+                ],
+                "confidence": 1
+              },
+              "index": 0,
+              "slot": "angle",
+              "question": "By how many degrees should I rotate it?",
+              "options": []
+            },
+            "status": "ambiguous",
+            "message": "By how many degrees should I rotate it?",
+            "plan": {
+              "rawPhrase": "rotate it",
+              "commands": [
+                {
+                  "id": "e63d6187-95f6-4695-9d8e-2f7cafd28288",
+                  "rawPhrase": "rotate it",
+                  "normalizedPhrase": "rotate it",
+                  "detectedAction": "ROTATE",
+                  "action": "ROTATE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "axis": "z"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+                }
+              ],
+              "confidence": 1
+            },
+            "resolvedReferences": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "missingSlots": [
+              "angle"
+            ],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 0,
+              "contextContinuity": 1
+            },
+            "executed": false
+          },
+          {
+            "text": "30 degrees",
+            "kind": "ROTATE",
+            "subjectBefore": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "subjectAfter": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "status": "success",
+            "message": "rotate rectangle.",
+            "plan": {
+              "rawPhrase": "rotate it",
+              "commands": [
+                {
+                  "id": "e63d6187-95f6-4695-9d8e-2f7cafd28288",
+                  "rawPhrase": "rotate it",
+                  "normalizedPhrase": "rotate it",
+                  "detectedAction": "ROTATE",
+                  "action": "ROTATE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "angle": 30,
+                    "axis": "z"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "5daa6ddc-9889-40f7-a20c-9279fb7cd0e8"
+            },
+            "resolvedReferences": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": true
+          },
+          {
+            "text": "Find its area",
+            "kind": "FIND",
+            "subjectBefore": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "subjectAfter": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "status": "success",
+            "message": "area = 24 units.",
+            "plan": {
+              "rawPhrase": "Find its area",
+              "commands": [
+                {
+                  "id": "04bf6aa8-68a8-4679-a239-16a4840d0f74",
+                  "rawPhrase": "Find its area",
+                  "normalizedPhrase": "find its area",
+                  "detectedAction": "FIND",
+                  "action": "FIND",
+                  "subAction": "AREA",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "multiple": false
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "4a040dcc-9818-4fbe-acae-53fc57d0c489"
+            },
+            "resolvedReferences": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": false
+          },
+          {
+            "text": "why",
+            "kind": "conversation",
+            "subjectBefore": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "subjectAfter": [
+              "11d681a4-db7b-4ce4-a191-a9ba8c4dd17c"
+            ],
+            "status": "success",
+            "message": "Area is calculated from the vertices with the shoelace formula (or triangle cross products in 3D).",
+            "plan": {
+              "rawPhrase": "why",
+              "commands": [],
+              "confidence": 1
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "Complete replacement command",
+      "passed": true,
+      "expected": {
+        "count": 1,
+        "position": [
+          0,
+          -2
+        ],
+        "radius": 5
+      },
+      "actual": [
+        {
+          "id": "06ee2878-50d8-48a7-9bf3-a4c89069392d",
+          "type": "circle",
+          "position": [
+            0,
+            -2
+          ],
+          "radius": 5
+        }
+      ],
+      "memory": {
+        "activeTopic": "circle",
+        "currentMode": "geometry2d",
+        "activeSubject": [
+          "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+        ],
+        "selectedIds": [],
+        "lastCreated": "06ee2878-50d8-48a7-9bf3-a4c89069392d",
+        "lastModified": "06ee2878-50d8-48a7-9bf3-a4c89069392d",
+        "lastCreatedIds": [
+          "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+        ],
+        "lastModifiedIds": [
+          "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+        ],
+        "recentReferences": [
+          "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+        ],
+        "recentCommands": [
+          {
+            "id": "6b664620-69b5-41f9-baaa-9eb41ef898b9",
+            "rawPhrase": "Draw a circle radius 5",
+            "normalizedPhrase": "draw a circle radius 5",
+            "detectedAction": "DRAW",
+            "action": "CREATE",
+            "subAction": "CIRCLE",
+            "mode": "geometry2d",
+            "parameters": {
+              "width": 6,
+              "height": 4,
+              "radius": 5,
+              "depth": 3,
+              "sides": 6
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": {
+              "type": "circle"
+            }
+          },
+          {
+            "id": "e3f71b27-ac7c-42ea-8fa1-4ddcf79fd46b",
+            "rawPhrase": "Move it 2 units down",
+            "normalizedPhrase": "move it 2 units down",
+            "detectedAction": "MOVE",
+            "action": "MOVE",
+            "subAction": "OBJECT",
+            "mode": "geometry2d",
+            "parameters": {
+              "vector": [
+                0,
+                -2
+              ],
+              "multiple": false,
+              "dx": 0,
+              "dy": -2
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+          }
+        ],
+        "recentResults": [
+          {
+            "action": "CREATE",
+            "explanation": "Created 2D circle with radius 5."
+          },
+          {
+            "action": "MOVE",
+            "explanation": "move circle."
+          }
+        ],
+        "lastIntent": "MOVE",
+        "lastResponseKind": "MOVE",
+        "turns": [
+          {
+            "text": "Draw a circle radius 5",
+            "kind": "CREATE",
+            "subjectBefore": [],
+            "subjectAfter": [
+              "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+            ],
+            "status": "success",
+            "message": "Created 2D circle with radius 5.",
+            "plan": {
+              "rawPhrase": "Draw a circle radius 5",
+              "commands": [
+                {
+                  "id": "6b664620-69b5-41f9-baaa-9eb41ef898b9",
+                  "rawPhrase": "Draw a circle radius 5",
+                  "normalizedPhrase": "draw a circle radius 5",
+                  "detectedAction": "DRAW",
+                  "action": "CREATE",
+                  "subAction": "CIRCLE",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "legacy": {
+                      "kind": "circle",
+                      "dimension": "2d",
+                      "points": [],
+                      "width": 6,
+                      "height": 4,
+                      "depth": 3,
+                      "radius": 5,
+                      "sides": 6,
+                      "color": "#06b6d4",
+                      "rotation": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "scale": 1,
+                      "action": "create",
+                      "fitDimensions": false
+                    },
+                    "width": 6,
+                    "height": 4,
+                    "radius": 5,
+                    "depth": 3,
+                    "sides": 6
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": {
+                    "type": "circle"
+                  }
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "a7095c21-0875-4bde-a764-1a4ec48ad9bb"
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 0.5,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": true
+          },
+          {
+            "text": "Move it right",
+            "kind": "follow-up",
+            "subjectBefore": [
+              "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+            ],
+            "subjectAfter": [
+              "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+            ],
+            "pending": {
+              "plan": {
+                "rawPhrase": "Move it right",
+                "commands": [
+                  {
+                    "id": "3513c9e3-ca7c-46a1-96c1-11bd76181007",
+                    "rawPhrase": "Move it right",
+                    "normalizedPhrase": "move it right",
+                    "detectedAction": "MOVE",
+                    "action": "MOVE",
+                    "subAction": "OBJECT",
+                    "mode": "geometry2d",
+                    "parameters": {
+                      "vector": [
+                        0,
+                        0
+                      ],
+                      "multiple": false,
+                      "dx": 0,
+                      "dy": 0,
+                      "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                      "conversationDirection": "right"
+                    },
+                    "confidence": {
+                      "overall": 1,
+                      "action": 1,
+                      "subAction": 1,
+                      "parameters": 1
+                    },
+                    "source": {
+                      "action": "rule",
+                      "subAction": "rule"
+                    },
+                    "requiresExecution": true,
+                    "target": "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+                  }
+                ],
+                "confidence": 1
+              },
+              "index": 0,
+              "slot": "distance",
+              "question": "How far should I move it?",
+              "options": []
+            },
+            "status": "ambiguous",
+            "message": "How far should I move it?",
+            "plan": {
+              "rawPhrase": "Move it right",
+              "commands": [
+                {
+                  "id": "3513c9e3-ca7c-46a1-96c1-11bd76181007",
+                  "rawPhrase": "Move it right",
+                  "normalizedPhrase": "move it right",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "vector": [
+                      0,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                    "conversationDirection": "right"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+                }
+              ],
+              "confidence": 1
+            },
+            "resolvedReferences": [
+              "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+            ],
+            "missingSlots": [
+              "distance"
+            ],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 0,
+              "contextContinuity": 1
+            },
+            "executed": false
+          },
+          {
+            "text": "Move it 2 units down",
+            "kind": "MOVE",
+            "subjectBefore": [
+              "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+            ],
+            "subjectAfter": [
+              "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+            ],
+            "status": "success",
+            "message": "move circle.",
+            "plan": {
+              "rawPhrase": "Move it 2 units down",
+              "commands": [
+                {
+                  "id": "e3f71b27-ac7c-42ea-8fa1-4ddcf79fd46b",
+                  "rawPhrase": "Move it 2 units down",
+                  "normalizedPhrase": "move it 2 units down",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "vector": [
+                      0,
+                      -2
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": -2
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "dfce6876-b877-46eb-a9d3-9ff29d7b843e"
+            },
+            "resolvedReferences": [
+              "06ee2878-50d8-48a7-9bf3-a4c89069392d"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Undo pending-completed move",
+      "passed": true,
+      "expected": {
+        "count": 1,
+        "position": [
+          0,
+          0
+        ],
+        "radius": 5
+      },
+      "actual": [
+        {
+          "id": "e57932f5-0878-48dd-aa86-34772abff97c",
+          "type": "circle",
+          "position": [
+            0,
+            0
+          ],
+          "radius": 5
+        }
+      ],
+      "memory": {
+        "activeTopic": "circle",
+        "currentMode": "geometry2d",
+        "activeSubject": [
+          "e57932f5-0878-48dd-aa86-34772abff97c"
+        ],
+        "selectedIds": [],
+        "lastCreated": "e57932f5-0878-48dd-aa86-34772abff97c",
+        "lastModified": "e57932f5-0878-48dd-aa86-34772abff97c",
+        "lastCreatedIds": [
+          "e57932f5-0878-48dd-aa86-34772abff97c"
+        ],
+        "lastModifiedIds": [
+          "e57932f5-0878-48dd-aa86-34772abff97c"
+        ],
+        "recentReferences": [
+          "e57932f5-0878-48dd-aa86-34772abff97c"
+        ],
+        "recentCommands": [
+          {
+            "id": "bfca09d6-4dd7-4080-b963-82ec32dcc520",
+            "rawPhrase": "Draw a circle radius 5",
+            "normalizedPhrase": "draw a circle radius 5",
+            "detectedAction": "DRAW",
+            "action": "CREATE",
+            "subAction": "CIRCLE",
+            "mode": "geometry2d",
+            "parameters": {
+              "width": 6,
+              "height": 4,
+              "radius": 5,
+              "depth": 3,
+              "sides": 6
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": {
+              "type": "circle"
+            }
+          }
+        ],
+        "recentResults": [
+          {
+            "action": "CREATE",
+            "explanation": "Created 2D circle with radius 5."
+          }
+        ],
+        "lastIntent": "UNDO",
+        "lastResponseKind": "UNDO",
+        "turns": [
+          {
+            "text": "Draw a circle radius 5",
+            "kind": "CREATE",
+            "subjectBefore": [],
+            "subjectAfter": [
+              "e57932f5-0878-48dd-aa86-34772abff97c"
+            ],
+            "status": "success",
+            "message": "Created 2D circle with radius 5.",
+            "plan": {
+              "rawPhrase": "Draw a circle radius 5",
+              "commands": [
+                {
+                  "id": "bfca09d6-4dd7-4080-b963-82ec32dcc520",
+                  "rawPhrase": "Draw a circle radius 5",
+                  "normalizedPhrase": "draw a circle radius 5",
+                  "detectedAction": "DRAW",
+                  "action": "CREATE",
+                  "subAction": "CIRCLE",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "legacy": {
+                      "kind": "circle",
+                      "dimension": "2d",
+                      "points": [],
+                      "width": 6,
+                      "height": 4,
+                      "depth": 3,
+                      "radius": 5,
+                      "sides": 6,
+                      "color": "#06b6d4",
+                      "rotation": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "scale": 1,
+                      "action": "create",
+                      "fitDimensions": false
+                    },
+                    "width": 6,
+                    "height": 4,
+                    "radius": 5,
+                    "depth": 3,
+                    "sides": 6
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": {
+                    "type": "circle"
+                  }
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "19cc5a76-4dbf-4f57-8882-d92ca5aa9407"
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 0.5,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": true
+          },
+          {
+            "text": "Move it right",
+            "kind": "follow-up",
+            "subjectBefore": [
+              "e57932f5-0878-48dd-aa86-34772abff97c"
+            ],
+            "subjectAfter": [
+              "e57932f5-0878-48dd-aa86-34772abff97c"
+            ],
+            "pending": {
+              "plan": {
+                "rawPhrase": "Move it right",
+                "commands": [
+                  {
+                    "id": "267899cb-a441-4674-af2d-8a9a0d1b8903",
+                    "rawPhrase": "Move it right",
+                    "normalizedPhrase": "move it right",
+                    "detectedAction": "MOVE",
+                    "action": "MOVE",
+                    "subAction": "OBJECT",
+                    "mode": "geometry2d",
+                    "parameters": {
+                      "vector": [
+                        0,
+                        0
+                      ],
+                      "multiple": false,
+                      "dx": 0,
+                      "dy": 0,
+                      "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                      "conversationDirection": "right"
+                    },
+                    "confidence": {
+                      "overall": 1,
+                      "action": 1,
+                      "subAction": 1,
+                      "parameters": 1
+                    },
+                    "source": {
+                      "action": "rule",
+                      "subAction": "rule"
+                    },
+                    "requiresExecution": true,
+                    "target": "e57932f5-0878-48dd-aa86-34772abff97c"
+                  }
+                ],
+                "confidence": 1
+              },
+              "index": 0,
+              "slot": "distance",
+              "question": "How far should I move it?",
+              "options": []
+            },
+            "status": "ambiguous",
+            "message": "How far should I move it?",
+            "plan": {
+              "rawPhrase": "Move it right",
+              "commands": [
+                {
+                  "id": "267899cb-a441-4674-af2d-8a9a0d1b8903",
+                  "rawPhrase": "Move it right",
+                  "normalizedPhrase": "move it right",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "vector": [
+                      0,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "parseError": "Provide 2 destination coordinates, such as (4,0), or a movement direction and distance.",
+                    "conversationDirection": "right"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "e57932f5-0878-48dd-aa86-34772abff97c"
+                }
+              ],
+              "confidence": 1
+            },
+            "resolvedReferences": [
+              "e57932f5-0878-48dd-aa86-34772abff97c"
+            ],
+            "missingSlots": [
+              "distance"
+            ],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 0,
+              "contextContinuity": 1
+            },
+            "executed": false
+          },
+          {
+            "text": "3 units",
+            "kind": "MOVE",
+            "subjectBefore": [
+              "e57932f5-0878-48dd-aa86-34772abff97c"
+            ],
+            "subjectAfter": [
+              "e57932f5-0878-48dd-aa86-34772abff97c"
+            ],
+            "status": "success",
+            "message": "move circle.",
+            "plan": {
+              "rawPhrase": "Move it right",
+              "commands": [
+                {
+                  "id": "267899cb-a441-4674-af2d-8a9a0d1b8903",
+                  "rawPhrase": "Move it right",
+                  "normalizedPhrase": "move it right",
+                  "detectedAction": "MOVE",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "mode": "geometry2d",
+                  "parameters": {
+                    "vector": [
+                      3,
+                      0
+                    ],
+                    "multiple": false,
+                    "dx": 0,
+                    "dy": 0,
+                    "conversationDirection": "right"
+                  },
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "e57932f5-0878-48dd-aa86-34772abff97c"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "d5eb6964-37d9-49dc-afbc-73613248726f"
+            },
+            "resolvedReferences": [
+              "e57932f5-0878-48dd-aa86-34772abff97c"
+            ],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 1,
+              "answer": 1,
+              "contextContinuity": 1
+            },
+            "executed": true
+          },
+          {
+            "text": "undo",
+            "kind": "UNDO",
+            "subjectBefore": [
+              "e57932f5-0878-48dd-aa86-34772abff97c"
+            ],
+            "subjectAfter": [
+              "e57932f5-0878-48dd-aa86-34772abff97c"
+            ],
+            "status": "success",
+            "message": "Undid the last Ruhi action.",
+            "plan": {
+              "rawPhrase": "undo",
+              "commands": [
+                {
+                  "id": "61899eba-a7f8-4dc0-8118-6977a55c524d",
+                  "rawPhrase": "undo",
+                  "normalizedPhrase": "undo",
+                  "detectedAction": "UNDO",
+                  "action": "UNDO",
+                  "subAction": "LAST",
+                  "mode": "geometry2d",
+                  "parameters": {},
+                  "confidence": {
+                    "overall": 1,
+                    "action": 1,
+                    "subAction": 1,
+                    "parameters": 1
+                  },
+                  "source": {
+                    "action": "rule",
+                    "subAction": "rule"
+                  },
+                  "requiresExecution": true,
+                  "target": "lastReferenced"
+                }
+              ],
+              "confidence": 1,
+              "contextSnapshotId": "a2be06b7-74b7-4365-854e-67067025f580"
+            },
+            "resolvedReferences": [],
+            "missingSlots": [],
+            "confidence": {
+              "intent": 1,
+              "reference": 0.5,
+              "answer": 1,
+              "contextContinuity": 0
+            },
+            "executed": true
+          }
+        ]
+      }
+    }
+  ]
+}

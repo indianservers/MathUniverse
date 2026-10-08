@@ -1,0 +1,46 @@
+graph2d Draw a rectangle 4 by 6. success Created 2D rectangle 4 by 6.
+graph2d Find its area. success area = 24 units.
+graph2d Mark the midpoint of the top edge. success Marked midpoint.
+graph2d Draw a perpendicular line through that point. success Perpendicular line created through the point.
+graph2d Make the rectangle twice as wide. success resize rectangle.
+graph2d Now rotate it 30 degrees. success rotate rectangle.
+graph2d What is the new area? success area = 48 units.
+geometry2d Draw a triangle at (0,0), (6,0), (3,4). success Created 2D triangle.
+geometry2d What is its area? success area = 12 units.
+geometry2d Mark all three midpoints. success Marked side_midpoints points.
+geometry2d Join them. success Created 2D triangle.
+geometry2d What kind of triangle did we just make inside? success triangle type = "isosceles, acute angled".
+geometry2d Make the original triangle twice as large. success scale triangle.
+geometry2d Does that inner triangle still have the same relationship? success Yes — the inner triangle has corresponding side ratio 0.5 and area ratio 0.25. Each side joins two side midpoints; the midpoint theorem makes it parallel to, and half the length of, the corresponding original side. Parent changes re-evaluate these midpoint definitions.
+geometry2d Explain why. success Yes — the inner triangle has corresponding side ratio 0.5 and area ratio 0.25. Each side joins two side midpoints; the midpoint theorem makes it parallel to, and half the length of, the corresponding original side. Parent changes re-evaluate these midpoint definitions. Yes — the inner triangle has corresponding side ratio 0.5 and area ratio 0.25. Each side joins two side midpoints; the midpoint theorem makes it parallel to, and half the length of, the corresponding original side. Parent changes re-evaluate these midpoint definitions.
+graph3d Draw a sphere of radius 3. success Created 3D sphere with radius 3.
+graph3d What is its volume? success volume = 113.09733553 units.
+graph3d Move it 2 units right. success move sphere.
+graph3d What is its volume? success volume = 113.09733553 units.
+graph3d Undo. success Undid the last Ruhi action.
+geometry3d Draw a cube with side length 3. success Created 3D cube.
+geometry3d What is its volume? success volume = 27 units.
+geometry3d Move it 2 units right. success move cube.
+geometry3d What is its volume? success volume = 27 units.
+geometry3d Undo. success Undid the last Ruhi action.
+graph2d Solve 2x + 5 = 17 success x = 6
+
+Show solution steps
+graph2d Show me the steps success x = 6 1. Start with: 2x+5=17. 2. Normalize to standard form: 2x - 12 = 0. 3. Move the constant term: 2x = 12. 4. Divide both sides by 2: x = 6. 5. Final answer: x = 6.
+
+Show solution steps
+graph2d Why did you subtract 5? success Applying subtract 5 to both sides preserves equality. The existing solver records the isolation in these steps: Start with: 2x+5=17. Normalize to standard form: 2x - 12 = 0. Move the constant term: 2x = 12. Divide both sides by 2: x = 6. Final answer: x = 6.
+
+Show solution steps
+graph2d Plot it. success Created 2D plot.
+graph2d Now cosine. success Created 2D plot.
+graph2d Run matrices.inverse [[[1,2],[3,4]]] success [[-2,1],[1.5,-0.5]]
+
+Show solution steps
+graph2d Find the mean ambiguous Which numeric dataset should I use?
+graph2d 2,4,6 success 4
+graph2d And median? success 4
+graph2d What about half of it? success 2
+
+Show solution steps
+BROWSER 35 35 page errors 0

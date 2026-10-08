@@ -259,11 +259,11 @@ function normalize3(v: Vector3): Vector3 {
   return vector3(v.x / length, v.y / length, v.z / length);
 }
 
-function scale3(v: Vector3, scale: number): Vector3 {
+export function scale3(v: Vector3, scale: number): Vector3 {
   return vector3(v.x * scale, v.y * scale, v.z * scale);
 }
 
-function add3(a: Point3 | Vector3, b: Point3 | Vector3): Point3 {
+export function add3(a: Point3 | Vector3, b: Point3 | Vector3): Point3 {
   return point3(a.x + b.x, a.y + b.y, a.z + b.z);
 }
 

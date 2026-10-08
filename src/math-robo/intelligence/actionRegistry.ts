@@ -52,12 +52,14 @@ for(const op of OPERATIONS){
   if(op.action==='CHANGE'&&op.subAction==='DEPTH')op.modes=['normal','geometry3d','graph3d'];
   if(op.action==='FIND'&&['MIDPOINT','LENGTH','SLOPE'].includes(op.subAction))op.allowedTypes=['line'];
   if(['FIND','CHANGE'].includes(op.action)&&['RADIUS','DIAMETER','CIRCUMFERENCE'].includes(op.subAction))op.allowedTypes=['circle','sphere'];
-  if(op.action==='FIND'&&['ROOTS','X_INTERCEPT','Y_INTERCEPT'].includes(op.subAction))op.allowedTypes=['plot'];
+  if(op.action==='FIND'&&['ROOTS','X_INTERCEPT','Y_INTERCEPT'].includes(op.subAction))op.allowedTypes=op.subAction==='ROOTS'?['plot']:['plot','line'];
   if(op.action==='CHANGE'&&['WIDTH','HEIGHT','DEPTH'].includes(op.subAction))op.allowedTypes=['rectangle','square','triangle','cuboid','cube','cylinder','cone','ellipse','ellipsoid','polygon'];
   if(op.action==='CREATE')op.allowedTypes=[op.subAction.toLowerCase()];
   if(op.action==='CREATE')op.required=op.subAction==='LINE'||op.subAction==='POINT'?['points']:op.subAction==='CIRCLE'||op.subAction==='SPHERE'?['radius']:op.subAction==='RECTANGLE'?['width','height']:op.subAction==='SQUARE'||op.subAction==='CUBE'?['width']:[];
 }
 
+export const BASELINE_SUBACTIONS=[...new Set(OPERATIONS.filter(op=>op.implemented).map(op=>op.subAction))];
+export const BASELINE_OPERATION_KEYS=OPERATIONS.filter(op=>op.implemented).map(op=>`${op.action}:${op.subAction}`);
 const unsupportedFamilies: Record<string,string[]> = {
   CREATE:['RAY','VECTOR','PLANE','ARC','SECTOR','RIGHT_TRIANGLE','EQUILATERAL_TRIANGLE','ISOSCELES_TRIANGLE'],
   FIND:['ANGLE','INCENTER','CIRCUMCENTER','ORTHOCENTER','VERTEX','MAXIMUM','MINIMUM','DOMAIN','RANGE','ASYMPTOTE','PROJECTION','FOOT_OF_PERPENDICULAR'],
@@ -68,5 +70,20 @@ const unsupportedFamilies: Record<string,string[]> = {
 };
 for (const [action, subActions] of Object.entries(unsupportedFamilies)) register(action,subActions,{implemented:false,executor:'unsupported'});
 for (const action of new Set(LANGUAGE_ACTIONS.map(normalizeAction))) if (!OPERATIONS.some(op=>op.action===action)) register(action,['OBJECT'],{implemented:false,executor:'unsupported'});
+function enable(action:string,subAction:string,options:Partial<OperationSpec>={}){
+  const existing=OPERATIONS.find(op=>op.action===action&&op.subAction===subAction);
+  if(existing)Object.assign(existing,{implemented:true,executor:`${action.toLowerCase()}:${subAction.toLowerCase()}`},options);
+  else register(action,[subAction],options);
+}
+for(const sub of ['INCENTER','CIRCUMCENTER','ORTHOCENTER','TRIANGLE_TYPE','LONGEST_SIDE','LARGEST_ANGLE'])enable('FIND',sub,{modes:two,allowedTypes:['triangle']});
+enable('FIND','COORDINATES');enable('FIND','EQUATION',{modes:two,allowedTypes:['line']});
+enable('FIND','ANGLE',{modes:two});enable('FIND','PROJECTION',{modes:two});enable('FIND','TOUCHING_POINT',{modes:two});
+for(const sub of ['MEDIAN','ALTITUDE','INCIRCLE','CIRCUMCIRCLE','ANGLE_BISECTOR','PROJECTION','NORMAL'])enable('CONSTRUCT',sub,{modes:two});
+for(const sub of ['TANGENT','COLLINEAR','POINT_OUTSIDE','RIGHT_TRIANGLE','EQUAL_ANGLES','ORIENTATION','MEDIAL_TRIANGLE'])enable('CHECK',sub,{modes:two});
+for(const action of ['LOCK','UNLOCK','EXTEND'])enable(action,'OBJECT',action==='EXTEND'?{allowedTypes:['line'],required:['factor']}:{createsObject:false});
+for(const sub of ['LENGTH','SLOPE'])enable('CHANGE',sub,{modes:two,allowedTypes:['line'],required:[sub.toLowerCase()]});
+enable('CHANGE','RELATION',{modes:two,required:['relation']});
+enable('REFLECT','DIAGONAL',{modes:two});enable('MARK','SIDE_MIDPOINTS',{modes:two});
+enable('EXPLAIN','PREVIOUS',{mutatesScene:false,returnsValue:true,createsObject:false});
 export function operationFor(action:string,subAction:string) { return OPERATIONS.find(op => op.action===normalizeAction(action)&&op.subAction===subAction); }
 export const ACTION_REGISTRY = LANGUAGE_ACTIONS.map(action => ({ action, normalizedAction:normalizeAction(action), aliases:[action.toLowerCase()], operations:OPERATIONS.filter(op=>op.action===normalizeAction(action)) }));

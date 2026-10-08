@@ -4,12 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config vite.config.ts",
     "typecheck": "tsc -b",
     "lint": "eslint . --max-warnings=0",
-    "build": "node --max-old-space-size=6144 ./node_modules/vite/bin/vite.js build",
+    "build": "node --max-old-space-size=8192 ./node_modules/vite/bin/vite.js build --config vite.config.ts",
     "build:checked": "npm run typecheck && npm run build",
-    "preview": "vite preview",
+    "preview": "vite preview --config vite.config.ts",
     "mobile:sync": "npm run build && cap sync",
     "mobile:add:android": "cap add android",
     "mobile:add:ios": "cap add ios",
@@ -50,7 +50,8 @@
     "lessons:strengthening:report": "node scripts/report-lesson-progress.mjs",
     "lessons:ecosystem:audit": "node scripts/generate-lesson-ecosystem-audit.mjs",
     "lessons:visual-batches:prepare": "node scripts/prepare-lesson-visual-batches.mjs",
-    "verify": "npm run lint && npm run typecheck && npm run build"
+    "verify": "npm run lint && npm run typecheck && npm run build",
+    "train:ruhi-candidate": "node scripts/build-math-robo-v41.mjs"
   },
   "dependencies": {
     "@capacitor/app": "^8.1.0",

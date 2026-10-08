@@ -1,0 +1,68 @@
+# Ruhi 100-question iteration-3 report
+
+Passed 96/100; failed 4.
+
+Real browser submission, committed workspace snapshots and working memory captured for every turn.
+
+## Metrics
+
+```json
+{
+  "standalone": {
+    "passed": 23,
+    "total": 25,
+    "percent": 92
+  },
+  "conversation": {
+    "passed": 96,
+    "total": 101,
+    "percent": 95.04950495049505
+  },
+  "pronouns": {
+    "passed": 50,
+    "total": 53,
+    "percent": 94.33962264150944
+  },
+  "followUp": {
+    "passed": 11,
+    "total": 11,
+    "percent": 100
+  },
+  "ambiguity": {
+    "passed": 10,
+    "total": 10,
+    "percent": 100
+  },
+  "readOnlySafety": {
+    "total": 33,
+    "unexpectedMutations": 0
+  },
+  "undo": {
+    "passed": 3,
+    "total": 3,
+    "percent": 100
+  }
+}
+```
+
+## Limitations
+
+- All 100 requested cases are 2D; no extrapolation to 3D.
+- Supported default parameters may conflict with subsequent supplied follow-up assumptions.
+- Numeric and geometry checks are explicit for points, circle parameters, dimensions, area invariance, perpendicular construction; remaining cases capture actual committed geometry for review.
+
+## First 20 failures
+
+- **Draw a ray starting at (2,2) and passing through (5,6).**: INTENT_FAILURE: unsupported; MISSING_MUTATION: no geometry change; VERIFICATION_FAILURE: A plain line is not a ray or directed vector Actual: UNSUPPORTED: CREATE:RAY is not available.
+- **Create a vector from (1,1) to (4,5).**: VERIFICATION_FAILURE: A plain line is not a ray or directed vector Actual: Created 2D line.
+- **What are the coordinates of the center?**: VERIFICATION_FAILURE: Circle center Actual: coordinates = [[6,3],[5.980738906688788,3.3920685613182426],[5.923141121612922,3.7803612880645128],[5.827761342928835,4.161138709017849],[5.695518130045147,4.530733729460359],[5.52768505739342,4.885586947303991],[5.325878449210181,5.222280932078409],[5.0920418134509475,5.537573136654582],[4.82842712474619,5.82842712474619],[4.537573136654582,6.0920418134509475],[4.222280932078409,6.325878449210181],[3.8855869473039912,6.52768505739342],[3.5307337294603593,6.695518130045147],[3.161138709017849,6.827761342928836],[2.780361288064513,6.923141121612922],[2.392068561318243,6.980738906688787],[2.0000000000000004,7],[1.6079314386817574,6.980738906688788],[1.2196387119354872,6.923141121612922],[0.8388612909821513,6.827761342928836],[0.4692662705396411,6.695518130045147],[0.11441305269600921,6.52768505739342],[-0.22228093207840782,6.325878449210181],[-0.5375731366545815,6.092041813450948],[-0.8284271247461898,5.82842712474619],[-1.092041813450948,5.537573136654582],[-1.3258784492101814,5.222280932078409],[-1.5276850573934198,4.885586947303992],[-1.695518130045147,4.530733729460359],[-1.8277613429288353,4.16113870901785],[-1.9231411216129217,3.7803612880645145],[-1.9807389066887873,3.3920685613182435],[-2,3.0000000000000004],[-1.9807389066887877,2.607931438681758],[-1.9231411216129217,2.2196387119354863],[-1.8277613429288357,1.8388612909821516],[-1.6955181300451474,1.4692662705396413],[-1.5276850573934202,1.1144130526960094],[-1.3258784492101818,0.7777190679215922],[-1.0920418134509484,0.46242686334541894],[-0.8284271247461907,0.17157287525381015],[-0.5375731366545837,-0.09204181345094664],[-0.2222809320784087,-0.32587844921018094],[0.11441305269600854,-0.5276850573934198],[0.46926627053963865,-0.6955181300451461],[0.8388612909821502,-0.8277613429288353],[1.2196387119354855,-0.9231411216129213],[1.6079314386817583,-0.9807389066887877],[1.9999999999999993,-1],[2.3920685613182404,-0.9807389066887877],[2.780361288064513,-0.9231411216129217],[3.161138709017848,-0.8277613429288357],[3.5307337294603602,-0.6955181300451465],[3.8855869473039903,-0.5276850573934202],[4.222280932078407,-0.32587844921018183],[4.537573136654583,-0.09204181345094753],[4.82842712474619,0.17157287525380926],[5.092041813450947,0.4624268633454163],[5.325878449210181,0.7777190679215913],[5.52768505739342,1.1144130526960083],[5.695518130045146,1.4692662705396384],[5.827761342928835,1.83886129098215],[5.923141121612922,2.219638711935485],[5.980738906688788,2.607931438681758],[6,2.999999999999999]].
+- **Draw a vertical line through it.**: EXECUTION_FAILURE: TimeoutError: locator.innerText: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('.robo-answer')[22m
+ Actual: TimeoutError: locator.innerText: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('.robo-answer')[22m
+
+- **What's the distance from that point to the origin?**: VERIFICATION_FAILURE: Distance to origin 5 Actual: Distance to origin = 5 units. Distance formula: √(Σ coordinate²).
+- **Are they still tangent?**: VERIFICATION_FAILURE: Separated circles are not tangent Actual: No — tangent.
+- **And now?**: VERIFICATION_FAILURE: Tangency restored after undo Actual: Yes — tangent.

@@ -38,6 +38,7 @@ export function measurement(o:RoboObjectDescriptor,kind:string):number|number[] 
     const surface:Record<string,number>={sphere:4*Math.PI*r*r,cube:6*w*w,cuboid:2*(w*h+w*d+h*d),cylinder:2*Math.PI*r*(r+h),cone:Math.PI*r*(r+Math.hypot(r,h))};
     const value=(kind==='VOLUME'?volume:surface)[o.type];if(value===undefined)throw new Error(`UNSUPPORTED: ${kind.toLowerCase()} for ${o.type}.`);return value;
   }
+  if(['X_INTERCEPT','Y_INTERCEPT'].includes(kind)&&o.type==='line'){const [a,b]=vertices(o),axis=kind==='X_INTERCEPT'?1:0,delta=b[axis]-a[axis];if(Math.abs(delta)<1e-9)throw new Error('There is no unique intercept with that axis.');const t=-a[axis]/delta;return a.map((v,i)=>v+t*(b[i]-v));}
   if(kind==='Y_INTERCEPT'){if(o.type!=='plot')throw new Error('Y intercept requires a function graph.');return [0,compileFunctionExpression(c.expression!)(0)];}
   throw new Error(`UNSUPPORTED: ${kind}.`);
 }

@@ -1,5 +1,6 @@
 import './studios/studioHomeLayout.css';
 import OfflineMathAssistant from './offline-intelligence/OfflineMathAssistant';
+import {MODEL_TRAINING_ENABLED} from './math-robo/intelligence/buildPolicy';
 import {
   Component,
   lazy,
@@ -110,7 +111,7 @@ const AlgebraicStructuresStudio = lazyRoute(
   () => import("./pages/AlgebraicStructuresStudio"),
 );
 const AIApplications = lazyRoute(() => import("./pages/AIApplications"));
-const ModelTraining = lazyRoute(() => import("./pages/ModelTraining"));
+const ModelTraining = MODEL_TRAINING_ENABLED ? lazyRoute(() => import("./pages/ModelTraining")) : () => null;
 const ARMathLab = lazyRoute(() => import("./pages/ARMathLab"));
 const BoardSyllabusVisualizer = lazyRoute(
   () => import("./pages/BoardSyllabusVisualizer"),
@@ -762,7 +763,8 @@ export default function App() {
               element={<MatrixOperationsSandbox />}
             />
             <Route path="ai-applications" element={<AIApplications />} />
-            <Route path="model-training" element={<ModelTraining />} />
+            {MODEL_TRAINING_ENABLED && <Route path="model-training" element={<ModelTraining />} />}
+            {MODEL_TRAINING_ENABLED && <Route path="model-training/capabilities" element={<ModelTraining />} />}
             <Route
               path="mathematical-modelling"
               element={<MathematicalModellingStudio />}

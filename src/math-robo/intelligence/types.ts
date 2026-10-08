@@ -1,6 +1,6 @@
 import type { IntelligenceMode, VisualCommand } from '../../offline-intelligence/commands';
 export type RoboMode = IntelligenceMode;
-export type RoboTarget = string | { id?: string; name?: string; type?: string; color?: string; index?: number; relation?: 'nearest'|'largest'|'smallest'; to?: string; reference?:'lastReferenced' };
+export type RoboTarget = string | { id?: string; name?: string; type?: string; color?: string; index?: number; relation?: 'nearest'|'largest'|'smallest'|'longest'|'leftmost'|'horizontal'|'vertical'|'above'; to?: string; reference?:'lastReferenced' };
 export type RoboParameters = {
   width?: number; height?: number; depth?: number; radius?: number; diameter?: number; sides?: number;
   position?: number[]; points?: number[][]; vector?: number[]; dx?: number; dy?: number; dz?: number;
@@ -20,19 +20,25 @@ export type RoboObjectDescriptor = {
   id: string; type: string; mode: RoboMode; label?: string; position: number[]; radius?: number;
   style: { color: string; visible?: boolean }; command: VisualCommand; vertices?: number[][]; originalId?: string;
   parameters?: RoboParameters;
+  locked?:boolean;creationOrder?:number;derivedFrom?:string[];
 };
 export type RoboSceneContext = {
-  snapshotId: string; objects: RoboObjectDescriptor[]; selectedIds: string[]; lastCreated?: string;
+  activePagePath?:string; snapshotId: string; objects: RoboObjectDescriptor[]; selectedIds: string[]; lastCreated?: string;
   lastModified?: string; lastReferenced?: string; lastQueryTargets?: string[]; activeMode: RoboMode;
   previousResult?: number | number[] | number[][] | string | boolean; previousResultTargets?: string[];
+  activeObjectIds?:string[];previousSelectedIds?:string[];recentlyReferencedObjectIds?:string[];
+  previousCommands?:MathRoboCommand[];previousResults?:{action:string;value?:RoboSceneContext['previousResult'];explanation:string}[];
+  activeTool?:string;viewport?:unknown;responseDepth?:'compact'|'standard'|'detailed';
 };
 export type RoboResult = {
+  engineExecution?:import('./engineRegistry').EngineResult;
   status: 'success'|'invalid'|'unsupported'|'ambiguous'|'unhandled'; message: string;
   value?: RoboSceneContext['previousResult']; candidates?: string[]; plan: MathRoboPlan;
   effects: VisualCommand[]; parseMs: number; executionMs: number;
+  errorCode?:import('./executionErrors').RoboErrorCode;verification?:{passed:boolean;checks:string[]};explanation?:string;requestKind?:import('./requestClassifier').RequestKind;
 };
 export type SemanticRow = {
   phrase: string; action: string; subAction: string; mode: RoboMode; parameters: RoboParameters;
-  target?: RoboTarget; targets?: RoboTarget[]; context?: { objects: Omit<RoboObjectDescriptor, 'command'>[]; selected?: string[]; lastReferenced?: string; previousResult?:RoboSceneContext['previousResult'] };
+  target?: RoboTarget; targets?: RoboTarget[]; context?: { objects: Omit<RoboObjectDescriptor, 'command'>[]; selected?: string[]; lastReferenced?: string; previousResult?:RoboSceneContext['previousResult'];previousResults?:RoboSceneContext['previousResults'];activeObjectIds?:string[] };
   group?: string; source?: string;
 };

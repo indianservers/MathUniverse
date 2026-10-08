@@ -1,5 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import {mkdir,writeFile} from 'node:fs/promises';
+test.use({video:'off',screenshot:'off',trace:'off',launchOptions:process.env.ROBO_SOFTWARE_RENDER==='true'?{args:['--use-angle=swiftshader','--disable-gpu']}:undefined});
+const artifactDirectory=process.env.ROBO_ARTIFACT_DIR??'artifacts/math-robo-400';
 type Step={phrase:string;answer:RegExp;delta?:number;reject?:boolean;value?:number[]};
 const paths={geometry2d:'/workspace/geometry',geometry3d:'/workspace/3d',graph2d:'/workspace/graph',graph3d:'/math-lab/3d-graphing'};
 const verbs=['Create','Draw','Make','Add','Sketch','Please draw','Can you create','Build','Show me','I need'];
@@ -44,7 +46,7 @@ async function ask(page:Page,phrase:string){
   return (await page.locator('.robo-answer').innerText()).trim();
 }
 for(const mode of Object.keys(paths) as (keyof typeof paths)[])test(`100 real NLP commands in ${mode}`,async({page})=>{
-  test.setTimeout(600000);await mkdir('artifacts/math-robo-400',{recursive:true});
+  test.setTimeout(600000);await mkdir(artifactDirectory,{recursive:true});
   await page.goto(paths[mode],{waitUntil:'domcontentloaded',timeout:60000});await page.getByRole('button',{name:'Ask Math · Offline'}).click();
   await expect(page.locator('.robo-learning-status')).toContainText('TensorFlow.js ready',{timeout:60000});
   const records:unknown[]=[];let failures=0;
@@ -58,11 +60,11 @@ for(const mode of Object.keys(paths) as (keyof typeof paths)[])test(`100 real NL
         if(step.reject){const inspector=page.getByText('Developer inspector',{exact:true});await inspector.click();const status=await page.locator('details').filter({has:inspector}).innerText();if(/Status: success/.test(status))error+=' Ambiguous destination was accepted.';await inspector.click();}
       }catch(reason){error=String(reason);}
       if(error)failures++;records.push({number:scenario*10+index+1,scenario:scenario+1,phrase:step.phrase,answer,passed:!error,error,before,after:await count(),milliseconds:Date.now()-start});
-      await writeFile(`artifacts/math-robo-400/${mode}-progress.json`,JSON.stringify({mode,completed:records.length,failed:failures,records},null,2));
+      await writeFile(`${artifactDirectory}/${mode}-progress.json`,JSON.stringify({mode,completed:records.length,failed:failures,records},null,2));
       console.log(`${mode} ${records.length}/100 ${error?'FAIL':'PASS'} ${step.phrase}`);
     }
   }
-  await writeFile(`artifacts/math-robo-400/${mode}.json`,JSON.stringify({mode,commands:100,passed:100-failures,failed:failures,records},null,2));
+  await writeFile(`${artifactDirectory}/${mode}.json`,JSON.stringify({mode,commands:100,passed:100-failures,failed:failures,records},null,2));
   expect(failures,`${mode}: inspect artifacts/math-robo-400/${mode}.json`).toBe(0);
-  await page.screenshot({path:`artifacts/math-robo-400/${mode}.png`,timeout:15000}).catch(error=>console.log(`Optional screenshot unavailable: ${error}`));
+  if(process.env.ROBO_SCREENSHOTS==='true')await page.screenshot({path:`${artifactDirectory}/${mode}.png`,timeout:15000}).catch(error=>console.log(`Optional screenshot unavailable: ${error}`));
 });

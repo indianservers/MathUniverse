@@ -1,0 +1,62 @@
+{
+  "mode": "graph3d",
+  "passed": true,
+  "records": [
+    {
+      "phrase": "Delete all objects",
+      "answer": "Cleared Robo scene objects."
+    },
+    {
+      "phrase": "Draw a sphere radius 5",
+      "answer": "Created 3D sphere with radius 5."
+    },
+    {
+      "phrase": "What is its volume?",
+      "answer": "volume = 523.5987756 units."
+    },
+    {
+      "phrase": "Move it 3 units right and 2 up",
+      "answer": "move sphere."
+    },
+    {
+      "phrase": "Rotate it 90 degrees",
+      "answer": "rotate sphere."
+    },
+    {
+      "phrase": "What is its volume?",
+      "answer": "volume = 523.5987756 units."
+    },
+    {
+      "phrase": "Duplicate it",
+      "answer": "Duplicated sphere."
+    },
+    {
+      "phrase": "Make the copy red",
+      "answer": "Changed sphere to red."
+    },
+    {
+      "phrase": "Delete the original",
+      "answer": "Deleted sphere."
+    },
+    {
+      "phrase": "Undo that",
+      "answer": "Undid the last Ruhi action."
+    },
+    {
+      "phrase": "Count objects",
+      "answer": "Count = 2."
+    },
+    {
+      "phrase": "Maybe delete that circle",
+      "answer": "Please clarify the request before I change any objects."
+    },
+    {
+      "phrase": "What happens if I draw a circle?",
+      "answer": "UNSUPPORTED: UNSUPPORTED:OBJECT is not available."
+    },
+    {
+      "phrase": "Do not delete everything",
+      "answer": "Please clarify the request before I change any objects."
+    }
+  ]
+}

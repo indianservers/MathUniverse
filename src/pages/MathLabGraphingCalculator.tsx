@@ -1,5 +1,6 @@
 import { ImmersiveBoundary } from "../workspace/immersive/ImmersiveInteractionManager";
-import { useIntelligenceWorkspace } from '../offline-intelligence/workspaceBridge';
+import { useIntelligenceWorkspace,isKnownRoboObject } from '../offline-intelligence/workspaceBridge';
+import {graphCommand} from '../math-robo/intelligence/graphInventory';
 import { graphExpressions } from '../offline-intelligence/commands';
 import { Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -108,15 +109,16 @@ function MathLabGraphingCalculatorContent({ embedded }: { embedded?: EmbeddedGra
   const [selectedId, setSelectedId] = useState("f1");
   useIntelligenceWorkspace('graph2d', command => {
     const base=command.objectId??crypto.randomUUID();
+    const matches=(row:{id:string})=>command.roboNativeRow?row.id===base:row.id.startsWith(`${base}-`);
     if(command.roboControl==='deselect'){setSelectedId('');return;}
-    if(command.roboControl==='delete'){setFunctions(current=>current.filter(row=>!row.id.startsWith(`${base}-`)));return;}
-    if(command.roboControl==='visibility'){setFunctions(current=>current.map(row=>row.id.startsWith(`${base}-`)?{...row,visible:command.roboVisible??true}:row));return;}
-    if(command.roboControl==='select'){setSelectedId(`${base}-0`);return;}
-    if(command.action==='update'&&!functions.some(row=>row.id.startsWith(`${base}-`)))return 'The last Ruhi graph was removed. Create an object again before editing it.';
-    const rows = graphExpressions(command).map((input,i) => ({id:`${base}-${i}`,input,color:command.color,visible:command.roboVisible??true,name:command.roboLabel??command.kind}));
-    setFunctions(current => [...current.filter(row=>!row.id.startsWith(`${base}-`)),...rows]);
+    if(command.roboControl==='delete'){setFunctions(current=>current.filter(row=>!matches(row)));return;}
+    if(command.roboControl==='visibility'){setFunctions(current=>current.map(row=>matches(row)?{...row,visible:command.roboVisible??true}:row));return;}
+    if(command.roboControl==='select'){setSelectedId(command.roboNativeRow?base:`${base}-0`);return;}
+    if(command.action==='update'&&!functions.some(matches))return 'The last Ruhi graph was removed. Create an object again before editing it.';
+    const rows = graphExpressions(command).map((input,i) => ({id:command.roboNativeRow&&i===0?base:`${base}-${i}`,input,color:command.color,visible:command.roboVisible??true,name:command.roboLabel??command.kind}));
+    setFunctions(current => [...current.filter(row=>!matches(row)),...rows]);
     setSelectedId(rows[0].id);
-  }, !embedded, command=>functions.some(row=>row.id.startsWith(`${command.objectId}-`))?{command}:undefined);
+  }, !embedded, command=>{const row=functions.find(row=>command.roboNativeRow?row.id===command.objectId:row.id.startsWith(`${command.objectId}-`));return row?{command:{...command,color:row.color,roboVisible:row.visible,...(command.kind==='plot'?{expression:row.input.replace(/^y\s*=\s*/, '')}:{})}}:undefined;},()=>({commands:functions.filter(row=>!isKnownRoboObject('graph2d',row.id)).map(row=>graphCommand(row.id,row.input,row.color,row.visible,'2d',row.name)),selectedIds:selectedId?[selectedId.replace(/-0$/,'')]:[]}));
   const [view, setView] = useState<FunctionGraphView>(() => sharedProject?.view ?? DEFAULT_GRAPH_VIEW);
   const [showGrid, setShowGrid] = useState(() => sharedProject?.showGrid ?? true);
   const [showAxes, setShowAxes] = useState(() => sharedProject?.showAxes ?? true);

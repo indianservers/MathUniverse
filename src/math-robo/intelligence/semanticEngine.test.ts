@@ -33,7 +33,7 @@ describe('Math Robo semantic execution',()=>{
     await execute(engine,'Create a triangle');
     const before=engine.snapshot().objects;
     const rejected=await execute(engine,'Move that triangle to point 4');
-    expect(rejected.status).toBe('invalid');expect(rejected.message).toContain('destination coordinates');
+    expect(rejected.status).toBe('ambiguous');expect(rejected.message).toContain('destination coordinates');
     expect(rejected.effects).toEqual([]);expect(engine.snapshot().objects).toEqual(before);
     expect((await execute(engine,'Move that triangle to (4,0)')).status).toBe('success');
     const query=await execute(engine,'What is its centroid?');

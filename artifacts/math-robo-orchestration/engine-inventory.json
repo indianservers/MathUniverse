@@ -1,0 +1,1161 @@
+[
+  {
+    "path": "src/ar-math-lab/arExplorationEngine.ts",
+    "exports": [
+      "resolveARParameters",
+      "generateARPlanarGraph",
+      "analyzeARFunction",
+      "regularARPolygon",
+      "polygonMetrics",
+      "transformARPolygon",
+      "extrudeARPolygon",
+      "createARConstruction",
+      "sectionARMesh",
+      "exportARMeshOBJ",
+      "circleARPoints",
+      "intersectARCircles",
+      "triangleARCenters"
+    ]
+  },
+  {
+    "path": "src/ar-math-lab/arLearningEngine.ts",
+    "exports": [
+      "createARLearningEvent",
+      "buildLearningState",
+      "identifyConcept"
+    ]
+  },
+  {
+    "path": "src/cas/casNotebookEngine.ts",
+    "exports": [
+      "operationOptions",
+      "casNotebookExamples",
+      "starterNotebookCells",
+      "createNotebookCell",
+      "evaluateNotebookCells",
+      "evaluateNotebookCellInState",
+      "evaluateNotebookCell",
+      "serializeCasNotebookMarkdown",
+      "isNotebookOperation"
+    ]
+  },
+  {
+    "path": "src/data/engineeringAssessmentPlanner.ts",
+    "exports": [
+      "buildEngineeringAssessmentPlans",
+      "assessmentSummary",
+      "engineeringExamSprints",
+      "sprintReadiness"
+    ]
+  },
+  {
+    "path": "src/data/engineeringCaseStudies.ts",
+    "exports": [
+      "engineeringCaseStudies",
+      "caseStudiesForDomain",
+      "caseStudySummary"
+    ]
+  },
+  {
+    "path": "src/data/engineeringConceptCoverage.ts",
+    "exports": [
+      "buildEngineeringConceptCoverage",
+      "engineeringCoverageSummary"
+    ]
+  },
+  {
+    "path": "src/data/engineeringDependencyGraph.ts",
+    "exports": [
+      "engineeringDependencyEdges",
+      "engineeringLearningPaths",
+      "dependenciesForDomain",
+      "unlocksForDomain",
+      "learningPathsForDomain",
+      "dependencyGraphSummary"
+    ]
+  },
+  {
+    "path": "src/data/engineeringFormulaAtlas.ts",
+    "exports": [
+      "engineeringFormulaAtlas",
+      "formulasForDomain",
+      "formulaAtlasSummary"
+    ]
+  },
+  {
+    "path": "src/data/engineeringLabLaunchers.ts",
+    "exports": [
+      "engineeringLabLaunchers",
+      "launchersForDomain",
+      "launcherCoverageSummary"
+    ]
+  },
+  {
+    "path": "src/data/engineeringMathBlueprint.ts",
+    "exports": [
+      "engineeringSyllabusTopics",
+      "engineeringMathDomains",
+      "engineeringMathMilestones",
+      "engineeringMathSummary",
+      "engineeringDomainById",
+      "engineeringCoverageGaps"
+    ]
+  },
+  {
+    "path": "src/data/engineeringMathSolvers.ts",
+    "exports": [
+      "engineeringSolverPresets",
+      "runJacobianAreaPreset",
+      "runEigenPreset",
+      "runNewtonPreset",
+      "runBisectionPreset",
+      "runOdeComparisonPreset",
+      "runHeatGridPreset",
+      "runMarkovQueuePreset",
+      "runVectorFieldPreset",
+      "runLinearProgrammingPreset",
+      "runControlResponsePreset",
+      "jacobianAreaScale",
+      "eigenvalues2x2",
+      "newtonRoot",
+      "bisectionRoot",
+      "compareEulerRk4",
+      "laplaceDecayPreset",
+      "explicitHeatStep",
+      "markovQueueReport",
+      "vectorFieldReport",
+      "linearProgrammingCorners",
+      "secondOrderControlResponse"
+    ]
+  },
+  {
+    "path": "src/data/engineeringPracticePacks.ts",
+    "exports": [
+      "engineeringPracticePacks",
+      "practicePackForDomain",
+      "practiceCoverageSummary"
+    ]
+  },
+  {
+    "path": "src/data/engineeringProjects.ts",
+    "exports": [
+      "engineeringProjects",
+      "projectsForDomain",
+      "projectSummary"
+    ]
+  },
+  {
+    "path": "src/data/engineeringSimulationScenarios.ts",
+    "exports": [
+      "engineeringSimulationScenarios",
+      "simulationsForDomain",
+      "simulationCoverageSummary",
+      "adjustedSimulationSamples"
+    ]
+  },
+  {
+    "path": "src/data/engineeringWorkedExamples.ts",
+    "exports": [
+      "engineeringWorkedExamples",
+      "workedExamplesForDomain",
+      "workedExampleSummary"
+    ]
+  },
+  {
+    "path": "src/embed/engine.ts",
+    "exports": [
+      "EMBED_KINDS",
+      "API_NAMES",
+      "isEmbedKind",
+      "uid",
+      "defaultScene",
+      "normalizeScene",
+      "encodeScene",
+      "decodeScene",
+      "evaluateExpression",
+      "iframeSnippet",
+      "scriptSnippet",
+      "renderScene",
+      "embed",
+      "createApi"
+    ]
+  },
+  {
+    "path": "src/graph-studio/expressionEngine.ts",
+    "exports": [
+      "detectGraphVariables",
+      "createGraphVariable",
+      "reconcileGraphVariables",
+      "substituteGraphVariables",
+      "advanceGraphVariable",
+      "explainExpressionError"
+    ]
+  },
+  {
+    "path": "src/graph-studio/simulationEngine.ts",
+    "exports": [
+      "SIMULATION_MODELS",
+      "defaultSimulationParameters",
+      "simulationSeries"
+    ]
+  },
+  {
+    "path": "src/graph-studio/unitEngine.ts",
+    "exports": [
+      "GRAPH_UNITS",
+      "convertGraphUnit"
+    ]
+  },
+  {
+    "path": "src/learning-system/assessmentEngine.ts",
+    "exports": [
+      "assessmentBlueprints",
+      "evaluateAnswer",
+      "scoreStepBased",
+      "validateBlueprint"
+    ]
+  },
+  {
+    "path": "src/learning-system/masteryEngine.ts",
+    "exports": [
+      "computeMastery",
+      "remediationRecommendation"
+    ]
+  },
+  {
+    "path": "src/learning-system/practiceEngine.ts",
+    "exports": [
+      "seededRandom",
+      "generateQuestion",
+      "practiceFamilies",
+      "equivalentExpressions",
+      "validateFamilySeeds"
+    ]
+  },
+  {
+    "path": "src/offline-intelligence/languageEngine.ts",
+    "exports": [
+      "modeForPath",
+      "interpretVisualRequest",
+      "outlineVertices",
+      "centroid",
+      "transformPoint",
+      "graphExpressions"
+    ]
+  },
+  {
+    "path": "src/phase4/assumptionEngine.ts",
+    "exports": [
+      "parseAssumption",
+      "analyzeAssumptions",
+      "hasAssumption"
+    ]
+  },
+  {
+    "path": "src/phase4/casEngine.ts",
+    "exports": [
+      "evaluateCertifiedCas"
+    ]
+  },
+  {
+    "path": "src/phase5/math3dEngine.ts",
+    "exports": [
+      "createExplicitSurface",
+      "createParametricSurface",
+      "createImplicitSurface",
+      "createSpaceCurve",
+      "createVectorField",
+      "createSolidRegion",
+      "sampleSolidRegion",
+      "sampleExplicit",
+      "sampleParametric",
+      "extractImplicit",
+      "sampleCurve",
+      "evaluateVectorField",
+      "parseGeneral3D",
+      "vector"
+    ]
+  },
+  {
+    "path": "src/problem-solver/algebraStepSolver.ts",
+    "exports": [
+      "solveAlgebraSteps"
+    ]
+  },
+  {
+    "path": "src/problem-solver/calculusSolver.ts",
+    "exports": [
+      "solveCalculus"
+    ]
+  },
+  {
+    "path": "src/problem-solver/expressionOperationSolver.ts",
+    "exports": [
+      "solveExpressionOperation"
+    ]
+  },
+  {
+    "path": "src/problem-solver/fractalSolver.ts",
+    "exports": [
+      "solveFractal"
+    ]
+  },
+  {
+    "path": "src/problem-solver/matrixSolver.ts",
+    "exports": [
+      "solveMatrix"
+    ]
+  },
+  {
+    "path": "src/problem-solver/problemSolverEngine.ts",
+    "exports": [
+      "solveProblem",
+      "buildSolverResult",
+      "toSolverResult"
+    ]
+  },
+  {
+    "path": "src/problem-solver/proportionalReasoningSolver.ts",
+    "exports": [
+      "solveProportionalReasoning"
+    ]
+  },
+  {
+    "path": "src/problem-solver/statisticsSolver.ts",
+    "exports": [
+      "solveStatistics"
+    ]
+  },
+  {
+    "path": "src/problem-solver/systemSolver.ts",
+    "exports": [
+      "solveSystem"
+    ]
+  },
+  {
+    "path": "src/problem-solver/wordProblemSolver.ts",
+    "exports": [
+      "solveWordProblem"
+    ]
+  },
+  {
+    "path": "src/workspace/animationEngine.ts",
+    "exports": [
+      "pingPongValue",
+      "orbitalPoint",
+      "animationTargetLabel"
+    ]
+  },
+  {
+    "path": "src/workspace/dynamicWorkspaceEngine.ts",
+    "exports": [
+      "createObjectFromDefinition",
+      "evaluateDynamicWorkspace",
+      "buildCanonicalAlgebra"
+    ]
+  },
+  {
+    "path": "src/workspace/geometry2dWorkspaceEngine.ts",
+    "exports": [
+      "createPointObject",
+      "createLineObject",
+      "createCircleObject",
+      "createConicObject",
+      "createPolygonObject",
+      "solveGeometry2DScene",
+      "solveGeometry2DSceneWithDiagnostics",
+      "dragGeometryPoint",
+      "snapPointToGeometry",
+      "measureGeometry2D",
+      "transformGeometryObject",
+      "generateLocus",
+      "allSceneIntersections"
+    ]
+  },
+  {
+    "path": "src/workspace/geometry3dWorkspaceEngine.ts",
+    "exports": [
+      "createPoint3DObject",
+      "createVector3DObject",
+      "createLine3DObject",
+      "createPlane3DObject",
+      "createSphere3DObject",
+      "createCylinder3DObject",
+      "createCone3DObject",
+      "solveGeometry3DScene",
+      "allSceneIntersections3D",
+      "createSection3DObjects",
+      "snapPointToGeometry3D",
+      "measureGeometry3D",
+      "transformGeometry3DObject",
+      "generateLocus3D",
+      "createGeometry3DTransformHandles"
+    ]
+  },
+  {
+    "path": "src/workspace/spreadsheetStudioEngine.ts",
+    "exports": [
+      "createDefaultSpreadsheetWorkbook",
+      "emptySheet",
+      "evaluateSpreadsheetWorkbook",
+      "extractFormulaReferences",
+      "calculateLinearRegression",
+      "calculateSpreadsheetStatistics",
+      "parseDelimitedText",
+      "serializeWorkbook"
+    ]
+  },
+  {
+    "path": "src/workspace/workspaceEngineBridge.ts",
+    "exports": [
+      "buildSharedWorkspaceModel",
+      "objectsWithEngineMeasurements",
+      "mathObjectToGeometry2D",
+      "mathObjectToGeometry3D",
+      "geometry2DToMathObject",
+      "geometry3DToMathObject"
+    ]
+  },
+  {
+    "path": "src/utils/mathEngine/engineeringSystems.ts",
+    "exports": [
+      "buildBodeResponse",
+      "buildFourierSynthesis",
+      "buildConvolutionResponse",
+      "solveFirstOrderOde",
+      "simulateHeatRod",
+      "simulateWaveString",
+      "buildVectorField",
+      "buildStressStrainCurve",
+      "buildEigenMode"
+    ]
+  },
+  {
+    "path": "src/utils/mathEngine/equationSolver.ts",
+    "exports": []
+  },
+  {
+    "path": "src/studios/algebra/algebraEnhancementEngine.ts",
+    "exports": [
+      "algebraTiles",
+      "cancelZeroPairs",
+      "distributeBinomials",
+      "factorIntegerQuadratic",
+      "solveLinearEquation",
+      "solveLinearInequality",
+      "solveAbsoluteValue",
+      "completeSquare",
+      "rationalRestrictions",
+      "validateRadicalCandidate",
+      "composeFunctions",
+      "inverseLinear",
+      "evaluatePiecewise",
+      "polynomialFromRoots",
+      "quadraticRoots",
+      "syntheticDivide",
+      "rationalFunctionAnalysis",
+      "solveThreeByThree",
+      "numericIntersections",
+      "exponentLawCounterexample",
+      "changeLogBase",
+      "generateSequences",
+      "arithmeticSeries",
+      "validateEquivalentExpressions",
+      "verifyEquationCandidates"
+    ]
+  },
+  {
+    "path": "src/studios/calculus/calculusEnhancementEngine.ts",
+    "exports": [
+      "epsilonDelta",
+      "oneSidedLimits",
+      "sequenceLimit",
+      "classifyDiscontinuity",
+      "lhopitalEligibility",
+      "secantToTangent",
+      "derivativeRuleTree",
+      "implicitCircleTangent",
+      "polynomialMotion",
+      "linearization",
+      "circleRelatedRates",
+      "rectangleOptimization",
+      "meanValuePointQuadratic",
+      "simpsonIntegral",
+      "ftcAccumulator",
+      "riemannComparison",
+      "adaptiveIntegral",
+      "substitutionBounds",
+      "integrationByParts",
+      "partialFractionsLinear",
+      "improperPIntegral",
+      "revolutionVolumes",
+      "odeMethodComparison",
+      "convergenceTest",
+      "taylorApproximation",
+      "divergenceFluxLinear"
+    ]
+  },
+  {
+    "path": "src/studios/calculus/engineeringCalculusMath.ts",
+    "exports": [
+      "seriesCases",
+      "sequenceLimit",
+      "ratioLimit",
+      "rootLimit",
+      "raabeLimit",
+      "logarithmicLimit",
+      "nthTermVerdict",
+      "runNamedTest",
+      "rationalCurve",
+      "rationalDerivative",
+      "rationalObliqueGap",
+      "semicubical",
+      "foliumPoint",
+      "polarPoint",
+      "taylorExp",
+      "taylorTrig",
+      "taylorPolynomial",
+      "taylorPolynomialExpansion",
+      "lagrangeCircle",
+      "lagrangeLine",
+      "triangleOrder",
+      "splitRegionOrder",
+      "rectangleCentroid",
+      "variableDensityCentroid",
+      "rightTriangleCentroid",
+      "rectangleInertia",
+      "diskInertia",
+      "annulusInertia",
+      "triangleInertia",
+      "boxTriple",
+      "cylinderVolume",
+      "sphereVolume"
+    ]
+  },
+  {
+    "path": "src/studios/complex/complexEnhancementEngine.ts",
+    "exports": [
+      "add",
+      "multiply",
+      "divide",
+      "abs",
+      "expComplex",
+      "draggableArithmetic",
+      "synchronizeForms",
+      "locus",
+      "deMoivre",
+      "nthRoots",
+      "rootsOfUnity",
+      "mobius",
+      "mappedGrid",
+      "cauchyRiemann",
+      "complexDerivative",
+      "contourIntegral",
+      "simpleResidue",
+      "zeroPoleMap",
+      "principalLog",
+      "stereographicProjection",
+      "mandelbrot",
+      "julia",
+      "eulerPhasor",
+      "polynomialRoots",
+      "discreteFourier",
+      "seriesImpedance",
+      "quantumInterference",
+      "conformalRegion",
+      "rootSensitivity",
+      "quaternionRotation"
+    ]
+  },
+  {
+    "path": "src/studios/differential-equations/engineeringMath.ts",
+    "exports": [
+      "characteristic",
+      "secondOrderConstants",
+      "homogeneousValue",
+      "undeterminedPresets",
+      "linearResidual",
+      "variationPresets",
+      "cauchyIndicial",
+      "cauchyValue",
+      "classifySystem",
+      "systemStep",
+      "trajectory",
+      "oscillatorSample",
+      "newtonTemperature",
+      "newtonHalfLife",
+      "newtonTimeTo"
+    ]
+  },
+  {
+    "path": "src/studios/discrete/discreteEnhancementEngine.ts",
+    "exports": [
+      "setOperations",
+      "truthTable2",
+      "karnaugh2",
+      "quantify",
+      "modusPonens",
+      "relationClosures",
+      "functionProperties",
+      "countingTree",
+      "generatingFunctionCoins",
+      "linearRecurrence",
+      "congruenceClass",
+      "chineseRemainder",
+      "extendedEuclid",
+      "primeFactorization",
+      "rsaDemo",
+      "validateGraph",
+      "bfs",
+      "greedyColoring",
+      "maxFlow",
+      "planarityBound",
+      "huffmanCodes",
+      "simulateDfa",
+      "regexEquivalentBounded",
+      "parenthesesPda",
+      "cfgAndTuring"
+    ]
+  },
+  {
+    "path": "src/studios/geometry/geometryEnhancementEngine.ts",
+    "exports": [
+      "constructionSteps",
+      "constrainToCircle",
+      "locusCircle",
+      "congruenceSSS",
+      "similarityScale",
+      "triangleCentres",
+      "eulerLine",
+      "ninePointCircle",
+      "transformPoint",
+      "coordinateProof",
+      "polygonAngles",
+      "regularPolygon",
+      "regularTessellation",
+      "circleTheorems",
+      "powerOfPoint",
+      "conicPoint",
+      "proofStepHighlight",
+      "theoremCounterexample",
+      "cuboidSection",
+      "validateCubeNet",
+      "prismDissection",
+      "eulerCharacteristic",
+      "curvedGeometryAngleSum",
+      "measurementInterval",
+      "serializeConstruction"
+    ]
+  },
+  {
+    "path": "src/studios/linear-algebra/linearAlgebraEnhancementEngine.ts",
+    "exports": [
+      "basisCoordinates",
+      "matrixRank",
+      "spanAnalysis",
+      "dependenceCoefficients",
+      "gramSchmidt",
+      "projection",
+      "dotCross",
+      "determinant",
+      "multiply",
+      "rref",
+      "fundamentalSubspaces",
+      "inverse2",
+      "lu2",
+      "qr2",
+      "singularValues2",
+      "eigen2",
+      "jordanClassification",
+      "spectralDecomposition",
+      "classifyQuadraticForm",
+      "pca2",
+      "markovStep",
+      "adjacencyAnalysis",
+      "linearSystemEuler",
+      "conditionNumber2",
+      "rankOneApproximation",
+      "proofCounterexample",
+      "parseMatrixCsv"
+    ]
+  },
+  {
+    "path": "src/studios/modelling/modellingEnhancementEngine.ts",
+    "exports": [
+      "modellingWorkflow",
+      "checkUnits",
+      "importObservations",
+      "fitLinear",
+      "informationCriteria",
+      "residualDiagnostics",
+      "linearParameterIntervals",
+      "sensitivity",
+      "identifiability",
+      "kFoldValidation",
+      "compareScenarios",
+      "piecewiseIntervention",
+      "seasonalDelay",
+      "sirStep",
+      "predatorPreyStep",
+      "compartmentStep",
+      "agentSimulation",
+      "monteCarlo",
+      "odeSolverComparison",
+      "mm1Queue",
+      "constrainedCalibration",
+      "dimensionalAnalysis",
+      "parameterSweep",
+      "provenance",
+      "exportModelReport"
+    ]
+  },
+  {
+    "path": "src/studios/platform/studioPlatformEngine.ts",
+    "exports": [
+      "createStudioProject",
+      "exportStudioProject",
+      "importStudioProject",
+      "createProjectDeepLink",
+      "readProjectDeepLink",
+      "transferStudioObject",
+      "differentiatePolynomial",
+      "evaluatePolynomial",
+      "createHistory",
+      "checkpoint",
+      "undoCheckpoint",
+      "redoCheckpoint",
+      "auditAccessibleControls",
+      "responsiveStudioLayout",
+      "labelledResult",
+      "assessTeacherActivity",
+      "adaptivePerformancePolicy",
+      "runAdaptiveComputation"
+    ]
+  },
+  {
+    "path": "src/studios/statistics/statisticsEnhancementEngine.ts",
+    "exports": [
+      "inferSchema",
+      "linkedSummary",
+      "distributionPlot",
+      "robustSummary",
+      "repeatedSamples",
+      "cltSimulation",
+      "confidenceCoverage",
+      "zTestPower",
+      "effectSizes",
+      "chooseTest",
+      "oneWayAnova",
+      "chiSquareTable",
+      "mannWhitney",
+      "multipleRegression",
+      "regressionDiagnostics",
+      "boxCox",
+      "logisticProbability",
+      "betaBinomialUpdate",
+      "metropolis",
+      "markovEvolution",
+      "timeSeriesForecast",
+      "kaplanMeier",
+      "factorialEffects",
+      "bootstrapMeanInterval",
+      "reproducibleReport"
+    ]
+  },
+  {
+    "path": "src/studios/trigonometry/trigonometryEnhancementEngine.ts",
+    "exports": [
+      "toRadians",
+      "fromRadians",
+      "snapNotableAngle",
+      "sixTrigFunctions",
+      "referenceTriangle",
+      "inverseBranch",
+      "waveTransform",
+      "circleWaveSync",
+      "sumDifference",
+      "doubleHalf",
+      "verifyIdentity",
+      "sineEquationSolutions",
+      "sinePositiveIntervals",
+      "ambiguousSSA",
+      "solveTriangleSAS",
+      "triangleUncertainty",
+      "heightFromElevation",
+      "bearingVector",
+      "polarRose",
+      "addPhasors",
+      "fourierSynthesis",
+      "beatWave",
+      "sphericalTriangleSide",
+      "hyperbolicFunctions",
+      "singularityStability",
+      "exactAngleValue"
+    ]
+  },
+  {
+    "path": "src/studios/number-systems/premium/experimentEngine.ts",
+    "exports": [
+      "experimentConfigs",
+      "evaluateExperiment",
+      "randomExperiment"
+    ]
+  },
+  {
+    "path": "src/studios/geometry/construction/constructionEngine.ts",
+    "exports": [
+      "POINT_KINDS",
+      "isPointKind",
+      "isFreeDraggable",
+      "defaultConstruction",
+      "nextLabel",
+      "nextId",
+      "childrenOf",
+      "descendantsOf",
+      "ancestorsOf",
+      "sampleLocus",
+      "evaluate",
+      "detectRelations",
+      "collectMeasurements",
+      "moveConstraint",
+      "serializeScene",
+      "parseScene"
+    ]
+  },
+  {
+    "path": "src/problem-solver/types/solverResult.ts",
+    "exports": [
+      "supportedExamples",
+      "createUnsupportedResult"
+    ]
+  },
+  {
+    "path": "src/modules/algebraic-structures/algebraicStructuresEngine.ts",
+    "exports": [
+      "modularTable",
+      "rebuildOperationTable",
+      "validateOperation",
+      "classifyOperation",
+      "randomOperationTable",
+      "parseCarrierSet",
+      "booleanPosForm",
+      "operationAnimation",
+      "parseBooleanExpression",
+      "booleanVariables",
+      "evaluateBoolean",
+      "simplifyBooleanExpression",
+      "booleanLawSteps",
+      "gateOutput",
+      "meetJoin",
+      "posetProperties",
+      "coverRelations",
+      "booleanCircuitLayers"
+    ]
+  },
+  {
+    "path": "src/modules/board/boardEngineAdapters.ts",
+    "exports": [
+      "executeBoardAction",
+      "verifyBoardExpressions",
+      "normalizeBoardEngineError"
+    ]
+  },
+  {
+    "path": "src/modules/combinatorics/combinatoricsEngine.ts",
+    "exports": [
+      "factorial",
+      "permutations",
+      "combinations",
+      "constrainedRepetitions",
+      "buildCountingTree",
+      "enumeratePermutations",
+      "enumerateCombinations",
+      "pascalRow",
+      "pascalTriangle",
+      "binomialExpansion",
+      "multinomialTerms",
+      "inclusionExclusion",
+      "pigeonholeLoad",
+      "derangements",
+      "catalanNumber",
+      "stirlingSecondKind",
+      "bellNumber",
+      "integerPartitions",
+      "linearRecurrenceSequence",
+      "secondOrderGeneratingFunction",
+      "worksheetSummary"
+    ]
+  },
+  {
+    "path": "src/modules/graph-theory/graphTheoryEngine.ts",
+    "exports": [
+      "sampleGraph",
+      "adjacency",
+      "degreeMap",
+      "directedDegreeMap",
+      "graphMetrics",
+      "adjacencyMatrix",
+      "adjacencyList",
+      "incidenceMatrix",
+      "connectedComponents",
+      "inducedSubgraph",
+      "complementGraph",
+      "isBipartite",
+      "bridgesAndCutVertices",
+      "cliqueAndIndependentSets",
+      "maximumMatching",
+      "floydWarshall",
+      "graphDistanceMetrics",
+      "clusteringCoefficients",
+      "graphGirth",
+      "maxFlowMinCut",
+      "planarityObstructionHint",
+      "bfs",
+      "dfs",
+      "dijkstra",
+      "kruskal",
+      "prim",
+      "topologicalSort",
+      "isomorphismSignature",
+      "likelyIsomorphic",
+      "eulerCircuit",
+      "eulerCircuitPath",
+      "hamiltonianCycle",
+      "graphColorConflicts",
+      "treeModel",
+      "edgeCrossings",
+      "chromaticNumber",
+      "cytoscapeMetrics",
+      "serializeGraph",
+      "encodeGraphShare",
+      "decodeGraphShare"
+    ]
+  },
+  {
+    "path": "src/modules/mathematical-logic/logicEngine.ts",
+    "exports": [
+      "tokenizeLogic",
+      "parseLogicExpression",
+      "formatAst",
+      "collectVariables",
+      "evaluateLogic",
+      "applyOperator",
+      "buildTruthTable",
+      "toNormalForms",
+      "runInference",
+      "evaluatePredicateScenario",
+      "buildPredicateInferenceSteps"
+    ]
+  },
+  {
+    "path": "src/modules/set-theory/setExpressionEngine.ts",
+    "exports": [
+      "expressionOperatorLabels",
+      "parseSetExpression",
+      "evaluateSetExpression",
+      "expressionSteps",
+      "formatSetExpression"
+    ]
+  },
+  {
+    "path": "src/modules/set-theory/setTheoryEngine.ts",
+    "exports": [
+      "uniqueElements",
+      "parseElements",
+      "notation",
+      "setUnion",
+      "setIntersection",
+      "setDifference",
+      "setSymmetricDifference",
+      "setComplement",
+      "applySetOperation",
+      "cartesianProduct",
+      "powerSet",
+      "pairKey",
+      "parsePairs",
+      "relationMatrix",
+      "incidenceMatrix",
+      "relationProperties",
+      "equivalenceClasses",
+      "coverRelations",
+      "hasseLevels",
+      "functionProperties",
+      "randomProblem",
+      "venn3Regions"
+    ]
+  },
+  {
+    "path": "src/modules/set-theory/premium/practiceEngine.ts",
+    "exports": [
+      "practiceTopics",
+      "correctAnswer",
+      "createQuestion",
+      "optionExplanation"
+    ]
+  },
+  {
+    "path": "src/modules/lessons/decimalExpansion/decimalExpansionEngine.ts",
+    "exports": [
+      "validateFraction",
+      "gcd",
+      "normalizeFraction",
+      "primeFactorization",
+      "isTerminatingDenominator",
+      "analyzeDecimalExpansion",
+      "formatDecimalDisplay",
+      "factorizationText",
+      "superscript",
+      "predictionFeedback",
+      "validatePracticeAnswer",
+      "validateExitTicket"
+    ]
+  },
+  {
+    "path": "src/modules/discrete-world/shared-engines/automataEngine.ts",
+    "exports": [
+      "epsilon",
+      "sampleNfa",
+      "parseTransitionList",
+      "serializeTransitions",
+      "normalizeAutomaton",
+      "epsilonClosure",
+      "simulateAutomaton",
+      "determinizeNfa",
+      "minimizeDfa",
+      "regexToNfa",
+      "balancedParenthesesPda",
+      "simulatePda"
+    ]
+  },
+  {
+    "path": "src/modules/discrete-world/shared-engines/complexityEngine.ts",
+    "exports": [
+      "complexityClasses",
+      "haltingDiagonalDemo",
+      "certificateCheck"
+    ]
+  },
+  {
+    "path": "src/modules/discrete-world/shared-engines/foundationsEngine.ts",
+    "exports": [
+      "arithmeticSumInduction",
+      "pigeonhole",
+      "linearRecurrence",
+      "gcdTrace",
+      "modularTable",
+      "sieve"
+    ]
+  },
+  {
+    "path": "src/modules/discrete-world/shared-engines/grammarEngine.ts",
+    "exports": [
+      "sampleGrammar",
+      "parseGrammar",
+      "serializeGrammar",
+      "deriveString",
+      "grammarClassification",
+      "boundedDerivations",
+      "ambiguityCheck",
+      "parseTreeLevels",
+      "cnfPreview"
+    ]
+  },
+  {
+    "path": "src/modules/discrete-world/shared-engines/graphExtensionsEngine.ts",
+    "exports": [
+      "eulerPath",
+      "bellmanFord",
+      "floydWarshall",
+      "stronglyConnectedComponents"
+    ]
+  },
+  {
+    "path": "src/modules/discrete-world/shared-engines/turingEngine.ts",
+    "exports": [
+      "unaryIncrementMachine",
+      "parseTuringTransitions",
+      "serializeTuringTransitions",
+      "simulateTuring",
+      "visibleTape",
+      "simulateTwoTapeCopy",
+      "universalMachineEncoding"
+    ]
+  },
+  {
+    "path": "src/math-robo/character/engine.ts",
+    "exports": [
+      "EXPRESSIONS",
+      "ACTIONS",
+      "neutral",
+      "priorityFor",
+      "sampleAction",
+      "roboEvents",
+      "RoboBehaviorEngine"
+    ]
+  },
+  {
+    "path": "src/math-robo/intelligence/contextEngine.ts",
+    "exports": [
+      "remember",
+      "referenceScores"
+    ]
+  },
+  {
+    "path": "src/math-robo/intelligence/conversationEngine.ts",
+    "exports": [
+      "ConversationEngine"
+    ]
+  },
+  {
+    "path": "src/math-robo/intelligence/explanationEngine.ts",
+    "exports": [
+      "explainResult"
+    ]
+  },
+  {
+    "path": "src/math-robo/intelligence/followUpEngine.ts",
+    "exports": [
+      "FollowUpEngine"
+    ]
+  },
+  {
+    "path": "src/math-robo/intelligence/semanticEngine.ts",
+    "exports": [
+      "SemanticEngine"
+    ]
+  },
+  {
+    "path": "src/math-robo/intelligence/targetResolver.ts",
+    "exports": [
+      "ResolutionError",
+      "resolveTarget",
+      "targetFromPhrase",
+      "resolveTargets"
+    ]
+  },
+  {
+    "path": "src/ar-math-lab/hand-intelligence/HandFeatureEngine.ts",
+    "exports": [
+      "HandFeatureEngine"
+    ]
+  },
+  {
+    "path": "src/ar-math-lab/hand-intelligence/HandIntelligenceEngine.ts",
+    "exports": [
+      "idleState",
+      "HandIntelligenceEngine"
+    ]
+  },
+  {
+    "path": "src/ar-math-lab/hand-intelligence/MathematicalSemanticEngine.ts",
+    "exports": [
+      "applyHandDimension"
+    ]
+  },
+  {
+    "path": "src/ar-math-lab/hand-intelligence/SpatialHandEngine.ts",
+    "exports": [
+      "SpatialHandEngine"
+    ]
+  }
+]

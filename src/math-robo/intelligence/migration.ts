@@ -7,6 +7,8 @@ import type { MathRoboPlan,RoboSceneContext } from './types';
 export const V3_MIGRATION=Object.fromEntries([...FLAT_SHAPES,...SOLID_SHAPES,'point','line','plot','midpoint','length','tangent','anchor','update','unsupported'].map(label=>[label,{action:label==='midpoint'||label==='length'?'FIND':label==='tangent'?'CONSTRUCT':label==='update'?'CHANGE':label==='plot'?'PLOT':label==='unsupported'?'UNSUPPORTED':'CREATE',subAction:label==='plot'?'FUNCTION':label==='update'?'COLOR':label.toUpperCase()}]));
 export function migrateCompatibilityPlan(plan:MathRoboPlan,scene:Readonly<RoboSceneContext>):MathRoboPlan {
   if(plan.commands.length!==1)return plan;const c=plan.commands[0],text=c.normalizedPhrase;
+  // Missing semantic slots belong to the conversational follow-up engine.
+  if(['MOVE','ROTATE','SCALE'].includes(c.action)&&operationFor(c.action,c.subAction)?.implemented)return plan;
   if(c.action==='CREATE'&&/\b(start|starting|begin)\b.*\b(end|vertex|corner)\b/.test(text)){
     const result=contextualRequest(c.rawPhrase,c.mode,scene.objects.map(o=>({command:o.command,vertices:o.vertices})));
     if(result?.command)c.parameters={legacy:result.command,width:result.command.width,height:result.command.height,radius:result.command.radius,points:result.command.points};

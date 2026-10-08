@@ -1,3 +1,4 @@
+import {roboEvents} from '../math-robo/character/engine';
 import { useEffect, useRef, useState } from 'react';
 import { browserSpeechRecognitionConstructor, normalizeSpokenMath, type BrowserSpeechRecognition } from '../workspace/browserSpeechInput';
 
@@ -63,7 +64,7 @@ export function useRoboSpeech(active: boolean, route: string, onTranscript: (tex
       session.current++;
       const mic = recognition.current;
       if (mic) { mic.onresult = null; mic.onerror = null; mic.onend = null; mic.abort(); recognition.current = undefined; }
-      if (utterance.current) { utterance.current.onend = null; utterance.current.onerror = null; window.speechSynthesis?.cancel(); utterance.current = undefined; }
+      if (utterance.current) { utterance.current.onstart=null; utterance.current.onpause=null; utterance.current.onresume=null; utterance.current.onend = null; utterance.current.onerror = null; window.speechSynthesis?.cancel(); utterance.current = undefined; roboEvents.emit({type:'speechEnd'}); }
       setListening(false); setSpeaking(false); setChecking(false);
     };
   }, [active, route]);
@@ -105,15 +106,15 @@ export function useRoboSpeech(active: boolean, route: string, onTranscript: (tex
       mic.onend = () => { if (token === generation.current) { setListening(false); recognition.current = undefined; } };
       recognition.current = mic;
       stopSpeaking();
-      mic.start(); setListening(true); setMessage('Listening in English on your device…');
+      mic.start(); roboEvents.emit({type:'listening'}); setListening(true); setMessage('Listening in English on your device…');
     } catch (error) {
       if (token === generation.current) { setListening(false); setMessage(error instanceof Error ? error.message : 'Unable to start offline dictation.'); }
     } finally { if (token === generation.current) setChecking(false); }
   }
 
   function stopSpeaking() {
-    if (utterance.current) { utterance.current.onend = null; utterance.current.onerror = null; window.speechSynthesis.cancel(); utterance.current = undefined; }
-    setSpeaking(false);
+    if (utterance.current) { utterance.current.onstart=null; utterance.current.onpause=null; utterance.current.onresume=null; utterance.current.onend = null; utterance.current.onerror = null; window.speechSynthesis.cancel(); utterance.current = undefined; }
+    setSpeaking(false); roboEvents.emit({type:'speechEnd'});
   }
 
   function speak(text: string) {
@@ -122,8 +123,11 @@ export function useRoboSpeech(active: boolean, route: string, onTranscript: (tex
     stopSpeaking();
     const speech = new SpeechSynthesisUtterance(text.replace(/\^2\b/g, ' squared ').replace(/\^3\b/g, ' cubed ').replace(/\^/g, ' to the power of ').replace(/°/g, ' degrees ').replace(/×/g, ' times '));
     speech.voice = voice; speech.lang = voice.lang;
-    speech.onend = () => { utterance.current = undefined; setSpeaking(false); };
-    speech.onerror = () => { utterance.current = undefined; setSpeaking(false); setMessage('Read-aloud stopped. Try again.'); };
+    speech.onstart = () => {setSpeaking(true);roboEvents.emit({type:'speechStart'});};
+    speech.onpause = () => roboEvents.emit({type:'speechPause'});
+    speech.onresume = () => roboEvents.emit({type:'speechResume'});
+    speech.onend = () => {if(utterance.current!==speech)return;roboEvents.emit({type:'speechEnd'}); utterance.current = undefined; setSpeaking(false); };
+    speech.onerror = () => {if(utterance.current!==speech)return;roboEvents.emit({type:'speechEnd'}); utterance.current = undefined; setSpeaking(false); setMessage('Read-aloud stopped. Try again.'); };
     utterance.current = speech; setSpeaking(true); window.speechSynthesis.speak(speech);
   }
   return { message, availability, listening, checking, speaking, voices, voiceURI, setVoiceURI, microphone, speak, stopSpeaking };

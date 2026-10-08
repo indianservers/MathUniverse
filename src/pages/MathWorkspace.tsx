@@ -1,10 +1,12 @@
+import {registerRoboProjector,svgClientPoint} from '../math-robo/character/workspaceAdapter';
+import {roboEvents} from '../math-robo/character/engine';
 import { ImmersiveBoundary, useImmersiveAdapter } from "../workspace/immersive/ImmersiveInteractionManager";
 import { identityTransform, screenTarget, transformDelta } from "../workspace/immersive/types";
 import WorkspaceChromeThemeToggle from "../components/workspace/WorkspaceChromeThemeToggle";
 import { readWorkspaceChromeTheme, type WorkspaceChromeTheme } from "../workspace/workspaceChromeTheme";
 import { GeometryAppearanceControls, type GeometryPaint } from "../components/workspace/GeometryAppearance";
 import { OrbitControls } from "@react-three/drei";
-import { type ThreeEvent, useFrame } from "@react-three/fiber";
+import { type ThreeEvent, useFrame, useThree } from "@react-three/fiber";
 import { AlertTriangle, Box, Braces, Camera, Check, CheckCircle2, ChevronDown, Circle, CircleDot, Copy, Download, Eraser, Eye, EyeOff, FileText, Filter, FunctionSquare, Grid3X3, Home, Info, Keyboard, LineChart, ListTree, Magnet, Maximize2, Menu, Mic, MoreHorizontal, MousePointer2, Move, Orbit, PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen, Pentagon, Pin, Play, Plus, Presentation, Redo2, Rotate3D, RotateCcw, Ruler, Save, Search, Settings, Share2, Sigma, Slash, SlidersHorizontal, Sparkles, Table2, Trash2, Undo2, User, WandSparkles, X, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
 import { KeyboardEvent, MouseEvent as ReactMouseEvent, PointerEvent, WheelEvent, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -42,7 +44,7 @@ import { approximateRoots, sampleFunction } from "../utils/mathEngine/graphSampl
 import { roundTo } from "../utils/math";
 import { symbolicDerivative, symbolicExpand, symbolicFactor, symbolicIntegral, symbolicLimit, symbolicPartialFractions, symbolicPolynomialDivide, symbolicSimplify, symbolicSolve, symbolicSubstitute, symbolicSystemSolve, trySymbolic } from "../utils/symbolic";
 import { commandExamplesFor, commandRegistrySummary, normalizeCommandName, resolveCommandSpec } from "../workspace/commandRegistry";
-import { useIntelligenceWorkspace } from '../offline-intelligence/workspaceBridge';
+import { useIntelligenceWorkspace,isKnownRoboObject } from '../offline-intelligence/workspaceBridge';
 import { addIntelligenceGeometry, nativeGeometryCommands } from '../offline-intelligence/geometryAdapter';
 import { commandTransform3d } from '../offline-intelligence/solidAdapter';
 import type { VisualCommand } from '../offline-intelligence/commands';
@@ -1681,7 +1683,10 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
   };
 
   const immersive3dTransaction = useRef(false);
+  useEffect(()=>{if(workspaceView!=='geometry')return;return registerRoboProjector('geometry2d',p=>svgClientPoint(svgRef.current,{x:320+p[0]*40,y:210-p[1]*40}));},[workspaceView]);
+  useEffect(()=>{if(workspaceView!=='geometry'||!selectedGeometry)return;const point=construction.points.find(p=>p.id===selectedGeometry.id);const object=nativeGeometryCommands(construction).find(o=>o.objectId===selectedGeometry.id);const boardPoint=point??(object?.points[0]?{x:320+object.points[0][0]*40,y:210-object.points[0][1]*40}:undefined);if(boardPoint)roboEvents.emit({type:'workspace',kind:'selection',target:()=>svgClientPoint(svgRef.current,boardPoint)});},[workspaceView,selectedGeometry,construction]);
   useIntelligenceWorkspace(workspaceView === '3d' ? 'geometry3d' : 'geometry2d', command => {
+    if(workspaceView==='geometry'&&command.roboLocked!==undefined){const ids=command.roboNativeIds?[...command.roboNativeIds.points,...(command.roboNativeIds.shape?[command.roboNativeIds.shape]:[])]:[...command.points.map((_,i)=>`${command.objectId}-p${i}`),`${command.objectId}-shape`];setLockedGeometryIds(previous=>command.roboLocked?[...new Set([...previous,...ids])]:previous.filter(id=>!ids.includes(id)));}
     if(command.roboControl==='deselect'){setSelectedGeometry(null);setSelectedPointIds([]);setSelected3d('');return;}
     if(command.roboControl==='select'){
       if(workspaceView==='geometry')setSelectedGeometry({type:command.kind==='circle'?'circle':command.kind==='line'?'line':command.kind==='point'?'point':'polygon',id:command.roboNativeIds?.shape??(command.roboNativeIds?command.roboNativeIds.points[0]:`${command.objectId}-${command.kind==='point'?'p0':'shape'}`)});
@@ -1704,7 +1709,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
     if(command.action==='update'&&!added3dObjects.some(object=>object.id===id))return 'The last Ruhi object was removed. Create an object again before editing it.';
     const baseId:ThreeObjectId=command.kind==='line'?'line3d':command.kind==='point'?'point':'solid';
     recordWorkspaceStep(command.action==='update'?'Edit Robo object':'Create Robo object',command.kind);
-      const next:Added3DObject={id,label:command.roboLabel??command.kind,baseId,render:command.kind==='line'?'line3d':command.kind==='point'?'point':'solid',nlpCommand:command.kind==='line'||command.kind==='point'?undefined:command,transform:{...defaultTransforms3d[baseId],...commandTransform3d(command),scale:command.scale??1,visible:command.roboVisible??true,name:command.kind}};
+      const next:Added3DObject={id,label:command.roboLabel??command.kind,baseId,render:command.kind==='line'?'line3d':command.kind==='point'?'point':'solid',nlpCommand:command,transform:{...defaultTransforms3d[baseId],...commandTransform3d(command),scale:command.scale??1,visible:command.roboVisible??true,name:command.kind,locked:command.roboLocked??false}};
     setAdded3dObjects(current=>[...current.filter(object=>object.id!==id),next]);setSelected3d(id);setShowSolid(true);
   }, !embedded && (workspaceView==='geometry'||workspaceView==='3d'), command=>{
     if(workspaceView==='geometry') {
@@ -1720,7 +1725,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
     const actual=added3dObjects.find(object=>object.id===command.objectId);
     if(!actual)return undefined;
       return {command:{...command,points:command.kind==='line'?command.points:[actual.transform.position],rotation:command.kind==='line'?command.rotation:actual.transform.rotation,scale:actual.transform.scale,color:actual.transform.color,roboVisible:actual.transform.visible}};
-    },()=>workspaceView==='geometry'?{commands:nativeGeometryCommands(construction),selectedIds:selectedGeometry?[selectedGeometry.id.replace(/-(?:shape|p\d+)$/,'')]:undefined}:{commands:added3dObjects.flatMap(o=>o.nlpCommand?[{...o.nlpCommand,objectId:o.id}]:[]),selectedIds:selected3d?[selected3d]:undefined});
+    },()=>workspaceView==='geometry'?{commands:nativeGeometryCommands(construction,id=>isKnownRoboObject('geometry2d',id)).map(command=>({...command,roboLocked:command.roboNativeIds?.points.some(id=>lockedGeometryIds.includes(id))??false})),selectedIds:selectedGeometry?[(isKnownRoboObject('geometry2d',selectedGeometry.id)?selectedGeometry.id.replace(/-(?:shape|p\d+)$/,''):selectedGeometry.id)]:undefined}:{commands:added3dObjects.flatMap(o=>o.nlpCommand?[{...o.nlpCommand,objectId:o.id,points:[o.transform.position],rotation:o.transform.rotation,scale:o.transform.scale,roboLocked:o.transform.locked}]:[]),selectedIds:selected3d?[selected3d]:undefined});
   useEffect(() => {
     const begin = () => { if(workspaceView === "3d" || workspaceView === "geometry") { recordWorkspaceStep("Hand gesture", "Transform object with hand controls."); immersive3dTransaction.current=true; } };
     const end = () => { immersive3dTransaction.current=false; };
@@ -7852,6 +7857,11 @@ function workflowTypeForContextTarget(target: ContextMenuState["target"]): Workf
 
 function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, solidSize, crossSection, showSurface, showSolid, autoRotate, animationSpeed, zoom, performanceMode, cameraPreset, selected, transforms, addedObjects, dragging, interactionTool, snapStep, vectorWorkbench, onSelect, onDrag, onTransform, onContextMenu }: { surface: SurfaceKind; surfaceExpression: string; solid: SolidKind; surfaceScale: number; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean; autoRotate: boolean; animationSpeed: number; zoom: number; performanceMode: boolean; cameraPreset: CameraPreset3D; selected: string; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; dragging: string | null; interactionTool: ObjectStudioTool; snapStep: number; vectorWorkbench: { a: Vector3Tuple; b: Vector3Tuple; view: VectorView3D; visible: boolean; focus: boolean }; onSelect: (id: string) => void; onDrag: (id: string | null) => void; onTransform: (id: string, patch: Partial<Transform3D>) => void; onContextMenu: (event: ThreeEvent<MouseEvent>, id: string) => void }) {
   const groupRef = useRef<THREE.Group>(null);
+  const {camera,gl}=useThree();
+  useEffect(()=>registerRoboProjector('geometry3d',p=>{const group=groupRef.current;if(!group)return;group.updateWorldMatrix(true,false);const v=group.localToWorld(new THREE.Vector3(p[0],p[1],p[2]??0)).project(camera);if(v.z < -1 || v.z > 1)return;const r=gl.domElement.getBoundingClientRect();return {x:r.left+(v.x+1)*r.width/2,y:r.top+(1-v.y)*r.height/2};}),[camera,gl]);
+  const selectedTarget=useRef<{point:number[]}>({point:[0,0,0]});
+  selectedTarget.current.point=(isBase3dId(selected)?transforms[selected]:addedObjects.find(o=>o.id===selected)?.transform)?.position??[0,0,0];
+  useEffect(()=>{roboEvents.emit({type:'workspace',kind:'selection',target:()=>{const group=groupRef.current;if(!group)return;group.updateWorldMatrix(true,false);const v=group.localToWorld(new THREE.Vector3(...selectedTarget.current.point as [number,number,number])).project(camera);const r=gl.domElement.getBoundingClientRect();return {x:r.left+(v.x+1)*r.width/2,y:r.top+(1-v.y)*r.height/2};}});},[selected,camera,gl]);
   const manipulationStart = useRef<{ id: string; point: THREE.Vector3; transform: Transform3D } | null>(null);
   useEffect(() => {
     const releaseDrag = () => { manipulationStart.current = null; onDrag(null); };

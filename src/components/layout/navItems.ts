@@ -3072,7 +3072,7 @@ export const legacyNavItems = [
   { title: "Matrix Operations", route: "/matrices", icon: Grid3X3 },
   { title: "Matrix Sandbox", route: "/matrix-sandbox", icon: Grid3X3 },
   { title: "AI Applications", route: "/ai-applications", icon: BrainCircuit },
-  { title: "Model Training", route: "/model-training", icon: BrainCircuit },
+  ...(import.meta.env.VITE_ENABLE_MODEL_TRAINING==='true'||(import.meta.env.DEV&&import.meta.env.VITE_ENABLE_MODEL_TRAINING!=='false')?[{ title: "Model Training", route: "/model-training", icon: BrainCircuit }]:[]),
   { title: "Learning Hub", route: "/learn", icon: BookOpen },
   { title: "Interactive Lessons", route: "/lessons", icon: BookOpen },
   { title: "Olympyard", route: "/olympyard", icon: Trophy },

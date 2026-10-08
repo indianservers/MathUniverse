@@ -1,14 +1,16 @@
 import { interpretVisualRequest } from '../../offline-intelligence/commands';
-import { OPERATIONS, normalizeAction, operationFor } from './actionRegistry';
+import { OPERATIONS, normalizeAction, operationFor,BASELINE_OPERATION_KEYS } from './actionRegistry';
 import { emptyScene, describeObject } from './sceneContext';
 import { parseSemanticCommand } from './semanticParser';
 import type { RoboMode, RoboSceneContext, SemanticRow } from './types';
+import {extendedDataset} from './extendedDataset';
+import {validateCommand} from './commandValidator';
 export function contextToScene(row:SemanticRow):RoboSceneContext {
   const scene=emptyScene(row.mode);
   scene.objects=(row.context?.objects??[]).map(object=>{
     const command={kind:object.type as Parameters<typeof describeObject>[0]['kind'],objectId:object.id,dimension:row.mode.endsWith('3d')?'3d' as const:'2d' as const,points:object.type==='line'||object.type==='triangle'||object.type==='polygon'?object.vertices??[object.position]:[object.position],width:6,height:4,depth:3,radius:object.radius??3,color:object.style?.color??'#22d3ee',roboLabel:object.label,action:'create' as const,scale:1,rotation:[0,0,0] as [number,number,number],...object.parameters};
     return {...describeObject(command,row.mode,object.vertices),...object,command};
-  });scene.selectedIds=row.context?.selected??[];scene.lastReferenced=row.context?.lastReferenced;scene.previousResult=row.context?.previousResult;return scene;
+  });scene.selectedIds=row.context?.selected??[];scene.lastReferenced=row.context?.lastReferenced;scene.previousResult=row.context?.previousResult;scene.previousResults=row.context?.previousResults;scene.activeObjectIds=row.context?.activeObjectIds;return scene;
 }
 export function validateSemanticRows(input:unknown[]):SemanticRow[] {
   if(!input.length||input.length>100000)throw new Error('Provide 1 to 100,000 semantic rows.');
@@ -20,6 +22,7 @@ export function validateSemanticRows(input:unknown[]):SemanticRow[] {
     const action=normalizeAction(row.action.toUpperCase()),subAction=row.subAction.toUpperCase();
     if(!operationFor(action,subAction)?.implemented)fail('this action/subAction has no implemented executor.');
     if(!row.parameters||typeof row.parameters!=='object'||Array.isArray(row.parameters))fail('parameters must be an object.');
+    try{validateCommand({id:'dataset',rawPhrase:row.phrase,normalizedPhrase:row.phrase,detectedAction:action,action,subAction,mode:row.mode,target:row.target,targets:row.targets,parameters:row.parameters,confidence:{overall:1,action:1,subAction:1},source:{action:'rule',subAction:'rule'},requiresExecution:true});}catch(error){fail(String(error));}
     if(row.context&&(!Array.isArray(row.context.objects)||row.context.objects.length>100||row.context.objects.some(o=>!o||typeof o.id!=='string'||typeof o.type!=='string'||!Array.isArray(o.position)||o.position.some(n=>typeof n!=='number'||!Number.isFinite(n)))))fail('context must be a read-only object snapshot; executable strings are forbidden.');
     if(row.context&&new Set(row.context.objects.map(o=>o.id)).size!==row.context.objects.length)fail('duplicate context object IDs.');
     return {...row,action,subAction};
@@ -27,7 +30,7 @@ export function validateSemanticRows(input:unknown[]):SemanticRow[] {
 }
 export async function readSemanticDataset(file:File) {
   if(file.size>100*1024*1024)throw new Error('Maximum dataset size is 100 MB.');
-  const rows:unknown[]=[];let pending='',line=0;const reader=file.stream().pipeThrough(new TextDecoderStream()).getReader();
+  const rows:unknown[]=[];let pending='',line=0;const reader=file.stream().pipeThrough(new TextDecoderStream('utf-8',{fatal:true})).getReader();
   const parse=(text:string)=>{line++;if(!text.trim())return;if(rows.length>=100000)throw new Error('Maximum 100,000 rows.');try{rows.push(JSON.parse(text.replace(/^\uFEFF/,'')));}catch{throw new Error(`Invalid JSON at line ${line}.`);}};
   try{while(true){const chunk=await reader.read();if(chunk.done)break;pending+=chunk.value;const lines=pending.split('\n');pending=lines.pop()??'';lines.forEach(parse);if(pending.length>100000)throw new Error('One row exceeds 100 KB.');}if(pending.trim())parse(pending);}finally{await reader.cancel();reader.releaseLock();}
   return validateSemanticRows(rows);
@@ -52,6 +55,7 @@ const questionVariations=(sub:string)=>[`What is its ${sub}?`,`Find its ${sub}`,
 export function generateStarterDataset():SemanticRow[]{
   const rows:SemanticRow[]=[];
   for(const op of OPERATIONS.filter(op=>op.implemented)){
+    if(!BASELINE_OPERATION_KEYS.includes(`${op.action}:${op.subAction}`))continue;
     const modes=op.modes.filter(mode=>mode!=='normal');
     for(const mode of modes){
       const sub=op.subAction.toLowerCase().replaceAll('_',' ');let phrases:string[]=[];
@@ -83,6 +87,7 @@ export function generateStarterDataset():SemanticRow[]{
       if(op.action==='CHECK'&&['POINT_ON_LINE','POINT_ON_CIRCLE'].includes(op.subAction))phrases=['Is point A','Check if point A is','Test if point A is','Verify that point A is'].map(prefix=>`${prefix} on the ${op.subAction==='POINT_ON_LINE'?'line':'circle'}`);
       const preferred=['LENGTH','MIDPOINT','SLOPE'].includes(op.subAction)?'line_1':['VOLUME','SURFACE_AREA'].includes(op.subAction)?'sphere_1':['ROOTS','X_INTERCEPT','Y_INTERCEPT'].includes(op.subAction)?'graph_1':op.action==='CHANGE'&&['WIDTH','HEIGHT','DEPTH'].includes(op.subAction)||op.action==='RESIZE'?'square_1':'circle_1';
       if(preferred==='graph_1')context.objects.push({...descriptor('graph_1','plot',[0,0],mode),parameters:{expression:'x^2'}} as ReturnType<typeof descriptor>);context.selected=[preferred];context.lastReferenced=preferred;
+      if(op.action==='CHECK'){context.selected=op.subAction.startsWith('POINT_')?['A']:op.subAction==='EQUAL_AREA'?['circle_1','circle_2']:['line_1','line_2'];context.lastReferenced=context.selected[0];}
       phrases.forEach((phrase,index)=>{
         const parsed=parseSemanticCommand(phrase,mode);
         // Labels are authored from the operation registry, not inferred from parser output.
@@ -108,6 +113,7 @@ export function generateStarterDataset():SemanticRow[]{
       });
     }
   }
+  rows.push(...(['normal','graph2d','geometry2d'] as RoboMode[]).flatMap(mode=>extendedDataset(mode,seedContext(mode))));
   for(const op of OPERATIONS)op.examples=rows.filter(row=>row.action===op.action&&row.subAction===op.subAction).slice(0,5).map(row=>row.phrase);
   return rows;
 }

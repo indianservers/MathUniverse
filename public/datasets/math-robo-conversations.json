@@ -1,0 +1,14 @@
+[
+  {"name":"Circle distance continuation","mode":"geometry2d","turns":["Draw a circle radius 5","Move it right","3 units"],"expected":{"count":1,"position":[3,0],"radius":5}},
+  {"name":"Circle word-number continuation","mode":"graph2d","turns":["Draw a circle radius 5","Move it left","three units"],"expected":{"count":1,"position":[-3,0],"radius":5}},
+  {"name":"Two missing move slots","mode":"geometry3d","turns":["Draw a sphere radius 5","Move it","up","4 units"],"expected":{"count":1,"position":[0,4,0],"radius":5}},
+  {"name":"Graph 3D pending movement","mode":"graph3d","turns":["Draw a sphere radius 2","Move it forward","7 units"],"expected":{"count":1,"position":[0,0,7],"radius":2}},
+  {"name":"Cancel pending movement","mode":"geometry2d","turns":["Draw a circle radius 5","Move it right","no"],"expected":{"count":1,"position":[0,0],"radius":5}},
+  {"name":"Context reset preserves workspace","mode":"geometry2d","turns":["Draw a circle radius 5","Move it right","forget that"],"expected":{"count":1,"position":[0,0],"radius":5}},
+  {"name":"Correct radius without duplicate","mode":"geometry2d","turns":["Draw a circle radius 3","No make it 5"],"expected":{"count":1,"position":[0,0],"radius":5}},
+  {"name":"Correct move direction","mode":"geometry2d","turns":["Draw a circle radius 5","Move it 3 units right","No, left"],"expected":{"count":1,"position":[-3,0],"radius":5}},
+  {"name":"Repeat previous movement","mode":"graph2d","turns":["Draw a circle radius 5","Move it 3 units right","again"],"expected":{"count":1,"position":[6,0],"radius":5}},
+  {"name":"Numeric area stays separate from object","mode":"geometry2d","turns":["Draw a rectangle 4 by 6","Find its area","Move it right","4 units","Now rotate it","30 degrees","Find its area","why"],"expected":{"count":1,"position":[4,0]}},
+  {"name":"Complete replacement command","mode":"geometry2d","turns":["Draw a circle radius 5","Move it right","Move it 2 units down"],"expected":{"count":1,"position":[0,-2],"radius":5}},
+  {"name":"Undo pending-completed move","mode":"geometry2d","turns":["Draw a circle radius 5","Move it right","3 units","undo"],"expected":{"count":1,"position":[0,0],"radius":5}}
+]

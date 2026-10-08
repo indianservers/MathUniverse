@@ -40,13 +40,13 @@ export function addIntelligenceGeometry<T extends Pick<Construction, 'points' | 
   return next;
 }
 
-export function nativeGeometryCommands(current:Pick<Construction,'points'|'lines'|'circles'|'polygons'>):VisualCommand[]{
+export function nativeGeometryCommands(current:Pick<Construction,'points'|'lines'|'circles'|'polygons'>,owned:(id:string)=>boolean=()=>false):VisualCommand[]{
   const xy=(id:string)=>{const p=current.points.find(point=>point.id===id);return p?[(p.x-320)/40,(210-p.y)/40]:undefined;};
   const base=(id:string,kind:VisualCommand['kind'],points:number[][],color?:string):VisualCommand=>({objectId:id,kind,dimension:'2d',points,width:6,height:4,radius:3,color:color??'#22d3ee',action:'create',rotation:[0,0,0],scale:1});
   const standalone=(id:string)=>!/-p\d+$|-shape$/.test(id);
   const commands:VisualCommand[]=current.points.filter(p=>standalone(p.id)).map(point=>({...base(point.id,'point',[xy(point.id)!],point.style?.color),roboLabel:point.label,roboNativeIds:{points:[point.id]}}));
-  for(const object of current.lines.filter(o=>standalone(o.id))){const a=xy(object.a),b=xy(object.b);if(a&&b)commands.push({...base(object.id,'line',[a,b],object.style?.color),roboNativeIds:{points:[object.a,object.b],shape:object.id}});}
-  for(const object of current.circles.filter(o=>standalone(o.id))){const c=xy(object.center),e=xy(object.edge);if(c&&e)commands.push({...base(object.id,'circle',[c],object.style?.color),radius:Math.hypot(c[0]-e[0],c[1]-e[1]),roboNativeIds:{points:[object.center,object.edge],shape:object.id}});}
-  for(const object of current.polygons.filter(o=>standalone(o.id))){const points=object.points.map(xy);if(points.every((p):p is number[]=>!!p))commands.push({...base(object.id,'polygon',points,object.style?.color),roboNativeIds:{points:object.points,shape:object.id},roboExplicitVertices:true});}
+  for(const object of current.lines.filter(o=>!owned(o.id))){const a=xy(object.a),b=xy(object.b);if(a&&b)commands.push({...base(object.id,'line',[a,b],object.style?.color),roboLabel:current.points.find(p=>p.id===object.a)?.label,roboNativeIds:{points:[object.a,object.b],shape:object.id}});}
+  for(const object of current.circles.filter(o=>!owned(o.id))){const c=xy(object.center),e=xy(object.edge);if(c&&e)commands.push({...base(object.id,'circle',[c],object.style?.color),roboLabel:current.points.find(p=>p.id===object.center)?.label,radius:Math.hypot(c[0]-e[0],c[1]-e[1]),roboNativeIds:{points:[object.center,object.edge],shape:object.id}});}
+  for(const object of current.polygons.filter(o=>!owned(o.id))){const points=object.points.map(xy);if(points.every((p):p is number[]=>!!p))commands.push({...base(object.id,points.length===3?'triangle':'polygon',points,object.style?.color),roboLabel:current.points.find(p=>p.id===object.points[0])?.label,roboNativeIds:{points:object.points,shape:object.id},roboExplicitVertices:true});}
   return commands;
 }

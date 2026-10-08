@@ -1,0 +1,57 @@
+Math Robo character implementation — 8 October 2026
+
+Character API: src/math-robo/character/RoboCharacter.tsx
+  Render through the existing MathRobot component; obtain RoboCharacterHandle via a React ref.
+  handle.setExpression('thinking')
+  handle.playAction('wave')
+  handle.playAction('point', { x: 400, y: 250 })
+  handle.playAction('follow', { target: () => currentClientCoordinates })
+  handle.cancel()
+  handle.diagnostics()
+  Complete expression and action identifiers: EXPRESSIONS and ACTIONS in engine.ts.
+  Action targets use client coordinates. Workspace projectors use actual SVG matrices,
+  graph view/log-axis transforms, or Three.js camera and scene matrices.
+
+Integration
+  Existing command execution, semantic results, quiz correctness, selection/movement,
+  and speech playback events drive the presentation-only behavior engine.
+  No neural model, command parser, conversation memory, or geometry calculation was replaced.
+  Character position persists locally under math-robo-position; mouse and touch share pointer handling.
+  Independent head, neck, torso, shoulders, elbows, wrists, legs, feet, pupils, facial paths,
+  lights, and shadow are animated directly with requestAnimationFrame.
+  Scheduler supports priorities, interruption, cancellation, bounded pending reactions, and recovery.
+  25 facial expressions and 45 named actions are available.
+  Idle look-around defaults to 25 seconds; resting defaults to 90 seconds.
+  Both intervals and reduced motion can be configured on RoboCharacter.
+  Speech animation is a playback-timed approximation, not phoneme lip synchronization.
+  It starts on actual playback, freezes on pause, and stops on cancellation/end.
+  Presentation listener/projection errors are contained and shown in diagnostics.
+
+Developer lab
+  Run npm run dev, then append ?roboLab to a page or workspace URL.
+  The lab exposes expression/action controls, presentation event simulations, real coordinate
+  targeting, actual local-voice playback, FPS, first-frame latency, and transition/error logs.
+  Lab UI and strings are excluded from production bundles.
+
+Verification
+  687 tests passed across offline-intelligence and character test files.
+  All 25 expression controls and 45 action controls were exercised in Chromium.
+  Browser scenarios passed for drag persistence, touch, mobile reduced motion, SVG targeting,
+  real command creation, speech start/pause/resume/cancel, local dictation, pack installation,
+  microphone errors, and live 3D camera targeting.
+  Desktop and mobile screenshots were visually inspected.
+  Focused ESLint checks passed. Production build passed.
+  Full app typechecking remains unsuccessful due to existing repository errors outside
+  the new character modules. Detailed diagnostics: tmp/robo-character-typecheck.txt.
+
+Visual limitation
+  The supplied attachment contained task text only; no character reference image was attached.
+  Artwork follows the existing robot and the written white/silver/cyan design specification.
+  Exact visual matching to the missing reference cannot be verified.
+
+Evidence
+  artifacts/math-robo-character/lab-desktop.png
+  artifacts/math-robo-character/geometry-target.png
+  artifacts/math-robo-character/mobile-reduced-motion.png
+  tests/workspace/roboCharacter.e2e.ts
+  src/math-robo/character/character.test.ts

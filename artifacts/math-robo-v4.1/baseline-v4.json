@@ -1,0 +1,22 @@
+{
+  "version": "4.0",
+  "weightsBytes": 467572,
+  "parameters": 116893,
+  "actionAccuracy": 0.9251012145748988,
+  "subActionAccuracy": 0.9190283400809717,
+  "latency": {
+    "environment": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7827.55 Safari/537.36",
+    "cachedModelAcquireMs": 7.100000008940697,
+    "firstInferenceMs": 12,
+    "averageInferenceMs": 0.595,
+    "semanticParseMs": 0.048800000011920926,
+    "planMs": 0.021,
+    "targetResolutionMs": 0.0008000000119209289
+  },
+  "regressionTests": 665,
+  "registeredLanguageActions": 100,
+  "canonicalActionHeads": 22,
+  "distinctSubActions": 90,
+  "executorMappings": 118,
+  "sourceCommit": "e557390884218972a2220be0e61244af4e296505"
+}

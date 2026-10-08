@@ -1,0 +1,186 @@
+{
+  "mode": "geometry2d",
+  "passed": true,
+  "records": [
+    {
+      "phrase": "Delete all objects",
+      "answer": "Cleared Robo scene objects."
+    },
+    {
+      "phrase": "Draw a rectangle 4 by 6.",
+      "answer": "Created 2D rectangle 4 by 6."
+    },
+    {
+      "phrase": "What is its area?",
+      "answer": "area = 24 units."
+    },
+    {
+      "phrase": "Where is its center?",
+      "answer": "center = [0,0]."
+    },
+    {
+      "phrase": "Mark the center.",
+      "answer": "Marked center."
+    },
+    {
+      "phrase": "Move it 3 units right.",
+      "answer": "move rectangle."
+    },
+    {
+      "phrase": "Rotate it 30 degrees.",
+      "answer": "rotate rectangle."
+    },
+    {
+      "phrase": "What is its area now?",
+      "answer": "area = 24 units."
+    },
+    {
+      "phrase": "Delete all objects",
+      "answer": "Cleared Robo scene objects."
+    },
+    {
+      "phrase": "Draw a line from (0,0) to (6,6).",
+      "answer": "Created 2D line."
+    },
+    {
+      "phrase": "What is its midpoint?",
+      "answer": "midpoint = [3,3]."
+    },
+    {
+      "phrase": "Mark it.",
+      "answer": "Marked point."
+    },
+    {
+      "phrase": "Draw a perpendicular line through that point.",
+      "answer": "Perpendicular line created through the point."
+    },
+    {
+      "phrase": "Delete all objects",
+      "answer": "Cleared Robo scene objects."
+    },
+    {
+      "phrase": "Draw two circles radius 5.",
+      "answer": "Created 2D circle × 2 with radius 5."
+    },
+    {
+      "phrase": "Move the second one 10 units right.",
+      "answer": "move circle."
+    },
+    {
+      "phrase": "Are they tangent?",
+      "answer": "Yes — tangent."
+    },
+    {
+      "phrase": "Where do they touch?",
+      "answer": "Intersections: [[5,0]]."
+    },
+    {
+      "phrase": "Delete all objects",
+      "answer": "Cleared Robo scene objects."
+    },
+    {
+      "phrase": "Draw triangle A(0,0), B(6,0), C(3,4).",
+      "answer": "Created 2D triangle."
+    },
+    {
+      "phrase": "What type of triangle is it?",
+      "answer": "triangle type = \"isosceles, acute angled\"."
+    },
+    {
+      "phrase": "What is the midpoint of AB?",
+      "answer": "midpoint = [3,0]."
+    },
+    {
+      "phrase": "Draw the median from C.",
+      "answer": "Created median from C."
+    },
+    {
+      "phrase": "Delete all objects",
+      "answer": "Cleared Robo scene objects."
+    },
+    {
+      "phrase": "Draw a circle.",
+      "answer": "Created 2D circle with radius 3."
+    },
+    {
+      "phrase": "Delete all objects",
+      "answer": "Cleared Robo scene objects."
+    },
+    {
+      "phrase": "Draw two circles radius 5",
+      "answer": "Created 2D circle × 2 with radius 5."
+    },
+    {
+      "phrase": "Delete the circle.",
+      "answer": "Several objects match. Which object? 1: C1; 2: C2"
+    },
+    {
+      "phrase": "Delete all objects",
+      "answer": "Cleared Robo scene objects."
+    },
+    {
+      "phrase": "Draw a line.",
+      "answer": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+    },
+    {
+      "phrase": "Draw a line from (0,0) to (6,6)",
+      "answer": "Created 2D line."
+    },
+    {
+      "phrase": "What is the midpoint of that line?",
+      "answer": "midpoint = [3,3]."
+    },
+    {
+      "phrase": "Mark its midpoint.",
+      "answer": "Marked midpoint."
+    },
+    {
+      "phrase": "Make it perpendicular.",
+      "answer": "Which reference line should it be perpendicular to? Give its name."
+    },
+    {
+      "phrase": "Delete all objects",
+      "answer": "Cleared Robo scene objects."
+    },
+    {
+      "phrase": "Draw a triangle.",
+      "answer": "Created 2D triangle."
+    },
+    {
+      "phrase": "Actually undo that.",
+      "answer": "Undid the last Ruhi action."
+    },
+    {
+      "phrase": "Draw a square instead.",
+      "answer": "Created 2D square 6 by 6."
+    },
+    {
+      "phrase": "Make it twice as large.",
+      "answer": "scale square."
+    },
+    {
+      "phrase": "Move it left.",
+      "answer": "How far should I move it?"
+    },
+    {
+      "phrase": "1 unit",
+      "answer": "move square."
+    },
+    {
+      "phrase": "What's its area?",
+      "answer": "area = 144 units."
+    },
+    {
+      "phrase": "Maybe delete that circle",
+      "answer": "Please clarify the request before I change any objects."
+    },
+    {
+      "phrase": "What happens if I draw a circle?",
+      "answer": "UNSUPPORTED: UNSUPPORTED:OBJECT is not available."
+    },
+    {
+      "phrase": "Do not delete everything",
+      "answer": "Please clarify the request before I change any objects."
+    }
+  ]
+}

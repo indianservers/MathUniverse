@@ -1,3 +1,8 @@
+import {animateRoboResult} from '../math-robo/character/workspaceAdapter';
+import {roboEvents} from '../math-robo/character/engine';
+import {useRoboPosition} from '../math-robo/character/useRoboPosition';
+import {RoboAnimationLab} from '../math-robo/character/RoboAnimationLab';
+import type {RoboCharacterHandle} from '../math-robo/character/RoboCharacter';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { graphExpressions, interpretVisualRequest, modeForPath, type VisualCommand } from './commands';
@@ -12,6 +17,8 @@ import { useRoboSpeech } from './roboSpeech';
 import { liveEngine, runSemanticAssistant } from '../math-robo/intelligence/liveAssistant';
 import { loadIntelligenceModel } from '../math-robo/intelligence/hierarchicalModel';
 import { LANGUAGE_ACTIONS, OPERATIONS } from '../math-robo/intelligence/actionRegistry';
+import {MODEL_TRAINING_ENABLED} from '../math-robo/intelligence/buildPolicy';
+import {CorrectionQueue} from '../math-robo/intelligence/correctionCandidates';
 
 const EmbeddedGraph = lazy(() => import('../studios/geometry/GeometryEmbeddedGraph'));
 const EmbeddedSolid = lazy(() => import('../studios/geometry/GeometryEmbeddedSolid'));
@@ -20,6 +27,8 @@ type Response = { id:string; text:string; command?:VisualCommand; steps?:string[
 export default function OfflineMathAssistant() {
   const { pathname } = useLocation();
   const mode = modeForPath(pathname);
+  const character=useRef<RoboCharacterHandle>(null);
+  const position=useRoboPosition();
   const [open,setOpen] = useState(false);
   const [input,setInput] = useState('');
   const [response,setResponse] = useState<Response>();
@@ -48,7 +57,7 @@ export default function OfflineMathAssistant() {
     void import('./roboLearning').then(async ({getRoboLearning}) => {
       const learner=getRoboLearning();
       await learner.ready();
-      if(active) {setLearnedCount(liveEngine(mode).corrections.count);setLearningStatus('TensorFlow.js ready · local semantic engine · personal corrections enabled');}
+      if(active) {setLearnedCount(MODEL_TRAINING_ENABLED?liveEngine(mode).corrections.count:new CorrectionQueue(localStorage).list().length);setLearningStatus('TensorFlow.js ready · local semantic engine');}
       try {const model=await loadIntelligenceModel();const metadata=await model.getUserDefinedMetadata() as {report?:{metrics?:Record<string,unknown>}};if(active)setModelInfo({parameters:model.countParams(),bytes:model.countParams()*4,metrics:metadata?.report?.metrics});}catch{if(active)setLearningStatus('TensorFlow.js ready · semantic rules active · v4 model unavailable');}
     }).catch(()=>{if(active)setLearningStatus('Model unavailable · existing commands and solver are ready');});
     return ()=>{active=false;};
@@ -57,12 +66,7 @@ export default function OfflineMathAssistant() {
     setLearningBusy(true);
     setLearningStatus('Learning your correction…');
     try {
-      const {getRoboLearning}=await import('./roboLearning');
-      const learner=getRoboLearning();
-      liveEngine(mode).corrections.teach(teachPhrase,teachCommand,mode);
-      if(mode==='normal')await learner.teach(teachPhrase,teachCommand,mode);
-      setLearnedCount(liveEngine(mode).corrections.count);
-      setLearningStatus('Correction saved on this device as a semantic plan. Try your phrase again.');
+      const queue=new CorrectionQueue(localStorage);queue.submit(teachPhrase,teachCommand,mode,semanticDebug?.plan.commands[0]?.action,semanticDebug?.objects??0);setLearnedCount(queue.list().length);setLearningStatus('Suggestion queued for admin review. The active model is unchanged.');
     } catch(error) {setLearningStatus(error instanceof Error?error.message:'Could not save the correction.');}
     finally {setLearningBusy(false);}
   }
@@ -76,17 +80,21 @@ export default function OfflineMathAssistant() {
     } catch {setLearningStatus('Unable to clear learning storage.');}
     finally {setLearningBusy(false);}
   }
-  function close() {setOpen(false);launcher.current?.focus();}
+  function close() {speech.stopSpeaking();roboEvents.emit({type:'cancel'});setOpen(false);launcher.current?.focus();}
   async function submit() {
     if (!input.trim() || busy) return;
     if (response) setHistory(previous=>[...previous,{answer:response.text}].slice(-6));
     setBusy(true);
+    speech.stopSpeaking();
+    roboEvents.emit({type:'thinking'});
     try {
-      if(mode!=='normal'){
-        const semantic=await runSemanticAssistant(input,mode);setSemanticDebug(semantic);
+      {
+        const semantic=await runSemanticAssistant(input,mode,pathname);setSemanticDebug(semantic);
         if(semantic.status!=='unhandled'){
           setAnswerSource(semantic.plan.commands.some(command=>command.source.action==='correction')?'Your correction':semantic.neural?'Ruhi Intelligence v4 · local model + validated geometry engine':'Ruhi Intelligence v4 · validated local semantic engine');
-          setResponse({id:crypto.randomUUID(),text:semantic.message});return;
+          roboEvents.emit({type:semantic.status==='success'?'answer':semantic.status==='ambiguous'?'unknown':'incorrect'});
+          animateRoboResult(mode,semantic);
+          setResponse({id:crypto.randomUUID(),text:semantic.message,command:mode==='normal'?semantic.effects.filter(c=>c.action==='create').at(-1):undefined,steps:semantic.engineExecution?.steps});return;
         }
       }
       const objects=roboObjects.current.flatMap(command=>{
@@ -106,36 +114,39 @@ export default function OfflineMathAssistant() {
           lastVisual.current=result.command;
           roboObjects.current=[...roboObjects.current.filter(command=>command.objectId!==result.command!.objectId),result.command].slice(-200);
         }
+        roboEvents.emit({type:error?'error':'answer'});
         setResponse({id:crypto.randomUUID(),text:error || result.message,command:!error && mode === 'normal' ? result.command : undefined});
-      } else if (result.message) setResponse({id:crypto.randomUUID(),text:result.message});
+      } else if (result.message) {roboEvents.emit({type:/^(hi|hello|hey)\b/i.test(input)?'greeting':/\b(thanks|thank you)\b/i.test(input)?'thanks':/\b(bye|goodbye)\b/i.test(input)?'goodbye':'answer'});setResponse({id:crypto.randomUUID(),text:result.message});}
       else {
         const {solveProblem} = await import('../problem-solver/problemSolverEngine');
         const solved = solveProblem(input);
+        roboEvents.emit({type:solved.trust.answer?'answer':'unknown'});
         setResponse({id:crypto.randomUUID(),text:solved.trust.answer ?? solved.trust.unsupportedReason ?? 'Try an equation or a drawing command.',steps:solved.result.steps,confidence:solved.trust.confidence});
       }
-    } catch (error) { setResponse({id:crypto.randomUUID(),text:error instanceof Error ? error.message : 'Unable to create this visual. Check the request.'}); }
+    } catch (error) { roboEvents.emit({type:'error'}); setResponse({id:crypto.randomUUID(),text:error instanceof Error ? error.message : 'Unable to create this visual. Check the request.'}); }
     finally {setBusy(false);}
   }
-  return <aside className={`offline-assistant ${open?'is-open':''}`} aria-label="Offline math assistant" data-robo-scene-count={semanticDebug?.objects}>
-    <button ref={launcher} className="offline-assistant-toggle" onClick={()=>open?close():setOpen(true)} aria-label={open?'Close assistant · Offline':'Ask Math · Offline'} aria-expanded={open} aria-controls="math-robo-panel"><span className="robo-greeting" aria-hidden="true">{busy?'Thinking…':open?'Ruhi · Your maths companion':'Hi! I’m Ruhi'}</span><MathRobot thinking={busy} awake={open}/></button>
-    {open && <div id="math-robo-panel" role="dialog" aria-label="Ruhi solver and drawing assistant" onKeyDown={e=>{if(e.key==='Escape')close();}} className={`offline-assistant-body ${response?.command?'has-visual':''}`}>
+  return <aside className={`offline-assistant ${open?'is-open':''}`} style={position.style} aria-label="Offline math assistant" data-robo-scene-count={semanticDebug?.objects} data-robo-scene-hash={semanticDebug?.sceneHash} data-robo-before-hash={semanticDebug?.beforeHash}>
+    <button ref={launcher} className="offline-assistant-toggle" {...position.handlers} onDoubleClick={()=>character.current?.playAction('wave')} onClick={()=>{if(position.wasDragged())return;roboEvents.emit({type:'greeting'});if(open)close();else setOpen(true);}} aria-label={open?'Close assistant · Offline':'Ask Math · Offline'} aria-expanded={open} aria-controls="math-robo-panel"><span className="robo-greeting" aria-hidden="true">{busy?'Thinking…':open?'Ruhi · Your maths companion':'Hi! I’m Ruhi'}</span><MathRobot ref={character} thinking={busy} awake={open}/></button>
+    {import.meta.env.DEV && new URLSearchParams(location.search).has('roboLab') && <RoboAnimationLab character={character} mode={mode} speak={speech.speak}/>}
+    {open && <div id="math-robo-panel" style={position.panelStyle} role="dialog" aria-label="Ruhi solver and drawing assistant" onKeyDown={e=>{if(e.key==='Escape')close();}} className={`offline-assistant-body ${response?.command?'has-visual':''}`}>
       <header className="robo-panel-header"><div><strong>Ruhi · Master of Maths</strong><span>● Offline · Your maths companion</span></div><button type="button" onClick={close} aria-label="Close Ruhi">×</button></header>
       <div className="robo-panel-content">
       <p>Welcome, learners and explorers! I’m Ruhi, your maths companion. Let’s explore, draw, and solve together as you become a master of maths.</p>
       <p>{mode === 'normal' ? 'Ask a maths question, paste a problem, or request a drawing.' : `Ask for step-by-step help, or let’s create interactive objects in this ${mode.replace('2d',' 2D').replace('3d',' 3D')} workspace.`}</p>
-      <details className="robo-learning"><summary>Teach Ruhi · {learnedCount} learned phrases</summary>
-        <p><a href="/model-training">Open Training Lab · bulk datasets, model results and downloadable weights</a></p>
-        <p>Teach a phrase using one or more working commands, such as “Scale it by 2” or “Create circle radius 3 and make it blue”. Up to 5,000 semantic corrections stay on this device. Corrections override interpretation without retraining the full model.</p>
+      <details className="robo-learning"><summary>{'Suggest a correction'} · {learnedCount} {'queued suggestions'}</summary>
+        {MODEL_TRAINING_ENABLED&&<p><a href="/model-training">Open Training Lab · bulk datasets, model results and downloadable weights</a></p>}
+        <p>{MODEL_TRAINING_ENABLED?'Developer mappings stay local and never retrain production weights.':'Suggestions are queued locally for admin review. They do not alter the model or future command execution.'}</p>
         <label htmlFor="robo-teach-phrase">Your phrase</label><input id="robo-teach-phrase" maxLength={500} value={teachPhrase} onChange={e=>setTeachPhrase(e.target.value)} placeholder="Sketch a round shape"/>
         <label htmlFor="robo-teach-command">What it should mean</label><input id="robo-teach-command" maxLength={500} value={teachCommand} onChange={e=>setTeachCommand(e.target.value)} placeholder="Create circle radius 3"/>
-        <div className="robo-voice-actions"><button type="button" disabled={learningBusy||busy||!teachPhrase.trim()||!teachCommand.trim()} onClick={()=>void teach()}>{learningBusy?'Updating…':'Learn correction'}</button><button type="button" disabled={learningBusy||busy||!learnedCount} onClick={()=>void resetLearning()}>Clear learned phrases</button></div>
+        <div className="robo-voice-actions"><button type="button" disabled={learningBusy||busy||!teachPhrase.trim()||!teachCommand.trim()} onClick={()=>void teach()}>{learningBusy?'Updating…':MODEL_TRAINING_ENABLED?'Learn correction':'Queue suggestion'}</button>{MODEL_TRAINING_ENABLED&&<button type="button" disabled={learningBusy||busy||!learnedCount} onClick={()=>void resetLearning()}>Clear learned phrases</button>}</div>
       </details>
       <p aria-live="polite" className="robo-learning-status">{learningStatus}</p>
       {history.length>0 && <details className="robo-history"><summary>Previous answers ({history.length})</summary>{history.map((item,i)=><p key={i}>{item.answer}</p>)}</details>}
       <form onSubmit={e=>{e.preventDefault();void submit();}}><label htmlFor="offline-math-request">What would you like to create or solve?</label><textarea ref={editor} id="offline-math-request" value={input} onChange={e=>setInput(e.target.value)} placeholder={mode.endsWith('3d')?'Plot z = sin(x)*cos(y)':'Paste a problem, or try: draw a graph of y = x^2'} rows={3}/><button disabled={busy || learningBusy || !input.trim()} type="submit">{busy?'Working…':'Run request'}</button></form>
       {response && <small>{answerSource}</small>}
-      <details className="robo-learning"><summary>Model information · v4</summary><p>{LANGUAGE_ACTIONS.length} registered language actions · {OPERATIONS.filter(op=>op.implemented).length} supported semantic operations. TensorFlow.js inference and execution are local. Cloud API: None. Context: read-only scene snapshots.</p>{modelInfo&&<p>{modelInfo.parameters.toLocaleString()} learned parameters · {(modelInfo.bytes/1024).toFixed(1)} KiB weights. Held-out action accuracy: {typeof modelInfo.metrics?.actionAccuracy==='number'?`${(modelInfo.metrics.actionAccuracy*100).toFixed(1)}%`:'not measured'}.</p>}<a href="/model-training">Training, evaluation and full model report</a></details>
-      {semanticDebug&&<details className="robo-learning"><summary>Developer inspector</summary><p>Status: {semanticDebug.status} · scene objects: {semanticDebug.objects} · parse {semanticDebug.parseMs.toFixed(2)} ms · inference/load {semanticDebug.inferenceMs.toFixed(2)} ms · execution {semanticDebug.executionMs.toFixed(2)} ms</p><pre style={{whiteSpace:'pre-wrap',overflowWrap:'anywhere',fontSize:10}}>{JSON.stringify({commands:semanticDebug.plan.commands,neuralHeads:semanticDebug.neural,effects:semanticDebug.effects,candidates:semanticDebug.candidates},null,2)}</pre></details>}
+      {MODEL_TRAINING_ENABLED&&<details className="robo-learning"><summary>Model information · v4.1</summary><p>{LANGUAGE_ACTIONS.length} language actions · {OPERATIONS.filter(op=>op.implemented).length} executor mappings. Local browser inference; deterministic maths.</p>{modelInfo&&<p>{modelInfo.parameters.toLocaleString()} parameters · {(modelInfo.bytes/1024).toFixed(1)} KiB weights.</p>}<a href="/model-training">Admin training and model report</a></details>}
+      {MODEL_TRAINING_ENABLED&&semanticDebug&&<details className="robo-learning"><summary>Developer inspector</summary><p>Status: {semanticDebug.status} · scene objects: {semanticDebug.objects} · parse {semanticDebug.parseMs.toFixed(2)} ms · inference/load {semanticDebug.inferenceMs.toFixed(2)} ms · execution {semanticDebug.executionMs.toFixed(2)} ms</p><pre style={{whiteSpace:'pre-wrap',overflowWrap:'anywhere',fontSize:10}}>{JSON.stringify({rawText:input,requestKind:semanticDebug.requestKind,commands:semanticDebug.plan.commands,neuralHeads:semanticDebug.neural,effects:semanticDebug.effects,candidates:semanticDebug.candidates,verification:semanticDebug.verification,error:semanticDebug.errorCode,explanation:semanticDebug.explanation},null,2)}</pre></details>}
       <div className="robo-voice-controls" aria-label="English voice skills">
         <strong>English voice</strong>
         <div className="robo-voice-actions"><button type="button" disabled={speech.checking || busy} onClick={()=>void speech.microphone()}>{speech.checking?'Checking…':speech.listening?'Stop dictation':'Dictate in English'}</button>

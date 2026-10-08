@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-08T04:34:36.917Z",
+  "engines": 47,
+  "capabilities": 263,
+  "nativeExports": 107,
+  "corpus": {
+    "utterances": 600,
+    "conversations": 120,
+    "passed": 600,
+    "meanMs": 0.5472358333333328,
+    "p95Ms": 0.7230000000000132
+  },
+  "browser": {
+    "passed": 35,
+    "total": 35,
+    "pageErrors": 0,
+    "consoleErrors": 0
+  },
+  "regression": "4871",
+  "buildPassed": true,
+  "scopedTypecheckPassed": true,
+  "studentSecurityPassed": true,
+  "fullRepositoryTypeErrors": 218,
+  "weights": {
+    "path": "public/models/math-robo-intelligence-v4/weights.bin",
+    "bytes": 467572,
+    "sha256": "315d8161f4ff311db2e7850ef5e6d0f5362fa2f53cede767e2a12f2b2907ce3d",
+    "unchangedFromHead": true
+  }
+}
