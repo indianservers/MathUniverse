@@ -1,0 +1,14 @@
+[WebServer] (node:36272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:26752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\workspace\ruhiStudentBuild.e2e.ts:3:1 › student build excludes training and only queues correction suggestions (2.5s)
+(node:19300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 tests\workspace\ruhiV51Build.e2e.ts:2:1 › production mathematical workers preserve exact values and verification labels (2.6s)
+  ok 3 tests\workspace\ruhiV52Build.e2e.ts:2:1 › production v5.2 native 3D plane construction and live dependencies (5.1s)
+
+  3 passed (15.1s)

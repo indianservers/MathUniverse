@@ -1,6 +1,8 @@
+import {planeFromPoints3,linePlane3,lineLine3} from '../kernel/geometry3d';
+import {linearIntersection2} from '../kernel/geometryPredicates';
 import { outlineVertices } from '../../offline-intelligence/commands';
 import { compileFunctionExpression } from '../../utils/functionParser';
-import { circle, line, intersectObjects, type KernelObject } from '../../workspace/geometry2dKernel';
+import { ray, segment, circle, line, intersectObjects, type KernelObject } from '../../workspace/geometry2dKernel';
 import type { RoboObjectDescriptor } from './types';
 export const rounded=(value:number)=>Number(value.toFixed(8));
 export function vertices(o:RoboObjectDescriptor) { return o.vertices?.length?o.vertices:outlineVertices(o.command); }
@@ -11,8 +13,8 @@ export function center(o:RoboObjectDescriptor) {
   return pts[0].map((_,i)=>pts.reduce((sum,p)=>sum+(p[i]??0),0)/pts.length);
 }
 export function distance(a:number[],b:number[]){return Math.hypot(...a.map((v,i)=>v-(b[i]??0)));}
-export function midpoint(o:RoboObjectDescriptor){const pts=vertices(o);if(o.type!=='line'||pts.length!==2)throw new Error('Midpoint requires a line segment with two endpoints.');return pts[0].map((v,i)=>(v+pts[1][i])/2);}
-export function measurement(o:RoboObjectDescriptor,kind:string):number|number[] {
+export function midpoint(o:RoboObjectDescriptor){const pts=vertices(o);if(!['line','vector'].includes(o.type)||pts.length!==2)throw new Error('Midpoint requires a line segment with two endpoints.');return pts[0].map((v,i)=>(v+pts[1][i])/2);}
+export function measurement(o:RoboObjectDescriptor,kind:string):number|number[]|string {
   const c=o.command,s=c.scale??1,r=c.radius*s,w=c.width*s,h=c.height*s,d=(c.depth??c.width)*s;
   if(kind==='CENTER'||kind==='CENTROID')return center(o);
   if(['RADIUS','DIAMETER','CIRCUMFERENCE'].includes(kind)){
@@ -20,15 +22,18 @@ export function measurement(o:RoboObjectDescriptor,kind:string):number|number[] 
     return kind==='RADIUS'?r:kind==='DIAMETER'?2*r:2*Math.PI*r;
   }
   if(kind==='MIDPOINT')return midpoint(o);
+  if(['COMPONENTS','DIRECTION','PARAMETERIZATION'].includes(kind)){const [a,b]=vertices(o);if(!['ray','vector'].includes(o.type))throw new Error('Choose a ray or vector.');const direction=b.map((n,i)=>n-a[i]);return kind==='PARAMETERIZATION'?`P(t) = (${a.join(', ')}) + t (${direction.join(', ')}), ${o.type==='ray'?'t ≥ 0':'0 ≤ t ≤ 1'}`:direction;}
+  if(kind==='MAGNITUDE')kind='LENGTH';
   if(kind==='LENGTH'||kind==='DISTANCE'||kind==='SLOPE'){
-    if(o.type!=='line')throw new Error('This measurement requires a line with two endpoints.');const [a,b]=vertices(o);
+    if(o.type==='ray'&&kind!=='SLOPE')throw new Error('A ray is unbounded and has no finite length. Ask for its direction.');
+    if(!['line','ray','vector'].includes(o.type))throw new Error('This measurement requires a line with two endpoints.');const [a,b]=vertices(o);
     if(kind==='SLOPE'){if(Math.abs(b[0]-a[0])<1e-10)throw new Error('The slope of a vertical line is undefined.');return (b[1]-a[1])/(b[0]-a[0]);}return distance(a,b);
   }
   if(kind==='AREA'||kind==='PERIMETER'){
     if(o.mode.endsWith('3d')&&!['triangle','rectangle','square','circle','polygon'].includes(o.type))throw new Error('Use volume or surface area for a solid.');
     if(o.type==='circle')return kind==='AREA'?Math.PI*r*r:2*Math.PI*r;
     if(o.type==='ellipse')return kind==='AREA'?Math.PI*w*h/4:Math.PI*(3*(w+h)/2-Math.sqrt((3*w+h)*(w+3*h))/2);
-    if(o.type==='line'||o.type==='point'||o.type==='plot')throw new Error('Area and perimeter require a closed shape.');
+    if(['line','ray','vector','point','plot'].includes(o.type))throw new Error('Area and perimeter require a closed shape.');
     const pts=vertices(o);if(kind==='PERIMETER')return pts.reduce((sum,p,i)=>sum+distance(p,pts[(i+1)%pts.length]),0);
     if(pts[0]?.length===3){let total=0;for(let i=1;i<pts.length-1;i++){const a=pts[i].map((v,j)=>v-pts[0][j]),b=pts[i+1].map((v,j)=>v-pts[0][j]);total+=Math.hypot(a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0])/2;}return total;}
     return Math.abs(pts.reduce((sum,p,i)=>sum+p[0]*pts[(i+1)%pts.length][1]-p[1]*pts[(i+1)%pts.length][0],0))/2;
@@ -44,7 +49,7 @@ export function measurement(o:RoboObjectDescriptor,kind:string):number|number[] 
 }
 function kernel(o:RoboObjectDescriptor):KernelObject {
   if(o.type==='circle'){const c=center(o);return circle({x:c[0],y:c[1]},o.command.radius*(o.command.scale??1));}
-  if(o.type==='line'){const [a,b]=vertices(o);return line({x:a[0],y:a[1]},{x:b[0],y:b[1]});}
+  if(['line','ray','vector'].includes(o.type)){const [a,b]=vertices(o);return (o.type==='ray'?ray:o.type==='vector'||o.command.linearExtent==='segment'?segment:line)({x:a[0],y:a[1]},{x:b[0],y:b[1]});}
   throw new Error('UNSUPPORTED: Analytic intersection supports lines and circles, or two function graphs.');
 }
 export function numericRoots(fn:(x:number)=>number):number[] {
@@ -54,7 +59,23 @@ export function numericRoots(fn:(x:number)=>number):number[] {
   if(Math.abs(fn(100))<1e-8)add(100);return roots;
 }
 export function intersections(a:RoboObjectDescriptor,b:RoboObjectDescriptor):number[][] {
+  if(a.mode.endsWith('3d')){
+    const nativeLine=(o:RoboObjectDescriptor)=>{const [p,q]=vertices(o);return {kind:(o.type==='ray'?'ray':o.type==='vector'||o.command.linearExtent==='segment'?'segment':'line') as 'line'|'segment'|'ray',point:p,direction:q.map((x,i)=>x-p[i])};};
+    let hit:{kind:string;point?:number[]};
+    if(a.type==='plane'&&['line','ray','vector'].includes(b.type))hit=linePlane3(nativeLine(b),planeFromPoints3(vertices(a).slice(0,3)));
+    else if(b.type==='plane'&&['line','ray','vector'].includes(a.type))hit=linePlane3(nativeLine(a),planeFromPoints3(vertices(b).slice(0,3)));
+    else if([a,b].every(o=>['line','ray','vector'].includes(o.type))){
+      const first=nativeLine(a),second=nativeLine(b);
+      // Skew supporting lines cannot intersect, regardless of endpoint domains.
+      const supporting=lineLine3({...first,kind:'line'},{...second,kind:'line'});
+      hit=supporting.kind==='skew'?{kind:'none'}:lineLine3(first,second);
+    }else throw new Error('UNSUPPORTED: 3D point intersections support lines and planes.');
+    return hit.kind==='point'?[hit.point!]:[];
+  }
+
+  if((a.type==='plot'&&b.type==='circle')||(b.type==='plot'&&a.type==='circle')){const plot=a.type==='plot'?a:b,host=a.type==='circle'?a:b,f=compileFunctionExpression(plot.command.expression!),ctr=center(host),r=host.command.radius*(host.command.scale??1);return numericRoots(x=>(x-ctr[0])**2+(f(x)-ctr[1])**2-r*r).map(x=>[x,f(x)]);}
   if(a.type==='plot'&&b.type==='plot'){const f=compileFunctionExpression(a.command.expression!),g=compileFunctionExpression(b.command.expression!);return numericRoots(x=>f(x)-g(x)).map(x=>[x,f(x)]);}
+  if([a,b].every(o=>['line','ray','vector'].includes(o.type))){const object=(o:RoboObjectDescriptor)=>{const [p,q]=vertices(o);return {kind:(o.type==='ray'?'ray':o.type==='vector'||o.command.linearExtent==='segment'?'segment':'line') as 'line'|'segment'|'ray',a:p,b:q};};const hit=linearIntersection2(object(a),object(b)) as {kind:string;point?:number[]};return hit.kind==='point'?[hit.point!]:[];}
   return intersectObjects(kernel(a),kernel(b)).map(p=>[p.x,p.y]);
 }
 export function relationship(objects:RoboObjectDescriptor[],kind:string):boolean {

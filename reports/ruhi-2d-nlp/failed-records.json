@@ -1,0 +1,74 @@
+[
+  {
+    "id": "RUHI2D-010",
+    "scenarioId": "S-010",
+    "split": "test",
+    "command": "Draw a regular trapezoid centered at (-1,2) with circumradius 3.",
+    "expected": {
+      "type": "execute",
+      "actions": [
+        {
+          "op": "create_regular_polygon",
+          "shape": "trapezoid",
+          "center": [
+            -1,
+            2
+          ],
+          "circumradius": 3
+        }
+      ]
+    },
+    "status": "blocked",
+    "rootCause": "DATASET_EXPECTATION_ERROR",
+    "reason": "{\"invalid\":[],\"warnings\":[\"A regular trapezoid has no unique conventional definition; do not silently invent vertices.\"]}",
+    "actual": null
+  },
+  {
+    "id": "RUHI2D-020",
+    "scenarioId": "S-020",
+    "split": "train",
+    "command": "Draw a regular trapezoid centered at (2,2) with circumradius 3.",
+    "expected": {
+      "type": "execute",
+      "actions": [
+        {
+          "op": "create_regular_polygon",
+          "shape": "trapezoid",
+          "center": [
+            2,
+            2
+          ],
+          "circumradius": 3
+        }
+      ]
+    },
+    "status": "blocked",
+    "rootCause": "DATASET_EXPECTATION_ERROR",
+    "reason": "{\"invalid\":[],\"warnings\":[\"A regular trapezoid has no unique conventional definition; do not silently invent vertices.\"]}",
+    "actual": null
+  },
+  {
+    "id": "RUHI2D-030",
+    "scenarioId": "S-030",
+    "split": "validation",
+    "command": "Draw a regular trapezoid centered at (-2,2) with circumradius 3.",
+    "expected": {
+      "type": "execute",
+      "actions": [
+        {
+          "op": "create_regular_polygon",
+          "shape": "trapezoid",
+          "center": [
+            -2,
+            2
+          ],
+          "circumradius": 3
+        }
+      ]
+    },
+    "status": "blocked",
+    "rootCause": "DATASET_EXPECTATION_ERROR",
+    "reason": "{\"invalid\":[],\"warnings\":[\"A regular trapezoid has no unique conventional definition; do not silently invent vertices.\"]}",
+    "actual": null
+  }
+]

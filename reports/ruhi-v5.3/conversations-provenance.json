@@ -1,0 +1,5 @@
+{
+  "source": "scripts/ruhi-2d-nlp-conversations.mjs",
+  "sha256": "75c4b0b4d27832e33f074fd099f977bcb0047265f6f58b847d16e3df7e483cb6",
+  "adaptation": "Output directory only; expectations unchanged"
+}

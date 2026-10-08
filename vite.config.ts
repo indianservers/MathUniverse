@@ -12,6 +12,7 @@ export default defineConfig(({command,mode})=>({
   test: {
     setupFiles: ["./src/test/setup.ts"],
   },
+  worker: {format:'es'},
   build: {
     chunkSizeWarningLimit: 900,
     rollupOptions: {

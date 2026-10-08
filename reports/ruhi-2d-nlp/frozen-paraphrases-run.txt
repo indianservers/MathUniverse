@@ -1,0 +1,17 @@
+frozen-paraphrases PROBE-01 passed
+frozen-paraphrases PROBE-02 passed
+frozen-paraphrases PROBE-03 passed
+frozen-paraphrases PROBE-04 passed
+frozen-paraphrases PROBE-05 passed
+frozen-paraphrases PROBE-06 passed
+frozen-paraphrases PROBE-07 passed
+frozen-paraphrases PROBE-08 passed
+frozen-paraphrases PROBE-09 failed
+frozen-paraphrases PROBE-10 passed
+frozen-paraphrases PROBE-11 passed
+frozen-paraphrases PROBE-12 passed
+frozen-paraphrases PROBE-13 passed
+frozen-paraphrases PROBE-14 passed
+frozen-paraphrases PROBE-15 passed
+frozen-paraphrases PROBE-16 passed
+SUMMARY 15 1 0

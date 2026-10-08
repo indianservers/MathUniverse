@@ -1,3 +1,7 @@
+import {CinematicThreePreview} from '../math-robo/animation/CinematicThreePreview';
+import {cinematicPreview} from '../math-robo/animation/RuhiCinematicMotionEngine';
+import {registerRoboUnprojector,registerRoboSpatialProvider,readSVGSpatialObjects} from '../math-robo/character/spatialAwareness';
+import {useRoboThreeAwareness} from '../math-robo/character/useRoboThreeAwareness';
 import {registerRoboProjector,svgClientPoint} from '../math-robo/character/workspaceAdapter';
 import {roboEvents} from '../math-robo/character/engine';
 import { ImmersiveBoundary, useImmersiveAdapter } from "../workspace/immersive/ImmersiveInteractionManager";
@@ -47,7 +51,9 @@ import { commandExamplesFor, commandRegistrySummary, normalizeCommandName, resol
 import { useIntelligenceWorkspace,isKnownRoboObject } from '../offline-intelligence/workspaceBridge';
 import { addIntelligenceGeometry, nativeGeometryCommands } from '../offline-intelligence/geometryAdapter';
 import { commandTransform3d } from '../offline-intelligence/solidAdapter';
+import {outlineVertices} from '../offline-intelligence/commands';
 import type { VisualCommand } from '../offline-intelligence/commands';
+import DirectedObject3D from '../offline-intelligence/DirectedObject3D';
 import { createIntelligenceShapeGeometry, intelligenceMeshMeasurement } from '../offline-intelligence/shapeGeometry3d';
 import { validateGraphExpression, isGraphValidationBlocking } from "../workspace/graphValidation";
 import { createAnimationAction, describeTransformAction, parseStyleAction, parseTransformCommand } from "../workspace/actionCommandKernel";
@@ -170,7 +176,7 @@ import {
 type ResultCard = { id: string; input: string; interpretation: string; result: string; detail?: string; steps?: string[]; table?: ResultTableRow[]; related?: string[]; graphExpression?: string };
 type SpreadsheetCellGrid = string[][];
 type GeometryTool = "select" | "point" | "segment" | "ray" | "vector" | "line" | "circle" | "polygon" | "angle" | "parallel" | "perpendicular" | "midpoint" | "fixed-length" | "circle-radius" | "circle-3-points" | "on-circle" | "intersect" | "perpendicular-bisector" | "angle-bisector" | "tangent" | "polar" | "locus" | "regular-polygon" | "sector" | "arc" | "compass" | "mirror" | "rotate" | "dilate" | "translate" | "show-hide" | "lock" | "freehand" | "text" | "image" | "move-canvas" | "zoom" | "triangle" | "rectangle" | "square" | "pentagon-shape" | "hexagon" | "parallelogram" | "trapezoid" | "rhombus" | "kite" | "shape-circle" | "semicircle" | "parabola" | "ellipse" | "hyperbola" | "reflect" | "trace" | "stop-trace" | "clear-trace" | "delete" | "redo" | "reset" | "save" | "load";
-type GeoLine = { id: string; a: string; b: string; style?: GeoStyle };
+type GeoLine = { id: string; a: string; b: string; kind?: 'line'|'segment'|'ray'|'vector'; style?: GeoStyle };
 type GeoCircle = { id: string; center: string; edge: string; style?: GeoStyle };
 type GeoPolygon = { id: string; points: string[]; style?: GeoStyle };
 type WorkspaceImage = { id: string; name: string; src: string; x: number; y: number; width: number; height: number; opacity: number; locked?: boolean; visible?: boolean };
@@ -546,7 +552,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
   });
 
   const recordWorkspaceStep = (label: string, detail: string) => {
-    if (immersive3dTransaction.current) return;
+    if (immersive3dTransaction.current || cinematicPreview) return;
     const step = captureStep(label, detail);
     setUndoStack((current) => [step, ...current].slice(0, 80));
     setRedoStack([]);
@@ -1683,13 +1689,16 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
   };
 
   const immersive3dTransaction = useRef(false);
+  const geometryAwareness=useRef({construction,selectedGeometry});geometryAwareness.current={construction,selectedGeometry};
+  useEffect(()=>{if(workspaceView!=='geometry')return;return registerRoboSpatialProvider('geometry2d',anchor=>readSVGSpatialObjects(svgRef.current,anchor,(id,kind)=>{const c=geometryAwareness.current.construction;let label:string|undefined;if(kind==='point')label=c.points.find(p=>p.id===id)?.label;else if(kind==='circle'){const circle=c.circles.find(o=>o.id===id);const center=c.points.find(p=>p.id===circle?.center);label=center?`Circle ${center.label}`:undefined;}else if(kind==='line'){const line=c.lines.find(o=>o.id===id);const a=c.points.find(p=>p.id===line?.a),b=c.points.find(p=>p.id===line?.b);label=a&&b?`${a.label}${b.label}`:undefined;}else if(kind==='polygon'){const index=c.polygons.findIndex(o=>o.id===id);if(index>=0)label=`Polygon ${index+1}`;}return {label,selected:geometryAwareness.current.selectedGeometry?.id===id};}));},[workspaceView]);
+  useEffect(()=>{if(workspaceView!=='geometry')return;return registerRoboUnprojector('geometry2d',point=>{const svg=svgRef.current,matrix=svg?.getScreenCTM();if(!svg||!matrix)return;const rect=svg.getBoundingClientRect();if(point.x<rect.left||point.x>rect.right||point.y<rect.top||point.y>rect.bottom)return;const p=new DOMPoint(point.x,point.y).matrixTransform(matrix.inverse());return [(p.x-320)/40,(210-p.y)/40];});},[workspaceView]);
   useEffect(()=>{if(workspaceView!=='geometry')return;return registerRoboProjector('geometry2d',p=>svgClientPoint(svgRef.current,{x:320+p[0]*40,y:210-p[1]*40}));},[workspaceView]);
   useEffect(()=>{if(workspaceView!=='geometry'||!selectedGeometry)return;const point=construction.points.find(p=>p.id===selectedGeometry.id);const object=nativeGeometryCommands(construction).find(o=>o.objectId===selectedGeometry.id);const boardPoint=point??(object?.points[0]?{x:320+object.points[0][0]*40,y:210-object.points[0][1]*40}:undefined);if(boardPoint)roboEvents.emit({type:'workspace',kind:'selection',target:()=>svgClientPoint(svgRef.current,boardPoint)});},[workspaceView,selectedGeometry,construction]);
   useIntelligenceWorkspace(workspaceView === '3d' ? 'geometry3d' : 'geometry2d', command => {
     if(workspaceView==='geometry'&&command.roboLocked!==undefined){const ids=command.roboNativeIds?[...command.roboNativeIds.points,...(command.roboNativeIds.shape?[command.roboNativeIds.shape]:[])]:[...command.points.map((_,i)=>`${command.objectId}-p${i}`),`${command.objectId}-shape`];setLockedGeometryIds(previous=>command.roboLocked?[...new Set([...previous,...ids])]:previous.filter(id=>!ids.includes(id)));}
     if(command.roboControl==='deselect'){setSelectedGeometry(null);setSelectedPointIds([]);setSelected3d('');return;}
     if(command.roboControl==='select'){
-      if(workspaceView==='geometry')setSelectedGeometry({type:command.kind==='circle'?'circle':command.kind==='line'?'line':command.kind==='point'?'point':'polygon',id:command.roboNativeIds?.shape??(command.roboNativeIds?command.roboNativeIds.points[0]:`${command.objectId}-${command.kind==='point'?'p0':'shape'}`)});
+      if(workspaceView==='geometry')setSelectedGeometry({type:command.kind==='circle'?'circle':['line','ray','vector'].includes(command.kind)?'line':command.kind==='point'?'point':'polygon',id:command.roboNativeIds?.shape??(command.roboNativeIds?command.roboNativeIds.points[0]:`${command.objectId}-${command.kind==='point'?'p0':'shape'}`)});
       else setSelected3d(command.objectId!);return;
     }
     if(command.roboControl==='delete'||command.roboControl==='visibility'){
@@ -1707,25 +1716,26 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
     }
     const id=command.objectId??crypto.randomUUID();
     if(command.action==='update'&&!added3dObjects.some(object=>object.id===id))return 'The last Ruhi object was removed. Create an object again before editing it.';
-    const baseId:ThreeObjectId=command.kind==='line'?'line3d':command.kind==='point'?'point':'solid';
+    const baseId:ThreeObjectId=['line','ray','vector'].includes(command.kind)?'line3d':command.kind==='point'?'point':'solid';
     recordWorkspaceStep(command.action==='update'?'Edit Robo object':'Create Robo object',command.kind);
-      const next:Added3DObject={id,label:command.roboLabel??command.kind,baseId,render:command.kind==='line'?'line3d':command.kind==='point'?'point':'solid',nlpCommand:command,transform:{...defaultTransforms3d[baseId],...commandTransform3d(command),scale:command.scale??1,visible:command.roboVisible??true,name:command.kind,locked:command.roboLocked??false}};
+      const next:Added3DObject={id,label:command.roboLabel??command.kind,baseId,render:['line','ray','vector'].includes(command.kind)?'line3d':command.kind==='point'?'point':'solid',nlpCommand:command,transform:{...defaultTransforms3d[baseId],...commandTransform3d(command),scale:command.scale??1,visible:command.roboVisible??true,name:command.kind,locked:command.roboLocked??false}};
     setAdded3dObjects(current=>[...current.filter(object=>object.id!==id),next]);setSelected3d(id);setShowSolid(true);
   }, !embedded && (workspaceView==='geometry'||workspaceView==='3d'), command=>{
     if(workspaceView==='geometry') {
+      if(['ray','vector'].includes(command.kind)&&!construction.lines.some(line=>line.id===(command.roboNativeIds?.shape??`${command.objectId}-shape`)&&(line.kind??line.style?.label)===command.kind))return undefined;
         const actual=command.roboNativeIds?command.roboNativeIds.points.flatMap(id=>construction.points.filter(point=>point.id===id)):construction.points.filter(point=>point.id.startsWith(`${command.objectId}-p`));
       if(!actual.length&&!construction.loci.some(locus=>locus.id.startsWith(`${command.objectId}-`)))return undefined;
       const vertices=actual.map(point=>[(point.x-320)/40,(210-point.y)/40,0]);
       if(command.kind==='circle'&&vertices.length>=2) {
         return {command:{...command,points:[vertices[0].slice(0,2)],radius:Math.hypot(vertices[1][0]-vertices[0][0],vertices[1][1]-vertices[0][1]),scale:1,rotation:[0,0,0]}};
       }
-        const materialized=command.kind==='line'||command.kind==='point'?{...command,points:vertices.map(p=>p.slice(0,2)),rotation:[0,0,0] as [number,number,number],scale:1}:command;
+        const materialized=['line','ray','vector'].includes(command.kind)||command.kind==='point'?{...command,points:vertices.map(p=>p.slice(0,2)),rotation:[0,0,0] as [number,number,number],scale:1}:command;
         return {command:materialized,vertices:vertices.length?vertices:undefined};
     }
     const actual=added3dObjects.find(object=>object.id===command.objectId);
     if(!actual)return undefined;
-      return {command:{...command,points:command.kind==='line'?command.points:[actual.transform.position],rotation:command.kind==='line'?command.rotation:actual.transform.rotation,scale:actual.transform.scale,color:actual.transform.color,roboVisible:actual.transform.visible}};
-    },()=>workspaceView==='geometry'?{commands:nativeGeometryCommands(construction,id=>isKnownRoboObject('geometry2d',id)).map(command=>({...command,roboLocked:command.roboNativeIds?.points.some(id=>lockedGeometryIds.includes(id))??false})),selectedIds:selectedGeometry?[(isKnownRoboObject('geometry2d',selectedGeometry.id)?selectedGeometry.id.replace(/-(?:shape|p\d+)$/,''):selectedGeometry.id)]:undefined}:{commands:added3dObjects.flatMap(o=>o.nlpCommand?[{...o.nlpCommand,objectId:o.id,points:[o.transform.position],rotation:o.transform.rotation,scale:o.transform.scale,roboLocked:o.transform.locked}]:[]),selectedIds:selected3d?[selected3d]:undefined});
+      return {command:{...command,points:['ray','vector','triangle','polygon'].includes(command.kind)?command.points.map(p=>p.map((n,i)=>n+actual.transform.position[i]-commandTransform3d(command).position[i])):command.kind==='line'?command.points:[actual.transform.position],rotation:command.kind==='line'?command.rotation:actual.transform.rotation,scale:actual.transform.scale,color:actual.transform.color,roboVisible:actual.transform.visible}};
+    },()=>workspaceView==='geometry'?{commands:nativeGeometryCommands(construction,id=>isKnownRoboObject('geometry2d',id)).map(command=>({...command,roboLocked:command.roboNativeIds?.points.some(id=>lockedGeometryIds.includes(id))??false})),selectedIds:selectedGeometry?[(isKnownRoboObject('geometry2d',selectedGeometry.id)?selectedGeometry.id.replace(/-(?:shape|p\d+)$/,''):selectedGeometry.id)]:undefined}:{commands:added3dObjects.flatMap(o=>o.nlpCommand?[{...o.nlpCommand,objectId:o.id,points:['ray','vector','triangle','polygon'].includes(o.nlpCommand.kind)?o.nlpCommand.points.map(p=>p.map((n,i)=>n+o.transform.position[i]-commandTransform3d(o.nlpCommand!).position[i])):o.nlpCommand.kind==='line'?o.nlpCommand.points:[o.transform.position],rotation:o.nlpCommand.kind==='line'?o.nlpCommand.rotation:o.transform.rotation,scale:o.transform.scale,roboLocked:o.transform.locked}]:[]),selectedIds:selected3d?[selected3d]:undefined});
   useEffect(() => {
     const begin = () => { if(workspaceView === "3d" || workspaceView === "geometry") { recordWorkspaceStep("Hand gesture", "Transform object with hand controls."); immersive3dTransaction.current=true; } };
     const end = () => { immersive3dTransaction.current=false; };
@@ -1838,6 +1848,21 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
   const saveConstruction = () => {
     localStorage.setItem(embedded ? `geometry-studio-workspace:${embedded.activityId}` : "math-universe-workspace-construction", JSON.stringify(embedded ? { workspaceSnapshot: snapshot(), geometryCamera } : { construction, geometryGraphSettings }));
     setProjectStatus("Geometry construction saved in this browser.");
+  };
+  const restoreSavedConstruction = () => {
+    try {
+      const saved = localStorage.getItem(embedded ? `geometry-studio-workspace:${embedded.activityId}` : "math-universe-workspace-construction");
+      if (!saved) { setProjectStatus("No saved construction found in this browser yet."); return; }
+      const data = JSON.parse(saved);
+      const restored = embedded ? data.workspaceSnapshot?.construction : data.construction;
+      if (!restored || !Array.isArray(restored.points) || !Array.isArray(restored.lines)) throw new Error("Invalid construction");
+      recordWorkspaceStep("Restore saved construction", "Restored the geometry saved in this browser.");
+      setConstruction(normalizeConstruction(restored));
+      if (!embedded && data.geometryGraphSettings) setGeometryGraphSettings(data.geometryGraphSettings);
+      if (embedded && data.geometryCamera) setGeometryCamera(data.geometryCamera);
+      setSelectedGeometry(null); setSelectedPointIds([]);
+      setProjectStatus("Saved construction restored.");
+    } catch { setProjectStatus("Saved construction could not be restored. The stored data is invalid."); }
   };
   const snapshot = (): WorkspaceSnapshot => ({ input, results, plots, construction, geometryGraphSettings, lockedGeometryIds, surface, surfaceExpression, cameraPreset3d, sceneAnimationSpeed, solid, surfaceScale, height3d, crossSection, showSurface, showSolid, autoRotate3d, zoom3d, transforms3d, added3dObjects, deletedBase3dIds, images: workspaceImages, spreadsheet, tableRange: { start: tableStart, end: tableEnd, step: tableStep }, guidedMode, guidedPhase, teachingMode, revealStep, controlsLocked, highContrastMode, performanceMode, protocol, activityJournal, presentationNotes, objectProperties: objectPropertyOverrides });
   const saveWorkspace = () => {
@@ -3114,6 +3139,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
           onClearTrace={clearGeometryTrace}
           onReset={() => { recordWorkspaceStep("Clear geometry", "Removed all 2D geometry objects."); setConstruction(initialConstruction); setSelectedGeometry(null); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
           onSave={saveConstruction}
+          onRestoreSaved={restoreSavedConstruction}
           onLoad={openPortableWorkspaceImport}
           onExport={exportGeometryPng}
           onGraphSettingsChange={setGeometryGraphSettings}
@@ -3203,6 +3229,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
             onClearTrace={clearGeometryTrace}
             onReset={() => { recordWorkspaceStep("Clear geometry", "Removed all 2D geometry objects."); setConstruction(initialConstruction); setSelectedGeometry(null); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
             onSave={saveConstruction}
+            onRestoreSaved={restoreSavedConstruction}
             onLoad={openPortableWorkspaceImport}
             onExport={exportGeometryPng}
           onGraphSettingsChange={setGeometryGraphSettings}
@@ -7036,6 +7063,7 @@ function lineEquation(line: GeoLine, construction: Construction) {
   const y1 = (210 - a.y) / 40;
   const x2 = (b.x - 320) / 40;
   const y2 = (210 - b.y) / 40;
+  if(line.kind==='ray'||line.kind==='vector')return line.kind==='ray'?`P(t) = (${x1},${y1}) + t(${x2-x1},${y2-y1}), t ≥ 0`:`v = (${x2-x1},${y2-y1}), |v| = ${Math.hypot(x2-x1,y2-y1)}`;
   if (Math.abs(x2 - x1) < 0.001) return `x = ${roundTo(x1, 2)}`;
   const m = (y2 - y1) / (x2 - x1);
   const intercept = y1 - m * x1;
@@ -7232,6 +7260,8 @@ function _Workspace3DProjectionPane({ view, selected, transform, surfaceScale, s
 }
 
 function objectStudioMeasurement(selected: string, transform: Transform3D, solid?: SolidKind, nlpCommand?:VisualCommand) {
+  if(nlpCommand?.kind==='point')return {label:'point',volume:0,surfaceArea:0,detail:'Zero-dimensional point.'};
+  if(nlpCommand&&['line','ray','vector'].includes(nlpCommand.kind)){const [a,b]=outlineVertices(nlpCommand);return {label:nlpCommand.kind,volume:0,surfaceArea:0,detail:nlpCommand.kind==='line'?'Line or segment; no surface area or volume':nlpCommand.kind==='ray'?'Unbounded ray, t ≥ 0':`Vector magnitude ${Math.hypot(...b.map((n,i)=>n-a[i]))}`};}
   if(nlpCommand)return intelligenceMeshMeasurement(nlpCommand,transform.dimensions??commandTransform3d(nlpCommand).dimensions,transform.scale);
   const kernelMeasurement = object3Measurement(transformToKernelObject(selected, transform));
   const dimensions = (transform.dimensions ?? [1, 1, 1]).map((value) => Math.max(0, value * transform.scale));
@@ -7858,6 +7888,7 @@ function workflowTypeForContextTarget(target: ContextMenuState["target"]): Workf
 function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, solidSize, crossSection, showSurface, showSolid, autoRotate, animationSpeed, zoom, performanceMode, cameraPreset, selected, transforms, addedObjects, dragging, interactionTool, snapStep, vectorWorkbench, onSelect, onDrag, onTransform, onContextMenu }: { surface: SurfaceKind; surfaceExpression: string; solid: SolidKind; surfaceScale: number; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean; autoRotate: boolean; animationSpeed: number; zoom: number; performanceMode: boolean; cameraPreset: CameraPreset3D; selected: string; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; dragging: string | null; interactionTool: ObjectStudioTool; snapStep: number; vectorWorkbench: { a: Vector3Tuple; b: Vector3Tuple; view: VectorView3D; visible: boolean; focus: boolean }; onSelect: (id: string) => void; onDrag: (id: string | null) => void; onTransform: (id: string, patch: Partial<Transform3D>) => void; onContextMenu: (event: ThreeEvent<MouseEvent>, id: string) => void }) {
   const groupRef = useRef<THREE.Group>(null);
   const {camera,gl}=useThree();
+  useRoboThreeAwareness('geometry3d',id=>{const t=isBase3dId(id)?transforms[id]:addedObjects.find(o=>o.id===id)?.transform;return {label:t?.name??id,kind:isBase3dId(id)?id:addedObjects.find(o=>o.id===id)?.nlpCommand?.kind??'3D object',selected:id===selected};});
   useEffect(()=>registerRoboProjector('geometry3d',p=>{const group=groupRef.current;if(!group)return;group.updateWorldMatrix(true,false);const v=group.localToWorld(new THREE.Vector3(p[0],p[1],p[2]??0)).project(camera);if(v.z < -1 || v.z > 1)return;const r=gl.domElement.getBoundingClientRect();return {x:r.left+(v.x+1)*r.width/2,y:r.top+(1-v.y)*r.height/2};}),[camera,gl]);
   const selectedTarget=useRef<{point:number[]}>({point:[0,0,0]});
   selectedTarget.current.point=(isBase3dId(selected)?transforms[selected]:addedObjects.find(o=>o.id===selected)?.transform)?.position??[0,0,0];
@@ -7951,7 +7982,8 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
       {transforms.prism3d.visible && <TransformGroup3D transform={transforms.prism3d} selected={selected === "prism3d"}><ConstructedSolid3D kind="prism" transform={transforms.prism3d} eventProps={selectProps("prism3d")} /></TransformGroup3D>}
       {transforms.pyramid3d.visible && <TransformGroup3D transform={transforms.pyramid3d} selected={selected === "pyramid3d"}><ConstructedSolid3D kind="pyramid" transform={transforms.pyramid3d} eventProps={selectProps("pyramid3d")} /></TransformGroup3D>}
       {transforms.polyhedron3d.visible && <TransformGroup3D transform={transforms.polyhedron3d} selected={selected === "polyhedron3d"}><ConstructedSolid3D kind="polyhedron" transform={transforms.polyhedron3d} eventProps={selectProps("polyhedron3d")} /></TransformGroup3D>}
-      {addedObjects.map((object) => <AddedSceneObject3D key={object.id} object={object} selected={selected === object.id} surfaceScale={surfaceScale} solidSize={solidSize} crossSection={crossSection} performanceMode={performanceMode} eventProps={selectProps(object.id)} />)}
+      {addedObjects.map((object) => <group key={object.id} userData={{ruhiObjectId:object.id}}><AddedSceneObject3D object={object} selected={selected === object.id} surfaceScale={surfaceScale} solidSize={solidSize} crossSection={crossSection} performanceMode={performanceMode} eventProps={selectProps(object.id)} /></group>)}
+      <CinematicThreePreview mode="geometry3d"/>
       <IntersectionOverlays3D transforms={transforms} crossSection={crossSection} />
       <MeasurementOverlays3D transforms={transforms} />
       </group>
@@ -7961,6 +7993,8 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
 
 function AddedSceneObject3D({ object, selected, surfaceScale, solidSize, crossSection, performanceMode, eventProps }: { object: Added3DObject; selected: boolean; surfaceScale: number; solidSize: number; crossSection: number; performanceMode: boolean; eventProps: Record<string, unknown> }) {
   if (!object.transform.visible) return null;
+  if(object.nlpCommand&&['line','ray','vector'].includes(object.nlpCommand.kind)){const c=object.nlpCommand,ctr=commandTransform3d(c).position;return <TransformGroup3D transform={object.transform} selected={selected}><DirectedObject3D command={{...c,points:c.points.map(p=>p.map((n,i)=>n-ctr[i])),scale:1,rotation:[0,0,0],color:object.transform.color}} eventProps={eventProps}/></TransformGroup3D>;}
+  if(object.nlpCommand?.kind==='point')return <TransformGroup3D transform={object.transform} selected={selected}><Point3D label={object.nlpCommand.roboLabel??'P'} color={object.transform.color} eventProps={eventProps}/></TransformGroup3D>;
   if(object.nlpCommand) return <TransformGroup3D transform={object.transform} selected={selected}><IntelligenceShapeMesh command={object.nlpCommand} transform={object.transform} eventProps={eventProps}/></TransformGroup3D>;
   if (object.render === "surface") return <TransformGroup3D transform={object.transform} selected={selected}><SurfaceMesh surface={object.surface ?? "paraboloid"} expression="sin(x) * cos(y)" scaleValue={surfaceScale} transform={object.transform} performanceMode={performanceMode} eventProps={eventProps} /></TransformGroup3D>;
   if (object.render === "slice") return <TransformGroup3D transform={{ ...object.transform, position: [object.transform.position[0], crossSection + object.transform.position[1], object.transform.position[2]] }} selected={selected}><CrossSectionPlane color={object.transform.color} eventProps={eventProps} /></TransformGroup3D>;
@@ -8777,7 +8811,7 @@ function geometryObjectLabel(construction: Construction, object: SelectedGeometr
 function Measurements({ construction }: { construction: Construction }) {
   const lineLengths = construction.lines.map((line) => {
     const a = pointById(construction.points, line.a), b = pointById(construction.points, line.b);
-    return a && b ? `${a.label}${b.label} = ${roundTo(distance(a, b) / 40, 2)}` : "";
+    return a && b ? line.kind === "ray" ? `${a.label}${b.label}: unbounded ray` : `${line.kind === "vector" ? "|v| " : ""}${a.label}${b.label} = ${roundTo(distance(a, b) / 40, 2)}` : "";
   }).filter(Boolean);
   const lineEquations = construction.lines.map((line) => `${lineName(line, construction, 0)}: ${lineEquation(line, construction)}`);
   const lineSlopes = construction.lines.map((line) => {
@@ -8888,7 +8922,7 @@ function createGeometryObjectForTool(construction: Construction, tool: GeometryT
     const a = makePoint(-72, 0, labelOffset(0));
     const b = makePoint(72, 0, labelOffset(1));
     const style: GeoStyle = tool === "segment" ? { label: "segment", color: "#22d3ee" } : tool === "ray" ? { label: "ray", color: "#a78bfa" } : tool === "vector" ? { label: "vector", color: "#10b981", strokeWidth: 5 } : { label: "line", color: "#8b5cf6" };
-    return solveConstruction({ ...withPoints(a, b), lines: [...construction.lines, { id: crypto.randomUUID(), a: a.id, b: b.id, style }] });
+    return solveConstruction({ ...withPoints(a, b), lines: [...construction.lines, { id: crypto.randomUUID(), a: a.id, b: b.id, kind: tool === "ray" ? "ray" : tool === "vector" ? "vector" : "line", style }] });
   }
   if (tool === "circle" || tool === "circle-radius") {
     const center = makePoint(0, 0, labelOffset(0));
@@ -9106,6 +9140,7 @@ function uniqueBoardPoints(points: { x: number; y: number }[]) {
 function lineCircleIntersections(line: GeoLine, circle: GeoCircle, points: GeoPoint[]) {
   const a = pointById(points, line.a), b = pointById(points, line.b), center = pointById(points, circle.center), edge = pointById(points, circle.edge);
   if (!a || !b || !center || !edge) return [];
+  if(line.kind==='ray'||line.kind==='vector')return kernelIntersectObjects((line.kind==='ray'?kernelRay:kernelSegment)(kernelPoint(a.x,a.y),kernelPoint(b.x,b.y)),kernelCircle(kernelPoint(center.x,center.y),distance(center,edge)));
   const dx = b.x - a.x, dy = b.y - a.y;
   const fx = a.x - center.x, fy = a.y - center.y;
   const radius = distance(center, edge);
@@ -9237,6 +9272,7 @@ function normalize(x: number, y: number) {
 function lineIntersection(first: GeoLine, second: GeoLine, points: GeoPoint[]) {
   const a = pointById(points, first.a), b = pointById(points, first.b), c = pointById(points, second.a), d = pointById(points, second.b);
   if (!a || !b || !c || !d) return null;
+  if(first.kind==='ray'||first.kind==='vector'||second.kind==='ray'||second.kind==='vector'){const object=(line:GeoLine,u:GeoPoint,v:GeoPoint)=>(line.kind==='ray'?kernelRay:line.kind==='vector'?kernelSegment:kernelLine)(kernelPoint(u.x,u.y),kernelPoint(v.x,v.y));return kernelIntersectObjects(object(first,a,b),object(second,c,d))[0]??null;}
   const denominator = (a.x - b.x) * (c.y - d.y) - (a.y - b.y) * (c.x - d.x);
   if (Math.abs(denominator) < 0.001) return null;
   const px = ((a.x * b.y - a.y * b.x) * (c.x - d.x) - (a.x - b.x) * (c.x * d.y - c.y * d.x)) / denominator;

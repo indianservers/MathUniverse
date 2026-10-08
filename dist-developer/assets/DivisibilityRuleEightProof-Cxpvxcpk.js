@@ -1,0 +1,1 @@
+import{j as i}from"./vendor-react-3d-FwnfEBiX.js";import o from"./DivisibilityEightMobileProof-Bu_RH1ay.js";import"./vendor-icons-C3dLI0g1.js";import"./vendor-three-ub9rmW6h.js";import"./index-eBfdE1e8.js";import"./vendor-charts-BXOpgMHl.js";import"./vendor-math-rendering-BITAHWHy.js";function l(){return i.jsx(o,{})}export{l as default};

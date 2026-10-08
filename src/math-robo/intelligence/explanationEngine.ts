@@ -14,6 +14,7 @@ export function explainResult(plan:MathRoboPlan,scene:RoboSceneContext){
       return `Distance formula: √(Σ(bᵢ−aᵢ)²), using ${JSON.stringify(a.position)} and ${JSON.stringify(b.position)}.`;
     }
     const o=resolveTarget(command.target,scene),pts=vertices(o);
+    if(['COMPONENTS','DIRECTION','MAGNITUDE','PARAMETERIZATION'].includes(command.subAction)&&['ray','vector'].includes(o.type)){const direction=pts[1].map((n,i)=>n-pts[0][i]);return `Subtract the start coordinates from the second point: (${direction.join(', ')}). ${o.type==='ray'?'The ray uses P(t) = start + t × direction, t ≥ 0.':`Magnitude = √(${direction.map(n=>`(${n})²`).join(' + ')}) = ${Math.hypot(...direction)}.`}`;}
     if(command.subAction==='MIDPOINT')return `Midpoint formula: M = ((x₁+x₂)/2, (y₁+y₂)/2). Endpoints: ${JSON.stringify(pts)}.`;
     if(command.subAction==='SLOPE')return `Δy = ${pts[1][1]-pts[0][1]}, Δx = ${pts[1][0]-pts[0][0]}; slope = Δy/Δx.`;
     if(command.subAction==='LENGTH'||command.subAction==='DISTANCE')return `Distance formula: √(Σ(bᵢ−aᵢ)²) = ${distance(pts[0],pts[1])}.`;

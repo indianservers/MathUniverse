@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Math Universe embed</title>
+  <style>html,body,#mu-embed-stage{margin:0;height:100%;background:transparent}</style>
+</head>
+<body>
+  <div id="mu-embed-stage"></div>
+  <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var kind = params.get("kind") || "twodgraph";
+      var allowed = { twodgraph: 1, twodgeometry: 1, threedgraph: 1, threedgeometry: 1 };
+      if (!allowed[kind]) kind = "twodgraph";
+      var s = document.createElement("script");
+      s.src = "./" + kind + ".js";
+      document.body.appendChild(s);
+    })();
+  </script>
+</body>
+</html>

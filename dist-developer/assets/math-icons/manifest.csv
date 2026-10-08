@@ -1,0 +1,31 @@
+number,filename,concept
+1,01-cas.png,CAS
+2,02-geometry.png,Geometry
+3,03-3d-geometry.png,3D Geometry
+4,04-graphs.png,Graphs
+5,05-3d-graphs.png,3D Graphs
+6,06-shapes-explorer.png,Shapes Explorer
+7,07-spreadsheet.png,Spreadsheet
+8,08-scientific-calculator.png,Scientific Calculator
+9,09-equation-solver.png,Equation Solver
+10,10-algebra.png,Algebra
+11,11-arithmetic.png,Arithmetic
+12,12-calculus.png,Calculus
+13,13-trigonometry.png,Trigonometry
+14,14-statistics.png,Statistics
+15,15-probability.png,Probability
+16,16-data-analysis.png,Data Analysis
+17,17-regression.png,Regression
+18,18-number-theory.png,Number Theory
+19,19-fractions.png,Fractions
+20,20-matrices.png,Matrices
+21,21-vectors.png,Vectors
+22,22-complex-numbers.png,Complex Numbers
+23,23-differential-equations.png,Differential Equations
+24,24-sets-and-logic.png,Sets and Logic
+25,25-functions.png,Functions
+26,26-measurement.png,Measurement
+27,27-transformations.png,Transformations
+28,28-proof-studio.png,Proof Studio
+29,29-formula-library.png,Formula Library
+30,30-math-dictionary.png,Math Dictionary

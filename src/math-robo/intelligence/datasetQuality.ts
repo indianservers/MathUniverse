@@ -1,8 +1,19 @@
 import type {SemanticRow} from './types';
 import {normalizeLanguage} from './numberParser';
+function parameterSignature(row:SemanticRow){
+  const parameters={...row.parameters};
+  // These aliases describe the same execution. Keep mismatching values so real
+  // contradictions remain visible rather than silently choosing one value.
+  if(parameters.multiple===false)delete parameters.multiple;
+  if(parameters.vector)for(const [index,key] of ['dx','dy','dz'].entries()){
+    const alias=key as 'dx'|'dy'|'dz';
+    if(parameters[alias]===parameters.vector[index])delete parameters[alias];
+  }
+  return JSON.stringify(Object.fromEntries(Object.keys(parameters).sort().map(key=>[key,parameters[key as keyof typeof parameters]])));
+}
 export function datasetQuality(rows:SemanticRow[]){
   const classes=new Map<string,number>(),texts=new Map<string,string>(),families=new Set<string>(),ids=new Set<string>();let duplicates=0,nearDuplicates=0,conflicts=0,duplicateIds=0;
-  for(const row of rows){const key=`${row.action}:${row.subAction}`;classes.set(key,(classes.get(key)??0)+1);const text=`${row.mode}:${normalizeLanguage(row.phrase)}`,label=`${key}:${JSON.stringify(row.parameters)}`,old=texts.get(text);if(old===label)duplicates++;else if(old)conflicts++;texts.set(text,label);const family=text.replace(/-?\d+(?:\.\d+)?/g,'#').replace(/\b(please|kindly|can you|could you)\b/g,'').replace(/\s+/g,' ');if(families.has(family))nearDuplicates++;families.add(family);const id=(row as SemanticRow&{id?:string}).id;if(id){if(ids.has(id))duplicateIds++;ids.add(id);}}
+  for(const row of rows){const key=`${row.action}:${row.subAction}`;classes.set(key,(classes.get(key)??0)+1);const text=`${row.mode}:${normalizeLanguage(row.phrase)}`,label=`${key}:${parameterSignature(row)}`,old=texts.get(text);if(old===label)duplicates++;else if(old)conflicts++;texts.set(text,label);const family=text.replace(/-?\d+(?:\.\d+)?/g,'#').replace(/\b(please|kindly|can you|could you)\b/g,'').replace(/\s+/g,' ');if(families.has(family))nearDuplicates++;families.add(family);const id=(row as SemanticRow&{id?:string}).id;if(id){if(ids.has(id))duplicateIds++;ids.add(id);}}
   const counts=[...classes.values()],min=counts.length?Math.min(...counts):0,max=counts.length?Math.max(...counts):0;
   return {rows:rows.length,classes:[...classes].map(([operation,count])=>({operation,count})),minimumClassCount:min,maximumClassCount:max,imbalanceRatio:min?max/min:0,duplicates,nearDuplicates,conflictingLabels:conflicts,duplicateIds,lowClasses:[...classes].filter(([,n])=>n<10).map(([key])=>key)};
 }

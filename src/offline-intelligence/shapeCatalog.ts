@@ -4,4 +4,4 @@ export type ShapeKind = typeof FLAT_SHAPES[number] | typeof SOLID_SHAPES[number]
 export const SHAPE_ALIASES:Record<string,ShapeKind> = {
   rectagle:'rectangle',rectange:'rectangle',triange:'triangle',traingle:'triangle',oval:'ellipse',disk:'circle',disc:'circle',ball:'sphere',box:'cuboid',ring:'torus',donut:'torus',doughnut:'torus',trapezium:'trapezoid',diamond:'rhombus',polyhedron:'icosahedron',
 };
-export const COLORS:Record<string,string>={blue:'#3b82f6',red:'#ef4444',green:'#22c55e',orange:'#f97316',purple:'#a855f7',yellow:'#eab308',cyan:'#06b6d4',pink:'#ec4899',white:'#ffffff',black:'#111827'};
+export const COLORS:Record<string,string>={gold:'#ffd700','forest green':'#228b22','navy blue':'#000080',magenta:'#d946ef',teal:'#14b8a6',lime:'#84cc16',violet:'#8b5cf6',blue:'#3b82f6',red:'#ef4444',green:'#22c55e',orange:'#f97316',purple:'#a855f7',yellow:'#eab308',cyan:'#06b6d4',pink:'#ec4899',white:'#ffffff',black:'#111827'};

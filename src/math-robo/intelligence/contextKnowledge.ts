@@ -1,0 +1,16 @@
+import discovered from './contextPages.generated.json';
+export type KnowledgeRecord={id:string;title:string;vocabulary:string;definition:string;formula?:string;example?:string;proof?:string;source:string};
+export type PageKnowledge=KnowledgeRecord&{route:string};
+export const meanings:KnowledgeRecord[]=[
+ {id:'pigeonhole',title:'Pigeonhole Principle',vocabulary:'counting distribution objects containers boxes combinatorics guaranteed repetition',definition:'If N objects are placed in k positive boxes, at least one box contains at least ceil(N/k) objects.',formula:'ceil(N/k), with N a nonnegative integer and k a positive integer.',example:'Ten objects in three boxes can be distributed 4,3,3. At least one box must contain four or more.',proof:'If every box contained fewer than ceil(N/k) objects, each would contain at most ceil(N/k)-1. Their total would be at most k(ceil(N/k)-1), which is strictly less than N, a contradiction.',source:'src/studios/discrete/combinatorics/combinatoricsMath.ts:ceilDivision; PigeonholeLab.tsx'},
+ {id:'graph-tree',title:'Graph-theoretic tree',vocabulary:'graph vertices edges connected acyclic cycles paths network',definition:'A tree is an undirected connected acyclic graph. Between every pair of vertices there is exactly one simple path.',formula:'A finite tree with n vertices has n-1 edges.',example:'Three vertices with edges A-B and B-C form a tree; adding C-A creates a cycle.',proof:'A longest simple path in a finite tree has a leaf at an endpoint. Removing that leaf and its edge leaves a tree. Induction starting with one vertex gives n-1 edges.',source:'src/modules/graph-theory/graphTheoryEngine.ts; graph theory lesson catalog'},
+ {id:'data-tree',title:'Tree data structure',vocabulary:'computing algorithms hierarchy root parent child nodes traversal searching',definition:'A rooted tree data structure organizes nodes hierarchically. A root has no parent, and each other node has one parent; nodes can have children.',example:'A folder hierarchy has a root folder, child folders and files. A binary tree allows at most two children per node.',source:'Computing terminology record; algorithms studio context. No standalone data-structures page exists.'},
+ {id:'real-tree',title:'Biological tree',vocabulary:'biology real living plants wood roots trunk leaves',definition:'A biological tree is a woody perennial plant, typically with a trunk supporting branches and leaves. This is the ordinary meaning, rather than a mathematical tree.',example:'An oak or mango tree is a living plant.',source:'Reviewed general terminology record'},
+ {id:'ordinary-pigeonhole',title:'Ordinary pigeonhole',vocabulary:'ordinary real birds compartments desk storage',definition:'In ordinary language, a pigeonhole can mean a small compartment for sorting papers or a nesting compartment for pigeons.',source:'Reviewed general terminology record'},
+];
+export const contextPages=discovered as PageKnowledge[];
+export function pageKnowledge(path:string):PageKnowledge|undefined{
+ const url=new URL(path,'http://local'),full=url.pathname+url.search;
+ return contextPages.find(p=>p.route===full)??contextPages.find(p=>p.route===url.pathname);
+}
+export function knowledgeById(id:string){return meanings.find(k=>k.id===id)??contextPages.find(k=>k.id===id);}

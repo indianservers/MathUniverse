@@ -1,0 +1,627 @@
+[
+  {
+    "path": "src\\math-robo\\character\\character.css",
+    "lines": 8,
+    "sha256": "2a9aa29b3058fa76ba72a4bba0b8ae68ff403ad1f6e8b711907f08bef39934b4"
+  },
+  {
+    "path": "src\\math-robo\\character\\character.test.ts",
+    "lines": 17,
+    "sha256": "01d4ddd02fc8673cecf9baf6b5a00271a73b22694da705eeeda619b3474d5cb1"
+  },
+  {
+    "path": "src\\math-robo\\character\\engine.ts",
+    "lines": 343,
+    "sha256": "c7f6c7f29319c566385597376f973a6f20b4fc5413d82916ad3dc3bb87171cd3"
+  },
+  {
+    "path": "src\\math-robo\\character\\RoboAnimationLab.tsx",
+    "lines": 22,
+    "sha256": "f6086a1ad33232c100894b55d40c4ae22bfbc54ba1c5fbf3a21bba46ecbbb167"
+  },
+  {
+    "path": "src\\math-robo\\character\\RoboAnimationScheduler.ts",
+    "lines": 38,
+    "sha256": "a2d8631f7283d5a1d80431ecf2dc171d83e6ee96622d5bc94814fa001c4885b5"
+  },
+  {
+    "path": "src\\math-robo\\character\\RoboCharacter.tsx",
+    "lines": 198,
+    "sha256": "26baa6c2955de6b9cd8f0ffe97920f35b8683deb95ad3bd981b7be8b153b4a25"
+  },
+  {
+    "path": "src\\math-robo\\character\\useRoboPosition.ts",
+    "lines": 41,
+    "sha256": "ea84c2141ec72db2fab5d4ceeadaf7515dbf7c6a58b43aab35a99afa7ee038f8"
+  },
+  {
+    "path": "src\\math-robo\\character\\workspaceAdapter.ts",
+    "lines": 36,
+    "sha256": "967d4a30fca15294adfa27e1f68a8f5e5c061d3ae793d65db3951f72775ddecc"
+  },
+  {
+    "path": "src\\math-robo\\ContextTrainingPanel.tsx",
+    "lines": 14,
+    "sha256": "a099e991a1dac91b41160ace0a79688a3aa0bb86a7291e65158cc78b497f8837"
+  },
+  {
+    "path": "src\\math-robo\\ConversationDebugger.tsx",
+    "lines": 18,
+    "sha256": "62d8dadc980db453bed29af0915633046e0dcdf3e54ec381257317404a4955b6"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\actionRegistry.ts",
+    "lines": 90,
+    "sha256": "5f6c9d52632bc7d7f1db0c5259f0bc9607679799dc71fef9e004729a11342dd0"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\adversarialCorpus.ts",
+    "lines": 37,
+    "sha256": "997730810bf483d682c31620925baae70c40813fe9603193208f141dcf1833ae"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\buildPolicy.ts",
+    "lines": 5,
+    "sha256": "6325b8b06f9183b59cd25307c85d49c5e14e69408f09b5ead3c6776cfba68450"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\candidateAssessment.ts",
+    "lines": 34,
+    "sha256": "604c6e0f8c0686a947561a465798aaee9a7377a2414a8e21f575d3d84d0d07b4"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\commandLanguage.test.ts",
+    "lines": 69,
+    "sha256": "732772dbf0e0a3f6706d87f9a4be1d87a976443e07bbe0daf643fff51661e895"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\commandLanguage.ts",
+    "lines": 34,
+    "sha256": "55348b13cd8cabdab95ec080366bbda79beb4751431d923308dd511f5984080b"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\commandValidator.ts",
+    "lines": 25,
+    "sha256": "31affd8bf9dd8515da69f6d7c2f6489f964810e5d5db634a3264564012696691"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\commandVariants.ts",
+    "lines": 16,
+    "sha256": "5b21917729efa3785ebc3c18c22028551b792a99ccc8758cdc866ff8f75afdad"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\contextAssistant.ts",
+    "lines": 56,
+    "sha256": "d9c797d37c5e65922635bdf0f6d82454a9ff9aad6c67a41d1ff436d13de617f2"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\contextDataset.ts",
+    "lines": 41,
+    "sha256": "fc47aaec6ce38a362ab7e338b947801839ee6caff3e8e36c0fa569b1ee7fc965"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\contextEngine.ts",
+    "lines": 9,
+    "sha256": "1f5d7842516a70c5a55bb02f0f3854270d996937571b10b378047f00a5e8b5e2"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\contextInference.test.ts",
+    "lines": 49,
+    "sha256": "b52fc1ecbf43e21c22085e0846c969251b1f070ea032d4fb9ad7152982439d2e"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\contextKnowledge.ts",
+    "lines": 16,
+    "sha256": "b867d7148bbc56593f5d5da99f31ba2d559146ce8307c9aff47c8c8434911477"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\contextPages.generated.json",
+    "lines": 9798,
+    "sha256": "3889c19209c37b52c6399627569bec6af6f54c63dcadddd92985f603ac0d8eb4"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\contextTraining.worker.ts",
+    "lines": 11,
+    "sha256": "e550438f2e13e334a8b543848b4d19ce33c501dd67617771dac6eb75ce9b2896"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\conversationEngine.test.ts",
+    "lines": 75,
+    "sha256": "2a0135f9337d5bdce13fb5792b909b3884228f766670b9b6bd3c38df3124b472"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\conversationEngine.ts",
+    "lines": 242,
+    "sha256": "dd339c000fbb0c28225913e08263c8fff1b2d62244ba8d8fcb50caf7e58f569d"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\correctionCandidates.ts",
+    "lines": 15,
+    "sha256": "d490ff1618e725d5bb3bfca9b6b7bd020a4f28d1a9cc2efcac91e8d871b27c7f"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\corrections.ts",
+    "lines": 38,
+    "sha256": "65c4a88ad2cef23e1a0ae16b04f78ddf6dfe7d637cadb07f9ecb8c55d1fa31d1"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\datasetQuality.ts",
+    "lines": 9,
+    "sha256": "df473bd6dc61b55359ada8867041c0b947927651bba7b7ef2d1d5cb22a82d135"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\derivedGeometry.ts",
+    "lines": 32,
+    "sha256": "eb9337284e8bb2c8ce63d669b01d18977f6922f25deb206108671f63ac187a36"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\engineRegistry.ts",
+    "lines": 73,
+    "sha256": "8b62ab8c067e0c8484dc27b72d54227d10968ed24d1d0bf790d7975dbd46a5c8"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\engineRouter.ts",
+    "lines": 69,
+    "sha256": "0a0935eae4e70fd54ae074092b4117b0dd6dc8b47220124efe49f494e446bb9d"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\executionErrors.ts",
+    "lines": 13,
+    "sha256": "c1763d9044b09d2b8268d68a75e886ae9d5e917b953028dfe86f26db69d52cd8"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\executionPlanner.ts",
+    "lines": 171,
+    "sha256": "ad46e46874f859f9fc1b937ef847f8ff6aa3c7c82303f941cbad974b878ac15b"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\explanationEngine.ts",
+    "lines": 27,
+    "sha256": "96d87f4423c9168a1a8662a358d350da76c5eab24d7140dfc36c893fad681797"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\extendedDataset.ts",
+    "lines": 41,
+    "sha256": "2e9525967914454b39b03b01a11bebb474dd142d68e444de36c575e4ecf606b7"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\followUpEngine.ts",
+    "lines": 9,
+    "sha256": "1021753e9d74aa8ba80f4d35b571bab27de590702aebd68351ea182434a97f1e"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\geometryQueries.ts",
+    "lines": 73,
+    "sha256": "4599d604f3783af344cfece00fb888808d99cae1b86f54ac04dc6b16a8ba37fa"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\graphInventory.ts",
+    "lines": 4,
+    "sha256": "86ca39c561c5c52776111d085d68f86168d82cd35400eb7b27444d78977ef834"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\hierarchicalModel.ts",
+    "lines": 116,
+    "sha256": "db6f74cf608c0386e636a8f6819709e3ae0b94d0ed793a2d3aa27cdc7ed371c0"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\liveAssistant.ts",
+    "lines": 62,
+    "sha256": "36300ee1461f6534c857d2c9ed8171f90277c6aca63b6a82e662fd2c6804ed6b"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\migration.ts",
+    "lines": 31,
+    "sha256": "52814a6914d0a5e0d8ddedb6da0c4268bcd218ffa4487ca9015e3957fbf5d198"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\numberParser.ts",
+    "lines": 52,
+    "sha256": "85899332d2af232098aa47f15e652c1da6b1ab289ba44a12989daf9f51efe51f"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\orchestration.test.ts",
+    "lines": 57,
+    "sha256": "dfa7c92608fced5d6bd930d7af5c87ae99eddc9e2bacd07b2d991ab5afcec90e"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\orchestrationCorpus.test.ts",
+    "lines": 40,
+    "sha256": "6895a956540eb74664889350afa336e368e64b709bb2edf7a398bcd4aba2195d"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\pageCapabilities.ts",
+    "lines": 12,
+    "sha256": "c1ea4cd3d2c75704f4e5f20609dd32877a17558fcfce5a9dd1de0ade37dd0ea0"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\requestClassifier.ts",
+    "lines": 10,
+    "sha256": "42e8aa95ec8f8bcd39481518b6528c85e84e6d6775d75814849049b519c38020"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\responseComposer.ts",
+    "lines": 8,
+    "sha256": "e49fcd7c55245ff484d8aa3c0381b77c4a9ae5b0d4960df9487eabf606c4374b"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\resultVerifier.ts",
+    "lines": 59,
+    "sha256": "66fc76d7780045476b59949cb553b3fcb8d0620c3c2aae33ca4b3dce0d6d8db0"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\ruhiContextNet.ts",
+    "lines": 49,
+    "sha256": "0d4e3ba65f3de61de3e70afdf6a7fb4e12c6fbe85ab61e0dfe89ceab52852713"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\sampleDataset.ts",
+    "lines": 22,
+    "sha256": "90137a43a753dad88431fff33211ba0d31453e88504d2d80d18be7cc5f15ee02"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\sceneContext.ts",
+    "lines": 9,
+    "sha256": "12f196a8fe51bb0d88eeb039c8f1c13e7b7e2186d6eff126a1de5f7b9b32a35c"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\semanticDataset.ts",
+    "lines": 132,
+    "sha256": "939c70ec8fc878fa0e10ed6473666a8f189da09a36668a8b1a65e03e8f7360ed"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\semanticEngine.test.ts",
+    "lines": 137,
+    "sha256": "9688115aade29d393902df739851a281cef4253643d66c1cc998147e6a968776"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\semanticEngine.ts",
+    "lines": 128,
+    "sha256": "43a65892a527f42605063cd00050840dd0e4f6339559160086987d3ab990f43a"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\semanticExtensions.ts",
+    "lines": 71,
+    "sha256": "f15dfb6c7cf54c0287e783923201c81c08dde6efcfa8ca2cb1024455d43f940e"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\semanticParser.ts",
+    "lines": 112,
+    "sha256": "4abd3082f06eabe1bc6b6a7933ee9fbaba7e3b4ffdfcf8985987f2b6106628f5"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\targetResolver.ts",
+    "lines": 87,
+    "sha256": "e9ca16dc73d3a32604493e641d45f8f2dfd74a11603d1fd683f413aa6e290f40"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\tolerances.ts",
+    "lines": 5,
+    "sha256": "cd09a7dbea60bb283a60c4eb854ec5765ab43a820aa31ae78bfa9f2b35ec8966"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\training.worker.ts",
+    "lines": 17,
+    "sha256": "a8ef1a022ff0e31b7b6124ac265fc4eca3712f6942eab354e75b9f8f32ea5bce"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\trainingBoundary.test.ts",
+    "lines": 2,
+    "sha256": "3213e2932791df11517e47487ebf93b2122e2d52a6720769f87da49330251b55"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\types.ts",
+    "lines": 44,
+    "sha256": "430c7ac9ea4dcf695e406887946043279666e5f5b09a818b21de2fcd04fe7188"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\v41Regression.test.ts",
+    "lines": 28,
+    "sha256": "9d4596cc0ae900405d24be8b778303b8eb6c59635a3ed98687321c77f2fa762e"
+  },
+  {
+    "path": "src\\math-robo\\intelligence\\workspaceDependencies.ts",
+    "lines": 55,
+    "sha256": "c9080e1842fe70dcaabfed336a1733608c3ab25dbdb092971aed0a186eff4360"
+  },
+  {
+    "path": "src\\math-robo\\IntelligenceReviewPanels.tsx",
+    "lines": 17,
+    "sha256": "f556d0337b242b426c0e8fdd56244b0819274b1a94c9d7f33c0bb38dfe42c10e"
+  },
+  {
+    "path": "src\\math-robo\\SemanticTrainingLab.tsx",
+    "lines": 73,
+    "sha256": "8f9fb0eea0ec92963c98d57803b219f91872c33b94561034dffb27608943aa9b"
+  },
+  {
+    "path": "src\\offline-intelligence\\bulkTraining.test.ts",
+    "lines": 45,
+    "sha256": "f08e508637ee2e3864477a989b2f7cc4ea86bd2183be2a306cafab798a5965e8"
+  },
+  {
+    "path": "src\\offline-intelligence\\bulkTraining.ts",
+    "lines": 113,
+    "sha256": "6f045b2923a76ec6398d189b7eb846329e2618ed1c774ef2829ffbdcdb8f4383"
+  },
+  {
+    "path": "src\\offline-intelligence\\commands.test.ts",
+    "lines": 60,
+    "sha256": "9573dbb8911045f2532d6b9a5d6e791bd6999767e36a469c238889ec28b2d60f"
+  },
+  {
+    "path": "src\\offline-intelligence\\commands.ts",
+    "lines": 1,
+    "sha256": "6c8342cf7ba1b910bc55ed811af4038427afc7a533b1e0a9d3500398d8f99399"
+  },
+  {
+    "path": "src\\offline-intelligence\\directedGeometry.ts",
+    "lines": 17,
+    "sha256": "17eb24496802d305c7220ab616e8dcdb17751dd05216f658d54fe28e772fe46f"
+  },
+  {
+    "path": "src\\offline-intelligence\\expressionCorpus.ts",
+    "lines": 32,
+    "sha256": "79d4a1ec01f337d74288eaf6f60282346dd8a4bec3a7c0da6a2c46f114208d8c"
+  },
+  {
+    "path": "src\\offline-intelligence\\geometryAdapter.ts",
+    "lines": 52,
+    "sha256": "8d8c55039390935fd9b3c710709ee2503ae5f3c840e35f08f23dd94bfe1ef48c"
+  },
+  {
+    "path": "src\\offline-intelligence\\graph3dAdapter.test.ts",
+    "lines": 25,
+    "sha256": "6c8ac6aefdbde16d7f8311ff5d51b747198ae1960557aa181accc78ac55f9523"
+  },
+  {
+    "path": "src\\offline-intelligence\\graph3dAdapter.ts",
+    "lines": 40,
+    "sha256": "cc13fbadcf95bbb0491c68ab9836eb5e1b69bc74091e3240b2f93961168d1523"
+  },
+  {
+    "path": "src\\offline-intelligence\\intelligenceCorpus.test.ts",
+    "lines": 78,
+    "sha256": "ce1e9df7ee75fbeff619bf6ceec27ba3cc9512e50fb4c7f82d98557490c4cd58"
+  },
+  {
+    "path": "src\\offline-intelligence\\languageEngine.ts",
+    "lines": 168,
+    "sha256": "c9560586f27605d58abbaa99b8980f86f86e4d4e0aa37c1cfa5ed12089d4bfd3"
+  },
+  {
+    "path": "src\\offline-intelligence\\MathRobot.tsx",
+    "lines": 1,
+    "sha256": "e48deba2f54246dd8dc11659470dac34758d72e8256151d37c9de7b0fd85841a"
+  },
+  {
+    "path": "src\\offline-intelligence\\nlp150.test.ts",
+    "lines": 59,
+    "sha256": "09fd3263ac689648bec70fbadf19ba247700283b8127b5d8d5cb0211663f3686"
+  },
+  {
+    "path": "src\\offline-intelligence\\nlp150Corpus.ts",
+    "lines": 99,
+    "sha256": "f30e1dc54255960d0a98c57e3786ece2c2a1da07f16c9e961ebe1339432f1be8"
+  },
+  {
+    "path": "src\\offline-intelligence\\objectConversation.test.ts",
+    "lines": 35,
+    "sha256": "55513cae99f01a6c8facd82e95c7d01c3b550bf2eb9b75a411a10d9f086e018d"
+  },
+  {
+    "path": "src\\offline-intelligence\\objectConversation.ts",
+    "lines": 72,
+    "sha256": "16957a950d106dcc08e2e8eb8e60c21fd8d23857df21478dffd04a6ff451f6d5"
+  },
+  {
+    "path": "src\\offline-intelligence\\offlineAssistant.css",
+    "lines": 52,
+    "sha256": "776c3a866f9a2f9ddc47020c31f5bac00d60d29f666ab20b4f6e8ee88ae7b0b0"
+  },
+  {
+    "path": "src\\offline-intelligence\\OfflineMathAssistant.tsx",
+    "lines": 180,
+    "sha256": "793bf0492124833c42646cdd86e46bf0b676b299a49996fad22eb0b0983db193"
+  },
+  {
+    "path": "src\\offline-intelligence\\roboLearning.test.ts",
+    "lines": 63,
+    "sha256": "ab9a59d30280fa17ab10d58c99b9da4b9db16df7f215bc1d2101f03ccb119914"
+  },
+  {
+    "path": "src\\offline-intelligence\\roboLearning.ts",
+    "lines": 202,
+    "sha256": "7ae867ddf11c470eb6ebff3de0ed328bfac8301239d74951fc5b3f37ea829566"
+  },
+  {
+    "path": "src\\offline-intelligence\\roboSpeech.test.ts",
+    "lines": 26,
+    "sha256": "1f3a4444bc479a8df03988e92ba7f08517f81d8608c28312a7f486679193d84e"
+  },
+  {
+    "path": "src\\offline-intelligence\\roboSpeech.ts",
+    "lines": 134,
+    "sha256": "15de65baa2725dcf70db37c1de5b1571a4db59e2dd360f5234c7036f20b120d6"
+  },
+  {
+    "path": "src\\offline-intelligence\\roboStarterModel.test.ts",
+    "lines": 19,
+    "sha256": "76e0146e851e9cfdf66b7a103b988932c6a8820a49704b97bb54d5285b5e601b"
+  },
+  {
+    "path": "src\\offline-intelligence\\shapeCatalog.ts",
+    "lines": 7,
+    "sha256": "33012ebf537b379b795f23abf48afc57802bdb3f7d4982dffc6127e3f2b0e1f2"
+  },
+  {
+    "path": "src\\offline-intelligence\\shapeGeometry3d.ts",
+    "lines": 63,
+    "sha256": "68dc5d45497483bf55437251dbc53b140a2ecd4d36e5341d452f56d7b06b1a04"
+  },
+  {
+    "path": "src\\offline-intelligence\\solidAdapter.ts",
+    "lines": 20,
+    "sha256": "7439e79533b8f328fc414d09185bd8d100ed3db729b0dd0e6cefad94281b2306"
+  },
+  {
+    "path": "src\\offline-intelligence\\trainingDataset.ts",
+    "lines": 86,
+    "sha256": "a18115b9a60820812d33fa29e59909f8cb64a864564fcfe6917905bfcc7f1bbc"
+  },
+  {
+    "path": "src\\offline-intelligence\\workspaceBridge.ts",
+    "lines": 60,
+    "sha256": "f976bf45d3945de861aa3080299833367e84c2d746f57d9c9b9185e408ab1dd8"
+  },
+  {
+    "path": "tests\\workspace\\calculusSidebar.e2e.ts",
+    "lines": 47,
+    "sha256": "3789d526afed1dc6bafb431042bbecbe989631ab9e0198a10406eebd0d6be5d1"
+  },
+  {
+    "path": "tests\\workspace\\desktopWorkspaceRegression.e2e.ts",
+    "lines": 44,
+    "sha256": "1bc323ee06e791f0ada831a9a08cb74b4014dd10e43bac039dc8bfc6f08a35d4"
+  },
+  {
+    "path": "tests\\workspace\\geometryAccuracyCertification.e2e.ts",
+    "lines": 33,
+    "sha256": "a5fb53e90107a5219b868a0a08831f71bad9af9a39d08faa56112bf801d8ea76"
+  },
+  {
+    "path": "tests\\workspace\\geometryAngleTool.e2e.ts",
+    "lines": 14,
+    "sha256": "69766a81d90aad2dbb37c2a5a94e7471b1f0053d34e843497aafa4dca1412318"
+  },
+  {
+    "path": "tests\\workspace\\geometryCommandBoundary.e2e.ts",
+    "lines": 119,
+    "sha256": "ec79724078793b75306fe49e3d458c9c160c9a7ed761cadbc0a6bae0b6a3b37a"
+  },
+  {
+    "path": "tests\\workspace\\graph3dThemes.e2e.ts",
+    "lines": 39,
+    "sha256": "b1694cf79c429e1eb4fa1e633b41f96fb6cdf54a13d08c5cfc06e3b39f16451d"
+  },
+  {
+    "path": "tests\\workspace\\graph3dUnlimitedExpressions.e2e.ts",
+    "lines": 38,
+    "sha256": "9168981f1d7e2b927eda310814c91d4680921834a1e0910153363044c361a80d"
+  },
+  {
+    "path": "tests\\workspace\\mathRobo400.e2e.ts",
+    "lines": 70,
+    "sha256": "acbe93af80abf5eb0cda69d585e3966209bcf4fb1fb887a0509fee4de640e531"
+  },
+  {
+    "path": "tests\\workspace\\mathRoboV4.e2e.ts",
+    "lines": 72,
+    "sha256": "bf951118ccdf9318625c0391422e52b6b908df0d18454810cf278cb2f83cccf5"
+  },
+  {
+    "path": "tests\\workspace\\mathRoboV41.e2e.ts",
+    "lines": 25,
+    "sha256": "08edfcff5625eb4818da250a0e3cf0e1edec568227d8a24b1f262bd2a671f612"
+  },
+  {
+    "path": "tests\\workspace\\mathWorkspacesPhase3.e2e.ts",
+    "lines": 165,
+    "sha256": "1fdbe4cfe67f1e3096c0fd437ae34905ab6428d4de83cc0ae482367bc6f25892"
+  },
+  {
+    "path": "tests\\workspace\\mobileGeometry3DInteraction.e2e.ts",
+    "lines": 57,
+    "sha256": "103d39610737fa5478bcec67374c0ca9e169aa1116f2819546a50e7814d8573a"
+  },
+  {
+    "path": "tests\\workspace\\mobileGeometryInteraction.e2e.ts",
+    "lines": 80,
+    "sha256": "9cc3e9eaa0bf7d1902736b3e9e784a80053d016dbf69c7892d6bd1bc53ef7c35"
+  },
+  {
+    "path": "tests\\workspace\\mobileGraph3DInteraction.e2e.ts",
+    "lines": 69,
+    "sha256": "6eeebeaa0504846800925c0645a527a3f23ed96c1d7523136905425df6ff24a7"
+  },
+  {
+    "path": "tests\\workspace\\mobileGraphInteraction.e2e.ts",
+    "lines": 147,
+    "sha256": "c7aea53bfcb88d866ba746ee97b9ae820076b1ddeabb1be5025142544dfad4bd"
+  },
+  {
+    "path": "tests\\workspace\\mobileViewportMatrix.e2e.ts",
+    "lines": 41,
+    "sha256": "7c286a013d27f038bc1edd858cc952a7fa93de7e427da7fb217b9f6081d44cc6"
+  },
+  {
+    "path": "tests\\workspace\\modelTraining.e2e.ts",
+    "lines": 40,
+    "sha256": "6cd66349c0ab67aa7874ac8eedf468ff779ca7f41dc4155b01ea4a14cb822e54"
+  },
+  {
+    "path": "tests\\workspace\\offlineIntelligence.e2e.ts",
+    "lines": 122,
+    "sha256": "f0667e3fca61d4b11ea12c79e3396f9b34bf73a918de24a013325d7fc458d029"
+  },
+  {
+    "path": "tests\\workspace\\roboCharacter.e2e.ts",
+    "lines": 110,
+    "sha256": "45d9c0dc9e4532711450f7f176d7f3733a3aa9405e4a66a4cc2ff739ce07e0ea"
+  },
+  {
+    "path": "tests\\workspace\\roboLearning.e2e.ts",
+    "lines": 25,
+    "sha256": "782a8ab4d3c6b6df7fde8ad9a9141ffe66848bd3126055ac4f934dd19804fe43"
+  },
+  {
+    "path": "tests\\workspace\\roboNlp150.e2e.ts",
+    "lines": 91,
+    "sha256": "c4d15e8a28f250546c793b37074b03f4ef42f992e294e8cad1b128f39fddb54f"
+  },
+  {
+    "path": "tests\\workspace\\roboSpeech.e2e.ts",
+    "lines": 71,
+    "sha256": "5a919bbb9da45aada62c3ee7ad5627a93bb75a5ee27d2f73ace7054526f56f8f"
+  },
+  {
+    "path": "tests\\workspace\\ruhiConversation.e2e.ts",
+    "lines": 20,
+    "sha256": "babdeedec7e0c58a11e5a91c6141f360224aaaef5f3f113ea2931cd91cfa6c5e"
+  },
+  {
+    "path": "tests\\workspace\\ruhiConversationAdmin.e2e.ts",
+    "lines": 8,
+    "sha256": "dc33902f00623fedad9f3129d3cda6820329e2c073ef9c83a34f85c71b1e32b0"
+  },
+  {
+    "path": "tests\\workspace\\ruhiStudentBuild.e2e.ts",
+    "lines": 9,
+    "sha256": "df914d44903dbcdb8abdb2a074790ace8016c8bcc29df79bda8ee5afde278442"
+  },
+  {
+    "path": "tests\\workspace\\ruhiTrainingReview.e2e.ts",
+    "lines": 11,
+    "sha256": "c074ad921da41f1228cc0ed02ed2126a436a3f9b3a35c9c03d3da39f8041daaa"
+  },
+  {
+    "path": "tests\\workspace\\shapesExplorerEnhancements.e2e.ts",
+    "lines": 37,
+    "sha256": "3106afcd7b51fb0fa9ed4b559b048ec15163d1f17e74060da846c79fce76dfd3"
+  },
+  {
+    "path": "tests\\workspace\\workspaceBrowserAssertions.ts",
+    "lines": 94,
+    "sha256": "daaabb8cd3fc0a47a2dc11c0c3f022795a0745f769cc53226aa21e3caa471cd6"
+  },
+  {
+    "path": "tests\\workspace\\workspaceBrowserVisualSmoke.e2e.ts",
+    "lines": 121,
+    "sha256": "ec153c99cd2f5c8ff5ca515d7d55dc6099166172832c30198dceb1a4585b2359"
+  },
+  {
+    "path": "tests\\workspace\\workspaceUnsupportedActions.e2e.ts",
+    "lines": 61,
+    "sha256": "16f786ed4a01abf277be62ff8e68f5e8f6059705bbe0afdc96359880de579d8c"
+  }
+]

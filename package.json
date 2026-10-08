@@ -7,7 +7,7 @@
     "dev": "vite --config vite.config.ts",
     "typecheck": "tsc -b",
     "lint": "eslint . --max-warnings=0",
-    "build": "node --max-old-space-size=8192 ./node_modules/vite/bin/vite.js build --config vite.config.ts",
+    "build": "node scripts/build-ruhi.mjs student",
     "build:checked": "npm run typecheck && npm run build",
     "preview": "vite preview --config vite.config.ts",
     "mobile:sync": "npm run build && cap sync",
@@ -51,7 +51,9 @@
     "lessons:ecosystem:audit": "node scripts/generate-lesson-ecosystem-audit.mjs",
     "lessons:visual-batches:prepare": "node scripts/prepare-lesson-visual-batches.mjs",
     "verify": "npm run lint && npm run typecheck && npm run build",
-    "train:ruhi-candidate": "node scripts/build-math-robo-v41.mjs"
+    "train:ruhi-candidate": "node scripts/build-math-robo-v41.mjs",
+    "build:student": "node scripts/build-ruhi.mjs student",
+    "build:developer": "node scripts/build-ruhi.mjs developer"
   },
   "dependencies": {
     "@capacitor/app": "^8.1.0",

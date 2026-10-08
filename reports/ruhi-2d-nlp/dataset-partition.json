@@ -1,0 +1,1514 @@
+{
+  "seed": "ruhi2d-seed-2026",
+  "counts": {
+    "train": 210,
+    "validation": 47,
+    "test": 43
+  },
+  "scenarios": 237,
+  "records": [
+    {
+      "id": "RUHI2D-001",
+      "scenarioId": "S-001",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-002",
+      "scenarioId": "S-002",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-003",
+      "scenarioId": "S-003",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-004",
+      "scenarioId": "S-004",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-005",
+      "scenarioId": "S-005",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-006",
+      "scenarioId": "S-006",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-007",
+      "scenarioId": "S-007",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-008",
+      "scenarioId": "S-008",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-009",
+      "scenarioId": "S-009",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-010",
+      "scenarioId": "S-010",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-011",
+      "scenarioId": "S-011",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-012",
+      "scenarioId": "S-012",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-013",
+      "scenarioId": "S-013",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-014",
+      "scenarioId": "S-014",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-015",
+      "scenarioId": "S-015",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-016",
+      "scenarioId": "S-016",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-017",
+      "scenarioId": "S-017",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-018",
+      "scenarioId": "S-018",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-019",
+      "scenarioId": "S-019",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-020",
+      "scenarioId": "S-020",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-021",
+      "scenarioId": "S-021",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-022",
+      "scenarioId": "S-022",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-023",
+      "scenarioId": "S-023",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-024",
+      "scenarioId": "S-024",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-025",
+      "scenarioId": "S-025",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-026",
+      "scenarioId": "S-026",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-027",
+      "scenarioId": "S-027",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-028",
+      "scenarioId": "S-028",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-029",
+      "scenarioId": "S-029",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-030",
+      "scenarioId": "S-030",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-031",
+      "scenarioId": "S-031",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-032",
+      "scenarioId": "S-032",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-033",
+      "scenarioId": "S-033",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-034",
+      "scenarioId": "S-034",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-035",
+      "scenarioId": "S-035",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-036",
+      "scenarioId": "S-036",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-037",
+      "scenarioId": "S-037",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-038",
+      "scenarioId": "S-038",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-039",
+      "scenarioId": "S-039",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-040",
+      "scenarioId": "S-040",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-041",
+      "scenarioId": "S-041",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-042",
+      "scenarioId": "S-042",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-043",
+      "scenarioId": "S-043",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-044",
+      "scenarioId": "S-044",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-045",
+      "scenarioId": "S-045",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-046",
+      "scenarioId": "S-046",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-047",
+      "scenarioId": "S-047",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-048",
+      "scenarioId": "S-048",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-049",
+      "scenarioId": "S-049",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-050",
+      "scenarioId": "S-050",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-051",
+      "scenarioId": "S-051",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-052",
+      "scenarioId": "S-052",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-053",
+      "scenarioId": "S-053",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-054",
+      "scenarioId": "S-054",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-055",
+      "scenarioId": "S-055",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-056",
+      "scenarioId": "S-056",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-057",
+      "scenarioId": "S-057",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-058",
+      "scenarioId": "S-058",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-059",
+      "scenarioId": "S-059",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-060",
+      "scenarioId": "S-060",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-061",
+      "scenarioId": "S-061",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-062",
+      "scenarioId": "S-062",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-063",
+      "scenarioId": "S-063",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-064",
+      "scenarioId": "S-064",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-065",
+      "scenarioId": "S-065",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-066",
+      "scenarioId": "S-066",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-067",
+      "scenarioId": "S-067",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-068",
+      "scenarioId": "S-068",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-069",
+      "scenarioId": "S-069",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-070",
+      "scenarioId": "S-070",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-071",
+      "scenarioId": "S-071",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-072",
+      "scenarioId": "S-072",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-073",
+      "scenarioId": "S-073",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-074",
+      "scenarioId": "S-074",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-075",
+      "scenarioId": "S-075",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-076",
+      "scenarioId": "S-076",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-077",
+      "scenarioId": "S-077",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-078",
+      "scenarioId": "S-078",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-079",
+      "scenarioId": "S-079",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-080",
+      "scenarioId": "S-080",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-081",
+      "scenarioId": "S-081",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-082",
+      "scenarioId": "S-082",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-083",
+      "scenarioId": "S-083",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-084",
+      "scenarioId": "S-084",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-085",
+      "scenarioId": "S-085",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-086",
+      "scenarioId": "S-086",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-087",
+      "scenarioId": "S-087",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-088",
+      "scenarioId": "S-088",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-089",
+      "scenarioId": "S-089",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-090",
+      "scenarioId": "S-090",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-091",
+      "scenarioId": "S-091",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-092",
+      "scenarioId": "S-092",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-093",
+      "scenarioId": "S-093",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-094",
+      "scenarioId": "S-094",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-095",
+      "scenarioId": "S-095",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-096",
+      "scenarioId": "S-096",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-097",
+      "scenarioId": "S-097",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-098",
+      "scenarioId": "S-098",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-099",
+      "scenarioId": "S-099",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-100",
+      "scenarioId": "S-100",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-101",
+      "scenarioId": "CONV-01",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-102",
+      "scenarioId": "CONV-01",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-103",
+      "scenarioId": "CONV-01",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-104",
+      "scenarioId": "CONV-01",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-105",
+      "scenarioId": "CONV-02",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-106",
+      "scenarioId": "CONV-02",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-107",
+      "scenarioId": "CONV-02",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-108",
+      "scenarioId": "CONV-02",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-109",
+      "scenarioId": "CONV-03",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-110",
+      "scenarioId": "CONV-03",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-111",
+      "scenarioId": "CONV-03",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-112",
+      "scenarioId": "CONV-03",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-113",
+      "scenarioId": "CONV-04",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-114",
+      "scenarioId": "CONV-04",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-115",
+      "scenarioId": "CONV-04",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-116",
+      "scenarioId": "CONV-04",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-117",
+      "scenarioId": "CONV-05",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-118",
+      "scenarioId": "CONV-05",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-119",
+      "scenarioId": "CONV-05",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-120",
+      "scenarioId": "CONV-05",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-121",
+      "scenarioId": "CONV-06",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-122",
+      "scenarioId": "CONV-06",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-123",
+      "scenarioId": "CONV-06",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-124",
+      "scenarioId": "CONV-06",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-125",
+      "scenarioId": "CONV-07",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-126",
+      "scenarioId": "CONV-07",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-127",
+      "scenarioId": "CONV-07",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-128",
+      "scenarioId": "CONV-07",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-129",
+      "scenarioId": "CONV-08",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-130",
+      "scenarioId": "CONV-08",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-131",
+      "scenarioId": "CONV-08",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-132",
+      "scenarioId": "CONV-08",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-133",
+      "scenarioId": "CONV-09",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-134",
+      "scenarioId": "CONV-09",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-135",
+      "scenarioId": "CONV-09",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-136",
+      "scenarioId": "CONV-09",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-137",
+      "scenarioId": "CONV-10",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-138",
+      "scenarioId": "CONV-10",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-139",
+      "scenarioId": "CONV-10",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-140",
+      "scenarioId": "CONV-10",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-141",
+      "scenarioId": "CONV-11",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-142",
+      "scenarioId": "CONV-11",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-143",
+      "scenarioId": "CONV-11",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-144",
+      "scenarioId": "CONV-11",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-145",
+      "scenarioId": "CONV-12",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-146",
+      "scenarioId": "CONV-12",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-147",
+      "scenarioId": "CONV-12",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-148",
+      "scenarioId": "CONV-12",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-149",
+      "scenarioId": "CLAR-01",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-150",
+      "scenarioId": "CLAR-01",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-151",
+      "scenarioId": "CLAR-02",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-152",
+      "scenarioId": "CLAR-02",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-153",
+      "scenarioId": "CLAR-03",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-154",
+      "scenarioId": "CLAR-03",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-155",
+      "scenarioId": "CLAR-04",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-156",
+      "scenarioId": "CLAR-04",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-157",
+      "scenarioId": "CLAR-05",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-158",
+      "scenarioId": "CLAR-05",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-159",
+      "scenarioId": "CLAR-06",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-160",
+      "scenarioId": "CLAR-06",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-161",
+      "scenarioId": "CLAR-07",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-162",
+      "scenarioId": "CLAR-07",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-163",
+      "scenarioId": "CLAR-08",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-164",
+      "scenarioId": "CLAR-08",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-165",
+      "scenarioId": "CLAR-09",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-166",
+      "scenarioId": "CLAR-09",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-167",
+      "scenarioId": "CLAR-10",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-168",
+      "scenarioId": "CLAR-10",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-169",
+      "scenarioId": "CLAR-11",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-170",
+      "scenarioId": "CLAR-11",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-171",
+      "scenarioId": "CLAR-12",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-172",
+      "scenarioId": "CLAR-12",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-173",
+      "scenarioId": "CLAR-13",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-174",
+      "scenarioId": "CLAR-13",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-175",
+      "scenarioId": "CLAR-14",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-176",
+      "scenarioId": "CLAR-14",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-177",
+      "scenarioId": "CLAR-15",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-178",
+      "scenarioId": "CLAR-15",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-179",
+      "scenarioId": "CLAR-16",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-180",
+      "scenarioId": "CLAR-16",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-181",
+      "scenarioId": "CLAR-17",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-182",
+      "scenarioId": "CLAR-17",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-183",
+      "scenarioId": "CLAR-18",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-184",
+      "scenarioId": "CLAR-18",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-185",
+      "scenarioId": "CLAR-19",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-186",
+      "scenarioId": "CLAR-19",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-187",
+      "scenarioId": "CLAR-20",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-188",
+      "scenarioId": "CLAR-20",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-189",
+      "scenarioId": "CLAR-21",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-190",
+      "scenarioId": "CLAR-21",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-191",
+      "scenarioId": "CLAR-22",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-192",
+      "scenarioId": "CLAR-22",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-193",
+      "scenarioId": "CLAR-23",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-194",
+      "scenarioId": "CLAR-23",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-195",
+      "scenarioId": "CLAR-24",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-196",
+      "scenarioId": "CLAR-24",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-197",
+      "scenarioId": "CLAR-25",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-198",
+      "scenarioId": "CLAR-25",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-199",
+      "scenarioId": "CLAR-26",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-200",
+      "scenarioId": "CLAR-26",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-201",
+      "scenarioId": "CLAR-27",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-202",
+      "scenarioId": "CLAR-27",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-203",
+      "scenarioId": "S-203",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-204",
+      "scenarioId": "S-204",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-205",
+      "scenarioId": "S-205",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-206",
+      "scenarioId": "S-206",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-207",
+      "scenarioId": "S-207",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-208",
+      "scenarioId": "S-208",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-209",
+      "scenarioId": "S-209",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-210",
+      "scenarioId": "S-210",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-211",
+      "scenarioId": "S-211",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-212",
+      "scenarioId": "S-212",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-213",
+      "scenarioId": "S-213",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-214",
+      "scenarioId": "S-214",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-215",
+      "scenarioId": "S-215",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-216",
+      "scenarioId": "S-216",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-217",
+      "scenarioId": "S-217",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-218",
+      "scenarioId": "S-218",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-219",
+      "scenarioId": "S-219",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-220",
+      "scenarioId": "S-220",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-221",
+      "scenarioId": "S-221",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-222",
+      "scenarioId": "S-222",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-223",
+      "scenarioId": "S-223",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-224",
+      "scenarioId": "S-224",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-225",
+      "scenarioId": "S-225",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-226",
+      "scenarioId": "S-226",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-227",
+      "scenarioId": "S-227",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-228",
+      "scenarioId": "S-228",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-229",
+      "scenarioId": "S-229",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-230",
+      "scenarioId": "S-230",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-231",
+      "scenarioId": "S-231",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-232",
+      "scenarioId": "S-232",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-233",
+      "scenarioId": "S-233",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-234",
+      "scenarioId": "S-234",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-235",
+      "scenarioId": "S-235",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-236",
+      "scenarioId": "S-236",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-237",
+      "scenarioId": "S-237",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-238",
+      "scenarioId": "S-238",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-239",
+      "scenarioId": "S-239",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-240",
+      "scenarioId": "S-240",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-241",
+      "scenarioId": "S-241",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-242",
+      "scenarioId": "S-242",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-243",
+      "scenarioId": "S-243",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-244",
+      "scenarioId": "S-244",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-245",
+      "scenarioId": "S-245",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-246",
+      "scenarioId": "S-246",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-247",
+      "scenarioId": "S-247",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-248",
+      "scenarioId": "S-248",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-249",
+      "scenarioId": "S-249",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-250",
+      "scenarioId": "S-250",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-251",
+      "scenarioId": "S-251",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-252",
+      "scenarioId": "S-252",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-253",
+      "scenarioId": "S-253",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-254",
+      "scenarioId": "S-254",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-255",
+      "scenarioId": "S-255",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-256",
+      "scenarioId": "S-256",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-257",
+      "scenarioId": "S-257",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-258",
+      "scenarioId": "S-258",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-259",
+      "scenarioId": "S-259",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-260",
+      "scenarioId": "S-260",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-261",
+      "scenarioId": "S-261",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-262",
+      "scenarioId": "S-262",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-263",
+      "scenarioId": "S-263",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-264",
+      "scenarioId": "S-264",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-265",
+      "scenarioId": "S-265",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-266",
+      "scenarioId": "S-266",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-267",
+      "scenarioId": "S-267",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-268",
+      "scenarioId": "S-268",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-269",
+      "scenarioId": "S-269",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-270",
+      "scenarioId": "S-270",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-271",
+      "scenarioId": "S-271",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-272",
+      "scenarioId": "S-272",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-273",
+      "scenarioId": "S-273",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-274",
+      "scenarioId": "S-274",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-275",
+      "scenarioId": "S-275",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-276",
+      "scenarioId": "S-276",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-277",
+      "scenarioId": "S-277",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-278",
+      "scenarioId": "S-278",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-279",
+      "scenarioId": "S-279",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-280",
+      "scenarioId": "S-280",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-281",
+      "scenarioId": "S-281",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-282",
+      "scenarioId": "S-282",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-283",
+      "scenarioId": "S-283",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-284",
+      "scenarioId": "S-284",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-285",
+      "scenarioId": "S-285",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-286",
+      "scenarioId": "S-286",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-287",
+      "scenarioId": "S-287",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-288",
+      "scenarioId": "S-288",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-289",
+      "scenarioId": "S-289",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-290",
+      "scenarioId": "S-290",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-291",
+      "scenarioId": "S-291",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-292",
+      "scenarioId": "S-292",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-293",
+      "scenarioId": "S-293",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-294",
+      "scenarioId": "S-294",
+      "split": "test"
+    },
+    {
+      "id": "RUHI2D-295",
+      "scenarioId": "S-295",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-296",
+      "scenarioId": "S-296",
+      "split": "validation"
+    },
+    {
+      "id": "RUHI2D-297",
+      "scenarioId": "S-297",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-298",
+      "scenarioId": "S-298",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-299",
+      "scenarioId": "S-299",
+      "split": "train"
+    },
+    {
+      "id": "RUHI2D-300",
+      "scenarioId": "S-300",
+      "split": "train"
+    }
+  ],
+  "scenarioLeakage": false,
+  "templateLeakage": "Repeated linguistic families remain across splits; final generalization claims require separate unseen paraphrases.",
+  "heldOutPolicy": "Original all-300 baseline/regression is labeled regression. Repairs use development records only; held-out is not used for training or checkpoint selection."
+}

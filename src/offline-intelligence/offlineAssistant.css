@@ -1,4 +1,4 @@
-.offline-assistant { position:fixed; right:18px; bottom:32px; z-index:75; font-size:14px; }
+.offline-assistant { position:fixed; right:18px; bottom:32px; z-index:150; font-size:14px; }
 .offline-assistant-toggle { position:relative; display:flex; align-items:center; justify-content:center; width:76px; height:88px; padding:0; border:0; background:transparent; color:#155e75; cursor:pointer; touch-action:manipulation; }
 .math-robo { width:76px; height:88px; overflow:visible; filter:drop-shadow(0 5px 8px #0e749035); transition:transform .2s; }
 .offline-assistant-toggle:hover .math-robo { transform:translateY(-4px) rotate(-3deg); }

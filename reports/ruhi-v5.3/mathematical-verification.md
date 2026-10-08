@@ -1,0 +1,9 @@
+# Mathematical verification
+
+Fresh tests: final-unit-tests.txt, integration-regressions.txt, native-kernel-tests.txt, browser-results.json, production-final-browser-current.txt, repair-regressions-final.txt and worker-regressions.txt. The kernel covers bounded fractions/radicals, polynomials/factors, linear/quadratic/rational equations, extraneous roots, rational inequalities/domains, trig families, derivatives/integrals, numerical root/quadrature/ODE, vectors/matrices, 2D tangency/triangle centers/intersections, and 3D lines/planes/rotations. Test existence and passing bounded examples do not establish a universal solver.
+
+Independent browser examples include 1/3+1/6=1/2; sqrt(8)=2sqrt(2) with conditions; sqrt(x+5)=x−1 accepts 4 and rejects −1 in the original equation; right-triangle incircle radius 2; circumcircle vertex incidence; line/plane intersection (1,1,5). Unsupported complete higher-degree analytic solving is refused. Native geometry is checked separately from response text.
+
+Exact arithmetic uses rational/BigInt paths; symbolic operations carry domain/assumption conditions and operation-specific verification. Numerical statuses remain numerical, with residual/error checks where implemented. Existing status values are verified_exact, verified_numerical, verified_with_assumptions, unverified and unsupported. Kernel cancellation and invalid input still use legacy unsupported status with explicit failure messages; the requested independent cancelled/invalid-input status taxonomy remains incomplete. No universal exactness claim is made for floating-point geometry or every legacy specialist.
+
+Worker construction/dispatch failures now resolve visibly, terminate unusable workers, and release active capacity. Dedicated regression tests cover repeated startup failure, non-transferable input and abort during startup. Existing numerical browser cancellation returns “Calculation cancelled.”

@@ -1,0 +1,15 @@
+What are pigeon holes? true Pigeonhole Principle: If N objects are placed in k positive boxes, at least one box contains at least ceil(N/k) objects.
+Explain this. true Pigeonhole Principle: If N objects are placed in k positive boxes, at least one box contains at least ceil(N/k) objects.
+Give an example. true Ten objects in three boxes can be distributed 4,3,3. At least one box must contain four or more.
+Why? true If every box contained fewer than ceil(N/k) objects, each would contain at most ceil(N/k)-1. Their total would be at most k(ceil(N/k)-1), which is strictly less than N, a contradiction.
+Show 10 objects in 3 boxes. true Placed 10 objects in 3 boxes (4, 3, 3). At least one box contains 4 or more objects because ceil(10/3) = 4.
+What is a tree? true Graph-theoretic tree: A tree is an undirected connected acyclic graph. Between every pair of vertices there is exactly one simple path.
+Explain this. true Graph-theoretic tree: A tree is an undirected connected acyclic graph. Between every pair of vertices there is exactly one simple path.
+Give an example. true Three vertices with edges A-B and B-C form a tree; adding C-A creates a cycle.
+Why? true A longest simple path in a finite tree has a leaf at an endpoint. Removing that leaf and its edge leaves a tree. Induction starting with one vertex gives n-1 edges.
+What is a tree? true Tree data structure: A rooted tree data structure organizes nodes hierarchically. A root has no parent, and each other node has one parent; nodes can have children.
+I'm not asking about the mathematical tree. Tell me about real trees. true Biological tree: A biological tree is a woody perennial plant, typically with a trunk supporting branches and leaves. This is the ordinary meaning, rather than a mathematical tree.
+What should I do? true Which concept do you mean: the current page topic, the previous concept, or a selected object?
+What are pigeon holes? true Pigeonhole Principle: If N objects are placed in k positive boxes, at least one box contains at least ceil(N/k) objects.
+Show 10 objects in 3 boxes. true Placed 10 objects in 3 boxes (4, 3, 3). At least one box contains 4 or more objects because ceil(10/3) = 4.
+RESULT 14 14 

@@ -1,0 +1,216 @@
+{
+  "engineVersion": "5.1.0",
+  "appVersion": "1.0.2",
+  "scope": "Shared mathematical kernel and strengthened supported classes; not universal completion of every requested advanced operation.",
+  "newTests": {
+    "total": 565,
+    "categoryCases": 500,
+    "acceptanceCases": 13,
+    "separateEvaluationCases": 40,
+    "resourceAndRoutingCases": 12,
+    "parameterized": true,
+    "trainingUsage": "none",
+    "heldOutHashUnchanged": true,
+    "metrics": {
+      "3d-linear": {
+        "total": 75,
+        "passed": 75,
+        "meanMs": 0.047768000000002454,
+        "p95Ms": 0.18199999999990268
+      },
+      "arithmetic-algebra": {
+        "total": 100,
+        "passed": 100,
+        "meanMs": 1.4080039999999985,
+        "p95Ms": 0.6854999999999905
+      },
+      "geometry": {
+        "total": 100,
+        "passed": 100,
+        "meanMs": 0.3865209999999979,
+        "p95Ms": 0.033299999999997
+      },
+      "reasoning-adversarial": {
+        "total": 75,
+        "passed": 75,
+        "meanMs": 0.4228079999999924,
+        "p95Ms": 0.7371000000000549
+      },
+      "statistics-ode": {
+        "total": 75,
+        "passed": 75,
+        "meanMs": 0.09066666666666151,
+        "p95Ms": 0.1413000000000011
+      },
+      "trig-calculus": {
+        "total": 75,
+        "passed": 75,
+        "meanMs": 1.8030133333333287,
+        "p95Ms": 1.0336999999999534
+      }
+    }
+  },
+  "frozen100": {
+    "passed": 100,
+    "total": 100,
+    "metrics": {
+      "standalone": {
+        "passed": 25,
+        "total": 25,
+        "percent": 100
+      },
+      "conversation": {
+        "passed": 101,
+        "total": 101,
+        "percent": 100
+      },
+      "pronouns": {
+        "passed": 53,
+        "total": 53,
+        "percent": 100
+      },
+      "followUp": {
+        "passed": 11,
+        "total": 11,
+        "percent": 100
+      },
+      "ambiguity": {
+        "passed": 10,
+        "total": 10,
+        "percent": 100
+      },
+      "readOnlySafety": {
+        "total": 33,
+        "unexpectedMutations": 0
+      },
+      "undo": {
+        "passed": 3,
+        "total": 3,
+        "percent": 100
+      }
+    },
+    "originalHarnessHashesUnchanged": true
+  },
+  "regression": {
+    "passedAssertions": 6685,
+    "files": 23,
+    "finalRun": "regression-clean.txt",
+    "earlierTimeout": "One unchanged five-second semantic test timed out under concurrent bundling; its separate retry passed 29/29. Final sequential run passed all assertions.",
+    "additionalSpecialistTests": 127
+  },
+  "browser": {
+    "passed": 110,
+    "total": 110,
+    "pageErrors": [],
+    "warmRepeatedQueries": 40,
+    "performance": [
+      {
+        "mode": "graph2d",
+        "meanMs": 1321.78612,
+        "p95Ms": 1800.966199999999,
+        "configuration": "4x synthetic CPU throttle; software WebGL; UI/automation latency included"
+      },
+      {
+        "mode": "geometry2d",
+        "meanMs": 2290.663040000001,
+        "p95Ms": 3343.517700000004,
+        "configuration": "4x synthetic CPU throttle; software WebGL; UI/automation latency included"
+      },
+      {
+        "mode": "graph3d",
+        "meanMs": 1171.7446099999993,
+        "p95Ms": 1531.932099999991,
+        "configuration": "4x synthetic CPU throttle; software WebGL; UI/automation latency included"
+      },
+      {
+        "mode": "geometry3d",
+        "meanMs": 1661.7354099999998,
+        "p95Ms": 2177.202099999995,
+        "configuration": "4x synthetic CPU throttle; software WebGL; UI/automation latency included"
+      }
+    ],
+    "network": "Remote hosts blocked; app and worker assets served only from localhost."
+  },
+  "production": {
+    "build": "passed",
+    "studentSecurityAndWorkerTests": "2/2 passed on final build, including visible error estimate/tolerance",
+    "workerFormat": "ES modules for lazy specialist chunks"
+  },
+  "checks": {
+    "newKernelAndBrowserAndViteLint": "passed",
+    "scopedTypecheck": "passed",
+    "fullTypecheck": "218 existing errors; zero new kernel errors",
+    "fullLint": "433 errors / 133 warnings remain in repository",
+    "assistantLint": "passed"
+  },
+  "model": {
+    "newTraining": false,
+    "baselineWeightsSha256": "315d8161f4ff311db2e7850ef5e6d0f5362fa2f53cede767e2a12f2b2907ce3d",
+    "contextModelAccuracyUnchanged": "68.67% intent / 89.04% context / 65.59% joint"
+  },
+  "limits": {
+    "inputCharacters": 2048,
+    "ASTNodes": 256,
+    "ASTDepth": 32,
+    "literalDigits": 256,
+    "estimatedIntegerBits": 16384,
+    "estimatedPolynomialDegree": 64,
+    "estimatedExpansionTerms": 4096,
+    "workerTimeSeconds": 20,
+    "activeWorkers": 4,
+    "workerJobsBeforeRecycle": 32,
+    "idleWorkerExpirySeconds": 60,
+    "matrixDimension": 8,
+    "numericDatasetRows": 10000,
+    "numericalIterations": 10000,
+    "activeWorkersPerPool": 2,
+    "kernelRequestBytes": 200000,
+    "legacyRequestBytes": 2000000
+  },
+  "v51Files": [
+    "src/math-robo/kernel/budgets.test.ts",
+    "src/math-robo/kernel/client.ts",
+    "src/math-robo/kernel/exact.ts",
+    "src/math-robo/kernel/heldOut.test.ts",
+    "src/math-robo/kernel/index.ts",
+    "src/math-robo/kernel/kernel.test.ts",
+    "src/math-robo/kernel/kernel.ts",
+    "src/math-robo/kernel/kernel.worker.ts",
+    "src/math-robo/kernel/language.ts",
+    "src/math-robo/kernel/numerical.ts",
+    "src/math-robo/kernel/safeExpression.ts",
+    "src/math-robo/kernel/specialists.ts",
+    "src/math-robo/kernel/symbolic.ts",
+    "src/math-robo/kernel/types.ts",
+    "src/math-robo/intelligence/engineRouter.ts",
+    "src/math-robo/intelligence/engineRegistry.ts",
+    "src/math-robo/intelligence/engineVersion.ts",
+    "src/math-robo/intelligence/liveAssistant.ts",
+    "src/math-robo/intelligence/semanticEngine.ts",
+    "src/math-robo/intelligence/types.ts",
+    "src/math-robo/intelligence/semanticParser.ts",
+    "src/math-robo/intelligence/conversationEngine.ts",
+    "src/math-robo/intelligence/executionPlanner.ts",
+    "src/math-robo/intelligence/workspaceDependencies.ts",
+    "src/math-robo/intelligence/resultVerifier.ts",
+    "src/offline-intelligence/OfflineMathAssistant.tsx",
+    "vite.config.ts",
+    "scripts/ruhi-v51-browser.mjs",
+    "tests/workspace/ruhiV51Build.e2e.ts",
+    "src/math-robo/kernel/specialistClient.ts",
+    "src/math-robo/kernel/specialist.worker.ts",
+    "src/math-robo/intelligence/engineRegistryCore.ts",
+    "src/math-robo/kernel/README.md"
+  ],
+  "limitations": [
+    "Certified solving is bounded to rational univariate linear/quadratic and selected principal-root equations.",
+    "General complex/parameterized/higher-degree and nonpolynomial CAS results are not universally verified.",
+    "Quadrature and ODE error estimates are not rigorous global bounds.",
+    "Legacy visual line/segment alias semantics are not fully migrated.",
+    "All advanced constraints, loci, intersections, eigensystems, inferential statistics and proof tutoring are not certified.",
+    "Four-workspace performance uses synthetic throttling and software WebGL, not a physical low-end device.",
+    "Localhost assets remain necessary; disconnected cold reload is unverified.",
+    "No new model training or 100K-row training performance evaluation.",
+    "Legacy callback-valued inputs cannot cross worker structured-clone transport."
+  ]
+}

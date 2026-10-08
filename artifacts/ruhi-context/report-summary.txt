@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-08T05:21:46.738Z",
+  "architecture": {
+    "name": "RuhiContextNet",
+    "featureWidth": 848,
+    "hidden": 64,
+    "heads": [
+      "17 contextual intents",
+      "9 contextual meanings"
+    ],
+    "parameters": 56026,
+    "weightBytes": 224104
+  },
+  "dataset": {
+    "rows": 6888,
+    "train": 4992,
+    "calibration": 1248,
+    "test": 648,
+    "heldOutTemplateGroups": 57,
+    "heldOutContexts": 13
+  },
+  "metrics": {
+    "intentAccuracy": 0.6867283950617284,
+    "contextInterpretationAccuracy": 0.8904320987654321,
+    "terminologyDisambiguationAccuracy": 1,
+    "jointAccuracy": 0.6558641975308642,
+    "acceptedCoverage": 0.7993827160493827,
+    "acceptedJointPrecision": 0.7702702702702703,
+    "calibrationAcceptedJointPrecision": 0.9800190294957184,
+    "endToEndBrowserAnswers": {
+      "passed": 14,
+      "total": 14,
+      "scope": "Authored acceptance conversations, not held-out corpus accuracy"
+    },
+    "nativeSimulationPassed": true,
+    "falseActions": {
+      "questions": 15,
+      "falseActions": 0,
+      "rate": 0
+    }
+  },
+  "performance": {
+    "cpu": {
+      "backend": "cpu",
+      "inferences": 150,
+      "meanMs": 0.2460293333333334,
+      "tensorsBefore": 6,
+      "tensorsAfter": 6
+    },
+    "browser": {
+      "backend": "cpu",
+      "meanMs": 0.6620000000794729,
+      "p95Ms": 0.7999999821186066,
+      "tensorsBefore": 24,
+      "tensorsAfter": 24,
+      "weightParameters": 56026
+    },
+    "modelFetchesAcrossNavigation": 1,
+    "heldoutP95Ms": 0.6910000000000309
+  },
+  "coverage": {
+    "discoveredPages": 1056,
+    "lessonRecords": 674,
+    "reviewedSpecialistMeanings": 5,
+    "definitionRecords": 674
+  },
+  "verification": {
+    "regressions": "5646",
+    "contextAndBoundaryTests": "9",
+    "nativeRegressionBrowser": true,
+    "productionBuild": true,
+    "typecheck": true,
+    "trainingPanelTypecheck": true,
+    "studentSecurity": true,
+    "v4WeightsUnchanged": true
+  }
+}

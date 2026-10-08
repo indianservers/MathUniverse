@@ -1,0 +1,158 @@
+[
+  {
+    "mode": "graph2d",
+    "result": {
+      "created": "success",
+      "moved": "success",
+      "undo": "success",
+      "redo": "success",
+      "previewRegistered": true,
+      "frames": 18,
+      "distinct": 18,
+      "nativeDistinct": 1,
+      "start": [],
+      "end": [
+        [
+          5,
+          0
+        ]
+      ],
+      "restored": [],
+      "redone": [
+        [
+          5,
+          0
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "mode": "geometry2d",
+    "result": {
+      "created": "success",
+      "moved": "success",
+      "undo": "success",
+      "redo": "success",
+      "previewRegistered": true,
+      "frames": 40,
+      "distinct": 40,
+      "nativeDistinct": 1,
+      "start": [
+        [
+          0,
+          0
+        ]
+      ],
+      "end": [
+        [
+          5,
+          0
+        ]
+      ],
+      "restored": [
+        [
+          0,
+          0
+        ]
+      ],
+      "redone": [
+        [
+          5,
+          0
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "mode": "geometry3d",
+    "result": {
+      "morph": {
+        "error": null,
+        "sourceFrames": 44,
+        "sourceKind": "sphere",
+        "finalKind": "cube"
+      },
+      "created": "success",
+      "moved": "success",
+      "undo": "success",
+      "redo": "success",
+      "previewRegistered": true,
+      "frames": 44,
+      "distinct": 44,
+      "nativeDistinct": 1,
+      "start": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "end": [
+        [
+          3,
+          0,
+          0
+        ]
+      ],
+      "restored": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "redone": [
+        [
+          3,
+          0,
+          0
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "mode": "graph3d",
+    "result": {
+      "created": "success",
+      "moved": "success",
+      "undo": "success",
+      "redo": "success",
+      "previewRegistered": true,
+      "frames": 23,
+      "distinct": 23,
+      "nativeDistinct": 1,
+      "start": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "end": [
+        [
+          3,
+          0,
+          0
+        ]
+      ],
+      "restored": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "redone": [
+        [
+          3,
+          0,
+          0
+        ]
+      ]
+    },
+    "errors": []
+  }
+]

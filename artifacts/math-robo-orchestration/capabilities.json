@@ -1208,6 +1208,22 @@
       ]
     },
     {
+      "id": "kernel",
+      "label": "Ruhi verified mathematical kernel",
+      "modules": [
+        "src/math-robo/kernel/kernel.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "kernel.compute",
+          "engineId": "kernel",
+          "label": "Verified local computation",
+          "description": "Typed exact arithmetic, domain-aware supported equations, geometry, calculus and bounded numerical methods",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
       "id": "active-workspace",
       "label": "Active workspace drawing, geometry and transformations",
       "modules": [
@@ -1482,6 +1498,48 @@
           "mutatesWorkspace": true
         },
         {
+          "id": "workspace.CREATE.RAY",
+          "engineId": "active-workspace",
+          "label": "create ray",
+          "description": "Verified create:ray; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.VECTOR",
+          "engineId": "active-workspace",
+          "label": "create vector",
+          "description": "Verified create:vector; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.FIND.COMPONENTS",
+          "engineId": "active-workspace",
+          "label": "find components",
+          "description": "Verified find:components; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.DIRECTION",
+          "engineId": "active-workspace",
+          "label": "find direction",
+          "description": "Verified find:direction; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.PARAMETERIZATION",
+          "engineId": "active-workspace",
+          "label": "find parameterization",
+          "description": "Verified find:parameterization; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.MAGNITUDE",
+          "engineId": "active-workspace",
+          "label": "find magnitude",
+          "description": "Verified find:magnitude; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
           "id": "workspace.PLOT.FUNCTION",
           "engineId": "active-workspace",
           "label": "plot function",
@@ -1590,7 +1648,7 @@
           "id": "workspace.FIND.INTERSECTION",
           "engineId": "active-workspace",
           "label": "find intersection",
-          "description": "Verified find:intersection; modes normal, geometry2d, graph2d",
+          "description": "Verified find:intersection; modes normal, geometry2d, graph2d, geometry3d, graph3d",
           "mutatesWorkspace": false
         },
         {
@@ -1675,6 +1733,13 @@
           "engineId": "active-workspace",
           "label": "change label",
           "description": "Verified change:label; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.ENDPOINTS",
+          "engineId": "active-workspace",
+          "label": "change endpoints",
+          "description": "Verified change:endpoints; modes normal, geometry2d, graph2d, geometry3d, graph3d",
           "mutatesWorkspace": true
         },
         {
@@ -2042,6 +2107,13 @@
           "mutatesWorkspace": false
         },
         {
+          "id": "workspace.CREATE.PLANE",
+          "engineId": "active-workspace",
+          "label": "create plane",
+          "description": "Verified create:plane; modes geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
           "id": "workspace.FIND.ANGLE",
           "engineId": "active-workspace",
           "label": "find angle",
@@ -2112,10 +2184,38 @@
           "mutatesWorkspace": true
         },
         {
+          "id": "workspace.CHANGE.LINE_WIDTH",
+          "engineId": "active-workspace",
+          "label": "change line width",
+          "description": "Verified change:line_width; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.FILL_COLOR",
+          "engineId": "active-workspace",
+          "label": "change fill color",
+          "description": "Verified change:fill_color; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.STROKE_COLOR",
+          "engineId": "active-workspace",
+          "label": "change stroke color",
+          "description": "Verified change:stroke_color; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
           "id": "workspace.CHANGE.SLOPE",
           "engineId": "active-workspace",
           "label": "change slope",
           "description": "Verified change:slope; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.ANGLE",
+          "engineId": "active-workspace",
+          "label": "change angle",
+          "description": "Verified change:angle; modes normal, geometry2d, graph2d",
           "mutatesWorkspace": true
         },
         {
@@ -2192,7 +2292,7 @@
           "id": "workspace.FIND.EQUATION",
           "engineId": "active-workspace",
           "label": "find equation",
-          "description": "Verified find:equation; modes normal, geometry2d, graph2d",
+          "description": "Verified find:equation; modes normal, geometry2d, graph2d, geometry3d, graph3d",
           "mutatesWorkspace": false
         },
         {
@@ -2259,6 +2359,34 @@
           "mutatesWorkspace": true
         },
         {
+          "id": "workspace.MARK.CENTROID",
+          "engineId": "active-workspace",
+          "label": "mark centroid",
+          "description": "Verified mark:centroid; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.SEGMENT",
+          "engineId": "active-workspace",
+          "label": "create segment",
+          "description": "Verified create:segment; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CONSTRUCT.CONDITIONAL_INTERSECTION",
+          "engineId": "active-workspace",
+          "label": "construct conditional intersection",
+          "description": "Verified construct:conditional_intersection; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.ANGLE",
+          "engineId": "active-workspace",
+          "label": "create angle",
+          "description": "Verified create:angle; modes graph2d, normal",
+          "mutatesWorkspace": true
+        },
+        {
           "id": "workspace.REFLECT.DIAGONAL",
           "engineId": "active-workspace",
           "label": "reflect diagonal",
@@ -2278,6 +2406,13 @@
           "label": "explain previous",
           "description": "Verified explain:previous; modes normal, geometry2d, graph2d, geometry3d, graph3d",
           "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CONSTRUCT.PERP_PLANE",
+          "engineId": "active-workspace",
+          "label": "construct perp plane",
+          "description": "Verified construct:perp_plane; modes geometry3d, graph3d",
+          "mutatesWorkspace": true
         }
       ]
     }

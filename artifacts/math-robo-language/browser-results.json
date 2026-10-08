@@ -1,0 +1,6949 @@
+{
+  "date": "2026-10-08T04:48:12.792Z",
+  "cases": [
+    {
+      "mode": "graph2d",
+      "prompt": "Please put a circle of radius 5 on the graph.",
+      "answer": "Created 2D circle with radius 5.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "circle",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 5,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "C1",
+            "objectId": "4575c0a8-5c6c-43d6-b6a0-64519dc8147c",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Please put a circle of radius 5 on the graph.",
+        "kind": "CREATE",
+        "subjectBefore": [],
+        "subjectAfter": [
+          "4575c0a8-5c6c-43d6-b6a0-64519dc8147c"
+        ],
+        "status": "success",
+        "message": "Created 2D circle with radius 5.",
+        "plan": {
+          "rawPhrase": "Please put a circle of radius 5 on the graph.",
+          "commands": [
+            {
+              "id": "1c4d8109-e15d-4084-b8bb-355c4f27e6c8",
+              "rawPhrase": "Please put a circle of radius 5 on the graph.",
+              "normalizedPhrase": "create a circle of radius 5 on the graph",
+              "detectedAction": "CREATE",
+              "action": "CREATE",
+              "subAction": "CIRCLE",
+              "mode": "graph2d",
+              "parameters": {
+                "legacy": {
+                  "kind": "circle",
+                  "dimension": "2d",
+                  "points": [],
+                  "width": 6,
+                  "height": 4,
+                  "depth": 3,
+                  "radius": 5,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": false
+                },
+                "width": 6,
+                "height": 4,
+                "radius": 5,
+                "depth": 3,
+                "sides": 6
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": {
+                "type": "circle"
+              }
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "7acf5a66-c229-4fe8-b1a9-1e959b13fa3e"
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 0.5,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Make it blue.",
+      "answer": "Changed circle to blue.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "circle",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 5,
+            "sides": 6,
+            "color": "#3b82f6",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "C1",
+            "objectId": "4575c0a8-5c6c-43d6-b6a0-64519dc8147c",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Make it blue.",
+        "kind": "CHANGE",
+        "subjectBefore": [
+          "4575c0a8-5c6c-43d6-b6a0-64519dc8147c"
+        ],
+        "subjectAfter": [
+          "4575c0a8-5c6c-43d6-b6a0-64519dc8147c"
+        ],
+        "status": "success",
+        "message": "Changed circle to blue.",
+        "plan": {
+          "rawPhrase": "Make it blue.",
+          "commands": [
+            {
+              "id": "0f0d0c74-0e70-4a58-b333-30303e84cd08",
+              "rawPhrase": "Make it blue.",
+              "normalizedPhrase": "make it blue",
+              "detectedAction": "CREATE",
+              "action": "CHANGE",
+              "subAction": "COLOR",
+              "mode": "graph2d",
+              "parameters": {
+                "color": "blue"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "4575c0a8-5c6c-43d6-b6a0-64519dc8147c"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "5f2ea890-4b77-43f4-8dc0-7dbb2e4afa08"
+        },
+        "resolvedReferences": [
+          "4575c0a8-5c6c-43d6-b6a0-64519dc8147c"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Slide it right by 3.",
+      "answer": "move circle.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "circle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 5,
+            "sides": 6,
+            "color": "#3b82f6",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "C1",
+            "objectId": "4575c0a8-5c6c-43d6-b6a0-64519dc8147c",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Slide it right by 3.",
+        "kind": "MOVE",
+        "subjectBefore": [
+          "4575c0a8-5c6c-43d6-b6a0-64519dc8147c"
+        ],
+        "subjectAfter": [
+          "4575c0a8-5c6c-43d6-b6a0-64519dc8147c"
+        ],
+        "status": "success",
+        "message": "move circle.",
+        "plan": {
+          "rawPhrase": "Slide it right by 3.",
+          "commands": [
+            {
+              "id": "6cf58aa2-a1ae-4014-bdc8-266cbb3c83cd",
+              "rawPhrase": "Slide it right by 3.",
+              "normalizedPhrase": "move it right by 3",
+              "detectedAction": "MOVE",
+              "action": "MOVE",
+              "subAction": "OBJECT",
+              "mode": "graph2d",
+              "parameters": {
+                "vector": [
+                  3,
+                  0
+                ],
+                "multiple": false,
+                "dx": 3,
+                "dy": 0
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "4575c0a8-5c6c-43d6-b6a0-64519dc8147c"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "3073496e-b855-4b0d-abf2-e81ca76c3a46"
+        },
+        "resolvedReferences": [
+          "4575c0a8-5c6c-43d6-b6a0-64519dc8147c"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Clone that.",
+      "answer": "Duplicated circle.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "circle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 5,
+            "sides": 6,
+            "color": "#3b82f6",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "C1",
+            "objectId": "4575c0a8-5c6c-43d6-b6a0-64519dc8147c",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "circle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 5,
+            "sides": 6,
+            "color": "#3b82f6",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "C2",
+            "objectId": "3a4a2a95-44d2-4116-a445-273094273a78",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Clone that.",
+        "kind": "DUPLICATE",
+        "subjectBefore": [
+          "4575c0a8-5c6c-43d6-b6a0-64519dc8147c"
+        ],
+        "subjectAfter": [
+          "3a4a2a95-44d2-4116-a445-273094273a78"
+        ],
+        "status": "success",
+        "message": "Duplicated circle.",
+        "plan": {
+          "rawPhrase": "Clone that.",
+          "commands": [
+            {
+              "id": "efe77b52-7bcd-463b-be10-f8e7e22259cd",
+              "rawPhrase": "Clone that.",
+              "normalizedPhrase": "duplicate that",
+              "detectedAction": "DUPLICATE",
+              "action": "DUPLICATE",
+              "subAction": "OBJECT",
+              "mode": "graph2d",
+              "parameters": {},
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "4575c0a8-5c6c-43d6-b6a0-64519dc8147c"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "1fdaafdb-f58b-4b9f-a540-c55582b649f4"
+        },
+        "resolvedReferences": [
+          "4575c0a8-5c6c-43d6-b6a0-64519dc8147c"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Take away the original.",
+      "answer": "Deleted circle.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "circle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 5,
+            "sides": 6,
+            "color": "#3b82f6",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "C2",
+            "objectId": "3a4a2a95-44d2-4116-a445-273094273a78",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Take away the original.",
+        "kind": "DELETE",
+        "subjectBefore": [
+          "3a4a2a95-44d2-4116-a445-273094273a78"
+        ],
+        "subjectAfter": [
+          "3a4a2a95-44d2-4116-a445-273094273a78"
+        ],
+        "status": "success",
+        "message": "Deleted circle.",
+        "plan": {
+          "rawPhrase": "Take away the original.",
+          "commands": [
+            {
+              "id": "a8d539b5-5607-4e1c-bf08-733fe18d2ee6",
+              "rawPhrase": "Take away the original.",
+              "normalizedPhrase": "delete the original",
+              "detectedAction": "DELETE",
+              "action": "DELETE",
+              "subAction": "OBJECT",
+              "mode": "graph2d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "4575c0a8-5c6c-43d6-b6a0-64519dc8147c"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "d4bd2f7b-9445-46bd-9888-81d274108756"
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 0.5,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Please generate a rectangle w4 h6.",
+      "answer": "Created 2D rectangle 4 by 6.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "rectangle",
+            "dimension": "2d",
+            "points": [],
+            "width": 4,
+            "height": 6,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": true,
+            "roboLabel": "R1",
+            "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Please generate a rectangle w4 h6.",
+        "kind": "CREATE",
+        "subjectBefore": [],
+        "subjectAfter": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "status": "success",
+        "message": "Created 2D rectangle 4 by 6.",
+        "plan": {
+          "rawPhrase": "Please generate a rectangle w4 h6.",
+          "commands": [
+            {
+              "id": "f5313c9b-3b3d-4ce4-a396-20e48c3bd173",
+              "rawPhrase": "Please generate a rectangle w4 h6.",
+              "normalizedPhrase": "create a rectangle width 4 height 6",
+              "detectedAction": "CREATE",
+              "action": "CREATE",
+              "subAction": "RECTANGLE",
+              "mode": "graph2d",
+              "parameters": {
+                "legacy": {
+                  "kind": "rectangle",
+                  "dimension": "2d",
+                  "points": [],
+                  "width": 4,
+                  "height": 6,
+                  "depth": 3,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": true
+                },
+                "width": 4,
+                "height": 6,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": {
+                "type": "rectangle"
+              }
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "421c3c64-40bf-49ab-b1dd-ea89a0065cfd"
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 0.5,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Determine its area.",
+      "answer": "area = 24 units.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "rectangle",
+            "dimension": "2d",
+            "points": [],
+            "width": 4,
+            "height": 6,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": true,
+            "roboLabel": "R1",
+            "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Determine its area.",
+        "kind": "FIND",
+        "subjectBefore": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "subjectAfter": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "status": "success",
+        "message": "area = 24 units.",
+        "plan": {
+          "rawPhrase": "Determine its area.",
+          "commands": [
+            {
+              "id": "d0ad9379-dc15-4487-8e69-d845112026e8",
+              "rawPhrase": "Determine its area.",
+              "normalizedPhrase": "find its area",
+              "detectedAction": "FIND",
+              "action": "FIND",
+              "subAction": "AREA",
+              "mode": "graph2d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "aa2559e4-71fe-468a-854d-5b39b14e2cfd"
+        },
+        "resolvedReferences": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Mark the midpoint of the top edge.",
+      "answer": "Marked midpoint.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "rectangle",
+            "dimension": "2d",
+            "points": [],
+            "width": 4,
+            "height": 6,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": true,
+            "roboLabel": "R1",
+            "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                3
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "create",
+            "objectId": "4548ee27-4364-465a-b40c-7cd7ba1b3d16",
+            "roboLabel": "P1",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "vertex": 2
+                },
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "vertex": 3
+                }
+              ]
+            },
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Mark the midpoint of the top edge.",
+        "kind": "MARK",
+        "subjectBefore": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "subjectAfter": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "status": "success",
+        "message": "Marked midpoint.",
+        "plan": {
+          "rawPhrase": "Mark the midpoint of the top edge.",
+          "commands": [
+            {
+              "id": "218d858c-9734-419d-837a-ea23161f0b4e",
+              "rawPhrase": "Mark the midpoint of the top edge.",
+              "normalizedPhrase": "mark the midpoint of the top edge",
+              "detectedAction": "MARK",
+              "action": "MARK",
+              "subAction": "MIDPOINT",
+              "mode": "graph2d",
+              "parameters": {},
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "$edge:top"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "14e5f546-cb38-4a88-9739-424d5a20cfa9"
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 0.5,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Build a perpendicular line through that point.",
+      "answer": "Perpendicular line created through the point.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "rectangle",
+            "dimension": "2d",
+            "points": [],
+            "width": 4,
+            "height": 6,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": true,
+            "roboLabel": "R1",
+            "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                3
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "create",
+            "objectId": "4548ee27-4364-465a-b40c-7cd7ba1b3d16",
+            "roboLabel": "P1",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "vertex": 2
+                },
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "vertex": 3
+                }
+              ]
+            },
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "line",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "d87af195-9826-4eeb-a6c2-156708c6d5aa",
+            "roboLabel": "L1",
+            "roboDependency": {
+              "kind": "perp",
+              "parents": [
+                {
+                  "objectId": "4548ee27-4364-465a-b40c-7cd7ba1b3d16"
+                },
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "edge": [
+                    2,
+                    3
+                  ]
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Build a perpendicular line through that point.",
+        "kind": "CONSTRUCT",
+        "subjectBefore": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "subjectAfter": [
+          "d87af195-9826-4eeb-a6c2-156708c6d5aa"
+        ],
+        "status": "success",
+        "message": "Perpendicular line created through the point.",
+        "plan": {
+          "rawPhrase": "Build a perpendicular line through that point.",
+          "commands": [
+            {
+              "id": "f0e2c7b8-0601-4496-be3b-7e4712ad1b25",
+              "rawPhrase": "Build a perpendicular line through that point.",
+              "normalizedPhrase": "create a perpendicular line through that point",
+              "detectedAction": "CREATE",
+              "action": "CONSTRUCT",
+              "subAction": "PERPENDICULAR",
+              "mode": "graph2d",
+              "parameters": {
+                "through": "previousResult",
+                "angle": 0
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "$edge:top:a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "d10aec85-7a53-4c20-ae69-a92e2bf5dcfd"
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 0.5,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Make the rectangle twice as wide.",
+      "answer": "resize rectangle.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "rectangle",
+            "dimension": "2d",
+            "points": [],
+            "width": 8,
+            "height": 6,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": true,
+            "roboLabel": "R1",
+            "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                3
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "create",
+            "objectId": "4548ee27-4364-465a-b40c-7cd7ba1b3d16",
+            "roboLabel": "P1",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "vertex": 2
+                },
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "vertex": 3
+                }
+              ]
+            },
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "line",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "d87af195-9826-4eeb-a6c2-156708c6d5aa",
+            "roboLabel": "L1",
+            "roboDependency": {
+              "kind": "perp",
+              "parents": [
+                {
+                  "objectId": "4548ee27-4364-465a-b40c-7cd7ba1b3d16"
+                },
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "edge": [
+                    2,
+                    3
+                  ]
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Make the rectangle twice as wide.",
+        "kind": "RESIZE",
+        "subjectBefore": [
+          "d87af195-9826-4eeb-a6c2-156708c6d5aa"
+        ],
+        "subjectAfter": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "status": "success",
+        "message": "resize rectangle.",
+        "plan": {
+          "rawPhrase": "Make the rectangle twice as wide.",
+          "commands": [
+            {
+              "id": "b44ad610-65c8-4816-ba00-fdcab94aa70e",
+              "rawPhrase": "Make the rectangle twice as wide.",
+              "normalizedPhrase": "make the rectangle twice as wide",
+              "detectedAction": "CREATE",
+              "action": "RESIZE",
+              "subAction": "OBJECT",
+              "mode": "graph2d",
+              "parameters": {
+                "widthFactor": 2,
+                "width": 8
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "5d971c99-3417-4b6f-b6d9-8914a170fdbd"
+        },
+        "resolvedReferences": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Spin it 30 degrees.",
+      "answer": "rotate rectangle.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "rectangle",
+            "dimension": "2d",
+            "points": [],
+            "width": 8,
+            "height": 6,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              30
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": true,
+            "roboLabel": "R1",
+            "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                -1.4999999999999996,
+                2.598076211353316
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "4548ee27-4364-465a-b40c-7cd7ba1b3d16",
+            "roboLabel": "P1",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "vertex": 2
+                },
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "vertex": 3
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          }
+        },
+        {
+          "command": {
+            "kind": "line",
+            "dimension": "2d",
+            "points": [
+              [
+                -1.4999999999999996,
+                2.598076211353316
+              ],
+              [
+                -0.9999999999999996,
+                1.7320508075688772
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "d87af195-9826-4eeb-a6c2-156708c6d5aa",
+            "roboLabel": "L1",
+            "roboDependency": {
+              "kind": "perp",
+              "parents": [
+                {
+                  "objectId": "4548ee27-4364-465a-b40c-7cd7ba1b3d16"
+                },
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "edge": [
+                    2,
+                    3
+                  ]
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Spin it 30 degrees.",
+        "kind": "ROTATE",
+        "subjectBefore": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "subjectAfter": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "status": "success",
+        "message": "rotate rectangle.",
+        "plan": {
+          "rawPhrase": "Spin it 30 degrees.",
+          "commands": [
+            {
+              "id": "096872cc-ed2b-4d14-a9ab-f0c4623b0ef6",
+              "rawPhrase": "Spin it 30 degrees.",
+              "normalizedPhrase": "rotate it 30 degrees",
+              "detectedAction": "ROTATE",
+              "action": "ROTATE",
+              "subAction": "OBJECT",
+              "mode": "graph2d",
+              "parameters": {
+                "angle": 30,
+                "axis": "z"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "55f8c1d1-3f23-4676-a57a-9c2d7069ed3c"
+        },
+        "resolvedReferences": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "What is the new area?",
+      "answer": "area = 48 units.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "rectangle",
+            "dimension": "2d",
+            "points": [],
+            "width": 8,
+            "height": 6,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              30
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": true,
+            "roboLabel": "R1",
+            "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                -1.4999999999999996,
+                2.598076211353316
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "4548ee27-4364-465a-b40c-7cd7ba1b3d16",
+            "roboLabel": "P1",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "vertex": 2
+                },
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "vertex": 3
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          }
+        },
+        {
+          "command": {
+            "kind": "line",
+            "dimension": "2d",
+            "points": [
+              [
+                -1.4999999999999996,
+                2.598076211353316
+              ],
+              [
+                -0.9999999999999996,
+                1.7320508075688772
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "d87af195-9826-4eeb-a6c2-156708c6d5aa",
+            "roboLabel": "L1",
+            "roboDependency": {
+              "kind": "perp",
+              "parents": [
+                {
+                  "objectId": "4548ee27-4364-465a-b40c-7cd7ba1b3d16"
+                },
+                {
+                  "objectId": "a82ef698-f58a-4934-b3b9-b59e4ec12d01",
+                  "edge": [
+                    2,
+                    3
+                  ]
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "What is the new area?",
+        "kind": "FIND",
+        "subjectBefore": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "subjectAfter": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "status": "success",
+        "message": "area = 48 units.",
+        "plan": {
+          "rawPhrase": "What is the new area?",
+          "commands": [
+            {
+              "id": "3b35ded2-4b0b-47b0-b3a5-6b6fe48bb217",
+              "rawPhrase": "What is the new area?",
+              "normalizedPhrase": "what is the new area",
+              "detectedAction": "",
+              "action": "FIND",
+              "subAction": "AREA",
+              "mode": "graph2d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "e3d6e3b0-65ed-48cd-9e7b-6224599a200b"
+        },
+        "resolvedReferences": [
+          "a82ef698-f58a-4934-b3b9-b59e4ec12d01"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "prompt": "Sketch a triangle at (0,0), (6,0), (3,4).",
+      "answer": "Created 2D triangle.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "5072e783-96c4-4265-986b-1f4220a3d317"
+          },
+          "vertices": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ]
+          ]
+        }
+      ],
+      "trace": {
+        "text": "Sketch a triangle at (0,0), (6,0), (3,4).",
+        "kind": "CREATE",
+        "subjectBefore": [],
+        "subjectAfter": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "status": "success",
+        "message": "Created 2D triangle.",
+        "plan": {
+          "rawPhrase": "Sketch a triangle at (0,0), (6,0), (3,4).",
+          "commands": [
+            {
+              "id": "6615354c-d734-43b5-af80-e280e741f87b",
+              "rawPhrase": "Sketch a triangle at (0,0), (6,0), (3,4).",
+              "normalizedPhrase": "create a triangle at (0,0), (6,0), (3,4)",
+              "detectedAction": "CREATE",
+              "action": "CREATE",
+              "subAction": "TRIANGLE",
+              "mode": "geometry2d",
+              "parameters": {
+                "legacy": {
+                  "kind": "triangle",
+                  "dimension": "2d",
+                  "points": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      6,
+                      0
+                    ],
+                    [
+                      3,
+                      4
+                    ]
+                  ],
+                  "width": 6,
+                  "height": 4,
+                  "depth": 3,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": false
+                },
+                "width": 6,
+                "height": 4,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6,
+                "points": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    6,
+                    0
+                  ],
+                  [
+                    3,
+                    4
+                  ]
+                ]
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": {
+                "type": "triangle"
+              }
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "7d89768a-e057-4fe6-8c40-3330b7db0d71"
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 0.5,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "prompt": "What is its area?",
+      "answer": "area = 12 units.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "5072e783-96c4-4265-986b-1f4220a3d317"
+          },
+          "vertices": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ]
+          ]
+        }
+      ],
+      "trace": {
+        "text": "What is its area?",
+        "kind": "FIND",
+        "subjectBefore": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "subjectAfter": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "status": "success",
+        "message": "area = 12 units.",
+        "plan": {
+          "rawPhrase": "What is its area?",
+          "commands": [
+            {
+              "id": "c6832eab-5b73-4bd3-affd-e1a81dcc92a9",
+              "rawPhrase": "What is its area?",
+              "normalizedPhrase": "what is its area",
+              "detectedAction": "",
+              "action": "FIND",
+              "subAction": "AREA",
+              "mode": "geometry2d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "5072e783-96c4-4265-986b-1f4220a3d317"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "349d5776-7f7b-46ac-9a3d-c603e2c7ba0c"
+        },
+        "resolvedReferences": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "prompt": "Mark all three midpoints.",
+      "answer": "Marked side_midpoints points.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "5072e783-96c4-4265-986b-1f4220a3d317"
+          },
+          "vertices": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "create",
+            "objectId": "7225a77a-3e3e-4de6-b587-3473b52e588c",
+            "roboLabel": "P1",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 0
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 1
+                }
+              ]
+            }
+          },
+          "vertices": [
+            [
+              3,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                4.5,
+                2
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "create",
+            "objectId": "040b5f1f-15a7-4519-baa7-27528960c4fc",
+            "roboLabel": "P2",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 1
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 2
+                }
+              ]
+            }
+          },
+          "vertices": [
+            [
+              4.5,
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                1.5,
+                2
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "create",
+            "objectId": "43b124cc-faf0-4720-990d-12a8755e6416",
+            "roboLabel": "P3",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 2
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 0
+                }
+              ]
+            }
+          },
+          "vertices": [
+            [
+              1.5,
+              2,
+              0
+            ]
+          ]
+        }
+      ],
+      "trace": {
+        "text": "Mark all three midpoints.",
+        "kind": "MARK",
+        "subjectBefore": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "subjectAfter": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "status": "success",
+        "message": "Marked side_midpoints points.",
+        "plan": {
+          "rawPhrase": "Mark all three midpoints.",
+          "commands": [
+            {
+              "id": "4c9cdbf4-7b9c-4c66-b24d-a02fc597bc1b",
+              "rawPhrase": "Mark all three midpoints.",
+              "normalizedPhrase": "mark all 3 midpoints",
+              "detectedAction": "MARK",
+              "action": "MARK",
+              "subAction": "SIDE_MIDPOINTS",
+              "mode": "geometry2d",
+              "parameters": {},
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "5072e783-96c4-4265-986b-1f4220a3d317"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "fb2ddb1e-0334-4835-b2ae-5557e931bcfa"
+        },
+        "resolvedReferences": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "prompt": "Join them.",
+      "answer": "Created 2D triangle.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "5072e783-96c4-4265-986b-1f4220a3d317"
+          },
+          "vertices": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "create",
+            "objectId": "7225a77a-3e3e-4de6-b587-3473b52e588c",
+            "roboLabel": "P1",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 0
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 1
+                }
+              ]
+            }
+          },
+          "vertices": [
+            [
+              3,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                4.5,
+                2
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "create",
+            "objectId": "040b5f1f-15a7-4519-baa7-27528960c4fc",
+            "roboLabel": "P2",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 1
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 2
+                }
+              ]
+            }
+          },
+          "vertices": [
+            [
+              4.5,
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                1.5,
+                2
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "create",
+            "objectId": "43b124cc-faf0-4720-990d-12a8755e6416",
+            "roboLabel": "P3",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 2
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 0
+                }
+              ]
+            }
+          },
+          "vertices": [
+            [
+              1.5,
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ],
+              [
+                4.5,
+                2
+              ],
+              [
+                1.5,
+                2
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T2",
+            "roboDependency": {
+              "kind": "triangle",
+              "parents": [
+                {
+                  "objectId": "7225a77a-3e3e-4de6-b587-3473b52e588c"
+                },
+                {
+                  "objectId": "040b5f1f-15a7-4519-baa7-27528960c4fc"
+                },
+                {
+                  "objectId": "43b124cc-faf0-4720-990d-12a8755e6416"
+                }
+              ]
+            },
+            "objectId": "5948494a-da7e-4050-a56f-09e634f1539b"
+          },
+          "vertices": [
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              4.5,
+              2,
+              0
+            ],
+            [
+              1.5,
+              2,
+              0
+            ]
+          ]
+        }
+      ],
+      "trace": {
+        "text": "Join them.",
+        "kind": "CREATE",
+        "subjectBefore": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "subjectAfter": [
+          "5948494a-da7e-4050-a56f-09e634f1539b"
+        ],
+        "status": "success",
+        "message": "Created 2D triangle.",
+        "plan": {
+          "rawPhrase": "Join them.",
+          "commands": [
+            {
+              "id": "14b5983a-70c7-4039-8e07-7327d15ce4d1",
+              "rawPhrase": "Join them.",
+              "normalizedPhrase": "connect them",
+              "detectedAction": "CONNECT",
+              "action": "CREATE",
+              "subAction": "TRIANGLE",
+              "mode": "geometry2d",
+              "parameters": {
+                "fromMarkedPoints": true,
+                "points": [
+                  [
+                    3,
+                    0
+                  ],
+                  [
+                    4.5,
+                    2
+                  ],
+                  [
+                    1.5,
+                    2
+                  ]
+                ],
+                "dependency": {
+                  "kind": "triangle",
+                  "parents": [
+                    {
+                      "objectId": "7225a77a-3e3e-4de6-b587-3473b52e588c"
+                    },
+                    {
+                      "objectId": "040b5f1f-15a7-4519-baa7-27528960c4fc"
+                    },
+                    {
+                      "objectId": "43b124cc-faf0-4720-990d-12a8755e6416"
+                    }
+                  ]
+                },
+                "originalId": "5072e783-96c4-4265-986b-1f4220a3d317"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "797e3140-5549-4913-a04e-246ae4f989c0"
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 0.5,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "prompt": "What kind of triangle did we just make inside?",
+      "answer": "triangle type = \"isosceles, acute angled\".",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "5072e783-96c4-4265-986b-1f4220a3d317"
+          },
+          "vertices": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0
+            ],
+            [
+              3,
+              4,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "create",
+            "objectId": "7225a77a-3e3e-4de6-b587-3473b52e588c",
+            "roboLabel": "P1",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 0
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 1
+                }
+              ]
+            }
+          },
+          "vertices": [
+            [
+              3,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                4.5,
+                2
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "create",
+            "objectId": "040b5f1f-15a7-4519-baa7-27528960c4fc",
+            "roboLabel": "P2",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 1
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 2
+                }
+              ]
+            }
+          },
+          "vertices": [
+            [
+              4.5,
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                1.5,
+                2
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "create",
+            "objectId": "43b124cc-faf0-4720-990d-12a8755e6416",
+            "roboLabel": "P3",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 2
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 0
+                }
+              ]
+            }
+          },
+          "vertices": [
+            [
+              1.5,
+              2,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ],
+              [
+                4.5,
+                2
+              ],
+              [
+                1.5,
+                2
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T2",
+            "roboDependency": {
+              "kind": "triangle",
+              "parents": [
+                {
+                  "objectId": "7225a77a-3e3e-4de6-b587-3473b52e588c"
+                },
+                {
+                  "objectId": "040b5f1f-15a7-4519-baa7-27528960c4fc"
+                },
+                {
+                  "objectId": "43b124cc-faf0-4720-990d-12a8755e6416"
+                }
+              ]
+            },
+            "objectId": "5948494a-da7e-4050-a56f-09e634f1539b"
+          },
+          "vertices": [
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              4.5,
+              2,
+              0
+            ],
+            [
+              1.5,
+              2,
+              0
+            ]
+          ]
+        }
+      ],
+      "trace": {
+        "text": "What kind of triangle did we just make inside?",
+        "kind": "FIND",
+        "subjectBefore": [
+          "5948494a-da7e-4050-a56f-09e634f1539b"
+        ],
+        "subjectAfter": [
+          "5948494a-da7e-4050-a56f-09e634f1539b"
+        ],
+        "status": "success",
+        "message": "triangle type = \"isosceles, acute angled\".",
+        "plan": {
+          "rawPhrase": "What kind of triangle did we just make inside?",
+          "commands": [
+            {
+              "id": "7224469f-0bc3-4b6f-8901-c903c93fc0d2",
+              "rawPhrase": "What kind of triangle did we just make inside?",
+              "normalizedPhrase": "what kind of triangle did we just make inside",
+              "detectedAction": "",
+              "action": "FIND",
+              "subAction": "TRIANGLE_TYPE",
+              "mode": "geometry2d",
+              "parameters": {},
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "5948494a-da7e-4050-a56f-09e634f1539b"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "4a04841e-fb58-4fd6-9ad6-cdc102dc3262"
+        },
+        "resolvedReferences": [
+          "5948494a-da7e-4050-a56f-09e634f1539b"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "prompt": "Make the original triangle twice as large.",
+      "answer": "scale triangle.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 2,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "5072e783-96c4-4265-986b-1f4220a3d317"
+          },
+          "vertices": [
+            [
+              -3,
+              -1.3333333333333328,
+              0
+            ],
+            [
+              9,
+              -1.3333333333333328,
+              0
+            ],
+            [
+              3,
+              6.666666666666667,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                -1.3333333333333328
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "7225a77a-3e3e-4de6-b587-3473b52e588c",
+            "roboLabel": "P1",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 0
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 1
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          },
+          "vertices": [
+            [
+              3,
+              -1.3333333333333328,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                6,
+                2.666666666666667
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "040b5f1f-15a7-4519-baa7-27528960c4fc",
+            "roboLabel": "P2",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 1
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 2
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          },
+          "vertices": [
+            [
+              6,
+              2.666666666666667,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                2.666666666666667
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "43b124cc-faf0-4720-990d-12a8755e6416",
+            "roboLabel": "P3",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 2
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 0
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          },
+          "vertices": [
+            [
+              0,
+              2.666666666666667,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                -1.3333333333333333
+              ],
+              [
+                6,
+                2.666666666666667
+              ],
+              [
+                0,
+                2.666666666666667
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "T2",
+            "roboDependency": {
+              "kind": "triangle",
+              "parents": [
+                {
+                  "objectId": "7225a77a-3e3e-4de6-b587-3473b52e588c"
+                },
+                {
+                  "objectId": "040b5f1f-15a7-4519-baa7-27528960c4fc"
+                },
+                {
+                  "objectId": "43b124cc-faf0-4720-990d-12a8755e6416"
+                }
+              ]
+            },
+            "objectId": "5948494a-da7e-4050-a56f-09e634f1539b",
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          },
+          "vertices": [
+            [
+              3,
+              -1.3333333333333328,
+              0
+            ],
+            [
+              6,
+              2.666666666666667,
+              0
+            ],
+            [
+              0,
+              2.666666666666667,
+              0
+            ]
+          ]
+        }
+      ],
+      "trace": {
+        "text": "Make the original triangle twice as large.",
+        "kind": "SCALE",
+        "subjectBefore": [
+          "5948494a-da7e-4050-a56f-09e634f1539b"
+        ],
+        "subjectAfter": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "status": "success",
+        "message": "scale triangle.",
+        "plan": {
+          "rawPhrase": "Make the original triangle twice as large.",
+          "commands": [
+            {
+              "id": "5e629f5a-eac4-41c4-88ba-851e350e18bd",
+              "rawPhrase": "Make the original triangle twice as large.",
+              "normalizedPhrase": "make the original triangle twice as large",
+              "detectedAction": "CREATE",
+              "action": "SCALE",
+              "subAction": "UNIFORM",
+              "mode": "geometry2d",
+              "parameters": {
+                "factor": 2
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "5072e783-96c4-4265-986b-1f4220a3d317"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "f2c1f06f-a45e-4cca-9b10-83b329eeb946"
+        },
+        "resolvedReferences": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "prompt": "Does that inner triangle still have the same relationship?",
+      "answer": "Yes — the inner triangle has corresponding side ratio 0.5 and area ratio 0.25. Each side joins two side midpoints; the midpoint theorem makes it parallel to, and half the length of, the corresponding original side. Parent changes re-evaluate these midpoint definitions.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 2,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "5072e783-96c4-4265-986b-1f4220a3d317"
+          },
+          "vertices": [
+            [
+              -3,
+              -1.3333333333333328,
+              0
+            ],
+            [
+              9,
+              -1.3333333333333328,
+              0
+            ],
+            [
+              3,
+              6.666666666666667,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                -1.3333333333333328
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "7225a77a-3e3e-4de6-b587-3473b52e588c",
+            "roboLabel": "P1",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 0
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 1
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          },
+          "vertices": [
+            [
+              3,
+              -1.3333333333333328,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                6,
+                2.666666666666667
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "040b5f1f-15a7-4519-baa7-27528960c4fc",
+            "roboLabel": "P2",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 1
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 2
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          },
+          "vertices": [
+            [
+              6,
+              2.666666666666667,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                2.666666666666667
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "43b124cc-faf0-4720-990d-12a8755e6416",
+            "roboLabel": "P3",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 2
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 0
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          },
+          "vertices": [
+            [
+              0,
+              2.666666666666667,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                -1.3333333333333333
+              ],
+              [
+                6,
+                2.666666666666667
+              ],
+              [
+                0,
+                2.666666666666667
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "T2",
+            "roboDependency": {
+              "kind": "triangle",
+              "parents": [
+                {
+                  "objectId": "7225a77a-3e3e-4de6-b587-3473b52e588c"
+                },
+                {
+                  "objectId": "040b5f1f-15a7-4519-baa7-27528960c4fc"
+                },
+                {
+                  "objectId": "43b124cc-faf0-4720-990d-12a8755e6416"
+                }
+              ]
+            },
+            "objectId": "5948494a-da7e-4050-a56f-09e634f1539b",
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          },
+          "vertices": [
+            [
+              3,
+              -1.3333333333333328,
+              0
+            ],
+            [
+              6,
+              2.666666666666667,
+              0
+            ],
+            [
+              0,
+              2.666666666666667,
+              0
+            ]
+          ]
+        }
+      ],
+      "trace": {
+        "text": "Does that inner triangle still have the same relationship?",
+        "kind": "CHECK",
+        "subjectBefore": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "subjectAfter": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "status": "success",
+        "message": "Yes — the inner triangle has corresponding side ratio 0.5 and area ratio 0.25. Each side joins two side midpoints; the midpoint theorem makes it parallel to, and half the length of, the corresponding original side. Parent changes re-evaluate these midpoint definitions.",
+        "plan": {
+          "rawPhrase": "Does that inner triangle still have the same relationship?",
+          "commands": [
+            {
+              "id": "bd15b157-d7bf-4f03-a467-cb48ac0d9949",
+              "rawPhrase": "Does that inner triangle still have the same relationship?",
+              "normalizedPhrase": "does that inner triangle still have the same relationship",
+              "detectedAction": "",
+              "action": "CHECK",
+              "subAction": "MEDIAL_TRIANGLE",
+              "mode": "geometry2d",
+              "parameters": {},
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "5072e783-96c4-4265-986b-1f4220a3d317"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "8862a2c9-113c-4ed9-af36-33010c3f3da6"
+        },
+        "resolvedReferences": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "prompt": "Explain why.",
+      "answer": "Yes — the inner triangle has corresponding side ratio 0.5 and area ratio 0.25. Each side joins two side midpoints; the midpoint theorem makes it parallel to, and half the length of, the corresponding original side. Parent changes re-evaluate these midpoint definitions. Yes — the inner triangle has corresponding side ratio 0.5 and area ratio 0.25. Each side joins two side midpoints; the midpoint theorem makes it parallel to, and half the length of, the corresponding original side. Parent changes re-evaluate these midpoint definitions.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 2,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "5072e783-96c4-4265-986b-1f4220a3d317"
+          },
+          "vertices": [
+            [
+              -3,
+              -1.3333333333333328,
+              0
+            ],
+            [
+              9,
+              -1.3333333333333328,
+              0
+            ],
+            [
+              3,
+              6.666666666666667,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                -1.3333333333333328
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "7225a77a-3e3e-4de6-b587-3473b52e588c",
+            "roboLabel": "P1",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 0
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 1
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          },
+          "vertices": [
+            [
+              3,
+              -1.3333333333333328,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                6,
+                2.666666666666667
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "040b5f1f-15a7-4519-baa7-27528960c4fc",
+            "roboLabel": "P2",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 1
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 2
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          },
+          "vertices": [
+            [
+              6,
+              2.666666666666667,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                2.666666666666667
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "color": "#06b6d4",
+            "scale": 1,
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "action": "update",
+            "objectId": "43b124cc-faf0-4720-990d-12a8755e6416",
+            "roboLabel": "P3",
+            "roboDependency": {
+              "kind": "midpoint",
+              "parents": [
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 2
+                },
+                {
+                  "objectId": "5072e783-96c4-4265-986b-1f4220a3d317",
+                  "vertex": 0
+                }
+              ]
+            },
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          },
+          "vertices": [
+            [
+              0,
+              2.666666666666667,
+              0
+            ]
+          ]
+        },
+        {
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                -1.3333333333333333
+              ],
+              [
+                6,
+                2.666666666666667
+              ],
+              [
+                0,
+                2.666666666666667
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "T2",
+            "roboDependency": {
+              "kind": "triangle",
+              "parents": [
+                {
+                  "objectId": "7225a77a-3e3e-4de6-b587-3473b52e588c"
+                },
+                {
+                  "objectId": "040b5f1f-15a7-4519-baa7-27528960c4fc"
+                },
+                {
+                  "objectId": "43b124cc-faf0-4720-990d-12a8755e6416"
+                }
+              ]
+            },
+            "objectId": "5948494a-da7e-4050-a56f-09e634f1539b",
+            "roboVisible": true,
+            "roboExplicitVertices": true
+          },
+          "vertices": [
+            [
+              3,
+              -1.3333333333333328,
+              0
+            ],
+            [
+              6,
+              2.666666666666667,
+              0
+            ],
+            [
+              0,
+              2.666666666666667,
+              0
+            ]
+          ]
+        }
+      ],
+      "trace": {
+        "text": "Explain why.",
+        "kind": "EXPLAIN",
+        "subjectBefore": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "subjectAfter": [
+          "5072e783-96c4-4265-986b-1f4220a3d317"
+        ],
+        "status": "success",
+        "message": "Yes — the inner triangle has corresponding side ratio 0.5 and area ratio 0.25. Each side joins two side midpoints; the midpoint theorem makes it parallel to, and half the length of, the corresponding original side. Parent changes re-evaluate these midpoint definitions.\nYes — the inner triangle has corresponding side ratio 0.5 and area ratio 0.25. Each side joins two side midpoints; the midpoint theorem makes it parallel to, and half the length of, the corresponding original side. Parent changes re-evaluate these midpoint definitions.",
+        "plan": {
+          "rawPhrase": "Explain why.",
+          "commands": [
+            {
+              "id": "384c24c4-ee52-4fb4-a3cb-d2b6e27d6cba",
+              "rawPhrase": "Explain why.",
+              "normalizedPhrase": "explain why",
+              "detectedAction": "EXPLAIN",
+              "action": "EXPLAIN",
+              "subAction": "PREVIOUS",
+              "mode": "geometry2d",
+              "parameters": {
+                "responseDepth": "standard"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "94b91c45-f500-461e-9b7f-53e0cca88dec"
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 0.5,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "graph3d",
+      "prompt": "Can you generate a sphere r3?",
+      "answer": "Created 3D sphere with radius 3.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "sphere",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "SP1",
+            "objectId": "cda129e7-8e40-49ce-9800-15f8cc10cb44",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "surface-1791434913263-wv4nbb",
+            "expression": "sin(x) * cos(y)",
+            "color": "#22d3ee",
+            "roboVisible": true,
+            "roboLabel": "Surface 1",
+            "roboNativeRow": true,
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Can you generate a sphere r3?",
+        "kind": "CREATE",
+        "subjectBefore": [],
+        "subjectAfter": [
+          "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+        ],
+        "status": "success",
+        "message": "Created 3D sphere with radius 3.",
+        "plan": {
+          "rawPhrase": "Can you generate a sphere r3?",
+          "commands": [
+            {
+              "id": "f4ccb6ee-b1e6-43b3-b472-de7247b6117d",
+              "rawPhrase": "Can you generate a sphere r3?",
+              "normalizedPhrase": "create a sphere radius 3",
+              "detectedAction": "CREATE",
+              "action": "CREATE",
+              "subAction": "SPHERE",
+              "mode": "graph3d",
+              "parameters": {
+                "legacy": {
+                  "kind": "sphere",
+                  "dimension": "3d",
+                  "points": [],
+                  "width": 6,
+                  "height": 4,
+                  "depth": 3,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": false
+                },
+                "width": 6,
+                "height": 4,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": {
+                "type": "sphere"
+              }
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "b6afa3a6-1053-463b-97e7-90c10f7d0475"
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 0.5,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph3d",
+      "prompt": "What is its volume?",
+      "answer": "volume = 113.09733553 units.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "sphere",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "SP1",
+            "objectId": "cda129e7-8e40-49ce-9800-15f8cc10cb44",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "surface-1791434913263-wv4nbb",
+            "expression": "sin(x) * cos(y)",
+            "color": "#22d3ee",
+            "roboVisible": true,
+            "roboLabel": "Surface 1",
+            "roboNativeRow": true,
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "What is its volume?",
+        "kind": "FIND",
+        "subjectBefore": [
+          "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+        ],
+        "subjectAfter": [
+          "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+        ],
+        "status": "success",
+        "message": "volume = 113.09733553 units.",
+        "plan": {
+          "rawPhrase": "What is its volume?",
+          "commands": [
+            {
+              "id": "fc73c1ec-7abe-4a20-8252-912d7ed996e8",
+              "rawPhrase": "What is its volume?",
+              "normalizedPhrase": "what is its volume",
+              "detectedAction": "",
+              "action": "FIND",
+              "subAction": "VOLUME",
+              "mode": "graph3d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "02202286-f6e2-472a-b50e-dbed57fdb2f5"
+        },
+        "resolvedReferences": [
+          "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "graph3d",
+      "prompt": "Slide it right by two.",
+      "answer": "move sphere.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "sphere",
+            "dimension": "3d",
+            "points": [
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "SP1",
+            "objectId": "cda129e7-8e40-49ce-9800-15f8cc10cb44",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "surface-1791434913263-wv4nbb",
+            "expression": "sin(x) * cos(y)",
+            "color": "#22d3ee",
+            "roboVisible": true,
+            "roboLabel": "Surface 1",
+            "roboNativeRow": true,
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Slide it right by two.",
+        "kind": "MOVE",
+        "subjectBefore": [
+          "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+        ],
+        "subjectAfter": [
+          "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+        ],
+        "status": "success",
+        "message": "move sphere.",
+        "plan": {
+          "rawPhrase": "Slide it right by two.",
+          "commands": [
+            {
+              "id": "75ff1c8f-034f-4d66-9186-df45c514b9d4",
+              "rawPhrase": "Slide it right by two.",
+              "normalizedPhrase": "move it right by 2",
+              "detectedAction": "MOVE",
+              "action": "MOVE",
+              "subAction": "OBJECT",
+              "mode": "graph3d",
+              "parameters": {
+                "vector": [
+                  2,
+                  0,
+                  0
+                ],
+                "multiple": false,
+                "dx": 2,
+                "dy": 0,
+                "dz": 0
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "640b10ea-4096-4108-8170-76d29e50f223"
+        },
+        "resolvedReferences": [
+          "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph3d",
+      "prompt": "What is its volume?",
+      "answer": "volume = 113.09733553 units.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "sphere",
+            "dimension": "3d",
+            "points": [
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "SP1",
+            "objectId": "cda129e7-8e40-49ce-9800-15f8cc10cb44",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "surface-1791434913263-wv4nbb",
+            "expression": "sin(x) * cos(y)",
+            "color": "#22d3ee",
+            "roboVisible": true,
+            "roboLabel": "Surface 1",
+            "roboNativeRow": true,
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "What is its volume?",
+        "kind": "FIND",
+        "subjectBefore": [
+          "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+        ],
+        "subjectAfter": [
+          "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+        ],
+        "status": "success",
+        "message": "volume = 113.09733553 units.",
+        "plan": {
+          "rawPhrase": "What is its volume?",
+          "commands": [
+            {
+              "id": "5be351e0-075a-4307-b826-cf197213558b",
+              "rawPhrase": "What is its volume?",
+              "normalizedPhrase": "what is its volume",
+              "detectedAction": "",
+              "action": "FIND",
+              "subAction": "VOLUME",
+              "mode": "graph3d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "aca3ab11-0691-4870-b4f8-f0f04c63f27c"
+        },
+        "resolvedReferences": [
+          "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "graph3d",
+      "prompt": "Revert.",
+      "answer": "Undid the last Ruhi action.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "sphere",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "SP1",
+            "objectId": "cda129e7-8e40-49ce-9800-15f8cc10cb44",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "surface-1791434913263-wv4nbb",
+            "expression": "sin(x) * cos(y)",
+            "color": "#22d3ee",
+            "roboVisible": true,
+            "roboLabel": "Surface 1",
+            "roboNativeRow": true,
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Revert.",
+        "kind": "UNDO",
+        "subjectBefore": [
+          "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+        ],
+        "subjectAfter": [
+          "cda129e7-8e40-49ce-9800-15f8cc10cb44"
+        ],
+        "status": "success",
+        "message": "Undid the last Ruhi action.",
+        "plan": {
+          "rawPhrase": "Revert.",
+          "commands": [
+            {
+              "id": "0cc4153e-dafe-42a7-950a-51372a61edb9",
+              "rawPhrase": "Revert.",
+              "normalizedPhrase": "undo",
+              "detectedAction": "UNDO",
+              "action": "UNDO",
+              "subAction": "LAST",
+              "mode": "graph3d",
+              "parameters": {},
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "a5cc5dde-b6db-4047-9fcc-8d2cce7fc64a"
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 0.5,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "prompt": "Place a cube with side length three.",
+      "answer": "Created 3D cube.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "cube",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 3,
+            "height": 3,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CU1",
+            "objectId": "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef",
+            "roboVisible": true
+          }
+        }
+      ],
+      "trace": {
+        "text": "Place a cube with side length three.",
+        "kind": "CREATE",
+        "subjectBefore": [],
+        "subjectAfter": [
+          "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+        ],
+        "status": "success",
+        "message": "Created 3D cube.",
+        "plan": {
+          "rawPhrase": "Place a cube with side length three.",
+          "commands": [
+            {
+              "id": "a1f826ae-c86d-4a40-90f2-fb162d1ea25d",
+              "rawPhrase": "Place a cube with side length three.",
+              "normalizedPhrase": "create a cube with side length 3",
+              "detectedAction": "CREATE",
+              "action": "CREATE",
+              "subAction": "CUBE",
+              "mode": "geometry3d",
+              "parameters": {
+                "legacy": {
+                  "kind": "cube",
+                  "dimension": "3d",
+                  "points": [],
+                  "width": 6,
+                  "height": 6,
+                  "depth": 6,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": false
+                },
+                "width": 3,
+                "height": 3,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": {
+                "type": "cube"
+              }
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "e9bd6416-4d08-4be9-a6fb-506bd6c5ea52"
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 0.5,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "prompt": "What is its volume?",
+      "answer": "volume = 27 units.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "cube",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 3,
+            "height": 3,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CU1",
+            "objectId": "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef",
+            "roboVisible": true
+          }
+        }
+      ],
+      "trace": {
+        "text": "What is its volume?",
+        "kind": "FIND",
+        "subjectBefore": [
+          "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+        ],
+        "subjectAfter": [
+          "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+        ],
+        "status": "success",
+        "message": "volume = 27 units.",
+        "plan": {
+          "rawPhrase": "What is its volume?",
+          "commands": [
+            {
+              "id": "e9d3b925-9730-45d6-9f79-41ef23b4bf7a",
+              "rawPhrase": "What is its volume?",
+              "normalizedPhrase": "what is its volume",
+              "detectedAction": "",
+              "action": "FIND",
+              "subAction": "VOLUME",
+              "mode": "geometry3d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "5dd329f8-50b6-44f9-bc96-98a22f899c46"
+        },
+        "resolvedReferences": [
+          "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "prompt": "Slide it right by two.",
+      "answer": "move cube.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "cube",
+            "dimension": "3d",
+            "points": [
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "width": 3,
+            "height": 3,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "CU1",
+            "objectId": "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef",
+            "roboVisible": true
+          }
+        }
+      ],
+      "trace": {
+        "text": "Slide it right by two.",
+        "kind": "MOVE",
+        "subjectBefore": [
+          "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+        ],
+        "subjectAfter": [
+          "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+        ],
+        "status": "success",
+        "message": "move cube.",
+        "plan": {
+          "rawPhrase": "Slide it right by two.",
+          "commands": [
+            {
+              "id": "6416301b-4309-46ed-b65e-230b4ef2ed3d",
+              "rawPhrase": "Slide it right by two.",
+              "normalizedPhrase": "move it right by 2",
+              "detectedAction": "MOVE",
+              "action": "MOVE",
+              "subAction": "OBJECT",
+              "mode": "geometry3d",
+              "parameters": {
+                "vector": [
+                  2,
+                  0,
+                  0
+                ],
+                "multiple": false,
+                "dx": 2,
+                "dy": 0,
+                "dz": 0
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "cb03bda8-9530-416d-accf-057790626111"
+        },
+        "resolvedReferences": [
+          "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "prompt": "What is its volume?",
+      "answer": "volume = 27 units.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "cube",
+            "dimension": "3d",
+            "points": [
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            "width": 3,
+            "height": 3,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "CU1",
+            "objectId": "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef",
+            "roboVisible": true
+          }
+        }
+      ],
+      "trace": {
+        "text": "What is its volume?",
+        "kind": "FIND",
+        "subjectBefore": [
+          "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+        ],
+        "subjectAfter": [
+          "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+        ],
+        "status": "success",
+        "message": "volume = 27 units.",
+        "plan": {
+          "rawPhrase": "What is its volume?",
+          "commands": [
+            {
+              "id": "c3aa59e0-b6cc-429a-b32b-0ad47f34d57e",
+              "rawPhrase": "What is its volume?",
+              "normalizedPhrase": "what is its volume",
+              "detectedAction": "",
+              "action": "FIND",
+              "subAction": "VOLUME",
+              "mode": "geometry3d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "9cdeec62-ddc3-47c7-a500-fede4600a350"
+        },
+        "resolvedReferences": [
+          "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 1
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "prompt": "Revert.",
+      "answer": "Undid the last Ruhi action.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "cube",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 3,
+            "height": 3,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CU1",
+            "objectId": "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef",
+            "roboVisible": true
+          }
+        }
+      ],
+      "trace": {
+        "text": "Revert.",
+        "kind": "UNDO",
+        "subjectBefore": [
+          "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+        ],
+        "subjectAfter": [
+          "fd92ff3f-e2fa-4f64-a8c7-ca144ac759ef"
+        ],
+        "status": "success",
+        "message": "Undid the last Ruhi action.",
+        "plan": {
+          "rawPhrase": "Revert.",
+          "commands": [
+            {
+              "id": "442a5736-df6f-499d-a795-21d0db657499",
+              "rawPhrase": "Revert.",
+              "normalizedPhrase": "undo",
+              "detectedAction": "UNDO",
+              "action": "UNDO",
+              "subAction": "LAST",
+              "mode": "geometry3d",
+              "parameters": {},
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "39747dbc-b400-40fb-9085-fccbb2b78acc"
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 0.5,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Solve 2x + 5 = 17",
+      "answer": "x = 6\n\nShow solution steps",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Solve 2x + 5 = 17",
+        "kind": "FIND",
+        "subjectBefore": [],
+        "subjectAfter": [],
+        "status": "success",
+        "message": "x = 6",
+        "plan": {
+          "rawPhrase": "Solve 2x + 5 = 17",
+          "confidence": 1,
+          "commands": [
+            {
+              "id": "ab0ea085-3f1b-4f02-a01b-1debec92683a",
+              "rawPhrase": "Solve 2x + 5 = 17",
+              "normalizedPhrase": "solve 2x + 5 = 17",
+              "detectedAction": "FIND",
+              "action": "FIND",
+              "subAction": "ENGINE_RESULT",
+              "mode": "graph2d",
+              "parameters": {
+                "engineId": "problem-solver",
+                "capabilityId": "problem.solve"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": false
+            }
+          ]
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Show me the steps",
+      "answer": "x = 6 1. Start with: 2x+5=17. 2. Normalize to standard form: 2x - 12 = 0. 3. Move the constant term: 2x = 12. 4. Divide both sides by 2: x = 6. 5. Final answer: x = 6.\n\nShow solution steps",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Show me the steps",
+        "kind": "FIND",
+        "subjectBefore": [],
+        "subjectAfter": [],
+        "status": "success",
+        "message": "x = 6\n1. Start with: 2x+5=17.\n2. Normalize to standard form: 2x - 12 = 0.\n3. Move the constant term: 2x = 12.\n4. Divide both sides by 2: x = 6.\n5. Final answer: x = 6.",
+        "plan": {
+          "rawPhrase": "Show me the steps",
+          "confidence": 1,
+          "commands": [
+            {
+              "id": "f45455be-14e7-4f30-979b-727fdfe44930",
+              "rawPhrase": "Show me the steps",
+              "normalizedPhrase": "show me the steps",
+              "detectedAction": "FIND",
+              "action": "FIND",
+              "subAction": "ENGINE_RESULT",
+              "mode": "graph2d",
+              "parameters": {
+                "engineId": "problem-solver",
+                "capabilityId": "problem.solve"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": false
+            }
+          ]
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Why did you subtract 5?",
+      "answer": "Applying subtract 5 to both sides preserves equality. The existing solver records the isolation in these steps: Start with: 2x+5=17. Normalize to standard form: 2x - 12 = 0. Move the constant term: 2x = 12. Divide both sides by 2: x = 6. Final answer: x = 6.\n\nShow solution steps",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Why did you subtract 5?",
+        "kind": "FIND",
+        "subjectBefore": [],
+        "subjectAfter": [],
+        "status": "success",
+        "message": "Applying subtract 5 to both sides preserves equality. The existing solver records the isolation in these steps:\nStart with: 2x+5=17.\nNormalize to standard form: 2x - 12 = 0.\nMove the constant term: 2x = 12.\nDivide both sides by 2: x = 6.\nFinal answer: x = 6.",
+        "plan": {
+          "rawPhrase": "Why did you subtract 5?",
+          "confidence": 1,
+          "commands": [
+            {
+              "id": "6e6077c3-1c3e-4e6e-84a0-094452c1346b",
+              "rawPhrase": "Why did you subtract 5?",
+              "normalizedPhrase": "why did you subtract 5?",
+              "detectedAction": "FIND",
+              "action": "FIND",
+              "subAction": "ENGINE_RESULT",
+              "mode": "graph2d",
+              "parameters": {
+                "engineId": "problem-solver",
+                "capabilityId": "problem.solve"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": false
+            }
+          ]
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Plot it.",
+      "answer": "Created 2D plot.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "plot",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "expression": "2*x + 5",
+            "roboLabel": "PLOT3",
+            "objectId": "1afb5502-690f-4d76-b038-742f784a4539",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Plot it.",
+        "kind": "PLOT",
+        "subjectBefore": [],
+        "subjectAfter": [
+          "f1"
+        ],
+        "status": "success",
+        "message": "Created 2D plot.",
+        "plan": {
+          "rawPhrase": "Plot y = 2x + 5 ",
+          "commands": [
+            {
+              "id": "26ae52e1-d6a6-4457-9f5e-4da8ecfa3e82",
+              "rawPhrase": "Plot y = 2x + 5",
+              "normalizedPhrase": "plot y = 2x + 5",
+              "detectedAction": "PLOT",
+              "action": "PLOT",
+              "subAction": "FUNCTION",
+              "mode": "graph2d",
+              "parameters": {
+                "expression": "2*x + 5"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "f1"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "f545bd1f-4fc2-4fe0-9162-08b47b6f1b76"
+        },
+        "resolvedReferences": [
+          "f1"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Now cosine.",
+      "answer": "Created 2D plot.",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "plot",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "expression": "2*x + 5",
+            "roboLabel": "PLOT3",
+            "objectId": "1afb5502-690f-4d76-b038-742f784a4539",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "expression": "cos(x)",
+            "roboLabel": "PLOT4",
+            "objectId": "a3ae1ce8-1338-483d-8a10-3c4aa6f1b68d",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Now cosine.",
+        "kind": "PLOT",
+        "subjectBefore": [
+          "f1"
+        ],
+        "subjectAfter": [
+          "1afb5502-690f-4d76-b038-742f784a4539"
+        ],
+        "status": "success",
+        "message": "Created 2D plot.",
+        "plan": {
+          "rawPhrase": "Plot y = cos(x)",
+          "commands": [
+            {
+              "id": "695c0742-c582-4c84-8225-00ce7460b1cc",
+              "rawPhrase": "Plot y = cos(x)",
+              "normalizedPhrase": "plot y = cos(x)",
+              "detectedAction": "PLOT",
+              "action": "PLOT",
+              "subAction": "FUNCTION",
+              "mode": "graph2d",
+              "parameters": {
+                "expression": "cos(x)"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "1afb5502-690f-4d76-b038-742f784a4539"
+            }
+          ],
+          "confidence": 1,
+          "contextSnapshotId": "bd3fb15f-eb4c-4cae-a911-f2e24b9942dc"
+        },
+        "resolvedReferences": [
+          "1afb5502-690f-4d76-b038-742f784a4539"
+        ],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": true
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Run matrices.inverse [[[1,2],[3,4]]]",
+      "answer": "[[-2,1],[1.5,-0.5]]\n\nShow solution steps",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "plot",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "expression": "2*x + 5",
+            "roboLabel": "PLOT3",
+            "objectId": "1afb5502-690f-4d76-b038-742f784a4539",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "expression": "cos(x)",
+            "roboLabel": "PLOT4",
+            "objectId": "a3ae1ce8-1338-483d-8a10-3c4aa6f1b68d",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Run matrices.inverse [[[1,2],[3,4]]]",
+        "kind": "FIND",
+        "subjectBefore": [
+          "1afb5502-690f-4d76-b038-742f784a4539"
+        ],
+        "subjectAfter": [
+          "1afb5502-690f-4d76-b038-742f784a4539"
+        ],
+        "status": "success",
+        "message": "[[-2,1],[1.5,-0.5]]",
+        "plan": {
+          "rawPhrase": "Run matrices.inverse [[[1,2],[3,4]]]",
+          "confidence": 1,
+          "commands": [
+            {
+              "id": "d18fd31e-588b-4f05-8e76-756c66a3ee6d",
+              "rawPhrase": "Run matrices.inverse [[[1,2],[3,4]]]",
+              "normalizedPhrase": "run matrices.inverse [[[1,2],[3,4]]]",
+              "detectedAction": "FIND",
+              "action": "FIND",
+              "subAction": "ENGINE_RESULT",
+              "mode": "graph2d",
+              "parameters": {
+                "engineId": "matrices",
+                "capabilityId": "matrices.inverse"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": false
+            }
+          ]
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "Find the mean",
+      "answer": "Which numeric dataset should I use?",
+      "status": "ambiguous",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "plot",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "expression": "2*x + 5",
+            "roboLabel": "PLOT3",
+            "objectId": "1afb5502-690f-4d76-b038-742f784a4539",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "expression": "cos(x)",
+            "roboLabel": "PLOT4",
+            "objectId": "a3ae1ce8-1338-483d-8a10-3c4aa6f1b68d",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "Find the mean",
+        "kind": "FIND",
+        "subjectBefore": [
+          "1afb5502-690f-4d76-b038-742f784a4539"
+        ],
+        "subjectAfter": [
+          "1afb5502-690f-4d76-b038-742f784a4539"
+        ],
+        "status": "ambiguous",
+        "message": "Which numeric dataset should I use?",
+        "plan": {
+          "rawPhrase": "Find the mean",
+          "confidence": 0,
+          "commands": [
+            {
+              "id": "d36259dc-39a5-4484-a4a5-42558983e578",
+              "rawPhrase": "Find the mean",
+              "normalizedPhrase": "find the mean",
+              "detectedAction": "FIND",
+              "action": "FIND",
+              "subAction": "ENGINE_RESULT",
+              "mode": "graph2d",
+              "parameters": {
+                "engineId": "conversation",
+                "capabilityId": "clarification"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": false
+            }
+          ]
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 0,
+          "reference": 1,
+          "answer": 0,
+          "contextContinuity": 0
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "2,4,6",
+      "answer": "4",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "plot",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "expression": "2*x + 5",
+            "roboLabel": "PLOT3",
+            "objectId": "1afb5502-690f-4d76-b038-742f784a4539",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "expression": "cos(x)",
+            "roboLabel": "PLOT4",
+            "objectId": "a3ae1ce8-1338-483d-8a10-3c4aa6f1b68d",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "2,4,6",
+        "kind": "FIND",
+        "subjectBefore": [
+          "1afb5502-690f-4d76-b038-742f784a4539"
+        ],
+        "subjectAfter": [
+          "1afb5502-690f-4d76-b038-742f784a4539"
+        ],
+        "status": "success",
+        "message": "4",
+        "plan": {
+          "rawPhrase": "2,4,6",
+          "confidence": 1,
+          "commands": [
+            {
+              "id": "43b5ac5f-2386-4d89-8ec6-f931e43e87dd",
+              "rawPhrase": "2,4,6",
+              "normalizedPhrase": "2,4,6",
+              "detectedAction": "FIND",
+              "action": "FIND",
+              "subAction": "ENGINE_RESULT",
+              "mode": "graph2d",
+              "parameters": {
+                "engineId": "statistics",
+                "capabilityId": "statistics.mean"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": false
+            }
+          ]
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "And median?",
+      "answer": "4",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "plot",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "expression": "2*x + 5",
+            "roboLabel": "PLOT3",
+            "objectId": "1afb5502-690f-4d76-b038-742f784a4539",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "expression": "cos(x)",
+            "roboLabel": "PLOT4",
+            "objectId": "a3ae1ce8-1338-483d-8a10-3c4aa6f1b68d",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "And median?",
+        "kind": "FIND",
+        "subjectBefore": [
+          "1afb5502-690f-4d76-b038-742f784a4539"
+        ],
+        "subjectAfter": [
+          "1afb5502-690f-4d76-b038-742f784a4539"
+        ],
+        "status": "success",
+        "message": "4",
+        "plan": {
+          "rawPhrase": "And median?",
+          "confidence": 1,
+          "commands": [
+            {
+              "id": "cc736293-89f7-44cc-96b1-698aec659cdb",
+              "rawPhrase": "And median?",
+              "normalizedPhrase": "and median?",
+              "detectedAction": "FIND",
+              "action": "FIND",
+              "subAction": "ENGINE_RESULT",
+              "mode": "graph2d",
+              "parameters": {
+                "engineId": "statistics",
+                "capabilityId": "statistics.median"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": false
+            }
+          ]
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": false
+      }
+    },
+    {
+      "mode": "graph2d",
+      "prompt": "What about half of it?",
+      "answer": "2\n\nShow solution steps",
+      "status": "success",
+      "passed": true,
+      "objects": [
+        {
+          "command": {
+            "kind": "plot",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "expression": "2*x + 5",
+            "roboLabel": "PLOT3",
+            "objectId": "1afb5502-690f-4d76-b038-742f784a4539",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "dimension": "2d",
+            "points": [],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "expression": "cos(x)",
+            "roboLabel": "PLOT4",
+            "objectId": "a3ae1ce8-1338-483d-8a10-3c4aa6f1b68d",
+            "roboVisible": true
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        },
+        {
+          "command": {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create"
+          }
+        }
+      ],
+      "trace": {
+        "text": "What about half of it?",
+        "kind": "FIND",
+        "subjectBefore": [
+          "1afb5502-690f-4d76-b038-742f784a4539"
+        ],
+        "subjectAfter": [
+          "1afb5502-690f-4d76-b038-742f784a4539"
+        ],
+        "status": "success",
+        "message": "2",
+        "plan": {
+          "rawPhrase": "What about half of it?",
+          "confidence": 1,
+          "commands": [
+            {
+              "id": "1921a432-0dd0-47e5-a7e7-2942f1d59bd0",
+              "rawPhrase": "What about half of it?",
+              "normalizedPhrase": "what about half of it?",
+              "detectedAction": "FIND",
+              "action": "FIND",
+              "subAction": "ENGINE_RESULT",
+              "mode": "graph2d",
+              "parameters": {
+                "engineId": "problem-solver",
+                "capabilityId": "problem.solve"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": false
+            }
+          ]
+        },
+        "resolvedReferences": [],
+        "missingSlots": [],
+        "confidence": {
+          "intent": 1,
+          "reference": 1,
+          "answer": 1,
+          "contextContinuity": 0
+        },
+        "executed": false
+      }
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "passed": 40,
+  "total": 40
+}

@@ -1,0 +1,20 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.evaluate: Timeout 90000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Run request', exact: true })
+    - locator resolved to visible <button type="submit">Run request</button>
+
+    at ask (C:\Indian Servers\Math Universe Visualizations\scripts\.ruhi-v53-frozen.mjs:16:169)
+    at async setup (C:\Indian Servers\Math Universe Visualizations\scripts\.ruhi-v53-frozen.mjs:17:34)
+    at async file:///C:/Indian%20Servers/Math%20Universe%20Visualizations/scripts/.ruhi-v53-frozen.mjs:27:56 {
+  log: [
+    "  - waiting for getByRole('button', { name: 'Run request', exact: true })",
+    '    - locator resolved to visible <button type="submit">Run request</button>'
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.13.1

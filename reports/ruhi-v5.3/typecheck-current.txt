@@ -1,0 +1,510 @@
+src/components/workspace/panels/GeometryWorkspacePanel.test.tsx(84,65): error TS2345: Argument of type 'import("C:/Indian Servers/Math Universe Visualizations/src/components/workspace/panels/GeometryWorkspacePanel").Construction' is not assignable to parameter of type 'import("C:/Indian Servers/Math Universe Visualizations/src/workspace/geometryCommandController").Construction'.
+  Types of property 'constraints' are incompatible.
+    Type 'import("C:/Indian Servers/Math Universe Visualizations/src/components/workspace/panels/GeometryWorkspacePanel").GeoConstraint[]' is not assignable to type 'import("C:/Indian Servers/Math Universe Visualizations/src/workspace/geometryCommandController").GeoConstraint[]'.
+      Type 'import("C:/Indian Servers/Math Universe Visualizations/src/components/workspace/panels/GeometryWorkspacePanel").GeoConstraint' is not assignable to type 'import("C:/Indian Servers/Math Universe Visualizations/src/workspace/geometryCommandController").GeoConstraint'.
+        Type '{ id: string; type: "affine"; source: string; point: string; matrix: [number, number, number, number, number, number]; offsetPoint?: string | undefined; offsetOrigin?: { x: number; y: number; } | undefined; }' is not assignable to type 'GeoConstraint'.
+          Type '{ id: string; type: "affine"; source: string; point: string; matrix: [number, number, number, number, number, number]; offsetPoint?: string | undefined; offsetOrigin?: { x: number; y: number; } | undefined; }' is missing the following properties from type '{ id: string; type: "intersection"; first: string; second: string; point: string; firstType?: "circle" | "line" | undefined; secondType?: "circle" | "line" | undefined; index?: number | undefined; }': first, second
+src/components/workspace/panels/GeometryWorkspacePanel.test.tsx(205,67): error TS2345: Argument of type 'import("C:/Indian Servers/Math Universe Visualizations/src/components/workspace/panels/GeometryWorkspacePanel").Construction' is not assignable to parameter of type 'import("C:/Indian Servers/Math Universe Visualizations/src/workspace/geometryCommandController").Construction'.
+  Types of property 'constraints' are incompatible.
+    Type 'import("C:/Indian Servers/Math Universe Visualizations/src/components/workspace/panels/GeometryWorkspacePanel").GeoConstraint[]' is not assignable to type 'import("C:/Indian Servers/Math Universe Visualizations/src/workspace/geometryCommandController").GeoConstraint[]'.
+      Type 'import("C:/Indian Servers/Math Universe Visualizations/src/components/workspace/panels/GeometryWorkspacePanel").GeoConstraint' is not assignable to type 'import("C:/Indian Servers/Math Universe Visualizations/src/workspace/geometryCommandController").GeoConstraint'.
+        Type '{ id: string; type: "affine"; source: string; point: string; matrix: [number, number, number, number, number, number]; offsetPoint?: string | undefined; offsetOrigin?: { x: number; y: number; } | undefined; }' is not assignable to type 'GeoConstraint'.
+          Type '{ id: string; type: "affine"; source: string; point: string; matrix: [number, number, number, number, number, number]; offsetPoint?: string | undefined; offsetOrigin?: { x: number; y: number; } | undefined; }' is missing the following properties from type '{ id: string; type: "intersection"; first: string; second: string; point: string; firstType?: "circle" | "line" | undefined; secondType?: "circle" | "line" | undefined; index?: number | undefined; }': first, second
+src/components/workspace/panels/GeometryWorkspacePanel.test.tsx(303,13): error TS2345: Argument of type 'import("C:/Indian Servers/Math Universe Visualizations/src/components/workspace/panels/GeometryWorkspacePanel").Construction' is not assignable to parameter of type 'import("C:/Indian Servers/Math Universe Visualizations/src/workspace/geometryCommandController").Construction'.
+  Types of property 'constraints' are incompatible.
+    Type 'import("C:/Indian Servers/Math Universe Visualizations/src/components/workspace/panels/GeometryWorkspacePanel").GeoConstraint[]' is not assignable to type 'import("C:/Indian Servers/Math Universe Visualizations/src/workspace/geometryCommandController").GeoConstraint[]'.
+      Type 'import("C:/Indian Servers/Math Universe Visualizations/src/components/workspace/panels/GeometryWorkspacePanel").GeoConstraint' is not assignable to type 'import("C:/Indian Servers/Math Universe Visualizations/src/workspace/geometryCommandController").GeoConstraint'.
+        Type '{ id: string; type: "affine"; source: string; point: string; matrix: [number, number, number, number, number, number]; offsetPoint?: string | undefined; offsetOrigin?: { x: number; y: number; } | undefined; }' is not assignable to type 'GeoConstraint'.
+          Type '{ id: string; type: "affine"; source: string; point: string; matrix: [number, number, number, number, number, number]; offsetPoint?: string | undefined; offsetOrigin?: { x: number; y: number; } | undefined; }' is missing the following properties from type '{ id: string; type: "intersection"; first: string; second: string; point: string; firstType?: "circle" | "line" | undefined; secondType?: "circle" | "line" | undefined; index?: number | undefined; }': first, second
+src/components/workspace/panels/GeometryWorkspacePanel.tsx(591,40): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(type: "keydown", listener: (this: Window, ev: KeyboardEvent) => any, options?: boolean | AddEventListenerOptions | undefined): void', gave the following error.
+    Argument of type '(event: KeyboardEvent) => void' is not assignable to parameter of type '(this: Window, ev: KeyboardEvent) => any'.
+      Types of parameters 'event' and 'ev' are incompatible.
+        Type 'KeyboardEvent' is missing the following properties from type 'KeyboardEvent<Element>': locale, nativeEvent, isDefaultPrevented, isPropagationStopped, persist
+  Overload 2 of 2, '(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions | undefined): void', gave the following error.
+    Argument of type '(event: KeyboardEvent) => void' is not assignable to parameter of type 'EventListenerOrEventListenerObject'.
+      Type '(event: KeyboardEvent) => void' is not assignable to type 'EventListener'.
+        Types of parameters 'event' and 'evt' are incompatible.
+          Type 'Event' is missing the following properties from type 'KeyboardEvent<Element>': altKey, charCode, ctrlKey, code, and 15 more.
+src/components/workspace/panels/GeometryWorkspacePanel.tsx(592,56): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(type: "keydown", listener: (this: Window, ev: KeyboardEvent) => any, options?: boolean | EventListenerOptions | undefined): void', gave the following error.
+    Argument of type '(event: KeyboardEvent) => void' is not assignable to parameter of type '(this: Window, ev: KeyboardEvent) => any'.
+      Types of parameters 'event' and 'ev' are incompatible.
+        Type 'KeyboardEvent' is missing the following properties from type 'KeyboardEvent<Element>': locale, nativeEvent, isDefaultPrevented, isPropagationStopped, persist
+  Overload 2 of 2, '(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions | undefined): void', gave the following error.
+    Argument of type '(event: KeyboardEvent) => void' is not assignable to parameter of type 'EventListenerOrEventListenerObject'.
+      Type '(event: KeyboardEvent) => void' is not assignable to type 'EventListener'.
+        Types of parameters 'event' and 'evt' are incompatible.
+          Type 'Event' is missing the following properties from type 'KeyboardEvent<Element>': altKey, charCode, ctrlKey, code, and 15 more.
+src/components/workspace/panels/GeometryWorkspacePanel.tsx(2283,7): error TS2322: Type 'RefObject<HTMLElement | null>' is not assignable to type 'LegacyRef<HTMLElement> | undefined'.
+  Type 'RefObject<HTMLElement | null>' is not assignable to type 'RefObject<HTMLElement>'.
+    Type 'HTMLElement | null' is not assignable to type 'HTMLElement'.
+      Type 'null' is not assignable to type 'HTMLElement'.
+src/components/workspace/panels/GeometryWorkspacePanel.tsx(2648,12): error TS2322: Type '{ children: string; key: keyof GeometryGraphSettings; type: "button"; onClick: () => void; className: string; "aria-pressed": number | boolean | "fixed" | "polar" | ... 5 more ... | undefined; "data-testid": string; }' is not assignable to type 'DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>'.
+  Type '{ children: string; key: keyof GeometryGraphSettings; type: "button"; onClick: () => void; className: string; "aria-pressed": number | boolean | "fixed" | "polar" | ... 5 more ... | undefined; "data-testid": string; }' is not assignable to type 'ButtonHTMLAttributes<HTMLButtonElement>'.
+    Types of property '"aria-pressed"' are incompatible.
+      Type 'number | boolean | "fixed" | "polar" | "off" | "cartesian" | "isometric" | "automatic" | "snap" | undefined' is not assignable to type 'boolean | "true" | "false" | "mixed" | undefined'.
+        Type 'number' is not assignable to type 'boolean | "true" | "false" | "mixed" | undefined'.
+src/graph-studio/useGraphStudioProject.ts(127,29): error TS2550: Property 'findLastIndex' does not exist on type 'TState[]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2023' or later.
+src/graph-studio/useGraphStudioProject.ts(127,44): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/graph-studio/useGraphStudioProject.ts(138,29): error TS2550: Property 'findLastIndex' does not exist on type 'TState[]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2023' or later.
+src/graph-studio/useGraphStudioProject.ts(138,44): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/hooks/useCanvasZoomLock.ts(24,36): error TS2345: Argument of type '(event: WheelEvent) => void' is not assignable to parameter of type 'EventListenerOrEventListenerObject'.
+  Type '(event: WheelEvent) => void' is not assignable to type 'EventListener'.
+    Types of parameters 'event' and 'evt' are incompatible.
+      Type 'Event' is missing the following properties from type 'WheelEvent': deltaMode, deltaX, deltaY, deltaZ, and 30 more.
+src/hooks/useCanvasZoomLock.ts(28,41): error TS2345: Argument of type '(event: WheelEvent) => void' is not assignable to parameter of type 'EventListenerOrEventListenerObject'.
+  Type '(event: WheelEvent) => void' is not assignable to type 'EventListener'.
+    Types of parameters 'event' and 'evt' are incompatible.
+      Type 'Event' is missing the following properties from type 'WheelEvent': deltaMode, deltaX, deltaY, deltaZ, and 30 more.
+src/math-robo/intelligence/contextAssistant.ts(27,414): error TS18048: 'command.depth' is possibly 'undefined'.
+src/modules/board/strokeMathRecognizer.ts(467,61): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/modules/board/strokeMathRecognizer.ts(475,8): error TS18048: 'local.alternatives' is possibly 'undefined'.
+src/modules/lessons/adapters/AbsoluteValueEquationsTargetLesson121.test.tsx(8,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/AbsoluteValueTargetLesson14.tsx(119,31): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'MouseEventHandler<HTMLButtonElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'MouseEvent<HTMLButtonElement, MouseEvent>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/AngleBisectorTargetLesson211.tsx(186,17): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'ChangeEventHandler<HTMLSelectElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'ChangeEvent<HTMLSelectElement>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/AngleBisectorTargetLesson211.tsx(404,37): error TS2345: Argument of type 'PointerEvent<SVGCircleElement>' is not assignable to parameter of type 'PointerEvent<SVGSVGElement>'.
+  Type 'SVGCircleElement' is missing the following properties from type 'SVGSVGElement': currentScale, currentTranslate, height, width, and 47 more.
+src/modules/lessons/adapters/AngleTargetLesson232.tsx(373,17): error TS2322: Type 'string | boolean | Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/BarycentricCoordinatesTargetLesson182.tsx(142,13): error TS2322: Type 'string | { x: number; y: number; }' is not assignable to type 'ReactNode'.
+  Type '{ x: number; y: number; }' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/AverageRateTargetLesson284.tsx(259,17): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/AverageRateTargetLesson284.tsx(260,16): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/ConcavityTargetLesson299.tsx(291,19): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/ConcavityTargetLesson299.tsx(292,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/ContinuityAtPointTargetLesson281.tsx(137,19): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/ContinuityAtPointTargetLesson281.tsx(138,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/CriticalPointsTargetLesson296.tsx(156,19): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/CriticalPointsTargetLesson296.tsx(157,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/CriticalPointsTargetLesson296.tsx(273,19): error TS2322: Type 'string | boolean | Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/DerivativeFirstPrinciplesTargetLesson286.tsx(172,19): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/DerivativeFirstPrinciplesTargetLesson286.tsx(173,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/DerivativeGraphTargetLesson289.tsx(132,17): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/DerivativeGraphTargetLesson289.tsx(133,16): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/EpsilonDeltaTargetLesson283.tsx(248,19): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/EpsilonDeltaTargetLesson283.tsx(249,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/HigherDerivativesTargetLesson290.tsx(237,47): error TS2349: This expression is not callable.
+  Not all constituents of type 'string | boolean | Dispatch<SetStateAction<boolean>>' are callable.
+    Type 'string' has no call signatures.
+src/modules/lessons/adapters/calculus/HigherDerivativesTargetLesson290.tsx(239,19): error TS2322: Type 'string | boolean | Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/ImplicitDifferentiationTargetLesson294.tsx(157,19): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/ImplicitDifferentiationTargetLesson294.tsx(158,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/IncreasingDecreasingTargetLesson297.tsx(206,21): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/IncreasingDecreasingTargetLesson297.tsx(207,20): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/InfiniteLimitsTargetLesson279.tsx(260,19): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/InfiniteLimitsTargetLesson279.tsx(261,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/InformalLimitsTargetLesson277.tsx(177,20): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/InformalLimitsTargetLesson277.tsx(177,28): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/InformalLimitsTargetLesson277.tsx(179,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/InstantaneousRateTargetLesson285.tsx(157,19): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/InstantaneousRateTargetLesson285.tsx(158,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/LimitsAtInfinityTargetLesson280.tsx(123,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/LimitsAtInfinityTargetLesson280.tsx(124,21): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/LocalGlobalExtremaTargetLesson298.tsx(164,19): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/LocalGlobalExtremaTargetLesson298.tsx(165,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/NormalLineTargetLesson288.tsx(157,19): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/NormalLineTargetLesson288.tsx(158,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/ParametricDifferentiationTargetLesson295.tsx(136,21): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/ParametricDifferentiationTargetLesson295.tsx(137,20): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/ProductRuleTargetLesson291.tsx(225,19): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/ProductRuleTargetLesson291.tsx(226,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/calculus/ProductRuleTargetLesson291.tsx(322,43): error TS2349: This expression is not callable.
+  Not all constituents of type 'string | boolean | Dispatch<SetStateAction<boolean>>' are callable.
+    Type 'string' has no call signatures.
+src/modules/lessons/adapters/calculus/ProductRuleTargetLesson291.tsx(324,15): error TS2322: Type 'string | boolean | Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/cas/DifferentialEquationsTargetLesson443.tsx(349,7): error TS2322: Type 'RefObject<SVGSVGElement | null>' is not assignable to type 'LegacyRef<SVGSVGElement> | undefined'.
+  Type 'RefObject<SVGSVGElement | null>' is not assignable to type 'RefObject<SVGSVGElement>'.
+    Type 'SVGSVGElement | null' is not assignable to type 'SVGSVGElement'.
+      Type 'null' is not assignable to type 'SVGSVGElement'.
+src/modules/lessons/adapters/cas/LimitsTargetLesson441.tsx(445,7): error TS2322: Type 'RefObject<SVGSVGElement | null>' is not assignable to type 'LegacyRef<SVGSVGElement> | undefined'.
+  Type 'RefObject<SVGSVGElement | null>' is not assignable to type 'RefObject<SVGSVGElement>'.
+    Type 'SVGSVGElement | null' is not assignable to type 'SVGSVGElement'.
+      Type 'null' is not assignable to type 'SVGSVGElement'.
+src/modules/lessons/adapters/ChiSquareDistributionLesson530.test.tsx(8,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/ChiSquareGoodnessOfFitLesson549.tsx(58,12): error TS2345: Argument of type '(current: any) => any' is not assignable to parameter of type 'number[]'.
+src/modules/lessons/adapters/ChiSquareGoodnessOfFitLesson549.tsx(58,13): error TS7006: Parameter 'current' implicitly has an 'any' type.
+src/modules/lessons/adapters/ChiSquareGoodnessOfFitLesson549.tsx(59,20): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/modules/lessons/adapters/ChiSquareGoodnessOfFitLesson549.tsx(59,26): error TS7006: Parameter 'i' implicitly has an 'any' type.
+src/modules/lessons/adapters/CompoundAngleTargetLesson267.tsx(158,15): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'ChangeEventHandler<HTMLSelectElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'ChangeEvent<HTMLSelectElement>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/CompoundAngleTargetLesson267.tsx(477,12): error TS2345: Argument of type 'PointerEvent<SVGCircleElement>' is not assignable to parameter of type 'PointerEvent<SVGSVGElement>'.
+  Type 'SVGCircleElement' is missing the following properties from type 'SVGSVGElement': currentScale, currentTranslate, height, width, and 47 more.
+src/modules/lessons/adapters/CompoundAngleTargetLesson267.tsx(482,37): error TS2345: Argument of type 'PointerEvent<SVGCircleElement>' is not assignable to parameter of type 'PointerEvent<SVGSVGElement>'.
+  Type 'SVGCircleElement' is missing the following properties from type 'SVGSVGElement': currentScale, currentTranslate, height, width, and 47 more.
+src/modules/lessons/adapters/CompoundInequalitiesTargetLesson123.test.tsx(8,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/CoordinateTransformationsTargetLesson179.tsx(156,44): error TS2345: Argument of type 'PointerEvent<SVGCircleElement>' is not assignable to parameter of type 'PointerEvent<SVGSVGElement>'.
+  Type 'SVGCircleElement' is missing the following properties from type 'SVGSVGElement': currentScale, currentTranslate, height, width, and 47 more.
+src/modules/lessons/adapters/CosineGraphTargetLesson262.tsx(106,15): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'ChangeEventHandler<HTMLSelectElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'ChangeEvent<HTMLSelectElement>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/CountingChoicesTargetLesson13.tsx(148,31): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'MouseEventHandler<HTMLButtonElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'MouseEvent<HTMLButtonElement, MouseEvent>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/discrete/MinimumSpanningTreeTargetLesson574.tsx(432,15): error TS2322: Type '(event: PointerEvent<SVGSVGElement>) => void' is not assignable to type 'PointerEventHandler<HTMLDivElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'PointerEvent<HTMLDivElement>' is not assignable to type 'PointerEvent<SVGSVGElement>'.
+      Type 'HTMLDivElement' is missing the following properties from type 'SVGSVGElement': currentScale, currentTranslate, height, width, and 55 more.
+src/modules/lessons/adapters/DistanceBetweenPointsTargetLesson169.tsx(217,15): error TS2322: Type 'string | number | Point' is not assignable to type 'ReactNode'.
+  Type 'Point' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/DistributionSimulationLesson536.test.tsx(7,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/DoubleHalfAngleTargetLesson268.tsx(182,15): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'ChangeEventHandler<HTMLSelectElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'ChangeEvent<HTMLSelectElement>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/DoubleHalfAngleTargetLesson268.tsx(230,13): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/DoubleHalfAngleTargetLesson268.tsx(368,17): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/DoubleHalfAngleTargetLesson268.tsx(369,16): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/EvenOddFunctionsTargetLesson152.tsx(218,8): error TS2322: Type '{ cx: number; cy: number; r: string; className: string; role: "slider"; tabIndex: number; "aria-label": string; "aria-valuemin": string; "aria-valuemax": string; "aria-valuenow": number; onPointerDown: (event: PointerEvent<...>) => void; onKeyDown: (event: KeyboardEvent<...>) => void; }' is not assignable to type 'SVGProps<SVGCircleElement>'.
+  Types of property '"aria-valuemax"' are incompatible.
+    Type 'string' is not assignable to type 'number'.
+src/modules/lessons/adapters/ExactTrigValuesTargetLesson260.tsx(138,15): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'ChangeEventHandler<HTMLSelectElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'ChangeEvent<HTMLSelectElement>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/ExponentialDistributionLesson532.test.tsx(8,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/ExponentialEquationsTargetLesson118.test.tsx(8,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/FactorTheoremTargetLesson105.tsx(102,20): error TS2345: Argument of type 'string' is not assignable to parameter of type 'SetStateAction<"x − 1">'.
+src/modules/lessons/adapters/FactorTheoremTargetLesson105.tsx(137,24): error TS2345: Argument of type '"x² − 3x + 2" | "x² − 5x + 6" | "x² + x − 6"' is not assignable to parameter of type 'SetStateAction<"x² − 3x + 2">'.
+  Type '"x² − 5x + 6"' is not assignable to type 'SetStateAction<"x² − 3x + 2">'. Did you mean '"x² − 3x + 2"'?
+src/modules/lessons/adapters/FactorTheoremTargetLesson105.tsx(138,20): error TS2345: Argument of type '"x + 3" | "x − 2" | "x − 1"' is not assignable to parameter of type 'SetStateAction<"x − 1">'.
+  Type '"x + 3"' is not assignable to type 'SetStateAction<"x − 1">'.
+src/modules/lessons/adapters/FactorTheoremTargetLesson105.tsx(255,38): error TS2345: Argument of type 'string' is not assignable to parameter of type 'SetStateAction<"x² − 3x + 2">'.
+src/modules/lessons/adapters/FDistributionLesson531.test.tsx(8,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/ForceVectorsTargetLesson197.tsx(371,17): error TS2322: Type 'string | boolean | Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/ForceVectorsTargetLesson197.tsx(484,25): error TS2322: Type 'string | P | { m: number; a: number; }' is not assignable to type 'ReactNode'.
+  Type 'P' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/GammaDistributionLesson533.test.tsx(7,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/geometry3d/CameraControlsTargetLesson410.tsx(808,3): error TS2322: Type '{ position: number[]; target: number[]; }' is not assignable to type 'Pose'.
+  Types of property 'position' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number, number]'.
+      Target requires 3 element(s) but source may have fewer.
+src/modules/lessons/adapters/geometry3d/CameraControlsTargetLesson410.tsx(811,3): error TS2322: Type '{ position: number[]; target: number[]; }' is not assignable to type 'Pose'.
+  Types of property 'position' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number, number]'.
+      Target requires 3 element(s) but source may have fewer.
+src/modules/lessons/adapters/geometry3d/FrustumTargetLesson401.tsx(690,8): error TS2322: Type '{ children: Element[]; onPointerDown: (event: { stopPropagation: () => void; target: { setPointerCapture: (id: number) => void; }; pointerId: number; }) => void; onPointerMove: (event: { stopPropagation: () => void; nativeEvent: PointerEvent; }) => void; onPointerUp: (event: { ...; }) => void; position: [...]; }' is not assignable to type 'MeshProps'.
+  Type '{ children: Element[]; onPointerDown: (event: { stopPropagation: () => void; target: { setPointerCapture: (id: number) => void; }; pointerId: number; }) => void; onPointerMove: (event: { stopPropagation: () => void; nativeEvent: PointerEvent; }) => void; onPointerUp: (event: { ...; }) => void; position: [...]; }' is not assignable to type 'EventHandlers'.
+    Types of property 'onPointerDown' are incompatible.
+      Type '(event: { stopPropagation: () => void; target: { setPointerCapture: (id: number) => void; }; pointerId: number; }) => void' is not assignable to type '(event: ThreeEvent<PointerEvent>) => void'.
+        Types of parameters 'event' and 'event' are incompatible.
+          Type 'ThreeEvent<PointerEvent>' is not assignable to type '{ stopPropagation: () => void; target: { setPointerCapture: (id: number) => void; }; pointerId: number; }'.
+            Types of property 'target' are incompatible.
+              Type 'EventTarget | null' is not assignable to type '{ setPointerCapture: (id: number) => void; }'.
+                Type 'null' is not assignable to type '{ setPointerCapture: (id: number) => void; }'.
+src/modules/lessons/adapters/geometry3d/FrustumTargetLesson401.tsx(694,8): error TS2322: Type '{ children: Element[]; onPointerDown: (event: { stopPropagation: () => void; target: { setPointerCapture: (id: number) => void; }; pointerId: number; }) => void; onPointerMove: (event: { stopPropagation: () => void; nativeEvent: PointerEvent; }) => void; onPointerUp: (event: { ...; }) => void; position: [...]; }' is not assignable to type 'MeshProps'.
+  Type '{ children: Element[]; onPointerDown: (event: { stopPropagation: () => void; target: { setPointerCapture: (id: number) => void; }; pointerId: number; }) => void; onPointerMove: (event: { stopPropagation: () => void; nativeEvent: PointerEvent; }) => void; onPointerUp: (event: { ...; }) => void; position: [...]; }' is not assignable to type 'EventHandlers'.
+    Types of property 'onPointerDown' are incompatible.
+      Type '(event: { stopPropagation: () => void; target: { setPointerCapture: (id: number) => void; }; pointerId: number; }) => void' is not assignable to type '(event: ThreeEvent<PointerEvent>) => void'.
+        Types of parameters 'event' and 'event' are incompatible.
+          Type 'ThreeEvent<PointerEvent>' is not assignable to type '{ stopPropagation: () => void; target: { setPointerCapture: (id: number) => void; }; pointerId: number; }'.
+            Types of property 'target' are incompatible.
+              Type 'EventTarget | null' is not assignable to type '{ setPointerCapture: (id: number) => void; }'.
+                Type 'null' is not assignable to type '{ setPointerCapture: (id: number) => void; }'.
+src/modules/lessons/adapters/geometry3d/FrustumTargetLesson401.tsx(701,8): error TS2322: Type '{ children: Element[]; onPointerDown: (event: { stopPropagation: () => void; target: { setPointerCapture: (id: number) => void; }; pointerId: number; }) => void; onPointerMove: (event: { stopPropagation: () => void; nativeEvent: PointerEvent; }) => void; onPointerUp: (event: { ...; }) => void; position: [...]; }' is not assignable to type 'MeshProps'.
+  Type '{ children: Element[]; onPointerDown: (event: { stopPropagation: () => void; target: { setPointerCapture: (id: number) => void; }; pointerId: number; }) => void; onPointerMove: (event: { stopPropagation: () => void; nativeEvent: PointerEvent; }) => void; onPointerUp: (event: { ...; }) => void; position: [...]; }' is not assignable to type 'EventHandlers'.
+    Types of property 'onPointerDown' are incompatible.
+      Type '(event: { stopPropagation: () => void; target: { setPointerCapture: (id: number) => void; }; pointerId: number; }) => void' is not assignable to type '(event: ThreeEvent<PointerEvent>) => void'.
+        Types of parameters 'event' and 'event' are incompatible.
+          Type 'ThreeEvent<PointerEvent>' is not assignable to type '{ stopPropagation: () => void; target: { setPointerCapture: (id: number) => void; }; pointerId: number; }'.
+            Types of property 'target' are incompatible.
+              Type 'EventTarget | null' is not assignable to type '{ setPointerCapture: (id: number) => void; }'.
+                Type 'null' is not assignable to type '{ setPointerCapture: (id: number) => void; }'.
+src/modules/lessons/adapters/GradientSlopeTargetLesson172.tsx(219,17): error TS2322: Type 'string | Point' is not assignable to type 'ReactNode'.
+  Type 'Point' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/IncreasingDecreasingTargetLesson153.tsx(258,8): error TS2322: Type '{ cx: number; cy: number; r: string; className: string; role: "slider"; tabIndex: number; "aria-label": string; "aria-valuemin": string; "aria-valuemax": string; "aria-valuenow": number; onPointerDown: (event: PointerEvent<...>) => void; onKeyDown: (event: KeyboardEvent<...>) => void; }' is not assignable to type 'SVGProps<SVGCircleElement>'.
+  Types of property '"aria-valuemax"' are incompatible.
+    Type 'string' is not assignable to type 'number'.
+src/modules/lessons/adapters/InverseTrigonometryTargetLesson11.tsx(131,31): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'MouseEventHandler<HTMLButtonElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'MouseEvent<HTMLButtonElement, MouseEvent>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/InverseTrigonometryTargetLesson11.tsx(180,33): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'MouseEventHandler<HTMLButtonElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'MouseEvent<HTMLButtonElement, MouseEvent>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/InverseTrigTargetLesson265.tsx(129,86): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'ChangeEventHandler<HTMLSelectElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'ChangeEvent<HTMLSelectElement>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/LinearCombinationsTargetLesson193.tsx(37,152): error TS2322: Type 'string | number | Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/LinearCombinationsTargetLesson193.tsx(37,767): error TS2322: Type 'string | { x: number; y: number; } | Dispatch<SetStateAction<{ x: number; y: number; }>>' is not assignable to type 'ReactNode'.
+  Type '{ x: number; y: number; }' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/LinearCombinationsTargetLesson193.tsx(37,885): error TS2322: Type 'string | { x: number; y: number; } | Dispatch<SetStateAction<{ x: number; y: number; }>>' is not assignable to type 'ReactNode'.
+  Type '{ x: number; y: number; }' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/LinearInequalitiesTargetLesson122.test.tsx(8,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/LogarithmicEquationsTargetLesson119.test.tsx(8,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/LogarithmicFunctionsTargetLesson143.tsx(403,19): error TS2322: Type 'string | number | Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/MidpointTargetLesson170.tsx(20,2250): error TS2322: Type 'string | Point' is not assignable to type 'ReactNode'.
+  Type 'Point' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/MidpointTargetLesson170.tsx(25,1544): error TS2322: Type 'string | Point' is not assignable to type 'ReactNode'.
+  Type 'Point' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/oneProportionTestLessonModel.ts(6,10): error TS7023: 'logGamma' implicitly has return type 'any' because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.
+src/modules/lessons/adapters/oneSampleTTestLessonModel.ts(3,10): error TS7023: 'logGamma' implicitly has return type 'any' because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.
+src/modules/lessons/adapters/ParallelLineTargetLesson209.tsx(168,46): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/ParallelLineTargetLesson209.tsx(169,40): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/PerpendicularLineTargetLesson208.tsx(169,46): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/PerpendicularLineTargetLesson208.tsx(170,40): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/PolylineTargetLesson207.tsx(274,46): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/PolylineTargetLesson207.tsx(275,51): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/PolynomialInequalitiesTargetLesson125.test.tsx(8,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/PolynomialInequalitiesTargetLesson125.tsx(49,554): error TS2322: Type '(notify?: boolean) => void' is not assignable to type 'MouseEventHandler<HTMLButtonElement>'.
+  Types of parameters 'notify' and 'event' are incompatible.
+    Type 'MouseEvent<HTMLButtonElement, MouseEvent>' is not assignable to type 'boolean | undefined'.
+src/modules/lessons/adapters/PolynomialInequalitiesTargetLesson125.tsx(52,140): error TS2304: Cannot find name 'Relation'.
+src/modules/lessons/adapters/ProportionTargetLesson84.tsx(83,686): error TS2345: Argument of type '"targetSecond"' is not assignable to parameter of type '"knownFirst" | "knownSecond" | "targetFirst" | undefined'.
+src/modules/lessons/adapters/PValueVisualiserLesson553.tsx(407,15): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(predicate: (value: { x: number; y: number; }, index: number, array: { x: number; y: number; }[]) => value is { x: number; y: number; }, thisArg?: any): { x: number; y: number; }[]', gave the following error.
+    Argument of type '(x: number) => boolean' is not assignable to parameter of type '(value: { x: number; y: number; }, index: number, array: { x: number; y: number; }[]) => value is { x: number; y: number; }'.
+      Types of parameters 'x' and 'value' are incompatible.
+        Type '{ x: number; y: number; }' is not assignable to type 'number'.
+  Overload 2 of 2, '(predicate: (value: { x: number; y: number; }, index: number, array: { x: number; y: number; }[]) => unknown, thisArg?: any): { x: number; y: number; }[]', gave the following error.
+    Argument of type '(x: number) => boolean' is not assignable to parameter of type '(value: { x: number; y: number; }, index: number, array: { x: number; y: number; }[]) => unknown'.
+      Types of parameters 'x' and 'value' are incompatible.
+        Type '{ x: number; y: number; }' is not assignable to type 'number'.
+src/modules/lessons/adapters/PValueVisualiserLesson553.tsx(430,113): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(predicate: (value: { x: number; y: number; }, index: number, array: { x: number; y: number; }[]) => value is { x: number; y: number; }, thisArg?: any): { x: number; y: number; }[]', gave the following error.
+    Argument of type '(x: number) => boolean' is not assignable to parameter of type '(value: { x: number; y: number; }, index: number, array: { x: number; y: number; }[]) => value is { x: number; y: number; }'.
+      Types of parameters 'x' and 'value' are incompatible.
+        Type '{ x: number; y: number; }' is not assignable to type 'number'.
+  Overload 2 of 2, '(predicate: (value: { x: number; y: number; }, index: number, array: { x: number; y: number; }[]) => unknown, thisArg?: any): { x: number; y: number; }[]', gave the following error.
+    Argument of type '(x: number) => boolean' is not assignable to parameter of type '(value: { x: number; y: number; }, index: number, array: { x: number; y: number; }[]) => unknown'.
+      Types of parameters 'x' and 'value' are incompatible.
+        Type '{ x: number; y: number; }' is not assignable to type 'number'.
+src/modules/lessons/adapters/QuadraticInequalitiesTargetLesson124.test.tsx(8,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/ReciprocalTrigTargetLesson264.tsx(19,346): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'ChangeEventHandler<HTMLSelectElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'ChangeEvent<HTMLSelectElement>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/RecursiveFunctionsTargetLesson155.tsx(136,8): error TS2322: Type '{ cx: number; cy: number; r: string; fill: string; role: "slider"; tabIndex: number; "aria-label": string; "aria-valuemin": string; "aria-valuemax": number; "aria-valuenow": number; onPointerDown: (event: PointerEvent<SVGCircleElement>) => void; onKeyDown: (event: KeyboardEvent<...>) => void; }' is not assignable to type 'SVGProps<SVGCircleElement>'.
+  Types of property '"aria-valuemin"' are incompatible.
+    Type 'string' is not assignable to type 'number'.
+src/modules/lessons/adapters/RelativeMotionTargetLesson196.tsx(399,17): error TS2322: Type 'string | boolean | Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/RelativeMotionTargetLesson196.tsx(473,21): error TS2322: Type 'string | { x: number; y: number; } | Dispatch<SetStateAction<{ x: number; y: number; }>>' is not assignable to type 'ReactNode'.
+  Type '{ x: number; y: number; }' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/RemainderTheoremTargetLesson104.tsx(174,27): error TS2345: Argument of type '"x² − 4x + 1" | "x³ + x² − 4x − 4"' is not assignable to parameter of type 'SetStateAction<"x² − 4x + 1">'.
+  Type '"x³ + x² − 4x − 4"' is not assignable to type 'SetStateAction<"x² − 4x + 1">'.
+src/modules/lessons/adapters/RemainderTheoremTargetLesson104.tsx(175,24): error TS2345: Argument of type '"x + 1" | "x − 2"' is not assignable to parameter of type 'SetStateAction<"x − 2">'.
+  Type '"x + 1"' is not assignable to type 'SetStateAction<"x − 2">'.
+src/modules/lessons/adapters/RemainderTheoremTargetLesson104.tsx(513,43): error TS2345: Argument of type 'string' is not assignable to parameter of type 'SetStateAction<"x² − 4x + 1">'.
+src/modules/lessons/adapters/RemainderTheoremTargetLesson104.tsx(529,40): error TS2345: Argument of type 'string' is not assignable to parameter of type 'SetStateAction<"x − 2">'.
+src/modules/lessons/adapters/SectionFormulaTargetLesson171.tsx(21,1314): error TS2322: Type 'string | Point' is not assignable to type 'ReactNode'.
+  Type 'Point' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/sequence/ArithmeticSeriesTargetLesson340.tsx(58,38): error TS2345: Argument of type 'number' is not assignable to parameter of type 'SetStateAction<2>'.
+src/modules/lessons/adapters/sequence/ArithmeticSeriesTargetLesson340.tsx(59,53): error TS2345: Argument of type 'number' is not assignable to parameter of type 'SetStateAction<3>'.
+src/modules/lessons/adapters/sequence/ArithmeticSeriesTargetLesson340.tsx(60,21): error TS2345: Argument of type 'number' is not assignable to parameter of type 'SetStateAction<10>'.
+src/modules/lessons/adapters/sequence/GeometricSeriesTargetLesson341.tsx(73,38): error TS2345: Argument of type 'number' is not assignable to parameter of type 'SetStateAction<3>'.
+src/modules/lessons/adapters/sequence/GeometricSeriesTargetLesson341.tsx(74,43): error TS2345: Argument of type 'number' is not assignable to parameter of type 'SetStateAction<0.5>'.
+src/modules/lessons/adapters/sequence/GeometricSeriesTargetLesson341.tsx(75,21): error TS2345: Argument of type 'number' is not assignable to parameter of type 'SetStateAction<10>'.
+src/modules/lessons/adapters/sequence/GeometricSeriesTargetLesson341.tsx(88,14): error TS2367: This comparison appears to be unintentional because the types '3' and '0' have no overlap.
+src/modules/lessons/adapters/SineGraphTargetLesson261.tsx(92,77): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'ChangeEventHandler<HTMLSelectElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'ChangeEvent<HTMLSelectElement>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/SineRuleTargetLesson270.tsx(137,15): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'ChangeEventHandler<HTMLSelectElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'ChangeEvent<HTMLSelectElement>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/SineRuleTargetLesson270.tsx(173,19): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/SineRuleTargetLesson270.tsx(174,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/StandardisationLesson535.test.tsx(7,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/TangentGraphTargetLesson263.tsx(22,343): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'ChangeEventHandler<HTMLSelectElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'ChangeEvent<HTMLSelectElement>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/TrigEquationsTargetLesson269.tsx(172,15): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'ChangeEventHandler<HTMLSelectElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'ChangeEvent<HTMLSelectElement>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/TrigEquationsTargetLesson269.tsx(221,13): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/TrigEquationsTargetLesson269.tsx(252,19): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/TrigEquationsTargetLesson269.tsx(253,18): error TS2322: Type 'string | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+  Type 'ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/TrigIdentitiesTargetLesson266.tsx(80,388): error TS2322: Type '(event?: LessonInteractionEvent | undefined) => void' is not assignable to type 'ChangeEventHandler<HTMLSelectElement>'.
+  Types of parameters 'event' and 'event' are incompatible.
+    Type 'ChangeEvent<HTMLSelectElement>' is missing the following properties from type 'LessonInteractionEvent': controlId, kind, timestamp, before, and 2 more.
+src/modules/lessons/adapters/TrigonometricEquationsTargetLesson120.test.tsx(8,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/adapters/TrigonometricFunctionsTargetLesson144.tsx(726,19): error TS2322: Type 'string | number | Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/TrigonometryLessonAdapter.tsx(449,5): error TS2554: Expected 14 arguments, but got 15.
+src/modules/lessons/adapters/VectorAdditionTargetLesson186.tsx(659,34): error TS2322: Type '{ min: string; max: string; value: number; }' is not assignable to type 'DetailedHTMLProps<ProgressHTMLAttributes<HTMLProgressElement>, HTMLProgressElement>'.
+  Property 'min' does not exist on type 'DetailedHTMLProps<ProgressHTMLAttributes<HTMLProgressElement>, HTMLProgressElement>'.
+src/modules/lessons/adapters/VectorAdditionTargetLesson186.tsx(663,34): error TS2322: Type '{ min: string; max: string; value: number; }' is not assignable to type 'DetailedHTMLProps<ProgressHTMLAttributes<HTMLProgressElement>, HTMLProgressElement>'.
+  Property 'min' does not exist on type 'DetailedHTMLProps<ProgressHTMLAttributes<HTMLProgressElement>, HTMLProgressElement>'.
+src/modules/lessons/adapters/VectorLineTargetLesson194.tsx(25,1542): error TS2322: Type 'string | boolean | Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/VectorPlaneTargetLesson195.tsx(395,19): error TS2322: Type 'string | boolean | Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/VectorPlaneTargetLesson195.tsx(458,19): error TS2322: Type 'string | number | Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/adapters/WeibullDistributionLesson534.test.tsx(7,8): error TS2741: Property 'lesson' is missing in type '{ resetToken: number; onInteraction: Mock<Procedure>; }' but required in type 'LessonAdapterProps'.
+src/modules/lessons/components/LessonSectionJourney.tsx(305,78): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'number'.
+  Type 'string' is not assignable to type 'number'.
+src/modules/lessons/schoolTargets/AngleBisectorTargetLesson10025.tsx(189,42): error TS2349: This expression is not callable.
+  Not all constituents of type 'string | boolean | Dispatch<SetStateAction<boolean>>' are callable.
+    Type 'string' has no call signatures.
+src/modules/lessons/schoolTargets/BestRationalApproximationsTargetLesson2004.tsx(44,46): error TS2322: Type '{ zoom: number; x: number; y: number; }' is not assignable to type 'string | number | undefined'.
+src/modules/lessons/schoolTargets/binomialDistributionModel.ts(27,172): error TS2554: Expected 1 arguments, but got 2.
+src/modules/lessons/schoolTargets/CombinedSolidsTargetLesson10111.tsx(281,17): error TS2322: Type 'string | boolean | Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<boolean>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/schoolTargets/EuclidPostulatesTargetLesson10054.tsx(463,7): error TS2322: Type 'RefObject<SVGSVGElement | null>' is not assignable to type 'LegacyRef<SVGSVGElement> | undefined'.
+  Type 'RefObject<SVGSVGElement | null>' is not assignable to type 'RefObject<SVGSVGElement>'.
+    Type 'SVGSVGElement | null' is not assignable to type 'SVGSVGElement'.
+      Type 'null' is not assignable to type 'SVGSVGElement'.
+src/modules/lessons/schoolTargets/FactorisationPracticeTargetLesson10052.tsx(101,15): error TS7006: Parameter 'current' implicitly has an 'any' type.
+src/modules/lessons/schoolTargets/FactorisationPracticeTargetLesson10052.tsx(102,22): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/modules/lessons/schoolTargets/FactorisationPracticeTargetLesson10052.tsx(102,28): error TS7006: Parameter 'i' implicitly has an 'any' type.
+src/modules/lessons/schoolTargets/FifthPostulateEquivalenceTargetLesson10055.tsx(441,7): error TS2322: Type 'RefObject<SVGSVGElement | null>' is not assignable to type 'LegacyRef<SVGSVGElement> | undefined'.
+  Type 'RefObject<SVGSVGElement | null>' is not assignable to type 'RefObject<SVGSVGElement>'.
+    Type 'SVGSVGElement | null' is not assignable to type 'SVGSVGElement'.
+      Type 'null' is not assignable to type 'SVGSVGElement'.
+src/modules/lessons/schoolTargets/FrustumConeTargetLesson10110.tsx(196,15): error TS2322: Type 'string | number | Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/schoolTargets/GroupedMeanAssumedTargetLesson10103.tsx(313,16): error TS2322: Type '{ className: string; cx: number; cy: string; r: string; role: "slider"; tabIndex: number; "aria-label": string; "aria-valuemin": string; "aria-valuemax": string; "aria-valuenow": number; onPointerDown: (event: PointerEvent<...>) => void; onKeyDown: (event: KeyboardEvent<...>) => void; }' is not assignable to type 'SVGProps<SVGCircleElement>'.
+  Types of property '"aria-valuemax"' are incompatible.
+    Type 'string' is not assignable to type 'number'.
+src/modules/lessons/schoolTargets/GroupedMeanDirectTargetLesson10102.tsx(348,20): error TS2322: Type '{ className: string; cx: number; cy: number; r: string; role: "slider"; tabIndex: number; "aria-label": string; "aria-valuemin": string; "aria-valuemax": string; "aria-valuenow": number; onPointerDown: (event: PointerEvent<...>) => void; onKeyDown: (event: KeyboardEvent<...>) => void; }' is not assignable to type 'SVGProps<SVGCircleElement>'.
+  Types of property '"aria-valuemax"' are incompatible.
+    Type 'string' is not assignable to type 'number'.
+src/modules/lessons/schoolTargets/GroupedMeanStepTargetLesson10104.tsx(294,16): error TS2322: Type '{ className: string; cx: number; cy: string; r: string; role: "slider"; tabIndex: number; "aria-label": string; "aria-valuemin": string; "aria-valuemax": string; "aria-valuenow": number; onPointerDown: (event: PointerEvent<...>) => void; onKeyDown: (event: KeyboardEvent<...>) => void; }' is not assignable to type 'SVGProps<SVGCircleElement>'.
+  Types of property '"aria-valuemax"' are incompatible.
+    Type 'string' is not assignable to type 'number'.
+src/modules/lessons/schoolTargets/LessThanCumulativeTargetLesson10105.tsx(171,22): error TS2322: Type '{ children: (string | Element)[]; className: string; role: "slider"; tabIndex: number; "aria-label": string; "aria-valuemin": string; "aria-valuemax": string; "aria-valuenow": number; onPointerDown: (event: PointerEvent<...>) => void; onPointerMove: (event: PointerEvent<...>) => void; onPointerUp: () => void | null;...' is not assignable to type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
+  Type '{ children: (string | Element)[]; className: string; role: "slider"; tabIndex: number; "aria-label": string; "aria-valuemin": string; "aria-valuemax": string; "aria-valuenow": number; onPointerDown: (event: PointerEvent<...>) => void; onPointerMove: (event: PointerEvent<...>) => void; onPointerUp: () => void | null;...' is not assignable to type 'HTMLAttributes<HTMLDivElement>'.
+    Types of property '"aria-valuemax"' are incompatible.
+      Type 'string' is not assignable to type 'number'.
+src/modules/lessons/schoolTargets/MedianOgiveTargetLesson10109.tsx(141,22): error TS2322: Type '{ children: (string | number)[]; role: "slider"; tabIndex: number; "aria-label": string; "aria-valuemin": string; "aria-valuemax": string; "aria-valuenow": number; onPointerDown: (event: PointerEvent<HTMLDivElement>) => void; onPointerMove: (event: PointerEvent<...>) => void; onPointerUp: () => void | null; onKeyDow...' is not assignable to type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
+  Type '{ children: (string | number)[]; role: "slider"; tabIndex: number; "aria-label": string; "aria-valuemin": string; "aria-valuemax": string; "aria-valuenow": number; onPointerDown: (event: PointerEvent<HTMLDivElement>) => void; onPointerMove: (event: PointerEvent<...>) => void; onPointerUp: () => void | null; onKeyDow...' is not assignable to type 'HTMLAttributes<HTMLDivElement>'.
+    Types of property '"aria-valuemax"' are incompatible.
+      Type 'string' is not assignable to type 'number'.
+src/modules/lessons/schoolTargets/MidpointFormulaTargetLesson10084.tsx(89,7): error TS2322: Type 'RefObject<SVGSVGElement | null>' is not assignable to type 'LegacyRef<SVGSVGElement> | undefined'.
+  Type 'RefObject<SVGSVGElement | null>' is not assignable to type 'RefObject<SVGSVGElement>'.
+    Type 'SVGSVGElement | null' is not assignable to type 'SVGSVGElement'.
+      Type 'null' is not assignable to type 'SVGSVGElement'.
+src/modules/lessons/schoolTargets/MoreThanCumulativeTargetLesson10106.tsx(155,24): error TS2322: Type '{ children: (string | Element)[]; className: string; role: "slider"; tabIndex: number; "aria-label": string; "aria-valuemin": string; "aria-valuemax": string; "aria-valuenow": number; onPointerDown: (event: PointerEvent<...>) => void; onPointerMove: (event: PointerEvent<...>) => void; onPointerUp: () => void | null;...' is not assignable to type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
+  Type '{ children: (string | Element)[]; className: string; role: "slider"; tabIndex: number; "aria-label": string; "aria-valuemin": string; "aria-valuemax": string; "aria-valuenow": number; onPointerDown: (event: PointerEvent<...>) => void; onPointerMove: (event: PointerEvent<...>) => void; onPointerUp: () => void | null;...' is not assignable to type 'HTMLAttributes<HTMLDivElement>'.
+    Types of property '"aria-valuemax"' are incompatible.
+      Type 'string' is not assignable to type 'number'.
+src/modules/lessons/schoolTargets/MoreThanOgiveTargetLesson10108.tsx(266,22): error TS2322: Type '{ role: "slider"; tabIndex: number; "aria-label": string; "aria-valuemin": string; "aria-valuemax": number; "aria-valuenow": number; cx: number; cy: number; r: string; onPointerDown: (event: PointerEvent<SVGCircleElement>) => void; onPointerMove: (event: PointerEvent<...>) => void; onPointerUp: () => void | ... 1 mo...' is not assignable to type 'SVGProps<SVGCircleElement>'.
+  Types of property '"aria-valuemin"' are incompatible.
+    Type 'string' is not assignable to type 'number'.
+src/modules/lessons/schoolTargets/NumberNamingTargetLesson10002.tsx(50,10): error TS7023: 'below1000' implicitly has return type 'any' because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.
+src/modules/lessons/schoolTargets/PerpendicularBisectorTargetLesson10024.tsx(341,42): error TS2349: This expression is not callable.
+  Not all constituents of type 'string | boolean | Dispatch<SetStateAction<boolean>>' are callable.
+    Type 'string' has no call signatures.
+src/modules/lessons/schoolTargets/PerpendicularCentreChordTargetLesson10090.tsx(150,50): error TS2339: Property 'toLowerCase' does not exist on type 'string | number'.
+  Property 'toLowerCase' does not exist on type 'number'.
+src/modules/lessons/schoolTargets/ProfitLossTargetLesson10019.tsx(157,17): error TS2322: Type 'string | number | Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/schoolTargets/ProfitLossTargetLesson10019.tsx(158,25): error TS2322: Type 'string | number | Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/schoolTargets/ProfitLossTargetLesson10019.tsx(198,19): error TS2322: Type 'string | number | Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/schoolTargets/ProfitLossTargetLesson10019.tsx(199,22): error TS2322: Type 'string | number | Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/schoolTargets/ProfitLossTargetLesson10019.tsx(200,19): error TS2322: Type 'string | number | Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+  Type 'Dispatch<SetStateAction<number>>' is not assignable to type 'ReactNode'.
+src/modules/lessons/schoolTargets/RouteMapTargetLesson10038.tsx(248,37): error TS2345: Argument of type 'MouseEvent<SVGSVGElement, MouseEvent>' is not assignable to parameter of type 'PointerEvent<SVGSVGElement>'.
+  Type 'MouseEvent<SVGSVGElement, MouseEvent>' is missing the following properties from type 'PointerEvent<SVGSVGElement>': pointerId, pressure, tangentialPressure, tiltX, and 6 more.
+src/modules/lessons/schoolTargets/unboundedRegionModel.ts(15,9): error TS2322: Type 'number[][]' is not assignable to type 'RegionPoint[]'.
+  Type 'number[]' is not assignable to type 'RegionPoint'.
+    Target requires 2 element(s) but source may have fewer.
+src/modules/lessons/schoolTargets/unboundedRegionModel.ts(15,201): error TS2345: Argument of type 'number[]' is not assignable to parameter of type 'RegionPoint'.
+  Target requires 2 element(s) but source may have fewer.
+src/offline-intelligence/geometryAdapter.ts(67,56): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/offline-intelligence/v53Persistence.test.ts(10,26): error TS2339: Property 'style' does not exist on type 'never'.
+src/pages/CalculusEnhancementIdeas.tsx(101,9): error TS2740: Type '{ limits: string; derivatives: string; "derivative-applications": string; integration: string; "integration-techniques": string; "integral-applications": string; "differential-equations": string; "series-parametric-polar": string; "multivariable-vector": string; advanced: string; }' is missing the following properties from type 'Record<"centroid" | "advanced" | "differential-equations" | "limits" | "derivatives" | "derivative-applications" | "integration" | "integration-techniques" | "integral-applications" | ... 10 more ... | "integral-engineering", string>': centroid, jacobians, "beta-gamma", "series-tests", and 6 more.
+src/pages/Home.tsx(563,10): error TS7023: 'navItemMatches' implicitly has return type 'any' because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.
+src/pages/Home.tsx(566,52): error TS7024: Function implicitly has return type 'any' because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.
+src/pages/MathWorkspace.tsx(9207,11): error TS2367: This comparison appears to be unintentional because the types '"midpoint" | "parallel" | "intersection" | "perpendicular" | "on-circle" | "fixed-length"' and '"affine"' have no overlap.
+src/pages/MathWorkspace.tsx(9209,59): error TS2339: Property 'point' does not exist on type 'never'.
+src/studios/algebra/algebraStudioMath.test.ts(80,38): error TS2339: Property 'term' does not exist on type '{ ok: true; term: BalanceTerm; } | { ok: false; error: string; }'.
+  Property 'term' does not exist on type '{ ok: false; error: string; }'.
+src/studios/discrete/combinatorics/ArrangementsLab.tsx(220,39): error TS2367: This comparison appears to be unintentional because the types '"all" | "repetition" | "npr"' and '"circular"' have no overlap.
+src/studios/discrete/combinatorics/ArrangementsLab.tsx(226,16): error TS2367: This comparison appears to be unintentional because the types '"all" | "repetition" | "npr" | "repeated"' and '"circular"' have no overlap.
+src/studios/discrete/number-sense/numberSenseLine.tsx(202,69): error TS2345: Argument of type 'PointerEvent<SVGGElement>' is not assignable to parameter of type 'PointerEvent<SVGSVGElement>'.
+  Type 'SVGGElement' is missing the following properties from type 'SVGSVGElement': currentScale, currentTranslate, height, width, and 47 more.
+src/studios/geometry/construction/constructionMode.ts(20,96): error TS2345: Argument of type 'string' is not assignable to parameter of type 'never'.
+src/studios/geometry/GeometryStudioHome.tsx(160,44): error TS2345: Argument of type 'string' is not assignable to parameter of type '"construction" | "circles" | "triangles" | "proofs"'.
+src/studios/geometry/proofs/ProofsLab.tsx(59,40): error TS2315: Type 'PointerEvent' is not generic.
+src/studios/mockup/labs/DedicatedStudioLabs.tsx(46,56): error TS2304: Cannot find name 'DistributionsLab'.
+src/studios/mockup/modellingStudioIcons.tsx(193,76): error TS2783: 'fill' is specified more than once, so this usage will be overwritten.
+src/studios/mockup/remainingStudioVisualManifest.ts(99,41): error TS2345: Argument of type '(this: undefined, target: RemainingStudioTarget) => { mode: string; studio: "algebra" | "calculus" | "linear-algebra" | "discrete" | "modelling" | "complex-numbers"; pageId: string; route: string; title: string; modes: string[]; }[] | { ...; }[]' is not assignable to parameter of type '(this: undefined, value: RemainingStudioTarget, index: number, array: RemainingStudioTarget[]) => { mode: string; studio: "algebra" | ... 4 more ... | "complex-numbers"; pageId: string; route: string; title: string; modes: string[]; } | readonly { ...; }[]'.
+  Type '{ mode: string; studio: "algebra" | "calculus" | "linear-algebra" | "discrete" | "modelling" | "complex-numbers"; pageId: string; route: string; title: string; modes: string[]; }[] | { mode: null; ... 4 more ...; modes: string[]; }[]' is not assignable to type '{ mode: string; studio: "algebra" | "calculus" | "linear-algebra" | "discrete" | "modelling" | "complex-numbers"; pageId: string; route: string; title: string; modes: string[]; } | readonly { mode: string; ... 4 more ...; modes: string[]; }[]'.
+    Type '{ mode: null; studio: "algebra" | "calculus" | "linear-algebra" | "discrete" | "modelling" | "complex-numbers"; pageId: string; route: string; title: string; modes: string[]; }[]' is not assignable to type '{ mode: string; studio: "algebra" | "calculus" | "linear-algebra" | "discrete" | "modelling" | "complex-numbers"; pageId: string; route: string; title: string; modes: string[]; } | readonly { mode: string; ... 4 more ...; modes: string[]; }[]'.
+      Type '{ mode: null; studio: "algebra" | "calculus" | "linear-algebra" | "discrete" | "modelling" | "complex-numbers"; pageId: string; route: string; title: string; modes: string[]; }[]' is not assignable to type 'readonly { mode: string; studio: "algebra" | "calculus" | "linear-algebra" | "discrete" | "modelling" | "complex-numbers"; pageId: string; route: string; title: string; modes: string[]; }[]'.
+        Type '{ mode: null; studio: RemainingStudioId; pageId: string; route: string; title: string; modes: string[]; }' is not assignable to type '{ mode: string; studio: RemainingStudioId; pageId: string; route: string; title: string; modes: string[]; }'.
+          Types of property 'mode' are incompatible.
+            Type 'null' is not assignable to type 'string'.
+src/studios/mockup/remainingStudioVisualManifest.ts(106,41): error TS2345: Argument of type '(this: undefined, target: ProtectedStudioTarget) => { mode: string; studio: "geometry" | "trigonometry"; pageId: string; route: string; title: string; modes: string[]; }[] | { ...; }[]' is not assignable to parameter of type '(this: undefined, value: ProtectedStudioTarget, index: number, array: ProtectedStudioTarget[]) => { mode: string; studio: "geometry" | "trigonometry"; pageId: string; route: string; title: string; modes: string[]; } | readonly { ...; }[]'.
+  Type '{ mode: string; studio: "geometry" | "trigonometry"; pageId: string; route: string; title: string; modes: string[]; }[] | { mode: null; studio: "geometry" | "trigonometry"; pageId: string; route: string; title: string; modes: string[]; }[]' is not assignable to type '{ mode: string; studio: "geometry" | "trigonometry"; pageId: string; route: string; title: string; modes: string[]; } | readonly { mode: string; studio: "geometry" | "trigonometry"; pageId: string; route: string; title: string; modes: string[]; }[]'.
+    Type '{ mode: null; studio: "geometry" | "trigonometry"; pageId: string; route: string; title: string; modes: string[]; }[]' is not assignable to type '{ mode: string; studio: "geometry" | "trigonometry"; pageId: string; route: string; title: string; modes: string[]; } | readonly { mode: string; studio: "geometry" | "trigonometry"; pageId: string; route: string; title: string; modes: string[]; }[]'.
+      Type '{ mode: null; studio: "geometry" | "trigonometry"; pageId: string; route: string; title: string; modes: string[]; }[]' is not assignable to type 'readonly { mode: string; studio: "geometry" | "trigonometry"; pageId: string; route: string; title: string; modes: string[]; }[]'.
+        Type '{ mode: null; studio: ProtectedStudioId; pageId: string; route: string; title: string; modes: string[]; }' is not assignable to type '{ mode: string; studio: ProtectedStudioId; pageId: string; route: string; title: string; modes: string[]; }'.
+          Types of property 'mode' are incompatible.
+            Type 'null' is not assignable to type 'string'.
+src/studios/shared/studioMath3D.tsx(283,11): error TS2322: Type '{ children: Element; geometry: BufferGeometry<NormalBufferAttributes>; }' is not assignable to type 'SVGLineElementAttributes<SVGLineElement>'.
+  Property 'geometry' does not exist on type 'SVGLineElementAttributes<SVGLineElement>'.
+src/studios/statistics/SamplingCltLab.tsx(66,233): error TS2741: Property 'mode' is missing in type '{ label: string; color: string; shape: PopulationShape; size: number; means: number[]; current: { values: number[]; mean: number; }; progress: number; }' but required in type '{ mode: string; label: string; color: string; shape: PopulationShape; size: number; means: number[]; current: { values: number[]; mean: number; }; progress: number; }'.
+src/visual-proofs/proofs/algebra/EquationBalanceMobileProof.tsx(75,138): error TS2322: Type 'string' is not assignable to type 'number'.
+src/visual-proofs/proofs/algebra/EquationBalanceMobileProof.tsx(75,248): error TS2322: Type 'string' is not assignable to type 'number'.
+src/visual-proofs/proofs/geometry/CenterCircumferenceAnglesProof.tsx(2,1935): error TS2322: Type 'string | { x: number; y: number; }' is not assignable to type 'ReactNode'.
+  Type '{ x: number; y: number; }' is not assignable to type 'ReactNode'.
+src/workspace/mobile/MobileWorkspaceShell.tsx(23,25): error TS2540: Cannot assign to 'current' because it is a read-only property.
+src/workspace/mobile/MobileWorkspaceShell.tsx(26,19): error TS2540: Cannot assign to 'current' because it is a read-only property.
+src/workspace/mobile/useWorkspaceOverlay.test.tsx(26,35): error TS2345: Argument of type '{ closest: (selector: string) => {} | null; }' is not assignable to parameter of type 'EventTarget'.
+  Type '{ closest: (selector: string) => {} | null; }' is missing the following properties from type 'EventTarget': addEventListener, dispatchEvent, removeEventListener
+src/workspace/mobile/useWorkspaceOverlay.test.tsx(34,35): error TS2345: Argument of type '{ closest: () => null; }' is not assignable to parameter of type 'EventTarget'.
+  Type '{ closest: () => null; }' is missing the following properties from type 'EventTarget': addEventListener, dispatchEvent, removeEventListener

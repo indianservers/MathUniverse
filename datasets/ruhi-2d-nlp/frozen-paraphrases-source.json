@@ -1,0 +1,568 @@
+{
+  "authoredAt": "2026-10-08T10:04:28.226834+00:00",
+  "policy": "Fixed before first execution; no fitting or subsequent tuning on these results. Independent probes, not a statistically representative language corpus.",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-01",
+      "scenarioId": "UNSEEN-01",
+      "turnIndex": 0,
+      "userUtterance": "Sketch a rectangle with lower-left corner (-8,-3), width 11 and height 2.",
+      "initialScene": {},
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "create_rectangle",
+            "origin": [
+              -8,
+              -3
+            ],
+            "width": 11,
+            "height": 2
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-02",
+      "scenarioId": "UNSEEN-02",
+      "turnIndex": 0,
+      "userUtterance": "Make a square starting at (-2,4) with side 7.",
+      "initialScene": {},
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "create_square",
+            "origin": [
+              -2,
+              4
+            ],
+            "side": 7
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-03",
+      "scenarioId": "UNSEEN-03",
+      "turnIndex": 0,
+      "userUtterance": "Sketch an ellipse centered at (-1,3), horizontal radius 8 and vertical radius 2.",
+      "initialScene": {},
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "create_ellipse",
+            "center": [
+              -1,
+              3
+            ],
+            "rx": 8,
+            "ry": 2
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-04",
+      "scenarioId": "UNSEEN-04",
+      "turnIndex": 0,
+      "userUtterance": "Create a regular hexagon centered at (3,-2) with circumradius 5.",
+      "initialScene": {},
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "create_regular_polygon",
+            "shape": "hexagon",
+            "center": [
+              3,
+              -2
+            ],
+            "circumradius": 5
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-05",
+      "scenarioId": "UNSEEN-05",
+      "turnIndex": 0,
+      "userUtterance": "Graph the function f(x) = -2*x+9.",
+      "initialScene": {},
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "plot_equation",
+            "equation": "y=-2*x+9"
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-06",
+      "scenarioId": "UNSEEN-06",
+      "turnIndex": 0,
+      "userUtterance": "Show the straight line with slope -3 and y-intercept 4.",
+      "initialScene": {},
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "plot_equation",
+            "equation": "y=-3*x+4"
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-07",
+      "scenarioId": "UNSEEN-07",
+      "turnIndex": 0,
+      "userUtterance": "Sketch a triangle with vertices (-4,2), (5,2), (-1,8).",
+      "initialScene": {},
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "create_polygon",
+            "vertices": [
+              [
+                -4,
+                2
+              ],
+              [
+                5,
+                2
+              ],
+              [
+                -1,
+                8
+              ]
+            ]
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-08",
+      "scenarioId": "UNSEEN-08",
+      "turnIndex": 0,
+      "userUtterance": "Translate the triangle (-2,5).",
+      "initialScene": {
+        "objects": [
+          {
+            "id": "K",
+            "type": "triangle",
+            "vertices": {
+              "A": [
+                -4,
+                2
+              ],
+              "B": [
+                5,
+                2
+              ],
+              "C": [
+                -1,
+                8
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "translate",
+            "target": "K",
+            "vector": [
+              -2,
+              5
+            ]
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-09",
+      "scenarioId": "UNSEEN-09",
+      "turnIndex": 0,
+      "userUtterance": "Rotate the triangle 90 degrees counterclockwise about the origin.",
+      "initialScene": {
+        "objects": [
+          {
+            "id": "K",
+            "type": "triangle",
+            "vertices": {
+              "A": [
+                -4,
+                2
+              ],
+              "B": [
+                5,
+                2
+              ],
+              "C": [
+                -1,
+                8
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "rotate",
+            "target": "K",
+            "degrees": 90,
+            "about": "origin"
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-10",
+      "scenarioId": "UNSEEN-10",
+      "turnIndex": 0,
+      "userUtterance": "Paint its interior teal.",
+      "initialScene": {
+        "objects": [
+          {
+            "id": "K",
+            "type": "triangle",
+            "vertices": {
+              "A": [
+                -4,
+                2
+              ],
+              "B": [
+                5,
+                2
+              ],
+              "C": [
+                -1,
+                8
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "set_style",
+            "target": "K",
+            "property": "fill",
+            "value": "teal"
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-11",
+      "scenarioId": "UNSEEN-11",
+      "turnIndex": 0,
+      "userUtterance": "Draw a circle centered at (-3,2) with radius 11.",
+      "initialScene": {},
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "create_circle",
+            "center": [
+              -3,
+              2
+            ],
+            "radius": 11
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-12",
+      "scenarioId": "UNSEEN-12",
+      "turnIndex": 0,
+      "userUtterance": "Reflect the triangle across the y-axis but leave the original visible.",
+      "initialScene": {
+        "objects": [
+          {
+            "id": "K",
+            "type": "triangle",
+            "vertices": {
+              "A": [
+                -4,
+                2
+              ],
+              "B": [
+                5,
+                2
+              ],
+              "C": [
+                -1,
+                8
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "reflect_copy",
+            "target": "K",
+            "axis": "y"
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-13",
+      "scenarioId": "UNSEEN-13",
+      "turnIndex": 0,
+      "userUtterance": "On triangle K, set angle A to 68 degrees.",
+      "initialScene": {
+        "objects": [
+          {
+            "id": "K",
+            "type": "triangle",
+            "vertices": {
+              "A": [
+                -4,
+                2
+              ],
+              "B": [
+                5,
+                2
+              ],
+              "C": [
+                -1,
+                8
+              ]
+            }
+          }
+        ]
+      },
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "set_angle",
+            "target": "K.A",
+            "degrees": 68
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-14",
+      "scenarioId": "UNSEEN-PENDING",
+      "turnIndex": 0,
+      "userUtterance": "Move that circle left.",
+      "initialScene": {
+        "active_object": "circle-probe",
+        "object_type": "circle"
+      },
+      "expected": {
+        "type": "clarify"
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-15",
+      "scenarioId": "UNSEEN-PENDING",
+      "turnIndex": 1,
+      "userUtterance": "9 units.",
+      "initialScene": {},
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "translate",
+            "target": "referenced_object",
+            "vector": [
+              -9,
+              0
+            ]
+          }
+        ]
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "PROBE-16",
+      "scenarioId": "UNSEEN-16",
+      "turnIndex": 0,
+      "userUtterance": "Create a circle with radius -7.",
+      "initialScene": {},
+      "expected": {
+        "type": "reject"
+      },
+      "category": "independent-paraphrase",
+      "difficulty": "mixed",
+      "valid": true,
+      "ambiguous": false,
+      "split": "test",
+      "issues": {
+        "invalid": [],
+        "warnings": []
+      }
+    }
+  ]
+}

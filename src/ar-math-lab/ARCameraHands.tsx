@@ -1,3 +1,4 @@
+import {startModelLoad} from '../model-loading/modelLoadStore';
 import { GestureController } from './hand-intelligence/GestureController';
 import GestureHUD from './hand-intelligence/GestureHUD';
 import { idleState } from './hand-intelligence/HandIntelligenceEngine';
@@ -39,15 +40,19 @@ export default function ARCameraHands({ video, stage, stream, scene, onChange, o
     }
     let alive = true, ready = false, busy = false, raf = 0, last = 0, lastVideo = -1, lastUI = 0, lastFrame = 0, averageFrame = 33, processingMs=0;
     const worker = new Worker(new URL('./arHandTracking.worker.ts', import.meta.url), { type: 'module' });
-    setStatus('Loading on-device hand tracking…');
+    setStatus('Downloading on-device hand tracking…');
+    const modelLoad=startModelLoad('Hand gestures / AR');
     const fail = () => {
       ready = false; busy = false; clearTracking(); setFailed(true);
-      setStatus('Hand tracker could not start. Retry hand tracking or use touch controls.'); clearTimeout(timeout); worker.terminate();
+      setStatus('Hand tracker could not start. Retry hand tracking or use touch controls.'); modelLoad.fail(new Error('Retry hand tracking or use touch controls.'));clearTimeout(timeout); worker.terminate();
     };
-    const timeout = window.setTimeout(() => { if (!ready) fail(); }, 30000);
+    let timeout = window.setTimeout(() => { if (!ready) fail(); }, 90000);
+    const keepLoading=()=>{clearTimeout(timeout);timeout=window.setTimeout(()=>{if(!ready)fail();},90000);};
     worker.onmessage = event => {
       if (!alive) return;
-      if (event.data.type === 'ready') { ready = true; clearTimeout(timeout); setStatus('Show index finger to select. A fist stops all changes.'); }
+      if(event.data.type==='progress'){keepLoading();modelLoad.progress(event.data.progress);setStatus(`Downloading ${event.data.progress.asset}${event.data.progress.percent!==undefined?` · ${event.data.progress.percent}% loaded`:''}…`);return;}
+      if(event.data.type==='initializing'){keepLoading();modelLoad.initializing();setStatus('Download complete · initializing hand tracking…');return;}
+      if (event.data.type === 'ready') { modelLoad.finish();ready = true; clearTimeout(timeout); setStatus('Show index finger to select. A fist stops all changes.'); }
       if (event.data.type === 'error') fail();
       if (event.data.type !== 'hands') return;
       busy = false;
@@ -100,7 +105,7 @@ export default function ARCameraHands({ video, stage, stream, scene, onChange, o
       }).catch(() => { busy = false; clearTracking(); });
     };
     raf = requestAnimationFrame(loop);
-    return () => { alive = false; clearTimeout(timeout); cancelAnimationFrame(raf); worker.terminate(); clearTracking(); };
+    return () => { alive = false; modelLoad.cancel(); clearTimeout(timeout); cancelAnimationFrame(raf); worker.terminate(); clearTracking(); };
   }, [enabled, stream, video, stage, runtime, retry, mirrored]);
   return <div className="space-y-2 rounded-lg bg-slate-900 p-3 text-xs text-white">
     {!interaction&&<GestureHUD runtime={runtime}/>}<p aria-live="polite">{poseLabel ? `Recognized gesture: ${poseLabel}` : "No recognized hand pose yet."}</p><div className="flex flex-wrap items-start gap-2">

@@ -1,0 +1,66 @@
+{
+  "phase": "--phase",
+  "subset": "cycle-05",
+  "date": "2026-10-08T09:47:54.129Z",
+  "sourceSha256": "7499a56f64767f18c880ba53e33870db43038aed7130b44a4eb54f220b55532f",
+  "total": 0,
+  "valid": 0,
+  "passed": 0,
+  "failed": 0,
+  "blocked": 0,
+  "endToEndAccuracy": null,
+  "scenarios": {
+    "passed": 0,
+    "total": 0
+  },
+  "metrics": {
+    "intent": {
+      "passed": 0,
+      "total": 0,
+      "accuracy": null
+    },
+    "entities": {
+      "passed": 0,
+      "total": 0,
+      "accuracy": null
+    },
+    "numeric": {
+      "passed": 0,
+      "total": 0,
+      "accuracy": null
+    },
+    "context": {
+      "passed": 0,
+      "total": 0,
+      "accuracy": null
+    },
+    "clarification": {
+      "passed": 0,
+      "total": 0,
+      "accuracy": null
+    },
+    "geometry": {
+      "passed": 0,
+      "total": 0,
+      "accuracy": null
+    },
+    "execution": {
+      "passed": 0,
+      "total": 0,
+      "accuracy": null
+    },
+    "response": {
+      "passed": 0,
+      "total": 0,
+      "accuracy": null
+    }
+  },
+  "errors": [],
+  "execution": "Real graph2d browser workspace via normal runSemanticAssistant entry point, native readRoboScene and committed geometry; fixture initialization only uses natural-language requests.",
+  "limits": [
+    "Metrics use eligible explicit assertions, not all 300 as each dimension denominator. Blocked records count against full-suite success.",
+    "Baseline all-300 is a regression observation; only development failures guide repairs. Repeated templates cross the scenario split.",
+    "Response relevance checks are bounded templates, not a free-form semantic judge. Geometry comparisons use relative/absolute 1e-7 coordinate tolerance."
+  ],
+  "results": []
+}

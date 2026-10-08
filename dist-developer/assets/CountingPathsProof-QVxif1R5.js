@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-react-3d-FwnfEBiX.js";import r from"./CountingPathsMobileProof-BTHjS56U.js";import"./vendor-icons-C3dLI0g1.js";import"./vendor-three-ub9rmW6h.js";import"./index-eBfdE1e8.js";import"./vendor-charts-BXOpgMHl.js";import"./vendor-math-rendering-BITAHWHy.js";function u({category:t,proof:i}){return o.jsx(r,{})}export{u as default};

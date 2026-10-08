@@ -1,3 +1,4 @@
+import {planeFromPoints3} from '../kernel/geometry3d';
 import {operationFor} from './actionRegistry';
 import {distance,vertices,measurement,center} from './geometryQueries';
 import {near,nearVector,DISPLAY_EPSILON,EPSILON} from './tolerances';
@@ -6,7 +7,14 @@ import {resolveTarget,resolveTargets} from './targetResolver';
 import type {MathRoboPlan,RoboSceneContext} from './types';
 export function geometryState(scene:RoboSceneContext){
   const round=(n:number)=>Math.round(n*1e9)/1e9;
-  return JSON.stringify([...scene.objects].sort((a,b)=>a.id.localeCompare(b.id)).map(o=>({id:o.id,type:o.type,vertices:vertices(o).map(p=>p.map(round)),position:center(o).map(round),width:round(o.command.width),height:round(o.command.height),depth:round(o.command.depth??0),radius:round(o.command.radius),scale:round(o.command.scale??1),rotation:(o.command.rotation??[0,0,0]).map(round),color:o.style.color,visible:o.command.roboVisible??true,expression:o.command.expression??null,locked:o.command.roboLocked??false})));
+  return JSON.stringify([...scene.objects].sort((a,b)=>a.id.localeCompare(b.id)).map(o=>({id:o.id,type:o.type,vertices:vertices(o).map(p=>p.map(round)),position:center(o).map(round),width:round(o.command.width),height:round(o.command.height),depth:round(o.command.depth??0),radius:round(o.command.radius),scale:round(o.command.scale??1),rotation:(o.command.rotation??[0,0,0]).map(round),color:o.style.color,fill:o.command.roboFillColor,stroke:o.command.roboStrokeColor,lineWidth:o.command.roboLineWidth,strokeEdges:o.command.roboStrokeEdges,angle:o.command.roboAngle,visible:o.command.roboVisible??true,expression:o.command.expression??null,locked:o.command.roboLocked??false})));
+}
+export function verifyCommittedObjects(expected:RoboSceneContext,actual:RoboSceneContext){
+  if(expected.objects.length!==actual.objects.length)throw new RoboExecutionError('VERIFICATION_FAILED','The workspace did not commit every planned object.');
+  for(const wanted of expected.objects){const got=actual.objects.find(o=>o.id===wanted.id);
+    for(const property of ['roboFillColor','roboStrokeColor','roboLineWidth'] as const)if(got&&wanted.command[property]!==got.command[property])throw new RoboExecutionError('VERIFICATION_FAILED','The native workspace did not preserve the requested style.');
+    if(!got||got.type!==wanted.type||vertices(wanted).length!==vertices(got).length||vertices(wanted).some((p,i)=>!nearVector(p,vertices(got)[i]))||wanted.style.color!==got.style.color||(wanted.command.roboVisible??true)!==(got.command.roboVisible??true))throw new RoboExecutionError('VERIFICATION_FAILED','The committed object differs from the requested geometry or appearance.');
+  }
 }
 export function verifyResult(plan:MathRoboPlan,before:RoboSceneContext,after:RoboSceneContext){
   const checks:string[]=[];const fail=(message:string):never=>{throw new RoboExecutionError('VERIFICATION_FAILED',`I could not verify the result: ${message}`);};
@@ -15,6 +23,22 @@ export function verifyResult(plan:MathRoboPlan,before:RoboSceneContext,after:Rob
   if(!mutates)checks.push('Read-only geometry state unchanged');
   for(const object of after.objects){if(object.command.points.flat().some(n=>!Number.isFinite(n)))fail('non-finite coordinates.');if(object.command.radius<=0)fail('invalid radius.');if(['line','triangle'].includes(object.type)&&vertices(object).length<2)fail('missing vertices.');}
   checks.push('Finite geometry and valid dimensions');
+  for(const object of after.objects.filter(o=>o.command.roboAngle)){const angle=object.command.roboAngle!,vs=vertices(object),p=vs[angle.vertex],a=vs[(angle.vertex+1)%3],b=vs[(angle.vertex+2)%3];if(!p||!a||!b)fail('angle vertices are missing.');const u=a.map((x,i)=>x-p[i]),v=b.map((x,i)=>x-p[i]),actual=Math.atan2(Math.abs(u[0]*v[1]-u[1]*v[0]),u[0]*v[0]+u[1]*v[1])*180/Math.PI;if(!near(actual,angle.degrees,DISPLAY_EPSILON))fail('the committed angle differs from its declared measure.');checks.push('Independent committed vertex-angle measurement');}
+  for(const object of after.objects.filter(o=>o.type==='plane'&&o.command.roboVisible!==false)){const model=planeFromPoints3(vertices(object).slice(0,3));for(const p of vertices(object)){const residual=Math.abs(p.reduce((sum,x,i)=>sum+(x-model.point[i])*model.normal[i],0));if(residual>DISPLAY_EPSILON*Math.max(1,distance(p,model.point)))fail('committed plane vertices are not coplanar.');}checks.push('Committed three-point plane incidence');}
+  for(const object of after.objects.filter(o=>o.command.roboDependency?.kind==='perpPlane3'&&o.command.roboVisible!==false)){const host=after.objects.find(o=>o.id===object.command.roboDependency!.parents[0].objectId);if(!host)fail('perpendicular-plane parent is missing.');const n=planeFromPoints3(vertices(host!).slice(0,3)).normal,[a,b]=vertices(object),d=b.map((x,i)=>x-a[i]),length=Math.hypot(...d),cross=[d[1]*n[2]-d[2]*n[1],d[2]*n[0]-d[0]*n[2],d[0]*n[1]-d[1]*n[0]];if(!length||Math.hypot(...cross)>DISPLAY_EPSILON*length)fail('constructed line is not parallel to the plane normal.');checks.push('Committed plane-normal perpendicular line');}
+
+  for(const command of plan.commands.filter(c=>c.action==='CONSTRUCT'&&c.subAction==='CIRCUMCIRCLE')){
+    const circle=after.objects.find(o=>o.command.roboDependency?.kind==='circumcircle'&&!before.objects.some(b=>b.id===o.id));
+    const triangle=circle&&after.objects.find(o=>o.id===circle.command.roboDependency?.parents[0].objectId);
+    if(!circle||!triangle||vertices(triangle).some(p=>!near(distance(p,center(circle)),circle.command.radius*(circle.command.scale??1),DISPLAY_EPSILON)))fail('circumcircle must contain every defining vertex.');
+    checks.push(`Circumcircle vertex incidence: ${command.id}`);
+  }
+  for(const command of plan.commands.filter(c=>c.action==='CONSTRUCT'&&c.subAction==='INCIRCLE')){
+    const circle=after.objects.find(o=>o.command.roboDependency?.kind==='incircle'&&!before.objects.some(b=>b.id===o.id)),triangle=circle&&after.objects.find(o=>o.id===circle.command.roboDependency?.parents[0].objectId);
+    if(!circle||!triangle)fail('incircle or parent triangle is missing.');
+    const points=vertices(triangle!);for(let i=0;i<3;i++){const a=points[i],b=points[(i+1)%3],c=center(circle!),side=distance(a,b),height=Math.abs((b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]))/side;if(!side||!near(height,circle!.command.radius*(circle!.command.scale??1),DISPLAY_EPSILON))fail('incircle must be tangent to every side.');}
+    checks.push(`Incircle side tangency: ${command.id}`);
+  }
   if(plan.commands.length===1){const c=plan.commands[0];
     if(c.action==='FIND'&&c.subAction==='DISTANCE'){
       const origin=/\bto (?:the )?origin\b/.test(c.normalizedPhrase),point=origin?resolveTarget({type:'point',reference:'lastReferenced'},before):undefined;
@@ -55,5 +79,5 @@ export function verifyResult(plan:MathRoboPlan,before:RoboSceneContext,after:Rob
       if(Math.hypot(...u)<EPSILON)fail('degenerate construction.');
     }
   }
-  return {passed:true,checks};
+  return {passed:true,checks,status:'verified_numerical' as const};
 }

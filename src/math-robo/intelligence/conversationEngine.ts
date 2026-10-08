@@ -16,6 +16,7 @@ export class ConversationEngine extends FollowUpEngine {
   private text='';
   private invalidated?:string;
   sync(scene:RoboSceneContext){
+    if(scene.activeAngle&&!scene.objects.some(o=>o.id===scene.activeAngle!.objectId))scene.activeAngle=undefined;
     if(this.pending){const target=this.pending.plan.commands[this.pending.index].target;let missing=false;if(typeof target==='string'&&!target.startsWith('last')&&!target.startsWith('$'))try{resolveTarget(target,scene);}catch{missing=true;}if(missing||this.pending.references?.some(id=>!scene.objects.some(o=>o.id===id))){this.pending=undefined;this.invalidated='That object was removed. Please choose an existing object.';}}
     if(this.lastMathResult)this.lastMathResult.targets=this.lastMathResult.targets.filter(id=>scene.objects.some(o=>o.id===id)||id.startsWith('$edge:')&&scene.objects.some(o=>id.endsWith(':'+o.id)));
   }
@@ -24,6 +25,10 @@ export class ConversationEngine extends FollowUpEngine {
   prepare(text:string,plan:MathRoboPlan,scene:RoboSceneContext):{plan:MathRoboPlan;message?:string} {
     this.text=text;this.before=[...(scene.activeObjectIds??[])];
     let normalized=normalizeLanguage(text).replace(/[.!?]+$/,'');
+    for(const command of plan.commands){if(!command.parameters.dimensionRatio)continue;try{const target=resolveTarget(command.target,scene),visual=target.command,ratio=command.parameters.dimensionRatio as {destination:'width'|'height'|'depth';source:'width'|'height'|'depth';factor:number};if(!['rectangle','square','cube','cuboid'].includes(target.type))continue;const scale=visual.scale??1;command.parameters.width=visual.width*scale;command.parameters.height=visual.height*scale;command.parameters.depth=(visual.depth??visual.width)*scale;command.parameters[ratio.destination]=(visual[ratio.source]??visual.width)*scale*ratio.factor;}catch{/* Keep missing or ambiguous targets for normal clarification. */}}
+    if(scene.activeAngle&&/^(?:make|set|increase|decrease|reduce)\s+(?:it\s+)?(?:by\s+)?(?:another\s+)?[\d.-]+(?:\s*(?:degrees?|percent|%))?$/.test(normalized)){
+      const amount=normalized.match(new RegExp(NUMBER_PATTERN))?.[0];if(amount){const c=plan.commands[0];c.action='CHANGE';c.subAction='ANGLE';c.target=scene.activeAngle.objectId;c.parameters={angle:parseNumber(amount),vertex:['A','B','C'][scene.activeAngle.vertex],angleOperation:/percent|%/.test(normalized)?/decrease|reduce/.test(normalized)?'decrementPercent':'incrementPercent':/increase/.test(normalized)?'increment':/decrease|reduce/.test(normalized)?'decrement':'set'};}
+    }
     if(/^(?:and )?(?:now|what about now)$/.test(normalized)&&this.lastMathResult){
       const previous=[...this.turns].reverse().find(t=>t.status==='success'&&t.plan.commands.some(c=>['FIND','CHECK','COMPARE'].includes(c.action)));
       if(previous)plan=structuredClone(previous.plan);
@@ -94,16 +99,20 @@ export class ConversationEngine extends FollowUpEngine {
       let accepted=false;
       const numeric=normalized.match(new RegExp(`^(${NUMBER_PATTERN})(?:\\s+(?:units?|degrees|radians))?(?:\\s+(?:clockwise|anticlockwise|counterclockwise))?$`));
       if(pending.choices){
-        const ordinal=normalized.match(/^(?:the )?(first|second)(?: (?:one|1))?$/)?.[1];
+        const ordinal=normalized.match(/^(?:the )?(first|second)(?: (?:one|1|triangle|rectangle|square|circle|line|point|polygon|object))?$/)?.[1];
         const option=normalized==='yes'?0:ordinal?['first','second'].indexOf(ordinal):/^\d+$/.test(normalized)?Number(normalized)-1:-1;
         if(pending.choices[option]){plan=structuredClone(pending.choices[option]);this.pending=undefined;return {plan};}
       } else if(pending.slot==='target'){
         if(/^(both|all)$/.test(normalized)&&['MOVE','ROTATE','SCALE','DELETE','HIDE','SHOW','LOCK','UNLOCK'].includes(command.action)){command.targets=pending.options;command.parameters.multiple=true;accepted=true;}
-        const ordinal=normalized.match(/^(?:the )?(first|second|third|fourth)(?: (?:one|1))?$/)?.[1];
+        const ordinal=normalized.match(/^(?:the )?(first|second|third|fourth)(?: (?:one|1|triangle|rectangle|square|circle|line|point|polygon|object))?$/)?.[1];
         const index=ordinal?['first','second','third','fourth'].indexOf(ordinal):/^\d+$/.test(normalized)?Number(normalized)-1:-1;
         const name=normalized.replace(/^(?:the )?(?:line|point|circle|triangle|square|rectangle)\s+/,''),color=normalized.match(/^(?:the )?(\w+) one$/)?.[1];
         const id=pending.options[index]??pending.options.find(id=>{const object=scene.objects.find(o=>o.id===id);return id.toLowerCase()===name||object?.label?.toLowerCase()===name||!!color&&object?.style.color===COLORS[color];});
         if(id&&scene.objects.some(o=>o.id===id)){command.target=id;accepted=true;}
+      } else if(pending.slot==='angleVertex'){
+        const letters=text.toLowerCase().match(/angle\s+([abc]{3})\b/)?.[1],vertex=letters?.[1]??text.toLowerCase().match(/(?:vertex|angle)\s+([abc])\b|^([abc])$/)?.slice(1).find(Boolean);if(vertex){command.parameters.vertex=vertex.toUpperCase();const amount=normalized.match(new RegExp(`(?:set (?:it )?|to )(${NUMBER_PATTERN})`))?.[1];if(amount){command.parameters.angle=parseNumber(amount);command.parameters.angleOperation='set';}accepted=true;}
+      } else if(pending.slot==='color'){
+        const color=Object.keys(COLORS).sort((a,b)=>b.length-a.length).find(color=>new RegExp(`\\b${color}\\b`).test(normalized));if(color){command.parameters.color=color;if(/fill|interior/.test(normalized))command.subAction='FILL_COLOR';accepted=true;}
       } else if(pending.slot==='factor'&&/^(?:twice|double|half)(?:\b|$)/.test(normalized)){command.parameters.factor=/half/.test(normalized)?.5:2;accepted=true;}
       else if(numeric&&['distance','angle','factor','radius'].includes(pending.slot)){
         if(pending.slot!=='angle'&&/degrees|radians|clockwise/.test(normalized)||pending.slot==='angle'&&/units?/.test(normalized)||pending.slot==='factor'&&/units?/.test(normalized))return {plan:pending.plan,message:pending.question};
@@ -118,6 +127,7 @@ export class ConversationEngine extends FollowUpEngine {
         command.parameters.conversationDirection=normalized;command.parameters.vector=directionVector(`${normalized} ${command.parameters.conversationDistance??''}`,scene.activeMode.endsWith('3d')?3:2);accepted=true;
       } else if(pending.slot==='axis'&&/^(?:the )?[xyz](?:[ -]axis)?$/.test(normalized)){command.parameters.axis=normalized.match(/[xyz]/)![0];command.subAction=`${command.parameters.axis.toString().toUpperCase()}_AXIS`;accepted=true;}
       else if(pending.slot==='plane'&&/^(?:the )?(xy|xz|yz)(?:[ -]plane)?$/.test(normalized)){command.parameters.plane=normalized.match(/xy|xz|yz/)![0];command.subAction=`${String(command.parameters.plane).toUpperCase()}_PLANE`;accepted=true;}
+      else if(pending.slot==='planePoints'){const points=coordinates(normalized,3);if(points.length===3){command.parameters.points=points;accepted=true;}}
       else if(['points','position'].includes(pending.slot)){
         const points=coordinates(normalized,scene.activeMode.endsWith('3d')?3:2);
         if(points.length>=(pending.slot==='points'?2:1)){command.parameters[pending.slot]=pending.slot==='points'?points:points[0];if(command.parameters.legacy){command.parameters.legacy.points=points;}delete command.parameters.parseError;accepted=true;}
@@ -175,9 +185,17 @@ export class ConversationEngine extends FollowUpEngine {
     }
     for(let index=0;index<plan.commands.length;index++){
       const command=plan.commands[index],p=command.parameters;
+        if(command.action==='CHANGE'&&['COLOR','FILL_COLOR','STROKE_COLOR'].includes(command.subAction)&&!p.color)return this.ask(plan,index,'color','Which color should I use?');
+      if(command.action==='CHANGE'&&command.subAction==='ANGLE'&&!p.impossibleAngles){
+        let host;try{host=resolveTarget(command.target,scene);}catch{/* The ordinary resolver will report unavailable objects. */}
+        if(!p.vertex){if(host?.id===scene.activeAngle?.objectId)p.vertex=['A','B','C'][scene.activeAngle!.vertex];else if(host?.type==='angle')p.vertex='A';else return this.ask(plan,index,'angleVertex','Which angle should I change: angle A, B or C?',['A','B','C']);}
+        if(p.angle===undefined)return this.ask(plan,index,'angle','By how many degrees, or to which angle, should I change it?');
+      }
+      if(command.action==='CREATE'&&command.subAction==='ANGLE'&&p.angle===undefined)return this.ask(plan,index,'angle','How many degrees should the angle measure?');
       if(command.action==='CONSTRUCT'&&command.subAction==='TANGENT'&&!p.position){
         const name=command.normalizedPhrase.match(/\bat\s+(?:point\s+)?([a-z]\d*)\b/)?.[1];
         if(name){try{const point=resolveTarget(name,scene);if(point.type!=='point')return this.ask(plan,index,'position','Which point on the circle should I use?');p.position=point.position;if(scene.objects.some(o=>o.id===point.id))p.tangentPointId=point.id;}catch{return this.ask(plan,index,'position','Which point on the circle should I use? Give its coordinates.');}}
+        if(!p.position&&p.angle===undefined)return this.ask(plan,index,'position','At which point on the circle should I draw the tangent? Give coordinates such as (3,4).');
       }
       if(command.action==='MOVE'&&/\bto\b/.test(command.normalizedPhrase)&&!/\bto (?:the )?(?:left|right|up|down|forward|backward)\b/.test(command.normalizedPhrase)&&!p.absolute){
         command.target=targetFromPhrase(command.normalizedPhrase.split(/\bto\b/)[0]);
@@ -187,28 +205,34 @@ export class ConversationEngine extends FollowUpEngine {
         if(point){p.vector=point;p.absolute=true;delete p.parseError;}
         else {try{const target=resolveTarget(command.target,scene);if(scene.objects.some(o=>o.id===target.id))command.target=target.id;}catch{/* A multi-step plan may create its subject first. */}return this.ask(plan,index,'destination',`Provide ${scene.activeMode.endsWith('3d')?3:2} destination coordinates or an existing point name. Where should I move it?`);}
       }
-      if(/\bother (?:one|line|circle|shape|object)\b/.test(command.normalizedPhrase)&&!/^no\b/.test(normalized)){
+      if(/\bother (?:one|line|circle|shape|object)\b/.test(command.normalizedPhrase)&&!/^no\b/.test(normalized)&&!(typeof command.target==='string'&&scene.objects.some(o=>o.id===command.target))){
+        if(scene.previousCommands?.at(-1)?.action==='CREATE'&&Number(scene.previousCommands.at(-1)?.parameters.count??1)>1||scene.selectedIds.length!==1&&(scene.activeObjectIds?.length??0)>1)return this.ask(plan,index,'target','Which object should I change?',scene.activeObjectIds!);
         const active=scene.selectedIds.length===1?scene.selectedIds[0]:scene.activeObjectIds?.at(-1)??scene.lastReferenced,type=typeof command.target==='object'?command.target.type:scene.objects.find(o=>o.id===active)?.type;
         const others=scene.objects.filter(o=>o.id!==active&&(!type||o.type===type));if(others.length===1)command.target=others[0].id;else if(others.length>1)return this.ask(plan,index,'target','Which other object?',others.map(o=>o.id));
       }
       if(/\b(?:new|old) one\b/.test(command.normalizedPhrase)){const sorted=[...scene.objects].sort((a,b)=>(a.creationOrder??0)-(b.creationOrder??0)),object=/\bold one\b/.test(command.normalizedPhrase)?sorted[0]:sorted.at(-1);if(object)command.target=object.id;}
       if(command.action==='FIND'&&['ROOTS','X_INTERCEPT','Y_INTERCEPT'].includes(command.subAction)&&command.target==='lastReferenced')command.target={type:'plot',reference:'lastReferenced'};
       if(command.action==='FIND'&&['X_INTERCEPT','Y_INTERCEPT'].includes(command.subAction)&&scene.objects.find(o=>o.id===scene.lastReferenced)?.type==='line')command.target=scene.lastReferenced;
+      if(command.action==='CREATE'&&command.subAction==='PLANE'&&!(p.planeParents as string[]|undefined)?.length&&p.points?.length!==3)return this.ask(plan,index,'planePoints','Which three noncollinear 3D points should determine the plane?');
+      if(command.action==='CONSTRUCT'&&command.subAction==='PERP_PLANE'&&!p.position&&!p.throughPoint)return this.ask(plan,index,'position','Through which 3D point should the perpendicular line pass?');
       if(command.action==='CREATE'&&command.subAction==='LINE'&&/through (?:those|these|the) (?:2|two) points/.test(normalized)){const points=scene.objects.filter(o=>o.type==='point').slice(-2);if(points.length===2){p.points=points.map(o=>o.position);delete p.parseError;}}
       if(command.action==='CHANGE'&&command.subAction==='RELATION'&&p.multiple){const lines=scene.selectedIds.map(id=>scene.objects.find(o=>o.id===id)).filter(o=>o?.type==='line');if(lines.length!==2)return this.ask(plan,index,'reference','Choose two lines to make parallel.');}
       if(command.target==='lastReferenced'){const named=scene.objects.filter(o=>o.label&&command.normalizedPhrase.split(/[^a-z0-9]+/).includes(o.label.toLowerCase()));if(named.length===1)command.target=named[0].id;}
       if(command.action==='CHANGE'&&command.subAction==='RELATION'&&!p.multiple&&!command.targets)return this.ask(plan,index,'reference','Which reference line should it be perpendicular to? Give its name.');
-      if(command.action==='CONSTRUCT'&&['PARALLEL','PERPENDICULAR','PERPENDICULAR_BISECTOR'].includes(command.subAction)){
+      if(command.action==='CONSTRUCT'&&p.throughPoint&&!p.position){try{const point=resolveTarget(String(p.throughPoint),scene);if(point.type==='point')p.position=point.position;}catch{/* Ask for a named existing point below. */}}
+        if(command.action==='CONSTRUCT'&&['PARALLEL','PERPENDICULAR','PERPENDICULAR_BISECTOR'].includes(command.subAction)){
         const edge=this.lastMathResult?.targets.find(id=>id.startsWith('$edge:'));if(edge)command.target=edge;
         if(!edge&&!p.conversationReferenceProvided&&!/\b(?:to|of|parallel to|perpendicular to) (?:the )?(?:line )?[a-z]{1,2}\d*\b/.test(command.normalizedPhrase)&&!scene.objects.some(o=>o.type==='line'&&(o.id===scene.lastReferenced||this.lastMathResult?.targets.includes(o.id))))return this.ask(plan,index,'reference','Which line should I use as the reference?');
         try{const reference=resolveTarget(command.target,scene);if(reference.type!=='line')return this.ask(plan,index,'reference','Which line should I use as the reference?');}catch{return this.ask(plan,index,'reference','Which line should I use as the reference?');}
         if(!p.position&&p.through!=='midpoint'&&command.subAction!=='PERPENDICULAR_BISECTOR'&&!(Array.isArray(scene.previousResult)&&scene.previousResult.every(n=>typeof n==='number'))&&!scene.objects.some(o=>o.id===scene.lastCreated&&o.type==='point'))return this.ask(plan,index,'position','Through which point? Give coordinates.');
       }
+      if(command.action==='CREATE'&&command.subAction==='PLANE'&&!(p.planeParents as string[]|undefined)?.length&&p.points?.length!==3)return this.ask(plan,index,'planePoints','Which three noncollinear 3D points should determine the plane?');
+      if(command.action==='CONSTRUCT'&&command.subAction==='PERP_PLANE'&&!p.position&&!p.throughPoint)return this.ask(plan,index,'position','Through which 3D point should the perpendicular line pass?');
       if(command.action==='CREATE'&&command.subAction==='LINE'&&/through (?:it|that point|the center|the centre)/.test(normalized)&&Array.isArray(scene.previousResult)){
         const point=(Array.isArray(scene.previousResult[0])&&scene.previousResult.length===1?scene.previousResult[0]:scene.previousResult) as number[];
         if(point.every(n=>typeof n==='number')){p.conversationPoint=point;if(/vertical|horizontal/.test(normalized)){const axis=/vertical/.test(normalized)?1:0;p.points=[point.map((n,i)=>n-(i===axis?3:0)),point.map((n,i)=>n+(i===axis?3:0))];delete p.parseError;}else return this.ask(plan,index,'lineDirection','Which direction should the line have: horizontal or vertical?');}
       }
-      if(command.action==='CREATE'&&command.subAction==='LINE'&&!(p.points as number[][]|undefined)?.length&&!p.legacy?.points?.length)return this.ask(plan,index,'points','What are the two endpoints? Give coordinates such as (0,0) and (4,2).');
+      if(command.action==='CREATE'&&['LINE','RAY','VECTOR'].includes(command.subAction)&&!(p.points as number[][]|undefined)?.length&&!p.legacy?.points?.length)return this.ask(plan,index,'points','What are the two endpoints? Give coordinates such as (0,0) and (4,2).');
       if(command.action==='CREATE'&&command.subAction==='POINT'&&!p.position&&!p.legacy?.points?.length)return this.ask(plan,index,'position','Where should I place the point? Give its coordinates.');
       if(command.action==='CREATE'&&command.subAction==='CIRCLE'&&Number(p.count)>1&&!/radius|diameter/.test(command.normalizedPhrase)&&!p.conversationRadiusProvided)return this.ask(plan,index,'radius','What radius should the circles have?');
       if(plan.commands.length===1&&!['CREATE','UNHANDLED','UNSUPPORTED','UNDO','REDO','EXPLAIN','COUNT'].includes(command.action)&&!p.multiple&&!command.targets&&command.target!=='$previousResult'){

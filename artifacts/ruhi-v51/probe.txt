@@ -1,0 +1,522 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 0
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 1
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 2
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 3
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 4
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 5
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 6
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 7
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 8
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 9
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 10
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 11
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 12
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 13
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 14
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 15
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 16
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 17
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 18
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 19
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 20
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 21
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 22
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 23
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 24
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 25
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 26
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 27
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 28
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 29
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 30
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 31
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 32
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 33
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 34
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 35
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 36
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 37
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 38
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 39
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 40
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 41
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 42
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 43
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 44
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 45
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 46
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 47
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 48
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 49
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 50
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 51
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 52
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 53
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 54
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 55
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 56
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 57
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 58
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 59
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 60
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 61
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 62
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 63
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 64
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 65
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 66
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 67
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 68
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 69
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 70
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 71
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 72
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 73
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 74
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 75
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 76
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 77
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 78
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 79
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 80
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 81
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 82
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 83
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 84
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 85
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 86
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 87
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 88
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 89
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 90
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 91
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 92
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 93
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 94
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 95
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 96
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 97
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 98
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 arithmetic/algebra evaluation-only cases > case 99
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 0
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 1
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 2
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 3
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 4
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 5
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 6
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 7
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 8
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 9
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 10
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 11
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 12
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 13
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 14
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 15
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 16
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 17
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 18
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 19
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 20
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 21
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 22
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 23
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 24
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 25
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 26
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 27
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 28
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 29
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 30
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 31
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 32
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 33
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 34
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 35
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 36
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 37
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 38
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 39
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 40
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 41
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 42
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 43
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 44
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 45
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 46
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 47
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 48
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 49
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 50
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 51
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 52
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 53
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 54
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 55
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 56
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 57
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 58
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 59
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 60
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 61
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 62
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 63
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 64
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 65
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 66
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 67
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 68
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 69
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 70
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 71
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 72
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 73
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 74
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 75
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 76
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 77
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 78
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 79
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 80
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 81
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 82
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 83
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 84
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 85
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 86
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 87
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 88
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 89
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 90
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 91
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 92
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 93
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 94
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 95
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 96
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 97
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 98
+ ↓ src/math-robo/kernel/kernel.test.ts > 100 geometry/coordinate cases > case 99
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 0
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 1
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 2
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 3
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 4
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 5
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 6
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 7
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 8
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 9
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 10
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 11
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 12
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 13
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 14
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 15
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 16
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 17
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 18
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 19
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 20
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 21
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 22
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 23
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 24
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 25
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 26
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 27
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 28
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 29
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 30
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 31
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 32
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 33
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 34
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 35
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 36
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 37
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 38
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 39
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 40
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 41
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 42
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 43
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 44
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 45
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 46
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 47
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 48
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 49
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 50
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 51
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 52
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 53
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 54
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 55
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 56
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 57
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 58
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 59
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 60
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 61
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 62
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 63
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 64
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 65
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 66
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 67
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 68
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 69
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 70
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 71
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 72
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 73
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 trigonometry/calculus cases > case 74
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 0
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 1
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 2
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 3
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 4
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 5
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 6
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 7
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 8
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 9
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 10
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 11
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 12
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 13
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 14
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 15
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 16
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 17
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 18
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 19
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 20
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 21
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 22
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 23
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 24
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 25
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 26
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 27
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 28
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 29
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 30
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 31
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 32
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 33
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 34
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 35
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 36
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 37
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 38
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 39
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 40
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 41
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 42
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 43
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 44
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 45
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 46
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 47
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 48
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 49
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 50
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 51
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 52
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 53
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 54
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 55
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 56
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 57
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 58
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 59
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 60
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 61
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 62
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 63
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 64
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 65
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 66
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 67
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 68
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 69
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 70
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 71
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 72
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 73
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 3D/linear algebra cases > case 74
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 0
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 1
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 2
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 3
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 4
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 5
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 6
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 7
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 8
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 9
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 10
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 11
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 12
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 13
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 14
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 15
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 16
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 17
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 18
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 19
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 20
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 21
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 22
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 23
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 24
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 25
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 26
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 27
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 28
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 29
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 30
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 31
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 32
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 33
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 34
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 35
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 36
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 37
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 38
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 39
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 40
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 41
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 42
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 43
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 44
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 45
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 46
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 47
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 48
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 49
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 50
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 51
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 52
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 53
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 54
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 55
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 56
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 57
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 58
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 59
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 60
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 61
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 62
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 63
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 64
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 65
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 66
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 67
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 68
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 69
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 70
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 71
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 72
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 73
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 statistics/differential equation cases > case 74
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 0
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 1
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 2
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 3
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 4
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 5
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 6
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 7
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 8
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 9
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 10
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 11
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 12
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 13
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 14
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 15
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 16
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 17
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 18
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 19
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 20
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 21
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 22
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 23
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 24
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 25
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 26
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 27
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 28
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 29
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 30
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 31
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 32
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 33
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 34
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 35
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 36
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 37
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 38
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 39
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 40
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 41
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 42
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 43
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 44
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 45
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 46
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 47
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 48
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 49
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 50
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 51
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 52
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 53
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 54
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 55
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 56
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 57
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 58
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 59
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 60
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 61
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 62
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 63
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 64
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 65
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 66
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 67
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 68
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 69
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 70
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 71
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 72
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 73
+ ↓ src/math-robo/kernel/kernel.test.ts > 75 reasoning/explanation/adversarial cases > case 74
+ ↓ src/math-robo/kernel/kernel.test.ts > held-out safety and exact examples (not training) > keeps thirds exact
+ ↓ src/math-robo/kernel/kernel.test.ts > held-out safety and exact examples (not training) > simplifies a radical
+ ↓ src/math-robo/kernel/kernel.test.ts > held-out safety and exact examples (not training) > keeps exact trigonometry
+ ↓ src/math-robo/kernel/kernel.test.ts > held-out safety and exact examples (not training) > rejects the extraneous radical root
+ ↓ src/math-robo/kernel/kernel.test.ts > held-out safety and exact examples (not training) > requests tangent point and commits verified tangent
+ ↓ src/math-robo/kernel/kernel.test.ts > held-out safety and exact examples (not training) > rejects an off-circle tangent
+ ↓ src/math-robo/kernel/kernel.test.ts > held-out safety and exact examples (not training) > separates incomplete requests
+ ↓ src/math-robo/kernel/kernel.test.ts > held-out safety and exact examples (not training) > rejects pathological nesting before parsing
+ ↓ src/math-robo/kernel/kernel.test.ts > held-out safety and exact examples (not training) > rejects singular inverse
+ ↓ src/math-robo/kernel/kernel.test.ts > held-out safety and exact examples (not training) > returns every tied mode
+ ↓ src/math-robo/kernel/kernel.test.ts > held-out safety and exact examples (not training) > rejects empty statistics
+ ↓ src/math-robo/kernel/kernel.test.ts > held-out safety and exact examples (not training) > retains exact huge integer
+ ↓ src/math-robo/kernel/kernel.test.ts > held-out safety and exact examples (not training) > half-even rounding is controlled
+
+ Test Files  1 skipped (1)
+      Tests  513 skipped (513)
+   Start at  11:58:17
+   Duration  1.76s (transform 508ms, setup 37ms, import 1.54s, tests 0ms, environment 0ms)
+

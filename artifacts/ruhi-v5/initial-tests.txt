@@ -1,0 +1,54 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+··························xx··········································································································································································································································································································································································································································································
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > builds grouped starter rows and forbids executable context strings
+Error: Row 1161: Error: Provide points for create.
+ ❯ fail src/math-robo/intelligence/semanticDataset.ts:19:78
+     17|   if(!input.length||input.length>100000)throw new Error('Provide 1 to …
+     18|   return input.map((value,index)=>{
+     19|     const row=value as SemanticRow;const fail=(message:string):never=>…
+       |                                                                              ^
+     20|     if(!row||typeof row.phrase!=='string'||!row.phrase.trim()||row.phr…
+     21|     if(!['normal','graph2d','graph3d','geometry2d','geometry3d'].inclu…
+ ❯ src/math-robo/intelligence/semanticDataset.ts:26:328
+ ❯ validateSemanticRows src/math-robo/intelligence/semanticDataset.ts:18:16
+ ❯ src/math-robo/intelligence/semanticEngine.test.ts:116:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > verifies at least one runnable example for every implemented operation
+AssertionError: expected [ 'CREATE:RAY', 'CREATE:VECTOR', …(4) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "CREATE:RAY",
++   "CREATE:VECTOR",
++   "FIND:COMPONENTS",
++   "FIND:DIRECTION",
++   "FIND:PARAMETERIZATION",
++   "FIND:MAGNITUDE",
++ ]
+
+ ❯ src/math-robo/intelligence/semanticEngine.test.ts:130:21
+    128|       if(!passed)missing.push(`${op.action}:${op.subAction}`);
+    129|     }
+    130|     expect(missing).toEqual([]);
+       |                     ^
+    131|   });
+    132|   it('keeps 100,000 rows bounded and template groups isolated',()=>{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 484 passed (486)
+   Start at  10:59:32
+   Duration  7.27s (transform 641ms, setup 60ms, import 1.57s, tests 5.37s, environment 0ms)
+

@@ -1,0 +1,1502 @@
+{
+  "records": [
+    {
+      "id": "RUHI2D-002",
+      "expected": {
+        "action": "CREATE",
+        "subAction": "RECTANGLE",
+        "mode": "graph2d",
+        "objectType": "rectangle"
+      },
+      "predicted": {
+        "action": {
+          "label": "CREATE",
+          "score": 0.9769442677497864
+        },
+        "subAction": {
+          "label": "RECTANGLE",
+          "score": 0.41272133588790894
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9999529123306274
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.6079477071762085
+        }
+      },
+      "input": "Make a rectangle with its lower-left corner at (-2,-1), width 6 and height 4.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "CREATE",
+          "subAction": "RECTANGLE",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary heads agree"
+    },
+    {
+      "id": "RUHI2D-009",
+      "expected": {
+        "action": "CREATE",
+        "subAction": "RHOMBUS",
+        "mode": "graph2d",
+        "objectType": "rhombus"
+      },
+      "predicted": {
+        "action": {
+          "label": "CREATE",
+          "score": 0.9113070964813232
+        },
+        "subAction": {
+          "label": "POINT",
+          "score": 0.7315983772277832
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9993809461593628
+        },
+        "objectType": {
+          "label": "point",
+          "score": 0.7869613766670227
+        }
+      },
+      "input": "Draw a regular rhombus centered at (-2,1) with circumradius 3.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "CREATE",
+          "subAction": "POLYGON",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-038",
+      "expected": {
+        "action": "CREATE",
+        "subAction": "FUNCTION",
+        "mode": "graph2d",
+        "objectType": "plot"
+      },
+      "predicted": {
+        "action": {
+          "label": "PLOT",
+          "score": 0.9149510860443115
+        },
+        "subAction": {
+          "label": "FUNCTION",
+          "score": 0.7835423350334167
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9961782693862915
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.999963641166687
+        }
+      },
+      "input": "Draw y=0*x+(-3) on the coordinate plane.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "PLOT",
+          "subAction": "FUNCTION",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-039",
+      "expected": {
+        "action": "CREATE",
+        "subAction": "FUNCTION",
+        "mode": "graph2d",
+        "objectType": "plot"
+      },
+      "predicted": {
+        "action": {
+          "label": "PLOT",
+          "score": 0.9982367753982544
+        },
+        "subAction": {
+          "label": "FUNCTION",
+          "score": 0.9349372982978821
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9995061159133911
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9997649788856506
+        }
+      },
+      "input": "Graph y = 1x + -2.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "PLOT",
+          "subAction": "FUNCTION",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-040",
+      "expected": {
+        "action": "CREATE",
+        "subAction": "FUNCTION",
+        "mode": "graph2d",
+        "objectType": "plot"
+      },
+      "predicted": {
+        "action": {
+          "label": "PLOT",
+          "score": 0.9924635887145996
+        },
+        "subAction": {
+          "label": "FUNCTION",
+          "score": 0.8971614241600037
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.996023416519165
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9999669790267944
+        }
+      },
+      "input": "Plot the function f(x) = 2x + -1.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "PLOT",
+          "subAction": "FUNCTION",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-046",
+      "expected": {
+        "action": "CREATE",
+        "subAction": "FUNCTION",
+        "mode": "graph2d",
+        "objectType": "plot"
+      },
+      "predicted": {
+        "action": {
+          "label": "PLOT",
+          "score": 0.9149510860443115
+        },
+        "subAction": {
+          "label": "FUNCTION",
+          "score": 0.7835423350334167
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9961782693862915
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.999963641166687
+        }
+      },
+      "input": "Draw y=-2*x+(-2) on the coordinate plane.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "PLOT",
+          "subAction": "FUNCTION",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-047",
+      "expected": {
+        "action": "CREATE",
+        "subAction": "FUNCTION",
+        "mode": "graph2d",
+        "objectType": "plot"
+      },
+      "predicted": {
+        "action": {
+          "label": "PLOT",
+          "score": 0.9982367753982544
+        },
+        "subAction": {
+          "label": "FUNCTION",
+          "score": 0.9349372982978821
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9995061159133911
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9997649788856506
+        }
+      },
+      "input": "Graph y = -1x + -1.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "PLOT",
+          "subAction": "FUNCTION",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-051",
+      "expected": {
+        "action": "MOVE",
+        "subAction": "OBJECT",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "CREATE",
+          "score": 0.839881956577301
+        },
+        "subAction": {
+          "label": "OBJECT",
+          "score": 0.6725397109985352
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9998303651809692
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9390152096748352
+        }
+      },
+      "input": "Move the selected triangle 1 units right.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "MOVE",
+          "subAction": "OBJECT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-072",
+      "expected": {
+        "action": "CHANGE",
+        "subAction": "COLOR",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "FIND",
+          "score": 0.48587486147880554
+        },
+        "subAction": {
+          "label": "LAST",
+          "score": 0.16076773405075073
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9999864101409912
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.999915599822998
+        }
+      },
+      "input": "Change that triangle's interior to red.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "CHANGE",
+          "subAction": "FILL_COLOR",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-090",
+      "expected": {
+        "action": "ROTATE",
+        "subAction": "OBJECT",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "ROTATE",
+          "score": 0.659002959728241
+        },
+        "subAction": {
+          "label": "OBJECT",
+          "score": 0.9722996950149536
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9999963045120239
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9978801012039185
+        }
+      },
+      "input": "Rotate the selected triangle 75 degrees counterclockwise about its origin.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "ROTATE",
+          "subAction": "OBJECT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary heads agree"
+    },
+    {
+      "id": "RUHI2D-123",
+      "expected": {
+        "action": "CHANGE",
+        "subAction": "COLOR",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "CHANGE",
+          "score": 0.7208468914031982
+        },
+        "subAction": {
+          "label": "LENGTH",
+          "score": 0.29549500346183777
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9993038177490234
+        },
+        "objectType": {
+          "label": "none",
+          "score": 1
+        }
+      },
+      "input": "Make its two sides thicker and change the angle mark to violet.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "CHANGE",
+          "subAction": "LINE_WIDTH",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "CHANGE",
+          "subAction": "STROKE_COLOR",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-124",
+      "expected": {
+        "action": "UNDO",
+        "subAction": "LAST",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "FIND",
+          "score": 0.42581045627593994
+        },
+        "subAction": {
+          "label": "PERIMETER",
+          "score": 0.2540684938430786
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.992681086063385
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9999978542327881
+        }
+      },
+      "input": "Actually, undo only the colour change, not the thickness.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "UNDO",
+          "subAction": "LAST",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-131",
+      "expected": {
+        "action": "CHANGE",
+        "subAction": "COLOR",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "CHANGE",
+          "score": 0.7208468914031982
+        },
+        "subAction": {
+          "label": "LENGTH",
+          "score": 0.29549500346183777
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9993038177490234
+        },
+        "objectType": {
+          "label": "none",
+          "score": 1
+        }
+      },
+      "input": "Make its two sides thicker and change the angle mark to violet.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "CHANGE",
+          "subAction": "LINE_WIDTH",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "CHANGE",
+          "subAction": "STROKE_COLOR",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-132",
+      "expected": {
+        "action": "UNDO",
+        "subAction": "LAST",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "FIND",
+          "score": 0.42581045627593994
+        },
+        "subAction": {
+          "label": "PERIMETER",
+          "score": 0.2540684938430786
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.992681086063385
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9999978542327881
+        }
+      },
+      "input": "Actually, undo only the colour change, not the thickness.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "UNDO",
+          "subAction": "LAST",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-172",
+      "expected": {
+        "action": "MOVE",
+        "subAction": "OBJECT",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "MOVE",
+          "score": 0.6224565505981445
+        },
+        "subAction": {
+          "label": "OBJECT",
+          "score": 0.9546017646789551
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9924842715263367
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.8394612669944763
+        }
+      },
+      "input": "Move vertex C right by 1 unit.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "MOVE",
+          "subAction": "OBJECT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary heads agree"
+    },
+    {
+      "id": "RUHI2D-184",
+      "expected": {
+        "action": "MOVE",
+        "subAction": "OBJECT",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "MOVE",
+          "score": 0.6224565505981445
+        },
+        "subAction": {
+          "label": "OBJECT",
+          "score": 0.9546017646789551
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9924842715263367
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.8394612669944763
+        }
+      },
+      "input": "Move vertex C right by 1 unit.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "MOVE",
+          "subAction": "OBJECT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary heads agree"
+    },
+    {
+      "id": "RUHI2D-200",
+      "expected": {
+        "action": "MOVE",
+        "subAction": "OBJECT",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "MOVE",
+          "score": 0.3562968969345093
+        },
+        "subAction": {
+          "label": "OBJECT",
+          "score": 0.9717860817909241
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.6021704077720642
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9985564351081848
+        }
+      },
+      "input": "Move it 2 units left.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "MOVE",
+          "subAction": "OBJECT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary heads agree"
+    },
+    {
+      "id": "RUHI2D-210",
+      "expected": {
+        "action": "CREATE",
+        "subAction": "TRIANGLE",
+        "mode": "graph2d",
+        "objectType": "triangle"
+      },
+      "predicted": {
+        "action": {
+          "label": "CREATE",
+          "score": 0.9087275862693787
+        },
+        "subAction": {
+          "label": "POINT",
+          "score": 0.4002864360809326
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9999614953994751
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.6072231531143188
+        }
+      },
+      "input": "Draw a triangle A7B7C7 with vertices (0,0), (6,0), (2,6); then construct its centroid and label it G7.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "MARK",
+          "subAction": "CENTROID",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "CHANGE",
+          "subAction": "LABEL",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-218",
+      "expected": {
+        "action": "CREATE",
+        "subAction": "TRIANGLE",
+        "mode": "graph2d",
+        "objectType": "triangle"
+      },
+      "predicted": {
+        "action": {
+          "label": "CREATE",
+          "score": 0.9087275862693787
+        },
+        "subAction": {
+          "label": "POINT",
+          "score": 0.4002864360809326
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9999614953994751
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.6072231531143188
+        }
+      },
+      "input": "Draw a triangle A15B15C15 with vertices (0,0), (4,0), (2,6); then construct its centroid and label it G15.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "MARK",
+          "subAction": "CENTROID",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "CHANGE",
+          "subAction": "LABEL",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-222",
+      "expected": {
+        "action": "CREATE",
+        "subAction": "TRIANGLE",
+        "mode": "graph2d",
+        "objectType": "triangle"
+      },
+      "predicted": {
+        "action": {
+          "label": "CREATE",
+          "score": 0.9087275862693787
+        },
+        "subAction": {
+          "label": "POINT",
+          "score": 0.4002864360809326
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9999614953994751
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.6072231531143188
+        }
+      },
+      "input": "Draw a triangle A19B19C19 with vertices (0,0), (8,0), (2,6); then construct its centroid and label it G19.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "MARK",
+          "subAction": "CENTROID",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "CHANGE",
+          "subAction": "LABEL",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-248",
+      "expected": {
+        "action": "FIND",
+        "subAction": "INTERSECTION",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "MARK",
+          "score": 0.445589542388916
+        },
+        "subAction": {
+          "label": "FUNCTION",
+          "score": 0.6605173349380493
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9997993111610413
+        },
+        "objectType": {
+          "label": "none",
+          "score": 1
+        }
+      },
+      "input": "Find the intersection of y=2x+1 and y=-x+10, put a dot there, and call it P5.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "PLOT",
+          "subAction": "FUNCTION",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "PLOT",
+          "subAction": "FUNCTION",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "FIND",
+          "subAction": "INTERSECTION",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "MARK",
+          "subAction": "POINT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "CHANGE",
+          "subAction": "LABEL",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-249",
+      "expected": {
+        "action": "FIND",
+        "subAction": "INTERSECTION",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "MARK",
+          "score": 0.445589542388916
+        },
+        "subAction": {
+          "label": "FUNCTION",
+          "score": 0.6605173349380493
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9997993111610413
+        },
+        "objectType": {
+          "label": "none",
+          "score": 1
+        }
+      },
+      "input": "Find the intersection of y=3x+1 and y=-x+11, put a dot there, and call it P6.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "PLOT",
+          "subAction": "FUNCTION",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "PLOT",
+          "subAction": "FUNCTION",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "FIND",
+          "subAction": "INTERSECTION",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "MARK",
+          "subAction": "POINT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "CHANGE",
+          "subAction": "LABEL",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-258",
+      "expected": {
+        "action": "CONSTRUCT",
+        "subAction": "PERPENDICULAR",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "CONSTRUCT",
+          "score": 0.6506502032279968
+        },
+        "subAction": {
+          "label": "PERPENDICULAR_BISECTOR",
+          "score": 0.3788725733757019
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9999949932098389
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9829317331314087
+        }
+      },
+      "input": "Draw a perpendicular from vertex A of triangle T0 onto side BC, then extend the perpendicular until it hits the x-axis.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "CONSTRUCT",
+          "subAction": "ALTITUDE",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "EXTEND",
+          "subAction": "OBJECT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-259",
+      "expected": {
+        "action": "CONSTRUCT",
+        "subAction": "PERPENDICULAR",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "CONSTRUCT",
+          "score": 0.6506502032279968
+        },
+        "subAction": {
+          "label": "PERPENDICULAR_BISECTOR",
+          "score": 0.3788725733757019
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9999949932098389
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9829317331314087
+        }
+      },
+      "input": "Draw a perpendicular from vertex A of triangle T1 onto side BC, then extend the perpendicular until it hits the x-axis.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "CONSTRUCT",
+          "subAction": "ALTITUDE",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "EXTEND",
+          "subAction": "OBJECT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-262",
+      "expected": {
+        "action": "CONSTRUCT",
+        "subAction": "PERPENDICULAR",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "CONSTRUCT",
+          "score": 0.6506502032279968
+        },
+        "subAction": {
+          "label": "PERPENDICULAR_BISECTOR",
+          "score": 0.3788725733757019
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9999949932098389
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9829317331314087
+        }
+      },
+      "input": "Draw a perpendicular from vertex A of triangle T4 onto side BC, then extend the perpendicular until it hits the x-axis.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "CONSTRUCT",
+          "subAction": "ALTITUDE",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "EXTEND",
+          "subAction": "OBJECT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-271",
+      "expected": {
+        "action": "CONSTRUCT",
+        "subAction": "PERPENDICULAR",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "CONSTRUCT",
+          "score": 0.6506502032279968
+        },
+        "subAction": {
+          "label": "PERPENDICULAR_BISECTOR",
+          "score": 0.3788725733757019
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9999949932098389
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9829317331314087
+        }
+      },
+      "input": "Draw a perpendicular from vertex A of triangle T13 onto side BC, then extend the perpendicular until it hits the x-axis.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "CONSTRUCT",
+          "subAction": "ALTITUDE",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "EXTEND",
+          "subAction": "OBJECT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    },
+    {
+      "id": "RUHI2D-283",
+      "expected": {
+        "action": "REFLECT",
+        "subAction": "Y_AXIS",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "REFLECT",
+          "score": 0.9367404580116272
+        },
+        "subAction": {
+          "label": "Y_AXIS",
+          "score": 0.6882710456848145
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9999929666519165
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9996756315231323
+        }
+      },
+      "input": "Use the upper triangle, not the lower one. Reflect it across the y-axis, but leave the original visible.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "SELECT",
+          "subAction": "OBJECT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "REFLECT",
+          "subAction": "Y_AXIS",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary heads agree"
+    },
+    {
+      "id": "RUHI2D-284",
+      "expected": {
+        "action": "REFLECT",
+        "subAction": "Y_AXIS",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "REFLECT",
+          "score": 0.9367404580116272
+        },
+        "subAction": {
+          "label": "Y_AXIS",
+          "score": 0.6882710456848145
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9999929666519165
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9996756315231323
+        }
+      },
+      "input": "Use the upper triangle, not the lower one. Reflect it across the y-axis, but leave the original visible.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "SELECT",
+          "subAction": "OBJECT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "REFLECT",
+          "subAction": "Y_AXIS",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary heads agree"
+    },
+    {
+      "id": "RUHI2D-294",
+      "expected": {
+        "action": "MARK",
+        "subAction": "MIDPOINT",
+        "mode": "graph2d",
+        "objectType": "none"
+      },
+      "predicted": {
+        "action": {
+          "label": "FIND",
+          "score": 0.49017003178596497
+        },
+        "subAction": {
+          "label": "MIDPOINT",
+          "score": 0.8399608135223389
+        },
+        "mode": {
+          "label": "graph2d",
+          "score": 0.9989287257194519
+        },
+        "objectType": {
+          "label": "none",
+          "score": 0.9999996423721313
+        }
+      },
+      "input": "Find the midpoint of segment A3B3, label it M3, and make the midpoint marker red.",
+      "compatible": true,
+      "classifierProposedCommand": false,
+      "hybridNeuralUsage": "A prediction is computed for most non-kernel requests; this flag records accepted model-sourced commands, not causal use by all fallback classifiers.",
+      "parser": [
+        {
+          "action": "MARK",
+          "subAction": "MIDPOINT",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "CHANGE",
+          "subAction": "LABEL",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        },
+        {
+          "action": "CHANGE",
+          "subAction": "STROKE_COLOR",
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          }
+        }
+      ],
+      "finalExecution": "passed",
+      "rootCause": "Primary head disagreement. Hashed phrase/mode features omit object identities and conversational context; per-sample causal attribution remains a diagnosis, not a proven counterfactual."
+    }
+  ],
+  "incompatible": [
+    {
+      "id": "RUHI2D-010",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-121",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-122",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-129",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-130",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-171",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-183",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-199",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-223",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-229",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-232",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-238",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-279",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-280",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    }
+  ],
+  "limits": "Historical primary labels score first action only; complex plans are not represented by one categorical output. Object-type expectations use the original compatibility mapping and are not independent target-resolution truth."
+}

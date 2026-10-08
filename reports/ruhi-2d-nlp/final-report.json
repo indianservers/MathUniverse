@@ -1,0 +1,3064 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-08T10:24:31.463490+00:00",
+  "stoppingCondition": "USER_REQUESTED_STOP: six cycles considered sufficient; nine had already completed when the request arrived. No more cycles or production builds started.",
+  "completedCycles": 9,
+  "dataset": {
+    "total": 300,
+    "valid": 300,
+    "invalid": 0,
+    "ambiguous": 3,
+    "issues": [
+      {
+        "id": "RUHI2D-010",
+        "invalid": [],
+        "warnings": [
+          "A regular trapezoid has no unique conventional definition; do not silently invent vertices."
+        ]
+      },
+      {
+        "id": "RUHI2D-020",
+        "invalid": [],
+        "warnings": [
+          "A regular trapezoid has no unique conventional definition; do not silently invent vertices."
+        ]
+      },
+      {
+        "id": "RUHI2D-030",
+        "invalid": [],
+        "warnings": [
+          "A regular trapezoid has no unique conventional definition; do not silently invent vertices."
+        ]
+      },
+      {
+        "id": "RUHI2D-101",
+        "invalid": [],
+        "warnings": [
+          "Illustrative angle 70 disagrees with coordinates (68.1985905136482); coordinate fixture is authoritative."
+        ]
+      },
+      {
+        "id": "RUHI2D-105",
+        "invalid": [],
+        "warnings": [
+          "Illustrative angle 73 disagrees with coordinates (51.34019174590991); coordinate fixture is authoritative."
+        ]
+      },
+      {
+        "id": "RUHI2D-109",
+        "invalid": [],
+        "warnings": [
+          "Illustrative angle 76 disagrees with coordinates (68.1985905136482); coordinate fixture is authoritative."
+        ]
+      },
+      {
+        "id": "RUHI2D-113",
+        "invalid": [],
+        "warnings": [
+          "Illustrative angle 79 disagrees with coordinates (51.34019174590991); coordinate fixture is authoritative."
+        ]
+      },
+      {
+        "id": "RUHI2D-117",
+        "invalid": [],
+        "warnings": [
+          "Illustrative angle 82 disagrees with coordinates (68.1985905136482); coordinate fixture is authoritative."
+        ]
+      },
+      {
+        "id": "RUHI2D-121",
+        "invalid": [],
+        "warnings": [
+          "Illustrative angle 70 disagrees with coordinates (51.34019174590991); coordinate fixture is authoritative."
+        ]
+      },
+      {
+        "id": "RUHI2D-125",
+        "invalid": [],
+        "warnings": [
+          "Illustrative angle 73 disagrees with coordinates (68.1985905136482); coordinate fixture is authoritative."
+        ]
+      },
+      {
+        "id": "RUHI2D-129",
+        "invalid": [],
+        "warnings": [
+          "Illustrative angle 76 disagrees with coordinates (51.34019174590991); coordinate fixture is authoritative."
+        ]
+      },
+      {
+        "id": "RUHI2D-133",
+        "invalid": [],
+        "warnings": [
+          "Illustrative angle 79 disagrees with coordinates (68.1985905136482); coordinate fixture is authoritative."
+        ]
+      },
+      {
+        "id": "RUHI2D-137",
+        "invalid": [],
+        "warnings": [
+          "Illustrative angle 82 disagrees with coordinates (51.34019174590991); coordinate fixture is authoritative."
+        ]
+      },
+      {
+        "id": "RUHI2D-141",
+        "invalid": [],
+        "warnings": [
+          "Illustrative angle 70 disagrees with coordinates (68.1985905136482); coordinate fixture is authoritative."
+        ]
+      },
+      {
+        "id": "RUHI2D-145",
+        "invalid": [],
+        "warnings": [
+          "Illustrative angle 73 disagrees with coordinates (51.34019174590991); coordinate fixture is authoritative."
+        ]
+      },
+      {
+        "id": "RUHI2D-223",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-224",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-225",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-226",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-227",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-228",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-229",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-230",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-231",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-232",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-233",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-234",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-235",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-236",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-237",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-238",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-239",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-240",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-241",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-242",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-258",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-259",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-260",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-261",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-262",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-263",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-264",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-265",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-266",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-267",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-268",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-269",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-270",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-271",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-272",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-273",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-274",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-275",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-276",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-277",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-278",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-279",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-280",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-281",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-282",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-283",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-284",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-285",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-286",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-287",
+        "invalid": [],
+        "warnings": [
+          "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+        ]
+      },
+      {
+        "id": "RUHI2D-291",
+        "invalid": [],
+        "warnings": [
+          "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+        ]
+      },
+      {
+        "id": "RUHI2D-292",
+        "invalid": [],
+        "warnings": [
+          "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+        ]
+      },
+      {
+        "id": "RUHI2D-293",
+        "invalid": [],
+        "warnings": [
+          "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+        ]
+      },
+      {
+        "id": "RUHI2D-294",
+        "invalid": [],
+        "warnings": [
+          "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+        ]
+      },
+      {
+        "id": "RUHI2D-295",
+        "invalid": [],
+        "warnings": [
+          "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+        ]
+      },
+      {
+        "id": "RUHI2D-296",
+        "invalid": [],
+        "warnings": [
+          "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+        ]
+      },
+      {
+        "id": "RUHI2D-297",
+        "invalid": [],
+        "warnings": [
+          "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+        ]
+      },
+      {
+        "id": "RUHI2D-298",
+        "invalid": [],
+        "warnings": [
+          "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+        ]
+      },
+      {
+        "id": "RUHI2D-299",
+        "invalid": [],
+        "warnings": [
+          "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+        ]
+      },
+      {
+        "id": "RUHI2D-300",
+        "invalid": [],
+        "warnings": [
+          "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+        ]
+      }
+    ],
+    "sourcePath": "C:/Users/saisa/Downloads/ruhi_2d_nlp_300_dataset.json",
+    "sourceSha256": "7499a56f64767f18c880ba53e33870db43038aed7130b44a4eb54f220b55532f",
+    "fixturePolicy": "For absent geometry: triangle (0,0),(6,0),(2,5); circle centered (0,0), radius 4; rectangle centered (0,0), 4\u00d76; line (0,0) to (6,2); segment (0,0) to (6,4); upper/lower triangles y\u00b16; two conditional lines y=x and y=-x. Existing scenario state is retained. These are test fixtures, never runtime assumptions."
+  },
+  "partition": {
+    "seed": "ruhi2d-seed-2026",
+    "counts": {
+      "train": 210,
+      "validation": 47,
+      "test": 43
+    },
+    "scenarios": 237,
+    "records": [
+      {
+        "id": "RUHI2D-001",
+        "scenarioId": "S-001",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-002",
+        "scenarioId": "S-002",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-003",
+        "scenarioId": "S-003",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-004",
+        "scenarioId": "S-004",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-005",
+        "scenarioId": "S-005",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-006",
+        "scenarioId": "S-006",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-007",
+        "scenarioId": "S-007",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-008",
+        "scenarioId": "S-008",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-009",
+        "scenarioId": "S-009",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-010",
+        "scenarioId": "S-010",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-011",
+        "scenarioId": "S-011",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-012",
+        "scenarioId": "S-012",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-013",
+        "scenarioId": "S-013",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-014",
+        "scenarioId": "S-014",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-015",
+        "scenarioId": "S-015",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-016",
+        "scenarioId": "S-016",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-017",
+        "scenarioId": "S-017",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-018",
+        "scenarioId": "S-018",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-019",
+        "scenarioId": "S-019",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-020",
+        "scenarioId": "S-020",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-021",
+        "scenarioId": "S-021",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-022",
+        "scenarioId": "S-022",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-023",
+        "scenarioId": "S-023",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-024",
+        "scenarioId": "S-024",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-025",
+        "scenarioId": "S-025",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-026",
+        "scenarioId": "S-026",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-027",
+        "scenarioId": "S-027",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-028",
+        "scenarioId": "S-028",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-029",
+        "scenarioId": "S-029",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-030",
+        "scenarioId": "S-030",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-031",
+        "scenarioId": "S-031",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-032",
+        "scenarioId": "S-032",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-033",
+        "scenarioId": "S-033",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-034",
+        "scenarioId": "S-034",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-035",
+        "scenarioId": "S-035",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-036",
+        "scenarioId": "S-036",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-037",
+        "scenarioId": "S-037",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-038",
+        "scenarioId": "S-038",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-039",
+        "scenarioId": "S-039",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-040",
+        "scenarioId": "S-040",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-041",
+        "scenarioId": "S-041",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-042",
+        "scenarioId": "S-042",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-043",
+        "scenarioId": "S-043",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-044",
+        "scenarioId": "S-044",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-045",
+        "scenarioId": "S-045",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-046",
+        "scenarioId": "S-046",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-047",
+        "scenarioId": "S-047",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-048",
+        "scenarioId": "S-048",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-049",
+        "scenarioId": "S-049",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-050",
+        "scenarioId": "S-050",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-051",
+        "scenarioId": "S-051",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-052",
+        "scenarioId": "S-052",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-053",
+        "scenarioId": "S-053",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-054",
+        "scenarioId": "S-054",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-055",
+        "scenarioId": "S-055",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-056",
+        "scenarioId": "S-056",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-057",
+        "scenarioId": "S-057",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-058",
+        "scenarioId": "S-058",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-059",
+        "scenarioId": "S-059",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-060",
+        "scenarioId": "S-060",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-061",
+        "scenarioId": "S-061",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-062",
+        "scenarioId": "S-062",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-063",
+        "scenarioId": "S-063",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-064",
+        "scenarioId": "S-064",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-065",
+        "scenarioId": "S-065",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-066",
+        "scenarioId": "S-066",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-067",
+        "scenarioId": "S-067",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-068",
+        "scenarioId": "S-068",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-069",
+        "scenarioId": "S-069",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-070",
+        "scenarioId": "S-070",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-071",
+        "scenarioId": "S-071",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-072",
+        "scenarioId": "S-072",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-073",
+        "scenarioId": "S-073",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-074",
+        "scenarioId": "S-074",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-075",
+        "scenarioId": "S-075",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-076",
+        "scenarioId": "S-076",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-077",
+        "scenarioId": "S-077",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-078",
+        "scenarioId": "S-078",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-079",
+        "scenarioId": "S-079",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-080",
+        "scenarioId": "S-080",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-081",
+        "scenarioId": "S-081",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-082",
+        "scenarioId": "S-082",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-083",
+        "scenarioId": "S-083",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-084",
+        "scenarioId": "S-084",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-085",
+        "scenarioId": "S-085",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-086",
+        "scenarioId": "S-086",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-087",
+        "scenarioId": "S-087",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-088",
+        "scenarioId": "S-088",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-089",
+        "scenarioId": "S-089",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-090",
+        "scenarioId": "S-090",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-091",
+        "scenarioId": "S-091",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-092",
+        "scenarioId": "S-092",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-093",
+        "scenarioId": "S-093",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-094",
+        "scenarioId": "S-094",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-095",
+        "scenarioId": "S-095",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-096",
+        "scenarioId": "S-096",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-097",
+        "scenarioId": "S-097",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-098",
+        "scenarioId": "S-098",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-099",
+        "scenarioId": "S-099",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-100",
+        "scenarioId": "S-100",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-101",
+        "scenarioId": "CONV-01",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-102",
+        "scenarioId": "CONV-01",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-103",
+        "scenarioId": "CONV-01",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-104",
+        "scenarioId": "CONV-01",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-105",
+        "scenarioId": "CONV-02",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-106",
+        "scenarioId": "CONV-02",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-107",
+        "scenarioId": "CONV-02",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-108",
+        "scenarioId": "CONV-02",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-109",
+        "scenarioId": "CONV-03",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-110",
+        "scenarioId": "CONV-03",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-111",
+        "scenarioId": "CONV-03",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-112",
+        "scenarioId": "CONV-03",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-113",
+        "scenarioId": "CONV-04",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-114",
+        "scenarioId": "CONV-04",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-115",
+        "scenarioId": "CONV-04",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-116",
+        "scenarioId": "CONV-04",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-117",
+        "scenarioId": "CONV-05",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-118",
+        "scenarioId": "CONV-05",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-119",
+        "scenarioId": "CONV-05",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-120",
+        "scenarioId": "CONV-05",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-121",
+        "scenarioId": "CONV-06",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-122",
+        "scenarioId": "CONV-06",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-123",
+        "scenarioId": "CONV-06",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-124",
+        "scenarioId": "CONV-06",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-125",
+        "scenarioId": "CONV-07",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-126",
+        "scenarioId": "CONV-07",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-127",
+        "scenarioId": "CONV-07",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-128",
+        "scenarioId": "CONV-07",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-129",
+        "scenarioId": "CONV-08",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-130",
+        "scenarioId": "CONV-08",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-131",
+        "scenarioId": "CONV-08",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-132",
+        "scenarioId": "CONV-08",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-133",
+        "scenarioId": "CONV-09",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-134",
+        "scenarioId": "CONV-09",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-135",
+        "scenarioId": "CONV-09",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-136",
+        "scenarioId": "CONV-09",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-137",
+        "scenarioId": "CONV-10",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-138",
+        "scenarioId": "CONV-10",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-139",
+        "scenarioId": "CONV-10",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-140",
+        "scenarioId": "CONV-10",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-141",
+        "scenarioId": "CONV-11",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-142",
+        "scenarioId": "CONV-11",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-143",
+        "scenarioId": "CONV-11",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-144",
+        "scenarioId": "CONV-11",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-145",
+        "scenarioId": "CONV-12",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-146",
+        "scenarioId": "CONV-12",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-147",
+        "scenarioId": "CONV-12",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-148",
+        "scenarioId": "CONV-12",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-149",
+        "scenarioId": "CLAR-01",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-150",
+        "scenarioId": "CLAR-01",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-151",
+        "scenarioId": "CLAR-02",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-152",
+        "scenarioId": "CLAR-02",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-153",
+        "scenarioId": "CLAR-03",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-154",
+        "scenarioId": "CLAR-03",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-155",
+        "scenarioId": "CLAR-04",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-156",
+        "scenarioId": "CLAR-04",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-157",
+        "scenarioId": "CLAR-05",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-158",
+        "scenarioId": "CLAR-05",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-159",
+        "scenarioId": "CLAR-06",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-160",
+        "scenarioId": "CLAR-06",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-161",
+        "scenarioId": "CLAR-07",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-162",
+        "scenarioId": "CLAR-07",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-163",
+        "scenarioId": "CLAR-08",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-164",
+        "scenarioId": "CLAR-08",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-165",
+        "scenarioId": "CLAR-09",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-166",
+        "scenarioId": "CLAR-09",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-167",
+        "scenarioId": "CLAR-10",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-168",
+        "scenarioId": "CLAR-10",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-169",
+        "scenarioId": "CLAR-11",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-170",
+        "scenarioId": "CLAR-11",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-171",
+        "scenarioId": "CLAR-12",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-172",
+        "scenarioId": "CLAR-12",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-173",
+        "scenarioId": "CLAR-13",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-174",
+        "scenarioId": "CLAR-13",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-175",
+        "scenarioId": "CLAR-14",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-176",
+        "scenarioId": "CLAR-14",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-177",
+        "scenarioId": "CLAR-15",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-178",
+        "scenarioId": "CLAR-15",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-179",
+        "scenarioId": "CLAR-16",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-180",
+        "scenarioId": "CLAR-16",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-181",
+        "scenarioId": "CLAR-17",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-182",
+        "scenarioId": "CLAR-17",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-183",
+        "scenarioId": "CLAR-18",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-184",
+        "scenarioId": "CLAR-18",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-185",
+        "scenarioId": "CLAR-19",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-186",
+        "scenarioId": "CLAR-19",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-187",
+        "scenarioId": "CLAR-20",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-188",
+        "scenarioId": "CLAR-20",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-189",
+        "scenarioId": "CLAR-21",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-190",
+        "scenarioId": "CLAR-21",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-191",
+        "scenarioId": "CLAR-22",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-192",
+        "scenarioId": "CLAR-22",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-193",
+        "scenarioId": "CLAR-23",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-194",
+        "scenarioId": "CLAR-23",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-195",
+        "scenarioId": "CLAR-24",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-196",
+        "scenarioId": "CLAR-24",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-197",
+        "scenarioId": "CLAR-25",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-198",
+        "scenarioId": "CLAR-25",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-199",
+        "scenarioId": "CLAR-26",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-200",
+        "scenarioId": "CLAR-26",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-201",
+        "scenarioId": "CLAR-27",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-202",
+        "scenarioId": "CLAR-27",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-203",
+        "scenarioId": "S-203",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-204",
+        "scenarioId": "S-204",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-205",
+        "scenarioId": "S-205",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-206",
+        "scenarioId": "S-206",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-207",
+        "scenarioId": "S-207",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-208",
+        "scenarioId": "S-208",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-209",
+        "scenarioId": "S-209",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-210",
+        "scenarioId": "S-210",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-211",
+        "scenarioId": "S-211",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-212",
+        "scenarioId": "S-212",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-213",
+        "scenarioId": "S-213",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-214",
+        "scenarioId": "S-214",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-215",
+        "scenarioId": "S-215",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-216",
+        "scenarioId": "S-216",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-217",
+        "scenarioId": "S-217",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-218",
+        "scenarioId": "S-218",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-219",
+        "scenarioId": "S-219",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-220",
+        "scenarioId": "S-220",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-221",
+        "scenarioId": "S-221",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-222",
+        "scenarioId": "S-222",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-223",
+        "scenarioId": "S-223",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-224",
+        "scenarioId": "S-224",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-225",
+        "scenarioId": "S-225",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-226",
+        "scenarioId": "S-226",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-227",
+        "scenarioId": "S-227",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-228",
+        "scenarioId": "S-228",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-229",
+        "scenarioId": "S-229",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-230",
+        "scenarioId": "S-230",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-231",
+        "scenarioId": "S-231",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-232",
+        "scenarioId": "S-232",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-233",
+        "scenarioId": "S-233",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-234",
+        "scenarioId": "S-234",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-235",
+        "scenarioId": "S-235",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-236",
+        "scenarioId": "S-236",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-237",
+        "scenarioId": "S-237",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-238",
+        "scenarioId": "S-238",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-239",
+        "scenarioId": "S-239",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-240",
+        "scenarioId": "S-240",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-241",
+        "scenarioId": "S-241",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-242",
+        "scenarioId": "S-242",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-243",
+        "scenarioId": "S-243",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-244",
+        "scenarioId": "S-244",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-245",
+        "scenarioId": "S-245",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-246",
+        "scenarioId": "S-246",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-247",
+        "scenarioId": "S-247",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-248",
+        "scenarioId": "S-248",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-249",
+        "scenarioId": "S-249",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-250",
+        "scenarioId": "S-250",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-251",
+        "scenarioId": "S-251",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-252",
+        "scenarioId": "S-252",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-253",
+        "scenarioId": "S-253",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-254",
+        "scenarioId": "S-254",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-255",
+        "scenarioId": "S-255",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-256",
+        "scenarioId": "S-256",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-257",
+        "scenarioId": "S-257",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-258",
+        "scenarioId": "S-258",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-259",
+        "scenarioId": "S-259",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-260",
+        "scenarioId": "S-260",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-261",
+        "scenarioId": "S-261",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-262",
+        "scenarioId": "S-262",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-263",
+        "scenarioId": "S-263",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-264",
+        "scenarioId": "S-264",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-265",
+        "scenarioId": "S-265",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-266",
+        "scenarioId": "S-266",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-267",
+        "scenarioId": "S-267",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-268",
+        "scenarioId": "S-268",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-269",
+        "scenarioId": "S-269",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-270",
+        "scenarioId": "S-270",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-271",
+        "scenarioId": "S-271",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-272",
+        "scenarioId": "S-272",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-273",
+        "scenarioId": "S-273",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-274",
+        "scenarioId": "S-274",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-275",
+        "scenarioId": "S-275",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-276",
+        "scenarioId": "S-276",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-277",
+        "scenarioId": "S-277",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-278",
+        "scenarioId": "S-278",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-279",
+        "scenarioId": "S-279",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-280",
+        "scenarioId": "S-280",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-281",
+        "scenarioId": "S-281",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-282",
+        "scenarioId": "S-282",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-283",
+        "scenarioId": "S-283",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-284",
+        "scenarioId": "S-284",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-285",
+        "scenarioId": "S-285",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-286",
+        "scenarioId": "S-286",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-287",
+        "scenarioId": "S-287",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-288",
+        "scenarioId": "S-288",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-289",
+        "scenarioId": "S-289",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-290",
+        "scenarioId": "S-290",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-291",
+        "scenarioId": "S-291",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-292",
+        "scenarioId": "S-292",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-293",
+        "scenarioId": "S-293",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-294",
+        "scenarioId": "S-294",
+        "split": "test"
+      },
+      {
+        "id": "RUHI2D-295",
+        "scenarioId": "S-295",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-296",
+        "scenarioId": "S-296",
+        "split": "validation"
+      },
+      {
+        "id": "RUHI2D-297",
+        "scenarioId": "S-297",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-298",
+        "scenarioId": "S-298",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-299",
+        "scenarioId": "S-299",
+        "split": "train"
+      },
+      {
+        "id": "RUHI2D-300",
+        "scenarioId": "S-300",
+        "split": "train"
+      }
+    ],
+    "scenarioLeakage": false,
+    "templateLeakage": "Repeated linguistic families remain across splits; final generalization claims require separate unseen paraphrases.",
+    "heldOutPolicy": "Original all-300 baseline/regression is labeled regression. Repairs use development records only; held-out is not used for training or checkpoint selection."
+  },
+  "baseline": {
+    "phase": "baseline",
+    "subset": "all",
+    "passed": 73,
+    "failed": 224,
+    "blocked": 3,
+    "total": 300,
+    "endToEndAccuracy": 0.24333333333333335,
+    "scenarios": {
+      "passed": 54,
+      "total": 237
+    },
+    "metrics": {
+      "intent": {
+        "passed": 191,
+        "total": 260,
+        "accuracy": 0.7346153846153847
+      },
+      "entities": {
+        "passed": 12,
+        "total": 101,
+        "accuracy": 0.1188118811881188
+      },
+      "numeric": {
+        "passed": 3,
+        "total": 11,
+        "accuracy": 0.2727272727272727
+      },
+      "context": {
+        "passed": 95,
+        "total": 108,
+        "accuracy": 0.8796296296296297
+      },
+      "clarification": {
+        "passed": 19,
+        "total": 27,
+        "accuracy": 0.7037037037037037
+      },
+      "geometry": {
+        "passed": 57,
+        "total": 236,
+        "accuracy": 0.24152542372881355
+      },
+      "execution": {
+        "passed": 109,
+        "total": 267,
+        "accuracy": 0.40823970037453183
+      },
+      "response": {
+        "passed": 131,
+        "total": 287,
+        "accuracy": 0.4564459930313589
+      }
+    }
+  },
+  "finalRegression": {
+    "phase": "cycle-09",
+    "subset": "all",
+    "passed": 297,
+    "failed": 0,
+    "blocked": 3,
+    "total": 300,
+    "endToEndAccuracy": 0.99,
+    "scenarios": {
+      "passed": 234,
+      "total": 237
+    },
+    "metrics": {
+      "intent": {
+        "passed": 260,
+        "total": 260,
+        "accuracy": 1
+      },
+      "entities": {
+        "passed": 101,
+        "total": 101,
+        "accuracy": 1
+      },
+      "numeric": {
+        "passed": 11,
+        "total": 11,
+        "accuracy": 1
+      },
+      "context": {
+        "passed": 108,
+        "total": 108,
+        "accuracy": 1
+      },
+      "clarification": {
+        "passed": 27,
+        "total": 27,
+        "accuracy": 1
+      },
+      "geometry": {
+        "passed": 239,
+        "total": 239,
+        "accuracy": 1
+      },
+      "execution": {
+        "passed": 267,
+        "total": 267,
+        "accuracy": 1
+      },
+      "response": {
+        "passed": 287,
+        "total": 287,
+        "accuracy": 1
+      }
+    },
+    "sourceFingerprint": "dceabf879d3c036175723d0d7fde3ab770be8c8d43de7bf9153803523aee9d3c"
+  },
+  "validation": {
+    "phase": "final-validation",
+    "subset": "validation",
+    "passed": 46,
+    "failed": 0,
+    "blocked": 1,
+    "total": 47,
+    "endToEndAccuracy": 0.9787234042553191,
+    "scenarios": {
+      "passed": 33,
+      "total": 34
+    },
+    "metrics": {
+      "intent": {
+        "passed": 42,
+        "total": 42,
+        "accuracy": 1
+      },
+      "entities": {
+        "passed": 15,
+        "total": 15,
+        "accuracy": 1
+      },
+      "numeric": {
+        "passed": 2,
+        "total": 2,
+        "accuracy": 1
+      },
+      "context": {
+        "passed": 15,
+        "total": 15,
+        "accuracy": 1
+      },
+      "clarification": {
+        "passed": 4,
+        "total": 4,
+        "accuracy": 1
+      },
+      "geometry": {
+        "passed": 37,
+        "total": 37,
+        "accuracy": 1
+      },
+      "execution": {
+        "passed": 41,
+        "total": 41,
+        "accuracy": 1
+      },
+      "response": {
+        "passed": 46,
+        "total": 46,
+        "accuracy": 1
+      }
+    },
+    "sourceFingerprint": "dceabf879d3c036175723d0d7fde3ab770be8c8d43de7bf9153803523aee9d3c"
+  },
+  "heldOut": {
+    "phase": "held-out",
+    "subset": "test",
+    "passed": 42,
+    "failed": 0,
+    "blocked": 1,
+    "total": 43,
+    "endToEndAccuracy": 0.9767441860465116,
+    "scenarios": {
+      "passed": 33,
+      "total": 34
+    },
+    "metrics": {
+      "intent": {
+        "passed": 37,
+        "total": 37,
+        "accuracy": 1
+      },
+      "entities": {
+        "passed": 12,
+        "total": 12,
+        "accuracy": 1
+      },
+      "numeric": {
+        "passed": 0,
+        "total": 0,
+        "accuracy": null
+      },
+      "context": {
+        "passed": 10,
+        "total": 10,
+        "accuracy": 1
+      },
+      "clarification": {
+        "passed": 3,
+        "total": 3,
+        "accuracy": 1
+      },
+      "geometry": {
+        "passed": 36,
+        "total": 36,
+        "accuracy": 1
+      },
+      "execution": {
+        "passed": 39,
+        "total": 39,
+        "accuracy": 1
+      },
+      "response": {
+        "passed": 40,
+        "total": 40,
+        "accuracy": 1
+      }
+    },
+    "sourceFingerprint": "dceabf879d3c036175723d0d7fde3ab770be8c8d43de7bf9153803523aee9d3c"
+  },
+  "independentProbes": {
+    "phase": "frozen-paraphrases-confirmation",
+    "subset": "all",
+    "passed": 16,
+    "failed": 0,
+    "blocked": 0,
+    "total": 16,
+    "endToEndAccuracy": 1,
+    "scenarios": {
+      "passed": 15,
+      "total": 15
+    },
+    "metrics": {
+      "intent": {
+        "passed": 15,
+        "total": 15,
+        "accuracy": 1
+      },
+      "entities": {
+        "passed": 6,
+        "total": 6,
+        "accuracy": 1
+      },
+      "numeric": {
+        "passed": 2,
+        "total": 2,
+        "accuracy": 1
+      },
+      "context": {
+        "passed": 5,
+        "total": 5,
+        "accuracy": 1
+      },
+      "clarification": {
+        "passed": 1,
+        "total": 1,
+        "accuracy": 1
+      },
+      "geometry": {
+        "passed": 14,
+        "total": 14,
+        "accuracy": 1
+      },
+      "execution": {
+        "passed": 14,
+        "total": 14,
+        "accuracy": 1
+      },
+      "response": {
+        "passed": 16,
+        "total": 16,
+        "accuracy": 1
+      }
+    },
+    "sourceFingerprint": "dceabf879d3c036175723d0d7fde3ab770be8c8d43de7bf9153803523aee9d3c"
+  },
+  "cycles": [
+    {
+      "phase": "cycle-01",
+      "subset": "train",
+      "passed": 100,
+      "failed": 109,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.47619047619047616,
+      "scenarios": {
+        "passed": 86,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 149,
+          "total": 181,
+          "accuracy": 0.8232044198895028
+        },
+        "entities": {
+          "passed": 20,
+          "total": 74,
+          "accuracy": 0.2702702702702703
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 77,
+          "total": 83,
+          "accuracy": 0.927710843373494
+        },
+        "clarification": {
+          "passed": 14,
+          "total": 20,
+          "accuracy": 0.7
+        },
+        "geometry": {
+          "passed": 78,
+          "total": 166,
+          "accuracy": 0.46987951807228917
+        },
+        "execution": {
+          "passed": 107,
+          "total": 187,
+          "accuracy": 0.5721925133689839
+        },
+        "response": {
+          "passed": 123,
+          "total": 201,
+          "accuracy": 0.6119402985074627
+        }
+      }
+    },
+    {
+      "phase": "cycle-02",
+      "subset": "train",
+      "passed": 117,
+      "failed": 92,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.5571428571428572,
+      "scenarios": {
+        "passed": 103,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 164,
+          "total": 181,
+          "accuracy": 0.9060773480662984
+        },
+        "entities": {
+          "passed": 34,
+          "total": 74,
+          "accuracy": 0.4594594594594595
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 77,
+          "total": 83,
+          "accuracy": 0.927710843373494
+        },
+        "clarification": {
+          "passed": 14,
+          "total": 20,
+          "accuracy": 0.7
+        },
+        "geometry": {
+          "passed": 120,
+          "total": 166,
+          "accuracy": 0.7228915662650602
+        },
+        "execution": {
+          "passed": 155,
+          "total": 187,
+          "accuracy": 0.8288770053475936
+        },
+        "response": {
+          "passed": 163,
+          "total": 201,
+          "accuracy": 0.8109452736318408
+        }
+      }
+    },
+    {
+      "phase": "cycle-03",
+      "subset": "train",
+      "passed": 144,
+      "failed": 65,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.6857142857142857,
+      "scenarios": {
+        "passed": 127,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 174,
+          "total": 181,
+          "accuracy": 0.9613259668508287
+        },
+        "entities": {
+          "passed": 46,
+          "total": 74,
+          "accuracy": 0.6216216216216216
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 80,
+          "total": 83,
+          "accuracy": 0.963855421686747
+        },
+        "clarification": {
+          "passed": 17,
+          "total": 20,
+          "accuracy": 0.85
+        },
+        "geometry": {
+          "passed": 132,
+          "total": 166,
+          "accuracy": 0.7951807228915663
+        },
+        "execution": {
+          "passed": 141,
+          "total": 187,
+          "accuracy": 0.7540106951871658
+        },
+        "response": {
+          "passed": 152,
+          "total": 201,
+          "accuracy": 0.7562189054726368
+        }
+      }
+    },
+    {
+      "phase": "cycle-04",
+      "subset": "train",
+      "passed": 185,
+      "failed": 24,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.8809523809523809,
+      "scenarios": {
+        "passed": 147,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 174,
+          "total": 181,
+          "accuracy": 0.9613259668508287
+        },
+        "entities": {
+          "passed": 66,
+          "total": 74,
+          "accuracy": 0.8918918918918919
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 80,
+          "total": 83,
+          "accuracy": 0.963855421686747
+        },
+        "clarification": {
+          "passed": 17,
+          "total": 20,
+          "accuracy": 0.85
+        },
+        "geometry": {
+          "passed": 153,
+          "total": 166,
+          "accuracy": 0.9216867469879518
+        },
+        "execution": {
+          "passed": 176,
+          "total": 187,
+          "accuracy": 0.9411764705882353
+        },
+        "response": {
+          "passed": 187,
+          "total": 201,
+          "accuracy": 0.9303482587064676
+        }
+      }
+    },
+    {
+      "phase": "cycle-05",
+      "subset": "train",
+      "passed": 191,
+      "failed": 18,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.9095238095238095,
+      "scenarios": {
+        "passed": 150,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 174,
+          "total": 181,
+          "accuracy": 0.9613259668508287
+        },
+        "entities": {
+          "passed": 71,
+          "total": 74,
+          "accuracy": 0.9594594594594594
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 78,
+          "total": 83,
+          "accuracy": 0.9397590361445783
+        },
+        "clarification": {
+          "passed": 20,
+          "total": 20,
+          "accuracy": 1
+        },
+        "geometry": {
+          "passed": 151,
+          "total": 166,
+          "accuracy": 0.9096385542168675
+        },
+        "execution": {
+          "passed": 172,
+          "total": 187,
+          "accuracy": 0.9197860962566845
+        },
+        "response": {
+          "passed": 186,
+          "total": 201,
+          "accuracy": 0.9253731343283582
+        }
+      }
+    },
+    {
+      "phase": "cycle-06",
+      "subset": "train",
+      "passed": 202,
+      "failed": 7,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.9619047619047619,
+      "scenarios": {
+        "passed": 161,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 181,
+          "total": 181,
+          "accuracy": 1
+        },
+        "entities": {
+          "passed": 74,
+          "total": 74,
+          "accuracy": 1
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 83,
+          "total": 83,
+          "accuracy": 1
+        },
+        "clarification": {
+          "passed": 20,
+          "total": 20,
+          "accuracy": 1
+        },
+        "geometry": {
+          "passed": 159,
+          "total": 166,
+          "accuracy": 0.9578313253012049
+        },
+        "execution": {
+          "passed": 187,
+          "total": 187,
+          "accuracy": 1
+        },
+        "response": {
+          "passed": 201,
+          "total": 201,
+          "accuracy": 1
+        }
+      }
+    },
+    {
+      "phase": "cycle-07",
+      "subset": "train",
+      "passed": 209,
+      "failed": 0,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.9952380952380953,
+      "scenarios": {
+        "passed": 168,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 181,
+          "total": 181,
+          "accuracy": 1
+        },
+        "entities": {
+          "passed": 74,
+          "total": 74,
+          "accuracy": 1
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 83,
+          "total": 83,
+          "accuracy": 1
+        },
+        "clarification": {
+          "passed": 20,
+          "total": 20,
+          "accuracy": 1
+        },
+        "geometry": {
+          "passed": 166,
+          "total": 166,
+          "accuracy": 1
+        },
+        "execution": {
+          "passed": 187,
+          "total": 187,
+          "accuracy": 1
+        },
+        "response": {
+          "passed": 201,
+          "total": 201,
+          "accuracy": 1
+        }
+      }
+    },
+    {
+      "phase": "cycle-08",
+      "subset": "train",
+      "passed": 209,
+      "failed": 0,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.9952380952380953,
+      "scenarios": {
+        "passed": 168,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 181,
+          "total": 181,
+          "accuracy": 1
+        },
+        "entities": {
+          "passed": 74,
+          "total": 74,
+          "accuracy": 1
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 83,
+          "total": 83,
+          "accuracy": 1
+        },
+        "clarification": {
+          "passed": 20,
+          "total": 20,
+          "accuracy": 1
+        },
+        "geometry": {
+          "passed": 166,
+          "total": 166,
+          "accuracy": 1
+        },
+        "execution": {
+          "passed": 187,
+          "total": 187,
+          "accuracy": 1
+        },
+        "response": {
+          "passed": 201,
+          "total": 201,
+          "accuracy": 1
+        }
+      },
+      "sourceFingerprint": "30479ea1ff7ce0c7a4f771861efbae9e5c24c05e6414d689294cf5ff9e894ba5"
+    },
+    {
+      "phase": "cycle-09",
+      "subset": "all",
+      "passed": 297,
+      "failed": 0,
+      "blocked": 3,
+      "total": 300,
+      "endToEndAccuracy": 0.99,
+      "scenarios": {
+        "passed": 234,
+        "total": 237
+      },
+      "metrics": {
+        "intent": {
+          "passed": 260,
+          "total": 260,
+          "accuracy": 1
+        },
+        "entities": {
+          "passed": 101,
+          "total": 101,
+          "accuracy": 1
+        },
+        "numeric": {
+          "passed": 11,
+          "total": 11,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 108,
+          "total": 108,
+          "accuracy": 1
+        },
+        "clarification": {
+          "passed": 27,
+          "total": 27,
+          "accuracy": 1
+        },
+        "geometry": {
+          "passed": 239,
+          "total": 239,
+          "accuracy": 1
+        },
+        "execution": {
+          "passed": 267,
+          "total": 267,
+          "accuracy": 1
+        },
+        "response": {
+          "passed": 287,
+          "total": 287,
+          "accuracy": 1
+        }
+      },
+      "sourceFingerprint": "dceabf879d3c036175723d0d7fde3ab770be8c8d43de7bf9153803523aee9d3c"
+    }
+  ],
+  "conversationMetrics": {
+    "multiTurnScenariosPassed": 39,
+    "multiTurnScenariosTotal": 39,
+    "clarificationPrecision": 1.0,
+    "clarificationRecall": 1.0,
+    "truePositive": 27,
+    "falsePositive": 0,
+    "falseNegative": 0,
+    "clarificationCompletionPassed": 27,
+    "clarificationCompletionTotal": 27
+  },
+  "latency": {
+    "medianMs": 159.9247000000032,
+    "p95Ms": 486.9415000000008,
+    "definition": "Browser normal request plus committed scene snapshot; not isolated neural inference. Local machine under concurrent verification load."
+  },
+  "training": {
+    "train": 150,
+    "validation": 30,
+    "heldOutUsedForFit": 0,
+    "bestEpoch": 0,
+    "bestValidationAccuracy": 0.16666666666666666,
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 8.256247285207113,
+        "validation": {
+          "action": 0.6666666666666666,
+          "subAction": 0.23333333333333334,
+          "mode": 1,
+          "objectType": 0.6
+        },
+        "primaryAccuracy": 0.16666666666666666,
+        "priorAccuracy": 1,
+        "accepted": false
+      },
+      {
+        "epoch": 2,
+        "loss": 7.480748462677002,
+        "validation": {
+          "action": 0.6666666666666666,
+          "subAction": 0.23333333333333334,
+          "mode": 1,
+          "objectType": 0.6333333333333333
+        },
+        "primaryAccuracy": 0.16666666666666666,
+        "priorAccuracy": 1,
+        "accepted": false
+      },
+      {
+        "epoch": 3,
+        "loss": 6.867899398803711,
+        "validation": {
+          "action": 0.6666666666666666,
+          "subAction": 0.23333333333333334,
+          "mode": 1,
+          "objectType": 0.6333333333333333
+        },
+        "primaryAccuracy": 0.16666666666666666,
+        "priorAccuracy": 1,
+        "accepted": false
+      }
+    ],
+    "stoppingCondition": "No accepted checkpoint improvement for three epochs",
+    "promoted": false,
+    "checkpoint": "reports/ruhi-2d-nlp/checkpoints/best/model.json",
+    "weightsSha256": "315d8161f4ff311db2e7850ef5e6d0f5362fa2f53cede767e2a12f2b2907ce3d",
+    "originalWeightsUnchanged": true,
+    "classifierHeldOut": {
+      "compatibleRows": 29,
+      "primaryAccuracy": 0.2413793103448276,
+      "headAccuracy": {
+        "action": 0.5862068965517241,
+        "subAction": 0.4827586206896552,
+        "mode": 1,
+        "objectType": 0.6551724137931034
+      },
+      "excludedRows": 14
+    }
+  },
+  "regression": {
+    "guards": {
+      "conversations": true,
+      "persistence": true,
+      "priorRegression": true,
+      "unitRegression": true,
+      "studentBuild": false
+    },
+    "unit": {
+      "passed": 7365,
+      "total": 7365,
+      "files": 37,
+      "log": "regression-unit.txt"
+    },
+    "original100": {
+      "passed": 100,
+      "total": 100
+    },
+    "browserConversations": {
+      "passed": 5,
+      "total": 5
+    },
+    "persistence": [
+      {
+        "name": "native fill and angle rendered",
+        "passed": true
+      },
+      {
+        "name": "undo restores coordinates and style",
+        "passed": true
+      },
+      {
+        "name": "redo restores moved scene",
+        "passed": true
+      },
+      {
+        "name": "selection reaches native object",
+        "passed": true
+      },
+      {
+        "name": "saved serialized commands contain style and angle",
+        "passed": true
+      },
+      {
+        "name": "reload and UI load restore native scene",
+        "passed": true
+      },
+      {
+        "name": "context resolves restored geometry",
+        "passed": true
+      }
+    ],
+    "productionBuild": "Not rerun after the latest changes; user requested stopping and report. Prior v5.2 production verification predates these changes.",
+    "typecheck": {
+      "errors": 218,
+      "newErrorsInPilotFiles": 0,
+      "log": "typecheck.txt",
+      "limitation": "Global repository check still fails. Latest graph-inventory fix was verified with unit/browser tests; no subsequent global typecheck."
+    }
+  },
+  "failures": [
+    {
+      "id": "RUHI2D-010",
+      "scenarioId": "S-010",
+      "split": "test",
+      "command": "Draw a regular trapezoid centered at (-1,2) with circumradius 3.",
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "create_regular_polygon",
+            "shape": "trapezoid",
+            "center": [
+              -1,
+              2
+            ],
+            "circumradius": 3
+          }
+        ]
+      },
+      "status": "blocked",
+      "rootCause": "DATASET_EXPECTATION_ERROR",
+      "reason": "{\"invalid\":[],\"warnings\":[\"A regular trapezoid has no unique conventional definition; do not silently invent vertices.\"]}",
+      "actual": null
+    },
+    {
+      "id": "RUHI2D-020",
+      "scenarioId": "S-020",
+      "split": "train",
+      "command": "Draw a regular trapezoid centered at (2,2) with circumradius 3.",
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "create_regular_polygon",
+            "shape": "trapezoid",
+            "center": [
+              2,
+              2
+            ],
+            "circumradius": 3
+          }
+        ]
+      },
+      "status": "blocked",
+      "rootCause": "DATASET_EXPECTATION_ERROR",
+      "reason": "{\"invalid\":[],\"warnings\":[\"A regular trapezoid has no unique conventional definition; do not silently invent vertices.\"]}",
+      "actual": null
+    },
+    {
+      "id": "RUHI2D-030",
+      "scenarioId": "S-030",
+      "split": "validation",
+      "command": "Draw a regular trapezoid centered at (-2,2) with circumradius 3.",
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "create_regular_polygon",
+            "shape": "trapezoid",
+            "center": [
+              -2,
+              2
+            ],
+            "circumradius": 3
+          }
+        ]
+      },
+      "status": "blocked",
+      "rootCause": "DATASET_EXPECTATION_ERROR",
+      "reason": "{\"invalid\":[],\"warnings\":[\"A regular trapezoid has no unique conventional definition; do not silently invent vertices.\"]}",
+      "actual": null
+    }
+  ],
+  "limitations": [
+    "300-record all-suite figures are regression, not untouched language generalization. Related scenario turns remain together, but repeated templates cross splits.",
+    "Original all-300 baseline was observed as explicitly required; only development diagnostics guided dataset repairs. Held-out records were not fitted or used for checkpoint selection.",
+    "After first frozen held-out evaluation, an independent save/reload test drove a native inventory repair; repeated held-out results confirm compatibility, not a new untouched evaluation.",
+    "Metrics credit only explicit assertions. Intent measures checked action-family correctness; response checks use bounded success/clarification templates.",
+    "Training alone did not improve the classifier. Hybrid parser/dialogue/geometry software explains execution gains; arbitrary-language capability is not established.",
+    "Administrator controls are excluded at the student build boundary; local developer UI is not authentication. No shared weights publication endpoint was added. Private checkpoints/reports remain outside public assets.",
+    "Three regular-trapezoid records are structurally valid but geometrically underspecified. Blocked records count against full-suite success.",
+    "Production build, production browser check, and administrator dashboard visual check remain unverified for the latest changes because the user requested stopping."
+  ],
+  "oracleAudit": [
+    "Initial baseline fixture label syntax was corrected before application changes; the original failed harness run is retained.",
+    "Oracle corrections covered newly created centroid/incenter outputs, color palette, three-letter angle naming, selective undo, and rotation anchor/about schema alias. Original expected semantics and stored scenes were preserved.",
+    "Upper/lower triangle fixtures now use documented y offsets; blue polygon fixtures supply the mentioned color. Baseline common-oracle re-score remains 73/300. Fixture revisions make this a diagnostic comparison rather than a perfectly controlled A/B benchmark.",
+    "Independent probes first scored 15/16 because of anchor/about mismatch. Stored actual origin rotation was correct; re-score and unchanged-semantics confirmation each score 16/16."
+  ]
+}

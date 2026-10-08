@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-08T04:33:50.666Z",
+  "date": "2026-10-08T05:14:49.475Z",
   "cases": [
     {
       "mode": "graph2d",
@@ -28,7 +28,7 @@
             "action": "create",
             "fitDimensions": true,
             "roboLabel": "R1",
-            "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+            "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
             "roboVisible": true
           }
         },
@@ -94,7 +94,7 @@
         "kind": "CREATE",
         "subjectBefore": [],
         "subjectAfter": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "status": "success",
         "message": "Created 2D rectangle 4 by 6.",
@@ -102,7 +102,7 @@
           "rawPhrase": "Draw a rectangle 4 by 6.",
           "commands": [
             {
-              "id": "4ffb0a16-66b3-475a-9919-637d9531ecf7",
+              "id": "0dbd7a16-4038-4010-b918-57b71b6afd61",
               "rawPhrase": "Draw a rectangle 4 by 6.",
               "normalizedPhrase": "draw a rectangle 4 by 6",
               "detectedAction": "DRAW",
@@ -152,7 +152,7 @@
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "d8ed60de-55a1-4fcc-9d8a-9306018d363f"
+          "contextSnapshotId": "290bbec4-484c-47ec-a47d-05361622e995"
         },
         "resolvedReferences": [],
         "missingSlots": [],
@@ -192,7 +192,7 @@
             "action": "create",
             "fitDimensions": true,
             "roboLabel": "R1",
-            "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+            "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
             "roboVisible": true
           }
         },
@@ -257,10 +257,10 @@
         "text": "Find its area.",
         "kind": "FIND",
         "subjectBefore": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "subjectAfter": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "status": "success",
         "message": "area = 24 units.",
@@ -268,7 +268,7 @@
           "rawPhrase": "Find its area.",
           "commands": [
             {
-              "id": "cf9ed93f-3c20-4d4f-830b-c2c7d7c3fa68",
+              "id": "dad39732-bc77-4049-b7ee-a6d604a90c35",
               "rawPhrase": "Find its area.",
               "normalizedPhrase": "find its area",
               "detectedAction": "FIND",
@@ -289,14 +289,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "30a58407-2cf0-4117-9bc3-650a00013592"
+              "target": "ac0a77bf-f576-45f1-acf6-b65be49342d6"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "b2157952-c58b-4684-9d74-0c1d9ca85e10"
+          "contextSnapshotId": "6e08ac64-417c-4b3c-8589-c47359b0af62"
         },
         "resolvedReferences": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "missingSlots": [],
         "confidence": {
@@ -335,7 +335,7 @@
             "action": "create",
             "fitDimensions": true,
             "roboLabel": "R1",
-            "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+            "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
             "roboVisible": true
           }
         },
@@ -360,17 +360,17 @@
               0
             ],
             "action": "create",
-            "objectId": "e0b473f9-791b-47fa-9922-ba7b4651af0f",
+            "objectId": "3a73dde4-9f64-4838-aa23-9c0bad0d1cda",
             "roboLabel": "P1",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "vertex": 2
                 },
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "vertex": 3
                 }
               ]
@@ -439,10 +439,10 @@
         "text": "Mark the midpoint of the top edge.",
         "kind": "MARK",
         "subjectBefore": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "subjectAfter": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "status": "success",
         "message": "Marked midpoint.",
@@ -450,7 +450,7 @@
           "rawPhrase": "Mark the midpoint of the top edge.",
           "commands": [
             {
-              "id": "0d818f64-72ba-4957-9386-88543478c65a",
+              "id": "2d893638-2d8e-4624-8d95-4c5bcbc6b5ac",
               "rawPhrase": "Mark the midpoint of the top edge.",
               "normalizedPhrase": "mark the midpoint of the top edge",
               "detectedAction": "MARK",
@@ -473,7 +473,7 @@
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "3b2bd3a2-4623-4cba-94b6-fe333ebdc61a"
+          "contextSnapshotId": "dc13c3d5-c31e-42db-807e-4602ca82c563"
         },
         "resolvedReferences": [],
         "missingSlots": [],
@@ -513,7 +513,7 @@
             "action": "create",
             "fitDimensions": true,
             "roboLabel": "R1",
-            "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+            "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
             "roboVisible": true
           }
         },
@@ -538,17 +538,17 @@
               0
             ],
             "action": "create",
-            "objectId": "e0b473f9-791b-47fa-9922-ba7b4651af0f",
+            "objectId": "3a73dde4-9f64-4838-aa23-9c0bad0d1cda",
             "roboLabel": "P1",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "vertex": 2
                 },
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "vertex": 3
                 }
               ]
@@ -581,16 +581,16 @@
               0
             ],
             "action": "update",
-            "objectId": "04689a19-3fbc-476b-aa55-13d851c33c94",
+            "objectId": "92c145e4-f78a-4e27-b9a8-7d086837f0e5",
             "roboLabel": "L1",
             "roboDependency": {
               "kind": "perp",
               "parents": [
                 {
-                  "objectId": "e0b473f9-791b-47fa-9922-ba7b4651af0f"
+                  "objectId": "3a73dde4-9f64-4838-aa23-9c0bad0d1cda"
                 },
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "edge": [
                     2,
                     3
@@ -663,10 +663,10 @@
         "text": "Draw a perpendicular line through that point.",
         "kind": "CONSTRUCT",
         "subjectBefore": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "subjectAfter": [
-          "04689a19-3fbc-476b-aa55-13d851c33c94"
+          "92c145e4-f78a-4e27-b9a8-7d086837f0e5"
         ],
         "status": "success",
         "message": "Perpendicular line created through the point.",
@@ -674,7 +674,7 @@
           "rawPhrase": "Draw a perpendicular line through that point.",
           "commands": [
             {
-              "id": "a0eabbfe-6105-4783-9967-353dd233f77f",
+              "id": "8c8f051f-416e-4aee-92ba-96021e47bd81",
               "rawPhrase": "Draw a perpendicular line through that point.",
               "normalizedPhrase": "draw a perpendicular line through that point",
               "detectedAction": "DRAW",
@@ -696,11 +696,11 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "$edge:top:30a58407-2cf0-4117-9bc3-650a00013592"
+              "target": "$edge:top:ac0a77bf-f576-45f1-acf6-b65be49342d6"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "9cc8d681-1335-4286-8250-1db22075ba94"
+          "contextSnapshotId": "2900bc8e-a106-4716-90a1-7936912b8d7b"
         },
         "resolvedReferences": [],
         "missingSlots": [],
@@ -740,7 +740,7 @@
             "action": "update",
             "fitDimensions": true,
             "roboLabel": "R1",
-            "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+            "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
             "roboVisible": true
           }
         },
@@ -765,17 +765,17 @@
               0
             ],
             "action": "create",
-            "objectId": "e0b473f9-791b-47fa-9922-ba7b4651af0f",
+            "objectId": "3a73dde4-9f64-4838-aa23-9c0bad0d1cda",
             "roboLabel": "P1",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "vertex": 2
                 },
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "vertex": 3
                 }
               ]
@@ -808,16 +808,16 @@
               0
             ],
             "action": "update",
-            "objectId": "04689a19-3fbc-476b-aa55-13d851c33c94",
+            "objectId": "92c145e4-f78a-4e27-b9a8-7d086837f0e5",
             "roboLabel": "L1",
             "roboDependency": {
               "kind": "perp",
               "parents": [
                 {
-                  "objectId": "e0b473f9-791b-47fa-9922-ba7b4651af0f"
+                  "objectId": "3a73dde4-9f64-4838-aa23-9c0bad0d1cda"
                 },
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "edge": [
                     2,
                     3
@@ -890,10 +890,10 @@
         "text": "Make the rectangle twice as wide.",
         "kind": "RESIZE",
         "subjectBefore": [
-          "04689a19-3fbc-476b-aa55-13d851c33c94"
+          "92c145e4-f78a-4e27-b9a8-7d086837f0e5"
         ],
         "subjectAfter": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "status": "success",
         "message": "resize rectangle.",
@@ -901,7 +901,7 @@
           "rawPhrase": "Make the rectangle twice as wide.",
           "commands": [
             {
-              "id": "2fd3ee77-fcf6-43b0-a42b-4835e36e3a22",
+              "id": "85b2a91a-a02e-4c75-910f-43c17a2de621",
               "rawPhrase": "Make the rectangle twice as wide.",
               "normalizedPhrase": "make the rectangle twice as wide",
               "detectedAction": "CREATE",
@@ -923,14 +923,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "30a58407-2cf0-4117-9bc3-650a00013592"
+              "target": "ac0a77bf-f576-45f1-acf6-b65be49342d6"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "ace175a1-c66e-45cb-99ad-f326a609d4c0"
+          "contextSnapshotId": "6fcea1c0-fdda-466c-a116-6c50cb4ca5f4"
         },
         "resolvedReferences": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "missingSlots": [],
         "confidence": {
@@ -969,7 +969,7 @@
             "action": "update",
             "fitDimensions": true,
             "roboLabel": "R1",
-            "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+            "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
             "roboVisible": true
           }
         },
@@ -994,17 +994,17 @@
               0
             ],
             "action": "update",
-            "objectId": "e0b473f9-791b-47fa-9922-ba7b4651af0f",
+            "objectId": "3a73dde4-9f64-4838-aa23-9c0bad0d1cda",
             "roboLabel": "P1",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "vertex": 2
                 },
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "vertex": 3
                 }
               ]
@@ -1038,16 +1038,16 @@
               0
             ],
             "action": "update",
-            "objectId": "04689a19-3fbc-476b-aa55-13d851c33c94",
+            "objectId": "92c145e4-f78a-4e27-b9a8-7d086837f0e5",
             "roboLabel": "L1",
             "roboDependency": {
               "kind": "perp",
               "parents": [
                 {
-                  "objectId": "e0b473f9-791b-47fa-9922-ba7b4651af0f"
+                  "objectId": "3a73dde4-9f64-4838-aa23-9c0bad0d1cda"
                 },
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "edge": [
                     2,
                     3
@@ -1120,10 +1120,10 @@
         "text": "Now rotate it 30 degrees.",
         "kind": "ROTATE",
         "subjectBefore": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "subjectAfter": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "status": "success",
         "message": "rotate rectangle.",
@@ -1131,7 +1131,7 @@
           "rawPhrase": "rotate it 30 degrees.",
           "commands": [
             {
-              "id": "b6895ceb-83fc-4027-9449-c72186f9e1eb",
+              "id": "bf2091b0-7755-40d3-9e5a-f8cfe78b6dd0",
               "rawPhrase": "rotate it 30 degrees.",
               "normalizedPhrase": "rotate it 30 degrees",
               "detectedAction": "ROTATE",
@@ -1153,14 +1153,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "30a58407-2cf0-4117-9bc3-650a00013592"
+              "target": "ac0a77bf-f576-45f1-acf6-b65be49342d6"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "23721156-7ea2-4982-8060-9989696c0be2"
+          "contextSnapshotId": "87a25573-708d-4a50-b421-0b0722f3cf59"
         },
         "resolvedReferences": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "missingSlots": [],
         "confidence": {
@@ -1199,7 +1199,7 @@
             "action": "update",
             "fitDimensions": true,
             "roboLabel": "R1",
-            "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+            "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
             "roboVisible": true
           }
         },
@@ -1224,17 +1224,17 @@
               0
             ],
             "action": "update",
-            "objectId": "e0b473f9-791b-47fa-9922-ba7b4651af0f",
+            "objectId": "3a73dde4-9f64-4838-aa23-9c0bad0d1cda",
             "roboLabel": "P1",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "vertex": 2
                 },
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "vertex": 3
                 }
               ]
@@ -1268,16 +1268,16 @@
               0
             ],
             "action": "update",
-            "objectId": "04689a19-3fbc-476b-aa55-13d851c33c94",
+            "objectId": "92c145e4-f78a-4e27-b9a8-7d086837f0e5",
             "roboLabel": "L1",
             "roboDependency": {
               "kind": "perp",
               "parents": [
                 {
-                  "objectId": "e0b473f9-791b-47fa-9922-ba7b4651af0f"
+                  "objectId": "3a73dde4-9f64-4838-aa23-9c0bad0d1cda"
                 },
                 {
-                  "objectId": "30a58407-2cf0-4117-9bc3-650a00013592",
+                  "objectId": "ac0a77bf-f576-45f1-acf6-b65be49342d6",
                   "edge": [
                     2,
                     3
@@ -1350,10 +1350,10 @@
         "text": "What is the new area?",
         "kind": "FIND",
         "subjectBefore": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "subjectAfter": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "status": "success",
         "message": "area = 48 units.",
@@ -1361,7 +1361,7 @@
           "rawPhrase": "What is the new area?",
           "commands": [
             {
-              "id": "8bba675b-a97c-479b-9fbe-2918f8a5f368",
+              "id": "76627181-febc-4c9d-807c-6a06d2d0e0ea",
               "rawPhrase": "What is the new area?",
               "normalizedPhrase": "what is the new area",
               "detectedAction": "",
@@ -1382,14 +1382,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "30a58407-2cf0-4117-9bc3-650a00013592"
+              "target": "ac0a77bf-f576-45f1-acf6-b65be49342d6"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "fe585c2d-a484-4a8b-b5c5-546cebd87b21"
+          "contextSnapshotId": "eb850e0e-91b6-4fc6-ad40-54baf8f6bd76"
         },
         "resolvedReferences": [
-          "30a58407-2cf0-4117-9bc3-650a00013592"
+          "ac0a77bf-f576-45f1-acf6-b65be49342d6"
         ],
         "missingSlots": [],
         "confidence": {
@@ -1441,7 +1441,7 @@
             "action": "create",
             "fitDimensions": false,
             "roboLabel": "T1",
-            "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+            "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
           },
           "vertices": [
             [
@@ -1467,7 +1467,7 @@
         "kind": "CREATE",
         "subjectBefore": [],
         "subjectAfter": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "status": "success",
         "message": "Created 2D triangle.",
@@ -1475,7 +1475,7 @@
           "rawPhrase": "Draw a triangle at (0,0), (6,0), (3,4).",
           "commands": [
             {
-              "id": "ffd8d6b2-396a-4f43-b60d-bb86b9f6c2b4",
+              "id": "151816c3-2ff7-4dd0-a2a9-2e5f6d7eeba6",
               "rawPhrase": "Draw a triangle at (0,0), (6,0), (3,4).",
               "normalizedPhrase": "draw a triangle at (0,0), (6,0), (3,4)",
               "detectedAction": "DRAW",
@@ -1552,7 +1552,7 @@
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "98f5eaec-d7dd-4443-8370-87366143a0bf"
+          "contextSnapshotId": "166b3e84-cfaf-4c3a-8b63-316ece324298"
         },
         "resolvedReferences": [],
         "missingSlots": [],
@@ -1605,7 +1605,7 @@
             "action": "create",
             "fitDimensions": false,
             "roboLabel": "T1",
-            "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+            "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
           },
           "vertices": [
             [
@@ -1630,10 +1630,10 @@
         "text": "What is its area?",
         "kind": "FIND",
         "subjectBefore": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "subjectAfter": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "status": "success",
         "message": "area = 12 units.",
@@ -1641,7 +1641,7 @@
           "rawPhrase": "What is its area?",
           "commands": [
             {
-              "id": "80291d84-f5a7-46b1-b47e-ee7dc7266c8b",
+              "id": "85dfc178-259d-4859-bc4b-4880859ab264",
               "rawPhrase": "What is its area?",
               "normalizedPhrase": "what is its area",
               "detectedAction": "",
@@ -1662,14 +1662,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+              "target": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "50e67731-5299-4399-9fac-5558e1607660"
+          "contextSnapshotId": "21bfe877-4ecb-4f39-82c0-6e39b0d0a645"
         },
         "resolvedReferences": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "missingSlots": [],
         "confidence": {
@@ -1721,7 +1721,7 @@
             "action": "create",
             "fitDimensions": false,
             "roboLabel": "T1",
-            "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+            "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
           },
           "vertices": [
             [
@@ -1762,17 +1762,17 @@
               0
             ],
             "action": "create",
-            "objectId": "c3df366a-da1b-4df8-8a5b-8a5f33c45d20",
+            "objectId": "4d19b94b-4878-4b8f-a679-9d8f745f2ebc",
             "roboLabel": "P1",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 0
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 1
                 }
               ]
@@ -1807,17 +1807,17 @@
               0
             ],
             "action": "create",
-            "objectId": "91cd8066-f4e0-47bd-b1c6-25fa453f7855",
+            "objectId": "5546c236-f86f-4a17-89bb-db22aa942cea",
             "roboLabel": "P2",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 1
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 2
                 }
               ]
@@ -1852,17 +1852,17 @@
               0
             ],
             "action": "create",
-            "objectId": "74883964-dc1c-4452-8bfd-83f7da954362",
+            "objectId": "88429928-62da-45b4-bc28-756c087b82f4",
             "roboLabel": "P3",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 2
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 0
                 }
               ]
@@ -1881,10 +1881,10 @@
         "text": "Mark all three midpoints.",
         "kind": "MARK",
         "subjectBefore": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "subjectAfter": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "status": "success",
         "message": "Marked side_midpoints points.",
@@ -1892,7 +1892,7 @@
           "rawPhrase": "Mark all three midpoints.",
           "commands": [
             {
-              "id": "fe86d731-eb16-47d0-a561-65766a8a40cc",
+              "id": "61f49875-b8d7-480c-abe2-04b76cd02fe1",
               "rawPhrase": "Mark all three midpoints.",
               "normalizedPhrase": "mark all 3 midpoints",
               "detectedAction": "MARK",
@@ -1911,14 +1911,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+              "target": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "c71100a8-b3b6-4c43-806f-9cffe22293ac"
+          "contextSnapshotId": "474be810-a02e-4468-a5fa-b849b1e15a65"
         },
         "resolvedReferences": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "missingSlots": [],
         "confidence": {
@@ -1970,7 +1970,7 @@
             "action": "create",
             "fitDimensions": false,
             "roboLabel": "T1",
-            "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+            "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
           },
           "vertices": [
             [
@@ -2011,17 +2011,17 @@
               0
             ],
             "action": "create",
-            "objectId": "c3df366a-da1b-4df8-8a5b-8a5f33c45d20",
+            "objectId": "4d19b94b-4878-4b8f-a679-9d8f745f2ebc",
             "roboLabel": "P1",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 0
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 1
                 }
               ]
@@ -2056,17 +2056,17 @@
               0
             ],
             "action": "create",
-            "objectId": "91cd8066-f4e0-47bd-b1c6-25fa453f7855",
+            "objectId": "5546c236-f86f-4a17-89bb-db22aa942cea",
             "roboLabel": "P2",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 1
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 2
                 }
               ]
@@ -2101,17 +2101,17 @@
               0
             ],
             "action": "create",
-            "objectId": "74883964-dc1c-4452-8bfd-83f7da954362",
+            "objectId": "88429928-62da-45b4-bc28-756c087b82f4",
             "roboLabel": "P3",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 2
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 0
                 }
               ]
@@ -2162,17 +2162,17 @@
               "kind": "triangle",
               "parents": [
                 {
-                  "objectId": "c3df366a-da1b-4df8-8a5b-8a5f33c45d20"
+                  "objectId": "4d19b94b-4878-4b8f-a679-9d8f745f2ebc"
                 },
                 {
-                  "objectId": "91cd8066-f4e0-47bd-b1c6-25fa453f7855"
+                  "objectId": "5546c236-f86f-4a17-89bb-db22aa942cea"
                 },
                 {
-                  "objectId": "74883964-dc1c-4452-8bfd-83f7da954362"
+                  "objectId": "88429928-62da-45b4-bc28-756c087b82f4"
                 }
               ]
             },
-            "objectId": "416a885b-f04c-4597-8789-d6ed411d59d5"
+            "objectId": "47853202-ad99-4246-bdf3-a5bab1a873d4"
           },
           "vertices": [
             [
@@ -2197,10 +2197,10 @@
         "text": "Join them.",
         "kind": "CREATE",
         "subjectBefore": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "subjectAfter": [
-          "416a885b-f04c-4597-8789-d6ed411d59d5"
+          "47853202-ad99-4246-bdf3-a5bab1a873d4"
         ],
         "status": "success",
         "message": "Created 2D triangle.",
@@ -2208,10 +2208,10 @@
           "rawPhrase": "Join them.",
           "commands": [
             {
-              "id": "307fa0c0-314b-4dd7-9746-ccaf9923c88b",
+              "id": "c2168950-5afc-4d6c-8f72-c5d718625eda",
               "rawPhrase": "Join them.",
-              "normalizedPhrase": "join them",
-              "detectedAction": "JOIN",
+              "normalizedPhrase": "connect them",
+              "detectedAction": "CONNECT",
               "action": "CREATE",
               "subAction": "TRIANGLE",
               "mode": "geometry2d",
@@ -2235,17 +2235,17 @@
                   "kind": "triangle",
                   "parents": [
                     {
-                      "objectId": "c3df366a-da1b-4df8-8a5b-8a5f33c45d20"
+                      "objectId": "4d19b94b-4878-4b8f-a679-9d8f745f2ebc"
                     },
                     {
-                      "objectId": "91cd8066-f4e0-47bd-b1c6-25fa453f7855"
+                      "objectId": "5546c236-f86f-4a17-89bb-db22aa942cea"
                     },
                     {
-                      "objectId": "74883964-dc1c-4452-8bfd-83f7da954362"
+                      "objectId": "88429928-62da-45b4-bc28-756c087b82f4"
                     }
                   ]
                 },
-                "originalId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+                "originalId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
               },
               "confidence": {
                 "overall": 1,
@@ -2262,7 +2262,7 @@
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "31eca92e-962b-46cf-a0ff-038422ec9ea8"
+          "contextSnapshotId": "af1b0f6d-f3bc-46fd-b8f8-028214e03c29"
         },
         "resolvedReferences": [],
         "missingSlots": [],
@@ -2315,7 +2315,7 @@
             "action": "create",
             "fitDimensions": false,
             "roboLabel": "T1",
-            "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+            "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
           },
           "vertices": [
             [
@@ -2356,17 +2356,17 @@
               0
             ],
             "action": "create",
-            "objectId": "c3df366a-da1b-4df8-8a5b-8a5f33c45d20",
+            "objectId": "4d19b94b-4878-4b8f-a679-9d8f745f2ebc",
             "roboLabel": "P1",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 0
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 1
                 }
               ]
@@ -2401,17 +2401,17 @@
               0
             ],
             "action": "create",
-            "objectId": "91cd8066-f4e0-47bd-b1c6-25fa453f7855",
+            "objectId": "5546c236-f86f-4a17-89bb-db22aa942cea",
             "roboLabel": "P2",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 1
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 2
                 }
               ]
@@ -2446,17 +2446,17 @@
               0
             ],
             "action": "create",
-            "objectId": "74883964-dc1c-4452-8bfd-83f7da954362",
+            "objectId": "88429928-62da-45b4-bc28-756c087b82f4",
             "roboLabel": "P3",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 2
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 0
                 }
               ]
@@ -2507,17 +2507,17 @@
               "kind": "triangle",
               "parents": [
                 {
-                  "objectId": "c3df366a-da1b-4df8-8a5b-8a5f33c45d20"
+                  "objectId": "4d19b94b-4878-4b8f-a679-9d8f745f2ebc"
                 },
                 {
-                  "objectId": "91cd8066-f4e0-47bd-b1c6-25fa453f7855"
+                  "objectId": "5546c236-f86f-4a17-89bb-db22aa942cea"
                 },
                 {
-                  "objectId": "74883964-dc1c-4452-8bfd-83f7da954362"
+                  "objectId": "88429928-62da-45b4-bc28-756c087b82f4"
                 }
               ]
             },
-            "objectId": "416a885b-f04c-4597-8789-d6ed411d59d5"
+            "objectId": "47853202-ad99-4246-bdf3-a5bab1a873d4"
           },
           "vertices": [
             [
@@ -2542,10 +2542,10 @@
         "text": "What kind of triangle did we just make inside?",
         "kind": "FIND",
         "subjectBefore": [
-          "416a885b-f04c-4597-8789-d6ed411d59d5"
+          "47853202-ad99-4246-bdf3-a5bab1a873d4"
         ],
         "subjectAfter": [
-          "416a885b-f04c-4597-8789-d6ed411d59d5"
+          "47853202-ad99-4246-bdf3-a5bab1a873d4"
         ],
         "status": "success",
         "message": "triangle type = \"isosceles, acute angled\".",
@@ -2553,7 +2553,7 @@
           "rawPhrase": "What kind of triangle did we just make inside?",
           "commands": [
             {
-              "id": "e426a3c9-e9aa-40dd-a254-d5906980ff21",
+              "id": "b137ad4d-7bf3-450c-9910-f490b103ff2f",
               "rawPhrase": "What kind of triangle did we just make inside?",
               "normalizedPhrase": "what kind of triangle did we just make inside",
               "detectedAction": "",
@@ -2572,14 +2572,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "416a885b-f04c-4597-8789-d6ed411d59d5"
+              "target": "47853202-ad99-4246-bdf3-a5bab1a873d4"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "847531f5-3902-41c6-86c3-38e33608624f"
+          "contextSnapshotId": "3ff72ff2-8e3b-4cb1-8384-af8dc966935a"
         },
         "resolvedReferences": [
-          "416a885b-f04c-4597-8789-d6ed411d59d5"
+          "47853202-ad99-4246-bdf3-a5bab1a873d4"
         ],
         "missingSlots": [],
         "confidence": {
@@ -2631,7 +2631,7 @@
             "action": "update",
             "fitDimensions": false,
             "roboLabel": "T1",
-            "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+            "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
           },
           "vertices": [
             [
@@ -2672,17 +2672,17 @@
               0
             ],
             "action": "update",
-            "objectId": "c3df366a-da1b-4df8-8a5b-8a5f33c45d20",
+            "objectId": "4d19b94b-4878-4b8f-a679-9d8f745f2ebc",
             "roboLabel": "P1",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 0
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 1
                 }
               ]
@@ -2719,17 +2719,17 @@
               0
             ],
             "action": "update",
-            "objectId": "91cd8066-f4e0-47bd-b1c6-25fa453f7855",
+            "objectId": "5546c236-f86f-4a17-89bb-db22aa942cea",
             "roboLabel": "P2",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 1
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 2
                 }
               ]
@@ -2766,17 +2766,17 @@
               0
             ],
             "action": "update",
-            "objectId": "74883964-dc1c-4452-8bfd-83f7da954362",
+            "objectId": "88429928-62da-45b4-bc28-756c087b82f4",
             "roboLabel": "P3",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 2
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 0
                 }
               ]
@@ -2829,17 +2829,17 @@
               "kind": "triangle",
               "parents": [
                 {
-                  "objectId": "c3df366a-da1b-4df8-8a5b-8a5f33c45d20"
+                  "objectId": "4d19b94b-4878-4b8f-a679-9d8f745f2ebc"
                 },
                 {
-                  "objectId": "91cd8066-f4e0-47bd-b1c6-25fa453f7855"
+                  "objectId": "5546c236-f86f-4a17-89bb-db22aa942cea"
                 },
                 {
-                  "objectId": "74883964-dc1c-4452-8bfd-83f7da954362"
+                  "objectId": "88429928-62da-45b4-bc28-756c087b82f4"
                 }
               ]
             },
-            "objectId": "416a885b-f04c-4597-8789-d6ed411d59d5",
+            "objectId": "47853202-ad99-4246-bdf3-a5bab1a873d4",
             "roboVisible": true,
             "roboExplicitVertices": true
           },
@@ -2866,10 +2866,10 @@
         "text": "Make the original triangle twice as large.",
         "kind": "SCALE",
         "subjectBefore": [
-          "416a885b-f04c-4597-8789-d6ed411d59d5"
+          "47853202-ad99-4246-bdf3-a5bab1a873d4"
         ],
         "subjectAfter": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "status": "success",
         "message": "scale triangle.",
@@ -2877,7 +2877,7 @@
           "rawPhrase": "Make the original triangle twice as large.",
           "commands": [
             {
-              "id": "f779ece0-538a-4dbb-ad64-ef9cb19a3155",
+              "id": "27f5e248-1c5a-42ca-8571-2f9689ec8380",
               "rawPhrase": "Make the original triangle twice as large.",
               "normalizedPhrase": "make the original triangle twice as large",
               "detectedAction": "CREATE",
@@ -2898,14 +2898,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+              "target": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "001be4dc-7f17-44f1-860e-9e0ab4ef4a95"
+          "contextSnapshotId": "59a07791-d81e-40b6-a675-d397d0c93afe"
         },
         "resolvedReferences": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "missingSlots": [],
         "confidence": {
@@ -2957,7 +2957,7 @@
             "action": "update",
             "fitDimensions": false,
             "roboLabel": "T1",
-            "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+            "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
           },
           "vertices": [
             [
@@ -2998,17 +2998,17 @@
               0
             ],
             "action": "update",
-            "objectId": "c3df366a-da1b-4df8-8a5b-8a5f33c45d20",
+            "objectId": "4d19b94b-4878-4b8f-a679-9d8f745f2ebc",
             "roboLabel": "P1",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 0
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 1
                 }
               ]
@@ -3045,17 +3045,17 @@
               0
             ],
             "action": "update",
-            "objectId": "91cd8066-f4e0-47bd-b1c6-25fa453f7855",
+            "objectId": "5546c236-f86f-4a17-89bb-db22aa942cea",
             "roboLabel": "P2",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 1
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 2
                 }
               ]
@@ -3092,17 +3092,17 @@
               0
             ],
             "action": "update",
-            "objectId": "74883964-dc1c-4452-8bfd-83f7da954362",
+            "objectId": "88429928-62da-45b4-bc28-756c087b82f4",
             "roboLabel": "P3",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 2
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 0
                 }
               ]
@@ -3155,17 +3155,17 @@
               "kind": "triangle",
               "parents": [
                 {
-                  "objectId": "c3df366a-da1b-4df8-8a5b-8a5f33c45d20"
+                  "objectId": "4d19b94b-4878-4b8f-a679-9d8f745f2ebc"
                 },
                 {
-                  "objectId": "91cd8066-f4e0-47bd-b1c6-25fa453f7855"
+                  "objectId": "5546c236-f86f-4a17-89bb-db22aa942cea"
                 },
                 {
-                  "objectId": "74883964-dc1c-4452-8bfd-83f7da954362"
+                  "objectId": "88429928-62da-45b4-bc28-756c087b82f4"
                 }
               ]
             },
-            "objectId": "416a885b-f04c-4597-8789-d6ed411d59d5",
+            "objectId": "47853202-ad99-4246-bdf3-a5bab1a873d4",
             "roboVisible": true,
             "roboExplicitVertices": true
           },
@@ -3192,10 +3192,10 @@
         "text": "Does that inner triangle still have the same relationship?",
         "kind": "CHECK",
         "subjectBefore": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "subjectAfter": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "status": "success",
         "message": "Yes — the inner triangle has corresponding side ratio 0.5 and area ratio 0.25. Each side joins two side midpoints; the midpoint theorem makes it parallel to, and half the length of, the corresponding original side. Parent changes re-evaluate these midpoint definitions.",
@@ -3203,7 +3203,7 @@
           "rawPhrase": "Does that inner triangle still have the same relationship?",
           "commands": [
             {
-              "id": "9ac89186-f2dc-422f-809a-4761587bef65",
+              "id": "c868e371-ea9f-4be2-a97d-d617f1a445bf",
               "rawPhrase": "Does that inner triangle still have the same relationship?",
               "normalizedPhrase": "does that inner triangle still have the same relationship",
               "detectedAction": "",
@@ -3222,14 +3222,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+              "target": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "d039fb60-aa58-45f1-b2cf-7f8f3ed5887c"
+          "contextSnapshotId": "d92634e5-3af6-4f77-8423-b3d5fb21ea22"
         },
         "resolvedReferences": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "missingSlots": [],
         "confidence": {
@@ -3281,7 +3281,7 @@
             "action": "update",
             "fitDimensions": false,
             "roboLabel": "T1",
-            "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+            "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
           },
           "vertices": [
             [
@@ -3322,17 +3322,17 @@
               0
             ],
             "action": "update",
-            "objectId": "c3df366a-da1b-4df8-8a5b-8a5f33c45d20",
+            "objectId": "4d19b94b-4878-4b8f-a679-9d8f745f2ebc",
             "roboLabel": "P1",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 0
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 1
                 }
               ]
@@ -3369,17 +3369,17 @@
               0
             ],
             "action": "update",
-            "objectId": "91cd8066-f4e0-47bd-b1c6-25fa453f7855",
+            "objectId": "5546c236-f86f-4a17-89bb-db22aa942cea",
             "roboLabel": "P2",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 1
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 2
                 }
               ]
@@ -3416,17 +3416,17 @@
               0
             ],
             "action": "update",
-            "objectId": "74883964-dc1c-4452-8bfd-83f7da954362",
+            "objectId": "88429928-62da-45b4-bc28-756c087b82f4",
             "roboLabel": "P3",
             "roboDependency": {
               "kind": "midpoint",
               "parents": [
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 2
                 },
                 {
-                  "objectId": "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a",
+                  "objectId": "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c",
                   "vertex": 0
                 }
               ]
@@ -3479,17 +3479,17 @@
               "kind": "triangle",
               "parents": [
                 {
-                  "objectId": "c3df366a-da1b-4df8-8a5b-8a5f33c45d20"
+                  "objectId": "4d19b94b-4878-4b8f-a679-9d8f745f2ebc"
                 },
                 {
-                  "objectId": "91cd8066-f4e0-47bd-b1c6-25fa453f7855"
+                  "objectId": "5546c236-f86f-4a17-89bb-db22aa942cea"
                 },
                 {
-                  "objectId": "74883964-dc1c-4452-8bfd-83f7da954362"
+                  "objectId": "88429928-62da-45b4-bc28-756c087b82f4"
                 }
               ]
             },
-            "objectId": "416a885b-f04c-4597-8789-d6ed411d59d5",
+            "objectId": "47853202-ad99-4246-bdf3-a5bab1a873d4",
             "roboVisible": true,
             "roboExplicitVertices": true
           },
@@ -3516,10 +3516,10 @@
         "text": "Explain why.",
         "kind": "EXPLAIN",
         "subjectBefore": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "subjectAfter": [
-          "27539dd6-0829-4cb0-ad6b-7e5f44a49a3a"
+          "f5fe76a4-2d66-4a2f-8751-2e08eab24e7c"
         ],
         "status": "success",
         "message": "Yes — the inner triangle has corresponding side ratio 0.5 and area ratio 0.25. Each side joins two side midpoints; the midpoint theorem makes it parallel to, and half the length of, the corresponding original side. Parent changes re-evaluate these midpoint definitions.\nYes — the inner triangle has corresponding side ratio 0.5 and area ratio 0.25. Each side joins two side midpoints; the midpoint theorem makes it parallel to, and half the length of, the corresponding original side. Parent changes re-evaluate these midpoint definitions.",
@@ -3527,7 +3527,7 @@
           "rawPhrase": "Explain why.",
           "commands": [
             {
-              "id": "cb6b0790-7e72-415f-b156-6b82c0efcb68",
+              "id": "ce0103cc-f7dd-45ae-a5c3-d5fa56fea2ab",
               "rawPhrase": "Explain why.",
               "normalizedPhrase": "explain why",
               "detectedAction": "EXPLAIN",
@@ -3552,7 +3552,7 @@
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "79d5a61e-4798-40eb-be82-3ea11c22d458"
+          "contextSnapshotId": "bafe5bcd-2faa-40b1-8b55-2cfed5f326e3"
         },
         "resolvedReferences": [],
         "missingSlots": [],
@@ -3598,14 +3598,14 @@
             "action": "create",
             "fitDimensions": false,
             "roboLabel": "SP1",
-            "objectId": "9bfb68ff-ca58-40e7-81b4-bff938a95452",
+            "objectId": "727fbf70-49b2-4114-86fd-1e2a70284dad",
             "roboVisible": true
           }
         },
         {
           "command": {
             "kind": "plot",
-            "objectId": "surface-1791434046613-3rizpk",
+            "objectId": "surface-1791436503588-smtap4",
             "expression": "sin(x) * cos(y)",
             "color": "#22d3ee",
             "roboVisible": true,
@@ -3637,7 +3637,7 @@
         "kind": "CREATE",
         "subjectBefore": [],
         "subjectAfter": [
-          "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+          "727fbf70-49b2-4114-86fd-1e2a70284dad"
         ],
         "status": "success",
         "message": "Created 3D sphere with radius 3.",
@@ -3645,7 +3645,7 @@
           "rawPhrase": "Draw a sphere of radius 3.",
           "commands": [
             {
-              "id": "710c9252-61b3-4c5a-8262-0f89597ed70d",
+              "id": "9c225a58-d6c3-4da2-a1d5-46adad6e033b",
               "rawPhrase": "Draw a sphere of radius 3.",
               "normalizedPhrase": "draw a sphere of radius 3",
               "detectedAction": "DRAW",
@@ -3695,7 +3695,7 @@
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "73ce1d27-bc12-498e-87c6-9d9341947761"
+          "contextSnapshotId": "5a4cc731-e851-47a1-88ac-006ecd6cd32d"
         },
         "resolvedReferences": [],
         "missingSlots": [],
@@ -3741,14 +3741,14 @@
             "action": "create",
             "fitDimensions": false,
             "roboLabel": "SP1",
-            "objectId": "9bfb68ff-ca58-40e7-81b4-bff938a95452",
+            "objectId": "727fbf70-49b2-4114-86fd-1e2a70284dad",
             "roboVisible": true
           }
         },
         {
           "command": {
             "kind": "plot",
-            "objectId": "surface-1791434046613-3rizpk",
+            "objectId": "surface-1791436503588-smtap4",
             "expression": "sin(x) * cos(y)",
             "color": "#22d3ee",
             "roboVisible": true,
@@ -3779,10 +3779,10 @@
         "text": "What is its volume?",
         "kind": "FIND",
         "subjectBefore": [
-          "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+          "727fbf70-49b2-4114-86fd-1e2a70284dad"
         ],
         "subjectAfter": [
-          "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+          "727fbf70-49b2-4114-86fd-1e2a70284dad"
         ],
         "status": "success",
         "message": "volume = 113.09733553 units.",
@@ -3790,7 +3790,7 @@
           "rawPhrase": "What is its volume?",
           "commands": [
             {
-              "id": "94159e40-a6f6-452c-8077-8d3ccf3eb66c",
+              "id": "0c4c4f59-a8b5-49fb-80e1-58e6cbe2bea4",
               "rawPhrase": "What is its volume?",
               "normalizedPhrase": "what is its volume",
               "detectedAction": "",
@@ -3811,14 +3811,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+              "target": "727fbf70-49b2-4114-86fd-1e2a70284dad"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "a5e33b14-b4bf-4cff-9cd3-6f22bdc616cb"
+          "contextSnapshotId": "bfe31488-470b-46d9-bce0-529bba20b86c"
         },
         "resolvedReferences": [
-          "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+          "727fbf70-49b2-4114-86fd-1e2a70284dad"
         ],
         "missingSlots": [],
         "confidence": {
@@ -3863,14 +3863,14 @@
             "action": "update",
             "fitDimensions": false,
             "roboLabel": "SP1",
-            "objectId": "9bfb68ff-ca58-40e7-81b4-bff938a95452",
+            "objectId": "727fbf70-49b2-4114-86fd-1e2a70284dad",
             "roboVisible": true
           }
         },
         {
           "command": {
             "kind": "plot",
-            "objectId": "surface-1791434046613-3rizpk",
+            "objectId": "surface-1791436503588-smtap4",
             "expression": "sin(x) * cos(y)",
             "color": "#22d3ee",
             "roboVisible": true,
@@ -3901,10 +3901,10 @@
         "text": "Move it 2 units right.",
         "kind": "MOVE",
         "subjectBefore": [
-          "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+          "727fbf70-49b2-4114-86fd-1e2a70284dad"
         ],
         "subjectAfter": [
-          "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+          "727fbf70-49b2-4114-86fd-1e2a70284dad"
         ],
         "status": "success",
         "message": "move sphere.",
@@ -3912,7 +3912,7 @@
           "rawPhrase": "Move it 2 units right.",
           "commands": [
             {
-              "id": "7261c300-6af5-48f8-b6d4-5cb744b3caca",
+              "id": "e85eab5b-75f5-42d9-85db-6a86aa373cf3",
               "rawPhrase": "Move it 2 units right.",
               "normalizedPhrase": "move it 2 units right",
               "detectedAction": "MOVE",
@@ -3941,14 +3941,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+              "target": "727fbf70-49b2-4114-86fd-1e2a70284dad"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "5b1828b3-b79c-4d9b-8ec7-f19b7f2e3ae6"
+          "contextSnapshotId": "b20880bd-a42c-4e48-ae12-88b596fb12b1"
         },
         "resolvedReferences": [
-          "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+          "727fbf70-49b2-4114-86fd-1e2a70284dad"
         ],
         "missingSlots": [],
         "confidence": {
@@ -3993,14 +3993,14 @@
             "action": "update",
             "fitDimensions": false,
             "roboLabel": "SP1",
-            "objectId": "9bfb68ff-ca58-40e7-81b4-bff938a95452",
+            "objectId": "727fbf70-49b2-4114-86fd-1e2a70284dad",
             "roboVisible": true
           }
         },
         {
           "command": {
             "kind": "plot",
-            "objectId": "surface-1791434046613-3rizpk",
+            "objectId": "surface-1791436503588-smtap4",
             "expression": "sin(x) * cos(y)",
             "color": "#22d3ee",
             "roboVisible": true,
@@ -4031,10 +4031,10 @@
         "text": "What is its volume?",
         "kind": "FIND",
         "subjectBefore": [
-          "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+          "727fbf70-49b2-4114-86fd-1e2a70284dad"
         ],
         "subjectAfter": [
-          "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+          "727fbf70-49b2-4114-86fd-1e2a70284dad"
         ],
         "status": "success",
         "message": "volume = 113.09733553 units.",
@@ -4042,7 +4042,7 @@
           "rawPhrase": "What is its volume?",
           "commands": [
             {
-              "id": "65b04d89-a78a-4459-a504-2447c9be04d4",
+              "id": "34f7c4dd-3dd9-4008-9aeb-6241d05e5ce3",
               "rawPhrase": "What is its volume?",
               "normalizedPhrase": "what is its volume",
               "detectedAction": "",
@@ -4063,14 +4063,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+              "target": "727fbf70-49b2-4114-86fd-1e2a70284dad"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "ac774fc7-08e2-4f44-a998-8732ceffdfd0"
+          "contextSnapshotId": "4e0c92b4-2cdd-440a-9a9c-b5c5cb6635f6"
         },
         "resolvedReferences": [
-          "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+          "727fbf70-49b2-4114-86fd-1e2a70284dad"
         ],
         "missingSlots": [],
         "confidence": {
@@ -4115,14 +4115,14 @@
             "action": "create",
             "fitDimensions": false,
             "roboLabel": "SP1",
-            "objectId": "9bfb68ff-ca58-40e7-81b4-bff938a95452",
+            "objectId": "727fbf70-49b2-4114-86fd-1e2a70284dad",
             "roboVisible": true
           }
         },
         {
           "command": {
             "kind": "plot",
-            "objectId": "surface-1791434046613-3rizpk",
+            "objectId": "surface-1791436503588-smtap4",
             "expression": "sin(x) * cos(y)",
             "color": "#22d3ee",
             "roboVisible": true,
@@ -4153,10 +4153,10 @@
         "text": "Undo.",
         "kind": "UNDO",
         "subjectBefore": [
-          "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+          "727fbf70-49b2-4114-86fd-1e2a70284dad"
         ],
         "subjectAfter": [
-          "9bfb68ff-ca58-40e7-81b4-bff938a95452"
+          "727fbf70-49b2-4114-86fd-1e2a70284dad"
         ],
         "status": "success",
         "message": "Undid the last Ruhi action.",
@@ -4164,7 +4164,7 @@
           "rawPhrase": "Undo.",
           "commands": [
             {
-              "id": "172a43a5-cee8-403d-811b-00920e9ce412",
+              "id": "63ddec50-1071-464d-9ec0-fe089d61c603",
               "rawPhrase": "Undo.",
               "normalizedPhrase": "undo",
               "detectedAction": "UNDO",
@@ -4187,7 +4187,7 @@
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "403d3bbf-4946-4d25-9738-bc85109b1554"
+          "contextSnapshotId": "d02ee6d1-896f-4200-b965-ce64d7687bad"
         },
         "resolvedReferences": [],
         "missingSlots": [],
@@ -4233,7 +4233,7 @@
             "action": "create",
             "fitDimensions": false,
             "roboLabel": "CU1",
-            "objectId": "543b6e72-f1d4-4fbb-a925-33b2ff37752c",
+            "objectId": "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3",
             "roboVisible": true
           }
         }
@@ -4243,7 +4243,7 @@
         "kind": "CREATE",
         "subjectBefore": [],
         "subjectAfter": [
-          "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+          "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
         ],
         "status": "success",
         "message": "Created 3D cube.",
@@ -4251,7 +4251,7 @@
           "rawPhrase": "Draw a cube with side length 3.",
           "commands": [
             {
-              "id": "a5be3aa2-bdaa-4bd3-807e-39b038c28467",
+              "id": "8f69cdf1-cf5c-4472-93d4-5d1a05d8cf87",
               "rawPhrase": "Draw a cube with side length 3.",
               "normalizedPhrase": "draw a cube with side length 3",
               "detectedAction": "DRAW",
@@ -4301,7 +4301,7 @@
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "dfd05ae7-c779-454c-9fc4-3c5c09343c51"
+          "contextSnapshotId": "daebe901-0868-4962-8047-57d2b9a202db"
         },
         "resolvedReferences": [],
         "missingSlots": [],
@@ -4347,7 +4347,7 @@
             "action": "create",
             "fitDimensions": false,
             "roboLabel": "CU1",
-            "objectId": "543b6e72-f1d4-4fbb-a925-33b2ff37752c",
+            "objectId": "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3",
             "roboVisible": true
           }
         }
@@ -4356,10 +4356,10 @@
         "text": "What is its volume?",
         "kind": "FIND",
         "subjectBefore": [
-          "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+          "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
         ],
         "subjectAfter": [
-          "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+          "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
         ],
         "status": "success",
         "message": "volume = 27 units.",
@@ -4367,7 +4367,7 @@
           "rawPhrase": "What is its volume?",
           "commands": [
             {
-              "id": "994e9c9f-c664-486d-bdf8-6840df48029c",
+              "id": "43353e3b-edf3-4ea9-aace-bf1c330a553f",
               "rawPhrase": "What is its volume?",
               "normalizedPhrase": "what is its volume",
               "detectedAction": "",
@@ -4388,14 +4388,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+              "target": "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "d5ee9ffc-fea5-4230-a7ae-5d0a9d6caa66"
+          "contextSnapshotId": "587bbe69-f137-4844-a0c8-16d2811f7eeb"
         },
         "resolvedReferences": [
-          "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+          "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
         ],
         "missingSlots": [],
         "confidence": {
@@ -4440,7 +4440,7 @@
             "action": "update",
             "fitDimensions": false,
             "roboLabel": "CU1",
-            "objectId": "543b6e72-f1d4-4fbb-a925-33b2ff37752c",
+            "objectId": "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3",
             "roboVisible": true
           }
         }
@@ -4449,10 +4449,10 @@
         "text": "Move it 2 units right.",
         "kind": "MOVE",
         "subjectBefore": [
-          "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+          "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
         ],
         "subjectAfter": [
-          "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+          "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
         ],
         "status": "success",
         "message": "move cube.",
@@ -4460,7 +4460,7 @@
           "rawPhrase": "Move it 2 units right.",
           "commands": [
             {
-              "id": "9bf4095f-d28d-4cba-a826-1aadace1b66f",
+              "id": "89d70d8b-3ae6-4522-88b9-4b79cd1eee26",
               "rawPhrase": "Move it 2 units right.",
               "normalizedPhrase": "move it 2 units right",
               "detectedAction": "MOVE",
@@ -4489,14 +4489,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+              "target": "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "a8e351b5-19f6-4e75-89e1-04740ac84a95"
+          "contextSnapshotId": "f37cf1ff-df76-4b2d-89b0-93d618acb06c"
         },
         "resolvedReferences": [
-          "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+          "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
         ],
         "missingSlots": [],
         "confidence": {
@@ -4541,7 +4541,7 @@
             "action": "update",
             "fitDimensions": false,
             "roboLabel": "CU1",
-            "objectId": "543b6e72-f1d4-4fbb-a925-33b2ff37752c",
+            "objectId": "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3",
             "roboVisible": true
           }
         }
@@ -4550,10 +4550,10 @@
         "text": "What is its volume?",
         "kind": "FIND",
         "subjectBefore": [
-          "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+          "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
         ],
         "subjectAfter": [
-          "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+          "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
         ],
         "status": "success",
         "message": "volume = 27 units.",
@@ -4561,7 +4561,7 @@
           "rawPhrase": "What is its volume?",
           "commands": [
             {
-              "id": "5796aaa2-0f86-4dfb-b7e7-78206173c387",
+              "id": "ed2edffa-5294-4368-85d6-97ed1a5ff016",
               "rawPhrase": "What is its volume?",
               "normalizedPhrase": "what is its volume",
               "detectedAction": "",
@@ -4582,14 +4582,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+              "target": "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "613bf481-a16b-4c7a-b64e-941dca45ddaa"
+          "contextSnapshotId": "3a617e83-d85f-40c7-ad74-62b505becf4c"
         },
         "resolvedReferences": [
-          "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+          "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
         ],
         "missingSlots": [],
         "confidence": {
@@ -4634,7 +4634,7 @@
             "action": "create",
             "fitDimensions": false,
             "roboLabel": "CU1",
-            "objectId": "543b6e72-f1d4-4fbb-a925-33b2ff37752c",
+            "objectId": "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3",
             "roboVisible": true
           }
         }
@@ -4643,10 +4643,10 @@
         "text": "Undo.",
         "kind": "UNDO",
         "subjectBefore": [
-          "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+          "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
         ],
         "subjectAfter": [
-          "543b6e72-f1d4-4fbb-a925-33b2ff37752c"
+          "cd7a49eb-7ba6-41d1-a3f1-fe2469c175c3"
         ],
         "status": "success",
         "message": "Undid the last Ruhi action.",
@@ -4654,7 +4654,7 @@
           "rawPhrase": "Undo.",
           "commands": [
             {
-              "id": "4457887e-86c4-4c67-88e0-2cd0eaa2977a",
+              "id": "8f5cbe8b-3c0d-4e2e-b7bd-b8f86231debe",
               "rawPhrase": "Undo.",
               "normalizedPhrase": "undo",
               "detectedAction": "UNDO",
@@ -4677,7 +4677,7 @@
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "9f6a9119-af14-4c90-98fb-b9bbcd6e3ee2"
+          "contextSnapshotId": "c0b1f0db-b2c4-4828-a09f-be777fa4780f"
         },
         "resolvedReferences": [],
         "missingSlots": [],
@@ -4766,7 +4766,7 @@
           "confidence": 1,
           "commands": [
             {
-              "id": "e1f4963d-a4dc-4ba8-b326-64524df99ba7",
+              "id": "cb918926-75ff-492d-8572-6d0e21d9cf71",
               "rawPhrase": "Solve 2x + 5 = 17",
               "normalizedPhrase": "solve 2x + 5 = 17",
               "detectedAction": "FIND",
@@ -4877,7 +4877,7 @@
           "confidence": 1,
           "commands": [
             {
-              "id": "128d6063-8af0-4065-bd70-8ec04fe60496",
+              "id": "a2bb5b75-1781-4c52-896b-e87940e4040c",
               "rawPhrase": "Show me the steps",
               "normalizedPhrase": "show me the steps",
               "detectedAction": "FIND",
@@ -4988,7 +4988,7 @@
           "confidence": 1,
           "commands": [
             {
-              "id": "31b51028-1cb5-4e01-8d05-991f7873ee47",
+              "id": "29623c9d-3fca-4d4e-b63a-f48809e33bde",
               "rawPhrase": "Why did you subtract 5?",
               "normalizedPhrase": "why did you subtract 5?",
               "detectedAction": "FIND",
@@ -5051,7 +5051,7 @@
             "fitDimensions": false,
             "expression": "2*x + 5",
             "roboLabel": "PLOT3",
-            "objectId": "21d25b61-86a5-4bfa-9332-d2f3a2da41e1",
+            "objectId": "0fcc683c-ef1d-4c9e-bb71-07fd546313ba",
             "roboVisible": true
           }
         },
@@ -5125,7 +5125,7 @@
           "rawPhrase": "Plot y = 2x + 5 ",
           "commands": [
             {
-              "id": "0a5e43cc-e7de-4b9c-b535-b4c9266ebf47",
+              "id": "46661356-eeb7-48d4-9f1d-0a64b5cc8e12",
               "rawPhrase": "Plot y = 2x + 5",
               "normalizedPhrase": "plot y = 2x + 5",
               "detectedAction": "PLOT",
@@ -5150,7 +5150,7 @@
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "6e16d303-44e7-49e7-9b0f-af3e50191eb2"
+          "contextSnapshotId": "d6e89d93-96d9-4db5-bdda-e37d110f4f18"
         },
         "resolvedReferences": [
           "f1"
@@ -5193,7 +5193,7 @@
             "fitDimensions": false,
             "expression": "2*x + 5",
             "roboLabel": "PLOT3",
-            "objectId": "21d25b61-86a5-4bfa-9332-d2f3a2da41e1",
+            "objectId": "0fcc683c-ef1d-4c9e-bb71-07fd546313ba",
             "roboVisible": true
           }
         },
@@ -5218,7 +5218,7 @@
             "fitDimensions": false,
             "expression": "cos(x)",
             "roboLabel": "PLOT4",
-            "objectId": "0a3b741c-ab81-429e-a56e-627d2597d6b2",
+            "objectId": "cc9538c2-912e-4f6f-b644-7a81e18cd763",
             "roboVisible": true
           }
         },
@@ -5286,7 +5286,7 @@
           "f1"
         ],
         "subjectAfter": [
-          "21d25b61-86a5-4bfa-9332-d2f3a2da41e1"
+          "0fcc683c-ef1d-4c9e-bb71-07fd546313ba"
         ],
         "status": "success",
         "message": "Created 2D plot.",
@@ -5294,7 +5294,7 @@
           "rawPhrase": "Plot y = cos(x)",
           "commands": [
             {
-              "id": "0c06ea13-9678-4b75-84bc-cbc9317b6601",
+              "id": "f450bb6f-8d2b-428b-8932-273007266f33",
               "rawPhrase": "Plot y = cos(x)",
               "normalizedPhrase": "plot y = cos(x)",
               "detectedAction": "PLOT",
@@ -5315,14 +5315,14 @@
                 "subAction": "rule"
               },
               "requiresExecution": true,
-              "target": "21d25b61-86a5-4bfa-9332-d2f3a2da41e1"
+              "target": "0fcc683c-ef1d-4c9e-bb71-07fd546313ba"
             }
           ],
           "confidence": 1,
-          "contextSnapshotId": "ee162f10-4da7-47bf-a822-7a9ae31cb90c"
+          "contextSnapshotId": "b8f527e6-da95-4aab-89f0-fae34f0c77e7"
         },
         "resolvedReferences": [
-          "21d25b61-86a5-4bfa-9332-d2f3a2da41e1"
+          "0fcc683c-ef1d-4c9e-bb71-07fd546313ba"
         ],
         "missingSlots": [],
         "confidence": {
@@ -5362,7 +5362,7 @@
             "fitDimensions": false,
             "expression": "2*x + 5",
             "roboLabel": "PLOT3",
-            "objectId": "21d25b61-86a5-4bfa-9332-d2f3a2da41e1",
+            "objectId": "0fcc683c-ef1d-4c9e-bb71-07fd546313ba",
             "roboVisible": true
           }
         },
@@ -5387,7 +5387,7 @@
             "fitDimensions": false,
             "expression": "cos(x)",
             "roboLabel": "PLOT4",
-            "objectId": "0a3b741c-ab81-429e-a56e-627d2597d6b2",
+            "objectId": "cc9538c2-912e-4f6f-b644-7a81e18cd763",
             "roboVisible": true
           }
         },
@@ -5452,10 +5452,10 @@
         "text": "Run matrices.inverse [[[1,2],[3,4]]]",
         "kind": "FIND",
         "subjectBefore": [
-          "21d25b61-86a5-4bfa-9332-d2f3a2da41e1"
+          "0fcc683c-ef1d-4c9e-bb71-07fd546313ba"
         ],
         "subjectAfter": [
-          "21d25b61-86a5-4bfa-9332-d2f3a2da41e1"
+          "0fcc683c-ef1d-4c9e-bb71-07fd546313ba"
         ],
         "status": "success",
         "message": "[[-2,1],[1.5,-0.5]]",
@@ -5464,7 +5464,7 @@
           "confidence": 1,
           "commands": [
             {
-              "id": "7d13aa8d-7ed2-4747-8271-37d0df1d7410",
+              "id": "fc89b2ba-35ea-428f-9f99-359df330e402",
               "rawPhrase": "Run matrices.inverse [[[1,2],[3,4]]]",
               "normalizedPhrase": "run matrices.inverse [[[1,2],[3,4]]]",
               "detectedAction": "FIND",
@@ -5527,7 +5527,7 @@
             "fitDimensions": false,
             "expression": "2*x + 5",
             "roboLabel": "PLOT3",
-            "objectId": "21d25b61-86a5-4bfa-9332-d2f3a2da41e1",
+            "objectId": "0fcc683c-ef1d-4c9e-bb71-07fd546313ba",
             "roboVisible": true
           }
         },
@@ -5552,7 +5552,7 @@
             "fitDimensions": false,
             "expression": "cos(x)",
             "roboLabel": "PLOT4",
-            "objectId": "0a3b741c-ab81-429e-a56e-627d2597d6b2",
+            "objectId": "cc9538c2-912e-4f6f-b644-7a81e18cd763",
             "roboVisible": true
           }
         },
@@ -5617,10 +5617,10 @@
         "text": "Find the mean",
         "kind": "FIND",
         "subjectBefore": [
-          "21d25b61-86a5-4bfa-9332-d2f3a2da41e1"
+          "0fcc683c-ef1d-4c9e-bb71-07fd546313ba"
         ],
         "subjectAfter": [
-          "21d25b61-86a5-4bfa-9332-d2f3a2da41e1"
+          "0fcc683c-ef1d-4c9e-bb71-07fd546313ba"
         ],
         "status": "ambiguous",
         "message": "Which numeric dataset should I use?",
@@ -5629,7 +5629,7 @@
           "confidence": 0,
           "commands": [
             {
-              "id": "22c06062-cfda-47f7-a027-d1ee5887f96f",
+              "id": "531300b5-314d-4bfc-9c59-66664b5b5ed0",
               "rawPhrase": "Find the mean",
               "normalizedPhrase": "find the mean",
               "detectedAction": "FIND",
@@ -5692,7 +5692,7 @@
             "fitDimensions": false,
             "expression": "2*x + 5",
             "roboLabel": "PLOT3",
-            "objectId": "21d25b61-86a5-4bfa-9332-d2f3a2da41e1",
+            "objectId": "0fcc683c-ef1d-4c9e-bb71-07fd546313ba",
             "roboVisible": true
           }
         },
@@ -5717,7 +5717,7 @@
             "fitDimensions": false,
             "expression": "cos(x)",
             "roboLabel": "PLOT4",
-            "objectId": "0a3b741c-ab81-429e-a56e-627d2597d6b2",
+            "objectId": "cc9538c2-912e-4f6f-b644-7a81e18cd763",
             "roboVisible": true
           }
         },
@@ -5782,10 +5782,10 @@
         "text": "2,4,6",
         "kind": "FIND",
         "subjectBefore": [
-          "21d25b61-86a5-4bfa-9332-d2f3a2da41e1"
+          "0fcc683c-ef1d-4c9e-bb71-07fd546313ba"
         ],
         "subjectAfter": [
-          "21d25b61-86a5-4bfa-9332-d2f3a2da41e1"
+          "0fcc683c-ef1d-4c9e-bb71-07fd546313ba"
         ],
         "status": "success",
         "message": "4",
@@ -5794,7 +5794,7 @@
           "confidence": 1,
           "commands": [
             {
-              "id": "7c0ba3ce-5082-4ac1-a65f-e024148298ab",
+              "id": "93a2f96f-5e85-4adf-b7b9-132791c34cfa",
               "rawPhrase": "2,4,6",
               "normalizedPhrase": "2,4,6",
               "detectedAction": "FIND",
@@ -5857,7 +5857,7 @@
             "fitDimensions": false,
             "expression": "2*x + 5",
             "roboLabel": "PLOT3",
-            "objectId": "21d25b61-86a5-4bfa-9332-d2f3a2da41e1",
+            "objectId": "0fcc683c-ef1d-4c9e-bb71-07fd546313ba",
             "roboVisible": true
           }
         },
@@ -5882,7 +5882,7 @@
             "fitDimensions": false,
             "expression": "cos(x)",
             "roboLabel": "PLOT4",
-            "objectId": "0a3b741c-ab81-429e-a56e-627d2597d6b2",
+            "objectId": "cc9538c2-912e-4f6f-b644-7a81e18cd763",
             "roboVisible": true
           }
         },
@@ -5947,10 +5947,10 @@
         "text": "And median?",
         "kind": "FIND",
         "subjectBefore": [
-          "21d25b61-86a5-4bfa-9332-d2f3a2da41e1"
+          "0fcc683c-ef1d-4c9e-bb71-07fd546313ba"
         ],
         "subjectAfter": [
-          "21d25b61-86a5-4bfa-9332-d2f3a2da41e1"
+          "0fcc683c-ef1d-4c9e-bb71-07fd546313ba"
         ],
         "status": "success",
         "message": "4",
@@ -5959,7 +5959,7 @@
           "confidence": 1,
           "commands": [
             {
-              "id": "912a7080-7f5b-48d4-9db6-2cf6da598a3d",
+              "id": "1a8f69a6-52f9-47c5-8981-e389a80e7725",
               "rawPhrase": "And median?",
               "normalizedPhrase": "and median?",
               "detectedAction": "FIND",
@@ -6022,7 +6022,7 @@
             "fitDimensions": false,
             "expression": "2*x + 5",
             "roboLabel": "PLOT3",
-            "objectId": "21d25b61-86a5-4bfa-9332-d2f3a2da41e1",
+            "objectId": "0fcc683c-ef1d-4c9e-bb71-07fd546313ba",
             "roboVisible": true
           }
         },
@@ -6047,7 +6047,7 @@
             "fitDimensions": false,
             "expression": "cos(x)",
             "roboLabel": "PLOT4",
-            "objectId": "0a3b741c-ab81-429e-a56e-627d2597d6b2",
+            "objectId": "cc9538c2-912e-4f6f-b644-7a81e18cd763",
             "roboVisible": true
           }
         },
@@ -6112,10 +6112,10 @@
         "text": "What about half of it?",
         "kind": "FIND",
         "subjectBefore": [
-          "21d25b61-86a5-4bfa-9332-d2f3a2da41e1"
+          "0fcc683c-ef1d-4c9e-bb71-07fd546313ba"
         ],
         "subjectAfter": [
-          "21d25b61-86a5-4bfa-9332-d2f3a2da41e1"
+          "0fcc683c-ef1d-4c9e-bb71-07fd546313ba"
         ],
         "status": "success",
         "message": "2",
@@ -6124,7 +6124,7 @@
           "confidence": 1,
           "commands": [
             {
-              "id": "3ddfd2f7-fecb-4e14-aec3-83e5039fcedb",
+              "id": "a1f6be2a-786f-4466-ac12-17317f49f48b",
               "rawPhrase": "What about half of it?",
               "normalizedPhrase": "what about half of it?",
               "detectedAction": "FIND",

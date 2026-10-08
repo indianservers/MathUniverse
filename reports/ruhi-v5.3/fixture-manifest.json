@@ -1,0 +1,26 @@
+{
+  "frozenAt": "2026-10-08T11:48:27.860Z",
+  "files": [
+    {
+      "path": "datasets/ruhi-2d-nlp/v1.normalized.json",
+      "sha256": "18d99f7d158d0adff83e56ea6976aa00b67fdecc454411cfe63ebb3182f692ad"
+    },
+    {
+      "path": "C:/Users/saisa/.codex/attachments/f2e0e61d-3bfa-48ef-a043-92f8942b15b2/Pasted text.txt",
+      "sha256": "8ccaf2678b45fa234c960561dcdbe47009a0c6afe0f2db3f09eaa413661406cc"
+    },
+    {
+      "path": "public/datasets/math-robo-conversations.json",
+      "sha256": "99f85acca60f8bc948120d1a3aab073cfb5d4f4249a9e4cd278f8a7d89fb1755"
+    }
+  ],
+  "partitions": {
+    "A": "Original 100 and historical regressions",
+    "B": "Historical train split, exposed",
+    "C": "Historical validation split, exposed",
+    "D": "Not established: historical test split has been inspected during earlier repairs",
+    "E": "Kernel adversarial and resource-budget tests",
+    "F": "Whole historical scenarios and focused conversations"
+  },
+  "oracleCorrections": "None in v5.3; historical source fixtures and expected values retained"
+}

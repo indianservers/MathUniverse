@@ -1,0 +1,15 @@
+{
+  "maxCycles": 20,
+  "completedCycles": 9,
+  "stop": true,
+  "reason": "USER_REQUESTED_STOP: six cycles considered sufficient; nine had already completed when the request arrived. No more cycles or production builds started.",
+  "guards": {
+    "conversations": true,
+    "persistence": true,
+    "priorRegression": true,
+    "unitRegression": true,
+    "studentBuild": false
+  },
+  "evaluationTargetReached": true,
+  "fullAcceptanceVerified": false
+}

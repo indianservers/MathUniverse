@@ -1,0 +1,6 @@
+{
+  "source": "scripts/ruhi-2d-nlp-run.mjs",
+  "sha256": "0051730d676d89074b68528b4d8f86a9193e10e8cb03a772d75ce522c9dffde8",
+  "adaptation": "Output directory only; expectations unchanged",
+  "hotReload": "Vite connection retained; refresh messages suppressed; 90-second automation limits; remote hosts blocked"
+}

@@ -1,0 +1,37 @@
+{
+  "calibration": {
+    "intent": {
+      "explain": 0.75,
+      "define": 0.85,
+      "formula": 0.35,
+      "proof": 0.35,
+      "example": 0.35,
+      "demonstrate": 0.35,
+      "calculate": 0.35,
+      "compare": 0.35,
+      "why": 0.98,
+      "simplify": 0.35,
+      "simulation": 0.55,
+      "selected": 0.35,
+      "followup": 0.75,
+      "practice": 0.35,
+      "hint": 0.35,
+      "previous": 0.35,
+      "unrelated": 0.35
+    },
+    "meaning": {
+      "active": 0.95,
+      "previous": 0.35,
+      "selected": 0.35,
+      "pigeonhole": 0.35,
+      "graph-tree": 0.35,
+      "data-tree": 0.35,
+      "real-tree": 0.35,
+      "ordinary-pigeonhole": 0.35,
+      "unknown": 0.35
+    }
+  },
+  "rows": 1248,
+  "accepted": 1051,
+  "acceptedJointPrecision": 0.9800190294957184
+}

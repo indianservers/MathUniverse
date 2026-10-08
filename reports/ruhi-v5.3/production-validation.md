@@ -1,0 +1,9 @@
+# Production validation
+
+Student build: passed; developer Training Lab: passed; production matrix: 40/40. See actual build/browser logs and screenshots. Tests run against built output at 9987 and private developer output at 9988. These are temporary local QA services, not deployed authentication boundaries.
+
+Student post-build sanitizer removes public datasets, starter rows, training manifests, external training reports, migration diagnostics and the external training action registry. Embedded userDefinedMetadata.report is stripped from model JSON while topology, labels and weights references remain. Production source weights are preserved. Regression tests verify retention and idempotence. Routes and training workers also have compile-time exclusions.
+
+No unexpected remote requests in the recorded offline production matrix: 0; runtime exceptions: 0. SPA fallback HTML for excluded asset requests is recorded as no JSON/JSONL exposure, not incorrectly described as a 404. Developer UI screenshots and functional checks verify audit results, starter loading, inference inspection and train controls without fitting or promotion. An enabled developer distribution must be hosted privately; a client-side flag is not authentication.
+
+Repository TypeScript 218; ESLint 439 errors/133 warnings. Modules and exact diagnostic deltas are in static-analysis.json. Existing static problems block a clean checked release. Scope-specific lint and regression evidence accompany the repairs. The full application scan before the final three local guards had 221 errors; final incremental TypeScript verification uses --assumeChangesOnlyAffectDirectDependencies for those local changes, retains cached baseline diagnostics, and is supplemented by the 19 repair regressions. No public type contract changed in those guards.

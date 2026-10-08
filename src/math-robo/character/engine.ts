@@ -1,6 +1,6 @@
 export const EXPRESSIONS = ['happy', 'excited', 'thinking', 'confused', 'curious', 'sad', 'surprised', 'proud', 'celebrating', 'listening', 'speaking', 'processing', 'searching', 'teaching', 'explaining', 'encouraging', 'error', 'success', 'sleepy', 'sleeping', 'waking', 'laughing', 'winking', 'focused', 'waiting'] as const;
 export type Expression = typeof EXPRESSIONS[number];
-export const ACTIONS = ['wave', 'waveGoodbye', 'bow', 'salute', 'raiseHands', 'pointLeft', 'pointRight', 'pointUp', 'pointDown', 'point', 'explain', 'shrug', 'nod', 'shakeHead', 'listen', 'jump', 'celebrate', 'clap', 'thumbsUp', 'dance', 'laugh', 'confusion', 'surprise', 'concern', 'encourage', 'walkLeft', 'walkRight', 'stepForward', 'turn', 'float', 'land', 'stretch', 'lookAround', 'lean', 'neutral', 'pointGraph', 'traceLine', 'traceCircle', 'indicateAngle', 'highlight', 'rotate', 'translate', 'scale', 'count', 'follow'] as const;
+export const ACTIONS = ['wave', 'waveGoodbye', 'bow', 'salute', 'raiseHands', 'pointLeft', 'pointRight', 'pointUp', 'pointDown', 'point', 'explain', 'shrug', 'nod', 'shakeHead', 'listen', 'jump', 'celebrate', 'clap', 'thumbsUp', 'dance', 'laugh', 'confusion', 'surprise', 'concern', 'encourage', 'walkLeft', 'walkRight', 'walkUp', 'walkDown', 'crawl', 'crawlLeft', 'crawlRight', 'crawlUp', 'crawlDown', 'stepForward', 'turn', 'float', 'land', 'stretch', 'lookAround', 'lean', 'neutral', 'pointGraph', 'traceLine', 'traceCircle', 'indicateAngle', 'highlight', 'rotate', 'translate', 'scale', 'count', 'follow'] as const;
 export type Action = typeof ACTIONS[number];
 export type Target = {
     x: number;
@@ -11,6 +11,8 @@ export type ActionOptions = Partial<Target> & {
     count?: number;
     priority?: number;
     duration?: number;
+    travel?: number;
+    inPlace?: boolean;
     target?: (progress?:number) => Target | undefined;
 };
 export type Pose = {
@@ -126,7 +128,7 @@ export function sampleAction(action: Action, t: number, o: ActionOptions = {}): 
             p.head = -12 * pulse;
             break;
         case 'jump':
-            p.y = -22 * pulse;
+            p.y = o.inPlace ? 0 : -22 * pulse;
             p.left = 80 * pulse;
             p.right = -80 * pulse;
             p.legL = 10 * pulse;
@@ -186,12 +188,24 @@ export function sampleAction(action: Action, t: number, o: ActionOptions = {}): 
             break;
         case 'walkLeft':
         case 'walkRight':
-            p.x = (action === 'walkLeft' ? -1 : 1) * 20 * pulse;
+        case 'walkUp':
+        case 'walkDown':
+            p.x = o.inPlace ? 0 : (action === 'walkLeft' ? -1 : action === 'walkRight' ? 1 : 0) * 20 * pulse;
             p.legL = beat * 24 * pulse;
             p.legR = -beat * 24 * pulse;
             p.left = -beat * 15 * pulse;
             p.right = beat * 15 * pulse;
             p.y = -Math.abs(beat) * 2;
+            break;
+        case 'crawl':
+        case 'crawlLeft':
+        case 'crawlRight':
+        case 'crawlUp':
+        case 'crawlDown':
+            p.body = 65 * pulse; p.head = -60 * pulse; p.y = 8 * pulse;
+            p.left = (35 + beat * 20) * pulse; p.right = (-55 - beat * 20) * pulse;
+            p.elbowL = -65 * pulse; p.elbowR = 65 * pulse;
+            p.legL = (-40 - beat * 15) * pulse; p.legR = (40 + beat * 15) * pulse;
             break;
         case 'stepForward':
             p.scale = 1 + .12 * pulse;

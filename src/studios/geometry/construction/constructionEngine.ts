@@ -46,6 +46,7 @@ export type ObjKind =
   | "circleCP"
   | "circleCR"
   | "circle3"
+  | "incircle"
   | "circleDiameter"
   | "perp"
   | "parallel"
@@ -336,6 +337,12 @@ function evalOne(obj: GeomObject, world: World, map: Map<string, GeomObject>): E
         if (!(r > 1e-10)) return emptyEval("Zero radius.");
         return { point: null, line: null, circle: { center: c, r }, polygon: null };
       }
+      case "incircle": {
+        const a=p(0),b=p(1),c=p(2);if(!a||!b||!c)return emptyEval("An incircle needs three points.");
+        const center=incenter(a,b,c),area=Math.abs((b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x))/2,perimeter=dist(a,b)+dist(b,c)+dist(c,a);
+        if(!center||!area||!perimeter)return emptyEval("Degenerate triangle: no incircle.");
+        return {point:null,line:null,circle:{center,r:2*area/perimeter},polygon:null};
+      }
       case "circle3": {
         const a = p(0);
         const b = p(1);
@@ -533,7 +540,7 @@ export function detectRelations(objects: GeomObject[], world: World): Relation[]
         objectIds: [obj.id, ...obj.parents],
       });
     }
-    if ((obj.kind === "circleCP" || obj.kind === "circleCR" || obj.kind === "circle3" || obj.kind === "circleDiameter") && ev.circle) {
+    if ((obj.kind === "circleCP" || obj.kind === "circleCR" || obj.kind === "circle3" || obj.kind === "incircle" || obj.kind === "circleDiameter") && ev.circle) {
       for (const q of pts) {
         const p = world[q.id]?.point;
         if (p && pointOnCircle(p, ev.circle)) {

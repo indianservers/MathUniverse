@@ -19,12 +19,12 @@ export function parseExtensions(command:MathRoboCommand):MathRoboCommand|undefin
       return set(/^(?:create|mark|draw)/.test(t)?'MARK':'FIND','MIDPOINT');
     }
   }
-  if(/\b(?:twice|double|half)\b.*\b(?:wide|width|tall|height)\b/.test(t)){p[/wide|width/.test(t)?'widthFactor':'heightFactor']=/half/.test(t)?.5:2;return set('RESIZE','OBJECT');}
+  if(/\b(?:twice|double|half)\b.*\b(?:wide|width|tall|height)\b/.test(t)&&!/\b(?:width|height|depth)\s+(?:to |be )?(?:half|twice|double)\b/.test(t)){p[/wide|width/.test(t)?'widthFactor':'heightFactor']=/half/.test(t)?.5:2;return set('RESIZE','OBJECT');}
   if(/\binner triangle\b.*\brelationship\b|\brelationship\b.*\binner triangle\b/.test(t))return set('CHECK','MEDIAL_TRIANGLE');
   if(/^(?:join|connect)\b/.test(t)){p.fromMarkedPoints=true;return set('CREATE','TRIANGLE');}
   if(/^mark\b.*\b(?:all (?:3|three)|every|each)\b.*\bmidpoints?\b|^mark\b.*\bmidpoint.*every side\b/.test(t)){command.target={type:'triangle',reference:'lastReferenced'};return set('MARK','SIDE_MIDPOINTS');}
   if(/\bcoordinates?\b.*\b(?:center|centre)\b/.test(t))return set('FIND','CENTER');
-  if(/^(?:mark (?:that|the) point|place a point where)/.test(t)){command.target='$previousResult';if(/intersect/.test(t))p.intersectionRequested=true;return set('MARK','POINT');}
+  if(/^(?:mark (?:that|the) point|(?:place|create) a point where)/.test(t)){command.target='$previousResult';if(/intersect/.test(t))p.intersectionRequested=true;return set('MARK','POINT');}
   if(/^where\b.*\bmeet\b/.test(t)){p.multiple=true;return set('FIND','INTERSECTION');}
   if(/^is\b.*\b(horizontal|vertical)\b/.test(t)){p.orientation=t.match(/horizontal|vertical/)![0];command.target={type:'line',reference:'lastReferenced'};return set('CHECK','ORIENTATION');}
   if(/\bmake\b.*\bthese\b.*\bparallel\b/.test(t)){p.multiple=true;p.relation='PARALLEL';return set('CHANGE','RELATION');}

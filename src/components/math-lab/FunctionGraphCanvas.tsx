@@ -1,3 +1,5 @@
+import {CinematicSvgPreview} from '../../math-robo/animation/CinematicSvgPreview';
+import {registerRoboSpatialProvider,registerRoboUnprojector} from '../../math-robo/character/spatialAwareness';
 import {registerRoboProjector,svgClientPoint} from '../../math-robo/character/workspaceAdapter';
 import {roboEvents} from '../../math-robo/character/engine';
 import {useEffect} from 'react';
@@ -13,8 +15,9 @@ export type FunctionGraphSeries = {
   color: string;
   points: GraphSample[];
   visible: boolean;
-  style?: "line" | "points" | "derivative" | "dashed" | "region" | "vectors";
+  style?: "line" | "points" | "derivative" | "dashed" | "region" | "vectors" | "directed";
   opacity?: number;
+  strokeWidth?:number;
 };
 
 export type FunctionGraphView = {
@@ -25,12 +28,15 @@ export type FunctionGraphView = {
 };
 
 type FunctionGraphCanvasProps = {
+  filledShapes?:{id:string;vertices:number[][];color:string}[];
+  angleShapes?:{id:string;vertices:number[][];vertex:number;color:string;strokeWidth:number}[];
   series: FunctionGraphSeries[];
   view: FunctionGraphView;
   showGrid?: boolean;
   showAxes?: boolean;
   traceX?: number;
   selectedSeriesId?: string;
+  onSeriesSelect?:(id:string)=>void;
   onTraceChange?: (x: number) => void;
   onViewChange?: (view: FunctionGraphView) => void;
   onResetView?: () => void;
@@ -77,12 +83,15 @@ const INITIAL_WIDTH = 720;
 const INITIAL_HEIGHT = 440;
 
 export default function FunctionGraphCanvas({
+  filledShapes=[],
+  angleShapes=[],
   series,
   view,
   showGrid = true,
   showAxes = true,
   traceX,
   selectedSeriesId,
+  onSeriesSelect,
   onTraceChange,
   onViewChange,
   onResetView,
@@ -130,6 +139,12 @@ export default function FunctionGraphCanvas({
     y: HEIGHT - ((axisValue(y, logY) - yMin) / (yMax - yMin)) * HEIGHT,
   });
   const roboProjection=useRef(toScreen);roboProjection.current=toScreen;
+  const spatialState=useRef({series,selectedSeriesId,xMin,xMax,yMin,yMax,logX,logY,WIDTH,HEIGHT});spatialState.current={series,selectedSeriesId,xMin,xMax,yMin,yMax,logX,logY,WIDTH,HEIGHT};
+  useEffect(()=>{
+    const off=registerRoboSpatialProvider('graph2d',()=>{const svg=svgRef.current,matrix=svg?.getScreenCTM();if(!svg||!matrix)return [];const rect=svg.getBoundingClientRect();return spatialState.current.series.filter(item=>item.visible).map(item=>({id:item.id,label:item.label,kind:'plot',selected:item.id===spatialState.current.selectedSeriesId,samples:item.points.map(p=>{if(p.y===null||!Number.isFinite(p.x)||!Number.isFinite(p.y))return;const point=roboProjection.current(p.x,p.y!);const client=new DOMPoint(point.x,point.y).matrixTransform(matrix);if(client.x<rect.left||client.x>rect.right||client.y<rect.top||client.y>rect.bottom)return;return {screen:{x:client.x,y:client.y},world:[p.x,p.y!]};})}));});
+    const inverse=registerRoboUnprojector('graph2d',point=>{const svg=svgRef.current,matrix=svg?.getScreenCTM();if(!svg||!matrix)return;const r=svg.getBoundingClientRect();if(point.x<r.left||point.x>r.right||point.y<r.top||point.y>r.bottom)return;const p=new DOMPoint(point.x,point.y).matrixTransform(matrix.inverse()),s=spatialState.current,x=s.xMin+p.x/s.WIDTH*(s.xMax-s.xMin),y=s.yMax-p.y/s.HEIGHT*(s.yMax-s.yMin);return [s.logX?10**x:x,s.logY?10**y:y];});return()=>{off();inverse();};
+  },[]);
+
   useEffect(()=>registerRoboProjector('graph2d',p=>svgClientPoint(svgRef.current,roboProjection.current(p[0],p[1]))),[]);
   useEffect(()=>{
     const selected=series.find(s=>s.id===selectedSeriesId);
@@ -375,6 +390,8 @@ export default function FunctionGraphCanvas({
       {showAxes && (
         <Axes view={view} toScreen={toScreen} logX={logX} logY={logY} width={WIDTH} height={HEIGHT} />
       )}
+      {filledShapes.map(shape=><polygon key={`fill-${shape.id}`} data-ruhi-fill={shape.id} points={shape.vertices.map(p=>{const q=toScreen(p[0],p[1]);return `${q.x},${q.y}`;}).join(' ')} fill={shape.color} fillOpacity={0.25} stroke="none" pointerEvents="none"/>)}
+      {angleShapes.map(shape=>{const p=shape.vertices[shape.vertex],a=shape.vertices[(shape.vertex+1)%3],b=shape.vertices[(shape.vertex+2)%3];if(!p||!a||!b)return null;const u=a.map((x,i)=>x-p[i]),v=b.map((x,i)=>x-p[i]),start=Math.atan2(u[1],u[0]);let sweep=Math.atan2(v[1],v[0])-start;if(sweep>Math.PI)sweep-=2*Math.PI;if(sweep<-Math.PI)sweep+=2*Math.PI;const radius=Math.min(Math.hypot(...u),Math.hypot(...v))*.2,points=Array.from({length:25},(_,i)=>{const angle=start+sweep*i/24,q=toScreen(p[0]+radius*Math.cos(angle),p[1]+radius*Math.sin(angle));return `${q.x},${q.y}`;});return <polyline key={`angle-${shape.id}`} data-ruhi-angle={shape.id} points={points.join(' ')} fill="none" stroke={shape.color} strokeWidth={shape.strokeWidth} pointerEvents="none"/>;})}
       {imageLayers.map((image) => {
         const topLeft = toScreen(image.x, image.y);
         const bottomRight = toScreen(
@@ -408,7 +425,7 @@ export default function FunctionGraphCanvas({
       {series
         .filter((item) => item.visible)
         .map((item) => (
-          <g key={item.id} opacity={item.opacity ?? 1}>
+          <g data-motion-object={item.id} key={item.id} opacity={item.opacity ?? 1}>
             {item.style === "region"
               ? item.points
                   .filter((point) => point.valid && point.y !== null)
@@ -452,6 +469,8 @@ export default function FunctionGraphCanvas({
                         />
                       );
                     })
+                : item.style === "directed" && item.points.length===2
+                  ? (()=>{const start=toScreen(item.points[0].x,item.points[0].y!),end=toScreen(item.points[1].x,item.points[1].y!);return <g data-directed-id={item.id} onClick={event=>{event.stopPropagation();onSeriesSelect?.(item.id);}}><line x1={start.x} y1={start.y} x2={end.x} y2={end.y} stroke="transparent" strokeWidth="16" pointerEvents="stroke"/><line x1={start.x} y1={start.y} x2={end.x} y2={end.y} stroke={item.color} strokeWidth="3"/><path d={arrowHead(start,end)} fill="none" stroke={item.color} strokeWidth="3"/></g>;})()
                 : item.style === "vectors"
                   ? vectorSegments(item.points, toScreen).map(
                       (segment, index) => (
@@ -482,11 +501,11 @@ export default function FunctionGraphCanvas({
                           points={segment}
                           fill="none"
                           stroke={item.color}
-                          strokeWidth={
+                          strokeWidth={item.strokeWidth ?? (
                             item.style === "derivative" ||
                             item.style === "dashed"
                               ? "2.5"
-                              : "3"
+                              : "3")
                           }
                           strokeDasharray={
                             item.style === "derivative" ||
@@ -690,6 +709,7 @@ export default function FunctionGraphCanvas({
           </g>
         </g>
       )}
+      <CinematicSvgPreview mode="graph2d" toScreen={toScreen} bounds={view}/>
     </svg>
   );
 }

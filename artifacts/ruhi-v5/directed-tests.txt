@@ -1,0 +1,184 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+·····························xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx····················································································································································································
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 160 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed +0
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 1
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 2
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 3
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 4
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 5
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 6
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 7
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 8
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 9
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 10
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 11
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 12
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 13
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 14
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 15
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 16
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 17
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 18
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 19
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 20
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 21
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 22
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 23
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 24
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 25
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 26
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 27
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 28
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 29
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 30
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 31
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 32
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 33
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 34
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 35
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 36
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 37
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 38
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'ray' independent seed 39
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed +0
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 1
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 2
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 3
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 4
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 5
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 6
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 7
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 8
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 9
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 10
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 11
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 12
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 13
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 14
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 15
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 16
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 17
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 18
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 19
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 20
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 21
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 22
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 23
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 24
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 25
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 26
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 27
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 28
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 29
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 30
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 31
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 32
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 33
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 34
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 35
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 36
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 37
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 38
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'graph2d' 'vector' independent seed 39
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed +0
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 1
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 2
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 3
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 4
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 5
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 6
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 7
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 8
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 9
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 10
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 11
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 12
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 13
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 14
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 15
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 16
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 17
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 18
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 19
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 20
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 21
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 22
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 23
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 24
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 25
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 26
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 27
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 28
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 29
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 30
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 31
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 32
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 33
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 34
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 35
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 36
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 37
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 38
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'ray' independent seed 39
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed +0
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 1
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 2
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 3
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 4
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 5
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 6
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 7
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 8
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 9
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 10
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 11
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 12
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 13
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 14
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 15
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 16
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 17
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 18
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 19
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 20
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 21
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 22
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 23
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 24
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 25
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 26
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 27
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 28
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 29
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 30
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 31
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 32
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 33
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 34
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 35
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 36
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 37
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 38
+ FAIL  src/math-robo/intelligence/v5Directed.test.ts > v5 directed geometry: 320 committed property scenarios > 'geometry2d' 'vector' independent seed 39
+TypeError: Cannot read properties of undefined (reading 'kind')
+ ❯ src/math-robo/intelligence/v5Directed.test.ts:39:43
+     37|       const created=await h.ask(`Draw a ${kind} from (${a}) to (${b})`…
+     38|       let o=h.read().objects[0];expect(o.type).toBe(kind);expect(o.ver…
+     39|       if(d===2)expect(h.geometry().lines[0].kind).toBe(kind);
+       |                                           ^
+     40|       const length=Math.sqrt(delta.reduce((sum,n)=>sum+n*n,0));
+     41|       const move=[2,-3,...(d===3?[1]:[])];expect((await h.ask(`Move it…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/160]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  160 failed | 209 passed (369)
+   Start at  11:03:26
+   Duration  7.28s (transform 648ms, setup 38ms, import 1.36s, tests 5.63s, environment 0ms)
+

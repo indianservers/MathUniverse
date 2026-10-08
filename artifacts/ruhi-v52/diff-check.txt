@@ -1,0 +1,50 @@
+src/pages/MathWorkspace.tsx:1: trailing whitespace.
++import {registerRoboUnprojector,registerRoboSpatialProvider,readSVGSpatialObjects} from '../math-robo/character/spatialAwareness';
+src/pages/MathWorkspace.tsx:2: trailing whitespace.
++import {useRoboThreeAwareness} from '../math-robo/character/useRoboThreeAwareness';
+src/pages/MathWorkspace.tsx:52: trailing whitespace.
++import {outlineVertices} from '../offline-intelligence/commands';
+src/pages/MathWorkspace.tsx:54: trailing whitespace.
++import DirectedObject3D from '../offline-intelligence/DirectedObject3D';
+src/pages/MathWorkspace.tsx:177: trailing whitespace.
++type GeoLine = { id: string; a: string; b: string; kind?: 'line'|'segment'|'ray'|'vector'; style?: GeoStyle };
+src/pages/MathWorkspace.tsx:1690: trailing whitespace.
++  const geometryAwareness=useRef({construction,selectedGeometry});geometryAwareness.current={construction,selectedGeometry};
+src/pages/MathWorkspace.tsx:1691: trailing whitespace.
++  useEffect(()=>{if(workspaceView!=='geometry')return;return registerRoboSpatialProvider('geometry2d',anchor=>readSVGSpatialObjects(svgRef.current,anchor,(id,kind)=>{const c=geometryAwareness.current.construction;let label:string|undefined;if(kind==='point')label=c.points.find(p=>p.id===id)?.label;else if(kind==='circle'){const circle=c.circles.find(o=>o.id===id);const center=c.points.find(p=>p.id===circle?.center);label=center?`Circle ${center.label}`:undefined;}else if(kind==='line'){const line=c.lines.find(o=>o.id===id);const a=c.points.find(p=>p.id===line?.a),b=c.points.find(p=>p.id===line?.b);label=a&&b?`${a.label}${b.label}`:undefined;}else if(kind==='polygon'){const index=c.polygons.findIndex(o=>o.id===id);if(index>=0)label=`Polygon ${index+1}`;}return {label,selected:geometryAwareness.current.selectedGeometry?.id===id};}));},[workspaceView]);
+src/pages/MathWorkspace.tsx:1692: trailing whitespace.
++  useEffect(()=>{if(workspaceView!=='geometry')return;return registerRoboUnprojector('geometry2d',point=>{const svg=svgRef.current,matrix=svg?.getScreenCTM();if(!svg||!matrix)return;const rect=svg.getBoundingClientRect();if(point.x<rect.left||point.x>rect.right||point.y<rect.top||point.y>rect.bottom)return;const p=new DOMPoint(point.x,point.y).matrixTransform(matrix.inverse());return [(p.x-320)/40,(210-p.y)/40];});},[workspaceView]);
+src/pages/MathWorkspace.tsx:1699: trailing whitespace.
++      if(workspaceView==='geometry')setSelectedGeometry({type:command.kind==='circle'?'circle':['line','ray','vector'].includes(command.kind)?'line':command.kind==='point'?'point':'polygon',id:command.roboNativeIds?.shape??(command.roboNativeIds?command.roboNativeIds.points[0]:`${command.objectId}-${command.kind==='point'?'p0':'shape'}`)});
+src/pages/MathWorkspace.tsx:1717: trailing whitespace.
++    const baseId:ThreeObjectId=['line','ray','vector'].includes(command.kind)?'line3d':command.kind==='point'?'point':'solid';
+src/pages/MathWorkspace.tsx:1719: trailing whitespace.
++      const next:Added3DObject={id,label:command.roboLabel??command.kind,baseId,render:['line','ray','vector'].includes(command.kind)?'line3d':command.kind==='point'?'point':'solid',nlpCommand:command,transform:{...defaultTransforms3d[baseId],...commandTransform3d(command),scale:command.scale??1,visible:command.roboVisible??true,name:command.kind,locked:command.roboLocked??false}};
+src/pages/MathWorkspace.tsx:1723: trailing whitespace.
++      if(['ray','vector'].includes(command.kind)&&!construction.lines.some(line=>line.id===(command.roboNativeIds?.shape??`${command.objectId}-shape`)&&(line.kind??line.style?.label)===command.kind))return undefined;
+src/pages/MathWorkspace.tsx:1730: trailing whitespace.
++        const materialized=['line','ray','vector'].includes(command.kind)||command.kind==='point'?{...command,points:vertices.map(p=>p.slice(0,2)),rotation:[0,0,0] as [number,number,number],scale:1}:command;
+src/pages/MathWorkspace.tsx:1735: trailing whitespace.
++      return {command:{...command,points:['ray','vector','triangle','polygon'].includes(command.kind)?command.points.map(p=>p.map((n,i)=>n+actual.transform.position[i]-commandTransform3d(command).position[i])):command.kind==='line'?command.points:[actual.transform.position],rotation:command.kind==='line'?command.rotation:actual.transform.rotation,scale:actual.transform.scale,color:actual.transform.color,roboVisible:actual.transform.visible}};
+src/pages/MathWorkspace.tsx:1736: trailing whitespace.
++    },()=>workspaceView==='geometry'?{commands:nativeGeometryCommands(construction,id=>isKnownRoboObject('geometry2d',id)).map(command=>({...command,roboLocked:command.roboNativeIds?.points.some(id=>lockedGeometryIds.includes(id))??false})),selectedIds:selectedGeometry?[(isKnownRoboObject('geometry2d',selectedGeometry.id)?selectedGeometry.id.replace(/-(?:shape|p\d+)$/,''):selectedGeometry.id)]:undefined}:{commands:added3dObjects.flatMap(o=>o.nlpCommand?[{...o.nlpCommand,objectId:o.id,points:['ray','vector','triangle','polygon'].includes(o.nlpCommand.kind)?o.nlpCommand.points.map(p=>p.map((n,i)=>n+o.transform.position[i]-commandTransform3d(o.nlpCommand!).position[i])):o.nlpCommand.kind==='line'?o.nlpCommand.points:[o.transform.position],rotation:o.nlpCommand.kind==='line'?o.nlpCommand.rotation:o.transform.rotation,scale:o.transform.scale,roboLocked:o.transform.locked}]:[]),selectedIds:selected3d?[selected3d]:undefined});
+src/pages/MathWorkspace.tsx:7047: trailing whitespace.
++  if(line.kind==='ray'||line.kind==='vector')return line.kind==='ray'?`P(t) = (${x1},${y1}) + t(${x2-x1},${y2-y1}), t ≥ 0`:`v = (${x2-x1},${y2-y1}), |v| = ${Math.hypot(x2-x1,y2-y1)}`;
+src/pages/MathWorkspace.tsx:7244: trailing whitespace.
++  if(nlpCommand?.kind==='point')return {label:'point',volume:0,surfaceArea:0,detail:'Zero-dimensional point.'};
+src/pages/MathWorkspace.tsx:7245: trailing whitespace.
++  if(nlpCommand&&['line','ray','vector'].includes(nlpCommand.kind)){const [a,b]=outlineVertices(nlpCommand);return {label:nlpCommand.kind,volume:0,surfaceArea:0,detail:nlpCommand.kind==='line'?'Line or segment; no surface area or volume':nlpCommand.kind==='ray'?'Unbounded ray, t ≥ 0':`Vector magnitude ${Math.hypot(...b.map((n,i)=>n-a[i]))}`};}
+src/pages/MathWorkspace.tsx:7872: trailing whitespace.
++  useRoboThreeAwareness('geometry3d',id=>{const t=isBase3dId(id)?transforms[id]:addedObjects.find(o=>o.id===id)?.transform;return {label:t?.name??id,kind:isBase3dId(id)?id:addedObjects.find(o=>o.id===id)?.nlpCommand?.kind??'3D object',selected:id===selected};});
+src/pages/MathWorkspace.tsx:7976: trailing whitespace.
++  if(object.nlpCommand&&['line','ray','vector'].includes(object.nlpCommand.kind)){const c=object.nlpCommand,ctr=commandTransform3d(c).position;return <TransformGroup3D transform={object.transform} selected={selected}><DirectedObject3D command={{...c,points:c.points.map(p=>p.map((n,i)=>n-ctr[i])),scale:1,rotation:[0,0,0],color:object.transform.color}} eventProps={eventProps}/></TransformGroup3D>;}
+src/pages/MathWorkspace.tsx:7977: trailing whitespace.
++  if(object.nlpCommand?.kind==='point')return <TransformGroup3D transform={object.transform} selected={selected}><Point3D label={object.nlpCommand.roboLabel??'P'} color={object.transform.color} eventProps={eventProps}/></TransformGroup3D>;
+src/pages/MathWorkspace.tsx:8794: trailing whitespace.
++    return a && b ? line.kind === "ray" ? `${a.label}${b.label}: unbounded ray` : `${line.kind === "vector" ? "|v| " : ""}${a.label}${b.label} = ${roundTo(distance(a, b) / 40, 2)}` : "";
+src/pages/MathWorkspace.tsx:8905: trailing whitespace.
++    return solveConstruction({ ...withPoints(a, b), lines: [...construction.lines, { id: crypto.randomUUID(), a: a.id, b: b.id, kind: tool === "ray" ? "ray" : tool === "vector" ? "vector" : "line", style }] });
+src/pages/MathWorkspace.tsx:9123: trailing whitespace.
++  if(line.kind==='ray'||line.kind==='vector')return kernelIntersectObjects((line.kind==='ray'?kernelRay:kernelSegment)(kernelPoint(a.x,a.y),kernelPoint(b.x,b.y)),kernelCircle(kernelPoint(center.x,center.y),distance(center,edge)));
+src/pages/MathWorkspace.tsx:9255: trailing whitespace.
++  if(first.kind==='ray'||first.kind==='vector'||second.kind==='ray'||second.kind==='vector'){const object=(line:GeoLine,u:GeoPoint,v:GeoPoint)=>(line.kind==='ray'?kernelRay:line.kind==='vector'?kernelSegment:kernelLine)(kernelPoint(u.x,u.y),kernelPoint(v.x,v.y));return kernelIntersectObjects(object(first,a,b),object(second,c,d))[0]??null;}

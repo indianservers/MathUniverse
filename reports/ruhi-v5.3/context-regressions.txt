@@ -1,0 +1,41 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+stderr | src/math-robo/intelligence/contextInference.test.ts
+
+============================
+Hi, looks like you are running TensorFlow.js in Node.js. To speed things up dramatically, install our node backend, visit https://github.com/tensorflow/tfjs-node for more details. 
+============================
+
+········x····
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/math-robo/intelligence/v53Integration.test.ts > rectangle follow-ups use native dimensions and reject unrelated knowledge
+TypeError: Failed to parse URL from /models/ruhi-context-v1/model.json
+ ❯ downloadBytes src/model-loading/downloadBytes.ts:4:17
+      2| /** Measure decoded bytes. A compressed Content-Length is not a valid …
+      3| export async function downloadBytes(url:string,onProgress:(progress:Do…
+      4|  const response=await fetch(url,init);if(!response.ok)throw new Error(…
+       |                 ^
+      5|  const size=Number(response.headers.get('content-length')),encoding=re…
+      6|  const total=size>0&&(!encoding||encoding==='identity')?size:undefined;
+ ❯ HTTPRequest.fetchFunc [as fetch] src/model-loading/loadModelWithProgress.ts:11:27
+
+Caused by: TypeError: Invalid URL
+ ❯ downloadBytes src/model-loading/downloadBytes.ts:4:23
+ ❯ HTTPRequest.fetchFunc [as fetch] src/model-loading/loadModelWithProgress.ts:11:33
+ ❯ HTTPRequest.<anonymous> node_modules/@tensorflow/tfjs-core/dist/tf-core.node.js:25939:55
+ ❯ step node_modules/@tensorflow/tfjs-core/dist/tf-core.node.js:138:27
+ ❯ Object.next node_modules/@tensorflow/tfjs-core/dist/tf-core.node.js:87:53
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_INVALID_URL', input: '/models/ruhi-context-v1/model.json' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 12 passed (13)
+   Start at  23:29:38
+   Duration  4.15s (transform 949ms, setup 86ms, import 3.02s, tests 611ms, environment 0ms)
+

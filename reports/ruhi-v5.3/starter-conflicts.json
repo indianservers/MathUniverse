@@ -1,0 +1,595 @@
+[
+  {
+    "previous": {
+      "phrase": "Remove it",
+      "action": "DELETE",
+      "subAction": "OBJECT",
+      "mode": "graph2d",
+      "parameters": {},
+      "context": {
+        "objects": [
+          {
+            "id": "A",
+            "type": "point",
+            "position": [
+              1,
+              1
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "B",
+            "type": "point",
+            "position": [
+              4,
+              5
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "line_1",
+            "type": "line",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            },
+            "vertices": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                8
+              ]
+            ]
+          },
+          {
+            "id": "line_2",
+            "type": "line",
+            "position": [
+              0,
+              8
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            },
+            "vertices": [
+              [
+                0,
+                8
+              ],
+              [
+                8,
+                0
+              ]
+            ]
+          },
+          {
+            "id": "circle_1",
+            "type": "circle",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 5,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "circle_2",
+            "type": "circle",
+            "position": [
+              4,
+              2
+            ],
+            "mode": "graph2d",
+            "radius": 2,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "square_1",
+            "type": "square",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "sphere_1",
+            "type": "sphere",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "sphere_2",
+            "type": "sphere",
+            "position": [
+              4,
+              2
+            ],
+            "mode": "graph2d",
+            "radius": 2,
+            "style": {
+              "color": "#ef4444"
+            }
+          }
+        ],
+        "selected": [
+          "circle_1"
+        ],
+        "lastReferenced": "circle_1",
+        "previousResult": [
+          3,
+          4
+        ]
+      },
+      "source": "controlled-template",
+      "group": "DELETE:OBJECT:template-1",
+      "target": "lastReferenced"
+    },
+    "current": {
+      "phrase": "delete it",
+      "mode": "graph2d",
+      "action": "DELETE",
+      "subAction": "OBJECT",
+      "parameters": {
+        "multiple": false
+      },
+      "target": "lastReferenced",
+      "context": {
+        "objects": [
+          {
+            "id": "rectangle_1",
+            "type": "rectangle",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          }
+        ],
+        "selected": [
+          "rectangle_1"
+        ],
+        "lastReferenced": "rectangle_1"
+      },
+      "source": "controlled-template",
+      "group": "language:DELETE:delete it"
+    }
+  },
+  {
+    "previous": {
+      "phrase": "Move it right by 3",
+      "action": "MOVE",
+      "subAction": "OBJECT",
+      "mode": "graph2d",
+      "parameters": {
+        "vector": [
+          3,
+          0
+        ]
+      },
+      "context": {
+        "objects": [
+          {
+            "id": "A",
+            "type": "point",
+            "position": [
+              1,
+              1
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "B",
+            "type": "point",
+            "position": [
+              4,
+              5
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "line_1",
+            "type": "line",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            },
+            "vertices": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                8
+              ]
+            ]
+          },
+          {
+            "id": "line_2",
+            "type": "line",
+            "position": [
+              0,
+              8
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            },
+            "vertices": [
+              [
+                0,
+                8
+              ],
+              [
+                8,
+                0
+              ]
+            ]
+          },
+          {
+            "id": "circle_1",
+            "type": "circle",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 5,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "circle_2",
+            "type": "circle",
+            "position": [
+              4,
+              2
+            ],
+            "mode": "graph2d",
+            "radius": 2,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "square_1",
+            "type": "square",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "sphere_1",
+            "type": "sphere",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "sphere_2",
+            "type": "sphere",
+            "position": [
+              4,
+              2
+            ],
+            "mode": "graph2d",
+            "radius": 2,
+            "style": {
+              "color": "#ef4444"
+            }
+          }
+        ],
+        "selected": [
+          "circle_1"
+        ],
+        "lastReferenced": "circle_1",
+        "previousResult": [
+          3,
+          4
+        ]
+      },
+      "source": "controlled-template",
+      "group": "MOVE:OBJECT:template-3",
+      "target": "lastReferenced"
+    },
+    "current": {
+      "phrase": "move it right by 3",
+      "mode": "graph2d",
+      "action": "MOVE",
+      "subAction": "OBJECT",
+      "parameters": {
+        "vector": [
+          3,
+          0
+        ],
+        "multiple": false,
+        "dx": 3,
+        "dy": 0
+      },
+      "target": "lastReferenced",
+      "context": {
+        "objects": [
+          {
+            "id": "rectangle_1",
+            "type": "rectangle",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          }
+        ],
+        "selected": [
+          "rectangle_1"
+        ],
+        "lastReferenced": "rectangle_1"
+      },
+      "source": "controlled-template",
+      "group": "language:MOVE:move it right by 3"
+    }
+  },
+  {
+    "previous": {
+      "phrase": "Find its area",
+      "action": "FIND",
+      "subAction": "AREA",
+      "mode": "graph2d",
+      "parameters": {},
+      "context": {
+        "objects": [
+          {
+            "id": "A",
+            "type": "point",
+            "position": [
+              1,
+              1
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "B",
+            "type": "point",
+            "position": [
+              4,
+              5
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "line_1",
+            "type": "line",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            },
+            "vertices": [
+              [
+                0,
+                0
+              ],
+              [
+                6,
+                8
+              ]
+            ]
+          },
+          {
+            "id": "line_2",
+            "type": "line",
+            "position": [
+              0,
+              8
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            },
+            "vertices": [
+              [
+                0,
+                8
+              ],
+              [
+                8,
+                0
+              ]
+            ]
+          },
+          {
+            "id": "circle_1",
+            "type": "circle",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 5,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "circle_2",
+            "type": "circle",
+            "position": [
+              4,
+              2
+            ],
+            "mode": "graph2d",
+            "radius": 2,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "square_1",
+            "type": "square",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "sphere_1",
+            "type": "sphere",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          },
+          {
+            "id": "sphere_2",
+            "type": "sphere",
+            "position": [
+              4,
+              2
+            ],
+            "mode": "graph2d",
+            "radius": 2,
+            "style": {
+              "color": "#ef4444"
+            }
+          }
+        ],
+        "selected": [
+          "circle_1"
+        ],
+        "lastReferenced": "circle_1",
+        "previousResult": [
+          3,
+          4
+        ]
+      },
+      "source": "controlled-template",
+      "group": "FIND:AREA:template-1",
+      "target": "lastReferenced"
+    },
+    "current": {
+      "phrase": "find its area",
+      "mode": "graph2d",
+      "action": "FIND",
+      "subAction": "AREA",
+      "parameters": {
+        "multiple": false
+      },
+      "target": "lastReferenced",
+      "context": {
+        "objects": [
+          {
+            "id": "rectangle_1",
+            "type": "rectangle",
+            "position": [
+              0,
+              0
+            ],
+            "mode": "graph2d",
+            "radius": 3,
+            "style": {
+              "color": "#ef4444"
+            }
+          }
+        ],
+        "selected": [
+          "rectangle_1"
+        ],
+        "lastReferenced": "rectangle_1"
+      },
+      "source": "controlled-template",
+      "group": "language:FIND:find its area"
+    }
+  }
+]

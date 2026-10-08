@@ -1,0 +1,34 @@
+import {parseMath} from '../../math-foundation/parser';
+import {evaluateMath} from '../../math-foundation/evaluator';
+import {formatValue} from '../../math-foundation/values';
+import type {MathAstNode} from '../../math-foundation/types';
+import {normalizeNotation} from './notation';
+import {safeAst,expressionText} from './safeExpression';
+import {rational,fractionText} from './exact';
+import {sub} from './geometryPrecision';
+import {outcome,unsupported,type KernelRequest} from './types';
+export type MathematicalAst= MathAstNode
+ | {type:'INTERVAL';lower:MathAstNode;upper:MathAstNode;lowerInclusive:boolean;upperInclusive:boolean}
+ | {type:'SET';elements:MathAstNode[]}
+ | {type:'DERIVATIVE';expression:MathAstNode;variable:string;order:number}
+ | {type:'INTEGRAL';expression:MathAstNode;variable:string}
+ | {type:'PIECEWISE_EXPRESSION';cases:{value:MathAstNode;condition:MathAstNode}[]};
+function split(source:string,separator:string):string[]{let depth=0,start=0;const parts:string[]=[];for(let i=0;i<source.length;i++){if('([{'.includes(source[i]))depth++;if(')]}'.includes(source[i]))depth--;if(depth===0&&source[i]===separator){parts.push(source.slice(start,i));start=i+1;}}parts.push(source.slice(start));return parts;}
+export function mathematicalAst(source:string):MathematicalAst{if(source.length>2048)throw new Error('Structured expression exceeds 2048 characters.');source=source.trim();
+ const interval=source.match(/^interval\s*([[(])(.+)([\])])$/i);if(interval){const bounds=split(interval[2],',');if(bounds.length!==2)throw new Error('An interval needs two bounds.');return {type:'INTERVAL',lower:safeAst(bounds[0]),upper:safeAst(bounds[1]),lowerInclusive:interval[1]==='[',upperInclusive:interval[3]===']'};}
+ if(source.startsWith('{')&&source.endsWith('}'))return {type:'SET',elements:source.slice(1,-1).trim()?split(source.slice(1,-1),',').map(safeAst):[]};
+ const calculus=source.match(/^(derivative|integral)\((.*)\)$/i);if(calculus){const args=split(calculus[2],',');if(args.length<2||args.length>3||! /^[a-z]$/i.test(args[1].trim()))throw new Error('Use derivative(expression,x[,order]) or integral(expression,x).');if(calculus[1].toLowerCase()==='integral')return {type:'INTEGRAL',expression:safeAst(args[0]),variable:args[1].trim()};const order=args[2]===undefined?1:Number(args[2]);if(!Number.isInteger(order)||order<1||order>8)throw new Error('Derivative order must be 1–8.');return {type:'DERIVATIVE',expression:safeAst(args[0]),variable:args[1].trim(),order};}
+ const piecewise=source.match(/^piecewise\{(.*)\}$/i);if(piecewise){const cases=split(piecewise[1],';').map(part=>{const pair=split(part,':');if(pair.length!==2)throw new Error('Each piecewise branch needs value:condition.');const condition=safeAst(pair[1]);if(condition.type!=='INEQUALITY'&&condition.type!=='EQUATION')throw new Error('Piecewise conditions need comparisons.');return {value:safeAst(pair[0]),condition};});if(cases.length>16)throw new Error('Piecewise branch budget is 16.');return {type:'PIECEWISE_EXPRESSION',cases};}
+ const text=normalizeNotation(source);let depth=0;for(const c of text){if('(['.includes(c)&&++depth>32)throw new Error('Structured nesting exceeds 32.');if(')]'.includes(c))depth--;}
+ const parsed=parseMath(text);if(!parsed.ast||parsed.diagnostics.some(d=>d.severity==='ERROR'))throw new Error(parsed.diagnostics.map(d=>d.message).join('; '));let count=0;
+ const check=(n:MathAstNode)=>{if(++count>256)throw new Error('Structured node budget exceeded.');if(n.type==='LIST'||n.type==='VECTOR')n.items.forEach(check);else if(n.type==='MATRIX'){if(n.rows.length>8||n.rows.some(row=>row.length>8))throw new Error('Structured matrices are limited to 8×8.');n.rows.flat().forEach(check);}else {safeAst(expressionText(n));if(n.type==='BINARY_OPERATION'||n.type==='EQUATION'||n.type==='INEQUALITY'){check(n.left);check(n.right);}else if(n.type==='UNARY_OPERATION')check(n.operand);else if(n.type==='FUNCTION_CALL')n.arguments.forEach(check);}};check(parsed.ast);return parsed.ast;
+}
+export async function structuredCalculation(r:KernelRequest){const ast=mathematicalAst(r.expression??'');
+ if(r.operation==='syntax'){const result=outcome('unverified',JSON.stringify(ast),ast,'Parsed representation; no computation or mathematical identity is asserted.');result.mathematicalAst=ast;return result;}
+ if(ast.type==='SET'){const elements=[...new Set(ast.elements.map(n=>fractionText(rational(expressionText(n)))))],value={kind:'finite',elements};return outcome('verified_exact',`{${elements.join(', ')}}`,value,'Exact rational set normalization and duplicate removal');}
+ if(ast.type==='INTERVAL'){const lo=rational(expressionText(ast.lower)),hi=rational(expressionText(ast.upper)),difference=sub(lo,hi),empty=difference.numerator>0n||difference.numerator===0n&&!(ast.lowerInclusive&&ast.upperInclusive),value={kind:empty?'empty':'interval',lower:fractionText(lo),upper:fractionText(hi),lowerInclusive:ast.lowerInclusive,upperInclusive:ast.upperInclusive};return outcome('verified_exact',empty?'∅':`${ast.lowerInclusive?'[':'('}${value.lower}, ${value.upper}${ast.upperInclusive?']':')'}`,value,'Exact bound ordering and open/closed endpoint semantics');}
+ if(ast.type==='DERIVATIVE'||ast.type==='INTEGRAL'){const {computeMath}=await import('./kernel');let expression=expressionText(ast.expression),result;for(let i=0;i<(ast.type==='DERIVATIVE'?ast.order:1);i++){result=await computeMath({...r,operation:ast.type==='DERIVATIVE'?'differentiate':'integrate',expression,variable:ast.variable});if(result.status==='unsupported')return result;expression=String(result.value);}return result!;}
+ if(ast.type==='PIECEWISE_EXPRESSION'){const {substituteAst}=await import('./domains');for(const branch of ast.cases){const c=substituteAst(branch.condition,r.values??{});if(c.type!=='INEQUALITY'&&c.type!=='EQUATION')throw new Error('A comparison is required.');const difference=sub(rational(expressionText(c.left)),rational(expressionText(c.right))).numerator,yes=c.type==='EQUATION'?difference===0n:c.operator==='<'?difference<0n:c.operator==='<='?difference<=0n:c.operator==='>'?difference>0n:c.operator==='>='?difference>=0n:difference!==0n;if(yes){const {computeMath}=await import('./kernel');return computeMath({...r,operation:'substitute',expression:expressionText(branch.value)});}}return unsupported('No piecewise branch contains the supplied value.');}
+ if(ast.type==='MATRIX'||ast.type==='VECTOR'||ast.type==='LIST'){const value=evaluateMath(ast);if(value.status!=='EXACT'||!value.value||value.diagnostics.some(d=>d.severity==='ERROR'))return unsupported('Structured values currently require exactly evaluable entries.');return outcome('verified_exact',formatValue(value.value),value.value,'Existing exact rational vector/matrix evaluator');}
+ const {computeMath}=await import('./kernel');return computeMath({...r,operation:'evaluate'});
+}

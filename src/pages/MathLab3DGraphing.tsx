@@ -1,3 +1,6 @@
+import {CinematicThreePreview} from '../math-robo/animation/CinematicThreePreview';
+import {commandTransform3d} from '../offline-intelligence/solidAdapter';
+import {useRoboThreeAwareness} from '../math-robo/character/useRoboThreeAwareness';
 import {roboEvents} from '../math-robo/character/engine';
 import {registerRoboProjector} from '../math-robo/character/workspaceAdapter';
 import { ImmersiveBoundary } from "../workspace/immersive/ImmersiveInteractionManager";
@@ -14,7 +17,8 @@ import { analyzeSurfaceDifferential, type SurfaceDifferential } from "../graph-s
 import GraphStudio3DWorkspace, { type Studio3DTool } from "../graph-studio/GraphStudio3DWorkspace";
 import { useIntelligenceWorkspace,isKnownRoboObject } from '../offline-intelligence/workspaceBridge';
 import {graphCommand} from '../math-robo/intelligence/graphInventory';
-import { intelligenceGraph3dLayers } from '../offline-intelligence/graph3dAdapter';
+import DirectedObject3D from '../offline-intelligence/DirectedObject3D';
+import { intelligenceGraph3dLayers,graphScenePose3d,restoredGraph3dCommands } from '../offline-intelligence/graph3dAdapter';
 import { reconcileGraphVariables, substituteGraphVariables, advanceGraphVariable } from "../graph-studio/expressionEngine";
 import { downloadGraphStudioFile, exportGraphStudioProject } from "../graph-studio/projectStorage";
 import { useGraphStudioProject } from "../graph-studio/useGraphStudioProject";
@@ -136,7 +140,7 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
     if(command.action==='update'&&!surfaces.some(matches))return 'The last Ruhi object was removed. Create an object again before editing it.';
     const layers=intelligenceGraph3dLayers(command).map((surface,i)=>({...surface,id:command.roboNativeRow&&i===0?base:`${base}-${i}`,visible:command.roboVisible??true}));
     setSurfaces(current=>[...current.filter(row=>!matches(row)),...layers]);setSelectedSurfaceId(layers[0].id);
-  }, !embedded, command=>{const row=surfaces.find(row=>command.roboNativeRow?row.id===command.objectId:row.id.startsWith(`${command.objectId}-`));return row?{command:{...command,roboVisible:row.visible,color:row.colorLow,points:[row.displayTransform?.position??command.points[0]],scale:row.displayTransform?.scale??command.scale,rotation:row.displayTransform?.rotation?.map(n=>n*180/Math.PI) as [number,number,number]??command.rotation}}:undefined;},()=>({commands:surfaces.filter(row=>row.kind==='explicit'&&!isKnownRoboObject('graph3d',row.id)).map(row=>graphCommand(row.id,row.expression,row.colorLow,row.visible,'3d',row.name,row.displayTransform?.position,row.displayTransform?.rotation?.map(n=>n*180/Math.PI),row.displayTransform?.scale)),selectedIds:selectedSurfaceId?[selectedSurfaceId.replace(/-0$/,'')]:[]}));
+  }, !embedded, command=>{const row=surfaces.find(row=>command.roboNativeRow?row.id===command.objectId:row.id.startsWith(`${command.objectId}-`));return row?.roboCommand?{command:{...row.roboCommand,color:row.colorLow,roboVisible:row.visible}}:row?{command:{...command,roboVisible:row.visible,color:row.colorLow,points:command.points.length>1?command.points.map(p=>p.map((x,i)=>x+(row.displayTransform?.position?.[i]??commandTransform3d(command).position[i])-commandTransform3d(command).position[i])):[row.displayTransform?.position??command.points[0]],scale:row.displayTransform?.scale??command.scale,rotation:row.displayTransform?.rotation?.map(n=>n*180/Math.PI) as [number,number,number]??command.rotation}}:undefined;},()=>({commands:[...restoredGraph3dCommands(surfaces.filter(row=>!isKnownRoboObject('graph3d',row.id))),...surfaces.filter(row=>!row.roboCommand&&!row.sourceCommand&&row.kind==='explicit'&&!isKnownRoboObject('graph3d',row.id)).map(row=>graphCommand(row.id,row.expression,row.colorLow,row.visible,'3d',row.name,row.displayTransform?.position,row.displayTransform?.rotation?.map(n=>n*180/Math.PI),row.displayTransform?.scale))],selectedIds:selectedSurfaceId?[selectedSurfaceId.replace(/-0$/,'')]:[]}));
   const [xRange, setXRange] = useState(() => embeddedState?.xRange ?? 3);
   const [yRange, setYRange] = useState(() => embeddedState?.yRange ?? 3);
   const [resolution, setResolution] = useState(() => embeddedState?.resolution ?? 44);
@@ -433,8 +437,9 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
           <group position={toScenePosition(objectPosition)}>
             {visibleValidSurfaces.map((item) => {
               const samples = sampledSurfaces.find((sampled) => sampled.item.id === item.id)?.samples;
-              return <group key={item.id} userData={{immersiveId:item.id}} position={item.displayTransform?.position} rotation={item.displayTransform?.rotation} scale={item.displayTransform?.scale ?? 1}><Graph3DLayer key={item.id} surface={item} samples={samples} advanced={advancedLayers[item.id]} theme={graphTheme} selected={item.id === selectedSurface.id} interactive={item.id === selectedSurface.id && studioTool !== "select"} onPick={handleSurfacePick} clip={clipEnabled ? { axis: clipAxis, value: clipValue } : null} /></group>;
+              return <group key={item.id} userData={{immersiveId:item.id}} {...graphScenePose3d(item.displayTransform?.position,item.displayTransform?.rotation)} scale={item.displayTransform?.scale ?? 1}><Graph3DLayer key={item.id} surface={item} samples={samples} advanced={advancedLayers[item.id]} theme={graphTheme} selected={item.id === selectedSurface.id} interactive={item.id === selectedSurface.id && studioTool !== "select"} onSelect={()=>setSelectedSurfaceId(item.id)} onPick={handleSurfacePick} clip={clipEnabled ? { axis: clipAxis, value: clipValue } : null} /></group>;
             })}
+            <CinematicThreePreview mode="graph3d" range={[xRange,yRange]} resolution={Math.min(resolution,44)}/>
             {showBase && <BasePlane size={Math.max(xRange, yRange) * 2.08} theme={graphTheme} />}
             {showGrid && <gridHelper args={[Math.max(xRange, yRange) * 2.2, 18, graphTheme.gridMajor, graphTheme.gridMinor]} />}
             {showAxes && <ThemeAxes scale={Math.max(xRange, yRange) * 1.25} theme={graphTheme} showLabels={showLabels} infinite={showInfiniteAxes} />}
@@ -452,7 +457,7 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
             {annotations.map((item) => <AnnotationMarker key={item.id} annotation={item} />)}
             <ReferenceObject kind={referenceObject} scale={Math.max(1.4, Math.min(xRange, yRange) * 0.48)} />
           </group>
-          <CameraPositionTracker selectedId={selectedSurface.id} onChange={(position) => { cameraCaptureRef.current = position; }} />
+          <CameraPositionTracker labels={Object.fromEntries(surfaces.map(s=>[s.id,s.name??s.id]))} selectedId={selectedSurface.id} onChange={(position) => { cameraCaptureRef.current = position; }} />
           <KeyframeCameraAnimator keyframes={keyframes} playing={keyframesPlaying} onVariables={applyKeyframeVariables} onFinish={() => setKeyframesPlaying(false)} />
           <FlyController enabled={flyMode} />
           <EnableClipping />
@@ -936,7 +941,8 @@ function buildBeautifulSurfacePresets(): BeautifulSurfacePreset[] {
   return [...trigMix, ...radial, ...flower, ...waves, ...gaussians, ...polynomial, ...special, ...harmonic, ...landscapes, ...gems];
 }
 
-function Graph3DLayer({ surface, samples, advanced, theme, selected, interactive, onPick, clip }: { surface: Graph3DSurface; samples?: SurfaceSampleResult; advanced?: AdvancedLayerResult; theme: Graph3DTheme; selected: boolean; interactive: boolean; onPick: (point: THREE.Vector3) => void; clip: { axis: SliceAxis; value: number } | null }) {
+function Graph3DLayer({ surface, samples, advanced, theme, selected, interactive, onPick, onSelect, clip }: { surface: Graph3DSurface; samples?: SurfaceSampleResult; advanced?: AdvancedLayerResult; onSelect?:()=>void; theme: Graph3DTheme; selected: boolean; interactive: boolean; onPick: (point: THREE.Vector3) => void; clip: { axis: SliceAxis; value: number } | null }) {
+  if(surface.roboCommand)return <DirectedObject3D command={{...surface.roboCommand,color:selected?theme.selection:surface.colorHigh}} swapYZ eventProps={{onClick:(event:{stopPropagation:()=>void;point:THREE.Vector3})=>{event.stopPropagation();onSelect?.();onPick(event.point);}}}/>;
   if (surface.kind === "explicit" && surface.coordinateMode === "cartesian" && !surface.adaptive && samples) {
     return <group><SurfaceMesh samples={samples} palette={surface.palette} colorLow={surface.colorLow} colorHigh={surface.colorHigh} wireframe={surface.wireframe} opacity={surface.opacity} theme={theme} selected={selected} interactive={interactive} onPick={onPick} twoSided={surface.twoSided} fillBelow={surface.fillBelow} domainPredicate={surface.domainPredicate} clip={clip} />{surface.samplingAnimation && <SamplingSweep samples={samples} active theme={theme} />}{surface.showPoints && <SamplePointCloud samples={samples} color={theme.point} />}</group>;
   }
@@ -1002,8 +1008,9 @@ function VolumeBetweenSurfaces({ top, bottom, theme }: { top: SurfaceSampleResul
   return <group>{blocks.map(({ point, bottom: lower }, index) => { const topZ = point.z!; const bottomZ = lower!.z!; const height = Math.max(0.012, Math.abs(topZ - bottomZ) * scale); return <mesh key={`${index}-${point.x}-${point.y}`} position={[point.x, (topZ + bottomZ) * scale / 2, point.y]}><boxGeometry args={[Math.max(0.04, dx * 0.82), height, Math.max(0.04, dy * 0.82)]} /><meshBasicMaterial color={theme.crossSection} transparent opacity={0.055} depthWrite={false} /></mesh>; })}</group>;
 }
 
-function CameraPositionTracker({ onChange, selectedId }: { selectedId:string; onChange: (position: [number, number, number]) => void }) {
+function CameraPositionTracker({ onChange, selectedId,labels }: { labels:Record<string,string>; selectedId:string; onChange: (position: [number, number, number]) => void }) {
   const { camera,gl,scene } = useThree();
+  useRoboThreeAwareness('graph3d',id=>({label:labels[id]??id,kind:'surface',selected:id===selectedId}));
   useEffect(()=>{
     const project=(p:number[])=>{let selected:THREE.Object3D|undefined;scene.traverse(o=>{if(o.userData.immersiveId===selectedId)selected=o;});let mesh:THREE.Object3D|undefined;selected?.traverse(o=>{if(!mesh&&o instanceof THREE.Mesh)mesh=o;});const v=new THREE.Vector3(p[0],p[2]??0,p[1]);if(mesh){mesh.updateWorldMatrix(true,false);mesh.localToWorld(v);}v.project(camera);if(v.z < -1 || v.z > 1)return;const r=gl.domElement.getBoundingClientRect();return {x:r.left+(v.x+1)*r.width/2,y:r.top+(1-v.y)*r.height/2};};
     const off=registerRoboProjector('graph3d',project);roboEvents.emit({type:'workspace',kind:'selection',target:()=>project([0,0,0])});return off;

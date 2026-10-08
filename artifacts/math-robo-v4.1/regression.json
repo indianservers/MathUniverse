@@ -12,115 +12,10 @@
     "scope": "Intent-negative safety; grouped surface perturbations"
   },
   "registry": {
-    "baselineSubactions": 90,
-    "baselinePairs": 118,
-    "implementedPairs": 152,
+    "baselineSubactions": 97,
+    "baselinePairs": 125,
+    "implementedPairs": 169,
     "unsupported": [
-      {
-        "action": "CREATE",
-        "subAction": "RAY",
-        "aliases": [
-          "CREATE",
-          "DRAW",
-          "ADD",
-          "INSERT",
-          "PLACE"
-        ],
-        "required": [],
-        "optional": [
-          "target",
-          "targets"
-        ],
-        "allowedTypes": [],
-        "modes": [
-          "normal",
-          "geometry2d",
-          "graph2d",
-          "geometry3d",
-          "graph3d"
-        ],
-        "mutatesScene": true,
-        "createsObject": true,
-        "returnsValue": false,
-        "executor": "unsupported",
-        "implemented": false,
-        "validation": [
-          "finite parameters",
-          "existing unambiguous targets",
-          "compatible dimensions"
-        ],
-        "examples": []
-      },
-      {
-        "action": "CREATE",
-        "subAction": "VECTOR",
-        "aliases": [
-          "CREATE",
-          "DRAW",
-          "ADD",
-          "INSERT",
-          "PLACE"
-        ],
-        "required": [],
-        "optional": [
-          "target",
-          "targets"
-        ],
-        "allowedTypes": [],
-        "modes": [
-          "normal",
-          "geometry2d",
-          "graph2d",
-          "geometry3d",
-          "graph3d"
-        ],
-        "mutatesScene": true,
-        "createsObject": true,
-        "returnsValue": false,
-        "executor": "unsupported",
-        "implemented": false,
-        "validation": [
-          "finite parameters",
-          "existing unambiguous targets",
-          "compatible dimensions"
-        ],
-        "examples": []
-      },
-      {
-        "action": "CREATE",
-        "subAction": "PLANE",
-        "aliases": [
-          "CREATE",
-          "DRAW",
-          "ADD",
-          "INSERT",
-          "PLACE"
-        ],
-        "required": [],
-        "optional": [
-          "target",
-          "targets"
-        ],
-        "allowedTypes": [],
-        "modes": [
-          "normal",
-          "geometry2d",
-          "graph2d",
-          "geometry3d",
-          "graph3d"
-        ],
-        "mutatesScene": true,
-        "createsObject": true,
-        "returnsValue": false,
-        "executor": "unsupported",
-        "implemented": false,
-        "validation": [
-          "finite parameters",
-          "existing unambiguous targets",
-          "compatible dimensions"
-        ],
-        "examples": []
-      },
       {
         "action": "CREATE",
         "subAction": "ARC",
@@ -129,7 +24,14 @@
           "DRAW",
           "ADD",
           "INSERT",
-          "PLACE"
+          "PLACE",
+          "generate",
+          "build",
+          "add",
+          "insert",
+          "put",
+          "place",
+          "sketch"
         ],
         "required": [],
         "optional": [
@@ -164,7 +66,14 @@
           "DRAW",
           "ADD",
           "INSERT",
-          "PLACE"
+          "PLACE",
+          "generate",
+          "build",
+          "add",
+          "insert",
+          "put",
+          "place",
+          "sketch"
         ],
         "required": [],
         "optional": [
@@ -199,7 +108,14 @@
           "DRAW",
           "ADD",
           "INSERT",
-          "PLACE"
+          "PLACE",
+          "generate",
+          "build",
+          "add",
+          "insert",
+          "put",
+          "place",
+          "sketch"
         ],
         "required": [],
         "optional": [
@@ -234,7 +150,14 @@
           "DRAW",
           "ADD",
           "INSERT",
-          "PLACE"
+          "PLACE",
+          "generate",
+          "build",
+          "add",
+          "insert",
+          "put",
+          "place",
+          "sketch"
         ],
         "required": [],
         "optional": [
@@ -269,7 +192,14 @@
           "DRAW",
           "ADD",
           "INSERT",
-          "PLACE"
+          "PLACE",
+          "generate",
+          "build",
+          "add",
+          "insert",
+          "put",
+          "place",
+          "sketch"
         ],
         "required": [],
         "optional": [
@@ -305,7 +235,11 @@
           "MEASURE",
           "PROJECT",
           "INTERSECT",
-          "CENTER"
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
         ],
         "required": [],
         "optional": [
@@ -341,7 +275,11 @@
           "MEASURE",
           "PROJECT",
           "INTERSECT",
-          "CENTER"
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
         ],
         "required": [],
         "optional": [
@@ -377,7 +315,11 @@
           "MEASURE",
           "PROJECT",
           "INTERSECT",
-          "CENTER"
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
         ],
         "required": [],
         "optional": [
@@ -413,7 +355,11 @@
           "MEASURE",
           "PROJECT",
           "INTERSECT",
-          "CENTER"
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
         ],
         "required": [],
         "optional": [
@@ -449,7 +395,11 @@
           "MEASURE",
           "PROJECT",
           "INTERSECT",
-          "CENTER"
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
         ],
         "required": [],
         "optional": [
@@ -485,7 +435,11 @@
           "MEASURE",
           "PROJECT",
           "INTERSECT",
-          "CENTER"
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
         ],
         "required": [],
         "optional": [
@@ -521,7 +475,11 @@
           "MEASURE",
           "PROJECT",
           "INTERSECT",
-          "CENTER"
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
         ],
         "required": [],
         "optional": [
@@ -559,45 +517,12 @@
           "COLOR",
           "STYLE",
           "FILL",
-          "OUTLINE"
-        ],
-        "required": [],
-        "optional": [
-          "target",
-          "targets"
-        ],
-        "allowedTypes": [],
-        "modes": [
-          "normal",
-          "geometry2d",
-          "graph2d",
-          "geometry3d",
-          "graph3d"
-        ],
-        "mutatesScene": true,
-        "createsObject": false,
-        "returnsValue": false,
-        "executor": "unsupported",
-        "implemented": false,
-        "validation": [
-          "finite parameters",
-          "existing unambiguous targets",
-          "compatible dimensions"
-        ],
-        "examples": []
-      },
-      {
-        "action": "CHANGE",
-        "subAction": "LINE_WIDTH",
-        "aliases": [
-          "CHANGE",
-          "SET",
-          "LABEL",
-          "RENAME",
-          "COLOR",
-          "STYLE",
-          "FILL",
-          "OUTLINE"
+          "OUTLINE",
+          "modify",
+          "edit",
+          "update",
+          "adjust",
+          "alter"
         ],
         "required": [],
         "optional": [
@@ -635,7 +560,12 @@
           "COLOR",
           "STYLE",
           "FILL",
-          "OUTLINE"
+          "OUTLINE",
+          "modify",
+          "edit",
+          "update",
+          "adjust",
+          "alter"
         ],
         "required": [],
         "optional": [
@@ -673,7 +603,12 @@
           "COLOR",
           "STYLE",
           "FILL",
-          "OUTLINE"
+          "OUTLINE",
+          "modify",
+          "edit",
+          "update",
+          "adjust",
+          "alter"
         ],
         "required": [],
         "optional": [
@@ -711,83 +646,12 @@
           "COLOR",
           "STYLE",
           "FILL",
-          "OUTLINE"
-        ],
-        "required": [],
-        "optional": [
-          "target",
-          "targets"
-        ],
-        "allowedTypes": [],
-        "modes": [
-          "normal",
-          "geometry2d",
-          "graph2d",
-          "geometry3d",
-          "graph3d"
-        ],
-        "mutatesScene": true,
-        "createsObject": false,
-        "returnsValue": false,
-        "executor": "unsupported",
-        "implemented": false,
-        "validation": [
-          "finite parameters",
-          "existing unambiguous targets",
-          "compatible dimensions"
-        ],
-        "examples": []
-      },
-      {
-        "action": "CHANGE",
-        "subAction": "FILL_COLOR",
-        "aliases": [
-          "CHANGE",
-          "SET",
-          "LABEL",
-          "RENAME",
-          "COLOR",
-          "STYLE",
-          "FILL",
-          "OUTLINE"
-        ],
-        "required": [],
-        "optional": [
-          "target",
-          "targets"
-        ],
-        "allowedTypes": [],
-        "modes": [
-          "normal",
-          "geometry2d",
-          "graph2d",
-          "geometry3d",
-          "graph3d"
-        ],
-        "mutatesScene": true,
-        "createsObject": false,
-        "returnsValue": false,
-        "executor": "unsupported",
-        "implemented": false,
-        "validation": [
-          "finite parameters",
-          "existing unambiguous targets",
-          "compatible dimensions"
-        ],
-        "examples": []
-      },
-      {
-        "action": "CHANGE",
-        "subAction": "STROKE_COLOR",
-        "aliases": [
-          "CHANGE",
-          "SET",
-          "LABEL",
-          "RENAME",
-          "COLOR",
-          "STYLE",
-          "FILL",
-          "OUTLINE"
+          "OUTLINE",
+          "modify",
+          "edit",
+          "update",
+          "adjust",
+          "alter"
         ],
         "required": [],
         "optional": [
@@ -825,45 +689,12 @@
           "COLOR",
           "STYLE",
           "FILL",
-          "OUTLINE"
-        ],
-        "required": [],
-        "optional": [
-          "target",
-          "targets"
-        ],
-        "allowedTypes": [],
-        "modes": [
-          "normal",
-          "geometry2d",
-          "graph2d",
-          "geometry3d",
-          "graph3d"
-        ],
-        "mutatesScene": true,
-        "createsObject": false,
-        "returnsValue": false,
-        "executor": "unsupported",
-        "implemented": false,
-        "validation": [
-          "finite parameters",
-          "existing unambiguous targets",
-          "compatible dimensions"
-        ],
-        "examples": []
-      },
-      {
-        "action": "CHANGE",
-        "subAction": "ANGLE",
-        "aliases": [
-          "CHANGE",
-          "SET",
-          "LABEL",
-          "RENAME",
-          "COLOR",
-          "STYLE",
-          "FILL",
-          "OUTLINE"
+          "OUTLINE",
+          "modify",
+          "edit",
+          "update",
+          "adjust",
+          "alter"
         ],
         "required": [],
         "optional": [
@@ -1462,7 +1293,11 @@
         "action": "CONNECT",
         "subAction": "OBJECT",
         "aliases": [
-          "CONNECT"
+          "CONNECT",
+          "join",
+          "link",
+          "attach",
+          "draw between"
         ],
         "required": [],
         "optional": [
@@ -2299,7 +2134,11 @@
         "action": "ANIMATE",
         "subAction": "OBJECT",
         "aliases": [
-          "ANIMATE"
+          "ANIMATE",
+          "play",
+          "demonstrate",
+          "simulate",
+          "show motion"
         ],
         "required": [],
         "optional": [
@@ -2578,7 +2417,9 @@
         "action": "ZOOM",
         "subAction": "OBJECT",
         "aliases": [
-          "ZOOM"
+          "ZOOM",
+          "magnify",
+          "get closer"
         ],
         "required": [],
         "optional": [
@@ -2763,7 +2604,7 @@
     ]
   },
   "dataset": {
-    "rows": 2941,
+    "rows": 3903,
     "classes": [
       {
         "operation": "CREATE:TRIANGLE",
@@ -2779,7 +2620,7 @@
       },
       {
         "operation": "CREATE:CIRCLE",
-        "count": 40
+        "count": 90
       },
       {
         "operation": "CREATE:ELLIPSE",
@@ -2918,6 +2759,30 @@
         "count": 40
       },
       {
+        "operation": "CREATE:RAY",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:VECTOR",
+        "count": 40
+      },
+      {
+        "operation": "FIND:COMPONENTS",
+        "count": 32
+      },
+      {
+        "operation": "FIND:DIRECTION",
+        "count": 32
+      },
+      {
+        "operation": "FIND:PARAMETERIZATION",
+        "count": 32
+      },
+      {
+        "operation": "FIND:MAGNITUDE",
+        "count": 32
+      },
+      {
         "operation": "PLOT:FUNCTION",
         "count": 16
       },
@@ -2939,7 +2804,7 @@
       },
       {
         "operation": "FIND:AREA",
-        "count": 32
+        "count": 82
       },
       {
         "operation": "FIND:PERIMETER",
@@ -2979,7 +2844,7 @@
       },
       {
         "operation": "FIND:INTERSECTION",
-        "count": 10
+        "count": 20
       },
       {
         "operation": "FIND:ROOTS",
@@ -2995,7 +2860,7 @@
       },
       {
         "operation": "CHANGE:COLOR",
-        "count": 24
+        "count": 74
       },
       {
         "operation": "CHANGE:WIDTH",
@@ -3030,16 +2895,20 @@
         "count": 16
       },
       {
+        "operation": "CHANGE:ENDPOINTS",
+        "count": 4
+      },
+      {
         "operation": "MOVE:OBJECT",
-        "count": 24
+        "count": 74
       },
       {
         "operation": "ROTATE:OBJECT",
-        "count": 20
+        "count": 70
       },
       {
         "operation": "SCALE:UNIFORM",
-        "count": 20
+        "count": 70
       },
       {
         "operation": "RESIZE:OBJECT",
@@ -3051,7 +2920,7 @@
       },
       {
         "operation": "REFLECT:Y_AXIS",
-        "count": 10
+        "count": 60
       },
       {
         "operation": "REFLECT:ORIGIN",
@@ -3103,7 +2972,7 @@
       },
       {
         "operation": "SHOW:OBJECT",
-        "count": 20
+        "count": 70
       },
       {
         "operation": "SHOW:CENTER",
@@ -3127,11 +2996,11 @@
       },
       {
         "operation": "HIDE:OBJECT",
-        "count": 16
+        "count": 55
       },
       {
         "operation": "DELETE:OBJECT",
-        "count": 16
+        "count": 66
       },
       {
         "operation": "DELETE:ALL",
@@ -3139,7 +3008,7 @@
       },
       {
         "operation": "SELECT:OBJECT",
-        "count": 16
+        "count": 66
       },
       {
         "operation": "SELECT:ALL",
@@ -3147,19 +3016,19 @@
       },
       {
         "operation": "DESELECT:ALL",
-        "count": 16
+        "count": 66
       },
       {
         "operation": "DUPLICATE:OBJECT",
-        "count": 20
+        "count": 70
       },
       {
         "operation": "UNDO:LAST",
-        "count": 16
+        "count": 66
       },
       {
         "operation": "REDO:LAST",
-        "count": 16
+        "count": 55
       },
       {
         "operation": "COUNT:OBJECTS",
@@ -3372,16 +3241,57 @@
       {
         "operation": "EXPLAIN:PREVIOUS",
         "count": 12
+      },
+      {
+        "operation": "CREATE:PLANE",
+        "count": 2
+      },
+      {
+        "operation": "CONSTRUCT:PERP_PLANE",
+        "count": 2
+      },
+      {
+        "operation": "CHANGE:FILL_COLOR",
+        "count": 1
+      },
+      {
+        "operation": "CHANGE:STROKE_COLOR",
+        "count": 1
+      },
+      {
+        "operation": "CHANGE:LINE_WIDTH",
+        "count": 1
+      },
+      {
+        "operation": "CHANGE:ANGLE",
+        "count": 1
+      },
+      {
+        "operation": "CREATE:ANGLE",
+        "count": 1
+      },
+      {
+        "operation": "MARK:CENTROID",
+        "count": 1
+      },
+      {
+        "operation": "CREATE:SEGMENT",
+        "count": 1
+      },
+      {
+        "operation": "CONSTRUCT:CONDITIONAL_INTERSECTION",
+        "count": 1
       }
     ],
-    "minimumClassCount": 3,
-    "maximumClassCount": 40,
-    "imbalanceRatio": 13.333333333333334,
-    "duplicates": 0,
-    "nearDuplicates": 900,
+    "minimumClassCount": 1,
+    "maximumClassCount": 90,
+    "imbalanceRatio": 90,
+    "duplicates": 1540,
+    "nearDuplicates": 2236,
     "conflictingLabels": 0,
     "duplicateIds": 0,
     "lowClasses": [
+      "CHANGE:ENDPOINTS",
       "COMPARE:VOLUME",
       "COMPARE:SURFACE_AREA",
       "CHECK:PARALLEL",
@@ -3393,7 +3303,17 @@
       "CHECK:POINT_ON_CIRCLE",
       "CHECK:INTERSECTING",
       "CHECK:MEDIAL_TRIANGLE",
-      "CHECK:ORIENTATION"
+      "CHECK:ORIENTATION",
+      "CREATE:PLANE",
+      "CONSTRUCT:PERP_PLANE",
+      "CHANGE:FILL_COLOR",
+      "CHANGE:STROKE_COLOR",
+      "CHANGE:LINE_WIDTH",
+      "CHANGE:ANGLE",
+      "CREATE:ANGLE",
+      "MARK:CENTROID",
+      "CREATE:SEGMENT",
+      "CONSTRUCT:CONDITIONAL_INTERSECTION"
     ]
   }
 }

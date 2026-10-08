@@ -1,0 +1,1926 @@
+{
+  "total": 320,
+  "passed": 320,
+  "results": [
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 46.1857
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 14.233100000000036
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 11.51139999999998
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.212600000000009
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.706999999999994
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.954700000000003
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.69119999999998
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 11.00970000000001
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.809699999999964
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.960699999999974
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.244899999999973
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.106100000000026
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.463999999999999
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 11.903399999999976
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.17009999999999
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.111199999999997
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.529799999999966
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.018699999999967
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.643000000000029
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.86020000000002
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.363400000000013
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.34699999999998
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.049599999999998
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.638999999999953
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.291399999999953
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 12.438199999999938
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 11.200500000000034
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.794300000000021
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.086999999999989
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.260600000000068
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.674599999999941
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.99090000000001
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 11.03570000000002
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 11.005499999999984
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.148300000000063
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.822499999999991
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 11.010800000000017
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 11.828800000000001
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.909400000000005
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 13.352700000000027
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 13.134999999999991
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.937999999999988
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.353600000000029
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.71040000000005
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.485500000000002
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.369800000000055
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.122700000000009
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.46819999999991
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.949600000000032
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.960199999999986
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.485100000000102
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.616499999999974
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.804299999999898
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.55110000000002
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.201799999999935
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 11.309599999999932
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.25750000000005
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.833400000000097
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.353799999999978
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.746099999999956
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.200199999999995
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.914499999999975
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.540599999999927
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.968700000000013
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.639900000000011
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.83540000000005
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 8.718899999999962
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.412300000000073
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 8.505300000000034
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 8.988100000000031
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 8.236700000000042
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.73230000000001
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 8.78189999999995
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 8.977400000000102
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 8.967499999999973
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.473700000000008
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 12.415499999999838
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 10.101899999999887
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 9.156900000000178
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph2d",
+      "passed": true,
+      "latencyMs": 8.495200000000068
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 10.149499999999989
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.203399999999874
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 12.851000000000113
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.086700000000064
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.296600000000126
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.16430000000014
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.99409999999989
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 7.979800000000068
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.53489999999988
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.0471
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.157699999999977
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.029400000000123
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.257100000000037
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.567700000000059
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.479000000000042
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.519800000000032
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.046499999999924
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 10.916200000000117
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.838799999999992
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.35979999999995
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.516900000000078
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.2650000000001
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.361300000000028
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.957400000000007
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.180799999999863
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.141399999999976
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.189599999999928
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.945199999999886
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.795599999999922
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.891100000000051
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.507200000000012
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.889199999999846
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.520500000000084
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.691000000000031
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.524499999999989
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.112100000000055
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.50059999999985
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.37070000000017
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.30340000000001
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 11.363799999999856
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.518399999999929
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.819099999999935
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.997499999999945
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.667999999999893
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 7.967799999999897
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.649000000000115
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.946099999999888
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.235400000000027
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.93320000000017
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.701200000000199
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 10.343000000000075
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.065200000000004
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.691800000000057
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 7.986699999999928
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.353400000000192
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.42599999999993
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.760200000000168
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.009300000000167
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.08789999999999
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.31029999999987
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.914800000000014
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.463200000000143
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.858699999999999
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 7.682900000000018
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.5945999999999
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 7.795499999999947
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 7.893300000000181
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.177599999999984
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.519700000000057
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 9.289200000000164
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.9217000000001
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.493600000000015
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.1092000000001
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.44679999999994
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.181800000000067
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.491800000000012
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.63090000000011
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.462099999999964
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.473200000000134
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry2d",
+      "passed": true,
+      "latencyMs": 8.568899999999985
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.938499999999976
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 10.307299999999941
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.076399999999921
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.212800000000016
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.629300000000057
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.47239999999988
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.751199999999926
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.491199999999935
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.879200000000083
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 10.674600000000055
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 10.49310000000014
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 10.736199999999826
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.279800000000023
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.528800000000047
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.2808
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.139199999999846
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.80230000000006
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 10.750099999999975
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.51279999999997
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.149899999999889
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.57730000000015
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.698699999999917
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.121200000000044
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 7.813599999999951
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.916200000000117
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.172900000000027
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.46329999999989
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.580799999999726
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.733899999999721
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.70530000000008
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.298600000000079
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 11.2817
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 11.350900000000365
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.723199999999906
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.382000000000062
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.402299999999741
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.143399999999929
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.600500000000011
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 7.981600000000071
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.677200000000084
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.053799999999683
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.828399999999874
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.672599999999875
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.490800000000036
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.93769999999995
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.021700000000237
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.633900000000267
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 12.117099999999937
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.866700000000037
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.377700000000004
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.232499999999618
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.233099999999922
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.497899999999845
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 7.959100000000035
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.46289999999999
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 7.86830000000009
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.658500000000004
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.074699999999666
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.955299999999625
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 7.844700000000103
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.767499999999927
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.057099999999991
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.435999999999694
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.04950000000008
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.92489999999998
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 10.01260000000002
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.83560000000034
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.97589999999991
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.566299999999956
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.149200000000292
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.732899999999972
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 7.919099999999617
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.147100000000137
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 7.87099999999964
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.092600000000402
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.397399999999834
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.114199999999983
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 8.942800000000261
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 7.701000000000022
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "graph3d",
+      "passed": true,
+      "latencyMs": 9.289999999999964
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.398499999999785
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.94340000000011
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.036000000000058
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.539499999999862
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.537200000000212
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.280899999999747
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.8433
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.319300000000112
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.182800000000043
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.846800000000258
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.86349999999993
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.615999999999985
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.686999999999898
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.76890000000003
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.01050000000032
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.537800000000061
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.31939999999986
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 7.925299999999879
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.765599999999722
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.379899999999907
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.950800000000072
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.078999999999724
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.861899999999878
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.623599999999897
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.426699999999983
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 7.946100000000115
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 7.988499999999931
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.422500000000127
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 7.918300000000272
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.354400000000169
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 7.9699999999998
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.685799999999745
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 7.641700000000128
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.45450000000028
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.21180000000004
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.010800000000017
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.73620000000028
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.267100000000028
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 11.466300000000047
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 12.190500000000156
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.114599999999882
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.699399999999969
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.855800000000272
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.175600000000031
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.827200000000175
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.535100000000057
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.022100000000137
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.751200000000154
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.714100000000144
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.657600000000002
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.722800000000007
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.701400000000376
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.146299999999883
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.272999999999683
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.269400000000132
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.854799999999614
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 12.4375
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.52559999999994
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.412099999999555
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 13.607400000000325
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 17.056500000000142
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 16.929599999999937
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 12.642100000000028
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 8.83259999999973
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.332200000000284
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.321999999999662
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 12.530899999999747
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 17.39740000000029
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 17.886900000000423
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 15.97360000000026
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 12.469500000000153
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 20.716399999999794
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 19.273999999999887
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 11.502899999999954
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 9.450199999999768
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 19.247400000000198
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 18.894400000000132
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 18.516000000000076
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 16.48090000000002
+    },
+    {
+      "category": "directed-transform-history-serialization",
+      "mode": "geometry3d",
+      "passed": true,
+      "latencyMs": 15.865899999999783
+    }
+  ]
+}

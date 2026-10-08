@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'../../tests',testMatch:['**/ruhiStudentBuild.e2e.ts','**/ruhiV51Build.e2e.ts'],timeout:60000,workers:1,reporter:'list',use:{baseURL:'http://127.0.0.1:9987',reducedMotion:'reduce',launchOptions:{args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']}},webServer:{command:'npm run preview -- --host 127.0.0.1 --port 9987 --strictPort',cwd:process.cwd(),url:'http://127.0.0.1:9987',reuseExistingServer:false,timeout:60000}});

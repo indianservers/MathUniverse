@@ -1,0 +1,5 @@
+{
+  "source": "scripts/evaluate-ruhi-2d-held-model.ts",
+  "sha256": "5107ce54f1eb11187e99442eae48b7377f6eb2f1a28148bea85297b9e19d0442",
+  "adaptation": "Output directory only; expectations unchanged"
+}

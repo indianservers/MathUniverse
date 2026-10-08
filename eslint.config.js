@@ -6,7 +6,7 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
-    ignores: ["dist", "dev-dist", "node_modules", "tmp/audit-build-dist-*", "*.tsbuildinfo", "vite.config.js"],
+    ignores: ["dist", "dist-*", "dev-dist", "artifacts", "tmp", "android/**/assets", "node_modules", "public/backups", "public/ar-hand-tracking/wasm", "public/twodgraph.js", "public/twodgeometry.js", "public/threedgraph.js", "public/threedgeometry.js", "*.tsbuildinfo", "vite.config.js"],
   },
   {
     files: ["public/sw.js"],

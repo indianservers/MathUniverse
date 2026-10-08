@@ -5,10 +5,11 @@ import { parseSemanticCommand } from './semanticParser';
 import type { RoboMode, RoboSceneContext, SemanticRow } from './types';
 import {extendedDataset} from './extendedDataset';
 import {validateCommand} from './commandValidator';
+import {commandVariants} from './commandVariants';
 export function contextToScene(row:SemanticRow):RoboSceneContext {
   const scene=emptyScene(row.mode);
   scene.objects=(row.context?.objects??[]).map(object=>{
-    const command={kind:object.type as Parameters<typeof describeObject>[0]['kind'],objectId:object.id,dimension:row.mode.endsWith('3d')?'3d' as const:'2d' as const,points:object.type==='line'||object.type==='triangle'||object.type==='polygon'?object.vertices??[object.position]:[object.position],width:6,height:4,depth:3,radius:object.radius??3,color:object.style?.color??'#22d3ee',roboLabel:object.label,action:'create' as const,scale:1,rotation:[0,0,0] as [number,number,number],...object.parameters};
+    const command={kind:object.type as Parameters<typeof describeObject>[0]['kind'],objectId:object.id,dimension:row.mode.endsWith('3d')?'3d' as const:'2d' as const,points:['line','ray','vector'].includes(object.type)||object.type==='triangle'||object.type==='polygon'?object.vertices??[object.position]:[object.position],width:6,height:4,depth:3,radius:object.radius??3,color:object.style?.color??'#22d3ee',roboLabel:object.label,action:'create' as const,scale:1,rotation:[0,0,0] as [number,number,number],...object.parameters};
     return {...describeObject(command,row.mode,object.vertices),...object,command};
   });scene.selectedIds=row.context?.selected??[];scene.lastReferenced=row.context?.lastReferenced;scene.previousResult=row.context?.previousResult;scene.previousResults=row.context?.previousResults;scene.activeObjectIds=row.context?.activeObjectIds;return scene;
 }
@@ -60,7 +61,7 @@ export function generateStarterDataset():SemanticRow[]{
     for(const mode of modes){
       const sub=op.subAction.toLowerCase().replaceAll('_',' ');let phrases:string[]=[];
       switch(op.action){
-        case 'CREATE':{const suffix=sub==='line'?(mode.endsWith('3d')?' from (0,0,0) to (6,8,0)':' from (0,0) to (6,8)'):sub==='point'?(mode.endsWith('3d')?' at (1,2,3)':' at (1,2)'):sub==='circle'||sub==='sphere'?' radius 5':sub==='rectangle'?' 4 by 6':sub==='square'||sub==='cube'?' side 4':' width 6 height 4 radius 3';phrases=['Draw','Create','Make','Add','Sketch','Please draw','Can you construct','Show me','Build','I need'].map(verb=>`${verb} a ${sub}${suffix}`);break;}
+        case 'CREATE':{const suffix=['line','ray','vector'].includes(sub)?(mode.endsWith('3d')?' from (0,0,0) to (6,8,0)':' from (0,0) to (6,8)'):sub==='point'?(mode.endsWith('3d')?' at (1,2,3)':' at (1,2)'):sub==='circle'||sub==='sphere'?' radius 5':sub==='rectangle'?' 4 by 6':sub==='square'||sub==='cube'?' side 4':' width 6 height 4 radius 3';phrases=['Draw','Create','Make','Add','Sketch','Please draw','Can you construct','Show me','Build','I need'].map(verb=>`${verb} a ${sub}${suffix}`);break;}
         case 'PLOT':if(op.subAction==='SURFACE_3D'&&!mode.endsWith('3d')||op.subAction==='FUNCTION'&&mode.endsWith('3d'))continue;phrases=['Plot','Graph','Draw a graph of','Show graph of','Please plot','Can you plot','Create a graph of','Embed graph of'].map(verb=>`${verb} ${mode.endsWith('3d')?'z=x^2+y^2':'y=x^2'}`);break;
         case 'FIND':phrases=questionVariations(sub);if(op.subAction==='DISTANCE')phrases=['Find the distance between A and B','How far apart are A and B?','What is the distance between A and B?','Measure the distance between A and B','Calculate the distance between A and B'];if(op.subAction==='INTERSECTION')phrases=['Where do these two lines intersect?','Find the intersection of these two lines','Find where the last two lines intersect','Calculate the intersection of these two lines','Where is the intersection?'];break;
         case 'CHANGE':phrases=op.subAction==='COLOR'?['Make it blue','Change its color to blue','Color the selected circle blue','Set its color to blue','Turn it blue','Recolor it blue']:op.subAction==='LABEL'?['Rename it to C','Set its label to C','Change the label to C','Rename that circle to C']:['Change','Set','Please change','Can you set','Make'].map(verb=>`${verb} its ${sub} to ${op.subAction==='POSITION'||op.subAction==='COORDINATES'?(mode.endsWith('3d')?'(2,3,1)':'(2,3)'):'8'}`);break;
@@ -83,9 +84,11 @@ export function generateStarterDataset():SemanticRow[]{
         case 'COMPARE':phrases=['Compare','Please compare','Compare the','Which has larger'].map(verb=>`${verb} ${sub} of these two ${op.subAction==='LENGTH'?'lines':['VOLUME','SURFACE_AREA'].includes(op.subAction)?'spheres':'circles'}`);if(op.subAction==='SIZE')phrases.push('Which circle is larger?');break;
         case 'CHECK':phrases=['Check','Test','Verify',op.subAction==='EQUAL_AREA'?'Are these two circles':'Are these two lines'].map(verb=>`${verb} ${sub}`);if(sub==='point inside')phrases=['Is this point inside the circle?','Check if the point is inside the circle','Is point A inside the circle?','Test if A is inside the circle'];break;
       }
+      if(op.action==='CHANGE'&&op.subAction==='ENDPOINTS')phrases=['Set the line endpoints to '+(mode.endsWith('3d')?'(0,0,0) and (3,4,1)':'(0,0) and (3,4)')];
       const context=seedContext(mode);
+      if(['COMPONENTS','DIRECTION','PARAMETERIZATION','MAGNITUDE'].includes(op.subAction)){context.objects.push(descriptor('vector_1','vector',mode.endsWith('3d')?[0,0,0]:[0,0],mode,3,mode.endsWith('3d')?[[0,0,0],[3,4,0]]:[[0,0],[3,4]]));context.selected=['vector_1'];context.lastReferenced='vector_1';}
       if(op.action==='CHECK'&&['POINT_ON_LINE','POINT_ON_CIRCLE'].includes(op.subAction))phrases=['Is point A','Check if point A is','Test if point A is','Verify that point A is'].map(prefix=>`${prefix} on the ${op.subAction==='POINT_ON_LINE'?'line':'circle'}`);
-      const preferred=['LENGTH','MIDPOINT','SLOPE'].includes(op.subAction)?'line_1':['VOLUME','SURFACE_AREA'].includes(op.subAction)?'sphere_1':['ROOTS','X_INTERCEPT','Y_INTERCEPT'].includes(op.subAction)?'graph_1':op.action==='CHANGE'&&['WIDTH','HEIGHT','DEPTH'].includes(op.subAction)||op.action==='RESIZE'?'square_1':'circle_1';
+      const preferred=op.subAction==='ENDPOINTS'?'line_1':['COMPONENTS','DIRECTION','PARAMETERIZATION','MAGNITUDE'].includes(op.subAction)?'vector_1':['LENGTH','MIDPOINT','SLOPE'].includes(op.subAction)?'line_1':['VOLUME','SURFACE_AREA'].includes(op.subAction)?'sphere_1':['ROOTS','X_INTERCEPT','Y_INTERCEPT'].includes(op.subAction)?'graph_1':op.action==='CHANGE'&&['WIDTH','HEIGHT','DEPTH'].includes(op.subAction)||op.action==='RESIZE'?'square_1':'circle_1';
       if(preferred==='graph_1')context.objects.push({...descriptor('graph_1','plot',[0,0],mode),parameters:{expression:'x^2'}} as ReturnType<typeof descriptor>);context.selected=[preferred];context.lastReferenced=preferred;
       if(op.action==='CHECK'){context.selected=op.subAction.startsWith('POINT_')?['A']:op.subAction==='EQUAL_AREA'?['circle_1','circle_2']:['line_1','line_2'];context.lastReferenced=context.selected[0];}
       phrases.forEach((phrase,index)=>{
@@ -93,6 +96,7 @@ export function generateStarterDataset():SemanticRow[]{
         // Labels are authored from the operation registry, not inferred from parser output.
         // Expected numeric fields are authored independently of the parser.
         const parameters:SemanticRow['parameters']={};
+        if(op.action==='CREATE'&&['ray','vector'].includes(sub))parameters.points=mode.endsWith('3d')?[[0,0,0],[6,8,0]]:[[0,0],[6,8]];
         if(op.action==='CREATE'){
           if(sub==='point')parameters.points=[mode.endsWith('3d')?[1,2,3]:[1,2]];
           else if(sub==='line')parameters.points=mode.endsWith('3d')?[[0,0,0],[6,8,0]]:[[0,0],[6,8]];
@@ -102,7 +106,7 @@ export function generateStarterDataset():SemanticRow[]{
           else {parameters.width=6;parameters.height=4;parameters.radius=3;}
         }
         if(op.action==='PLOT')parameters.expression=mode.endsWith('3d')?'x^2+y^2':'x^2';
-        if(op.action==='CHANGE'){if(op.subAction==='COLOR')parameters.color='blue';else if(op.subAction==='LABEL')parameters.label='c';else if(['POSITION','COORDINATES'].includes(op.subAction))parameters.position=mode.endsWith('3d')?[2,3,1]:[2,3];else parameters[op.subAction.toLowerCase()]=8;}
+        if(op.action==='CHANGE'){if(op.subAction==='ENDPOINTS')parameters.points=mode.endsWith('3d')?[[0,0,0],[3,4,1]]:[[0,0],[3,4]];else if(op.subAction==='COLOR')parameters.color='blue';else if(op.subAction==='LABEL')parameters.label='c';else if(['POSITION','COORDINATES'].includes(op.subAction))parameters.position=mode.endsWith('3d')?[2,3,1]:[2,3];else parameters[op.subAction.toLowerCase()]=8;}
         if(op.action==='MOVE')parameters.vector=([[3,2],[3,2],[3,0],[3,0],[3,0],[-2,0]][index]??[3,0]).concat(mode.endsWith('3d')?[index===1?1:0]:[]);
         if(op.action==='ROTATE')parameters.angle=[45,90,30,180/Math.PI,-45][index];
         if(op.action==='SCALE')parameters.factor=[2,2,2,.5,2][index];
@@ -114,6 +118,18 @@ export function generateStarterDataset():SemanticRow[]{
     }
   }
   rows.push(...(['normal','graph2d','geometry2d'] as RoboMode[]).flatMap(mode=>extendedDataset(mode,seedContext(mode))));
+  for(const variant of commandVariants()){
+    const parsed=parseSemanticCommand(variant.phrase,'graph2d');
+    const context={objects:[descriptor('rectangle_1','rectangle',[0,0],'graph2d')],selected:['rectangle_1'],lastReferenced:'rectangle_1'};
+    rows.push({phrase:variant.phrase,mode:'graph2d',action:parsed.action,subAction:parsed.subAction,parameters:parsed.parameters,target:parsed.target,context,source:'controlled-template',group:`language:${variant.action}:${variant.phrase.replace(/^(?:please|kindly|can you|could you|would you|will you|i want you to|i need you to|i would like you to)\s+/i,'').replace(/[?.!]+$/,'').toLowerCase()}`});
+  }
+  for(const mode of ['geometry3d','graph3d'] as RoboMode[]){
+    rows.push({phrase:'Create a plane through (0,0,0), (6,0,0), (0,4,0)',action:'CREATE',subAction:'PLANE',mode,parameters:{points:[[0,0,0],[6,0,0],[0,4,0]]},source:'controlled-template',group:'v52:plane'});
+    rows.push({phrase:'Construct a perpendicular line to the plane through (1,1,3)',action:'CONSTRUCT',subAction:'PERP_PLANE',mode,parameters:{position:[1,1,3]},target:{type:'plane'},context:{objects:[descriptor('plane_1','plane',[0,0,0],mode,3,[[0,0,0],[6,0,0],[0,4,0]])]},source:'controlled-template',group:'v52:perpendicular-plane'});
+  }
+  const nlpContext={objects:[{...descriptor('T','triangle',[0,0],'graph2d',3,[[0,0],[7,0],[2,6]]),parameters:{roboVertexLabels:['A','B','C']}}],selected:['T'],lastReferenced:'T'};
+  for(const phrase of ['Change its interior to orange','Change its outline to teal','Make its two sides thicker','Set angle A to 67 degrees','Draw an angle of 53 degrees','Mark its centroid','Connect its incenter to vertex B']){const parsed=parseSemanticCommand(phrase,'graph2d');rows.push({phrase,mode:'graph2d',action:parsed.action,subAction:parsed.subAction,parameters:parsed.parameters,target:parsed.target,context:nlpContext,source:'controlled-template',group:'nlp2d:'+parsed.action+':'+parsed.subAction});}
+  rows.push({phrase:'If the two lines intersect, mark the intersection in red; otherwise tell me they are parallel.',mode:'graph2d',action:'CONSTRUCT',subAction:'CONDITIONAL_INTERSECTION',parameters:{multiple:true,color:'red'},context:{...seedContext('graph2d'),selected:['line_1','line_2']},source:'controlled-template',group:'nlp2d:conditional'});
   for(const op of OPERATIONS)op.examples=rows.filter(row=>row.action===op.action&&row.subAction===op.subAction).slice(0,5).map(row=>row.phrase);
   return rows;
 }

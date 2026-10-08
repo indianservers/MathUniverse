@@ -3,7 +3,7 @@ import { ACTIONS, EXPRESSIONS, RoboBehaviorEngine, roboEvents, sampleAction } fr
 import { RoboAnimationScheduler } from './RoboAnimationScheduler';
 import { projectRoboPoint, registerRoboProjector } from './workspaceAdapter';
 describe('Math Robo articulated character', () => {
-    it('offers all 25 expressions and 45 distinct actions', () => { expect(EXPRESSIONS).toHaveLength(25); expect(new Set(EXPRESSIONS).size).toBe(25); expect(ACTIONS).toHaveLength(45); const poses = new Set(ACTIONS.map(a => JSON.stringify(sampleAction(a, .37)))); expect(poses.size).toBeGreaterThan(35); });
+    it('offers all 25 expressions and the extended action library', () => { expect(EXPRESSIONS).toHaveLength(25); expect(new Set(EXPRESSIONS).size).toBe(25); expect(ACTIONS).toHaveLength(52); const poses = new Set(ACTIONS.map(a => JSON.stringify(sampleAction(a, .37)))); expect(poses.size).toBeGreaterThan(35); });
     it.each(ACTIONS)('%s stays finite through its complete sequence', a => { for (const t of [0, .15, .37, .5, .75, 1])
         for (const value of Object.values(sampleAction(a, t)))
             if (typeof value === 'number')

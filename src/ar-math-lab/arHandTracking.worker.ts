@@ -1,3 +1,4 @@
+import {downloadBytes} from '../model-loading/downloadBytes';
 import { FilesetResolver, HandLandmarker } from '@mediapipe/tasks-vision';
 let tracker: HandLandmarker | null=null;
 let inputCanvas: OffscreenCanvas | null=null;
@@ -7,14 +8,26 @@ self.onmessage=async(event: MessageEvent)=>{
  try{
   if(data.type==='init'){
    const files=await FilesetResolver.forVisionTasks(data.root+'wasm',true);
+   let lastProgress=0;
+   const progress=(value:import('../model-loading/downloadBytes').DownloadProgress)=>{const now=Date.now();if(now-lastProgress>=80||value.percent===100||value.loaded===0){lastProgress=now;self.postMessage({type:'progress',progress:value});}};
+   const urls:string[]=[];
+   const asset=async(url:string,mime:string)=>{const {bytes}=await downloadBytes(url,progress);const blob=URL.createObjectURL(new Blob([bytes.buffer as ArrayBuffer],{type:mime}));urls.push(blob);return blob;};
+   try{
+   // Supply the downloaded buffers directly so initialization never downloads them a second time.
+   const wasmLoaderPath=await asset(files.wasmLoaderPath,'text/javascript');
+   const wasmBinaryPath=await asset(files.wasmBinaryPath,'application/wasm');
+   const {bytes:modelAssetBuffer}=await downloadBytes(data.root+'hand_landmarker.task',progress);
+   const localFiles={...files,wasmLoaderPath,wasmBinaryPath};
+   self.postMessage({type:'initializing'});
    const options={runningMode:'VIDEO' as const,numHands:2,minHandDetectionConfidence:.4,minHandPresenceConfidence:.4,minTrackingConfidence:.5};
    // Software WebGL can be much slower than WASM/XNNPACK, especially in headless QA.
    const probe=new OffscreenCanvas(8,8).getContext('webgl2');const debug=probe?.getExtension('WEBGL_debug_renderer_info');
    const renderer=probe&&debug?String(probe.getParameter(debug.UNMASKED_RENDERER_WEBGL)):'';
    const software=/swiftshader|llvmpipe|software/i.test(renderer);probe?.getExtension('WEBGL_lose_context')?.loseContext();
-   try{tracker=await HandLandmarker.createFromOptions(files,{...options,baseOptions:{modelAssetPath:data.root+'hand_landmarker.task',delegate:software?'CPU':'GPU'}});}
-   catch{tracker=await HandLandmarker.createFromOptions(files,{...options,baseOptions:{modelAssetPath:data.root+'hand_landmarker.task',delegate:'CPU'}});}
+   try{tracker=await HandLandmarker.createFromOptions(localFiles,{...options,baseOptions:{modelAssetBuffer,delegate:software?'CPU':'GPU'}});}
+   catch{tracker=await HandLandmarker.createFromOptions(localFiles,{...options,baseOptions:{modelAssetBuffer,delegate:'CPU'}});}
    self.postMessage({type:'ready'});
+   }finally{urls.forEach(url=>URL.revokeObjectURL(url));}
   }else if(data.type==='frame'&&tracker){
    try{
     if(!inputCanvas||inputCanvas.width!==data.bitmap.width||inputCanvas.height!==data.bitmap.height)inputCanvas=new OffscreenCanvas(data.bitmap.width,data.bitmap.height);

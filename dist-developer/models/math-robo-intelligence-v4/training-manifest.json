@@ -1,0 +1,5173 @@
+{
+  "seed": 41,
+  "split": "Stratified template-family groups targeting 70/15/15; rare classes reserve validation/test families. Actual counts above.",
+  "train": 1560,
+  "validation": 494,
+  "test": 494,
+  "source": "controlled templates; exact parameter labels authored independently",
+  "dataset": "starter.jsonl",
+  "featureVersion": "semantic-hash-768-v4",
+  "modeHead": "conditioned on active workspace mode",
+  "coverage": [
+    {
+      "action": "CREATE",
+      "normalizedAction": "CREATE",
+      "operations": [
+        {
+          "subAction": "TRIANGLE",
+          "implemented": true,
+          "executor": "create:triangle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RECTANGLE",
+          "implemented": true,
+          "executor": "create:rectangle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "SQUARE",
+          "implemented": true,
+          "executor": "create:square",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "CIRCLE",
+          "implemented": true,
+          "executor": "create:circle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "ELLIPSE",
+          "implemented": true,
+          "executor": "create:ellipse",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "SEMICIRCLE",
+          "implemented": true,
+          "executor": "create:semicircle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "PENTAGON",
+          "implemented": true,
+          "executor": "create:pentagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "HEXAGON",
+          "implemented": true,
+          "executor": "create:hexagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "HEPTAGON",
+          "implemented": true,
+          "executor": "create:heptagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "OCTAGON",
+          "implemented": true,
+          "executor": "create:octagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "NONAGON",
+          "implemented": true,
+          "executor": "create:nonagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "DECAGON",
+          "implemented": true,
+          "executor": "create:decagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "POLYGON",
+          "implemented": true,
+          "executor": "create:polygon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "STAR",
+          "implemented": true,
+          "executor": "create:star",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "PARALLELOGRAM",
+          "implemented": true,
+          "executor": "create:parallelogram",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "TRAPEZOID",
+          "implemented": true,
+          "executor": "create:trapezoid",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RHOMBUS",
+          "implemented": true,
+          "executor": "create:rhombus",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "KITE",
+          "implemented": true,
+          "executor": "create:kite",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "CUBE",
+          "implemented": true,
+          "executor": "create:cube",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CUBOID",
+          "implemented": true,
+          "executor": "create:cuboid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "SPHERE",
+          "implemented": true,
+          "executor": "create:sphere",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "ELLIPSOID",
+          "implemented": true,
+          "executor": "create:ellipsoid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "HEMISPHERE",
+          "implemented": true,
+          "executor": "create:hemisphere",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CYLINDER",
+          "implemented": true,
+          "executor": "create:cylinder",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CONE",
+          "implemented": true,
+          "executor": "create:cone",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "FRUSTUM",
+          "implemented": true,
+          "executor": "create:frustum",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TORUS",
+          "implemented": true,
+          "executor": "create:torus",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TUBE",
+          "implemented": true,
+          "executor": "create:tube",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CAPSULE",
+          "implemented": true,
+          "executor": "create:capsule",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "PRISM",
+          "implemented": true,
+          "executor": "create:prism",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "PYRAMID",
+          "implemented": true,
+          "executor": "create:pyramid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TETRAHEDRON",
+          "implemented": true,
+          "executor": "create:tetrahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "OCTAHEDRON",
+          "implemented": true,
+          "executor": "create:octahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DODECAHEDRON",
+          "implemented": true,
+          "executor": "create:dodecahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "ICOSAHEDRON",
+          "implemented": true,
+          "executor": "create:icosahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "WEDGE",
+          "implemented": true,
+          "executor": "create:wedge",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "POINT",
+          "implemented": true,
+          "executor": "create:point",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "LINE",
+          "implemented": true,
+          "executor": "create:line",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RAY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "VECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "PLANE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ARC",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "RIGHT_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "EQUILATERAL_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ISOSCELES_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "FIND",
+      "normalizedAction": "FIND",
+      "operations": [
+        {
+          "subAction": "DISTANCE",
+          "implemented": true,
+          "executor": "find:distance",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "MIDPOINT",
+          "implemented": true,
+          "executor": "find:midpoint",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": true,
+          "executor": "find:length",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "AREA",
+          "implemented": true,
+          "executor": "find:area",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "PERIMETER",
+          "implemented": true,
+          "executor": "find:perimeter",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CIRCUMFERENCE",
+          "implemented": true,
+          "executor": "find:circumference",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": true,
+          "executor": "find:slope",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CENTER",
+          "implemented": true,
+          "executor": "find:center",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "find:radius",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "find:diameter",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CENTROID",
+          "implemented": true,
+          "executor": "find:centroid",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "VOLUME",
+          "implemented": true,
+          "executor": "find:volume",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "SURFACE_AREA",
+          "implemented": true,
+          "executor": "find:surface_area",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "INTERSECTION",
+          "implemented": true,
+          "executor": "find:intersection",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "ROOTS",
+          "implemented": true,
+          "executor": "find:roots",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "X_INTERCEPT",
+          "implemented": true,
+          "executor": "find:x_intercept",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "Y_INTERCEPT",
+          "implemented": true,
+          "executor": "find:y_intercept",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "INCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CIRCUMCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ORTHOCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "VERTEX",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MAXIMUM",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MINIMUM",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "DOMAIN",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "RANGE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ASYMPTOTE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "PROJECTION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FOOT_OF_PERPENDICULAR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "CALCULATE",
+      "normalizedAction": "FIND",
+      "operations": [
+        {
+          "subAction": "DISTANCE",
+          "implemented": true,
+          "executor": "find:distance",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "MIDPOINT",
+          "implemented": true,
+          "executor": "find:midpoint",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": true,
+          "executor": "find:length",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "AREA",
+          "implemented": true,
+          "executor": "find:area",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "PERIMETER",
+          "implemented": true,
+          "executor": "find:perimeter",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CIRCUMFERENCE",
+          "implemented": true,
+          "executor": "find:circumference",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": true,
+          "executor": "find:slope",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CENTER",
+          "implemented": true,
+          "executor": "find:center",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "find:radius",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "find:diameter",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CENTROID",
+          "implemented": true,
+          "executor": "find:centroid",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "VOLUME",
+          "implemented": true,
+          "executor": "find:volume",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "SURFACE_AREA",
+          "implemented": true,
+          "executor": "find:surface_area",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "INTERSECTION",
+          "implemented": true,
+          "executor": "find:intersection",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "ROOTS",
+          "implemented": true,
+          "executor": "find:roots",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "X_INTERCEPT",
+          "implemented": true,
+          "executor": "find:x_intercept",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "Y_INTERCEPT",
+          "implemented": true,
+          "executor": "find:y_intercept",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "INCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CIRCUMCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ORTHOCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "VERTEX",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MAXIMUM",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MINIMUM",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "DOMAIN",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "RANGE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ASYMPTOTE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "PROJECTION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FOOT_OF_PERPENDICULAR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "DRAW",
+      "normalizedAction": "CREATE",
+      "operations": [
+        {
+          "subAction": "TRIANGLE",
+          "implemented": true,
+          "executor": "create:triangle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RECTANGLE",
+          "implemented": true,
+          "executor": "create:rectangle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "SQUARE",
+          "implemented": true,
+          "executor": "create:square",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "CIRCLE",
+          "implemented": true,
+          "executor": "create:circle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "ELLIPSE",
+          "implemented": true,
+          "executor": "create:ellipse",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "SEMICIRCLE",
+          "implemented": true,
+          "executor": "create:semicircle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "PENTAGON",
+          "implemented": true,
+          "executor": "create:pentagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "HEXAGON",
+          "implemented": true,
+          "executor": "create:hexagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "HEPTAGON",
+          "implemented": true,
+          "executor": "create:heptagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "OCTAGON",
+          "implemented": true,
+          "executor": "create:octagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "NONAGON",
+          "implemented": true,
+          "executor": "create:nonagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "DECAGON",
+          "implemented": true,
+          "executor": "create:decagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "POLYGON",
+          "implemented": true,
+          "executor": "create:polygon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "STAR",
+          "implemented": true,
+          "executor": "create:star",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "PARALLELOGRAM",
+          "implemented": true,
+          "executor": "create:parallelogram",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "TRAPEZOID",
+          "implemented": true,
+          "executor": "create:trapezoid",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RHOMBUS",
+          "implemented": true,
+          "executor": "create:rhombus",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "KITE",
+          "implemented": true,
+          "executor": "create:kite",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "CUBE",
+          "implemented": true,
+          "executor": "create:cube",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CUBOID",
+          "implemented": true,
+          "executor": "create:cuboid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "SPHERE",
+          "implemented": true,
+          "executor": "create:sphere",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "ELLIPSOID",
+          "implemented": true,
+          "executor": "create:ellipsoid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "HEMISPHERE",
+          "implemented": true,
+          "executor": "create:hemisphere",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CYLINDER",
+          "implemented": true,
+          "executor": "create:cylinder",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CONE",
+          "implemented": true,
+          "executor": "create:cone",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "FRUSTUM",
+          "implemented": true,
+          "executor": "create:frustum",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TORUS",
+          "implemented": true,
+          "executor": "create:torus",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TUBE",
+          "implemented": true,
+          "executor": "create:tube",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CAPSULE",
+          "implemented": true,
+          "executor": "create:capsule",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "PRISM",
+          "implemented": true,
+          "executor": "create:prism",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "PYRAMID",
+          "implemented": true,
+          "executor": "create:pyramid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TETRAHEDRON",
+          "implemented": true,
+          "executor": "create:tetrahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "OCTAHEDRON",
+          "implemented": true,
+          "executor": "create:octahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DODECAHEDRON",
+          "implemented": true,
+          "executor": "create:dodecahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "ICOSAHEDRON",
+          "implemented": true,
+          "executor": "create:icosahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "WEDGE",
+          "implemented": true,
+          "executor": "create:wedge",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "POINT",
+          "implemented": true,
+          "executor": "create:point",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "LINE",
+          "implemented": true,
+          "executor": "create:line",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RAY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "VECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "PLANE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ARC",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "RIGHT_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "EQUILATERAL_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ISOSCELES_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "PLOT",
+      "normalizedAction": "PLOT",
+      "operations": [
+        {
+          "subAction": "FUNCTION",
+          "implemented": true,
+          "executor": "plot:function",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "SURFACE_3D",
+          "implemented": true,
+          "executor": "plot:surface_3d",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "EQUATION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "INEQUALITY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "POINTS",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "PARAMETRIC",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "POLAR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "IMPLICIT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "PLANE_3D",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "VECTOR_FIELD",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "ADD",
+      "normalizedAction": "CREATE",
+      "operations": [
+        {
+          "subAction": "TRIANGLE",
+          "implemented": true,
+          "executor": "create:triangle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RECTANGLE",
+          "implemented": true,
+          "executor": "create:rectangle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "SQUARE",
+          "implemented": true,
+          "executor": "create:square",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "CIRCLE",
+          "implemented": true,
+          "executor": "create:circle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "ELLIPSE",
+          "implemented": true,
+          "executor": "create:ellipse",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "SEMICIRCLE",
+          "implemented": true,
+          "executor": "create:semicircle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "PENTAGON",
+          "implemented": true,
+          "executor": "create:pentagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "HEXAGON",
+          "implemented": true,
+          "executor": "create:hexagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "HEPTAGON",
+          "implemented": true,
+          "executor": "create:heptagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "OCTAGON",
+          "implemented": true,
+          "executor": "create:octagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "NONAGON",
+          "implemented": true,
+          "executor": "create:nonagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "DECAGON",
+          "implemented": true,
+          "executor": "create:decagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "POLYGON",
+          "implemented": true,
+          "executor": "create:polygon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "STAR",
+          "implemented": true,
+          "executor": "create:star",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "PARALLELOGRAM",
+          "implemented": true,
+          "executor": "create:parallelogram",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "TRAPEZOID",
+          "implemented": true,
+          "executor": "create:trapezoid",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RHOMBUS",
+          "implemented": true,
+          "executor": "create:rhombus",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "KITE",
+          "implemented": true,
+          "executor": "create:kite",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "CUBE",
+          "implemented": true,
+          "executor": "create:cube",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CUBOID",
+          "implemented": true,
+          "executor": "create:cuboid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "SPHERE",
+          "implemented": true,
+          "executor": "create:sphere",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "ELLIPSOID",
+          "implemented": true,
+          "executor": "create:ellipsoid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "HEMISPHERE",
+          "implemented": true,
+          "executor": "create:hemisphere",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CYLINDER",
+          "implemented": true,
+          "executor": "create:cylinder",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CONE",
+          "implemented": true,
+          "executor": "create:cone",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "FRUSTUM",
+          "implemented": true,
+          "executor": "create:frustum",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TORUS",
+          "implemented": true,
+          "executor": "create:torus",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TUBE",
+          "implemented": true,
+          "executor": "create:tube",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CAPSULE",
+          "implemented": true,
+          "executor": "create:capsule",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "PRISM",
+          "implemented": true,
+          "executor": "create:prism",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "PYRAMID",
+          "implemented": true,
+          "executor": "create:pyramid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TETRAHEDRON",
+          "implemented": true,
+          "executor": "create:tetrahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "OCTAHEDRON",
+          "implemented": true,
+          "executor": "create:octahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DODECAHEDRON",
+          "implemented": true,
+          "executor": "create:dodecahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "ICOSAHEDRON",
+          "implemented": true,
+          "executor": "create:icosahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "WEDGE",
+          "implemented": true,
+          "executor": "create:wedge",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "POINT",
+          "implemented": true,
+          "executor": "create:point",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "LINE",
+          "implemented": true,
+          "executor": "create:line",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RAY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "VECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "PLANE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ARC",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "RIGHT_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "EQUILATERAL_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ISOSCELES_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "INSERT",
+      "normalizedAction": "CREATE",
+      "operations": [
+        {
+          "subAction": "TRIANGLE",
+          "implemented": true,
+          "executor": "create:triangle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RECTANGLE",
+          "implemented": true,
+          "executor": "create:rectangle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "SQUARE",
+          "implemented": true,
+          "executor": "create:square",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "CIRCLE",
+          "implemented": true,
+          "executor": "create:circle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "ELLIPSE",
+          "implemented": true,
+          "executor": "create:ellipse",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "SEMICIRCLE",
+          "implemented": true,
+          "executor": "create:semicircle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "PENTAGON",
+          "implemented": true,
+          "executor": "create:pentagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "HEXAGON",
+          "implemented": true,
+          "executor": "create:hexagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "HEPTAGON",
+          "implemented": true,
+          "executor": "create:heptagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "OCTAGON",
+          "implemented": true,
+          "executor": "create:octagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "NONAGON",
+          "implemented": true,
+          "executor": "create:nonagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "DECAGON",
+          "implemented": true,
+          "executor": "create:decagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "POLYGON",
+          "implemented": true,
+          "executor": "create:polygon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "STAR",
+          "implemented": true,
+          "executor": "create:star",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "PARALLELOGRAM",
+          "implemented": true,
+          "executor": "create:parallelogram",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "TRAPEZOID",
+          "implemented": true,
+          "executor": "create:trapezoid",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RHOMBUS",
+          "implemented": true,
+          "executor": "create:rhombus",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "KITE",
+          "implemented": true,
+          "executor": "create:kite",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "CUBE",
+          "implemented": true,
+          "executor": "create:cube",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CUBOID",
+          "implemented": true,
+          "executor": "create:cuboid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "SPHERE",
+          "implemented": true,
+          "executor": "create:sphere",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "ELLIPSOID",
+          "implemented": true,
+          "executor": "create:ellipsoid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "HEMISPHERE",
+          "implemented": true,
+          "executor": "create:hemisphere",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CYLINDER",
+          "implemented": true,
+          "executor": "create:cylinder",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CONE",
+          "implemented": true,
+          "executor": "create:cone",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "FRUSTUM",
+          "implemented": true,
+          "executor": "create:frustum",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TORUS",
+          "implemented": true,
+          "executor": "create:torus",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TUBE",
+          "implemented": true,
+          "executor": "create:tube",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CAPSULE",
+          "implemented": true,
+          "executor": "create:capsule",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "PRISM",
+          "implemented": true,
+          "executor": "create:prism",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "PYRAMID",
+          "implemented": true,
+          "executor": "create:pyramid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TETRAHEDRON",
+          "implemented": true,
+          "executor": "create:tetrahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "OCTAHEDRON",
+          "implemented": true,
+          "executor": "create:octahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DODECAHEDRON",
+          "implemented": true,
+          "executor": "create:dodecahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "ICOSAHEDRON",
+          "implemented": true,
+          "executor": "create:icosahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "WEDGE",
+          "implemented": true,
+          "executor": "create:wedge",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "POINT",
+          "implemented": true,
+          "executor": "create:point",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "LINE",
+          "implemented": true,
+          "executor": "create:line",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RAY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "VECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "PLANE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ARC",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "RIGHT_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "EQUILATERAL_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ISOSCELES_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "PLACE",
+      "normalizedAction": "CREATE",
+      "operations": [
+        {
+          "subAction": "TRIANGLE",
+          "implemented": true,
+          "executor": "create:triangle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RECTANGLE",
+          "implemented": true,
+          "executor": "create:rectangle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "SQUARE",
+          "implemented": true,
+          "executor": "create:square",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "CIRCLE",
+          "implemented": true,
+          "executor": "create:circle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "ELLIPSE",
+          "implemented": true,
+          "executor": "create:ellipse",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "SEMICIRCLE",
+          "implemented": true,
+          "executor": "create:semicircle",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "PENTAGON",
+          "implemented": true,
+          "executor": "create:pentagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "HEXAGON",
+          "implemented": true,
+          "executor": "create:hexagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "HEPTAGON",
+          "implemented": true,
+          "executor": "create:heptagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "OCTAGON",
+          "implemented": true,
+          "executor": "create:octagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "NONAGON",
+          "implemented": true,
+          "executor": "create:nonagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "DECAGON",
+          "implemented": true,
+          "executor": "create:decagon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "POLYGON",
+          "implemented": true,
+          "executor": "create:polygon",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "STAR",
+          "implemented": true,
+          "executor": "create:star",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "PARALLELOGRAM",
+          "implemented": true,
+          "executor": "create:parallelogram",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "TRAPEZOID",
+          "implemented": true,
+          "executor": "create:trapezoid",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RHOMBUS",
+          "implemented": true,
+          "executor": "create:rhombus",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "KITE",
+          "implemented": true,
+          "executor": "create:kite",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "CUBE",
+          "implemented": true,
+          "executor": "create:cube",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CUBOID",
+          "implemented": true,
+          "executor": "create:cuboid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "SPHERE",
+          "implemented": true,
+          "executor": "create:sphere",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "ELLIPSOID",
+          "implemented": true,
+          "executor": "create:ellipsoid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "HEMISPHERE",
+          "implemented": true,
+          "executor": "create:hemisphere",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CYLINDER",
+          "implemented": true,
+          "executor": "create:cylinder",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CONE",
+          "implemented": true,
+          "executor": "create:cone",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "FRUSTUM",
+          "implemented": true,
+          "executor": "create:frustum",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TORUS",
+          "implemented": true,
+          "executor": "create:torus",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TUBE",
+          "implemented": true,
+          "executor": "create:tube",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CAPSULE",
+          "implemented": true,
+          "executor": "create:capsule",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "PRISM",
+          "implemented": true,
+          "executor": "create:prism",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "PYRAMID",
+          "implemented": true,
+          "executor": "create:pyramid",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "TETRAHEDRON",
+          "implemented": true,
+          "executor": "create:tetrahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "OCTAHEDRON",
+          "implemented": true,
+          "executor": "create:octahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DODECAHEDRON",
+          "implemented": true,
+          "executor": "create:dodecahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "ICOSAHEDRON",
+          "implemented": true,
+          "executor": "create:icosahedron",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "WEDGE",
+          "implemented": true,
+          "executor": "create:wedge",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "POINT",
+          "implemented": true,
+          "executor": "create:point",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "LINE",
+          "implemented": true,
+          "executor": "create:line",
+          "trainingExamples": 40
+        },
+        {
+          "subAction": "RAY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "VECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "PLANE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ARC",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "RIGHT_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "EQUILATERAL_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ISOSCELES_TRIANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "MARK",
+      "normalizedAction": "MARK",
+      "operations": [
+        {
+          "subAction": "POINT",
+          "implemented": true,
+          "executor": "mark:point",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "MIDPOINT",
+          "implemented": true,
+          "executor": "mark:midpoint",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CENTER",
+          "implemented": true,
+          "executor": "mark:center",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "INTERSECTION",
+          "implemented": true,
+          "executor": "mark:intersection",
+          "trainingExamples": 20
+        }
+      ]
+    },
+    {
+      "action": "SHOW",
+      "normalizedAction": "SHOW",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": true,
+          "executor": "show:object",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "CENTER",
+          "implemented": true,
+          "executor": "show:center",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "MIDPOINT",
+          "implemented": true,
+          "executor": "show:midpoint",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "show:radius",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "show:diameter",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "INTERSECTION",
+          "implemented": true,
+          "executor": "show:intersection",
+          "trainingExamples": 20
+        }
+      ]
+    },
+    {
+      "action": "HIDE",
+      "normalizedAction": "HIDE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": true,
+          "executor": "hide:object",
+          "trainingExamples": 16
+        }
+      ]
+    },
+    {
+      "action": "DELETE",
+      "normalizedAction": "DELETE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": true,
+          "executor": "delete:object",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "ALL",
+          "implemented": true,
+          "executor": "delete:all",
+          "trainingExamples": 16
+        }
+      ]
+    },
+    {
+      "action": "REMOVE",
+      "normalizedAction": "DELETE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": true,
+          "executor": "delete:object",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "ALL",
+          "implemented": true,
+          "executor": "delete:all",
+          "trainingExamples": 16
+        }
+      ]
+    },
+    {
+      "action": "CLEAR",
+      "normalizedAction": "DELETE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": true,
+          "executor": "delete:object",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "ALL",
+          "implemented": true,
+          "executor": "delete:all",
+          "trainingExamples": 16
+        }
+      ]
+    },
+    {
+      "action": "RESET",
+      "normalizedAction": "DELETE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": true,
+          "executor": "delete:object",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "ALL",
+          "implemented": true,
+          "executor": "delete:all",
+          "trainingExamples": 16
+        }
+      ]
+    },
+    {
+      "action": "SELECT",
+      "normalizedAction": "SELECT",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": true,
+          "executor": "select:object",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "ALL",
+          "implemented": true,
+          "executor": "select:all",
+          "trainingExamples": 16
+        }
+      ]
+    },
+    {
+      "action": "DESELECT",
+      "normalizedAction": "DESELECT",
+      "operations": [
+        {
+          "subAction": "ALL",
+          "implemented": true,
+          "executor": "deselect:all",
+          "trainingExamples": 16
+        }
+      ]
+    },
+    {
+      "action": "MOVE",
+      "normalizedAction": "MOVE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": true,
+          "executor": "move:object",
+          "trainingExamples": 24
+        }
+      ]
+    },
+    {
+      "action": "TRANSLATE",
+      "normalizedAction": "MOVE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": true,
+          "executor": "move:object",
+          "trainingExamples": 24
+        }
+      ]
+    },
+    {
+      "action": "ROTATE",
+      "normalizedAction": "ROTATE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": true,
+          "executor": "rotate:object",
+          "trainingExamples": 20
+        }
+      ]
+    },
+    {
+      "action": "SCALE",
+      "normalizedAction": "SCALE",
+      "operations": [
+        {
+          "subAction": "UNIFORM",
+          "implemented": true,
+          "executor": "scale:uniform",
+          "trainingExamples": 20
+        }
+      ]
+    },
+    {
+      "action": "RESIZE",
+      "normalizedAction": "RESIZE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": true,
+          "executor": "resize:object",
+          "trainingExamples": 16
+        }
+      ]
+    },
+    {
+      "action": "STRETCH",
+      "normalizedAction": "STRETCH",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "SHRINK",
+      "normalizedAction": "SCALE",
+      "operations": [
+        {
+          "subAction": "UNIFORM",
+          "implemented": true,
+          "executor": "scale:uniform",
+          "trainingExamples": 20
+        }
+      ]
+    },
+    {
+      "action": "REFLECT",
+      "normalizedAction": "REFLECT",
+      "operations": [
+        {
+          "subAction": "X_AXIS",
+          "implemented": true,
+          "executor": "reflect:x_axis",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "Y_AXIS",
+          "implemented": true,
+          "executor": "reflect:y_axis",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "ORIGIN",
+          "implemented": true,
+          "executor": "reflect:origin",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "XY_PLANE",
+          "implemented": true,
+          "executor": "reflect:xy_plane",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "XZ_PLANE",
+          "implemented": true,
+          "executor": "reflect:xz_plane",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "YZ_PLANE",
+          "implemented": true,
+          "executor": "reflect:yz_plane",
+          "trainingExamples": 10
+        }
+      ]
+    },
+    {
+      "action": "FLIP",
+      "normalizedAction": "REFLECT",
+      "operations": [
+        {
+          "subAction": "X_AXIS",
+          "implemented": true,
+          "executor": "reflect:x_axis",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "Y_AXIS",
+          "implemented": true,
+          "executor": "reflect:y_axis",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "ORIGIN",
+          "implemented": true,
+          "executor": "reflect:origin",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "XY_PLANE",
+          "implemented": true,
+          "executor": "reflect:xy_plane",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "XZ_PLANE",
+          "implemented": true,
+          "executor": "reflect:xz_plane",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "YZ_PLANE",
+          "implemented": true,
+          "executor": "reflect:yz_plane",
+          "trainingExamples": 10
+        }
+      ]
+    },
+    {
+      "action": "SHEAR",
+      "normalizedAction": "SHEAR",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "ALIGN",
+      "normalizedAction": "ALIGN",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "DISTRIBUTE",
+      "normalizedAction": "DISTRIBUTE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "SNAP",
+      "normalizedAction": "SNAP",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "CONNECT",
+      "normalizedAction": "CONNECT",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "JOIN",
+      "normalizedAction": "JOIN",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "SPLIT",
+      "normalizedAction": "SPLIT",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "DIVIDE",
+      "normalizedAction": "DIVIDE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "MERGE",
+      "normalizedAction": "MERGE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "EXTEND",
+      "normalizedAction": "EXTEND",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "TRIM",
+      "normalizedAction": "TRIM",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "CUT",
+      "normalizedAction": "CUT",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "COPY",
+      "normalizedAction": "DUPLICATE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": true,
+          "executor": "duplicate:object",
+          "trainingExamples": 20
+        }
+      ]
+    },
+    {
+      "action": "DUPLICATE",
+      "normalizedAction": "DUPLICATE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": true,
+          "executor": "duplicate:object",
+          "trainingExamples": 20
+        }
+      ]
+    },
+    {
+      "action": "PASTE",
+      "normalizedAction": "PASTE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "GROUP",
+      "normalizedAction": "GROUP",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "UNGROUP",
+      "normalizedAction": "UNGROUP",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "LOCK",
+      "normalizedAction": "LOCK",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "UNLOCK",
+      "normalizedAction": "UNLOCK",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "CHANGE",
+      "normalizedAction": "CHANGE",
+      "operations": [
+        {
+          "subAction": "COLOR",
+          "implemented": true,
+          "executor": "change:color",
+          "trainingExamples": 24
+        },
+        {
+          "subAction": "WIDTH",
+          "implemented": true,
+          "executor": "change:width",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "HEIGHT",
+          "implemented": true,
+          "executor": "change:height",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DEPTH",
+          "implemented": true,
+          "executor": "change:depth",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "change:radius",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "change:diameter",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "POSITION",
+          "implemented": true,
+          "executor": "change:position",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "COORDINATES",
+          "implemented": true,
+          "executor": "change:coordinates",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "LABEL",
+          "implemented": true,
+          "executor": "change:label",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "OPACITY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_WIDTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_STYLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "POINT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FONT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FILL_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "STROKE_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "EQUATION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "SET",
+      "normalizedAction": "CHANGE",
+      "operations": [
+        {
+          "subAction": "COLOR",
+          "implemented": true,
+          "executor": "change:color",
+          "trainingExamples": 24
+        },
+        {
+          "subAction": "WIDTH",
+          "implemented": true,
+          "executor": "change:width",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "HEIGHT",
+          "implemented": true,
+          "executor": "change:height",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DEPTH",
+          "implemented": true,
+          "executor": "change:depth",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "change:radius",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "change:diameter",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "POSITION",
+          "implemented": true,
+          "executor": "change:position",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "COORDINATES",
+          "implemented": true,
+          "executor": "change:coordinates",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "LABEL",
+          "implemented": true,
+          "executor": "change:label",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "OPACITY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_WIDTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_STYLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "POINT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FONT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FILL_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "STROKE_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "EQUATION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "INCREASE",
+      "normalizedAction": "INCREASE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "DECREASE",
+      "normalizedAction": "DECREASE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "TOGGLE",
+      "normalizedAction": "TOGGLE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "CHECK",
+      "normalizedAction": "CHECK",
+      "operations": [
+        {
+          "subAction": "PARALLEL",
+          "implemented": true,
+          "executor": "check:parallel",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "PERPENDICULAR",
+          "implemented": true,
+          "executor": "check:perpendicular",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "EQUAL_LENGTH",
+          "implemented": true,
+          "executor": "check:equal_length",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "EQUAL_AREA",
+          "implemented": true,
+          "executor": "check:equal_area",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "POINT_INSIDE",
+          "implemented": true,
+          "executor": "check:point_inside",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "POINT_ON_LINE",
+          "implemented": true,
+          "executor": "check:point_on_line",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "POINT_ON_CIRCLE",
+          "implemented": true,
+          "executor": "check:point_on_circle",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "INTERSECTING",
+          "implemented": true,
+          "executor": "check:intersecting",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "COLLINEAR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CONCURRENT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CONGRUENT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SIMILAR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "OVERLAPPING",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CONTAINMENT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "TANGENT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "TEST",
+      "normalizedAction": "CHECK",
+      "operations": [
+        {
+          "subAction": "PARALLEL",
+          "implemented": true,
+          "executor": "check:parallel",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "PERPENDICULAR",
+          "implemented": true,
+          "executor": "check:perpendicular",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "EQUAL_LENGTH",
+          "implemented": true,
+          "executor": "check:equal_length",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "EQUAL_AREA",
+          "implemented": true,
+          "executor": "check:equal_area",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "POINT_INSIDE",
+          "implemented": true,
+          "executor": "check:point_inside",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "POINT_ON_LINE",
+          "implemented": true,
+          "executor": "check:point_on_line",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "POINT_ON_CIRCLE",
+          "implemented": true,
+          "executor": "check:point_on_circle",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "INTERSECTING",
+          "implemented": true,
+          "executor": "check:intersecting",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "COLLINEAR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CONCURRENT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CONGRUENT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SIMILAR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "OVERLAPPING",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CONTAINMENT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "TANGENT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "VERIFY",
+      "normalizedAction": "CHECK",
+      "operations": [
+        {
+          "subAction": "PARALLEL",
+          "implemented": true,
+          "executor": "check:parallel",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "PERPENDICULAR",
+          "implemented": true,
+          "executor": "check:perpendicular",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "EQUAL_LENGTH",
+          "implemented": true,
+          "executor": "check:equal_length",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "EQUAL_AREA",
+          "implemented": true,
+          "executor": "check:equal_area",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "POINT_INSIDE",
+          "implemented": true,
+          "executor": "check:point_inside",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "POINT_ON_LINE",
+          "implemented": true,
+          "executor": "check:point_on_line",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "POINT_ON_CIRCLE",
+          "implemented": true,
+          "executor": "check:point_on_circle",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "INTERSECTING",
+          "implemented": true,
+          "executor": "check:intersecting",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "COLLINEAR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CONCURRENT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CONGRUENT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SIMILAR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "OVERLAPPING",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CONTAINMENT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "TANGENT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "COMPARE",
+      "normalizedAction": "COMPARE",
+      "operations": [
+        {
+          "subAction": "SIZE",
+          "implemented": true,
+          "executor": "compare:size",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "AREA",
+          "implemented": true,
+          "executor": "compare:area",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "PERIMETER",
+          "implemented": true,
+          "executor": "compare:perimeter",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": true,
+          "executor": "compare:length",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "VOLUME",
+          "implemented": true,
+          "executor": "compare:volume",
+          "trainingExamples": 8
+        },
+        {
+          "subAction": "SURFACE_AREA",
+          "implemented": true,
+          "executor": "compare:surface_area",
+          "trainingExamples": 8
+        }
+      ]
+    },
+    {
+      "action": "COUNT",
+      "normalizedAction": "COUNT",
+      "operations": [
+        {
+          "subAction": "OBJECTS",
+          "implemented": true,
+          "executor": "count:objects",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "POINTS",
+          "implemented": true,
+          "executor": "count:points",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "LINES",
+          "implemented": true,
+          "executor": "count:lines",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "SHAPES",
+          "implemented": true,
+          "executor": "count:shapes",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "VERTICES",
+          "implemented": true,
+          "executor": "count:vertices",
+          "trainingExamples": 16
+        }
+      ]
+    },
+    {
+      "action": "MEASURE",
+      "normalizedAction": "FIND",
+      "operations": [
+        {
+          "subAction": "DISTANCE",
+          "implemented": true,
+          "executor": "find:distance",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "MIDPOINT",
+          "implemented": true,
+          "executor": "find:midpoint",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": true,
+          "executor": "find:length",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "AREA",
+          "implemented": true,
+          "executor": "find:area",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "PERIMETER",
+          "implemented": true,
+          "executor": "find:perimeter",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CIRCUMFERENCE",
+          "implemented": true,
+          "executor": "find:circumference",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": true,
+          "executor": "find:slope",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CENTER",
+          "implemented": true,
+          "executor": "find:center",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "find:radius",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "find:diameter",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CENTROID",
+          "implemented": true,
+          "executor": "find:centroid",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "VOLUME",
+          "implemented": true,
+          "executor": "find:volume",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "SURFACE_AREA",
+          "implemented": true,
+          "executor": "find:surface_area",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "INTERSECTION",
+          "implemented": true,
+          "executor": "find:intersection",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "ROOTS",
+          "implemented": true,
+          "executor": "find:roots",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "X_INTERCEPT",
+          "implemented": true,
+          "executor": "find:x_intercept",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "Y_INTERCEPT",
+          "implemented": true,
+          "executor": "find:y_intercept",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "INCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CIRCUMCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ORTHOCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "VERTEX",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MAXIMUM",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MINIMUM",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "DOMAIN",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "RANGE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ASYMPTOTE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "PROJECTION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FOOT_OF_PERPENDICULAR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "SOLVE",
+      "normalizedAction": "SOLVE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "EVALUATE",
+      "normalizedAction": "EVALUATE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "SIMPLIFY",
+      "normalizedAction": "SIMPLIFY",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "EXPAND",
+      "normalizedAction": "EXPAND",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "FACTOR",
+      "normalizedAction": "FACTOR",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "SUBSTITUTE",
+      "normalizedAction": "SUBSTITUTE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "DIFFERENTIATE",
+      "normalizedAction": "DIFFERENTIATE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "INTEGRATE",
+      "normalizedAction": "INTEGRATE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "APPROXIMATE",
+      "normalizedAction": "APPROXIMATE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "ESTIMATE",
+      "normalizedAction": "ESTIMATE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "ROUND",
+      "normalizedAction": "ROUND",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "CONVERT",
+      "normalizedAction": "CONVERT",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "PROJECT",
+      "normalizedAction": "FIND",
+      "operations": [
+        {
+          "subAction": "DISTANCE",
+          "implemented": true,
+          "executor": "find:distance",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "MIDPOINT",
+          "implemented": true,
+          "executor": "find:midpoint",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": true,
+          "executor": "find:length",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "AREA",
+          "implemented": true,
+          "executor": "find:area",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "PERIMETER",
+          "implemented": true,
+          "executor": "find:perimeter",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CIRCUMFERENCE",
+          "implemented": true,
+          "executor": "find:circumference",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": true,
+          "executor": "find:slope",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CENTER",
+          "implemented": true,
+          "executor": "find:center",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "find:radius",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "find:diameter",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CENTROID",
+          "implemented": true,
+          "executor": "find:centroid",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "VOLUME",
+          "implemented": true,
+          "executor": "find:volume",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "SURFACE_AREA",
+          "implemented": true,
+          "executor": "find:surface_area",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "INTERSECTION",
+          "implemented": true,
+          "executor": "find:intersection",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "ROOTS",
+          "implemented": true,
+          "executor": "find:roots",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "X_INTERCEPT",
+          "implemented": true,
+          "executor": "find:x_intercept",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "Y_INTERCEPT",
+          "implemented": true,
+          "executor": "find:y_intercept",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "INCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CIRCUMCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ORTHOCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "VERTEX",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MAXIMUM",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MINIMUM",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "DOMAIN",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "RANGE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ASYMPTOTE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "PROJECTION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FOOT_OF_PERPENDICULAR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "INTERSECT",
+      "normalizedAction": "FIND",
+      "operations": [
+        {
+          "subAction": "DISTANCE",
+          "implemented": true,
+          "executor": "find:distance",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "MIDPOINT",
+          "implemented": true,
+          "executor": "find:midpoint",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": true,
+          "executor": "find:length",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "AREA",
+          "implemented": true,
+          "executor": "find:area",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "PERIMETER",
+          "implemented": true,
+          "executor": "find:perimeter",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CIRCUMFERENCE",
+          "implemented": true,
+          "executor": "find:circumference",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": true,
+          "executor": "find:slope",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CENTER",
+          "implemented": true,
+          "executor": "find:center",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "find:radius",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "find:diameter",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CENTROID",
+          "implemented": true,
+          "executor": "find:centroid",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "VOLUME",
+          "implemented": true,
+          "executor": "find:volume",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "SURFACE_AREA",
+          "implemented": true,
+          "executor": "find:surface_area",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "INTERSECTION",
+          "implemented": true,
+          "executor": "find:intersection",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "ROOTS",
+          "implemented": true,
+          "executor": "find:roots",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "X_INTERCEPT",
+          "implemented": true,
+          "executor": "find:x_intercept",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "Y_INTERCEPT",
+          "implemented": true,
+          "executor": "find:y_intercept",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "INCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CIRCUMCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ORTHOCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "VERTEX",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MAXIMUM",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MINIMUM",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "DOMAIN",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "RANGE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ASYMPTOTE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "PROJECTION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FOOT_OF_PERPENDICULAR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "CONSTRUCT",
+      "normalizedAction": "CONSTRUCT",
+      "operations": [
+        {
+          "subAction": "PERPENDICULAR",
+          "implemented": true,
+          "executor": "construct:perpendicular",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "PARALLEL",
+          "implemented": true,
+          "executor": "construct:parallel",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "PERPENDICULAR_BISECTOR",
+          "implemented": true,
+          "executor": "construct:perpendicular_bisector",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "TANGENT",
+          "implemented": true,
+          "executor": "construct:tangent",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "ANGLE_BISECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "INCIRCLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CIRCUMCIRCLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MEDIAN",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ALTITUDE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "BISECT",
+      "normalizedAction": "BISECT",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "PARALLEL",
+      "normalizedAction": "CONSTRUCT",
+      "operations": [
+        {
+          "subAction": "PERPENDICULAR",
+          "implemented": true,
+          "executor": "construct:perpendicular",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "PARALLEL",
+          "implemented": true,
+          "executor": "construct:parallel",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "PERPENDICULAR_BISECTOR",
+          "implemented": true,
+          "executor": "construct:perpendicular_bisector",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "TANGENT",
+          "implemented": true,
+          "executor": "construct:tangent",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "ANGLE_BISECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "INCIRCLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CIRCUMCIRCLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MEDIAN",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ALTITUDE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "PERPENDICULAR",
+      "normalizedAction": "CONSTRUCT",
+      "operations": [
+        {
+          "subAction": "PERPENDICULAR",
+          "implemented": true,
+          "executor": "construct:perpendicular",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "PARALLEL",
+          "implemented": true,
+          "executor": "construct:parallel",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "PERPENDICULAR_BISECTOR",
+          "implemented": true,
+          "executor": "construct:perpendicular_bisector",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "TANGENT",
+          "implemented": true,
+          "executor": "construct:tangent",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "ANGLE_BISECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "INCIRCLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CIRCUMCIRCLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MEDIAN",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ALTITUDE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "TANGENT",
+      "normalizedAction": "CONSTRUCT",
+      "operations": [
+        {
+          "subAction": "PERPENDICULAR",
+          "implemented": true,
+          "executor": "construct:perpendicular",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "PARALLEL",
+          "implemented": true,
+          "executor": "construct:parallel",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "PERPENDICULAR_BISECTOR",
+          "implemented": true,
+          "executor": "construct:perpendicular_bisector",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "TANGENT",
+          "implemented": true,
+          "executor": "construct:tangent",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "ANGLE_BISECTOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "INCIRCLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CIRCUMCIRCLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MEDIAN",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ALTITUDE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "TRACE",
+      "normalizedAction": "TRACE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "LABEL",
+      "normalizedAction": "CHANGE",
+      "operations": [
+        {
+          "subAction": "COLOR",
+          "implemented": true,
+          "executor": "change:color",
+          "trainingExamples": 24
+        },
+        {
+          "subAction": "WIDTH",
+          "implemented": true,
+          "executor": "change:width",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "HEIGHT",
+          "implemented": true,
+          "executor": "change:height",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DEPTH",
+          "implemented": true,
+          "executor": "change:depth",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "change:radius",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "change:diameter",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "POSITION",
+          "implemented": true,
+          "executor": "change:position",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "COORDINATES",
+          "implemented": true,
+          "executor": "change:coordinates",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "LABEL",
+          "implemented": true,
+          "executor": "change:label",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "OPACITY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_WIDTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_STYLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "POINT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FONT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FILL_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "STROKE_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "EQUATION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "RENAME",
+      "normalizedAction": "CHANGE",
+      "operations": [
+        {
+          "subAction": "COLOR",
+          "implemented": true,
+          "executor": "change:color",
+          "trainingExamples": 24
+        },
+        {
+          "subAction": "WIDTH",
+          "implemented": true,
+          "executor": "change:width",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "HEIGHT",
+          "implemented": true,
+          "executor": "change:height",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DEPTH",
+          "implemented": true,
+          "executor": "change:depth",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "change:radius",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "change:diameter",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "POSITION",
+          "implemented": true,
+          "executor": "change:position",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "COORDINATES",
+          "implemented": true,
+          "executor": "change:coordinates",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "LABEL",
+          "implemented": true,
+          "executor": "change:label",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "OPACITY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_WIDTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_STYLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "POINT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FONT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FILL_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "STROKE_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "EQUATION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "COLOR",
+      "normalizedAction": "CHANGE",
+      "operations": [
+        {
+          "subAction": "COLOR",
+          "implemented": true,
+          "executor": "change:color",
+          "trainingExamples": 24
+        },
+        {
+          "subAction": "WIDTH",
+          "implemented": true,
+          "executor": "change:width",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "HEIGHT",
+          "implemented": true,
+          "executor": "change:height",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DEPTH",
+          "implemented": true,
+          "executor": "change:depth",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "change:radius",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "change:diameter",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "POSITION",
+          "implemented": true,
+          "executor": "change:position",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "COORDINATES",
+          "implemented": true,
+          "executor": "change:coordinates",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "LABEL",
+          "implemented": true,
+          "executor": "change:label",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "OPACITY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_WIDTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_STYLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "POINT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FONT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FILL_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "STROKE_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "EQUATION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "STYLE",
+      "normalizedAction": "CHANGE",
+      "operations": [
+        {
+          "subAction": "COLOR",
+          "implemented": true,
+          "executor": "change:color",
+          "trainingExamples": 24
+        },
+        {
+          "subAction": "WIDTH",
+          "implemented": true,
+          "executor": "change:width",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "HEIGHT",
+          "implemented": true,
+          "executor": "change:height",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DEPTH",
+          "implemented": true,
+          "executor": "change:depth",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "change:radius",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "change:diameter",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "POSITION",
+          "implemented": true,
+          "executor": "change:position",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "COORDINATES",
+          "implemented": true,
+          "executor": "change:coordinates",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "LABEL",
+          "implemented": true,
+          "executor": "change:label",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "OPACITY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_WIDTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_STYLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "POINT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FONT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FILL_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "STROKE_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "EQUATION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "FILL",
+      "normalizedAction": "CHANGE",
+      "operations": [
+        {
+          "subAction": "COLOR",
+          "implemented": true,
+          "executor": "change:color",
+          "trainingExamples": 24
+        },
+        {
+          "subAction": "WIDTH",
+          "implemented": true,
+          "executor": "change:width",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "HEIGHT",
+          "implemented": true,
+          "executor": "change:height",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DEPTH",
+          "implemented": true,
+          "executor": "change:depth",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "change:radius",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "change:diameter",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "POSITION",
+          "implemented": true,
+          "executor": "change:position",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "COORDINATES",
+          "implemented": true,
+          "executor": "change:coordinates",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "LABEL",
+          "implemented": true,
+          "executor": "change:label",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "OPACITY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_WIDTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_STYLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "POINT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FONT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FILL_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "STROKE_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "EQUATION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "OUTLINE",
+      "normalizedAction": "CHANGE",
+      "operations": [
+        {
+          "subAction": "COLOR",
+          "implemented": true,
+          "executor": "change:color",
+          "trainingExamples": 24
+        },
+        {
+          "subAction": "WIDTH",
+          "implemented": true,
+          "executor": "change:width",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "HEIGHT",
+          "implemented": true,
+          "executor": "change:height",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DEPTH",
+          "implemented": true,
+          "executor": "change:depth",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "change:radius",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "change:diameter",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "POSITION",
+          "implemented": true,
+          "executor": "change:position",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "COORDINATES",
+          "implemented": true,
+          "executor": "change:coordinates",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "LABEL",
+          "implemented": true,
+          "executor": "change:label",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "OPACITY",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_WIDTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LINE_STYLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "POINT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FONT_SIZE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FILL_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "STROKE_COLOR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "EQUATION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "ANIMATE",
+      "normalizedAction": "ANIMATE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "PLAY",
+      "normalizedAction": "PLAY",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "PAUSE",
+      "normalizedAction": "PAUSE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "STOP",
+      "normalizedAction": "STOP",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "STEP",
+      "normalizedAction": "STEP",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "UNDO",
+      "normalizedAction": "UNDO",
+      "operations": [
+        {
+          "subAction": "LAST",
+          "implemented": true,
+          "executor": "undo:last",
+          "trainingExamples": 16
+        }
+      ]
+    },
+    {
+      "action": "REDO",
+      "normalizedAction": "REDO",
+      "operations": [
+        {
+          "subAction": "LAST",
+          "implemented": true,
+          "executor": "redo:last",
+          "trainingExamples": 16
+        }
+      ]
+    },
+    {
+      "action": "SAVE",
+      "normalizedAction": "SAVE",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "LOAD",
+      "normalizedAction": "LOAD",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "IMPORT",
+      "normalizedAction": "IMPORT",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "EXPORT",
+      "normalizedAction": "EXPORT",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "ZOOM",
+      "normalizedAction": "ZOOM",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "PAN",
+      "normalizedAction": "PAN",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "CENTER",
+      "normalizedAction": "FIND",
+      "operations": [
+        {
+          "subAction": "DISTANCE",
+          "implemented": true,
+          "executor": "find:distance",
+          "trainingExamples": 20
+        },
+        {
+          "subAction": "MIDPOINT",
+          "implemented": true,
+          "executor": "find:midpoint",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "LENGTH",
+          "implemented": true,
+          "executor": "find:length",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "AREA",
+          "implemented": true,
+          "executor": "find:area",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "PERIMETER",
+          "implemented": true,
+          "executor": "find:perimeter",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CIRCUMFERENCE",
+          "implemented": true,
+          "executor": "find:circumference",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "SLOPE",
+          "implemented": true,
+          "executor": "find:slope",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CENTER",
+          "implemented": true,
+          "executor": "find:center",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "RADIUS",
+          "implemented": true,
+          "executor": "find:radius",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "DIAMETER",
+          "implemented": true,
+          "executor": "find:diameter",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "CENTROID",
+          "implemented": true,
+          "executor": "find:centroid",
+          "trainingExamples": 32
+        },
+        {
+          "subAction": "VOLUME",
+          "implemented": true,
+          "executor": "find:volume",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "SURFACE_AREA",
+          "implemented": true,
+          "executor": "find:surface_area",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "INTERSECTION",
+          "implemented": true,
+          "executor": "find:intersection",
+          "trainingExamples": 10
+        },
+        {
+          "subAction": "ROOTS",
+          "implemented": true,
+          "executor": "find:roots",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "X_INTERCEPT",
+          "implemented": true,
+          "executor": "find:x_intercept",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "Y_INTERCEPT",
+          "implemented": true,
+          "executor": "find:y_intercept",
+          "trainingExamples": 16
+        },
+        {
+          "subAction": "ANGLE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "INCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "CIRCUMCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ORTHOCENTER",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "VERTEX",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MAXIMUM",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "MINIMUM",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "DOMAIN",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "RANGE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "ASYMPTOTE",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "PROJECTION",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        },
+        {
+          "subAction": "FOOT_OF_PERPENDICULAR",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "FOCUS",
+      "normalizedAction": "FOCUS",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "FIT",
+      "normalizedAction": "FIT",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "SWITCH",
+      "normalizedAction": "SWITCH",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    },
+    {
+      "action": "EXPLAIN",
+      "normalizedAction": "EXPLAIN",
+      "operations": [
+        {
+          "subAction": "OBJECT",
+          "implemented": false,
+          "executor": "unsupported",
+          "trainingExamples": 0
+        }
+      ]
+    }
+  ]
+}

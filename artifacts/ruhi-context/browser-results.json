@@ -1,0 +1,1100 @@
+{
+  "cases": [
+    {
+      "prompt": "What are pigeon holes?",
+      "answer": "Pigeonhole Principle: If N objects are placed in k positive boxes, at least one box contains at least ceil(N/k) objects.",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "define",
+          "meaning": "pigeonhole",
+          "intentConfidence": 0.9999889135360718,
+          "meaningConfidence": 0.9999830722808838,
+          "intentScores": [
+            4.598322611570893e-9,
+            0.9999889135360718,
+            1.0086460139335784e-10,
+            1.3394030329294537e-10,
+            2.6767475388989048e-11,
+            0.000009077763024833985,
+            1.644263475375496e-10,
+            4.251919705211549e-8,
+            1.2563449836022755e-8,
+            6.881105036882218e-7,
+            1.339711559467105e-7,
+            4.373081097241993e-8,
+            3.917608737413758e-10,
+            5.934437385946012e-10,
+            2.106702451376563e-10,
+            3.5761923977695176e-10,
+            0.0000010777915804283111
+          ],
+          "meaningScores": [
+            1.7876392632842908e-7,
+            1.8675946206192506e-11,
+            1.8719020999924396e-8,
+            0.9999830722808838,
+            3.137690107735125e-10,
+            3.154538436023202e-11,
+            2.5894564270600995e-9,
+            0.000009365395271743182,
+            0.0000073726278060348704
+          ],
+          "accepted": true,
+          "inferenceMs": 2.699999988079071
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          }
+        ]
+      }
+    },
+    {
+      "prompt": "Explain this.",
+      "answer": "Pigeonhole Principle: If N objects are placed in k positive boxes, at least one box contains at least ceil(N/k) objects.",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "explain",
+          "meaning": "active",
+          "intentConfidence": 0.9976093769073486,
+          "meaningConfidence": 0.9999884366989136,
+          "intentScores": [
+            0.9976093769073486,
+            0.00011593457747949287,
+            7.323807835746265e-7,
+            0.00002440688513161149,
+            0.0000037165459616517182,
+            0.0003041568852495402,
+            0.00008679596794536337,
+            0.000035069875593762845,
+            0.0008859362569637597,
+            0.0004220527480356395,
+            0.00015011965297162533,
+            0.000014425890185520984,
+            0.0003105314390268177,
+            0.00002568981835793238,
+            0.000010388201189925894,
+            6.412481639017642e-7,
+            6.497378990388825e-8
+          ],
+          "meaningScores": [
+            0.9999884366989136,
+            5.7537995701295586e-8,
+            4.251798486620828e-7,
+            0.000010839992683031596,
+            3.088478084389834e-10,
+            1.3411924904005446e-9,
+            4.915000850758133e-9,
+            1.5270044950721484e-10,
+            1.8219164132915466e-7
+          ],
+          "accepted": true,
+          "inferenceMs": 1.5999999940395355
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "pigeonhole"
+          }
+        ]
+      }
+    },
+    {
+      "prompt": "Give an example.",
+      "answer": "Ten objects in three boxes can be distributed 4,3,3. At least one box must contain four or more.",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "example",
+          "meaning": "active",
+          "intentConfidence": 0.999941349029541,
+          "meaningConfidence": 0.9999992847442627,
+          "intentScores": [
+            0.000008583137969253585,
+            7.990832529003455e-8,
+            0.000004525217718764907,
+            1.7507455041254616e-8,
+            0.999941349029541,
+            0.000003078999043282238,
+            2.525791558127821e-7,
+            2.2189963999608153e-7,
+            0.0000012746957054332597,
+            2.884233651911927e-7,
+            1.235638364960323e-7,
+            1.0107887860044684e-8,
+            3.200934628466712e-8,
+            0.00003832312722806819,
+            0.000001753561150508176,
+            3.44770683113893e-8,
+            5.54223733573167e-9
+          ],
+          "meaningScores": [
+            0.9999992847442627,
+            9.508070064612184e-8,
+            1.2013338768213089e-8,
+            6.053893457647064e-7,
+            3.58195029193098e-10,
+            5.097546273979958e-10,
+            1.3197071907500302e-11,
+            3.4384509128848606e-11,
+            1.3992262459794347e-8
+          ],
+          "accepted": true,
+          "inferenceMs": 1.4000000059604645
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "pigeonhole"
+          }
+        ]
+      }
+    },
+    {
+      "prompt": "Why?",
+      "answer": "If every box contained fewer than ceil(N/k) objects, each would contain at most ceil(N/k)-1. Their total would be at most k(ceil(N/k)-1), which is strictly less than N, a contradiction.",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "why",
+          "meaning": "active",
+          "intentConfidence": 0.9999839067459106,
+          "meaningConfidence": 0.9998992681503296,
+          "intentScores": [
+            2.187111158846733e-9,
+            1.3926940312103397e-7,
+            1.6305847339026514e-7,
+            4.183638395716116e-7,
+            1.6210104547553783e-7,
+            0.0000035313139505888103,
+            2.423592349032333e-8,
+            2.999544790327491e-7,
+            0.9999839067459106,
+            2.0125233035628298e-8,
+            1.8716760052939208e-7,
+            4.762399896662828e-8,
+            2.0914552578688017e-7,
+            0.00001038519803842064,
+            4.5731752607025555e-7,
+            5.851941597967425e-9,
+            3.458556108171251e-8
+          ],
+          "meaningScores": [
+            0.9998992681503296,
+            4.9766711640586436e-8,
+            0.0000011420262353567523,
+            0.00009889212378766388,
+            4.637075612379249e-9,
+            3.792195002461085e-8,
+            2.7934196622503293e-10,
+            4.920388749218851e-12,
+            5.383808456826955e-7
+          ],
+          "accepted": true,
+          "inferenceMs": 1.199999988079071
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "pigeonhole"
+          }
+        ]
+      }
+    },
+    {
+      "prompt": "Show 10 objects in 3 boxes.",
+      "answer": "Placed 10 objects in 3 boxes (4, 3, 3). At least one box contains 4 or more objects because ceil(10/3) = 4.",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "demonstrate",
+          "meaning": "pigeonhole",
+          "intentConfidence": 0.9999979734420776,
+          "meaningConfidence": 0.996493399143219,
+          "intentScores": [
+            3.8692535286877217e-11,
+            4.4118833031348e-9,
+            1.0447449572126288e-9,
+            0.000001201777081405453,
+            6.500026294986583e-9,
+            0.9999979734420776,
+            2.154471090420884e-8,
+            3.3946301414289337e-7,
+            2.509137857487076e-7,
+            3.749921972939774e-8,
+            3.259758463158846e-9,
+            7.445387240068158e-8,
+            1.7552205244797392e-9,
+            1.2262000304019693e-8,
+            4.509116280360104e-8,
+            4.0856107386133544e-10,
+            3.367228629258534e-8
+          ],
+          "meaningScores": [
+            0.0035046753473579884,
+            2.48588243323411e-8,
+            0.0000017516591697130934,
+            0.996493399143219,
+            3.7968311827896173e-10,
+            3.023485350972521e-10,
+            5.119021959792969e-12,
+            1.332317450808418e-10,
+            2.0440795367449027e-7
+          ],
+          "accepted": true,
+          "inferenceMs": 0.9000000059604645
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Show 10 objects in 3 boxes.",
+            "knowledgeId": "pigeonhole"
+          }
+        ]
+      }
+    },
+    {
+      "prompt": "What is a tree?",
+      "answer": "Graph-theoretic tree: A tree is an undirected connected acyclic graph. Between every pair of vertices there is exactly one simple path.",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "define",
+          "meaning": "graph-tree",
+          "intentConfidence": 0.9995459914207458,
+          "meaningConfidence": 0.9965468049049377,
+          "intentScores": [
+            1.2880820854377362e-8,
+            0.9995459914207458,
+            1.0781852921581958e-7,
+            0.0000034181839509983547,
+            6.785557360444727e-8,
+            0.000004117234766454203,
+            1.0943534967111646e-8,
+            0.0000018157630847781547,
+            0.000006567462150997017,
+            1.6313045136939763e-7,
+            4.7156721194596685e-8,
+            8.971525176093564e-7,
+            0.000024663768272148445,
+            0.000003867138730129227,
+            0.0000029175080271670595,
+            4.018203583200375e-7,
+            0.0004049311683047563
+          ],
+          "meaningScores": [
+            0.003144271904602647,
+            3.679943745282799e-7,
+            0.000004460078343981877,
+            2.1876010691812553e-7,
+            0.9965468049049377,
+            0.00006741120159858838,
+            0.00001897531001304742,
+            3.5205741100163834e-11,
+            0.00021745520643889904
+          ],
+          "accepted": true,
+          "inferenceMs": 0.8999999761581421
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Show 10 objects in 3 boxes.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "graph-tree"
+          }
+        ]
+      }
+    },
+    {
+      "prompt": "Explain this.",
+      "answer": "Graph-theoretic tree: A tree is an undirected connected acyclic graph. Between every pair of vertices there is exactly one simple path.",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "explain",
+          "meaning": "active",
+          "intentConfidence": 0.9842323064804077,
+          "meaningConfidence": 0.9995539784431458,
+          "intentScores": [
+            0.9842323064804077,
+            0.0131615549325943,
+            7.978532039487618e-7,
+            0.0000046557479436160065,
+            0.0000026767447707243264,
+            0.00008949852053774521,
+            0.00006993496208451688,
+            0.000058715166233014315,
+            0.0015112804248929024,
+            0.00016145725385285914,
+            0.00006383458821801469,
+            0.00011702501069521531,
+            0.0002805959084071219,
+            0.0002358516212552786,
+            0.000008157388947438449,
+            7.296544595192245e-7,
+            9.340836868432234e-7
+          ],
+          "meaningScores": [
+            0.9995539784431458,
+            5.9186879752815e-7,
+            0.00008820384391583502,
+            0.0000010029139048128854,
+            0.00031657065846957266,
+            4.0071569173960597e-7,
+            0.000006689750989608001,
+            2.0396457856008965e-8,
+            0.00003248866414651275
+          ],
+          "accepted": true,
+          "inferenceMs": 0.800000011920929
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Show 10 objects in 3 boxes.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "graph-tree"
+          }
+        ]
+      }
+    },
+    {
+      "prompt": "Give an example.",
+      "answer": "Three vertices with edges A-B and B-C form a tree; adding C-A creates a cycle.",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "example",
+          "meaning": "active",
+          "intentConfidence": 0.9999074935913086,
+          "meaningConfidence": 0.9995206594467163,
+          "intentScores": [
+            0.000010007768651121296,
+            0.000019194814740330912,
+            0.0000016663460655763629,
+            7.84854563562476e-8,
+            0.9999074935913086,
+            0.0000022188651200849563,
+            3.524100122831442e-8,
+            1.315360833586965e-7,
+            0.0000014443182863033144,
+            4.269632825071312e-7,
+            2.6916001871768458e-8,
+            1.0586643384158378e-7,
+            9.457515659505589e-8,
+            0.000051271767006255686,
+            0.000004495878783927765,
+            0.000001049200818670215,
+            2.0822425028654834e-7
+          ],
+          "meaningScores": [
+            0.9995206594467163,
+            0.00008906331640901044,
+            0.000007626010301464703,
+            9.359702062283759e-7,
+            0.0003492862160783261,
+            0.000002872036247936194,
+            0.0000011318459200992947,
+            5.052759100010462e-9,
+            0.000028406630008248612
+          ],
+          "accepted": true,
+          "inferenceMs": 1.300000011920929
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Show 10 objects in 3 boxes.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "graph-tree"
+          }
+        ]
+      }
+    },
+    {
+      "prompt": "Why?",
+      "answer": "A longest simple path in a finite tree has a leaf at an endpoint. Removing that leaf and its edge leaves a tree. Induction starting with one vertex gives n-1 edges.",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "why",
+          "meaning": "active",
+          "intentConfidence": 0.9997186064720154,
+          "meaningConfidence": 0.9924154281616211,
+          "intentScores": [
+            4.0201985740395685e-8,
+            0.00023903476539999247,
+            1.980718025151873e-7,
+            0.0000027356377358955797,
+            2.7732150442716375e-7,
+            0.000007812237527105026,
+            9.628718800058778e-8,
+            7.783446562825702e-7,
+            0.9997186064720154,
+            0.0000016575589825151837,
+            3.4212382615805836e-7,
+            0.000001188295982501586,
+            0.000003450099256951944,
+            0.000010064937669085339,
+            0.000008939230610849336,
+            0.000001977785814233357,
+            0.0000027989092359348433
+          ],
+          "meaningScores": [
+            0.9924154281616211,
+            0.00015156039444264024,
+            0.0004196554364170879,
+            0.0002698143071029335,
+            0.0031309518963098526,
+            0.0001930605503730476,
+            0.0001640112604945898,
+            5.508307054924444e-8,
+            0.0032554680947214365
+          ],
+          "accepted": true,
+          "inferenceMs": 0.7999999821186066
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Show 10 objects in 3 boxes.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "graph-tree"
+          }
+        ]
+      }
+    },
+    {
+      "prompt": "What is a tree?",
+      "answer": "Tree data structure: A rooted tree data structure organizes nodes hierarchically. A root has no parent, and each other node has one parent; nodes can have children.",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "define",
+          "meaning": "data-tree",
+          "intentConfidence": 0.9999967813491821,
+          "meaningConfidence": 0.9998040795326233,
+          "intentScores": [
+            2.2220501480485488e-11,
+            0.9999967813491821,
+            1.012146588763585e-9,
+            1.3768704398842146e-8,
+            2.828040232549789e-11,
+            1.086529977101236e-8,
+            2.7262942337707985e-12,
+            1.9313590726710572e-9,
+            7.578130123420124e-9,
+            3.1956688406609146e-9,
+            9.286774127481578e-10,
+            9.613057905255573e-9,
+            1.9143782115094155e-9,
+            5.029564764669203e-9,
+            2.051906555777805e-8,
+            3.0300900677460163e-10,
+            0.000003086790457018651
+          ],
+          "meaningScores": [
+            0.00000253096004598774,
+            1.5241661266429674e-9,
+            4.9519019995614144e-8,
+            6.3576250930452716e-9,
+            0.000016482053979416378,
+            0.9998040795326233,
+            0.000049595375458011404,
+            5.797945457075571e-12,
+            0.00012723408872261643
+          ],
+          "accepted": true,
+          "inferenceMs": 0.699999988079071
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Show 10 objects in 3 boxes.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "data-tree"
+          }
+        ]
+      }
+    },
+    {
+      "prompt": "I'm not asking about the mathematical tree. Tell me about real trees.",
+      "answer": "Biological tree: A biological tree is a woody perennial plant, typically with a trunk supporting branches and leaves. This is the ordinary meaning, rather than a mathematical tree.",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "define",
+          "meaning": "real-tree",
+          "intentConfidence": 0.998979389667511,
+          "meaningConfidence": 0.9895265102386475,
+          "intentScores": [
+            0.0000019610595245467266,
+            0.998979389667511,
+            1.8309134475202882e-7,
+            0.00001425072787242243,
+            6.848563316452783e-8,
+            0.000001090228920475056,
+            1.7458081202903486e-8,
+            2.872788513741398e-7,
+            0.00000175322463746852,
+            1.851171305133903e-7,
+            0.00006432572263292968,
+            0.0000012885619753433275,
+            0.000010733403541962616,
+            1.3149511346455256e-7,
+            0.00007820884638931602,
+            0.0008023197297006845,
+            0.000043788379116449505
+          ],
+          "meaningScores": [
+            0.004296229220926762,
+            0.004107291344553232,
+            0.000005771347332483856,
+            6.042490241497944e-8,
+            0.0007750233635306358,
+            0.000009278730431105942,
+            0.9895265102386475,
+            3.699633377429734e-10,
+            0.001279890420846641
+          ],
+          "accepted": true,
+          "inferenceMs": 0.800000011920929
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Show 10 objects in 3 boxes.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "data-tree"
+          },
+          {
+            "question": "I'm not asking about the mathematical tree. Tell me about real trees.",
+            "knowledgeId": "real-tree"
+          }
+        ]
+      }
+    },
+    {
+      "prompt": "What should I do?",
+      "answer": "Which concept do you mean: the current page topic, the previous concept, or a selected object?",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "define",
+          "meaning": "unknown",
+          "intentConfidence": 0.47818657755851746,
+          "meaningConfidence": 0.5709477663040161,
+          "intentScores": [
+            0.0001561460958328098,
+            0.47818657755851746,
+            0.0002935740048997104,
+            0.0016885858494788408,
+            0.00003493875919957645,
+            0.0009490617085248232,
+            0.000023932650947244838,
+            0.006568002048879862,
+            0.001341288909316063,
+            0.0004044140805490315,
+            0.000415705144405365,
+            0.0019406711217015982,
+            0.00659359572455287,
+            0.0008906066650524735,
+            0.0010443308856338263,
+            0.24709603190422058,
+            0.25237253308296204
+          ],
+          "meaningScores": [
+            0.06436970084905624,
+            0.33650240302085876,
+            0.004176857881247997,
+            0.0006278864457271993,
+            0.016956420615315437,
+            0.0023682834580540657,
+            0.004050516057759523,
+            1.9640781090402015e-7,
+            0.5709477663040161
+          ],
+          "accepted": false,
+          "inferenceMs": 0.7000000178813934
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Show 10 objects in 3 boxes.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "data-tree"
+          },
+          {
+            "question": "I'm not asking about the mathematical tree. Tell me about real trees.",
+            "knowledgeId": "real-tree"
+          },
+          {
+            "question": "What should I do?"
+          }
+        ]
+      }
+    },
+    {
+      "prompt": "What are pigeon holes?",
+      "answer": "Pigeonhole Principle: If N objects are placed in k positive boxes, at least one box contains at least ceil(N/k) objects.",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "define",
+          "meaning": "pigeonhole",
+          "intentConfidence": 0.9999697208404541,
+          "meaningConfidence": 0.9999808073043823,
+          "intentScores": [
+            1.4122259806015336e-8,
+            0.9999697208404541,
+            4.158960675848533e-10,
+            5.502796551759559e-10,
+            2.7102131650025285e-10,
+            0.000022113443264970556,
+            7.6149409000692e-10,
+            2.2624077189448144e-7,
+            3.196326190391119e-7,
+            0.000001942853714353987,
+            8.769555392973416e-7,
+            1.50453942637796e-7,
+            2.1959387197512115e-8,
+            1.3517378327776441e-9,
+            3.2271143535211877e-9,
+            1.748689193448172e-8,
+            0.000004635423920262838
+          ],
+          "meaningScores": [
+            0.000001334959620180598,
+            5.059404561968961e-10,
+            4.610626902490367e-8,
+            0.9999808073043823,
+            3.373570034437279e-10,
+            3.726813996296485e-11,
+            3.174168261566024e-9,
+            0.000005989838882669574,
+            0.000011814218851213809
+          ],
+          "accepted": true,
+          "inferenceMs": 0.699999988079071
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Show 10 objects in 3 boxes.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "data-tree"
+          },
+          {
+            "question": "I'm not asking about the mathematical tree. Tell me about real trees.",
+            "knowledgeId": "real-tree"
+          },
+          {
+            "question": "What should I do?"
+          },
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          }
+        ]
+      }
+    },
+    {
+      "prompt": "Show 10 objects in 3 boxes.",
+      "answer": "Placed 10 objects in 3 boxes (4, 3, 3). At least one box contains 4 or more objects because ceil(10/3) = 4.",
+      "passed": true,
+      "context": {
+        "prediction": {
+          "intent": "demonstrate",
+          "meaning": "pigeonhole",
+          "intentConfidence": 0.9999979734420776,
+          "meaningConfidence": 0.996493399143219,
+          "intentScores": [
+            3.8692535286877217e-11,
+            4.4118833031348e-9,
+            1.0447449572126288e-9,
+            0.000001201777081405453,
+            6.500026294986583e-9,
+            0.9999979734420776,
+            2.154471090420884e-8,
+            3.3946301414289337e-7,
+            2.509137857487076e-7,
+            3.749921972939774e-8,
+            3.259758463158846e-9,
+            7.445387240068158e-8,
+            1.7552205244797392e-9,
+            1.2262000304019693e-8,
+            4.509116280360104e-8,
+            4.0856107386133544e-10,
+            3.367228629258534e-8
+          ],
+          "meaningScores": [
+            0.0035046753473579884,
+            2.48588243323411e-8,
+            0.0000017516591697130934,
+            0.996493399143219,
+            3.7968311827896173e-10,
+            3.023485350972521e-10,
+            5.119021959792969e-12,
+            1.332317450808418e-10,
+            2.0440795367449027e-7
+          ],
+          "accepted": true,
+          "inferenceMs": 0.800000011920929
+        },
+        "history": [
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Show 10 objects in 3 boxes.",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Explain this.",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Give an example.",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "Why?",
+            "knowledgeId": "graph-tree"
+          },
+          {
+            "question": "What is a tree?",
+            "knowledgeId": "data-tree"
+          },
+          {
+            "question": "I'm not asking about the mathematical tree. Tell me about real trees.",
+            "knowledgeId": "real-tree"
+          },
+          {
+            "question": "What should I do?"
+          },
+          {
+            "question": "What are pigeon holes?",
+            "knowledgeId": "pigeonhole"
+          },
+          {
+            "question": "Show 10 objects in 3 boxes.",
+            "knowledgeId": "pigeonhole"
+          }
+        ]
+      }
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "modelRequests": 1,
+  "simulation": {
+    "bins": [
+      4,
+      3,
+      3
+    ],
+    "passed": true
+  },
+  "performance": {
+    "backend": "cpu",
+    "meanMs": 0.6620000000794729,
+    "p95Ms": 0.7999999821186066,
+    "tensorsBefore": 24,
+    "tensorsAfter": 24,
+    "weightParameters": 56026
+  },
+  "passed": 14,
+  "total": 14
+}

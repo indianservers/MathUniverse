@@ -1,0 +1,10 @@
+{
+  "path": "src\\math-robo\\kernel\\v52HeldOut.test.ts",
+  "sha256": "4e3c7169a26b5b849fbd9e87cd1b5b18bfde07a2681301491c3fe2ceaad9a312",
+  "trainingUsage": "none",
+  "cases": 20,
+  "initialSha256": "504e1b069e526a702d5aadfa4cfeffacdbb401393336c1c6d4568aa2ea0fe9f4",
+  "fixtureCorrection": "The LaTeX literal used a TypeScript form-feed escape instead of a literal backslash. Switched to String.raw; mathematical input and expected 29/24 unchanged. Initial run: 19/20; no mathematical code tuned.",
+  "executedSourceSha256": "226a9077d4adbc391c22f03ac6495dfa8ffb7100302732659d06a19ebed225bf",
+  "typeOnlyCorrection": "After evaluation, the fixture value annotation changed from unknown to object to satisfy Vitest TypeScript signatures. Inputs, expected outputs and assertions are unchanged."
+}

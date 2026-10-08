@@ -1,0 +1,10 @@
+✔ student output removes public training assets while retaining local inference weights (64.8945ms)
+✔ detects numeric-template leakage and keeps conversation crossings explicit (2.0909ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 218.8277

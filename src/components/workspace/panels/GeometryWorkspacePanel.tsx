@@ -1,4 +1,5 @@
 import { ImmersiveSettings, ImmersiveToolbar } from "../../../workspace/immersive/ImmersiveInteractionManager";
+import {clipRay} from "../../../offline-intelligence/directedGeometry";
 import { GeometryPaintDefs, paintId, paintValue, lineDash, type GeometryPaint } from "../GeometryAppearance";
 import WorkspaceSvg from "../WorkspaceSvg";
 import {
@@ -156,7 +157,7 @@ export type GeoPoint = {
   label: string;
   style?: GeoStyle;
 };
-export type GeoLine = { id: string; a: string; b: string; style?: GeoStyle };
+export type GeoLine = { id: string; a: string; b: string; kind?: 'line'|'segment'|'ray'|'vector'; style?: GeoStyle };
 export type GeoCircle = {
   id: string;
   center: string;
@@ -318,6 +319,7 @@ interface GeometryWorkspacePanelProps {
   onReset: () => void;
   shareControl?: ReactNode;
   onSave: () => void;
+  onRestoreSaved?: () => void;
   onLoad: () => void;
   onExport?: () => void;
   onGraphSettingsChange: (settings: GeometryGraphSettings) => void;
@@ -516,6 +518,7 @@ export default function GeometryWorkspacePanel({
   onClearTrace,
   onReset,
   onSave,
+  onRestoreSaved,
   onLoad,
   onExport,
   shareControl,
@@ -788,6 +791,7 @@ export default function GeometryWorkspacePanel({
             <Save className="h-4 w-4" />
             <span>Save</span>
           </button>
+          {onRestoreSaved && <button type="button" onClick={onRestoreSaved} title="Restore saved construction" aria-label="Restore saved construction"><RotateCcw className="h-4 w-4" /><span>Restore saved</span></button>}
           <button
             type="button"
             onClick={onLoad}
@@ -1728,7 +1732,7 @@ function GeometryObjectRegistry({
       type: "line" as const,
       id: line.id,
       label: lineName(line, construction, index),
-      value: line.style?.label ?? "line",
+      value: line.kind ?? line.style?.label ?? "line",
       icon: Slash,
       visible: line.style?.visible !== false,
     })),
@@ -2815,6 +2819,7 @@ function GeometryBoard({
           line={line}
           points={construction.points}
           selected={isSelectedGeometry(selectedGeometry, "line", line.id)}
+          camera={camera}
           hitWidth={pointHitRadius * 2}
         />
       ))}
@@ -3105,7 +3110,9 @@ function GeometryLine({
   points,
   selected = false,
   hitWidth,
+  camera,
 }: {
+  camera?:{x:number;y:number;width:number;height:number};
   line: GeoLine;
   points: GeoPoint[];
   selected?: boolean;
@@ -3114,9 +3121,11 @@ function GeometryLine({
   const a = pointById(points, line.a),
     b = pointById(points, line.b);
   if (!a || !b || line.style?.visible === false) return null;
-  const kind = line.style?.label ?? "line";
+  const kind = line.kind ?? line.style?.label ?? "line";
   const color = line.style?.color ?? "#8b5cf6";
-  const endpoints = linearDisplayEndpoints(a, b, kind);
+  const clipped=kind==="ray"&&camera?clipRay([a.x,a.y],[b.x-a.x,b.y-a.y],[camera.x,camera.y],[camera.x+camera.width,camera.y+camera.height]):undefined;
+  if(clipped===null)return null;
+  const endpoints = clipped?{x1:clipped[0][0],y1:clipped[0][1],x2:clipped[1][0],y2:clipped[1][1]}:linearDisplayEndpoints(a, b, kind);
   const arrow =
     kind === "ray" || kind === "vector"
       ? arrowHeadPoints(
@@ -3128,7 +3137,7 @@ function GeometryLine({
         )
       : null;
   return (
-    <g><GeometryPaintDefs id={paintId("line",line.id)} color={color} style={line.style??{}}/>
+    <g data-directed-kind={line.kind}><GeometryPaintDefs id={paintId("line",line.id)} color={color} style={line.style??{}}/>
       {hitWidth && (
         <line
           data-object-type="line"
@@ -3536,7 +3545,7 @@ function GeometryMeasurementOverlays({
         id: `line-${line.id}`,
         x: (a.x + b.x) / 2,
         y: (a.y + b.y) / 2 - 12,
-        text: `${roundTo(distance(a, b) / 40, 2)}`,
+        text: line.kind === "ray" ? "ray: unbounded" : `${line.kind === "vector" ? "|v| = " : ""}${roundTo(distance(a, b) / 40, 2)}`,
       };
     }),
     ...construction.circles.map((circle) => {

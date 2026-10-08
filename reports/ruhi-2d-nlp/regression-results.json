@@ -1,0 +1,60 @@
+{
+  "guards": {
+    "conversations": true,
+    "persistence": true,
+    "priorRegression": true,
+    "unitRegression": true,
+    "studentBuild": false
+  },
+  "unit": {
+    "passed": 7365,
+    "total": 7365,
+    "files": 37,
+    "log": "regression-unit.txt"
+  },
+  "original100": {
+    "passed": 100,
+    "total": 100
+  },
+  "browserConversations": {
+    "passed": 5,
+    "total": 5
+  },
+  "persistence": [
+    {
+      "name": "native fill and angle rendered",
+      "passed": true
+    },
+    {
+      "name": "undo restores coordinates and style",
+      "passed": true
+    },
+    {
+      "name": "redo restores moved scene",
+      "passed": true
+    },
+    {
+      "name": "selection reaches native object",
+      "passed": true
+    },
+    {
+      "name": "saved serialized commands contain style and angle",
+      "passed": true
+    },
+    {
+      "name": "reload and UI load restore native scene",
+      "passed": true
+    },
+    {
+      "name": "context resolves restored geometry",
+      "passed": true
+    }
+  ],
+  "productionBuild": "Not rerun after the latest changes; user requested stopping and report. Prior v5.2 production verification predates these changes.",
+  "typecheck": {
+    "errors": 218,
+    "newErrorsInPilotFiles": 0,
+    "log": "typecheck.txt",
+    "limitation": "Global repository check still fails. Latest graph-inventory fix was verified with unit/browser tests; no subsequent global typecheck."
+  }
+}

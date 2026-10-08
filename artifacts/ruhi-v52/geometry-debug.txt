@@ -1,0 +1,30 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+······x·
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/math-robo/kernel/v52GeometryExtra.test.ts > exact affine geometry constraint conflict and free variables
+AssertionError: Use a scalar expression or equation.: expected undefined to match object { kind: 'infinite', rank: 3 }
+
+- Expected:
+{
+  "kind": "infinite",
+  "rank": 3,
+}
+
++ Received:
+undefined
+
+ ❯ src/math-robo/kernel/v52GeometryExtra.test.ts:4:266
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  13:30:34
+   Duration  1.14s (transform 311ms, setup 50ms, import 357ms, tests 502ms, environment 0ms)
+

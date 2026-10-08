@@ -1,0 +1,138 @@
+[
+  {
+    "mode": "graph2d",
+    "checks": [
+      {
+        "name": "create",
+        "passed": true
+      },
+      {
+        "name": "name",
+        "passed": true
+      },
+      {
+        "name": "move",
+        "passed": true
+      },
+      {
+        "name": "style",
+        "passed": true
+      },
+      {
+        "name": "serialized native object exists",
+        "passed": true
+      },
+      {
+        "name": "IDs, name, coordinates, dimensions and color survive UI save/reload/restore",
+        "passed": true
+      },
+      {
+        "name": "query restored object",
+        "passed": true
+      },
+      {
+        "name": "modify restored object",
+        "passed": true
+      },
+      {
+        "name": "restored native center changed by exactly 2",
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "persistenceMs": 2268.6689000000006
+  },
+  {
+    "mode": "geometry2d",
+    "checks": [
+      {
+        "name": "create",
+        "passed": true
+      },
+      {
+        "name": "name",
+        "passed": true
+      },
+      {
+        "name": "move",
+        "passed": true
+      },
+      {
+        "name": "style",
+        "passed": true
+      },
+      {
+        "name": "serialized native object exists",
+        "passed": true
+      },
+      {
+        "name": "IDs, name, coordinates, dimensions and color survive UI save/reload/restore",
+        "passed": false
+      },
+      {
+        "name": "query restored object",
+        "passed": true
+      },
+      {
+        "name": "modify restored object",
+        "passed": true
+      },
+      {
+        "name": "restored native center changed by exactly 2",
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "persistenceMs": 1715.7418000000016
+  },
+  {
+    "mode": "graph3d",
+    "checks": [
+      {
+        "name": "create",
+        "passed": true
+      },
+      {
+        "name": "name",
+        "passed": true
+      },
+      {
+        "name": "move",
+        "passed": true
+      },
+      {
+        "name": "style",
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "error": "TimeoutError: locator.evaluate: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Save', exact: true }).first()\u001b[22m\n"
+  },
+  {
+    "mode": "geometry3d",
+    "checks": [
+      {
+        "name": "create",
+        "passed": true
+      },
+      {
+        "name": "name",
+        "passed": true
+      },
+      {
+        "name": "move",
+        "passed": true
+      },
+      {
+        "name": "style",
+        "passed": true
+      },
+      {
+        "name": "serialized native object exists",
+        "passed": false
+      }
+    ],
+    "errors": [],
+    "error": "TimeoutError: locator.click: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Load saved scene' })\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"os-right-heading\">…</div> from <aside data-mws-panel=\"inspector\" class=\"gs3d-right-panel os-right-panel open \" aria-label=\"Scene Objects and Object Inspector\">…</aside> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"os-right-heading\">…</div> from <aside data-mws-panel=\"inspector\" class=\"gs3d-right-panel os-right-panel open \" aria-label=\"Scene Objects and Object Inspector\">…</aside> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    109 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m        - element is visible, enabled and stable\u001b[22m\n\u001b[2m        - scrolling into view if needed\u001b[22m\n\u001b[2m        - done scrolling\u001b[22m\n\u001b[2m        - <div class=\"os-right-heading\">…</div> from <aside data-mws-panel=\"inspector\" class=\"gs3d-right-panel os-right-panel open \" aria-label=\"Scene Objects and Object Inspector\">…</aside> subtree intercepts pointer events\u001b[22m\n\u001b[2m      - retrying click action\u001b[22m\n\u001b[2m        - waiting 500ms\u001b[22m\n"
+  }
+]

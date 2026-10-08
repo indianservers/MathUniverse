@@ -1,5 +1,6 @@
 import { centroid, transformPoint, type VisualCommand } from './commands';
 export function commandTransform3d(command:VisualCommand) {
+  if(['ray','vector'].includes(command.kind))return {position:centroid(command.points) as [number,number,number],dimensions:[1,1,1] as [number,number,number],rotation:command.rotation??[0,0,0] as [number,number,number],color:command.color};
   const diameter=command.kind==='cube'?command.width:command.radius*2;
   const center=(command.kind==='triangle'&&command.points.length===3)||(command.kind==='polygon'&&command.points.length>=3)?centroid(command.points):command.points[0]??[0,0,0];
   const position=[...center] as [number,number,number];

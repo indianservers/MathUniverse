@@ -39,11 +39,11 @@ export function resolveTarget(target:RoboTarget|undefined,scene:RoboSceneContext
     if(!['it','this','that','lastReferenced','lastCreated','$previous','selected','original','copy','previous'].includes(target))throw new ResolutionError([],`No object named ${target} exists.`);
   }
   const descriptor=typeof target==='object'?target:{};
-  const candidates=objects.filter(o=>(!descriptor.id||o.id===descriptor.id)&&(!descriptor.name||o.label?.toLowerCase()===descriptor.name.toLowerCase()||o.id.toLowerCase()===descriptor.name.toLowerCase()||o.id.toLowerCase()===`${descriptor.type}_${descriptor.name}`.toLowerCase())&&(!descriptor.type||o.type===descriptor.type)&&(!descriptor.color||o.style.color===descriptor.color||o.style.color===COLORS[descriptor.color])).sort((a,b)=>(a.creationOrder??0)-(b.creationOrder??0));
+  const candidates=objects.filter(o=>(!descriptor.id||o.id===descriptor.id)&&(!descriptor.name||o.label?.toLowerCase()===descriptor.name.toLowerCase()||o.id.toLowerCase()===descriptor.name.toLowerCase()||o.id.toLowerCase()===`${descriptor.type}_${descriptor.name}`.toLowerCase())&&(!descriptor.type||o.type===descriptor.type||descriptor.type==='polygon'&&['triangle','rectangle','square','pentagon','hexagon','parallelogram','rhombus','trapezoid'].includes(o.type))&&(!descriptor.color||o.style.color===descriptor.color||o.style.color===COLORS[descriptor.color])).sort((a,b)=>(a.creationOrder??0)-(b.creationOrder??0));
   if(descriptor.id||descriptor.name) { if(candidates.length===1)return candidates[0]; throw new ResolutionError(candidates.map(o=>o.id),'That named object was not found.'); }
   if(descriptor.index!==undefined){const object=descriptor.index===-1?candidates.at(-1):candidates[descriptor.index-1];if(object)return object;throw new ResolutionError([],'That object index is out of range.');}
   if(descriptor.relation) {
-    if(['horizontal','vertical','above'].includes(descriptor.relation)){const matches=candidates.filter(o=>descriptor.relation==='above'?o.position[1]>DISPLAY_EPSILON:o.type==='line'&&Math.abs(o.vertices![1][descriptor.relation==='horizontal'?1:0]-o.vertices![0][descriptor.relation==='horizontal'?1:0])<DISPLAY_EPSILON);if(matches.length===1)return matches[0];throw new ResolutionError(matches.map(o=>o.id),'Several objects match this geometric attribute. Select one.');}
+    if(['horizontal','vertical','above','below'].includes(descriptor.relation)){const matches=candidates.filter(o=>descriptor.relation==='above'?o.position[1]>DISPLAY_EPSILON:descriptor.relation==='below'?o.position[1]<-DISPLAY_EPSILON:o.type==='line'&&Math.abs(o.vertices![1][descriptor.relation==='horizontal'?1:0]-o.vertices![0][descriptor.relation==='horizontal'?1:0])<DISPLAY_EPSILON);if(matches.length===1)return matches[0];throw new ResolutionError(matches.map(o=>o.id),'Several objects match this geometric attribute. Select one.');}
     const score=(o:RoboObjectDescriptor)=>descriptor.relation==='nearest'?Math.hypot(...o.position):descriptor.relation==='leftmost'?o.position[0]:Number(measurement(o,o.type==='line'?'LENGTH':o.mode.endsWith('3d')&&!['circle','triangle','rectangle','square','polygon'].includes(o.type)?'VOLUME':'AREA'));
     const sorted=[...candidates].sort((a,b)=>['largest','longest'].includes(descriptor.relation!)?score(b)-score(a):score(a)-score(b));
     if(sorted.length && (sorted.length===1||Math.abs(score(sorted[0])-score(sorted[1]))>1e-8))return sorted[0];
@@ -56,9 +56,12 @@ export function resolveTarget(target:RoboTarget|undefined,scene:RoboSceneContext
   throw new ResolutionError(candidates.map(o=>o.id),candidates.length?'Several objects match. Select one or specify its name, color or index.':'No matching object exists. Create it first.');
 }
 export function targetFromPhrase(text:string):RoboTarget {
+  // A coordinate plane describes the transformation, not its target object.
+  text=text.replace(/\b(?:xy|xz|yz)[- ]plane\b/g,'');
   const edge=text.match(/\b(top|bottom|left|right|longest) (?:edge|side)\b/)?.[1];if(edge)return `$edge:${edge}`;
+  if(/\bupper\b/.test(text))return {type:'triangle',relation:'above'};if(/\blower\b/.test(text))return {type:'triangle',relation:'below'};
   if(/\boriginal\b/.test(text))return 'original';if(/\bcopy\b/.test(text))return 'copy';if(/\bselected\b/.test(text))return 'selected';
-  const type=text.match(/\b(circle|line|point|rectangle|square|triangle|sphere|cube|cuboid|cylinder|cone|plot|graph|shape)s?\b/)?.[1];
+  const type=text.match(/\b(plane|circle|line|ray|vector|point|rectangle|square|triangle|sphere|cube|cuboid|cylinder|cone|plot|graph|polygon|shape)s?\b/)?.[1];
   const kind=type==='graph'?'plot':type==='shape'?undefined:type;
   const colorMatch=text.match(new RegExp(`\\b(${Object.keys(COLORS).join('|')})\\b`));
   const color=colorMatch&&type&&(colorMatch.index??0)<text.indexOf(type)?colorMatch[1]:undefined;
@@ -66,7 +69,7 @@ export function targetFromPhrase(text:string):RoboTarget {
   const ordinal=text.match(/\b(first|second|third|fourth)\b/)?.[1];
   const index=ordinal?['first','second','third','fourth'].indexOf(ordinal)+1:undefined;
   const name=text.match(/\b(?:point|line|circle|triangle|rectangle|square)\s+([a-z]\d*|[a-z]{2})\b/i)?.[1];
-  if(name&&!['to','at','of','on','by','is','as','in'].includes(name))return {name,type:kind};
+  if(name&&!['to','at','of','on','by','is','as','in','we'].includes(name))return {name,type:kind};
   if(/\bprevious one\b/.test(text))return 'previous';
   if(/\b(last|newest)\b/.test(text)&&kind)return {type:kind,index:-1};
   if(/\boldest\b/.test(text)&&kind)return {type:kind,index:1};

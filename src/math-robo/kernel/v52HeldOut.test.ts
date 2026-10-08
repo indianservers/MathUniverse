@@ -1,0 +1,26 @@
+import {test,expect} from 'vitest';
+import {computeMath} from './kernel';
+import type {KernelRequest} from './types';
+const fixtures:{name:string;request:KernelRequest;answer?:string;value?:object;roots?:string[];status?:string}[]=[
+ {name:'fraction',request:{operation:'evaluate',expression:'-23/14+5/21'},answer:'-59/42'},
+ {name:'unicode',request:{operation:'evaluate',expression:'3(7+2)-√81'},answer:'18'},
+ {name:'latex',request:{operation:'evaluate',expression:String.raw`\frac{5}{8}+\frac{7}{12}`},answer:'29/24'},
+ {name:'named function',request:{operation:'substitute',expression:'f(t)=t²-4t+7',values:{t:'3'}},answer:'4'},
+ {name:'gcd',request:{operation:'gcd',args:[119,204]},answer:'17'},
+ {name:'lcm',request:{operation:'lcm',args:[84,126]},answer:'252'},
+ {name:'decimal',request:{operation:'decimal',expression:'17/24',precision:6},answer:'0.708333'},
+ {name:'sign branch',request:{operation:'simplify',expression:'sqrt(t²)',assumptions:['t positive']},answer:'t'},
+ {name:'excluded domain identity',request:{operation:'equivalent',expression:'(x²-49)/(x-7)',other:'x+7'},answer:'true'},
+ {name:'underdetermined system',request:{operation:'system',equations:['x+2*y=3','2*x+4*y=6'],variables:['x','y']},value:{kind:'infinite',rank:1,particular:['3','0'],nullspace:[['-2','1']]}},
+ {name:'factorable quartic',request:{operation:'solve',expression:'x^4-5*x²+4=0'},roots:['-2','-1','1','2']},
+ {name:'definite polynomial integral',request:{operation:'integrate',expression:'2*x+3',args:[-2,5]},answer:'42'},
+ {name:'absolute branches',request:{operation:'solve',expression:'abs(3*x+2)=11'},roots:['3','-13/3']},
+ {name:'polynomial inequality',request:{operation:'inequality',expression:'(x-2)*(x+4)<0'},answer:'(-4, 2)'},
+ {name:'bounded spatial intersection',request:{operation:'geometry3d',args:['linePlane',{kind:'segment',point:[0,0,0],direction:[0,0,1]},{point:[0,0,2],normal:[0,0,1]}]},value:{kind:'none'}},
+ {name:'inside tangent',request:{operation:'geometry2d',args:['tangents',[7,3],5,[8,3]]},value:{kind:'none'}},
+ {name:'parallel planes',request:{operation:'geometry3d',args:['planePlane',{point:[0,0,7],normal:[0,0,2]},{point:[0,0,8],normal:[0,0,3]}]},value:{kind:'parallel'}},
+ {name:'collinear disjoint segments',request:{operation:'geometry3d',args:['lineLine',{kind:'segment',point:[0,0,0],direction:[1,0,0]},{kind:'segment',point:[2,0,0],direction:[1,0,0]}]},value:{kind:'none'}},
+ {name:'sphere tangent section',request:{operation:'geometry3d',args:['spherePlane',{center:[0,0,0],radius:5},{point:[0,0,5],normal:[0,0,1]}]},value:{kind:'point',center:[0,0,5],radius:0}},
+ {name:'zero vector normalization',request:{operation:'geometry3d',args:['vector',[0,0,0],undefined,'normalize']},status:'unsupported'},
+];
+for(const fixture of fixtures)test(`frozen v5.2 evaluation: ${fixture.name}`,async()=>{const r=await computeMath(fixture.request);if(fixture.answer!==undefined)expect(r.answer).toBe(fixture.answer);if(fixture.value!==undefined)expect(r.value,r.answer).toMatchObject(fixture.value);if(fixture.roots)expect(new Set(r.value as string[]),r.answer).toEqual(new Set(fixture.roots));if(fixture.status)expect(r.status).toBe(fixture.status);else expect(r.status).toMatch(/^verified/);});

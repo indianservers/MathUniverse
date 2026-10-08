@@ -38,6 +38,8 @@ export type Graph3DSurface = {
   xMax: number;
   yMin: number;
   yMax: number;
+  roboCommand?:import('../offline-intelligence/commands').VisualCommand;
+  sourceCommand?:import('../offline-intelligence/commands').VisualCommand;
   displayTransform?: { position: [number,number,number]; rotation: [number,number,number]; scale:number };
   zMin: number;
   zMax: number;

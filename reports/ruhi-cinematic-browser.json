@@ -1,0 +1,38 @@
+{
+  "result": {
+    "created": "success",
+    "moved": "success",
+    "undo": "success",
+    "start": [],
+    "end": [
+      [
+        5,
+        0
+      ]
+    ],
+    "restored": [],
+    "frames": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "distinct": 16,
+    "nativeDistinct": 1
+  },
+  "errors": []
+}

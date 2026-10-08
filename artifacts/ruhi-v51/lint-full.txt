@@ -1,0 +1,906 @@
+
+> math-universe-visualizations@1.0.2 lint
+> eslint . --max-warnings=0
+
+
+C:\Indian Servers\Math Universe Visualizations\scripts\audit-lesson-launch.mjs
+  527:7  error  'CALIBRATION_THIN_HINTS' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture-lesson-screenshots.mjs
+  252:33  error  'document' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_absolute_value_target.mjs
+  4:2104  error  'document' is not defined     no-undef
+  4:2277  error  'innerWidth' is not defined   no-undef
+  4:2295  error  'innerHeight' is not defined  no-undef
+  4:2324  error  'document' is not defined     no-undef
+  4:2368  error  'document' is not defined     no-undef
+  4:2426  error  'document' is not defined     no-undef
+  4:2463  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_algebra_workspace_target.mjs
+  22:75   error  'document' is not defined     no-undef
+  22:276  error  'innerWidth' is not defined   no-undef
+  22:294  error  'innerHeight' is not defined  no-undef
+  22:323  error  'document' is not defined     no-undef
+  22:367  error  'document' is not defined     no-undef
+  22:425  error  'document' is not defined     no-undef
+  22:462  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_algebraic_input_target.mjs
+  62:18  error  'document' is not defined     no-undef
+  75:24  error  'innerWidth' is not defined   no-undef
+  75:44  error  'innerHeight' is not defined  no-undef
+  77:14  error  'document' is not defined     no-undef
+  78:15  error  'document' is not defined     no-undef
+  80:25  error  'document' is not defined     no-undef
+  80:64  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_angle_sliders_target.mjs
+  15:75   error  'document' is not defined     no-undef
+  15:276  error  'innerWidth' is not defined   no-undef
+  15:294  error  'innerHeight' is not defined  no-undef
+  15:323  error  'document' is not defined     no-undef
+  15:367  error  'document' is not defined     no-undef
+  15:425  error  'document' is not defined     no-undef
+  15:462  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_animation_controls_target.mjs
+  7:75   error  'document' is not defined     no-undef
+  7:276  error  'innerWidth' is not defined   no-undef
+  7:294  error  'innerHeight' is not defined  no-undef
+  7:323  error  'document' is not defined     no-undef
+  7:367  error  'document' is not defined     no-undef
+  7:425  error  'document' is not defined     no-undef
+  7:462  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_attach_detach_target_202.mjs
+  115:15  error  'document' is not defined    no-undef
+  122:14  error  'document' is not defined    no-undef
+  123:15  error  'document' is not defined    no-undef
+  125:25  error  'document' is not defined    no-undef
+  125:64  error  'innerWidth' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_calculation_history_target.mjs
+  49:18  error  'document' is not defined     no-undef
+  53:24  error  'innerWidth' is not defined   no-undef
+  53:44  error  'innerHeight' is not defined  no-undef
+  54:24  error  'document' is not defined     no-undef
+  54:70  error  'document' is not defined     no-undef
+  55:25  error  'document' is not defined     no-undef
+  55:64  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_complex_numbers_target.mjs
+  48:5  error  'HTMLInputElement' is not defined  no-undef
+  59:5  error  'HTMLInputElement' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_conditional_visibility_target.mjs
+  7:75   error  'document' is not defined     no-undef
+  7:276  error  'innerWidth' is not defined   no-undef
+  7:294  error  'innerHeight' is not defined  no-undef
+  7:323  error  'document' is not defined     no-undef
+  7:367  error  'document' is not defined     no-undef
+  7:425  error  'document' is not defined     no-undef
+  7:462  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_constants_library_target.mjs
+  4:1808  error  'document' is not defined     no-undef
+  4:1981  error  'innerWidth' is not defined   no-undef
+  4:1999  error  'innerHeight' is not defined  no-undef
+  4:2028  error  'document' is not defined     no-undef
+  4:2072  error  'document' is not defined     no-undef
+  4:2130  error  'document' is not defined     no-undef
+  4:2167  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_counting_choices_target.mjs
+  6:1198  error  'document' is not defined     no-undef
+  6:1371  error  'innerWidth' is not defined   no-undef
+  6:1389  error  'innerHeight' is not defined  no-undef
+  6:1418  error  'document' is not defined     no-undef
+  6:1462  error  'document' is not defined     no-undef
+  6:1520  error  'document' is not defined     no-undef
+  6:1557  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_dependent_objects_target.mjs
+  7:75   error  'document' is not defined     no-undef
+  7:276  error  'innerWidth' is not defined   no-undef
+  7:294  error  'innerHeight' is not defined  no-undef
+  7:323  error  'document' is not defined     no-undef
+  7:367  error  'document' is not defined     no-undef
+  7:425  error  'document' is not defined     no-undef
+  7:462  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_derivatives_target_439.mjs
+  7:247  error  'document' is not defined    no-undef
+  7:492  error  'document' is not defined    no-undef
+  7:536  error  'document' is not defined    no-undef
+  7:584  error  'document' is not defined    no-undef
+  7:621  error  'innerWidth' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_dynamic_labels_target.mjs
+  7:75   error  'document' is not defined     no-undef
+  7:276  error  'innerWidth' is not defined   no-undef
+  7:294  error  'innerHeight' is not defined  no-undef
+  7:323  error  'document' is not defined     no-undef
+  7:367  error  'document' is not defined     no-undef
+  7:425  error  'document' is not defined     no-undef
+  7:462  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_equation_input_target.mjs
+  62:18  error  'document' is not defined     no-undef
+  75:24  error  'innerWidth' is not defined   no-undef
+  75:44  error  'innerHeight' is not defined  no-undef
+  77:14  error  'document' is not defined     no-undef
+  78:15  error  'document' is not defined     no-undef
+  80:25  error  'document' is not defined     no-undef
+  80:64  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_exact_decimal_modes_target.mjs
+  31:47   error  'document' is not defined     no-undef
+  32:28   error  'innerWidth' is not defined   no-undef
+  32:46   error  'innerHeight' is not defined  no-undef
+  32:75   error  'document' is not defined     no-undef
+  32:119  error  'document' is not defined     no-undef
+  32:177  error  'document' is not defined     no-undef
+  32:214  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_free_point_target_198.mjs
+  89:17  error  'document' is not defined    no-undef
+  96:14  error  'document' is not defined    no-undef
+  97:15  error  'document' is not defined    no-undef
+  99:25  error  'document' is not defined    no-undef
+  99:64  error  'innerWidth' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_geometry_target_batch.mjs
+   337:9   error  'document' is not defined    no-undef
+   882:30  error  'DOMPoint' is not defined    no-undef
+  2806:21  error  'document' is not defined    no-undef
+  2809:10  error  'document' is not defined    no-undef
+  2812:60  error  'innerWidth' is not defined  no-undef
+  2815:21  error  'document' is not defined    no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_hyperbolic_functions_target.mjs
+  8:136  error  'document' is not defined     no-undef
+  8:309  error  'innerWidth' is not defined   no-undef
+  8:327  error  'innerHeight' is not defined  no-undef
+  8:356  error  'document' is not defined     no-undef
+  8:400  error  'document' is not defined     no-undef
+  8:458  error  'document' is not defined     no-undef
+  8:495  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_inequality_input_target.mjs
+  56:18  error  'document' is not defined     no-undef
+  69:24  error  'innerWidth' is not defined   no-undef
+  69:44  error  'innerHeight' is not defined  no-undef
+  71:14  error  'document' is not defined     no-undef
+  72:15  error  'document' is not defined     no-undef
+  74:25  error  'document' is not defined     no-undef
+  74:64  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_integer_sliders_target.mjs
+  28:27   error  'window' is not defined       no-undef
+  30:47   error  'document' is not defined     no-undef
+  31:31   error  'innerWidth' is not defined   no-undef
+  31:51   error  'innerHeight' is not defined  no-undef
+  31:85   error  'document' is not defined     no-undef
+  31:131  error  'document' is not defined     no-undef
+  31:192  error  'document' is not defined     no-undef
+  31:231  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_integrals_target_440.mjs
+  40:5   error  'document' is not defined    no-undef
+  70:15  error  'document' is not defined    no-undef
+  83:14  error  'document' is not defined    no-undef
+  84:15  error  'document' is not defined    no-undef
+  86:15  error  'document' is not defined    no-undef
+  86:54  error  'innerWidth' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_intersection_point_target_200.mjs
+   92:16  error  'document' is not defined    no-undef
+  109:14  error  'document' is not defined    no-undef
+  110:15  error  'document' is not defined    no-undef
+  112:25  error  'document' is not defined    no-undef
+  112:64  error  'innerWidth' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_inverse_trigonometry_target.mjs
+  23:65   error  'document' is not defined     no-undef
+  23:238  error  'innerWidth' is not defined   no-undef
+  23:256  error  'innerHeight' is not defined  no-undef
+  23:285  error  'document' is not defined     no-undef
+  23:329  error  'document' is not defined     no-undef
+  23:387  error  'document' is not defined     no-undef
+  23:424  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_limits_target_441.mjs
+   50:5   error  'document' is not defined    no-undef
+   85:15  error  'document' is not defined    no-undef
+   98:14  error  'document' is not defined    no-undef
+   99:15  error  'document' is not defined    no-undef
+  101:15  error  'document' is not defined    no-undef
+  101:54  error  'innerWidth' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_lists_target.mjs
+  69:18  error  'document' is not defined     no-undef
+  82:24  error  'innerWidth' is not defined   no-undef
+  82:44  error  'innerHeight' is not defined  no-undef
+  84:14  error  'document' is not defined     no-undef
+  85:15  error  'document' is not defined     no-undef
+  87:25  error  'document' is not defined     no-undef
+  87:64  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_matrices_target.mjs
+  71:18  error  'document' is not defined     no-undef
+  84:24  error  'innerWidth' is not defined   no-undef
+  84:44  error  'innerHeight' is not defined  no-undef
+  86:14  error  'document' is not defined     no-undef
+  87:15  error  'document' is not defined     no-undef
+  89:25  error  'document' is not defined     no-undef
+  89:64  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_midpoint_centre_target_201.mjs
+   94:16  error  'document' is not defined    no-undef
+  112:14  error  'document' is not defined    no-undef
+  113:15  error  'document' is not defined    no-undef
+  115:25  error  'document' is not defined    no-undef
+  115:64  error  'innerWidth' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_numeric_sliders_target.mjs
+  31:47   error  'document' is not defined     no-undef
+  32:31   error  'innerWidth' is not defined   no-undef
+  32:51   error  'innerHeight' is not defined  no-undef
+  32:85   error  'document' is not defined     no-undef
+  32:131  error  'document' is not defined     no-undef
+  32:192  error  'document' is not defined     no-undef
+  32:231  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_object_redefinition_target.mjs
+  62:18  error  'document' is not defined     no-undef
+  75:24  error  'innerWidth' is not defined   no-undef
+  75:44  error  'innerHeight' is not defined  no-undef
+  77:14  error  'document' is not defined     no-undef
+  78:15  error  'document' is not defined     no-undef
+  80:25  error  'document' is not defined     no-undef
+  80:64  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_point_on_object_target_199.mjs
+  81:15  error  'document' is not defined    no-undef
+  88:14  error  'document' is not defined    no-undef
+  89:15  error  'document' is not defined    no-undef
+  91:25  error  'document' is not defined    no-undef
+  91:64  error  'innerWidth' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_remaining_studio_restore.mjs
+  102:46   error  'document' is not defined  no-undef
+  102:85   error  'document' is not defined  no-undef
+  160:74   error  'window' is not defined    no-undef
+  167:64   error  'document' is not defined  no-undef
+  167:103  error  'document' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_rounding_precision_target.mjs
+  4:1942  error  'document' is not defined     no-undef
+  4:2115  error  'innerWidth' is not defined   no-undef
+  4:2133  error  'innerHeight' is not defined  no-undef
+  4:2162  error  'document' is not defined     no-undef
+  4:2206  error  'document' is not defined     no-undef
+  4:2264  error  'document' is not defined     no-undef
+  4:2301  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_sequences_target.mjs
+  63:18  error  'document' is not defined     no-undef
+  76:24  error  'innerWidth' is not defined   no-undef
+  76:44  error  'innerHeight' is not defined  no-undef
+  78:14  error  'document' is not defined     no-undef
+  79:15  error  'document' is not defined     no-undef
+  81:25  error  'document' is not defined     no-undef
+  81:64  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_series_expansions_target_442.mjs
+  57:5   error  'document' is not defined    no-undef
+  72:15  error  'document' is not defined    no-undef
+  85:14  error  'document' is not defined    no-undef
+  86:15  error  'document' is not defined    no-undef
+  88:15  error  'document' is not defined    no-undef
+  88:54  error  'innerWidth' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_sphere_target_399.mjs
+  134:3  error  'localStorage' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_trigonometric_calculator_target.mjs
+  58:15  error  'document' is not defined     no-undef
+  71:24  error  'innerWidth' is not defined   no-undef
+  71:44  error  'innerHeight' is not defined  no-undef
+  73:14  error  'document' is not defined     no-undef
+  74:15  error  'document' is not defined     no-undef
+  76:25  error  'document' is not defined     no-undef
+  76:64  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\capture_variable_explorer_target.mjs
+  12:75   error  'document' is not defined     no-undef
+  12:276  error  'innerWidth' is not defined   no-undef
+  12:294  error  'innerHeight' is not defined  no-undef
+  12:323  error  'document' is not defined     no-undef
+  12:367  error  'document' is not defined     no-undef
+  12:425  error  'document' is not defined     no-undef
+  12:462  error  'innerWidth' is not defined   no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\generate-market-audit-artifacts.cjs
+  1:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  1:12  error  'require' is not defined                 no-undef
+  2:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:14  error  'require' is not defined                 no-undef
+  4:24  error  'process' is not defined                 no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\repair-studio-challenges.mjs
+  26:11  error  'file' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\scripts\report-math-robo-v41.mjs
+  1:36   error  'stat' is defined but never used  @typescript-eslint/no-unused-vars
+  7:143  error  Empty block statement             no-empty
+  8:229  error  Empty block statement             no-empty
+
+C:\Indian Servers\Math Universe Visualizations\scripts\ruhi-100-conversation.mjs
+  16:314  error  'document' is not defined  no-undef
+  16:388  error  'document' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\ruhi-context-admin-browser.mjs
+  4:634  error  'document' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\ruhi-context-browser.mjs
+  10:236  error  'document' is not defined       no-undef
+  11:58   error  'history' is not defined        no-undef
+  11:88   error  'window' is not defined         no-undef
+  11:113  error  'PopStateEvent' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\ruhi-language-browser.mjs
+  18:239  error  'document' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\scripts\ruhi-orchestration-browser.mjs
+  16:239  error  'document' is not defined  no-undef
+
+C:\Indian Servers\Math Universe Visualizations\src\ar-math-lab\ARCameraHands.tsx
+   31:123  warning  React Hook useEffect has a missing dependency: 'interaction?.engines.intelligence'. Either include it or remove the dependency array                                                   react-hooks/exhaustive-deps
+  104:6    warning  React Hook useEffect has missing dependencies: 'interaction?.engines.intelligence', 'interaction?.engines.spatial', and 'profile'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\ar-math-lab\ARTrackedScene.tsx
+  79:74  warning  The ref value 'anchorGeneration.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'anchorGeneration.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\ar-math-lab\hand-intelligence\ARCameraHandScene.tsx
+  11:193  warning  The ref value 'runtime.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'runtime.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\ar-math-lab\hand-intelligence\ARHandLandmarkOverlay.tsx
+  30:5   warning  React Hook useEffect has a missing dependency: 'viewport'. Either include it or remove the dependency array                               react-hooks/exhaustive-deps
+  30:14  warning  React Hook useEffect has a complex expression in the dependency array. Extract it to a separate variable so it can be statically checked  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\components\workspace\ShareExportControl.tsx
+  118:5  warning  React Hook useMemo has unnecessary dependencies: 'open' and 'view'. Either exclude them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\math-robo\intelligence\contextDataset.ts
+  28:7  error  'meaning' is never reassigned. Use 'const' instead  prefer-const
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\discrete-world\DiscreteWorldModule.tsx
+  945:10  error  'ArchitecturePanel' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\graph-theory\GraphTheoryModule.tsx
+     2:10  error  'Link' is defined but never used. Allowed unused vars must match /^_/u                            @typescript-eslint/no-unused-vars
+    16:3   error  'Layers' is defined but never used. Allowed unused vars must match /^_/u                          @typescript-eslint/no-unused-vars
+    49:8   error  'TopicHeader' is defined but never used. Allowed unused vars must match /^_/u                     @typescript-eslint/no-unused-vars
+   348:9   error  'adjList' is assigned a value but never used. Allowed unused vars must match /^_/u                @typescript-eslint/no-unused-vars
+   349:9   error  'matrix' is assigned a value but never used. Allowed unused vars must match /^_/u                 @typescript-eslint/no-unused-vars
+   350:9   error  'incidence' is assigned a value but never used. Allowed unused vars must match /^_/u              @typescript-eslint/no-unused-vars
+   965:10  error  'GraphCockpit' is defined but never used. Allowed unused vars must match /^_/u                    @typescript-eslint/no-unused-vars
+  1669:10  error  'GraphTheoryTabs' is defined but never used. Allowed unused vars must match /^_/u                 @typescript-eslint/no-unused-vars
+  1787:10  error  'GraphTheoryCompletionDashboard' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  1924:10  error  'GraphEditor' is defined but never used. Allowed unused vars must match /^_/u                     @typescript-eslint/no-unused-vars
+  2958:10  error  'isUsableGraphProject' is defined but never used. Allowed unused vars must match /^_/u            @typescript-eslint/no-unused-vars
+  2979:10  error  'GraphAlgorithmsVisualizer' is defined but never used. Allowed unused vars must match /^_/u       @typescript-eslint/no-unused-vars
+  3044:10  error  'GraphRepresentationLab' is defined but never used. Allowed unused vars must match /^_/u          @typescript-eslint/no-unused-vars
+  3087:10  error  'ShortestPathLab' is defined but never used. Allowed unused vars must match /^_/u                 @typescript-eslint/no-unused-vars
+  3117:10  error  'GraphStructureLab' is defined but never used. Allowed unused vars must match /^_/u               @typescript-eslint/no-unused-vars
+  3168:10  error  'ConnectivityLab' is defined but never used. Allowed unused vars must match /^_/u                 @typescript-eslint/no-unused-vars
+  3192:10  error  'DirectedGraphLab' is defined but never used. Allowed unused vars must match /^_/u                @typescript-eslint/no-unused-vars
+  3218:10  error  'PathCycleLab' is defined but never used. Allowed unused vars must match /^_/u                    @typescript-eslint/no-unused-vars
+  3258:10  error  'BipartiteMatchingLab' is defined but never used. Allowed unused vars must match /^_/u            @typescript-eslint/no-unused-vars
+  3286:10  error  'CliqueIndependentLab' is defined but never used. Allowed unused vars must match /^_/u            @typescript-eslint/no-unused-vars
+  3307:10  error  'ComplementGraphLab' is defined but never used. Allowed unused vars must match /^_/u              @typescript-eslint/no-unused-vars
+  3332:10  error  'NetworkFlowLab' is defined but never used. Allowed unused vars must match /^_/u                  @typescript-eslint/no-unused-vars
+  3366:10  error  'NetworkMetricsLab' is defined but never used. Allowed unused vars must match /^_/u               @typescript-eslint/no-unused-vars
+  3421:10  error  'PlanarityObstructionLab' is defined but never used. Allowed unused vars must match /^_/u         @typescript-eslint/no-unused-vars
+  3451:10  error  'GraphTheoryReference' is defined but never used. Allowed unused vars must match /^_/u            @typescript-eslint/no-unused-vars
+  3529:10  error  'IsomorphismChecker' is defined but never used. Allowed unused vars must match /^_/u              @typescript-eslint/no-unused-vars
+  3562:10  error  'SubgraphStudio' is defined but never used. Allowed unused vars must match /^_/u                  @typescript-eslint/no-unused-vars
+  3595:10  error  'TreeVisualizationSystem' is defined but never used. Allowed unused vars must match /^_/u         @typescript-eslint/no-unused-vars
+  3666:10  error  'SpanningTreeGenerator' is defined but never used. Allowed unused vars must match /^_/u           @typescript-eslint/no-unused-vars
+  3690:10  error  'EulerHamiltonianExplorer' is defined but never used. Allowed unused vars must match /^_/u        @typescript-eslint/no-unused-vars
+  3728:10  error  'PlanarGraphStudio' is defined but never used. Allowed unused vars must match /^_/u               @typescript-eslint/no-unused-vars
+  3753:10  error  'GraphColoringEngine' is defined but never used. Allowed unused vars must match /^_/u             @typescript-eslint/no-unused-vars
+  3795:10  error  'EducationalFeatures' is defined but never used. Allowed unused vars must match /^_/u             @typescript-eslint/no-unused-vars
+  4122:10  error  'useWorkerColoring' is defined but never used. Allowed unused vars must match /^_/u               @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\lessons\adapters\AlgebraCasLessonAdapter.tsx
+  15:10  error  'AlgebraConceptWorkspace' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\lessons\adapters\AnimationControlsLessonAdapter.tsx
+   2:50  error  'Repeat2' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  48:3   error  'lesson' is defined but never used. Allowed unused args must match /^_/u   @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\lessons\adapters\CircleCentrePointTargetLesson218.tsx
+  604:3  error  'kind' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\lessons\adapters\CircleCentreRadiusTargetLesson219.tsx
+  490:3  error  'tool' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\lessons\adapters\Geometry2DLessonAdapter.tsx
+    11:3   error  'Crosshair' is defined but never used. Allowed unused vars must match /^_/u                                                                                                                  @typescript-eslint/no-unused-vars
+    25:3   error  'Play' is defined but never used. Allowed unused vars must match /^_/u                                                                                                                       @typescript-eslint/no-unused-vars
+   398:21  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+   399:21  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+   400:27  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+   401:37  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?   react-hooks/rules-of-hooks
+   403:3   error  React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render. Did you accidentally call a React Hook after an early return?  react-hooks/rules-of-hooks
+  2495:3   error  'lesson' is defined but never used. Allowed unused args must match /^_/u                                                                                                                     @typescript-eslint/no-unused-vars
+  3751:3   error  'lesson' is defined but never used. Allowed unused args must match /^_/u                                                                                                                     @typescript-eslint/no-unused-vars
+  5127:3   error  'lesson' is defined but never used. Allowed unused args must match /^_/u                                                                                                                     @typescript-eslint/no-unused-vars
+  5906:62  error  'py' is defined but never used. Allowed unused args must match /^_/u                                                                                                                         @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\lessons\adapters\calculus\LimitsDifferentialMockupLesson.tsx
+  1114:3  error  'spec' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\lessons\adapters\cas\SymbolicCasMockupLesson.tsx
+  11:3  error  'GitBranch' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  12:3  error  'Grid3X3' is defined but never used. Allowed unused vars must match /^_/u    @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\lessons\adapters\graph\FunctionMockupLesson.tsx
+  386:9  error  'transformedSine' is assigned a value but never used. Allowed unused vars must match /^_/u    @typescript-eslint/no-unused-vars
+  387:9  error  'transformedCosine' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\lessons\components\LessonSectionJourney.tsx
+  221:38  error  'lessonTitle' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\lessons\components\LessonShell.tsx
+  59:3  error  'captureLessonTabClick' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\lessons\strengthening\catalogBatch2StudySpecs.ts
+  135:65  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  153:60  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  159:71  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  171:66  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  180:65  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  186:65  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  207:79  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  231:70  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  234:70  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  237:70  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  243:61  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  246:75  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  249:68  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  252:82  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  255:74  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  264:74  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  273:63  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  276:70  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  282:59  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  285:76  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\lessons\strengthening\catalogBatch3StudySpecs.ts
+  129:72  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  177:73  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  234:77  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  261:81  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  276:84  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  279:94  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  297:80  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  300:78  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  303:66  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  306:89  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  309:87  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  318:84  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  327:69  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  330:73  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  336:82  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\modules\lessons\strengthening\catalogGatewayEnhancements.ts
+  322:59  error  't' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\AIApplications.tsx
+  2:20   error  'BookOpen' is defined but never used. Allowed unused vars must match /^_/u    @typescript-eslint/no-unused-vars
+  2:103  error  'Eye' is defined but never used. Allowed unused vars must match /^_/u         @typescript-eslint/no-unused-vars
+  2:134  error  'ListChecks' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  2:241  error  'Satellite' is defined but never used. Allowed unused vars must match /^_/u   @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\About.tsx
+  1:10  error  'BookOpen' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\CalculusConceptStudio.tsx
+  80:194  warning  React Hook useEffect has missing dependencies: 'setA', 'setB', 'setDraft', 'setExpression', 'setLearning', 'setN', and 'setPlaying'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  82:276  warning  React Hook useEffect has missing dependencies: 'setA' and 'setN'. Either include them or remove the dependency array                                                                     react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\CalculusDerivativeApplicationsStudio.tsx
+  51:6  warning  React Hook useEffect has missing dependencies: 'setLearning' and 'setPlaying'. Either include them or remove the dependency array                                react-hooks/exhaustive-deps
+  78:6  warning  React Hook useEffect has missing dependencies: 'setCurveX', 'setCut', 'setMvtB', 'setRadius', and 'setTime'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\CalculusDerivativesStudio.tsx
+  206:6  warning  React Hook useEffect has missing dependencies: 'setA', 'setBottomView', 'setDraft', 'setExpression', 'setH', 'setOrder', 'setPlaying', and 'setViewport'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  218:6  warning  React Hook useEffect has missing dependencies: 'setH' and 'setPlaying'. Either include them or remove the dependency array                                                                                    react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\CalculusDifferentialEquationsStudio.tsx
+   98:6  warning  React Hook useEffect has missing dependencies: 'setCapacity', 'setDraft', 'setExpression', 'setH', 'setK', 'setLearning', 'setPlaying', 'setRate', 'setTarget', 'setTime', 'setX0', and 'setY0'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  112:6  warning  React Hook useEffect has missing dependencies: 'setH', 'setTime', and 'setX0'. Either include them or remove the dependency array                                                                                                                    react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\CalculusIntegrationStudio.tsx
+   98:6  warning  React Hook useEffect has missing dependencies: 'setLearning' and 'setPlaying'. Either include them or remove the dependency array                  react-hooks/exhaustive-deps
+  105:6  warning  React Hook useEffect has a missing dependency: 'setExpanded'. Either include it or remove the dependency array                                     react-hooks/exhaustive-deps
+  131:6  warning  React Hook useEffect has missing dependencies: 'setConstant', 'setPartitions', and 'setProbe'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\CalculusIntegrationTechniquesStudio.tsx
+  256:6  warning  React Hook useEffect has missing dependencies: 'setLower', 'setSelectedPart', 'setStep', 'setTipsOpen', and 'setUpper'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\CalculusLimitsStudio.tsx
+  189:6  warning  React Hook useEffect has missing dependencies: 'setA', 'setDefinedValue', 'setDraft', 'setExpression', 'setLeftDistance', 'setPlaying', 'setRightDistance', and 'setViewport'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  205:6  warning  React Hook useEffect has missing dependencies: 'setLeftDistance', 'setPlaying', and 'setRightDistance'. Either include them or remove the dependency array                                                                         react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\CalculusMultivariableStudio.tsx
+  930:6  warning  React Hook useEffect has a missing dependency: 'setAngle'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\CalculusStudio.tsx
+   149:41  warning  React Hook useEffect has a missing dependency: 'setDrawerOpen'. Either include it or remove the dependency array                                                       react-hooks/exhaustive-deps
+   163:6   warning  React Hook useEffect has missing dependencies: 'setDialog' and 'setDrawerOpen'. Either include them or remove the dependency array                                     react-hooks/exhaustive-deps
+   168:6   warning  React Hook useEffect has a missing dependency: 'setSettings'. Either include it or remove the dependency array                                                         react-hooks/exhaustive-deps
+   599:6   warning  React Hook useEffect has missing dependencies: 'setChallengeNote', 'setDraft', 'setExpression', and 'setLearning'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+   610:6   warning  React Hook useEffect has missing dependencies: 'setA', 'setDelta', and 'setN'. Either include them or remove the dependency array                                      react-hooks/exhaustive-deps
+   623:3   error    React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render                                           react-hooks/rules-of-hooks
+   823:6   warning  React Hook useEffect has a missing dependency: 'setTheta'. Either include it or remove the dependency array                                                            react-hooks/exhaustive-deps
+  1428:10  error    'rk4' is defined but never used. Allowed unused vars must match /^_/u                                                                                                  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\ComplexNumbersStudio.tsx
+  9:3  error  Shadowing of global property 'Infinity'  no-shadow-restricted-names
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\MathLab3DGraphing.tsx
+  122:116  warning  React Hook useMemo has a missing dependency: 'embedded'. Either include it or remove the dependency array                                                                                                                                                                                          react-hooks/exhaustive-deps
+  128:6    warning  React Hook useEffect has a missing dependency: 'embedded.expressions'. Either include it or remove the dependency array. If 'setSurfaces' needs the current value of 'embedded.expressions', you can also switch to useReducer instead of useState and read 'embedded.expressions' in the reducer  react-hooks/exhaustive-deps
+  189:6    warning  React Hook useEffect has a missing dependency: 'embedded'. Either include it or remove the dependency array                                                                                                                                                                                        react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\MathLabGraphingCalculator.tsx
+  101:472  warning  React Hook useMemo has a missing dependency: 'embedded'. Either include it or remove the dependency array                                                                                                                                                                                           react-hooks/exhaustive-deps
+  111:6    warning  React Hook useEffect has a missing dependency: 'embedded.expressions'. Either include it or remove the dependency array. If 'setFunctions' needs the current value of 'embedded.expressions', you can also switch to useReducer instead of useState and read 'embedded.expressions' in the reducer  react-hooks/exhaustive-deps
+  157:6    warning  React Hook useEffect has a missing dependency: 'embedded'. Either include it or remove the dependency array                                                                                                                                                                                         react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\MathWorkspace.tsx
+   358:118  warning  React Hook useMemo has a missing dependency: 'embedded'. Either include it or remove the dependency array               react-hooks/exhaustive-deps
+   360:128  warning  React Hook useMemo has a missing dependency: 'embedded'. Either include it or remove the dependency array               react-hooks/exhaustive-deps
+   466:6    warning  React Hook useEffect has a missing dependency: 'embedded'. Either include it or remove the dependency array             react-hooks/exhaustive-deps
+   533:6    warning  React Hook useEffect has a missing dependency: 'embedded'. Either include it or remove the dependency array             react-hooks/exhaustive-deps
+   537:6    warning  React Hook useEffect has a missing dependency: 'embedded'. Either include it or remove the dependency array             react-hooks/exhaustive-deps
+  1737:6    warning  React Hook useEffect has a missing dependency: 'recordWorkspaceStep'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\TheoremLibraryPage.tsx
+     1:29   error  'BookmarkCheck' is defined but never used. Allowed unused vars must match /^_/u             @typescript-eslint/no-unused-vars
+     1:160  error  'Maximize2' is defined but never used. Allowed unused vars must match /^_/u                 @typescript-eslint/no-unused-vars
+     1:171  error  'Play' is defined but never used. Allowed unused vars must match /^_/u                      @typescript-eslint/no-unused-vars
+   107:10   error  'activeTool' is assigned a value but never used. Allowed unused vars must match /^_/u       @typescript-eslint/no-unused-vars
+   107:22   error  'setActiveTool' is assigned a value but never used. Allowed unused vars must match /^_/u    @typescript-eslint/no-unused-vars
+   121:9    error  'currentStep' is assigned a value but never used. Allowed unused vars must match /^_/u      @typescript-eslint/no-unused-vars
+   122:9    error  'related' is assigned a value but never used. Allowed unused vars must match /^_/u          @typescript-eslint/no-unused-vars
+   144:9    error  'toggleSaved' is assigned a value but never used. Allowed unused vars must match /^_/u      @typescript-eslint/no-unused-vars
+   383:7    error  'studioToolItems' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+   391:10   error  'StudioToolDetail' is defined but never used. Allowed unused vars must match /^_/u          @typescript-eslint/no-unused-vars
+   608:10   error  'TheoremCategoryGrid' is defined but never used. Allowed unused vars must match /^_/u       @typescript-eslint/no-unused-vars
+   643:10   error  'TheoremCard' is defined but never used. Allowed unused vars must match /^_/u               @typescript-eslint/no-unused-vars
+  2257:10   error  'CategoryChip' is defined but never used. Allowed unused vars must match /^_/u              @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\calculusStudioSession.ts
+  219:9  error  'route' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\pages\numberSystemsStudioSession.ts
+  152:7  error  'whole' is never reassigned. Use 'const' instead  prefer-const
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\algebra\AlgebraInteractiveLabs.tsx
+   35:3  error  'solveTwoByTwo' is defined but never used. Allowed unused vars must match /^_/u     @typescript-eslint/no-unused-vars
+  557:9  error  'reduced' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\algebra\AlgebraProofLab.tsx
+    2:106  error  'Sparkles' is defined but never used. Allowed unused vars must match /^_/u                @typescript-eslint/no-unused-vars
+  115:10   error  'identityHoldsAtSamples' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\algebra\EquationsLab.tsx
+  1:10  error  'useStudioState' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\algebraic-structures\AlgebraicStructuresLabs.tsx
+  337:6  warning  React Hook useEffect has a missing dependency: 'load'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\calculus\EngineeringCalculusLabs.tsx
+  141:6  warning  React Hook useEffect has a missing dependency: 'setTheta'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\complex\ComplexAdvancedLabs.tsx
+    2:21  error    'useMemo' is defined but never used. Allowed unused vars must match /^_/u                                                                                             @typescript-eslint/no-unused-vars
+    6:50  error    'CX_Z' is defined but never used. Allowed unused vars must match /^_/u                                                                                                @typescript-eslint/no-unused-vars
+   27:6   warning  React Hook useEffect has a missing dependency: 'setTheta'. Either include it or remove the dependency array                                                           react-hooks/exhaustive-deps
+   38:6   warning  React Hook useEffect has missing dependencies: 'setCycles', 'setPlaying', 'setSpeed', 'setTerms', and 'setTheta'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  157:9   error    'w' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                          @typescript-eslint/no-unused-vars
+  233:6   warning  React Hook useEffect has a missing dependency: 'setTh'. Either include it or remove the dependency array                                                              react-hooks/exhaustive-deps
+  243:6   warning  React Hook useEffect has missing dependencies: 'setCx', 'setCy', 'setPlaying', 'setR', and 'setTh'. Either include them or remove the dependency array                react-hooks/exhaustive-deps
+  418:6   warning  React Hook useEffect has a missing dependency: 'setWt'. Either include it or remove the dependency array                                                              react-hooks/exhaustive-deps
+  536:9   error    'VR' is assigned a value but never used. Allowed unused vars must match /^_/u                                                                                         @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\complex\ComplexTargetLabs.tsx
+  236:6  warning  React Hook useEffect has a missing dependency: 'setPolar'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  481:6  warning  React Hook useEffect has a missing dependency: 'setTh'. Either include it or remove the dependency array     react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\curriculum\StudioLearningOutlet.tsx
+  23:5  warning  React Hook useLayoutEffect has a missing dependency: 'context'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\differential-equations\Phase1Labs.tsx
+  143:6  warning  React Hook useEffect has missing dependencies: 'setPlaying' and 'setProgress'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\differential-equations\Phase2DynamicsLabs.tsx
+  98:6  warning  React Hook useEffect has missing dependencies: 'setPlaying' and 'setTime'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\discrete\DiscreteEngineLinks.tsx
+  3:10  error  'useState' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\discrete\combinatorics\ArrangementsLab.tsx
+  16:29  error    'ArrKind' is defined but never used. Allowed unused vars must match /^_/u                                                                                                @typescript-eslint/no-unused-vars
+  71:6   warning  React Hook useEffect has missing dependencies: 'setN', 'setOrder', 'setR', 'setRotation', 'setSlots', and 'setWord'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  85:6   warning  React Hook useEffect has missing dependencies: 'setHighlight', 'setOrder', 'setSlots', and 'slotCount'. Either include them or remove the dependency array               react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\discrete\combinatorics\GeneratingTreeLab.tsx
+  58:6  warning  React Hook useEffect has missing dependencies: 'setDepth', 'setN', 'setPlaying', 'setR', and 'setVisible'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  69:6  warning  React Hook useEffect has missing dependencies: 'setPlaying' and 'setVisible'. Either include them or remove the dependency array                               react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\discrete\combinatorics\InclusionExclusionLab.tsx
+  49:6  warning  React Hook useEffect has missing dependencies: 'setA', 'setAb', 'setAbc', 'setAc', 'setB', 'setBc', 'setC', 'setRegions', 'setStep', and 'setU'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\discrete\combinatorics\PigeonholeLab.tsx
+  56:6  warning  React Hook useEffect has missing dependencies: 'applyDist', 'setM', and 'setN'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\discrete\combinatorics\SelectionsLab.tsx
+  62:6  warning  React Hook useEffect has missing dependencies: 'setN', 'setPicked', 'setR', and 'setScoops'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\discrete\crypto\CryptographyLab.tsx
+  37:6  warning  React Hook useEffect has a missing dependency: 'setRsaStage'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\discrete\discreteEnhancementEngine.ts
+  21:69   error  'nodes' is never reassigned. Use 'const' instead  prefer-const
+  25:117  error  'tape' is never reassigned. Use 'const' instead   prefer-const
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\discrete\number-sense\NumberSenseLab.tsx
+  270:6  warning  React Hook useEffect has missing dependencies: 'setRatioA', 'setRatioB', and 'setRatioK'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\discrete\patterns\FractalsPanel.tsx
+  30:17  error  'setSpeed' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\discrete\patterns\PascalPanel.tsx
+  34:17  error  'setSpeed' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\discrete\patterns\patternsUi.tsx
+  1:21  error  'useMemo' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\discrete\primes\FactorTreePanel.tsx
+  194:6  warning  React Hook useEffect has a missing dependency: 'rebuild'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\GeometryTheoremWorkbench.tsx
+  12:168  warning  React Hook useEffect has a missing dependency: 'setStep'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\SolidStudioNet.tsx
+  2:10  error  'useState' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\circles\AnglesLab.tsx
+  52:59  warning  React Hook useEffect has a missing dependency: 'apply'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\circles\ArcsSectorsLab.tsx
+   4:155  error    'Vec' is defined but never used. Allowed unused vars must match /^_/u                                          @typescript-eslint/no-unused-vars
+  40:6    warning  React Hook useEffect has a missing dependency: 'setDisplay'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\circles\ChordsLab.tsx
+  43:62  warning  React Hook useEffect has a missing dependency: 'apply'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\circles\TangentsLab.tsx
+  12:90  error    'setAnnounce' is assigned a value but never used. Allowed unused vars must match /^_/u                    @typescript-eslint/no-unused-vars
+  52:58  warning  React Hook useEffect has a missing dependency: 'apply'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\circles\primitives.tsx
+   1:57  error  'useState' is defined but never used. Allowed unused vars must match /^_/u        @typescript-eslint/no-unused-vars
+  17:70  error  'frame' is assigned a value but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\construction\ConstructionLab.tsx
+   21:3   error    'childrenOf' is defined but never used. Allowed unused vars must match /^_/u                                      @typescript-eslint/no-unused-vars
+   36:8   error    'World' is defined but never used. Allowed unused vars must match /^_/u                                           @typescript-eslint/no-unused-vars
+  128:19  error    'setLockedR' is assigned a value but never used. Allowed unused vars must match /^_/u                             @typescript-eslint/no-unused-vars
+  152:81  warning  React Hook useEffect has a missing dependency: 'setHeaderHost'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  157:90  error    Expected an assignment or function call and instead saw an expression                                             @typescript-eslint/no-unused-expressions
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\construction\constructionEngine.ts
+  12:3  error  'incenter' is defined but never used. Allowed unused vars must match /^_/u     @typescript-eslint/no-unused-vars
+  19:3  error  'nearly' is defined but never used. Allowed unused vars must match /^_/u       @typescript-eslint/no-unused-vars
+  20:3  error  'orthocenter' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\coordinate\CoordinateLab.tsx
+  202:6   warning  React Hook useCallback has missing dependencies: 'say', 'setHistIndex', 'setHistory', and 'setScene'. Either include them or remove the dependency array    react-hooks/exhaustive-deps
+  210:6   warning  React Hook useCallback has missing dependencies: 'say', 'setHistIndex', and 'setScene'. Either include them or remove the dependency array                  react-hooks/exhaustive-deps
+  217:6   warning  React Hook useCallback has missing dependencies: 'say', 'setHistIndex', and 'setScene'. Either include them or remove the dependency array                  react-hooks/exhaustive-deps
+  378:81  warning  React Hook useEffect has a missing dependency: 'setHeaderHost'. Either include it or remove the dependency array                                            react-hooks/exhaustive-deps
+  421:6   warning  React Hook useEffect has missing dependencies: 'setGhost', 'setPending', 'setRefTarget', and 'setTool'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\geometryLabUx.tsx
+   97:85  warning  React Hook useEffect has a missing dependency: 'setLargeLabels'. Either include it or remove the dependency array                                                          react-hooks/exhaustive-deps
+  116:6   warning  React Hook useCallback has a missing dependency: 'setLargeLabels'. Either include it or remove the dependency array                                                        react-hooks/exhaustive-deps
+  138:6   warning  React Hook useCallback has a missing dependency: 'copyText'. Either include it or remove the dependency array                                                              react-hooks/exhaustive-deps
+  143:6   warning  React Hook useCallback has a missing dependency: 'copyText'. Either include it or remove the dependency array                                                              react-hooks/exhaustive-deps
+  186:6   warning  React Hook useEffect has missing dependencies: 'fit', 'setContrast', 'setInspectorOpen', 'setUnitHint', and 'setZoom'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  212:6   warning  React Hook useCallback has missing dependencies: 'setPanX' and 'setPanY'. Either include them or remove the dependency array                                               react-hooks/exhaustive-deps
+  216:7   warning  React Hook useMemo has missing dependencies: 'setChallengeFlash' and 'setHighlight'. Either include them or remove the dependency array                                    react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\geometryLessonOverlays.ts
+  17:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\measurement\MeasurementLab.tsx
+  104:81  warning  React Hook useEffect has a missing dependency: 'setHeaderHost'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\polygons\DiagonalsLab.tsx
+  29:3  error    'fmt' is defined but never used. Allowed unused vars must match /^_/u                                                                                 @typescript-eslint/no-unused-vars
+  60:6  warning  React Hook useCallback has a missing dependency: 'setProgress'. Either include it or remove the dependency array                                      react-hooks/exhaustive-deps
+  72:6  warning  React Hook useEffect has missing dependencies: 'setAnimate', 'setN', 'setProgress', and 'setSub'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\polygons\InteriorAnglesLab.tsx
+   74:6  warning  React Hook useCallback has a missing dependency: 'setProgress'. Either include it or remove the dependency array                           react-hooks/exhaustive-deps
+  109:6  warning  React Hook useEffect has missing dependencies: 'setSub', 'setWalk', and 'syncRegular'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\polygons\PolygonAreaLab.tsx
+  95:6  warning  React Hook useEffect has a missing dependency: 'setSub'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\polygons\PolygonsLab.tsx
+  12:10  error  'useState' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\polygons\RegularPolygonLab.tsx
+  75:6  warning  React Hook useEffect has missing dependencies: 'setHL' and 'setN'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\polygons\TessellationLab.tsx
+  49:6  warning  React Hook useEffect has missing dependencies: 'setN' and 'setSub'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\polygons\tessellation\TessellationLab.tsx
+  160:6  warning  React Hook useEffect has missing dependencies: 'setRevealed', 'setSelectedEdge', 'setSelectedTile', and 'setSelectedVertex'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  176:6  warning  React Hook useEffect has a missing dependency: 'setRevealed'. Either include it or remove the dependency array                                                                   react-hooks/exhaustive-deps
+  192:6  warning  React Hook useEffect has missing dependencies: 'setCompare', 'setKind', 'setN', and 'setPattern'. Either include them or remove the dependency array                             react-hooks/exhaustive-deps
+  197:6  warning  React Hook useEffect has a missing dependency: 'setSelectedVertex'. Either include it or remove the dependency array                                                             react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\proofs\ProofsLab.tsx
+  4:10  error  'useState' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\solids\SolidsStudioLab.tsx
+  2:10  error  'useState' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\triangles\CongruenceLab.tsx
+   61:10  error    'free' is assigned a value but never used. Allowed unused vars must match /^_/u                                                  @typescript-eslint/no-unused-vars
+   83:6   warning  React Hook useMemo has missing dependencies: 'leftOrigin' and 'rightOrigin'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  131:6   warning  React Hook useEffect has a missing dependency: 'setTest'. Either include it or remove the dependency array                       react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\triangles\SimilarityLab.tsx
+  78:6  warning  React Hook useEffect has missing dependencies: 'setCrit' and 'setK'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\triangles\TriangleCentersLab.tsx
+  125:6  warning  React Hook useEffect has missing dependencies: 'setAdvanced' and 'setTri'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\triangles\TriangleExplorerLab.tsx
+  160:6  warning  React Hook useEffect has missing dependencies: 'setTri' and 'tri.C'. Either include them or remove the dependency array                            react-hooks/exhaustive-deps
+  178:6  warning  React Hook useEffect has missing dependencies: 'commit', 'setAnim', 'setPreset', and 'setSub'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  195:6  warning  React Hook useEffect has missing dependencies: 'commit', 'redo', and 'undo'. Either include them or remove the dependency array                    react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\triangles\TriangleInequalitiesLab.tsx
+   63:6  warning  React Hook useEffect has a missing dependency: 'setHinge'. Either include it or remove the dependency array                                react-hooks/exhaustive-deps
+   89:6  warning  React Hook useEffect has a missing dependency: 'setHinge'. Either include it or remove the dependency array                                react-hooks/exhaustive-deps
+  102:6  warning  React Hook useEffect has missing dependencies: 'setA', 'setB', 'setC', and 'setHinge'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\geometry\triangles\TrianglesLab.tsx
+  2:10  error  'useState' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\landing\StudioLandingTeasers.tsx
+  559:6  warning  React Hook useMemo has missing dependencies: 'setK' and 'setZ'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\linear-algebra\LinearAlgebraLabs.tsx
+  780:6  warning  React Hook useEffect has a missing dependency: 'setK'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\linear-algebra\linearAlgebraStudioSession.ts
+  116:9  error  'joiner' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\linear-algebra\linearAlgebraUi.tsx
+  71:75  warning  React Hook useEffect has a missing dependency: 'setHost'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\mockup\labs\ApplicationsLab.tsx
+  176:6  warning  React Hook useEffect has a missing dependency: 'applyPreset'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\mockup\labs\DedicatedStudioLabs.tsx
+   74:6   warning  React Hook useEffect has a missing dependency: 'setTick'. Either include it or remove the dependency array            react-hooks/exhaustive-deps
+  156:6   warning  React Hook useEffect has missing dependencies: 'setA' and 'setT'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  186:75  error    'aMin' is never reassigned. Use 'const' instead                                                                       prefer-const
+  186:86  error    'aMax' is never reassigned. Use 'const' instead                                                                       prefer-const
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\mockup\labs\ModellingLabs.tsx
+  379:6  warning  React Hook useEffect has a missing dependency: 'setTick'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\mockup\labs\RemainingStudioLabs.tsx
+    4:21  error    'useMemo' is defined but never used. Allowed unused vars must match /^_/u                                   @typescript-eslint/no-unused-vars
+    5:10  error    'useSearchParams' is defined but never used. Allowed unused vars must match /^_/u                           @typescript-eslint/no-unused-vars
+  146:6   warning  React Hook useEffect has a missing dependency: 'setTool'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  252:10  error    'quantile' is defined but never used. Allowed unused vars must match /^_/u                                  @typescript-eslint/no-unused-vars
+  261:10  error    'pearson' is defined but never used. Allowed unused vars must match /^_/u                                   @typescript-eslint/no-unused-vars
+  278:10  error    'seededRng' is defined but never used. Allowed unused vars must match /^_/u                                 @typescript-eslint/no-unused-vars
+  286:10  error    'histogramBins' is defined but never used. Allowed unused vars must match /^_/u                             @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\mockup\labs\RightTriangleLab.tsx
+  108:6  warning  React Hook useEffect has a missing dependency: 'setCanvasZoom'. Either include it or remove the dependency array                              react-hooks/exhaustive-deps
+  154:6  warning  React Hook useEffect has missing dependencies: 'applyExample', 'example', and 'setKnown'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\mockup\labs\TrigonometryConceptLabs.tsx
+  158:6  warning  React Hook useEffect has a missing dependency: 'setTime'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\mockup\labs\UnitCircleLab.tsx
+  136:6  warning  React Hook useEffect has a missing dependency: 'setAngle'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  141:6  warning  React Hook useEffect has a missing dependency: 'setAngle'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  157:6  warning  React Hook useEffect has a missing dependency: 'setAngle'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\mockup\labs\WavesHarmonicsLab.tsx
+  49:6  warning  React Hook useEffect has a missing dependency: 'setSecondWave'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  55:6  warning  React Hook useEffect has a missing dependency: 'setTime'. Either include it or remove the dependency array        react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\number-systems\NumberSystemsLabs.tsx
+  291:6  warning  React Hook useEffect has missing dependencies: 'setExample' and 'setRoot'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  389:6  warning  React Hook useEffect has a missing dependency: 'setReady'. Either include it or remove the dependency array                    react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\phase1\ClassroomBar.tsx
+  16:6  warning  React Hook useEffect has a missing dependency: 'setCode'. Either include it or remove the dependency array    react-hooks/exhaustive-deps
+  20:6  warning  React Hook useEffect has a missing dependency: 'setJoined'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\phase1\StudioGraphWidget.tsx
+  24:6  warning  React Hook useEffect has missing dependencies: 'preset' and 'setView'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  27:6  warning  React Hook useEffect has a missing dependency: 'setTrace'. Either include it or remove the dependency array                react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\phase1\StudioModelProvider.tsx
+  57:6  warning  React Hook useLayoutEffect has a missing dependency: 'context'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  62:6  warning  React Hook useCallback has a missing dependency: 'context'. Either include it or remove the dependency array      react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\shared\studioMath3D.tsx
+  28:6  warning  React Hook useEffect has a missing dependency: 'setReady'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\statistics\SamplingCltLab.tsx
+  55:6  warning  React Hook useEffect has a missing dependency: 'setTick'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\statistics\StatisticsCoreLabs.tsx
+   34:21   error    'explorer' is defined but never used. Allowed unused args must match /^_/u                                                           @typescript-eslint/no-unused-vars
+   80:436  warning  React Hook useMemo has missing dependencies: 'a.values' and 'b.values'. Either include them or remove the dependency array           react-hooks/exhaustive-deps
+   88:410  warning  React Hook useMemo has missing dependencies: 'a.values', 'b.values', and 'rows'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  104:306  warning  React Hook useMemo has a missing dependency: 'groups'. Either include it or remove the dependency array                              react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\studios\statistics\statisticsEnhancementEngine.ts
+  22:194  error  'extended' is never reassigned. Use 'const' instead  prefer-const
+
+C:\Indian Servers\Math Universe Visualizations\src\visual-proofs\proofs\geometry\CenterCircumferenceAnglesProof.tsx
+  2:1806  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  2:1824  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  2:1854  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  2:1898  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Indian Servers\Math Universe Visualizations\src\visual-proofs\proofs\number-theory\DivisibilityTwoMobileProof.tsx
+  2:48  error  'colors' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\visual-proofs\proofs\number-theory\NegativeNumbersModuloNMobileProof.tsx
+  31:7  error  'goal' is never reassigned. Use 'const' instead  prefer-const
+
+C:\Indian Servers\Math Universe Visualizations\src\visual-proofs\proofs\number-theory\SieveEratosthenesMobileProof.tsx
+  1:21  error  'ChevronLeft' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Indian Servers\Math Universe Visualizations\src\workspace\immersive\Immersive2DBoard.tsx
+  28:4  warning  React Hook useEffect has a missing dependency: 'controller'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\workspace\immersive\ImmersiveInteractionManager.tsx
+  89:87  warning  The ref value 'startGeneration.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'startGeneration.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+
+C:\Indian Servers\Math Universe Visualizations\src\workspace\portableWorkspace.ts
+  327:71  error  Unexpected control character(s) in regular expression: \x00, \x08, \x0b, \x0c, \x0e, \x1f  no-control-regex
+
+C:\Indian Servers\Math Universe Visualizations\test-evidence\shared-lesson-graphs\29\inspect.mjs
+  2:229  error  'console' is not defined           no-undef
+  2:304  error  'getComputedStyle' is not defined  no-undef
+  2:412  error  'getComputedStyle' is not defined  no-undef
+
+✖ 566 problems (433 errors, 133 warnings)
+  4 errors and 0 warnings potentially fixable with the `--fix` option.
+

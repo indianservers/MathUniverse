@@ -2,6 +2,7 @@ import {normalizeLanguage} from './numberParser';
 export type RequestKind='COMMAND'|'QUERY'|'EXPLANATION_REQUEST'|'CONVERSATION'|'UNSUPPORTED'|'AMBIGUOUS';
 export function classifyRequest(raw:string):RequestKind{
   const text=normalizeLanguage(raw).replace(/^(?:please|kindly|can you|could you)\s+/,'');
+  if(/^(?:twice|half) as (?:big|large|small)\b/.test(text))return 'COMMAND';
   if(/^(?:maybe|perhaps|i might|i like|i love|i think|tell me about|this .*looks|do you think|what is geometry)\b/.test(text))return /maybe.*(?:delete|remove)/.test(text)?'AMBIGUOUS':'CONVERSATION';
   if(/^(?:explain|why|show steps|show me why|show why|how did you|how was)/.test(text))return 'EXPLANATION_REQUEST';
   if(/^(?:tell me (?!about)|what|where|how|which|is|are|does|find|calculate|measure|check|test|verify|compare|count)\b/.test(text))return 'QUERY';

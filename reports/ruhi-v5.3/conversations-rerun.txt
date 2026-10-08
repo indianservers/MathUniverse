@@ -1,0 +1,17 @@
+1 [
+  { name: 'all turns succeed', passed: true },
+  { name: 'centroid marker named O', passed: true },
+  { name: 'perpendicular to actual base', passed: true },
+  { name: 'perpendicular passes through O', passed: true }
+]
+2 [ { name: 'actual angle 77.4', passed: true } ]
+3 [
+  { name: 'two triangles', passed: true },
+  { name: 'clarifies other triangle', passed: true },
+  { name: 'resumes second triangle green', passed: true }
+]
+4 [
+  { name: 'two exact circle-line intersections', passed: true },
+  { name: 'both origin connections', passed: true }
+]
+5 [ { name: 'impossible constraint refused atomically', passed: true } ]

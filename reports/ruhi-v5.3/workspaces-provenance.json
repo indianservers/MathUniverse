@@ -1,0 +1,6 @@
+{
+  "source": "scripts/ruhi-v52-browser.mjs",
+  "sha256": "7e61f8fdc715e7572b8b4f6adad34074af16d600d25923a82f7b3be44e924b41",
+  "adaptation": "Output directory only; expectations unchanged",
+  "hotReload": "Vite connection retained; refresh messages suppressed; 90-second automation limits; remote hosts blocked"
+}

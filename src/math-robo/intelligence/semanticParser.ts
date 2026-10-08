@@ -1,3 +1,7 @@
+import {parseDirectedGrammar} from './directedGrammar';
+import {parse2dLanguage,rewrite2dLanguage} from './nlp2dExtensions';
+import {commandIR} from './commandIR';
+import {COMMAND_STARTS} from './commandLanguage';
 import { interpretVisualRequest } from '../../offline-intelligence/commands';
 import { COLORS, FLAT_SHAPES, SOLID_SHAPES } from '../../offline-intelligence/shapeCatalog';
 import { LANGUAGE_ACTIONS, normalizeAction } from './actionRegistry';
@@ -6,15 +10,15 @@ import { targetFromPhrase } from './targetResolver';
 import type { MathRoboCommand, MathRoboPlan, RoboMode, RoboTarget } from './types';
 import {parseExtensions} from './semanticExtensions';
 import {classifyRequest} from './requestClassifier';
-const queryWords: Record<string,string> = { 'surface area':'SURFACE_AREA','x intercept':'X_INTERCEPT','y intercept':'Y_INTERCEPT','midpoint':'MIDPOINT','distance':'DISTANCE','how far':'DISTANCE','length':'LENGTH','circumference':'CIRCUMFERENCE','perimeter':'PERIMETER','area':'AREA','volume':'VOLUME','slope':'SLOPE','center':'CENTER','centre':'CENTER','radius':'RADIUS','diameter':'DIAMETER','centroid':'CENTROID','roots':'ROOTS','root':'ROOTS','intersect':'INTERSECTION','intersection':'INTERSECTION' };
+const queryWords: Record<string,string> = { 'surface area':'SURFACE_AREA','x intercept':'X_INTERCEPT','y intercept':'Y_INTERCEPT','midpoint':'MIDPOINT','distance':'DISTANCE','how far':'DISTANCE','components':'COMPONENTS','direction':'DIRECTION','parameterization':'PARAMETERIZATION','magnitude':'MAGNITUDE','length':'LENGTH','circumference':'CIRCUMFERENCE','perimeter':'PERIMETER','area':'AREA','volume':'VOLUME','slope':'SLOPE','center':'CENTER','centre':'CENTER','radius':'RADIUS','diameter':'DIAMETER','centroid':'CENTROID','roots':'ROOTS','root':'ROOTS','intersect':'INTERSECTION','intersection':'INTERSECTION' };
 export function splitUtterance(phrase:string):string[] {
   // Mask coordinate/function parentheses, then split only before an action word.
   let depth=0;const marks:Array<number>=[];
-  const verbs='join|connect|put|draw|create|make|mark|show|hide|find|calculate|move|translate|rotate|reflect|scale|resize|change|set|select|deselect|delete|remove|duplicate|copy|plot|check|compare|count|undo|redo|what|where|are|is|construct|color|colour';
+  const verbs=[...COMMAND_STARTS,'what','where','are','is'].join('|');
   const separator=new RegExp(`^(?:[,;]\\s*|\\s+(?:and|then|after that|next|also|but|followed by)\\s+)(?=(?:${verbs})\\b)`,'i');
   for(let i=0;i<phrase.length;i++){if(phrase[i]==='('||phrase[i]==='['||phrase[i]==='{')depth++;if(phrase[i]===')'||phrase[i]===']'||phrase[i]==='}')depth--;if(depth===0){const match=phrase.slice(i).match(separator);if(match){marks.push(i,i+match[0].length);i+=match[0].length-1;}}}
   if(!marks.length)return [phrase.trim()];const result:string[]=[];let start=0;
-  for(let i=0;i<marks.length;i+=2){result.push(phrase.slice(start,marks[i]).trim());start=marks[i+1];}result.push(phrase.slice(start).trim());return result.filter(Boolean);
+  for(let i=0;i<marks.length;i+=2){result.push(phrase.slice(start,marks[i]).trim());start=marks[i+1];}result.push(phrase.slice(start).trim());return result.map(part=>part.replace(/[,;]+$/,'').trim()).filter(Boolean);
 }
 function detectedVerb(text:string) {
   const aliases:Record<string,string>={embed:'PLOT',sketch:'DRAW',build:'CREATE',make:'CREATE',turn:'ROTATE',recolor:'CHANGE',colour:'COLOR',enlarge:'SCALE',halve:'SCALE',double:'SCALE'};
@@ -26,6 +30,13 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
   const dimension=mode.endsWith('3d')?3:2;
   const command:MathRoboCommand={id:crypto.randomUUID(),rawPhrase,normalizedPhrase:text,detectedAction:detectedVerb(text),action:'',subAction:'',mode,parameters:{},confidence:{overall:1,action:1,subAction:1,parameters:1},source:{action:'rule',subAction:'rule'},requiresExecution:true};
   const p=command.parameters;
+  const composition=parse2dLanguage(command);if(composition)return composition;
+  if(dimension===3&&/^(?:draw|create|construct)\s+(?:a\s+|the\s+)?plane\b/.test(text)){
+    command.action='CREATE';command.subAction='PLANE';p.points=coordinates(text,3);const through=rawPhrase.match(/\bthrough\s+(.+)/i)?.[1];if(!p.points.length&&through)p.planeParents=[...through.matchAll(/\b([A-Za-z]\d*)\b/g)].map(m=>m[1]).filter(name=>!/^(and|point|points)$/i.test(name));const label=rawPhrase.match(/\bplane\s+([A-Za-z]\d*)\s+through/i)?.[1];if(label)p.label=label;return command;
+  }
+  if(dimension===3&&/perpendicular\s+(?:line\s+)?(?:to\s+)?(?:that\s+|the\s+|a\s+)?plane/.test(text)&&/^(?:draw|create|construct)/.test(text)){
+    command.action='CONSTRUCT';command.subAction='PERP_PLANE';command.target={type:'plane'};const point=coordinates(text,3)[0];if(point)p.position=point;else p.throughPoint=rawPhrase.match(/\bthrough\s+(?:point\s+)?([A-Za-z]\d*)/i)?.[1];return command;
+  }
   const color=text.match(new RegExp(`\\b(${Object.keys(COLORS).join('|')})\\b`))?.[1];
   const query=/\b(?:cross|crosses|crossing)\b.*\bx[ -]axis\b/.test(text)?'X_INTERCEPT':/\b(?:cross|crosses|crossing)\b.*\by[ -]axis\b/.test(text)?'Y_INTERCEPT':Object.entries(queryWords).find(([word])=>new RegExp(`\\b${word.replace(' intercept','[ -]intercepts?')}\\b`).test(text))?.[1];
   const isCompare=/^which.*(?:larger|smaller)|\bcompare\b/.test(text);
@@ -34,6 +45,7 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
   const target=targetFromPhrase(text);
   command.target=target;
   if(['CONVERSATION','AMBIGUOUS'].includes(classifyRequest(rawPhrase))||(classifyRequest(rawPhrase)==='UNSUPPORTED'&&!command.detectedAction&&!/^[xyz]\s*=|^[0-9(]/.test(text))){command.action='UNSUPPORTED';command.subAction='OBJECT';command.confidence.overall=0;command.requiresExecution=false;return command;}
+  const directed=parseDirectedGrammar(command);if(directed){p.color=color;return directed;}
   const extended=parseExtensions(command);if(extended)return extended;
   if(classifyRequest(rawPhrase)==='EXPLANATION_REQUEST'){command.action='UNSUPPORTED';command.subAction='OBJECT';command.requiresExecution=false;return command;}
   if(new RegExp(`^(?:show|display)(?: me)?\\s+(?:a |an )?(?:${[...FLAT_SHAPES,...SOLID_SHAPES].join('|')})\\b`).test(text)){
@@ -43,7 +55,7 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
   if(/^(?:undo|redo)\b/.test(text)){command.action=text.startsWith('undo')?'UNDO':'REDO';command.subAction='LAST';return command;}
   if(classifyRequest(rawPhrase)!=='QUERY'&&/\b(perpendicular|parallel|tangent)\b/.test(text)&&/\b(draw|create|construct|add|put)\b|^(?:perpendicular|parallel|tangent)/.test(text)){
     command.action='CONSTRUCT';command.subAction=/bisector/.test(text)?'PERPENDICULAR_BISECTOR':/perpendicular/.test(text)?'PERPENDICULAR':/parallel/.test(text)?'PARALLEL':'TANGENT';
-    command.target=typeof target==='object'&&target.name?target:{type:command.subAction==='TANGENT'?'circle':'line',index:-1};p.through=/midpoint/.test(text)?'midpoint':'previousResult';p.position=pts[0];p.angle=numberAfter(text,'angle|at')??0;return command;
+    command.target=typeof target==='object'&&target.name?target:{type:command.subAction==='TANGENT'?'circle':'line',index:-1};p.through=/midpoint/.test(text)?'midpoint':'previousResult';p.position=pts[0];p.angle=numberAfter(text,'angle');return command;
   }
   if(/^(?:are|is|check|test|verify)\b/.test(text)) {
     command.action='CHECK';command.subAction=/perpendicular/.test(text)?'PERPENDICULAR':/parallel/.test(text)?'PARALLEL':/inside/.test(text)?'POINT_INSIDE':/on.*circle/.test(text)?'POINT_ON_CIRCLE':/on.*line/.test(text)?'POINT_ON_LINE':/equal.*area/.test(text)?'EQUAL_AREA':/equal.*length/.test(text)?'EQUAL_LENGTH':/intersect/.test(text)?'INTERSECTING':'UNSUPPORTED';p.multiple=true;const pointName=text.match(/\b(?:point\s+|if\s+)([a-z]\d*)\s+(?:is|on|inside)/)?.[1];if(pointName&&command.subAction.startsWith('POINT_'))command.targets=[pointName,{type:command.subAction==='POINT_ON_LINE'?'line':'circle',index:-1}];return command;
@@ -61,6 +73,7 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
   if(/\b(which|compare)\b/.test(text)){command.action='COMPARE';command.subAction=query??'SIZE';p.multiple=true;return command;}
   if(/^count\b|^how many/.test(text)){command.action='COUNT';command.subAction=/vertices/.test(text)?'VERTICES':/points/.test(text)?'POINTS':/lines/.test(text)?'LINES':/shapes/.test(text)?'SHAPES':'OBJECTS';return command;}
   if(classifyRequest(rawPhrase)==='QUERY'||isQuery){command.action='UNSUPPORTED';command.subAction='OBJECT';command.requiresExecution=false;return command;}
+  if(/^deselect\b/.test(text)){command.action='DESELECT';command.subAction='ALL';return command;}
   if(/\b(delete|remove|clear|reset)\b/.test(text)){command.action='DELETE';command.subAction=/all|everything|clear|reset/.test(text)?'ALL':'OBJECT';p.multiple=/\b(both|them|those)\b/.test(text);return command;}
   if(/^deselect/.test(text)){command.action='DESELECT';command.subAction='ALL';return command;}
   if(/^select\b/.test(text)){command.action='SELECT';command.subAction=/all|everything/.test(text)?'ALL':'OBJECT';p.multiple=/\bboth\b/.test(text);return command;}
@@ -72,11 +85,16 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
     return command;}
   if(/\b(rotate|turn|tilt)\b/.test(text)&&!color){command.action='ROTATE';command.subAction='OBJECT';const angle=text.replace(/\b[a-z]+\d+\b/g,'').match(new RegExp(NUMBER_PATTERN));p.angle=angle?parseNumber(angle[0]):undefined;if(/radians/.test(text)&&p.angle!==undefined)p.angle=p.angle*180/Math.PI;if(/clockwise/.test(text)&&!/counterclockwise|anticlockwise/.test(text)&&p.angle!==undefined)p.angle=-p.angle;p.axis=text.match(/\b([xyz])[ -]?axis/)?.[1]??'z';return command;}
   if(/\b(scale|double|halve|twice|enlarge|shrink)\b/.test(text)){command.action='SCALE';command.subAction='UNIFORM';p.factor=/double|twice/.test(text)?2:/halve/.test(text)?.5:numberAfter(text,'by|factor|scale|shrink');return command;}
+  if(/^(?:change|set)\b/.test(text)&&/\b(?:endpoints|tail|head|origin|through)\b/.test(text)&&pts.length===2){command.action='CHANGE';command.subAction='ENDPOINTS';p.points=pts;return command;}
   if(/\b(change|set|resize|make|color|colour|recolor|rename|label)\b/.test(text)&&(!/\b(draw|create|add)\b/.test(text))&&(color||/its|\bit\b|that|this|change|set|resize|rename/.test(text))){
-    command.action=/resize/.test(text)?'RESIZE':'CHANGE';command.subAction=command.action==='RESIZE'?'OBJECT':color?'COLOR':/diameter/.test(text)?'DIAMETER':/radius/.test(text)?'RADIUS':/width/.test(text)?'WIDTH':/height/.test(text)?'HEIGHT':/depth/.test(text)?'DEPTH':/label|rename/.test(text)?'LABEL':/coordinates/.test(text)?'COORDINATES':pts.length?'POSITION':'OBJECT';
-    p.color=color;for(const key of ['width','height','depth','radius','diameter'] as const)p[key]=numberAfter(text,key);p.position=pts[0];p.label=text.match(/(?:label|rename).*?(?:to|as)\s+([\w-]+)$/)?.[1];return command;
+    const ratio=text.match(/(?:its? )?(width|height|depth) (?:to |be )?(half|twice|double) (?:of )?(?:its? |the )?(width|height|depth)/);
+    command.action=/resize/.test(text)?'RESIZE':'CHANGE';command.subAction=command.action==='RESIZE'?'OBJECT':color?'COLOR':ratio?ratio[1].toUpperCase():/diameter/.test(text)?'DIAMETER':/radius/.test(text)?'RADIUS':/width|wide/.test(text)?'WIDTH':/height/.test(text)?'HEIGHT':/depth/.test(text)?'DEPTH':/label|rename/.test(text)?'LABEL':/coordinates/.test(text)?'COORDINATES':pts.length?'POSITION':'OBJECT';
+    p.color=color;for(const key of ['width','height','depth','radius','diameter'] as const)p[key]=numberAfter(text,key);
+    const wide=text.match(new RegExp(`(${NUMBER_PATTERN})\\s*(?:units?\\s*)?wide\\b`));if(wide)p.width=parseNumber(wide[1]);
+    if(ratio){for(const key of ['width','height','depth'] as const)delete p[key];p.dimensionRatio={destination:ratio[1],source:ratio[3],factor:ratio[2]==='half'?.5:2};}
+    p.position=pts[0];p.label=text.match(/(?:label|rename).*?(?:to|as)\s+([\w-]+)$/)?.[1];return command;
   }
-  if(/\b(plot|graph)\b|[yz]\s*=/.test(text)&&!isQuery){
+  if(/\b(plot|graph)\b|[yz]\s*=/.test(text)&&!isQuery&&!/^create\b.*\b(circle|rectangle|square|triangle|sphere|cube|point|line|ray|vector)\b/.test(text)){
     command.action='PLOT';command.subAction=dimension===3?'SURFACE_3D':'FUNCTION';p.expression=text.replace(/^(?:plot|graph|draw (?:a )?graph of|show graph of|create a graph of|embed graph of)\s*/,'').replace(/^[yz]\s*=\s*/,'').trim().replace(/(\d)([xy])/g,'$1*$2');p.color=color;return command;
   }
   const kind=text.match(new RegExp(`\\b(${[...FLAT_SHAPES,...SOLID_SHAPES,'point','line','segment','ray','vector','plane','arc','sector'].join('|')})s?\\b`))?.[1];
@@ -85,7 +103,7 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
     let canonical=text.replace(new RegExp(NUMBER_PATTERN,'g'),value=>String(parseNumber(value)));
     canonical=canonical.replace(new RegExp(`\\b${kind}s\\b`,'g'),kind);
     if(new RegExp(`\\b${kind}s\\b`).test(text))p.count=numberAfter(text,'draw|create|make|add')??2;
-    if(kind==='line'&&pts.length===2)canonical=`Draw line (${pts[0].join(',')}) to (${pts[1].join(',')})`;
+    if(['line','ray','vector'].includes(kind)&&pts.length===2)canonical=`Draw ${kind} (${pts[0].join(',')}) to (${pts[1].join(',')})`;
     if(kind==='point'&&pts.length===1)canonical=`Create point (${pts[0].join(',')})`;
     const legacy=interpretVisualRequest(canonical,mode);if(legacy.command){p.legacy=legacy.command;p.width=legacy.command.width;p.height=legacy.command.height;p.radius=legacy.command.radius;p.depth=legacy.command.depth;p.sides=legacy.command.sides;}else p.parseError=legacy.message;
     if(/centered there|centred there|at that point|at the midpoint/.test(text))p.atPreviousResult=true;
@@ -104,7 +122,9 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
   command.action=normalizeAction(command.detectedAction||'UNHANDLED');command.subAction='OBJECT';command.confidence.overall=command.action==='UNHANDLED'?0:1;return command;
 }
 export function parseSemanticPlan(phrase:string,mode:RoboMode):MathRoboPlan {
-  const commands=splitUtterance(phrase).map(part=>parseSemanticCommand(part,mode));
-  return {rawPhrase:phrase,commands,confidence:Math.min(...commands.map(c=>c.confidence.overall))};
+  const rewritten=mode.endsWith('3d')?phrase:rewrite2dLanguage(phrase);
+  const commands=(/^if\b/i.test(rewritten)?[rewritten]:splitUtterance(rewritten)).map(part=>parseSemanticCommand(part,mode));
+  for(let i=1;i<commands.length;i++)if(commands[i].action==='CHANGE'&&commands[i].subAction==='LABEL'&&commands.slice(0,i).some(c=>['CREATE','MARK','CONSTRUCT'].includes(c.action)))commands[i].target='lastCreated';
+  return {rawPhrase:phrase,commands,ir:commands.map(commandIR),atomicity:'all-or-nothing',confidence:Math.min(...commands.map(c=>c.confidence.overall))};
 }
 export function explicitTargets(command:MathRoboCommand):RoboTarget[]|undefined { return command.targets; }

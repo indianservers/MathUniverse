@@ -1,0 +1,682 @@
+[
+  {
+    "path": "src\\math-foundation\\adapters.ts",
+    "sha256": "b616d5e35b8f7f14d86d6cb87125b21adcd0779e46752bd0799dfd81418b7768"
+  },
+  {
+    "path": "src\\math-foundation\\adaptiveGraph.ts",
+    "sha256": "30212ca27d51c335005bd7d8823059274c930f8939d1878f69a423a49551f2d8"
+  },
+  {
+    "path": "src\\math-foundation\\analysis2d.ts",
+    "sha256": "ba0e21146fc410eda48479b886cfad451c61920af09de62bee3cea6fcaeda671"
+  },
+  {
+    "path": "src\\math-foundation\\audioTrace.ts",
+    "sha256": "6d18cced90dcbf0135e41df3a10b013aaffba948245cc024754dc018772206e7"
+  },
+  {
+    "path": "src\\math-foundation\\dependencyGraph.ts",
+    "sha256": "11bd1f09b1928536fd0586097f980b58cea1b5c45723c15a15deda348dc8472d"
+  },
+  {
+    "path": "src\\math-foundation\\document.ts",
+    "sha256": "26b657cc9a80a3fd2e9594c371deba284a862af8d9272380260fbd34189a1eda"
+  },
+  {
+    "path": "src\\math-foundation\\evaluator.ts",
+    "sha256": "c619fd7b5b73671a0771738c956c2004e5ec0eb25ea82ad7ce8588bd83d950a5"
+  },
+  {
+    "path": "src\\math-foundation\\geometryPhase2.ts",
+    "sha256": "1c01300831185afe4b6ccebd225ae56262ada07a66bac6498e000bc6ca2339d1"
+  },
+  {
+    "path": "src\\math-foundation\\parser.ts",
+    "sha256": "422b9a04e215aae612622f5ff3d62c7ea721ce8e2b58f7a688e5fe65e60b072a"
+  },
+  {
+    "path": "src\\math-foundation\\phase2Objects.ts",
+    "sha256": "3c2bd674cbd79c509bc12eca552fd465350e91ff4a13b11f40f43e611ead4fc2"
+  },
+  {
+    "path": "src\\math-foundation\\types.ts",
+    "sha256": "5e680138a006b001ead98bf59efc0efb5f6d934eae23f29a3d8c2d0c9cf530f2"
+  },
+  {
+    "path": "src\\math-foundation\\values.ts",
+    "sha256": "7f7ad37747d356f29bd8c0f7e0db1d231f80620c3ecf26e41685c0474f232f84"
+  },
+  {
+    "path": "src\\math-foundation\\benchmarks\\phase2Corpus.ts",
+    "sha256": "481a230e4dbde07decbb709d5ae3dbafa3bb693899974a9c2bf418e272b083b6"
+  },
+  {
+    "path": "src\\cas\\casCommandRegistry.ts",
+    "sha256": "718b0954db16604b819225d3a0ee727ddd3595bc5551daf9c7806b987cfd74f9"
+  },
+  {
+    "path": "src\\cas\\casGeoGebraParity.ts",
+    "sha256": "f465e19d133bf411f6ee545603ea700e477c88817653a50115a2ea210a8b6a8c"
+  },
+  {
+    "path": "src\\cas\\casNotebookEngine.ts",
+    "sha256": "bbc6b0d32618c883620d098e5d345d9fdc7ec0ac7d5914a4a76f961cd4a2f84f"
+  },
+  {
+    "path": "src\\cas\\casNotebookPersistence.ts",
+    "sha256": "801c0ae7dc48ed20a64f72d039dc8dc23810bd95946c565f97f40c56c147dcbc"
+  },
+  {
+    "path": "src\\cas\\casParser.ts",
+    "sha256": "f0e45c6ec717d32b5a577d64e2806fd58c04a64421aecf15f45e29e0adc121e9"
+  },
+  {
+    "path": "src\\cas\\casResult.ts",
+    "sha256": "42ee32754c1688f1eba12e33c8a4edc86be54980f31b653afe493efaf638c89e"
+  },
+  {
+    "path": "src\\cas\\workspaceCas.ts",
+    "sha256": "e685ce9ee89b4435b9eae2f719254cbf8e8490b462780e6dd1e8dc4ab1407c2e"
+  },
+  {
+    "path": "src\\phase4\\analysisCard.ts",
+    "sha256": "6d9767a3a0f2bc77e016d16771276b90bdd30b98d69e3e153bf0b30f841c5531"
+  },
+  {
+    "path": "src\\phase4\\assumptionEngine.ts",
+    "sha256": "5bc68998d9d2aa8cc23ba3da7b2efb88b073a4570a29ddb645e79c7452c14ba9"
+  },
+  {
+    "path": "src\\phase4\\benchmarkCorpus.ts",
+    "sha256": "49982dbe8908a296268883c3a82faa0dc470d3c679a08e7fdcce83c190c9b91c"
+  },
+  {
+    "path": "src\\phase4\\calculusWorkflow.ts",
+    "sha256": "57392a8ebfc7557a735aad941482e5455e5138709f098e0270b818899696d739"
+  },
+  {
+    "path": "src\\phase4\\casEngine.ts",
+    "sha256": "79aaa455b8a6532896d446a76e677b45ecb83084d330bdecc493c9c9ca2919e0"
+  },
+  {
+    "path": "src\\phase4\\dataframe.ts",
+    "sha256": "29e5ce75bc11f793ab251de06c0f2b1a039f756edef607a22dbb36dd321fc1c9"
+  },
+  {
+    "path": "src\\phase4\\distributions.ts",
+    "sha256": "c8781af08d6d9cb714f2e3bb2e44e9d51d37ac8633372293f3849595cb630a96"
+  },
+  {
+    "path": "src\\phase4\\notebook.ts",
+    "sha256": "12787b62fe65958f20725113ce47d7c35d39ee77f68bde2203d0b39f5d14dc7d"
+  },
+  {
+    "path": "src\\phase4\\numerical.ts",
+    "sha256": "61f89c245918d4abe0d5f836203c7029d4d48c1aa18a195cb8f1978fd49525b6"
+  },
+  {
+    "path": "src\\phase4\\simulation.ts",
+    "sha256": "7a3b418891aded39f79f71ff4750185e7f079fb92ea4e1369787174ae0ca6cac"
+  },
+  {
+    "path": "src\\phase4\\statistics.ts",
+    "sha256": "6e8d2cd0ab543ce2400dce95bd9803e7eccaf1bdd6d9182ec8e8256fb1f5a67e"
+  },
+  {
+    "path": "src\\phase4\\transformationRules.ts",
+    "sha256": "feedb7aa55b755663458d939a379d7d900e83d497fe27f66b102f3e4e4af35ce"
+  },
+  {
+    "path": "src\\phase4\\types.ts",
+    "sha256": "1f68e619e6c8a6f6b3f3f49b280bcc31ba95acb39771eb1716c991da4fa91643"
+  },
+  {
+    "path": "src\\phase4\\units.ts",
+    "sha256": "50668163bad2dcda1c2365999eba180125e92ff76b12ce9be8405944a293a3ea"
+  },
+  {
+    "path": "src\\phase5\\analyticGeometry3d.ts",
+    "sha256": "93872b4d330d35c55de823df01283f0add21d2e9ca3ffa3aa666dadf9b1de47f"
+  },
+  {
+    "path": "src\\phase5\\authoring.ts",
+    "sha256": "001e564e2d2b488c980bef655768d4d33f486071416008a111576bb5b7813ec3"
+  },
+  {
+    "path": "src\\phase5\\benchmark3d.ts",
+    "sha256": "da74c6a05408d523516e2932cfa2013526760c3eac4eed9ce5171a97a325083c"
+  },
+  {
+    "path": "src\\phase5\\calculus3d.ts",
+    "sha256": "28ca177e5ae8db173a9533e8eb27fcad3bf8c7bb8cb1c237cd284fd6c2b7c6f1"
+  },
+  {
+    "path": "src\\phase5\\curriculumPipeline.ts",
+    "sha256": "64f5405cf08eb410b72201ee6a1e402d63df2391cc7e5745438e28d4cb120262"
+  },
+  {
+    "path": "src\\phase5\\exports3d.ts",
+    "sha256": "13e77c41ad2b3b1f00ccc1b056220fa7fe30f4d1ce68ca811b77b0d70df54fdb"
+  },
+  {
+    "path": "src\\phase5\\extensions.ts",
+    "sha256": "d4277f8538a230d0bb276ee7ff391b956add8c05a20a2bdaf4c81c7b41df7c11"
+  },
+  {
+    "path": "src\\phase5\\integration3d.ts",
+    "sha256": "09c081fd2a52054bd6b2ac067dec38acb186dbfda4d0a6b3ed388963a903cfc3"
+  },
+  {
+    "path": "src\\phase5\\localization.ts",
+    "sha256": "d5f5a93b818b3c5df128f1f3e7bc153d3ace1e8f68bc80cb876e56d174668997"
+  },
+  {
+    "path": "src\\phase5\\math3dEngine.ts",
+    "sha256": "ae0f4042e7f7ff2420f3f8e644ba855598026c35369a0537de7ec03670066945"
+  },
+  {
+    "path": "src\\phase5\\measurement3d.ts",
+    "sha256": "76efd2df395f018e395969b386f2650b9ac2f7c64690af1f754e394210a3bf42"
+  },
+  {
+    "path": "src\\phase5\\migration.ts",
+    "sha256": "a4420077b03c19e5d322491e89a2b5a81df97bbafb15ce9fdde657218eb1bb92"
+  },
+  {
+    "path": "src\\phase5\\scorecard.ts",
+    "sha256": "00d87e867aabb9fa67dc80bc988893fce4ae30d212c4f41979b8369e7a1d3a91"
+  },
+  {
+    "path": "src\\phase5\\sharing.ts",
+    "sha256": "12747882e97157538ce99f090f7503fe20ce2f98789573e31cf89b20b782fad8"
+  },
+  {
+    "path": "src\\phase5\\transform3d.ts",
+    "sha256": "7bfcffd546ac2d4f9a815ccf1af19727ae15cce6b7fcbd1ce26c1edfc1cad584"
+  },
+  {
+    "path": "src\\phase5\\types.ts",
+    "sha256": "01db7f37bd86106c63865fb8946ba56ad6aba69d8b8974a10b8a49b54ffd0c38"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\adaptiveSampler.ts",
+    "sha256": "66d0244fd5922ed8055cf550eda396ad340e6bcefc572242056e07e7766e5838"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\calculusUtils.ts",
+    "sha256": "7a5068bdaac8e70abd96d5ce47a481d44a913ab5ab1ee2e03376516b9ce58f52"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\casUtils.ts",
+    "sha256": "946b5b053a6cb45bf99f6975b456992cf2a620e2f0246f62684475034b4e3599"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\engineeringSystems.ts",
+    "sha256": "274a5f1f085f753ce2f805dd82cb300477f859ae1841af1c5e2b6cff6a032a66"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\equationSolver.ts",
+    "sha256": "942c36f155302c7c954d6178b04737e8a88edba169e123ea64781c9630ddd8db"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\expressionUtils.ts",
+    "sha256": "ac9ab295daa7ead36bc691d7323713a32be9c345cb5233a476cfd923fef4db09"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\geometryUtils.ts",
+    "sha256": "1a357c40ba1d18ba29dcb4706d8faa877c9f772fb20306e79153b59f2af2795c"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\graph3dUtils.ts",
+    "sha256": "c7de5170f16ed83c7327bb73d2376c77bfab02deaa9d03f0e327823d119f2892"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\graphSampler.ts",
+    "sha256": "dff463c4ccef0fc85a6bbc2bab11cd7ca338fb28041e30fba71ecbe18ea981a3"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\linearAlgebraUtils.ts",
+    "sha256": "c37b4cfa9bcc5ddc5f226806d8ec557f17d2cf4c9d33fb9385fe478b6ee85c75"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\matrixUtils.ts",
+    "sha256": "07d2086ae8b57f0a024ebe9ac4cccfe70563f28374d38f609e0ae3788d2dcc4a"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\parser.ts",
+    "sha256": "02f42d4091c016f8d25920131212a858fe23eb6d2a7036699f2a0135fcd952a5"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\probabilityUtils.ts",
+    "sha256": "2ae9d59e9fb0fce3beb7fa39212140f82972c94c91085caa3a781332dc76bbc3"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\queryRouter.ts",
+    "sha256": "0da55edca9f643ff86b486f0f3cc5fbaa9e9304694887ea738376c2ccfb44044"
+  },
+  {
+    "path": "src\\utils\\mathEngine\\statisticsUtils.ts",
+    "sha256": "a6822dd2e6d2c88f4cb1c3ff754ca19c5b5fe9a10121f04773861a36bcbcbac1"
+  },
+  {
+    "path": "src\\problem-solver\\algebraStepSolver.ts",
+    "sha256": "12b9364cf67ebd6bd4075a4b2d746293e1d0aba4a5b7ec26250fb7784681814b"
+  },
+  {
+    "path": "src\\problem-solver\\calculusSolver.ts",
+    "sha256": "e80b30cae77dc6b7d05d4ed279d8d426ae8db98928eabfaa5788f3cc25c5ecf2"
+  },
+  {
+    "path": "src\\problem-solver\\expressionOperationSolver.ts",
+    "sha256": "694255ccc87d9032fdc0f79c1bcea2ca717516a15e04e347c35dc0749ac393d5"
+  },
+  {
+    "path": "src\\problem-solver\\fractalSolver.ts",
+    "sha256": "33d2bc43039a4078f73480f36a30f9ad81853b8bea562514863f89ea52ae7f14"
+  },
+  {
+    "path": "src\\problem-solver\\graphingUtils.ts",
+    "sha256": "09c955728cb0fb0b558655656ceb9b529f5ad7d2ea1aa08d6f4ddb06cbb0fbbc"
+  },
+  {
+    "path": "src\\problem-solver\\mathKeywordRecognizer.ts",
+    "sha256": "6c756d2fc9cd43d66bb49c93230fbd4dc5b43ce95b09820a778ed7731a7b0445"
+  },
+  {
+    "path": "src\\problem-solver\\mathSuggestions.ts",
+    "sha256": "8d31a406708c87567fbf933a7c04608e47756f80a130bf014c155ea59da07000"
+  },
+  {
+    "path": "src\\problem-solver\\matrixSolver.ts",
+    "sha256": "69c0f1509536e6fee9777290695419c410fa4313d7a621fe3d6cdd74867a2d6b"
+  },
+  {
+    "path": "src\\problem-solver\\problemClassifier.ts",
+    "sha256": "9cc4106b142abaee84bbf520f7bb957fde94a53dfdf0245c3b9a0abc03914851"
+  },
+  {
+    "path": "src\\problem-solver\\problemSolverEngine.ts",
+    "sha256": "a2490c8312e74d176775d082bd508c693b99139c9f418137e5111b936840f0be"
+  },
+  {
+    "path": "src\\problem-solver\\problemTypes.ts",
+    "sha256": "a134fe8e9a725dc75380917d4637b687bdab7c905084bc9556ec13994bfb3045"
+  },
+  {
+    "path": "src\\problem-solver\\proportionalReasoningSolver.ts",
+    "sha256": "a6101d60fb33dfe9c6cac31b06b8b18f5a6c088c5b7899de7307ebc04bc61019"
+  },
+  {
+    "path": "src\\problem-solver\\resultCards.ts",
+    "sha256": "df12f13a169753a182d77f6de91da67bc51456efcb43dbbb5efd3561eca9e282"
+  },
+  {
+    "path": "src\\problem-solver\\simpleInterest.ts",
+    "sha256": "90b8fe7d4e4feec1cbacf83f9c8db3e477ca04c6a4ee195b52b7312320280def"
+  },
+  {
+    "path": "src\\problem-solver\\statisticsSolver.ts",
+    "sha256": "2bdedd1d4358fc2a992abaaeeda15485a94dae2c7c3db3095d75ab6db6dacfe0"
+  },
+  {
+    "path": "src\\problem-solver\\systemSolver.ts",
+    "sha256": "19bc7f16ae8e10242dc631548ec11ef97fbfb61f979ddd86cef9fcf6cc896302"
+  },
+  {
+    "path": "src\\problem-solver\\valueTable.ts",
+    "sha256": "fcda9ef0f173c80aaee3d60c40f77b05984eb915576bb490841dd37a820fa666"
+  },
+  {
+    "path": "src\\problem-solver\\wordProblemSolver.ts",
+    "sha256": "8e00c82af40e7b906d078d11e004fba761eef5e5d3848dbb3924ee2123df7c3f"
+  },
+  {
+    "path": "src\\problem-solver\\intelligence\\mathEducationLevel.ts",
+    "sha256": "f5db840d79c4bf77e1210a616e3e0f0c1259ec109acb6fad6ff9aca946b895d8"
+  },
+  {
+    "path": "src\\problem-solver\\intelligence\\mathKeywordDictionary.ts",
+    "sha256": "53dc480ca2b768dd50d8e96306c29b935052592964f8dce356675d7fed21b0aa"
+  },
+  {
+    "path": "src\\problem-solver\\intelligence\\mathRecognitionAudit.ts",
+    "sha256": "7da65d4028b299a175abd1ace9a433237cb1308238401ae409158c7705f16fc4"
+  },
+  {
+    "path": "src\\problem-solver\\intelligence\\mathRecognitionTypes.ts",
+    "sha256": "3deed5ae6b6ec3b9576b6dafd8e5b944f4405d83fc198fa5335cf5a3d883ff1f"
+  },
+  {
+    "path": "src\\problem-solver\\intelligence\\mathRecognizer.ts",
+    "sha256": "b5041d194d4cfa62e50a5541ca5c1762581999f4f5edefae66c500ec5c927132"
+  },
+  {
+    "path": "src\\problem-solver\\intelligence\\mathSuggestions.ts",
+    "sha256": "22c65f2f17f7528fffd13015404e36e69c330982149762657bf35d47679663f3"
+  },
+  {
+    "path": "src\\problem-solver\\intelligence\\mathTokenizer.ts",
+    "sha256": "5800124de31ab618eb5edeeda9b56f31d54eafa8c2fcab9c1a15f3719e517974"
+  },
+  {
+    "path": "src\\problem-solver\\types\\solverResult.ts",
+    "sha256": "96075dd51308f01b7079d1558d1b0534fa3de11cedba346ac1b28b35a8e80bb9"
+  },
+  {
+    "path": "src\\workspace\\actionCommandKernel.ts",
+    "sha256": "633c22fccb1075604a5e2e3958496372dec335ba7141eafbfdf696f790a2d7f0"
+  },
+  {
+    "path": "src\\workspace\\animationEngine.ts",
+    "sha256": "3aa72f074921a31243d30a0720980245acd028a1f8648fdc8a78f85a7d932d9f"
+  },
+  {
+    "path": "src\\workspace\\beyondGeoGebraKernel.ts",
+    "sha256": "37aeeaaec346f0bfe1838b7fc65852cd24822de5a924c05cbc09cdde7a5207e3"
+  },
+  {
+    "path": "src\\workspace\\browserProjectCenter.ts",
+    "sha256": "69ddbeccd14ddfdf57e64eb4b5c4f3c920753d879dff6c6ad155684139e7be04"
+  },
+  {
+    "path": "src\\workspace\\browserShareLinks.ts",
+    "sha256": "e18056dbddf16d78aad82cda77787c3a2a992dd0293c84d1c40a294fcf6cadf3"
+  },
+  {
+    "path": "src\\workspace\\browserSpeechInput.ts",
+    "sha256": "527684496c4e812ed9b5da3e887fb1c89a8430385fdccb5eaf2efff226efd845"
+  },
+  {
+    "path": "src\\workspace\\casTableKernel.ts",
+    "sha256": "e6a7d7f93d2754d7fc5dc5268e75a5f99b84906502ccdeebc2a36999dec3e3b8"
+  },
+  {
+    "path": "src\\workspace\\casVisualSync.ts",
+    "sha256": "d54af5021b75536db29f738bc4f34c7743728f35c3e3a9bda905963ba63a2ae2"
+  },
+  {
+    "path": "src\\workspace\\classroomAuthoring.ts",
+    "sha256": "56fbd20fb60e79242aeef2173fbd003643e698d880d593209189fa078f33acca"
+  },
+  {
+    "path": "src\\workspace\\commandRegistry.ts",
+    "sha256": "b6a358696f1b799f5b98d236ba009b8e719e6c1212b94c02518ffcc019ccef46"
+  },
+  {
+    "path": "src\\workspace\\constructionKernels.ts",
+    "sha256": "936d2e0f95e8999fe72c81aceb53eb1b6e9593a23051ae507a9132c6ffb157d3"
+  },
+  {
+    "path": "src\\workspace\\constructionProtocol.ts",
+    "sha256": "46d9cbb8279d234edca1e4d4fade167cb9bc4da60c416b740596df3c0dc492b5"
+  },
+  {
+    "path": "src\\workspace\\coreObjects.ts",
+    "sha256": "0cc963f3f2f332f341fe19fe00e281e06663ae35d0251a8dbe52196ceb17f5db"
+  },
+  {
+    "path": "src\\workspace\\criticalGapPhases.ts",
+    "sha256": "6b5aeffdd430771f8b799887cb89ecc48a69d65a616cbfa3d152d80280e6d674"
+  },
+  {
+    "path": "src\\workspace\\dataWorkspaceIntegration.ts",
+    "sha256": "4369235f1b97d5aaf1da9077dcb122a39b0593cabe716a24dc9b7773558ec5cc"
+  },
+  {
+    "path": "src\\workspace\\dependencyGraph.ts",
+    "sha256": "216297ebda7285ee998862a92b7ae0ff67128c1871250b59904f7b3c002ceef6"
+  },
+  {
+    "path": "src\\workspace\\directionalFocus.ts",
+    "sha256": "6f7e3aa577e5501d9e687be6e840af25cb89652666605327cc67df27f95f194c"
+  },
+  {
+    "path": "src\\workspace\\dynamicObjectKernel.ts",
+    "sha256": "5445953ece7b76698485b3de3e347dd91c4dc4a205a0c56c12104f52e5caa973"
+  },
+  {
+    "path": "src\\workspace\\dynamicWorkspaceEngine.ts",
+    "sha256": "49d7d709412b5c3c7acc14d5fb5f0b29ada30ce0cff19b8e8ee7b3d895ea202c"
+  },
+  {
+    "path": "src\\workspace\\embeddedWorkspace.ts",
+    "sha256": "3fcf63552e4bfa9817df93f5bf2f155c015fce196c2412ffd39d2171d763f007"
+  },
+  {
+    "path": "src\\workspace\\geogebraCommandParser.ts",
+    "sha256": "320768871b9bbcac5351be4c3703a8b32146799be8e9be03fb3f4d93bdd91742"
+  },
+  {
+    "path": "src\\workspace\\geometry2dKernel.ts",
+    "sha256": "f3fe395af99684fc35b98c691e0bf14dcf13bf3baa26dba848d67959b020f393"
+  },
+  {
+    "path": "src\\workspace\\geometry2dWorkspaceEngine.ts",
+    "sha256": "e96c934dce4599e1b6a0ac9a31aca484154a27bb2f1683c5f46ea0b02ef7a21f"
+  },
+  {
+    "path": "src\\workspace\\geometry3dKernel.ts",
+    "sha256": "864194b012395f1add973c4cd2635c136f4a94af53713819a70e1a4fb7f32870"
+  },
+  {
+    "path": "src\\workspace\\geometry3dWorkspaceEngine.ts",
+    "sha256": "57ead640f096cbffd95da848572e60d3dfec40f2384d94fb770252562e86bec6"
+  },
+  {
+    "path": "src\\workspace\\geometryAdvancedConstructionBuilder.ts",
+    "sha256": "dabb02513b6c7ebe943f64cf259c1c481ea38f777ca21fd9be60e38aec221b3b"
+  },
+  {
+    "path": "src\\workspace\\geometryAffineConstraint.ts",
+    "sha256": "441d708ed656544aedab7d426d768cb660ddc4d95f646216380ac2a8a712f313"
+  },
+  {
+    "path": "src\\workspace\\geometryCommandController.ts",
+    "sha256": "66c5e0874f696dba91e71a72f1ca933ef8334df43e27472666110ef8e371a7b3"
+  },
+  {
+    "path": "src\\workspace\\geometryConstructionBuilder.ts",
+    "sha256": "789b65a7b8a8a9e8bd5203ef846d4fc2ff83c3f165ef0ce8b0fcbe40c7de4228"
+  },
+  {
+    "path": "src\\workspace\\geometryConstructionCertification.ts",
+    "sha256": "12e636b0a3377eb77460f9d7c3b4fb8df4f86bb203df808133836fd47afeaa41"
+  },
+  {
+    "path": "src\\workspace\\graphAnalysis.ts",
+    "sha256": "5a9f579932a879aa4ba36da68d352de2ee5557735372e1890049b60e8ef03d5d"
+  },
+  {
+    "path": "src\\workspace\\graphSampler.ts",
+    "sha256": "3fab6057de8edf163a78fe07f287f075dfd6fa9e39142356dff59a29ed96d5f5"
+  },
+  {
+    "path": "src\\workspace\\graphValidation.ts",
+    "sha256": "adcd9194dfaf845f4340e75d5b4c93cf32c92ebea16b6a6682f5af50b0bac732"
+  },
+  {
+    "path": "src\\workspace\\highPriorityWorkflowKernel.ts",
+    "sha256": "253f9b351b9feb283cba1e34deb5cd0e3b35ac340a88287b3560846ef08be841"
+  },
+  {
+    "path": "src\\workspace\\importExportSuite.ts",
+    "sha256": "7dbc2cb77bd58754bd591320cd9986c53387e34ea89a5ff5ce0adabe1e91b9d0"
+  },
+  {
+    "path": "src\\workspace\\ismobjExchange.ts",
+    "sha256": "2399f71bc9d39a89049bbdb7cdc3edb523dc712a9a187fc69018f21d9aa1a50e"
+  },
+  {
+    "path": "src\\workspace\\largeConstructionPerformance.ts",
+    "sha256": "1a41b4c93bebf6cf94a294e0cd68ea6828873a598a3162bd2b62b40bc47eb5a4"
+  },
+  {
+    "path": "src\\workspace\\linkedExpressions.ts",
+    "sha256": "8498e672a8491e5f4a15ae5d15399f2e03fd896f0468bb4758aaf22d13377209"
+  },
+  {
+    "path": "src\\workspace\\linkedParameters.ts",
+    "sha256": "32386a5478db5bf020a6071e9ef90820a6e2585d51e1de472ef1a859ddbdb917"
+  },
+  {
+    "path": "src\\workspace\\locusTraceKernel.ts",
+    "sha256": "403751df5f14c50a93bfb4ad284b853d39a36e4577903f47ff45918aa3aee486"
+  },
+  {
+    "path": "src\\workspace\\mathWorkspaces.ts",
+    "sha256": "bb44675c46c44c5400ed89852df2f6986682d1a952e5ba5c6b3074c65c34e55d"
+  },
+  {
+    "path": "src\\workspace\\objectProperties.ts",
+    "sha256": "e3509b41733588d29987b100675cefbc6ff369380fe5bcfcae4d39749826b004"
+  },
+  {
+    "path": "src\\workspace\\objectRegistry.ts",
+    "sha256": "6327d3e1079fa89cd3e99c0461c0e786de3805f8f94e0e29c36d262208eb5864"
+  },
+  {
+    "path": "src\\workspace\\offlineProjectLibrary.ts",
+    "sha256": "ccd47e9892ada0e0e39bbd8a1e3eca0a357570a6daaebb3b54018cd6186c0be2"
+  },
+  {
+    "path": "src\\workspace\\portableWorkspace.ts",
+    "sha256": "3848a95ae9a6afa4622ff0da6e1c3f51cd9cc0796cd0229ce47987fb63d831d5"
+  },
+  {
+    "path": "src\\workspace\\practiceAssessment.ts",
+    "sha256": "ec76e5132077350129f66733ca8717d4d6f28da8df3ba4f559123232770c915e"
+  },
+  {
+    "path": "src\\workspace\\releaseReadiness.ts",
+    "sha256": "6d7fda93657b8f6c79f9334d0712847870daf40024fa68fec3d5316a27289e7a"
+  },
+  {
+    "path": "src\\workspace\\sceneGraph.ts",
+    "sha256": "4438b3a49396328cc314de4e2bfef3269d7293ff0057aa859908bcf58b4ca04f"
+  },
+  {
+    "path": "src\\workspace\\spreadsheetKernel.ts",
+    "sha256": "5b1d0007d5152cd4dfabf4573dadea17fd878a0c21bfc9d27b623bd4c6ec3729"
+  },
+  {
+    "path": "src\\workspace\\spreadsheetStudioEngine.ts",
+    "sha256": "a58e90086476583a19b55e9da14be3fb2880ccd8ff45b5fad03ce748eb8b1161"
+  },
+  {
+    "path": "src\\workspace\\spreadsheetXlsx.ts",
+    "sha256": "c77dd35cf49ab66121ea59c28741da2906bd3954ef6297357ed9c81ef7c1447f"
+  },
+  {
+    "path": "src\\workspace\\syllabusWorkspaceTemplates.ts",
+    "sha256": "03b58e3f7f8e86e17818fcc3851fc64b421a7e8cf05322c1a9f33a3268a0da8c"
+  },
+  {
+    "path": "src\\workspace\\types.ts",
+    "sha256": "7f30cae4c1659f1b09158f7b29ad9bd3a0b1138aaa3ac1ec7a8dffffb5849a6e"
+  },
+  {
+    "path": "src\\workspace\\universalObjectGraph.ts",
+    "sha256": "9361dc7e004984f2f86918c5adb13b08c5c369d8d26a503a6e6e3fe161b440be"
+  },
+  {
+    "path": "src\\workspace\\unsupportedWorkspaceAction.ts",
+    "sha256": "3795997ce035f07cb5eaa87eaacb4655d448d064310d6aed8eb213bfc0a962cc"
+  },
+  {
+    "path": "src\\workspace\\useUniversalObjectGraphPublisher.ts",
+    "sha256": "dae22393f861e0b490f4f61b2751697257a89aa57f0233ae6fc446932a45a87f"
+  },
+  {
+    "path": "src\\workspace\\vectorWorkbench3d.ts",
+    "sha256": "fb05b438af32dbd3e9c31c1fedee603ea1ab160eccac1e982dddce10f7d68dd9"
+  },
+  {
+    "path": "src\\workspace\\workspaceBaselineGuards.ts",
+    "sha256": "43f1b79740a19da56fbb35a8e3a7853b9defc1d1fa84c7fe9c94b3167ab18f7f"
+  },
+  {
+    "path": "src\\workspace\\workspaceChromeTheme.ts",
+    "sha256": "ae087d6e17e355ec954b501549be9761d458f87591dcc9f29891136c7c1aa6bc"
+  },
+  {
+    "path": "src\\workspace\\workspaceEngineBridge.ts",
+    "sha256": "c08e5719e71d45487a58149f4446e7c2d24306df0b922296664c9c27a2d3ed46"
+  },
+  {
+    "path": "src\\workspace\\workspaceHistory.ts",
+    "sha256": "f3afefee52e0eefafb3404b3c6d1dbfc98b4336bf1a17602ee21bc2f82b048f2"
+  },
+  {
+    "path": "src\\workspace\\workspaceImageExport.ts",
+    "sha256": "8621f620bd7bdf01973d5f9a25493ef7b38f26cb670d401c9ac88654ebf84d59"
+  },
+  {
+    "path": "src\\workspace\\workspaceModeConfig.ts",
+    "sha256": "8c74ae026b98af8462611e7fafde26d9c7bd5acc174e76b06304f52973555733"
+  },
+  {
+    "path": "src\\workspace\\workspacePersistence.ts",
+    "sha256": "c8997bfad54fb3b49e5b54faecfd37eddae354a481b6751a70c591b868a1b6dc"
+  },
+  {
+    "path": "src\\workspace\\workspaceQaSuite.ts",
+    "sha256": "0ab95636fb92f1c7f517ac2f0de84610f1f78554216260ddb29e938f508617a7"
+  },
+  {
+    "path": "src\\workspace\\workspaceRuntimeModel.ts",
+    "sha256": "3d5846e29323cbb5449a860a797546ac7271016900fd5b65a80f0044c771b805"
+  },
+  {
+    "path": "src\\workspace\\workspaceStore.ts",
+    "sha256": "ae480609eadd17589fdde2469acd91735a7b98163ee6836b6f3ee0d0a268f138"
+  },
+  {
+    "path": "src\\workspace\\workspaceTransfer.ts",
+    "sha256": "cecd14d955d619691abb0227b54c340552432eb6a7cf00c9d12f79294d227ec2"
+  },
+  {
+    "path": "src\\workspace\\workspaceViewport.ts",
+    "sha256": "18b48eb8a1b3bbc6f6916d4b7c76169006bf2f55dbd502dc16bdc7b941d46f40"
+  },
+  {
+    "path": "src\\workspace\\immersive\\ImmersiveModelController.ts",
+    "sha256": "c21204955f1f93a574ba07ce7fbb7fce80f119864dac5a231691b50ceb0ce1a1"
+  },
+  {
+    "path": "src\\workspace\\immersive\\ImmersiveUIControls.ts",
+    "sha256": "d862851bc32ff1ab19052eeba0a61380983c7c17d62b9ff6251c9701f3f54bfb"
+  },
+  {
+    "path": "src\\workspace\\immersive\\types.ts",
+    "sha256": "1aa336a0f32d4c48fde4babc4e0279be5267d924ad6ddd7d4e975f639e240c63"
+  },
+  {
+    "path": "src\\workspace\\mobile\\index.ts",
+    "sha256": "8e74a8d2f7f803004e492f0dc8385216ef7c25e98b750525e40771774f86b287"
+  },
+  {
+    "path": "src\\workspace\\mobile\\useMobileWorkspaceGestures.ts",
+    "sha256": "a667607bf3d3393770c9605e1fa34cf5d29ce1667469bb2b374ea9fa293b2c33"
+  },
+  {
+    "path": "src\\workspace\\mobile\\useOutsideDismiss.ts",
+    "sha256": "ffc8aba79a3c829d3a5b5546d47510eaff5183245091a1ab19eb22069b9fdc28"
+  },
+  {
+    "path": "src\\workspace\\mobile\\useWorkspaceOverlay.ts",
+    "sha256": "2cd8c313f18af33709483b8f546b7fd2e65c659f148ead66ac2c0f476330d089"
+  },
+  {
+    "path": "src\\workspace\\types\\graphValidation.ts",
+    "sha256": "4db9e1ba0c4a15417f095481c11eae941e57464d4a5ce2ee2c044642fe92bca4"
+  },
+  {
+    "path": "src\\workspace\\types\\workspaceMode.ts",
+    "sha256": "a7cf96c5acf8d96d3ae8e7a3b42cdd5bbfa4994b20034e2882b804da9a3a47e4"
+  },
+  {
+    "path": "src\\workspace\\types\\workspaceReleaseHealth.ts",
+    "sha256": "c62c9020c7590e070f79c80256e0af20e1474ff23c94be95ef2e5d9dcecba813"
+  }
+]

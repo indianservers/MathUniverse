@@ -1,0 +1,283 @@
+{
+  "typecheck": {
+    "before": 218,
+    "after": 218,
+    "newDiagnostics": [],
+    "modules": {
+      "src/components/workspace": 7,
+      "src/graph-studio/useGraphStudioProject.ts": 4,
+      "src/hooks/useCanvasZoomLock.ts": 2,
+      "src/modules/board": 2,
+      "src/modules/lessons": 178,
+      "src/pages/CalculusEnhancementIdeas.tsx": 1,
+      "src/pages/Home.tsx": 2,
+      "src/pages/MathWorkspace.tsx": 2,
+      "src/studios/algebra": 1,
+      "src/studios/discrete": 3,
+      "src/studios/geometry": 3,
+      "src/studios/mockup": 4,
+      "src/studios/shared": 1,
+      "src/studios/statistics": 1,
+      "src/visual-proofs/proofs": 3,
+      "src/workspace/mobile": 4
+    }
+  },
+  "eslint": {
+    "before": {
+      "errors": 439,
+      "warnings": 133
+    },
+    "after": {
+      "errors": 439,
+      "warnings": 133
+    },
+    "newErrors": [],
+    "modules": {
+      "scripts/audit-lesson-launch.mjs": {
+        "errors": 1,
+        "warnings": 0
+      },
+      "scripts/capture-lesson-screenshots.mjs": {
+        "errors": 1,
+        "warnings": 0
+      },
+      "scripts/capture_absolute_value_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_algebra_workspace_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_algebraic_input_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_angle_sliders_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_animation_controls_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_attach_detach_target_202.mjs": {
+        "errors": 5,
+        "warnings": 0
+      },
+      "scripts/capture_calculation_history_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_complex_numbers_target.mjs": {
+        "errors": 2,
+        "warnings": 0
+      },
+      "scripts/capture_conditional_visibility_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_constants_library_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_counting_choices_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_dependent_objects_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_derivatives_target_439.mjs": {
+        "errors": 5,
+        "warnings": 0
+      },
+      "scripts/capture_dynamic_labels_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_equation_input_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_exact_decimal_modes_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_free_point_target_198.mjs": {
+        "errors": 5,
+        "warnings": 0
+      },
+      "scripts/capture_geometry_target_batch.mjs": {
+        "errors": 6,
+        "warnings": 0
+      },
+      "scripts/capture_hyperbolic_functions_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_inequality_input_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_integer_sliders_target.mjs": {
+        "errors": 8,
+        "warnings": 0
+      },
+      "scripts/capture_integrals_target_440.mjs": {
+        "errors": 6,
+        "warnings": 0
+      },
+      "scripts/capture_intersection_point_target_200.mjs": {
+        "errors": 5,
+        "warnings": 0
+      },
+      "scripts/capture_inverse_trigonometry_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_limits_target_441.mjs": {
+        "errors": 6,
+        "warnings": 0
+      },
+      "scripts/capture_lists_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_matrices_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_midpoint_centre_target_201.mjs": {
+        "errors": 5,
+        "warnings": 0
+      },
+      "scripts/capture_numeric_sliders_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_object_redefinition_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_point_on_object_target_199.mjs": {
+        "errors": 5,
+        "warnings": 0
+      },
+      "scripts/capture_remaining_studio_restore.mjs": {
+        "errors": 5,
+        "warnings": 0
+      },
+      "scripts/capture_rounding_precision_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_sequences_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_series_expansions_target_442.mjs": {
+        "errors": 6,
+        "warnings": 0
+      },
+      "scripts/capture_sphere_target_399.mjs": {
+        "errors": 1,
+        "warnings": 0
+      },
+      "scripts/capture_trigonometric_calculator_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/capture_variable_explorer_target.mjs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "scripts/evaluate-ruhi-2d-held-model.ts": {
+        "errors": 2,
+        "warnings": 0
+      },
+      "scripts/generate-market-audit-artifacts.cjs": {
+        "errors": 5,
+        "warnings": 0
+      },
+      "scripts/repair-studio-challenges.mjs": {
+        "errors": 1,
+        "warnings": 0
+      },
+      "scripts/report-math-robo-v41.mjs": {
+        "errors": 3,
+        "warnings": 0
+      },
+      "scripts/ruhi-100-conversation.mjs": {
+        "errors": 2,
+        "warnings": 0
+      },
+      "scripts/ruhi-2d-nlp-persistence.mjs": {
+        "errors": 1,
+        "warnings": 0
+      },
+      "scripts/ruhi-cinematic-check.mjs": {
+        "errors": 2,
+        "warnings": 0
+      },
+      "scripts/ruhi-cinematic-four-workspaces.mjs": {
+        "errors": 1,
+        "warnings": 0
+      },
+      "scripts/ruhi-context-admin-browser.mjs": {
+        "errors": 1,
+        "warnings": 0
+      },
+      "scripts/ruhi-context-browser.mjs": {
+        "errors": 4,
+        "warnings": 0
+      },
+      "scripts/ruhi-language-browser.mjs": {
+        "errors": 1,
+        "warnings": 0
+      },
+      "scripts/ruhi-orchestration-browser.mjs": {
+        "errors": 1,
+        "warnings": 0
+      },
+      "src/ar-math-lab": {
+        "errors": 0,
+        "warnings": 6
+      },
+      "src/components": {
+        "errors": 0,
+        "warnings": 1
+      },
+      "src/math-robo": {
+        "errors": 2,
+        "warnings": 0
+      },
+      "src/modules": {
+        "errors": 94,
+        "warnings": 0
+      },
+      "src/pages": {
+        "errors": 23,
+        "warnings": 33
+      },
+      "src/studios": {
+        "errors": 45,
+        "warnings": 91
+      },
+      "src/visual-proofs": {
+        "errors": 7,
+        "warnings": 0
+      },
+      "src/workspace": {
+        "errors": 1,
+        "warnings": 2
+      },
+      "test-evidence/shared-lesson-graphs": {
+        "errors": 3,
+        "warnings": 0
+      }
+    }
+  },
+  "classification": "TypeScript errors block a checked build. ESLint severity 2 is error, severity 1 is warning. Unrelated pre-existing work was preserved."
+}

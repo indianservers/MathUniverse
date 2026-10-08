@@ -1,3 +1,4 @@
+import {loadModelWithProgress} from '../../model-loading/loadModelWithProgress';
 import * as tf from '@tensorflow/tfjs';
 import { OPERATIONS } from './actionRegistry';
 import { normalizeLanguage } from './numberParser';
@@ -110,7 +111,7 @@ let currentModel:tf.LayersModel|undefined;
 let loadPromise:Promise<tf.LayersModel>|undefined;
 export async function loadIntelligenceModel(){
   if(currentModel)return currentModel;
-  loadPromise??=(async()=>{await tf.ready();const stored=MODEL_TRAINING_ENABLED?await tf.io.listModels().catch(()=>({})):{};const local=Object.prototype.hasOwnProperty.call(stored,V4_MODEL),url=local?V4_MODEL:`${import.meta.env.BASE_URL}models/math-robo-intelligence-v4/model.json`;const model=await tf.loadLayersModel(url);const metadata=await model.getUserDefinedMetadata() as {labels?:typeof HEAD_LABELS};if(model.inputs[0].shape[1]!==768||!metadata?.labels||HEADS.some((head,i)=>!Array.isArray(metadata.labels?.[head])||metadata.labels[head].length!==model.outputs[i]?.shape.at(-1))){model.dispose();throw new Error('Invalid production model labels.');}currentModel=model;return model;})().catch(error=>{loadPromise=undefined;throw error;});
+  loadPromise??=(async()=>{await tf.ready();const stored=MODEL_TRAINING_ENABLED?await tf.io.listModels().catch(()=>({})):{};const local=Object.prototype.hasOwnProperty.call(stored,V4_MODEL),url=local?V4_MODEL:`${import.meta.env.BASE_URL}models/math-robo-intelligence-v4/model.json`;const model=await loadModelWithProgress(url,'Ruhi intelligence');const metadata=await model.getUserDefinedMetadata() as {labels?:typeof HEAD_LABELS};if(model.inputs[0].shape[1]!==768||!metadata?.labels||HEADS.some((head,i)=>!Array.isArray(metadata.labels?.[head])||metadata.labels[head].length!==model.outputs[i]?.shape.at(-1))){model.dispose();throw new Error('Invalid production model labels.');}currentModel=model;return model;})().catch(error=>{loadPromise=undefined;throw error;});
   return loadPromise;
 }
 export async function resetIntelligenceModel(){currentModel?.dispose();currentModel=undefined;loadPromise=undefined;return loadIntelligenceModel();}

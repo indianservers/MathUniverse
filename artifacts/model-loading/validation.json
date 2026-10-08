@@ -1,0 +1,32 @@
+{
+  "feature": "Measured model download progress",
+  "models": [
+    "AR / hand gestures (WASM loader, WASM runtime, hand landmark model)",
+    "Ruhi intelligence",
+    "Ruhi context",
+    "Ruhi language",
+    "English speech model (browser-controlled installation; indeterminate progress)"
+  ],
+  "states": [
+    "Downloading asset: percentage and byte counts where a valid total is available",
+    "Download complete: initializing",
+    "Ready: 100% loaded",
+    "Download error: dismissible message"
+  ],
+  "validation": {
+    "unit_tests": 18,
+    "browser_tests": 7,
+    "browser_checks": [
+      "streamed model percentages and responsive input",
+      "failed model downloads",
+      "actual AR worker downloads and successful initialization",
+      "English dictation",
+      "explicit language-pack install",
+      "unsupported recognition fallback",
+      "microphone-denial fallback"
+    ],
+    "focused_eslint": "passed",
+    "production_build": "passed (9469 modules, 1m25s)",
+    "typecheck": "No errors reported in changed model-loading, AR, speech or model-loader files; 218 pre-existing repository errors remain."
+  }
+}

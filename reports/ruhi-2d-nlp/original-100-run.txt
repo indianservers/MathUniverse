@@ -1,0 +1,627 @@
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw a point at (3,4).
+ANSWER Created 2D point.
+1 PASS 
+TURN Put another point at -2, 5.
+ANSWER Created 2D point.
+2 PASS 
+TURN Draw a line through those two points.
+ANSWER Created 2D line.
+3 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Create a line segment from (0,0) to (6,4).
+ANSWER Created 2D line.
+4 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw a ray starting at (2,2) and passing through (5,6).
+ANSWER Created 2D ray from (2, 2) through (5, 6).
+5 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Create a vector from (1,1) to (4,5).
+ANSWER Created 2D vector from (1, 1) to (4, 5).
+6 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw a circle with radius 5.
+ANSWER Created 2D circle with radius 5.
+7 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Make a circle centered at (2,3) with radius 4.
+ANSWER Created 2D circle with radius 4.
+8 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw a rectangle 4 by 6.
+ANSWER Created 2D rectangle 4 by 6.
+9 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Create a square with side length 5.
+ANSWER Created 2D square 5 by 5.
+10 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw triangle A(0,0), B(6,0), C(3,4).
+ANSWER Created 2D triangle.
+11 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Make an equilateral triangle with side 6.
+ANSWER Created 2D triangle.
+12 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Create a regular hexagon with side 3.
+ANSWER Created 2D hexagon.
+13 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Plot y = 2x + 3.
+ANSWER Created 2D plot.
+14 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Graph y = x squared.
+ANSWER Created 2D plot.
+15 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN make me a circle r=5
+ANSWER Created 2D circle with radius 5.
+16 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN pls draw a rectangel 4 x 7
+ANSWER Created 2D rectangle 4 by 7.
+17 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN put a dot at three comma minus two
+ANSWER Created 2D point.
+18 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN circle centered origin radius five
+ANSWER Created 2D circle with radius 5.
+19 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN can you add a square side four
+ANSWER Created 2D square 4 by 4.
+20 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN draw a circl with radious 3
+ANSWER Created 2D circle with radius 3.
+21 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN line from zero zero to five five
+ANSWER Created 2D line.
+22 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN make a triangle using 0,0 4,0 and 2,3
+ANSWER Created 2D triangle.
+23 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN plot x squared minus 4
+ANSWER Created 2D plot.
+24 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN I need a radius-seven circle
+ANSWER Created 2D circle with radius 7.
+25 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw a point at (3,4)
+ANSWER Created 2D point.
+TURN Draw a point at (-2,5)
+ANSWER Created 2D point.
+TURN What is the distance between those two points?
+ANSWER Distance = 5.09901951 units.
+26 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw a line segment from (0,0) to (6,4)
+ANSWER Created 2D line.
+TURN What's the midpoint of that segment?
+ANSWER midpoint = [3,2].
+27 PASS 
+TURN Mark the midpoint.
+ANSWER Marked midpoint.
+28 PASS 
+TURN What's the length of this line segment?
+ANSWER length = 7.21110255 units.
+29 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw line AB from (0,0) to (6,4)
+ANSWER Created 2D line.
+TURN Find the slope of AB.
+ANSWER slope = 0.66666667 units.
+30 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw a rectangle 4 by 6
+ANSWER Created 2D rectangle 4 by 6.
+TURN What is the area of the rectangle?
+ANSWER area = 24 units.
+31 PASS 
+TURN What's its perimeter?
+ANSWER perimeter = 20 units.
+32 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw a circle centered at (2,3) radius 4
+ANSWER Created 2D circle with radius 4.
+TURN What is the circle's diameter?
+ANSWER diameter = 8 units.
+33 PASS 
+TURN And its circumference?
+ANSWER circumference = 25.13274123 units.
+34 PASS 
+TURN What are the coordinates of the center?
+ANSWER center = [2,3].
+35 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw line AB from (0,3) to (2,7)
+ANSWER Created 2D line.
+TURN What is the equation of this line?
+ANSWER equation = "4x + -2y + 6 = 0".
+36 PASS 
+TURN Where does it cross the x-axis?
+ANSWER x intercept (numerical, x ∈ [-100,100]) = [-1.5,0].
+37 PASS 
+TURN Where does it cross the y-axis?
+ANSWER y intercept = [0,3].
+38 PASS 
+TURN Is this line horizontal?
+ANSWER No — horizontal.
+39 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw triangle A(0,0), B(6,0), C(3,4)
+ANSWER Created 2D triangle.
+TURN Is this triangle right angled?
+ANSWER No — right triangle.
+40 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw a circle radius 5.
+ANSWER Created 2D circle with radius 5.
+41 PASS 
+TURN Move it right 3.
+ANSWER move circle.
+42 PASS 
+TURN Move it up.
+ANSWER How far should I move it?
+43 PASS 
+TURN 2
+ANSWER move circle.
+44 PASS 
+TURN Make another one.
+ANSWER Duplicated circle.
+45 PASS 
+TURN Move the second one right 10.
+ANSWER move circle.
+46 PASS 
+TURN Are they tangent?
+ANSWER Yes — tangent.
+47 PASS 
+TURN Where do they meet?
+ANSWER Intersections: [[8,2]].
+48 PASS 
+TURN Mark that point.
+ANSWER Marked point.
+49 PASS 
+TURN Delete the first circle.
+ANSWER Deleted circle and 1 dependent construction(s).
+50 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw triangle A(0,0), B(6,0), C(3,4)
+ANSWER Created 2D triangle.
+TURN Draw point A at (0,0)
+ANSWER Created 2D point.
+TURN Draw line BC from (6,0) to (3,4)
+ANSWER Created 2D line.
+TURN Select the triangle
+ANSWER Selected triangle.
+TURN Rotate the triangle.
+ANSWER By how many degrees should I rotate it?
+51 PASS 
+TURN 45 degrees
+ANSWER rotate triangle.
+52 PASS 
+TURN Move it left.
+ANSWER How far should I move it?
+53 PASS 
+TURN five
+ANSWER move triangle.
+54 PASS 
+TURN Draw a circle.
+ANSWER Created 2D circle with radius 3.
+55 PASS 
+TURN center 2,3
+ANSWER Changed circle.
+56 PASS 
+TURN radius 4
+ANSWER Changed circle.
+57 PASS 
+TURN Draw a perpendicular line.
+ANSWER Which line should I use as the reference?
+58 PASS 
+TURN through point A
+ANSWER Which line should I use as the reference?
+59 PASS 
+TURN to line BC
+ANSWER Perpendicular line created through the point.
+60 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw circle radius 5
+ANSWER Created 2D circle with radius 5.
+TURN Draw circle radius 5
+ANSWER Created 2D circle with radius 5.
+TURN Draw rectangle 4 by 6
+ANSWER Created 2D rectangle 4 by 6.
+TURN Select the rectangle.
+ANSWER Selected rectangle.
+61 PASS 
+TURN Make it bigger.
+ANSWER What scale factor should I use?
+62 PASS 
+TURN Twice as big.
+ANSWER scale rectangle.
+63 PASS 
+TURN Move that down 3.
+ANSWER move rectangle.
+64 PASS 
+TURN Duplicate it.
+ANSWER Duplicated rectangle.
+65 PASS 
+TURN Move the copy right 5.
+ANSWER move rectangle.
+66 PASS 
+TURN Delete the previous one.
+ANSWER Deleted rectangle.
+67 PASS 
+TURN Select both circles.
+ANSWER Selected 2 objects.
+68 PASS 
+TURN Move them left 2.
+ANSWER move circle. move circle.
+69 PASS 
+TURN Delete the other circle.
+ANSWER Deleted circle.
+70 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw line AB from (0,0) to (6,6)
+ANSWER Created 2D line.
+TURN Draw line CD from (0,6) to (6,0)
+ANSWER Created 2D line.
+TURN Draw a circle radius 8.
+ANSWER Created 2D circle with radius 8.
+71 PASS 
+TURN No, make it 5.
+ANSWER Changed circle.
+72 PASS 
+TURN Move it right 4.
+ANSWER move circle.
+73 PASS 
+TURN No, left.
+ANSWER move circle.
+74 PASS 
+TURN Rotate it 30 degrees.
+ANSWER rotate circle.
+75 PASS 
+TURN Actually make that 45.
+ANSWER rotate circle.
+76 PASS 
+TURN Use the first line.
+ANSWER Selected line.
+77 PASS 
+TURN No, the other one.
+ANSWER Selected line.
+78 PASS 
+TURN Delete it.
+ANSWER Deleted line.
+79 PASS 
+TURN Actually undo that.
+ANSWER Undid the last Ruhi action.
+80 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw circle radius 1
+ANSWER Created 2D circle with radius 1.
+TURN Draw circle radius 2
+ANSWER Created 2D circle with radius 2.
+TURN Draw circle radius 3
+ANSWER Created 2D circle with radius 3.
+TURN Deselect all
+ANSWER Selection cleared.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Delete the circle.
+ANSWER Several objects match. Which object? 1: C1; 2: C2; 3: C3
+81 PASS 
+TURN the second one
+ANSWER Deleted circle.
+82 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw line AB from (0,0) to (6,6)
+ANSWER Created 2D line.
+TURN Draw line CD from (0,6) to (6,0)
+ANSWER Created 2D line.
+TURN Deselect all
+ANSWER Selection cleared.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Move the line.
+ANSWER Several objects match. Which object? 1: AB; 2: CD
+83 PASS 
+TURN the red one
+ANSWER Several objects match. Which object? 1: AB; 2: CD
+84 PASS 
+TURN Make it perpendicular.
+ANSWER Which reference line should it be perpendicular to? Give its name.
+85 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw rectangle 4 by 6
+ANSWER Created 2D rectangle 4 by 6.
+TURN Draw the diagonal.
+ANSWER Which diagonal: 1 (first to third vertex), or 2 (second to fourth vertex)?
+86 PASS 
+TURN the first one
+ANSWER Created 2D line.
+87 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Select the rectangle
+ANSWER No matching object exists. Create it first.
+TURN Make these parallel.
+ANSWER Choose two lines to make parallel.
+88 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw rectangle 4 by 6
+ANSWER Created 2D rectangle 4 by 6.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Use that point.
+ANSWER No matching object exists. Create it first.
+89 PASS 
+TURN Delete everything.
+ANSWER Cleared Robo scene objects.
+90 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw line AB from (0,0) to (6,6)
+ANSWER Created 2D line.
+TURN What is the midpoint of AB?
+ANSWER midpoint = [3,3].
+91 PASS 
+TURN What is the slope?
+ANSWER slope = 1 units.
+92 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw line AB from (0,0) to (6,6)
+ANSWER Created 2D line.
+TURN Draw line CD from (0,6) to (6,0)
+ANSWER Created 2D line.
+TURN Select all
+ANSWER Selected 2 objects.
+TURN Where do these lines intersect?
+ANSWER Intersections: [[3,3]].
+93 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw circle radius 5
+ANSWER Created 2D circle with radius 5.
+TURN Draw point at (5,0)
+ANSWER Created 2D point.
+TURN Is the point on the circle?
+ANSWER Yes — point on circle.
+94 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw triangle A(0,0), B(6,0), C(3,4)
+ANSWER Created 2D triangle.
+TURN What type of triangle is this?
+ANSWER triangle type = "isosceles, acute angled".
+95 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw line AB from (0,0) to (6,6)
+ANSWER Created 2D line.
+TURN Mark the midpoint of AB.
+ANSWER Marked midpoint.
+96 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw line AB from (0,0) to (6,6)
+ANSWER Created 2D line.
+TURN Draw line CD from (0,6) to (6,0)
+ANSWER Created 2D line.
+TURN Select all
+ANSWER Selected 2 objects.
+TURN Place a point where these lines intersect.
+ANSWER Marked point.
+97 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw a rectangle 4 by 6.
+ANSWER Created 2D rectangle 4 by 6.
+TURN What's its area?
+ANSWER area = 24 units.
+TURN Move it right 10.
+ANSWER move rectangle.
+TURN What's its area now?
+ANSWER area = 24 units.
+TURN Rotate it 30 degrees.
+ANSWER rotate rectangle.
+TURN And now?
+ANSWER area = 24 units.
+98 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw line AB from (0,0) to (6,6).
+ANSWER Created 2D line.
+TURN What's its midpoint?
+ANSWER midpoint = [3,3].
+TURN Mark it.
+ANSWER Marked point.
+TURN Draw a perpendicular through it.
+ANSWER Perpendicular line created through the point.
+99 PASS 
+TURN Delete all objects
+ANSWER Cleared Robo scene objects.
+TURN Clear context
+ANSWER Conversation context cleared. Your workspace objects are still here.
+TURN Draw a circle centered at the origin with radius 5.
+ANSWER Created 2D circle with radius 5.
+TURN Make another one with the same radius.
+ANSWER Duplicated circle.
+TURN Move the second one right 10.
+ANSWER move circle.
+TURN Are they tangent?
+ANSWER Yes — tangent.
+TURN Where do they touch?
+ANSWER Intersections: [[5,0]].
+TURN Mark that point.
+ANSWER Marked point.
+TURN Draw a vertical line through it.
+ANSWER Created 2D line.
+TURN What's the distance from that point to the origin?
+ANSWER Distance to origin = 5 units. Distance formula: √(Σ coordinate²).
+TURN Why?
+ANSWER Distance formula from [5,0] to the origin: √(Σ coordinate²) = 5.
+TURN Move the second circle right another 2.
+ANSWER move circle.
+TURN Are they still tangent?
+ANSWER No — tangent.
+TURN Undo that.
+ANSWER Undid the last Ruhi action.
+TURN And now?
+ANSWER Yes — tangent.
+TURN Delete the first circle.
+ANSWER Deleted circle and 1 dependent construction(s).
+TURN Actually undo that.
+ANSWER Undid the last Ruhi action.
+TURN Select both circles.
+ANSWER Selected 2 objects.
+TURN Move them up 3.
+ANSWER move circle. move circle.
+TURN What changed mathematically?
+ANSWER The centers and vertices changed by [0,3]. Current centers: [[10,3],[0,3]].
+TURN What stayed the same?
+ANSWER Translation preserves radii, shape, size, area and distances between jointly moved objects, so their tangency is unchanged. C2: radius 5; C1: radius 5
+100 PASS 
+SUMMARY 100 0

@@ -1,0 +1,423 @@
+{
+  "records": 300,
+  "classCounts": {
+    "create_polygon": 23,
+    "create_rectangle": 3,
+    "create_square": 3,
+    "create_circle": 3,
+    "create_ellipse": 3,
+    "create_regular_polygon": 15,
+    "plot_equation": 20,
+    "translate": 25,
+    "set_style": 31,
+    "rotate": 15,
+    "set_angle": 28,
+    "undo_action": 12,
+    "unlabeled": 40,
+    "scale": 5,
+    "set_slope": 5,
+    "move_vertex": 4,
+    "construct_incircle": 20,
+    "intersect": 15,
+    "construct_perpendicular": 15,
+    "reflect_copy": 5,
+    "construct_midpoint": 10
+  },
+  "scenarioCrossings": [],
+  "templateCrossings": [
+    {
+      "key": "make a rectangle with its lower-left corner at (#,#), width # and height #.",
+      "splits": [
+        "test",
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "sketch an ellipse centered at (#,#), horizontal radius # and vertical radius #.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "draw a regular hexagon centered at (#,#) with circumradius #.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "draw a regular parallelogram centered at (#,#) with circumradius #.",
+      "splits": [
+        "validation",
+        "train"
+      ]
+    },
+    {
+      "key": "draw a regular rhombus centered at (#,#) with circumradius #.",
+      "splits": [
+        "test",
+        "train"
+      ]
+    },
+    {
+      "key": "draw a regular trapezoid centered at (#,#) with circumradius #.",
+      "splits": [
+        "test",
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "graph y = #x + #.",
+      "splits": [
+        "train",
+        "test"
+      ]
+    },
+    {
+      "key": "plot the function f(x) = #x + #.",
+      "splits": [
+        "train",
+        "test"
+      ]
+    },
+    {
+      "key": "draw y=#*x+(#) on the coordinate plane.",
+      "splits": [
+        "train",
+        "test"
+      ]
+    },
+    {
+      "key": "move the selected triangle # units right.",
+      "splits": [
+        "test",
+        "train"
+      ]
+    },
+    {
+      "key": "move that circle # units left.",
+      "splits": [
+        "validation",
+        "train"
+      ]
+    },
+    {
+      "key": "rotate the selected triangle # degrees clockwise about its origin.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "rotate the selected triangle # degrees counterclockwise about its origin.",
+      "splits": [
+        "test",
+        "train"
+      ]
+    },
+    {
+      "key": "on triangle t#, set angle a to # degrees.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "increase it by another two degrees.",
+      "splits": [
+        "train",
+        "test",
+        "validation"
+      ]
+    },
+    {
+      "key": "make its two sides thicker and change the angle mark to violet.",
+      "splits": [
+        "train",
+        "test",
+        "validation"
+      ]
+    },
+    {
+      "key": "actually, undo only the colour change, not the thickness.",
+      "splits": [
+        "train",
+        "test",
+        "validation"
+      ]
+    },
+    {
+      "key": "on triangle t#, set angle b to # degrees.",
+      "splits": [
+        "train",
+        "test",
+        "validation"
+      ]
+    },
+    {
+      "key": "make the triangle bigger.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "make it # times its current size.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "move that circle a bit to the left.",
+      "splits": [
+        "train",
+        "test"
+      ]
+    },
+    {
+      "key": "move it # units left.",
+      "splits": [
+        "train",
+        "test"
+      ]
+    },
+    {
+      "key": "make the line steeper.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "change its slope to #.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "increase the other angle.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "i mean angle abc. increase it to # degrees.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "color that polygon differently.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "fill it with forest green.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "shift that vertex slightly.",
+      "splits": [
+        "train",
+        "test"
+      ]
+    },
+    {
+      "key": "move vertex c right by # unit.",
+      "splits": [
+        "train",
+        "test"
+      ]
+    },
+    {
+      "key": "draw a triangle a#b#c# with vertices (#,#), (#,#), (#,#); then construct its centroid and label it g#.",
+      "splits": [
+        "train",
+        "validation",
+        "test"
+      ]
+    },
+    {
+      "key": "construct a circle tangent to all three sides of triangle t#, then connect its incenter to vertex a#.",
+      "splits": [
+        "test",
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "find the intersection of y=#x# and y=-x#, put a dot there, and call it p#.",
+      "splits": [
+        "train",
+        "validation",
+        "test"
+      ]
+    },
+    {
+      "key": "draw a perpendicular from vertex a of triangle t# onto side bc, then extend the perpendicular until it hits the x-axis.",
+      "splits": [
+        "test",
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "use the upper triangle, not the lower one. reflect it across the y-axis, but leave the original visible.",
+      "splits": [
+        "test",
+        "train"
+      ]
+    },
+    {
+      "key": "draw a circle with radius #.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "find the midpoint of segment a#b#, label it m#, and make the midpoint marker red.",
+      "splits": [
+        "validation",
+        "train",
+        "test"
+      ]
+    }
+  ],
+  "identicalTextCrossings": [
+    {
+      "key": "increase it by another two degrees.",
+      "splits": [
+        "train",
+        "test",
+        "validation"
+      ]
+    },
+    {
+      "key": "make its two sides thicker and change the angle mark to violet.",
+      "splits": [
+        "train",
+        "test",
+        "validation"
+      ]
+    },
+    {
+      "key": "actually, undo only the colour change, not the thickness.",
+      "splits": [
+        "train",
+        "test",
+        "validation"
+      ]
+    },
+    {
+      "key": "make the triangle bigger.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "make it 1.5 times its current size.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "move that circle a bit to the left.",
+      "splits": [
+        "train",
+        "test"
+      ]
+    },
+    {
+      "key": "move it 2 units left.",
+      "splits": [
+        "train",
+        "test"
+      ]
+    },
+    {
+      "key": "make the line steeper.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "change its slope to 3.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "increase the other angle.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "i mean angle abc. increase it to 84 degrees.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "color that polygon differently.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "fill it with forest green.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    },
+    {
+      "key": "shift that vertex slightly.",
+      "splits": [
+        "train",
+        "test"
+      ]
+    },
+    {
+      "key": "move vertex c right by 1 unit.",
+      "splits": [
+        "train",
+        "test"
+      ]
+    },
+    {
+      "key": "use the upper triangle, not the lower one. reflect it across the y-axis, but leave the original visible.",
+      "splits": [
+        "test",
+        "train"
+      ]
+    },
+    {
+      "key": "draw a circle with radius -5.",
+      "splits": [
+        "train",
+        "validation"
+      ]
+    }
+  ]
+}

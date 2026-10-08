@@ -1,0 +1,536 @@
+{
+  "total": 300,
+  "valid": 300,
+  "invalid": 0,
+  "ambiguous": 3,
+  "issues": [
+    {
+      "id": "RUHI2D-010",
+      "invalid": [],
+      "warnings": [
+        "A regular trapezoid has no unique conventional definition; do not silently invent vertices."
+      ]
+    },
+    {
+      "id": "RUHI2D-020",
+      "invalid": [],
+      "warnings": [
+        "A regular trapezoid has no unique conventional definition; do not silently invent vertices."
+      ]
+    },
+    {
+      "id": "RUHI2D-030",
+      "invalid": [],
+      "warnings": [
+        "A regular trapezoid has no unique conventional definition; do not silently invent vertices."
+      ]
+    },
+    {
+      "id": "RUHI2D-101",
+      "invalid": [],
+      "warnings": [
+        "Illustrative angle 70 disagrees with coordinates (68.1985905136482); coordinate fixture is authoritative."
+      ]
+    },
+    {
+      "id": "RUHI2D-105",
+      "invalid": [],
+      "warnings": [
+        "Illustrative angle 73 disagrees with coordinates (51.34019174590991); coordinate fixture is authoritative."
+      ]
+    },
+    {
+      "id": "RUHI2D-109",
+      "invalid": [],
+      "warnings": [
+        "Illustrative angle 76 disagrees with coordinates (68.1985905136482); coordinate fixture is authoritative."
+      ]
+    },
+    {
+      "id": "RUHI2D-113",
+      "invalid": [],
+      "warnings": [
+        "Illustrative angle 79 disagrees with coordinates (51.34019174590991); coordinate fixture is authoritative."
+      ]
+    },
+    {
+      "id": "RUHI2D-117",
+      "invalid": [],
+      "warnings": [
+        "Illustrative angle 82 disagrees with coordinates (68.1985905136482); coordinate fixture is authoritative."
+      ]
+    },
+    {
+      "id": "RUHI2D-121",
+      "invalid": [],
+      "warnings": [
+        "Illustrative angle 70 disagrees with coordinates (51.34019174590991); coordinate fixture is authoritative."
+      ]
+    },
+    {
+      "id": "RUHI2D-125",
+      "invalid": [],
+      "warnings": [
+        "Illustrative angle 73 disagrees with coordinates (68.1985905136482); coordinate fixture is authoritative."
+      ]
+    },
+    {
+      "id": "RUHI2D-129",
+      "invalid": [],
+      "warnings": [
+        "Illustrative angle 76 disagrees with coordinates (51.34019174590991); coordinate fixture is authoritative."
+      ]
+    },
+    {
+      "id": "RUHI2D-133",
+      "invalid": [],
+      "warnings": [
+        "Illustrative angle 79 disagrees with coordinates (68.1985905136482); coordinate fixture is authoritative."
+      ]
+    },
+    {
+      "id": "RUHI2D-137",
+      "invalid": [],
+      "warnings": [
+        "Illustrative angle 82 disagrees with coordinates (51.34019174590991); coordinate fixture is authoritative."
+      ]
+    },
+    {
+      "id": "RUHI2D-141",
+      "invalid": [],
+      "warnings": [
+        "Illustrative angle 70 disagrees with coordinates (68.1985905136482); coordinate fixture is authoritative."
+      ]
+    },
+    {
+      "id": "RUHI2D-145",
+      "invalid": [],
+      "warnings": [
+        "Illustrative angle 73 disagrees with coordinates (51.34019174590991); coordinate fixture is authoritative."
+      ]
+    },
+    {
+      "id": "RUHI2D-223",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-224",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-225",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-226",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-227",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-228",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-229",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-230",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-231",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-232",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-233",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-234",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-235",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-236",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-237",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-238",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-239",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-240",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-241",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-242",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-258",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-259",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-260",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-261",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-262",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-263",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-264",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-265",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-266",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-267",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-268",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-269",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-270",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-271",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-272",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-273",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-274",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-275",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-276",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-277",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-278",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-279",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-280",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-281",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-282",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-283",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-284",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-285",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-286",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-287",
+      "invalid": [],
+      "warnings": [
+        "Missing geometric coordinates: use the explicitly documented deterministic fixture convention."
+      ]
+    },
+    {
+      "id": "RUHI2D-291",
+      "invalid": [],
+      "warnings": [
+        "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+      ]
+    },
+    {
+      "id": "RUHI2D-292",
+      "invalid": [],
+      "warnings": [
+        "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+      ]
+    },
+    {
+      "id": "RUHI2D-293",
+      "invalid": [],
+      "warnings": [
+        "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+      ]
+    },
+    {
+      "id": "RUHI2D-294",
+      "invalid": [],
+      "warnings": [
+        "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+      ]
+    },
+    {
+      "id": "RUHI2D-295",
+      "invalid": [],
+      "warnings": [
+        "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+      ]
+    },
+    {
+      "id": "RUHI2D-296",
+      "invalid": [],
+      "warnings": [
+        "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+      ]
+    },
+    {
+      "id": "RUHI2D-297",
+      "invalid": [],
+      "warnings": [
+        "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+      ]
+    },
+    {
+      "id": "RUHI2D-298",
+      "invalid": [],
+      "warnings": [
+        "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+      ]
+    },
+    {
+      "id": "RUHI2D-299",
+      "invalid": [],
+      "warnings": [
+        "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+      ]
+    },
+    {
+      "id": "RUHI2D-300",
+      "invalid": [],
+      "warnings": [
+        "Missing segment endpoints: use documented fixture endpoints (0,0) and (6,4)."
+      ]
+    }
+  ],
+  "sourcePath": "C:/Users/saisa/Downloads/ruhi_2d_nlp_300_dataset.json",
+  "sourceSha256": "7499a56f64767f18c880ba53e33870db43038aed7130b44a4eb54f220b55532f",
+  "fixturePolicy": "For absent geometry: triangle (0,0),(6,0),(2,5); circle centered (0,0), radius 4; rectangle centered (0,0), 4×6; line (0,0) to (6,2); segment (0,0) to (6,4); upper/lower triangles y±6; two conditional lines y=x and y=-x. Existing scenario state is retained. These are test fixtures, never runtime assumptions."
+}

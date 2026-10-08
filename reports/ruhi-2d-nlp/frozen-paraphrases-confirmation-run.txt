@@ -1,0 +1,17 @@
+frozen-paraphrases-confirmation PROBE-01 passed
+frozen-paraphrases-confirmation PROBE-02 passed
+frozen-paraphrases-confirmation PROBE-03 passed
+frozen-paraphrases-confirmation PROBE-04 passed
+frozen-paraphrases-confirmation PROBE-05 passed
+frozen-paraphrases-confirmation PROBE-06 passed
+frozen-paraphrases-confirmation PROBE-07 passed
+frozen-paraphrases-confirmation PROBE-08 passed
+frozen-paraphrases-confirmation PROBE-09 passed
+frozen-paraphrases-confirmation PROBE-10 passed
+frozen-paraphrases-confirmation PROBE-11 passed
+frozen-paraphrases-confirmation PROBE-12 passed
+frozen-paraphrases-confirmation PROBE-13 passed
+frozen-paraphrases-confirmation PROBE-14 passed
+frozen-paraphrases-confirmation PROBE-15 passed
+frozen-paraphrases-confirmation PROBE-16 passed
+SUMMARY 16 0 0

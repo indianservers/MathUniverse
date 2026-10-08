@@ -1,0 +1,5 @@
+{
+  "source": "scripts/ruhi-v52-performance.mjs",
+  "sha256": "0179c8a29f463c582a09e4977d26527dafb69bfe1029afa30508e20fed656a29",
+  "adaptation": "Output directory only; expectations unchanged"
+}

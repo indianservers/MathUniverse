@@ -1,0 +1,157 @@
+graph2d Delete all objects PASS Cleared Robo scene objects.
+graph2d Clear context PASS Conversation context cleared. Your workspace objects are still here.
+graph2d Draw vector from (1,1) to (4,5) PASS Created 2D vector from (1, 1) to (4, 5).
+graph2d Find its magnitude PASS magnitude = 5 units.
+graph2d Move it 2 units right PASS move vector.
+graph2d Find its magnitude PASS magnitude = 5 units.
+graph2d Rotate it 90 degrees PASS rotate vector.
+graph2d Find its components PASS components = [-4,3].
+graph2d Scale it by 2 PASS scale vector.
+graph2d Find its magnitude PASS magnitude = 10 units.
+graph2d Undo PASS Undid the last Ruhi action.
+graph2d Redo PASS Redid the last Ruhi action.
+graph2d Set its endpoints to (1,1) and (4,5) PASS Changed vector.
+graph2d Delete it PASS Deleted vector.
+graph2d Undo PASS Undid the last Ruhi action.
+graph2d Draw ray origin (2,2) through (5,6) PASS Created 2D ray from (2, 2) through (5, 6).
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its parameterization PASS parameterization = "P(t) = (2, 2) + t (3, 4), t ≥ 0".
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Find its direction PASS direction = [3,4].
+graph2d Delete all objects PASS Cleared Robo scene objects.
+geometry2d Delete all objects PASS Cleared Robo scene objects.
+geometry2d Clear context PASS Conversation context cleared. Your workspace objects are still here.
+geometry2d Draw vector from (1,1) to (4,5) PASS Created 2D vector from (1, 1) to (4, 5).
+geometry2d Find its magnitude PASS magnitude = 5 units.
+geometry2d Move it 2 units right PASS move vector.
+geometry2d Find its magnitude PASS magnitude = 5 units.
+geometry2d Rotate it 90 degrees PASS rotate vector.
+geometry2d Find its components PASS components = [-4,3].
+geometry2d Scale it by 2 PASS scale vector.
+geometry2d Find its magnitude PASS magnitude = 10 units.
+geometry2d Undo PASS Undid the last Ruhi action.
+geometry2d Redo PASS Redid the last Ruhi action.
+geometry2d Set its endpoints to (1,1) and (4,5) PASS Changed vector.
+geometry2d Delete it PASS Deleted vector.
+geometry2d Undo PASS Undid the last Ruhi action.
+geometry2d Draw ray origin (2,2) through (5,6) PASS Created 2D ray from (2, 2) through (5, 6).
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its parameterization PASS parameterization = "P(t) = (2, 2) + t (3, 4), t ≥ 0".
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Find its direction PASS direction = [3,4].
+geometry2d Delete all objects PASS Cleared Robo scene objects.
+graph3d Delete all objects PASS Cleared Robo scene objects.
+graph3d Clear context PASS Conversation context cleared. Your workspace objects are still here.
+graph3d Draw vector from (1,1,1) to (4,5,1) PASS Created 3D vector from (1, 1, 1) to (4, 5, 1).
+graph3d Find its magnitude PASS magnitude = 5 units.
+graph3d Move it 2 units right PASS move vector.
+graph3d Find its magnitude PASS magnitude = 5 units.
+graph3d Rotate it 90 degrees PASS rotate vector.
+graph3d Find its components PASS components = [-4,3,0].
+graph3d Scale it by 2 PASS scale vector.
+graph3d Find its magnitude PASS magnitude = 10 units.
+graph3d Undo PASS Undid the last Ruhi action.
+graph3d Redo PASS Redid the last Ruhi action.
+graph3d Set its endpoints to (1,1,1) and (4,5,1) PASS Changed vector.
+graph3d Delete it PASS Deleted vector.
+graph3d Undo PASS Undid the last Ruhi action.
+graph3d Draw ray origin (2,2,0) through (5,6,1) PASS Created 3D ray from (2, 2, 0) through (5, 6, 1).
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its parameterization PASS parameterization = "P(t) = (2, 2, 0) + t (3, 4, 1), t ≥ 0".
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Find its direction PASS direction = [3,4,1].
+graph3d Delete all objects PASS Cleared Robo scene objects.
+geometry3d Delete all objects PASS Cleared Robo scene objects.
+geometry3d Clear context PASS Conversation context cleared. Your workspace objects are still here.
+geometry3d Draw vector from (1,1,1) to (4,5,1) PASS Created 3D vector from (1, 1, 1) to (4, 5, 1).
+geometry3d Find its magnitude PASS magnitude = 5 units.
+geometry3d Move it 2 units right PASS move vector.
+geometry3d Find its magnitude PASS magnitude = 5 units.
+geometry3d Rotate it 90 degrees PASS rotate vector.
+geometry3d Find its components PASS components = [-4,3,0].
+geometry3d Scale it by 2 PASS scale vector.
+geometry3d Find its magnitude PASS magnitude = 10 units.
+geometry3d Undo PASS Undid the last Ruhi action.
+geometry3d Redo PASS Redid the last Ruhi action.
+geometry3d Set its endpoints to (1,1,1) and (4,5,1) PASS Changed vector.
+geometry3d Delete it PASS Deleted vector.
+geometry3d Undo PASS Undid the last Ruhi action.
+geometry3d Draw ray origin (2,2,0) through (5,6,1) PASS Created 3D ray from (2, 2, 0) through (5, 6, 1).
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its parameterization PASS parameterization = "P(t) = (2, 2, 0) + t (3, 4, 1), t ≥ 0".
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Find its direction PASS direction = [3,4,1].
+geometry3d Delete all objects PASS Cleared Robo scene objects.
+SUMMARY 162 162 pageErrors 0

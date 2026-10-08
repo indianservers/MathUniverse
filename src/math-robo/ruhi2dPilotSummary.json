@@ -1,0 +1,693 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-08T10:24:31.463490+00:00",
+  "dataset": {
+    "total": 300,
+    "valid": 300,
+    "ambiguous": 3,
+    "train": 210,
+    "validation": 47,
+    "heldOut": 43
+  },
+  "modelVersion": "Existing four-head v4 weights; Ruhi v5.2 execution engine",
+  "cycle": 9,
+  "checkpoint": "reports/ruhi-2d-nlp/checkpoints/best/model.json",
+  "promoted": false,
+  "stoppingCondition": "USER_REQUESTED_STOP: six cycles considered sufficient; nine had already completed when the request arrived. No more cycles or production builds started.",
+  "evaluation": {
+    "phase": "cycle-09",
+    "subset": "all",
+    "passed": 297,
+    "failed": 0,
+    "blocked": 3,
+    "total": 300,
+    "endToEndAccuracy": 0.99,
+    "scenarios": {
+      "passed": 234,
+      "total": 237
+    },
+    "metrics": {
+      "intent": {
+        "passed": 260,
+        "total": 260,
+        "accuracy": 1
+      },
+      "entities": {
+        "passed": 101,
+        "total": 101,
+        "accuracy": 1
+      },
+      "numeric": {
+        "passed": 11,
+        "total": 11,
+        "accuracy": 1
+      },
+      "context": {
+        "passed": 108,
+        "total": 108,
+        "accuracy": 1
+      },
+      "clarification": {
+        "passed": 27,
+        "total": 27,
+        "accuracy": 1
+      },
+      "geometry": {
+        "passed": 239,
+        "total": 239,
+        "accuracy": 1
+      },
+      "execution": {
+        "passed": 267,
+        "total": 267,
+        "accuracy": 1
+      },
+      "response": {
+        "passed": 287,
+        "total": 287,
+        "accuracy": 1
+      }
+    },
+    "sourceFingerprint": "dceabf879d3c036175723d0d7fde3ab770be8c8d43de7bf9153803523aee9d3c"
+  },
+  "cycles": [
+    {
+      "phase": "cycle-01",
+      "subset": "train",
+      "passed": 100,
+      "failed": 109,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.47619047619047616,
+      "scenarios": {
+        "passed": 86,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 149,
+          "total": 181,
+          "accuracy": 0.8232044198895028
+        },
+        "entities": {
+          "passed": 20,
+          "total": 74,
+          "accuracy": 0.2702702702702703
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 77,
+          "total": 83,
+          "accuracy": 0.927710843373494
+        },
+        "clarification": {
+          "passed": 14,
+          "total": 20,
+          "accuracy": 0.7
+        },
+        "geometry": {
+          "passed": 78,
+          "total": 166,
+          "accuracy": 0.46987951807228917
+        },
+        "execution": {
+          "passed": 107,
+          "total": 187,
+          "accuracy": 0.5721925133689839
+        },
+        "response": {
+          "passed": 123,
+          "total": 201,
+          "accuracy": 0.6119402985074627
+        }
+      }
+    },
+    {
+      "phase": "cycle-02",
+      "subset": "train",
+      "passed": 117,
+      "failed": 92,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.5571428571428572,
+      "scenarios": {
+        "passed": 103,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 164,
+          "total": 181,
+          "accuracy": 0.9060773480662984
+        },
+        "entities": {
+          "passed": 34,
+          "total": 74,
+          "accuracy": 0.4594594594594595
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 77,
+          "total": 83,
+          "accuracy": 0.927710843373494
+        },
+        "clarification": {
+          "passed": 14,
+          "total": 20,
+          "accuracy": 0.7
+        },
+        "geometry": {
+          "passed": 120,
+          "total": 166,
+          "accuracy": 0.7228915662650602
+        },
+        "execution": {
+          "passed": 155,
+          "total": 187,
+          "accuracy": 0.8288770053475936
+        },
+        "response": {
+          "passed": 163,
+          "total": 201,
+          "accuracy": 0.8109452736318408
+        }
+      }
+    },
+    {
+      "phase": "cycle-03",
+      "subset": "train",
+      "passed": 144,
+      "failed": 65,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.6857142857142857,
+      "scenarios": {
+        "passed": 127,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 174,
+          "total": 181,
+          "accuracy": 0.9613259668508287
+        },
+        "entities": {
+          "passed": 46,
+          "total": 74,
+          "accuracy": 0.6216216216216216
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 80,
+          "total": 83,
+          "accuracy": 0.963855421686747
+        },
+        "clarification": {
+          "passed": 17,
+          "total": 20,
+          "accuracy": 0.85
+        },
+        "geometry": {
+          "passed": 132,
+          "total": 166,
+          "accuracy": 0.7951807228915663
+        },
+        "execution": {
+          "passed": 141,
+          "total": 187,
+          "accuracy": 0.7540106951871658
+        },
+        "response": {
+          "passed": 152,
+          "total": 201,
+          "accuracy": 0.7562189054726368
+        }
+      }
+    },
+    {
+      "phase": "cycle-04",
+      "subset": "train",
+      "passed": 185,
+      "failed": 24,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.8809523809523809,
+      "scenarios": {
+        "passed": 147,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 174,
+          "total": 181,
+          "accuracy": 0.9613259668508287
+        },
+        "entities": {
+          "passed": 66,
+          "total": 74,
+          "accuracy": 0.8918918918918919
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 80,
+          "total": 83,
+          "accuracy": 0.963855421686747
+        },
+        "clarification": {
+          "passed": 17,
+          "total": 20,
+          "accuracy": 0.85
+        },
+        "geometry": {
+          "passed": 153,
+          "total": 166,
+          "accuracy": 0.9216867469879518
+        },
+        "execution": {
+          "passed": 176,
+          "total": 187,
+          "accuracy": 0.9411764705882353
+        },
+        "response": {
+          "passed": 187,
+          "total": 201,
+          "accuracy": 0.9303482587064676
+        }
+      }
+    },
+    {
+      "phase": "cycle-05",
+      "subset": "train",
+      "passed": 191,
+      "failed": 18,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.9095238095238095,
+      "scenarios": {
+        "passed": 150,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 174,
+          "total": 181,
+          "accuracy": 0.9613259668508287
+        },
+        "entities": {
+          "passed": 71,
+          "total": 74,
+          "accuracy": 0.9594594594594594
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 78,
+          "total": 83,
+          "accuracy": 0.9397590361445783
+        },
+        "clarification": {
+          "passed": 20,
+          "total": 20,
+          "accuracy": 1
+        },
+        "geometry": {
+          "passed": 151,
+          "total": 166,
+          "accuracy": 0.9096385542168675
+        },
+        "execution": {
+          "passed": 172,
+          "total": 187,
+          "accuracy": 0.9197860962566845
+        },
+        "response": {
+          "passed": 186,
+          "total": 201,
+          "accuracy": 0.9253731343283582
+        }
+      }
+    },
+    {
+      "phase": "cycle-06",
+      "subset": "train",
+      "passed": 202,
+      "failed": 7,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.9619047619047619,
+      "scenarios": {
+        "passed": 161,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 181,
+          "total": 181,
+          "accuracy": 1
+        },
+        "entities": {
+          "passed": 74,
+          "total": 74,
+          "accuracy": 1
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 83,
+          "total": 83,
+          "accuracy": 1
+        },
+        "clarification": {
+          "passed": 20,
+          "total": 20,
+          "accuracy": 1
+        },
+        "geometry": {
+          "passed": 159,
+          "total": 166,
+          "accuracy": 0.9578313253012049
+        },
+        "execution": {
+          "passed": 187,
+          "total": 187,
+          "accuracy": 1
+        },
+        "response": {
+          "passed": 201,
+          "total": 201,
+          "accuracy": 1
+        }
+      }
+    },
+    {
+      "phase": "cycle-07",
+      "subset": "train",
+      "passed": 209,
+      "failed": 0,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.9952380952380953,
+      "scenarios": {
+        "passed": 168,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 181,
+          "total": 181,
+          "accuracy": 1
+        },
+        "entities": {
+          "passed": 74,
+          "total": 74,
+          "accuracy": 1
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 83,
+          "total": 83,
+          "accuracy": 1
+        },
+        "clarification": {
+          "passed": 20,
+          "total": 20,
+          "accuracy": 1
+        },
+        "geometry": {
+          "passed": 166,
+          "total": 166,
+          "accuracy": 1
+        },
+        "execution": {
+          "passed": 187,
+          "total": 187,
+          "accuracy": 1
+        },
+        "response": {
+          "passed": 201,
+          "total": 201,
+          "accuracy": 1
+        }
+      }
+    },
+    {
+      "phase": "cycle-08",
+      "subset": "train",
+      "passed": 209,
+      "failed": 0,
+      "blocked": 1,
+      "total": 210,
+      "endToEndAccuracy": 0.9952380952380953,
+      "scenarios": {
+        "passed": 168,
+        "total": 169
+      },
+      "metrics": {
+        "intent": {
+          "passed": 181,
+          "total": 181,
+          "accuracy": 1
+        },
+        "entities": {
+          "passed": 74,
+          "total": 74,
+          "accuracy": 1
+        },
+        "numeric": {
+          "passed": 9,
+          "total": 9,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 83,
+          "total": 83,
+          "accuracy": 1
+        },
+        "clarification": {
+          "passed": 20,
+          "total": 20,
+          "accuracy": 1
+        },
+        "geometry": {
+          "passed": 166,
+          "total": 166,
+          "accuracy": 1
+        },
+        "execution": {
+          "passed": 187,
+          "total": 187,
+          "accuracy": 1
+        },
+        "response": {
+          "passed": 201,
+          "total": 201,
+          "accuracy": 1
+        }
+      },
+      "sourceFingerprint": "30479ea1ff7ce0c7a4f771861efbae9e5c24c05e6414d689294cf5ff9e894ba5"
+    },
+    {
+      "phase": "cycle-09",
+      "subset": "all",
+      "passed": 297,
+      "failed": 0,
+      "blocked": 3,
+      "total": 300,
+      "endToEndAccuracy": 0.99,
+      "scenarios": {
+        "passed": 234,
+        "total": 237
+      },
+      "metrics": {
+        "intent": {
+          "passed": 260,
+          "total": 260,
+          "accuracy": 1
+        },
+        "entities": {
+          "passed": 101,
+          "total": 101,
+          "accuracy": 1
+        },
+        "numeric": {
+          "passed": 11,
+          "total": 11,
+          "accuracy": 1
+        },
+        "context": {
+          "passed": 108,
+          "total": 108,
+          "accuracy": 1
+        },
+        "clarification": {
+          "passed": 27,
+          "total": 27,
+          "accuracy": 1
+        },
+        "geometry": {
+          "passed": 239,
+          "total": 239,
+          "accuracy": 1
+        },
+        "execution": {
+          "passed": 267,
+          "total": 267,
+          "accuracy": 1
+        },
+        "response": {
+          "passed": 287,
+          "total": 287,
+          "accuracy": 1
+        }
+      },
+      "sourceFingerprint": "dceabf879d3c036175723d0d7fde3ab770be8c8d43de7bf9153803523aee9d3c"
+    }
+  ],
+  "training": {
+    "train": 150,
+    "validation": 30,
+    "bestEpoch": 0,
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 8.256247285207113,
+        "validation": {
+          "action": 0.6666666666666666,
+          "subAction": 0.23333333333333334,
+          "mode": 1,
+          "objectType": 0.6
+        },
+        "primaryAccuracy": 0.16666666666666666,
+        "priorAccuracy": 1,
+        "accepted": false
+      },
+      {
+        "epoch": 2,
+        "loss": 7.480748462677002,
+        "validation": {
+          "action": 0.6666666666666666,
+          "subAction": 0.23333333333333334,
+          "mode": 1,
+          "objectType": 0.6333333333333333
+        },
+        "primaryAccuracy": 0.16666666666666666,
+        "priorAccuracy": 1,
+        "accepted": false
+      },
+      {
+        "epoch": 3,
+        "loss": 6.867899398803711,
+        "validation": {
+          "action": 0.6666666666666666,
+          "subAction": 0.23333333333333334,
+          "mode": 1,
+          "objectType": 0.6333333333333333
+        },
+        "primaryAccuracy": 0.16666666666666666,
+        "priorAccuracy": 1,
+        "accepted": false
+      }
+    ],
+    "stoppingCondition": "No accepted checkpoint improvement for three epochs"
+  },
+  "failures": [
+    {
+      "id": "RUHI2D-010",
+      "scenarioId": "S-010",
+      "split": "test",
+      "command": "Draw a regular trapezoid centered at (-1,2) with circumradius 3.",
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "create_regular_polygon",
+            "shape": "trapezoid",
+            "center": [
+              -1,
+              2
+            ],
+            "circumradius": 3
+          }
+        ]
+      },
+      "status": "blocked",
+      "rootCause": "DATASET_EXPECTATION_ERROR",
+      "reason": "{\"invalid\":[],\"warnings\":[\"A regular trapezoid has no unique conventional definition; do not silently invent vertices.\"]}",
+      "actual": null
+    },
+    {
+      "id": "RUHI2D-020",
+      "scenarioId": "S-020",
+      "split": "train",
+      "command": "Draw a regular trapezoid centered at (2,2) with circumradius 3.",
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "create_regular_polygon",
+            "shape": "trapezoid",
+            "center": [
+              2,
+              2
+            ],
+            "circumradius": 3
+          }
+        ]
+      },
+      "status": "blocked",
+      "rootCause": "DATASET_EXPECTATION_ERROR",
+      "reason": "{\"invalid\":[],\"warnings\":[\"A regular trapezoid has no unique conventional definition; do not silently invent vertices.\"]}",
+      "actual": null
+    },
+    {
+      "id": "RUHI2D-030",
+      "scenarioId": "S-030",
+      "split": "validation",
+      "command": "Draw a regular trapezoid centered at (-2,2) with circumradius 3.",
+      "expected": {
+        "type": "execute",
+        "actions": [
+          {
+            "op": "create_regular_polygon",
+            "shape": "trapezoid",
+            "center": [
+              -2,
+              2
+            ],
+            "circumradius": 3
+          }
+        ]
+      },
+      "status": "blocked",
+      "rootCause": "DATASET_EXPECTATION_ERROR",
+      "reason": "{\"invalid\":[],\"warnings\":[\"A regular trapezoid has no unique conventional definition; do not silently invent vertices.\"]}",
+      "actual": null
+    }
+  ]
+}

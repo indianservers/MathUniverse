@@ -1,3 +1,4 @@
+import ModelDownloadStatus from './model-loading/ModelDownloadStatus';
 import './studios/studioHomeLayout.css';
 import OfflineMathAssistant from './offline-intelligence/OfflineMathAssistant';
 import {MODEL_TRAINING_ENABLED} from './math-robo/intelligence/buildPolicy';
@@ -385,6 +386,7 @@ export default function App() {
       <SeoMetadata />
       <RouteProgressBar />
       <OfflineMathAssistant />
+      <ModelDownloadStatus />
       <Suspense fallback={<RouteFallback />}>
         <StudioModelProvider key={location.pathname}><Routes>
           <Route element={<AppLayout />}>

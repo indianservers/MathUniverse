@@ -1,0 +1,13 @@
+
+Running 4 tests using 1 worker
+
+(node:26196) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\workspace\ruhi2dPilot.e2e.ts:2:1 › student build keeps offline angle execution and distinct native style rendering (11.8s)
+  ok 2 [chromium] › tests\workspace\ruhiV51Build.e2e.ts:2:1 › production mathematical workers preserve exact values and verification labels (5.8s)
+  ok 3 [chromium] › tests\workspace\ruhiV52Build.e2e.ts:2:1 › production v5.2 native 3D plane construction and live dependencies (22.9s)
+(node:14124) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 4 [chromium] › tests\workspace\ruhiStudentBuild.e2e.ts:3:1 › student build excludes training and only queues correction suggestions (3.1s)
+
+  4 passed (45.9s)

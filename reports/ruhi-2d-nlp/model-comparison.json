@@ -1,0 +1,6598 @@
+{
+  "seed": "Fixed existing weights; sequential deterministic batches, CPU backend",
+  "train": 150,
+  "validation": 30,
+  "heldOutUsedForFit": 0,
+  "skipped": [
+    {
+      "id": "RUHI2D-020",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-030",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-101",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-102",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-105",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-106",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-109",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-110",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-113",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-114",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-117",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-118",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-125",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-126",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-133",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-134",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-137",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-138",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-141",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-142",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-145",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-146",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-149",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-151",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-153",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-155",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-156",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-157",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-159",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-161",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-163",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-165",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-167",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-168",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-169",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-173",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-175",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-177",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-179",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-180",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-181",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-185",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-187",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-189",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-191",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-192",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-193",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-195",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-197",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-201",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-224",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-225",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-226",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-227",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-228",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-230",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-231",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-233",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-234",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-235",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-236",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-237",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-239",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-240",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-241",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-242",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-273",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-274",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-275",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-276",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-277",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-278",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-281",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-282",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-288",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-289",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    },
+    {
+      "id": "RUHI2D-290",
+      "reason": "No independently supplied compatible primary execute label in the existing classifier heads."
+    }
+  ],
+  "baseline": {
+    "total": 30,
+    "primaryAccuracy": 0.16666666666666666,
+    "headAccuracy": {
+      "action": 0.6666666666666666,
+      "subAction": 0.23333333333333334,
+      "mode": 1,
+      "objectType": 0.6
+    },
+    "predictions": [
+      {
+        "id": "RUHI2D-008",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PARALLELOGRAM",
+          "mode": "graph2d",
+          "objectType": "parallelogram"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9662285447120667
+          },
+          "subAction": {
+            "label": "OBJECT",
+            "score": 0.6867625713348389
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9998822212219238
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.7137082815170288
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-015",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "ELLIPSE",
+          "mode": "graph2d",
+          "objectType": "ellipse"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.8683621287345886
+          },
+          "subAction": {
+            "label": "POINT",
+            "score": 0.44897761940956116
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9431156516075134
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.888237476348877
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-022",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RECTANGLE",
+          "mode": "graph2d",
+          "objectType": "rectangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9769442677497864
+          },
+          "subAction": {
+            "label": "RECTANGLE",
+            "score": 0.41272133588790894
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999529123306274
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.6079477071762085
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-027",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEXAGON",
+          "mode": "graph2d",
+          "objectType": "hexagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.980634331703186
+          },
+          "subAction": {
+            "label": "OBJECT",
+            "score": 0.3249722719192505
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9998642206192017
+          },
+          "objectType": {
+            "label": "line",
+            "score": 0.33540162444114685
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-052",
+        "expected": {
+          "action": "MOVE",
+          "subAction": "OBJECT",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "MOVE",
+            "score": 0.6584372520446777
+          },
+          "subAction": {
+            "label": "OBJECT",
+            "score": 0.9899086952209473
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.961601197719574
+          },
+          "objectType": {
+            "label": "circle",
+            "score": 0.7870832085609436
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-060",
+        "expected": {
+          "action": "MOVE",
+          "subAction": "OBJECT",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "MOVE",
+            "score": 0.6584372520446777
+          },
+          "subAction": {
+            "label": "OBJECT",
+            "score": 0.9899086952209473
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.961601197719574
+          },
+          "objectType": {
+            "label": "circle",
+            "score": 0.7870832085609436
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-068",
+        "expected": {
+          "action": "MOVE",
+          "subAction": "OBJECT",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "MOVE",
+            "score": 0.6584372520446777
+          },
+          "subAction": {
+            "label": "OBJECT",
+            "score": 0.9899086952209473
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.961601197719574
+          },
+          "objectType": {
+            "label": "circle",
+            "score": 0.7870832085609436
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-085",
+        "expected": {
+          "action": "CHANGE",
+          "subAction": "COLOR",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "FIND",
+            "score": 0.9561623334884644
+          },
+          "subAction": {
+            "label": "OBJECT",
+            "score": 0.19217510521411896
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9960599541664124
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9999974966049194
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-099",
+        "expected": {
+          "action": "ROTATE",
+          "subAction": "OBJECT",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "ROTATE",
+            "score": 0.8735091686248779
+          },
+          "subAction": {
+            "label": "OBJECT",
+            "score": 0.9343472719192505
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999020099639893
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9977149963378906
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-139",
+        "expected": {
+          "action": "CHANGE",
+          "subAction": "COLOR",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "CHANGE",
+            "score": 0.7208468914031982
+          },
+          "subAction": {
+            "label": "LENGTH",
+            "score": 0.29549500346183777
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9993038177490234
+          },
+          "objectType": {
+            "label": "none",
+            "score": 1
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-140",
+        "expected": {
+          "action": "UNDO",
+          "subAction": "LAST",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "FIND",
+            "score": 0.42581045627593994
+          },
+          "subAction": {
+            "label": "PERIMETER",
+            "score": 0.2540684938430786
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.992681086063385
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9999978542327881
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-143",
+        "expected": {
+          "action": "CHANGE",
+          "subAction": "COLOR",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "CHANGE",
+            "score": 0.7208468914031982
+          },
+          "subAction": {
+            "label": "LENGTH",
+            "score": 0.29549500346183777
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9993038177490234
+          },
+          "objectType": {
+            "label": "none",
+            "score": 1
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-144",
+        "expected": {
+          "action": "UNDO",
+          "subAction": "LAST",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "FIND",
+            "score": 0.42581045627593994
+          },
+          "subAction": {
+            "label": "PERIMETER",
+            "score": 0.2540684938430786
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.992681086063385
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9999978542327881
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-147",
+        "expected": {
+          "action": "CHANGE",
+          "subAction": "COLOR",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "CHANGE",
+            "score": 0.7208468914031982
+          },
+          "subAction": {
+            "label": "LENGTH",
+            "score": 0.29549500346183777
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9993038177490234
+          },
+          "objectType": {
+            "label": "none",
+            "score": 1
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-148",
+        "expected": {
+          "action": "UNDO",
+          "subAction": "LAST",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "FIND",
+            "score": 0.42581045627593994
+          },
+          "subAction": {
+            "label": "PERIMETER",
+            "score": 0.2540684938430786
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.992681086063385
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9999978542327881
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-166",
+        "expected": {
+          "action": "CHANGE",
+          "subAction": "SLOPE",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "FIND",
+            "score": 0.8941411375999451
+          },
+          "subAction": {
+            "label": "RADIUS",
+            "score": 0.18559418618679047
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9147239923477173
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9999936819076538
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-170",
+        "expected": {
+          "action": "CHANGE",
+          "subAction": "COLOR",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "CHECK",
+            "score": 0.9302158355712891
+          },
+          "subAction": {
+            "label": "OBJECT",
+            "score": 0.2695713937282562
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999316930770874
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.999670147895813
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-186",
+        "expected": {
+          "action": "SCALE",
+          "subAction": "UNIFORM",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "CHANGE",
+            "score": 0.9748395085334778
+          },
+          "subAction": {
+            "label": "DIAMETER",
+            "score": 0.38097772002220154
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9980746507644653
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9993358254432678
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-204",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "graph2d",
+          "objectType": "triangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9087275862693787
+          },
+          "subAction": {
+            "label": "POINT",
+            "score": 0.4002864360809326
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999614953994751
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.6072231531143188
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-213",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "graph2d",
+          "objectType": "triangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9087275862693787
+          },
+          "subAction": {
+            "label": "POINT",
+            "score": 0.4002864360809326
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999614953994751
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.6072231531143188
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-214",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "graph2d",
+          "objectType": "triangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9087275862693787
+          },
+          "subAction": {
+            "label": "POINT",
+            "score": 0.4002864360809326
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999614953994751
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.6072231531143188
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-215",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "graph2d",
+          "objectType": "triangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9087275862693787
+          },
+          "subAction": {
+            "label": "POINT",
+            "score": 0.4002864360809326
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999614953994751
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.6072231531143188
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-220",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "graph2d",
+          "objectType": "triangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9087275862693787
+          },
+          "subAction": {
+            "label": "POINT",
+            "score": 0.4002864360809326
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999614953994751
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.6072231531143188
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-246",
+        "expected": {
+          "action": "FIND",
+          "subAction": "INTERSECTION",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "MARK",
+            "score": 0.445589542388916
+          },
+          "subAction": {
+            "label": "FUNCTION",
+            "score": 0.6605173349380493
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9997993111610413
+          },
+          "objectType": {
+            "label": "none",
+            "score": 1
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-263",
+        "expected": {
+          "action": "CONSTRUCT",
+          "subAction": "PERPENDICULAR",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "CONSTRUCT",
+            "score": 0.6506502032279968
+          },
+          "subAction": {
+            "label": "PERPENDICULAR_BISECTOR",
+            "score": 0.3788725733757019
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999949932098389
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9829317331314087
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-264",
+        "expected": {
+          "action": "CONSTRUCT",
+          "subAction": "PERPENDICULAR",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "CONSTRUCT",
+            "score": 0.6506502032279968
+          },
+          "subAction": {
+            "label": "PERPENDICULAR_BISECTOR",
+            "score": 0.3788725733757019
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999949932098389
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9829317331314087
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-265",
+        "expected": {
+          "action": "CONSTRUCT",
+          "subAction": "PERPENDICULAR",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "CONSTRUCT",
+            "score": 0.6506502032279968
+          },
+          "subAction": {
+            "label": "PERPENDICULAR_BISECTOR",
+            "score": 0.3788725733757019
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999949932098389
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9829317331314087
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-266",
+        "expected": {
+          "action": "CONSTRUCT",
+          "subAction": "PERPENDICULAR",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "CONSTRUCT",
+            "score": 0.6506502032279968
+          },
+          "subAction": {
+            "label": "PERPENDICULAR_BISECTOR",
+            "score": 0.3788725733757019
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999949932098389
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9829317331314087
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-291",
+        "expected": {
+          "action": "MARK",
+          "subAction": "MIDPOINT",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "FIND",
+            "score": 0.49017003178596497
+          },
+          "subAction": {
+            "label": "MIDPOINT",
+            "score": 0.8399608135223389
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9989287257194519
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9999996423721313
+          }
+        }
+      },
+      {
+        "id": "RUHI2D-296",
+        "expected": {
+          "action": "MARK",
+          "subAction": "MIDPOINT",
+          "mode": "graph2d",
+          "objectType": "none"
+        },
+        "predicted": {
+          "action": {
+            "label": "FIND",
+            "score": 0.49017003178596497
+          },
+          "subAction": {
+            "label": "MIDPOINT",
+            "score": 0.8399608135223389
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9989287257194519
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9999996423721313
+          }
+        }
+      }
+    ]
+  },
+  "priorGuardBaseline": {
+    "total": 200,
+    "primaryAccuracy": 1,
+    "headAccuracy": {
+      "action": 1,
+      "subAction": 1,
+      "mode": 1,
+      "objectType": 1
+    },
+    "predictions": [
+      {
+        "id": "prior-0",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "geometry2d",
+          "objectType": "triangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "TRIANGLE",
+            "score": 0.992323637008667
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9924882650375366
+          },
+          "objectType": {
+            "label": "triangle",
+            "score": 0.9925681352615356
+          }
+        }
+      },
+      {
+        "id": "prior-1",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "graph2d",
+          "objectType": "triangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999996423721313
+          },
+          "subAction": {
+            "label": "TRIANGLE",
+            "score": 0.9977311491966248
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999982118606567
+          },
+          "objectType": {
+            "label": "triangle",
+            "score": 0.9974588751792908
+          }
+        }
+      },
+      {
+        "id": "prior-2",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "geometry3d",
+          "objectType": "triangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999997615814209
+          },
+          "subAction": {
+            "label": "TRIANGLE",
+            "score": 0.9953900575637817
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9992700219154358
+          },
+          "objectType": {
+            "label": "triangle",
+            "score": 0.99285489320755
+          }
+        }
+      },
+      {
+        "id": "prior-3",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "graph3d",
+          "objectType": "triangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "TRIANGLE",
+            "score": 0.9921824336051941
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9973863959312439
+          },
+          "objectType": {
+            "label": "triangle",
+            "score": 0.9887280464172363
+          }
+        }
+      },
+      {
+        "id": "prior-4",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "geometry2d",
+          "objectType": "triangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "TRIANGLE",
+            "score": 0.992323637008667
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9924882650375366
+          },
+          "objectType": {
+            "label": "triangle",
+            "score": 0.9925681352615356
+          }
+        }
+      },
+      {
+        "id": "prior-5",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "graph2d",
+          "objectType": "triangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999996423721313
+          },
+          "subAction": {
+            "label": "TRIANGLE",
+            "score": 0.9977311491966248
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999982118606567
+          },
+          "objectType": {
+            "label": "triangle",
+            "score": 0.9974588751792908
+          }
+        }
+      },
+      {
+        "id": "prior-6",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "geometry3d",
+          "objectType": "triangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999997615814209
+          },
+          "subAction": {
+            "label": "TRIANGLE",
+            "score": 0.9953900575637817
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9992700219154358
+          },
+          "objectType": {
+            "label": "triangle",
+            "score": 0.99285489320755
+          }
+        }
+      },
+      {
+        "id": "prior-7",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "graph3d",
+          "objectType": "triangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "TRIANGLE",
+            "score": 0.9921824336051941
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9973863959312439
+          },
+          "objectType": {
+            "label": "triangle",
+            "score": 0.9887280464172363
+          }
+        }
+      },
+      {
+        "id": "prior-8",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RECTANGLE",
+          "mode": "geometry2d",
+          "objectType": "rectangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9993979930877686
+          },
+          "subAction": {
+            "label": "RECTANGLE",
+            "score": 0.9995056390762329
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9997228980064392
+          },
+          "objectType": {
+            "label": "rectangle",
+            "score": 0.9995988011360168
+          }
+        }
+      },
+      {
+        "id": "prior-9",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RECTANGLE",
+          "mode": "graph2d",
+          "objectType": "rectangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9991607666015625
+          },
+          "subAction": {
+            "label": "RECTANGLE",
+            "score": 0.9996379613876343
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.999967098236084
+          },
+          "objectType": {
+            "label": "rectangle",
+            "score": 0.9995498061180115
+          }
+        }
+      },
+      {
+        "id": "prior-10",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RECTANGLE",
+          "mode": "geometry3d",
+          "objectType": "rectangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9989997744560242
+          },
+          "subAction": {
+            "label": "RECTANGLE",
+            "score": 0.9991636276245117
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9944992065429688
+          },
+          "objectType": {
+            "label": "rectangle",
+            "score": 0.998847484588623
+          }
+        }
+      },
+      {
+        "id": "prior-11",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RECTANGLE",
+          "mode": "graph3d",
+          "objectType": "rectangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9997367262840271
+          },
+          "subAction": {
+            "label": "RECTANGLE",
+            "score": 0.9994508624076843
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9993451237678528
+          },
+          "objectType": {
+            "label": "rectangle",
+            "score": 0.9994000196456909
+          }
+        }
+      },
+      {
+        "id": "prior-12",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RECTANGLE",
+          "mode": "geometry2d",
+          "objectType": "rectangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9996010661125183
+          },
+          "subAction": {
+            "label": "RECTANGLE",
+            "score": 0.9994452595710754
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9998281002044678
+          },
+          "objectType": {
+            "label": "rectangle",
+            "score": 0.9994827508926392
+          }
+        }
+      },
+      {
+        "id": "prior-13",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RECTANGLE",
+          "mode": "graph2d",
+          "objectType": "rectangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.99947589635849
+          },
+          "subAction": {
+            "label": "RECTANGLE",
+            "score": 0.9995498061180115
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.999951958656311
+          },
+          "objectType": {
+            "label": "rectangle",
+            "score": 0.9993057250976562
+          }
+        }
+      },
+      {
+        "id": "prior-14",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RECTANGLE",
+          "mode": "geometry3d",
+          "objectType": "rectangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9994565844535828
+          },
+          "subAction": {
+            "label": "RECTANGLE",
+            "score": 0.9989129304885864
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.99427729845047
+          },
+          "objectType": {
+            "label": "rectangle",
+            "score": 0.9983807802200317
+          }
+        }
+      },
+      {
+        "id": "prior-15",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RECTANGLE",
+          "mode": "graph3d",
+          "objectType": "rectangle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998348951339722
+          },
+          "subAction": {
+            "label": "RECTANGLE",
+            "score": 0.9993199110031128
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9992420673370361
+          },
+          "objectType": {
+            "label": "rectangle",
+            "score": 0.9991912245750427
+          }
+        }
+      },
+      {
+        "id": "prior-16",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SQUARE",
+          "mode": "geometry2d",
+          "objectType": "square"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998359680175781
+          },
+          "subAction": {
+            "label": "SQUARE",
+            "score": 0.997177243232727
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9983311295509338
+          },
+          "objectType": {
+            "label": "square",
+            "score": 0.9989359974861145
+          }
+        }
+      },
+      {
+        "id": "prior-17",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SQUARE",
+          "mode": "graph2d",
+          "objectType": "square"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9997205138206482
+          },
+          "subAction": {
+            "label": "SQUARE",
+            "score": 0.9962573051452637
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9992567896842957
+          },
+          "objectType": {
+            "label": "square",
+            "score": 0.998766303062439
+          }
+        }
+      },
+      {
+        "id": "prior-18",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SQUARE",
+          "mode": "geometry3d",
+          "objectType": "square"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998144507408142
+          },
+          "subAction": {
+            "label": "SQUARE",
+            "score": 0.9975965619087219
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9998483657836914
+          },
+          "objectType": {
+            "label": "square",
+            "score": 0.9992421865463257
+          }
+        }
+      },
+      {
+        "id": "prior-19",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SQUARE",
+          "mode": "graph3d",
+          "objectType": "square"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999141693115234
+          },
+          "subAction": {
+            "label": "SQUARE",
+            "score": 0.9964368343353271
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9998020529747009
+          },
+          "objectType": {
+            "label": "square",
+            "score": 0.9984129667282104
+          }
+        }
+      },
+      {
+        "id": "prior-20",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SQUARE",
+          "mode": "geometry2d",
+          "objectType": "square"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998359680175781
+          },
+          "subAction": {
+            "label": "SQUARE",
+            "score": 0.997177243232727
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9983311295509338
+          },
+          "objectType": {
+            "label": "square",
+            "score": 0.9989359974861145
+          }
+        }
+      },
+      {
+        "id": "prior-21",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SQUARE",
+          "mode": "graph2d",
+          "objectType": "square"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9997205138206482
+          },
+          "subAction": {
+            "label": "SQUARE",
+            "score": 0.9962573051452637
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9992567896842957
+          },
+          "objectType": {
+            "label": "square",
+            "score": 0.998766303062439
+          }
+        }
+      },
+      {
+        "id": "prior-22",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SQUARE",
+          "mode": "geometry3d",
+          "objectType": "square"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998144507408142
+          },
+          "subAction": {
+            "label": "SQUARE",
+            "score": 0.9975965619087219
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9998483657836914
+          },
+          "objectType": {
+            "label": "square",
+            "score": 0.9992421865463257
+          }
+        }
+      },
+      {
+        "id": "prior-23",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SQUARE",
+          "mode": "graph3d",
+          "objectType": "square"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999141693115234
+          },
+          "subAction": {
+            "label": "SQUARE",
+            "score": 0.9964368343353271
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9998020529747009
+          },
+          "objectType": {
+            "label": "square",
+            "score": 0.9984129667282104
+          }
+        }
+      },
+      {
+        "id": "prior-24",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CIRCLE",
+          "mode": "geometry2d",
+          "objectType": "circle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9997907280921936
+          },
+          "subAction": {
+            "label": "CIRCLE",
+            "score": 0.9930376410484314
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9997900128364563
+          },
+          "objectType": {
+            "label": "circle",
+            "score": 0.995107889175415
+          }
+        }
+      },
+      {
+        "id": "prior-25",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CIRCLE",
+          "mode": "graph2d",
+          "objectType": "circle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9995419979095459
+          },
+          "subAction": {
+            "label": "CIRCLE",
+            "score": 0.9921344518661499
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.998111367225647
+          },
+          "objectType": {
+            "label": "circle",
+            "score": 0.9837491512298584
+          }
+        }
+      },
+      {
+        "id": "prior-26",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CIRCLE",
+          "mode": "geometry3d",
+          "objectType": "circle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9996237754821777
+          },
+          "subAction": {
+            "label": "CIRCLE",
+            "score": 0.9799554944038391
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9999592304229736
+          },
+          "objectType": {
+            "label": "circle",
+            "score": 0.9786232709884644
+          }
+        }
+      },
+      {
+        "id": "prior-27",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CIRCLE",
+          "mode": "graph3d",
+          "objectType": "circle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999200105667114
+          },
+          "subAction": {
+            "label": "CIRCLE",
+            "score": 0.9861782789230347
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9988334774971008
+          },
+          "objectType": {
+            "label": "circle",
+            "score": 0.9702525734901428
+          }
+        }
+      },
+      {
+        "id": "prior-28",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CIRCLE",
+          "mode": "geometry2d",
+          "objectType": "circle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9980654120445251
+          },
+          "subAction": {
+            "label": "CIRCLE",
+            "score": 0.9674582481384277
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9996993541717529
+          },
+          "objectType": {
+            "label": "circle",
+            "score": 0.9982348680496216
+          }
+        }
+      },
+      {
+        "id": "prior-29",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CIRCLE",
+          "mode": "graph2d",
+          "objectType": "circle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9954202175140381
+          },
+          "subAction": {
+            "label": "CIRCLE",
+            "score": 0.9579627513885498
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.998350977897644
+          },
+          "objectType": {
+            "label": "circle",
+            "score": 0.9974381923675537
+          }
+        }
+      },
+      {
+        "id": "prior-30",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CIRCLE",
+          "mode": "geometry3d",
+          "objectType": "circle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9967644214630127
+          },
+          "subAction": {
+            "label": "CIRCLE",
+            "score": 0.9423872232437134
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9999518394470215
+          },
+          "objectType": {
+            "label": "circle",
+            "score": 0.9947060942649841
+          }
+        }
+      },
+      {
+        "id": "prior-31",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CIRCLE",
+          "mode": "graph3d",
+          "objectType": "circle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9993682503700256
+          },
+          "subAction": {
+            "label": "CIRCLE",
+            "score": 0.9607177376747131
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9995900988578796
+          },
+          "objectType": {
+            "label": "circle",
+            "score": 0.9902471303939819
+          }
+        }
+      },
+      {
+        "id": "prior-32",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "ELLIPSE",
+          "mode": "geometry2d",
+          "objectType": "ellipse"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999927282333374
+          },
+          "subAction": {
+            "label": "ELLIPSE",
+            "score": 0.9953780174255371
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9999693632125854
+          },
+          "objectType": {
+            "label": "ellipse",
+            "score": 0.9955036044120789
+          }
+        }
+      },
+      {
+        "id": "prior-33",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "ELLIPSE",
+          "mode": "graph2d",
+          "objectType": "ellipse"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.99997878074646
+          },
+          "subAction": {
+            "label": "ELLIPSE",
+            "score": 0.994904637336731
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9997839331626892
+          },
+          "objectType": {
+            "label": "ellipse",
+            "score": 0.9964354038238525
+          }
+        }
+      },
+      {
+        "id": "prior-34",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "ELLIPSE",
+          "mode": "geometry3d",
+          "objectType": "ellipse"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999865293502808
+          },
+          "subAction": {
+            "label": "ELLIPSE",
+            "score": 0.9843591451644897
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9994569420814514
+          },
+          "objectType": {
+            "label": "ellipse",
+            "score": 0.9872989058494568
+          }
+        }
+      },
+      {
+        "id": "prior-35",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "ELLIPSE",
+          "mode": "graph3d",
+          "objectType": "ellipse"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999963045120239
+          },
+          "subAction": {
+            "label": "ELLIPSE",
+            "score": 0.9892450571060181
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9995706677436829
+          },
+          "objectType": {
+            "label": "ellipse",
+            "score": 0.9927740097045898
+          }
+        }
+      },
+      {
+        "id": "prior-36",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "ELLIPSE",
+          "mode": "geometry2d",
+          "objectType": "ellipse"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999994039535522
+          },
+          "subAction": {
+            "label": "ELLIPSE",
+            "score": 0.9738079905509949
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9999735355377197
+          },
+          "objectType": {
+            "label": "ellipse",
+            "score": 0.9881508350372314
+          }
+        }
+      },
+      {
+        "id": "prior-37",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "ELLIPSE",
+          "mode": "graph2d",
+          "objectType": "ellipse"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999984502792358
+          },
+          "subAction": {
+            "label": "ELLIPSE",
+            "score": 0.9657946228981018
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9997280240058899
+          },
+          "objectType": {
+            "label": "ellipse",
+            "score": 0.9852694869041443
+          }
+        }
+      },
+      {
+        "id": "prior-38",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "ELLIPSE",
+          "mode": "geometry3d",
+          "objectType": "ellipse"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999990463256836
+          },
+          "subAction": {
+            "label": "ELLIPSE",
+            "score": 0.9331899881362915
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9996311664581299
+          },
+          "objectType": {
+            "label": "ellipse",
+            "score": 0.9665541052818298
+          }
+        }
+      },
+      {
+        "id": "prior-39",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "ELLIPSE",
+          "mode": "graph3d",
+          "objectType": "ellipse"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999997615814209
+          },
+          "subAction": {
+            "label": "ELLIPSE",
+            "score": 0.9528106451034546
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9992874264717102
+          },
+          "objectType": {
+            "label": "ellipse",
+            "score": 0.9782076478004456
+          }
+        }
+      },
+      {
+        "id": "prior-40",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SEMICIRCLE",
+          "mode": "geometry2d",
+          "objectType": "semicircle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "SEMICIRCLE",
+            "score": 0.9910728335380554
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9984167814254761
+          },
+          "objectType": {
+            "label": "semicircle",
+            "score": 0.992152988910675
+          }
+        }
+      },
+      {
+        "id": "prior-41",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SEMICIRCLE",
+          "mode": "graph2d",
+          "objectType": "semicircle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "SEMICIRCLE",
+            "score": 0.9916684627532959
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9994183778762817
+          },
+          "objectType": {
+            "label": "semicircle",
+            "score": 0.9932979941368103
+          }
+        }
+      },
+      {
+        "id": "prior-42",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SEMICIRCLE",
+          "mode": "geometry3d",
+          "objectType": "semicircle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "SEMICIRCLE",
+            "score": 0.9915675520896912
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.999195396900177
+          },
+          "objectType": {
+            "label": "semicircle",
+            "score": 0.9959737658500671
+          }
+        }
+      },
+      {
+        "id": "prior-43",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SEMICIRCLE",
+          "mode": "graph3d",
+          "objectType": "semicircle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "SEMICIRCLE",
+            "score": 0.9951578974723816
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.999980092048645
+          },
+          "objectType": {
+            "label": "semicircle",
+            "score": 0.9979117512702942
+          }
+        }
+      },
+      {
+        "id": "prior-44",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SEMICIRCLE",
+          "mode": "geometry2d",
+          "objectType": "semicircle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "SEMICIRCLE",
+            "score": 0.9883652925491333
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9989129304885864
+          },
+          "objectType": {
+            "label": "semicircle",
+            "score": 0.9886820316314697
+          }
+        }
+      },
+      {
+        "id": "prior-45",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SEMICIRCLE",
+          "mode": "graph2d",
+          "objectType": "semicircle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "SEMICIRCLE",
+            "score": 0.9890421032905579
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9993650317192078
+          },
+          "objectType": {
+            "label": "semicircle",
+            "score": 0.9904099702835083
+          }
+        }
+      },
+      {
+        "id": "prior-46",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SEMICIRCLE",
+          "mode": "geometry3d",
+          "objectType": "semicircle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "SEMICIRCLE",
+            "score": 0.9891515970230103
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9992029070854187
+          },
+          "objectType": {
+            "label": "semicircle",
+            "score": 0.9946793913841248
+          }
+        }
+      },
+      {
+        "id": "prior-47",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SEMICIRCLE",
+          "mode": "graph3d",
+          "objectType": "semicircle"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "SEMICIRCLE",
+            "score": 0.9936299920082092
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999797344207764
+          },
+          "objectType": {
+            "label": "semicircle",
+            "score": 0.9970883727073669
+          }
+        }
+      },
+      {
+        "id": "prior-48",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PENTAGON",
+          "mode": "geometry2d",
+          "objectType": "pentagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999997615814209
+          },
+          "subAction": {
+            "label": "PENTAGON",
+            "score": 0.9973136782646179
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9999943971633911
+          },
+          "objectType": {
+            "label": "pentagon",
+            "score": 0.9992499947547913
+          }
+        }
+      },
+      {
+        "id": "prior-49",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PENTAGON",
+          "mode": "graph2d",
+          "objectType": "pentagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999995231628418
+          },
+          "subAction": {
+            "label": "PENTAGON",
+            "score": 0.9918673634529114
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9947654008865356
+          },
+          "objectType": {
+            "label": "pentagon",
+            "score": 0.9971714615821838
+          }
+        }
+      },
+      {
+        "id": "prior-50",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PENTAGON",
+          "mode": "geometry3d",
+          "objectType": "pentagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999997615814209
+          },
+          "subAction": {
+            "label": "PENTAGON",
+            "score": 0.98911452293396
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9968511462211609
+          },
+          "objectType": {
+            "label": "pentagon",
+            "score": 0.9968428611755371
+          }
+        }
+      },
+      {
+        "id": "prior-51",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PENTAGON",
+          "mode": "graph3d",
+          "objectType": "pentagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "PENTAGON",
+            "score": 0.991732120513916
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9955074787139893
+          },
+          "objectType": {
+            "label": "pentagon",
+            "score": 0.9972597360610962
+          }
+        }
+      },
+      {
+        "id": "prior-52",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PENTAGON",
+          "mode": "geometry2d",
+          "objectType": "pentagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999994039535522
+          },
+          "subAction": {
+            "label": "PENTAGON",
+            "score": 0.9971351623535156
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9999939203262329
+          },
+          "objectType": {
+            "label": "pentagon",
+            "score": 0.9985312223434448
+          }
+        }
+      },
+      {
+        "id": "prior-53",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PENTAGON",
+          "mode": "graph2d",
+          "objectType": "pentagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999982118606567
+          },
+          "subAction": {
+            "label": "PENTAGON",
+            "score": 0.9920564293861389
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9975608587265015
+          },
+          "objectType": {
+            "label": "pentagon",
+            "score": 0.9918881058692932
+          }
+        }
+      },
+      {
+        "id": "prior-54",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PENTAGON",
+          "mode": "geometry3d",
+          "objectType": "pentagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999998927116394
+          },
+          "subAction": {
+            "label": "PENTAGON",
+            "score": 0.9854906797409058
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9990334510803223
+          },
+          "objectType": {
+            "label": "pentagon",
+            "score": 0.9907874464988708
+          }
+        }
+      },
+      {
+        "id": "prior-55",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PENTAGON",
+          "mode": "graph3d",
+          "objectType": "pentagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "PENTAGON",
+            "score": 0.9874381422996521
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.998941957950592
+          },
+          "objectType": {
+            "label": "pentagon",
+            "score": 0.9920944571495056
+          }
+        }
+      },
+      {
+        "id": "prior-56",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEXAGON",
+          "mode": "geometry2d",
+          "objectType": "hexagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9997542500495911
+          },
+          "subAction": {
+            "label": "HEXAGON",
+            "score": 0.9909834861755371
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9925077557563782
+          },
+          "objectType": {
+            "label": "hexagon",
+            "score": 0.9921320080757141
+          }
+        }
+      },
+      {
+        "id": "prior-57",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEXAGON",
+          "mode": "graph2d",
+          "objectType": "hexagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9989452958106995
+          },
+          "subAction": {
+            "label": "HEXAGON",
+            "score": 0.9952032566070557
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9991150498390198
+          },
+          "objectType": {
+            "label": "hexagon",
+            "score": 0.9972901344299316
+          }
+        }
+      },
+      {
+        "id": "prior-58",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEXAGON",
+          "mode": "geometry3d",
+          "objectType": "hexagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9994813799858093
+          },
+          "subAction": {
+            "label": "HEXAGON",
+            "score": 0.9957230091094971
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9994633793830872
+          },
+          "objectType": {
+            "label": "hexagon",
+            "score": 0.9982265830039978
+          }
+        }
+      },
+      {
+        "id": "prior-59",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEXAGON",
+          "mode": "graph3d",
+          "objectType": "hexagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998058676719666
+          },
+          "subAction": {
+            "label": "HEXAGON",
+            "score": 0.997740626335144
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999675750732422
+          },
+          "objectType": {
+            "label": "hexagon",
+            "score": 0.9981899857521057
+          }
+        }
+      },
+      {
+        "id": "prior-60",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEXAGON",
+          "mode": "geometry2d",
+          "objectType": "hexagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998658895492554
+          },
+          "subAction": {
+            "label": "HEXAGON",
+            "score": 0.98723304271698
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9948103427886963
+          },
+          "objectType": {
+            "label": "hexagon",
+            "score": 0.989428699016571
+          }
+        }
+      },
+      {
+        "id": "prior-61",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEXAGON",
+          "mode": "graph2d",
+          "objectType": "hexagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9994326233863831
+          },
+          "subAction": {
+            "label": "HEXAGON",
+            "score": 0.9933485388755798
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9990723133087158
+          },
+          "objectType": {
+            "label": "hexagon",
+            "score": 0.9963303208351135
+          }
+        }
+      },
+      {
+        "id": "prior-62",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEXAGON",
+          "mode": "geometry3d",
+          "objectType": "hexagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9996973276138306
+          },
+          "subAction": {
+            "label": "HEXAGON",
+            "score": 0.9936611652374268
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9994404911994934
+          },
+          "objectType": {
+            "label": "hexagon",
+            "score": 0.9975950121879578
+          }
+        }
+      },
+      {
+        "id": "prior-63",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEXAGON",
+          "mode": "graph3d",
+          "objectType": "hexagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998918771743774
+          },
+          "subAction": {
+            "label": "HEXAGON",
+            "score": 0.9968305230140686
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999673366546631
+          },
+          "objectType": {
+            "label": "hexagon",
+            "score": 0.997778594493866
+          }
+        }
+      },
+      {
+        "id": "prior-64",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEPTAGON",
+          "mode": "geometry2d",
+          "objectType": "heptagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999997615814209
+          },
+          "subAction": {
+            "label": "HEPTAGON",
+            "score": 0.9949034452438354
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9979366064071655
+          },
+          "objectType": {
+            "label": "heptagon",
+            "score": 0.9984424710273743
+          }
+        }
+      },
+      {
+        "id": "prior-65",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEPTAGON",
+          "mode": "graph2d",
+          "objectType": "heptagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999994039535522
+          },
+          "subAction": {
+            "label": "HEPTAGON",
+            "score": 0.998860239982605
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999905824661255
+          },
+          "objectType": {
+            "label": "heptagon",
+            "score": 0.999431312084198
+          }
+        }
+      },
+      {
+        "id": "prior-66",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEPTAGON",
+          "mode": "geometry3d",
+          "objectType": "heptagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999995231628418
+          },
+          "subAction": {
+            "label": "HEPTAGON",
+            "score": 0.9974007606506348
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9998683929443359
+          },
+          "objectType": {
+            "label": "heptagon",
+            "score": 0.998462438583374
+          }
+        }
+      },
+      {
+        "id": "prior-67",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEPTAGON",
+          "mode": "graph3d",
+          "objectType": "heptagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "HEPTAGON",
+            "score": 0.99613356590271
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.998073935508728
+          },
+          "objectType": {
+            "label": "heptagon",
+            "score": 0.9979415535926819
+          }
+        }
+      },
+      {
+        "id": "prior-68",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEPTAGON",
+          "mode": "geometry2d",
+          "objectType": "heptagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999994039535522
+          },
+          "subAction": {
+            "label": "HEPTAGON",
+            "score": 0.9974842071533203
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9980728626251221
+          },
+          "objectType": {
+            "label": "heptagon",
+            "score": 0.998917818069458
+          }
+        }
+      },
+      {
+        "id": "prior-69",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEPTAGON",
+          "mode": "graph2d",
+          "objectType": "heptagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999998927116394
+          },
+          "subAction": {
+            "label": "HEPTAGON",
+            "score": 0.9994381070137024
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.999987006187439
+          },
+          "objectType": {
+            "label": "heptagon",
+            "score": 0.999579131603241
+          }
+        }
+      },
+      {
+        "id": "prior-70",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEPTAGON",
+          "mode": "geometry3d",
+          "objectType": "heptagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999990463256836
+          },
+          "subAction": {
+            "label": "HEPTAGON",
+            "score": 0.9989774227142334
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9997641444206238
+          },
+          "objectType": {
+            "label": "heptagon",
+            "score": 0.9992127418518066
+          }
+        }
+      },
+      {
+        "id": "prior-71",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEPTAGON",
+          "mode": "graph3d",
+          "objectType": "heptagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "HEPTAGON",
+            "score": 0.9983294606208801
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9955311417579651
+          },
+          "objectType": {
+            "label": "heptagon",
+            "score": 0.9990035891532898
+          }
+        }
+      },
+      {
+        "id": "prior-72",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "OCTAGON",
+          "mode": "geometry2d",
+          "objectType": "octagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9984431862831116
+          },
+          "subAction": {
+            "label": "OCTAGON",
+            "score": 0.997400164604187
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9999687671661377
+          },
+          "objectType": {
+            "label": "octagon",
+            "score": 0.9985116124153137
+          }
+        }
+      },
+      {
+        "id": "prior-73",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "OCTAGON",
+          "mode": "graph2d",
+          "objectType": "octagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.996548593044281
+          },
+          "subAction": {
+            "label": "OCTAGON",
+            "score": 0.9966228008270264
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9995957016944885
+          },
+          "objectType": {
+            "label": "octagon",
+            "score": 0.9981841444969177
+          }
+        }
+      },
+      {
+        "id": "prior-74",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "OCTAGON",
+          "mode": "geometry3d",
+          "objectType": "octagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9983789920806885
+          },
+          "subAction": {
+            "label": "OCTAGON",
+            "score": 0.9876949787139893
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9904807209968567
+          },
+          "objectType": {
+            "label": "octagon",
+            "score": 0.9950451850891113
+          }
+        }
+      },
+      {
+        "id": "prior-75",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "OCTAGON",
+          "mode": "graph3d",
+          "objectType": "octagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9997230172157288
+          },
+          "subAction": {
+            "label": "OCTAGON",
+            "score": 0.9976209998130798
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.999929666519165
+          },
+          "objectType": {
+            "label": "octagon",
+            "score": 0.9982134103775024
+          }
+        }
+      },
+      {
+        "id": "prior-76",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "OCTAGON",
+          "mode": "geometry2d",
+          "objectType": "octagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999593198299408
+          },
+          "subAction": {
+            "label": "OCTAGON",
+            "score": 0.99594646692276
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9999339580535889
+          },
+          "objectType": {
+            "label": "octagon",
+            "score": 0.9964661598205566
+          }
+        }
+      },
+      {
+        "id": "prior-77",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "OCTAGON",
+          "mode": "graph2d",
+          "objectType": "octagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9990060925483704
+          },
+          "subAction": {
+            "label": "OCTAGON",
+            "score": 0.9947704672813416
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9998053908348083
+          },
+          "objectType": {
+            "label": "octagon",
+            "score": 0.9960715770721436
+          }
+        }
+      },
+      {
+        "id": "prior-78",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "OCTAGON",
+          "mode": "geometry3d",
+          "objectType": "octagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9994099140167236
+          },
+          "subAction": {
+            "label": "OCTAGON",
+            "score": 0.9827442765235901
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9952701926231384
+          },
+          "objectType": {
+            "label": "octagon",
+            "score": 0.99146968126297
+          }
+        }
+      },
+      {
+        "id": "prior-79",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "OCTAGON",
+          "mode": "graph3d",
+          "objectType": "octagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999204874038696
+          },
+          "subAction": {
+            "label": "OCTAGON",
+            "score": 0.9960156083106995
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999656677246094
+          },
+          "objectType": {
+            "label": "octagon",
+            "score": 0.9962049126625061
+          }
+        }
+      },
+      {
+        "id": "prior-80",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "NONAGON",
+          "mode": "geometry2d",
+          "objectType": "nonagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "NONAGON",
+            "score": 0.9970777034759521
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9989878535270691
+          },
+          "objectType": {
+            "label": "nonagon",
+            "score": 0.9909074306488037
+          }
+        }
+      },
+      {
+        "id": "prior-81",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "NONAGON",
+          "mode": "graph2d",
+          "objectType": "nonagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "NONAGON",
+            "score": 0.9986886382102966
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.999750554561615
+          },
+          "objectType": {
+            "label": "nonagon",
+            "score": 0.9973338842391968
+          }
+        }
+      },
+      {
+        "id": "prior-82",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "NONAGON",
+          "mode": "geometry3d",
+          "objectType": "nonagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "NONAGON",
+            "score": 0.9974454641342163
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9992577433586121
+          },
+          "objectType": {
+            "label": "nonagon",
+            "score": 0.99472576379776
+          }
+        }
+      },
+      {
+        "id": "prior-83",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "NONAGON",
+          "mode": "graph3d",
+          "objectType": "nonagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "NONAGON",
+            "score": 0.9970805048942566
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9930992126464844
+          },
+          "objectType": {
+            "label": "nonagon",
+            "score": 0.9907902479171753
+          }
+        }
+      },
+      {
+        "id": "prior-84",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "NONAGON",
+          "mode": "geometry2d",
+          "objectType": "nonagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "NONAGON",
+            "score": 0.9875687956809998
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9997983574867249
+          },
+          "objectType": {
+            "label": "nonagon",
+            "score": 0.9733901023864746
+          }
+        }
+      },
+      {
+        "id": "prior-85",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "NONAGON",
+          "mode": "graph2d",
+          "objectType": "nonagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999995231628418
+          },
+          "subAction": {
+            "label": "NONAGON",
+            "score": 0.9915915727615356
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999208450317383
+          },
+          "objectType": {
+            "label": "nonagon",
+            "score": 0.9862770438194275
+          }
+        }
+      },
+      {
+        "id": "prior-86",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "NONAGON",
+          "mode": "geometry3d",
+          "objectType": "nonagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999996423721313
+          },
+          "subAction": {
+            "label": "NONAGON",
+            "score": 0.9873970150947571
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9998708963394165
+          },
+          "objectType": {
+            "label": "nonagon",
+            "score": 0.9847886562347412
+          }
+        }
+      },
+      {
+        "id": "prior-87",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "NONAGON",
+          "mode": "graph3d",
+          "objectType": "nonagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "NONAGON",
+            "score": 0.9808329343795776
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9986597299575806
+          },
+          "objectType": {
+            "label": "nonagon",
+            "score": 0.9720900058746338
+          }
+        }
+      },
+      {
+        "id": "prior-88",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "DECAGON",
+          "mode": "geometry2d",
+          "objectType": "decagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999938011169434
+          },
+          "subAction": {
+            "label": "DECAGON",
+            "score": 0.9968035221099854
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9999675750732422
+          },
+          "objectType": {
+            "label": "decagon",
+            "score": 0.9981226325035095
+          }
+        }
+      },
+      {
+        "id": "prior-89",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "DECAGON",
+          "mode": "graph2d",
+          "objectType": "decagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999827146530151
+          },
+          "subAction": {
+            "label": "DECAGON",
+            "score": 0.9932517409324646
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9997581839561462
+          },
+          "objectType": {
+            "label": "decagon",
+            "score": 0.9969186782836914
+          }
+        }
+      },
+      {
+        "id": "prior-90",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "DECAGON",
+          "mode": "geometry3d",
+          "objectType": "decagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999895095825195
+          },
+          "subAction": {
+            "label": "DECAGON",
+            "score": 0.9897856712341309
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9997605681419373
+          },
+          "objectType": {
+            "label": "decagon",
+            "score": 0.9962413311004639
+          }
+        }
+      },
+      {
+        "id": "prior-91",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "DECAGON",
+          "mode": "graph3d",
+          "objectType": "decagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999988079071045
+          },
+          "subAction": {
+            "label": "DECAGON",
+            "score": 0.9836869835853577
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9979052543640137
+          },
+          "objectType": {
+            "label": "decagon",
+            "score": 0.9908060431480408
+          }
+        }
+      },
+      {
+        "id": "prior-92",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "DECAGON",
+          "mode": "geometry2d",
+          "objectType": "decagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999933242797852
+          },
+          "subAction": {
+            "label": "DECAGON",
+            "score": 0.9979658126831055
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9999769926071167
+          },
+          "objectType": {
+            "label": "decagon",
+            "score": 0.9984868764877319
+          }
+        }
+      },
+      {
+        "id": "prior-93",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "DECAGON",
+          "mode": "graph2d",
+          "objectType": "decagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999808073043823
+          },
+          "subAction": {
+            "label": "DECAGON",
+            "score": 0.9956653714179993
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9996542930603027
+          },
+          "objectType": {
+            "label": "decagon",
+            "score": 0.9977497458457947
+          }
+        }
+      },
+      {
+        "id": "prior-94",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "DECAGON",
+          "mode": "geometry3d",
+          "objectType": "decagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999885559082031
+          },
+          "subAction": {
+            "label": "DECAGON",
+            "score": 0.9936227202415466
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9996755123138428
+          },
+          "objectType": {
+            "label": "decagon",
+            "score": 0.9973242282867432
+          }
+        }
+      },
+      {
+        "id": "prior-95",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "DECAGON",
+          "mode": "graph3d",
+          "objectType": "decagon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999986886978149
+          },
+          "subAction": {
+            "label": "DECAGON",
+            "score": 0.989774227142334
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9973764419555664
+          },
+          "objectType": {
+            "label": "decagon",
+            "score": 0.9930334091186523
+          }
+        }
+      },
+      {
+        "id": "prior-96",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "POLYGON",
+          "mode": "geometry2d",
+          "objectType": "polygon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999492168426514
+          },
+          "subAction": {
+            "label": "POLYGON",
+            "score": 0.9906520843505859
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9993663430213928
+          },
+          "objectType": {
+            "label": "polygon",
+            "score": 0.9935466647148132
+          }
+        }
+      },
+      {
+        "id": "prior-97",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "POLYGON",
+          "mode": "graph2d",
+          "objectType": "polygon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999910831451416
+          },
+          "subAction": {
+            "label": "POLYGON",
+            "score": 0.990969717502594
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9997236132621765
+          },
+          "objectType": {
+            "label": "polygon",
+            "score": 0.9937596917152405
+          }
+        }
+      },
+      {
+        "id": "prior-98",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "POLYGON",
+          "mode": "geometry3d",
+          "objectType": "polygon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999579191207886
+          },
+          "subAction": {
+            "label": "POLYGON",
+            "score": 0.983426570892334
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9997628331184387
+          },
+          "objectType": {
+            "label": "polygon",
+            "score": 0.9926377534866333
+          }
+        }
+      },
+      {
+        "id": "prior-99",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "POLYGON",
+          "mode": "graph3d",
+          "objectType": "polygon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999847412109375
+          },
+          "subAction": {
+            "label": "POLYGON",
+            "score": 0.990486204624176
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9998877048492432
+          },
+          "objectType": {
+            "label": "polygon",
+            "score": 0.9940707087516785
+          }
+        }
+      },
+      {
+        "id": "prior-100",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "POLYGON",
+          "mode": "geometry2d",
+          "objectType": "polygon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998928308486938
+          },
+          "subAction": {
+            "label": "POLYGON",
+            "score": 0.961051344871521
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.999495267868042
+          },
+          "objectType": {
+            "label": "polygon",
+            "score": 0.9778359532356262
+          }
+        }
+      },
+      {
+        "id": "prior-101",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "POLYGON",
+          "mode": "graph2d",
+          "objectType": "polygon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998180270195007
+          },
+          "subAction": {
+            "label": "POLYGON",
+            "score": 0.966356098651886
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9995476603507996
+          },
+          "objectType": {
+            "label": "polygon",
+            "score": 0.9813620448112488
+          }
+        }
+      },
+      {
+        "id": "prior-102",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "POLYGON",
+          "mode": "geometry3d",
+          "objectType": "polygon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999052286148071
+          },
+          "subAction": {
+            "label": "POLYGON",
+            "score": 0.9502007365226746
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9997847676277161
+          },
+          "objectType": {
+            "label": "polygon",
+            "score": 0.9831007719039917
+          }
+        }
+      },
+      {
+        "id": "prior-103",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "POLYGON",
+          "mode": "graph3d",
+          "objectType": "polygon"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999704360961914
+          },
+          "subAction": {
+            "label": "POLYGON",
+            "score": 0.9593337178230286
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.999931812286377
+          },
+          "objectType": {
+            "label": "polygon",
+            "score": 0.9816946387290955
+          }
+        }
+      },
+      {
+        "id": "prior-104",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "STAR",
+          "mode": "geometry2d",
+          "objectType": "star"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999994039535522
+          },
+          "subAction": {
+            "label": "STAR",
+            "score": 0.9953683614730835
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.999071478843689
+          },
+          "objectType": {
+            "label": "star",
+            "score": 0.9967840909957886
+          }
+        }
+      },
+      {
+        "id": "prior-105",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "STAR",
+          "mode": "graph2d",
+          "objectType": "star"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999984502792358
+          },
+          "subAction": {
+            "label": "STAR",
+            "score": 0.9972540736198425
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.999984860420227
+          },
+          "objectType": {
+            "label": "star",
+            "score": 0.9982202649116516
+          }
+        }
+      },
+      {
+        "id": "prior-106",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "STAR",
+          "mode": "geometry3d",
+          "objectType": "star"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999998927116394
+          },
+          "subAction": {
+            "label": "STAR",
+            "score": 0.9927886128425598
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.999592125415802
+          },
+          "objectType": {
+            "label": "star",
+            "score": 0.994584858417511
+          }
+        }
+      },
+      {
+        "id": "prior-107",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "STAR",
+          "mode": "graph3d",
+          "objectType": "star"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "STAR",
+            "score": 0.9913918972015381
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9997923970222473
+          },
+          "objectType": {
+            "label": "star",
+            "score": 0.9927419424057007
+          }
+        }
+      },
+      {
+        "id": "prior-108",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "STAR",
+          "mode": "geometry2d",
+          "objectType": "star"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999988079071045
+          },
+          "subAction": {
+            "label": "STAR",
+            "score": 0.9966122508049011
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9984520673751831
+          },
+          "objectType": {
+            "label": "star",
+            "score": 0.9986699819564819
+          }
+        }
+      },
+      {
+        "id": "prior-109",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "STAR",
+          "mode": "graph2d",
+          "objectType": "star"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999967813491821
+          },
+          "subAction": {
+            "label": "STAR",
+            "score": 0.9981423616409302
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999792575836182
+          },
+          "objectType": {
+            "label": "star",
+            "score": 0.9993307590484619
+          }
+        }
+      },
+      {
+        "id": "prior-110",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "STAR",
+          "mode": "geometry3d",
+          "objectType": "star"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999979734420776
+          },
+          "subAction": {
+            "label": "STAR",
+            "score": 0.994200587272644
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9994650483131409
+          },
+          "objectType": {
+            "label": "star",
+            "score": 0.9977667331695557
+          }
+        }
+      },
+      {
+        "id": "prior-111",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "STAR",
+          "mode": "graph3d",
+          "objectType": "star"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999997615814209
+          },
+          "subAction": {
+            "label": "STAR",
+            "score": 0.9937829375267029
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.99958735704422
+          },
+          "objectType": {
+            "label": "star",
+            "score": 0.9967567324638367
+          }
+        }
+      },
+      {
+        "id": "prior-112",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PARALLELOGRAM",
+          "mode": "geometry2d",
+          "objectType": "parallelogram"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999691367149353
+          },
+          "subAction": {
+            "label": "PARALLELOGRAM",
+            "score": 0.9985055923461914
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9981765747070312
+          },
+          "objectType": {
+            "label": "parallelogram",
+            "score": 0.9993759989738464
+          }
+        }
+      },
+      {
+        "id": "prior-113",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PARALLELOGRAM",
+          "mode": "graph2d",
+          "objectType": "parallelogram"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9992650151252747
+          },
+          "subAction": {
+            "label": "PARALLELOGRAM",
+            "score": 0.9994617104530334
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999411106109619
+          },
+          "objectType": {
+            "label": "parallelogram",
+            "score": 0.9996153116226196
+          }
+        }
+      },
+      {
+        "id": "prior-114",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PARALLELOGRAM",
+          "mode": "geometry3d",
+          "objectType": "parallelogram"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9995875954627991
+          },
+          "subAction": {
+            "label": "PARALLELOGRAM",
+            "score": 0.9981300234794617
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9966244697570801
+          },
+          "objectType": {
+            "label": "parallelogram",
+            "score": 0.9987092018127441
+          }
+        }
+      },
+      {
+        "id": "prior-115",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PARALLELOGRAM",
+          "mode": "graph3d",
+          "objectType": "parallelogram"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999390840530396
+          },
+          "subAction": {
+            "label": "PARALLELOGRAM",
+            "score": 0.9990881681442261
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9998805522918701
+          },
+          "objectType": {
+            "label": "parallelogram",
+            "score": 0.9995191097259521
+          }
+        }
+      },
+      {
+        "id": "prior-116",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PARALLELOGRAM",
+          "mode": "geometry2d",
+          "objectType": "parallelogram"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999227523803711
+          },
+          "subAction": {
+            "label": "PARALLELOGRAM",
+            "score": 0.9958388805389404
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9984143972396851
+          },
+          "objectType": {
+            "label": "parallelogram",
+            "score": 0.9978976249694824
+          }
+        }
+      },
+      {
+        "id": "prior-117",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PARALLELOGRAM",
+          "mode": "graph2d",
+          "objectType": "parallelogram"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998043179512024
+          },
+          "subAction": {
+            "label": "PARALLELOGRAM",
+            "score": 0.9984768033027649
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999480247497559
+          },
+          "objectType": {
+            "label": "parallelogram",
+            "score": 0.9989633560180664
+          }
+        }
+      },
+      {
+        "id": "prior-118",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PARALLELOGRAM",
+          "mode": "geometry3d",
+          "objectType": "parallelogram"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998769760131836
+          },
+          "subAction": {
+            "label": "PARALLELOGRAM",
+            "score": 0.9944719076156616
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9970961809158325
+          },
+          "objectType": {
+            "label": "parallelogram",
+            "score": 0.9956279993057251
+          }
+        }
+      },
+      {
+        "id": "prior-119",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PARALLELOGRAM",
+          "mode": "graph3d",
+          "objectType": "parallelogram"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999852180480957
+          },
+          "subAction": {
+            "label": "PARALLELOGRAM",
+            "score": 0.9976896047592163
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999518394470215
+          },
+          "objectType": {
+            "label": "parallelogram",
+            "score": 0.9987311959266663
+          }
+        }
+      },
+      {
+        "id": "prior-120",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRAPEZOID",
+          "mode": "geometry2d",
+          "objectType": "trapezoid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999992847442627
+          },
+          "subAction": {
+            "label": "TRAPEZOID",
+            "score": 0.9964099526405334
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9995392560958862
+          },
+          "objectType": {
+            "label": "trapezoid",
+            "score": 0.9979914426803589
+          }
+        }
+      },
+      {
+        "id": "prior-121",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRAPEZOID",
+          "mode": "graph2d",
+          "objectType": "trapezoid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999979734420776
+          },
+          "subAction": {
+            "label": "TRAPEZOID",
+            "score": 0.9959585070610046
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9984739422798157
+          },
+          "objectType": {
+            "label": "trapezoid",
+            "score": 0.9977855682373047
+          }
+        }
+      },
+      {
+        "id": "prior-122",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRAPEZOID",
+          "mode": "geometry3d",
+          "objectType": "trapezoid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999990463256836
+          },
+          "subAction": {
+            "label": "TRAPEZOID",
+            "score": 0.995868980884552
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9994956254959106
+          },
+          "objectType": {
+            "label": "trapezoid",
+            "score": 0.9966279864311218
+          }
+        }
+      },
+      {
+        "id": "prior-123",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRAPEZOID",
+          "mode": "graph3d",
+          "objectType": "trapezoid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999996423721313
+          },
+          "subAction": {
+            "label": "TRAPEZOID",
+            "score": 0.9966515898704529
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999637603759766
+          },
+          "objectType": {
+            "label": "trapezoid",
+            "score": 0.9977937936782837
+          }
+        }
+      },
+      {
+        "id": "prior-124",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRAPEZOID",
+          "mode": "geometry2d",
+          "objectType": "trapezoid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999988079071045
+          },
+          "subAction": {
+            "label": "TRAPEZOID",
+            "score": 0.9970454573631287
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9997038245201111
+          },
+          "objectType": {
+            "label": "trapezoid",
+            "score": 0.9972679615020752
+          }
+        }
+      },
+      {
+        "id": "prior-125",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRAPEZOID",
+          "mode": "graph2d",
+          "objectType": "trapezoid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999963045120239
+          },
+          "subAction": {
+            "label": "TRAPEZOID",
+            "score": 0.997019350528717
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9982835054397583
+          },
+          "objectType": {
+            "label": "trapezoid",
+            "score": 0.9973170161247253
+          }
+        }
+      },
+      {
+        "id": "prior-126",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRAPEZOID",
+          "mode": "geometry3d",
+          "objectType": "trapezoid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999984502792358
+          },
+          "subAction": {
+            "label": "TRAPEZOID",
+            "score": 0.99622642993927
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9994845390319824
+          },
+          "objectType": {
+            "label": "trapezoid",
+            "score": 0.9960386753082275
+          }
+        }
+      },
+      {
+        "id": "prior-127",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TRAPEZOID",
+          "mode": "graph3d",
+          "objectType": "trapezoid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999994039535522
+          },
+          "subAction": {
+            "label": "TRAPEZOID",
+            "score": 0.9971786737442017
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999657869338989
+          },
+          "objectType": {
+            "label": "trapezoid",
+            "score": 0.9974898099899292
+          }
+        }
+      },
+      {
+        "id": "prior-128",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RHOMBUS",
+          "mode": "geometry2d",
+          "objectType": "rhombus"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999978542327881
+          },
+          "subAction": {
+            "label": "RHOMBUS",
+            "score": 0.9989309906959534
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.999984622001648
+          },
+          "objectType": {
+            "label": "rhombus",
+            "score": 0.9991201758384705
+          }
+        }
+      },
+      {
+        "id": "prior-129",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RHOMBUS",
+          "mode": "graph2d",
+          "objectType": "rhombus"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999951124191284
+          },
+          "subAction": {
+            "label": "RHOMBUS",
+            "score": 0.9969623684883118
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9990134239196777
+          },
+          "objectType": {
+            "label": "rhombus",
+            "score": 0.9974868297576904
+          }
+        }
+      },
+      {
+        "id": "prior-130",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RHOMBUS",
+          "mode": "geometry3d",
+          "objectType": "rhombus"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999997615814209
+          },
+          "subAction": {
+            "label": "RHOMBUS",
+            "score": 0.9974983334541321
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9998489618301392
+          },
+          "objectType": {
+            "label": "rhombus",
+            "score": 0.9965619444847107
+          }
+        }
+      },
+      {
+        "id": "prior-131",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RHOMBUS",
+          "mode": "graph3d",
+          "objectType": "rhombus"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999992847442627
+          },
+          "subAction": {
+            "label": "RHOMBUS",
+            "score": 0.9952704310417175
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9980373978614807
+          },
+          "objectType": {
+            "label": "rhombus",
+            "score": 0.9938768744468689
+          }
+        }
+      },
+      {
+        "id": "prior-132",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RHOMBUS",
+          "mode": "geometry2d",
+          "objectType": "rhombus"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999984502792358
+          },
+          "subAction": {
+            "label": "RHOMBUS",
+            "score": 0.9982207417488098
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9999802112579346
+          },
+          "objectType": {
+            "label": "rhombus",
+            "score": 0.9985413551330566
+          }
+        }
+      },
+      {
+        "id": "prior-133",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RHOMBUS",
+          "mode": "graph2d",
+          "objectType": "rhombus"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999966621398926
+          },
+          "subAction": {
+            "label": "RHOMBUS",
+            "score": 0.9944958090782166
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9993221759796143
+          },
+          "objectType": {
+            "label": "rhombus",
+            "score": 0.995491087436676
+          }
+        }
+      },
+      {
+        "id": "prior-134",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RHOMBUS",
+          "mode": "geometry3d",
+          "objectType": "rhombus"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999980926513672
+          },
+          "subAction": {
+            "label": "RHOMBUS",
+            "score": 0.996208906173706
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9998902082443237
+          },
+          "objectType": {
+            "label": "rhombus",
+            "score": 0.9942323565483093
+          }
+        }
+      },
+      {
+        "id": "prior-135",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "RHOMBUS",
+          "mode": "graph3d",
+          "objectType": "rhombus"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999995231628418
+          },
+          "subAction": {
+            "label": "RHOMBUS",
+            "score": 0.9925597906112671
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9983896017074585
+          },
+          "objectType": {
+            "label": "rhombus",
+            "score": 0.9900516867637634
+          }
+        }
+      },
+      {
+        "id": "prior-136",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "KITE",
+          "mode": "geometry2d",
+          "objectType": "kite"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999991655349731
+          },
+          "subAction": {
+            "label": "KITE",
+            "score": 0.9977803826332092
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9999266862869263
+          },
+          "objectType": {
+            "label": "kite",
+            "score": 0.9991299510002136
+          }
+        }
+      },
+      {
+        "id": "prior-137",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "KITE",
+          "mode": "graph2d",
+          "objectType": "kite"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999985694885254
+          },
+          "subAction": {
+            "label": "KITE",
+            "score": 0.9937461614608765
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9849029779434204
+          },
+          "objectType": {
+            "label": "kite",
+            "score": 0.9969608187675476
+          }
+        }
+      },
+      {
+        "id": "prior-138",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "KITE",
+          "mode": "geometry3d",
+          "objectType": "kite"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999990463256836
+          },
+          "subAction": {
+            "label": "KITE",
+            "score": 0.9968501925468445
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9999642372131348
+          },
+          "objectType": {
+            "label": "kite",
+            "score": 0.9987837672233582
+          }
+        }
+      },
+      {
+        "id": "prior-139",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "KITE",
+          "mode": "graph3d",
+          "objectType": "kite"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999997615814209
+          },
+          "subAction": {
+            "label": "KITE",
+            "score": 0.9938593506813049
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9985659718513489
+          },
+          "objectType": {
+            "label": "kite",
+            "score": 0.997401237487793
+          }
+        }
+      },
+      {
+        "id": "prior-140",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "KITE",
+          "mode": "geometry2d",
+          "objectType": "kite"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999996423721313
+          },
+          "subAction": {
+            "label": "KITE",
+            "score": 0.996070384979248
+          },
+          "mode": {
+            "label": "geometry2d",
+            "score": 0.9998863935470581
+          },
+          "objectType": {
+            "label": "kite",
+            "score": 0.998043417930603
+          }
+        }
+      },
+      {
+        "id": "prior-141",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "KITE",
+          "mode": "graph2d",
+          "objectType": "kite"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999994039535522
+          },
+          "subAction": {
+            "label": "KITE",
+            "score": 0.9881399869918823
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9953285455703735
+          },
+          "objectType": {
+            "label": "kite",
+            "score": 0.9931691884994507
+          }
+        }
+      },
+      {
+        "id": "prior-142",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "KITE",
+          "mode": "geometry3d",
+          "objectType": "kite"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999995231628418
+          },
+          "subAction": {
+            "label": "KITE",
+            "score": 0.9952495098114014
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9999701976776123
+          },
+          "objectType": {
+            "label": "kite",
+            "score": 0.9976761937141418
+          }
+        }
+      },
+      {
+        "id": "prior-143",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "KITE",
+          "mode": "graph3d",
+          "objectType": "kite"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "KITE",
+            "score": 0.9899718761444092
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9992212057113647
+          },
+          "objectType": {
+            "label": "kite",
+            "score": 0.9949923157691956
+          }
+        }
+      },
+      {
+        "id": "prior-144",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CUBE",
+          "mode": "geometry3d",
+          "objectType": "cube"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9997144341468811
+          },
+          "subAction": {
+            "label": "CUBE",
+            "score": 0.9854676127433777
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.999902606010437
+          },
+          "objectType": {
+            "label": "cube",
+            "score": 0.979574978351593
+          }
+        }
+      },
+      {
+        "id": "prior-145",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CUBE",
+          "mode": "graph3d",
+          "objectType": "cube"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998495578765869
+          },
+          "subAction": {
+            "label": "CUBE",
+            "score": 0.9704478979110718
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9996001124382019
+          },
+          "objectType": {
+            "label": "cube",
+            "score": 0.9909370541572571
+          }
+        }
+      },
+      {
+        "id": "prior-146",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CUBE",
+          "mode": "geometry3d",
+          "objectType": "cube"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998146891593933
+          },
+          "subAction": {
+            "label": "CUBE",
+            "score": 0.9921614527702332
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9997332692146301
+          },
+          "objectType": {
+            "label": "cube",
+            "score": 0.9902814626693726
+          }
+        }
+      },
+      {
+        "id": "prior-147",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CUBE",
+          "mode": "graph3d",
+          "objectType": "cube"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999159574508667
+          },
+          "subAction": {
+            "label": "CUBE",
+            "score": 0.9855043292045593
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9984973669052124
+          },
+          "objectType": {
+            "label": "cube",
+            "score": 0.9949746131896973
+          }
+        }
+      },
+      {
+        "id": "prior-148",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CUBOID",
+          "mode": "geometry3d",
+          "objectType": "cuboid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999997615814209
+          },
+          "subAction": {
+            "label": "CUBOID",
+            "score": 0.988775372505188
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9999064207077026
+          },
+          "objectType": {
+            "label": "cuboid",
+            "score": 0.9929096102714539
+          }
+        }
+      },
+      {
+        "id": "prior-149",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CUBOID",
+          "mode": "graph3d",
+          "objectType": "cuboid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "CUBOID",
+            "score": 0.9884753227233887
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9998241066932678
+          },
+          "objectType": {
+            "label": "cuboid",
+            "score": 0.992170512676239
+          }
+        }
+      },
+      {
+        "id": "prior-150",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CUBOID",
+          "mode": "geometry3d",
+          "objectType": "cuboid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999994039535522
+          },
+          "subAction": {
+            "label": "CUBOID",
+            "score": 0.9928217530250549
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9998452663421631
+          },
+          "objectType": {
+            "label": "cuboid",
+            "score": 0.9943663477897644
+          }
+        }
+      },
+      {
+        "id": "prior-151",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CUBOID",
+          "mode": "graph3d",
+          "objectType": "cuboid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "CUBOID",
+            "score": 0.9938980937004089
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9997391104698181
+          },
+          "objectType": {
+            "label": "cuboid",
+            "score": 0.9943581223487854
+          }
+        }
+      },
+      {
+        "id": "prior-152",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SPHERE",
+          "mode": "geometry3d",
+          "objectType": "sphere"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9997130036354065
+          },
+          "subAction": {
+            "label": "SPHERE",
+            "score": 0.9929283261299133
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9984195232391357
+          },
+          "objectType": {
+            "label": "sphere",
+            "score": 0.9915899634361267
+          }
+        }
+      },
+      {
+        "id": "prior-153",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SPHERE",
+          "mode": "graph3d",
+          "objectType": "sphere"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998314380645752
+          },
+          "subAction": {
+            "label": "SPHERE",
+            "score": 0.9976341724395752
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999892711639404
+          },
+          "objectType": {
+            "label": "sphere",
+            "score": 0.998023509979248
+          }
+        }
+      },
+      {
+        "id": "prior-154",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SPHERE",
+          "mode": "geometry3d",
+          "objectType": "sphere"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9997130036354065
+          },
+          "subAction": {
+            "label": "SPHERE",
+            "score": 0.9929283261299133
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9984195232391357
+          },
+          "objectType": {
+            "label": "sphere",
+            "score": 0.9915899634361267
+          }
+        }
+      },
+      {
+        "id": "prior-155",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "SPHERE",
+          "mode": "graph3d",
+          "objectType": "sphere"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998314380645752
+          },
+          "subAction": {
+            "label": "SPHERE",
+            "score": 0.9976341724395752
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999892711639404
+          },
+          "objectType": {
+            "label": "sphere",
+            "score": 0.998023509979248
+          }
+        }
+      },
+      {
+        "id": "prior-156",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "ELLIPSOID",
+          "mode": "geometry3d",
+          "objectType": "ellipsoid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999996542930603
+          },
+          "subAction": {
+            "label": "ELLIPSOID",
+            "score": 0.972862958908081
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9999933242797852
+          },
+          "objectType": {
+            "label": "ellipsoid",
+            "score": 0.9869426488876343
+          }
+        }
+      },
+      {
+        "id": "prior-157",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "ELLIPSOID",
+          "mode": "graph3d",
+          "objectType": "ellipsoid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999988079071045
+          },
+          "subAction": {
+            "label": "ELLIPSOID",
+            "score": 0.9536764025688171
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9979402422904968
+          },
+          "objectType": {
+            "label": "ellipsoid",
+            "score": 0.978986918926239
+          }
+        }
+      },
+      {
+        "id": "prior-158",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "ELLIPSOID",
+          "mode": "geometry3d",
+          "objectType": "ellipsoid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999961853027344
+          },
+          "subAction": {
+            "label": "ELLIPSOID",
+            "score": 0.9826862812042236
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9999932050704956
+          },
+          "objectType": {
+            "label": "ellipsoid",
+            "score": 0.9906408190727234
+          }
+        }
+      },
+      {
+        "id": "prior-159",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "ELLIPSOID",
+          "mode": "graph3d",
+          "objectType": "ellipsoid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999986886978149
+          },
+          "subAction": {
+            "label": "ELLIPSOID",
+            "score": 0.9716712832450867
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9979312419891357
+          },
+          "objectType": {
+            "label": "ellipsoid",
+            "score": 0.9855104684829712
+          }
+        }
+      },
+      {
+        "id": "prior-160",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEMISPHERE",
+          "mode": "geometry3d",
+          "objectType": "hemisphere"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "HEMISPHERE",
+            "score": 0.9940639138221741
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9965013265609741
+          },
+          "objectType": {
+            "label": "hemisphere",
+            "score": 0.9950169920921326
+          }
+        }
+      },
+      {
+        "id": "prior-161",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEMISPHERE",
+          "mode": "graph3d",
+          "objectType": "hemisphere"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "HEMISPHERE",
+            "score": 0.9928858876228333
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999877214431763
+          },
+          "objectType": {
+            "label": "hemisphere",
+            "score": 0.9973428845405579
+          }
+        }
+      },
+      {
+        "id": "prior-162",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEMISPHERE",
+          "mode": "geometry3d",
+          "objectType": "hemisphere"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "HEMISPHERE",
+            "score": 0.9944095015525818
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.996982753276825
+          },
+          "objectType": {
+            "label": "hemisphere",
+            "score": 0.9945893287658691
+          }
+        }
+      },
+      {
+        "id": "prior-163",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "HEMISPHERE",
+          "mode": "graph3d",
+          "objectType": "hemisphere"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "HEMISPHERE",
+            "score": 0.9921632409095764
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.999981164932251
+          },
+          "objectType": {
+            "label": "hemisphere",
+            "score": 0.9967225193977356
+          }
+        }
+      },
+      {
+        "id": "prior-164",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CYLINDER",
+          "mode": "geometry3d",
+          "objectType": "cylinder"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999896287918091
+          },
+          "subAction": {
+            "label": "CYLINDER",
+            "score": 0.9957347512245178
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9999945163726807
+          },
+          "objectType": {
+            "label": "cylinder",
+            "score": 0.9965173006057739
+          }
+        }
+      },
+      {
+        "id": "prior-165",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CYLINDER",
+          "mode": "graph3d",
+          "objectType": "cylinder"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999980926513672
+          },
+          "subAction": {
+            "label": "CYLINDER",
+            "score": 0.9897252321243286
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9962523579597473
+          },
+          "objectType": {
+            "label": "cylinder",
+            "score": 0.9928559064865112
+          }
+        }
+      },
+      {
+        "id": "prior-166",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CYLINDER",
+          "mode": "geometry3d",
+          "objectType": "cylinder"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999887943267822
+          },
+          "subAction": {
+            "label": "CYLINDER",
+            "score": 0.9946718811988831
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9999946355819702
+          },
+          "objectType": {
+            "label": "cylinder",
+            "score": 0.9957360029220581
+          }
+        }
+      },
+      {
+        "id": "prior-167",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CYLINDER",
+          "mode": "graph3d",
+          "objectType": "cylinder"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999997615814209
+          },
+          "subAction": {
+            "label": "CYLINDER",
+            "score": 0.9863879680633545
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9964781403541565
+          },
+          "objectType": {
+            "label": "cylinder",
+            "score": 0.991536021232605
+          }
+        }
+      },
+      {
+        "id": "prior-168",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CONE",
+          "mode": "geometry3d",
+          "objectType": "cone"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999956488609314
+          },
+          "subAction": {
+            "label": "CONE",
+            "score": 0.9852737784385681
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9983221888542175
+          },
+          "objectType": {
+            "label": "cone",
+            "score": 0.9890820980072021
+          }
+        }
+      },
+      {
+        "id": "prior-169",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CONE",
+          "mode": "graph3d",
+          "objectType": "cone"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999993085861206
+          },
+          "subAction": {
+            "label": "CONE",
+            "score": 0.9912398457527161
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999914169311523
+          },
+          "objectType": {
+            "label": "cone",
+            "score": 0.9930309653282166
+          }
+        }
+      },
+      {
+        "id": "prior-170",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CONE",
+          "mode": "geometry3d",
+          "objectType": "cone"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999607801437378
+          },
+          "subAction": {
+            "label": "CONE",
+            "score": 0.9839916825294495
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.998349666595459
+          },
+          "objectType": {
+            "label": "cone",
+            "score": 0.9873166084289551
+          }
+        }
+      },
+      {
+        "id": "prior-171",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CONE",
+          "mode": "graph3d",
+          "objectType": "cone"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999992847442627
+          },
+          "subAction": {
+            "label": "CONE",
+            "score": 0.9904416799545288
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999910593032837
+          },
+          "objectType": {
+            "label": "cone",
+            "score": 0.9930860996246338
+          }
+        }
+      },
+      {
+        "id": "prior-172",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "FRUSTUM",
+          "mode": "geometry3d",
+          "objectType": "frustum"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9995232820510864
+          },
+          "subAction": {
+            "label": "FRUSTUM",
+            "score": 0.9881207942962646
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9996957778930664
+          },
+          "objectType": {
+            "label": "frustum",
+            "score": 0.9951903820037842
+          }
+        }
+      },
+      {
+        "id": "prior-173",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "FRUSTUM",
+          "mode": "graph3d",
+          "objectType": "frustum"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9998937845230103
+          },
+          "subAction": {
+            "label": "FRUSTUM",
+            "score": 0.9912481307983398
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999366998672485
+          },
+          "objectType": {
+            "label": "frustum",
+            "score": 0.9948480129241943
+          }
+        }
+      },
+      {
+        "id": "prior-174",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "FRUSTUM",
+          "mode": "geometry3d",
+          "objectType": "frustum"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9984830021858215
+          },
+          "subAction": {
+            "label": "FRUSTUM",
+            "score": 0.9911661744117737
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9997026324272156
+          },
+          "objectType": {
+            "label": "frustum",
+            "score": 0.9949600696563721
+          }
+        }
+      },
+      {
+        "id": "prior-175",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "FRUSTUM",
+          "mode": "graph3d",
+          "objectType": "frustum"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9995856881141663
+          },
+          "subAction": {
+            "label": "FRUSTUM",
+            "score": 0.9935438632965088
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.999887228012085
+          },
+          "objectType": {
+            "label": "frustum",
+            "score": 0.9945871829986572
+          }
+        }
+      },
+      {
+        "id": "prior-176",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TORUS",
+          "mode": "geometry3d",
+          "objectType": "torus"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "TORUS",
+            "score": 0.9970388412475586
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.99997878074646
+          },
+          "objectType": {
+            "label": "torus",
+            "score": 0.9971001744270325
+          }
+        }
+      },
+      {
+        "id": "prior-177",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TORUS",
+          "mode": "graph3d",
+          "objectType": "torus"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "TORUS",
+            "score": 0.9959642887115479
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9950354099273682
+          },
+          "objectType": {
+            "label": "torus",
+            "score": 0.9944818019866943
+          }
+        }
+      },
+      {
+        "id": "prior-178",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TORUS",
+          "mode": "geometry3d",
+          "objectType": "torus"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "TORUS",
+            "score": 0.9961552023887634
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9999737739562988
+          },
+          "objectType": {
+            "label": "torus",
+            "score": 0.9960123300552368
+          }
+        }
+      },
+      {
+        "id": "prior-179",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TORUS",
+          "mode": "graph3d",
+          "objectType": "torus"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "TORUS",
+            "score": 0.9949883818626404
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9983599781990051
+          },
+          "objectType": {
+            "label": "torus",
+            "score": 0.9933342933654785
+          }
+        }
+      },
+      {
+        "id": "prior-180",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TUBE",
+          "mode": "geometry3d",
+          "objectType": "tube"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999979734420776
+          },
+          "subAction": {
+            "label": "TUBE",
+            "score": 0.9894395470619202
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9997463822364807
+          },
+          "objectType": {
+            "label": "tube",
+            "score": 0.9897618889808655
+          }
+        }
+      },
+      {
+        "id": "prior-181",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TUBE",
+          "mode": "graph3d",
+          "objectType": "tube"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999996423721313
+          },
+          "subAction": {
+            "label": "TUBE",
+            "score": 0.9852759838104248
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9995579123497009
+          },
+          "objectType": {
+            "label": "tube",
+            "score": 0.9923480749130249
+          }
+        }
+      },
+      {
+        "id": "prior-182",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TUBE",
+          "mode": "geometry3d",
+          "objectType": "tube"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999986886978149
+          },
+          "subAction": {
+            "label": "TUBE",
+            "score": 0.9823591113090515
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9998053908348083
+          },
+          "objectType": {
+            "label": "tube",
+            "score": 0.9820542335510254
+          }
+        }
+      },
+      {
+        "id": "prior-183",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TUBE",
+          "mode": "graph3d",
+          "objectType": "tube"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999997615814209
+          },
+          "subAction": {
+            "label": "TUBE",
+            "score": 0.9735351800918579
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9996300935745239
+          },
+          "objectType": {
+            "label": "tube",
+            "score": 0.9861654043197632
+          }
+        }
+      },
+      {
+        "id": "prior-184",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CAPSULE",
+          "mode": "geometry3d",
+          "objectType": "capsule"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9997898936271667
+          },
+          "subAction": {
+            "label": "CAPSULE",
+            "score": 0.99472975730896
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9939197301864624
+          },
+          "objectType": {
+            "label": "capsule",
+            "score": 0.9962705373764038
+          }
+        }
+      },
+      {
+        "id": "prior-185",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CAPSULE",
+          "mode": "graph3d",
+          "objectType": "capsule"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999454021453857
+          },
+          "subAction": {
+            "label": "CAPSULE",
+            "score": 0.9975086450576782
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999961853027344
+          },
+          "objectType": {
+            "label": "capsule",
+            "score": 0.9978062510490417
+          }
+        }
+      },
+      {
+        "id": "prior-186",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CAPSULE",
+          "mode": "geometry3d",
+          "objectType": "capsule"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999943733215332
+          },
+          "subAction": {
+            "label": "CAPSULE",
+            "score": 0.9904255270957947
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9949094653129578
+          },
+          "objectType": {
+            "label": "capsule",
+            "score": 0.9953349232673645
+          }
+        }
+      },
+      {
+        "id": "prior-187",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "CAPSULE",
+          "mode": "graph3d",
+          "objectType": "capsule"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999788999557495
+          },
+          "subAction": {
+            "label": "CAPSULE",
+            "score": 0.9960110187530518
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999971389770508
+          },
+          "objectType": {
+            "label": "capsule",
+            "score": 0.9976465106010437
+          }
+        }
+      },
+      {
+        "id": "prior-188",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PRISM",
+          "mode": "geometry3d",
+          "objectType": "prism"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999681711196899
+          },
+          "subAction": {
+            "label": "PRISM",
+            "score": 0.9863483905792236
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9997548460960388
+          },
+          "objectType": {
+            "label": "prism",
+            "score": 0.9916706085205078
+          }
+        }
+      },
+      {
+        "id": "prior-189",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PRISM",
+          "mode": "graph3d",
+          "objectType": "prism"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999964237213135
+          },
+          "subAction": {
+            "label": "PRISM",
+            "score": 0.9891915917396545
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9998887777328491
+          },
+          "objectType": {
+            "label": "prism",
+            "score": 0.9895628094673157
+          }
+        }
+      },
+      {
+        "id": "prior-190",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PRISM",
+          "mode": "geometry3d",
+          "objectType": "prism"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999887943267822
+          },
+          "subAction": {
+            "label": "PRISM",
+            "score": 0.9832289814949036
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9997336268424988
+          },
+          "objectType": {
+            "label": "prism",
+            "score": 0.9894275069236755
+          }
+        }
+      },
+      {
+        "id": "prior-191",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PRISM",
+          "mode": "graph3d",
+          "objectType": "prism"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999985694885254
+          },
+          "subAction": {
+            "label": "PRISM",
+            "score": 0.9879074692726135
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999277591705322
+          },
+          "objectType": {
+            "label": "prism",
+            "score": 0.9868940114974976
+          }
+        }
+      },
+      {
+        "id": "prior-192",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PYRAMID",
+          "mode": "geometry3d",
+          "objectType": "pyramid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9997169375419617
+          },
+          "subAction": {
+            "label": "PYRAMID",
+            "score": 0.9919044971466064
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9996938705444336
+          },
+          "objectType": {
+            "label": "pyramid",
+            "score": 0.9916111826896667
+          }
+        }
+      },
+      {
+        "id": "prior-193",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PYRAMID",
+          "mode": "graph3d",
+          "objectType": "pyramid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.999966025352478
+          },
+          "subAction": {
+            "label": "PYRAMID",
+            "score": 0.993341863155365
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999510049819946
+          },
+          "objectType": {
+            "label": "pyramid",
+            "score": 0.9934089183807373
+          }
+        }
+      },
+      {
+        "id": "prior-194",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PYRAMID",
+          "mode": "geometry3d",
+          "objectType": "pyramid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9982523322105408
+          },
+          "subAction": {
+            "label": "PYRAMID",
+            "score": 0.9923070073127747
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9996455907821655
+          },
+          "objectType": {
+            "label": "pyramid",
+            "score": 0.9952640533447266
+          }
+        }
+      },
+      {
+        "id": "prior-195",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "PYRAMID",
+          "mode": "graph3d",
+          "objectType": "pyramid"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9997395873069763
+          },
+          "subAction": {
+            "label": "PYRAMID",
+            "score": 0.9933411478996277
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9999369382858276
+          },
+          "objectType": {
+            "label": "pyramid",
+            "score": 0.9958121180534363
+          }
+        }
+      },
+      {
+        "id": "prior-196",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TETRAHEDRON",
+          "mode": "geometry3d",
+          "objectType": "tetrahedron"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999996423721313
+          },
+          "subAction": {
+            "label": "TETRAHEDRON",
+            "score": 0.9905951023101807
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9998579025268555
+          },
+          "objectType": {
+            "label": "tetrahedron",
+            "score": 0.9921786785125732
+          }
+        }
+      },
+      {
+        "id": "prior-197",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TETRAHEDRON",
+          "mode": "graph3d",
+          "objectType": "tetrahedron"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999998807907104
+          },
+          "subAction": {
+            "label": "TETRAHEDRON",
+            "score": 0.9913286566734314
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9998942613601685
+          },
+          "objectType": {
+            "label": "tetrahedron",
+            "score": 0.9930036664009094
+          }
+        }
+      },
+      {
+        "id": "prior-198",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TETRAHEDRON",
+          "mode": "geometry3d",
+          "objectType": "tetrahedron"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9999997615814209
+          },
+          "subAction": {
+            "label": "TETRAHEDRON",
+            "score": 0.9897834658622742
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.9998527765274048
+          },
+          "objectType": {
+            "label": "tetrahedron",
+            "score": 0.9927940368652344
+          }
+        }
+      },
+      {
+        "id": "prior-199",
+        "expected": {
+          "action": "CREATE",
+          "subAction": "TETRAHEDRON",
+          "mode": "graph3d",
+          "objectType": "tetrahedron"
+        },
+        "predicted": {
+          "action": {
+            "label": "CREATE",
+            "score": 1
+          },
+          "subAction": {
+            "label": "TETRAHEDRON",
+            "score": 0.9914280772209167
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9998251795768738
+          },
+          "objectType": {
+            "label": "tetrahedron",
+            "score": 0.993158757686615
+          }
+        }
+      }
+    ]
+  },
+  "bestEpoch": 0,
+  "bestValidationAccuracy": 0.16666666666666666,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 8.256247285207113,
+      "validation": {
+        "action": 0.6666666666666666,
+        "subAction": 0.23333333333333334,
+        "mode": 1,
+        "objectType": 0.6
+      },
+      "primaryAccuracy": 0.16666666666666666,
+      "priorAccuracy": 1,
+      "accepted": false
+    },
+    {
+      "epoch": 2,
+      "loss": 7.480748462677002,
+      "validation": {
+        "action": 0.6666666666666666,
+        "subAction": 0.23333333333333334,
+        "mode": 1,
+        "objectType": 0.6333333333333333
+      },
+      "primaryAccuracy": 0.16666666666666666,
+      "priorAccuracy": 1,
+      "accepted": false
+    },
+    {
+      "epoch": 3,
+      "loss": 6.867899398803711,
+      "validation": {
+        "action": 0.6666666666666666,
+        "subAction": 0.23333333333333334,
+        "mode": 1,
+        "objectType": 0.6333333333333333
+      },
+      "primaryAccuracy": 0.16666666666666666,
+      "priorAccuracy": 1,
+      "accepted": false
+    }
+  ],
+  "trainingSeconds": 2.2917438000000003,
+  "checkpoint": "reports/ruhi-2d-nlp/checkpoints/best/model.json",
+  "promoted": false,
+  "reason": "Candidate only; production weights preserved. Checkpoint selected on validation with prior classifier regression guard; original held-out records are not loaded into fitting or selection.",
+  "stoppingCondition": "No accepted checkpoint improvement for three epochs"
+}

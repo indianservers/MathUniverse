@@ -1,0 +1,27 @@
+{
+  "result": {
+    "turns": [
+      {
+        "text": "Draw a line from 0,0 to 6,8",
+        "status": "success"
+      },
+      {
+        "text": "What is the midpoint?",
+        "status": "success"
+      },
+      {
+        "text": "Create a point at the midpoint",
+        "status": "success"
+      },
+      {
+        "text": "Move the line 3 units right",
+        "status": "success"
+      }
+    ],
+    "dependencyFrames": 43,
+    "dependenciesValid": true,
+    "replayPreservesExactState": true,
+    "previewCleaned": true
+  },
+  "errors": []
+}

@@ -1,5 +1,6 @@
 import { useStudioState } from "../../phase1/StudioModelProvider";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import {registerPageCapability} from '../../../math-robo/intelligence/pageCapabilities';
 import { ceilDivision, evenOccupancy, occupancyMax, randomOccupancy, worstOccupancy } from "./combinatoricsMath";
 import { parsePigKind } from "./combinatoricsMode";
 import { ChallengeCard, ComboWorkspace, FormulaCard, LiveRow, Seg, Slider, tokenColor } from "./combinatoricsUi";
@@ -36,6 +37,8 @@ export default function PigeonholeLab({
   const [drag, setDrag] = useState<"tray" | number | null>(null);
   const [ch, setCh] = useStudioState("PigeonholeLab:PigeonholeLab:ch", 0);
   const [preset, setPreset] = useStudioState("PigeonholeLab:PigeonholeLab:preset", "months");
+  const roboState=useRef({n,k:m,distribution:dist});roboState.current={n,k:m,distribution:dist};
+  useEffect(()=>registerPageCapability({knowledgeId:'pigeonhole',read:()=>roboState.current,apply:async(objects,boxes)=>{setN(objects);setM(boxes);setDist(evenOccupancy(objects,boxes));setUnplaced(0);setMode('even');await new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve())));}}),[setN,setM,setDist,setUnplaced]);
 
   const applyDist = (next: number[]) => {
     setDist(next);

@@ -1,0 +1,35 @@
+{
+  "feature": "Ruhi spatial awareness and actual locomotion",
+  "capabilities": [
+    "Persistent walking and crawling in four screen directions",
+    "Live foot-level recognition of buttons, tabs, headings, text, links and fields",
+    "Visible 2D curve and geometry contact, screen pixel distances and graph-unit distances",
+    "Rendered 3D ray hits and explicitly approximate projected-bound distances",
+    "Named-target travel, ambiguous-target clarification and movement cancellation",
+    "Panel placement clear of the draggable actor and graph workspace inspector"
+  ],
+  "verification": {
+    "unit_tests": 66,
+    "browser_tests": 18,
+    "browser_scenarios": [
+      "52 actions and 25 expressions",
+      "drag and persistence",
+      "geometry pointing",
+      "mobile reduced motion",
+      "speech mouth playback lifecycle",
+      "3D camera pointing",
+      "four voice regressions",
+      "directional travel and persistence",
+      "button arrival",
+      "tab arrival",
+      "heading arrival",
+      "circle distances before and after zoom",
+      "movement interruption",
+      "3D spatial scene awareness",
+      "function-curve graph-unit awareness"
+    ],
+    "focused_eslint": "passed",
+    "typecheck": "Existing project errors remain; no errors reported in the new character modules, OfflineMathAssistant, FunctionGraphCanvas or MathLab3DGraphing.",
+    "build": "Passed: final student production build (9464 modules, 1m 39s)."
+  }
+}

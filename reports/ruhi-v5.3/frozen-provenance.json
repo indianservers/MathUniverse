@@ -1,0 +1,5 @@
+{
+  "source": "scripts/ruhi-100-conversation.mjs",
+  "sha256": "f63c97a739e601e5353c36812dbd996fcb56eea542ea68122e72a06ab4d758b4",
+  "adaptation": "Output directory and 90-second automation timeout; expectations unchanged"
+}

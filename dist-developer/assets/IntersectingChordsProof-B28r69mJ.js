@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-react-3d-FwnfEBiX.js";import r from"./IntersectingChordsMobileProof-C8wBZg6g.js";import"./vendor-icons-C3dLI0g1.js";import"./vendor-three-ub9rmW6h.js";import"./index-eBfdE1e8.js";import"./vendor-charts-BXOpgMHl.js";import"./vendor-math-rendering-BITAHWHy.js";function c({category:t,proof:i}){return o.jsx(r,{})}export{c as default};

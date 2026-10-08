@@ -1,0 +1,32 @@
+{
+  "feature": "Ruhi context menu and awareness-driven adventures",
+  "menu": [
+    "Walk between buttons",
+    "Jump between buttons",
+    "Crawl across text",
+    "Visit a heading",
+    "Visit a graph object",
+    "Happy dance",
+    "Wave hello",
+    "Give me a wink",
+    "Surprise me",
+    "Where am I?",
+    "Stop moving"
+  ],
+  "behavior": [
+    "Context menu supports right click, Shift+F10, arrow keys, Home/End and Escape",
+    "Real screen-position walking, crawling and arcing jumps",
+    "Only visible reachable targets; rechecks each target before a leg",
+    "Never clicks or activates landing targets",
+    "Interruption on Stop, dragging, scroll, resize, route change or replacement movement",
+    "Reduced motion uses direct placement"
+  ],
+  "verification": {
+    "unit_tests": 68,
+    "browser_tests": 25,
+    "new_adventure_browser_checks": 7,
+    "focused_eslint": "passed",
+    "typecheck": "No errors in changed character or assistant files; existing repository errors remain.",
+    "production_build": "passed (1m44s)"
+  }
+}

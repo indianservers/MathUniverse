@@ -1,0 +1,16 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+stderr | src/math-robo/intelligence/contextInference.test.ts
+
+============================
+Hi, looks like you are running TensorFlow.js in Node.js. To speed things up dramatically, install our node backend, visit https://github.com/tensorflow/tfjs-node for more details. 
+============================
+
+···················
+
+ Test Files  3 passed (3)
+      Tests  19 passed (19)
+   Start at  23:42:26
+   Duration  108.55s (transform 68.54s, setup 6.33s, import 79.83s, tests 19.79s, environment 0ms)
+

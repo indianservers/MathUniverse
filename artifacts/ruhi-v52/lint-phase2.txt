@@ -1,0 +1,6 @@
+
+C:\Indian Servers\Math Universe Visualizations\src\math-robo\kernel\polynomials.ts
+  2:14  error  'rational' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+

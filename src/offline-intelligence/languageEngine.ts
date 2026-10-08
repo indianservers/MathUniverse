@@ -3,7 +3,7 @@ import { COLORS, FLAT_SHAPES, SHAPE_ALIASES, SOLID_SHAPES, type ShapeKind } from
 
 export type IntelligenceMode = 'normal'|'graph2d'|'graph3d'|'geometry2d'|'geometry3d';
 export type VisualCommand = {
-  kind:ShapeKind|'plot'|'point'|'line'; dimension:'2d'|'3d'; expression?:string;
+  kind:ShapeKind|'plot'|'point'|'line'|'ray'|'vector'; dimension:'2d'|'3d'; expression?:string;
   points:number[][]; width:number; height:number; radius:number; depth?:number;
   sides?:number; color:string; rotation?:[number,number,number]; scale?:number;
   action?:'create'|'update';
@@ -19,6 +19,13 @@ export type VisualCommand = {
   roboVertexLabels?:string[];
   roboLocked?:boolean;
   roboSemanticKind?:string;
+  roboFillColor?:string;
+  roboStrokeColor?:string;
+  roboLineWidth?:number;
+  roboStrokeEdges?:number[];
+  roboAngle?:{vertex:number;degrees:number;arcColor?:string;lineWidth?:number};
+  linearExtent?:'line'|'segment';
+  roboPlane?:{point:number[];normal:number[];exactCoefficients:string[]};
   roboDependency?:import('../math-robo/intelligence/workspaceDependencies').RoboDependency;
 };
 export type Interpretation={command?:VisualCommand;message:string};
@@ -31,7 +38,7 @@ export function interpretVisualRequest(input:string,mode:IntelligenceMode,previo
   const lower=text.toLowerCase();
   const number='-?\\d+(?:\\.\\d+)?';
   const size=(name:string,fallback:number)=>Number(lower.match(new RegExp(`\\b(?:${name})\\s*(?:of|is|=|:|to)?\\s*(${number})`))?.[1]??lower.match(new RegExp(`(${number})\\s*(?:units?\\s*)?(?:${name})\\b`))?.[1]??fallback);
-  const shape=lower.match(new RegExp(`\\b(${[...FLAT_SHAPES,...SOLID_SHAPES,'point','line','segment'].join('|')})\\b`))?.[1];
+  const shape=lower.match(new RegExp(`\\b(${[...FLAT_SHAPES,...SOLID_SHAPES,'point','line','segment','ray','vector'].join('|')})\\b`))?.[1];
   const modifying=/\b(resize|scale|enlarge|shrink|grow|increase|decrease|reduce|double|halve|rotate|turn|tilt|recolor|colour|color|move|translate)\b|\bmake\b.*\b(bigger|smaller|blue|red|green|purple|orange|yellow|pink|white|black|cyan)\b/.test(lower);
   if(modifying && !/\b(create|draw|add|plot)\b/.test(lower)) {
     if(!previous) return {message:'Create an object first. Then ask me to resize, rotate, tilt, move, or recolor it.'};
@@ -84,17 +91,17 @@ export function interpretVisualRequest(input:string,mode:IntelligenceMode,previo
   const points=Array.from(lower.matchAll(new RegExp(`\\(\\s*(${number})\\s*,\\s*(${number})(?:\\s*,\\s*(${number}))?\\s*\\)`,'g')),m=>[Number(m[1]),Number(m[2]),...(m[3]===undefined?[]:[Number(m[3])])]);
   const pair=lower.match(new RegExp(`(${number})\\s*(?:by|×|x)\\s*(${number})(?:\\s*(?:by|×|x)\\s*(${number}))?`));
   const color=lower.match(new RegExp(`\\b(${Object.keys(COLORS).join('|')})\\b`))?.[1];
-  const command:VisualCommand={kind:shape==='segment'?'line':shape as VisualCommand['kind']??'plot',dimension,points,width:pair?Number(pair[1]):size('width|wide|side|size|base',6),height:pair?Number(pair[2]):size('height|high|tall',4),depth:pair?.[3]?Number(pair[3]):size('depth|deep',3),radius:/\bdiameter\b/.test(lower)?size('diameter',6)/2:size('radius',3),sides:size('sides',6),color:COLORS[color??'cyan'],rotation:[0,0,0],scale:1,action:'create'};
+  const command:VisualCommand={linearExtent:shape==='segment'?'segment':shape==='line'?'line':undefined,kind:shape==='segment'?'line':shape as VisualCommand['kind']??'plot',dimension,points,width:pair?Number(pair[1]):size('width|wide|side|size|base',6),height:pair?Number(pair[2]):size('height|high|tall',4),depth:pair?.[3]?Number(pair[3]):size('depth|deep',3),radius:/\bdiameter\b/.test(lower)?size('diameter',6)/2:size('radius',3),sides:size('sides',6),color:COLORS[color??'cyan'],rotation:[0,0,0],scale:1,action:'create'};
   if(command.kind==='square'||command.kind==='cube')command.height=command.depth=command.width;
   command.fitDimensions=/\b(width|wide|height|tall|base)\b/.test(lower)||!!pair;
   if(!validDimensions(command))return {message:'Dimensions must be positive numbers no greater than 10,000.'};
   if(!Number.isInteger(command.sides)||command.sides!<3||command.sides!>32)return {message:'A regular polygon needs an integer number of sides between 3 and 32.'};
   if(shape) {
     if(points.some(p=>p.length!==(dimension==='3d'?3:2)))return {message:`Use ${dimension==='3d'?'three':'two'} coordinates per point in this workspace.`};
-    if(command.kind==='line'&&(points.length!==2||points[0].every((v,i)=>v===points[1][i])))return {message:'A line needs two distinct points. For example, (0,2) and (3,0); use three coordinates per point in 3D.'};
+    if(['line','ray','vector'].includes(command.kind)&&(points.length!==2||points[0].every((v,i)=>v===points[1][i])))return {message:'A line needs two distinct points. For example, (0,2) and (3,0); use three coordinates per point in 3D.'};
     if(command.kind==='point'&&points.length!==1)return {message:'Give one coordinate for the point, such as (2,3) or (2,3,1).'};
     if(dimension==='2d'&&(SOLID_SHAPES as readonly string[]).includes(command.kind))return {message:'This solid needs three dimensions. Ask for it in 3D.'};
-    if(points.length>1&&!['line','triangle','polygon'].includes(command.kind))return {message:'Give one center coordinate for this shape.'};
+    if(points.length>1&&!['line','ray','vector','triangle','polygon'].includes(command.kind))return {message:'Give one center coordinate for this shape.'};
     if(command.kind==='triangle'&&points.length>1&&points.length!==3)return {message:'Give three vertices for a triangle, or specify its base and height.'};
     if(command.kind==='polygon'&&points.length>1&&points.length<3)return {message:'A polygon needs at least three vertices.'};
     if((command.kind==='triangle'&&points.length===3)||(command.kind==='polygon'&&points.length>=3)) {
@@ -119,7 +126,7 @@ export function outlineVertices(c:VisualCommand):number[][] {
   let vertices:number[][];
   if((c.kind==='triangle'&&c.points.length===3)||(c.kind==='polygon'&&c.points.length>=3)) return c.points.map(p=>transformPoint(p,c,centroid(c.points)));
   switch(c.kind){
-    case 'line':return c.points.map(p=>transformPoint(p,c,centroid(c.points)));
+    case 'ray':case 'vector':case 'line':return c.points.map(p=>transformPoint(p,c,centroid(c.points)));
     case 'point':return c.points;
     case 'triangle':vertices=[[-w/2,-h/3],[w/2,-h/3],[0,h*2/3]];break;
     case 'rectangle':case 'square':vertices=[[-w/2,-h/2],[w/2,-h/2],[w/2,h/2],[-w/2,h/2]];break;
@@ -148,6 +155,7 @@ export function transformPoint(p:number[],c:VisualCommand,center:number[]):numbe
   return [x+(center[0]??0),y+(center[1]??0),z+(center[2]??0)];
 }
 export function graphExpressions(c:VisualCommand):string[]{
+  if(c.roboSemanticKind==='angle'){const p=outlineVertices(c);return [segment(p[0],p[1]),segment(p[0],p[2])];}
   if(c.kind==='plot'){
     if(!(c.scale!==1&&c.scale!==undefined)&&!c.rotation?.some(Boolean)&&!c.points.length)return [c.expression!];
     const f=c.expression!.replace(/\bx\b/g,'t'),s=c.scale??1,t=(c.rotation?.[2]??0)*Math.PI/180;
@@ -162,7 +170,7 @@ export function graphExpressions(c:VisualCommand):string[]{
     const p=outlineVertices(c);return [curve,segment(p[0],p.at(-1)!)];
   }
   if(c.kind==='point')return [`(${c.points[0].slice(0,2).join(',')})`];
-  const p=outlineVertices(c);if(c.kind==='line')return [segment(p[0],p[1])];
+  const p=outlineVertices(c);if(['line','ray','vector'].includes(c.kind))return [segment(p[0],p[1])];
   return p.map((a,i)=>segment(a,p[(i+1)%p.length]));
 }
 function segment(a:number[],b:number[]){return `param(${a[0]}+(${b[0]-a[0]})*t,${a[1]}+(${b[1]-a[1]})*t,0,1)`;}

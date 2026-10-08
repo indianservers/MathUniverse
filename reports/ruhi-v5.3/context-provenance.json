@@ -1,0 +1,6 @@
+{
+  "source": "scripts/ruhi-v53-neural-context.ts",
+  "sha256": "94d9493421887b0a2702b89be90b7b56ba28a7f3e2e9e5bc3541dab59b5e56a8",
+  "adaptation": "Output directory only; expectations unchanged",
+  "hotReload": "not applicable"
+}

@@ -1,0 +1,173 @@
+ M artifacts/math-robo-character/geometry-target.png
+ M artifacts/math-robo-character/lab-desktop.png
+ M artifacts/math-robo-character/mobile-reduced-motion.png
+ M artifacts/math-robo-orchestration/600-utterance-results.json
+ M artifacts/math-robo-orchestration/browser-progress.json
+ M artifacts/math-robo-orchestration/browser-results.json
+ M artifacts/math-robo-orchestration/capabilities.json
+ M artifacts/math-robo-orchestration/geometry3d-25.png
+ M artifacts/math-robo-orchestration/graph2d-35.png
+ M artifacts/math-robo-orchestration/graph2d-7.png
+ M artifacts/math-robo-orchestration/graph3d-20.png
+ M artifacts/math-robo-v4.1/100-question-test-report.json
+ M artifacts/math-robo-v4.1/100-question-test-report.md
+ M artifacts/math-robo-v4.1/regression.json
+ M eslint.config.js
+ M package.json
+ M src/App.tsx
+ M src/ar-math-lab/ARCameraHands.tsx
+ M src/ar-math-lab/arHandTracking.worker.ts
+ M src/components/math-lab/FunctionGraphCanvas.tsx
+ M src/components/workspace/WorkspaceSvg.tsx
+ M src/components/workspace/panels/GeometryWorkspacePanel.tsx
+ M src/graph-studio/graph3dSurfaceModel.ts
+ M src/math-robo/IntelligenceReviewPanels.tsx
+ M src/math-robo/SemanticTrainingLab.tsx
+ M src/math-robo/character/RoboCharacter.tsx
+ M src/math-robo/character/character.test.ts
+ M src/math-robo/character/engine.ts
+ M src/math-robo/character/useRoboPosition.ts
+ M src/math-robo/intelligence/actionRegistry.ts
+ M src/math-robo/intelligence/commandValidator.ts
+ M src/math-robo/intelligence/conversationEngine.ts
+ M src/math-robo/intelligence/engineRegistry.ts
+ M src/math-robo/intelligence/engineRouter.ts
+ M src/math-robo/intelligence/executionPlanner.ts
+ M src/math-robo/intelligence/explanationEngine.ts
+ M src/math-robo/intelligence/geometryQueries.ts
+ M src/math-robo/intelligence/graphInventory.ts
+ M src/math-robo/intelligence/hierarchicalModel.ts
+ M src/math-robo/intelligence/liveAssistant.ts
+ M src/math-robo/intelligence/numberParser.ts
+ M src/math-robo/intelligence/requestClassifier.ts
+ M src/math-robo/intelligence/resultVerifier.ts
+ M src/math-robo/intelligence/semanticDataset.ts
+ M src/math-robo/intelligence/semanticEngine.ts
+ M src/math-robo/intelligence/semanticExtensions.ts
+ M src/math-robo/intelligence/semanticParser.ts
+ M src/math-robo/intelligence/targetResolver.ts
+ M src/math-robo/intelligence/trainingBoundary.test.ts
+ M src/math-robo/intelligence/types.ts
+ M src/math-robo/intelligence/workspaceDependencies.ts
+ M src/modules/set-theory/premium/Venn.tsx
+ M src/modules/set-theory/premium/VennCanvas.tsx
+ M src/modules/set-theory/premium/vennLayout.test.ts
+ M src/modules/set-theory/premium/vennLayout.ts
+ M src/offline-intelligence/OfflineMathAssistant.tsx
+ M src/offline-intelligence/geometryAdapter.ts
+ M src/offline-intelligence/graph3dAdapter.ts
+ M src/offline-intelligence/languageEngine.ts
+ M src/offline-intelligence/offlineAssistant.css
+ M src/offline-intelligence/roboLearning.ts
+ M src/offline-intelligence/roboSpeech.ts
+ M src/offline-intelligence/shapeCatalog.ts
+ M src/offline-intelligence/solidAdapter.ts
+ M src/offline-intelligence/workspaceBridge.ts
+ M src/pages/MathLab3DGraphing.tsx
+ M src/pages/MathLabGraphingCalculator.tsx
+ M src/pages/MathWorkspace.tsx
+ M src/studios/discrete/combinatorics/PigeonholeLab.tsx
+ M src/studios/geometry/construction/constructionEngine.ts
+ M src/workspace/geometry3dKernel.ts
+ M src/workspace/geometryCommandController.ts
+ M vite.config.ts
+?? artifacts/math-robo-character/button-adventure.png
+?? artifacts/math-robo-character/fun-menu-validation.json
+?? artifacts/math-robo-character/spatial-circle.png
+?? artifacts/math-robo-character/spatial-validation.json
+?? artifacts/math-robo-language/
+?? artifacts/math-robo-orchestration/alias-initial-tests.txt
+?? artifacts/math-robo-orchestration/alias-tests.txt
+?? artifacts/math-robo-v4.1/100-question-v5-final-report.json
+?? artifacts/math-robo-v4.1/100-question-v5-final-report.md
+?? artifacts/math-robo-v4.1/100-question-v5-report.json
+?? artifacts/math-robo-v4.1/100-question-v5-report.md
+?? artifacts/model-loading/
+?? artifacts/ruhi-context/
+?? artifacts/ruhi-v5/
+?? artifacts/ruhi-v51/
+?? artifacts/ruhi-v52/
+?? artifacts/set-theory-upgrade/connected-circle-drag.png
+?? datasets/
+?? docs/RUHI_CINEMATIC_MOTION_ENGINE.md
+?? public/models/ruhi-context-v1/
+?? reports/
+?? scripts/build-ruhi-context.mjs
+?? scripts/build-ruhi.mjs
+?? scripts/build-train-ruhi-2d.mjs
+?? scripts/calibrate-ruhi-context.ts
+?? scripts/discover-ruhi-context.ts
+?? scripts/evaluate-ruhi-2d-held-model.mjs
+?? scripts/evaluate-ruhi-2d-held-model.ts
+?? scripts/probe-ruhi-context.ts
+?? scripts/report-ruhi-context.mjs
+?? scripts/report-ruhi-language.mjs
+?? scripts/ruhi-2d-nlp-conversations.mjs
+?? scripts/ruhi-2d-nlp-dataset.mjs
+?? scripts/ruhi-2d-nlp-fingerprint.mjs
+?? scripts/ruhi-2d-nlp-loop.mjs
+?? scripts/ruhi-2d-nlp-oracle.mjs
+?? scripts/ruhi-2d-nlp-persistence.mjs
+?? scripts/ruhi-2d-nlp-rescore.mjs
+?? scripts/ruhi-2d-nlp-run.mjs
+?? scripts/ruhi-cinematic-check.mjs
+?? scripts/ruhi-cinematic-dependencies.mjs
+?? scripts/ruhi-cinematic-four-workspaces.mjs
+?? scripts/ruhi-context-admin-browser.mjs
+?? scripts/ruhi-context-browser.mjs
+?? scripts/ruhi-language-browser.mjs
+?? scripts/ruhi-v5-browser.mjs
+?? scripts/ruhi-v51-browser.mjs
+?? scripts/ruhi-v52-browser.mjs
+?? scripts/ruhi-v52-performance.mjs
+?? scripts/train-ruhi-2d-nlp.ts
+?? scripts/train-ruhi-context.ts
+?? src/math-robo/ContextTrainingPanel.tsx
+?? src/math-robo/Ruhi2dAuditPanel.tsx
+?? src/math-robo/animation/
+?? src/math-robo/character/RoboFunMenu.tsx
+?? src/math-robo/character/funTargets.ts
+?? src/math-robo/character/roboFun.css
+?? src/math-robo/character/roboFun.test.ts
+?? src/math-robo/character/spatialAwareness.test.ts
+?? src/math-robo/character/spatialAwareness.ts
+?? src/math-robo/character/spatialCommands.ts
+?? src/math-robo/character/useRoboAwareness.ts
+?? src/math-robo/character/useRoboFun.ts
+?? src/math-robo/character/useRoboThreeAwareness.ts
+?? src/math-robo/intelligence/commandIR.ts
+?? src/math-robo/intelligence/commandLanguage.test.ts
+?? src/math-robo/intelligence/commandLanguage.ts
+?? src/math-robo/intelligence/commandVariants.ts
+?? src/math-robo/intelligence/contextAssistant.ts
+?? src/math-robo/intelligence/contextDataset.ts
+?? src/math-robo/intelligence/contextInference.test.ts
+?? src/math-robo/intelligence/contextKnowledge.ts
+?? src/math-robo/intelligence/contextPages.generated.json
+?? src/math-robo/intelligence/contextTraining.worker.ts
+?? src/math-robo/intelligence/directedGrammar.ts
+?? src/math-robo/intelligence/engineRegistryCore.ts
+?? src/math-robo/intelligence/engineVersion.ts
+?? src/math-robo/intelligence/graphInventory.test.ts
+?? src/math-robo/intelligence/nlp2dExtensions.ts
+?? src/math-robo/intelligence/nlp2dWorkflow.test.ts
+?? src/math-robo/intelligence/pageCapabilities.ts
+?? src/math-robo/intelligence/ruhiContextNet.ts
+?? src/math-robo/intelligence/v5Directed.test.ts
+?? src/math-robo/intelligence/v5Directed3d.test.ts
+?? src/math-robo/kernel/
+?? src/math-robo/ruhi2dPilotSummary.json
+?? src/model-loading/
+?? src/modules/set-theory/premium/VennLearning.tsx
+?? src/modules/set-theory/premium/vennLearning.css
+?? src/modules/set-theory/premium/vennLearningEngine.test.ts
+?? src/modules/set-theory/premium/vennLearningEngine.ts
+?? src/offline-intelligence/DirectedObject3D.tsx
+?? src/offline-intelligence/directedGeometry.ts
+?? tests/workspace/modelLoading.e2e.ts
+?? tests/workspace/roboFun.e2e.ts
+?? tests/workspace/ruhi2dPilot.e2e.ts
+?? tests/workspace/ruhiSpatial.e2e.ts
+?? tests/workspace/ruhiV51Build.e2e.ts
+?? tests/workspace/ruhiV52Build.e2e.ts
+?? tests/workspace/vennConnected.e2e.ts

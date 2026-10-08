@@ -1,0 +1,103 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+stderr | src/offline-intelligence/roboLearning.test.ts > Robo continual command learning > trains, learns corrections, restores them, isolates modes and clears memory
+
+============================
+Hi, looks like you are running TensorFlow.js in Node.js. To speed things up dramatically, install our node backend, visit https://github.com/tensorflow/tfjs-node for more details. 
+============================
+
+stderr | src/offline-intelligence/nlp150.test.ts > 150 distinct NLP requests across four workspaces > understands each request, preserves geometry and rejects invalid constructions
+
+============================
+Hi, looks like you are running TensorFlow.js in Node.js. To speed things up dramatically, install our node backend, visit https://github.com/tensorflow/tfjs-node for more details. 
+============================
+
+stderr | src/math-robo/intelligence/contextInference.test.ts
+
+============================
+Hi, looks like you are running TensorFlow.js in Node.js. To speed things up dramatically, install our node backend, visit https://github.com/tensorflow/tfjs-node for more details. 
+============================
+
+stderr | src/offline-intelligence/bulkTraining.test.ts > Bulk intent training > learns real parameters, evaluates unseen phrases, and disposes batch tensors including cancellation
+
+============================
+Hi, looks like you are running TensorFlow.js in Node.js. To speed things up dramatically, install our node backend, visit https://github.com/tensorflow/tfjs-node for more details. 
+============================
+
+stderr | src/offline-intelligence/roboStarterModel.test.ts > loads the bundled trained weights and recognizes a natural circle request
+
+============================
+Hi, looks like you are running TensorFlow.js in Node.js. To speed things up dramatically, install our node backend, visit https://github.com/tensorflow/tfjs-node for more details. 
+============================
+
+···················································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································xx················································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································································xxxxxxxxxxxx··xx························································································································································································································································································································································································································································································································································································································································································································································································································
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 16 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > verifies at least one runnable example for every implemented operation
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/math-robo/intelligence/semanticEngine.test.ts:122:3
+    120|     expect(preparePlan(parseSemanticPlan(sample.phrase,sample.mode),co…
+    121|   });
+    122|   it('verifies at least one runnable example for every implemented ope…
+       |   ^
+    123|     const rows=generateStarterDataset(),missing:string[]=[];
+    124|     for(const op of OPERATIONS.filter(item=>item.implemented)){
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/16]⎯
+
+ FAIL  src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > keeps 100,000 rows bounded and template groups isolated
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/math-robo/intelligence/semanticEngine.test.ts:132:3
+    130|     expect(missing).toEqual([]);
+    131|   });
+    132|   it('keeps 100,000 rows bounded and template groups isolated',()=>{
+       |   ^
+    133|     const base=generateStarterDataset();const rows=Array.from({length:…
+    134|     expect(split.train.length+split.validation.length+split.test.lengt…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/16]⎯
+
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > 'graph3d' 'ray' reflection through 'xy'
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > 'graph3d' 'ray' reflection through 'xz'
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > 'graph3d' 'ray' reflection through 'yz'
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > 'graph3d' 'vector' reflection through 'xy'
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > 'graph3d' 'vector' reflection through 'xz'
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > 'graph3d' 'vector' reflection through 'yz'
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > 'geometry3d' 'ray' reflection through 'xy'
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > 'geometry3d' 'ray' reflection through 'xz'
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > 'geometry3d' 'ray' reflection through 'yz'
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > 'geometry3d' 'vector' reflection through 'xy'
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > 'geometry3d' 'vector' reflection through 'xz'
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > 'geometry3d' 'vector' reflection through 'yz'
+AssertionError: No matching object exists. Create it first.: expected 'invalid' to be 'success' // Object.is equality
+
+Expected: "success"
+Received: "invalid"
+
+ ❯ src/math-robo/intelligence/v5Directed3d.test.ts:16:160
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/16]⎯
+
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > refuses to project a 3D intersection into 2D in graph3d
+ FAIL  src/math-robo/intelligence/v5Directed3d.test.ts > v5 separate 3D suite: axes, planes and non-XY geometry > refuses to project a 3D intersection into 2D in geometry3d
+AssertionError: expected 'invalid' to be 'unsupported' // Object.is equality
+
+Expected: "unsupported"
+Received: "invalid"
+
+ ❯ src/math-robo/intelligence/v5Directed3d.test.ts:19:338
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/16]⎯
+
+
+ Test Files  2 failed | 32 passed (34)
+      Tests  16 failed | 7325 passed (7341)
+   Start at  14:18:20
+   Duration  140.26s (transform 4.86s, setup 487ms, import 10.69s, tests 120.97s, environment 3ms)
+

@@ -1,13 +1,16 @@
+import type {AwarenessSnapshot} from './spatialAwareness';
 import { RoboAnimationScheduler } from './RoboAnimationScheduler';
 import { forwardRef, useEffect, useId, useImperativeHandle, useRef } from 'react';
-import { ACTIONS, EXPRESSIONS, RoboBehaviorEngine, neutral, roboEvents, sampleAction, type CharacterAPI, type Expression, type Target } from './engine';
+import { ACTIONS, EXPRESSIONS, RoboBehaviorEngine, neutral, roboEvents, sampleAction, type CharacterAPI, type Action, type ActionOptions, type Expression, type Target } from './engine';
 import './character.css';
 export type RoboCharacterHandle = CharacterAPI & {
+    awareness:()=>AwarenessSnapshot|undefined;
     diagnostics: () => {
         expression: Expression;
         action: string;
         fps: number;
         latency: number;
+        awareness?:AwarenessSnapshot;
         log: string[];
     };
 };
@@ -19,14 +22,18 @@ const faces: Record<Expression, [
     number
 ]> = { happy: [-9, -9, 6, 0, 1], excited: [-12, -12, 10, 0, 1.2], thinking: [-3, -3, 0, -4, 1], confused: [-8, 4, -2, 2, 1], curious: [-12, -10, 3, 0, 1], sad: [5, 5, -5, 2, .7], surprised: [-13, -13, 12, 0, 1.2], proud: [-6, -6, 5, -1, 1], celebrating: [-11, -11, 10, 0, 1.2], listening: [-7, -7, 2, 0, 1], speaking: [-7, -7, 6, 0, 1], processing: [-2, -2, 0, 0, 1], searching: [-6, -6, 1, 0, 1], teaching: [-8, -8, 5, 0, 1], explaining: [-6, -6, 5, 0, 1], encouraging: [-8, -8, 6, 1, 1], error: [4, 3, -3, 1, .8], success: [-12, -12, 8, 0, 1.3], sleepy: [-2, -2, 1, 2, .6], sleeping: [0, 0, 0, 3, .4], waking: [-6, -6, 3, 0, .8], laughing: [-11, -11, 10, 1, 1.1], winking: [0, -9, 6, 0, 1], focused: [-3, -3, 0, -1, 1], waiting: [-5, -5, 2, 0, .9] };
 export const RoboCharacter = forwardRef<RoboCharacterHandle, {
+    onTravel?:(action:Action,options:ActionOptions)=>boolean;
+    onCancelTravel?:()=>void;
+    getAwareness?:()=>AwarenessSnapshot|undefined;
     thinking?: boolean;
     awake?: boolean;
     restAfter?: number;
     lookAroundAfter?: number;
     reducedMotion?: boolean;
-}>(function RoboCharacter({ thinking = false, awake = false, restAfter = 90000, lookAroundAfter = 25000, reducedMotion }, ref) {
+}>(function RoboCharacter({ onTravel,onCancelTravel,getAwareness,thinking = false, awake = false, restAfter = 90000, lookAroundAfter = 25000, reducedMotion }, ref) {
     const id = useId().replace(/:/g, ''), svg = useRef<SVGSVGElement>(null);
     const state = useRef({ expression: 'waiting' as Expression, scheduler: new RoboAnimationScheduler(), speaking: false, pausedSpeech: false, gaze: undefined as Target | undefined, lastActivity: performance.now(), fps: 60, latency: 0 });
+    const controls=useRef({onTravel,onCancelTravel,getAwareness});controls.current={onTravel,onCancelTravel,getAwareness};
     const api = useRef<RoboCharacterHandle>();
     if (!api.current)
         api.current = {
@@ -38,11 +45,12 @@ export const RoboCharacter = forwardRef<RoboCharacterHandle, {
             } if (e !== 'speaking')
                 state.current.pausedSpeech = false; state.current.lastActivity = performance.now(); },
             playAction(name, options = {}) { if (!ACTIONS.includes(name))
-                throw new Error(`Unknown action: ${name}`); const s = state.current; if(s.speaking&&['celebrate','dance','jump','laugh'].includes(name)){s.scheduler.note(`Skipped ${name} during speech`);return false;} s.lastActivity = performance.now(); if (s.expression === 'sleeping')
+                throw new Error(`Unknown action: ${name}`); if(!options.inPlace && /^(walk|crawl)/.test(name) && controls.current.onTravel)return controls.current.onTravel(name,options);if(!options.inPlace&&!/^(walk|crawl)/.test(name))controls.current.onCancelTravel?.(); const s = state.current; if(s.speaking&&['celebrate','dance','jump','laugh'].includes(name)){s.scheduler.note(`Skipped ${name} during speech`);return false;} s.lastActivity = performance.now(); if (s.expression === 'sleeping')
                 s.expression = 'waking'; return s.scheduler.play(name, options); },
-            cancel() { const s = state.current; s.scheduler.cancel(); s.gaze = undefined; },
+            cancel() { controls.current.onCancelTravel?.(); const s = state.current; s.scheduler.cancel(); s.gaze = undefined; },
             gaze(t) { state.current.gaze = t; }, speech(active) { state.current.pausedSpeech = !active && state.current.speaking; state.current.speaking = active; },
-            diagnostics() { const s = state.current; return { expression: s.expression, action: s.scheduler.active?.name ?? 'idle', fps: s.fps, latency: s.latency, log: [...s.scheduler.log,...roboEvents.errors.map(e=>`Error ${e}`)] }; }
+            awareness(){return controls.current.getAwareness?.();},
+            diagnostics() { const s = state.current; return { expression: s.expression, action: s.scheduler.active?.name ?? 'idle', fps: s.fps, latency: s.latency, awareness:controls.current.getAwareness?.(), log: [...s.scheduler.log,...roboEvents.errors.map(e=>`Error ${e}`)] }; }
         };
     useImperativeHandle(ref, () => api.current!, []);
     useEffect(() => { if (thinking)

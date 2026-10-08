@@ -1,4 +1,5 @@
 import {roboEvents} from '../math-robo/character/engine';
+import {startModelLoad} from '../model-loading/modelLoadStore';
 import { useEffect, useRef, useState } from 'react';
 import { browserSpeechRecognitionConstructor, normalizeSpokenMath, type BrowserSpeechRecognition } from '../workspace/browserSpeechInput';
 
@@ -80,7 +81,9 @@ export function useRoboSpeech(active: boolean, route: string, onTranscript: (tex
       if (token !== generation.current) return;
       if (install && status === 'downloadable' && Constructor.install) {
         setMessage('Downloading the English language pack. Internet is needed for this one-time setup.');
-        if (!await Constructor.install(options)) throw new Error('English language pack installation failed. Try again when connected.');
+        const download=startModelLoad('English speech model');
+        try {if (!await Constructor.install(options)) throw new Error('English language pack installation failed. Try again when connected.');download.finish();}
+        catch(error){download.fail(error);throw error;}
         status = await Constructor.available(options);
       }
       if (token !== generation.current) return;

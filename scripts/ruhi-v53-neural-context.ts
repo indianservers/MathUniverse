@@ -1,0 +1,24 @@
+import * as tf from '@tensorflow/tfjs';
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import {buildContextDataset} from '../src/math-robo/intelligence/contextDataset';
+import {inferContext} from '../src/math-robo/intelligence/ruhiContextNet';
+import {generateStarterDataset} from '../src/math-robo/intelligence/semanticDataset';
+import {datasetQuality} from '../src/math-robo/intelligence/datasetQuality';
+import {normalizeLanguage} from '../src/math-robo/intelligence/numberParser';
+const dir='reports/ruhi-v5.3';
+await tf.setBackend('cpu');await tf.ready();
+const file='public/models/ruhi-context-v1/model.json',spec=JSON.parse(fs.readFileSync(file,'utf8'));
+const bytes=fs.readFileSync('public/models/ruhi-context-v1/weights.bin');
+const model=await tf.loadLayersModel(tf.io.fromMemory({modelTopology:spec.modelTopology,weightSpecs:spec.weightsManifest[0].weights,weightData:bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),userDefinedMetadata:spec.userDefinedMetadata}));
+const rows=buildContextDataset().filter(r=>r.split==='test');
+const predictions=rows.map(r=>({question:r.question,pageId:r.pageId,group:r.group,expected:{intent:r.intent,meaning:r.meaning},prediction:inferContext(model,r)}));
+const correct=(key:'intent'|'meaning')=>predictions.filter(r=>r.expected[key]===r.prediction[key]).length;
+fs.writeFileSync(`${dir}/context-classifier.json`,JSON.stringify({scope:'Existing exposed context test partition; no tuning, training or recalibration',total:rows.length,intentCorrect:correct('intent'),meaningCorrect:correct('meaning'),jointCorrect:predictions.filter(r=>r.expected.intent===r.prediction.intent&&r.expected.meaning===r.prediction.meaning).length,accepted:predictions.filter(r=>r.prediction.accepted).length,parameters:model.countParams(),topology:spec.modelTopology,metadata:spec.userDefinedMetadata,weightsSha256:crypto.createHash('sha256').update(bytes).digest('hex'),predictions},null,2));
+model.dispose();
+const starter=generateStarterDataset();
+fs.writeFileSync(`${dir}/starter-data-quality.json`,JSON.stringify(datasetQuality(starter),null,2));
+const seen=new Map<string,typeof starter[number]>(),conflicts=[];
+for(const row of starter){const key=row.mode+':'+normalizeLanguage(row.phrase),old=seen.get(key);if(old&&(old.action!==row.action||old.subAction!==row.subAction||JSON.stringify(old.parameters)!==JSON.stringify(row.parameters)))conflicts.push({previous:old,current:row});seen.set(key,row);}
+fs.writeFileSync(`${dir}/starter-conflicts.json`,JSON.stringify(conflicts,null,2));
+console.log('Context inference and starter quality recorded; no fitting performed');

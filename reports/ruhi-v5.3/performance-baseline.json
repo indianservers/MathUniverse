@@ -1,0 +1,132 @@
+{
+  "measuredAt": "2026-10-08T18:29:59.593Z",
+  "environment": {
+    "browser": "149.0.7827.55",
+    "gpu": "ANGLE SwiftShader software rendering; no physical GPU benchmark",
+    "cpuThrottle": 1,
+    "concurrentWork": "Other local development processes present; observed latency includes machine load",
+    "hardwareConcurrency": 16,
+    "heap": {
+      "used": 81400000,
+      "total": 109000000
+    }
+  },
+  "browser": "149.0.7827.55",
+  "componentEnvironment": "Real browser development modules, no CPU throttle, 12 native circles; motion disabled for commit measurement; isolated test storage",
+  "sceneObjects": 12,
+  "measurementLimits": "Desktop browser with software GPU; concurrent compiler/test/local-server activity may affect timings. These are observed baselines, not isolated hardware benchmarks or low-spec guarantees.",
+  "metrics": {
+    "coldPageAndModelReady": {
+      "n": 4,
+      "medianMs": 1552.7323999999999,
+      "p95Ms": 2223.9915,
+      "maxMs": 2223.9915
+    },
+    "warmInference": {
+      "n": 30,
+      "medianMs": 1.199999988079071,
+      "p95Ms": 1.5,
+      "maxMs": 2
+    },
+    "parser": {
+      "n": 30,
+      "medianMs": 0.4000000059604645,
+      "p95Ms": 1.199999988079071,
+      "maxMs": 3.5999999940395355
+    },
+    "nativeCommitWithMotionDisabled": {
+      "n": 10,
+      "medianMs": 757.6499999910593,
+      "p95Ms": 786.6999999880791,
+      "maxMs": 786.6999999880791
+    },
+    "dependencyRecompute": {
+      "n": 30,
+      "medianMs": 1,
+      "p95Ms": 1.2000000178813934,
+      "maxMs": 1.5999999940395355
+    },
+    "fullCommandToVisible": {
+      "n": 32,
+      "medianMs": 441.9697499999984,
+      "p95Ms": 1196.1714999999995,
+      "maxMs": 1750.9777999999997
+    },
+    "saveReloadRestoreAndModelReady": {
+      "n": 4,
+      "medianMs": 21621.43285000001,
+      "p95Ms": 73111.64480000001,
+      "maxMs": 73111.64480000001
+    }
+  },
+  "kernel": [
+    {
+      "operation": "evaluate",
+      "n": 10,
+      "medianMs": 0.3500000089406967,
+      "p95Ms": 8.700000017881393,
+      "maxMs": 8.700000017881393
+    },
+    {
+      "operation": "simplify",
+      "n": 10,
+      "medianMs": 51.54999998211861,
+      "p95Ms": 528.5999999940395,
+      "maxMs": 528.5999999940395
+    },
+    {
+      "operation": "solve",
+      "n": 10,
+      "medianMs": 27.100000008940697,
+      "p95Ms": 46.79999998211861,
+      "maxMs": 46.79999998211861
+    },
+    {
+      "operation": "geometry2d",
+      "detail": "triangle",
+      "n": 10,
+      "medianMs": 31.649999991059303,
+      "p95Ms": 48,
+      "maxMs": 48
+    },
+    {
+      "operation": "geometry3d",
+      "detail": "rotate",
+      "n": 10,
+      "medianMs": 32.20000000298023,
+      "p95Ms": 156.09999999403954,
+      "maxMs": 156.09999999403954
+    },
+    {
+      "operation": "geometry3d",
+      "detail": "plane",
+      "n": 10,
+      "medianMs": 0.45000000298023224,
+      "p95Ms": 1.800000011920929,
+      "maxMs": 1.800000011920929
+    }
+  ],
+  "memory": {
+    "component": {
+      "used": 188000000,
+      "total": 239000000
+    },
+    "kernel": {
+      "used": 109000000,
+      "total": 131000000
+    },
+    "production": {
+      "used": 81400000,
+      "total": 109000000
+    }
+  },
+  "cancellation": "Calculation cancelled.",
+  "limits": [
+    "Development-module microbenchmarks and production UI latency are separate.",
+    "Cold timing includes navigation and UI/model initialization, not just weight decoding.",
+    "Persistence workflow includes reload, model readiness and automation.",
+    "Observed desktop concurrency and software WebGL; not proof of physical low-spec performance.",
+    "12-circle scene for component measurements; no large-scene production guarantee.",
+    "CPU/GPU observations are configuration assumptions, not a hardware profiler."
+  ]
+}

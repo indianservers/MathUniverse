@@ -1,0 +1,100 @@
+{
+  "libraries": {
+    "@capacitor/app": "^8.1.0",
+    "@capacitor/core": "^8.4.0",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/keyboard": "^8.0.3",
+    "@capacitor/status-bar": "^8.0.2",
+    "@mediapipe/tasks-vision": "1.0.1",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.17.10",
+    "@tensorflow/tfjs": "^4.22.0",
+    "@types/cytoscape": "^3.21.9",
+    "@types/d3": "^7.4.3",
+    "clsx": "^2.1.1",
+    "cytoscape": "^3.33.4",
+    "d3": "^7.9.0",
+    "exceljs": "^4.4.0",
+    "framer-motion": "^11.18.2",
+    "gsap": "^3.13.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.2.1",
+    "katex": "^0.16.21",
+    "lucide-react": "^0.468.0",
+    "nerdamer": "^1.1.13",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.1.1",
+    "reactflow": "^11.11.4",
+    "recharts": "^2.15.0",
+    "three": "^0.171.0",
+    "zustand": "^5.0.13"
+  },
+  "files": [
+    {
+      "path": "package.json",
+      "sha256": "7c67f00184246cac4575f477261ec589cfd3f5d916c2ddec93c24f556884e2bf"
+    },
+    {
+      "path": "src/math-foundation/parser.ts",
+      "sha256": "422b9a04e215aae612622f5ff3d62c7ea721ce8e2b58f7a688e5fe65e60b072a"
+    },
+    {
+      "path": "src/math-foundation/types.ts",
+      "sha256": "5e680138a006b001ead98bf59efc0efb5f6d934eae23f29a3d8c2d0c9cf530f2"
+    },
+    {
+      "path": "src/math-foundation/evaluator.ts",
+      "sha256": "c619fd7b5b73671a0771738c956c2004e5ec0eb25ea82ad7ce8588bd83d950a5"
+    },
+    {
+      "path": "src/phase4/casEngine.ts",
+      "sha256": "79aaa455b8a6532896d446a76e677b45ecb83084d330bdecc493c9c9ca2919e0"
+    },
+    {
+      "path": "src/cas/workspaceCas.ts",
+      "sha256": "e685ce9ee89b4435b9eae2f719254cbf8e8490b462780e6dd1e8dc4ab1407c2e"
+    },
+    {
+      "path": "src/workspace/geometry2dKernel.ts",
+      "sha256": "f3fe395af99684fc35b98c691e0bf14dcf13bf3baa26dba848d67959b020f393"
+    },
+    {
+      "path": "src/workspace/geometry3dKernel.ts",
+      "sha256": "864194b012395f1add973c4cd2635c136f4a94af53713819a70e1a4fb7f32870"
+    },
+    {
+      "path": "src/offline-intelligence/directedGeometry.ts",
+      "sha256": "17eb24496802d305c7220ab616e8dcdb17751dd05216f658d54fe28e772fe46f"
+    },
+    {
+      "path": "src/math-robo/intelligence/liveAssistant.ts",
+      "sha256": "8aef9c50e62e46274401044faeaecb02de91d24ad77bbbc2819bcade29718391"
+    },
+    {
+      "path": "src/math-robo/intelligence/resultVerifier.ts",
+      "sha256": "0b0ba3749cc24d88e74d8922409d48bc9ab7a39af1a5221a104df5721be73166"
+    },
+    {
+      "path": "src/math-robo/intelligence/workspaceDependencies.ts",
+      "sha256": "dde7a9e68de1db58115b5d0b20e141d477dca090d054bf7a466ea8b041163d37"
+    },
+    {
+      "path": "src/pages/MathWorkspace.tsx",
+      "sha256": "f31b9cca0066130c92024c270e4cf80e8c0a445cf134bcc6ac1789830cbf8918"
+    },
+    {
+      "path": "src/pages/MathLab3DGraphing.tsx",
+      "sha256": "d64443b90521149cb15094dddb16f0d0b54491e6da3464dd70644eb374093178"
+    },
+    {
+      "path": "scripts/ruhi-100-conversation.mjs",
+      "sha256": "f63c97a739e601e5353c36812dbd996fcb56eea542ea68122e72a06ab4d758b4"
+    },
+    {
+      "path": "scripts/ruhi-100-geometry-checks.mjs",
+      "sha256": "2acdb9bfc79cbe45ec7a992cd5960fb85e49513c18b6f0a216f4352cb4c24863"
+    }
+  ],
+  "baseline": "v5.1 original100 passes; global TS 218 existing errors; full lint 433 errors/133 warnings"
+}

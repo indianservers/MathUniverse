@@ -1,7 +1,9 @@
 import { ImmersiveBoundary } from "../workspace/immersive/ImmersiveInteractionManager";
 import { useIntelligenceWorkspace,isKnownRoboObject } from '../offline-intelligence/workspaceBridge';
-import {graphCommand} from '../math-robo/intelligence/graphInventory';
-import { graphExpressions } from '../offline-intelligence/commands';
+import {restoredGraphInventory} from '../math-robo/intelligence/graphInventory';
+import {clipRay,clipInfiniteLine,directedData} from '../offline-intelligence/directedGeometry';
+import type {VisualCommand} from '../offline-intelligence/commands';
+import { graphExpressions,outlineVertices } from '../offline-intelligence/commands';
 import { Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
@@ -36,6 +38,7 @@ import {
 } from "../utils/mathEngine/graphSampler";
 
 type FunctionRow = {
+  roboCommand?:VisualCommand;
   id: string;
   input: string;
   color: string;
@@ -81,7 +84,7 @@ type GraphExpressionSample = {
   boundaryPoints?: GraphSample[];
   boundaryStyle?: "line" | "dashed";
   normalized: string;
-  style: "line" | "points" | "region" | "vectors";
+  style: "line" | "points" | "region" | "vectors" | "directed";
   family?: string;
   error?: string;
 };
@@ -115,10 +118,10 @@ function MathLabGraphingCalculatorContent({ embedded }: { embedded?: EmbeddedGra
     if(command.roboControl==='visibility'){setFunctions(current=>current.map(row=>matches(row)?{...row,visible:command.roboVisible??true}:row));return;}
     if(command.roboControl==='select'){setSelectedId(command.roboNativeRow?base:`${base}-0`);return;}
     if(command.action==='update'&&!functions.some(matches))return 'The last Ruhi graph was removed. Create an object again before editing it.';
-    const rows = graphExpressions(command).map((input,i) => ({id:command.roboNativeRow&&i===0?base:`${base}-${i}`,input,color:command.color,visible:command.roboVisible??true,name:command.roboLabel??command.kind}));
+    const rows = graphExpressions(command).map((input,i) => ({id:command.roboNativeRow&&i===0?base:`${base}-${i}`,input,color:command.color,visible:command.roboVisible??true,name:command.roboLabel??command.kind,roboCommand:structuredClone(command)}));
     setFunctions(current => [...current.filter(row=>!matches(row)),...rows]);
     setSelectedId(rows[0].id);
-  }, !embedded, command=>{const row=functions.find(row=>command.roboNativeRow?row.id===command.objectId:row.id.startsWith(`${command.objectId}-`));return row?{command:{...command,color:row.color,roboVisible:row.visible,...(command.kind==='plot'?{expression:row.input.replace(/^y\s*=\s*/, '')}:{})}}:undefined;},()=>({commands:functions.filter(row=>!isKnownRoboObject('graph2d',row.id)).map(row=>graphCommand(row.id,row.input,row.color,row.visible,'2d',row.name)),selectedIds:selectedId?[selectedId.replace(/-0$/,'')]:[]}));
+  }, !embedded, command=>{const row=functions.find(row=>command.roboNativeRow?row.id===command.objectId:row.id.startsWith(`${command.objectId}-`));return row?.roboCommand?{command:{...row.roboCommand,color:row.color,roboVisible:row.visible}}:row?{command:{...command,color:row.color,roboVisible:row.visible,...(command.kind==='plot'?{expression:row.input.replace(/^y\s*=\s*/, '')}:{})}}:undefined;},()=>({commands:restoredGraphInventory(functions,id=>isKnownRoboObject('graph2d',id)),selectedIds:selectedId?[selectedId.replace(/-0$/,'')]:[]}));
   const [view, setView] = useState<FunctionGraphView>(() => sharedProject?.view ?? DEFAULT_GRAPH_VIEW);
   const [showGrid, setShowGrid] = useState(() => sharedProject?.showGrid ?? true);
   const [showAxes, setShowAxes] = useState(() => sharedProject?.showAxes ?? true);
@@ -201,7 +204,8 @@ function MathLabGraphingCalculatorContent({ embedded }: { embedded?: EmbeddedGra
     return () => window.cancelAnimationFrame(frame);
   }, [variablesPlaying]);
 
-  const plotted = useMemo(() => functions.map((item) => {
+  const plotted = useMemo<(FunctionRow&GraphExpressionSample)[]>(() => functions.map((item) => {
+    if(item.roboCommand&&['line','ray','vector'].includes(item.roboCommand.kind)){const data=directedData(item.roboCommand),ends=item.roboCommand.kind==='ray'?clipRay(data.origin,data.direction,[view.xMin,view.yMin],[view.xMax,view.yMax]):item.roboCommand.kind==='line'&&item.roboCommand.linearExtent!=='segment'?clipInfiniteLine(data.origin,data.direction,[view.xMin,view.yMin],[view.xMax,view.yMax]):[data.origin,data.through];return {...item,points:(ends??[]).map(p=>({x:p[0],y:p[1],valid:true})),style:(item.roboCommand.kind==='line'?'line':'directed') as 'line'|'directed',normalized:item.input,error:undefined};}
     const source = item.transform?.enabled ? buildTransformationExpression(item.transform.parent, item.transform.a, item.transform.b, item.transform.h, item.transform.k) : item.input;
     const sampled = sampleGraphExpression(substituteGraphVariables(source, graphVariables), view.xMin, view.xMax, 900, view.yMin, view.yMax);
     return { ...item, ...sampled };
@@ -236,7 +240,7 @@ function MathLabGraphingCalculatorContent({ embedded }: { embedded?: EmbeddedGra
     ...asymptotes.horizontal.map((y, index) => ({ id: `horizontal-asymptote-${index}`, label: `y = ${formatGraphNumber(y)}`, color: "#fb7185", points: [{ x: view.xMin, y, valid: true }, { x: view.xMax, y, valid: true }], visible: true, style: "dashed" as const, opacity: 0.65 })),
     ...functions.filter((item) => item.visible && item.transform?.enabled).map((item) => ({ id: `${item.id}-parent`, label: `${item.name || "f"} parent`, color: item.color, points: sampleGraphExpression(substituteGraphVariables(item.transform!.parent, graphVariables), view.xMin, view.xMax, 700).points, visible: true, style: "dashed" as const, opacity: 0.34 })),
     ...plotted.flatMap((item) => [
-      { id: item.id, label: item.label || item.name || item.input || "function", color: item.color, points: item.points, visible: item.visible && !item.error, style: item.style, opacity: item.opacity ?? 1 },
+      { id: item.id, label: item.label || item.name || item.input || "function", color: item.color, points: item.points, visible: item.visible && !item.error, style: item.style, strokeWidth:item.roboCommand?.roboStrokeEdges&&!item.roboCommand.roboStrokeEdges.includes(Number(item.id.split('-').at(-1)))?3:item.roboCommand?.roboLineWidth, opacity: item.opacity ?? 1 },
       ...(item.boundaryPoints?.length ? [{ id: `${item.id}-boundary`, label: `${item.input} boundary`, color: item.color, points: item.boundaryPoints, visible: item.visible && !item.error, style: item.boundaryStyle ?? "line" as const }] : []),
     ]),
     ...(showDerivative && selected ? [{ id: `${selected.id}-derivative`, label: `d/dx ${selected.input}`, color: "#ec4899", points: derivativePoints, visible: true, style: "derivative" as const }] : []),
@@ -332,7 +336,7 @@ function MathLabGraphingCalculatorContent({ embedded }: { embedded?: EmbeddedGra
       interactivePoints={[...(interactivePoint ? [interactivePoint] : []), ...(parameterPoint ? [parameterPoint] : [])]}
       onInteractivePointChange={moveInteractivePoint}
       linkedPoint={interactivePoint ? { x: interactivePoint.x, y: interactivePoint.y } : parameterPoint ? { x: parameterPoint.x, y: parameterPoint.y } : null}
-      canvas={<FunctionGraphCanvas series={graphSeries} view={view} onViewChange={setView} onResetView={() => setView(DEFAULT_GRAPH_VIEW)} showGrid={showGrid} showAxes={showAxes} logX={logX} logY={logY} selectedSeriesId={selectedId} traceX={traceMode ? traceX : undefined} onTraceChange={traceMode ? setPrecisionTraceX : undefined} interactivePoints={[...(interactivePoint ? [interactivePoint] : []), ...(parameterPoint ? [parameterPoint] : [])]} onInteractivePointChange={moveInteractivePoint} precisionCrosshair imageLayers={functions.filter((item) => item.visible && isSafeImageUrl(item.imageUrl)).map((item) => ({ id: item.id, href: item.imageUrl!, x: item.imageX ?? -2, y: item.imageY ?? 2, width: item.imageWidth ?? 4, height: item.imageHeight ?? 4, opacity: item.opacity ?? 0.7, label: item.label || item.name || "Graph image" }))} residualSegments={showResiduals && regression ? regression.residuals : []} integralArea={showIntegral && selected ? { points: selected.points, color: selected.color, start: Math.min(integralStart, integralEnd), end: Math.max(integralStart, integralEnd) } : undefined} featurePoints={[...roots.roots.map((x) => ({ x, y: 0, type: "root" as const })), ...(typeof yIntercept.y === "number" ? [{ x: 0, y: yIntercept.y, type: "intercept" as const }] : []), ...extrema.minima.map((point) => ({ ...point, type: "minimum" as const })), ...extrema.maxima.map((point) => ({ ...point, type: "maximum" as const })), ...intersections.map((point) => ({ ...point, type: "intersection" as const }))]} />}
+      canvas={<FunctionGraphCanvas series={graphSeries} angleShapes={functions.filter(row=>row.visible&&row.id.endsWith('-0')&&row.roboCommand?.roboAngle).map(row=>({id:row.id,vertices:outlineVertices(row.roboCommand!),vertex:row.roboCommand!.roboAngle!.vertex,color:row.roboCommand!.roboAngle!.arcColor??row.color,strokeWidth:row.roboCommand!.roboAngle!.lineWidth??3}))} filledShapes={functions.filter(row=>row.visible&&row.id.endsWith('-0')&&row.roboCommand?.roboFillColor).map(row=>({id:row.id,vertices:outlineVertices(row.roboCommand!),color:row.roboCommand!.roboFillColor!}))} onSeriesSelect={setSelectedId} view={view} onViewChange={setView} onResetView={() => setView(DEFAULT_GRAPH_VIEW)} showGrid={showGrid} showAxes={showAxes} logX={logX} logY={logY} selectedSeriesId={selectedId} traceX={traceMode ? traceX : undefined} onTraceChange={traceMode ? setPrecisionTraceX : undefined} interactivePoints={[...(interactivePoint ? [interactivePoint] : []), ...(parameterPoint ? [parameterPoint] : [])]} onInteractivePointChange={moveInteractivePoint} precisionCrosshair imageLayers={functions.filter((item) => item.visible && isSafeImageUrl(item.imageUrl)).map((item) => ({ id: item.id, href: item.imageUrl!, x: item.imageX ?? -2, y: item.imageY ?? 2, width: item.imageWidth ?? 4, height: item.imageHeight ?? 4, opacity: item.opacity ?? 0.7, label: item.label || item.name || "Graph image" }))} residualSegments={showResiduals && regression ? regression.residuals : []} integralArea={showIntegral && selected ? { points: selected.points, color: selected.color, start: Math.min(integralStart, integralEnd), end: Math.max(integralStart, integralEnd) } : undefined} featurePoints={[...roots.roots.map((x) => ({ x, y: 0, type: "root" as const })), ...(typeof yIntercept.y === "number" ? [{ x: 0, y: yIntercept.y, type: "intercept" as const }] : []), ...extrema.minima.map((point) => ({ ...point, type: "minimum" as const })), ...extrema.maxima.map((point) => ({ ...point, type: "maximum" as const })), ...intersections.map((point) => ({ ...point, type: "intersection" as const }))]} />}
       roots={roots.roots}
       yIntercept={yIntercept.y}
       visibleRange={visibleRange}

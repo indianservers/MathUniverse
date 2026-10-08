@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-08T04:49:05.062Z",
+  "variants": 728,
+  "classifiedCorrectly": 728,
+  "executedSuccessfully": 728,
+  "failedVariants": [],
+  "byAction": {
+    "CREATE": {
+      "total": 50,
+      "passed": 50
+    },
+    "DELETE": {
+      "total": 50,
+      "passed": 50
+    },
+    "MOVE": {
+      "total": 50,
+      "passed": 50
+    },
+    "ROTATE": {
+      "total": 50,
+      "passed": 50
+    },
+    "SCALE": {
+      "total": 50,
+      "passed": 50
+    },
+    "SELECT": {
+      "total": 50,
+      "passed": 50
+    },
+    "DESELECT": {
+      "total": 50,
+      "passed": 50
+    },
+    "DUPLICATE": {
+      "total": 50,
+      "passed": 50
+    },
+    "REFLECT": {
+      "total": 50,
+      "passed": 50
+    },
+    "CHANGE": {
+      "total": 50,
+      "passed": 50
+    },
+    "HIDE": {
+      "total": 39,
+      "passed": 39
+    },
+    "SHOW": {
+      "total": 50,
+      "passed": 50
+    },
+    "FIND": {
+      "total": 50,
+      "passed": 50
+    },
+    "UNDO": {
+      "total": 50,
+      "passed": 50
+    },
+    "REDO": {
+      "total": 39,
+      "passed": 39
+    }
+  },
+  "browser": {
+    "passed": 40,
+    "total": 40,
+    "offlineTurns": 30,
+    "pageErrors": 0,
+    "consoleErrors": 0
+  },
+  "regression": "5639",
+  "buildPassed": true,
+  "scopedTypecheckPassed": true,
+  "studentSecurityPassed": true,
+  "weightsUnchanged": true
+}

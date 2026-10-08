@@ -15,7 +15,7 @@ export type GeoStyle = GeometryPaint & {
 };
 
 export type GeoPoint = { id: string; x: number; y: number; label: string; style?: GeoStyle };
-export type GeoLine = { id: string; a: string; b: string; style?: GeoStyle };
+export type GeoLine = { id: string; a: string; b: string; kind?: 'line'|'segment'|'ray'|'vector'; style?: GeoStyle };
 export type GeoCircle = { id: string; center: string; edge: string; style?: GeoStyle };
 export type GeoPolygon = { id: string; points: string[]; style?: GeoStyle };
 export type GeoArc = { id: string; center: string; start: string; end: string; sector?: boolean; kind?: "arc" | "angle"; style?: GeoStyle };

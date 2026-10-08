@@ -1,0 +1,15 @@
+import {it,expect} from 'vitest';
+import {computeMath} from './kernel';
+import {SemanticEngine} from '../intelligence/semanticEngine';
+it('handles negative scientific exponents exactly',async()=>expect((await computeMath({operation:'evaluate',expression:'2.5e-3'})).answer).toBe('1/400'));
+it('normalizes mixed fractions',async()=>expect((await computeMath({operation:'evaluate',expression:'2 1/3 + 1/6'})).answer).toBe('5/2'));
+it('normalizes negative mixed fractions',async()=>expect((await computeMath({operation:'evaluate',expression:'-2 1/3'})).answer).toBe('-7/3'));
+it('rejects power towers before allocating huge integers',async()=>expect((await computeMath({operation:'evaluate',expression:'((2^64)^64)^64'})).status).toBe('unsupported'));
+it('bounds multivariable symbolic expansion',async()=>expect((await computeMath({operation:'expand',expression:'(a+b+c+d+e+f+g)^64'})).status).toBe('unsupported'));
+it('does not certify a nonfinite dot product',async()=>expect((await computeMath({operation:'linear',args:['dot',[1e308],[1e308]]})).status).toBe('unsupported'));
+it('does not certify an overflowing vector norm',async()=>expect((await computeMath({operation:'linear',args:['magnitude',[1e308,1e308]]})).status).toBe('unsupported'));
+it('does not silently select a zero-power convention',async()=>expect((await computeMath({operation:'evaluate',expression:'(2-2)^0'})).status).toBe('unsupported'));
+it('routes an unprefixed exact student question through the shared kernel',async()=>{const r=await new SemanticEngine('normal').execute('sin(pi/6)',async()=>{});expect(r.message).toBe('1/2');expect(r.engineExecution?.verificationStatus).toBe('verified_exact');});
+it('checks trig range beyond binary floating precision',async()=>expect((await computeMath({operation:'trigSolve',expression:'sin(x)=1+1/10^20'})).value).toEqual([]));
+it('rejects a tiny extraneous principal-root solution',async()=>{const r=await computeMath({operation:'solve',expression:'sqrt(x^2)=x-1/10^20'});expect(r.value,r.answer).toEqual([]);});
+it('keeps tiny real quadratic solutions exact',async()=>{const r=await computeMath({operation:'solve',expression:'x^2=1/10^64'});expect(r.status,r.answer).toMatch(/^verified/);expect(r.value).toHaveLength(2);});

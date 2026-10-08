@@ -1,0 +1,1 @@
+import{j as r}from"./vendor-react-3d-FwnfEBiX.js";import o from"./TwinPrimesExplorerMobileProof-CiRIJUj2.js";import"./vendor-icons-C3dLI0g1.js";import"./vendor-three-ub9rmW6h.js";import"./index-eBfdE1e8.js";import"./vendor-charts-BXOpgMHl.js";import"./vendor-math-rendering-BITAHWHy.js";function n(){return r.jsx(o,{})}export{n as default};

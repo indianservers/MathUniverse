@@ -1,0 +1,402 @@
+{
+  "engineVersion": "5.2.0",
+  "appVersion": "1.0.2",
+  "scope": "Implemented tested finite mathematical classes and native integrations; the master prompt is not universally complete.",
+  "architecture": [
+    "Restricted notation and typed AST → assumptions/domain checks → bounded local worker dispatch → independent class-specific verification → structured result/status → conversation explanation and native workspace commit verification.",
+    "BigInt rational algebra is mathematical truth; Nerdamer proposes selected symbolic forms; Three.js renders; TensorFlow classifies language only.",
+    "Native dependency graphs recompute parent-derived incircles, planes, perpendicular lines and marked intersections; undo/redo preserves definitions."
+  ],
+  "newDedicatedTests": {
+    "total": 600,
+    "core": 150,
+    "cas": 150,
+    "geometry2d": 150,
+    "geometry3d": 150
+  },
+  "kernelSuite": {
+    "tests": 1206,
+    "files": 13,
+    "path": "artifacts/ruhi-v52/kernel-tests.txt"
+  },
+  "regression": {
+    "passed": 7341,
+    "files": 34,
+    "path": "artifacts/ruhi-v52/regression-clean.txt",
+    "timeoutMs": 30000,
+    "initialRun": {
+      "passed": 7325,
+      "failed": 16,
+      "path": "artifacts/ruhi-v52/regression-final.txt",
+      "reasons": "12 reflection target regressions fixed; 2 previously unsupported 3D skew tests updated to actual certified empty intersections; 2 data-heavy checks exceeded five-second timeout under concurrent browser work."
+    }
+  },
+  "frozen100": {
+    "passed": 100,
+    "total": 100,
+    "originalHarnessHashes": [
+      {
+        "path": "scripts/ruhi-100-conversation.mjs",
+        "sha256": "f63c97a739e601e5353c36812dbd996fcb56eea542ea68122e72a06ab4d758b4",
+        "currentSha256": "f63c97a739e601e5353c36812dbd996fcb56eea542ea68122e72a06ab4d758b4",
+        "unchanged": true
+      },
+      {
+        "path": "scripts/ruhi-100-geometry-checks.mjs",
+        "sha256": "2acdb9bfc79cbe45ec7a992cd5960fb85e49513c18b6f0a216f4352cb4c24863",
+        "currentSha256": "2acdb9bfc79cbe45ec7a992cd5960fb85e49513c18b6f0a216f4352cb4c24863",
+        "unchanged": true
+      }
+    ],
+    "path": "artifacts/ruhi-v52/phase4-frozen-100/100-question-final-report.json"
+  },
+  "browser": {
+    "passed": 170,
+    "total": 170,
+    "pageErrors": [],
+    "workspaces": 4,
+    "path": "artifacts/ruhi-v52/browser-results.json"
+  },
+  "heldOut": {
+    "cases": 20,
+    "passed": 20,
+    "freeze": {
+      "path": "src\\math-robo\\kernel\\v52HeldOut.test.ts",
+      "sha256": "4e3c7169a26b5b849fbd9e87cd1b5b18bfde07a2681301491c3fe2ceaad9a312",
+      "trainingUsage": "none",
+      "cases": 20,
+      "initialSha256": "504e1b069e526a702d5aadfa4cfeffacdbb401393336c1c6d4568aa2ea0fe9f4",
+      "fixtureCorrection": "The LaTeX literal used a TypeScript form-feed escape instead of a literal backslash. Switched to String.raw; mathematical input and expected 29/24 unchanged. Initial run: 19/20; no mathematical code tuned.",
+      "executedSourceSha256": "226a9077d4adbc391c22f03ac6495dfa8ffb7100302732659d06a19ebed225bf",
+      "typeOnlyCorrection": "After evaluation, the fixture value annotation changed from unknown to object to satisfy Vitest TypeScript signatures. Inputs, expected outputs and assertions are unchanged."
+    },
+    "trainingUsage": "none"
+  },
+  "build": {
+    "passed": true,
+    "path": "artifacts/ruhi-v52/build-final.txt"
+  },
+  "production": {
+    "passed": true,
+    "tests": 3,
+    "path": "artifacts/ruhi-v52/production-tests.txt"
+  },
+  "typecheck": {
+    "baseline": 218,
+    "final": {
+      "count": 219,
+      "path": "artifacts/ruhi-v52/typecheck-final.txt"
+    },
+    "scopedPassed": true,
+    "baselineFailuresRemain": true,
+    "note": "Final full compiler run: 219 diagnostics against the recorded baseline 218. The additional diagnostic is in the unchanged model-loading test fixture. Scoped v5.2 engine, geometry integration and affected test files pass; the repository-wide compiler remains failing."
+  },
+  "lint": {
+    "baselineErrors": 433,
+    "baselineWarnings": 133,
+    "lastFullErrors": 432,
+    "lastFullWarnings": 133,
+    "scopedPassed": true,
+    "path": "artifacts/ruhi-v52/lint-full.txt"
+  },
+  "performance": {
+    "direct": [
+      {
+        "operation": "evaluate",
+        "coldMs": 8.799999982118607,
+        "warm": {
+          "meanMs": 2.855555557542377,
+          "p95Ms": 11.599999994039536
+        }
+      },
+      {
+        "operation": "simplify",
+        "coldMs": 132.5,
+        "warm": {
+          "meanMs": 28.58888888690207,
+          "p95Ms": 177.2999999821186
+        }
+      },
+      {
+        "operation": "solve",
+        "coldMs": 14.400000005960464,
+        "warm": {
+          "meanMs": 13.088888890213436,
+          "p95Ms": 17.30000001192093
+        }
+      },
+      {
+        "operation": "geometry2d",
+        "detail": "triangle",
+        "coldMs": 21.399999976158142,
+        "warm": {
+          "meanMs": 19.555555555555557,
+          "p95Ms": 78.2999999821186
+        }
+      },
+      {
+        "operation": "geometry3d",
+        "detail": "rotate",
+        "coldMs": 4.5,
+        "warm": {
+          "meanMs": 18.355555557542377,
+          "p95Ms": 68.5
+        }
+      },
+      {
+        "operation": "geometry3d",
+        "detail": "plane",
+        "coldMs": 1.199999988079071,
+        "warm": {
+          "meanMs": 1.7333333326710596,
+          "p95Ms": 13.800000011920929
+        }
+      }
+    ],
+    "cancellation": "Calculation cancelled.",
+    "eventLoopTicks": 43,
+    "mainPageHeapBytes": {
+      "used": 97400000,
+      "total": 116000000
+    },
+    "ui": [
+      {
+        "mode": "graph2d",
+        "meanMs": 599.9486499999996,
+        "p95Ms": 905.1696999999986,
+        "configuration": "4x synthetic CPU throttle; software WebGL; UI/automation latency included"
+      },
+      {
+        "mode": "geometry2d",
+        "meanMs": 1551.913319999999,
+        "p95Ms": 1827.3554000000004,
+        "configuration": "4x synthetic CPU throttle; software WebGL; UI/automation latency included"
+      },
+      {
+        "mode": "graph3d",
+        "meanMs": 2107.416010000003,
+        "p95Ms": 2982.6984999999986,
+        "configuration": "4x synthetic CPU throttle; software WebGL; UI/automation latency included"
+      },
+      {
+        "mode": "geometry3d",
+        "meanMs": 1944.1426899999976,
+        "p95Ms": 2823.7546999999904,
+        "configuration": "4x synthetic CPU throttle; software WebGL; UI/automation latency included"
+      }
+    ],
+    "dependencyUpdates": [
+      {
+        "mode": "graph2d",
+        "prompt": "Move the triangle 3 units right",
+        "latencyMs": 409.9846000000007,
+        "note": "Includes UI, inference, native commit and verification; not isolated dependency-compute time."
+      },
+      {
+        "mode": "graph2d",
+        "prompt": "Move the triangle 3 units right",
+        "latencyMs": 389.95360000000073,
+        "note": "Includes UI, inference, native commit and verification; not isolated dependency-compute time."
+      },
+      {
+        "mode": "geometry2d",
+        "prompt": "Move the triangle 3 units right",
+        "latencyMs": 264.41089999999895,
+        "note": "Includes UI, inference, native commit and verification; not isolated dependency-compute time."
+      },
+      {
+        "mode": "geometry2d",
+        "prompt": "Move the triangle 3 units right",
+        "latencyMs": 457.6131000000023,
+        "note": "Includes UI, inference, native commit and verification; not isolated dependency-compute time."
+      },
+      {
+        "mode": "graph3d",
+        "prompt": "Move point A to (0,0,2)",
+        "latencyMs": 673.3554999999978,
+        "note": "Includes UI, inference, native commit and verification; not isolated dependency-compute time."
+      },
+      {
+        "mode": "geometry3d",
+        "prompt": "Move point A to (0,0,2)",
+        "latencyMs": 592.3951000000088,
+        "note": "Includes UI, inference, native commit and verification; not isolated dependency-compute time."
+      }
+    ]
+  },
+  "weights": {
+    "path": "public/models/math-robo-intelligence-v4/weights.bin",
+    "sha256": "315d8161f4ff311db2e7850ef5e6d0f5362fa2f53cede767e2a12f2b2907ce3d",
+    "unchanged": true
+  },
+  "limitations": [
+    "General irreducible higher-degree/parameterized/nonlinear systems are unsupported; complete equation classes are explicitly bounded. Real rational inequalities require rational critical roots. Certified general function analysis is limited to degree-two polynomials.",
+    "Structured AST parsing supports bounded intervals, sets, vectors, matrices, derivatives, integrals and piecewise expressions. Parsing is not proof; only selected structured operations are executed and verified.",
+    "Exact affine point constraints cover four points and sixteen constraints. A general nonlinear geometric constraint optimizer and full conic intersection/tangent/degeneracy classification are not implemented.",
+    "Exact linear geometry predicates use exact IEEE-754 input coordinates. Rounded rendering is approximate. Existing triangle-center routines and irrational circle-line parameter boundaries can reject ill-conditioned cases; residual checks are not universal conditioning certificates.",
+    "3D covers selected line/plane/vector incidence, skew supporting lines, sphere-plane sections and analytic solid measurements. Arbitrary solid booleans/polyhedron cross-sections and closest bounded skew ray/segment endpoints are unsupported.",
+    "Detailed explanations use recorded verified steps; universal mistake diagnosis and alternative-method generation are not implemented for every problem class.",
+    "Worker pools have cancellation, time/job/queue limits and recycling. Main-page heap observations do not include all worker heaps, physical low-memory hardware or a hard heap quota. Local asset serving is still required for a disconnected cold reload.",
+    "TensorFlow classifier weights are unchanged. No new training, classifier accuracy improvement or 100K-row training throughput is claimed. Synthetic mathematical cases do not measure open-ended language accuracy."
+  ],
+  "capabilitiesDocumentation": "src/math-robo/kernel/README.md",
+  "solverRegistry": "src/math-robo/intelligence/engineRegistryCore.ts",
+  "sourceInventory": [
+    {
+      "path": "src/math-robo/kernel/advancedCas.ts",
+      "sha256": "eb5ea690c40089ff0b3033fac5136a1e4d48b1256be5fba85a89d5fe0ee25f94"
+    },
+    {
+      "path": "src/math-robo/kernel/assumptions.ts",
+      "sha256": "b7012f0982263c2d1471c989bd767bf4d694978ec3b9f33404b82a0a90c32dc6"
+    },
+    {
+      "path": "src/math-robo/kernel/budgets.test.ts",
+      "sha256": "82b3c21fba8763fa5ab39838228eeef141a8835168ac12d11a4e352c25bab6a4"
+    },
+    {
+      "path": "src/math-robo/kernel/client.ts",
+      "sha256": "2240f31818a962a54cffe4e9c3ba0dd0ede9dddd5eb8a985bb449e2bed41a91b"
+    },
+    {
+      "path": "src/math-robo/kernel/conics.ts",
+      "sha256": "69df1f1645e56f854f5a00275e9d6496cdeb4a830eb4eb4d42f24040076a03ad"
+    },
+    {
+      "path": "src/math-robo/kernel/domains.ts",
+      "sha256": "b2f413c4d8cd91e14f2147b9e72e2355d500ed143e45f63cbffc5261636af0fa"
+    },
+    {
+      "path": "src/math-robo/kernel/exact.ts",
+      "sha256": "0df32cbbabcc9313a66d861992c72695e4a6429187fca56d7a5f9e66ca916086"
+    },
+    {
+      "path": "src/math-robo/kernel/geometry2d.ts",
+      "sha256": "1f56b7cc57943f3452d8e5a19c57fce5dc3ca248081abc00d32587d48d4a2a6e"
+    },
+    {
+      "path": "src/math-robo/kernel/geometry3d.ts",
+      "sha256": "3b13938b00161ad77a826096a0d8e3dad396de78e1b503dc485c5c25cf47331d"
+    },
+    {
+      "path": "src/math-robo/kernel/geometryConstraints.ts",
+      "sha256": "05430d247fc0b748cc5831e3b59271230f3e6596c3ac58331332f0425d59ff51"
+    },
+    {
+      "path": "src/math-robo/kernel/geometryPrecision.ts",
+      "sha256": "250330804e785402cf86764a39dfb66e6893f53deb5e3d043183382532e6a9dd"
+    },
+    {
+      "path": "src/math-robo/kernel/geometryPredicates.ts",
+      "sha256": "cf26037f79908f392a0bb090b702865192f75104bbf4b62ed03847747f1fb43f"
+    },
+    {
+      "path": "src/math-robo/kernel/heldOut.test.ts",
+      "sha256": "4c46807fc347cd062a0dc9327707b354a9dc089e6620f324d797bb08ce404355"
+    },
+    {
+      "path": "src/math-robo/kernel/index.ts",
+      "sha256": "06f631bb296e2a2432fd3203e88403c1da439f0a9a5ff9736fcc37406be19088"
+    },
+    {
+      "path": "src/math-robo/kernel/kernel.test.ts",
+      "sha256": "1b8bee503e8dfd463b0bafafbbf3d26f94aacbdb7309e04076b7ae7250da02e3"
+    },
+    {
+      "path": "src/math-robo/kernel/kernel.ts",
+      "sha256": "6fb9f44da0646afa5a497e112966bc86f7a2c6008985cede37e3ec6629bdda24"
+    },
+    {
+      "path": "src/math-robo/kernel/kernel.worker.ts",
+      "sha256": "3723b68e5c1dbbacf4e65281d634f643c6275036c7c5194cd73c68f32cfe5c28"
+    },
+    {
+      "path": "src/math-robo/kernel/language.ts",
+      "sha256": "10e51c3501cee4b2dc9910f3da3896943c5038407466e3980288c02912bea3e7"
+    },
+    {
+      "path": "src/math-robo/kernel/notation.ts",
+      "sha256": "ce3fb884fd40782ae89a746fd016553e3becba2cb4286c5b34e3f5c9afe07126"
+    },
+    {
+      "path": "src/math-robo/kernel/numerical.ts",
+      "sha256": "0d6453e458a7ba85d8f8185ef228891c07bbd986d78b5394af7fa9c2c75f4ca1"
+    },
+    {
+      "path": "src/math-robo/kernel/polynomials.ts",
+      "sha256": "351a75ac932ea4d419fad110c82b4931b9e37439f38b951a9295c9b09adf5f4f"
+    },
+    {
+      "path": "src/math-robo/kernel/safeExpression.ts",
+      "sha256": "f865a1d2e4a3905d81776504dd4a7ee8dcb197e1494898237864db3f127d9b95"
+    },
+    {
+      "path": "src/math-robo/kernel/specialist.worker.ts",
+      "sha256": "49d65ec88cef13c86579238c512019771b71e45bdc29fb04cf36a24109de3489"
+    },
+    {
+      "path": "src/math-robo/kernel/specialistClient.ts",
+      "sha256": "303c3d6e4ca7f2650e7592d91327cc9396bbcd70ed10856414ead08253b485ff"
+    },
+    {
+      "path": "src/math-robo/kernel/specialists.ts",
+      "sha256": "01218f5ea9d01809f1421aea8714e5606e1442e3f696dc8db8cf27315b7a4c51"
+    },
+    {
+      "path": "src/math-robo/kernel/structuredExpression.ts",
+      "sha256": "07daab94ea49873b27c6606ee6550786244354274f83dafb4c8628bbea566fda"
+    },
+    {
+      "path": "src/math-robo/kernel/symbolic.ts",
+      "sha256": "ecee09ba7fe9c59fe2373ba6596b419261f0e3ee6ca623d1acb3af076d3de471"
+    },
+    {
+      "path": "src/math-robo/kernel/symbolicProof.ts",
+      "sha256": "1934fd6b5e6b3acba06bea850e66d92944b991e0b062245a437dfd8ba91343f0"
+    },
+    {
+      "path": "src/math-robo/kernel/types.ts",
+      "sha256": "63520824534ffbb60efc6edb99bb49b4b3c51adaad6e33d78adb4129454f34c1"
+    },
+    {
+      "path": "src/math-robo/kernel/v52Cas.test.ts",
+      "sha256": "a885232b8fe52d9f2483e612d4a7d233f2b61e4d989bfe92ab886dcf1d507e79"
+    },
+    {
+      "path": "src/math-robo/kernel/v52Core.test.ts",
+      "sha256": "5b9ddd3b962f025750fdc5655e15b64218f0c1f825967cdbd05d9f7d474c80e0"
+    },
+    {
+      "path": "src/math-robo/kernel/v52Frame.test.ts",
+      "sha256": "ef406b9081eed6ea2624de13e2a893783dd91e2ed20cc7bce0c95da4fb877338"
+    },
+    {
+      "path": "src/math-robo/kernel/v52Geometry2d.test.ts",
+      "sha256": "ea0b8ce522290e4de97976b287da2a2e341c48c06279fd62b92ac4a90ccd43ad"
+    },
+    {
+      "path": "src/math-robo/kernel/v52Geometry3d.test.ts",
+      "sha256": "9ec2562ab4b320f2fb4934521f7f6e9ec1496ac4187504d402541b345d77128e"
+    },
+    {
+      "path": "src/math-robo/kernel/v52GeometryExtra.test.ts",
+      "sha256": "1bbe2e8de84906d20f192c9f92c8e8d225bc7ed3b6bd448dfb061f88db4b7787"
+    },
+    {
+      "path": "src/math-robo/kernel/v52HeldOut.test.ts",
+      "sha256": "226a9077d4adbc391c22f03ac6495dfa8ffb7100302732659d06a19ebed225bf"
+    },
+    {
+      "path": "src/math-robo/kernel/v52Integration.test.ts",
+      "sha256": "dd7ac292fb2e12dfd29993131b6a9afb65ac37ea193770c372d20cb10a853634"
+    },
+    {
+      "path": "src/math-robo/kernel/v52Properties.test.ts",
+      "sha256": "299221bce9746e5dc3bc7fc4ec811b6064b3112b5b3cf110b208cda10462b98a"
+    },
+    {
+      "path": "src/math-robo/kernel/v52Structured.test.ts",
+      "sha256": "c8da6840062d384be9497fb7eafca77ff0d35566b5520363da0d44231ebfeee9"
+    }
+  ]
+}

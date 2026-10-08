@@ -1,9 +1,12 @@
+import {kernelRequest} from '../kernel/language';
 import {routeQuery} from '../../utils/mathEngine/queryRouter';
 import {normalizeLanguage,parseNumber,NUMBER_PATTERN} from './numberParser';
 import {engineCapabilities,executeCapability,type EngineResult,type SpecialistInput} from './engineRegistry';
 import {composeEngineResponse,type ResponseStyle} from './responseComposer';
 import type {RoboSceneContext} from './types';
 export class EngineRouter{
+  private calculation?:AbortController;
+  cancelCalculation(){this.calculation?.abort();}
   last?:{input:string;expression:string;result:EngineResult;style:ResponseStyle};
   recent:{input:string;capabilityId:string;success:boolean}[]=[];
   assumptions:string[]=[];
@@ -20,6 +23,7 @@ export class EngineRouter{
     if(this.pending&&/^(?:draw|create|make|move|rotate|delete|undo|solve|differentiate|integrate|cas|convert|run)\b/.test(text))this.pending=undefined;
     const assignment=raw.match(/^(?:let\s+)?([a-z]\w*)\s*(?::=|=)\s*(-?\d+(?:\.\d+)?)\s*[.!]?$/i);
     if(assignment&&/^let\b|:=/i.test(raw)){this.variables={...this.variables,[assignment[1]]:assignment[2]};if(Object.keys(this.variables).length>25)delete this.variables[Object.keys(this.variables)[0]];return this.reply('variables',`${assignment[1]} = ${assignment[2]}`,Number(assignment[2]));}
+    const mathematical=kernelRequest(raw);if(mathematical)return this.run('kernel.compute',{text:raw,args:[{...mathematical,assumptions:[...this.assumptions,...(mathematical.assumptions??[])]}]},mathematical.expression??raw);
     if(/^assume\s+/.test(text)){this.assumptions=[...this.assumptions,text.replace(/^assume\s+/,'')].slice(-12);return this.reply('assumptions',`Assumption saved: ${this.assumptions.at(-1)}.`);}
     if(/\b(?:what can you do|what .*operations.*support|can you solve differential equations)\b/.test(text)){
       const catalog=engineCapabilities(),topic=text.match(/matrices|matrix|geometry|calculus|statistics|differential equations|sets|graph/ )?.[0];
@@ -28,7 +32,8 @@ export class EngineRouter{
       return this.reply('capabilities',matches.map(e=>`${e.label}: ${e.capabilities.map(c=>c.label).join(', ')}`).join('\n')||'No matching registered capability.');
     }
     if(this.last&&!/^(?:teach me|explain|show.*steps)\b.*(?:solve|differentiate|integrate|simplify|factor|expand|determinant|mean|median)\b/.test(text)&&/^(?:why|explain|show (?:me )?(?:the )?steps|teach me|answer only)(?:\b|$)/.test(text)){
-      const steps=this.last.result.steps??[];let message=composeEngineResponse(this.last.result,/answer only/.test(text)?'answer':'steps');
+      const steps=this.last.result.steps??[];const requestedStep=text.match(/^(?:explain|show) step (\d+)$/);if(requestedStep){const index=Number(requestedStep[1])-1;return {result:this.last.result,message:steps[index]?`Step ${index+1}: ${steps[index]}`:`The recorded derivation has ${steps.length} steps.`};}
+      let message=composeEngineResponse(this.last.result,/answer only/.test(text)?'answer':'steps');
       if(/^why\b/.test(text)&&text!=='why'){const operation=text.match(/(subtract|add|divide|multiply)\s+(-?\d+(?:\.\d+)?)/),term=operation?.[0];const step=term?steps.find(s=>s.toLowerCase().includes(term)):undefined;message=step?`${step}\nApplying the same operation to both sides preserves the equation's solutions.`:operation&&this.last.expression.includes(operation[2])?`Applying ${operation[1]} ${operation[2]} to both sides preserves equality. The existing solver records the isolation in these steps:\n${steps.join('\n')}`:steps.length?steps.join('\n'):this.last.result.answer??'The existing engine returned no derivation for that result.';}
       return {result:this.last.result,message};
     }
@@ -61,9 +66,10 @@ export class EngineRouter{
     if(['solve','cas','differentiate','integrate','statistics','matrix','trigonometry','complex'].includes(route.intent)||/^[\d(][\d\s+*/().^-]*$/.test(text)||/^(?:sin|cos|tan|sqrt|ln|log)\(/.test(text))return this.run('problem.solve',{text,expression:route.expression},route.expression||text,style);
     return undefined;
   }
-  private reply(id:string,answer:string,value?:unknown,success=true){return {result:{success,engineId:'conversation',capabilityId:id,answer,value} as EngineResult,message:answer};}
+  private reply(id:string,answer:string,value?:unknown,success=true){return {result:{verificationStatus:success?'unverified':'unsupported',success,engineId:'conversation',capabilityId:id,answer,value} as EngineResult,message:answer};}
   private async run(id:string,input:SpecialistInput,expression:string,style:ResponseStyle='answer'){
-    const result=await executeCapability(id,id==='cas.evaluate'?{...input,cells:this.notebook}:input);if(id==='cas.evaluate'&&result.success&&result.metadata?.cells)this.notebook=result.metadata.cells as typeof this.notebook;this.recent=[...this.recent,{input:input.text,capabilityId:id,success:result.success}].slice(-25);
+    this.calculation?.abort();const controller=new AbortController();this.calculation=controller;
+    const result=await executeCapability(id,id==='cas.evaluate'?{...input,cells:this.notebook}:{...input,signal:controller.signal});if(this.calculation===controller)this.calculation=undefined;if(id==='cas.evaluate'&&result.success&&result.metadata?.cells)this.notebook=result.metadata.cells as typeof this.notebook;this.recent=[...this.recent,{input:input.text,capabilityId:id,success:result.success}].slice(-25);
     if(result.success)this.last={input:input.text,expression,result,style};return {result,message:composeEngineResponse(result,style)};
   }
 }

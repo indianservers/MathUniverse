@@ -1,0 +1,2887 @@
+{
+  "engines": [
+    {
+      "id": "problem-solver",
+      "label": "Algebra, calculus, matrices, statistics and problem solving",
+      "modules": [
+        "src/problem-solver/problemSolverEngine.ts",
+        "src/problem-solver/algebraStepSolver.ts",
+        "src/problem-solver/expressionOperationSolver.ts",
+        "src/problem-solver/calculusSolver.ts",
+        "src/problem-solver/matrixSolver.ts",
+        "src/problem-solver/systemSolver.ts",
+        "src/problem-solver/statisticsSolver.ts",
+        "src/problem-solver/wordProblemSolver.ts",
+        "src/problem-solver/proportionalReasoningSolver.ts",
+        "src/problem-solver/fractalSolver.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "problem.solve",
+          "engineId": "problem-solver",
+          "label": "Solve and explain",
+          "description": "Equations, expressions, derivatives, integrals, matrices, statistics, systems, word problems and supported fractals",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "cas",
+      "label": "CAS notebook and assumptions",
+      "modules": [
+        "src/cas/casNotebookEngine.ts",
+        "src/phase4/casEngine.ts",
+        "src/phase4/assumptionEngine.ts",
+        "src/utils/symbolic.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "cas.evaluate",
+          "engineId": "cas",
+          "label": "Symbolic calculation",
+          "description": "Notebook symbolic operations including supported differential equations and assumptions",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "sets",
+      "label": "Set theory",
+      "modules": [
+        "src/modules/set-theory/setTheoryEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "sets.setUnion",
+          "engineId": "sets",
+          "label": "set Union",
+          "description": "Uses existing setUnion; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "sets.setIntersection",
+          "engineId": "sets",
+          "label": "set Intersection",
+          "description": "Uses existing setIntersection; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "sets.setDifference",
+          "engineId": "sets",
+          "label": "set Difference",
+          "description": "Uses existing setDifference; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "sets.powerSet",
+          "engineId": "sets",
+          "label": "power Set",
+          "description": "Uses existing powerSet; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "sets.cartesianProduct",
+          "engineId": "sets",
+          "label": "cartesian Product",
+          "description": "Uses existing cartesianProduct; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "set-expressions",
+      "label": "Set expressions",
+      "modules": [
+        "src/modules/set-theory/setExpressionEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "set-expressions.parseSetExpression",
+          "engineId": "set-expressions",
+          "label": "parse Set Expression",
+          "description": "Uses existing parseSetExpression; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "set-expressions.evaluateSetExpression",
+          "engineId": "set-expressions",
+          "label": "evaluate Set Expression",
+          "description": "Uses existing evaluateSetExpression; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "logic",
+      "label": "Mathematical logic",
+      "modules": [
+        "src/modules/mathematical-logic/logicEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "logic.buildTruthTable",
+          "engineId": "logic",
+          "label": "build Truth Table",
+          "description": "Uses existing buildTruthTable; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "logic.runInference",
+          "engineId": "logic",
+          "label": "run Inference",
+          "description": "Uses existing runInference; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "graph-theory",
+      "label": "Graph theory",
+      "modules": [
+        "src/modules/graph-theory/graphTheoryEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "graph-theory.graphMetrics",
+          "engineId": "graph-theory",
+          "label": "graph Metrics",
+          "description": "Uses existing graphMetrics; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "graph-theory.adjacencyMatrix",
+          "engineId": "graph-theory",
+          "label": "adjacency Matrix",
+          "description": "Uses existing adjacencyMatrix; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "graph-theory.connectedComponents",
+          "engineId": "graph-theory",
+          "label": "connected Components",
+          "description": "Uses existing connectedComponents; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "combinatorics",
+      "label": "Combinatorics",
+      "modules": [
+        "src/modules/combinatorics/combinatoricsEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "combinatorics.factorial",
+          "engineId": "combinatorics",
+          "label": "factorial",
+          "description": "Uses existing factorial; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "combinatorics.permutations",
+          "engineId": "combinatorics",
+          "label": "permutations",
+          "description": "Uses existing permutations; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "combinatorics.combinations",
+          "engineId": "combinatorics",
+          "label": "combinations",
+          "description": "Uses existing combinations; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "structures",
+      "label": "Algebraic structures",
+      "modules": [
+        "src/modules/algebraic-structures/algebraicStructuresEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "structures.modularTable",
+          "engineId": "structures",
+          "label": "modular Table",
+          "description": "Uses existing modularTable; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "structures.classifyOperation",
+          "engineId": "structures",
+          "label": "classify Operation",
+          "description": "Uses existing classifyOperation; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "decimal",
+      "label": "Decimal expansion",
+      "modules": [
+        "src/modules/lessons/decimalExpansion/decimalExpansionEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "decimal.analyzeDecimalExpansion",
+          "engineId": "decimal",
+          "label": "analyze Decimal Expansion",
+          "description": "Uses existing analyzeDecimalExpansion; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "foundations",
+      "label": "Discrete foundations",
+      "modules": [
+        "src/modules/discrete-world/shared-engines/foundationsEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "foundations.gcdTrace",
+          "engineId": "foundations",
+          "label": "gcd Trace",
+          "description": "Uses existing gcdTrace; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "foundations.sieve",
+          "engineId": "foundations",
+          "label": "sieve",
+          "description": "Uses existing sieve; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "foundations.pigeonhole",
+          "engineId": "foundations",
+          "label": "pigeonhole",
+          "description": "Uses existing pigeonhole; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "foundations.linearRecurrence",
+          "engineId": "foundations",
+          "label": "linear Recurrence",
+          "description": "Uses existing linearRecurrence; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "automata",
+      "label": "Automata",
+      "modules": [
+        "src/modules/discrete-world/shared-engines/automataEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "automata.simulateAutomaton",
+          "engineId": "automata",
+          "label": "simulate Automaton",
+          "description": "Uses existing simulateAutomaton; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "automata.regexToNfa",
+          "engineId": "automata",
+          "label": "regex To Nfa",
+          "description": "Uses existing regexToNfa; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "automata.simulatePda",
+          "engineId": "automata",
+          "label": "simulate Pda",
+          "description": "Uses existing simulatePda; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "grammars",
+      "label": "Formal grammars",
+      "modules": [
+        "src/modules/discrete-world/shared-engines/grammarEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "grammars.parseGrammar",
+          "engineId": "grammars",
+          "label": "parse Grammar",
+          "description": "Uses existing parseGrammar; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "grammars.deriveString",
+          "engineId": "grammars",
+          "label": "derive String",
+          "description": "Uses existing deriveString; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "grammars.grammarClassification",
+          "engineId": "grammars",
+          "label": "grammar Classification",
+          "description": "Uses existing grammarClassification; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "turing",
+      "label": "Turing machines",
+      "modules": [
+        "src/modules/discrete-world/shared-engines/turingEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "turing.simulateTuring",
+          "engineId": "turing",
+          "label": "simulate Turing",
+          "description": "Uses existing simulateTuring; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "turing.simulateTwoTapeCopy",
+          "engineId": "turing",
+          "label": "simulate Two Tape Copy",
+          "description": "Uses existing simulateTwoTapeCopy; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "complexity",
+      "label": "Computational complexity",
+      "modules": [
+        "src/modules/discrete-world/shared-engines/complexityEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "complexity.certificateCheck",
+          "engineId": "complexity",
+          "label": "certificate Check",
+          "description": "Uses existing certificateCheck; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "complexity.haltingDiagonalDemo",
+          "engineId": "complexity",
+          "label": "halting Diagonal Demo",
+          "description": "Uses existing haltingDiagonalDemo; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "graph-extensions",
+      "label": "Graph extensions",
+      "modules": [
+        "src/modules/discrete-world/shared-engines/graphExtensionsEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "graph-extensions.eulerPath",
+          "engineId": "graph-extensions",
+          "label": "euler Path",
+          "description": "Uses existing eulerPath; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "graph-extensions.bellmanFord",
+          "engineId": "graph-extensions",
+          "label": "bellman Ford",
+          "description": "Uses existing bellmanFord; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "graph-extensions.floydWarshall",
+          "engineId": "graph-extensions",
+          "label": "floyd Warshall",
+          "description": "Uses existing floydWarshall; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "graph-extensions.stronglyConnectedComponents",
+          "engineId": "graph-extensions",
+          "label": "strongly Connected Components",
+          "description": "Uses existing stronglyConnectedComponents; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "statistics",
+      "label": "Statistics",
+      "modules": [
+        "src/utils/mathEngine/statisticsUtils.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "statistics.mean",
+          "engineId": "statistics",
+          "label": "mean",
+          "description": "Uses existing mean; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "statistics.median",
+          "engineId": "statistics",
+          "label": "median",
+          "description": "Uses existing median; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "statistics.mode",
+          "engineId": "statistics",
+          "label": "mode",
+          "description": "Uses existing mode; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "statistics.variance",
+          "engineId": "statistics",
+          "label": "variance",
+          "description": "Uses existing variance; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "statistics.standardDeviation",
+          "engineId": "statistics",
+          "label": "standard Deviation",
+          "description": "Uses existing standardDeviation; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "statistics.quartiles",
+          "engineId": "statistics",
+          "label": "quartiles",
+          "description": "Uses existing quartiles; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "matrices",
+      "label": "Matrices and linear algebra",
+      "modules": [
+        "src/utils/mathEngine/matrixUtils.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "matrices.inverse",
+          "engineId": "matrices",
+          "label": "inverse",
+          "description": "Uses existing inverse; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "matrices.multiplyMatrices",
+          "engineId": "matrices",
+          "label": "multiply Matrices",
+          "description": "Uses existing multiplyMatrices; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "matrices.transposeMatrix",
+          "engineId": "matrices",
+          "label": "transpose Matrix",
+          "description": "Uses existing transposeMatrix; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "matrices.rankMatrix",
+          "engineId": "matrices",
+          "label": "rank Matrix",
+          "description": "Uses existing rankMatrix; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "linear-algebra",
+      "label": "Linear algebra studio",
+      "modules": [
+        "src/studios/linear-algebra/linearAlgebraEnhancementEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "linear-algebra.basisCoordinates",
+          "engineId": "linear-algebra",
+          "label": "basis Coordinates",
+          "description": "Uses existing basisCoordinates; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "linear-algebra.gramSchmidt",
+          "engineId": "linear-algebra",
+          "label": "gram Schmidt",
+          "description": "Uses existing gramSchmidt; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "linear-algebra.projection",
+          "engineId": "linear-algebra",
+          "label": "projection",
+          "description": "Uses existing projection; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "algebra",
+      "label": "Algebra studio",
+      "modules": [
+        "src/studios/algebra/algebraEnhancementEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "algebra.solveLinearEquation",
+          "engineId": "algebra",
+          "label": "solve Linear Equation",
+          "description": "Uses existing solveLinearEquation; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "algebra.factorIntegerQuadratic",
+          "engineId": "algebra",
+          "label": "factor Integer Quadratic",
+          "description": "Uses existing factorIntegerQuadratic; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "calculus",
+      "label": "Calculus studio",
+      "modules": [
+        "src/studios/calculus/calculusEnhancementEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "calculus.oneSidedLimits",
+          "engineId": "calculus",
+          "label": "one Sided Limits",
+          "description": "Uses existing oneSidedLimits; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "calculus.sequenceLimit",
+          "engineId": "calculus",
+          "label": "sequence Limit",
+          "description": "Uses existing sequenceLimit; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "calculus.secantToTangent",
+          "engineId": "calculus",
+          "label": "secant To Tangent",
+          "description": "Uses existing secantToTangent; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "complex",
+      "label": "Complex numbers studio",
+      "modules": [
+        "src/studios/complex/complexEnhancementEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "complex.add",
+          "engineId": "complex",
+          "label": "add",
+          "description": "Uses existing add; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "complex.multiply",
+          "engineId": "complex",
+          "label": "multiply",
+          "description": "Uses existing multiply; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "complex.divide",
+          "engineId": "complex",
+          "label": "divide",
+          "description": "Uses existing divide; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "discrete",
+      "label": "Discrete studio",
+      "modules": [
+        "src/studios/discrete/discreteEnhancementEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "discrete.setOperations",
+          "engineId": "discrete",
+          "label": "set Operations",
+          "description": "Uses existing setOperations; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "discrete.truthTable2",
+          "engineId": "discrete",
+          "label": "truth Table2",
+          "description": "Uses existing truthTable2; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "discrete.relationClosures",
+          "engineId": "discrete",
+          "label": "relation Closures",
+          "description": "Uses existing relationClosures; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "geometry",
+      "label": "Geometry studio",
+      "modules": [
+        "src/studios/geometry/geometryEnhancementEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "geometry.triangleCentres",
+          "engineId": "geometry",
+          "label": "triangle Centres",
+          "description": "Uses existing triangleCentres; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "geometry.similarityScale",
+          "engineId": "geometry",
+          "label": "similarity Scale",
+          "description": "Uses existing similarityScale; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "construction",
+      "label": "Geometry construction",
+      "modules": [
+        "src/studios/geometry/construction/constructionEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "construction.evaluate",
+          "engineId": "construction",
+          "label": "evaluate",
+          "description": "Uses existing evaluate; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "modelling",
+      "label": "Mathematical modelling",
+      "modules": [
+        "src/studios/modelling/modellingEnhancementEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "modelling.fitLinear",
+          "engineId": "modelling",
+          "label": "fit Linear",
+          "description": "Uses existing fitLinear; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "modelling.residualDiagnostics",
+          "engineId": "modelling",
+          "label": "residual Diagnostics",
+          "description": "Uses existing residualDiagnostics; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "statistics-studio",
+      "label": "Statistics studio",
+      "modules": [
+        "src/studios/statistics/statisticsEnhancementEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "statistics-studio.linkedSummary",
+          "engineId": "statistics-studio",
+          "label": "linked Summary",
+          "description": "Uses existing linkedSummary; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "statistics-studio.robustSummary",
+          "engineId": "statistics-studio",
+          "label": "robust Summary",
+          "description": "Uses existing robustSummary; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "trigonometry",
+      "label": "Trigonometry studio",
+      "modules": [
+        "src/studios/trigonometry/trigonometryEnhancementEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "trigonometry.sixTrigFunctions",
+          "engineId": "trigonometry",
+          "label": "six Trig Functions",
+          "description": "Uses existing sixTrigFunctions; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "trigonometry.inverseBranch",
+          "engineId": "trigonometry",
+          "label": "inverse Branch",
+          "description": "Uses existing inverseBranch; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "number-systems",
+      "label": "Number systems studio",
+      "modules": [
+        "src/studios/number-systems/premium/experimentEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "number-systems.evaluateExperiment",
+          "engineId": "number-systems",
+          "label": "evaluate Experiment",
+          "description": "Uses existing evaluateExperiment; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "studio-platform",
+      "label": "Shared studio platform",
+      "modules": [
+        "src/studios/platform/studioPlatformEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "studio-platform.transferStudioObject",
+          "engineId": "studio-platform",
+          "label": "transfer Studio Object",
+          "description": "Uses existing transferStudioObject; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "spreadsheet",
+      "label": "Spreadsheet workspace",
+      "modules": [
+        "src/workspace/spreadsheetStudioEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "spreadsheet.calculateSpreadsheetStatistics",
+          "engineId": "spreadsheet",
+          "label": "calculate Spreadsheet Statistics",
+          "description": "Uses existing calculateSpreadsheetStatistics; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "spreadsheet.calculateLinearRegression",
+          "engineId": "spreadsheet",
+          "label": "calculate Linear Regression",
+          "description": "Uses existing calculateLinearRegression; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "spreadsheet.evaluateSpreadsheetWorkbook",
+          "engineId": "spreadsheet",
+          "label": "evaluate Spreadsheet Workbook",
+          "description": "Uses existing evaluateSpreadsheetWorkbook; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "workspace-2d",
+      "label": "2D workspace",
+      "modules": [
+        "src/workspace/geometry2dWorkspaceEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "workspace-2d.measureGeometry2D",
+          "engineId": "workspace-2d",
+          "label": "measure Geometry2D",
+          "description": "Uses existing measureGeometry2D; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace-2d.solveGeometry2DScene",
+          "engineId": "workspace-2d",
+          "label": "solve Geometry2DScene",
+          "description": "Uses existing solveGeometry2DScene; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "workspace-3d",
+      "label": "3D workspace",
+      "modules": [
+        "src/workspace/geometry3dWorkspaceEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "workspace-3d.measureGeometry3D",
+          "engineId": "workspace-3d",
+          "label": "measure Geometry3D",
+          "description": "Uses existing measureGeometry3D; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace-3d.solveGeometry3DScene",
+          "engineId": "workspace-3d",
+          "label": "solve Geometry3DScene",
+          "description": "Uses existing solveGeometry3DScene; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "workspace-dynamic",
+      "label": "Dynamic workspace",
+      "modules": [
+        "src/workspace/dynamicWorkspaceEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "workspace-dynamic.evaluateDynamicWorkspace",
+          "engineId": "workspace-dynamic",
+          "label": "evaluate Dynamic Workspace",
+          "description": "Uses existing evaluateDynamicWorkspace; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "workspace-bridge",
+      "label": "Shared workspace bridge",
+      "modules": [
+        "src/workspace/workspaceEngineBridge.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "workspace-bridge.buildSharedWorkspaceModel",
+          "engineId": "workspace-bridge",
+          "label": "build Shared Workspace Model",
+          "description": "Uses existing buildSharedWorkspaceModel; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "animation",
+      "label": "Animation workspace",
+      "modules": [
+        "src/workspace/animationEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "animation.pingPongValue",
+          "engineId": "animation",
+          "label": "ping Pong Value",
+          "description": "Uses existing pingPongValue; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "animation.orbitalPoint",
+          "engineId": "animation",
+          "label": "orbital Point",
+          "description": "Uses existing orbitalPoint; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "math-3d",
+      "label": "3D mathematics",
+      "modules": [
+        "src/phase5/math3dEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "math-3d.createExplicitSurface",
+          "engineId": "math-3d",
+          "label": "create Explicit Surface",
+          "description": "Uses existing createExplicitSurface; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "math-3d.createParametricSurface",
+          "engineId": "math-3d",
+          "label": "create Parametric Surface",
+          "description": "Uses existing createParametricSurface; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "math-3d.createSpaceCurve",
+          "engineId": "math-3d",
+          "label": "create Space Curve",
+          "description": "Uses existing createSpaceCurve; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "math-3d.createVectorField",
+          "engineId": "math-3d",
+          "label": "create Vector Field",
+          "description": "Uses existing createVectorField; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "units",
+      "label": "Unit engine",
+      "modules": [
+        "src/graph-studio/unitEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "units.convertGraphUnit",
+          "engineId": "units",
+          "label": "convert Graph Unit",
+          "description": "Uses existing convertGraphUnit; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "simulation",
+      "label": "Simulation engine",
+      "modules": [
+        "src/graph-studio/simulationEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "simulation.simulationSeries",
+          "engineId": "simulation",
+          "label": "simulation Series",
+          "description": "Uses existing simulationSeries; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "engineering",
+      "label": "Engineering systems",
+      "modules": [
+        "src/utils/mathEngine/engineeringSystems.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "engineering.solveFirstOrderOde",
+          "engineId": "engineering",
+          "label": "solve First Order Ode",
+          "description": "Uses existing solveFirstOrderOde; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "engineering.buildBodeResponse",
+          "engineId": "engineering",
+          "label": "build Bode Response",
+          "description": "Uses existing buildBodeResponse; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "engineering.buildFourierSynthesis",
+          "engineId": "engineering",
+          "label": "build Fourier Synthesis",
+          "description": "Uses existing buildFourierSynthesis; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "ar",
+      "label": "AR Math Lab",
+      "modules": [
+        "src/ar-math-lab/arExplorationEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "ar.analyzeARFunction",
+          "engineId": "ar",
+          "label": "analyze ARFunction",
+          "description": "Uses existing analyzeARFunction; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "ar.polygonMetrics",
+          "engineId": "ar",
+          "label": "polygon Metrics",
+          "description": "Uses existing polygonMetrics; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "probability",
+      "label": "Probability",
+      "modules": [
+        "src/utils/mathEngine/probabilityUtils.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "probability.binomialDistribution",
+          "engineId": "probability",
+          "label": "binomial Distribution",
+          "description": "Uses existing binomialDistribution; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "probability.diceProbability",
+          "engineId": "probability",
+          "label": "dice Probability",
+          "description": "Uses existing diceProbability; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "probability.bayesPosterior",
+          "engineId": "probability",
+          "label": "bayes Posterior",
+          "description": "Uses existing bayesPosterior; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "probability.oneProportionZTest",
+          "engineId": "probability",
+          "label": "one Proportion ZTest",
+          "description": "Uses existing oneProportionZTest; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "foundation-geometry",
+      "label": "Foundation geometry",
+      "modules": [
+        "src/math-foundation/geometryPhase2.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "foundation-geometry.orientation",
+          "engineId": "foundation-geometry",
+          "label": "orientation",
+          "description": "Uses existing orientation; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "foundation-geometry.constructCircumcircle",
+          "engineId": "foundation-geometry",
+          "label": "construct Circumcircle",
+          "description": "Uses existing constructCircumcircle; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "foundation-geometry.intersectGeometry",
+          "engineId": "foundation-geometry",
+          "label": "intersect Geometry",
+          "description": "Uses existing intersectGeometry; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "foundation-geometry.applyAffine",
+          "engineId": "foundation-geometry",
+          "label": "apply Affine",
+          "description": "Uses existing applyAffine; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "foundation-geometry.composeAffine",
+          "engineId": "foundation-geometry",
+          "label": "compose Affine",
+          "description": "Uses existing composeAffine; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "foundation-geometry.inverseAffine",
+          "engineId": "foundation-geometry",
+          "label": "inverse Affine",
+          "description": "Uses existing inverseAffine; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "foundation-analysis",
+      "label": "Foundation function analysis",
+      "modules": [
+        "src/math-foundation/analysis2d.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "foundation-analysis.analyzeFunction2d",
+          "engineId": "foundation-analysis",
+          "label": "analyze Function2d",
+          "description": "Uses existing analyzeFunction2d; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "adaptive-graph",
+      "label": "Adaptive graph sampling",
+      "modules": [
+        "src/math-foundation/adaptiveGraph.ts",
+        "src/utils/functionParser.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "graph.sample",
+          "engineId": "adaptive-graph",
+          "label": "Sample graph expression",
+          "description": "Existing adaptive sampler with discontinuity diagnostics and convergence evidence",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "graph-expressions",
+      "label": "Graph expressions and variables",
+      "modules": [
+        "src/graph-studio/expressionEngine.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "graph-expressions.detectGraphVariables",
+          "engineId": "graph-expressions",
+          "label": "detect Graph Variables",
+          "description": "Uses existing detectGraphVariables; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "graph-expressions.substituteGraphVariables",
+          "engineId": "graph-expressions",
+          "label": "substitute Graph Variables",
+          "description": "Uses existing substituteGraphVariables; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "graph-expressions.reconcileGraphVariables",
+          "engineId": "graph-expressions",
+          "label": "reconcile Graph Variables",
+          "description": "Uses existing reconcileGraphVariables; supply the engine's typed arguments",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "foundation",
+      "label": "Exact foundation values and dependency graph",
+      "modules": [
+        "src/math-foundation/parser.ts",
+        "src/math-foundation/evaluator.ts",
+        "src/math-foundation/values.ts",
+        "src/math-foundation/dependencyGraph.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "foundation.evaluate",
+          "engineId": "foundation",
+          "label": "Evaluate exact expression",
+          "description": "Evaluate with existing parser, exact values and bounded symbol definitions",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "kernel",
+      "label": "Ruhi verified mathematical kernel",
+      "modules": [
+        "src/math-robo/kernel/kernel.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "kernel.compute",
+          "engineId": "kernel",
+          "label": "Verified local computation",
+          "description": "Typed exact arithmetic, domain-aware supported equations, geometry, calculus and bounded numerical methods",
+          "mutatesWorkspace": false
+        }
+      ]
+    },
+    {
+      "id": "active-workspace",
+      "label": "Active workspace drawing, geometry and transformations",
+      "modules": [
+        "src/math-robo/intelligence/semanticEngine.ts",
+        "src/offline-intelligence/workspaceBridge.ts"
+      ],
+      "capabilities": [
+        {
+          "id": "workspace.CREATE.TRIANGLE",
+          "engineId": "active-workspace",
+          "label": "create triangle",
+          "description": "Verified create:triangle; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.RECTANGLE",
+          "engineId": "active-workspace",
+          "label": "create rectangle",
+          "description": "Verified create:rectangle; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.SQUARE",
+          "engineId": "active-workspace",
+          "label": "create square",
+          "description": "Verified create:square; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.CIRCLE",
+          "engineId": "active-workspace",
+          "label": "create circle",
+          "description": "Verified create:circle; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.ELLIPSE",
+          "engineId": "active-workspace",
+          "label": "create ellipse",
+          "description": "Verified create:ellipse; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.SEMICIRCLE",
+          "engineId": "active-workspace",
+          "label": "create semicircle",
+          "description": "Verified create:semicircle; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.PENTAGON",
+          "engineId": "active-workspace",
+          "label": "create pentagon",
+          "description": "Verified create:pentagon; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.HEXAGON",
+          "engineId": "active-workspace",
+          "label": "create hexagon",
+          "description": "Verified create:hexagon; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.HEPTAGON",
+          "engineId": "active-workspace",
+          "label": "create heptagon",
+          "description": "Verified create:heptagon; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.OCTAGON",
+          "engineId": "active-workspace",
+          "label": "create octagon",
+          "description": "Verified create:octagon; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.NONAGON",
+          "engineId": "active-workspace",
+          "label": "create nonagon",
+          "description": "Verified create:nonagon; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.DECAGON",
+          "engineId": "active-workspace",
+          "label": "create decagon",
+          "description": "Verified create:decagon; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.POLYGON",
+          "engineId": "active-workspace",
+          "label": "create polygon",
+          "description": "Verified create:polygon; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.STAR",
+          "engineId": "active-workspace",
+          "label": "create star",
+          "description": "Verified create:star; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.PARALLELOGRAM",
+          "engineId": "active-workspace",
+          "label": "create parallelogram",
+          "description": "Verified create:parallelogram; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.TRAPEZOID",
+          "engineId": "active-workspace",
+          "label": "create trapezoid",
+          "description": "Verified create:trapezoid; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.RHOMBUS",
+          "engineId": "active-workspace",
+          "label": "create rhombus",
+          "description": "Verified create:rhombus; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.KITE",
+          "engineId": "active-workspace",
+          "label": "create kite",
+          "description": "Verified create:kite; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.CUBE",
+          "engineId": "active-workspace",
+          "label": "create cube",
+          "description": "Verified create:cube; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.CUBOID",
+          "engineId": "active-workspace",
+          "label": "create cuboid",
+          "description": "Verified create:cuboid; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.SPHERE",
+          "engineId": "active-workspace",
+          "label": "create sphere",
+          "description": "Verified create:sphere; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.ELLIPSOID",
+          "engineId": "active-workspace",
+          "label": "create ellipsoid",
+          "description": "Verified create:ellipsoid; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.HEMISPHERE",
+          "engineId": "active-workspace",
+          "label": "create hemisphere",
+          "description": "Verified create:hemisphere; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.CYLINDER",
+          "engineId": "active-workspace",
+          "label": "create cylinder",
+          "description": "Verified create:cylinder; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.CONE",
+          "engineId": "active-workspace",
+          "label": "create cone",
+          "description": "Verified create:cone; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.FRUSTUM",
+          "engineId": "active-workspace",
+          "label": "create frustum",
+          "description": "Verified create:frustum; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.TORUS",
+          "engineId": "active-workspace",
+          "label": "create torus",
+          "description": "Verified create:torus; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.TUBE",
+          "engineId": "active-workspace",
+          "label": "create tube",
+          "description": "Verified create:tube; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.CAPSULE",
+          "engineId": "active-workspace",
+          "label": "create capsule",
+          "description": "Verified create:capsule; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.PRISM",
+          "engineId": "active-workspace",
+          "label": "create prism",
+          "description": "Verified create:prism; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.PYRAMID",
+          "engineId": "active-workspace",
+          "label": "create pyramid",
+          "description": "Verified create:pyramid; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.TETRAHEDRON",
+          "engineId": "active-workspace",
+          "label": "create tetrahedron",
+          "description": "Verified create:tetrahedron; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.OCTAHEDRON",
+          "engineId": "active-workspace",
+          "label": "create octahedron",
+          "description": "Verified create:octahedron; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.DODECAHEDRON",
+          "engineId": "active-workspace",
+          "label": "create dodecahedron",
+          "description": "Verified create:dodecahedron; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.ICOSAHEDRON",
+          "engineId": "active-workspace",
+          "label": "create icosahedron",
+          "description": "Verified create:icosahedron; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.WEDGE",
+          "engineId": "active-workspace",
+          "label": "create wedge",
+          "description": "Verified create:wedge; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.POINT",
+          "engineId": "active-workspace",
+          "label": "create point",
+          "description": "Verified create:point; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.LINE",
+          "engineId": "active-workspace",
+          "label": "create line",
+          "description": "Verified create:line; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.RAY",
+          "engineId": "active-workspace",
+          "label": "create ray",
+          "description": "Verified create:ray; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CREATE.VECTOR",
+          "engineId": "active-workspace",
+          "label": "create vector",
+          "description": "Verified create:vector; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.FIND.COMPONENTS",
+          "engineId": "active-workspace",
+          "label": "find components",
+          "description": "Verified find:components; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.DIRECTION",
+          "engineId": "active-workspace",
+          "label": "find direction",
+          "description": "Verified find:direction; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.PARAMETERIZATION",
+          "engineId": "active-workspace",
+          "label": "find parameterization",
+          "description": "Verified find:parameterization; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.MAGNITUDE",
+          "engineId": "active-workspace",
+          "label": "find magnitude",
+          "description": "Verified find:magnitude; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.PLOT.FUNCTION",
+          "engineId": "active-workspace",
+          "label": "plot function",
+          "description": "Verified plot:function; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.PLOT.SURFACE_3D",
+          "engineId": "active-workspace",
+          "label": "plot surface 3d",
+          "description": "Verified plot:surface_3d; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.FIND.DISTANCE",
+          "engineId": "active-workspace",
+          "label": "find distance",
+          "description": "Verified find:distance; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.MIDPOINT",
+          "engineId": "active-workspace",
+          "label": "find midpoint",
+          "description": "Verified find:midpoint; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.LENGTH",
+          "engineId": "active-workspace",
+          "label": "find length",
+          "description": "Verified find:length; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.AREA",
+          "engineId": "active-workspace",
+          "label": "find area",
+          "description": "Verified find:area; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.PERIMETER",
+          "engineId": "active-workspace",
+          "label": "find perimeter",
+          "description": "Verified find:perimeter; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.CIRCUMFERENCE",
+          "engineId": "active-workspace",
+          "label": "find circumference",
+          "description": "Verified find:circumference; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.SLOPE",
+          "engineId": "active-workspace",
+          "label": "find slope",
+          "description": "Verified find:slope; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.CENTER",
+          "engineId": "active-workspace",
+          "label": "find center",
+          "description": "Verified find:center; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.RADIUS",
+          "engineId": "active-workspace",
+          "label": "find radius",
+          "description": "Verified find:radius; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.DIAMETER",
+          "engineId": "active-workspace",
+          "label": "find diameter",
+          "description": "Verified find:diameter; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.CENTROID",
+          "engineId": "active-workspace",
+          "label": "find centroid",
+          "description": "Verified find:centroid; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.VOLUME",
+          "engineId": "active-workspace",
+          "label": "find volume",
+          "description": "Verified find:volume; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.SURFACE_AREA",
+          "engineId": "active-workspace",
+          "label": "find surface area",
+          "description": "Verified find:surface_area; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.INTERSECTION",
+          "engineId": "active-workspace",
+          "label": "find intersection",
+          "description": "Verified find:intersection; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.ROOTS",
+          "engineId": "active-workspace",
+          "label": "find roots",
+          "description": "Verified find:roots; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.X_INTERCEPT",
+          "engineId": "active-workspace",
+          "label": "find x intercept",
+          "description": "Verified find:x_intercept; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.Y_INTERCEPT",
+          "engineId": "active-workspace",
+          "label": "find y intercept",
+          "description": "Verified find:y_intercept; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHANGE.COLOR",
+          "engineId": "active-workspace",
+          "label": "change color",
+          "description": "Verified change:color; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.WIDTH",
+          "engineId": "active-workspace",
+          "label": "change width",
+          "description": "Verified change:width; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.HEIGHT",
+          "engineId": "active-workspace",
+          "label": "change height",
+          "description": "Verified change:height; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.DEPTH",
+          "engineId": "active-workspace",
+          "label": "change depth",
+          "description": "Verified change:depth; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.RADIUS",
+          "engineId": "active-workspace",
+          "label": "change radius",
+          "description": "Verified change:radius; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.DIAMETER",
+          "engineId": "active-workspace",
+          "label": "change diameter",
+          "description": "Verified change:diameter; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.POSITION",
+          "engineId": "active-workspace",
+          "label": "change position",
+          "description": "Verified change:position; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.COORDINATES",
+          "engineId": "active-workspace",
+          "label": "change coordinates",
+          "description": "Verified change:coordinates; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.LABEL",
+          "engineId": "active-workspace",
+          "label": "change label",
+          "description": "Verified change:label; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.ENDPOINTS",
+          "engineId": "active-workspace",
+          "label": "change endpoints",
+          "description": "Verified change:endpoints; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.MOVE.OBJECT",
+          "engineId": "active-workspace",
+          "label": "move object",
+          "description": "Verified move:object; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.ROTATE.OBJECT",
+          "engineId": "active-workspace",
+          "label": "rotate object",
+          "description": "Verified rotate:object; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.SCALE.UNIFORM",
+          "engineId": "active-workspace",
+          "label": "scale uniform",
+          "description": "Verified scale:uniform; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.RESIZE.OBJECT",
+          "engineId": "active-workspace",
+          "label": "resize object",
+          "description": "Verified resize:object; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.REFLECT.X_AXIS",
+          "engineId": "active-workspace",
+          "label": "reflect x axis",
+          "description": "Verified reflect:x_axis; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.REFLECT.Y_AXIS",
+          "engineId": "active-workspace",
+          "label": "reflect y axis",
+          "description": "Verified reflect:y_axis; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.REFLECT.ORIGIN",
+          "engineId": "active-workspace",
+          "label": "reflect origin",
+          "description": "Verified reflect:origin; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.REFLECT.XY_PLANE",
+          "engineId": "active-workspace",
+          "label": "reflect xy plane",
+          "description": "Verified reflect:xy_plane; modes geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.REFLECT.XZ_PLANE",
+          "engineId": "active-workspace",
+          "label": "reflect xz plane",
+          "description": "Verified reflect:xz_plane; modes geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.REFLECT.YZ_PLANE",
+          "engineId": "active-workspace",
+          "label": "reflect yz plane",
+          "description": "Verified reflect:yz_plane; modes geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CONSTRUCT.PERPENDICULAR",
+          "engineId": "active-workspace",
+          "label": "construct perpendicular",
+          "description": "Verified construct:perpendicular; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CONSTRUCT.PARALLEL",
+          "engineId": "active-workspace",
+          "label": "construct parallel",
+          "description": "Verified construct:parallel; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CONSTRUCT.PERPENDICULAR_BISECTOR",
+          "engineId": "active-workspace",
+          "label": "construct perpendicular bisector",
+          "description": "Verified construct:perpendicular_bisector; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CONSTRUCT.TANGENT",
+          "engineId": "active-workspace",
+          "label": "construct tangent",
+          "description": "Verified construct:tangent; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.MARK.POINT",
+          "engineId": "active-workspace",
+          "label": "mark point",
+          "description": "Verified mark:point; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.MARK.MIDPOINT",
+          "engineId": "active-workspace",
+          "label": "mark midpoint",
+          "description": "Verified mark:midpoint; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.MARK.CENTER",
+          "engineId": "active-workspace",
+          "label": "mark center",
+          "description": "Verified mark:center; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.MARK.INTERSECTION",
+          "engineId": "active-workspace",
+          "label": "mark intersection",
+          "description": "Verified mark:intersection; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.SHOW.OBJECT",
+          "engineId": "active-workspace",
+          "label": "show object",
+          "description": "Verified show:object; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.SHOW.CENTER",
+          "engineId": "active-workspace",
+          "label": "show center",
+          "description": "Verified show:center; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.SHOW.MIDPOINT",
+          "engineId": "active-workspace",
+          "label": "show midpoint",
+          "description": "Verified show:midpoint; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.SHOW.RADIUS",
+          "engineId": "active-workspace",
+          "label": "show radius",
+          "description": "Verified show:radius; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.SHOW.DIAMETER",
+          "engineId": "active-workspace",
+          "label": "show diameter",
+          "description": "Verified show:diameter; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.SHOW.INTERSECTION",
+          "engineId": "active-workspace",
+          "label": "show intersection",
+          "description": "Verified show:intersection; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.HIDE.OBJECT",
+          "engineId": "active-workspace",
+          "label": "hide object",
+          "description": "Verified hide:object; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.DELETE.OBJECT",
+          "engineId": "active-workspace",
+          "label": "delete object",
+          "description": "Verified delete:object; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.DELETE.ALL",
+          "engineId": "active-workspace",
+          "label": "delete all",
+          "description": "Verified delete:all; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.SELECT.OBJECT",
+          "engineId": "active-workspace",
+          "label": "select object",
+          "description": "Verified select:object; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.SELECT.ALL",
+          "engineId": "active-workspace",
+          "label": "select all",
+          "description": "Verified select:all; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.DESELECT.ALL",
+          "engineId": "active-workspace",
+          "label": "deselect all",
+          "description": "Verified deselect:all; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.DUPLICATE.OBJECT",
+          "engineId": "active-workspace",
+          "label": "duplicate object",
+          "description": "Verified duplicate:object; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.UNDO.LAST",
+          "engineId": "active-workspace",
+          "label": "undo last",
+          "description": "Verified undo:last; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.REDO.LAST",
+          "engineId": "active-workspace",
+          "label": "redo last",
+          "description": "Verified redo:last; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.COUNT.OBJECTS",
+          "engineId": "active-workspace",
+          "label": "count objects",
+          "description": "Verified count:objects; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.COUNT.POINTS",
+          "engineId": "active-workspace",
+          "label": "count points",
+          "description": "Verified count:points; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.COUNT.LINES",
+          "engineId": "active-workspace",
+          "label": "count lines",
+          "description": "Verified count:lines; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.COUNT.SHAPES",
+          "engineId": "active-workspace",
+          "label": "count shapes",
+          "description": "Verified count:shapes; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.COUNT.VERTICES",
+          "engineId": "active-workspace",
+          "label": "count vertices",
+          "description": "Verified count:vertices; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.COMPARE.SIZE",
+          "engineId": "active-workspace",
+          "label": "compare size",
+          "description": "Verified compare:size; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.COMPARE.AREA",
+          "engineId": "active-workspace",
+          "label": "compare area",
+          "description": "Verified compare:area; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.COMPARE.PERIMETER",
+          "engineId": "active-workspace",
+          "label": "compare perimeter",
+          "description": "Verified compare:perimeter; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.COMPARE.LENGTH",
+          "engineId": "active-workspace",
+          "label": "compare length",
+          "description": "Verified compare:length; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.COMPARE.VOLUME",
+          "engineId": "active-workspace",
+          "label": "compare volume",
+          "description": "Verified compare:volume; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.COMPARE.SURFACE_AREA",
+          "engineId": "active-workspace",
+          "label": "compare surface area",
+          "description": "Verified compare:surface_area; modes normal, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHECK.PARALLEL",
+          "engineId": "active-workspace",
+          "label": "check parallel",
+          "description": "Verified check:parallel; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHECK.PERPENDICULAR",
+          "engineId": "active-workspace",
+          "label": "check perpendicular",
+          "description": "Verified check:perpendicular; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHECK.EQUAL_LENGTH",
+          "engineId": "active-workspace",
+          "label": "check equal length",
+          "description": "Verified check:equal_length; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHECK.EQUAL_AREA",
+          "engineId": "active-workspace",
+          "label": "check equal area",
+          "description": "Verified check:equal_area; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHECK.POINT_INSIDE",
+          "engineId": "active-workspace",
+          "label": "check point inside",
+          "description": "Verified check:point_inside; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHECK.POINT_ON_LINE",
+          "engineId": "active-workspace",
+          "label": "check point on line",
+          "description": "Verified check:point_on_line; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHECK.POINT_ON_CIRCLE",
+          "engineId": "active-workspace",
+          "label": "check point on circle",
+          "description": "Verified check:point_on_circle; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHECK.INTERSECTING",
+          "engineId": "active-workspace",
+          "label": "check intersecting",
+          "description": "Verified check:intersecting; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.ANGLE",
+          "engineId": "active-workspace",
+          "label": "find angle",
+          "description": "Verified find:angle; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.INCENTER",
+          "engineId": "active-workspace",
+          "label": "find incenter",
+          "description": "Verified find:incenter; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.CIRCUMCENTER",
+          "engineId": "active-workspace",
+          "label": "find circumcenter",
+          "description": "Verified find:circumcenter; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.ORTHOCENTER",
+          "engineId": "active-workspace",
+          "label": "find orthocenter",
+          "description": "Verified find:orthocenter; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.PROJECTION",
+          "engineId": "active-workspace",
+          "label": "find projection",
+          "description": "Verified find:projection; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CONSTRUCT.ANGLE_BISECTOR",
+          "engineId": "active-workspace",
+          "label": "construct angle bisector",
+          "description": "Verified construct:angle_bisector; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CONSTRUCT.INCIRCLE",
+          "engineId": "active-workspace",
+          "label": "construct incircle",
+          "description": "Verified construct:incircle; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CONSTRUCT.CIRCUMCIRCLE",
+          "engineId": "active-workspace",
+          "label": "construct circumcircle",
+          "description": "Verified construct:circumcircle; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CONSTRUCT.MEDIAN",
+          "engineId": "active-workspace",
+          "label": "construct median",
+          "description": "Verified construct:median; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CONSTRUCT.ALTITUDE",
+          "engineId": "active-workspace",
+          "label": "construct altitude",
+          "description": "Verified construct:altitude; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.SLOPE",
+          "engineId": "active-workspace",
+          "label": "change slope",
+          "description": "Verified change:slope; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHANGE.LENGTH",
+          "engineId": "active-workspace",
+          "label": "change length",
+          "description": "Verified change:length; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHECK.COLLINEAR",
+          "engineId": "active-workspace",
+          "label": "check collinear",
+          "description": "Verified check:collinear; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHECK.TANGENT",
+          "engineId": "active-workspace",
+          "label": "check tangent",
+          "description": "Verified check:tangent; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.EXTEND.OBJECT",
+          "engineId": "active-workspace",
+          "label": "extend object",
+          "description": "Verified extend:object; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.LOCK.OBJECT",
+          "engineId": "active-workspace",
+          "label": "lock object",
+          "description": "Verified lock:object; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.UNLOCK.OBJECT",
+          "engineId": "active-workspace",
+          "label": "unlock object",
+          "description": "Verified unlock:object; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.FIND.TRIANGLE_TYPE",
+          "engineId": "active-workspace",
+          "label": "find triangle type",
+          "description": "Verified find:triangle_type; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.LONGEST_SIDE",
+          "engineId": "active-workspace",
+          "label": "find longest side",
+          "description": "Verified find:longest_side; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.LARGEST_ANGLE",
+          "engineId": "active-workspace",
+          "label": "find largest angle",
+          "description": "Verified find:largest_angle; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.COORDINATES",
+          "engineId": "active-workspace",
+          "label": "find coordinates",
+          "description": "Verified find:coordinates; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.EQUATION",
+          "engineId": "active-workspace",
+          "label": "find equation",
+          "description": "Verified find:equation; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.TOUCHING_POINT",
+          "engineId": "active-workspace",
+          "label": "find touching point",
+          "description": "Verified find:touching_point; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CONSTRUCT.PROJECTION",
+          "engineId": "active-workspace",
+          "label": "construct projection",
+          "description": "Verified construct:projection; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CONSTRUCT.NORMAL",
+          "engineId": "active-workspace",
+          "label": "construct normal",
+          "description": "Verified construct:normal; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHECK.POINT_OUTSIDE",
+          "engineId": "active-workspace",
+          "label": "check point outside",
+          "description": "Verified check:point_outside; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHECK.RIGHT_TRIANGLE",
+          "engineId": "active-workspace",
+          "label": "check right triangle",
+          "description": "Verified check:right_triangle; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHECK.EQUAL_ANGLES",
+          "engineId": "active-workspace",
+          "label": "check equal angles",
+          "description": "Verified check:equal_angles; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHECK.ORIENTATION",
+          "engineId": "active-workspace",
+          "label": "check orientation",
+          "description": "Verified check:orientation; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHECK.MEDIAL_TRIANGLE",
+          "engineId": "active-workspace",
+          "label": "check medial triangle",
+          "description": "Verified check:medial_triangle; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CHANGE.RELATION",
+          "engineId": "active-workspace",
+          "label": "change relation",
+          "description": "Verified change:relation; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.REFLECT.DIAGONAL",
+          "engineId": "active-workspace",
+          "label": "reflect diagonal",
+          "description": "Verified reflect:diagonal; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.MARK.SIDE_MIDPOINTS",
+          "engineId": "active-workspace",
+          "label": "mark side midpoints",
+          "description": "Verified mark:side_midpoints; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.EXPLAIN.PREVIOUS",
+          "engineId": "active-workspace",
+          "label": "explain previous",
+          "description": "Verified explain:previous; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        }
+      ]
+    }
+  ],
+  "exports": [
+    {
+      "engineId": "sets",
+      "function": "setUnion",
+      "available": true
+    },
+    {
+      "engineId": "sets",
+      "function": "setIntersection",
+      "available": true
+    },
+    {
+      "engineId": "sets",
+      "function": "setDifference",
+      "available": true
+    },
+    {
+      "engineId": "sets",
+      "function": "powerSet",
+      "available": true
+    },
+    {
+      "engineId": "sets",
+      "function": "cartesianProduct",
+      "available": true
+    },
+    {
+      "engineId": "set-expressions",
+      "function": "parseSetExpression",
+      "available": true
+    },
+    {
+      "engineId": "set-expressions",
+      "function": "evaluateSetExpression",
+      "available": true
+    },
+    {
+      "engineId": "logic",
+      "function": "buildTruthTable",
+      "available": true
+    },
+    {
+      "engineId": "logic",
+      "function": "runInference",
+      "available": true
+    },
+    {
+      "engineId": "graph-theory",
+      "function": "graphMetrics",
+      "available": true
+    },
+    {
+      "engineId": "graph-theory",
+      "function": "adjacencyMatrix",
+      "available": true
+    },
+    {
+      "engineId": "graph-theory",
+      "function": "connectedComponents",
+      "available": true
+    },
+    {
+      "engineId": "combinatorics",
+      "function": "factorial",
+      "available": true
+    },
+    {
+      "engineId": "combinatorics",
+      "function": "permutations",
+      "available": true
+    },
+    {
+      "engineId": "combinatorics",
+      "function": "combinations",
+      "available": true
+    },
+    {
+      "engineId": "structures",
+      "function": "modularTable",
+      "available": true
+    },
+    {
+      "engineId": "structures",
+      "function": "classifyOperation",
+      "available": true
+    },
+    {
+      "engineId": "decimal",
+      "function": "analyzeDecimalExpansion",
+      "available": true
+    },
+    {
+      "engineId": "foundations",
+      "function": "gcdTrace",
+      "available": true
+    },
+    {
+      "engineId": "foundations",
+      "function": "sieve",
+      "available": true
+    },
+    {
+      "engineId": "foundations",
+      "function": "pigeonhole",
+      "available": true
+    },
+    {
+      "engineId": "foundations",
+      "function": "linearRecurrence",
+      "available": true
+    },
+    {
+      "engineId": "automata",
+      "function": "simulateAutomaton",
+      "available": true
+    },
+    {
+      "engineId": "automata",
+      "function": "regexToNfa",
+      "available": true
+    },
+    {
+      "engineId": "automata",
+      "function": "simulatePda",
+      "available": true
+    },
+    {
+      "engineId": "grammars",
+      "function": "parseGrammar",
+      "available": true
+    },
+    {
+      "engineId": "grammars",
+      "function": "deriveString",
+      "available": true
+    },
+    {
+      "engineId": "grammars",
+      "function": "grammarClassification",
+      "available": true
+    },
+    {
+      "engineId": "turing",
+      "function": "simulateTuring",
+      "available": true
+    },
+    {
+      "engineId": "turing",
+      "function": "simulateTwoTapeCopy",
+      "available": true
+    },
+    {
+      "engineId": "complexity",
+      "function": "certificateCheck",
+      "available": true
+    },
+    {
+      "engineId": "complexity",
+      "function": "haltingDiagonalDemo",
+      "available": true
+    },
+    {
+      "engineId": "graph-extensions",
+      "function": "eulerPath",
+      "available": true
+    },
+    {
+      "engineId": "graph-extensions",
+      "function": "bellmanFord",
+      "available": true
+    },
+    {
+      "engineId": "graph-extensions",
+      "function": "floydWarshall",
+      "available": true
+    },
+    {
+      "engineId": "graph-extensions",
+      "function": "stronglyConnectedComponents",
+      "available": true
+    },
+    {
+      "engineId": "statistics",
+      "function": "mean",
+      "available": true
+    },
+    {
+      "engineId": "statistics",
+      "function": "median",
+      "available": true
+    },
+    {
+      "engineId": "statistics",
+      "function": "mode",
+      "available": true
+    },
+    {
+      "engineId": "statistics",
+      "function": "variance",
+      "available": true
+    },
+    {
+      "engineId": "statistics",
+      "function": "standardDeviation",
+      "available": true
+    },
+    {
+      "engineId": "statistics",
+      "function": "quartiles",
+      "available": true
+    },
+    {
+      "engineId": "matrices",
+      "function": "inverse",
+      "available": true
+    },
+    {
+      "engineId": "matrices",
+      "function": "multiplyMatrices",
+      "available": true
+    },
+    {
+      "engineId": "matrices",
+      "function": "transposeMatrix",
+      "available": true
+    },
+    {
+      "engineId": "matrices",
+      "function": "rankMatrix",
+      "available": true
+    },
+    {
+      "engineId": "linear-algebra",
+      "function": "basisCoordinates",
+      "available": true
+    },
+    {
+      "engineId": "linear-algebra",
+      "function": "gramSchmidt",
+      "available": true
+    },
+    {
+      "engineId": "linear-algebra",
+      "function": "projection",
+      "available": true
+    },
+    {
+      "engineId": "algebra",
+      "function": "solveLinearEquation",
+      "available": true
+    },
+    {
+      "engineId": "algebra",
+      "function": "factorIntegerQuadratic",
+      "available": true
+    },
+    {
+      "engineId": "calculus",
+      "function": "oneSidedLimits",
+      "available": true
+    },
+    {
+      "engineId": "calculus",
+      "function": "sequenceLimit",
+      "available": true
+    },
+    {
+      "engineId": "calculus",
+      "function": "secantToTangent",
+      "available": true
+    },
+    {
+      "engineId": "complex",
+      "function": "add",
+      "available": true
+    },
+    {
+      "engineId": "complex",
+      "function": "multiply",
+      "available": true
+    },
+    {
+      "engineId": "complex",
+      "function": "divide",
+      "available": true
+    },
+    {
+      "engineId": "discrete",
+      "function": "setOperations",
+      "available": true
+    },
+    {
+      "engineId": "discrete",
+      "function": "truthTable2",
+      "available": true
+    },
+    {
+      "engineId": "discrete",
+      "function": "relationClosures",
+      "available": true
+    },
+    {
+      "engineId": "geometry",
+      "function": "triangleCentres",
+      "available": true
+    },
+    {
+      "engineId": "geometry",
+      "function": "similarityScale",
+      "available": true
+    },
+    {
+      "engineId": "construction",
+      "function": "evaluate",
+      "available": true
+    },
+    {
+      "engineId": "modelling",
+      "function": "fitLinear",
+      "available": true
+    },
+    {
+      "engineId": "modelling",
+      "function": "residualDiagnostics",
+      "available": true
+    },
+    {
+      "engineId": "statistics-studio",
+      "function": "linkedSummary",
+      "available": true
+    },
+    {
+      "engineId": "statistics-studio",
+      "function": "robustSummary",
+      "available": true
+    },
+    {
+      "engineId": "trigonometry",
+      "function": "sixTrigFunctions",
+      "available": true
+    },
+    {
+      "engineId": "trigonometry",
+      "function": "inverseBranch",
+      "available": true
+    },
+    {
+      "engineId": "number-systems",
+      "function": "evaluateExperiment",
+      "available": true
+    },
+    {
+      "engineId": "studio-platform",
+      "function": "transferStudioObject",
+      "available": true
+    },
+    {
+      "engineId": "spreadsheet",
+      "function": "calculateSpreadsheetStatistics",
+      "available": true
+    },
+    {
+      "engineId": "spreadsheet",
+      "function": "calculateLinearRegression",
+      "available": true
+    },
+    {
+      "engineId": "spreadsheet",
+      "function": "evaluateSpreadsheetWorkbook",
+      "available": true
+    },
+    {
+      "engineId": "workspace-2d",
+      "function": "measureGeometry2D",
+      "available": true
+    },
+    {
+      "engineId": "workspace-2d",
+      "function": "solveGeometry2DScene",
+      "available": true
+    },
+    {
+      "engineId": "workspace-3d",
+      "function": "measureGeometry3D",
+      "available": true
+    },
+    {
+      "engineId": "workspace-3d",
+      "function": "solveGeometry3DScene",
+      "available": true
+    },
+    {
+      "engineId": "workspace-dynamic",
+      "function": "evaluateDynamicWorkspace",
+      "available": true
+    },
+    {
+      "engineId": "workspace-bridge",
+      "function": "buildSharedWorkspaceModel",
+      "available": true
+    },
+    {
+      "engineId": "animation",
+      "function": "pingPongValue",
+      "available": true
+    },
+    {
+      "engineId": "animation",
+      "function": "orbitalPoint",
+      "available": true
+    },
+    {
+      "engineId": "math-3d",
+      "function": "createExplicitSurface",
+      "available": true
+    },
+    {
+      "engineId": "math-3d",
+      "function": "createParametricSurface",
+      "available": true
+    },
+    {
+      "engineId": "math-3d",
+      "function": "createSpaceCurve",
+      "available": true
+    },
+    {
+      "engineId": "math-3d",
+      "function": "createVectorField",
+      "available": true
+    },
+    {
+      "engineId": "units",
+      "function": "convertGraphUnit",
+      "available": true
+    },
+    {
+      "engineId": "simulation",
+      "function": "simulationSeries",
+      "available": true
+    },
+    {
+      "engineId": "engineering",
+      "function": "solveFirstOrderOde",
+      "available": true
+    },
+    {
+      "engineId": "engineering",
+      "function": "buildBodeResponse",
+      "available": true
+    },
+    {
+      "engineId": "engineering",
+      "function": "buildFourierSynthesis",
+      "available": true
+    },
+    {
+      "engineId": "ar",
+      "function": "analyzeARFunction",
+      "available": true
+    },
+    {
+      "engineId": "ar",
+      "function": "polygonMetrics",
+      "available": true
+    },
+    {
+      "engineId": "probability",
+      "function": "binomialDistribution",
+      "available": true
+    },
+    {
+      "engineId": "probability",
+      "function": "diceProbability",
+      "available": true
+    },
+    {
+      "engineId": "probability",
+      "function": "bayesPosterior",
+      "available": true
+    },
+    {
+      "engineId": "probability",
+      "function": "oneProportionZTest",
+      "available": true
+    },
+    {
+      "engineId": "foundation-geometry",
+      "function": "orientation",
+      "available": true
+    },
+    {
+      "engineId": "foundation-geometry",
+      "function": "constructCircumcircle",
+      "available": true
+    },
+    {
+      "engineId": "foundation-geometry",
+      "function": "intersectGeometry",
+      "available": true
+    },
+    {
+      "engineId": "foundation-geometry",
+      "function": "applyAffine",
+      "available": true
+    },
+    {
+      "engineId": "foundation-geometry",
+      "function": "composeAffine",
+      "available": true
+    },
+    {
+      "engineId": "foundation-geometry",
+      "function": "inverseAffine",
+      "available": true
+    },
+    {
+      "engineId": "foundation-analysis",
+      "function": "analyzeFunction2d",
+      "available": true
+    },
+    {
+      "engineId": "graph-expressions",
+      "function": "detectGraphVariables",
+      "available": true
+    },
+    {
+      "engineId": "graph-expressions",
+      "function": "substituteGraphVariables",
+      "available": true
+    },
+    {
+      "engineId": "graph-expressions",
+      "function": "reconcileGraphVariables",
+      "available": true
+    }
+  ]
+}

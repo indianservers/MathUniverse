@@ -1,3 +1,4 @@
+import {loadModelWithProgress} from '../model-loading/loadModelWithProgress';
 import {MODEL_TRAINING_ENABLED,assertTrainingAllowed} from '../math-robo/intelligence/buildPolicy';
 import * as tf from '@tensorflow/tfjs';
 import { INTELLIGENCE_EXAMPLES } from './expressionCorpus';
@@ -80,7 +81,7 @@ export class RoboLearning {
     }
     if(typeof window!=='undefined') {
       try {
-        this.model=await tf.loadLayersModel(`${import.meta.env.BASE_URL}models/math-robo-intents-v3/model.json`);
+        this.model=await loadModelWithProgress(`${import.meta.env.BASE_URL}models/math-robo-intents-v3/model.json`,'Ruhi language');
         this.compile();
 
         await this.persistModel();
