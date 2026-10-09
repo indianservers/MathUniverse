@@ -153,7 +153,7 @@ export function pointerToSvg(svg: SVGSVGElement, event: ReactPointerEvent | Poin
 }
 
 export function bindSvgDrag(
-  svgRef: RefObject<SVGSVGElement | null>,
+  svgRef: RefObject<SVGSVGElement>,
   onMove: (event: PointerEvent) => void,
   onEnd?: () => void,
 ) {

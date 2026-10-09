@@ -1,7 +1,7 @@
 async function clearMathUniverseCaches() {
   if ("serviceWorker" in navigator) {
     const registrations = await navigator.serviceWorker.getRegistrations();
-    await Promise.all(registrations.map((registration) => registration.unregister()));
+    await Promise.all(registrations.filter(registration=>registration.active?.scriptURL.endsWith("/sw.js")).map((registration) => registration.unregister()));
   }
 
   if ("caches" in window) {
@@ -11,5 +11,5 @@ async function clearMathUniverseCaches() {
 }
 
 window.addEventListener("load", () => {
-  void clearMathUniverseCaches();
+  void clearMathUniverseCaches().then(async()=>{if(import.meta.env.PROD&&'serviceWorker' in navigator&&window.isSecureContext){try{await navigator.serviceWorker.register(import.meta.env.BASE_URL+'ruhi-offline-sw.js',{scope:import.meta.env.BASE_URL,updateViaCache:'none'});}catch(error){console.warn('Offline installation did not complete:',error);}}});
 });

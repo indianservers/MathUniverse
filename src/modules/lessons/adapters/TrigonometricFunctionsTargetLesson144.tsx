@@ -691,7 +691,7 @@ export default function TrigonometricFunctionsTargetLesson144({
         <aside className="trig144-rail">
           <section>
             <h2>PARAMETERS</h2>
-            {[
+            {([
               [
                 "Amplitude",
                 amplitude,
@@ -720,7 +720,7 @@ export default function TrigonometricFunctionsTargetLesson144({
                 piText(phase),
               ],
               ["Midline y", midline, -2, 2, 0.25, setMidline, String(midline)],
-            ].map(([label, value, min, max, step, setter, output]) => (
+            ] as const).map(([label, value, min, max, step, setter, output]) => (
               <label key={String(label)}>
                 <span>
                   {label} = <b>{output as string}</b>

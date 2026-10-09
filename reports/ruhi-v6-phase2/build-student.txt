@@ -1,0 +1,6 @@
+
+> math-universe-visualizations@1.0.2 build:student
+> node scripts/build-ruhi.mjs student
+
+vite v6.4.2 building for production...
+transforming...

@@ -123,11 +123,11 @@ function Triangle({
         <line x1={sx(p.x)} y1={sy(p.y)} x2={sx(B.x)} y2={sy(B.y)} />
         <line x1={sx(p.x)} y1={sy(p.y)} x2={sx(C.x)} y2={sy(C.y)} />
       </g>
-      {[
+      {([
         [A, "A"],
         [B, "B"],
         [C, "C"],
-      ].map(([q, n]) => (
+      ] as const).map(([q, n]) => (
         <g key={String(n)}>
           <circle
             cx={sx((q as Point).x)}

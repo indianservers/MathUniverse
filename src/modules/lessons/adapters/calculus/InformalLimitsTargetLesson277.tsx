@@ -149,7 +149,7 @@ export default function InformalLimitsTargetLesson277({
         ))}
       </nav>
       <section className="il277-flow">
-        {[
+        {([
           [Eye, "1", "Observe", "The graph shows how f(x) behaves near x=0."],
           [
             Hand,
@@ -169,7 +169,7 @@ export default function InformalLimitsTargetLesson277({
             "Understand",
             "The limit exists and equals that number.",
           ],
-        ].map(([Icon, n, title, copy]) => (
+        ] as const).map(([Icon, n, title, copy]) => (
           <article key={String(n)}>
             <Icon />
             <div>

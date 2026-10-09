@@ -41,9 +41,9 @@ export function directionVector(text:string,dimension:number) {
   for(const [axis,positive,negative] of [[0,'right','left'],[1,'up','down'],[2,'forward','backward|back']] as const) {
     if(axis>=dimension)continue;
     for(const [direction,sign] of [[positive,1],[negative,-1]] as const) {
-      const a=text.match(new RegExp(`(${NUMBER_PATTERN})\\s*(?:units?|cm|mm|m)?\\s*(?:${direction})\\b`));
+      const a=text.match(new RegExp(`(?<![a-z0-9_])(${NUMBER_PATTERN})\\s*(?:units?|cm|mm|m)?\\s*(?:${direction})\\b`));
       const b=text.match(new RegExp(`\\b(?:${direction})\\s*(?:by)?\\s*(${NUMBER_PATTERN})`));
-      if(a||b)vector[axis]+=sign*parseNumber((a??b)![1]);
+      if(a||b)vector[axis]+=sign*parseNumber((b??a)![1]);
     }
     const coordinate=text.match(new RegExp(`(${NUMBER_PATTERN})\\s*(?:units?\\s*)?(positive|negative)\\s*${'xyz'[axis]}`));
     if(coordinate)vector[axis]+=parseNumber(coordinate[1])*(coordinate[2]==='negative'?-1:1);

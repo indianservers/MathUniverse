@@ -201,13 +201,13 @@ export default function TrigEquationsTargetLesson269({
       </header>
 
       <nav className="target-trig-equations-tabs" aria-label="Lesson views">
-        {[
+        {([
           ["interaction", Eye, "Interaction + visualization"],
           ["explain", BookOpen, "Explain"],
           ["examples", Lightbulb, "Examples"],
           ["formulas", Calculator, "Formulas"],
           ["know", Sparkles, "Know more"],
-        ].map(([id, Icon, label]) => (
+        ] as const).map(([id, Icon, label]) => (
           <button
             key={String(id)}
             type="button"
@@ -224,7 +224,7 @@ export default function TrigEquationsTargetLesson269({
       </nav>
 
       <section className="target-trig-equations-flow">
-        {[
+        {([
           [
             Eye,
             "1 Observe",
@@ -245,7 +245,7 @@ export default function TrigEquationsTargetLesson269({
             "4 Understand",
             "General solution: x = ± arccos(k) + 2πn, n ∈ Z.",
           ],
-        ].map(([Icon, title, copy]) => (
+        ] as const).map(([Icon, title, copy]) => (
           <article key={String(title)}>
             <Icon />
             <div>

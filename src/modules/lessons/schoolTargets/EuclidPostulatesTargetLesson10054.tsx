@@ -448,7 +448,7 @@ function Construction({
   n: number;
   a: { x: number; y: number };
   b: { x: number; y: number };
-  svgRef: React.RefObject<SVGSVGElement | null>;
+  svgRef: React.RefObject<SVGSVGElement>;
   drag: (which: "a" | "b", event: React.PointerEvent<SVGCircleElement>) => void;
   nudge: (which: "a" | "b", dx: number, dy: number) => void;
 }) {

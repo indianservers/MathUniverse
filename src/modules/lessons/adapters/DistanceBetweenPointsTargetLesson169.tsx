@@ -180,10 +180,10 @@ function DistanceGrid({
           d = {d.toFixed(4)}
         </text>
       </g>
-      {[
+      {([
         ["a", a, ax, ay, "A", "#176de5"],
         ["b", b, bx, by, "B", "#176de5"],
-      ].map(([which, point, x, y, label, color]) => {
+      ] as const).map(([which, point, x, y, label, color]) => {
         const p = point as Point;
         return (
           <g key={which as string}>

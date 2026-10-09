@@ -262,12 +262,12 @@ export default function CombinedSolidsTargetLesson10111({
           </div>
           <div className="cmb10111-show">
             <span>Show</span>
-            {[
+            {([
               ["Dimensions", dimensions, setDimensions],
               ["Grid", grid, setGrid],
               ["Axes", axes, setAxes],
               ["Measures", measures, setMeasures],
-            ].map(([label, value, setter]) => (
+            ] as const).map(([label, value, setter]) => (
               <label key={String(label)}>
                 <input
                   type="checkbox"

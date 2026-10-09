@@ -232,7 +232,7 @@ export default function AverageRateTargetLesson284({
         </div>
       </section>
       <section className="arc284-flow">
-        {[
+        {([
           [
             Eye,
             "Observe",
@@ -253,7 +253,7 @@ export default function AverageRateTargetLesson284({
             "Understand",
             "Average rate of change measures how much f(x) changes per unit change in x over an interval.",
           ],
-        ].map(([Icon, title, text], index) => (
+        ] as const).map(([Icon, title, text], index) => (
           <article key={String(title)}>
             <Icon />
             <h3>{title}</h3>

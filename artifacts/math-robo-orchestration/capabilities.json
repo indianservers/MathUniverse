@@ -1736,6 +1736,20 @@
           "mutatesWorkspace": true
         },
         {
+          "id": "workspace.CHANGE.SIDE",
+          "engineId": "active-workspace",
+          "label": "change side",
+          "description": "Verified change:side; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.CHECK.MEASUREMENT",
+          "engineId": "active-workspace",
+          "label": "check measurement",
+          "description": "Verified check:measurement; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
           "id": "workspace.CHANGE.ENDPOINTS",
           "engineId": "active-workspace",
           "label": "change endpoints",
@@ -2362,7 +2376,7 @@
           "id": "workspace.MARK.CENTROID",
           "engineId": "active-workspace",
           "label": "mark centroid",
-          "description": "Verified mark:centroid; modes normal, geometry2d, graph2d",
+          "description": "Verified mark:centroid; modes normal, geometry2d, graph2d, geometry3d, graph3d",
           "mutatesWorkspace": true
         },
         {
@@ -2383,7 +2397,7 @@
           "id": "workspace.CREATE.ANGLE",
           "engineId": "active-workspace",
           "label": "create angle",
-          "description": "Verified create:angle; modes graph2d, normal",
+          "description": "Verified create:angle; modes normal, geometry2d, graph2d",
           "mutatesWorkspace": true
         },
         {

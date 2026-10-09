@@ -429,7 +429,7 @@ function EquivalenceDiagram({
   showAngles: boolean;
   transversal: boolean;
   measure: boolean;
-  svgRef: React.RefObject<SVGSVGElement | null>;
+  svgRef: React.RefObject<SVGSVGElement>;
   drag: (e: React.PointerEvent<SVGCircleElement>) => void;
   nudge: (dx: number, dy: number) => void;
 }) {

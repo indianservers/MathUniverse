@@ -131,6 +131,7 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
   }, [embedded?.expressionRevision]);
   const [selectedSurfaceId, setSelectedSurfaceId] = useState(() => embeddedState?.selectedSurfaceId ?? surfaces[0]?.id ?? "");
   useIntelligenceWorkspace('graph3d', command => {
+    if(command.roboClearAll){setSurfaces([]);setSelectedSurfaceId('');return;}
     const base=command.objectId??crypto.randomUUID();
     const matches=(row:{id:string})=>command.roboNativeRow?row.id===base:row.id.startsWith(`${base}-`);
     if(command.roboControl==='deselect'){setSelectedSurfaceId('');return;}

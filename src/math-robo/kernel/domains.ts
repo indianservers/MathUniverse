@@ -29,3 +29,13 @@ export function coreEvaluation(request:KernelRequest){
  const answer=numericValue(replaced);let exactError:string|undefined,residual:number|undefined;try{const exact=rational(source),error=sub(binaryRational(answer),exact),absolute={...error,numerator:error.numerator<0n?-error.numerator:error.numerator};exactError=fractionText(absolute);residual=approximate(absolute);}catch{/* Transcendental evaluation has no independent accuracy certificate. */}
  const result=outcome(exactError===undefined?'unverified':'verified_numerical',`≈ ${answer}`,answer,exactError===undefined?'Finite IEEE-754 AST evaluation; accuracy is not independently certified':'Floating result checked against independent exact rational arithmetic',[],conditions,residual);result.approximation=String(answer);result.errorBound=exactError===undefined?undefined:`Exact absolute rounding/evaluation error: ${exactError}`;result.warnings=['IEEE-754 approximation; no arbitrary-precision transcendental error bound.'];return result;
 }
+
+/** Reject decidable constant domain contradictions before the CAS can return a
+ * complex value in a real-domain request or silently retain undefined arithmetic. */
+export function validateInputDomains(node:MathAstNode,domain:'real'|'complex'='real'):void{
+ const known=(n:MathAstNode)=>{try{return numericValue(n);}catch{return undefined;}};
+ if(node.type==='BINARY_OPERATION'){const divisor=known(node.right),base=known(node.left);if(node.operator==='/'&&divisor===0)throw new Error('Division by zero.');if(node.operator==='^'&&base===0&&divisor!==undefined&&divisor<=0)throw new Error('Undefined zero power.');validateInputDomains(node.left,domain);validateInputDomains(node.right,domain);}
+ else if(node.type==='UNARY_OPERATION')validateInputDomains(node.operand,domain);
+ else if(node.type==='FUNCTION_CALL'){const x=known(node.arguments[0]);if(x!==undefined&&(domain==='real'&&(node.name==='sqrt'&&x<0||['ln','log'].includes(node.name)&&x<=0||['asin','acos'].includes(node.name)&&Math.abs(x)>1)||domain==='complex'&&['ln','log'].includes(node.name)&&x===0))throw new Error('Input violates the '+domain+' function domain.');node.arguments.forEach(n=>validateInputDomains(n,domain));}
+ else if(node.type==='EQUATION'||node.type==='INEQUALITY'){validateInputDomains(node.left,domain);validateInputDomains(node.right,domain);}
+}

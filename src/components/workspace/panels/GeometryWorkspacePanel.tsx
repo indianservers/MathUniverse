@@ -2269,7 +2269,7 @@ function GeometryMobileDrawer({
   protocol,
 }: {
   panel: Exclude<GeometryMobilePanel, null>;
-  panelRef: RefObject<HTMLElement | null>;
+  panelRef: RefObject<HTMLElement>;
   onPanel: (panel: Exclude<GeometryMobilePanel, null>) => void;
   onClose: () => void;
   tools: ReactNode;

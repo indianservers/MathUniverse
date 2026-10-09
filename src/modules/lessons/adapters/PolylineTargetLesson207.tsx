@@ -244,13 +244,13 @@ export default function PolylineTargetLesson207({
         className="grid grid-cols-5 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm"
         aria-label="Polyline lesson stages"
       >
-        {[
+        {([
           ["Observe", "See the path", Eye],
           ["Manipulate", "Build and drag", GitBranch],
           ["Pattern", "Notice lengths", Sparkles],
           ["Rule", "Sum segments", Sigma],
           ["Practice", "Build a path", ClipboardCheck],
-        ].map(([title, subtitle, StageIcon], index) => (
+        ] as const).map(([title, subtitle, StageIcon], index) => (
           <button
             type="button"
             key={String(title)}

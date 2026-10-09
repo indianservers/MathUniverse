@@ -1,6 +1,6 @@
 import { COLORS } from '../../offline-intelligence/shapeCatalog';
 import type { RoboObjectDescriptor, RoboSceneContext, RoboTarget } from './types';
-import {measurement} from './geometryQueries';
+import {measurement,vertices,center} from './geometryQueries';
 import {referenceScores} from './contextEngine';
 import {DISPLAY_EPSILON} from './tolerances';
 export class ResolutionError extends Error { constructor(public candidates:string[],message:string) { super(message); } }
@@ -43,6 +43,13 @@ export function resolveTarget(target:RoboTarget|undefined,scene:RoboSceneContext
   if(descriptor.id||descriptor.name) { if(candidates.length===1)return candidates[0]; throw new ResolutionError(candidates.map(o=>o.id),'That named object was not found.'); }
   if(descriptor.index!==undefined){const object=descriptor.index===-1?candidates.at(-1):candidates[descriptor.index-1];if(object)return object;throw new ResolutionError([],'That object index is out of range.');}
   if(descriptor.relation) {
+    if(descriptor.relation==='through'||descriptor.relation==='inside'){
+      if(scene.activeMode.endsWith('3d'))throw new ResolutionError([],'These relational references currently require a 2D workspace. Name the spatial object explicitly.');
+      const host=descriptor.to==='$uniqueCircle'?resolveTarget({type:'circle'},scene):resolveTarget(descriptor.to,scene);
+      const matches=candidates.filter(object=>{if(descriptor.relation==='inside'){if(host.type!=='circle'||object.type!=='triangle')return false;const ctr=center(host),r=host.command.radius*(host.command.scale??1);return vertices(object).every(p=>Math.hypot(p[0]-ctr[0],p[1]-ctr[1])<=r+DISPLAY_EPSILON);}
+        if(host.type!=='point'||object.type!=='line')return false;const [a,b]=vertices(object),u=[b[0]-a[0],b[1]-a[1]],v=[host.position[0]-a[0],host.position[1]-a[1]],length=Math.hypot(...u);if(!length||Math.abs(u[0]*v[1]-u[1]*v[0])/length>DISPLAY_EPSILON)return false;const t=(u[0]*v[0]+u[1]*v[1])/(length*length);return object.command.linearExtent==='segment'?t>=-DISPLAY_EPSILON&&t<=1+DISPLAY_EPSILON:true;});
+      if(matches.length===1)return matches[0];throw new ResolutionError(matches.map(o=>o.id),'Choose one object matching this geometric relation.');
+    }
     if(['horizontal','vertical','above','below'].includes(descriptor.relation)){const matches=candidates.filter(o=>descriptor.relation==='above'?o.position[1]>DISPLAY_EPSILON:descriptor.relation==='below'?o.position[1]<-DISPLAY_EPSILON:o.type==='line'&&Math.abs(o.vertices![1][descriptor.relation==='horizontal'?1:0]-o.vertices![0][descriptor.relation==='horizontal'?1:0])<DISPLAY_EPSILON);if(matches.length===1)return matches[0];throw new ResolutionError(matches.map(o=>o.id),'Several objects match this geometric attribute. Select one.');}
     const score=(o:RoboObjectDescriptor)=>descriptor.relation==='nearest'?Math.hypot(...o.position):descriptor.relation==='leftmost'?o.position[0]:Number(measurement(o,o.type==='line'?'LENGTH':o.mode.endsWith('3d')&&!['circle','triangle','rectangle','square','polygon'].includes(o.type)?'VOLUME':'AREA'));
     const sorted=[...candidates].sort((a,b)=>['largest','longest'].includes(descriptor.relation!)?score(b)-score(a):score(a)-score(b));
@@ -56,6 +63,9 @@ export function resolveTarget(target:RoboTarget|undefined,scene:RoboSceneContext
   throw new ResolutionError(candidates.map(o=>o.id),candidates.length?'Several objects match. Select one or specify its name, color or index.':'No matching object exists. Create it first.');
 }
 export function targetFromPhrase(text:string):RoboTarget {
+  const bare=text.match(/^(?:move|translate) (?:vertex )?([a-z]\d*|[a-z]{2})\s+(?:to|by|left|right|up|down|forward|backward)\b/i);if(bare&&!['it','to','by','up'].includes(bare[1].toLowerCase()))return {name:bare[1]};
+  const through=text.match(/\bline (?:passing )?through (?:point )?([a-z]\d*)\b/i);if(through)return {type:'line',relation:'through',to:through[1]};
+  const contained=text.match(/\btriangle inside (?:the )?circle(?:\s+([a-z]\d+))?\b/i);if(contained)return {type:'triangle',relation:'inside',to:contained[1]??'$uniqueCircle'};
   // A coordinate plane describes the transformation, not its target object.
   text=text.replace(/\b(?:xy|xz|yz)[- ]plane\b/g,'');
   const edge=text.match(/\b(top|bottom|left|right|longest) (?:edge|side)\b/)?.[1];if(edge)return `$edge:${edge}`;

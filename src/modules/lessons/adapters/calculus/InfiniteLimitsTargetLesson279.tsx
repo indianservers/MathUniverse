@@ -233,7 +233,7 @@ export default function InfiniteLimitsTargetLesson279({
           </aside>
         </div>
         <section className="inf279-flow">
-          {[
+          {([
             [
               Eye,
               "1 Observe",
@@ -254,7 +254,7 @@ export default function InfiniteLimitsTargetLesson279({
               "Understand",
               "This is an Infinite Limit. The vertical asymptote x=1 causes the function to diverge to infinity.",
             ],
-          ].map(([Icon, title, copy]) => (
+          ] as const).map(([Icon, title, copy]) => (
             <article key={String(title)}>
               <Icon />
               <h3>{title}</h3>

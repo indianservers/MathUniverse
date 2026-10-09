@@ -55,7 +55,8 @@ async function commitVisualCommand(mode: IntelligenceMode, command: VisualComman
   flushSync(()=>{error=handler(command);});
   if(!error!) {
     const objects=known.get(mode)??new Map<string,VisualCommand>();
-    if(command.roboControl==='delete')objects.delete(command.objectId!);
+    if(command.roboClearAll)objects.clear();
+    else if(command.roboControl==='delete')objects.delete(command.objectId!);
     else if(command.roboControl!=='select'&&command.roboControl!=='deselect')objects.set(command.objectId!,{...command,roboControl:undefined});
     known.set(mode,objects);
     if(command.roboControl!=='delete')animateRoboCommand(mode,command);

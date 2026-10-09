@@ -1,0 +1,77 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > preserves equal square and cube sides when dimensions override legacy parameters 355ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > recognizes graph creation and plural intercept/crossing queries without creating extra graphs 76ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > rejects incomplete destinations and moves a referenced triangle to explicit coordinates 51ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > recognizes 100 language actions and registers only real supported or explicit unsupported operations 73ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > parses -4 1ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > parses 4.5 1ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > parses 1/2 1ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > parses 3/4 1ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > parses 2π 6ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > parses pi 2ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > parses sqrt(2) 2ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > parses √2 3ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > parses five 1ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > parses minus three 4ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > parses one half 2ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > parses three quarters 7ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > splits commands without splitting tuples or compound movement 14ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > runs multi-action creation, transformation and center/radius display without duplicating objects 174ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > runs creation, color, movement, rotation, area, duplicate, delete and undo end to end 157ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > never duplicates read-only scene objects during the distance regression 15ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > queries then marks midpoint, constructs a perpendicular, and queries/marks intersections 171ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > compares, selects, resizes and reflects circles; solves function roots and intersections 141ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > runs volume and translation in 3D 33ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > rejects invalid radius, missing targets and unsupported actions without mutations 38ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > returns ambiguity and plans all commands before committing a partially invalid utterance 38ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > migrates corrections without deleting v3 data and stores full plans without retraining 44ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > builds grouped starter rows and forbids executable context strings 9707ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > verifies at least one runnable example for every implemented operation 9708ms
+ ✓ src/math-robo/intelligence/semanticEngine.test.ts > Math Robo semantic execution > keeps 100,000 rows bounded and template groups isolated 9564ms
+stderr | src/math-robo/intelligence/contextInference.test.ts
+
+============================
+Hi, looks like you are running TensorFlow.js in Node.js. To speed things up dramatically, install our node backend, visit https://github.com/tensorflow/tfjs-node for more details. 
+============================
+
+ ✓ src/math-robo/intelligence/contextInference.test.ts > grounds rectangle dimensions in the selected scene instead of a predicted unrelated topic 236ms
+ ✓ src/math-robo/intelligence/contextInference.test.ts > evaluates 300+ held-out questions without semantic template split leakage 3495ms
+ ✓ src/math-robo/intelligence/contextInference.test.ts > maintains pigeonhole topic through explanation, example and why 71ms
+ ✓ src/math-robo/intelligence/contextInference.test.ts > disambiguates tree and supports explicit biological override across page transitions 6ms
+ ✓ src/math-robo/intelligence/contextInference.test.ts > executes a mounted simulation only after independent validation 35ms
+ ✓ src/math-robo/intelligence/contextInference.test.ts > does not mutate anything for uncertainty and unrelated questions 13ms
+ ✓ src/math-robo/intelligence/contextInference.test.ts > has zero false simulation actions for fifteen uncertain, negative or read-only questions 183ms
+ ✓ src/math-robo/intelligence/contextInference.test.ts > resolves previous-topic and selected-object references 9ms
+ ✓ src/math-robo/intelligence/contextInference.test.ts > disposes inference tensors and measures CPU latency 1034ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > A object continuity uses current dimensions, style and reverses only rotation 645ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > B ambiguous references preserve the movement until the second circle is identified 315ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > C relative angle changes use the active angle and end at 89 degrees 74ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > D compound medians, centroid and circumcircle carry live triangle dependencies 171ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > F tutoring checks a wrong rectangle answer, hints and accepts equivalent correct formatting 534ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > G deleted object references cannot survive a geometry follow-up 63ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > H page changes invalidate specialist task memory without deleting workspace objects 39ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > I compound create/transform/measure/verify has no partial mutation on a contradictory step 93ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > J unsupported proof never receives verified execution confidence 5129ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > missing line endpoints can be supplied by a point plus direction angle 30ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > contradictory SSS triangle is rejected with the triangle inequality 9ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > E selected angle and reviewed page explanations are grounded in current state 38ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > medians and centroid recompute on parent translation and survive undo and saved import 117ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > typed memory exposes current evidence and stable dependency versions 71ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > relative resize accounts for physical scale and refuses nonpositive dimensions 46ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > tutoring rejects a stale exercise after its source object changes 52ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > line clarification never infers a missing finite vector magnitude 13ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > D independent coordinate oracle checks all medians, centroid and circumcircle 101ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > I successful multi-intent action graph draws, moves, measures, explains and checks atomically 52ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > proof adapters do not verify nonparallel lines or use 2D evidence for 3D 125ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > fuzzy resizing requests preserve geometry until an exact factor is provided 114ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > geometric references resolve by incidence and containment rather than recency 432ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > previous length uses retained geometry and never resurrects a deleted reference 77ms
+ ✓ src/math-robo/intelligence/trainingBoundary.test.ts > rejects direct training API calls in student builds 2769ms
+
+ Test Files  4 passed (4)
+      Tests  62 passed (62)
+   Start at  02:09:57
+   Duration  64.03s (transform 9.75s, setup 415ms, import 11.81s, tests 46.78s, environment 12ms)
+

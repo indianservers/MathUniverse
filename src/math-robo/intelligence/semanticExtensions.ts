@@ -58,7 +58,7 @@ export function parseExtensions(command:MathRoboCommand):MathRoboCommand|undefin
   if(/^(?:make|set|change)\b/.test(t)&&/\b(length|slope)\b/.test(t)){const kind=/length/.test(t)?'LENGTH':'SLOPE';p[kind.toLowerCase()]=numberAfter(t,kind.toLowerCase());return set('CHANGE',kind);}
   if(/\breflect|\bflip/.test(t)&&/y\s*=\s*x/.test(t))return set('REFLECT','DIAGONAL');
   if(/\b(make|reduce)\b.*\b(bigger|larger|smaller|reduce)\b/.test(t)){return set('SCALE','UNIFORM');}
-  if(/\b(draw|create|make)\b.*\btriangle\b.*\bsides?\b/.test(t)){
+  if(/\b(draw|create|make|construct)\b.*\btriangle\b.*\bsides?\b/.test(t)){
     const numbers=t.slice(t.indexOf('side')).match(new RegExp(NUMBER_PATTERN,'g'))?.map(parseNumber);
     if(numbers?.length===3){const [a,b,c]=numbers,x=(a*a+c*c-b*b)/(2*c),y2=a*a-x*x;
       if(a+b<=c||a+c<=b||b+c<=a||y2<=0)p.parseError=`Those side lengths cannot form a triangle: the sum of two sides must exceed the third.`;

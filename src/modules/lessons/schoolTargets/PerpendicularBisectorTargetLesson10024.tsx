@@ -331,11 +331,11 @@ export default function PerpendicularBisectorTargetLesson10024({
                 <output>{radiusControl.toFixed(2)} cm</output>
               </span>
             </label>
-            {[
+            {([
               ["Show arcs", showArcs, setShowArcs],
               ["Show bisector", showBisector, setShowBisector],
               ["Show right angle", showRightAngle, setShowRightAngle],
-            ].map(([label, value, setter]) => (
+            ] as const).map(([label, value, setter]) => (
               <button
                 className={value ? "on" : ""}
                 onClick={() => act(() => setter(!value))}

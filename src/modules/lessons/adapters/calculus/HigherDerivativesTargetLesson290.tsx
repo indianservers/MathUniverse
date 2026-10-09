@@ -225,11 +225,11 @@ export default function HigherDerivativesTargetLesson290({
                 Random example
               </button>
               <h3>Display options</h3>
-              {[
+              {([
                 ["Show points & values", showPoints, setShowPoints],
                 ["Show signs", showSigns, setShowSigns],
                 ["Show inflection points", showInflections, setShowInflections],
-              ].map(([label, value, setter]) => (
+              ] as const).map(([label, value, setter]) => (
                 <label className="toggle" key={String(label)}>
                   <input
                     type="checkbox"

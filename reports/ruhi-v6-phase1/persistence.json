@@ -1,0 +1,2120 @@
+{
+  "date": "2026-10-08T19:32:44.118Z",
+  "checks": [
+    {
+      "name": "native fill and angle rendered",
+      "passed": true
+    },
+    {
+      "name": "undo restores coordinates and style",
+      "passed": true
+    },
+    {
+      "name": "redo restores moved scene",
+      "passed": true
+    },
+    {
+      "name": "selection reaches native object",
+      "passed": true
+    },
+    {
+      "name": "saved serialized commands contain style and angle",
+      "passed": true
+    },
+    {
+      "name": "reload and UI load restore native scene",
+      "passed": true
+    },
+    {
+      "name": "context resolves restored geometry",
+      "passed": true
+    }
+  ],
+  "turns": [
+    {
+      "text": "Delete all objects",
+      "actual": {
+        "status": "success",
+        "message": "Cleared all workspace objects.",
+        "effects": [
+          {
+            "kind": "plot",
+            "objectId": "f1",
+            "expression": "x^2 - 4",
+            "color": "#06b6d4",
+            "roboVisible": true,
+            "roboLabel": "f1",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create",
+            "roboControl": "delete"
+          },
+          {
+            "kind": "plot",
+            "objectId": "f2",
+            "expression": "sin(x)",
+            "color": "#f97316",
+            "roboVisible": true,
+            "roboLabel": "f2",
+            "roboNativeRow": true,
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ]
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "action": "create",
+            "roboControl": "delete"
+          },
+          {
+            "kind": "point",
+            "dimension": "2d",
+            "points": [],
+            "width": 0,
+            "height": 0,
+            "radius": 0,
+            "color": "#22d3ee",
+            "roboControl": "delete",
+            "roboClearAll": true
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Delete all objects",
+          "commands": [
+            {
+              "id": "d9ca401e-1425-4828-a566-4162792eeb92",
+              "rawPhrase": "Delete all objects",
+              "normalizedPhrase": "delete all objects",
+              "detectedAction": "DELETE",
+              "action": "DELETE",
+              "subAction": "ALL",
+              "mode": "graph2d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "f1"
+            }
+          ],
+          "ir": [
+            {
+              "action": "DELETE",
+              "object": {
+                "references": [
+                  "f1"
+                ]
+              },
+              "parameters": {
+                "multiple": false
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "36811de0-6ca3-4cd2-a279-426175182b71"
+        },
+        "parseMs": 0,
+        "executionMs": 98.09999999403954,
+        "verification": {
+          "passed": true,
+          "checks": [
+            "Finite geometry and valid dimensions"
+          ],
+          "status": "verified_numerical"
+        },
+        "explanation": "",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "a5842e1c-83a6-4d1f-b626-98918eed871c",
+          "message": "Cleared all workspace objects.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "DELETE",
+            "score": 0.9854704141616821
+          },
+          "subAction": {
+            "label": "OBJECTS",
+            "score": 0.44569650292396545
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999905824661255
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9982036352157593
+          }
+        },
+        "inferenceMs": 22.400000005960464,
+        "objects": 0,
+        "sceneHash": "[]",
+        "beforeHash": "[{\"id\":\"f1\",\"type\":\"plot\",\"vertices\":[[0,3],[-2.598076211,1.5],[-2.598076211,-1.5],[0,-3],[2.598076211,-1.5],[2.598076211,1.5]],\"position\":[0,0],\"width\":6,\"height\":4,\"depth\":0,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":\"x^2 - 4\",\"locked\":false},{\"id\":\"f2\",\"type\":\"plot\",\"vertices\":[[0,3],[-2.598076211,1.5],[-2.598076211,-1.5],[0,-3],[2.598076211,-1.5],[2.598076211,1.5]],\"position\":[0,0],\"width\":6,\"height\":4,\"depth\":0,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#f97316\",\"visible\":true,\"expression\":\"sin(x)\",\"locked\":false}]"
+      }
+    },
+    {
+      "text": "Clear context",
+      "actual": {
+        "status": "success",
+        "message": "Conversation context cleared. Your workspace objects are still here.",
+        "plan": {
+          "rawPhrase": "Clear context",
+          "commands": [],
+          "ir": [
+            {
+              "action": "DELETE",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {
+                "multiple": false
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1
+        },
+        "effects": [],
+        "parseMs": 0,
+        "executionMs": 0,
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "f9ee5e61-4c4c-40bc-91a3-8103542ea380",
+          "message": "Conversation context cleared. Your workspace objects are still here.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "SHOW",
+            "score": 0.6401121020317078
+          },
+          "subAction": {
+            "label": "INTERSECTION",
+            "score": 0.41364800930023193
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.999648928642273
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9997709393501282
+          }
+        },
+        "inferenceMs": 2.699999988079071,
+        "objects": 0,
+        "sceneHash": "[]",
+        "beforeHash": "[]"
+      }
+    },
+    {
+      "text": "Draw triangle (0,0), (7,0), (2,6)",
+      "actual": {
+        "status": "success",
+        "message": "Created 2D triangle.",
+        "effects": [
+          {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                7,
+                0
+              ],
+              [
+                2,
+                6
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "875a223a-b579-4aff-b532-a60cfede9257"
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Draw triangle (0,0), (7,0), (2,6)",
+          "commands": [
+            {
+              "id": "c1f354ae-f700-4d0b-8fa3-b5b1c5325b7f",
+              "rawPhrase": "Draw triangle (0,0), (7,0), (2,6)",
+              "normalizedPhrase": "draw triangle (0,0), (7,0), (2,6)",
+              "detectedAction": "DRAW",
+              "action": "CREATE",
+              "subAction": "TRIANGLE",
+              "mode": "graph2d",
+              "parameters": {
+                "legacy": {
+                  "kind": "triangle",
+                  "dimension": "2d",
+                  "points": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      7,
+                      0
+                    ],
+                    [
+                      2,
+                      6
+                    ]
+                  ],
+                  "width": 6,
+                  "height": 4,
+                  "depth": 3,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": false
+                },
+                "width": 6,
+                "height": 4,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6,
+                "points": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    7,
+                    0
+                  ],
+                  [
+                    2,
+                    6
+                  ]
+                ]
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": {
+                "type": "triangle"
+              }
+            }
+          ],
+          "ir": [
+            {
+              "action": "CREATE",
+              "object": {
+                "kind": "triangle",
+                "references": [
+                  {
+                    "type": "triangle"
+                  }
+                ]
+              },
+              "parameters": {
+                "legacy": {
+                  "kind": "triangle",
+                  "dimension": "2d",
+                  "points": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      7,
+                      0
+                    ],
+                    [
+                      2,
+                      6
+                    ]
+                  ],
+                  "width": 6,
+                  "height": 4,
+                  "depth": 3,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": false
+                },
+                "width": 6,
+                "height": 4,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6,
+                "points": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    7,
+                    0
+                  ],
+                  [
+                    2,
+                    6
+                  ]
+                ]
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": true
+              },
+              "expected": {
+                "mutates": true,
+                "output": "object"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "2ca66a35-0f3b-4562-a165-7ea278c5336f"
+        },
+        "parseMs": 0,
+        "executionMs": 143.90000000596046,
+        "verification": {
+          "passed": true,
+          "checks": [
+            "Finite geometry and valid dimensions",
+            "Creation count"
+          ],
+          "status": "verified_numerical"
+        },
+        "explanation": "",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "2351774d-be3d-4c24-b3ea-2de3c1e96dc9",
+          "message": "Created 2D triangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9971573352813721
+          },
+          "subAction": {
+            "label": "TRIANGLE",
+            "score": 0.4594520628452301
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999990463256836
+          },
+          "objectType": {
+            "label": "triangle",
+            "score": 0.763387143611908
+          }
+        },
+        "inferenceMs": 2.199999988079071,
+        "objects": 1,
+        "sceneHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[0,0],[7,0],[2,6]],\"position\":[3,2],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+        "beforeHash": "[]"
+      }
+    },
+    {
+      "text": "Label it as Persisted",
+      "actual": {
+        "status": "success",
+        "message": "Changed triangle.",
+        "effects": [
+          {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                7,
+                0
+              ],
+              [
+                2,
+                6
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "Persisted",
+            "objectId": "875a223a-b579-4aff-b532-a60cfede9257",
+            "roboVisible": true
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Label it as Persisted",
+          "commands": [
+            {
+              "id": "da43b43d-38f1-446b-971a-a80803b36b8b",
+              "rawPhrase": "Label it as Persisted",
+              "normalizedPhrase": "label it as persisted",
+              "detectedAction": "LABEL",
+              "action": "CHANGE",
+              "subAction": "LABEL",
+              "mode": "graph2d",
+              "parameters": {
+                "label": "Persisted"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "875a223a-b579-4aff-b532-a60cfede9257"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "875a223a-b579-4aff-b532-a60cfede9257"
+                ]
+              },
+              "parameters": {
+                "label": "Persisted"
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "9ca064d1-f46b-44b5-9a33-8c2b11803927"
+        },
+        "parseMs": 0,
+        "executionMs": 136.90000000596046,
+        "verification": {
+          "passed": true,
+          "checks": [
+            "Finite geometry and valid dimensions"
+          ],
+          "status": "verified_numerical"
+        },
+        "explanation": "",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "ec19c0d0-ab8b-4987-b3f4-0076c61549ad",
+          "message": "Changed triangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "SCALE",
+            "score": 0.4649994671344757
+          },
+          "subAction": {
+            "label": "OBJECT",
+            "score": 0.4168095290660858
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.999871015548706
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9989744424819946
+          }
+        },
+        "inferenceMs": 2.800000011920929,
+        "objects": 1,
+        "sceneHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[0,0],[7,0],[2,6]],\"position\":[3,2],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+        "beforeHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[0,0],[7,0],[2,6]],\"position\":[3,2],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+      }
+    },
+    {
+      "text": "Set angle A to 64 degrees",
+      "actual": {
+        "status": "success",
+        "message": "Angle A is now 64 degrees. Fixed vertex and incident side lengths are preserved; the second incident endpoint moves on the existing orientation branch.",
+        "effects": [
+          {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                7,
+                0
+              ],
+              [
+                2.772502568706986,
+                5.6844726674084
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "Persisted",
+            "objectId": "875a223a-b579-4aff-b532-a60cfede9257",
+            "roboVisible": true,
+            "roboExplicitVertices": true,
+            "roboAngle": {
+              "vertex": 0,
+              "degrees": 64
+            }
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Set angle A to 64 degrees",
+          "commands": [
+            {
+              "id": "4a185560-713e-4ea3-8273-c621b2645a83",
+              "rawPhrase": "Set angle A to 64 degrees",
+              "normalizedPhrase": "set angle a to 64 degrees",
+              "detectedAction": "SET",
+              "action": "CHANGE",
+              "subAction": "ANGLE",
+              "mode": "graph2d",
+              "parameters": {
+                "vertex": "A",
+                "angle": 64,
+                "angleOperation": "set"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "875a223a-b579-4aff-b532-a60cfede9257"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "875a223a-b579-4aff-b532-a60cfede9257"
+                ]
+              },
+              "parameters": {
+                "vertex": "A",
+                "angle": 64,
+                "angleOperation": "set"
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "a2fe55b2-6fea-4750-8b2b-ca6293ff1dc9"
+        },
+        "parseMs": 0,
+        "executionMs": 128.59999999403954,
+        "verification": {
+          "passed": true,
+          "checks": [
+            "Finite geometry and valid dimensions",
+            "Independent committed vertex-angle measurement"
+          ],
+          "status": "verified_numerical"
+        },
+        "explanation": "",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "62d74bd9-7ee9-4225-b760-9c7165d8d0ef",
+          "message": "Angle A is now 64 degrees. Fixed vertex and incident side lengths are preserved; the second incident endpoint moves on the existing orientation branch.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "CHANGE",
+            "score": 0.8133413195610046
+          },
+          "subAction": {
+            "label": "TANGENT",
+            "score": 0.8231247067451477
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.999957799911499
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9350230693817139
+          }
+        },
+        "inferenceMs": 1.5,
+        "objects": 1,
+        "sceneHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[0,0],[7,0],[2.772502569,5.684472667]],\"position\":[3.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"angle\":{\"vertex\":0,\"degrees\":64},\"visible\":true,\"expression\":null,\"locked\":false}]",
+        "beforeHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[0,0],[7,0],[2,6]],\"position\":[3,2],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+      }
+    },
+    {
+      "text": "Fill its interior gold",
+      "actual": {
+        "status": "success",
+        "message": "Changed triangle to gold.",
+        "effects": [
+          {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                7,
+                0
+              ],
+              [
+                2.772502568706986,
+                5.6844726674084
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "Persisted",
+            "objectId": "875a223a-b579-4aff-b532-a60cfede9257",
+            "roboVisible": true,
+            "roboExplicitVertices": true,
+            "roboAngle": {
+              "vertex": 0,
+              "degrees": 64
+            },
+            "roboFillColor": "#ffd700"
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Fill its interior gold",
+          "commands": [
+            {
+              "id": "596ef3b1-808d-4146-ad09-7e998ec1f1e4",
+              "rawPhrase": "Fill its interior gold",
+              "normalizedPhrase": "fill its interior gold",
+              "detectedAction": "FILL",
+              "action": "CHANGE",
+              "subAction": "FILL_COLOR",
+              "mode": "graph2d",
+              "parameters": {
+                "color": "gold"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "875a223a-b579-4aff-b532-a60cfede9257"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "875a223a-b579-4aff-b532-a60cfede9257"
+                ]
+              },
+              "parameters": {
+                "color": "gold"
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "eb860046-35cc-4c21-a248-8b66be87e844"
+        },
+        "parseMs": 0,
+        "executionMs": 134.89999997615814,
+        "verification": {
+          "passed": true,
+          "checks": [
+            "Finite geometry and valid dimensions",
+            "Independent committed vertex-angle measurement"
+          ],
+          "status": "verified_numerical"
+        },
+        "explanation": "",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "c10a4577-ca1c-46a9-af8d-8feb9a4452de",
+          "message": "Changed triangle to gold.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "UNSUPPORTED",
+        "neural": {
+          "action": {
+            "label": "FIND",
+            "score": 0.995322048664093
+          },
+          "subAction": {
+            "label": "AREA",
+            "score": 0.1468287706375122
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.99820876121521
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9998480081558228
+          }
+        },
+        "inferenceMs": 1.5999999940395355,
+        "objects": 1,
+        "sceneHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[0,0],[7,0],[2.772502569,5.684472667]],\"position\":[3.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"fill\":\"#ffd700\",\"angle\":{\"vertex\":0,\"degrees\":64},\"visible\":true,\"expression\":null,\"locked\":false}]",
+        "beforeHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[0,0],[7,0],[2.772502569,5.684472667]],\"position\":[3.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"angle\":{\"vertex\":0,\"degrees\":64},\"visible\":true,\"expression\":null,\"locked\":false}]"
+      }
+    },
+    {
+      "text": "Make its two sides thicker",
+      "actual": {
+        "status": "success",
+        "message": "Changed triangle.",
+        "effects": [
+          {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                7,
+                0
+              ],
+              [
+                2.772502568706986,
+                5.6844726674084
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "Persisted",
+            "objectId": "875a223a-b579-4aff-b532-a60cfede9257",
+            "roboVisible": true,
+            "roboExplicitVertices": true,
+            "roboAngle": {
+              "vertex": 0,
+              "degrees": 64,
+              "lineWidth": 6
+            },
+            "roboFillColor": "#ffd700",
+            "roboLineWidth": 6,
+            "roboStrokeEdges": [
+              0,
+              2
+            ]
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Make its two sides thicker",
+          "commands": [
+            {
+              "id": "1e7f29a5-909d-4b6c-a373-5f0930a36a10",
+              "rawPhrase": "Make its two sides thicker",
+              "normalizedPhrase": "make its 2 sides thicker",
+              "detectedAction": "CREATE",
+              "action": "CHANGE",
+              "subAction": "LINE_WIDTH",
+              "mode": "graph2d",
+              "parameters": {
+                "lineWidthFactor": 2,
+                "styleTarget": "rays"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "875a223a-b579-4aff-b532-a60cfede9257"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "875a223a-b579-4aff-b532-a60cfede9257"
+                ]
+              },
+              "parameters": {
+                "lineWidthFactor": 2,
+                "styleTarget": "rays"
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "8a6ae492-7020-4f80-8ede-cf47dae5e3ed"
+        },
+        "parseMs": 0,
+        "executionMs": 144.7999999821186,
+        "verification": {
+          "passed": true,
+          "checks": [
+            "Finite geometry and valid dimensions",
+            "Independent committed vertex-angle measurement"
+          ],
+          "status": "verified_numerical"
+        },
+        "explanation": "",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "2105e161-3296-41f7-a0c2-0971c091a2c9",
+          "message": "Changed triangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "FIND",
+            "score": 0.44289764761924744
+          },
+          "subAction": {
+            "label": "LAST",
+            "score": 0.5315276384353638
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9821630120277405
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9999998807907104
+          }
+        },
+        "inferenceMs": 2.4000000059604645,
+        "objects": 1,
+        "sceneHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[0,0],[7,0],[2.772502569,5.684472667]],\"position\":[3.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"fill\":\"#ffd700\",\"lineWidth\":6,\"strokeEdges\":[0,2],\"angle\":{\"vertex\":0,\"degrees\":64,\"lineWidth\":6},\"visible\":true,\"expression\":null,\"locked\":false}]",
+        "beforeHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[0,0],[7,0],[2.772502569,5.684472667]],\"position\":[3.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"fill\":\"#ffd700\",\"angle\":{\"vertex\":0,\"degrees\":64},\"visible\":true,\"expression\":null,\"locked\":false}]"
+      }
+    },
+    {
+      "text": "Move it 3 units right",
+      "actual": {
+        "status": "success",
+        "message": "move triangle.",
+        "effects": [
+          {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ],
+              [
+                10,
+                0
+              ],
+              [
+                5.772502568706987,
+                5.6844726674084
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "Persisted",
+            "objectId": "875a223a-b579-4aff-b532-a60cfede9257",
+            "roboVisible": true,
+            "roboExplicitVertices": true,
+            "roboAngle": {
+              "vertex": 0,
+              "degrees": 64,
+              "lineWidth": 6
+            },
+            "roboFillColor": "#ffd700",
+            "roboLineWidth": 6,
+            "roboStrokeEdges": [
+              0,
+              2
+            ]
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Move it 3 units right",
+          "commands": [
+            {
+              "id": "3af1a34e-362f-4cc1-ab4a-c606d57f8b5e",
+              "rawPhrase": "Move it 3 units right",
+              "normalizedPhrase": "move it 3 units right",
+              "detectedAction": "MOVE",
+              "action": "MOVE",
+              "subAction": "OBJECT",
+              "mode": "graph2d",
+              "parameters": {
+                "vector": [
+                  3,
+                  0
+                ],
+                "multiple": false,
+                "dx": 3,
+                "dy": 0
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "875a223a-b579-4aff-b532-a60cfede9257"
+            }
+          ],
+          "ir": [
+            {
+              "action": "MOVE",
+              "object": {
+                "references": [
+                  "875a223a-b579-4aff-b532-a60cfede9257"
+                ]
+              },
+              "parameters": {
+                "vector": [
+                  3,
+                  0
+                ],
+                "multiple": false,
+                "dx": 3,
+                "dy": 0
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "392a89cb-e415-4e39-a409-17b43ed1d596"
+        },
+        "parseMs": 0,
+        "executionMs": 130.19999998807907,
+        "verification": {
+          "passed": true,
+          "checks": [
+            "Finite geometry and valid dimensions",
+            "Independent committed vertex-angle measurement",
+            "Translation center"
+          ],
+          "status": "verified_numerical"
+        },
+        "explanation": "",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "91543d83-9f6a-44f9-a752-8f85428af127",
+          "message": "move triangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "MOVE",
+            "score": 0.7606958746910095
+          },
+          "subAction": {
+            "label": "OBJECT",
+            "score": 0.9876461625099182
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9189134836196899
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9395801424980164
+          }
+        },
+        "inferenceMs": 1.4000000059604645,
+        "objects": 1,
+        "sceneHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[3,0],[10,0],[5.772502569,5.684472667]],\"position\":[6.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"fill\":\"#ffd700\",\"lineWidth\":6,\"strokeEdges\":[0,2],\"angle\":{\"vertex\":0,\"degrees\":64,\"lineWidth\":6},\"visible\":true,\"expression\":null,\"locked\":false}]",
+        "beforeHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[0,0],[7,0],[2.772502569,5.684472667]],\"position\":[3.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"fill\":\"#ffd700\",\"lineWidth\":6,\"strokeEdges\":[0,2],\"angle\":{\"vertex\":0,\"degrees\":64,\"lineWidth\":6},\"visible\":true,\"expression\":null,\"locked\":false}]"
+      }
+    },
+    {
+      "text": "Undo",
+      "actual": {
+        "status": "success",
+        "message": "Undid the last Ruhi action.",
+        "effects": [
+          {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                7,
+                0
+              ],
+              [
+                2.772502568706986,
+                5.6844726674084
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "Persisted",
+            "objectId": "875a223a-b579-4aff-b532-a60cfede9257",
+            "roboVisible": true,
+            "roboExplicitVertices": true,
+            "roboAngle": {
+              "vertex": 0,
+              "degrees": 64,
+              "lineWidth": 6
+            },
+            "roboFillColor": "#ffd700",
+            "roboLineWidth": 6,
+            "roboStrokeEdges": [
+              0,
+              2
+            ]
+          },
+          {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                7,
+                0
+              ],
+              [
+                2.772502568706986,
+                5.6844726674084
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "Persisted",
+            "objectId": "875a223a-b579-4aff-b532-a60cfede9257",
+            "roboVisible": true,
+            "roboControl": "select",
+            "roboExplicitVertices": true,
+            "roboAngle": {
+              "vertex": 0,
+              "degrees": 64,
+              "lineWidth": 6
+            },
+            "roboFillColor": "#ffd700",
+            "roboLineWidth": 6,
+            "roboStrokeEdges": [
+              0,
+              2
+            ]
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Undo",
+          "commands": [
+            {
+              "id": "8ac26790-f3b8-4b6d-9df7-facf5a4d2a00",
+              "rawPhrase": "Undo",
+              "normalizedPhrase": "undo",
+              "detectedAction": "UNDO",
+              "action": "UNDO",
+              "subAction": "LAST",
+              "mode": "graph2d",
+              "parameters": {},
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "ir": [
+            {
+              "action": "UNDO",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {},
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "history"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "a1ec8282-820a-4042-b5e8-aff847e344a5"
+        },
+        "parseMs": 0,
+        "executionMs": 264,
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "38910a80-4713-420c-9dd4-59c267ddee7a",
+          "message": "Undid the last Ruhi action.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "UNDO",
+            "score": 0.9832640290260315
+          },
+          "subAction": {
+            "label": "LAST",
+            "score": 0.8158608078956604
+          },
+          "mode": {
+            "label": "geometry3d",
+            "score": 0.7067027688026428
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9940676689147949
+          }
+        },
+        "inferenceMs": 2,
+        "objects": 1,
+        "sceneHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[0,0],[7,0],[2.772502569,5.684472667]],\"position\":[3.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"fill\":\"#ffd700\",\"lineWidth\":6,\"strokeEdges\":[0,2],\"angle\":{\"vertex\":0,\"degrees\":64,\"lineWidth\":6},\"visible\":true,\"expression\":null,\"locked\":false}]",
+        "beforeHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[3,0],[10,0],[5.772502569,5.684472667]],\"position\":[6.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"fill\":\"#ffd700\",\"lineWidth\":6,\"strokeEdges\":[0,2],\"angle\":{\"vertex\":0,\"degrees\":64,\"lineWidth\":6},\"visible\":true,\"expression\":null,\"locked\":false}]"
+      }
+    },
+    {
+      "text": "Redo",
+      "actual": {
+        "status": "success",
+        "message": "Redid the last Ruhi action.",
+        "effects": [
+          {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ],
+              [
+                10,
+                0
+              ],
+              [
+                5.772502568706987,
+                5.6844726674084
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "Persisted",
+            "objectId": "875a223a-b579-4aff-b532-a60cfede9257",
+            "roboVisible": true,
+            "roboExplicitVertices": true,
+            "roboAngle": {
+              "vertex": 0,
+              "degrees": 64,
+              "lineWidth": 6
+            },
+            "roboFillColor": "#ffd700",
+            "roboLineWidth": 6,
+            "roboStrokeEdges": [
+              0,
+              2
+            ]
+          },
+          {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ],
+              [
+                10,
+                0
+              ],
+              [
+                5.772502568706987,
+                5.6844726674084
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "Persisted",
+            "objectId": "875a223a-b579-4aff-b532-a60cfede9257",
+            "roboVisible": true,
+            "roboControl": "select",
+            "roboExplicitVertices": true,
+            "roboAngle": {
+              "vertex": 0,
+              "degrees": 64,
+              "lineWidth": 6
+            },
+            "roboFillColor": "#ffd700",
+            "roboLineWidth": 6,
+            "roboStrokeEdges": [
+              0,
+              2
+            ]
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Redo",
+          "commands": [
+            {
+              "id": "584c9bce-fb3e-46c6-8f8e-d3bfd19e7ee0",
+              "rawPhrase": "Redo",
+              "normalizedPhrase": "redo",
+              "detectedAction": "REDO",
+              "action": "REDO",
+              "subAction": "LAST",
+              "mode": "graph2d",
+              "parameters": {},
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "ir": [
+            {
+              "action": "REDO",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {},
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "history"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "392a89cb-e415-4e39-a409-17b43ed1d596"
+        },
+        "parseMs": 0,
+        "executionMs": 503.30000001192093,
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "08d8922c-9d0b-49aa-a22d-026a4360cda1",
+          "message": "Redid the last Ruhi action.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "REDO",
+            "score": 0.9771211743354797
+          },
+          "subAction": {
+            "label": "LAST",
+            "score": 0.9664874076843262
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9980506896972656
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9937825798988342
+          }
+        },
+        "inferenceMs": 1.7000000178813934,
+        "objects": 1,
+        "sceneHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[3,0],[10,0],[5.772502569,5.684472667]],\"position\":[6.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"fill\":\"#ffd700\",\"lineWidth\":6,\"strokeEdges\":[0,2],\"angle\":{\"vertex\":0,\"degrees\":64,\"lineWidth\":6},\"visible\":true,\"expression\":null,\"locked\":false}]",
+        "beforeHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[0,0],[7,0],[2.772502569,5.684472667]],\"position\":[3.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"fill\":\"#ffd700\",\"lineWidth\":6,\"strokeEdges\":[0,2],\"angle\":{\"vertex\":0,\"degrees\":64,\"lineWidth\":6},\"visible\":true,\"expression\":null,\"locked\":false}]"
+      }
+    },
+    {
+      "text": "Select the triangle",
+      "actual": {
+        "status": "success",
+        "message": "Selected triangle.",
+        "effects": [
+          {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ],
+              [
+                10,
+                0
+              ],
+              [
+                5.772502568706987,
+                5.6844726674084
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "Persisted",
+            "objectId": "875a223a-b579-4aff-b532-a60cfede9257",
+            "roboVisible": true,
+            "roboControl": "select",
+            "roboExplicitVertices": true,
+            "roboAngle": {
+              "vertex": 0,
+              "degrees": 64,
+              "lineWidth": 6
+            },
+            "roboFillColor": "#ffd700",
+            "roboLineWidth": 6,
+            "roboStrokeEdges": [
+              0,
+              2
+            ]
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Select the triangle",
+          "commands": [
+            {
+              "id": "e809d87b-6eb6-4d42-bfcf-baf3e8131f2b",
+              "rawPhrase": "Select the triangle",
+              "normalizedPhrase": "select the triangle",
+              "detectedAction": "SELECT",
+              "action": "SELECT",
+              "subAction": "OBJECT",
+              "mode": "graph2d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "875a223a-b579-4aff-b532-a60cfede9257"
+            }
+          ],
+          "ir": [
+            {
+              "action": "SELECT",
+              "object": {
+                "references": [
+                  "875a223a-b579-4aff-b532-a60cfede9257"
+                ]
+              },
+              "parameters": {
+                "multiple": false
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "selection"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "a1ec8282-820a-4042-b5e8-aff847e344a5"
+        },
+        "parseMs": 0,
+        "executionMs": 0.800000011920929,
+        "verification": {
+          "passed": true,
+          "checks": [
+            "Finite geometry and valid dimensions",
+            "Independent committed vertex-angle measurement"
+          ],
+          "status": "verified_numerical"
+        },
+        "explanation": "",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "64d09da1-3b95-4473-972d-7a838d9e7dd4",
+          "message": "Selected triangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "SELECT",
+            "score": 0.89091557264328
+          },
+          "subAction": {
+            "label": "OBJECT",
+            "score": 0.6439540386199951
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9999911785125732
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.6210564970970154
+          }
+        },
+        "inferenceMs": 2.100000023841858,
+        "objects": 1,
+        "sceneHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[3,0],[10,0],[5.772502569,5.684472667]],\"position\":[6.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"fill\":\"#ffd700\",\"lineWidth\":6,\"strokeEdges\":[0,2],\"angle\":{\"vertex\":0,\"degrees\":64,\"lineWidth\":6},\"visible\":true,\"expression\":null,\"locked\":false}]",
+        "beforeHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[3,0],[10,0],[5.772502569,5.684472667]],\"position\":[6.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"fill\":\"#ffd700\",\"lineWidth\":6,\"strokeEdges\":[0,2],\"angle\":{\"vertex\":0,\"degrees\":64,\"lineWidth\":6},\"visible\":true,\"expression\":null,\"locked\":false}]"
+      }
+    },
+    {
+      "text": "Change its outline to cyan",
+      "actual": {
+        "status": "success",
+        "message": "Changed triangle to cyan.",
+        "effects": [
+          {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                3,
+                0
+              ],
+              [
+                10,
+                0
+              ],
+              [
+                5.772502568706987,
+                5.6844726674084
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "update",
+            "fitDimensions": false,
+            "roboLabel": "Persisted",
+            "objectId": "875a223a-b579-4aff-b532-a60cfede9257",
+            "roboVisible": true,
+            "roboExplicitVertices": true,
+            "roboAngle": {
+              "vertex": 0,
+              "degrees": 64,
+              "lineWidth": 6
+            },
+            "roboFillColor": "#ffd700",
+            "roboLineWidth": 6,
+            "roboStrokeEdges": [
+              0,
+              2
+            ],
+            "roboStrokeColor": "#06b6d4"
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Change its outline to cyan",
+          "commands": [
+            {
+              "id": "58b5b5ab-918d-4214-8c79-386d80409408",
+              "rawPhrase": "Change its outline to cyan",
+              "normalizedPhrase": "change its outline to cyan",
+              "detectedAction": "CHANGE",
+              "action": "CHANGE",
+              "subAction": "STROKE_COLOR",
+              "mode": "graph2d",
+              "parameters": {
+                "color": "cyan"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "875a223a-b579-4aff-b532-a60cfede9257"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "875a223a-b579-4aff-b532-a60cfede9257"
+                ]
+              },
+              "parameters": {
+                "color": "cyan"
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "05bccdc2-25e6-433b-a2bf-7e62354315f1"
+        },
+        "parseMs": 0,
+        "executionMs": 161.40000000596046,
+        "verification": {
+          "passed": true,
+          "checks": [
+            "Finite geometry and valid dimensions",
+            "Independent committed vertex-angle measurement"
+          ],
+          "status": "verified_numerical"
+        },
+        "explanation": "",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "1e082425-a811-414c-ad67-43060613100a",
+          "message": "Changed triangle to cyan.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "CHANGE",
+            "score": 0.8939126133918762
+          },
+          "subAction": {
+            "label": "PERIMETER",
+            "score": 0.18813872337341309
+          },
+          "mode": {
+            "label": "graph2d",
+            "score": 0.9991293549537659
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9999659061431885
+          }
+        },
+        "inferenceMs": 10.099999994039536,
+        "objects": 1,
+        "sceneHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[3,0],[10,0],[5.772502569,5.684472667]],\"position\":[6.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"fill\":\"#ffd700\",\"stroke\":\"#06b6d4\",\"lineWidth\":6,\"strokeEdges\":[0,2],\"angle\":{\"vertex\":0,\"degrees\":64,\"lineWidth\":6},\"visible\":true,\"expression\":null,\"locked\":false}]",
+        "beforeHash": "[{\"id\":\"875a223a-b579-4aff-b532-a60cfede9257\",\"type\":\"triangle\",\"vertices\":[[3,0],[10,0],[5.772502569,5.684472667]],\"position\":[6.257500856,1.894824222],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"fill\":\"#ffd700\",\"lineWidth\":6,\"strokeEdges\":[0,2],\"angle\":{\"vertex\":0,\"degrees\":64,\"lineWidth\":6},\"visible\":true,\"expression\":null,\"locked\":false}]"
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

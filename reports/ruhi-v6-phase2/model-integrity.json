@@ -1,0 +1,38 @@
+[
+  {
+    "file": "public/models/math-robo-intelligence-v4/model.json",
+    "before": "07a18c7b3321f2b3f7696fc01b4d2c83dd4b392231835a15c45304326ce06f08",
+    "after": "07a18c7b3321f2b3f7696fc01b4d2c83dd4b392231835a15c45304326ce06f08",
+    "unchanged": true
+  },
+  {
+    "file": "public/models/math-robo-intelligence-v4/weights.bin",
+    "before": "315d8161f4ff311db2e7850ef5e6d0f5362fa2f53cede767e2a12f2b2907ce3d",
+    "after": "315d8161f4ff311db2e7850ef5e6d0f5362fa2f53cede767e2a12f2b2907ce3d",
+    "unchanged": true
+  },
+  {
+    "file": "public/models/math-robo-intents-v3/model.json",
+    "before": "2a5f3cc9937079937a6203845ad01f5f27917300e5ac584a0e3ef6f8bc418683",
+    "after": "2a5f3cc9937079937a6203845ad01f5f27917300e5ac584a0e3ef6f8bc418683",
+    "unchanged": true
+  },
+  {
+    "file": "public/models/math-robo-intents-v3/weights.bin",
+    "before": "f1d17bc7a4ed28146876a86174db6338488c08c98952443e3b0c86a8ec89a842",
+    "after": "f1d17bc7a4ed28146876a86174db6338488c08c98952443e3b0c86a8ec89a842",
+    "unchanged": true
+  },
+  {
+    "file": "public/models/ruhi-context-v1/model.json",
+    "before": "bd7251a0a39bf33fa39e88986efbb4a0cb8ddaa73ac677f0b8130b1b3651cba4",
+    "after": "bd7251a0a39bf33fa39e88986efbb4a0cb8ddaa73ac677f0b8130b1b3651cba4",
+    "unchanged": true
+  },
+  {
+    "file": "public/models/ruhi-context-v1/weights.bin",
+    "before": "af24d79bbff85e0e066d7b950c5451f6b4c1fb5aa03614900d498f53d59978e4",
+    "after": "af24d79bbff85e0e066d7b950c5451f6b4c1fb5aa03614900d498f53d59978e4",
+    "unchanged": true
+  }
+]

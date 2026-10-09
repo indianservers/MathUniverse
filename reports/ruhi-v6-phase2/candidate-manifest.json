@@ -1,0 +1,8 @@
+{
+  "candidateId": "v6-phase2-context-32-seed-20261009-10db42506a59",
+  "datasetSha256": "10db42506a59ae26aa1ef9c6a6d7951fdc1b8ca38f3028f886bc5e532b73e66d",
+  "modelSha256": "d5cf17a10cdb3d4aec5350c910241aa31a05aed8d8256a0ab5f5970815c0cf33",
+  "weightsSha256": "495ab2617dfa4c0eda6a0d3e8835b321d0c272d3c1db24d43eb3953a31876e87",
+  "promotion": "NOT PROMOTED",
+  "authorization": "Explicit Phase 2 trainer/dev candidate instruction; no production write or promotion API."
+}

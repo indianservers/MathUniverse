@@ -1,0 +1,32 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > A object continuity uses current dimensions, style and reverses only rotation 348ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > B ambiguous references preserve the movement until the second circle is identified 222ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > C relative angle changes use the active angle and end at 89 degrees 43ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > D compound medians, centroid and circumcircle carry live triangle dependencies 84ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > F tutoring checks a wrong rectangle answer, hints and accepts equivalent correct formatting 706ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > G deleted object references cannot survive a geometry follow-up 60ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > H page changes invalidate specialist task memory without deleting workspace objects 43ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > I compound create/transform/measure/verify has no partial mutation on a contradictory step 88ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > J unsupported proof never receives verified execution confidence 3398ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > missing line endpoints can be supplied by a point plus direction angle 31ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > contradictory SSS triangle is rejected with the triangle inequality 17ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > E selected angle and reviewed page explanations are grounded in current state 57ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > medians and centroid recompute on parent translation and survive undo and saved import 137ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > typed memory exposes current evidence and stable dependency versions 12ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > relative resize accounts for physical scale and refuses nonpositive dimensions 94ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > tutoring rejects a stale exercise after its source object changes 51ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > line clarification never infers a missing finite vector magnitude 20ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > D independent coordinate oracle checks all medians, centroid and circumcircle 55ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > I successful multi-intent action graph draws, moves, measures, explains and checks atomically 53ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > proof adapters do not verify nonparallel lines or use 2D evidence for 3D 90ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > fuzzy resizing requests preserve geometry until an exact factor is provided 78ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > geometric references resolve by incidence and containment rather than recency 247ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > previous length uses retained geometry and never resurrects a deleted reference 63ms
+
+ Test Files  1 passed (1)
+      Tests  23 passed (23)
+   Start at  02:06:26
+   Duration  14.65s (transform 6.83s, setup 203ms, import 6.99s, tests 6.02s, environment 1ms)
+

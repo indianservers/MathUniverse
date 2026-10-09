@@ -10,6 +10,10 @@ export type VisualCommand = {
   objectId?:string;
   fitDimensions?:boolean;
   roboControl?: 'delete'|'visibility'|'select'|'deselect';
+  /** Clear every object in the active workspace, including native objects. */
+  roboSchemaVersion?: number;
+  roboDefinitionState?: import('../math-foundation/mathIR').DefinitionState;
+  roboClearAll?: boolean;
   roboVisible?: boolean;
   roboLabel?: string;
   roboTemporary?: boolean;

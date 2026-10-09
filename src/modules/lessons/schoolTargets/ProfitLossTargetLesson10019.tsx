@@ -148,11 +148,11 @@ export default function ProfitLossTargetLesson10019({
         <section className="pl10019-workspace">
           <aside className="pl10019-controls">
             <h3>CONTROLS</h3>
-            {[
+            {([
               ["Cost Price (CP) ₹", cp, setCp, 100, 10000],
               ["Marked Price (MP) ₹", mp, setMp, 100, 10000],
               ["Discount (%) %", discount, setDiscount, 0, 90],
-            ].map(([label, value, setter, min, max]) => (
+            ] as const).map(([label, value, setter, min, max]) => (
               <label key={String(label)}>
                 {label}
                 <strong>{value}</strong>

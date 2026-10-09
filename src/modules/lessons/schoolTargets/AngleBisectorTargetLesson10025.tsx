@@ -179,11 +179,11 @@ export default function AngleBisectorTargetLesson10025({
           </label>
           <section className="ab10025-show">
             <h3>Show / Hide</h3>
-            {[
+            {([
               ["Show arcs", showArcs, setShowArcs],
               ["Show angle measures", showMeasures, setShowMeasures],
               ["Show labels", showLabels, setShowLabels],
-            ].map(([label, value, setter]) => (
+            ] as const).map(([label, value, setter]) => (
               <button
                 className={value ? "on" : ""}
                 onClick={() => act(() => setter(!value))}

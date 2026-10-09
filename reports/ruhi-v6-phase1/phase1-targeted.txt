@@ -1,0 +1,24 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+·····················x·
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/math-robo/kernel/phase1Verification.test.ts > malformed, zero denominators, domain violations and nonfinite input remain invalid
+AssertionError: expected 'valid_unverified' to be 'invalid_input' // Object.is equality
+
+Expected: "invalid_input"
+Received: "valid_unverified"
+
+ ❯ src/math-robo/kernel/phase1Verification.test.ts:8:380
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 22 passed (23)
+   Start at  00:59:01
+   Duration  3.51s (transform 896ms, setup 56ms, import 2.30s, tests 677ms, environment 0ms)
+

@@ -25,7 +25,7 @@ export function buildContextDataset():ContextRow[]{
  for(const [intent,templates] of Object.entries(phrases) as [ContextIntent,string[]][])for(const [index,question] of templates.entries())for(const [pageIndex,page] of contexts.entries()){
   const split=index<8?'train':index<10?'calibration':'test';
   if(split==='test'&&pageIndex>=11)continue;
-  let meaning:ContextMeaning=intent==='unrelated'?'unknown':intent==='previous'?'previous':intent==='selected'?'selected':'active';
+  const meaning:ContextMeaning=intent==='unrelated'?'unknown':intent==='previous'?'previous':intent==='selected'?'selected':'active';
   rows.push({question,pageVocabulary:page.vocabulary,previousVocabulary:meanings[0].vocabulary,selectedTypes:intent==='selected'?['circle']:pageIndex%4===0?['rectangle']:[],simulation:page.id==='pigeonhole'?{n:10,k:3}:undefined,hasPrevious:['previous','followup','why','hint'].includes(intent)||pageIndex%2===0,intent,meaning,group:`${intent}:syntax-${index}`,split,pageId:page.id});
  }
  const termTemplates=['What is a {term}','Define {term}','Explain {term}','Tell me about {term}','What does {term} mean','Describe {term}','Give a definition of {term}','Help me understand {term}','Could you define {term}','Tell me the meaning of {term}','What exactly is meant by {term}','How would you describe {term} to someone','What kind of thing is {term}'];

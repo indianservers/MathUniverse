@@ -1,0 +1,14 @@
+[
+  {
+    name: 'published',
+    median: 1.399999976158142,
+    p95: 2.4000000059604645,
+    weightBytes: 224104
+  },
+  {
+    name: 'candidate',
+    median: 0.9000000059604645,
+    p95: 1.199999988079071,
+    weightBytes: 112104
+  }
+]

@@ -1,0 +1,6080 @@
+{
+  "checks": [
+    {
+      "mode": "graph2d",
+      "name": "relative width reaches the native workspace",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Changed rectangle.",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "a269fa1c-e3da-4602-9221-a120546d1f9e",
+          "message": "Changed rectangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Change its width to 6",
+          "commands": [
+            {
+              "id": "8cb131f3-7ef3-4f9c-a911-6cc25892ca0b",
+              "rawPhrase": "Change its width to 6",
+              "normalizedPhrase": "change its width to 6",
+              "detectedAction": "CHANGE",
+              "action": "CHANGE",
+              "subAction": "WIDTH",
+              "mode": "graph2d",
+              "parameters": {
+                "width": 6,
+                "height": 6,
+                "depth": 3
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "0ab73398-8261-4e77-a3d8-bf3129c0c0af"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "0ab73398-8261-4e77-a3d8-bf3129c0c0af"
+                ]
+              },
+              "parameters": {
+                "width": 6,
+                "height": 6,
+                "depth": 3
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "c78c8c63-706d-433f-a294-7970d7558a70",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "8cb131f3-7ef3-4f9c-a911-6cc25892ca0b",
+                "action": "CHANGE",
+                "subAction": "WIDTH",
+                "dependsOn": [],
+                "references": [
+                  "0ab73398-8261-4e77-a3d8-bf3129c0c0af"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: width"
+                ],
+                "output": "state"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph2d",
+      "name": "current rotated rectangle area",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "area = 36 units.",
+        "value": 36,
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "bf478969-dcfd-40b3-9012-a34e4e3ad1fb",
+          "message": "area = 36 units.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "What is its area now?",
+          "commands": [
+            {
+              "id": "29169a42-5af8-4c04-af49-4ea2820b0f84",
+              "rawPhrase": "What is its area now?",
+              "normalizedPhrase": "what is its area now",
+              "detectedAction": "",
+              "action": "FIND",
+              "subAction": "AREA",
+              "mode": "graph2d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "0ab73398-8261-4e77-a3d8-bf3129c0c0af"
+            }
+          ],
+          "ir": [
+            {
+              "action": "FIND",
+              "object": {
+                "references": [
+                  "0ab73398-8261-4e77-a3d8-bf3129c0c0af"
+                ]
+              },
+              "parameters": {
+                "multiple": false
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "measurement"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "0247f38e-c0b4-4ce3-934d-f5dfe420d430",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "29169a42-5af8-4c04-af49-4ea2820b0f84",
+                "action": "FIND",
+                "subAction": "AREA",
+                "dependsOn": [],
+                "references": [
+                  "0ab73398-8261-4e77-a3d8-bf3129c0c0af"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "measurement"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph2d",
+      "name": "undo preserves dimensions, ID, color and native object",
+      "passed": true,
+      "details": {
+        "id": "0ab73398-8261-4e77-a3d8-bf3129c0c0af",
+        "type": "rectangle",
+        "mode": "graph2d",
+        "position": [
+          0,
+          0
+        ],
+        "radius": 3,
+        "label": "R1",
+        "style": {
+          "color": "#3b82f6",
+          "visible": true
+        },
+        "command": {
+          "kind": "rectangle",
+          "dimension": "2d",
+          "points": [],
+          "width": 6,
+          "height": 6,
+          "depth": 3,
+          "radius": 3,
+          "sides": 6,
+          "color": "#3b82f6",
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 1,
+          "action": "update",
+          "fitDimensions": true,
+          "roboLabel": "R1",
+          "objectId": "0ab73398-8261-4e77-a3d8-bf3129c0c0af",
+          "roboVisible": true
+        },
+        "vertices": [
+          [
+            -3,
+            -3
+          ],
+          [
+            3,
+            -3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            -3,
+            3
+          ]
+        ],
+        "creationOrder": 1
+      }
+    },
+    {
+      "mode": "graph2d",
+      "name": "normal entry tutoring wrong/hint/equivalent answer/detail",
+      "passed": true,
+      "details": {
+        "wrong": {
+          "status": "success",
+          "message": "That does not match the area. Use width × height: 6 × 6 = 36. You used the perimeter formula; perimeter measures the boundary length.",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "da08580e-b518-459f-b6fd-010367aa10f5",
+            "message": "That does not match the area. Use width × height: 6 × 6 = 36. You used the perimeter formula; perimeter measures the boundary length.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "I think the area is 24",
+            "commands": [],
+            "confidence": 1
+          }
+        },
+        "hint": {
+          "status": "success",
+          "message": "For a rectangle, multiply its width by its height. Which two dimensions should you use?",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "d9dffd89-5e6d-4251-9038-1f0a23c27a7c",
+            "message": "For a rectangle, multiply its width by its height. Which two dimensions should you use?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Give me a hint",
+            "commands": [],
+            "confidence": 1
+          }
+        },
+        "correct": {
+          "status": "success",
+          "message": "Correct: your expression matches 36 square units.",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "81cf4396-6bd5-4f06-9b7e-ee5f19dccc55",
+            "message": "Correct: your expression matches 36 square units.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "My answer is 72/2",
+            "commands": [],
+            "confidence": 1
+          }
+        },
+        "detail": {
+          "status": "success",
+          "message": "Rectangle area = width × height = 6 × 6 = 36 square units. Each unit row contains the width in squares, and there are height rows. Rotation preserves these dimensions and area.",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "18a2b84a-55fb-4255-8134-d42d60acf050",
+            "message": "Rectangle area = width × height = 6 × 6 = 36 square units. Each unit row contains the width in squares, and there are height rows. Rotation preserves these dimensions and area.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Explain in detail",
+            "commands": [],
+            "confidence": 1
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph2d",
+      "name": "fuzzy resizing asks for a number without changing geometry",
+      "passed": true,
+      "details": {
+        "status": "ambiguous",
+        "message": "What exact scale factor should I use? A phrase such as “a little larger” does not specify a number.",
+        "execution": {
+          "status": "invalid_input",
+          "requestId": "cfd1ef55-1960-47eb-8d25-b2aad005ecdc",
+          "message": "What exact scale factor should I use? A phrase such as “a little larger” does not specify a number.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Scale it",
+          "commands": [
+            {
+              "id": "c7a48fe4-27b5-49d0-9637-26f1621caed7",
+              "rawPhrase": "Scale it",
+              "normalizedPhrase": "scale it",
+              "detectedAction": "SCALE",
+              "action": "SCALE",
+              "subAction": "UNIFORM",
+              "mode": "graph2d",
+              "parameters": {},
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "ir": [
+            {
+              "action": "SCALE",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {},
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1
+        }
+      }
+    },
+    {
+      "mode": "graph2d",
+      "name": "compound action graph completes through normal entry",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Created 2D rectangle 4 by 6.\nmove rectangle.\narea = 24 units.\nUsing the current object geometry: area = 24 units.\nYes — area is 24, compared with 24. Numerical tolerance 1e-7.",
+        "value": true,
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "a0299d1d-78e9-460a-b089-f21d62469a85",
+          "message": "Created 2D rectangle 4 by 6.\nmove rectangle.\narea = 24 units.\nUsing the current object geometry: area = 24 units.\nYes — area is 24, compared with 24. Numerical tolerance 1e-7.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Draw rectangle width 4 height 6; move it right by 2; find its area; explain; verify its area is 24",
+          "commands": [
+            {
+              "id": "d0aefd7f-8f07-4553-bef3-58e7f74d0cf7",
+              "rawPhrase": "Draw rectangle width 4 height 6",
+              "normalizedPhrase": "draw rectangle width 4 height 6",
+              "detectedAction": "DRAW",
+              "action": "CREATE",
+              "subAction": "RECTANGLE",
+              "mode": "graph2d",
+              "parameters": {
+                "legacy": {
+                  "kind": "rectangle",
+                  "dimension": "2d",
+                  "points": [],
+                  "width": 4,
+                  "height": 6,
+                  "depth": 3,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": true
+                },
+                "width": 4,
+                "height": 6,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": {
+                "type": "rectangle"
+              }
+            },
+            {
+              "id": "323b6a60-3610-424b-b2cf-10d3cafd2304",
+              "rawPhrase": "move it right by 2",
+              "normalizedPhrase": "move it right by 2",
+              "detectedAction": "MOVE",
+              "action": "MOVE",
+              "subAction": "OBJECT",
+              "mode": "graph2d",
+              "parameters": {
+                "vector": [
+                  2,
+                  0
+                ],
+                "multiple": false,
+                "dx": 2,
+                "dy": 0
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            },
+            {
+              "id": "f8707be0-66e1-4a7f-9d5a-03a8199d450e",
+              "rawPhrase": "find its area",
+              "normalizedPhrase": "find its area",
+              "detectedAction": "FIND",
+              "action": "FIND",
+              "subAction": "AREA",
+              "mode": "graph2d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            },
+            {
+              "id": "b27d4811-fa13-407c-94ff-80672329a2c6",
+              "rawPhrase": "explain",
+              "normalizedPhrase": "explain",
+              "detectedAction": "EXPLAIN",
+              "action": "EXPLAIN",
+              "subAction": "PREVIOUS",
+              "mode": "graph2d",
+              "parameters": {
+                "responseDepth": "detailed"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true
+            },
+            {
+              "id": "8971c756-3d2c-435d-8cc1-1ecf1ef680f2",
+              "rawPhrase": "verify its area is 24",
+              "normalizedPhrase": "verify its area is 24",
+              "detectedAction": "VERIFY",
+              "action": "CHECK",
+              "subAction": "MEASUREMENT",
+              "mode": "graph2d",
+              "parameters": {
+                "measurement": "AREA",
+                "expectedValue": 24
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CREATE",
+              "object": {
+                "kind": "rectangle",
+                "references": [
+                  {
+                    "type": "rectangle"
+                  }
+                ]
+              },
+              "parameters": {
+                "legacy": {
+                  "kind": "rectangle",
+                  "dimension": "2d",
+                  "points": [],
+                  "width": 4,
+                  "height": 6,
+                  "depth": 3,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": true
+                },
+                "width": 4,
+                "height": 6,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "object"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "MOVE",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {
+                "vector": [
+                  2,
+                  0
+                ],
+                "multiple": false,
+                "dx": 2,
+                "dy": 0
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "FIND",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {
+                "multiple": false
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "measurement"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "EXPLAIN",
+              "object": {
+                "references": []
+              },
+              "parameters": {
+                "responseDepth": "detailed"
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "CHECK",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {
+                "measurement": "AREA",
+                "expectedValue": 24
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "e5e6501f-aa3f-4a96-9314-71705d4ebfb2",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "d0aefd7f-8f07-4553-bef3-58e7f74d0cf7",
+                "action": "CREATE",
+                "subAction": "RECTANGLE",
+                "dependsOn": [],
+                "references": [
+                  {
+                    "type": "rectangle"
+                  }
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: width",
+                  "required: height"
+                ],
+                "output": "object"
+              },
+              {
+                "id": "323b6a60-3610-424b-b2cf-10d3cafd2304",
+                "action": "MOVE",
+                "subAction": "OBJECT",
+                "dependsOn": [
+                  "d0aefd7f-8f07-4553-bef3-58e7f74d0cf7"
+                ],
+                "references": [
+                  "lastReferenced"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: vector"
+                ],
+                "output": "state"
+              },
+              {
+                "id": "f8707be0-66e1-4a7f-9d5a-03a8199d450e",
+                "action": "FIND",
+                "subAction": "AREA",
+                "dependsOn": [
+                  "323b6a60-3610-424b-b2cf-10d3cafd2304"
+                ],
+                "references": [
+                  "lastReferenced"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "measurement"
+              },
+              {
+                "id": "b27d4811-fa13-407c-94ff-80672329a2c6",
+                "action": "EXPLAIN",
+                "subAction": "PREVIOUS",
+                "dependsOn": [
+                  "f8707be0-66e1-4a7f-9d5a-03a8199d450e"
+                ],
+                "references": [],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "measurement"
+              },
+              {
+                "id": "8971c756-3d2c-435d-8cc1-1ecf1ef680f2",
+                "action": "CHECK",
+                "subAction": "MEASUREMENT",
+                "dependsOn": [
+                  "b27d4811-fa13-407c-94ff-80672329a2c6"
+                ],
+                "references": [
+                  "lastReferenced"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: measurement",
+                  "required: expectedValue"
+                ],
+                "output": "measurement"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph2d",
+      "name": "contradiction leaves native objects unchanged",
+      "passed": true,
+      "details": {
+        "status": "invalid",
+        "message": "width must be positive and no greater than 10,000.",
+        "execution": {
+          "status": "invalid_input",
+          "requestId": "bff8aa3e-672e-4955-af64-b7d9a202d266",
+          "message": "width must be positive and no greater than 10,000.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Change its width to -96",
+          "commands": [
+            {
+              "id": "f771d9e9-d5e5-4f72-a3f2-fa66abe48a1e",
+              "rawPhrase": "Change its width to -96",
+              "normalizedPhrase": "change its width to -96",
+              "detectedAction": "CHANGE",
+              "action": "CHANGE",
+              "subAction": "WIDTH",
+              "mode": "graph2d",
+              "parameters": {
+                "width": -96,
+                "height": 6,
+                "depth": 3
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "ddf51630-8af9-4d82-880c-ffeedc4a2b17"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "ddf51630-8af9-4d82-880c-ffeedc4a2b17"
+                ]
+              },
+              "parameters": {
+                "width": -96,
+                "height": 6,
+                "depth": 3
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "bfa395c3-c05c-4145-87fc-7dce555e17fa",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "f771d9e9-d5e5-4f72-a3f2-fa66abe48a1e",
+                "action": "CHANGE",
+                "subAction": "WIDTH",
+                "dependsOn": [],
+                "references": [
+                  "ddf51630-8af9-4d82-880c-ffeedc4a2b17"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: width"
+                ],
+                "output": "state"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph2d",
+      "name": "ambiguous reference resumes exact pending move",
+      "passed": true,
+      "details": {
+        "ambiguous": {
+          "status": "ambiguous",
+          "message": "Several objects match. Which object should I use?",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "ea495bb0-e3d4-4976-b9a7-596588576ef6",
+            "message": "Several objects match. Which object should I use?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Move that circle left by 2",
+            "commands": [
+              {
+                "id": "e31ca5dc-7d0e-4472-b8bb-130bac7a2297",
+                "rawPhrase": "Move that circle left by 2",
+                "normalizedPhrase": "move that circle left by 2",
+                "detectedAction": "MOVE",
+                "action": "MOVE",
+                "subAction": "OBJECT",
+                "mode": "graph2d",
+                "parameters": {
+                  "vector": [
+                    -2,
+                    0
+                  ],
+                  "multiple": false,
+                  "dx": -2,
+                  "dy": 0
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "circle",
+                  "reference": "lastReferenced"
+                }
+              }
+            ],
+            "ir": [
+              {
+                "action": "MOVE",
+                "object": {
+                  "references": [
+                    {
+                      "type": "circle",
+                      "reference": "lastReferenced"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "vector": [
+                    -2,
+                    0
+                  ],
+                  "multiple": false,
+                  "dx": -2,
+                  "dy": 0
+                },
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1
+          }
+        },
+        "resolved": {
+          "status": "success",
+          "message": "move circle.",
+          "value": true,
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "eb72fa7c-0ffe-4cce-be13-02261966884e",
+            "message": "move circle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Move that circle left by 2",
+            "commands": [
+              {
+                "id": "e31ca5dc-7d0e-4472-b8bb-130bac7a2297",
+                "rawPhrase": "Move that circle left by 2",
+                "normalizedPhrase": "move that circle left by 2",
+                "detectedAction": "MOVE",
+                "action": "MOVE",
+                "subAction": "OBJECT",
+                "mode": "graph2d",
+                "parameters": {
+                  "vector": [
+                    -2,
+                    0
+                  ],
+                  "multiple": false,
+                  "dx": -2,
+                  "dy": 0
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": "417bf8f6-91b7-46f5-b0db-53028ac7a967"
+              }
+            ],
+            "ir": [
+              {
+                "action": "MOVE",
+                "object": {
+                  "references": [
+                    "417bf8f6-91b7-46f5-b0db-53028ac7a967"
+                  ]
+                },
+                "parameters": {
+                  "vector": [
+                    -2,
+                    0
+                  ],
+                  "multiple": false,
+                  "dx": -2,
+                  "dy": 0
+                },
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "86db0f8f-0874-4655-b361-546b2d96c2ec",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "e31ca5dc-7d0e-4472-b8bb-130bac7a2297",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "dependsOn": [],
+                  "references": [
+                    "417bf8f6-91b7-46f5-b0db-53028ac7a967"
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions",
+                    "required: vector"
+                  ],
+                  "output": "state"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph2d",
+      "name": "relative angle is 89 degrees",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Angle A is now 89 degrees. Fixed vertex and incident side lengths are preserved; the second incident endpoint moves on the existing orientation branch.",
+        "value": true,
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "9766b435-0024-4f03-9740-1536aaccc971",
+          "message": "Angle A is now 89 degrees. Fixed vertex and incident side lengths are preserved; the second incident endpoint moves on the existing orientation branch.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Increase it by another three",
+          "commands": [
+            {
+              "id": "f71a5a57-3d8c-4b3d-8091-6e5bcd060796",
+              "rawPhrase": "Increase it by another three",
+              "normalizedPhrase": "increase it by another 3",
+              "detectedAction": "INCREASE",
+              "action": "CHANGE",
+              "subAction": "ANGLE",
+              "mode": "graph2d",
+              "parameters": {
+                "angle": 3,
+                "vertex": "A",
+                "angleOperation": "increment"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "3a779153-c7a3-4df0-a7db-aae091ac5a75"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "3a779153-c7a3-4df0-a7db-aae091ac5a75"
+                ]
+              },
+              "parameters": {
+                "angle": 3,
+                "vertex": "A",
+                "angleOperation": "increment"
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "a9e98ee4-0ac5-4d53-aef2-7ba4c89660d0",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "f71a5a57-3d8c-4b3d-8091-6e5bcd060796",
+                "action": "CHANGE",
+                "subAction": "ANGLE",
+                "dependsOn": [],
+                "references": [
+                  "3a779153-c7a3-4df0-a7db-aae091ac5a75"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "state"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph2d",
+      "name": "medians centroid circumcircle native dependencies",
+      "passed": true,
+      "details": {
+        "construction": {
+          "status": "success",
+          "message": "Created 2D triangle.\nCreated median from A.\nCreated median from B.\nCreated median from C.\nMarked centroid.\nCreated circumcircle with radius 3.16227766.",
+          "value": [
+            2.6666666666666665,
+            1.3333333333333333
+          ],
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "513dc085-fb15-4c30-a844-5491a0563354",
+            "message": "Created 2D triangle.\nCreated median from A.\nCreated median from B.\nCreated median from C.\nMarked centroid.\nCreated circumcircle with radius 3.16227766.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Draw triangle ABC with A(0,0), B(6,0), C(2,4); construct its medians; mark its centroid; construct its circumcircle",
+            "commands": [
+              {
+                "id": "9d316f48-e183-4463-be9c-9b879c4de695",
+                "rawPhrase": "Draw triangle ABC with A(0,0), B(6,0), C(2,4)",
+                "normalizedPhrase": "draw triangle abc with a(0,0), b(6,0), c(2,4)",
+                "detectedAction": "DRAW",
+                "action": "CREATE",
+                "subAction": "TRIANGLE",
+                "mode": "graph2d",
+                "parameters": {
+                  "legacy": {
+                    "kind": "triangle",
+                    "dimension": "2d",
+                    "points": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        2,
+                        4
+                      ]
+                    ],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 3,
+                  "depth": 3,
+                  "sides": 6,
+                  "label": "ABC",
+                  "points": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      6,
+                      0
+                    ],
+                    [
+                      2,
+                      4
+                    ]
+                  ],
+                  "vertexLabels": [
+                    "A",
+                    "B",
+                    "C"
+                  ]
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "triangle"
+                }
+              },
+              {
+                "id": "be63262a-c3d6-44f3-bacb-c9530763cd1f",
+                "rawPhrase": "construct its medians",
+                "normalizedPhrase": "construct its medians",
+                "detectedAction": "CONSTRUCT",
+                "action": "CONSTRUCT",
+                "subAction": "MEDIAN",
+                "mode": "graph2d",
+                "parameters": {
+                  "from": "A"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "triangle"
+                }
+              },
+              {
+                "id": "cf4e0310-f820-4133-b8f3-fc8d179db98d",
+                "rawPhrase": "construct its medians",
+                "normalizedPhrase": "construct its medians",
+                "detectedAction": "CONSTRUCT",
+                "action": "CONSTRUCT",
+                "subAction": "MEDIAN",
+                "mode": "graph2d",
+                "parameters": {
+                  "from": "B"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "triangle"
+                }
+              },
+              {
+                "id": "5ea80d3f-af9f-44e9-9fc4-d02f8e8f9657",
+                "rawPhrase": "construct its medians",
+                "normalizedPhrase": "construct its medians",
+                "detectedAction": "CONSTRUCT",
+                "action": "CONSTRUCT",
+                "subAction": "MEDIAN",
+                "mode": "graph2d",
+                "parameters": {
+                  "from": "C"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "triangle"
+                }
+              },
+              {
+                "id": "88005333-1f43-44c0-a70c-74659739d5a8",
+                "rawPhrase": "mark its centroid",
+                "normalizedPhrase": "mark its centroid",
+                "detectedAction": "MARK",
+                "action": "MARK",
+                "subAction": "CENTROID",
+                "mode": "graph2d",
+                "parameters": {},
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": "lastReferenced"
+              },
+              {
+                "id": "be8180cd-72cb-418c-a4d5-884cfb748df5",
+                "rawPhrase": "construct its circumcircle",
+                "normalizedPhrase": "construct its circumcircle",
+                "detectedAction": "CONSTRUCT",
+                "action": "CONSTRUCT",
+                "subAction": "CIRCUMCIRCLE",
+                "mode": "graph2d",
+                "parameters": {},
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "triangle",
+                  "reference": "lastReferenced"
+                }
+              }
+            ],
+            "ir": [
+              {
+                "action": "CREATE",
+                "object": {
+                  "kind": "triangle",
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "legacy": {
+                    "kind": "triangle",
+                    "dimension": "2d",
+                    "points": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        2,
+                        4
+                      ]
+                    ],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 3,
+                  "depth": 3,
+                  "sides": 6,
+                  "label": "ABC",
+                  "points": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      6,
+                      0
+                    ],
+                    [
+                      2,
+                      4
+                    ]
+                  ],
+                  "vertexLabels": [
+                    "A",
+                    "B",
+                    "C"
+                  ]
+                },
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": true
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "object"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              },
+              {
+                "action": "CONSTRUCT",
+                "object": {
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "from": "A"
+                },
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              },
+              {
+                "action": "CONSTRUCT",
+                "object": {
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "from": "B"
+                },
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              },
+              {
+                "action": "CONSTRUCT",
+                "object": {
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "from": "C"
+                },
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              },
+              {
+                "action": "MARK",
+                "object": {
+                  "references": [
+                    "lastReferenced"
+                  ]
+                },
+                "parameters": {},
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              },
+              {
+                "action": "CONSTRUCT",
+                "object": {
+                  "references": [
+                    {
+                      "type": "triangle",
+                      "reference": "lastReferenced"
+                    }
+                  ]
+                },
+                "parameters": {},
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "90414986-62fa-4cc1-9a98-ff510c61122d",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "9d316f48-e183-4463-be9c-9b879c4de695",
+                  "action": "CREATE",
+                  "subAction": "TRIANGLE",
+                  "dependsOn": [],
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                },
+                {
+                  "id": "be63262a-c3d6-44f3-bacb-c9530763cd1f",
+                  "action": "CONSTRUCT",
+                  "subAction": "MEDIAN",
+                  "dependsOn": [
+                    "9d316f48-e183-4463-be9c-9b879c4de695"
+                  ],
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                },
+                {
+                  "id": "cf4e0310-f820-4133-b8f3-fc8d179db98d",
+                  "action": "CONSTRUCT",
+                  "subAction": "MEDIAN",
+                  "dependsOn": [
+                    "be63262a-c3d6-44f3-bacb-c9530763cd1f"
+                  ],
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                },
+                {
+                  "id": "5ea80d3f-af9f-44e9-9fc4-d02f8e8f9657",
+                  "action": "CONSTRUCT",
+                  "subAction": "MEDIAN",
+                  "dependsOn": [
+                    "cf4e0310-f820-4133-b8f3-fc8d179db98d"
+                  ],
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                },
+                {
+                  "id": "88005333-1f43-44c0-a70c-74659739d5a8",
+                  "action": "MARK",
+                  "subAction": "CENTROID",
+                  "dependsOn": [
+                    "5ea80d3f-af9f-44e9-9fc4-d02f8e8f9657"
+                  ],
+                  "references": [
+                    "lastReferenced"
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                },
+                {
+                  "id": "be8180cd-72cb-418c-a4d5-884cfb748df5",
+                  "action": "CONSTRUCT",
+                  "subAction": "CIRCUMCIRCLE",
+                  "dependsOn": [
+                    "88005333-1f43-44c0-a70c-74659739d5a8"
+                  ],
+                  "references": [
+                    {
+                      "type": "triangle",
+                      "reference": "lastReferenced"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                }
+              ]
+            }
+          }
+        },
+        "count": 6
+      }
+    },
+    {
+      "mode": "graph2d",
+      "name": "proof exposes numerical evidence",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "The perpendicular bisector of AB consists of points equally distant from A and B. Intersecting it with the bisector of BC gives OA = OB = OC for a noncollinear triangle. For this construction the three distances are 3.1622776601683795, 3.1622776601683795, 3.1622776601683795; the maximum equal-distance/radius residual is 0. This is a numerical incidence check of the drawn construction, alongside the Euclidean argument.",
+        "execution": {
+          "status": "verified",
+          "requestId": "668cc0d2-5239-4756-91db-f591af9f4460",
+          "message": "The perpendicular bisector of AB consists of points equally distant from A and B. Intersecting it with the bisector of BC gives OA = OB = OC for a noncollinear triangle. For this construction the three distances are 3.1622776601683795, 3.1622776601683795, 3.1622776601683795; the maximum equal-distance/radius residual is 0. This is a numerical incidence check of the drawn construction, alongside the Euclidean argument.",
+          "evidence": {
+            "level": "numerical_consistency",
+            "independent": true,
+            "passed": true,
+            "method": "Independent coordinate incidence check, tolerance 1e-7",
+            "residual": 0,
+            "assumptions": [
+              "Finite Euclidean 2D coordinates; floating point tolerance."
+            ]
+          }
+        },
+        "plan": {
+          "rawPhrase": "Prove the circumcenter is equidistant from the vertices",
+          "commands": [],
+          "confidence": 1
+        }
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "name": "relative width reaches the native workspace",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Changed rectangle.",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "a9b6a30e-22df-4488-a631-7ba272a893b4",
+          "message": "Changed rectangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Change its width to 6",
+          "commands": [
+            {
+              "id": "f1d92375-c457-4a31-a07a-0b9c925f4208",
+              "rawPhrase": "Change its width to 6",
+              "normalizedPhrase": "change its width to 6",
+              "detectedAction": "CHANGE",
+              "action": "CHANGE",
+              "subAction": "WIDTH",
+              "mode": "geometry2d",
+              "parameters": {
+                "width": 6,
+                "height": 6,
+                "depth": 3
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "3d5916c5-e112-4919-9771-c0d035f622b6"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "3d5916c5-e112-4919-9771-c0d035f622b6"
+                ]
+              },
+              "parameters": {
+                "width": 6,
+                "height": 6,
+                "depth": 3
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "d3699a58-5a42-4e5a-8175-05721d519928",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "f1d92375-c457-4a31-a07a-0b9c925f4208",
+                "action": "CHANGE",
+                "subAction": "WIDTH",
+                "dependsOn": [],
+                "references": [
+                  "3d5916c5-e112-4919-9771-c0d035f622b6"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: width"
+                ],
+                "output": "state"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "name": "current rotated rectangle area",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "area = 36 units.",
+        "value": 36,
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "34646406-a200-4411-b317-380798f1748b",
+          "message": "area = 36 units.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "What is its area now?",
+          "commands": [
+            {
+              "id": "e9e8a4a5-1f04-4c7a-8d9a-40490bf6c6c7",
+              "rawPhrase": "What is its area now?",
+              "normalizedPhrase": "what is its area now",
+              "detectedAction": "",
+              "action": "FIND",
+              "subAction": "AREA",
+              "mode": "geometry2d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "3d5916c5-e112-4919-9771-c0d035f622b6"
+            }
+          ],
+          "ir": [
+            {
+              "action": "FIND",
+              "object": {
+                "references": [
+                  "3d5916c5-e112-4919-9771-c0d035f622b6"
+                ]
+              },
+              "parameters": {
+                "multiple": false
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "measurement"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "6cff0b83-084f-43d8-bcef-073841be108d",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "e9e8a4a5-1f04-4c7a-8d9a-40490bf6c6c7",
+                "action": "FIND",
+                "subAction": "AREA",
+                "dependsOn": [],
+                "references": [
+                  "3d5916c5-e112-4919-9771-c0d035f622b6"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "measurement"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "name": "undo preserves dimensions, ID, color and native object",
+      "passed": true,
+      "details": {
+        "id": "3d5916c5-e112-4919-9771-c0d035f622b6",
+        "type": "rectangle",
+        "mode": "geometry2d",
+        "position": [
+          0,
+          0
+        ],
+        "radius": 3,
+        "label": "R1",
+        "style": {
+          "color": "#3b82f6",
+          "visible": true
+        },
+        "command": {
+          "kind": "rectangle",
+          "dimension": "2d",
+          "points": [],
+          "width": 6,
+          "height": 6,
+          "depth": 3,
+          "radius": 3,
+          "sides": 6,
+          "color": "#3b82f6",
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 1,
+          "action": "update",
+          "fitDimensions": true,
+          "roboLabel": "R1",
+          "objectId": "3d5916c5-e112-4919-9771-c0d035f622b6"
+        },
+        "vertices": [
+          [
+            -3,
+            -3
+          ],
+          [
+            3,
+            -3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            -3,
+            3
+          ]
+        ],
+        "creationOrder": 1
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "name": "normal entry tutoring wrong/hint/equivalent answer/detail",
+      "passed": true,
+      "details": {
+        "wrong": {
+          "status": "success",
+          "message": "That does not match the area. Use width × height: 6 × 6 = 36. You used the perimeter formula; perimeter measures the boundary length.",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "f3c1f6f0-cd8e-40d5-9311-7b6331d0577c",
+            "message": "That does not match the area. Use width × height: 6 × 6 = 36. You used the perimeter formula; perimeter measures the boundary length.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "I think the area is 24",
+            "commands": [],
+            "confidence": 1
+          }
+        },
+        "hint": {
+          "status": "success",
+          "message": "For a rectangle, multiply its width by its height. Which two dimensions should you use?",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "ad0d8441-dd87-416f-8956-e432fde36d6b",
+            "message": "For a rectangle, multiply its width by its height. Which two dimensions should you use?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Give me a hint",
+            "commands": [],
+            "confidence": 1
+          }
+        },
+        "correct": {
+          "status": "success",
+          "message": "Correct: your expression matches 36 square units.",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "db35df14-eb8d-4d61-bc09-f8caeacd92a3",
+            "message": "Correct: your expression matches 36 square units.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "My answer is 72/2",
+            "commands": [],
+            "confidence": 1
+          }
+        },
+        "detail": {
+          "status": "success",
+          "message": "Rectangle area = width × height = 6 × 6 = 36 square units. Each unit row contains the width in squares, and there are height rows. Rotation preserves these dimensions and area.",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "ee07ae60-0dba-4f3b-b630-61ae6620538f",
+            "message": "Rectangle area = width × height = 6 × 6 = 36 square units. Each unit row contains the width in squares, and there are height rows. Rotation preserves these dimensions and area.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Explain in detail",
+            "commands": [],
+            "confidence": 1
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "name": "fuzzy resizing asks for a number without changing geometry",
+      "passed": true,
+      "details": {
+        "status": "ambiguous",
+        "message": "What exact scale factor should I use? A phrase such as “a little larger” does not specify a number.",
+        "execution": {
+          "status": "invalid_input",
+          "requestId": "224a564b-67b3-404a-a849-f57752ffeec4",
+          "message": "What exact scale factor should I use? A phrase such as “a little larger” does not specify a number.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Scale it",
+          "commands": [
+            {
+              "id": "7c5ff4d9-6859-4c11-9d2c-6aae4001b2d1",
+              "rawPhrase": "Scale it",
+              "normalizedPhrase": "scale it",
+              "detectedAction": "SCALE",
+              "action": "SCALE",
+              "subAction": "UNIFORM",
+              "mode": "geometry2d",
+              "parameters": {},
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "ir": [
+            {
+              "action": "SCALE",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {},
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1
+        }
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "name": "compound action graph completes through normal entry",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Created 2D rectangle 4 by 6.\nmove rectangle.\narea = 24 units.\nUsing the current object geometry: area = 24 units.\nYes — area is 24, compared with 24. Numerical tolerance 1e-7.",
+        "value": true,
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "dfd57787-f181-4739-b8c2-6423225ba4c6",
+          "message": "Created 2D rectangle 4 by 6.\nmove rectangle.\narea = 24 units.\nUsing the current object geometry: area = 24 units.\nYes — area is 24, compared with 24. Numerical tolerance 1e-7.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Draw rectangle width 4 height 6; move it right by 2; find its area; explain; verify its area is 24",
+          "commands": [
+            {
+              "id": "f4f5c539-4b13-409f-a291-80e3cc878741",
+              "rawPhrase": "Draw rectangle width 4 height 6",
+              "normalizedPhrase": "draw rectangle width 4 height 6",
+              "detectedAction": "DRAW",
+              "action": "CREATE",
+              "subAction": "RECTANGLE",
+              "mode": "geometry2d",
+              "parameters": {
+                "legacy": {
+                  "kind": "rectangle",
+                  "dimension": "2d",
+                  "points": [],
+                  "width": 4,
+                  "height": 6,
+                  "depth": 3,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": true
+                },
+                "width": 4,
+                "height": 6,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": {
+                "type": "rectangle"
+              }
+            },
+            {
+              "id": "beb8fd96-fbb5-4916-b5ea-45a3fd25de01",
+              "rawPhrase": "move it right by 2",
+              "normalizedPhrase": "move it right by 2",
+              "detectedAction": "MOVE",
+              "action": "MOVE",
+              "subAction": "OBJECT",
+              "mode": "geometry2d",
+              "parameters": {
+                "vector": [
+                  2,
+                  0
+                ],
+                "multiple": false,
+                "dx": 2,
+                "dy": 0
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            },
+            {
+              "id": "d83de222-18a5-4580-8894-547ade92823d",
+              "rawPhrase": "find its area",
+              "normalizedPhrase": "find its area",
+              "detectedAction": "FIND",
+              "action": "FIND",
+              "subAction": "AREA",
+              "mode": "geometry2d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            },
+            {
+              "id": "06459f58-8c8c-4aae-8332-55f2b706351b",
+              "rawPhrase": "explain",
+              "normalizedPhrase": "explain",
+              "detectedAction": "EXPLAIN",
+              "action": "EXPLAIN",
+              "subAction": "PREVIOUS",
+              "mode": "geometry2d",
+              "parameters": {
+                "responseDepth": "detailed"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true
+            },
+            {
+              "id": "aaeea867-10b5-4e02-8569-3115e4c90b2c",
+              "rawPhrase": "verify its area is 24",
+              "normalizedPhrase": "verify its area is 24",
+              "detectedAction": "VERIFY",
+              "action": "CHECK",
+              "subAction": "MEASUREMENT",
+              "mode": "geometry2d",
+              "parameters": {
+                "measurement": "AREA",
+                "expectedValue": 24
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CREATE",
+              "object": {
+                "kind": "rectangle",
+                "references": [
+                  {
+                    "type": "rectangle"
+                  }
+                ]
+              },
+              "parameters": {
+                "legacy": {
+                  "kind": "rectangle",
+                  "dimension": "2d",
+                  "points": [],
+                  "width": 4,
+                  "height": 6,
+                  "depth": 3,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": true
+                },
+                "width": 4,
+                "height": 6,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "object"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "MOVE",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {
+                "vector": [
+                  2,
+                  0
+                ],
+                "multiple": false,
+                "dx": 2,
+                "dy": 0
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "FIND",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {
+                "multiple": false
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "measurement"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "EXPLAIN",
+              "object": {
+                "references": []
+              },
+              "parameters": {
+                "responseDepth": "detailed"
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "CHECK",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {
+                "measurement": "AREA",
+                "expectedValue": 24
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "8ca05359-4fc1-4a07-ae76-1a797602afd3",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "f4f5c539-4b13-409f-a291-80e3cc878741",
+                "action": "CREATE",
+                "subAction": "RECTANGLE",
+                "dependsOn": [],
+                "references": [
+                  {
+                    "type": "rectangle"
+                  }
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: width",
+                  "required: height"
+                ],
+                "output": "object"
+              },
+              {
+                "id": "beb8fd96-fbb5-4916-b5ea-45a3fd25de01",
+                "action": "MOVE",
+                "subAction": "OBJECT",
+                "dependsOn": [
+                  "f4f5c539-4b13-409f-a291-80e3cc878741"
+                ],
+                "references": [
+                  "lastReferenced"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: vector"
+                ],
+                "output": "state"
+              },
+              {
+                "id": "d83de222-18a5-4580-8894-547ade92823d",
+                "action": "FIND",
+                "subAction": "AREA",
+                "dependsOn": [
+                  "beb8fd96-fbb5-4916-b5ea-45a3fd25de01"
+                ],
+                "references": [
+                  "lastReferenced"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "measurement"
+              },
+              {
+                "id": "06459f58-8c8c-4aae-8332-55f2b706351b",
+                "action": "EXPLAIN",
+                "subAction": "PREVIOUS",
+                "dependsOn": [
+                  "d83de222-18a5-4580-8894-547ade92823d"
+                ],
+                "references": [],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "measurement"
+              },
+              {
+                "id": "aaeea867-10b5-4e02-8569-3115e4c90b2c",
+                "action": "CHECK",
+                "subAction": "MEASUREMENT",
+                "dependsOn": [
+                  "06459f58-8c8c-4aae-8332-55f2b706351b"
+                ],
+                "references": [
+                  "lastReferenced"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: measurement",
+                  "required: expectedValue"
+                ],
+                "output": "measurement"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "name": "contradiction leaves native objects unchanged",
+      "passed": true,
+      "details": {
+        "status": "invalid",
+        "message": "width must be positive and no greater than 10,000.",
+        "execution": {
+          "status": "invalid_input",
+          "requestId": "c9f7c74e-ff3f-4467-809b-8a5651a35e88",
+          "message": "width must be positive and no greater than 10,000.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Change its width to -96",
+          "commands": [
+            {
+              "id": "aa164716-1018-40d5-985a-21f58af1ef09",
+              "rawPhrase": "Change its width to -96",
+              "normalizedPhrase": "change its width to -96",
+              "detectedAction": "CHANGE",
+              "action": "CHANGE",
+              "subAction": "WIDTH",
+              "mode": "geometry2d",
+              "parameters": {
+                "width": -96,
+                "height": 6,
+                "depth": 3
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "72f5fb46-3a20-455f-a7ad-8cf8480376db"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "72f5fb46-3a20-455f-a7ad-8cf8480376db"
+                ]
+              },
+              "parameters": {
+                "width": -96,
+                "height": 6,
+                "depth": 3
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "80ae3295-cf6e-4cad-9542-50008cf64fc3",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "aa164716-1018-40d5-985a-21f58af1ef09",
+                "action": "CHANGE",
+                "subAction": "WIDTH",
+                "dependsOn": [],
+                "references": [
+                  "72f5fb46-3a20-455f-a7ad-8cf8480376db"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: width"
+                ],
+                "output": "state"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "name": "ambiguous reference resumes exact pending move",
+      "passed": true,
+      "details": {
+        "ambiguous": {
+          "status": "ambiguous",
+          "message": "Several objects match. Which object should I use?",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "60f237f5-ce50-4845-9f07-0b07da1d6aee",
+            "message": "Several objects match. Which object should I use?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Move that circle left by 2",
+            "commands": [
+              {
+                "id": "168be16f-a88d-426a-a911-68e95b2eccd6",
+                "rawPhrase": "Move that circle left by 2",
+                "normalizedPhrase": "move that circle left by 2",
+                "detectedAction": "MOVE",
+                "action": "MOVE",
+                "subAction": "OBJECT",
+                "mode": "geometry2d",
+                "parameters": {
+                  "vector": [
+                    -2,
+                    0
+                  ],
+                  "multiple": false,
+                  "dx": -2,
+                  "dy": 0
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "circle",
+                  "reference": "lastReferenced"
+                }
+              }
+            ],
+            "ir": [
+              {
+                "action": "MOVE",
+                "object": {
+                  "references": [
+                    {
+                      "type": "circle",
+                      "reference": "lastReferenced"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "vector": [
+                    -2,
+                    0
+                  ],
+                  "multiple": false,
+                  "dx": -2,
+                  "dy": 0
+                },
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1
+          }
+        },
+        "resolved": {
+          "status": "success",
+          "message": "move circle.",
+          "value": true,
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "65e3f097-78d7-4007-94fd-8acc727831bf",
+            "message": "move circle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Move that circle left by 2",
+            "commands": [
+              {
+                "id": "168be16f-a88d-426a-a911-68e95b2eccd6",
+                "rawPhrase": "Move that circle left by 2",
+                "normalizedPhrase": "move that circle left by 2",
+                "detectedAction": "MOVE",
+                "action": "MOVE",
+                "subAction": "OBJECT",
+                "mode": "geometry2d",
+                "parameters": {
+                  "vector": [
+                    -2,
+                    0
+                  ],
+                  "multiple": false,
+                  "dx": -2,
+                  "dy": 0
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": "2128d393-0460-4ceb-afd7-c72dd0792f11"
+              }
+            ],
+            "ir": [
+              {
+                "action": "MOVE",
+                "object": {
+                  "references": [
+                    "2128d393-0460-4ceb-afd7-c72dd0792f11"
+                  ]
+                },
+                "parameters": {
+                  "vector": [
+                    -2,
+                    0
+                  ],
+                  "multiple": false,
+                  "dx": -2,
+                  "dy": 0
+                },
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "da19f8c8-c5a8-4234-82b8-f8fd83002212",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "168be16f-a88d-426a-a911-68e95b2eccd6",
+                  "action": "MOVE",
+                  "subAction": "OBJECT",
+                  "dependsOn": [],
+                  "references": [
+                    "2128d393-0460-4ceb-afd7-c72dd0792f11"
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions",
+                    "required: vector"
+                  ],
+                  "output": "state"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "name": "relative angle is 89 degrees",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Angle A is now 89 degrees. Fixed vertex and incident side lengths are preserved; the second incident endpoint moves on the existing orientation branch.",
+        "value": true,
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "c8f0c2a2-440f-4d11-93d2-9bffb914b0e1",
+          "message": "Angle A is now 89 degrees. Fixed vertex and incident side lengths are preserved; the second incident endpoint moves on the existing orientation branch.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Increase it by another three",
+          "commands": [
+            {
+              "id": "cba36768-5650-4aad-9b46-1c48de5a3029",
+              "rawPhrase": "Increase it by another three",
+              "normalizedPhrase": "increase it by another 3",
+              "detectedAction": "INCREASE",
+              "action": "CHANGE",
+              "subAction": "ANGLE",
+              "mode": "geometry2d",
+              "parameters": {
+                "angle": 3,
+                "vertex": "A",
+                "angleOperation": "increment"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "845544c2-940d-4f13-a7fd-fcccfdfe4b27"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "845544c2-940d-4f13-a7fd-fcccfdfe4b27"
+                ]
+              },
+              "parameters": {
+                "angle": 3,
+                "vertex": "A",
+                "angleOperation": "increment"
+              },
+              "constraints": {
+                "dimension": 2,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "b9a9a694-5fc1-4bfe-9c75-4c7679615b2b",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "cba36768-5650-4aad-9b46-1c48de5a3029",
+                "action": "CHANGE",
+                "subAction": "ANGLE",
+                "dependsOn": [],
+                "references": [
+                  "845544c2-940d-4f13-a7fd-fcccfdfe4b27"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "state"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "name": "medians centroid circumcircle native dependencies",
+      "passed": true,
+      "details": {
+        "construction": {
+          "status": "success",
+          "message": "Created 2D triangle.\nCreated median from A.\nCreated median from B.\nCreated median from C.\nMarked centroid.\nCreated circumcircle with radius 3.16227766.",
+          "value": [
+            2.6666666666666665,
+            1.3333333333333333
+          ],
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "af71a13c-2eff-49a2-ae61-5de970bed494",
+            "message": "Created 2D triangle.\nCreated median from A.\nCreated median from B.\nCreated median from C.\nMarked centroid.\nCreated circumcircle with radius 3.16227766.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Draw triangle ABC with A(0,0), B(6,0), C(2,4); construct its medians; mark its centroid; construct its circumcircle",
+            "commands": [
+              {
+                "id": "7cd9ec97-d78e-43e4-8202-87453c2cf217",
+                "rawPhrase": "Draw triangle ABC with A(0,0), B(6,0), C(2,4)",
+                "normalizedPhrase": "draw triangle abc with a(0,0), b(6,0), c(2,4)",
+                "detectedAction": "DRAW",
+                "action": "CREATE",
+                "subAction": "TRIANGLE",
+                "mode": "geometry2d",
+                "parameters": {
+                  "legacy": {
+                    "kind": "triangle",
+                    "dimension": "2d",
+                    "points": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        2,
+                        4
+                      ]
+                    ],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 3,
+                  "depth": 3,
+                  "sides": 6,
+                  "label": "ABC",
+                  "points": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      6,
+                      0
+                    ],
+                    [
+                      2,
+                      4
+                    ]
+                  ],
+                  "vertexLabels": [
+                    "A",
+                    "B",
+                    "C"
+                  ]
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "triangle"
+                }
+              },
+              {
+                "id": "c75eb5d7-85d4-43a9-adb1-e51f4f22d363",
+                "rawPhrase": "construct its medians",
+                "normalizedPhrase": "construct its medians",
+                "detectedAction": "CONSTRUCT",
+                "action": "CONSTRUCT",
+                "subAction": "MEDIAN",
+                "mode": "geometry2d",
+                "parameters": {
+                  "from": "A"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "triangle"
+                }
+              },
+              {
+                "id": "f1965859-4b54-45d2-bf79-9a135f482b8c",
+                "rawPhrase": "construct its medians",
+                "normalizedPhrase": "construct its medians",
+                "detectedAction": "CONSTRUCT",
+                "action": "CONSTRUCT",
+                "subAction": "MEDIAN",
+                "mode": "geometry2d",
+                "parameters": {
+                  "from": "B"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "triangle"
+                }
+              },
+              {
+                "id": "ec8e510a-1561-402b-bdd2-7c69e0b73ac4",
+                "rawPhrase": "construct its medians",
+                "normalizedPhrase": "construct its medians",
+                "detectedAction": "CONSTRUCT",
+                "action": "CONSTRUCT",
+                "subAction": "MEDIAN",
+                "mode": "geometry2d",
+                "parameters": {
+                  "from": "C"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "triangle"
+                }
+              },
+              {
+                "id": "b83bbce8-367e-4d73-9520-8d27958e1f14",
+                "rawPhrase": "mark its centroid",
+                "normalizedPhrase": "mark its centroid",
+                "detectedAction": "MARK",
+                "action": "MARK",
+                "subAction": "CENTROID",
+                "mode": "geometry2d",
+                "parameters": {},
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": "lastReferenced"
+              },
+              {
+                "id": "bc195015-38ed-4f65-84ba-c817d8870f46",
+                "rawPhrase": "construct its circumcircle",
+                "normalizedPhrase": "construct its circumcircle",
+                "detectedAction": "CONSTRUCT",
+                "action": "CONSTRUCT",
+                "subAction": "CIRCUMCIRCLE",
+                "mode": "geometry2d",
+                "parameters": {},
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "triangle",
+                  "reference": "lastReferenced"
+                }
+              }
+            ],
+            "ir": [
+              {
+                "action": "CREATE",
+                "object": {
+                  "kind": "triangle",
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "legacy": {
+                    "kind": "triangle",
+                    "dimension": "2d",
+                    "points": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        6,
+                        0
+                      ],
+                      [
+                        2,
+                        4
+                      ]
+                    ],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 3,
+                  "depth": 3,
+                  "sides": 6,
+                  "label": "ABC",
+                  "points": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      6,
+                      0
+                    ],
+                    [
+                      2,
+                      4
+                    ]
+                  ],
+                  "vertexLabels": [
+                    "A",
+                    "B",
+                    "C"
+                  ]
+                },
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": true
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "object"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              },
+              {
+                "action": "CONSTRUCT",
+                "object": {
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "from": "A"
+                },
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              },
+              {
+                "action": "CONSTRUCT",
+                "object": {
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "from": "B"
+                },
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              },
+              {
+                "action": "CONSTRUCT",
+                "object": {
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "from": "C"
+                },
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              },
+              {
+                "action": "MARK",
+                "object": {
+                  "references": [
+                    "lastReferenced"
+                  ]
+                },
+                "parameters": {},
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              },
+              {
+                "action": "CONSTRUCT",
+                "object": {
+                  "references": [
+                    {
+                      "type": "triangle",
+                      "reference": "lastReferenced"
+                    }
+                  ]
+                },
+                "parameters": {},
+                "constraints": {
+                  "dimension": 2,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "db248209-60d9-4d42-bd49-1593629d5020",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "7cd9ec97-d78e-43e4-8202-87453c2cf217",
+                  "action": "CREATE",
+                  "subAction": "TRIANGLE",
+                  "dependsOn": [],
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                },
+                {
+                  "id": "c75eb5d7-85d4-43a9-adb1-e51f4f22d363",
+                  "action": "CONSTRUCT",
+                  "subAction": "MEDIAN",
+                  "dependsOn": [
+                    "7cd9ec97-d78e-43e4-8202-87453c2cf217"
+                  ],
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                },
+                {
+                  "id": "f1965859-4b54-45d2-bf79-9a135f482b8c",
+                  "action": "CONSTRUCT",
+                  "subAction": "MEDIAN",
+                  "dependsOn": [
+                    "c75eb5d7-85d4-43a9-adb1-e51f4f22d363"
+                  ],
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                },
+                {
+                  "id": "ec8e510a-1561-402b-bdd2-7c69e0b73ac4",
+                  "action": "CONSTRUCT",
+                  "subAction": "MEDIAN",
+                  "dependsOn": [
+                    "f1965859-4b54-45d2-bf79-9a135f482b8c"
+                  ],
+                  "references": [
+                    {
+                      "type": "triangle"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                },
+                {
+                  "id": "b83bbce8-367e-4d73-9520-8d27958e1f14",
+                  "action": "MARK",
+                  "subAction": "CENTROID",
+                  "dependsOn": [
+                    "ec8e510a-1561-402b-bdd2-7c69e0b73ac4"
+                  ],
+                  "references": [
+                    "lastReferenced"
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                },
+                {
+                  "id": "bc195015-38ed-4f65-84ba-c817d8870f46",
+                  "action": "CONSTRUCT",
+                  "subAction": "CIRCUMCIRCLE",
+                  "dependsOn": [
+                    "b83bbce8-367e-4d73-9520-8d27958e1f14"
+                  ],
+                  "references": [
+                    {
+                      "type": "triangle",
+                      "reference": "lastReferenced"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                }
+              ]
+            }
+          }
+        },
+        "count": 6
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "name": "proof exposes numerical evidence",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "The perpendicular bisector of AB consists of points equally distant from A and B. Intersecting it with the bisector of BC gives OA = OB = OC for a noncollinear triangle. For this construction the three distances are 3.1622776601683795, 3.1622776601683795, 3.1622776601683795; the maximum equal-distance/radius residual is 4.440892098500626e-16. This is a numerical incidence check of the drawn construction, alongside the Euclidean argument.",
+        "execution": {
+          "status": "verified",
+          "requestId": "db109378-3915-49f5-9fb6-cd06bd1df5ae",
+          "message": "The perpendicular bisector of AB consists of points equally distant from A and B. Intersecting it with the bisector of BC gives OA = OB = OC for a noncollinear triangle. For this construction the three distances are 3.1622776601683795, 3.1622776601683795, 3.1622776601683795; the maximum equal-distance/radius residual is 4.440892098500626e-16. This is a numerical incidence check of the drawn construction, alongside the Euclidean argument.",
+          "evidence": {
+            "level": "numerical_consistency",
+            "independent": true,
+            "passed": true,
+            "method": "Independent coordinate incidence check, tolerance 1e-7",
+            "residual": 4.440892098500626e-16,
+            "assumptions": [
+              "Finite Euclidean 2D coordinates; floating point tolerance."
+            ]
+          }
+        },
+        "plan": {
+          "rawPhrase": "Prove the circumcenter is equidistant from the vertices",
+          "commands": [],
+          "confidence": 1
+        }
+      }
+    },
+    {
+      "mode": "graph3d",
+      "name": "relative width reaches the native workspace",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Changed rectangle.",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "a94738f7-4824-4128-87d1-072e2af03780",
+          "message": "Changed rectangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Change its width to 6",
+          "commands": [
+            {
+              "id": "fbcb93b2-3d33-4d20-8797-6d8ceccf03dd",
+              "rawPhrase": "Change its width to 6",
+              "normalizedPhrase": "change its width to 6",
+              "detectedAction": "CHANGE",
+              "action": "CHANGE",
+              "subAction": "WIDTH",
+              "mode": "graph3d",
+              "parameters": {
+                "width": 6,
+                "height": 6,
+                "depth": 3
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "a90a879b-df08-4eca-8e55-032ea8e6f299"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "a90a879b-df08-4eca-8e55-032ea8e6f299"
+                ]
+              },
+              "parameters": {
+                "width": 6,
+                "height": 6,
+                "depth": 3
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "8ccbf65b-673f-4e94-98dd-5f0e6021ed64",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "fbcb93b2-3d33-4d20-8797-6d8ceccf03dd",
+                "action": "CHANGE",
+                "subAction": "WIDTH",
+                "dependsOn": [],
+                "references": [
+                  "a90a879b-df08-4eca-8e55-032ea8e6f299"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: width"
+                ],
+                "output": "state"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph3d",
+      "name": "current rotated rectangle area",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "area = 36 units.",
+        "value": 36,
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "c833ddaf-c1e0-4177-adf4-157e65db2ba5",
+          "message": "area = 36 units.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "What is its area now?",
+          "commands": [
+            {
+              "id": "42aca3be-ad12-4680-b144-a21633096d28",
+              "rawPhrase": "What is its area now?",
+              "normalizedPhrase": "what is its area now",
+              "detectedAction": "",
+              "action": "FIND",
+              "subAction": "AREA",
+              "mode": "graph3d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "a90a879b-df08-4eca-8e55-032ea8e6f299"
+            }
+          ],
+          "ir": [
+            {
+              "action": "FIND",
+              "object": {
+                "references": [
+                  "a90a879b-df08-4eca-8e55-032ea8e6f299"
+                ]
+              },
+              "parameters": {
+                "multiple": false
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "measurement"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "29f6cc7a-e858-49b9-b8b5-0658ba2a6ec8",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "42aca3be-ad12-4680-b144-a21633096d28",
+                "action": "FIND",
+                "subAction": "AREA",
+                "dependsOn": [],
+                "references": [
+                  "a90a879b-df08-4eca-8e55-032ea8e6f299"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "measurement"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph3d",
+      "name": "undo preserves dimensions, ID, color and native object",
+      "passed": true,
+      "details": {
+        "id": "a90a879b-df08-4eca-8e55-032ea8e6f299",
+        "type": "rectangle",
+        "mode": "graph3d",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "radius": 3,
+        "label": "R1",
+        "style": {
+          "color": "#3b82f6",
+          "visible": true
+        },
+        "command": {
+          "kind": "rectangle",
+          "dimension": "3d",
+          "points": [
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "width": 6,
+          "height": 6,
+          "depth": 3,
+          "radius": 3,
+          "sides": 6,
+          "color": "#3b82f6",
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 1,
+          "action": "update",
+          "fitDimensions": true,
+          "roboLabel": "R1",
+          "objectId": "a90a879b-df08-4eca-8e55-032ea8e6f299",
+          "roboVisible": true
+        },
+        "vertices": [
+          [
+            -3,
+            -3,
+            0
+          ],
+          [
+            3,
+            -3,
+            0
+          ],
+          [
+            3,
+            3,
+            0
+          ],
+          [
+            -3,
+            3,
+            0
+          ]
+        ],
+        "creationOrder": 1
+      }
+    },
+    {
+      "mode": "graph3d",
+      "name": "normal entry tutoring wrong/hint/equivalent answer/detail",
+      "passed": true,
+      "details": {
+        "wrong": {
+          "status": "success",
+          "message": "That does not match the area. Use width × height: 6 × 6 = 36. You used the perimeter formula; perimeter measures the boundary length.",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "10858248-574c-4986-816d-51fd0aea451f",
+            "message": "That does not match the area. Use width × height: 6 × 6 = 36. You used the perimeter formula; perimeter measures the boundary length.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "I think the area is 24",
+            "commands": [],
+            "confidence": 1
+          }
+        },
+        "hint": {
+          "status": "success",
+          "message": "For a rectangle, multiply its width by its height. Which two dimensions should you use?",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "91d9a585-cbee-4fc1-a0ce-f36c8c38c1eb",
+            "message": "For a rectangle, multiply its width by its height. Which two dimensions should you use?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Give me a hint",
+            "commands": [],
+            "confidence": 1
+          }
+        },
+        "correct": {
+          "status": "success",
+          "message": "Correct: your expression matches 36 square units.",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "1d9de9c4-00c4-4fbb-954a-03d6fff8cda9",
+            "message": "Correct: your expression matches 36 square units.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "My answer is 72/2",
+            "commands": [],
+            "confidence": 1
+          }
+        },
+        "detail": {
+          "status": "success",
+          "message": "Rectangle area = width × height = 6 × 6 = 36 square units. Each unit row contains the width in squares, and there are height rows. Rotation preserves these dimensions and area.",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "0f5ec22f-237c-40c9-8662-4d4d414ef3e5",
+            "message": "Rectangle area = width × height = 6 × 6 = 36 square units. Each unit row contains the width in squares, and there are height rows. Rotation preserves these dimensions and area.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Explain in detail",
+            "commands": [],
+            "confidence": 1
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph3d",
+      "name": "fuzzy resizing asks for a number without changing geometry",
+      "passed": true,
+      "details": {
+        "status": "ambiguous",
+        "message": "What exact scale factor should I use? A phrase such as “a little larger” does not specify a number.",
+        "execution": {
+          "status": "invalid_input",
+          "requestId": "368fab1e-8f44-4e48-85b1-1e8fd2ca4860",
+          "message": "What exact scale factor should I use? A phrase such as “a little larger” does not specify a number.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Scale it",
+          "commands": [
+            {
+              "id": "3366f1c7-f1a9-475f-9839-7731f9177b15",
+              "rawPhrase": "Scale it",
+              "normalizedPhrase": "scale it",
+              "detectedAction": "SCALE",
+              "action": "SCALE",
+              "subAction": "UNIFORM",
+              "mode": "graph3d",
+              "parameters": {},
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "ir": [
+            {
+              "action": "SCALE",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {},
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1
+        }
+      }
+    },
+    {
+      "mode": "graph3d",
+      "name": "compound action graph completes through normal entry",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Created 3D rectangle 4 by 6.\nmove rectangle.\narea = 24 units.\nUsing the current object geometry: area = 24 units.\nYes — area is 24, compared with 24. Numerical tolerance 1e-7.",
+        "value": true,
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "21ec0565-8006-4d1a-9c3f-8cd26368fb20",
+          "message": "Created 3D rectangle 4 by 6.\nmove rectangle.\narea = 24 units.\nUsing the current object geometry: area = 24 units.\nYes — area is 24, compared with 24. Numerical tolerance 1e-7.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Draw rectangle width 4 height 6; move it right by 2; find its area; explain; verify its area is 24",
+          "commands": [
+            {
+              "id": "5ad91b85-db77-436e-ab15-4585200b1876",
+              "rawPhrase": "Draw rectangle width 4 height 6",
+              "normalizedPhrase": "draw rectangle width 4 height 6",
+              "detectedAction": "DRAW",
+              "action": "CREATE",
+              "subAction": "RECTANGLE",
+              "mode": "graph3d",
+              "parameters": {
+                "legacy": {
+                  "kind": "rectangle",
+                  "dimension": "3d",
+                  "points": [],
+                  "width": 4,
+                  "height": 6,
+                  "depth": 3,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": true
+                },
+                "width": 4,
+                "height": 6,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": {
+                "type": "rectangle"
+              }
+            },
+            {
+              "id": "ddc89f3c-b87d-476e-b2d0-0e51f68642c8",
+              "rawPhrase": "move it right by 2",
+              "normalizedPhrase": "move it right by 2",
+              "detectedAction": "MOVE",
+              "action": "MOVE",
+              "subAction": "OBJECT",
+              "mode": "graph3d",
+              "parameters": {
+                "vector": [
+                  2,
+                  0,
+                  0
+                ],
+                "multiple": false,
+                "dx": 2,
+                "dy": 0,
+                "dz": 0
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            },
+            {
+              "id": "3beb84dd-1a64-4a32-96d2-10b3bf964ce9",
+              "rawPhrase": "find its area",
+              "normalizedPhrase": "find its area",
+              "detectedAction": "FIND",
+              "action": "FIND",
+              "subAction": "AREA",
+              "mode": "graph3d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            },
+            {
+              "id": "837db754-887f-463f-ae01-149d658f947a",
+              "rawPhrase": "explain",
+              "normalizedPhrase": "explain",
+              "detectedAction": "EXPLAIN",
+              "action": "EXPLAIN",
+              "subAction": "PREVIOUS",
+              "mode": "graph3d",
+              "parameters": {
+                "responseDepth": "detailed"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true
+            },
+            {
+              "id": "e5f6632a-1f69-4701-b297-9998667f1352",
+              "rawPhrase": "verify its area is 24",
+              "normalizedPhrase": "verify its area is 24",
+              "detectedAction": "VERIFY",
+              "action": "CHECK",
+              "subAction": "MEASUREMENT",
+              "mode": "graph3d",
+              "parameters": {
+                "measurement": "AREA",
+                "expectedValue": 24
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CREATE",
+              "object": {
+                "kind": "rectangle",
+                "references": [
+                  {
+                    "type": "rectangle"
+                  }
+                ]
+              },
+              "parameters": {
+                "legacy": {
+                  "kind": "rectangle",
+                  "dimension": "3d",
+                  "points": [],
+                  "width": 4,
+                  "height": 6,
+                  "depth": 3,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": true
+                },
+                "width": 4,
+                "height": 6,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "object"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "MOVE",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {
+                "vector": [
+                  2,
+                  0,
+                  0
+                ],
+                "multiple": false,
+                "dx": 2,
+                "dy": 0,
+                "dz": 0
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "FIND",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {
+                "multiple": false
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "measurement"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "EXPLAIN",
+              "object": {
+                "references": []
+              },
+              "parameters": {
+                "responseDepth": "detailed"
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "CHECK",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {
+                "measurement": "AREA",
+                "expectedValue": 24
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "5d6116c7-5d72-43c8-bff9-78871b5807a9",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "5ad91b85-db77-436e-ab15-4585200b1876",
+                "action": "CREATE",
+                "subAction": "RECTANGLE",
+                "dependsOn": [],
+                "references": [
+                  {
+                    "type": "rectangle"
+                  }
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: width",
+                  "required: height"
+                ],
+                "output": "object"
+              },
+              {
+                "id": "ddc89f3c-b87d-476e-b2d0-0e51f68642c8",
+                "action": "MOVE",
+                "subAction": "OBJECT",
+                "dependsOn": [
+                  "5ad91b85-db77-436e-ab15-4585200b1876"
+                ],
+                "references": [
+                  "lastReferenced"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: vector"
+                ],
+                "output": "state"
+              },
+              {
+                "id": "3beb84dd-1a64-4a32-96d2-10b3bf964ce9",
+                "action": "FIND",
+                "subAction": "AREA",
+                "dependsOn": [
+                  "ddc89f3c-b87d-476e-b2d0-0e51f68642c8"
+                ],
+                "references": [
+                  "lastReferenced"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "measurement"
+              },
+              {
+                "id": "837db754-887f-463f-ae01-149d658f947a",
+                "action": "EXPLAIN",
+                "subAction": "PREVIOUS",
+                "dependsOn": [
+                  "3beb84dd-1a64-4a32-96d2-10b3bf964ce9"
+                ],
+                "references": [],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "measurement"
+              },
+              {
+                "id": "e5f6632a-1f69-4701-b297-9998667f1352",
+                "action": "CHECK",
+                "subAction": "MEASUREMENT",
+                "dependsOn": [
+                  "837db754-887f-463f-ae01-149d658f947a"
+                ],
+                "references": [
+                  "lastReferenced"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: measurement",
+                  "required: expectedValue"
+                ],
+                "output": "measurement"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph3d",
+      "name": "contradiction leaves native objects unchanged",
+      "passed": true,
+      "details": {
+        "status": "invalid",
+        "message": "width must be positive and no greater than 10,000.",
+        "execution": {
+          "status": "invalid_input",
+          "requestId": "0f2e3334-9646-4f22-b035-b4b5bc1faae6",
+          "message": "width must be positive and no greater than 10,000.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Change its width to -96",
+          "commands": [
+            {
+              "id": "b83a9afa-f872-4395-bc6f-bea60af75adb",
+              "rawPhrase": "Change its width to -96",
+              "normalizedPhrase": "change its width to -96",
+              "detectedAction": "CHANGE",
+              "action": "CHANGE",
+              "subAction": "WIDTH",
+              "mode": "graph3d",
+              "parameters": {
+                "width": -96,
+                "height": 6,
+                "depth": 3
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "3b1b0fa6-13c0-4dda-ad53-0aea520c9e95"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "3b1b0fa6-13c0-4dda-ad53-0aea520c9e95"
+                ]
+              },
+              "parameters": {
+                "width": -96,
+                "height": 6,
+                "depth": 3
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "06e81ca0-b5a0-4a68-a1ae-64627162a481",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "b83a9afa-f872-4395-bc6f-bea60af75adb",
+                "action": "CHANGE",
+                "subAction": "WIDTH",
+                "dependsOn": [],
+                "references": [
+                  "3b1b0fa6-13c0-4dda-ad53-0aea520c9e95"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: width"
+                ],
+                "output": "state"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "name": "relative width reaches the native workspace",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Changed rectangle.",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "23365948-db77-4029-a368-1c3407cac8d1",
+          "message": "Changed rectangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Change its width to 6",
+          "commands": [
+            {
+              "id": "8fc72404-5892-428e-8db8-dc7f3876fa0f",
+              "rawPhrase": "Change its width to 6",
+              "normalizedPhrase": "change its width to 6",
+              "detectedAction": "CHANGE",
+              "action": "CHANGE",
+              "subAction": "WIDTH",
+              "mode": "geometry3d",
+              "parameters": {
+                "width": 6,
+                "height": 6,
+                "depth": 3
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "29167bed-3ab6-43cf-bc93-4fc86c6d2460"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "29167bed-3ab6-43cf-bc93-4fc86c6d2460"
+                ]
+              },
+              "parameters": {
+                "width": 6,
+                "height": 6,
+                "depth": 3
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "562ef393-3469-4ddb-bc45-4fdf5d84546c",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "8fc72404-5892-428e-8db8-dc7f3876fa0f",
+                "action": "CHANGE",
+                "subAction": "WIDTH",
+                "dependsOn": [],
+                "references": [
+                  "29167bed-3ab6-43cf-bc93-4fc86c6d2460"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: width"
+                ],
+                "output": "state"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "name": "current rotated rectangle area",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "area = 36 units.",
+        "value": 36,
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "d4bd6de0-bf16-4206-bf87-a7923ddcb0e1",
+          "message": "area = 36 units.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "What is its area now?",
+          "commands": [
+            {
+              "id": "e169a329-c0f0-435f-82a4-7eecf7f47570",
+              "rawPhrase": "What is its area now?",
+              "normalizedPhrase": "what is its area now",
+              "detectedAction": "",
+              "action": "FIND",
+              "subAction": "AREA",
+              "mode": "geometry3d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "29167bed-3ab6-43cf-bc93-4fc86c6d2460"
+            }
+          ],
+          "ir": [
+            {
+              "action": "FIND",
+              "object": {
+                "references": [
+                  "29167bed-3ab6-43cf-bc93-4fc86c6d2460"
+                ]
+              },
+              "parameters": {
+                "multiple": false
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "measurement"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "090bf883-ee4d-4341-9c97-98a62c8fbc82",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "e169a329-c0f0-435f-82a4-7eecf7f47570",
+                "action": "FIND",
+                "subAction": "AREA",
+                "dependsOn": [],
+                "references": [
+                  "29167bed-3ab6-43cf-bc93-4fc86c6d2460"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "measurement"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "name": "undo preserves dimensions, ID, color and native object",
+      "passed": true,
+      "details": {
+        "id": "29167bed-3ab6-43cf-bc93-4fc86c6d2460",
+        "type": "rectangle",
+        "mode": "geometry3d",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "radius": 3,
+        "label": "R1",
+        "style": {
+          "color": "#3b82f6",
+          "visible": true
+        },
+        "command": {
+          "kind": "rectangle",
+          "dimension": "3d",
+          "points": [
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "width": 6,
+          "height": 6,
+          "depth": 3,
+          "radius": 3,
+          "sides": 6,
+          "color": "#3b82f6",
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "scale": 1,
+          "action": "update",
+          "fitDimensions": true,
+          "roboLabel": "R1",
+          "objectId": "29167bed-3ab6-43cf-bc93-4fc86c6d2460",
+          "roboVisible": true
+        },
+        "vertices": [
+          [
+            -3,
+            -3,
+            0
+          ],
+          [
+            3,
+            -3,
+            0
+          ],
+          [
+            3,
+            3,
+            0
+          ],
+          [
+            -3,
+            3,
+            0
+          ]
+        ],
+        "creationOrder": 1
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "name": "normal entry tutoring wrong/hint/equivalent answer/detail",
+      "passed": true,
+      "details": {
+        "wrong": {
+          "status": "success",
+          "message": "That does not match the area. Use width × height: 6 × 6 = 36. You used the perimeter formula; perimeter measures the boundary length.",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "daa71068-b87d-4a78-b40c-d1fb805d3840",
+            "message": "That does not match the area. Use width × height: 6 × 6 = 36. You used the perimeter formula; perimeter measures the boundary length.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "I think the area is 24",
+            "commands": [],
+            "confidence": 1
+          }
+        },
+        "hint": {
+          "status": "success",
+          "message": "For a rectangle, multiply its width by its height. Which two dimensions should you use?",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "e3f9db2b-128b-446c-9207-4fa386bbe5c9",
+            "message": "For a rectangle, multiply its width by its height. Which two dimensions should you use?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Give me a hint",
+            "commands": [],
+            "confidence": 1
+          }
+        },
+        "correct": {
+          "status": "success",
+          "message": "Correct: your expression matches 36 square units.",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "01d5b0f2-74b6-42d7-ae31-6a7932890827",
+            "message": "Correct: your expression matches 36 square units.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "My answer is 72/2",
+            "commands": [],
+            "confidence": 1
+          }
+        },
+        "detail": {
+          "status": "success",
+          "message": "Rectangle area = width × height = 6 × 6 = 36 square units. Each unit row contains the width in squares, and there are height rows. Rotation preserves these dimensions and area.",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "371bc11d-ee97-4eef-a4c6-6078b6250c8a",
+            "message": "Rectangle area = width × height = 6 × 6 = 36 square units. Each unit row contains the width in squares, and there are height rows. Rotation preserves these dimensions and area.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "plan": {
+            "rawPhrase": "Explain in detail",
+            "commands": [],
+            "confidence": 1
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "name": "fuzzy resizing asks for a number without changing geometry",
+      "passed": true,
+      "details": {
+        "status": "ambiguous",
+        "message": "What exact scale factor should I use? A phrase such as “a little larger” does not specify a number.",
+        "execution": {
+          "status": "invalid_input",
+          "requestId": "6eba751c-c727-4512-b0de-4237d6f77b06",
+          "message": "What exact scale factor should I use? A phrase such as “a little larger” does not specify a number.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Scale it",
+          "commands": [
+            {
+              "id": "7dcccc3a-f50c-4113-b513-8b3a604b4387",
+              "rawPhrase": "Scale it",
+              "normalizedPhrase": "scale it",
+              "detectedAction": "SCALE",
+              "action": "SCALE",
+              "subAction": "UNIFORM",
+              "mode": "geometry3d",
+              "parameters": {},
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "ir": [
+            {
+              "action": "SCALE",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {},
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1
+        }
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "name": "compound action graph completes through normal entry",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Created 3D rectangle 4 by 6.\nmove rectangle.\narea = 24 units.\nUsing the current object geometry: area = 24 units.\nYes — area is 24, compared with 24. Numerical tolerance 1e-7.",
+        "value": true,
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "c29243e8-bd4c-4dca-8dc6-7002fa40a59d",
+          "message": "Created 3D rectangle 4 by 6.\nmove rectangle.\narea = 24 units.\nUsing the current object geometry: area = 24 units.\nYes — area is 24, compared with 24. Numerical tolerance 1e-7.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Draw rectangle width 4 height 6; move it right by 2; find its area; explain; verify its area is 24",
+          "commands": [
+            {
+              "id": "29f2016a-b915-4d2a-896b-e972f2107908",
+              "rawPhrase": "Draw rectangle width 4 height 6",
+              "normalizedPhrase": "draw rectangle width 4 height 6",
+              "detectedAction": "DRAW",
+              "action": "CREATE",
+              "subAction": "RECTANGLE",
+              "mode": "geometry3d",
+              "parameters": {
+                "legacy": {
+                  "kind": "rectangle",
+                  "dimension": "3d",
+                  "points": [],
+                  "width": 4,
+                  "height": 6,
+                  "depth": 3,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": true
+                },
+                "width": 4,
+                "height": 6,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": {
+                "type": "rectangle"
+              }
+            },
+            {
+              "id": "861af127-da63-4557-99c6-08bc4a0ee6a2",
+              "rawPhrase": "move it right by 2",
+              "normalizedPhrase": "move it right by 2",
+              "detectedAction": "MOVE",
+              "action": "MOVE",
+              "subAction": "OBJECT",
+              "mode": "geometry3d",
+              "parameters": {
+                "vector": [
+                  2,
+                  0,
+                  0
+                ],
+                "multiple": false,
+                "dx": 2,
+                "dy": 0,
+                "dz": 0
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            },
+            {
+              "id": "d8f1a381-304f-4220-ae5a-d3a2aab414ce",
+              "rawPhrase": "find its area",
+              "normalizedPhrase": "find its area",
+              "detectedAction": "FIND",
+              "action": "FIND",
+              "subAction": "AREA",
+              "mode": "geometry3d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            },
+            {
+              "id": "8a9db41b-0800-4c4f-8a69-0bcb2df25a9e",
+              "rawPhrase": "explain",
+              "normalizedPhrase": "explain",
+              "detectedAction": "EXPLAIN",
+              "action": "EXPLAIN",
+              "subAction": "PREVIOUS",
+              "mode": "geometry3d",
+              "parameters": {
+                "responseDepth": "detailed"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true
+            },
+            {
+              "id": "878d8ab4-5587-4088-9572-869d37804f17",
+              "rawPhrase": "verify its area is 24",
+              "normalizedPhrase": "verify its area is 24",
+              "detectedAction": "VERIFY",
+              "action": "CHECK",
+              "subAction": "MEASUREMENT",
+              "mode": "geometry3d",
+              "parameters": {
+                "measurement": "AREA",
+                "expectedValue": 24
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "lastReferenced"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CREATE",
+              "object": {
+                "kind": "rectangle",
+                "references": [
+                  {
+                    "type": "rectangle"
+                  }
+                ]
+              },
+              "parameters": {
+                "legacy": {
+                  "kind": "rectangle",
+                  "dimension": "3d",
+                  "points": [],
+                  "width": 4,
+                  "height": 6,
+                  "depth": 3,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": true
+                },
+                "width": 4,
+                "height": 6,
+                "radius": 3,
+                "depth": 3,
+                "sides": 6
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "object"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "MOVE",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {
+                "vector": [
+                  2,
+                  0,
+                  0
+                ],
+                "multiple": false,
+                "dx": 2,
+                "dy": 0,
+                "dz": 0
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "FIND",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {
+                "multiple": false
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "measurement"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "EXPLAIN",
+              "object": {
+                "references": []
+              },
+              "parameters": {
+                "responseDepth": "detailed"
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            },
+            {
+              "action": "CHECK",
+              "object": {
+                "references": [
+                  "lastReferenced"
+                ]
+              },
+              "parameters": {
+                "measurement": "AREA",
+                "expectedValue": 24
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": false,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "d0d8abe1-d112-48af-a806-657b6755fbb8",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "29f2016a-b915-4d2a-896b-e972f2107908",
+                "action": "CREATE",
+                "subAction": "RECTANGLE",
+                "dependsOn": [],
+                "references": [
+                  {
+                    "type": "rectangle"
+                  }
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: width",
+                  "required: height"
+                ],
+                "output": "object"
+              },
+              {
+                "id": "861af127-da63-4557-99c6-08bc4a0ee6a2",
+                "action": "MOVE",
+                "subAction": "OBJECT",
+                "dependsOn": [
+                  "29f2016a-b915-4d2a-896b-e972f2107908"
+                ],
+                "references": [
+                  "lastReferenced"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: vector"
+                ],
+                "output": "state"
+              },
+              {
+                "id": "d8f1a381-304f-4220-ae5a-d3a2aab414ce",
+                "action": "FIND",
+                "subAction": "AREA",
+                "dependsOn": [
+                  "861af127-da63-4557-99c6-08bc4a0ee6a2"
+                ],
+                "references": [
+                  "lastReferenced"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "measurement"
+              },
+              {
+                "id": "8a9db41b-0800-4c4f-8a69-0bcb2df25a9e",
+                "action": "EXPLAIN",
+                "subAction": "PREVIOUS",
+                "dependsOn": [
+                  "d8f1a381-304f-4220-ae5a-d3a2aab414ce"
+                ],
+                "references": [],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "measurement"
+              },
+              {
+                "id": "878d8ab4-5587-4088-9572-869d37804f17",
+                "action": "CHECK",
+                "subAction": "MEASUREMENT",
+                "dependsOn": [
+                  "8a9db41b-0800-4c4f-8a69-0bcb2df25a9e"
+                ],
+                "references": [
+                  "lastReferenced"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: measurement",
+                  "required: expectedValue"
+                ],
+                "output": "measurement"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "name": "contradiction leaves native objects unchanged",
+      "passed": true,
+      "details": {
+        "status": "invalid",
+        "message": "width must be positive and no greater than 10,000.",
+        "execution": {
+          "status": "invalid_input",
+          "requestId": "2e3aa358-4b85-4fd0-ab6f-05bf15d0e15e",
+          "message": "width must be positive and no greater than 10,000.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "rawPhrase": "Change its width to -96",
+          "commands": [
+            {
+              "id": "1ff820a0-0f1e-4f07-a199-f9caa5656d7d",
+              "rawPhrase": "Change its width to -96",
+              "normalizedPhrase": "change its width to -96",
+              "detectedAction": "CHANGE",
+              "action": "CHANGE",
+              "subAction": "WIDTH",
+              "mode": "geometry3d",
+              "parameters": {
+                "width": -96,
+                "height": 6,
+                "depth": 3
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "c4b9e387-5eea-4ca2-a615-bd4cafc8781b"
+            }
+          ],
+          "ir": [
+            {
+              "action": "CHANGE",
+              "object": {
+                "references": [
+                  "c4b9e387-5eea-4ca2-a615-bd4cafc8781b"
+                ]
+              },
+              "parameters": {
+                "width": -96,
+                "height": 6,
+                "depth": 3
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "c66fca45-12e9-48c8-b7a4-5caaa9c550fa",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "1ff820a0-0f1e-4f07-a199-f9caa5656d7d",
+                "action": "CHANGE",
+                "subAction": "WIDTH",
+                "dependsOn": [],
+                "references": [
+                  "c4b9e387-5eea-4ca2-a615-bd4cafc8781b"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: width"
+                ],
+                "output": "state"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "scope": "Normal assistant entry point, real native workspaces; remote network blocked; candidate CPU inference measured separately.",
+  "cpu": {
+    "backend": "cpu",
+    "iterations": 100,
+    "parameters": 28026,
+    "medianMs": 0.5,
+    "p95Ms": 1.5999999940395355,
+    "memory": {
+      "before": {
+        "unreliable": true,
+        "reasons": [
+          "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+        ],
+        "numTensors": 24,
+        "numDataBuffers": 24,
+        "numBytes": 834712
+      },
+      "during": {
+        "unreliable": true,
+        "reasons": [
+          "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+        ],
+        "numTensors": 30,
+        "numDataBuffers": 30,
+        "numBytes": 946816
+      },
+      "after": {
+        "unreliable": true,
+        "reasons": [
+          "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+        ],
+        "numTensors": 24,
+        "numDataBuffers": 24,
+        "numBytes": 834712
+      }
+    },
+    "scope": "Headless Chromium CPU on this host; candidate only, not a low-end hardware guarantee."
+  },
+  "passed": 36,
+  "failed": 0
+}

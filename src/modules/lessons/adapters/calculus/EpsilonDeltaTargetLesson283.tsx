@@ -224,7 +224,7 @@ export default function EpsilonDeltaTargetLesson283({
       </section>
       <section className="ed283-how">
         <b>HOW TO USE</b>
-        {[
+        {([
           [Eye, "1 Observe", "The purple band is L ± ε around y = L."],
           [
             Hand,
@@ -241,7 +241,7 @@ export default function EpsilonDeltaTargetLesson283({
             "4 Understand",
             "This is the ε–δ definition of lim x→a 2x = 2a in action.",
           ],
-        ].map(([Icon, title, text], index) => (
+        ] as const).map(([Icon, title, text], index) => (
           <article key={String(title)}>
             <Icon />
             <div>

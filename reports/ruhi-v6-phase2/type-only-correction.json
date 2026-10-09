@@ -1,0 +1,6 @@
+{
+  "file": "src/math-robo/intelligence/executionPlanner.ts",
+  "scope": "Non-null assertion at already resolved centroid source; TypeScript narrowing inside reducer callback",
+  "emittedJavaScriptIdentical": true,
+  "emittedSha256": "b4d17a20d1620b9fca466b9e36f5e34b70e2790613611b75cd753149b54625c6"
+}

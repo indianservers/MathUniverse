@@ -375,11 +375,11 @@ export default function VectorPlaneTargetLesson195({
           </div>
           <footer>
             <section>
-              {[
+              {([
                 ["Show parameter grid", grid, setGrid],
                 ["Show normal", normal, setNormal],
                 ["Show plane equation", equation, setEquation],
-              ].map(([name, value, setter]) => (
+              ] as const).map(([name, value, setter]) => (
                 <label key={String(name)}>
                   <input
                     aria-label={String(name)}
@@ -449,10 +449,10 @@ export default function VectorPlaneTargetLesson195({
           </article>
           <article>
             <h2>Parameters (move R on the plane)</h2>
-            {[
+            {([
               ["s", s, setS],
               ["t", t, setT],
-            ].map(([name, value, setter]) => (
+            ] as const).map(([name, value, setter]) => (
               <label key={String(name)}>
                 <b>
                   {name} = {fmt(value as number)}

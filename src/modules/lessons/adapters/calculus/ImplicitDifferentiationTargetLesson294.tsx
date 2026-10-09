@@ -129,7 +129,7 @@ export default function ImplicitDifferentiationTargetLesson294({
         ))}
       </nav>
       <section className="imp294-flow">
-        {[
+        {([
           [
             Eye,
             "1. Observe",
@@ -150,7 +150,7 @@ export default function ImplicitDifferentiationTargetLesson294({
             "4. Understand",
             "Implicit differentiation gives dy/dx without solving y explicitly.",
           ],
-        ].map(([Icon, t, p], i) => (
+        ] as const).map(([Icon, t, p], i) => (
           <article key={String(t)}>
             <Icon />
             <div>

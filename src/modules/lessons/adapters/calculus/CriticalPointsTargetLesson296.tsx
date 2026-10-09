@@ -128,7 +128,7 @@ export default function CriticalPointsTargetLesson296({
         ))}
       </nav>
       <section className="crit296-flow">
-        {[
+        {([
           [
             Eye,
             "1. Observe",
@@ -149,7 +149,7 @@ export default function CriticalPointsTargetLesson296({
             "4. Understand",
             "Use f'(x)=0 or f'(x) DNE as candidates for local maxima, minima, or saddle points—then test.",
           ],
-        ].map(([Icon, t, p], i) => (
+        ] as const).map(([Icon, t, p], i) => (
           <article key={String(t)}>
             <Icon />
             <div>
@@ -251,11 +251,11 @@ export default function CriticalPointsTargetLesson296({
                 <output>{h.toFixed(3)}</output>
               </label>
               <h4>Show</h4>
-              {[
+              {([
                 ["f(x) graph", showF, setShowF],
                 ["Axes & grid", showGrid, setShowGrid],
                 ["f′(x) sign chart", showSign, setShowSign],
-              ].map(([name, val, setter]) => (
+              ] as const).map(([name, val, setter]) => (
                 <label className="check" key={String(name)}>
                   <input
                     type="checkbox"

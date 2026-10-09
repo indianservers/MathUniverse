@@ -31,6 +31,8 @@ register('PLOT', ['FUNCTION','SURFACE_3D'], { required:['expression'], optional:
 register('FIND', ['DISTANCE','MIDPOINT','LENGTH','AREA','PERIMETER','CIRCUMFERENCE','SLOPE','CENTER','RADIUS','DIAMETER','CENTROID','VOLUME','SURFACE_AREA']);
 register('FIND', ['INTERSECTION','ROOTS','X_INTERCEPT','Y_INTERCEPT'], { modes:two });
 register('CHANGE', ['COLOR','WIDTH','HEIGHT','DEPTH','RADIUS','DIAMETER','POSITION','COORDINATES','LABEL'], { optional:['color','width','height','depth','radius','diameter','position','label'] });
+register('CHANGE',['SIDE'],{allowedTypes:['triangle'],required:['length','side','sidePolicy']});
+register('CHECK',['MEASUREMENT'],{required:['measurement','expectedValue'],mutatesScene:false});
 register('CHANGE',['ENDPOINTS'],{allowedTypes:['line','ray','vector'],required:['points']});
 register('MOVE', ['OBJECT'], { required:['vector'], optional:['vector','dx','dy','dz'] });
 register('ROTATE', ['OBJECT'], { required:['angle'], optional:['angle','axis'] });
@@ -92,7 +94,7 @@ enable('MARK','CENTROID',{modes:two,allowedTypes:['triangle']});
 enable('CREATE','SEGMENT',{modes:two});
 enable('CONSTRUCT','CONDITIONAL_INTERSECTION',{modes:two});
 enable('CHANGE','ANGLE',{modes:two});
-enable('CREATE','ANGLE',{modes:['graph2d','normal']});
+enable('CREATE','ANGLE',{modes:two});
 enable('CHANGE','LINE_WIDTH',{modes:two});
 enable('REFLECT','DIAGONAL',{modes:two});enable('MARK','SIDE_MIDPOINTS',{modes:two});
 enable('EXPLAIN','PREVIOUS',{mutatesScene:false,returnsValue:true,createsObject:false});
@@ -104,3 +106,6 @@ enable('CONSTRUCT','PERP_PLANE',{modes:['geometry3d','graph3d'],allowedTypes:['p
 const equationOperation=OPERATIONS.find(o=>o.action==='FIND'&&o.subAction==='EQUATION')!;equationOperation.modes=['normal','geometry2d','graph2d','geometry3d','graph3d'];equationOperation.allowedTypes=['line','plane'];
 
 enable('FIND','INTERSECTION',{modes:allModes});
+
+// Vertex centroid construction is implemented by the 2D and 3D dependency adapters.
+enable('MARK','CENTROID',{modes:allModes,allowedTypes:['triangle','rectangle','square','polygon']});

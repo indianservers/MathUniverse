@@ -139,13 +139,13 @@ export default function PerpendicularLineTargetLesson208({
         </div>
       </header>
       <nav className="grid grid-cols-5 overflow-hidden rounded-lg border border-slate-200 bg-white">
-        {[
+        {([
           ["Explore", "Manipulate", Eye],
           ["Construct", "Use tools", Compass],
           ["Pattern", "Compare slopes", Waypoints],
           ["Rule", "Prove it", BookOpenCheck],
           ["Practice", "Build alone", SquarePen],
-        ].map(([title, sub, StageIcon], index) => (
+        ] as const).map(([title, sub, StageIcon], index) => (
           <button
             type="button"
             key={String(title)}

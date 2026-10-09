@@ -1,0 +1,6 @@
+{
+  "source": "scripts/ruhi-2d-nlp-persistence.mjs",
+  "sha256": "f1bc621ba43a542fa4e19fe976eb8c6d4a8a50e18be2cf14b639b23b93a94702",
+  "adaptation": "Output directory only; expectations unchanged",
+  "hotReload": "Vite connection retained; refresh messages suppressed; 90-second automation limits; remote hosts blocked"
+}

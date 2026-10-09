@@ -1,5 +1,5 @@
 import {describe,it,expect} from 'vitest';
-import {writeFileSync} from 'node:fs';
+import {writeTestReport as writeFileSync} from '../testReport';
 import {SemanticEngine} from './semanticEngine';
 import {EngineRouter} from './engineRouter';
 import {describeObject} from './sceneContext';

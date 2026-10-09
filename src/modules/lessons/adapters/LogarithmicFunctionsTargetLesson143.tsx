@@ -392,12 +392,12 @@ export default function LogarithmicFunctionsTargetLesson143({
                 Reset <RotateCcw />
               </button>
             </header>
-            {[
+            {([
               ["Base b", b, 1.25, 5, 0.25, setB],
               ["Stretch a", a, -4, 4, 0.25, setA],
               ["Shift h", h, -3, 4, 0.25, setH],
               ["Shift k", k, -3, 4, 0.25, setK],
-            ].map(([label, value, min, max, step, setter]) => (
+            ] as const).map(([label, value, min, max, step, setter]) => (
               <label key={String(label)}>
                 <span>
                   {label} = <b>{clean(Number(value))}</b>

@@ -1,3 +1,4 @@
+import {RuhiChatWindow} from './RuhiChatWindow';
 import {CinematicMotionControls} from '../math-robo/animation/CinematicMotionControls';
 import {useRoboFun} from '../math-robo/character/useRoboFun';
 import {RoboFunMenu,RoboFunStatus} from '../math-robo/character/RoboFunMenu';
@@ -11,9 +12,9 @@ import {useRoboPosition} from '../math-robo/character/useRoboPosition';
 import {RoboAnimationLab} from '../math-robo/character/RoboAnimationLab';
 import type {RoboCharacterHandle} from '../math-robo/character/RoboCharacter';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import { graphExpressions, interpretVisualRequest, modeForPath, type VisualCommand } from './commands';
-import { applyVisualCommand, readRoboObject } from './workspaceBridge';
+import { applyVisualCommand, readRoboObject, readRoboScene } from './workspaceBridge';
 import { contextualRequest } from './objectConversation';
 import { commandTransform3d } from './solidAdapter';
 import './offlineAssistant.css';
@@ -30,10 +31,10 @@ import {CorrectionQueue} from '../math-robo/intelligence/correctionCandidates';
 
 const EmbeddedGraph = lazy(() => import('../studios/geometry/GeometryEmbeddedGraph'));
 const EmbeddedSolid = lazy(() => import('../studios/geometry/GeometryEmbeddedSolid'));
-type Response = { id:string; text:string; command?:VisualCommand; steps?:string[]; confidence?:string; verification?:import('../math-robo/kernel/types').VerificationStatus; conditions?:string[]; errorBound?:string; method?:string };
+export type RuhiResponse = { clarification?:import('../math-foundation/executionOutcome').ClarificationRequirement; status?:string; candidates?:string[]; navigation?:import('../math-robo/intelligence/types').RoboResult['navigation']; execution?:import('../math-foundation/executionOutcome').ExecutionOutcome; id:string; text:string; command?:VisualCommand; steps?:string[]; confidence?:string; verification?:import('../math-robo/kernel/types').VerificationStatus; conditions?:string[]; errorBound?:string; method?:string };
 
 export default function OfflineMathAssistant() {
-  const { pathname,search } = useLocation();
+  const { pathname,search } = useLocation();const navigate=useNavigate();
   const mode = modeForPath(pathname);
   const character=useRef<RoboCharacterHandle>(null);
   const launcher = useRef<HTMLButtonElement>(null);
@@ -45,23 +46,23 @@ export default function OfflineMathAssistant() {
   const currentRoute=useRef(pathname);currentRoute.current=pathname;
   const [open,setOpen] = useState(false);
   const [input,setInput] = useState('');
-  const [response,setResponse] = useState<Response>();
+  const [response,setResponse] = useState<RuhiResponse>();
   const [busy,setBusy] = useState(false);
-  const [history,setHistory] = useState<Array<{answer:string}>>([]);
+
   const [exampleSearch,setExampleSearch]=useState('');
   const [learningStatus,setLearningStatus]=useState('');
   const [learnedCount,setLearnedCount]=useState(0);
   const [teachPhrase,setTeachPhrase]=useState('');
   const [teachCommand,setTeachCommand]=useState('');
   const [learningBusy,setLearningBusy]=useState(false);
-  const [answerSource,setAnswerSource]=useState('');
+  const [,setAnswerSource]=useState('');
   const [semanticDebug,setSemanticDebug]=useState<Awaited<ReturnType<typeof runSemanticAssistant>>>();
   const [modelInfo,setModelInfo]=useState<{parameters:number;bytes:number;metrics?:Record<string,unknown>}>();
   const editor = useRef<HTMLTextAreaElement>(null);
   const lastVisual = useRef<VisualCommand>();
   const roboObjects=useRef<VisualCommand[]>([]);
   const speech = useRoboSpeech(open, pathname, text => { setInput(text); editor.current?.focus(); });
-  useEffect(() => { setResponse(undefined); setInput(''); setHistory([]); lastVisual.current=undefined;roboObjects.current=[]; }, [pathname]);
+  useEffect(() => { setResponse(undefined); setInput('');  lastVisual.current=undefined;roboObjects.current=[]; }, [pathname]);
   useEffect(() => { if (open) editor.current?.focus(); }, [open]);
   useEffect(() => {
     if (!open) return;
@@ -94,7 +95,7 @@ export default function OfflineMathAssistant() {
     } catch {setLearningStatus('Unable to clear learning storage.');}
     finally {setLearningBusy(false);}
   }
-  function close() {liveEngine(mode).engineRouter.cancelCalculation();speech.stopSpeaking();roboEvents.emit({type:'cancel'});setOpen(false);launcher.current?.focus();}
+  function close() {liveEngine(mode).cancelCurrent();speech.stopSpeaking();roboEvents.emit({type:'cancel'});setOpen(false);launcher.current?.focus();}
   async function spatialRequest(text:string) {
     const request=parseSpatialRequest(text);if(!request)return false;
     const before=awareness.refresh();if(!before)return false;
@@ -116,32 +117,33 @@ export default function OfflineMathAssistant() {
     setAnswerSource('Ruhi · live surroundings');setResponse({id:crypto.randomUUID(),text:message});
     if(position.moving&&['where','nearby','distance'].includes(request.type))character.current?.setExpression('curious');else roboEvents.emit({type:'answer'});return true;
   }
-  async function submit() {
-    if (!input.trim() || busy) return;
-    if (response) setHistory(previous=>[...previous,{answer:response.text}].slice(-6));
+  async function submit(request=input) {
+    if (!request.trim() || busy) return;
+    const question=request.trim();setInput('');
     setBusy(true);
     speech.stopSpeaking();
-    if(!parseSpatialRequest(input))roboEvents.emit({type:'thinking'});
+    if(!parseSpatialRequest(question))roboEvents.emit({type:'thinking'});
     try {
-      const spatial=parseSpatialRequest(input);if(!spatial||['move','target','stop'].includes(spatial.type))fun.stop();
-      if(await spatialRequest(input))return;
+      const spatial=parseSpatialRequest(question);if(!spatial||['move','target','stop'].includes(spatial.type))fun.stop();
+      if(await spatialRequest(question))return;
       {
-        const semantic=await runSemanticAssistant(input,mode,pathname+search);setSemanticDebug(semantic);
+        const semantic=await runSemanticAssistant(question,mode,pathname+search);setSemanticDebug(semantic);
         if(semantic.status!=='unhandled'){
           setAnswerSource(semantic.plan.commands.some(command=>command.source.action==='correction')?'Your correction':semantic.neural?'Ruhi Intelligence v5.2 · local model + validated geometry engine':'Ruhi Intelligence v5.2 · validated local semantic engine');
           roboEvents.emit({type:semantic.status==='success'?'answer':semantic.status==='ambiguous'?'unknown':'incorrect'});
           animateRoboResult(mode,semantic);
           const kernel = semantic.engineExecution?.metadata?.kernel as import('../math-robo/kernel/types').KernelResult | undefined;
-          setResponse({conditions:kernel?.conditions,errorBound:kernel?.errorBound,method:kernel?.verification.method,id:crypto.randomUUID(),text:semantic.message,command:mode==='normal'?semantic.effects.filter(c=>c.action==='create').at(-1):undefined,steps:semantic.engineExecution?.steps,verification:semantic.engineExecution?.verificationStatus??semantic.verification?.status});return;
+          if(semantic.navigation&&!semantic.navigation.requiresConfirmation){navigate(semantic.navigation.path);return;}
+          setResponse({clarification:semantic.clarification,candidates:semantic.candidates,status:semantic.status,navigation:semantic.navigation,execution:semantic.execution,conditions:kernel?.conditions,errorBound:kernel?.errorBound,method:semantic.execution?.evidence.method,id:crypto.randomUUID(),text:semantic.message,command:semantic.status==='success'?semantic.effects.filter(c=>!c.roboControl&&!c.roboClearAll).at(-1):undefined,steps:semantic.engineExecution?.steps,verification:semantic.engineExecution?.verificationStatus??semantic.verification?.status});return;
         }
       }
       const objects=roboObjects.current.flatMap(command=>{
         const live=mode==='normal'?{command}:readRoboObject(mode,command);
         return live?[live]:[];
       });
-      const context=contextualRequest(input,mode,objects);
-      const result = await import('./roboLearning').then(({getRoboLearning})=>getRoboLearning().interpret(input,mode,objects.at(-1)?.command,objects))
-        .catch(()=>({...context??interpretVisualRequest(input,mode,objects.at(-1)?.command),source:'Validated parser / math solver'}));
+      const context=contextualRequest(question,mode,objects);
+      const result = await import('./roboLearning').then(({getRoboLearning})=>getRoboLearning().interpret(question,mode,objects.at(-1)?.command,objects))
+        .catch(()=>({...context??interpretVisualRequest(question,mode,objects.at(-1)?.command),source:'Validated parser / math solver'}));
       setAnswerSource(result.source);
       if (result.command) {
         result.command.objectId ??= crypto.randomUUID();
@@ -154,10 +156,10 @@ export default function OfflineMathAssistant() {
         }
         roboEvents.emit({type:error?'error':'answer'});
         setResponse({id:crypto.randomUUID(),text:error || result.message,command:!error && mode === 'normal' ? result.command : undefined});
-      } else if (result.message) {roboEvents.emit({type:/^(hi|hello|hey)\b/i.test(input)?'greeting':/\b(thanks|thank you)\b/i.test(input)?'thanks':/\b(bye|goodbye)\b/i.test(input)?'goodbye':'answer'});setResponse({id:crypto.randomUUID(),text:result.message});}
+      } else if (result.message) {roboEvents.emit({type:/^(hi|hello|hey)\b/i.test(question)?'greeting':/\b(thanks|thank you)\b/i.test(question)?'thanks':/\b(bye|goodbye)\b/i.test(question)?'goodbye':'answer'});setResponse({id:crypto.randomUUID(),text:result.message});}
       else {
         const {solveProblem} = await import('../problem-solver/problemSolverEngine');
-        const solved = solveProblem(input);
+        const solved = solveProblem(question);
         roboEvents.emit({type:solved.trust.answer?'answer':'unknown'});
         setResponse({id:crypto.randomUUID(),text:solved.trust.answer ?? solved.trust.unsupportedReason ?? 'Try an equation or a drawing command.',steps:solved.result.steps,confidence:solved.trust.confidence});
       }
@@ -169,12 +171,8 @@ export default function OfflineMathAssistant() {
     {funMenu&&<RoboFunMenu point={funMenu} location={awareness.snapshot?describeAwareness(awareness.snapshot):'Checking my surroundings…'} onClose={()=>{setFunMenu(undefined);launcher.current?.focus({preventScroll:true});}} onAction={action=>{setFunMenu(undefined);void fun.run(action);}}/>}
     <RoboFunStatus message={fun.message} active={fun.active} onStop={fun.stop} onDismiss={fun.clear}/>
     {import.meta.env.DEV && new URLSearchParams(location.search).has('roboLab') && <RoboAnimationLab character={character} mode={mode} speak={speech.speak}/>}
-    {open && <div id="math-robo-panel" style={position.panelStyle} role="dialog" aria-label="Ruhi solver and drawing assistant" onKeyDown={e=>{if(e.key==='Escape')close();}} className={`offline-assistant-body ${response?.command?'has-visual':''}`}>
-      <header className="robo-panel-header"><div><strong>Ruhi · Master of Maths</strong><span>● Offline · Your maths companion</span></div><button type="button" onClick={close} aria-label="Close Ruhi">×</button></header>
-      <div className="robo-panel-content">
+    {open&&<RuhiChatWindow mode={mode} input={input} setInput={setInput} response={response} busy={busy} editor={editor} launcher={launcher} learningStatus={learningStatus} speech={speech} onSend={submit} onClose={close} onNavigate={navigate} onCancel={()=>liveEngine(mode).cancelCurrent()} choices={semanticDebug} onClear={()=>{setResponse(undefined);void runSemanticAssistant('Clear context',mode,pathname+search);}} onAttach={()=>{const command=readRoboScene(mode).objects.at(-1)?.command??liveEngine(mode).snapshot().objects.at(-1)?.command;setResponse({id:crypto.randomUUID(),text:command?'Attached the current construction.':'Create a graph or object in the workspace first.',command});}} preview={answer=><Suspense fallback={<p role="status">Loading existing workspace…</p>}>{answer.command&& (answer.command.dimension==='3d'&&answer.command.kind!=='plot'?<EmbeddedSolid activityId={`assistant-${answer.id}`} scene={solidScene(answer.command)}/>:<EmbeddedGraph activityId={`assistant-${answer.id}`} dimension={answer.command.dimension} expressions={graphExpressions(answer.command)} title={answer.command.expression??'Your construction'}/>)}</Suspense>} settings={<>
       <CinematicMotionControls/>
-      <p>Welcome, learners and explorers! I’m Ruhi, your maths companion. Let’s explore, draw, and solve together as you become a master of maths.</p>
-      <p>{mode === 'normal' ? 'Ask a maths question, paste a problem, or request a drawing.' : `Ask for step-by-step help, or let’s create interactive objects in this ${mode.replace('2d',' 2D').replace('3d',' 3D')} workspace.`}</p>
       <details className="robo-surroundings"><summary>Ruhi’s surroundings</summary>
         <p data-testid="ruhi-location">{awareness.snapshot?describeAwareness(awareness.snapshot):'Checking my surroundings…'}</p>
         <div className="robo-voice-actions">{(['left','up','right','down'] as const).map(direction=><button key={direction} type="button" disabled={busy} onClick={()=>position.move(direction)}>Walk {direction==='up'?'top':direction}</button>)}<button type="button" disabled={busy} onClick={()=>position.move('right',true)}>Crawl right</button><button type="button" disabled={!position.moving} onClick={()=>position.stop()}>Stop moving</button></div>
@@ -188,12 +186,8 @@ export default function OfflineMathAssistant() {
         <div className="robo-voice-actions"><button type="button" disabled={learningBusy||busy||!teachPhrase.trim()||!teachCommand.trim()} onClick={()=>void teach()}>{learningBusy?'Updating…':MODEL_TRAINING_ENABLED?'Learn correction':'Queue suggestion'}</button>{MODEL_TRAINING_ENABLED&&<button type="button" disabled={learningBusy||busy||!learnedCount} onClick={()=>void resetLearning()}>Clear learned phrases</button>}</div>
       </details>
       <p aria-live="polite" className="robo-learning-status">{learningStatus}</p>
-      {history.length>0 && <details className="robo-history"><summary>Previous answers ({history.length})</summary>{history.map((item,i)=><p key={i}>{item.answer}</p>)}</details>}
-      <form onSubmit={e=>{e.preventDefault();void submit();}}><label htmlFor="offline-math-request">What would you like to create or solve?</label><textarea ref={editor} id="offline-math-request" value={input} onChange={e=>setInput(e.target.value)} placeholder={mode.endsWith('3d')?'Plot z = sin(x)*cos(y)':'Paste a problem, or try: draw a graph of y = x^2'} rows={3}/><button disabled={busy || learningBusy || !input.trim()} type="submit">{busy?'Working…':'Run request'}</button></form>
-      {busy&&!position.moving&&<button type="button" onClick={()=>liveEngine(mode).engineRouter.cancelCalculation()}>Cancel calculation</button>}
-      {response && <small>{answerSource}{response.verification?` · ${response.verification.replaceAll('_',' ')}`:''}</small>}
-      {MODEL_TRAINING_ENABLED&&<details className="robo-learning"><summary>Model information · v4.1</summary><p>{LANGUAGE_ACTIONS.length} language actions · {OPERATIONS.filter(op=>op.implemented).length} executor mappings. Local browser inference; deterministic maths.</p>{modelInfo&&<p>{modelInfo.parameters.toLocaleString()} parameters · {(modelInfo.bytes/1024).toFixed(1)} KiB weights.</p>}<a href="/model-training">Admin training and model report</a></details>}
-      {MODEL_TRAINING_ENABLED&&semanticDebug&&<details className="robo-learning"><summary>Developer inspector</summary><p>Status: {semanticDebug.status} · scene objects: {semanticDebug.objects} · parse {semanticDebug.parseMs.toFixed(2)} ms · inference/load {semanticDebug.inferenceMs.toFixed(2)} ms · execution {semanticDebug.executionMs.toFixed(2)} ms</p><pre style={{whiteSpace:'pre-wrap',overflowWrap:'anywhere',fontSize:10}}>{JSON.stringify({rawText:input,requestKind:semanticDebug.requestKind,commands:semanticDebug.plan.commands,neuralHeads:semanticDebug.neural,effects:semanticDebug.effects,candidates:semanticDebug.candidates,verification:semanticDebug.verification,error:semanticDebug.errorCode,explanation:semanticDebug.explanation},null,2)}</pre></details>}
+      {MODEL_TRAINING_ENABLED&&<details className="robo-learning"><summary>Model information</summary><p>{LANGUAGE_ACTIONS.length} language actions · {OPERATIONS.filter(op=>op.implemented).length} executor mappings. Local browser inference; deterministic maths.</p>{modelInfo&&<p>{modelInfo.parameters.toLocaleString()} parameters · {(modelInfo.bytes/1024).toFixed(1)} KiB weights.</p>}<a href="/model-training">Admin training and model report</a></details>}
+      {MODEL_TRAINING_ENABLED&&semanticDebug&&<details className="robo-learning"><summary>Developer inspector</summary><p>Status: {semanticDebug.status} · scene objects: {semanticDebug.objects} · parse {semanticDebug.parseMs.toFixed(2)} ms · inference/load {semanticDebug.inferenceMs.toFixed(2)} ms · execution {semanticDebug.executionMs.toFixed(2)} ms</p><pre style={{whiteSpace:'pre-wrap',overflowWrap:'anywhere',fontSize:10}}>{JSON.stringify({rawText:semanticDebug.plan.rawPhrase,requestKind:semanticDebug.requestKind,commands:semanticDebug.plan.commands,neuralHeads:semanticDebug.neural,effects:semanticDebug.effects,candidates:semanticDebug.candidates,verification:semanticDebug.verification,error:semanticDebug.errorCode,explanation:semanticDebug.explanation},null,2)}</pre></details>}
       <div className="robo-voice-controls" aria-label="English voice skills">
         <strong>English voice</strong>
         <div className="robo-voice-actions"><button type="button" disabled={speech.checking || busy} onClick={()=>void speech.microphone()}>{speech.checking?'Checking…':speech.listening?'Stop dictation':'Dictate in English'}</button>
@@ -202,16 +196,10 @@ export default function OfflineMathAssistant() {
         <p aria-live="polite">{speech.message}</p>
         {speech.voices.length>0 ? <><label htmlFor="robo-english-voice">Local English voice</label><select id="robo-english-voice" value={speech.voiceURI || speech.voices[0].voiceURI} onChange={e=>speech.setVoiceURI(e.target.value)}>{speech.voices.map(voice=><option key={voice.voiceURI} value={voice.voiceURI}>{voice.name} ({voice.lang})</option>)}</select></> : <small>Read-aloud needs an installed local English voice.</small>}
       </div>
-      <div className="offline-assistant-examples">{(mode === 'geometry3d' ? ['Create a sphere radius 2','Create a blue cube size 3'] : mode === 'graph3d' ? ['Plot z = x^2 + y^2','Plot sin(x)*cos(y)'] : ['Create a rectagle 6 by 4','Draw a line from (0,2) to (3,0)','Plot sin(x)']).map(example=><button key={example} onClick={()=>setInput(example)}>{example}</button>)}</div>
-      {response && <div className="robo-answer" data-response-id={response.id} aria-live="polite"><p role="status">{response.text}</p>{response.confidence && <span className="robo-confidence">Solver status: {response.confidence.replace('-',' ')}</span>}{!!response.steps?.length && <details><summary>Show solution steps</summary><ol>{response.steps.map((step,index)=><li key={index}>{step}</li>)}</ol></details>}{response.method && <details className="robo-verification-details"><summary>Verification details</summary><p>{response.method}</p>{!!response.conditions?.length && <ul>{response.conditions.map((condition,index)=><li key={index}>{condition}</li>)}</ul>}{response.errorBound && <p>{response.errorBound}</p>}</details>}{response.command && <Suspense fallback={<p>Loading embedded visual…</p>}>
-        {response.command.dimension === '3d' && response.command.kind !== 'plot' ? <EmbeddedSolid activityId={`assistant-${response.id}`} scene={solidScene(response.command)}/> : <EmbeddedGraph activityId={`assistant-${response.id}`} dimension={response.command.dimension} expressions={graphExpressions(response.command)} title="Your requested visual"/>}
-      </Suspense>}</div>}
-      {response && <div className="robo-voice-actions"><button type="button" disabled={!speech.voices.length || speech.listening} onClick={()=>speech.speak(response.text)}>Read answer</button>{!!response.steps?.length && <button type="button" disabled={!speech.voices.length || speech.listening} onClick={()=>speech.speak([response.text,...response.steps!.map((step,index)=>`Step ${index+1}. ${step}`)].join('. '))}>Read solution steps</button>}</div>}
-      <small>Runs locally in your browser. English speech uses on-device recognition and local voices when supported. Try coordinates, dimensions, and expressions. Use the workspace’s undo to reverse a drawing.</small>
       <details className="robo-command-guide"><summary>Shapes and editing commands</summary><p>2D: {FLAT_SHAPES.join(', ')}. 3D: {SOLID_SHAPES.join(', ')}.</p><p>After creating an object: “resize it to width 8 height 5”, “scale it by 2”, “rotate it 45 degrees”, “tilt it 30 degrees around the x axis” (3D), “move it right by 2”, “make it blue”. Edits target your last Ruhi object.</p></details>
       <details className="robo-command-guide"><summary>Command library · {INTELLIGENCE_EXAMPLES.length} examples</summary><label htmlFor="robo-example-search">Find an example</label><input id="robo-example-search" type="search" value={exampleSearch} onChange={e=>setExampleSearch(e.target.value)} placeholder="triangle, rotate, sphere…"/><div className="offline-assistant-examples">{Array.from(new Set(INTELLIGENCE_EXAMPLES.filter(e=>(mode==='normal'||e.mode===mode)&&e.request.toLowerCase().includes(exampleSearch.toLowerCase())).map(e=>e.request))).slice(0,12).map(request=><button key={request} onClick={()=>{setInput(request);editor.current?.focus();}}>{request}</button>)}</div><small>The offline rules understand these examples. Create an object before using an editing command.</small></details>
-      </div>
-    </div>}
+      </>}/>}
+
   </aside>;
 }
 

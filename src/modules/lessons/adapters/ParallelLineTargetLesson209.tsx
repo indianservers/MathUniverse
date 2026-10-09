@@ -138,13 +138,13 @@ export default function ParallelLineTargetLesson209({
         </div>
       </header>
       <nav className="grid grid-cols-5 overflow-hidden rounded-lg border border-slate-200 bg-white">
-        {[
+        {([
           ["Observe", "See equality", Eye],
           ["Manipulate", "Drag and edit", Wrench],
           ["Pattern", "Compare slopes", Waypoints],
           ["Rule", "Prove parallel", Scale],
           ["Try", "Practice", CircleDot],
-        ].map(([title, sub, StageIcon], i) => (
+        ] as const).map(([title, sub, StageIcon], i) => (
           <button
             type="button"
             key={String(title)}

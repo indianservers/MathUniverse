@@ -104,7 +104,7 @@ export default function DerivativeGraphTargetLesson289({
         </div>
       </header>
       <section className="dgr289-flow">
-        {[
+        {([
           [
             Eye,
             "Observe",
@@ -125,7 +125,7 @@ export default function DerivativeGraphTargetLesson289({
             "Understand",
             "The derivative graph f′(x) records the slope of f(x) at every x.",
           ],
-        ].map(([Icon, t, p], i) => (
+        ] as const).map(([Icon, t, p], i) => (
           <article key={String(t)}>
             <Icon />
             <b>{i + 1}</b>

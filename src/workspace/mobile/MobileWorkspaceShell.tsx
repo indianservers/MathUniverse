@@ -1,7 +1,7 @@
 import {
   type HTMLAttributes,
   type ReactNode,
-  type Ref,
+  type MutableRefObject,
 } from "react";
 import type { WorkspaceOverlayApi } from "./useWorkspaceOverlay";
 
@@ -14,7 +14,7 @@ export default function MobileWorkspaceShell({
 }: HTMLAttributes<HTMLDivElement> & {
   overlay: WorkspaceOverlayApi;
   children: ReactNode;
-  rootRef?: Ref<HTMLDivElement>;
+  rootRef?: ((node: HTMLDivElement | null) => void) | MutableRefObject<HTMLDivElement | null>;
 }) {
   return (
     <div

@@ -31,6 +31,6 @@ export function normalizeCommandSurface(input:string):string{
  if(/^clear (?:the )?selection\b/.test(text))text=text.replace(/^clear (?:the )?selection/,'deselect');
  if(/^make (?:it |that |the \w+ )?(?:bigger|smaller)\b/.test(text))text=text.replace(/^make (.*?)\b(bigger|smaller)\b/,'scale $1$2');
  if(/^plot\b/.test(text)&&/\b(?:circle|rectangle|square|triangle|sphere|cube|point|line|ray|vector)\b/.test(text))text=text.replace(/^plot/,'create');
- if(/\b(?:circle|sphere|rectangle|square|cube|cuboid|ellipse)\b/.test(text))text=text.replace(/\br\s*(?:=\s*)?(?=-?\d)/g,'radius ').replace(/\bw\s*(?:=\s*)?(?=-?\d)/g,'width ').replace(/\bh\s*(?:=\s*)?(?=-?\d)/g,'height ');
+ if(/^(?:draw|create|make|change|set|resize|circle|sphere|rectangle|square|cube|cuboid|ellipse)\b/.test(text)&&/\b(?:circle|sphere|rectangle|square|cube|cuboid|ellipse)\b/.test(text))text=text.replace(/\br\s*(?:=\s*)?(?=-?\d)/g,'radius ').replace(/\bw\s*(?:=\s*)?(?=-?\d)/g,'width ').replace(/\bh\s*(?:=\s*)?(?=-?\d)/g,'height ');
  return text;
 }

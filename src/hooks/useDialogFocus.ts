@@ -5,8 +5,8 @@ const FOCUSABLE =
 
 export function useDialogFocus(
   open: boolean,
-  dialogRef: RefObject<HTMLElement | null>,
-  restoreRef?: RefObject<HTMLElement | null>,
+  dialogRef: RefObject<HTMLElement>,
+  restoreRef?: RefObject<HTMLElement>,
 ) {
   useEffect(() => {
     if (!open) return;

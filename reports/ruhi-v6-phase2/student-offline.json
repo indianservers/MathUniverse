@@ -1,0 +1,76 @@
+{
+  "scope": "Built student UI, loaded workspace then disconnected network; not a cold-start/PWA caching claim",
+  "checks": [
+    {
+      "path": "/workspace/graph",
+      "name": "Student UI excludes training links",
+      "passed": true
+    },
+    {
+      "path": "/workspace/graph",
+      "name": "Loaded student workspace executes without network",
+      "passed": true,
+      "details": {
+        "moved": "move rectangle.\n\nVerification details",
+        "resized": "Changed rectangle.\n\nVerification details",
+        "area": "area = 36 units.\n\nVerification details",
+        "hint": "For a rectangle, multiply its width by its height. Which two dimensions should you use?\n\nVerification details",
+        "answer": "Correct: your expression matches 36 square units.\n\nVerification details"
+      }
+    },
+    {
+      "path": "/workspace/geometry",
+      "name": "Student UI excludes training links",
+      "passed": true
+    },
+    {
+      "path": "/workspace/geometry",
+      "name": "Loaded student workspace executes without network",
+      "passed": true,
+      "details": {
+        "moved": "move rectangle.\n\nVerification details",
+        "resized": "Changed rectangle.\n\nVerification details",
+        "area": "area = 36 units.\n\nVerification details",
+        "hint": "For a rectangle, multiply its width by its height. Which two dimensions should you use?\n\nVerification details",
+        "answer": "Correct: your expression matches 36 square units.\n\nVerification details"
+      }
+    },
+    {
+      "path": "/math-lab/3d-graphing",
+      "name": "Student UI excludes training links",
+      "passed": true
+    },
+    {
+      "path": "/math-lab/3d-graphing",
+      "name": "Loaded student workspace executes without network",
+      "passed": true,
+      "details": {
+        "moved": "move rectangle.\n\nVerification details",
+        "resized": "Changed rectangle.\n\nVerification details",
+        "area": "area = 36 units.\n\nVerification details",
+        "hint": "For a rectangle, multiply its width by its height. Which two dimensions should you use?\n\nVerification details",
+        "answer": "Correct: your expression matches 36 square units.\n\nVerification details"
+      }
+    },
+    {
+      "path": "/workspace/3d",
+      "name": "Student UI excludes training links",
+      "passed": true
+    },
+    {
+      "path": "/workspace/3d",
+      "name": "Loaded student workspace executes without network",
+      "passed": true,
+      "details": {
+        "moved": "move rectangle.\n\nVerification details",
+        "resized": "Changed rectangle.\n\nVerification details",
+        "area": "area = 36 units.\n\nVerification details",
+        "hint": "For a rectangle, multiply its width by its height. Which two dimensions should you use?\n\nVerification details",
+        "answer": "Correct: your expression matches 36 square units.\n\nVerification details"
+      }
+    }
+  ],
+  "errors": [],
+  "passed": 8,
+  "failed": 0
+}

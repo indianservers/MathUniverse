@@ -1,0 +1,10 @@
+{
+  "records": 1824,
+  "conversations": 456,
+  "families": 12,
+  "variantsPerFamily": 12,
+  "sha256": "350f42aebc314e464ca567c90ea7f66181fa5f030ce8a435e115f2ab6ca89b54",
+  "failures": [],
+  "quality": "Only complete conversations passing predeclared statuses and nonmutation checks retained. Numeric variants and mode variants are grouped within one family; not independent human language.",
+  "training": "Not fitted into the context-only candidate. Prepared for trainer review and richer future semantic heads."
+}

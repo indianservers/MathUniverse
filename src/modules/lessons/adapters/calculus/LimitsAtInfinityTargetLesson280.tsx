@@ -112,12 +112,12 @@ export default function LimitsAtInfinityTargetLesson280({
         </div>
         <aside>
           <h3>How this works</h3>
-          {[
+          {([
             [Eye, "Observe", "Explore the graph’s end behaviour."],
             [Hand, "Manipulate", "Adjust sliders to see what changes."],
             [Lightbulb, "Notice", "Spot patterns and relationships."],
             [Check, "Understand", "Apply the rule and solve with confidence."],
-          ].map(([Icon, title, copy]) => (
+          ] as const).map(([Icon, title, copy]) => (
             <p key={String(title)}>
               <Icon />
               <b>{title}</b>

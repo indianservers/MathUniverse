@@ -111,6 +111,7 @@ function MathLabGraphingCalculatorContent({ embedded }: { embedded?: EmbeddedGra
   }, [embedded?.expressionRevision]);
   const [selectedId, setSelectedId] = useState("f1");
   useIntelligenceWorkspace('graph2d', command => {
+    if(command.roboClearAll){setFunctions([]);setSelectedId('');return;}
     const base=command.objectId??crypto.randomUUID();
     const matches=(row:{id:string})=>command.roboNativeRow?row.id===base:row.id.startsWith(`${base}-`);
     if(command.roboControl==='deselect'){setSelectedId('');return;}

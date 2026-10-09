@@ -1,0 +1,1625 @@
+{
+  "priorReports": [
+    {
+      "file": "reports/ruhi-v5.3/100-question-test-report.json",
+      "before": "edb33ce92d34b182bd2b527caf5254e5a7e9bd0f0217c31a90fdbb94fa68297a",
+      "after": "edb33ce92d34b182bd2b527caf5254e5a7e9bd0f0217c31a90fdbb94fa68297a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/100-question-test-report.md",
+      "before": "e1035c70a28969285cd2a76ad4f3bdf2fa9454d1c2ec545cdeeb094ad97752c4",
+      "after": "e1035c70a28969285cd2a76ad4f3bdf2fa9454d1c2ec545cdeeb094ad97752c4",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/100-question-v53-report.json",
+      "before": "edb33ce92d34b182bd2b527caf5254e5a7e9bd0f0217c31a90fdbb94fa68297a",
+      "after": "edb33ce92d34b182bd2b527caf5254e5a7e9bd0f0217c31a90fdbb94fa68297a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/100-question-v53-report.md",
+      "before": "e1035c70a28969285cd2a76ad4f3bdf2fa9454d1c2ec545cdeeb094ad97752c4",
+      "after": "e1035c70a28969285cd2a76ad4f3bdf2fa9454d1c2ec545cdeeb094ad97752c4",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/all-repository-tests-inconclusive.txt",
+      "before": "53c724efb223d58535e4f1ea52a138865d28888581834df9b74bfa50d191efbb",
+      "after": "53c724efb223d58535e4f1ea52a138865d28888581834df9b74bfa50d191efbb",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/animation-readiness.md",
+      "before": "3a99fb886f2a96ba5f595615fd92945fd58a0b7dbb9f31543499abab561b919d",
+      "after": "3a99fb886f2a96ba5f595615fd92945fd58a0b7dbb9f31543499abab561b919d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/architecture-inventory.md",
+      "before": "87ad9c81592efeb6829adc0e893701a40996b7190fe8e6e656c6c99bd466b729",
+      "after": "87ad9c81592efeb6829adc0e893701a40996b7190fe8e6e656c6c99bd466b729",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/browser-component-performance-log.txt",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/browser-component-performance.json",
+      "before": "3ccb9e18b43676199602ba51edb242ec0d62edeff54a1086c99cd372dd1f09a2",
+      "after": "3ccb9e18b43676199602ba51edb242ec0d62edeff54a1086c99cd372dd1f09a2",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/browser-performance-log.txt",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/browser-results.json",
+      "before": "c47d274c16883cdb979d627cecca4f883c0aa0b0391294f3fb1d053711812b65",
+      "after": "c47d274c16883cdb979d627cecca4f883c0aa0b0391294f3fb1d053711812b65",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/build-boundary-test.txt",
+      "before": "4578659369e6fbb2b9c781f58a3339af5224e90b14ed80f7109668946c3ff877",
+      "after": "4578659369e6fbb2b9c781f58a3339af5224e90b14ed80f7109668946c3ff877",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/classifier-error-analysis.json",
+      "before": "2ed59e37bbd18753f0115b91e7632355c48546571673160f8c326d072e1fc4c8",
+      "after": "2ed59e37bbd18753f0115b91e7632355c48546571673160f8c326d072e1fc4c8",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/context-classifier.json",
+      "before": "6293f10f8439b61e29ef34ea869437a617dd3a5489f2fe850b6b00690253c36a",
+      "after": "6293f10f8439b61e29ef34ea869437a617dd3a5489f2fe850b6b00690253c36a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/context-neural-log.txt",
+      "before": "9e9b2d46a4d5fb60575a657a58ece9868f2dd33ccb6e818340ccac4bacb0427d",
+      "after": "9e9b2d46a4d5fb60575a657a58ece9868f2dd33ccb6e818340ccac4bacb0427d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/context-provenance.json",
+      "before": "324368ff22249ea58a4170d9f0800812c2d1b675e7af279d953a06f0bf5f7eac",
+      "after": "324368ff22249ea58a4170d9f0800812c2d1b675e7af279d953a06f0bf5f7eac",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/context-regressions-final.txt",
+      "before": "6fa1c58311c4fca1fd6e4919e2260d636681a279e45953be3119f44fb8622558",
+      "after": "6fa1c58311c4fca1fd6e4919e2260d636681a279e45953be3119f44fb8622558",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/context-regressions.txt",
+      "before": "b911c91ac55ff48d3a768279b4ea5f07c0b1ec82dc0ca1792662349dd069656f",
+      "after": "b911c91ac55ff48d3a768279b4ea5f07c0b1ec82dc0ca1792662349dd069656f",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/conversations-log.txt",
+      "before": "a93a43e6631d079805169edd3a33816eb784c4e8f92b5d9dc4d420fa35365248",
+      "after": "a93a43e6631d079805169edd3a33816eb784c4e8f92b5d9dc4d420fa35365248",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/conversations-provenance.json",
+      "before": "ada6f3b6c5547c4e46ed2b1587f23a42e61df924ea05b8bd9954b3debda4be63",
+      "after": "ada6f3b6c5547c4e46ed2b1587f23a42e61df924ea05b8bd9954b3debda4be63",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/conversations-rerun.txt",
+      "before": "b7397496710b22ece6bfc70c933d2a75167509a6ca9fcb8f0408a166a544be9a",
+      "after": "b7397496710b22ece6bfc70c933d2a75167509a6ca9fcb8f0408a166a544be9a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/developer-audit.png",
+      "before": "55dd17f7befaed9d110c519fa0b0c5641509ba609fc2b173eeadb2f2df1e52f9",
+      "after": "55dd17f7befaed9d110c519fa0b0c5641509ba609fc2b173eeadb2f2df1e52f9",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/developer-browser-log.txt",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/developer-browser.json",
+      "before": "573ae2f68dd80c261b094d2bf989dc0eddfd0640e0cd1417e3ca2dd248092e30",
+      "after": "573ae2f68dd80c261b094d2bf989dc0eddfd0640e0cd1417e3ca2dd248092e30",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/developer-build.txt",
+      "before": "aa4eda9bf5c15a852648dc9e52ede45cae50f82c3c97234503fc79bb75a35766",
+      "after": "aa4eda9bf5c15a852648dc9e52ede45cae50f82c3c97234503fc79bb75a35766",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/developer-final-build.txt",
+      "before": "e655a8a3e9a1069ebe429bd14cbcf67118021eb92c442fe7b6cdf4ca3640abe2",
+      "after": "e655a8a3e9a1069ebe429bd14cbcf67118021eb92c442fe7b6cdf4ca3640abe2",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/developer-training-controls.png",
+      "before": "bda1a8d578165b6fe17594863f522df3252bba2edc1ef5539c7281246a89cb6c",
+      "after": "bda1a8d578165b6fe17594863f522df3252bba2edc1ef5539c7281246a89cb6c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/diff-check.txt",
+      "before": "63d6b8e0b7807dbb1566089852ec73364ef20fba0ecfc871208e4d7fe145d3e2",
+      "after": "63d6b8e0b7807dbb1566089852ec73364ef20fba0ecfc871208e4d7fe145d3e2",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/eslint-after.json",
+      "before": "9ad404b03e677b68543b43868b474688b23d641cbdd79b608272434619250d5a",
+      "after": "9ad404b03e677b68543b43868b474688b23d641cbdd79b608272434619250d5a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/eslint-before.json",
+      "before": "420cfa03cefe31162af12c68b1d8280318e9ee0a4966b38790cfd6dc888cdf88",
+      "after": "420cfa03cefe31162af12c68b1d8280318e9ee0a4966b38790cfd6dc888cdf88",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/eslint-current.json",
+      "before": "fec822f14a1fe38da5fa17b1d05e23d22e12b0787245df460c3878a6c051ba8c",
+      "after": "fec822f14a1fe38da5fa17b1d05e23d22e12b0787245df460c3878a6c051ba8c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/eslint-final.json",
+      "before": "3ec1db3c34b605f40d540e33d5459a5fe16b04c43258d9efc708bba200a59b6d",
+      "after": "3ec1db3c34b605f40d540e33d5459a5fe16b04c43258d9efc708bba200a59b6d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/eslint-frozen.json",
+      "before": "3ec1db3c34b605f40d540e33d5459a5fe16b04c43258d9efc708bba200a59b6d",
+      "after": "3ec1db3c34b605f40d540e33d5459a5fe16b04c43258d9efc708bba200a59b6d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/evidence-eslint.json",
+      "before": "1f919ca5c6d300426387a1c9af1faa2dfa6ad4721d45c17b2851e0256d85a37e",
+      "after": "1f919ca5c6d300426387a1c9af1faa2dfa6ad4721d45c17b2851e0256d85a37e",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/evidence-tool-tests.txt",
+      "before": "681531097ee8e34fba75c81ee9044887a86e2bc2795f960962fe08d287c335da",
+      "after": "681531097ee8e34fba75c81ee9044887a86e2bc2795f960962fe08d287c335da",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/final-report.json",
+      "before": "3a9ea840dc95a0482d470bb315209150bead8fd24a92d00d8f790a9f924ea477",
+      "after": "3a9ea840dc95a0482d470bb315209150bead8fd24a92d00d8f790a9f924ea477",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/final-report.md",
+      "before": "8ce890ba686a7e3072dd27cbfb4b552012de2d547e880b53520015034902f11d",
+      "after": "8ce890ba686a7e3072dd27cbfb4b552012de2d547e880b53520015034902f11d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/final-unit-tests.txt",
+      "before": "e7ba482f85fff23788ac547aaae0faddc3d1d0eb8b8857e1ab43845bd761e5e1",
+      "after": "e7ba482f85fff23788ac547aaae0faddc3d1d0eb8b8857e1ab43845bd761e5e1",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/five-conversations.json",
+      "before": "cf021fad19a148e9d5bb68111ba16361411b089f11f1283f92316290ba7e59e2",
+      "after": "cf021fad19a148e9d5bb68111ba16361411b089f11f1283f92316290ba7e59e2",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/fixture-manifest.json",
+      "before": "927099ea9d613552361b5231d279c2446eb53ef29b0b42c560ddbd7d4bd4a996",
+      "after": "927099ea9d613552361b5231d279c2446eb53ef29b0b42c560ddbd7d4bd4a996",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/focused-conversations-current-log.txt",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/focused-conversations-log.txt",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/focused-conversations.json",
+      "before": "ba31cb451568773059b9377969cc83a3fe1251608a1243db7c1844aba67b85bf",
+      "after": "ba31cb451568773059b9377969cc83a3fe1251608a1243db7c1844aba67b85bf",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/frozen-100-log.txt",
+      "before": "1b6c50671e3a022f7ca494f794f1589f2967e8e9f79d1de18279a3624f0fe283",
+      "after": "1b6c50671e3a022f7ca494f794f1589f2967e8e9f79d1de18279a3624f0fe283",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/frozen-current-log.txt",
+      "before": "0915af50f1cb75b01cf1997362e1c16fc4e5ebcaa8de0e206052227bca828a4c",
+      "after": "0915af50f1cb75b01cf1997362e1c16fc4e5ebcaa8de0e206052227bca828a4c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/frozen-entry-log.txt",
+      "before": "0915af50f1cb75b01cf1997362e1c16fc4e5ebcaa8de0e206052227bca828a4c",
+      "after": "0915af50f1cb75b01cf1997362e1c16fc4e5ebcaa8de0e206052227bca828a4c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/frozen-entry-provenance.json",
+      "before": "4e1a8d26372d9d4cbfc5e3290ef62061db5b61871f20e62630219ccba7348d2d",
+      "after": "4e1a8d26372d9d4cbfc5e3290ef62061db5b61871f20e62630219ccba7348d2d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/frozen-provenance.json",
+      "before": "daf90f5f744d6af925e3ad7519c22e3c1b1c06d42e4312e56470e669d52a8a4d",
+      "after": "daf90f5f744d6af925e3ad7519c22e3c1b1c06d42e4312e56470e669d52a8a4d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/frozen-rerun.txt",
+      "before": "6e5fb85a7fda083cc0af9e5df5905f6ff83cc7704b5490cde59b1347227870d2",
+      "after": "6e5fb85a7fda083cc0af9e5df5905f6ff83cc7704b5490cde59b1347227870d2",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/geometry2d-v52.png",
+      "before": "0e071a698cbb42532564a0e45086caeefa7e550fb9d5652ca619e2807e942f66",
+      "after": "0e071a698cbb42532564a0e45086caeefa7e550fb9d5652ca619e2807e942f66",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/geometry3d-v52.png",
+      "before": "99f0a28594b985dcf386663ab61e5b2e31fb21926c6e5c72dde3baceef0b1118",
+      "after": "99f0a28594b985dcf386663ab61e5b2e31fb21926c6e5c72dde3baceef0b1118",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/graph2d-v52.png",
+      "before": "cddab6a0df2d777429afd5bf8d3336ad609b6cbe5533a8348b17348976b9a5e2",
+      "after": "cddab6a0df2d777429afd5bf8d3336ad609b6cbe5533a8348b17348976b9a5e2",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/graph3d-v52.png",
+      "before": "07f858d28faac3bd072779ff231afb6de07545986da2df29e8563d1a521bd45d",
+      "after": "07f858d28faac3bd072779ff231afb6de07545986da2df29e8563d1a521bd45d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/held-out-classifier.json",
+      "before": "1f45a1d720473b4c2f0f3c85fd7e8180031998a5bd0d5c36ed19865e6f957974",
+      "after": "1f45a1d720473b4c2f0f3c85fd7e8180031998a5bd0d5c36ed19865e6f957974",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/initial-working-tree.txt",
+      "before": "49661558c2e0cbfd8330f045bb7c5016beba1fa3e6a4a0b463476e5f2c50f6fa",
+      "after": "49661558c2e0cbfd8330f045bb7c5016beba1fa3e6a4a0b463476e5f2c50f6fa",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/integration-regressions.txt",
+      "before": "19ccf0a1d8b90077abff84266341abfeca7cc7db8e3e15ddfdf8b8345daa75eb",
+      "after": "19ccf0a1d8b90077abff84266341abfeca7cc7db8e3e15ddfdf8b8345daa75eb",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/mathematical-verification.md",
+      "before": "cd126cf8929da2469cf9f73e7bd49ba8d84ff0b03cabb8c791ee48739f37ec58",
+      "after": "cd126cf8929da2469cf9f73e7bd49ba8d84ff0b03cabb8c791ee48739f37ec58",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/modified-files.md",
+      "before": "52b97bd1e4269db16cce807db14e332b2f9d6b064edf3bb7579ef4453ed07b26",
+      "after": "52b97bd1e4269db16cce807db14e332b2f9d6b064edf3bb7579ef4453ed07b26",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/native-kernel-tests.txt",
+      "before": "2d60479f98d1be4c5c04ff1a6e48cf0a4cc921613b110fa0bc356425b048f266",
+      "after": "2d60479f98d1be4c5c04ff1a6e48cf0a4cc921613b110fa0bc356425b048f266",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/neural-diagnostics.md",
+      "before": "416505eb3b62d1c3fd38dcbd9ea9f6290453ebf6030dfd5fdca3fb591a4a8c72",
+      "after": "416505eb3b62d1c3fd38dcbd9ea9f6290453ebf6030dfd5fdca3fb591a4a8c72",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/neural-log.txt",
+      "before": "a84a1873f7b4bc84deaa19690c3812cf059bc6dc7367e62a6a209b23fc556353",
+      "after": "a84a1873f7b4bc84deaa19690c3812cf059bc6dc7367e62a6a209b23fc556353",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/neural-provenance.json",
+      "before": "c8f57fea6efa16094cb06fe906be6856d99c4605b94739a5e5173ef7f5aa4687",
+      "after": "c8f57fea6efa16094cb06fe906be6856d99c4605b94739a5e5173ef7f5aa4687",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/nlp-300-log.txt",
+      "before": "33a2b458b5eadf14701f14533ff4252bd51754e8930447df798c7adc74db1fd2",
+      "after": "33a2b458b5eadf14701f14533ff4252bd51754e8930447df798c7adc74db1fd2",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/nlp-current-log.txt",
+      "before": "a972b8a2d45aaa957bf0bfb45ad6e89d2f392f06e7acdc617b89f2557fc928ff",
+      "after": "a972b8a2d45aaa957bf0bfb45ad6e89d2f392f06e7acdc617b89f2557fc928ff",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/nlp-inconclusive.json",
+      "before": "5d3bdcf8b9ddd647cd51005a0eb27e030d224221ba69e788a8e5acb6c92c34a3",
+      "after": "5d3bdcf8b9ddd647cd51005a0eb27e030d224221ba69e788a8e5acb6c92c34a3",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/nlp-provenance.json",
+      "before": "5b4f0e596d42d9af7ea87acd39f52636a921509372c8435d0f770d4c7f74b8e5",
+      "after": "5b4f0e596d42d9af7ea87acd39f52636a921509372c8435d0f770d4c7f74b8e5",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/nlp-rerun.txt",
+      "before": "d7ee8c98d1de26643049a19e9fcafc38c500dcecc994f6be5ffbbb316b705f76",
+      "after": "d7ee8c98d1de26643049a19e9fcafc38c500dcecc994f6be5ffbbb316b705f76",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/nlp-stable-log.txt",
+      "before": "a972b8a2d45aaa957bf0bfb45ad6e89d2f392f06e7acdc617b89f2557fc928ff",
+      "after": "a972b8a2d45aaa957bf0bfb45ad6e89d2f392f06e7acdc617b89f2557fc928ff",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/orchestration-rerun.txt",
+      "before": "ea52069bfeecb53d663c8752b41efb4fa5a54c9a0a8df864121913958e93b07c",
+      "after": "ea52069bfeecb53d663c8752b41efb4fa5a54c9a0a8df864121913958e93b07c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/partition-audit.json",
+      "before": "f1f200befd9fcb162e6bca6343ec0f8cea9bdaf5eb284826fbcafe5f401323a2",
+      "after": "f1f200befd9fcb162e6bca6343ec0f8cea9bdaf5eb284826fbcafe5f401323a2",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/performance-baseline.json",
+      "before": "246e02275d69ac9706e8ac0f4337e64cc81534245301b3d96c0538f2ad9c9b0a",
+      "after": "246e02275d69ac9706e8ac0f4337e64cc81534245301b3d96c0538f2ad9c9b0a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/performance-log.txt",
+      "before": "92d2f765462f57a1983a6fef88ab2a5bc89dc052c31a8a6ff6e03b93557d0899",
+      "after": "92d2f765462f57a1983a6fef88ab2a5bc89dc052c31a8a6ff6e03b93557d0899",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/performance-provenance.json",
+      "before": "59d03067849a4b2d9221d503eed18e0fcfac2b720c188eeb8ccf595a1af8ad9b",
+      "after": "59d03067849a4b2d9221d503eed18e0fcfac2b720c188eeb8ccf595a1af8ad9b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/persistence-geometry2d.png",
+      "before": "cedc7c1d036b3561a35560c6ad445590c5f04e176bae465301322d97963b7267",
+      "after": "cedc7c1d036b3561a35560c6ad445590c5f04e176bae465301322d97963b7267",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/persistence-geometry3d.png",
+      "before": "4bd9407766685162bff987d33c54763ab5d82b99452dd152122a8edf017ba332",
+      "after": "4bd9407766685162bff987d33c54763ab5d82b99452dd152122a8edf017ba332",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/persistence-graph.png",
+      "before": "52f5bfc5d1aca4223e298f47ac2148f9616c99216461c5a26d1d812dec4626a7",
+      "after": "52f5bfc5d1aca4223e298f47ac2148f9616c99216461c5a26d1d812dec4626a7",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/persistence-graph2d.png",
+      "before": "9598e3bbba954bc96b4399df7417c845be34fac43dbee03a5300cc42fb1b1737",
+      "after": "9598e3bbba954bc96b4399df7417c845be34fac43dbee03a5300cc42fb1b1737",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/persistence-graph3d.png",
+      "before": "3e907f7379f1da5eeb3f8df25c5cd348ac06c7d635ae438d94169d6e00bfca03",
+      "after": "3e907f7379f1da5eeb3f8df25c5cd348ac06c7d635ae438d94169d6e00bfca03",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/persistence-initial.json",
+      "before": "e788c6dc8a2634ed993b08beeb82ab0ede27f67a02fb70d7e857667b1858dc9b",
+      "after": "e788c6dc8a2634ed993b08beeb82ab0ede27f67a02fb70d7e857667b1858dc9b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/persistence-log.txt",
+      "before": "812b03a279d72c6ecbe6ad779159c5be9e143952c644e62202d19808b9b671ca",
+      "after": "812b03a279d72c6ecbe6ad779159c5be9e143952c644e62202d19808b9b671ca",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/persistence-matrix-log.txt",
+      "before": "44f377dbacd50302dc94cc8f1732ac5c745421ce1b0b8a6c6f260e45ceb4a7e9",
+      "after": "44f377dbacd50302dc94cc8f1732ac5c745421ce1b0b8a6c6f260e45ceb4a7e9",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/persistence-matrix.json",
+      "before": "279a1db41f30deb5e9436d4f85de2fd793a173133746220668b7f67c14973e30",
+      "after": "279a1db41f30deb5e9436d4f85de2fd793a173133746220668b7f67c14973e30",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/persistence-provenance.json",
+      "before": "27de33378213f543f52db6e0ebb04863d6a675e52585880031d648fa9ca59d25",
+      "after": "27de33378213f543f52db6e0ebb04863d6a675e52585880031d648fa9ca59d25",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/persistence-regressions.txt",
+      "before": "420c1c5ad78e4fcb363d2daf373ef1fb357a8c23a51b02edbdbddb620f218676",
+      "after": "420c1c5ad78e4fcb363d2daf373ef1fb357a8c23a51b02edbdbddb620f218676",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/persistence.json",
+      "before": "5bc0304261dc098a7d8d1de6ec6f0c94164e4da2e1b7cdacb9cc47e908dd91be",
+      "after": "5bc0304261dc098a7d8d1de6ec6f0c94164e4da2e1b7cdacb9cc47e908dd91be",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/production-browser.txt",
+      "before": "2823024853ee4debee0f724c917fb16259cf08c756813cbf43b3b453db9b30c0",
+      "after": "2823024853ee4debee0f724c917fb16259cf08c756813cbf43b3b453db9b30c0",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/production-final-browser-current.txt",
+      "before": "8da9cd837108f7279035e909acc73502011de86ead3155eb234492c3381bab53",
+      "after": "8da9cd837108f7279035e909acc73502011de86ead3155eb234492c3381bab53",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/production-final-browser.txt",
+      "before": "f4b273f25c5ab7d4e6b65827bdb1b97223fae61aedde8d2b4a7ebba8b5206533",
+      "after": "f4b273f25c5ab7d4e6b65827bdb1b97223fae61aedde8d2b4a7ebba8b5206533",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/production-matrix-final-log.txt",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/production-matrix-log.txt",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/production-matrix.json",
+      "before": "505d131af5f2b5ee3d3fec90054bd1be9eaf6748a7eb6633a5189b7188a6b3b8",
+      "after": "505d131af5f2b5ee3d3fec90054bd1be9eaf6748a7eb6633a5189b7188a6b3b8",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/production-validation.md",
+      "before": "6ed94893f3ab0699e334d2c30e9ab641e25274c2c0ac17d475b33ee1b2b62553",
+      "after": "6ed94893f3ab0699e334d2c30e9ab641e25274c2c0ac17d475b33ee1b2b62553",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/regression-results.json",
+      "before": "baaeecebc6807b84db2592f223192c844e0ad12f925964dea5d352e7f6b93182",
+      "after": "baaeecebc6807b84db2592f223192c844e0ad12f925964dea5d352e7f6b93182",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/remaining-gaps.md",
+      "before": "b12dce1a1d984c630cceab8815ba2fecaa69929d6de5e49fca652b86d658ae44",
+      "after": "b12dce1a1d984c630cceab8815ba2fecaa69929d6de5e49fca652b86d658ae44",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/repair-regressions-final.txt",
+      "before": "c9ce3529a67f387c43948f2da79476d7078bf6bc4fb29becafb27f7321b94a06",
+      "after": "c9ce3529a67f387c43948f2da79476d7078bf6bc4fb29becafb27f7321b94a06",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/scoped-context-lint.json",
+      "before": "f69d803794f1f6f63b9c588635eea42c452c3221fe48d80facd82d0813fd86c6",
+      "after": "f69d803794f1f6f63b9c588635eea42c452c3221fe48d80facd82d0813fd86c6",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/scoped-eslint.json",
+      "before": "f0f050904680a3c7324154bc714a193ade09c6791bdfba63792a54eacc77dad7",
+      "after": "f0f050904680a3c7324154bc714a193ade09c6791bdfba63792a54eacc77dad7",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/starter-conflicts.json",
+      "before": "e32cc112869d9e72a3fe43bc41c757465f8074cae861d50d49a15be23a3ebbcf",
+      "after": "e32cc112869d9e72a3fe43bc41c757465f8074cae861d50d49a15be23a3ebbcf",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/starter-data-quality.json",
+      "before": "f35eddce4bc8576c1d8c446aab102b6749dc5ada9c35e0215af0225956aca97b",
+      "after": "f35eddce4bc8576c1d8c446aab102b6749dc5ada9c35e0215af0225956aca97b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/static-analysis.json",
+      "before": "51d0d75c1c2556deeec938288531da0e35214c099b042a4f6d1eff7b7d4caa62",
+      "after": "51d0d75c1c2556deeec938288531da0e35214c099b042a4f6d1eff7b7d4caa62",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/student-build.txt",
+      "before": "9c1d91ca8fa4f740d6d6378f017480b22444d77a258373aeb6f86c20b837c75a",
+      "after": "9c1d91ca8fa4f740d6d6378f017480b22444d77a258373aeb6f86c20b837c75a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/student-final-build-current.txt",
+      "before": "c9768f94189de1ab36071f73a25ccc2a669c3ffb06ad37a05450902821ea44a7",
+      "after": "c9768f94189de1ab36071f73a25ccc2a669c3ffb06ad37a05450902821ea44a7",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/student-final-build.txt",
+      "before": "90d44474f3bda1b1f1bb4da0784cbd4a978592f021b085adf336aff256eec43f",
+      "after": "90d44474f3bda1b1f1bb4da0784cbd4a978592f021b085adf336aff256eec43f",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/student-geometry2d.png",
+      "before": "db9fbd12f8cb0728bfe0d7f13fdfe79ef75d21fba5bc7d86db83ba8853f5ea94",
+      "after": "db9fbd12f8cb0728bfe0d7f13fdfe79ef75d21fba5bc7d86db83ba8853f5ea94",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/student-geometry3d.png",
+      "before": "c02d3d28a0bef1f3a044f18aec9829beab890210972d85f5a2fc7140c98d191a",
+      "after": "c02d3d28a0bef1f3a044f18aec9829beab890210972d85f5a2fc7140c98d191a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/student-graph2d.png",
+      "before": "917b8ec453d520e76cb80d3b91d1bf9362eac5ae241d3a270165266e2b20bd5f",
+      "after": "917b8ec453d520e76cb80d3b91d1bf9362eac5ae241d3a270165266e2b20bd5f",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/student-graph3d.png",
+      "before": "276f5c5c1e6c87a5c70463f6db0e94f6d7898d7dedc84a0c34eeba212fa834b5",
+      "after": "276f5c5c1e6c87a5c70463f6db0e94f6d7898d7dedc84a0c34eeba212fa834b5",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/typecheck-after.txt",
+      "before": "d7c087c95f004f2f2421a7da7354431773ac5208d72de317be981b8107dea81a",
+      "after": "d7c087c95f004f2f2421a7da7354431773ac5208d72de317be981b8107dea81a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/typecheck-before.txt",
+      "before": "d7c087c95f004f2f2421a7da7354431773ac5208d72de317be981b8107dea81a",
+      "after": "d7c087c95f004f2f2421a7da7354431773ac5208d72de317be981b8107dea81a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/typecheck-current.txt",
+      "before": "0ffa9b7783edde5ec204eb6aee05fa1ea6e55e3e44e60aa39063c46e117f95ee",
+      "after": "0ffa9b7783edde5ec204eb6aee05fa1ea6e55e3e44e60aa39063c46e117f95ee",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/typecheck-final.txt",
+      "before": "9c2a05a4c1c0ac0b8e84081a01128bad8bcfaa1993c13b663ca280bdc18ecde4",
+      "after": "9c2a05a4c1c0ac0b8e84081a01128bad8bcfaa1993c13b663ca280bdc18ecde4",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/typecheck-frozen.txt",
+      "before": "1e35d209340d23091c5b13337500fb524731d381bda7f9dc9d06e836a2cfc62f",
+      "after": "1e35d209340d23091c5b13337500fb524731d381bda7f9dc9d06e836a2cfc62f",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/unit-tests.txt",
+      "before": "cbc273700dd42724fb3e278c3a1b037f2f83941cd95d84dd5e5e3f663c15ce6a",
+      "after": "cbc273700dd42724fb3e278c3a1b037f2f83941cd95d84dd5e5e3f663c15ce6a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/v41-rerun.txt",
+      "before": "ea3570a4ff59ce34e19deae6a193501a2ebd6abe17bb3e31d3ddc8b30570fb4b",
+      "after": "ea3570a4ff59ce34e19deae6a193501a2ebd6abe17bb3e31d3ddc8b30570fb4b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/v53-graph.png",
+      "before": "4b7c15b1446c7cd8cc43dc5a55a193c491b0e5427cafc95301b924db10fae305",
+      "after": "4b7c15b1446c7cd8cc43dc5a55a193c491b0e5427cafc95301b924db10fae305",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/v53-performance.json",
+      "before": "7251a198fa9df3919881dc0ecb47f14c7c374aaa0d5f04ab16967cff94ebc741",
+      "after": "7251a198fa9df3919881dc0ecb47f14c7c374aaa0d5f04ab16967cff94ebc741",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/v53-progress.json",
+      "before": "1b2222017ab04f83c43c267f64495d2936acb4911fb46b332fc07a0c5bfb7d8b",
+      "after": "1b2222017ab04f83c43c267f64495d2936acb4911fb46b332fc07a0c5bfb7d8b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/v53.json",
+      "before": "d4889c00cac17b72c7c65ad71a8cef3c3816945e28179e474fffdcd19b0a1efa",
+      "after": "d4889c00cac17b72c7c65ad71a8cef3c3816945e28179e474fffdcd19b0a1efa",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/v53.md",
+      "before": "6a635636e1f4b46faaffd19dc926bbea97142b66699b18808f101ffc689a960c",
+      "after": "6a635636e1f4b46faaffd19dc926bbea97142b66699b18808f101ffc689a960c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/worker-regressions.txt",
+      "before": "10d9f8651691fccc4fa028ffa5276293ec97c097d0641675be04f8580148346d",
+      "after": "10d9f8651691fccc4fa028ffa5276293ec97c097d0641675be04f8580148346d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/workspace-integration.md",
+      "before": "86e691af93639a52781988680415e7e0637d99d2427b7e742df166db949ed9c1",
+      "after": "86e691af93639a52781988680415e7e0637d99d2427b7e742df166db949ed9c1",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/workspaces-final-log.txt",
+      "before": "c5f75bd77527cfc97dd27f28da4af4d1f97c8664dbbf3ede0cb6e18b78cdf9b0",
+      "after": "c5f75bd77527cfc97dd27f28da4af4d1f97c8664dbbf3ede0cb6e18b78cdf9b0",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/workspaces-log.txt",
+      "before": "db82132e328125d60e048c00791bf4941eb766c3da38cb17f353280555416563",
+      "after": "db82132e328125d60e048c00791bf4941eb766c3da38cb17f353280555416563",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/workspaces-provenance.json",
+      "before": "dde256486697c991dcfa32f93132826f248e833917826d5b7f4433b12d59977e",
+      "after": "dde256486697c991dcfa32f93132826f248e833917826d5b7f4433b12d59977e",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v5.3/workspaces-rerun.txt",
+      "before": "c5f75bd77527cfc97dd27f28da4af4d1f97c8664dbbf3ede0cb6e18b78cdf9b0",
+      "after": "c5f75bd77527cfc97dd27f28da4af4d1f97c8664dbbf3ede0cb6e18b78cdf9b0",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/100-question-test-report.json",
+      "before": "feacfe30131cf52eeadef297c0077f3b3d05257249388f8c83246e2e0ce90118",
+      "after": "feacfe30131cf52eeadef297c0077f3b3d05257249388f8c83246e2e0ce90118",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/100-question-test-report.md",
+      "before": "e1035c70a28969285cd2a76ad4f3bdf2fa9454d1c2ec545cdeeb094ad97752c4",
+      "after": "e1035c70a28969285cd2a76ad4f3bdf2fa9454d1c2ec545cdeeb094ad97752c4",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/100-question-v53-report.json",
+      "before": "feacfe30131cf52eeadef297c0077f3b3d05257249388f8c83246e2e0ce90118",
+      "after": "feacfe30131cf52eeadef297c0077f3b3d05257249388f8c83246e2e0ce90118",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/100-question-v53-report.md",
+      "before": "e1035c70a28969285cd2a76ad4f3bdf2fa9454d1c2ec545cdeeb094ad97752c4",
+      "after": "e1035c70a28969285cd2a76ad4f3bdf2fa9454d1c2ec545cdeeb094ad97752c4",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/after-eslint.json",
+      "before": "bb0797f94b5b795a0552ca1f09223c85bc5bfd32340583db5e64d395f3f6873b",
+      "after": "bb0797f94b5b795a0552ca1f09223c85bc5bfd32340583db5e64d395f3f6873b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/after-frozen100-log.txt",
+      "before": "268b5af0f3852a7fe40bd4494361887798efb7e460d943290007fcb2b7efc597",
+      "after": "268b5af0f3852a7fe40bd4494361887798efb7e460d943290007fcb2b7efc597",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/after-full-scoped.txt",
+      "before": "0b75ad9c0e73b6ab22a600fb4c373e9517c807e65eefc07e8e574a432eaf22ee",
+      "after": "0b75ad9c0e73b6ab22a600fb4c373e9517c807e65eefc07e8e574a432eaf22ee",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/after-native-persistence-log.txt",
+      "before": "812b03a279d72c6ecbe6ad779159c5be9e143952c644e62202d19808b9b671ca",
+      "after": "812b03a279d72c6ecbe6ad779159c5be9e143952c644e62202d19808b9b671ca",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/after-nlp300-first-verified.json",
+      "before": "6841a44828348dd553b2079b81770eeb2770c9ff8a9cd28fe665cde57a1c0068",
+      "after": "6841a44828348dd553b2079b81770eeb2770c9ff8a9cd28fe665cde57a1c0068",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/after-nlp300-log.txt",
+      "before": "a972b8a2d45aaa957bf0bfb45ad6e89d2f392f06e7acdc617b89f2557fc928ff",
+      "after": "a972b8a2d45aaa957bf0bfb45ad6e89d2f392f06e7acdc617b89f2557fc928ff",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/after-nlp300.json",
+      "before": "6841a44828348dd553b2079b81770eeb2770c9ff8a9cd28fe665cde57a1c0068",
+      "after": "6841a44828348dd553b2079b81770eeb2770c9ff8a9cd28fe665cde57a1c0068",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/after-scoped.txt",
+      "before": "24e7d4f2c402795a95965c9fb895a01c5aaf7a5798d04395d09bc6c5d5fd84c5",
+      "after": "24e7d4f2c402795a95965c9fb895a01c5aaf7a5798d04395d09bc6c5d5fd84c5",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/after-typescript.txt",
+      "before": "61911a74329ac481151ae3aad1cb8f3e107a23444f02c7072c6911a19860eb35",
+      "after": "61911a74329ac481151ae3aad1cb8f3e107a23444f02c7072c6911a19860eb35",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/after-workspaces-log.txt",
+      "before": "53d73e91f752c4f7156174c012f9122c08f66053b39df7e33cc91d54f18006cc",
+      "after": "53d73e91f752c4f7156174c012f9122c08f66053b39df7e33cc91d54f18006cc",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/baseline-eslint.json",
+      "before": "9ef9f72553402b3bd1c00b07d481d3e05341940c7c4655cf03afe6db008d488c",
+      "after": "9ef9f72553402b3bd1c00b07d481d3e05341940c7c4655cf03afe6db008d488c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/baseline-failures.json",
+      "before": "d46a7ef90a3fc9b7995d3dc91c07411be9ec34c0d4c72ea0043149e176c7c3a6",
+      "after": "d46a7ef90a3fc9b7995d3dc91c07411be9ec34c0d4c72ea0043149e176c7c3a6",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/baseline-frozen100-log.txt",
+      "before": "0915af50f1cb75b01cf1997362e1c16fc4e5ebcaa8de0e206052227bca828a4c",
+      "after": "0915af50f1cb75b01cf1997362e1c16fc4e5ebcaa8de0e206052227bca828a4c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/baseline-frozen100.json",
+      "before": "25784732ef761f03c99bfa9ee26e0f50fa62cfa0588a9b0167279cb1542f8cde",
+      "after": "25784732ef761f03c99bfa9ee26e0f50fa62cfa0588a9b0167279cb1542f8cde",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/baseline-manifest.json",
+      "before": "b6479a5f9645805d74eae35993fc5a2dc8744debece4d2a441c487a35538321e",
+      "after": "b6479a5f9645805d74eae35993fc5a2dc8744debece4d2a441c487a35538321e",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/baseline-nlp300-concurrent-edits-log.txt",
+      "before": "9cca6ebfc047c6895a51a286468a3d31db2452b527b2e66ab6800c5b1a4dd06a",
+      "after": "9cca6ebfc047c6895a51a286468a3d31db2452b527b2e66ab6800c5b1a4dd06a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/baseline-nlp300-inconclusive-log.txt",
+      "before": "2c345e626571e643888b668deae4c10c683076dbd9d143fd9e9b1b865dd20926",
+      "after": "2c345e626571e643888b668deae4c10c683076dbd9d143fd9e9b1b865dd20926",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/baseline-nlp300-log.txt",
+      "before": "ea0699768d8abfff4b83b3794ff3a358a26abe3356656c2a4fb8f295e0c08d05",
+      "after": "ea0699768d8abfff4b83b3794ff3a358a26abe3356656c2a4fb8f295e0c08d05",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/baseline-nlp300.json",
+      "before": "79acaeb60d23b35d042963767595ae267d2b7c63b0cdf7cfb2e21ff0ff7e44cc",
+      "after": "79acaeb60d23b35d042963767595ae267d2b7c63b0cdf7cfb2e21ff0ff7e44cc",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/baseline-typescript.txt",
+      "before": "1e35d209340d23091c5b13337500fb524731d381bda7f9dc9d06e836a2cfc62f",
+      "after": "1e35d209340d23091c5b13337500fb524731d381bda7f9dc9d06e836a2cfc62f",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/baseline-unit.txt",
+      "before": "e8df14459e87526b56b3bee7ce6df4ad403995edeaf9e1b978e1e27922a3d9c2",
+      "after": "e8df14459e87526b56b3bee7ce6df4ad403995edeaf9e1b978e1e27922a3d9c2",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/BENCHMARKS.md",
+      "before": "7f834de57bca1f5954b78d36f39e383bcfc257077d3e5a0a2a0d8c602ba37ae3",
+      "after": "7f834de57bca1f5954b78d36f39e383bcfc257077d3e5a0a2a0d8c602ba37ae3",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/browser-results.json",
+      "before": "72139666efd17fc122763f671cad44b5260907e40274667d7e03160b37faebc1",
+      "after": "72139666efd17fc122763f671cad44b5260907e40274667d7e03160b37faebc1",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/build-student.txt",
+      "before": "c727e15ed02cea0a90339895fae339dd510f0958ab4780120ddf94579c6f7b71",
+      "after": "c727e15ed02cea0a90339895fae339dd510f0958ab4780120ddf94579c6f7b71",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/COVERAGE-MATRIX.md",
+      "before": "5ee734967a8908675148cca9b65c3b1fbfeafc1b386b68681ed6948eb0a0d4bc",
+      "after": "5ee734967a8908675148cca9b65c3b1fbfeafc1b386b68681ed6948eb0a0d4bc",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/DISCOVERY.md",
+      "before": "2c86772ca102b26dda32e749a47216967cb6af96680b3607965ab0e6f2c120c8",
+      "after": "2c86772ca102b26dda32e749a47216967cb6af96680b3607965ab0e6f2c120c8",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/EXECUTION-CONTRACT.md",
+      "before": "a0c7f5ecfcf9301c397f7b6826c05b58a89bc54cfc31c9304bdb66bef0e59ec9",
+      "after": "a0c7f5ecfcf9301c397f7b6826c05b58a89bc54cfc31c9304bdb66bef0e59ec9",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/final-eslint.json",
+      "before": "5ee52855629885f598f3992fd7f0203acae68aeee72419034857895f684c0739",
+      "after": "5ee52855629885f598f3992fd7f0203acae68aeee72419034857895f684c0739",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/final-evidence.json",
+      "before": "a9b213f3fb5803a7277e40083d880081916d43f25f611f0a3170314e711ce186",
+      "after": "a9b213f3fb5803a7277e40083d880081916d43f25f611f0a3170314e711ce186",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/final-frozen100-log.txt",
+      "before": "0915af50f1cb75b01cf1997362e1c16fc4e5ebcaa8de0e206052227bca828a4c",
+      "after": "0915af50f1cb75b01cf1997362e1c16fc4e5ebcaa8de0e206052227bca828a4c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/final-frozen100.json",
+      "before": "feacfe30131cf52eeadef297c0077f3b3d05257249388f8c83246e2e0ce90118",
+      "after": "feacfe30131cf52eeadef297c0077f3b3d05257249388f8c83246e2e0ce90118",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/final-nlp300-log.txt",
+      "before": "a972b8a2d45aaa957bf0bfb45ad6e89d2f392f06e7acdc617b89f2557fc928ff",
+      "after": "a972b8a2d45aaa957bf0bfb45ad6e89d2f392f06e7acdc617b89f2557fc928ff",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/final-nlp300.json",
+      "before": "d23aed980f816a5c75a0430b116ac8a486687142ace0a9978a630d5ef322ac3a",
+      "after": "d23aed980f816a5c75a0430b116ac8a486687142ace0a9978a630d5ef322ac3a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/final-typescript.txt",
+      "before": "2d8891015d604de8af12c0074948f8be017d83ea3acc14e9143c8315e13a07ce",
+      "after": "2d8891015d604de8af12c0074948f8be017d83ea3acc14e9143c8315e13a07ce",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/five-transcripts-matrix.json",
+      "before": "5ea12a18487c9bbcf7f01845dbd602a3b37b0f6407522e4aa811c54ad06620e7",
+      "after": "ef49f995df97ddf123ee360e37cf51f9d23254177501315a4e958a62216b53a3",
+      "unchanged": false
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/frozen-entry-provenance.json",
+      "before": "4e1a8d26372d9d4cbfc5e3290ef62061db5b61871f20e62630219ccba7348d2d",
+      "after": "4e1a8d26372d9d4cbfc5e3290ef62061db5b61871f20e62630219ccba7348d2d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/geometry2d-v52.png",
+      "before": "ce8e91ecfe389eab5d3ed0fa38c482f868e1ff1960c87345f32e581ae12e4f5d",
+      "after": "ce8e91ecfe389eab5d3ed0fa38c482f868e1ff1960c87345f32e581ae12e4f5d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/geometry3d-v52.png",
+      "before": "368bf1fcf5b77f3b546e3088c996389e9ccb1e8661f06938d445d0b3cd8328e4",
+      "after": "368bf1fcf5b77f3b546e3088c996389e9ccb1e8661f06938d445d0b3cd8328e4",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/graph2d-v52.png",
+      "before": "c8ada69274fee7b56bd1c4406c1beece5f183e1621ebf47b832f91e306a5969c",
+      "after": "c8ada69274fee7b56bd1c4406c1beece5f183e1621ebf47b832f91e306a5969c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/graph3d-v52.png",
+      "before": "528560acb9152afd83a3d86242fb2780d5f3dc91fa43d12ff82e00120cf4c862",
+      "after": "528560acb9152afd83a3d86242fb2780d5f3dc91fa43d12ff82e00120cf4c862",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/MATHIR-MIGRATION.md",
+      "before": "a65d7d96de7f2f5630ec8c5850e88f6d7496fd6cc40ad11d5fc5a0b906494c46",
+      "after": "a65d7d96de7f2f5630ec8c5850e88f6d7496fd6cc40ad11d5fc5a0b906494c46",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/model-integrity.json",
+      "before": "1be6a12b0b1b1b9886bac4521e88924c345c14318acee0b0e5e8ad8b26fb9445",
+      "after": "1be6a12b0b1b1b9886bac4521e88924c345c14318acee0b0e5e8ad8b26fb9445",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/new-files-eslint.json",
+      "before": "cd803f502452dcb4376f399d779f9f7b60777af3eb9f6d7c26ff9113d8910e23",
+      "after": "cd803f502452dcb4376f399d779f9f7b60777af3eb9f6d7c26ff9113d8910e23",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/nlp-provenance.json",
+      "before": "5b4f0e596d42d9af7ea87acd39f52636a921509372c8435d0f770d4c7f74b8e5",
+      "after": "5b4f0e596d42d9af7ea87acd39f52636a921509372c8435d0f770d4c7f74b8e5",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/persistence-graph.png",
+      "before": "a4e6894d71ca7afcce62e656b29d6bcbf7d44f11b35c06a37025b9cf6be8ac18",
+      "after": "a4e6894d71ca7afcce62e656b29d6bcbf7d44f11b35c06a37025b9cf6be8ac18",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/persistence-provenance.json",
+      "before": "b596b31d4445a39a53c753fe52c3604dfc5178b9052ac1c0a390aa2c96c6169d",
+      "after": "b596b31d4445a39a53c753fe52c3604dfc5178b9052ac1c0a390aa2c96c6169d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/persistence.json",
+      "before": "fb6920b6ddfa62c4ef4b0904cc1b8398cd62083a72bb96e9146a7dfbe415ceb6",
+      "after": "fb6920b6ddfa62c4ef4b0904cc1b8398cd62083a72bb96e9146a7dfbe415ceb6",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/PHASE-1-FINAL-REPORT.md",
+      "before": "93352b885b90bf8c3ad62df7ce8a570bc8535a9a3b771c909438652a5b4d5b54",
+      "after": "93352b885b90bf8c3ad62df7ce8a570bc8535a9a3b771c909438652a5b4d5b54",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/PHASE-2-HANDOFF.md",
+      "before": "30799a1e4c6a224755cc0803a4806ea978548d20b3bf813560aceb2d4b1b120e",
+      "after": "30799a1e4c6a224755cc0803a4806ea978548d20b3bf813560aceb2d4b1b120e",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/phase1-boundary-repair.txt",
+      "before": "ff1433452eac15293faa4abfc7eccb3def207b7a2938a6ef6a5ba27e53a96d5a",
+      "after": "ff1433452eac15293faa4abfc7eccb3def207b7a2938a6ef6a5ba27e53a96d5a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/phase1-native-browser-log.txt",
+      "before": "8ff3601d3627b8c5248164642202febf35aeb55c16afc89c02800ffee1d5b784",
+      "after": "8ff3601d3627b8c5248164642202febf35aeb55c16afc89c02800ffee1d5b784",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/phase1-native-browser.json",
+      "before": "435a9a174c518bad2efc59827f41860f0c79962ac6341e95ef43b7aabab93513",
+      "after": "435a9a174c518bad2efc59827f41860f0c79962ac6341e95ef43b7aabab93513",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/phase1-targeted.txt",
+      "before": "c86b1b95735392174e948be49f22d9d2e55d4b1f8735d0d082645b42bb61774d",
+      "after": "c86b1b95735392174e948be49f22d9d2e55d4b1f8735d0d082645b42bb61774d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/targeted-kernel.txt",
+      "before": "fa825069ed2c5683485886383499a1ece55502211ed3793d48c14bde937772c0",
+      "after": "fa825069ed2c5683485886383499a1ece55502211ed3793d48c14bde937772c0",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/targeted-repair.txt",
+      "before": "531c175a4a9f86d43d52d37e515db3ee730ca4a72fdec15aafddf150181f7e42",
+      "after": "531c175a4a9f86d43d52d37e515db3ee730ca4a72fdec15aafddf150181f7e42",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/targeted-runtime.txt",
+      "before": "8a9f120230965b5bce683dfd5d1d9a97ae0f51bf94fce6c153fbaf31e5a557d8",
+      "after": "8a9f120230965b5bce683dfd5d1d9a97ae0f51bf94fce6c153fbaf31e5a557d8",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/v53-graph.png",
+      "before": "4b7c15b1446c7cd8cc43dc5a55a193c491b0e5427cafc95301b924db10fae305",
+      "after": "4b7c15b1446c7cd8cc43dc5a55a193c491b0e5427cafc95301b924db10fae305",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/v53-progress.json",
+      "before": "1b2222017ab04f83c43c267f64495d2936acb4911fb46b332fc07a0c5bfb7d8b",
+      "after": "1b2222017ab04f83c43c267f64495d2936acb4911fb46b332fc07a0c5bfb7d8b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/v53.json",
+      "before": "d23aed980f816a5c75a0430b116ac8a486687142ace0a9978a630d5ef322ac3a",
+      "after": "d23aed980f816a5c75a0430b116ac8a486687142ace0a9978a630d5ef322ac3a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/v53.md",
+      "before": "6a635636e1f4b46faaffd19dc926bbea97142b66699b18808f101ffc689a960c",
+      "after": "6a635636e1f4b46faaffd19dc926bbea97142b66699b18808f101ffc689a960c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase1/workspaces-provenance.json",
+      "before": "dde256486697c991dcfa32f93132826f248e833917826d5b7f4433b12d59977e",
+      "after": "dde256486697c991dcfa32f93132826f248e833917826d5b7f4433b12d59977e",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/100-question-test-report.json",
+      "before": "eea92221840bcd7b3ba5128e8539e66617c8df883f821b188bcc8a2bf2c6b50f",
+      "after": "eea92221840bcd7b3ba5128e8539e66617c8df883f821b188bcc8a2bf2c6b50f",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/100-question-test-report.md",
+      "before": "e1035c70a28969285cd2a76ad4f3bdf2fa9454d1c2ec545cdeeb094ad97752c4",
+      "after": "e1035c70a28969285cd2a76ad4f3bdf2fa9454d1c2ec545cdeeb094ad97752c4",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/100-question-v53-report.json",
+      "before": "eea92221840bcd7b3ba5128e8539e66617c8df883f821b188bcc8a2bf2c6b50f",
+      "after": "eea92221840bcd7b3ba5128e8539e66617c8df883f821b188bcc8a2bf2c6b50f",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/100-question-v53-report.md",
+      "before": "e1035c70a28969285cd2a76ad4f3bdf2fa9454d1c2ec545cdeeb094ad97752c4",
+      "after": "e1035c70a28969285cd2a76ad4f3bdf2fa9454d1c2ec545cdeeb094ad97752c4",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/browser-cpu-comparison.json",
+      "before": "51ff4e579be69ff85282a6e206a57fa64df26b4a9dced2b4bf669e71155afc63",
+      "after": "51ff4e579be69ff85282a6e206a57fa64df26b4a9dced2b4bf669e71155afc63",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/browser-cpu-log.txt",
+      "before": "b5b441a67b52b4076df81a841fcf1578c1a76ca0533444519acb613d63f09981",
+      "after": "b5b441a67b52b4076df81a841fcf1578c1a76ca0533444519acb613d63f09981",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/build-student-final.txt",
+      "before": "9b8110f5480e9789ea6fe08e3cf4edbbf96132d948eac6bd02d1325f81890365",
+      "after": "9b8110f5480e9789ea6fe08e3cf4edbbf96132d948eac6bd02d1325f81890365",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/build-student.txt",
+      "before": "c93619e8989e3df91f1f3fd2327676d24ea5c54e5d24582808585eb771653156",
+      "after": "c93619e8989e3df91f1f3fd2327676d24ea5c54e5d24582808585eb771653156",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/candidate-corpus.jsonl",
+      "before": "10db42506a59ae26aa1ef9c6a6d7951fdc1b8ca38f3028f886bc5e532b73e66d",
+      "after": "10db42506a59ae26aa1ef9c6a6d7951fdc1b8ca38f3028f886bc5e532b73e66d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/candidate-manifest.json",
+      "before": "5e8e8d94dbfb38c36ea2ebb4f64ff502a4bfdc73a1b351cee39360c96f0eed8b",
+      "after": "5e8e8d94dbfb38c36ea2ebb4f64ff502a4bfdc73a1b351cee39360c96f0eed8b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/candidate-model.json",
+      "before": "d5cf17a10cdb3d4aec5350c910241aa31a05aed8d8256a0ab5f5970815c0cf33",
+      "after": "d5cf17a10cdb3d4aec5350c910241aa31a05aed8d8256a0ab5f5970815c0cf33",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/candidate-weights.bin",
+      "before": "495ab2617dfa4c0eda6a0d3e8835b321d0c272d3c1db24d43eb3953a31876e87",
+      "after": "495ab2617dfa4c0eda6a0d3e8835b321d0c272d3c1db24d43eb3953a31876e87",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/combined-corpus-audit.json",
+      "before": "c2c1c16b1c3fe7997859c8482f9dab87f765537be711ee5432beeccb05f61045",
+      "after": "c2c1c16b1c3fe7997859c8482f9dab87f765537be711ee5432beeccb05f61045",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/context-classifier.json",
+      "before": "47783aa4170a19819b9af2c77cea73afac8e7423edf4c3609ed1b1b4fbcc2adb",
+      "after": "47783aa4170a19819b9af2c77cea73afac8e7423edf4c3609ed1b1b4fbcc2adb",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/conversation-baseline.txt",
+      "before": "ddb03ea8f551fa4ad10e522f383055f76bf7378027342a3f24dad9873ff4024b",
+      "after": "ddb03ea8f551fa4ad10e522f383055f76bf7378027342a3f24dad9873ff4024b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/conversation-corpus-audit.json",
+      "before": "c1407cc06ba57266c7c77c3f958e2019bfe8d1a0a8d1ffc89ab209fd4d8f55bc",
+      "after": "c1407cc06ba57266c7c77c3f958e2019bfe8d1a0a8d1ffc89ab209fd4d8f55bc",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/conversation-corpus-deduplicated.jsonl",
+      "before": "a2a35bb3da87454102375ce5aed93f68dc919510e6ccd629c1d8eaa9cdfd2866",
+      "after": "a2a35bb3da87454102375ce5aed93f68dc919510e6ccd629c1d8eaa9cdfd2866",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/conversation-corpus.jsonl",
+      "before": "350f42aebc314e464ca567c90ea7f66181fa5f030ce8a435e115f2ab6ca89b54",
+      "after": "350f42aebc314e464ca567c90ea7f66181fa5f030ce8a435e115f2ab6ca89b54",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/conversation-expanded-final.txt",
+      "before": "517bfb3a23f79e821077fbda2166b10b78aea22f3eeb671e24a02d4b5772e9ad",
+      "after": "517bfb3a23f79e821077fbda2166b10b78aea22f3eeb671e24a02d4b5772e9ad",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/conversation-expanded.txt",
+      "before": "f0e59834723afe1bc0d32fdc90c959ecadbe8b5cd12d482bde4374aa679eca56",
+      "after": "f0e59834723afe1bc0d32fdc90c959ecadbe8b5cd12d482bde4374aa679eca56",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/conversation-final.txt",
+      "before": "caa2a2787352a7aee5c39d1787a43f2e22637b3981e2aba3f2f12b650860458c",
+      "after": "caa2a2787352a7aee5c39d1787a43f2e22637b3981e2aba3f2f12b650860458c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/conversation-repair1.txt",
+      "before": "21730326238265a91f19c5f2e85ca53c2e60aba606ba347a5107573f9f3c7096",
+      "after": "21730326238265a91f19c5f2e85ca53c2e60aba606ba347a5107573f9f3c7096",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/conversation-repair2.txt",
+      "before": "3a8d6c4a49bf1826fc027839343b7e3d331f6ca7441ed1c6969fd18f67cdbfca",
+      "after": "3a8d6c4a49bf1826fc027839343b7e3d331f6ca7441ed1c6969fd18f67cdbfca",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/conversation-repair3.txt",
+      "before": "8b685894b5f2c877942136a0577ae173cd56e78e38dd24689937ff5e381ccd36",
+      "after": "8b685894b5f2c877942136a0577ae173cd56e78e38dd24689937ff5e381ccd36",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/conversation-repair4.txt",
+      "before": "659ecccbab6a6a3070b0bda7e0de252998354066858b8e9c37aa0f42504c6ca2",
+      "after": "659ecccbab6a6a3070b0bda7e0de252998354066858b8e9c37aa0f42504c6ca2",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/dataset-audit.json",
+      "before": "9f83e99dc1a4b09f108659459b3c9a61b96cc8424c9dbbc1045ab390d7e67d60",
+      "after": "9f83e99dc1a4b09f108659459b3c9a61b96cc8424c9dbbc1045ab390d7e67d60",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/dialogue-curation-log.txt",
+      "before": "1776b2f25d8d788739479de2c6340b6cdb4471f7f107344b1e513a567bf5234b",
+      "after": "1776b2f25d8d788739479de2c6340b6cdb4471f7f107344b1e513a567bf5234b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/eslint-final.json",
+      "before": "0d1bd313c11c50f2c766fef66bdaff83da8b67af617e99f6b405b9c09b04796e",
+      "after": "0d1bd313c11c50f2c766fef66bdaff83da8b67af617e99f6b405b9c09b04796e",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/eslint-log.txt",
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/eslint.json",
+      "before": "d03928deedc9690610d4cfef1c06f2b2832db2a683a4263a1a82e1f738d1f64a",
+      "after": "d03928deedc9690610d4cfef1c06f2b2832db2a683a4263a1a82e1f738d1f64a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/final-evidence.json",
+      "before": "718d84e8764a2ef8d05468a6cbc973a5457be638ab65a4adaa3eb644b5476878",
+      "after": "718d84e8764a2ef8d05468a6cbc973a5457be638ab65a4adaa3eb644b5476878",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/final-focused.txt",
+      "before": "2826cf3c7c5f0018e262708eeeb62c3c704d53328570a637e0824781ba1bb17a",
+      "after": "2826cf3c7c5f0018e262708eeeb62c3c704d53328570a637e0824781ba1bb17a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/focused-repair.txt",
+      "before": "bcce8cb1399216f3bf0f01b277c2272856d213afa5bb5038b86487c796b854c4",
+      "after": "bcce8cb1399216f3bf0f01b277c2272856d213afa5bb5038b86487c796b854c4",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/frozen-entry-provenance.json",
+      "before": "4e1a8d26372d9d4cbfc5e3290ef62061db5b61871f20e62630219ccba7348d2d",
+      "after": "4e1a8d26372d9d4cbfc5e3290ef62061db5b61871f20e62630219ccba7348d2d",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/frozen-final-log.txt",
+      "before": "0915af50f1cb75b01cf1997362e1c16fc4e5ebcaa8de0e206052227bca828a4c",
+      "after": "0915af50f1cb75b01cf1997362e1c16fc4e5ebcaa8de0e206052227bca828a4c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/frozen-log.txt",
+      "before": "0915af50f1cb75b01cf1997362e1c16fc4e5ebcaa8de0e206052227bca828a4c",
+      "after": "0915af50f1cb75b01cf1997362e1c16fc4e5ebcaa8de0e206052227bca828a4c",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/held-out-classifier.json",
+      "before": "1f45a1d720473b4c2f0f3c85fd7e8180031998a5bd0d5c36ed19865e6f957974",
+      "after": "1f45a1d720473b4c2f0f3c85fd7e8180031998a5bd0d5c36ed19865e6f957974",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/model-integrity.json",
+      "before": "b5b967b16bedd1ebecf46025fed5ffcb8532640ecb4b11951ccc516b9e1f61ce",
+      "after": "b5b967b16bedd1ebecf46025fed5ffcb8532640ecb4b11951ccc516b9e1f61ce",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/native-browser.json",
+      "before": "9721f1332b0b512251184c69d867577a157e468917b377bc6a983d47d3d474e4",
+      "after": "9721f1332b0b512251184c69d867577a157e468917b377bc6a983d47d3d474e4",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/native-log.txt",
+      "before": "bb5c5c96fb4b6e4a2968ddff6e3e071d9d36a0b2c3d0456576b9dae0666944f4",
+      "after": "bb5c5c96fb4b6e4a2968ddff6e3e071d9d36a0b2c3d0456576b9dae0666944f4",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/neural-baseline-log.txt",
+      "before": "9301c561a264f0579a1d0ec4fc6ec1091f44c52ac30b7651ef7b77f7a4bebead",
+      "after": "9301c561a264f0579a1d0ec4fc6ec1091f44c52ac30b7651ef7b77f7a4bebead",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/neural-evaluation.json",
+      "before": "3ea25e6cb48d6cd06a806cac0575785884096a0ef40e35d47a4273685003e8c5",
+      "after": "3ea25e6cb48d6cd06a806cac0575785884096a0ef40e35d47a4273685003e8c5",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/neural-memory-final.json",
+      "before": "8ec200561b6bbc34390b7198638d9221f1f127e2b1e1a5d9c7461f0ba67df6d2",
+      "after": "8ec200561b6bbc34390b7198638d9221f1f127e2b1e1a5d9c7461f0ba67df6d2",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/neural-training-log.txt",
+      "before": "6343377d1bf0205c84600238a1044567267fb319007bcd883a0daed8ef64436b",
+      "after": "6343377d1bf0205c84600238a1044567267fb319007bcd883a0daed8ef64436b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/new-eslint.json",
+      "before": "c9cefc0b9a96372f350b1b938be05880fbdf1d479d8eacd4a76f3faa7b04b031",
+      "after": "c9cefc0b9a96372f350b1b938be05880fbdf1d479d8eacd4a76f3faa7b04b031",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/nlp-final-stable-log.txt",
+      "before": "a972b8a2d45aaa957bf0bfb45ad6e89d2f392f06e7acdc617b89f2557fc928ff",
+      "after": "a972b8a2d45aaa957bf0bfb45ad6e89d2f392f06e7acdc617b89f2557fc928ff",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/nlp-inconclusive-log.txt",
+      "before": "ed1aca5c4ffe0b5bcc368ce4280744ac3cc55a9418e9999eab87dea63f7a4043",
+      "after": "ed1aca5c4ffe0b5bcc368ce4280744ac3cc55a9418e9999eab87dea63f7a4043",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/nlp-log.txt",
+      "before": "a972b8a2d45aaa957bf0bfb45ad6e89d2f392f06e7acdc617b89f2557fc928ff",
+      "after": "a972b8a2d45aaa957bf0bfb45ad6e89d2f392f06e7acdc617b89f2557fc928ff",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/nlp-provenance.json",
+      "before": "5b4f0e596d42d9af7ea87acd39f52636a921509372c8435d0f770d4c7f74b8e5",
+      "after": "5b4f0e596d42d9af7ea87acd39f52636a921509372c8435d0f770d4c7f74b8e5",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/RUHI-V6-CONVERSATION-TESTS.md",
+      "before": "3cf0f4cb87e0084d47bab8ce662e724181175f3fdf52b5e39e110c4bc4e28a25",
+      "after": "3cf0f4cb87e0084d47bab8ce662e724181175f3fdf52b5e39e110c4bc4e28a25",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/RUHI-V6-DATASET-AUDIT.md",
+      "before": "ab8f053a1d2a703bf4f315f1c61d433175bad522894efcf50cd3920ccf1b2ce3",
+      "after": "ab8f053a1d2a703bf4f315f1c61d433175bad522894efcf50cd3920ccf1b2ce3",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/RUHI-V6-NEURAL-EVALUATION.md",
+      "before": "79d39800cd729a18d7614b0780031d45d0129c7143378b9657d479889fcd0e5a",
+      "after": "79d39800cd729a18d7614b0780031d45d0129c7143378b9657d479889fcd0e5a",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/RUHI-V6-PHASE2-ARCHITECTURE.md",
+      "before": "f2468c794aaf2a62bf001a93662354cf7358d384e17cf0835323a6b69bc57d8e",
+      "after": "f2468c794aaf2a62bf001a93662354cf7358d384e17cf0835323a6b69bc57d8e",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/RUHI-V6-PHASE2-FINAL-REPORT.md",
+      "before": "6167699f747d6a69cbfe1e54cb9fabcadb7944a64efc45a552c94039132fbe6e",
+      "after": "6167699f747d6a69cbfe1e54cb9fabcadb7944a64efc45a552c94039132fbe6e",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/RUHI-V6-PHASE3-HANDOFF.md",
+      "before": "a83c62bd8a5f4805aafc860cb9138bec993ae9898edc731d1989cf520f390338",
+      "after": "a83c62bd8a5f4805aafc860cb9138bec993ae9898edc731d1989cf520f390338",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/scoped-regression-final.txt",
+      "before": "bfaff5ede111335e53ca373d399015965cbc74e621c8a0dd9c9b77e566dd5e1b",
+      "after": "bfaff5ede111335e53ca373d399015965cbc74e621c8a0dd9c9b77e566dd5e1b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/scoped-regression.txt",
+      "before": "ff7c448c975b178c94d7414a6b0ad40e0d251cf4407ad73dfaf2fde8f7ce9e85",
+      "after": "ff7c448c975b178c94d7414a6b0ad40e0d251cf4407ad73dfaf2fde8f7ce9e85",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/scoped-report-write-failure.txt",
+      "before": "b3cfb52ee95b27043b85160740c1aabbcbaa075176ff88d24325cdd1bf14a9e6",
+      "after": "b3cfb52ee95b27043b85160740c1aabbcbaa075176ff88d24325cdd1bf14a9e6",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/scoped-resource-timeout.txt",
+      "before": "543e6f756aaed366304e86dddea3def9e855cea85baa6861d87ce1a5f0d20b52",
+      "after": "543e6f756aaed366304e86dddea3def9e855cea85baa6861d87ce1a5f0d20b52",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/starter-conflicts.json",
+      "before": "e32cc112869d9e72a3fe43bc41c757465f8074cae861d50d49a15be23a3ebbcf",
+      "after": "e32cc112869d9e72a3fe43bc41c757465f8074cae861d50d49a15be23a3ebbcf",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/starter-data-quality.json",
+      "before": "9607a45c6d1386ad12fe4fed519a1c0bce8621d17aa35bb6ba58b6dba62acaee",
+      "after": "9607a45c6d1386ad12fe4fed519a1c0bce8621d17aa35bb6ba58b6dba62acaee",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/student-offline-log.txt",
+      "before": "f2fbf513430a09119adfe79f65a00548071b112ca4423928366e25c215d2c7c0",
+      "after": "f2fbf513430a09119adfe79f65a00548071b112ca4423928366e25c215d2c7c0",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/student-offline.json",
+      "before": "1d910c691e994c26ac9852e310ab74465d2eebd25a19b96c75527ad73945f121",
+      "after": "1d910c691e994c26ac9852e310ab74465d2eebd25a19b96c75527ad73945f121",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/type-only-and-script-eslint.json",
+      "before": "e0d063fcfbacd1d5ca63009024e3f40b2d69c9bfd45d379e470ad65d607c8c1b",
+      "after": "e0d063fcfbacd1d5ca63009024e3f40b2d69c9bfd45d379e470ad65d607c8c1b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/type-only-correction.json",
+      "before": "69b8aa548637f905d9f933d000b3881af0cf57f6fa44b09867e03f1e567607fc",
+      "after": "69b8aa548637f905d9f933d000b3881af0cf57f6fa44b09867e03f1e567607fc",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/typescript-before-type-only-correction.txt",
+      "before": "c99e6bd7dd9bd5103c7395e521df4bdf6aca551677c969f886104d09e36110cf",
+      "after": "c99e6bd7dd9bd5103c7395e521df4bdf6aca551677c969f886104d09e36110cf",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/typescript-final-stable.txt",
+      "before": "2d8891015d604de8af12c0074948f8be017d83ea3acc14e9143c8315e13a07ce",
+      "after": "2d8891015d604de8af12c0074948f8be017d83ea3acc14e9143c8315e13a07ce",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/typescript-final.txt",
+      "before": "2d8891015d604de8af12c0074948f8be017d83ea3acc14e9143c8315e13a07ce",
+      "after": "2d8891015d604de8af12c0074948f8be017d83ea3acc14e9143c8315e13a07ce",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/typescript.txt",
+      "before": "2d8891015d604de8af12c0074948f8be017d83ea3acc14e9143c8315e13a07ce",
+      "after": "2d8891015d604de8af12c0074948f8be017d83ea3acc14e9143c8315e13a07ce",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/v53-graph.png",
+      "before": "c95b8c71b200b57ba86ea2fd145278d7474c15860a0212b9445113cc27f8721e",
+      "after": "c95b8c71b200b57ba86ea2fd145278d7474c15860a0212b9445113cc27f8721e",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/v53-progress.json",
+      "before": "1b2222017ab04f83c43c267f64495d2936acb4911fb46b332fc07a0c5bfb7d8b",
+      "after": "1b2222017ab04f83c43c267f64495d2936acb4911fb46b332fc07a0c5bfb7d8b",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/v53.json",
+      "before": "0d0f416256f3cd700d5d3a63acb7f54782c3bcfa6d03c3d46fa0e67e8d516396",
+      "after": "0d0f416256f3cd700d5d3a63acb7f54782c3bcfa6d03c3d46fa0e67e8d516396",
+      "unchanged": true
+    },
+    {
+      "file": "reports/ruhi-v6-phase2/v53.md",
+      "before": "6a635636e1f4b46faaffd19dc926bbea97142b66699b18808f101ffc689a960c",
+      "after": "6a635636e1f4b46faaffd19dc926bbea97142b66699b18808f101ffc689a960c",
+      "unchanged": true
+    }
+  ],
+  "models": [
+    {
+      "file": "public/models/math-robo-intelligence-v4/model.json",
+      "sha256": "07a18c7b3321f2b3f7696fc01b4d2c83dd4b392231835a15c45304326ce06f08",
+      "after": "07a18c7b3321f2b3f7696fc01b4d2c83dd4b392231835a15c45304326ce06f08",
+      "unchanged": true
+    },
+    {
+      "file": "public/models/math-robo-intelligence-v4/weights.bin",
+      "sha256": "315d8161f4ff311db2e7850ef5e6d0f5362fa2f53cede767e2a12f2b2907ce3d",
+      "after": "315d8161f4ff311db2e7850ef5e6d0f5362fa2f53cede767e2a12f2b2907ce3d",
+      "unchanged": true
+    },
+    {
+      "file": "public/models/math-robo-intents-v3/model.json",
+      "sha256": "2a5f3cc9937079937a6203845ad01f5f27917300e5ac584a0e3ef6f8bc418683",
+      "after": "2a5f3cc9937079937a6203845ad01f5f27917300e5ac584a0e3ef6f8bc418683",
+      "unchanged": true
+    },
+    {
+      "file": "public/models/math-robo-intents-v3/weights.bin",
+      "sha256": "f1d17bc7a4ed28146876a86174db6338488c08c98952443e3b0c86a8ec89a842",
+      "after": "f1d17bc7a4ed28146876a86174db6338488c08c98952443e3b0c86a8ec89a842",
+      "unchanged": true
+    },
+    {
+      "file": "public/models/ruhi-context-v1/model.json",
+      "sha256": "bd7251a0a39bf33fa39e88986efbb4a0cb8ddaa73ac677f0b8130b1b3651cba4",
+      "after": "bd7251a0a39bf33fa39e88986efbb4a0cb8ddaa73ac677f0b8130b1b3651cba4",
+      "unchanged": true
+    },
+    {
+      "file": "public/models/ruhi-context-v1/weights.bin",
+      "sha256": "af24d79bbff85e0e066d7b950c5451f6b4c1fb5aa03614900d498f53d59978e4",
+      "after": "af24d79bbff85e0e066d7b950c5451f6b4c1fb5aa03614900d498f53d59978e4",
+      "unchanged": true
+    }
+  ],
+  "historicalReportIncident": {
+    "file": "reports/ruhi-v6-phase1/five-transcripts-matrix.json",
+    "reason": "Existing phase1Integrity.test.ts unconditionally overwrote this untracked report during the baseline/scoped test run. Original bytes were not backed up; baseline SHA retained. No claim of full history preservation. Test output now isolated to tmp/ruhi-test-reports/ and expectations unchanged.",
+    "restored": false
+  }
+}

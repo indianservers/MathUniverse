@@ -205,7 +205,7 @@ export default function ProductRuleTargetLesson291({
         ))}
       </nav>
       <section className="prd291-flow">
-        {[
+        {([
           [Eye, "Observe", "See the product uv and its derivative."],
           [SlidersHorizontal, "Manipulate", "Edit u(x) and v(x) to explore."],
           [
@@ -218,7 +218,7 @@ export default function ProductRuleTargetLesson291({
             "Understand",
             "The derivative equals the sum of two product terms.",
           ],
-        ].map(([Icon, t, p], i) => (
+        ] as const).map(([Icon, t, p], i) => (
           <article key={String(t)}>
             <b>{i + 1}</b>
             <div>
@@ -310,11 +310,11 @@ export default function ProductRuleTargetLesson291({
             />
           </label>
           <h3>Display options</h3>
-          {[
+          {([
             ["Show axes", axes, setAxes],
             ["Show grid", grid, setGrid],
             ["Show legend", legend, setLegend],
-          ].map(([label, value, setter]) => (
+          ] as const).map(([label, value, setter]) => (
             <label className="toggle" key={String(label)}>
               <input
                 type="checkbox"

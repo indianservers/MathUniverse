@@ -1,0 +1,83 @@
+{
+  "scope": "Headless Chromium CPU on current host, remote network blocked; no low-end hardware guarantee.",
+  "results": [
+    {
+      "name": "published",
+      "backend": "cpu",
+      "parameters": 56026,
+      "iterations": 100,
+      "warmup": 20,
+      "medianMs": 1.399999976158142,
+      "p95Ms": 2.4000000059604645,
+      "allocatedWeightBytes": 224104,
+      "memory": {
+        "before": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 0,
+          "numDataBuffers": 0,
+          "numBytes": 0
+        },
+        "loaded": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 6,
+          "numDataBuffers": 6,
+          "numBytes": 224104
+        },
+        "after": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 0,
+          "numDataBuffers": 0,
+          "numBytes": 0
+        }
+      }
+    },
+    {
+      "name": "candidate",
+      "backend": "cpu",
+      "parameters": 28026,
+      "iterations": 100,
+      "warmup": 20,
+      "medianMs": 0.9000000059604645,
+      "p95Ms": 1.199999988079071,
+      "allocatedWeightBytes": 112104,
+      "memory": {
+        "before": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 0,
+          "numDataBuffers": 0,
+          "numBytes": 0
+        },
+        "loaded": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 6,
+          "numDataBuffers": 6,
+          "numBytes": 112104
+        },
+        "after": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 0,
+          "numDataBuffers": 0,
+          "numBytes": 0
+        }
+      }
+    }
+  ]
+}

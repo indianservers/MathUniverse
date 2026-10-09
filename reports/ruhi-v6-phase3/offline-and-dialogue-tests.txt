@@ -1,0 +1,10 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+·····························
+
+ Test Files  2 passed (2)
+      Tests  29 passed (29)
+   Start at  03:47:28
+   Duration  3.01s (transform 625ms, setup 43ms, import 2.12s, tests 557ms, environment 0ms)
+

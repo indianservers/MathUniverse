@@ -1,0 +1,26 @@
+{
+  "revision": "249a5cc139ed1a9b4aa99bf6dadd3310b224c8ca",
+  "node": "v24.13.1",
+  "platform": "win32",
+  "seed": 20261009,
+  "publishedModels": {
+    "public/models/math-robo-intelligence-v4/model.json": "07a18c7b3321f2b3f7696fc01b4d2c83dd4b392231835a15c45304326ce06f08",
+    "public/models/math-robo-intelligence-v4/weights.bin": "315d8161f4ff311db2e7850ef5e6d0f5362fa2f53cede767e2a12f2b2907ce3d",
+    "public/models/math-robo-intents-v3/model.json": "2a5f3cc9937079937a6203845ad01f5f27917300e5ac584a0e3ef6f8bc418683",
+    "public/models/math-robo-intents-v3/weights.bin": "f1d17bc7a4ed28146876a86174db6338488c08c98952443e3b0c86a8ec89a842",
+    "public/models/ruhi-context-v1/model.json": "bd7251a0a39bf33fa39e88986efbb4a0cb8ddaa73ac677f0b8130b1b3651cba4",
+    "public/models/ruhi-context-v1/weights.bin": "af24d79bbff85e0e066d7b950c5451f6b4c1fb5aa03614900d498f53d59978e4"
+  },
+  "historicalStatic": {
+    "typescript": 218,
+    "eslintErrors": 439,
+    "eslintWarnings": 133
+  },
+  "commands": [
+    "npx vitest run src/math-robo src/offline-intelligence src/graph-studio src/workspace/geometry2dKernel.test.ts --maxWorkers=1 --testTimeout=60000 --hookTimeout=60000 --reporter=dot",
+    "node scripts/ruhi-v6-phase1-evidence.mjs frozen-entry",
+    "node scripts/ruhi-v6-phase1-evidence.mjs nlp",
+    "npx tsc -b --pretty false --assumeChangesOnlyAffectDirectDependencies",
+    "npx eslint . --format json --output-file reports/ruhi-v6-phase1/baseline-eslint.json"
+  ]
+}

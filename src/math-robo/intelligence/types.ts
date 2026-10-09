@@ -1,6 +1,6 @@
 import type { IntelligenceMode, VisualCommand } from '../../offline-intelligence/commands';
 export type RoboMode = IntelligenceMode;
-export type RoboTarget = string | { id?: string; name?: string; type?: string; color?: string; index?: number; relation?: 'nearest'|'largest'|'smallest'|'longest'|'leftmost'|'horizontal'|'vertical'|'above'|'below'; to?: string; reference?:'lastReferenced' };
+export type RoboTarget = string | { id?: string; name?: string; type?: string; color?: string; index?: number; relation?: 'nearest'|'largest'|'smallest'|'longest'|'leftmost'|'horizontal'|'vertical'|'above'|'below'|'through'|'inside'; to?: string; reference?:'lastReferenced' };
 export type RoboParameters = {
   width?: number; height?: number; depth?: number; radius?: number; diameter?: number; sides?: number;
   position?: number[]; points?: number[][]; vector?: number[]; dx?: number; dy?: number; dz?: number;
@@ -15,7 +15,7 @@ export type MathRoboCommand = {
   source: { action: 'model'|'rule'|'correction'|'context'; subAction: 'model'|'rule'|'correction'|'context' };
   requiresExecution: boolean;
 };
-export type MathRoboPlan = { ir?:import('./commandIR').CommandIR[]; atomicity?:'all-or-nothing'; rawPhrase: string; commands: MathRoboCommand[]; contextSnapshotId?: string; confidence: number };
+export type MathRoboPlan = { actionGraph?:import('./actionGraph').ActionGraph; ir?:import('./commandIR').CommandIR[]; atomicity?:'all-or-nothing'; rawPhrase: string; commands: MathRoboCommand[]; contextSnapshotId?: string; confidence: number };
 export type RoboObjectDescriptor = {
   id: string; type: string; mode: RoboMode; label?: string; position: number[]; radius?: number;
   style: { color: string; visible?: boolean }; command: VisualCommand; vertices?: number[][]; originalId?: string;
@@ -32,6 +32,9 @@ export type RoboSceneContext = {
   activeTool?:string;viewport?:unknown;responseDepth?:'compact'|'standard'|'detailed';
 };
 export type RoboResult = {
+  navigation?:{path:string;title:string;requiresConfirmation:boolean};
+  execution?:import('../../math-foundation/executionOutcome').ExecutionOutcome;
+  clarification?:import('../../math-foundation/executionOutcome').ClarificationRequirement;
   engineExecution?:import('./engineRegistry').EngineResult;
   status: 'success'|'invalid'|'unsupported'|'ambiguous'|'unhandled'; message: string;
   value?: RoboSceneContext['previousResult']; candidates?: string[]; plan: MathRoboPlan;

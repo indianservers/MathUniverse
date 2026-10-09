@@ -1,0 +1,233 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+ × src/math-robo/intelligence/phase2Conversation.test.ts > A object continuity uses current dimensions, style and reverses only rotation 48ms
+   → I cannot increase object in this workspace yet.: expected 'unsupported' to be 'success' // Object.is equality
+ × src/math-robo/intelligence/phase2Conversation.test.ts > B ambiguous references preserve the movement until the second circle is identified 22ms
+   → expected 'success' to be 'ambiguous' // Object.is equality
+ × src/math-robo/intelligence/phase2Conversation.test.ts > C relative angle changes use the active angle and end at 89 degrees 5ms
+   → expected 'invalid' to be 'success' // Object.is equality
+ × src/math-robo/intelligence/phase2Conversation.test.ts > D compound medians, centroid and circumcircle carry live triangle dependencies 9ms
+   → I cannot construct object in this workspace yet.: expected 'unsupported' to be 'success' // Object.is equality
+ × src/math-robo/intelligence/phase2Conversation.test.ts > F tutoring checks a wrong rectangle answer, hints and accepts equivalent correct formatting 9ms
+   → expected 'Please clarify the request before I c…' to match /36|width|formula/
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > G deleted object references cannot survive a geometry follow-up 6ms
+ × src/math-robo/intelligence/phase2Conversation.test.ts > H page changes invalidate specialist task memory without deleting workspace objects 251ms
+   → expected { input: 'Calculate 2+3', …(3) } to be undefined
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > I compound create/transform/measure/verify has no partial mutation on a contradictory step 6ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > J unsupported proof never receives verified execution confidence 947ms
+ × src/math-robo/intelligence/phase2Conversation.test.ts > missing line endpoints can be supplied by a point plus direction angle 5ms
+   → What are the two endpoints? Give coordinates such as (0,0) and (4,2).: expected 'ambiguous' to be 'success' // Object.is equality
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > contradictory SSS triangle is rejected with the triangle inequality 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/math-robo/intelligence/phase2Conversation.test.ts > A object continuity uses current dimensions, style and reverses only rotation
+AssertionError: I cannot increase object in this workspace yet.: expected 'unsupported' to be 'success' // Object.is equality
+
+Expected: "success"
+Received: "unsupported"
+
+ ❯ src/math-robo/intelligence/phase2Conversation.test.ts:6:342
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  src/math-robo/intelligence/phase2Conversation.test.ts > B ambiguous references preserve the movement until the second circle is identified
+AssertionError: expected 'success' to be 'ambiguous' // Object.is equality
+
+Expected: "ambiguous"
+Received: "success"
+
+ ❯ src/math-robo/intelligence/phase2Conversation.test.ts:7:315
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  src/math-robo/intelligence/phase2Conversation.test.ts > C relative angle changes use the active angle and end at 89 degrees
+AssertionError: expected 'invalid' to be 'success' // Object.is equality
+
+Expected: "success"
+Received: "invalid"
+
+ ❯ src/math-robo/intelligence/phase2Conversation.test.ts:8:208
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  src/math-robo/intelligence/phase2Conversation.test.ts > D compound medians, centroid and circumcircle carry live triangle dependencies
+AssertionError: I cannot construct object in this workspace yet.: expected 'unsupported' to be 'success' // Object.is equality
+
+Expected: "success"
+Received: "unsupported"
+
+ ❯ src/math-robo/intelligence/phase2Conversation.test.ts:9:275
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  src/math-robo/intelligence/phase2Conversation.test.ts > F tutoring checks a wrong rectangle answer, hints and accepts equivalent correct formatting
+AssertionError: expected 'Please clarify the request before I c…' to match /36|width|formula/
+
+- Expected:
+/36|width|formula/
+
++ Received:
+"Please clarify the request before I change any objects."
+
+ ❯ src/math-robo/intelligence/phase2Conversation.test.ts:10:270
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  src/math-robo/intelligence/phase2Conversation.test.ts > H page changes invalidate specialist task memory without deleting workspace objects
+AssertionError: expected { input: 'Calculate 2+3', …(3) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "expression": "2+3",
+  "input": "Calculate 2+3",
+  "result": {
+    "answer": "5",
+    "approximate": false,
+    "capabilityId": "kernel.compute",
+    "engineId": "kernel",
+    "error": undefined,
+    "exact": true,
+    "execution": {
+      "evidence": {
+        "assumptions": [],
+        "independent": true,
+        "level": "exact_symbolic",
+        "method": "Independent rational accumulation and exact cross-product equality",
+        "passed": true,
+      },
+      "message": "5",
+      "requestId": "c08ba672-cc81-4763-bace-31331b83e6c1",
+      "status": "verified",
+    },
+    "metadata": {
+      "conditions": [],
+      "kernel": {
+        "answer": "5",
+        "assumptions": [],
+        "ast": {
+          "assumptions": [],
+          "domain": "UNKNOWN",
+          "id": "ast-0-3-2",
+          "left": {
+            "assumptions": [],
+            "domain": "INTEGER",
+            "id": "ast-0-1-0",
+            "literalKind": "INTEGER",
+            "mathType": "SCALAR",
+            "sourceRange": {
+              "end": 1,
+              "start": 0,
+            },
+            "type": "LITERAL",
+            "validation": "VALID",
+            "value": "2",
+          },
+          "mathType": "SCALAR",
+          "operator": "+",
+          "right": {
+            "assumptions": [],
+            "domain": "INTEGER",
+            "id": "ast-2-3-1",
+            "literalKind": "INTEGER",
+            "mathType": "SCALAR",
+            "sourceRange": {
+              "end": 3,
+              "start": 2,
+            },
+            "type": "LITERAL",
+            "validation": "VALID",
+            "value": "3",
+          },
+          "sourceRange": {
+            "end": 3,
+            "start": 0,
+          },
+          "type": "BINARY_OPERATION",
+          "validation": "VALID",
+        },
+        "conditions": [],
+        "diagnostics": [],
+        "domain": "real",
+        "elapsedMs": 3.7723000000000866,
+        "exact": "5",
+        "execution": {
+          "evidence": {
+            "assumptions": [],
+            "independent": true,
+            "level": "exact_symbolic",
+            "method": "Independent rational accumulation and exact cross-product equality",
+            "passed": true,
+          },
+          "message": "5",
+          "requestId": "c08ba672-cc81-4763-bace-31331b83e6c1",
+          "status": "verified",
+        },
+        "inputExpression": "2+3",
+        "normalizedExpression": "(2+3)",
+        "operation": "evaluate",
+        "status": "verified_exact",
+        "steps": [
+          "Evaluate the typed expression using exact rational operations.",
+        ],
+        "value": {
+          "kind": "INTEGER",
+          "value": "5",
+        },
+        "verification": {
+          "method": "Exact BigInt rational/complex arithmetic",
+          "passed": true,
+          "residual": undefined,
+        },
+      },
+    },
+    "steps": [
+      "Evaluate the typed expression using exact rational operations.",
+    ],
+    "success": true,
+    "value": {
+      "kind": "INTEGER",
+      "value": "5",
+    },
+    "verification": {
+      "method": "Exact BigInt rational/complex arithmetic",
+      "passed": true,
+      "residual": undefined,
+    },
+    "verificationStatus": "verified_exact",
+    "warnings": [],
+  },
+  "style": "answer",
+}
+
+ ❯ src/math-robo/intelligence/phase2Conversation.test.ts:12:371
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  src/math-robo/intelligence/phase2Conversation.test.ts > missing line endpoints can be supplied by a point plus direction angle
+AssertionError: What are the two endpoints? Give coordinates such as (0,0) and (4,2).: expected 'ambiguous' to be 'success' // Object.is equality
+
+Expected: "success"
+Received: "ambiguous"
+
+ ❯ src/math-robo/intelligence/phase2Conversation.test.ts:15:247
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 4 passed (11)
+   Start at  01:33:57
+   Duration  3.73s (transform 1.04s, setup 50ms, import 2.21s, tests 1.31s, environment 0ms)
+

@@ -1,0 +1,27 @@
+installed {
+  worker: 'http://127.0.0.1:9887/ruhi-offline-sw.js',
+  keys: [
+    'ruhi-offline-v6-c362befd62d2d704a1f5e3cbd95924be479f807dfa6ecdc67ca30902ba2c34e2'
+  ],
+  entries: [
+    {
+      k: 'ruhi-offline-v6-c362befd62d2d704a1f5e3cbd95924be479f807dfa6ecdc67ca30902ba2c34e2',
+      entries: 1097
+    }
+  ]
+}
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+error Failed to load resource: net::ERR_FAILED
+body 
+post {
+  worker: 'http://127.0.0.1:9887/ruhi-offline-sw.js',
+  keys: [
+    'ruhi-offline-v6-c362befd62d2d704a1f5e3cbd95924be479f807dfa6ecdc67ca30902ba2c34e2'
+  ]
+}

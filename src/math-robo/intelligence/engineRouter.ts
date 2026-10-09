@@ -1,3 +1,4 @@
+import {executionOutcome} from '../../math-foundation/executionOutcome';
 import {kernelRequest} from '../kernel/language';
 import {routeQuery} from '../../utils/mathEngine/queryRouter';
 import {normalizeLanguage,parseNumber,NUMBER_PATTERN} from './numberParser';
@@ -7,6 +8,7 @@ import type {RoboSceneContext} from './types';
 export class EngineRouter{
   private calculation?:AbortController;
   cancelCalculation(){this.calculation?.abort();}
+  resetContext(){this.cancelCalculation();this.last=undefined;this.recent=[];this.pending=undefined;this.assumptions=[];this.variables={};this.dataset=[];this.notebook=[];this.quiz=undefined;this.quizAnswerModel=undefined;}
   last?:{input:string;expression:string;result:EngineResult;style:ResponseStyle};
   recent:{input:string;capabilityId:string;success:boolean}[]=[];
   assumptions:string[]=[];
@@ -69,7 +71,7 @@ export class EngineRouter{
   private reply(id:string,answer:string,value?:unknown,success=true){return {result:{verificationStatus:success?'unverified':'unsupported',success,engineId:'conversation',capabilityId:id,answer,value} as EngineResult,message:answer};}
   private async run(id:string,input:SpecialistInput,expression:string,style:ResponseStyle='answer'){
     this.calculation?.abort();const controller=new AbortController();this.calculation=controller;
-    const result=await executeCapability(id,id==='cas.evaluate'?{...input,cells:this.notebook}:{...input,signal:controller.signal});if(this.calculation===controller)this.calculation=undefined;if(id==='cas.evaluate'&&result.success&&result.metadata?.cells)this.notebook=result.metadata.cells as typeof this.notebook;this.recent=[...this.recent,{input:input.text,capabilityId:id,success:result.success}].slice(-25);
+    const result=await executeCapability(id,{...input,...(id==='cas.evaluate'?{cells:this.notebook}:{}),signal:controller.signal});if(this.calculation!==controller||controller.signal.aborted){const cancelled:EngineResult={success:false,engineId:result.engineId,capabilityId:id,error:{code:'CANCELLED',message:'Calculation cancelled.'},execution:executionOutcome('cancelled',result.execution?.requestId)};return {result:cancelled,message:'Calculation cancelled.'};}this.calculation=undefined;if(id==='cas.evaluate'&&result.success&&result.metadata?.cells)this.notebook=result.metadata.cells as typeof this.notebook;this.recent=[...this.recent,{input:input.text,capabilityId:id,success:result.success}].slice(-25);
     if(result.success)this.last={input:input.text,expression,result,style};return {result,message:composeEngineResponse(result,style)};
   }
 }

@@ -129,7 +129,7 @@ export default function NormalLineTargetLesson288({
         ))}
       </nav>
       <section className="nln288-flow">
-        {[
+        {([
           [
             Eye,
             "Observe",
@@ -150,7 +150,7 @@ export default function NormalLineTargetLesson288({
             "Understand",
             "This guarantees the normal line is perpendicular to the tangent at the same selected point.",
           ],
-        ].map(([Icon, t, p], i) => (
+        ] as const).map(([Icon, t, p], i) => (
           <article key={String(t)}>
             <Icon />
             <div>

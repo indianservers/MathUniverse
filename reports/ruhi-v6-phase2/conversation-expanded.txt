@@ -1,0 +1,67 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry2d anchored side mutation preserves IDs and styles, certificates and undo/redo 140ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry2d missing side constraints and failed edits cannot mutate state 37ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry2d versioned persistence round trips aliases/styles/history and rejects duplicate identities atomically 47ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph2d anchored side mutation preserves IDs and styles, certificates and undo/redo 19ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph2d missing side constraints and failed edits cannot mutate state 26ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph2d versioned persistence round trips aliases/styles/history and rejects duplicate identities atomically 33ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry3d anchored side mutation preserves IDs and styles, certificates and undo/redo 27ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry3d missing side constraints and failed edits cannot mutate state 22ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry3d versioned persistence round trips aliases/styles/history and rejects duplicate identities atomically 33ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph3d anchored side mutation preserves IDs and styles, certificates and undo/redo 22ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph3d missing side constraints and failed edits cannot mutate state 22ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph3d versioned persistence round trips aliases/styles/history and rejects duplicate identities atomically 36ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > 2D circumcircle follows constrained triangle and missing-constraint question retains intent 58ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > queued native cancellation rolls back before a later request, without committing history 30ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > exact five frozen transcripts run in four modes with ambiguity recorded honestly 360ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > supplied endpoints complete the blocked line/intersection/circle/color transcript 55ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > a uniquely retained triangle-side property supports increase by 2 and undo that change 18ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > cyclic dependencies and native commit exceptions reject proposed scene atomically 13ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry2d a supplied vector and angle preserve magnitude under rotation 15ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph2d a supplied vector and angle preserve magnitude under rotation 12ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry3d a supplied vector and angle preserve magnitude under rotation 13ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph3d a supplied vector and angle preserve magnitude under rotation 18ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > partial side constraints remain underdetermined and never select a hidden anchoring policy 15ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > A object continuity uses current dimensions, style and reverses only rotation 204ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > B ambiguous references preserve the movement until the second circle is identified 75ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > C relative angle changes use the active angle and end at 89 degrees 16ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > D compound medians, centroid and circumcircle carry live triangle dependencies 38ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > F tutoring checks a wrong rectangle answer, hints and accepts equivalent correct formatting 315ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > G deleted object references cannot survive a geometry follow-up 29ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > H page changes invalidate specialist task memory without deleting workspace objects 18ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > I compound create/transform/measure/verify has no partial mutation on a contradictory step 21ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > J unsupported proof never receives verified execution confidence 1932ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > missing line endpoints can be supplied by a point plus direction angle 9ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > contradictory SSS triangle is rejected with the triangle inequality 6ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > E selected angle and reviewed page explanations are grounded in current state 11ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > medians and centroid recompute on parent translation and survive undo and saved import 41ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > typed memory exposes current evidence and stable dependency versions 9ms
+ × src/math-robo/intelligence/phase2Conversation.test.ts > relative resize accounts for physical scale and refuses nonpositive dimensions 26ms
+   → expected 5 to be 10 // Object.is equality
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > tutoring rejects a stale exercise after its source object changes 13ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > line clarification never infers a missing finite vector magnitude 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/math-robo/intelligence/phase2Conversation.test.ts > relative resize accounts for physical scale and refuses nonpositive dimensions
+AssertionError: expected 5 to be 10 // Object.is equality
+
+- Expected
++ Received
+
+- 10
++ 5
+
+ ❯ src/math-robo/intelligence/phase2Conversation.test.ts:22:349
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 39 passed (40)
+   Start at  01:45:22
+   Duration  9.38s (transform 3.09s, setup 184ms, import 4.32s, tests 3.85s, environment 1ms)
+

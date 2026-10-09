@@ -161,12 +161,12 @@ export default function SineRuleTargetLesson270({
       </header>
 
       <section className="target-sine-rule-flow">
-        {[
+        {([
           [Eye, "Observe", "See how the triangle changes the ratios."],
           [Hand, "Manipulate", "Drag vertices or change a value to explore."],
           [Lightbulb, "Notice", "Look for patterns in the sine ratios."],
           [Target, "Understand", "Apply the Sine Rule with confidence."],
-        ].map(([Icon, title, copy], index) => (
+        ] as const).map(([Icon, title, copy], index) => (
           <article key={String(title)}>
             <Icon />
             <div>

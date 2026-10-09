@@ -264,7 +264,7 @@ export default function ConcavityTargetLesson299({
           </main>
         </section>
         <section className="con299-flow">
-          {[
+          {([
             [
               Eye,
               "OBSERVE",
@@ -285,7 +285,7 @@ export default function ConcavityTargetLesson299({
               "UNDERSTAND",
               "The sign of the second derivative determines concavity.",
             ],
-          ].map(([Icon, t, p]) => (
+          ] as const).map(([Icon, t, p]) => (
             <article key={String(t)}>
               <Icon />
               <h3>{t}</h3>

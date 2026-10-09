@@ -1,0 +1,18 @@
+failed http://127.0.0.1:9887/assets/index-kpzGpXpR.js net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/vendor-icons-C3dLI0g1.js net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/vendor-three-ub9rmW6h.js net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/vendor-react-3d-FwnfEBiX.js net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/vendor-charts-BXOpgMHl.js net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/vendor-math-rendering-BITAHWHy.js net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/vendor-math-rendering-dRWncRqa.css net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/index-CYxAxi6W.css net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/index-kpzGpXpR.js net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/vendor-icons-C3dLI0g1.js net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/vendor-three-ub9rmW6h.js net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/vendor-react-3d-FwnfEBiX.js net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/vendor-charts-BXOpgMHl.js net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/vendor-math-rendering-BITAHWHy.js net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/vendor-math-rendering-dRWncRqa.css net::ERR_FAILED
+failed http://127.0.0.1:9887/assets/index-CYxAxi6W.css net::ERR_FAILED
+BODY 
+BUTTONS []

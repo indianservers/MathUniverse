@@ -1,5 +1,6 @@
 import {describe,it,expect,afterAll} from 'vitest';
-import {mkdirSync,writeFileSync} from 'node:fs';
+import {mkdirSync} from 'node:fs';
+import {writeTestReport as writeFileSync} from '../testReport';
 import {SemanticEngine} from './semanticEngine';
 import {describeObject} from './sceneContext';
 import {geometryState} from './resultVerifier';

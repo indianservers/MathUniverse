@@ -1,0 +1,39 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > A object continuity uses current dimensions, style and reverses only rotation 107ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > B ambiguous references preserve the movement until the second circle is identified 90ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > C relative angle changes use the active angle and end at 89 degrees 13ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > D compound medians, centroid and circumcircle carry live triangle dependencies 30ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > F tutoring checks a wrong rectangle answer, hints and accepts equivalent correct formatting 183ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > G deleted object references cannot survive a geometry follow-up 9ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > H page changes invalidate specialist task memory without deleting workspace objects 8ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > I compound create/transform/measure/verify has no partial mutation on a contradictory step 16ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > J unsupported proof never receives verified execution confidence 1068ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > missing line endpoints can be supplied by a point plus direction angle 7ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > contradictory SSS triangle is rejected with the triangle inequality 4ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > E selected angle and reviewed page explanations are grounded in current state 4ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > medians and centroid recompute on parent translation and survive undo and saved import 18ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > typed memory exposes current evidence and stable dependency versions 4ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > relative resize accounts for physical scale and refuses nonpositive dimensions 9ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > tutoring rejects a stale exercise after its source object changes 5ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > line clarification never infers a missing finite vector magnitude 4ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > D independent coordinate oracle checks all medians, centroid and circumcircle 10ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > I successful multi-intent action graph draws, moves, measures, explains and checks atomically 9ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > proof adapters do not verify nonparallel lines or use 2D evidence for 3D 10ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > fuzzy resizing requests preserve geometry until an exact factor is provided 8ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > geometric references resolve by incidence and containment rather than recency 46ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > previous length uses retained geometry and never resurrects a deleted reference 8ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > circumcenter evidence rejects malformed parents and inconsistent circle radius 8ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > proof follow-ups use their checked geometry and reject a changed scene 12ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > saved scene imports reset proof, pending and specialist session context 10ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > marked rectangle centroid uses four vertices and matches the actual point 8ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > marked triangle centroid carries three coordinates and live dependencies in graph3d 24ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > marked triangle centroid carries three coordinates and live dependencies in geometry3d 9ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > explicit construction references take precedence over a new triangle in the compound plan 11ms
+
+ Test Files  1 passed (1)
+      Tests  30 passed (30)
+   Start at  02:53:06
+   Duration  4.33s (transform 1.50s, setup 68ms, import 2.22s, tests 1.75s, environment 0ms)
+

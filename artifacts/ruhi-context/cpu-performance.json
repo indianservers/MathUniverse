@@ -1,7 +1,7 @@
 {
   "backend": "cpu",
   "inferences": 150,
-  "meanMs": 0.29885666666666716,
+  "meanMs": 1.126235333333334,
   "tensorsBefore": 6,
   "tensorsAfter": 6
 }

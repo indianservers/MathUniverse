@@ -1,0 +1,906 @@
+
+> math-universe-visualizations@1.0.2 build:student
+> node scripts/build-ruhi.mjs student
+
+vite v6.4.2 building for production...
+transforming...
+✓ 9497 modules transformed.
+rendering chunks...
+[plugin vite:reporter] 
+(!) C:/Indian Servers/Math Universe Visualizations/src/utils/functionParser.ts is dynamically imported by C:/Indian Servers/Math Universe Visualizations/src/math-robo/intelligence/engineRegistryCore.ts but also statically imported by C:/Indian Servers/Math Universe Visualizations/src/ar-math-lab/arExplorationEngine.ts, C:/Indian Servers/Math Universe Visualizations/src/graph-studio/advancedGraphLayers.ts, C:/Indian Servers/Math Universe Visualizations/src/graph-studio/graph2dAdvanced.ts, C:/Indian Servers/Math Universe Visualizations/src/graph-studio/graph3dAdvanced.ts, C:/Indian Servers/Math Universe Visualizations/src/graph-studio/graph3dEnhancements.ts, C:/Indian Servers/Math Universe Visualizations/src/graph-studio/graphIntelligence.ts, C:/Indian Servers/Math Universe Visualizations/src/learning-system/practiceEngine.ts, C:/Indian Servers/Math Universe Visualizations/src/math-foundation/analysis2d.ts, C:/Indian Servers/Math Universe Visualizations/src/math-robo/animation/CinematicSvgPreview.tsx, C:/Indian Servers/Math Universe Visualizations/src/math-robo/intelligence/executionPlanner.ts, C:/Indian Servers/Math Universe Visualizations/src/math-robo/intelligence/geometryQueries.ts, C:/Indian Servers/Math Universe Visualizations/src/math-robo/intelligence/importValidation.ts, C:/Indian Servers/Math Universe Visualizations/src/math-robo/intelligence/numberParser.ts, C:/Indian Servers/Math Universe Visualizations/src/offline-intelligence/geometryAdapter.ts, C:/Indian Servers/Math Universe Visualizations/src/offline-intelligence/languageEngine.ts, C:/Indian Servers/Math Universe Visualizations/src/offline-intelligence/shapeGeometry3d.ts, C:/Indian Servers/Math Universe Visualizations/src/pages/CalculusConceptStudio.tsx, C:/Indian Servers/Math Universe Visualizations/src/pages/CalculusDerivativesStudio.tsx, C:/Indian Servers/Math Universe Visualizations/src/pages/CalculusDifferentialEquationsStudio.tsx, C:/Indian Servers/Math Universe Visualizations/src/pages/CalculusIntegrationStudio.tsx, C:/Indian Servers/Math Universe Visualizations/src/pages/CalculusLimitsStudio.tsx, C:/Indian Servers/Math Universe Visualizations/src/pages/CalculusMultivariableStudio.tsx, C:/Indian Servers/Math Universe Visualizations/src/pages/CalculusStudio.tsx, C:/Indian Servers/Math Universe Visualizations/src/pages/GraphComparisonMode.tsx, C:/Indian Servers/Math Universe Visualizations/src/pages/MathLabGraphingCalculator.tsx, C:/Indian Servers/Math Universe Visualizations/src/pages/ParametricCurveExplorer.tsx, C:/Indian Servers/Math Universe Visualizations/src/pages/SurfacePlotter3D.tsx, C:/Indian Servers/Math Universe Visualizations/src/phase5/calculus3d.ts, C:/Indian Servers/Math Universe Visualizations/src/phase5/math3dEngine.ts, C:/Indian Servers/Math Universe Visualizations/src/studios/algebra/algebraStudioMath.ts, C:/Indian Servers/Math Universe Visualizations/src/studios/differential-equations/Phase1Labs.tsx, C:/Indian Servers/Math Universe Visualizations/src/studios/differential-equations/Phase2DynamicsLabs.tsx, C:/Indian Servers/Math Universe Visualizations/src/studios/differential-equations/Phase2SymbolicLabs.tsx, C:/Indian Servers/Math Universe Visualizations/src/studios/differential-equations/phase2Math.ts, C:/Indian Servers/Math Universe Visualizations/src/studios/mockup/labs/TrigonometryConceptLabs.tsx, C:/Indian Servers/Math Universe Visualizations/src/utils/mathEngine/graph3dUtils.ts, C:/Indian Servers/Math Universe Visualizations/src/utils/mathEngine/graphSampler.ts, C:/Indian Servers/Math Universe Visualizations/src/workspace/graphSampler.ts, C:/Indian Servers/Math Universe Visualizations/src/workspace/objectProperties.ts, dynamic import will not move module into another chunk.
+
+[plugin vite:reporter] 
+(!) C:/Indian Servers/Math Universe Visualizations/src/studios/geometry/construction/constructionEngine.ts is dynamically imported by C:/Indian Servers/Math Universe Visualizations/src/math-robo/intelligence/engineRegistryCore.ts but also statically imported by C:/Indian Servers/Math Universe Visualizations/src/math-robo/intelligence/workspaceDependencies.ts, C:/Indian Servers/Math Universe Visualizations/src/studios/geometry/construction/ConstructionLab.tsx, C:/Indian Servers/Math Universe Visualizations/src/studios/geometry/construction/constructionPresets.ts, C:/Indian Servers/Math Universe Visualizations/src/studios/geometry/construction/constructionProofs.ts, dynamic import will not move module into another chunk.
+
+[plugin vite:reporter] 
+(!) C:/Indian Servers/Math Universe Visualizations/src/studios/geometry/geometryEnhancementEngine.ts is dynamically imported by C:/Indian Servers/Math Universe Visualizations/src/math-robo/intelligence/engineRegistryCore.ts but also statically imported by C:/Indian Servers/Math Universe Visualizations/src/math-robo/intelligence/executionPlanner.ts, C:/Indian Servers/Math Universe Visualizations/src/studios/geometry/GeometryEnhancementWorkbench.tsx, dynamic import will not move module into another chunk.
+
+[plugin vite:reporter] 
+(!) C:/Indian Servers/Math Universe Visualizations/src/math-robo/kernel/client.ts is dynamically imported by C:/Indian Servers/Math Universe Visualizations/src/math-robo/intelligence/engineRegistryCore.ts but also statically imported by C:/Indian Servers/Math Universe Visualizations/src/math-robo/intelligence/groundedTutor.ts, dynamic import will not move module into another chunk.
+
+[plugin vite:reporter] 
+(!) C:/Indian Servers/Math Universe Visualizations/src/modules/graph-theory/graphTheoryEngine.ts is dynamically imported by C:/Indian Servers/Math Universe Visualizations/src/math-robo/intelligence/engineRegistryCore.ts but also statically imported by C:/Indian Servers/Math Universe Visualizations/src/modules/graph-theory/GraphTheoryModule.tsx, C:/Indian Servers/Math Universe Visualizations/src/modules/graph-theory/graphTheoryStore.ts, C:/Indian Servers/Math Universe Visualizations/src/modules/lessons/adapters/discrete/DiscreteConceptActivities.tsx, C:/Indian Servers/Math Universe Visualizations/src/modules/lessons/adapters/discrete/DiscreteP0Activities.tsx, C:/Indian Servers/Math Universe Visualizations/src/modules/lessons/engine/discreteConceptModels.ts, C:/Indian Servers/Math Universe Visualizations/src/studios/discrete/algorithms/AlgorithmsLab.tsx, C:/Indian Servers/Math Universe Visualizations/src/studios/modelling/networkMath.ts, dynamic import will not move module into another chunk.
+
+[plugin vite:reporter] 
+(!) C:/Indian Servers/Math Universe Visualizations/src/studios/geometry/GeometryEmbeddedSolid.tsx is dynamically imported by C:/Indian Servers/Math Universe Visualizations/src/offline-intelligence/OfflineMathAssistant.tsx but also statically imported by C:/Indian Servers/Math Universe Visualizations/src/studios/geometry/GeometryARWorkspace.tsx, C:/Indian Servers/Math Universe Visualizations/src/studios/geometry/GeometryHomeWorkspace.tsx, dynamic import will not move module into another chunk.
+
+computing gzip size...
+dist/assets/client-D76UBk_i.js                                             2.72 kB
+dist/index.html                                                            2.93 kB │ gzip:     1.00 kB
+dist/assets/constructionMath-CTLt3Lvk.js                                   3.30 kB
+dist/assets/analysis2d-X-lhM7Ap.js                                         4.32 kB
+dist/assets/KaTeX_Size3-Regular-CTq5MqoE.woff                              4.42 kB
+dist/assets/geometryPhase2-CTIQaKa6.js                                     4.62 kB
+dist/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2                             4.93 kB
+dist/assets/constructionKernels-_-uER54S.js                                4.93 kB
+dist/assets/structuredExpression-DrYIfsVx.js                               4.96 kB
+dist/assets/structuredExpression-Y5ZdBeUG.js                               5.07 kB
+dist/assets/geometryEnhancementEngine-4Xj4TCtF.js                          5.11 kB
+dist/assets/geometry2dKernel-CHkmKPXX.js                                   5.12 kB
+dist/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2                             5.21 kB
+dist/assets/geometry3dKernel-B7zvoSNF.js                                   5.21 kB
+dist/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2                             5.47 kB
+dist/assets/workspaceEngineBridge-Ckki5RPt.js                              5.70 kB
+dist/assets/KaTeX_Size4-Regular-BF-4gkZK.woff                              5.98 kB
+dist/assets/dependencyGraph-DdayoW02.js                                    6.06 kB
+dist/assets/KaTeX_Size2-Regular-oD1tc_U0.woff                              6.19 kB
+dist/assets/KaTeX_Size1-Regular-C195tn64.woff                              6.50 kB
+dist/assets/functionParser-qDuI0YDd.js                                     6.67 kB
+dist/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2                       6.91 kB
+dist/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2                          6.91 kB
+dist/assets/parser-CfIpmdXw.js                                             6.96 kB
+dist/assets/specialists-2I2M6rrO.js                                        6.97 kB
+dist/assets/KaTeX_Size3-Regular-DgpXs0kz.ttf                               7.59 kB
+dist/assets/geometry2dWorkspaceEngine-DpGrMiwt.js                          7.60 kB
+dist/assets/KaTeX_Caligraphic-Regular-CTRA-rTL.woff                        7.66 kB
+dist/assets/KaTeX_Caligraphic-Bold-BEiXGLvX.woff                           7.72 kB
+dist/assets/numerical-B7oWOW8U.js                                          8.08 kB
+dist/assets/geometry3dWorkspaceEngine-CJLYkJG9.js                          8.10 kB
+dist/assets/numerical-DNqksou5.js                                          8.20 kB
+dist/assets/math3dEngine-3oBEpVGG.js                                       9.00 kB
+dist/assets/geometry3d-Hhw5IaL6.js                                         9.11 kB
+dist/assets/geometry3d-A_e_aqrJ.js                                         9.24 kB
+dist/assets/KaTeX_Script-Regular-D3wIWfF6.woff2                            9.64 kB
+dist/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2                        10.34 kB
+dist/assets/KaTeX_Size4-Regular-DWFBv043.ttf                              10.36 kB
+dist/assets/spreadsheetStudioEngine-BiIvCTU1.js                           10.42 kB
+dist/assets/symbolic-p6N2x_wm.js                                          10.47 kB
+dist/assets/KaTeX_Script-Regular-D5yQViql.woff                            10.59 kB
+dist/assets/evaluator-TWMGLElb.js                                         10.96 kB
+dist/assets/geometry2d-jI9wL5fd.js                                        11.30 kB
+dist/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2                          11.32 kB
+dist/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2                             11.35 kB
+dist/assets/KaTeX_Size2-Regular-B7gKUWhC.ttf                              11.51 kB
+dist/assets/arExplorationEngine-DuTMQd0F.js                               11.66 kB
+dist/assets/matrixUtils-DPqa2gDr.js                                       11.76 kB
+dist/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2                         12.03 kB
+dist/assets/geometry2d-DU0-9JFW.js                                        12.16 kB
+dist/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2                           12.22 kB
+dist/assets/KaTeX_Size1-Regular-Dbsnue_I.ttf                              12.23 kB
+dist/assets/KaTeX_SansSerif-Regular-CS6fqUqJ.woff                         12.32 kB
+dist/assets/KaTeX_Caligraphic-Regular-wX97UBjC.ttf                        12.34 kB
+dist/assets/KaTeX_Caligraphic-Bold-ATXxdsX0.ttf                           12.37 kB
+dist/assets/casNotebookEngine-muiuRtbN.js                                 13.02 kB
+dist/assets/KaTeX_Fraktur-Regular-Dxdc4cR9.woff                           13.21 kB
+dist/assets/KaTeX_Fraktur-Bold-BsDP51OF.woff                              13.30 kB
+dist/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2                       13.57 kB
+dist/assets/KaTeX_SansSerif-Italic-DN2j7dab.woff                          14.11 kB
+dist/assets/KaTeX_SansSerif-Bold-DbIhKOiC.woff                            14.41 kB
+dist/assets/constructionEngine-BN7GQ0P0.js                                15.60 kB
+dist/assets/specialists-uDQ2Gmup.js                                       15.73 kB
+dist/assets/KaTeX_Typewriter-Regular-C0xS9mPB.woff                        16.03 kB
+dist/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2                          16.40 kB
+dist/assets/KaTeX_Math-Italic-t53AETM-.woff2                              16.44 kB
+dist/assets/KaTeX_Script-Regular-C5JkGWo-.ttf                             16.65 kB
+dist/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2                          16.78 kB
+dist/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2                              16.99 kB
+dist/assets/experimentEngine-CSeZc16W.js                                  18.58 kB
+dist/assets/KaTeX_Math-BoldItalic-iY-2wyZ7.woff                           18.67 kB
+dist/assets/KaTeX_Math-Italic-DA0__PXp.woff                               18.75 kB
+dist/assets/KaTeX_Main-BoldItalic-SpSLRI95.woff                           19.41 kB
+dist/assets/KaTeX_SansSerif-Regular-BNo7hRIc.ttf                          19.44 kB
+dist/assets/KaTeX_Fraktur-Regular-CB_wures.ttf                            19.57 kB
+dist/assets/KaTeX_Fraktur-Bold-BdnERNNW.ttf                               19.58 kB
+dist/assets/KaTeX_Main-Italic-BMLOBm91.woff                               19.68 kB
+dist/assets/advancedCas-Cc-83KQk.js                                       21.48 kB
+dist/assets/advancedCas-HOPxKOGO.js                                       21.65 kB
+dist/assets/KaTeX_SansSerif-Italic-YYjJ1zSn.ttf                           22.36 kB
+dist/assets/KaTeX_SansSerif-Bold-CFMepnvq.ttf                             24.50 kB
+dist/assets/KaTeX_Main-Bold-Cx986IdX.woff2                                25.32 kB
+dist/assets/symbolic-BzqkNH2O.js                                          25.73 kB
+dist/assets/KaTeX_Main-Regular-B22Nviop.woff2                             26.27 kB
+dist/assets/kernel-CKp9poFt.js                                            26.35 kB
+dist/assets/KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf                         27.56 kB
+dist/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2                              28.08 kB
+dist/assets/specialist.worker-BH_lCQfi.js                                 28.19 kB
+dist/assets/KaTeX_Main-Bold-Jm3AIy58.woff                                 29.91 kB
+dist/assets/KaTeX_Main-Regular-Dr94JaBh.woff                              30.77 kB
+dist/assets/dynamicWorkspaceEngine-ChVqdikj.js                            31.12 kB
+dist/assets/KaTeX_Math-BoldItalic-B3XSjfu4.ttf                            31.20 kB
+dist/assets/KaTeX_Math-Italic-flOr_0UB.ttf                                31.31 kB
+dist/assets/KaTeX_Main-BoldItalic-DzxPMmG6.ttf                            32.97 kB
+dist/assets/KaTeX_AMS-Regular-DMm9YOAa.woff                               33.52 kB
+dist/assets/KaTeX_Main-Italic-3WenGoN9.ttf                                33.58 kB
+dist/assets/kernel.worker-B0GcmEyj.js                                     44.43 kB
+dist/assets/KaTeX_Main-Bold-waoOVXN0.ttf                                  51.34 kB
+dist/assets/KaTeX_Main-Regular-ypZvNtVU.ttf                               53.58 kB
+dist/assets/KaTeX_AMS-Regular-DRggAlZN.ttf                                63.63 kB
+dist/assets/problemSolverEngine-CwMmkflU.js                              120.61 kB
+dist/assets/arHandTracking.worker-07Se96C8.js                            146.80 kB
+dist/assets/Solve-DffvhOsx.js                                            441.71 kB
+dist/assets/graphWorker-B0RT6yIf.js                                      442.67 kB
+dist/assets/symbolic-B_5HaMBf.js                                         452.46 kB
+dist/assets/graphTheoryEngine-boF3PfyY.js                                458.81 kB
+dist/assets/angle-elevation-scene-v2-Brx0Zhh3.png                      1,086.98 kB
+dist/assets/angle-depression-lighthouse-BLhJL_FI.png                   1,419.18 kB
+dist/assets/studioMath3D-DFRE4sRP.css                                      0.38 kB │ gzip:     0.25 kB
+dist/assets/LessonSectionJourney-D-K7NLi0.css                              0.84 kB │ gzip:     0.41 kB
+dist/assets/OddSquarePatternMobileProof-DmXElSBl.css                       1.53 kB │ gzip:     0.70 kB
+dist/assets/CenterCircumferenceAnglesProof-CAr6hsXe.css                    1.62 kB │ gzip:     0.75 kB
+dist/assets/EmbedDesigner-DS3V7IZF.css                                     1.79 kB │ gzip:     0.69 kB
+dist/assets/EpsilonDeltaMobileProof-CXhomuML.css                           1.81 kB │ gzip:     0.76 kB
+dist/assets/SquareBinomialMobileProof-HD3pQx6z.css                         1.83 kB │ gzip:     0.77 kB
+dist/assets/DeMorgansMobileProof-D7TzJJfg.css                              1.95 kB │ gzip:     0.85 kB
+dist/assets/SquareOddSumsMobileProof-CPv7UAH6.css                          1.98 kB │ gzip:     0.87 kB
+dist/assets/CountingPathsMobileProof-Vv7-0ZPA.css                          2.00 kB │ gzip:     0.84 kB
+dist/assets/IntersectingChordsMobileProof-D5ti2f2b.css                     2.10 kB │ gzip:     0.89 kB
+dist/assets/UnitCircleIdentityMobileProof-BRPcQ8Eu.css                     2.12 kB │ gzip:     0.92 kB
+dist/assets/SlopeTrianglesMobileProof-BkU0zbed.css                         2.13 kB │ gzip:     0.83 kB
+dist/assets/EuclideanAlgorithmMobileProof-Cw2DZMRt.css                     2.14 kB │ gzip:     0.85 kB
+dist/assets/IntegralAccumulatedAreaMobileProof-jObzF98m.css                2.18 kB │ gzip:     0.85 kB
+dist/assets/NaturalSumMobileProof-B0m-87P3.css                             2.22 kB │ gzip:     0.93 kB
+dist/assets/EvenNumbersSumMobileProof-BE8aIPJE.css                         2.30 kB │ gzip:     0.96 kB
+dist/assets/DerivativeSlopeMobileProof-BhHGyePl.css                        2.31 kB │ gzip:     0.88 kB
+dist/assets/MultiplesNumberLineMobileProof-hhxN_g28.css                    2.33 kB │ gzip:     0.94 kB
+dist/assets/LessonGraphInk-BNz3uvyA.css                                    2.34 kB │ gzip:     0.54 kB
+dist/assets/OddSquaresMobileProof-DcYqZzUT.css                             2.36 kB │ gzip:     0.96 kB
+dist/assets/AnscombeQuartetMobileProof-CynQ-Wft.css                        2.37 kB │ gzip:     0.90 kB
+dist/assets/DivisibilityElevenMobileProof-CKf1QTVT.css                     2.40 kB │ gzip:     0.91 kB
+dist/assets/ConsecutiveIntegersMobileProof-BKNVH47z.css                    2.43 kB │ gzip:     0.98 kB
+dist/assets/FactorPairsMobileProof-BLJIgZch.css                            2.43 kB │ gzip:     0.91 kB
+dist/assets/ShearAreaMobileProof-Dbxd_5EP.css                              2.44 kB │ gzip:     1.01 kB
+dist/assets/ArithmeticSequenceSumMobileProof-yOOS_zgX.css                  2.47 kB │ gzip:     1.01 kB
+dist/assets/PrimeBuildingBlocksMobileProof-C7XPUDWy.css                    2.52 kB │ gzip:     0.90 kB
+dist/assets/GcdEqualGroupingMobileProof-B0xvy1lX.css                       2.54 kB │ gzip:     0.91 kB
+dist/assets/AbsoluteValueInequalityMobileProof-JWZDF9Qv.css                2.55 kB │ gzip:     1.08 kB
+dist/assets/DivisibilityFiveTenMobileProof-woqWgUWA.css                    2.57 kB │ gzip:     0.96 kB
+dist/assets/GcdLcmRelationshipMobileProof-llyq-lvs.css                     2.57 kB │ gzip:     0.96 kB
+dist/assets/ParallelogramCutSlideMobileProof--Td56LIe.css                  2.58 kB │ gzip:     1.01 kB
+dist/assets/DivisibilityEightMobileProof-mE_luuVZ.css                      2.60 kB │ gzip:     1.00 kB
+dist/assets/CongruenceClockMobileProof-BnRKxCjo.css                        2.63 kB │ gzip:     1.01 kB
+dist/assets/CircleRatioMobileProof-C9EMq8Gm.css                            2.64 kB │ gzip:     1.05 kB
+dist/assets/ProductOfPowersMobileProof-Ccsva2G3.css                        2.64 kB │ gzip:     1.01 kB
+dist/assets/DifferenceSquaresMobileProof-B8i_Y6Ug.css                      2.65 kB │ gzip:     1.10 kB
+dist/assets/NormalProbabilityMobileProof-BmBidnp2.css                      2.67 kB │ gzip:     1.06 kB
+dist/assets/FundamentalArithmeticUniqueMobileProof-BeEKHBe2.css            2.68 kB │ gzip:     1.01 kB
+dist/assets/VectorAdditionMobileProof-D3afRJNU.css                         2.80 kB │ gzip:     1.03 kB
+dist/assets/ModularArithmeticClockMobileProof-BkrEbxHb.css                 2.84 kB │ gzip:     1.09 kB
+dist/assets/RemainderClassesMobileProof-CLNwqyz5.css                       2.87 kB │ gzip:     0.98 kB
+dist/assets/AdditionModuloNMobileProof-Bd9yHhdS.css                        2.88 kB │ gzip:     1.08 kB
+dist/assets/PolygonTriangulationMobileProof-D1EhtDrv.css                   2.90 kB │ gzip:     1.14 kB
+dist/assets/EquationBalanceMobileProof-DuFkn4-3.css                        2.92 kB │ gzip:     1.14 kB
+dist/assets/LcmCyclesMobileProof-NvhSOcBA.css                              2.96 kB │ gzip:     1.04 kB
+dist/assets/divisibility-three-mobile-DYBhzg0d.css                         2.98 kB │ gzip:     1.10 kB
+dist/assets/MultiplicationModuloNMobileProof-BsRe4QUY.css                  3.00 kB │ gzip:     1.11 kB
+dist/assets/PrimeGapsExplorerMobileProof-BbIwAZHK.css                      3.04 kB │ gzip:     1.08 kB
+dist/assets/DivisibilityFourMobileProof-BKJIhyLj.css                       3.07 kB │ gzip:     1.14 kB
+dist/assets/TriangularNumbersMobileProof-DHaOVt4r.css                      3.09 kB │ gzip:     1.21 kB
+dist/assets/SimilarTriangleRatiosMobileProof-Dvtk7xiB.css                  3.15 kB │ gzip:     1.18 kB
+dist/assets/DivisibilityTwoMobileProof-B_-lT97I.css                        3.16 kB │ gzip:     1.15 kB
+dist/assets/LastDigitParityMobileProof-BVFuyXxr.css                        3.22 kB │ gzip:     1.14 kB
+dist/assets/EigenvectorDirectionMobileProof-DSqh4YLo.css                   3.25 kB │ gzip:     1.19 kB
+dist/assets/CircleSectorsMobileProof-rxgw0Uyj.css                          3.30 kB │ gzip:     1.18 kB
+dist/assets/MatrixAreaMobileProof-Dwn5ULzH.css                             3.32 kB │ gzip:     1.20 kB
+dist/assets/TrapezoidDoublingMobileProof-B4T4nDd5.css                      3.45 kB │ gzip:     1.28 kB
+dist/assets/NegativeNumbersModuloNMobileProof-CdEqH24-.css                 3.46 kB │ gzip:     1.21 kB
+dist/assets/TriangleAreaDissectionMobileProof-C2_aiQAr.css                 3.50 kB │ gzip:     1.25 kB
+dist/assets/CompositeFactorSqrtMobileProof-b_K9zblw.css                    3.73 kB │ gzip:     1.28 kB
+dist/assets/TwinPrimesExplorerMobileProof-hidbCMqg.css                     3.74 kB │ gzip:     1.20 kB
+dist/assets/PythagoreanRearrangementMobileProof-BpW9-tLe.css               4.05 kB │ gzip:     1.42 kB
+dist/assets/SieveEratosthenesMobileProof-ByupWrqV.css                      4.12 kB │ gzip:     1.38 kB
+dist/assets/TriangleAngleSumMobileProof-8nRpxFLB.css                       4.15 kB │ gzip:     1.42 kB
+dist/assets/geometryLabUx-BEWCfReP.css                                     4.20 kB │ gzip:     1.39 kB
+dist/assets/EuclidInfinitePrimesMobileProof-DJ07Dlou.css                   4.43 kB │ gzip:     1.41 kB
+dist/assets/ImmersiveInteractionManager-Ct0z3qYp.css                       4.47 kB │ gzip:     1.49 kB
+dist/assets/MathWorkspace-5g8eRrvT.css                                     4.55 kB │ gzip:     1.07 kB
+dist/assets/CalculusDifferentialEquationsStudio-B15388Hb.css               4.60 kB │ gzip:     1.45 kB
+dist/assets/LessonTopicStudyBoard-ljRXatEW.css                             5.40 kB │ gzip:     1.37 kB
+dist/assets/Home-oyW36qLc.css                                              6.20 kB │ gzip:     2.01 kB
+dist/assets/AlgebraStudio-BSqgm3xI.css                                     6.48 kB │ gzip:     1.92 kB
+dist/assets/CoordinateSystemTargetLesson378-CtHCr7k0.css                   7.28 kB │ gzip:     1.99 kB
+dist/assets/DiscreteWorld-BX8XiLFb.css                                     7.45 kB │ gzip:     1.93 kB
+dist/assets/MatrixOperations-Ca927iRa.css                                  7.84 kB │ gzip:     2.33 kB
+dist/assets/LessonCartesianGraph-EWc7rBvW.css                              9.74 kB │ gzip:     2.49 kB
+dist/assets/AlgebraicStructuresStudio-tCPsE9mS.css                         9.82 kB │ gzip:     2.44 kB
+dist/assets/AuthoringLessonAdapter-DQmih6V0.css                           11.85 kB │ gzip:     2.83 kB
+dist/assets/StepByStepProblemSolver-C0uzNPL2.css                          13.35 kB │ gzip:     3.46 kB
+dist/assets/ConceptMapPage-CqiIuuJE.css                                   18.98 kB │ gzip:     4.07 kB
+dist/assets/DifferentialEquationsLabs-Dm62xheN.css                        24.04 kB │ gzip:     5.55 kB
+dist/assets/vendor-math-rendering-dRWncRqa.css                            29.23 kB │ gzip:     8.04 kB
+dist/assets/FormulaVisualizerPage-BcWslq5M.css                            35.02 kB │ gzip:     8.00 kB
+dist/assets/NumberSystems-DzE316be.css                                    45.02 kB │ gzip:     9.73 kB
+dist/assets/SetTheory-CYjLGAFk.css                                        47.10 kB │ gzip:    10.25 kB
+dist/assets/AlgebraStudio-Cm711kNM.css                                    56.09 kB │ gzip:    11.57 kB
+dist/assets/ComplexNumbers-DVBvA4WO.css                                   59.74 kB │ gzip:    12.09 kB
+dist/assets/CalculusStudio-DA34LYIO.css                                   66.07 kB │ gzip:    13.27 kB
+dist/assets/InferenceLessonAdapter-N_3NqGkc.css                           93.76 kB │ gzip:    14.17 kB
+dist/assets/ComplexLessonAdapter-BBZjU_uV.css                            105.66 kB │ gzip:    16.10 kB
+dist/assets/StatisticsLessonAdapter-PH6HROL7.css                         108.99 kB │ gzip:    16.60 kB
+dist/assets/VectorLessonAdapter-CdKDjPj4.css                             115.58 kB │ gzip:    17.49 kB
+dist/assets/SequenceLessonAdapter-CfEQzhl0.css                           121.15 kB │ gzip:    17.44 kB
+dist/assets/MatrixLessonAdapter-CinO5QJT.css                             131.25 kB │ gzip:    18.72 kB
+dist/assets/MockupStudioApp-DV-2rupE.css                                 145.75 kB │ gzip:    27.05 kB
+dist/assets/CalculatorLessonAdapter-C8b5ioHV.css                         167.88 kB │ gzip:    28.10 kB
+dist/assets/AdvancedConceptLessonPage-C-MRlv0W.css                       174.90 kB │ gzip:    31.45 kB
+dist/assets/ProbabilityLessonAdapter-D97u7YMc.css                        182.63 kB │ gzip:    27.36 kB
+dist/assets/AlgebraLessonAdapter-Di1y6-zV.css                            189.27 kB │ gzip:    31.67 kB
+dist/assets/CasLessonAdapter-BIrngIvE.css                                215.54 kB │ gzip:    32.95 kB
+dist/assets/FinanceLessonAdapter-5uaPjDsL.css                            220.85 kB │ gzip:    35.75 kB
+dist/assets/TrigonometryLessonAdapter-DaO7QIzL.css                       268.14 kB │ gzip:    35.90 kB
+dist/assets/DiscreteLessonAdapter-CMO90DeZ.css                           290.95 kB │ gzip:    47.21 kB
+dist/assets/Geometry3DLessonAdapter-D1YZX3er.css                         363.10 kB │ gzip:    57.25 kB
+dist/assets/NumberLessonAdapter-CAbm9Tcj.css                             372.83 kB │ gzip:    58.79 kB
+dist/assets/Geometry2DLessonAdapter-CjRUB9gg.css                         447.92 kB │ gzip:    62.18 kB
+dist/assets/GraphLessonAdapter-Bkj9g-Q_.css                              462.16 kB │ gzip:    71.95 kB
+dist/assets/AlgebraCasLessonAdapter-CjaI3DkQ.css                         570.86 kB │ gzip:    81.32 kB
+dist/assets/CalculusLessonAdapter-wrE0eKaz.css                           604.68 kB │ gzip:    78.90 kB
+dist/assets/SchoolLessonPage-GP0yenyv.css                              1,530.62 kB │ gzip:   244.04 kB
+dist/assets/index-CYxAxi6W.css                                         1,566.57 kB │ gzip:   225.37 kB
+dist/assets/expressionUtils-BvCRbVyk.js                                    0.12 kB │ gzip:     0.12 kB
+dist/assets/normal-D-h7lIAV.js                                             0.28 kB │ gzip:     0.21 kB
+dist/assets/LcmGridAlignmentProof-f61dMzt2.js                              0.33 kB │ gzip:     0.23 kB
+dist/assets/CompositesRectangularArraysProof-BVu0JXAR.js                   0.33 kB │ gzip:     0.24 kB
+dist/assets/SquareNumbersOddLayersProof-DftDR8UH.js                        0.34 kB │ gzip:     0.24 kB
+dist/assets/SumFirstNEvenNumbersProof-CKuRz7oI.js                          0.34 kB │ gzip:     0.24 kB
+dist/assets/ProductOfPowersProof-BZVUrWeL.js                               0.34 kB │ gzip:     0.24 kB
+dist/assets/AdditionModuloNProof-BzEsNyDa.js                               0.34 kB │ gzip:     0.24 kB
+dist/assets/DivisibilityRuleTwoProof-QuzK4Kqw.js                           0.34 kB │ gzip:     0.24 kB
+dist/assets/LastDigitParityProof-CKMfKWuA.js                               0.34 kB │ gzip:     0.24 kB
+dist/assets/DivisibilityRuleFourProof-Dy594OeA.js                          0.34 kB │ gzip:     0.24 kB
+dist/assets/GcdEqualGroupingProof-BPlEUJHn.js                              0.34 kB │ gzip:     0.24 kB
+dist/assets/RemainderClassesProof-C5u361uE.js                              0.34 kB │ gzip:     0.24 kB
+dist/assets/DivisibilityRuleEightProof-CbZeH2o4.js                         0.34 kB │ gzip:     0.24 kB
+dist/assets/PrimeGapsExplorerProof-BxdSKwfs.js                             0.34 kB │ gzip:     0.24 kB
+dist/assets/SieveEratosthenesProof-DMJ1aq84.js                             0.34 kB │ gzip:     0.24 kB
+dist/assets/DifferenceConsecutiveSquaresProof-CMrsZkIa.js                  0.34 kB │ gzip:     0.24 kB
+dist/assets/TriangularNumbersProof-DXNAT1P3.js                             0.34 kB │ gzip:     0.24 kB
+dist/assets/DivisibilityRuleElevenProof-D3vxn8Lp.js                        0.34 kB │ gzip:     0.24 kB
+dist/assets/GcdEuclideanAlgorithmProof-DiiWwdyb.js                         0.34 kB │ gzip:     0.24 kB
+dist/assets/GcdLcmRelationshipProof-CTcrOLSs.js                            0.34 kB │ gzip:     0.24 kB
+dist/assets/TwinPrimesExplorerProof-Bw28x89k.js                            0.34 kB │ gzip:     0.24 kB
+dist/assets/CompositeFactorSqrtProof-TRg5OzlB.js                           0.34 kB │ gzip:     0.24 kB
+dist/assets/DivisibilityRulesFiveTenProof-CrdqL7bC.js                      0.34 kB │ gzip:     0.24 kB
+dist/assets/FundamentalTheoremArithmeticProof-DJwW8l5Q.js                  0.34 kB │ gzip:     0.24 kB
+dist/assets/MultiplesNumberLineProof-D-TsVOVl.js                           0.34 kB │ gzip:     0.24 kB
+dist/assets/SumConsecutiveIntegersProof-BS7mRhVb.js                        0.34 kB │ gzip:     0.24 kB
+dist/assets/EuclidInfinitelyManyPrimesProof-BBRUVVYA.js                    0.34 kB │ gzip:     0.24 kB
+dist/assets/CrossMultiplicationEqualRectanglesProof-DzcMyueV.js            0.34 kB │ gzip:     0.24 kB
+dist/assets/MapScaleSameUnitPrincipleProof-CqBtN2x7.js                     0.34 kB │ gzip:     0.24 kB
+dist/assets/MultiplicationModuloNProof-CHo8aKpj.js                         0.34 kB │ gzip:     0.24 kB
+dist/assets/MultiTermRatioSharesProof-CWwV5Qp-.js                          0.34 kB │ gzip:     0.24 kB
+dist/assets/SumArithmeticProgressionProof-ha-tjHWZ.js                      0.34 kB │ gzip:     0.24 kB
+dist/assets/ModularArithmeticClockProof-DyAy3g6S.js                        0.35 kB │ gzip:     0.24 kB
+dist/assets/NegativeNumbersModuloNProof-BIqxCNLD.js                        0.35 kB │ gzip:     0.24 kB
+dist/assets/FundamentalArithmeticUniqueProof-BSKxLjZj.js                   0.35 kB │ gzip:     0.24 kB
+dist/assets/ShearPreservesAreaProof-B6918hV3.js                            0.35 kB │ gzip:     0.25 kB
+dist/assets/DeMorgansLawProof-xEOAT-JT.js                                  0.35 kB │ gzip:     0.25 kB
+dist/assets/DirectVsInverseProportionProof-DJOi93LQ.js                     0.35 kB │ gzip:     0.25 kB
+dist/assets/DeterminantAreaScaleFactorProof-ibtoDk45.js                    0.35 kB │ gzip:     0.25 kB
+dist/assets/SumFirstNNaturalNumbersProof-B2sQWOh5.js                       0.35 kB │ gzip:     0.25 kB
+dist/assets/SumFirstNOddNumbersProof-CDce2ua3.js                           0.35 kB │ gzip:     0.25 kB
+dist/assets/CircleCircumferenceUnwrappingProof-Cu9abCKB.js                 0.35 kB │ gzip:     0.25 kB
+dist/assets/LimitApproachesPointProof-Ex0moSQn.js                          0.36 kB │ gzip:     0.25 kB
+dist/assets/CircleAreaUnrollingProof-fEJc1RDZ.js                           0.36 kB │ gzip:     0.25 kB
+dist/assets/CountingPathsProof-CYQv2HGb.js                                 0.36 kB │ gzip:     0.25 kB
+dist/assets/SquareOfSumProof-uFrAcKEe.js                                   0.36 kB │ gzip:     0.25 kB
+dist/assets/SlopeFormulaProof-I-iZWQ12.js                                  0.36 kB │ gzip:     0.25 kB
+dist/assets/VectorAdditionTipToTailProof-AgbOyeHy.js                       0.36 kB │ gzip:     0.25 kB
+dist/assets/EquationAsBalanceProof-DC7InsMH.js                             0.36 kB │ gzip:     0.25 kB
+dist/assets/DerivativeSlopeOfTangentProof-Corx5a7k.js                      0.36 kB │ gzip:     0.25 kB
+dist/assets/AnscombesQuartetProof-BUXYeW7O.js                              0.36 kB │ gzip:     0.25 kB
+dist/assets/TriangleAngleSumProof-B6_uUPYq.js                              0.36 kB │ gzip:     0.25 kB
+dist/assets/OddNumbersBuildSquaresPatternProof-BPWcA-FR.js                 0.36 kB │ gzip:     0.25 kB
+dist/assets/TrapezoidAreaDuplicationProof-DBPMrmsh.js                      0.36 kB │ gzip:     0.25 kB
+dist/assets/NormalDistributionEmpiricalRuleProof-DEZ21VC4.js               0.36 kB │ gzip:     0.25 kB
+dist/assets/IntersectingChordsProof-CSzwHhbl.js                            0.36 kB │ gzip:     0.25 kB
+dist/assets/PythagoreanTrigIdentityProof-DFRFvSce.js                       0.36 kB │ gzip:     0.25 kB
+dist/assets/PolygonInteriorAngleSumProof-DZ94Q0JB.js                       0.36 kB │ gzip:     0.25 kB
+dist/assets/EigenvectorsDirectionsDoNotTurnProof-dYfDl3g8.js               0.36 kB │ gzip:     0.25 kB
+dist/assets/ParallelogramAreaShearingProof-CT24wQ1K.js                     0.36 kB │ gzip:     0.26 kB
+dist/assets/SimilarTrianglesProof-CEDsFRAE.js                              0.36 kB │ gzip:     0.26 kB
+dist/assets/TriangleAreaHalfRectangleProof-C5-qqVLB.js                     0.37 kB │ gzip:     0.25 kB
+dist/assets/AbsoluteValueInequalityProof-D209gKfz.js                       0.37 kB │ gzip:     0.26 kB
+dist/assets/DefiniteIntegralAccumulatedAreaProof-DL_IE1iK.js               0.37 kB │ gzip:     0.26 kB
+dist/assets/PythagoreanAreaRearrangementProof-Cy7dDbMb.js                  0.37 kB │ gzip:     0.26 kB
+dist/assets/useReducedMotion-BHrjcQdS.js                                   0.38 kB │ gzip:     0.24 kB
+dist/assets/DivisibilityRuleNineProof-BgoUgwSP.js                          0.39 kB │ gzip:     0.26 kB
+dist/assets/DivisibilityRuleThreeProof-B_SrvljP.js                         0.39 kB │ gzip:     0.26 kB
+dist/assets/animationEngine-Buw3Cb0_.js                                    0.39 kB │ gzip:     0.27 kB
+dist/assets/TopicProgressActions-CDN1HjIn.js                               0.46 kB │ gzip:     0.32 kB
+dist/assets/GeometrySolidsRedirect-DosOVPlI.js                             0.48 kB │ gzip:     0.31 kB
+dist/assets/math-DFF0sVE_.js                                               0.48 kB │ gzip:     0.26 kB
+dist/assets/useCanvasZoomLock-gOLi_xM5.js                                  0.52 kB │ gzip:     0.28 kB
+dist/assets/shareStudio-DnFG5byv.js                                        0.55 kB │ gzip:     0.29 kB
+dist/assets/ExteriorAngleTheoremProof-BWkCUg0G.js                          0.62 kB │ gzip:     0.37 kB
+dist/assets/MatrixAdditionCellByCellProof-DLxYUoxl.js                      0.63 kB │ gzip:     0.37 kB
+dist/assets/MeanAsBalancePointProof-lmDu4BqO.js                            0.63 kB │ gzip:     0.37 kB
+dist/assets/ComplementaryAngleIdentitiesProof-BatDI0EF.js                  0.63 kB │ gzip:     0.36 kB
+dist/assets/CosineAngleAdditionProof-D1zZsTri.js                           0.63 kB │ gzip:     0.36 kB
+dist/assets/CosineRuleProof-A2PRHZcf.js                                    0.63 kB │ gzip:     0.37 kB
+dist/assets/DoubleAngleIdentitiesProof-Biix8Xmt.js                         0.63 kB │ gzip:     0.36 kB
+dist/assets/SineAngleAdditionProof-Dwg7PQ88.js                             0.63 kB │ gzip:     0.36 kB
+dist/assets/SineRuleProof-S6OwO2u4.js                                      0.63 kB │ gzip:     0.37 kB
+dist/assets/TriangleAreaSineFormulaProof-C2_PsBd2.js                       0.63 kB │ gzip:     0.37 kB
+dist/assets/DifferenceOfSquaresProof-CrM3AA3F.js                           0.63 kB │ gzip:     0.37 kB
+dist/assets/ProductOfBinomialsProof-CHx6IitK.js                            0.63 kB │ gzip:     0.37 kB
+dist/assets/SquareOfDifferenceProof-k4IGfVJ-.js                            0.63 kB │ gzip:     0.37 kB
+dist/assets/CylinderVolumeSurfaceAreaProof-KxqKmeO-.js                     0.63 kB │ gzip:     0.37 kB
+dist/assets/MultiplicationRuleIndependentEventsProof-B9v4gRkG.js           0.63 kB │ gzip:     0.37 kB
+dist/assets/RadiansArcRadiusProof-CiU4DFdk.js                              0.63 kB │ gzip:     0.37 kB
+dist/assets/RightTriangleTrigRatiosProof-DSLTHWXf.js                       0.63 kB │ gzip:     0.37 kB
+dist/assets/TangentRatioIdentityProof-DhhxlL9M.js                          0.63 kB │ gzip:     0.37 kB
+dist/assets/TrigGraphsFromUnitCircleProof-nmF-N4Gs.js                      0.63 kB │ gzip:     0.37 kB
+dist/assets/UnitCircleSineCosineProof-ZS6xmuP0.js                          0.63 kB │ gzip:     0.37 kB
+dist/assets/ArcLengthFormulaProof-CxAHUJKL.js                              0.63 kB │ gzip:     0.37 kB
+dist/assets/SmallAngleApproximationProof-KpGLhq58.js                       0.63 kB │ gzip:     0.37 kB
+dist/assets/CircleToTriangleProof-57Z0zjJP.js                              0.63 kB │ gzip:     0.37 kB
+dist/assets/CompletingTheSquareProof-C4e6RHrC.js                           0.63 kB │ gzip:     0.37 kB
+dist/assets/CubeOfDifferenceProof-CVCEhD5C.js                              0.63 kB │ gzip:     0.37 kB
+dist/assets/CubeOfSumProof-C4yOdoSz.js                                     0.63 kB │ gzip:     0.37 kB
+dist/assets/DistributiveLawAreaModelProof-B3F90_WI.js                      0.63 kB │ gzip:     0.37 kB
+dist/assets/PerfectSquareTrinomialRecognitionProof-C9vcvYnZ.js             0.63 kB │ gzip:     0.37 kB
+dist/assets/QuadraticFactorizationAreaModelProof-DoWjwyb2.js               0.63 kB │ gzip:     0.37 kB
+dist/assets/SumAndDifferenceProductProof-Cg1US8lw.js                       0.63 kB │ gzip:     0.37 kB
+dist/assets/ThreeTermSquareProof-DrjX-oMy.js                               0.63 kB │ gzip:     0.37 kB
+dist/assets/ParabolaFocusDirectrixProof-CDAYpuku.js                        0.63 kB │ gzip:     0.37 kB
+dist/assets/SectorAreaFormulaProof-BlAtjaBi.js                             0.63 kB │ gzip:     0.37 kB
+dist/assets/CrossProductAreaProof-imHoa5xM.js                              0.63 kB │ gzip:     0.37 kB
+dist/assets/DotProductAsProjectionProof-WuJNho4r.js                        0.63 kB │ gzip:     0.37 kB
+dist/assets/ScalarMultiplicationVectorProof-DSfxm94g.js                    0.63 kB │ gzip:     0.37 kB
+dist/assets/UnitVectorsNormalizationProof-_Gs1sL4S.js                      0.63 kB │ gzip:     0.37 kB
+dist/assets/VectorAsDirectedSegmentProof-DIflUJow.js                       0.63 kB │ gzip:     0.37 kB
+dist/assets/VectorEquationLineProof-DkDeT391.js                            0.63 kB │ gzip:     0.37 kB
+dist/assets/VectorProjectionComponentProof-Cy4u9wkk.js                     0.63 kB │ gzip:     0.37 kB
+dist/assets/LinearSystemLineIntersectionProof-xRPvPG0g.js                  0.63 kB │ gzip:     0.37 kB
+dist/assets/MatrixInverseUndoTransformationProof-CYTO7PWB.js               0.63 kB │ gzip:     0.37 kB
+dist/assets/MatrixLinearTransformationGridProof-CL_LSwxV.js                0.63 kB │ gzip:     0.37 kB
+dist/assets/MatrixMultiplicationRowColumnProof-WeKcMp_5.js                 0.63 kB │ gzip:     0.37 kB
+dist/assets/RowOperationsPreserveSolutionsProof-DYCKE1CI.js                0.63 kB │ gzip:     0.37 kB
+dist/assets/CorrelationScatterplotProof-qXDeK0xa.js                        0.63 kB │ gzip:     0.37 kB
+dist/assets/HistogramFrequencyDistributionProof-Ce50MAeP.js                0.63 kB │ gzip:     0.37 kB
+dist/assets/LinearRegressionLeastSquaresProof-ByDx7fID.js                  0.63 kB │ gzip:     0.37 kB
+dist/assets/MedianAndQuartilesProof-CHtSY1gA.js                            0.63 kB │ gzip:     0.37 kB
+dist/assets/SamplingDistributionMeanProof-BJr_5Xrp.js                      0.63 kB │ gzip:     0.37 kB
+dist/assets/VarianceStandardDeviationProof-Dk7lz7LZ.js                     0.63 kB │ gzip:     0.37 kB
+dist/assets/ComplexAdditionVectorProof-GnpRK2xI.js                         0.63 kB │ gzip:     0.37 kB
+dist/assets/ComplexConjugateReflectionProof-CjAkE0o7.js                    0.63 kB │ gzip:     0.37 kB
+dist/assets/ComplexMultiplicationRotationScalingProof-d0YpPoYe.js          0.63 kB │ gzip:     0.37 kB
+dist/assets/ComplexNumberPlanePointProof-hcwrnVp3.js                       0.63 kB │ gzip:     0.37 kB
+dist/assets/ModulusAndArgumentProof-B2wwfeiY.js                            0.63 kB │ gzip:     0.37 kB
+dist/assets/MultiplicationByIRotationProof-DPVFV2p-.js                     0.63 kB │ gzip:     0.37 kB
+dist/assets/RootsOfUnityProof-CgV7_JqQ.js                                  0.63 kB │ gzip:     0.37 kB
+dist/assets/CompositeSolidsAndUnitsProof-CRiNsvj-.js                       0.63 kB │ gzip:     0.37 kB
+dist/assets/ConeVolumeSurfaceAreaProof-Branyap8.js                         0.63 kB │ gzip:     0.37 kB
+dist/assets/CuboidCubeSurfaceAreaProof-CInDRFEE.js                         0.63 kB │ gzip:     0.37 kB
+dist/assets/CuboidCubeVolumeProof-DO0PDXkn.js                              0.63 kB │ gzip:     0.37 kB
+dist/assets/PerimeterAndCircumferenceProof-DhTSl-wD.js                     0.63 kB │ gzip:     0.37 kB
+dist/assets/RectangleSquareAreaProof-hTUIHOg2.js                           0.63 kB │ gzip:     0.37 kB
+dist/assets/SphereSurfaceAreaVolumeProof-DrhG3iHu.js                       0.63 kB │ gzip:     0.37 kB
+dist/assets/AdditionRuleOverlappingEventsProof-CBTVsFCT.js                 0.63 kB │ gzip:     0.37 kB
+dist/assets/ComplementRuleProof-DC4WQFQR.js                                0.63 kB │ gzip:     0.37 kB
+dist/assets/ConditionalProbabilityProof-BjZvuQpg.js                        0.63 kB │ gzip:     0.37 kB
+dist/assets/ExpectedValueLongRunAverageProof-D_0tqGQ2.js                   0.63 kB │ gzip:     0.37 kB
+dist/assets/ExperimentalProbabilityLawLargeNumbersProof-jBA6Hrt9.js        0.63 kB │ gzip:     0.37 kB
+dist/assets/ProbabilityFavorableOverTotalProof-7dMpd2oH.js                 0.63 kB │ gzip:     0.37 kB
+dist/assets/TreeDiagramCompoundProbabilityProof-BEzdq31Y.js                0.63 kB │ gzip:     0.37 kB
+dist/assets/CongruenceRigidMotionsProof-B7nSH81Z.js                        0.63 kB │ gzip:     0.37 kB
+dist/assets/DilationSimilarityScaleFactorProof-CLA_oWwb.js                 0.63 kB │ gzip:     0.37 kB
+dist/assets/LineRotationalSymmetryProof-DEl2ZTDj.js                        0.63 kB │ gzip:     0.37 kB
+dist/assets/ReflectionMirrorLineProof-DmRzEVda.js                          0.63 kB │ gzip:     0.37 kB
+dist/assets/RotationAboutPointProof-BxWJhO-N.js                            0.63 kB │ gzip:     0.37 kB
+dist/assets/TessellationsRepeatedTransformationsProof-Bll0ckJq.js          0.63 kB │ gzip:     0.37 kB
+dist/assets/TransformationMatrices2DProof-DR4Clh_P.js                      0.63 kB │ gzip:     0.37 kB
+dist/assets/TranslationSlidingVectorProof-BnhceUDQ.js                      0.63 kB │ gzip:     0.37 kB
+dist/assets/AmGmInequalityProof-BSqu-vVk.js                                0.63 kB │ gzip:     0.37 kB
+dist/assets/CauchySchwarzDotProductBoundProof-Cx4kogHo.js                  0.63 kB │ gzip:     0.37 kB
+dist/assets/CompoundInequalitiesIntervalsProof-CMXz7q8P.js                 0.63 kB │ gzip:     0.37 kB
+dist/assets/InequalityNumberLineProof-DKswQxKL.js                          0.63 kB │ gzip:     0.37 kB
+dist/assets/LinearInequalityRegionsProof-md1ZhVk5.js                       0.63 kB │ gzip:     0.37 kB
+dist/assets/QuadraticInequalitiesGraphRegionsProof-DWDA06O1.js             0.63 kB │ gzip:     0.37 kB
+dist/assets/SolvingLinearInequalitiesProof-B6lhMEEP.js                     0.63 kB │ gzip:     0.37 kB
+dist/assets/TriangleInequalityProof-Bx9iM1UA.js                            0.63 kB │ gzip:     0.37 kB
+dist/assets/ChangeOfBaseFormulaProof-DLY-PmDx.js                           0.63 kB │ gzip:     0.37 kB
+dist/assets/ExponentialGrowthDecayProof-CX2_dE1J.js                        0.63 kB │ gzip:     0.37 kB
+dist/assets/ExponentsRepeatedMultiplicationProof-D3d9GzJ1.js               0.63 kB │ gzip:     0.37 kB
+dist/assets/LawsOfExponentsSameBaseProof-ByRRP0sI.js                       0.63 kB │ gzip:     0.37 kB
+dist/assets/LawsOfLogarithmsProof-CSjQ4JvH.js                              0.63 kB │ gzip:     0.37 kB
+dist/assets/LogarithmInverseExponentialProof-8h6siVy_.js                   0.63 kB │ gzip:     0.37 kB
+dist/assets/LogarithmicScaleOrdersMagnitudeProof-D8gArkc0.js               0.63 kB │ gzip:     0.37 kB
+dist/assets/NaturalExponentialEProof-CATyCifq.js                           0.63 kB │ gzip:     0.37 kB
+dist/assets/CircleLocusEqualDistanceProof-C2mOvOnT.js                      0.63 kB │ gzip:     0.37 kB
+dist/assets/ConeSlicingConicsProof-DwTeU_Lx.js                             0.63 kB │ gzip:     0.37 kB
+dist/assets/DirectrixFocusStandardEquationsProof-yozLwY4C.js               0.63 kB │ gzip:     0.37 kB
+dist/assets/EccentricityClassificationProof-CtlLVCps.js                    0.63 kB │ gzip:     0.37 kB
+dist/assets/EllipseSumOfDistancesProof-Bc7vIWd-.js                         0.63 kB │ gzip:     0.37 kB
+dist/assets/HyperbolaDifferenceOfDistancesProof-C9nkvBsg.js                0.63 kB │ gzip:     0.37 kB
+dist/assets/ParabolaReflectivePropertyProof-CSLiUfxl.js                    0.63 kB │ gzip:     0.37 kB
+dist/assets/DivergenceCurlVectorFieldProof-B9_mqqG4.js                     0.63 kB │ gzip:     0.37 kB
+dist/assets/FirstOrderDifferentialEquationSlopeFieldProof-C6vNUOtc.js      0.63 kB │ gzip:     0.37 kB
+dist/assets/FourierSeriesWaveBuildingProof-BwfekpPB.js                     0.63 kB │ gzip:     0.37 kB
+dist/assets/GradientSteepestIncreaseProof-CWMiJtwf.js                      0.63 kB │ gzip:     0.37 kB
+dist/assets/LaplaceTransformDecaySystemProof-VphjVgn7.js                   0.63 kB │ gzip:     0.37 kB
+dist/assets/LinearProgrammingFeasibleRegionProof-CxNHX_EF.js               0.63 kB │ gzip:     0.37 kB
+dist/assets/SimpleHarmonicMotionProof-DH5oKtAR.js                          0.63 kB │ gzip:     0.37 kB
+dist/assets/TrapezoidalRuleNumericalIntegrationProof-31FzPwmy.js           0.63 kB │ gzip:     0.37 kB
+dist/assets/ProductRuleVisualProof-BpDXFjPn.js                             0.66 kB │ gzip:     0.39 kB
+dist/assets/DerivativeOfExponentialProof-HEk540I9.js                       0.67 kB │ gzip:     0.39 kB
+dist/assets/DerivativeOfSineProof-Cg1Qy1ro.js                              0.67 kB │ gzip:     0.39 kB
+dist/assets/FundamentalTheoremCalculusProof-BSgiK7Z_.js                    0.67 kB │ gzip:     0.39 kB
+dist/assets/IntegrationByPartsVisualProof-TYfQLqJH.js                      0.67 kB │ gzip:     0.39 kB
+dist/assets/MeanValueTheoremProof-CYZ24xLG.js                              0.67 kB │ gzip:     0.39 kB
+dist/assets/OptimizationDerivativeMaxMinProof-Cr2REAeV.js                  0.67 kB │ gzip:     0.39 kB
+dist/assets/TaylorSeriesApproximationProof-xa1vDn3M.js                     0.67 kB │ gzip:     0.39 kB
+dist/assets/ChainRuleVisualProof-DmXarOjl.js                               0.67 kB │ gzip:     0.39 kB
+dist/assets/DerivativePowerRuleProof-B3KfFJTd.js                           0.67 kB │ gzip:     0.39 kB
+dist/assets/RiemannSumsAreaUnderCurveProof-x4exqYWP.js                     0.67 kB │ gzip:     0.39 kB
+dist/assets/SecantBecomesTangentProof-OB4aOCWu.js                          0.67 kB │ gzip:     0.39 kB
+dist/assets/DivisibilityBy3And9Proof-BL3SG4Wc.js                           0.67 kB │ gzip:     0.39 kB
+dist/assets/DivisibilityEqualGroupingProof-CpwHoBsD.js                     0.67 kB │ gzip:     0.39 kB
+dist/assets/EvenOddPairingProof-nAo40tXR.js                                0.67 kB │ gzip:     0.39 kB
+dist/assets/IrrationalitySqrt2Proof-DcVDfMGg.js                            0.67 kB │ gzip:     0.39 kB
+dist/assets/PrimesNonRectangularArraysProof-TUQysW3q.js                    0.67 kB │ gzip:     0.39 kB
+dist/assets/RemainderPatternCyclesProof-Dy3pF9NP.js                        0.67 kB │ gzip:     0.39 kB
+dist/assets/ArithmeticProgressionEqualStepsProof-C73TyxBb.js               0.67 kB │ gzip:     0.39 kB
+dist/assets/FibonacciSequenceTilingProof-BqnKM6JO.js                       0.67 kB │ gzip:     0.39 kB
+dist/assets/FibonacciSpiralApproximationProof-T_zI9KPV.js                  0.67 kB │ gzip:     0.39 kB
+dist/assets/FiniteGeometricSeriesSumProof-CVwUnLen.js                      0.67 kB │ gzip:     0.39 kB
+dist/assets/GeometricProgressionScalingProof-CiggeSrv.js                   0.67 kB │ gzip:     0.39 kB
+dist/assets/HarmonicSeriesGrowthIntuitionProof-DpL9xASF.js                 0.67 kB │ gzip:     0.39 kB
+dist/assets/InfiniteGeometricSeriesConvergenceProof-l2AT6XDo.js            0.67 kB │ gzip:     0.39 kB
+dist/assets/PascalTriangleBinomialCoefficientsProof-D8zEBUB5.js            0.67 kB │ gzip:     0.39 kB
+dist/assets/SumOfFibonacciNumbersProof-BG2coSaE.js                         0.67 kB │ gzip:     0.39 kB
+dist/assets/VisualInductionDominoGrowthProof-CtizBsHX.js                   0.67 kB │ gzip:     0.39 kB
+dist/assets/GraphCard-CCb2WGFA.js                                          0.67 kB │ gzip:     0.40 kB
+dist/assets/PointSlopeLineEquationProof-CL0P6ImL.js                        0.68 kB │ gzip:     0.39 kB
+dist/assets/MidpointFormulaProof-BwTpGYKh.js                               0.68 kB │ gzip:     0.39 kB
+dist/assets/CoordinateProofPythagoreanProof-Bn70_cyt.js                    0.68 kB │ gzip:     0.40 kB
+dist/assets/ReflectionAcrossAxesProof-DXeg9ToC.js                          0.68 kB │ gzip:     0.40 kB
+dist/assets/RotationAboutOriginProof-qSwZoxAV.js                           0.68 kB │ gzip:     0.40 kB
+dist/assets/ScalingDilationOriginProof-DcXcKxvy.js                         0.68 kB │ gzip:     0.40 kB
+dist/assets/SectionFormulaProof-XDVj1OzF.js                                0.68 kB │ gzip:     0.40 kB
+dist/assets/TriangleAreaCoordinatesProof-fLXU1hCl.js                       0.68 kB │ gzip:     0.40 kB
+dist/assets/CircleEquationProof-BKB6rAt2.js                                0.68 kB │ gzip:     0.40 kB
+dist/assets/DistanceFormulaProof-P2T690mO.js                               0.68 kB │ gzip:     0.40 kB
+dist/assets/ParallelLinesSlopeProof-CtxpMHcX.js                            0.68 kB │ gzip:     0.40 kB
+dist/assets/PerpendicularLinesSlopeProof-8Q8pLyrx.js                       0.68 kB │ gzip:     0.39 kB
+dist/assets/SlopeInterceptLineEquationProof-DnFYiWfn.js                    0.68 kB │ gzip:     0.40 kB
+dist/assets/TranslationOfPointsProof-DyBCaTKD.js                           0.68 kB │ gzip:     0.40 kB
+dist/assets/LessonGraphInk-JYHgrE1C.js                                     0.72 kB │ gzip:     0.47 kB
+dist/assets/ResponsiveLineChart-BI3eslbv.js                                0.74 kB │ gzip:     0.47 kB
+dist/assets/sequenceSeriesMath-C5pZuevi.js                                 0.83 kB │ gzip:     0.44 kB
+dist/assets/graphViewUtils-DFfqcPHB.js                                     0.87 kB │ gzip:     0.45 kB
+dist/assets/calculusMath-C8gHl1Hd.js                                       0.90 kB │ gzip:     0.48 kB
+dist/assets/StudioModelTools-PqD7DqlA.js                                   0.95 kB │ gzip:     0.47 kB
+dist/assets/web-BJP6XiWQ.js                                                0.96 kB │ gzip:     0.45 kB
+dist/assets/specialistClient-CQjInQFv.js                                   1.00 kB │ gzip:     0.58 kB
+dist/assets/WorkspaceChromeThemeToggle-DKVAwvqQ.js                         1.03 kB │ gzip:     0.56 kB
+dist/assets/AdapterFrame-Ceckf1jI.js                                       1.05 kB │ gzip:     0.49 kB
+dist/assets/web-ObtVQecO.js                                                1.06 kB │ gzip:     0.52 kB
+dist/assets/adaptiveSampler-BqV1FqYr.js                                    1.09 kB │ gzip:     0.58 kB
+dist/assets/statisticsUtils-Dz-RrmXz.js                                    1.15 kB │ gzip:     0.57 kB
+dist/assets/ur-CuvCit-L.js                                                 1.23 kB │ gzip:     0.72 kB
+dist/assets/unitEngine-imGNw7O5.js                                         1.25 kB │ gzip:     0.50 kB
+dist/assets/TopicTabs-Dw2Ma_bh.js                                          1.29 kB │ gzip:     0.70 kB
+dist/assets/LessonBarGraph-pxmU2oNh.js                                     1.33 kB │ gzip:     0.64 kB
+dist/assets/numberTheoryMath-BTaaaaUY.js                                   1.35 kB │ gzip:     0.67 kB
+dist/assets/WorkspaceGraph-9-6I-V27.js                                     1.38 kB │ gzip:     0.69 kB
+dist/assets/useNCERTMastery-DyrpDdaF.js                                    1.39 kB │ gzip:     0.71 kB
+dist/assets/complexityEngine-B1_QcPiD.js                                   1.40 kB │ gzip:     0.71 kB
+dist/assets/Trigonometry-D02F9tB3.js                                       1.42 kB │ gzip:     0.68 kB
+dist/assets/LinearAlgebra-RnaS9jM7.js                                      1.42 kB │ gzip:     0.69 kB
+dist/assets/gu-Ux0k4D12.js                                                 1.53 kB │ gzip:     0.75 kB
+dist/assets/mr-BX5da37B.js                                                 1.54 kB │ gzip:     0.74 kB
+dist/assets/pa-CmUQu9UN.js                                                 1.54 kB │ gzip:     0.74 kB
+dist/assets/kn-CgRFu8sh.js                                                 1.56 kB │ gzip:     0.72 kB
+dist/assets/Formulas-B6Fb145W.js                                           1.58 kB │ gzip:     0.75 kB
+dist/assets/hi-BNKGVeL5.js                                                 1.60 kB │ gzip:     0.75 kB
+dist/assets/foundationsEngine-DJ1-3xER.js                                  1.60 kB │ gzip:     0.85 kB
+dist/assets/bn-D6KmuWr2.js                                                 1.62 kB │ gzip:     0.74 kB
+dist/assets/Theorems-BG_h2DLH.js                                           1.67 kB │ gzip:     0.79 kB
+dist/assets/te-C38omXiq.js                                                 1.70 kB │ gzip:     0.77 kB
+dist/assets/as--pfuq6hL.js                                                 1.70 kB │ gzip:     0.77 kB
+dist/assets/or-C5AuV6BE.js                                                 1.74 kB │ gzip:     0.76 kB
+dist/assets/WorkspaceTeach-wnQ_j_md.js                                     1.90 kB │ gzip:     0.92 kB
+dist/assets/WorkspaceGeometry-zdEc1weC.js                                  1.91 kB │ gzip:     0.92 kB
+dist/assets/ml-B4ead09y.js                                                 1.92 kB │ gzip:     0.80 kB
+dist/assets/WorkspaceData-TyxwGKXq.js                                      1.93 kB │ gzip:     0.94 kB
+dist/assets/ta-UK-WTRty.js                                                 1.97 kB │ gzip:     0.78 kB
+dist/assets/StudioPageShell-I_9_DMAQ.js                                    2.02 kB │ gzip:     0.91 kB
+dist/assets/Workspace3D-CYifHP1r.js                                        2.03 kB │ gzip:     1.00 kB
+dist/assets/createIndianRegionalLessonPack-DgJQKPlA.js                     2.07 kB │ gzip:     0.80 kB
+dist/assets/useAlgebraHistory-h9Yg13rW.js                                  2.07 kB │ gzip:     0.78 kB
+dist/assets/graphExtensionsEngine-DtpL4u_F.js                              2.10 kB │ gzip:     0.98 kB
+dist/assets/geometryStudioSession-CO3Ctao4.js                              2.13 kB │ gzip:     0.92 kB
+dist/assets/coreAccuracyOracles-LarlaAD8.js                                2.15 kB │ gzip:     0.95 kB
+dist/assets/advancedConceptPathways-DR6_ZBYV.js                            2.20 kB │ gzip:     1.06 kB
+dist/assets/spreadsheetKernel-BqypWvnT.js                                  2.29 kB │ gzip:     1.16 kB
+dist/assets/StudioBreadcrumb-WEoWA5Fd.js                                   2.29 kB │ gzip:     1.03 kB
+dist/assets/RemainderClassesMobileProof-C7Mlosuz.js                        2.29 kB │ gzip:     1.05 kB
+dist/assets/expressionEngine-Br9RR6XS.js                                   2.31 kB │ gzip:     1.25 kB
+dist/assets/TopicHeader-BrYd3vNh.js                                        2.35 kB │ gzip:     0.94 kB
+dist/assets/OrthographicProjectionFromCubeStacksProof-C2-irHPI.js          2.36 kB │ gzip:     1.21 kB
+dist/assets/complexLabMath-Dn2GQPkS.js                                     2.39 kB │ gzip:     1.08 kB
+dist/assets/turingEngine-BTi_yDb6.js                                       2.39 kB │ gzip:     1.14 kB
+dist/assets/StudioLandingExtras-CXQSnrh-.js                                2.44 kB │ gzip:     0.97 kB
+dist/assets/DivisibilityFiveTenMobileProof-DFbwqheh.js                     2.55 kB │ gzip:     1.04 kB
+dist/assets/DivisibilityElevenMobileProof-2Zz9ZUfQ.js                      2.55 kB │ gzip:     1.06 kB
+dist/assets/EuclideanAlgorithmMobileProof-CnIOm6C3.js                      2.56 kB │ gzip:     1.14 kB
+dist/assets/LessonsCategoryPage-DgIR54hq.js                                2.60 kB │ gzip:     1.14 kB
+dist/assets/ConceptDependencyGraph-BeHQS50c.js                             2.60 kB │ gzip:     1.27 kB
+dist/assets/OddSquarePatternMobileProof-D81M4t_W.js                        2.61 kB │ gzip:     1.19 kB
+dist/assets/p0LessonModels-CfIpktpr.js                                     2.66 kB │ gzip:     1.24 kB
+dist/assets/DivisibilityEightMobileProof-DS76S3tg.js                       2.66 kB │ gzip:     1.16 kB
+dist/assets/adaptiveGraph-7O6qKan9.js                                      2.69 kB │ gzip:     1.33 kB
+dist/assets/SierpinskiRemovedSquareSumProof-WzgbGsFm.js                    2.69 kB │ gzip:     1.14 kB
+dist/assets/SierpinskiRetainedAreaProof-BSkxDL52.js                        2.73 kB │ gzip:     1.21 kB
+dist/assets/SpacedRepetitionQuiz-BIG1E1Ac.js                               2.74 kB │ gzip:     1.33 kB
+dist/assets/useProgress-BmZig5Jw.js                                        2.75 kB │ gzip:     1.03 kB
+dist/assets/setExpressionEngine-DKiy0Abp.js                                2.76 kB │ gzip:     1.13 kB
+dist/assets/FactorPairsMobileProof-odEZkyv_.js                             2.79 kB │ gzip:     1.18 kB
+dist/assets/SquareOddSumsMobileProof-CVwZ1bHM.js                           2.80 kB │ gzip:     1.24 kB
+dist/assets/DivisibilityNineMobileProof-1NE5COjh.js                        2.81 kB │ gzip:     1.22 kB
+dist/assets/studioLandingSession-Dd77RvxM.js                               2.86 kB │ gzip:     1.12 kB
+dist/assets/DivisibilityFourMobileProof-B8QBkRRl.js                        2.87 kB │ gzip:     1.18 kB
+dist/assets/ProductOfPowersMobileProof-CERVeR3L.js                         2.87 kB │ gzip:     1.02 kB
+dist/assets/GcdLcmRelationshipMobileProof-U3Fu96ws.js                      2.88 kB │ gzip:     1.19 kB
+dist/assets/assessmentEngine-D2Vq3RVc.js                                   2.96 kB │ gzip:     1.45 kB
+dist/assets/NonUniqueSolidProjectionsProof-BX5IbIy_.js                     2.96 kB │ gzip:     1.13 kB
+dist/assets/DivisibilityTwoMobileProof-CEobnPzv.js                         3.00 kB │ gzip:     1.22 kB
+dist/assets/TwinPrimesExplorerMobileProof-BSO3t7O6.js                      3.01 kB │ gzip:     1.26 kB
+dist/assets/DivisibilityThreeMobileProof-DmvXFU02.js                       3.04 kB │ gzip:     1.31 kB
+dist/assets/ProofControls-BC6Khax6.js                                      3.05 kB │ gzip:     1.02 kB
+dist/assets/LastDigitParityMobileProof-DwicpWj5.js                         3.09 kB │ gzip:     1.10 kB
+dist/assets/PrimeBuildingBlocksMobileProof-I8yJV-n_.js                     3.09 kB │ gzip:     1.27 kB
+dist/assets/GcdEqualGroupingMobileProof-CDF8Xd7y.js                        3.12 kB │ gzip:     1.24 kB
+dist/assets/EvenNumbersSumMobileProof-DKG9RMTo.js                          3.14 kB │ gzip:     1.36 kB
+dist/assets/MultiplesNumberLineMobileProof-BFBg9Fye.js                     3.20 kB │ gzip:     1.30 kB
+dist/assets/SlopeTrianglesMobileProof-BvG0MGS5.js                          3.26 kB │ gzip:     1.42 kB
+dist/assets/OddSquaresMobileProof-Bu3KmBpX.js                              3.29 kB │ gzip:     1.50 kB
+dist/assets/grammarEngine-DoactezC.js                                      3.30 kB │ gzip:     1.43 kB
+dist/assets/CenterCircumferenceAnglesProof-BpRQREcP.js                     3.33 kB │ gzip:     1.46 kB
+dist/assets/decimalExpansionEngine-DUeeUE0I.js                             3.33 kB │ gzip:     1.58 kB
+dist/assets/UnitCircleIdentityMobileProof-B6bVHgsd.js                      3.35 kB │ gzip:     1.38 kB
+dist/assets/engineeringSystems-CdpE-M31.js                                 3.37 kB │ gzip:     1.52 kB
+dist/assets/proportionalReasoningMath-thYBBWmB.js                          3.38 kB │ gzip:     1.22 kB
+dist/assets/AnscombeQuartetMobileProof-YtnOg3Xg.js                         3.38 kB │ gzip:     1.55 kB
+dist/assets/EuclidInfinitePrimesMobileProof-CXBmr0ly.js                    3.39 kB │ gzip:     1.32 kB
+dist/assets/Sitemap-CznBZgk8.js                                            3.42 kB │ gzip:     1.29 kB
+dist/assets/CountingPathsMobileProof-DOm-cFG6.js                           3.43 kB │ gzip:     1.55 kB
+dist/assets/matrixOperations-DRrjt-YG.js                                   3.44 kB │ gzip:     1.11 kB
+dist/assets/ModularArithmeticClockMobileProof-ItoeeKm3.js                  3.48 kB │ gzip:     1.53 kB
+dist/assets/NaturalSumMobileProof-Jtz493bt.js                              3.48 kB │ gzip:     1.52 kB
+dist/assets/transformationRules-MV7pOD1-.js                                3.52 kB │ gzip:     1.66 kB
+dist/assets/LearningScaffolds-CUv6DQ2R.js                                  3.54 kB │ gzip:     1.04 kB
+dist/assets/setTheoryEngine-CYZhj_ae.js                                    3.56 kB │ gzip:     1.49 kB
+dist/assets/WorkspaceHome-BwMq8gaa.js                                      3.56 kB │ gzip:     1.38 kB
+dist/assets/ConsecutiveIntegersMobileProof-DDwKgDHZ.js                     3.57 kB │ gzip:     1.44 kB
+dist/assets/ShearAreaMobileProof-BhOF9fvg.js                               3.57 kB │ gzip:     1.46 kB
+dist/assets/SieveEratosthenesMobileProof-UDJaH9LK.js                       3.64 kB │ gzip:     1.52 kB
+dist/assets/FundamentalArithmeticUniqueMobileProof-zpfeydpC.js             3.74 kB │ gzip:     1.59 kB
+dist/assets/PrimeGapsExplorerMobileProof-BPelsgmb.js                       3.77 kB │ gzip:     1.58 kB
+dist/assets/studioPlatformEngine-D8HNetlB.js                               3.77 kB │ gzip:     1.77 kB
+dist/assets/LcmCyclesMobileProof-rPlY-bRb.js                               3.78 kB │ gzip:     1.33 kB
+dist/assets/CircleRatioMobileProof-jqGI5vPp.js                             3.80 kB │ gzip:     1.62 kB
+dist/assets/DeMorgansMobileProof-ChsSeljp.js                               3.82 kB │ gzip:     1.40 kB
+dist/assets/EpsilonDeltaMobileProof-DHLgA3fd.js                            3.82 kB │ gzip:     1.61 kB
+dist/assets/StudioCanvasToolbar-CwkDHNka.js                                3.84 kB │ gzip:     1.48 kB
+dist/assets/NegativeNumbersModuloNMobileProof-CEZYL6sE.js                  3.86 kB │ gzip:     1.59 kB
+dist/assets/MultiplicationModuloNMobileProof-6J1EQSf1.js                   3.92 kB │ gzip:     1.65 kB
+dist/assets/AdditionModuloNMobileProof-DTtaBSXv.js                         3.95 kB │ gzip:     1.68 kB
+dist/assets/DailyChallenge-xucv_btn.js                                     4.00 kB │ gzip:     1.83 kB
+dist/assets/SectionCard-Co5CvR2z.js                                        4.00 kB │ gzip:     1.77 kB
+dist/assets/ParametricCurveExplorer-DD7S5Lh8.js                            4.01 kB │ gzip:     1.80 kB
+dist/assets/graphSampler-CiWwz4FM.js                                       4.03 kB │ gzip:     1.70 kB
+dist/assets/linearAlgebraUtils-CTFZ1KNx.js                                 4.06 kB │ gzip:     1.55 kB
+dist/assets/DifferenceSquaresMobileProof-DOZ19DHo.js                       4.13 kB │ gzip:     1.67 kB
+dist/assets/ArithmeticSequenceSumMobileProof-Bg7JqT3C.js                   4.14 kB │ gzip:     1.70 kB
+dist/assets/combinatoricsEngine--jUfZ27A.js                                4.14 kB │ gzip:     1.87 kB
+dist/assets/GeometryEmbeddedGraph-BN4EDXnN.js                              4.16 kB │ gzip:     1.94 kB
+dist/assets/SquareBinomialMobileProof-CYcCqGAU.js                          4.17 kB │ gzip:     1.63 kB
+dist/assets/TriangularNumbersMobileProof-5CMxFJIY.js                       4.22 kB │ gzip:     1.74 kB
+dist/assets/IntegralAccumulatedAreaMobileProof-DygUTQn5.js                 4.31 kB │ gzip:     1.83 kB
+dist/assets/complexEnhancementEngine-DwkB3RgS.js                           4.35 kB │ gzip:     1.95 kB
+dist/assets/graphPanelUtils-Bm_wb1l5.js                                    4.39 kB │ gzip:     1.93 kB
+dist/assets/analysis2d-D-PDaE5f.js                                         4.48 kB │ gzip:     2.21 kB
+dist/assets/CongruenceClockMobileProof-BbPo2GSv.js                         4.49 kB │ gzip:     1.80 kB
+dist/assets/NormalProbabilityMobileProof-DPcuG9pm.js                       4.50 kB │ gzip:     1.88 kB
+dist/assets/CompositeFactorSqrtMobileProof-goasvVC8.js                     4.53 kB │ gzip:     1.81 kB
+dist/assets/DistributionAtlasPage-DEfsKomW.js                              4.57 kB │ gzip:     1.88 kB
+dist/assets/useUniversalObjectGraphPublisher-CZ2h3agp.js                   4.59 kB │ gzip:     1.69 kB
+dist/assets/calculusEnhancementEngine-B2fInovy.js                          4.59 kB │ gzip:     2.19 kB
+dist/assets/fDistributionLessonModel-KLRFCWgj.js                           4.72 kB │ gzip:     1.65 kB
+dist/assets/geometryPhase2-DB8j7zXa.js                                     4.80 kB │ gzip:     2.10 kB
+dist/assets/algebraEnhancementEngine-CR5BAEkt.js                           4.83 kB │ gzip:     2.23 kB
+dist/assets/MatrixOperationsSandbox-BgFBHNM3.js                            4.85 kB │ gzip:     2.14 kB
+dist/assets/constructionKernels-CLI6_uNO.js                                4.89 kB │ gzip:     1.74 kB
+dist/assets/probabilityUtils-GRUk6vfs.js                                   4.93 kB │ gzip:     2.34 kB
+dist/assets/EquationBalanceMobileProof-3OWgEjaH.js                         5.01 kB │ gzip:     1.88 kB
+dist/assets/MathLabSmartQuery-D-oi_rXP.js                                  5.02 kB │ gzip:     2.07 kB
+dist/assets/WorkedExamplesLibrary-DQk6Uz30.js                              5.14 kB │ gzip:     2.20 kB
+dist/assets/AbsoluteValueInequalityMobileProof-Dne6SH5G.js                 5.14 kB │ gzip:     1.95 kB
+dist/assets/ProbabilityStatisticsModulePage-BD2Sdr4y.js                    5.17 kB │ gzip:     1.77 kB
+dist/assets/VectorAdditionMobileProof-iKWrwDhu.js                          5.21 kB │ gzip:     1.91 kB
+dist/assets/MathLabToolPage-CgGc7S60.js                                    5.21 kB │ gzip:     2.05 kB
+dist/assets/practiceEngine-pcsv5RM-.js                                     5.25 kB │ gzip:     2.53 kB
+dist/assets/fractalsSolidViewsMath-sfiZhAXc.js                             5.28 kB │ gzip:     2.09 kB
+dist/assets/numerical-M5Uqc_BC.js                                          5.28 kB │ gzip:     2.30 kB
+dist/assets/trigonometryEnhancementEngine-YYZ8Hn3S.js                      5.37 kB │ gzip:     2.30 kB
+dist/assets/EmbedDesigner-CTfj1vjm.js                                      5.41 kB │ gzip:     2.02 kB
+dist/assets/modellingEnhancementEngine-BirCX7-U.js                         5.41 kB │ gzip:     2.52 kB
+dist/assets/PolygonTriangulationMobileProof-W_8p3hZM.js                    5.44 kB │ gzip:     2.26 kB
+dist/assets/EigenvectorDirectionMobileProof-C_IbWcef.js                    5.44 kB │ gzip:     2.18 kB
+dist/assets/calculator-BEqfvV5-.js                                         5.54 kB │ gzip:     2.19 kB
+dist/assets/coreObjects-BIZAB04O.js                                        5.59 kB │ gzip:     1.89 kB
+dist/assets/DerivativeSlopeMobileProof-Ba5xsxbt.js                         5.64 kB │ gzip:     2.37 kB
+dist/assets/grade7MathUtils-LdHw-Yvu.js                                    5.72 kB │ gzip:     2.21 kB
+dist/assets/OlympyardPractice-DhSYCBdo.js                                  5.76 kB │ gzip:     2.21 kB
+dist/assets/ParallelogramCutSlideMobileProof-CKfKYACW.js                   5.76 kB │ gzip:     2.09 kB
+dist/assets/CircleSectorsMobileProof-DtX0BMG-.js                           5.77 kB │ gzip:     2.35 kB
+dist/assets/discreteEnhancementEngine-CPQceykI.js                          5.77 kB │ gzip:     2.71 kB
+dist/assets/BoardImageImportDialog-CE_R-CfW.js                             5.82 kB │ gzip:     2.58 kB
+dist/assets/linearAlgebraEnhancementEngine-BJMamcN3.js                     5.84 kB │ gzip:     2.59 kB
+dist/assets/MatrixAreaMobileProof-Lyo1mYqX.js                              5.84 kB │ gzip:     2.07 kB
+dist/assets/workspaceEngineBridge-BNYJcfL_.js                              5.84 kB │ gzip:     1.93 kB
+dist/assets/VisualLearningPanel-CpxKtsF5.js                                5.85 kB │ gzip:     1.90 kB
+dist/assets/structuredExpression-BCvJ8Cje.js                               5.86 kB │ gzip:     2.41 kB
+dist/assets/SurfacePlotter3D-BI1RQ_07.js                                   5.87 kB │ gzip:     2.51 kB
+dist/assets/MathExpression-CfYHRpQu.js                                     5.95 kB │ gzip:     2.30 kB
+dist/assets/embeddedWorkspace-CN-fZrgn.js                                  6.05 kB │ gzip:     2.28 kB
+dist/assets/PythagoreanRearrangementMobileProof-DkBtQLCW.js                6.06 kB │ gzip:     1.97 kB
+dist/assets/TrapezoidDoublingMobileProof-BKWZlb9Z.js                       6.07 kB │ gzip:     2.19 kB
+dist/assets/simulationEngine-BdScqB8s.js                                   6.07 kB │ gzip:     2.40 kB
+dist/assets/IntersectingChordsMobileProof-DlqDcJzF.js                      6.20 kB │ gzip:     2.44 kB
+dist/assets/dependencyGraph-i49ziWxj.js                                    6.22 kB │ gzip:     2.17 kB
+dist/assets/SimilarTriangleRatiosMobileProof-DK7g7kOg.js                   6.30 kB │ gzip:     2.35 kB
+dist/assets/AdvancedConceptLessonsPage-Ctuvltt0.js                         6.51 kB │ gzip:     2.04 kB
+dist/assets/specialists-BTcP2bDB.js                                        6.57 kB │ gzip:     2.82 kB
+dist/assets/FormulaBlock-CkoaTz0U.js                                       6.59 kB │ gzip:     2.48 kB
+dist/assets/automataEngine-C-3oJUBF.js                                     6.65 kB │ gzip:     2.54 kB
+dist/assets/TriangleAreaDissectionMobileProof-Q22SDcXJ.js                  6.71 kB │ gzip:     2.44 kB
+dist/assets/graph3dAdvanced-Bo3pS1Tn.js                                    6.89 kB │ gzip:     3.05 kB
+dist/assets/RatioProofModels-C3oYnEm7.js                                   6.90 kB │ gzip:     2.58 kB
+dist/assets/graphSampler-BoLfj5oq.js                                       6.90 kB │ gzip:     2.81 kB
+dist/assets/geometryLabUx-BxsF4u-c.js                                      6.98 kB │ gzip:     2.92 kB
+dist/assets/SliderControl-sRi0IRjy.js                                      6.99 kB │ gzip:     2.26 kB
+dist/assets/statisticsEnhancementEngine-CuQgDSjX.js                        7.04 kB │ gzip:     3.19 kB
+dist/assets/ModellingEnhancementWorkbench-Bs9KWvYg.js                      7.08 kB │ gzip:     2.64 kB
+dist/assets/algebraicStructuresEngine-fEyRM87n.js                          7.13 kB │ gzip:     2.95 kB
+dist/assets/MathLab-colnIQ9A.js                                            7.17 kB │ gzip:     2.61 kB
+dist/assets/proofLearningLinks-CBumiqjp.js                                 7.44 kB │ gzip:     1.75 kB
+dist/assets/TriangleAngleSumMobileProof-RJmjWnJx.js                        7.46 kB │ gzip:     2.91 kB
+dist/assets/geometry2dWorkspaceEngine-CojjHa3E.js                          7.76 kB │ gzip:     2.71 kB
+dist/assets/Documentation-DIHHsCca.js                                      7.82 kB │ gzip:     2.69 kB
+dist/assets/SpreadsheetLessonAdapter-55uwTBaK.js                           7.97 kB │ gzip:     3.37 kB
+dist/assets/AccuracyCertification-BJL1ZuT1.js                              7.98 kB │ gzip:     2.88 kB
+dist/assets/PriorityConceptActivities-DhdCkaS7.js                          8.22 kB │ gzip:     3.02 kB
+dist/assets/geometry3dWorkspaceEngine-dNDHLQ4y.js                          8.25 kB │ gzip:     2.64 kB
+dist/assets/FourierSeriesAnimator-Dtmc-9bs.js                              8.30 kB │ gzip:     3.05 kB
+dist/assets/EigenvectorsVisualizerPage-DwDV46XD.js                         8.41 kB │ gzip:     3.23 kB
+dist/assets/SchoolLessonsPage-CqLyi2Y_.js                                  8.45 kB │ gzip:     2.73 kB
+dist/assets/StudioProjectCenter-4-m3U2hS.js                                8.50 kB │ gzip:     2.95 kB
+dist/assets/theoremVisualProofInventory-CMy-Zikg.js                        8.55 kB │ gzip:     3.43 kB
+dist/assets/studioMath3D-fGXOIWEQ.js                                       8.75 kB │ gzip:     2.67 kB
+dist/assets/logicEngine-sZGFah4P.js                                        8.83 kB │ gzip:     3.22 kB
+dist/assets/math3dEngine-C903pujP.js                                       9.07 kB │ gzip:     3.97 kB
+dist/assets/VisualProofBlueprintProof-DH3O0xHf.js                          9.27 kB │ gzip:     3.72 kB
+dist/assets/engine-BmT3AZlZ.js                                             9.33 kB │ gzip:     3.72 kB
+dist/assets/graph-DSL5ER3a.js                                              9.33 kB │ gzip:     2.98 kB
+dist/assets/VisualShowcase-CSDV7wrq.js                                     9.47 kB │ gzip:     3.41 kB
+dist/assets/VisualFormulasHub-CE4q6Qw9.js                                  9.53 kB │ gzip:     3.24 kB
+dist/assets/commandRegistry-BwB-NLbx.js                                    9.55 kB │ gzip:     3.34 kB
+dist/assets/geometry2d-zoA1noRZ.js                                         9.63 kB │ gzip:     4.29 kB
+dist/assets/arExplorationEngine-1rIkXL4O.js                                9.72 kB │ gzip:     4.22 kB
+dist/assets/CircleToTriangleVisualization-N93sOiI6.js                      9.80 kB │ gzip:     3.36 kB
+dist/assets/CoverageDashboardPage-PPeo1j_q.js                              9.82 kB │ gzip:     3.34 kB
+dist/assets/NCERTDashboardPage-daEmgU9B.js                                 9.92 kB │ gzip:     3.22 kB
+dist/assets/MathKeyboardInput-UHMrdRX_.js                                  9.95 kB │ gzip:     2.90 kB
+dist/assets/BoardIntelligencePanel-WdcI2B_r.js                             9.96 kB │ gzip:     2.76 kB
+dist/assets/manyBody-D38N4FJ3.js                                          10.00 kB │ gzip:     3.92 kB
+dist/assets/ThreeSceneWrapper-3xvIKb79.js                                 10.01 kB │ gzip:     4.37 kB
+dist/assets/PhaseEightCoordinateVisualModels-BwQbHpcn.js                  10.07 kB │ gzip:     3.20 kB
+dist/assets/FourierSeriesVisualizerPage-ryZCC5Az.js                       10.09 kB │ gzip:     3.74 kB
+dist/assets/spreadsheetStudioEngine-DusUfS_3.js                           10.12 kB │ gzip:     4.31 kB
+dist/assets/ArgandFigure-Do-YAp4A.js                                      10.24 kB │ gzip:     3.90 kB
+dist/assets/nativeBridge-HtIHX5fw.js                                      10.35 kB │ gzip:     4.18 kB
+dist/assets/OlympyardMockTest-D_JjhUsY.js                                 10.53 kB │ gzip:     3.53 kB
+dist/assets/symbolic-v3sGnM83.js                                          10.53 kB │ gzip:     4.14 kB
+dist/assets/phaseSevenProofConfigs-CCgw-Xas.js                            10.67 kB │ gzip:     3.80 kB
+dist/assets/workspaceStore-D33OuAYO.js                                    10.68 kB │ gzip:     3.51 kB
+dist/assets/ScientificCalculator-Dp6DSxK2.js                              10.68 kB │ gzip:     3.91 kB
+dist/assets/DistributionDetailPage-DyesmblQ.js                            10.97 kB │ gzip:     4.12 kB
+dist/assets/MathLabFunctionExplorer-BAA-BkWZ.js                           11.05 kB │ gzip:     4.04 kB
+dist/assets/EmbedCodePanel-DPrjgabr.js                                    11.23 kB │ gzip:     4.34 kB
+dist/assets/OlympyardQuestionRenderer-H1gfVP6A.js                         11.36 kB │ gzip:     3.22 kB
+dist/assets/LessonCartesianGraph-D070yUU-.js                              11.40 kB │ gzip:     4.60 kB
+dist/assets/VisualizationTools-CvxQDXVg.js                                11.40 kB │ gzip:     4.13 kB
+dist/assets/SyllabusVisualPage-CpcWQXPc.js                                11.54 kB │ gzip:     3.82 kB
+dist/assets/SmartMathInput-fkbaxxvp.js                                    11.63 kB │ gzip:     4.48 kB
+dist/assets/About-BjGRy1jq.js                                             11.83 kB │ gzip:     3.72 kB
+dist/assets/Quiz-B3LQ4w7p.js                                              11.96 kB │ gzip:     4.02 kB
+dist/assets/statistics-C0E26kh6.js                                        11.98 kB │ gzip:     5.21 kB
+dist/assets/UnitConverter-DAyd-rty.js                                     12.05 kB │ gzip:     3.65 kB
+dist/assets/phaseFourProofConfigs-CYmnztcM.js                             12.22 kB │ gzip:     3.86 kB
+dist/assets/matrixUtils-kjoUlG6-.js                                       12.29 kB │ gzip:     4.18 kB
+dist/assets/phaseEightProofConfigs-Coe4UFaM.js                            12.41 kB │ gzip:     4.12 kB
+dist/assets/PlatformLessonAdapter-CTi9YK-e.js                             13.06 kB │ gzip:     5.14 kB
+dist/assets/MathematicalModellingStudio-2_iWnkau.js                       13.13 kB │ gzip:     4.75 kB
+dist/assets/MathLabShared-DfbJJ5rQ.js                                     13.37 kB │ gzip:     3.71 kB
+dist/assets/learningExperience-DIUJ-cph.js                                13.46 kB │ gzip:     4.29 kB
+dist/assets/MathLabConicSolver-Dl02JYpC.js                                13.67 kB │ gzip:     4.80 kB
+dist/assets/roboLearning-DotPO9Bx.js                                      13.83 kB │ gzip:     4.83 kB
+dist/assets/DifferentialEquations-CbhJmVJU.js                             13.92 kB │ gzip:     5.05 kB
+dist/assets/AdvancedConceptStudios-B9tNweh8.js                            14.03 kB │ gzip:     4.95 kB
+dist/assets/MathLabLinearAlgebra-DgmMWZOF.js                              14.54 kB │ gzip:     4.77 kB
+dist/assets/ProbabilityStatisticsPhaseTwoPage-DwBTgc0W.js                 14.66 kB │ gzip:     5.40 kB
+dist/assets/BoardTutorPanel-Dl7Du-ZH.js                                   14.67 kB │ gzip:     5.40 kB
+dist/assets/casNotebookEngine-0J4IyiiZ.js                                 14.82 kB │ gzip:     5.49 kB
+dist/assets/ProbabilityStatisticsPhaseThreePage-C0OBcnc_.js               14.94 kB │ gzip:     5.26 kB
+dist/assets/MatrixOperations-CiwUQjHF.js                                  15.28 kB │ gzip:     4.48 kB
+dist/assets/dynamicWorkspaceEngine-lr4XUPvB.js                            15.52 kB │ gzip:     5.58 kB
+dist/assets/MathVisualizationPage-Bw3M7KhS.js                             15.69 kB │ gzip:     5.47 kB
+dist/assets/kernel-CEg3T0R0.js                                            16.09 kB │ gzip:     6.04 kB
+dist/assets/FunctionGraphCanvas-CYisOudF.js                               16.29 kB │ gzip:     6.01 kB
+dist/assets/LearningLessonAdapter-Db0P3P-s.js                             16.68 kB │ gzip:     5.31 kB
+dist/assets/MathLabProbability-CRhKXoX_.js                                16.84 kB │ gzip:     5.34 kB
+dist/assets/Olympyard-ChDV5_72.js                                         16.98 kB │ gzip:     4.95 kB
+dist/assets/phaseElevenProofConfigs-fbO7aU1-.js                           17.24 kB │ gzip:     5.74 kB
+dist/assets/problemClassifier-BDCX5JhB.js                                 17.33 kB │ gzip:     6.01 kB
+dist/assets/MatrixTransformationsVisualizerPage-BvT46kbl.js               17.80 kB │ gzip:     5.77 kB
+dist/assets/StudioLandingTeasers-Ekp33qGA.js                              17.86 kB │ gzip:     4.97 kB
+dist/assets/GeometryConceptPage-DX3oCWTg.js                               18.24 kB │ gzip:     5.41 kB
+dist/assets/TrigonometryMathLab-BeQrWewM.js                               18.65 kB │ gzip:     6.46 kB
+dist/assets/CalculusDifferentialEquationsStudio-DRfQE7rj.js               18.70 kB │ gzip:     6.48 kB
+dist/assets/ncertGapAnalysis-CziAtjcX.js                                  18.75 kB │ gzip:     4.54 kB
+dist/assets/GraphComparisonMode-CUJiyx4K.js                               18.93 kB │ gzip:     5.97 kB
+dist/assets/ncertPracticeBank-h9SrDIoc.js                                 19.27 kB │ gzip:     7.39 kB
+dist/assets/phaseTwelveProofConfigs-CZxs_gKu.js                           19.59 kB │ gzip:     6.22 kB
+dist/assets/CinematicHero-D7SH73lA.js                                     19.84 kB │ gzip:     9.20 kB
+dist/assets/LawOfCosinesCircleConstructionProof-Ce_bDS7J.js               20.20 kB │ gzip:     6.51 kB
+dist/assets/AlgebraStudio-CsYqx_jV.js                                     20.81 kB │ gzip:     7.77 kB
+dist/assets/VisualProofsHomePage-DFXFK2YE.js                              21.31 kB │ gzip:     5.86 kB
+dist/assets/phaseSeventeenProofConfigs-BS2Hx5nu.js                        21.50 kB │ gzip:     6.98 kB
+dist/assets/advancedCas-CTDTJGTF.js                                       21.74 kB │ gzip:     8.09 kB
+dist/assets/phaseTwentyOneProofConfigs-SrF-5Eog.js                        22.02 kB │ gzip:     6.65 kB
+dist/assets/experimentEngine-yXUO6wjj.js                                  22.88 kB │ gzip:     8.65 kB
+dist/assets/trigFormulaUtils-CcvSFeWU.js                                  23.31 kB │ gzip:     5.98 kB
+dist/assets/registry-UlLn0Pke.js                                          23.63 kB │ gzip:     6.95 kB
+dist/assets/phaseFifteenProofConfigs-B1T4Ca5L.js                          24.19 kB │ gzip:     7.84 kB
+dist/assets/phaseTwentyProofConfigs-rv6fiMLU.js                           24.40 kB │ gzip:     7.10 kB
+dist/assets/ProbabilityStatistics-DM6dW1eI.js                             24.52 kB │ gzip:     8.33 kB
+dist/assets/phaseNineProofConfigs-CDAPbaFg.js                             24.57 kB │ gzip:     6.96 kB
+dist/assets/phaseFiveProofConfigs-Y_ZdI-U2.js                             24.93 kB │ gzip:     7.53 kB
+dist/assets/phaseNineteenProofConfigs-C2G2UUlT.js                         24.94 kB │ gzip:     8.31 kB
+dist/assets/phaseTwentyFiveProofConfigs-BWNvHABL.js                       25.60 kB │ gzip:     8.20 kB
+dist/assets/purify.es-BA-bta5a.js                                         25.63 kB │ gzip:     9.72 kB
+dist/assets/phaseFourteenProofConfigs-CD2vNmQi.js                         26.04 kB │ gzip:     8.54 kB
+dist/assets/phaseEighteenProofConfigs-CXQHjaSu.js                         26.12 kB │ gzip:     8.50 kB
+dist/assets/LessonsHomePage-BKGJg2Rq.js                                   26.43 kB │ gzip:     7.96 kB
+dist/assets/phaseThirteenProofConfigs-CVdjv1C9.js                         26.58 kB │ gzip:     9.14 kB
+dist/assets/transform-CB-PDMba.js                                         26.81 kB │ gzip:     8.21 kB
+dist/assets/Phase5MathEnvironmentPage-CsYZsnKr.js                         26.91 kB │ gzip:     9.61 kB
+dist/assets/phaseSixteenProofConfigs-BkyDjYXC.js                          27.21 kB │ gzip:     9.14 kB
+dist/assets/phaseTwentyThreeProofConfigs-Bv3X5ruX.js                      27.42 kB │ gzip:     8.36 kB
+dist/assets/GraphTheory-DbOM5ucZ.js                                       27.54 kB │ gzip:     8.82 kB
+dist/assets/UniversalMathDocumentPage-CoYkAR0O.js                         27.66 kB │ gzip:     9.31 kB
+dist/assets/StatisticsSyllabusCompletionPage-Zl4Mx4Oh.js                  28.08 kB │ gzip:    10.69 kB
+dist/assets/StepByStepProblemSolver-CwempTsr.js                           28.86 kB │ gzip:    10.00 kB
+dist/assets/MatrixOperationPage-B7hHrHQQ.js                               28.99 kB │ gzip:     8.55 kB
+dist/assets/phaseTwentyTwoProofConfigs-BnLj-JFm.js                        29.05 kB │ gzip:     8.45 kB
+dist/assets/phaseTwentySevenProofConfigs-B2xhrYTq.js                      29.50 kB │ gzip:     9.97 kB
+dist/assets/FormulaLibraryPage-5Z2GffLi.js                                29.58 kB │ gzip:     8.83 kB
+dist/assets/phaseTwentySixProofConfigs-DcXYTt-c.js                        29.83 kB │ gzip:     9.05 kB
+dist/assets/phaseSixProofConfigs-CqtbAz2j.js                              29.97 kB │ gzip:     8.60 kB
+dist/assets/ProblemSolverDocumentation-Boq8ZnEr.js                        30.74 kB │ gzip:     9.69 kB
+dist/assets/phaseTwentyFourProofConfigs-CFVqDLkG.js                       32.04 kB │ gzip:    10.05 kB
+dist/assets/DraggableHandle-BdLFCwM6.js                                   33.39 kB │ gzip:     9.10 kB
+dist/assets/DiscreteWorld-CusLMdLZ.js                                     34.98 kB │ gzip:    10.64 kB
+dist/assets/quizData-VEOgYl9K.js                                          38.67 kB │ gzip:    12.37 kB
+dist/assets/ShareExportControl-Axjniuph.js                                39.29 kB │ gzip:    13.69 kB
+dist/assets/LearningExpansion-CoG0Sp9R.js                                 40.35 kB │ gzip:    14.43 kB
+dist/assets/AIApplications-CYQBeJBo.js                                    42.54 kB │ gzip:    13.76 kB
+dist/assets/ComplexNumbers-BY7T3wS1.js                                    42.83 kB │ gzip:    12.29 kB
+dist/assets/VisualProofCategoryPage-BwFd4BkQ.js                           44.63 kB │ gzip:     9.49 kB
+dist/assets/olympyardProgress-D-LSkneC.js                                 45.13 kB │ gzip:    14.96 kB
+dist/assets/AlgebraicStructuresStudio-Bn18q1Fi.js                         45.78 kB │ gzip:    12.74 kB
+dist/assets/MagicMaths-BHroVd13.js                                        46.25 kB │ gzip:    15.00 kB
+dist/assets/Home-BlTDgszU.js                                              46.56 kB │ gzip:    15.03 kB
+dist/assets/LessonPage-CJK8zaj8.js                                        47.52 kB │ gzip:    12.41 kB
+dist/assets/Syllabus-wr_EbU0V.js                                          50.04 kB │ gzip:    13.71 kB
+dist/assets/Geometry-CzGAoSMu.js                                          52.05 kB │ gzip:    16.96 kB
+dist/assets/releaseEvidence-B6hh4HLZ.js                                   52.29 kB │ gzip:    18.35 kB
+dist/assets/Phase3LearningSystemPage-DAd4QM3T.js                          53.84 kB │ gzip:    17.82 kB
+dist/assets/ReusableLessonEngine-DGSaGFnB.js                              56.35 kB │ gzip:    16.00 kB
+dist/assets/ConceptMapPage-CvSt1ahm.js                                    60.28 kB │ gzip:    15.65 kB
+dist/assets/TrigFormulaVisualizerPage-B4_Efz5u.js                         61.29 kB │ gzip:    14.87 kB
+dist/assets/AdvancedSyllabusLabPage-BOhiL3Tb.js                           75.86 kB │ gzip:    22.40 kB
+dist/assets/AuthoringLessonAdapter-DIMb9vUo.js                            77.07 kB │ gzip:    19.91 kB
+dist/assets/symbolic-VmUhNxvy.js                                          77.62 kB │ gzip:    24.02 kB
+dist/assets/Phase4ComputationalLabPage-CSTixFUL.js                        79.76 kB │ gzip:    23.79 kB
+dist/assets/BoardSyllabusVisualizer-DjZgZt6F.js                           82.59 kB │ gzip:    21.67 kB
+dist/assets/MathLabGraphingCalculator--zPkddTw.js                         83.55 kB │ gzip:    26.64 kB
+dist/assets/ImmersiveInteractionManager-BwJo-I0h.js                       84.91 kB │ gzip:    29.60 kB
+dist/assets/EulerFormUnitCircleProof-DfEyLK6B.js                          94.20 kB │ gzip:    35.08 kB
+dist/assets/problemSolverEngine-DvOEU_nU.js                               98.48 kB │ gzip:    28.85 kB
+dist/assets/ShapesExplorer-CH_gMC8q.js                                   106.89 kB │ gzip:    29.06 kB
+dist/assets/MathLab3DGraphing-8HqX53pp.js                                108.57 kB │ gzip:    34.86 kB
+dist/assets/AlgebraStudio-DyAncPrH.js                                    127.35 kB │ gzip:    37.88 kB
+dist/assets/BoardPage-CLk7FnxJ.js                                        127.49 kB │ gzip:    39.89 kB
+dist/assets/TheoremLibraryPage-t1Qr92yS.js                               129.96 kB │ gzip:    27.76 kB
+dist/assets/NumberSystems-CiUhqEoV.js                                    130.17 kB │ gzip:    39.82 kB
+dist/assets/ComplexLessonAdapter-DebSJMUB.js                             132.21 kB │ gzip:    29.66 kB
+dist/assets/LearnDiscoveryPage-CwpNWXBU.js                               152.30 kB │ gzip:    34.83 kB
+dist/assets/vendor-icons-C3dLI0g1.js                                     154.23 kB │ gzip:    29.74 kB
+dist/assets/EngineeringMath-B4dUzssA.js                                  156.75 kB │ gzip:    42.35 kB
+dist/assets/MatrixLessonAdapter-iZSpD0Ns.js                              157.85 kB │ gzip:    42.70 kB
+dist/assets/index.es-B4qRPqO6.js                                         159.72 kB │ gzip:    53.58 kB
+dist/assets/Algebra-DuKSt0Gt.js                                          160.24 kB │ gzip:    50.72 kB
+dist/assets/SequenceLessonAdapter-B1vzpPYq.js                            167.47 kB │ gzip:    44.84 kB
+dist/assets/CalculatorLessonAdapter-BIn5m1S6.js                          174.19 kB │ gzip:    39.62 kB
+dist/assets/VectorLessonAdapter-BJP96cmT.js                              174.93 kB │ gzip:    41.40 kB
+dist/assets/ARMathLab-C5-JzXPb.js                                        178.54 kB │ gzip:    49.38 kB
+dist/assets/FormulaVisualizerPage-YDIuSBpW.js                            183.76 kB │ gzip:    49.88 kB
+dist/assets/InferenceLessonAdapter-CNHQOL5_.js                           199.78 kB │ gzip:    46.79 kB
+dist/assets/html2canvas.esm-QH1iLAAe.js                                  202.38 kB │ gzip:    48.04 kB
+dist/assets/VisualProofPage-BSHzCwxg.js                                  224.66 kB │ gzip:    60.49 kB
+dist/assets/StatisticsLessonAdapter-DS7Ep-QJ.js                          231.61 kB │ gzip:    50.51 kB
+dist/assets/NCERTConceptPage-DxzIbTN9.js                                 246.14 kB │ gzip:    68.63 kB
+dist/assets/CasLessonAdapter-DDUsMj9C.js                                 256.20 kB │ gzip:    66.12 kB
+dist/assets/TrigonometryConceptPage-CW7vxcP3.js                          257.83 kB │ gzip:    65.58 kB
+dist/assets/vendor-math-rendering-BITAHWHy.js                            261.07 kB │ gzip:    77.50 kB
+dist/assets/AlgebraLessonAdapter-CQS2SWtH.js                             264.74 kB │ gzip:    64.03 kB
+dist/assets/LessonTopicStudyBoard-7T_4nkDB.js                            275.20 kB │ gzip:    64.80 kB
+dist/assets/MathVisualDictionary-CPbql-Pt.js                             282.46 kB │ gzip:    75.64 kB
+dist/assets/FinanceLessonAdapter-D1prELie.js                             288.84 kB │ gzip:    73.67 kB
+dist/assets/vendor-react-3d-FwnfEBiX.js                                  290.90 kB │ gzip:    94.63 kB
+dist/assets/SetTheory-P7cIiH56.js                                        309.41 kB │ gzip:    97.33 kB
+dist/assets/CalculusStudio-CamFesAv.js                                   324.61 kB │ gzip:    94.72 kB
+dist/assets/TrigonometryLessonAdapter-BCXlpmlQ.js                        341.00 kB │ gzip:    82.24 kB
+dist/assets/ProbabilityLessonAdapter-DrDAuX2l.js                         341.70 kB │ gzip:    77.97 kB
+dist/assets/DifferentialEquationsLabs-SbPWjVb5.js                        355.30 kB │ gzip:   100.47 kB
+dist/assets/AdvancedConceptLessonPage-DPO0f2pB.js                        380.67 kB │ gzip:   105.01 kB
+dist/assets/jspdf.es.min-BqvaZ4R5.js                                     390.66 kB │ gzip:   128.80 kB
+dist/assets/DiscreteLessonAdapter-QpnjoIEz.js                            392.76 kB │ gzip:    98.30 kB
+dist/assets/vendor-charts-BXOpgMHl.js                                    407.85 kB │ gzip:   111.11 kB
+dist/assets/NumberLessonAdapter-WcFSUBal.js                              412.28 kB │ gzip:    87.62 kB
+dist/assets/vendor-cas-BXy8BwI0.js                                       441.66 kB │ gzip:   165.92 kB
+dist/assets/LessonSectionJourney-D63byS1q.js                             525.96 kB │ gzip:   126.61 kB
+dist/assets/AlgebraCasLessonAdapter-KwJ6cdRd.js                          546.82 kB │ gzip:   124.08 kB
+dist/assets/Geometry3DLessonAdapter-C7Ncfob6.js                          574.22 kB │ gzip:   135.66 kB
+dist/assets/CalculusLessonAdapter-CTMXFjwA.js                            688.27 kB │ gzip:   166.05 kB
+dist/assets/GraphLessonAdapter-z2ofRicB.js                               756.85 kB │ gzip:   181.87 kB
+dist/assets/vendor-three-ub9rmW6h.js                                     853.58 kB │ gzip:   234.38 kB
+dist/assets/MockupStudioApp-CMwW0k1n.js                                1,126.18 kB │ gzip:   332.95 kB
+dist/assets/Geometry2DLessonAdapter-DBdJi3ps.js                        1,227.18 kB │ gzip:   284.75 kB
+dist/assets/MathWorkspace-Bi_vsBb-.js                                  1,481.68 kB │ gzip:   424.99 kB
+dist/assets/SchoolLessonPage-mLyDwCBs.js                               2,136.74 kB │ gzip:   523.33 kB
+dist/assets/index-kpzGpXpR.js                                          9,169.74 kB │ gzip: 1,850.08 kB
+
+(!) Some chunks are larger than 900 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1m 16s
+Excluded student training assets: [
+  'datasets',
+  'models/math-robo-intelligence-v4/starter.jsonl',
+  'models/math-robo-intelligence-v4/training-manifest.json',
+  'models/math-robo-intelligence-v4/action-registry.json',
+  'models/math-robo-intelligence-v4/metadata.json',
+  'models/math-robo-intelligence-v4/v3-migration.json',
+  'models/math-robo-intelligence-v4/model.json#userDefinedMetadata.report'
+]
+Offline installation manifest: {
+  version: 'c362befd62d2d704a1f5e3cbd95924be479f807dfa6ecdc67ca30902ba2c34e2',
+  files: 1096,
+  bytes: 160833572
+}

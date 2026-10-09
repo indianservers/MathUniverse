@@ -78,6 +78,7 @@ function lazyRoute<Props>(
 }
 
 async function clearStaleAppCaches() {
+  if (!navigator.onLine) return;
   if ("serviceWorker" in navigator) {
     const registrations = await navigator.serviceWorker.getRegistrations();
     await Promise.all(

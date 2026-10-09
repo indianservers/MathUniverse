@@ -1,5 +1,5 @@
 import {describe,it,expect,afterAll} from 'vitest';
-import {writeFileSync} from 'node:fs';
+import {writeTestReport as writeFileSync} from '../testReport';
 import {computeMath} from './kernel';
 import {computeMathLocal} from './client';
 import {SemanticEngine} from '../intelligence/semanticEngine';

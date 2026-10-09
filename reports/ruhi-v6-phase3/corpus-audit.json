@@ -1,0 +1,45 @@
+{
+  "seed": 20261009,
+  "count": 10000,
+  "validFullRecords": 10000,
+  "sha256": "87577ce22cc86dca8a54ab6a9810fd7fc7132494e71aae9ac5a87dabcc7b73cc",
+  "categories": {
+    "drawing": 800,
+    "transformations": 800,
+    "context": 1000,
+    "clarification": 800,
+    "planning": 900,
+    "algebra": 900,
+    "geometry2d": 900,
+    "geometry3d": 700,
+    "verification": 900,
+    "pages": 600,
+    "tutor": 500,
+    "negative": 700,
+    "persistence": 500
+  },
+  "partitions": {
+    "development": 7679,
+    "regression": 998,
+    "locked-evaluation": 1323
+  },
+  "families": 44,
+  "familyPartitionLeakage": 0,
+  "expectedTurnStatuses": {
+    "success": 25617,
+    "ambiguous": 1100,
+    "invalid": 1111,
+    "unsupported": 300,
+    "internal persistence operation": 765
+  },
+  "noTerminalSceneOracle": 0,
+  "neuralExactPhase2TrainingOverlap": [],
+  "uniqueNeuralPhrases": 68,
+  "uniqueInteractionTurnSequences": 7648,
+  "limitations": [
+    "Full-record identity includes initial scenes and workspace; this is not 10000 independent linguistic families.",
+    "Numeric/state substitutions dominate. Page cases cover one reviewed topic plus unsupported pages.",
+    "Scene-empty oracles rely on typed outcomes, read-only invariants or independent numeric expectations; not every record has a scene mutation.",
+    "Primary four-head generalization and genuine human-authored evaluation remain incomplete."
+  ]
+}

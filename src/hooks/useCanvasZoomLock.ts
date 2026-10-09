@@ -6,7 +6,7 @@ export function lockCanvasWheel(event: WheelEvent) {
 }
 
 export function useCanvasZoomLock(
-  ref: RefObject<HTMLElement | SVGElement | null>,
+  ref: RefObject<HTMLElement | SVGElement>,
   onWheel?: (event: WheelEvent) => void,
 ) {
   useEffect(() => {

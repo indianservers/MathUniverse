@@ -1,0 +1,32 @@
+{
+  "seed": 20261009,
+  "rows": 6528,
+  "sha256": "10db42506a59ae26aa1ef9c6a6d7951fdc1b8ca38f3028f886bc5e532b73e66d",
+  "pages": 32,
+  "distinctAuthoredBaseUtterances": 102,
+  "groups": 6,
+  "partitions": {
+    "train": 3264,
+    "validation": 1088,
+    "calibration": 1088,
+    "holdout": 1088
+  },
+  "duplicates": 0,
+  "exposedQuestionOverlap": 0,
+  "groupLeakage": 0,
+  "nearDuplicates": "Politeness variants stay in the same authored family and partition. Repeated utterances on different reviewed contexts are explicitly retained; they are not independent language examples.",
+  "meaningCoverage": [
+    "active",
+    "previous",
+    "selected",
+    "unknown"
+  ],
+  "excludedMeaningClasses": [
+    "pigeonhole",
+    "graph-tree",
+    "data-tree",
+    "real-tree",
+    "ordinary-pigeonhole"
+  ],
+  "provenance": "Controlled synthetic context-state corpus; authored intent utterances, existing reviewed page vocabulary; not human conversation data."
+}

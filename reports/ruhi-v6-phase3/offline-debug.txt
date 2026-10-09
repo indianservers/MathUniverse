@@ -1,0 +1,26 @@
+body Hi! I’m Ruhi
+{
+  secure: true,
+  state: 'complete',
+  registrations: [
+    {
+      scope: 'http://127.0.0.1:9887/',
+      active: undefined,
+      installing: undefined
+    }
+  ],
+  cache: []
+}
+manual { scope: 'http://127.0.0.1:9887/', installing: undefined }
+{
+  registrations: [
+    {
+      scope: 'http://127.0.0.1:9887/',
+      active: 'activated',
+      installing: undefined
+    }
+  ],
+  cache: [
+    'ruhi-offline-v6-3dbc2d52f21b0bcf93a58d1af4fa154c6a9f644aaa12c05016a5e9df11aff4b7'
+  ]
+}

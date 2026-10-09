@@ -1,0 +1,1258 @@
+{
+  "seed": 20261009,
+  "datasetSha256": "10db42506a59ae26aa1ef9c6a6d7951fdc1b8ca38f3028f886bc5e532b73e66d",
+  "scope": "Controlled synthetic context classifier candidate, two existing prediction heads; no production promotion, no arbitrary-language accuracy claim.",
+  "backend": "cpu",
+  "epochs": 35,
+  "baselineValidation": {
+    "total": 1088,
+    "jointCorrect": 300,
+    "jointAccuracy": 0.2757352941176471,
+    "accepted": 645,
+    "coverage": 0.5928308823529411,
+    "acceptedAccuracy": 0.44651162790697674,
+    "perClass": [
+      {
+        "label": "explain",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "define",
+        "support": 64,
+        "precision": 0.0893854748603352,
+        "recall": 1,
+        "f1": 0.16410256410256413
+      },
+      {
+        "label": "formula",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "proof",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "example",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "demonstrate",
+        "support": 64,
+        "precision": 0.5378151260504201,
+        "recall": 1,
+        "f1": 0.6994535519125683
+      },
+      {
+        "label": "calculate",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "compare",
+        "support": 64,
+        "precision": 1,
+        "recall": 0.625,
+        "f1": 0.7692307692307693
+      },
+      {
+        "label": "why",
+        "support": 64,
+        "precision": 0.13333333333333333,
+        "recall": 0.0625,
+        "f1": 0.0851063829787234
+      },
+      {
+        "label": "simplify",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "simulation",
+        "support": 64,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      {
+        "label": "selected",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "followup",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "practice",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "hint",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "previous",
+        "support": 64,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      {
+        "label": "unrelated",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      }
+    ],
+    "ece": 0.5251403199234868,
+    "bins": [
+      {
+        "bin": 0,
+        "count": 0,
+        "accuracy": 0,
+        "confidence": 0
+      },
+      {
+        "bin": 1,
+        "count": 0,
+        "accuracy": 0,
+        "confidence": 0
+      },
+      {
+        "bin": 2,
+        "count": 15,
+        "accuracy": 0.13333333333333333,
+        "confidence": 0.27010822693506875
+      },
+      {
+        "bin": 3,
+        "count": 36,
+        "accuracy": 0.19444444444444445,
+        "confidence": 0.358409749964873
+      },
+      {
+        "bin": 4,
+        "count": 74,
+        "accuracy": 0.14864864864864866,
+        "confidence": 0.4542562671609827
+      },
+      {
+        "bin": 5,
+        "count": 117,
+        "accuracy": 0.10256410256410256,
+        "confidence": 0.5485590090099562
+      },
+      {
+        "bin": 6,
+        "count": 103,
+        "accuracy": 0.06796116504854369,
+        "confidence": 0.6515014478303853
+      },
+      {
+        "bin": 7,
+        "count": 99,
+        "accuracy": 0.0707070707070707,
+        "confidence": 0.75270457400216
+      },
+      {
+        "bin": 8,
+        "count": 103,
+        "accuracy": 0.05825242718446602,
+        "confidence": 0.8523170988536576
+      },
+      {
+        "bin": 9,
+        "count": 541,
+        "accuracy": 0.4584103512014787,
+        "confidence": 0.9744747924496198
+      }
+    ],
+    "parameters": 56026,
+    "inferenceMs": {
+      "median": 1.351799999999912,
+      "p95": 2.574999999999818
+    },
+    "tensorMemory": {
+      "unreliable": true,
+      "reasons": [
+        "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+      ],
+      "numTensors": 6,
+      "numDataBuffers": 6,
+      "numBytes": 224104
+    }
+  },
+  "candidates": [
+    {
+      "hidden": 32,
+      "validation": {
+        "total": 1088,
+        "jointCorrect": 512,
+        "jointAccuracy": 0.47058823529411764,
+        "accepted": 261,
+        "coverage": 0.23988970588235295,
+        "acceptedAccuracy": 0.4789272030651341,
+        "perClass": [
+          {
+            "label": "explain",
+            "support": 64,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          },
+          {
+            "label": "define",
+            "support": 64,
+            "precision": 0.8205128205128205,
+            "recall": 1,
+            "f1": 0.9014084507042254
+          },
+          {
+            "label": "formula",
+            "support": 64,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          },
+          {
+            "label": "proof",
+            "support": 64,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          },
+          {
+            "label": "example",
+            "support": 64,
+            "precision": 0.046511627906976744,
+            "recall": 0.03125,
+            "f1": 0.037383177570093455
+          },
+          {
+            "label": "demonstrate",
+            "support": 64,
+            "precision": 0.2423076923076923,
+            "recall": 0.984375,
+            "f1": 0.3888888888888889
+          },
+          {
+            "label": "calculate",
+            "support": 64,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          },
+          {
+            "label": "compare",
+            "support": 64,
+            "precision": 0.9142857142857143,
+            "recall": 1,
+            "f1": 0.955223880597015
+          },
+          {
+            "label": "why",
+            "support": 64,
+            "precision": 1,
+            "recall": 0.03125,
+            "f1": 0.06060606060606061
+          },
+          {
+            "label": "simplify",
+            "support": 64,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          {
+            "label": "simulation",
+            "support": 64,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          {
+            "label": "selected",
+            "support": 64,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          {
+            "label": "followup",
+            "support": 64,
+            "precision": 1,
+            "recall": 0.46875,
+            "f1": 0.6382978723404256
+          },
+          {
+            "label": "practice",
+            "support": 64,
+            "precision": 0.7530864197530864,
+            "recall": 0.953125,
+            "f1": 0.8413793103448276
+          },
+          {
+            "label": "hint",
+            "support": 64,
+            "precision": 0.047619047619047616,
+            "recall": 0.078125,
+            "f1": 0.05917159763313609
+          },
+          {
+            "label": "previous",
+            "support": 64,
+            "precision": 0.6530612244897959,
+            "recall": 1,
+            "f1": 0.7901234567901235
+          },
+          {
+            "label": "unrelated",
+            "support": 64,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          }
+        ],
+        "ece": 0.11354669375235543,
+        "bins": [
+          {
+            "bin": 0,
+            "count": 0,
+            "accuracy": 0,
+            "confidence": 0
+          },
+          {
+            "bin": 1,
+            "count": 17,
+            "accuracy": 0.11764705882352941,
+            "confidence": 0.18023055265931523
+          },
+          {
+            "bin": 2,
+            "count": 92,
+            "accuracy": 0.03260869565217391,
+            "confidence": 0.2556668176599171
+          },
+          {
+            "bin": 3,
+            "count": 130,
+            "accuracy": 0.17692307692307693,
+            "confidence": 0.3530566525000792
+          },
+          {
+            "bin": 4,
+            "count": 164,
+            "accuracy": 0.3475609756097561,
+            "confidence": 0.4493131484927201
+          },
+          {
+            "bin": 5,
+            "count": 208,
+            "accuracy": 0.5,
+            "confidence": 0.5516801215708256
+          },
+          {
+            "bin": 6,
+            "count": 136,
+            "accuracy": 0.6323529411764706,
+            "confidence": 0.6495870062533546
+          },
+          {
+            "bin": 7,
+            "count": 136,
+            "accuracy": 0.5882352941176471,
+            "confidence": 0.751900356482057
+          },
+          {
+            "bin": 8,
+            "count": 118,
+            "accuracy": 0.6271186440677966,
+            "confidence": 0.8443091536982584
+          },
+          {
+            "bin": 9,
+            "count": 87,
+            "accuracy": 0.9540229885057471,
+            "confidence": 0.9699837729848665
+          }
+        ],
+        "parameters": 28026,
+        "inferenceMs": {
+          "median": 0.5614999999961583,
+          "p95": 1.203300000008312
+        },
+        "tensorMemory": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 26,
+          "numDataBuffers": 26,
+          "numBytes": 560424
+        }
+      },
+      "trainingMs": 80844.3837
+    },
+    {
+      "hidden": 64,
+      "validation": {
+        "total": 1088,
+        "jointCorrect": 505,
+        "jointAccuracy": 0.4641544117647059,
+        "accepted": 283,
+        "coverage": 0.2601102941176471,
+        "acceptedAccuracy": 0.4558303886925795,
+        "perClass": [
+          {
+            "label": "explain",
+            "support": 64,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          },
+          {
+            "label": "define",
+            "support": 64,
+            "precision": 0.9411764705882353,
+            "recall": 1,
+            "f1": 0.9696969696969697
+          },
+          {
+            "label": "formula",
+            "support": 64,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          },
+          {
+            "label": "proof",
+            "support": 64,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          },
+          {
+            "label": "example",
+            "support": 64,
+            "precision": 0.3181818181818182,
+            "recall": 0.109375,
+            "f1": 0.1627906976744186
+          },
+          {
+            "label": "demonstrate",
+            "support": 64,
+            "precision": 0.24696356275303644,
+            "recall": 0.953125,
+            "f1": 0.39228295819935693
+          },
+          {
+            "label": "calculate",
+            "support": 64,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          },
+          {
+            "label": "compare",
+            "support": 64,
+            "precision": 0.8533333333333334,
+            "recall": 1,
+            "f1": 0.9208633093525179
+          },
+          {
+            "label": "why",
+            "support": 64,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          },
+          {
+            "label": "simplify",
+            "support": 64,
+            "precision": 1,
+            "recall": 0.984375,
+            "f1": 0.9921259842519685
+          },
+          {
+            "label": "simulation",
+            "support": 64,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          {
+            "label": "selected",
+            "support": 64,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          },
+          {
+            "label": "followup",
+            "support": 64,
+            "precision": 1,
+            "recall": 0.015625,
+            "f1": 0.03076923076923077
+          },
+          {
+            "label": "practice",
+            "support": 64,
+            "precision": 0.9122807017543859,
+            "recall": 0.8125,
+            "f1": 0.859504132231405
+          },
+          {
+            "label": "hint",
+            "support": 64,
+            "precision": 0.04504504504504504,
+            "recall": 0.078125,
+            "f1": 0.05714285714285714
+          },
+          {
+            "label": "previous",
+            "support": 64,
+            "precision": 0.5039370078740157,
+            "recall": 1,
+            "f1": 0.6701570680628273
+          },
+          {
+            "label": "unrelated",
+            "support": 64,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          }
+        ],
+        "ece": 0.12217432539910078,
+        "bins": [
+          {
+            "bin": 0,
+            "count": 0,
+            "accuracy": 0,
+            "confidence": 0
+          },
+          {
+            "bin": 1,
+            "count": 7,
+            "accuracy": 0,
+            "confidence": 0.19105779273169382
+          },
+          {
+            "bin": 2,
+            "count": 100,
+            "accuracy": 0.15,
+            "confidence": 0.25883461654186246
+          },
+          {
+            "bin": 3,
+            "count": 161,
+            "accuracy": 0.2608695652173913,
+            "confidence": 0.3519222266185358
+          },
+          {
+            "bin": 4,
+            "count": 171,
+            "accuracy": 0.3508771929824561,
+            "confidence": 0.44815736416487667
+          },
+          {
+            "bin": 5,
+            "count": 129,
+            "accuracy": 0.4806201550387597,
+            "confidence": 0.551511425380559
+          },
+          {
+            "bin": 6,
+            "count": 171,
+            "accuracy": 0.47368421052631576,
+            "confidence": 0.6528119183423227
+          },
+          {
+            "bin": 7,
+            "count": 145,
+            "accuracy": 0.5379310344827586,
+            "confidence": 0.7480637217390126
+          },
+          {
+            "bin": 8,
+            "count": 121,
+            "accuracy": 0.6942148760330579,
+            "confidence": 0.8370011064631879
+          },
+          {
+            "bin": 9,
+            "count": 83,
+            "accuracy": 1,
+            "confidence": 0.9772502815867045
+          }
+        ],
+        "parameters": 56026,
+        "inferenceMs": {
+          "median": 1.3399999999965075,
+          "p95": 2.096900000004098
+        },
+        "tensorMemory": {
+          "unreliable": true,
+          "reasons": [
+            "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+          ],
+          "numTensors": 46,
+          "numDataBuffers": 46,
+          "numBytes": 1232744
+        }
+      },
+      "trainingMs": 139874.7265
+    }
+  ],
+  "chosenHidden": 32,
+  "selection": "Validation joint accuracy, tie break fewer parameters; holdout evaluated after selection.",
+  "baselineHoldout": {
+    "total": 1088,
+    "jointCorrect": 335,
+    "jointAccuracy": 0.3079044117647059,
+    "accepted": 571,
+    "coverage": 0.5248161764705882,
+    "acceptedAccuracy": 0.4413309982486865,
+    "perClass": [
+      {
+        "label": "explain",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "define",
+        "support": 64,
+        "precision": 0.0785276073619632,
+        "recall": 1,
+        "f1": 0.14562002275312858
+      },
+      {
+        "label": "formula",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "proof",
+        "support": 64,
+        "precision": 1,
+        "recall": 0.4375,
+        "f1": 0.6086956521739131
+      },
+      {
+        "label": "example",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "demonstrate",
+        "support": 64,
+        "precision": 1,
+        "recall": 0.046875,
+        "f1": 0.08955223880597014
+      },
+      {
+        "label": "calculate",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "compare",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "why",
+        "support": 64,
+        "precision": 1,
+        "recall": 0.84375,
+        "f1": 0.9152542372881356
+      },
+      {
+        "label": "simplify",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "simulation",
+        "support": 64,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      {
+        "label": "selected",
+        "support": 64,
+        "precision": 1,
+        "recall": 0.46875,
+        "f1": 0.6382978723404256
+      },
+      {
+        "label": "followup",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "practice",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      {
+        "label": "hint",
+        "support": 64,
+        "precision": 1,
+        "recall": 0.4375,
+        "f1": 0.6086956521739131
+      },
+      {
+        "label": "previous",
+        "support": 64,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      {
+        "label": "unrelated",
+        "support": 64,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      }
+    ],
+    "ece": 0.5073961386018816,
+    "bins": [
+      {
+        "bin": 0,
+        "count": 0,
+        "accuracy": 0,
+        "confidence": 0
+      },
+      {
+        "bin": 1,
+        "count": 0,
+        "accuracy": 0,
+        "confidence": 0
+      },
+      {
+        "bin": 2,
+        "count": 0,
+        "accuracy": 0,
+        "confidence": 0
+      },
+      {
+        "bin": 3,
+        "count": 3,
+        "accuracy": 0.3333333333333333,
+        "confidence": 0.3584567805131276
+      },
+      {
+        "bin": 4,
+        "count": 42,
+        "accuracy": 0.19047619047619047,
+        "confidence": 0.4635084846190044
+      },
+      {
+        "bin": 5,
+        "count": 112,
+        "accuracy": 0.32142857142857145,
+        "confidence": 0.5460286081901619
+      },
+      {
+        "bin": 6,
+        "count": 118,
+        "accuracy": 0.1864406779661017,
+        "confidence": 0.6481119646864423
+      },
+      {
+        "bin": 7,
+        "count": 134,
+        "accuracy": 0.2537313432835821,
+        "confidence": 0.7543401998370441
+      },
+      {
+        "bin": 8,
+        "count": 217,
+        "accuracy": 0.17511520737327188,
+        "confidence": 0.8509443251218664
+      },
+      {
+        "bin": 9,
+        "count": 462,
+        "accuracy": 0.42424242424242425,
+        "confidence": 0.9591674260246805
+      }
+    ],
+    "parameters": 56026,
+    "inferenceMs": {
+      "median": 1.3250000000116415,
+      "p95": 2.055900000006659
+    },
+    "tensorMemory": {
+      "unreliable": true,
+      "reasons": [
+        "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+      ],
+      "numTensors": 46,
+      "numDataBuffers": 46,
+      "numBytes": 1232744
+    }
+  },
+  "candidateHoldout": {
+    "total": 1088,
+    "jointCorrect": 942,
+    "jointAccuracy": 0.8658088235294118,
+    "accepted": 301,
+    "coverage": 0.2766544117647059,
+    "acceptedAccuracy": 0.9966777408637874,
+    "perClass": [
+      {
+        "label": "explain",
+        "support": 64,
+        "precision": 0.735632183908046,
+        "recall": 1,
+        "f1": 0.847682119205298
+      },
+      {
+        "label": "define",
+        "support": 64,
+        "precision": 1,
+        "recall": 0.296875,
+        "f1": 0.4578313253012048
+      },
+      {
+        "label": "formula",
+        "support": 64,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      {
+        "label": "proof",
+        "support": 64,
+        "precision": 0.5876288659793815,
+        "recall": 0.890625,
+        "f1": 0.7080745341614906
+      },
+      {
+        "label": "example",
+        "support": 64,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      {
+        "label": "demonstrate",
+        "support": 64,
+        "precision": 0.927536231884058,
+        "recall": 1,
+        "f1": 0.9624060150375939
+      },
+      {
+        "label": "calculate",
+        "support": 64,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      {
+        "label": "compare",
+        "support": 64,
+        "precision": 1,
+        "recall": 0.640625,
+        "f1": 0.780952380952381
+      },
+      {
+        "label": "why",
+        "support": 64,
+        "precision": 0.8421052631578947,
+        "recall": 1,
+        "f1": 0.9142857142857143
+      },
+      {
+        "label": "simplify",
+        "support": 64,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      {
+        "label": "simulation",
+        "support": 64,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      {
+        "label": "selected",
+        "support": 64,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      {
+        "label": "followup",
+        "support": 64,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      {
+        "label": "practice",
+        "support": 64,
+        "precision": 1,
+        "recall": 0.984375,
+        "f1": 0.9921259842519685
+      },
+      {
+        "label": "hint",
+        "support": 64,
+        "precision": 0.8571428571428571,
+        "recall": 0.9375,
+        "f1": 0.8955223880597014
+      },
+      {
+        "label": "previous",
+        "support": 64,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      {
+        "label": "unrelated",
+        "support": 64,
+        "precision": 0.9259259259259259,
+        "recall": 0.78125,
+        "f1": 0.847457627118644
+      }
+    ],
+    "ece": 0.1784165228908772,
+    "bins": [
+      {
+        "bin": 0,
+        "count": 0,
+        "accuracy": 0,
+        "confidence": 0
+      },
+      {
+        "bin": 1,
+        "count": 1,
+        "accuracy": 0,
+        "confidence": 0.18418575823307037
+      },
+      {
+        "bin": 2,
+        "count": 29,
+        "accuracy": 0.2413793103448276,
+        "confidence": 0.2695010684687516
+      },
+      {
+        "bin": 3,
+        "count": 92,
+        "accuracy": 0.43478260869565216,
+        "confidence": 0.3527994372922441
+      },
+      {
+        "bin": 4,
+        "count": 147,
+        "accuracy": 0.673469387755102,
+        "confidence": 0.4521549595456545
+      },
+      {
+        "bin": 5,
+        "count": 130,
+        "accuracy": 0.8692307692307693,
+        "confidence": 0.5473448514938355
+      },
+      {
+        "bin": 6,
+        "count": 145,
+        "accuracy": 0.9655172413793104,
+        "confidence": 0.6507631318322543
+      },
+      {
+        "bin": 7,
+        "count": 133,
+        "accuracy": 0.9924812030075187,
+        "confidence": 0.7497147630928154
+      },
+      {
+        "bin": 8,
+        "count": 175,
+        "accuracy": 1,
+        "confidence": 0.8566341938291278
+      },
+      {
+        "bin": 9,
+        "count": 236,
+        "accuracy": 1,
+        "confidence": 0.9653376285302437
+      }
+    ],
+    "parameters": 28026,
+    "inferenceMs": {
+      "median": 1.0454000000027008,
+      "p95": 1.6542999999946915
+    },
+    "tensorMemory": {
+      "unreliable": true,
+      "reasons": [
+        "The reported memory is an upper bound. Due to automatic garbage collection, the true allocated memory may be less."
+      ],
+      "numTensors": 46,
+      "numDataBuffers": 46,
+      "numBytes": 1232744
+    }
+  },
+  "exportedBytes": 112104,
+  "stress": [
+    {
+      "question": "Pleese explane the current ideea",
+      "prediction": {
+        "intent": "formula",
+        "meaning": "active",
+        "intentConfidence": 0.36250266432762146,
+        "meaningConfidence": 0.9998534917831421,
+        "intentScores": [
+          0.006314087193459272,
+          0.016705913469195366,
+          0.36250266432762146,
+          0.0013351059751585126,
+          0.006147798616439104,
+          0.04548913985490799,
+          0.014298740774393082,
+          0.04358542338013649,
+          0.15669432282447815,
+          0.002834874438121915,
+          0.0156894251704216,
+          0.015701627358794212,
+          0.0048226104117929935,
+          0.052632853388786316,
+          0.2523435056209564,
+          0.0007594736525788903,
+          0.002142478944733739
+        ],
+        "meaningScores": [
+          0.9998534917831421,
+          0.000001984917844310985,
+          0.00012545002391561866,
+          2.3591486808527407e-7,
+          0.0000016140223806360154,
+          0.0000065694011937011965,
+          0.00000214329338632524,
+          6.178927378641674e-7,
+          0.000007906756763986778
+        ],
+        "accepted": false,
+        "inferenceMs": 1.2135999999882188
+      }
+    },
+    {
+      "question": "Move that circle",
+      "prediction": {
+        "intent": "unrelated",
+        "meaning": "active",
+        "intentConfidence": 0.5859998464584351,
+        "meaningConfidence": 0.7109416127204895,
+        "intentScores": [
+          0.004324416164308786,
+          0.16827630996704102,
+          0.001163114095106721,
+          0.046590764075517654,
+          0.005316855851560831,
+          0.024991899728775024,
+          0.00169553910382092,
+          0.005079188384115696,
+          0.002814589999616146,
+          0.010547980666160583,
+          0.07824690639972687,
+          0.004727940075099468,
+          0.0023537646047770977,
+          0.023881986737251282,
+          0.023297054693102837,
+          0.010691856034100056,
+          0.5859998464584351
+        ],
+        "meaningScores": [
+          0.7109416127204895,
+          0.001902571995742619,
+          0.0018077690619975328,
+          0.00009437614062335342,
+          0.00010426521475892514,
+          0.0003933387924917042,
+          0.00021917679987382144,
+          0.0001674398226896301,
+          0.28436946868896484
+        ],
+        "accepted": false,
+        "inferenceMs": 0.7474999999976717
+      }
+    },
+    {
+      "question": "Draw a rectangle and then rotate it",
+      "prediction": {
+        "intent": "unrelated",
+        "meaning": "active",
+        "intentConfidence": 0.32314348220825195,
+        "meaningConfidence": 0.981369137763977,
+        "intentScores": [
+          0.004751391708850861,
+          0.22453522682189941,
+          0.07910702377557755,
+          0.012191998772323132,
+          0.050970658659935,
+          0.05981983616948128,
+          0.0028703627176582813,
+          0.07357577979564667,
+          0.014699540100991726,
+          0.03324911370873451,
+          0.022976471111178398,
+          0.025159206241369247,
+          0.004691726062446833,
+          0.022222673520445824,
+          0.033730398863554,
+          0.012305129319429398,
+          0.32314348220825195
+        ],
+        "meaningScores": [
+          0.981369137763977,
+          0.0004320676380302757,
+          0.001732818316668272,
+          0.000011467846888990607,
+          0.00002193837644881569,
+          0.00006320732063613832,
+          0.000035432836739346385,
+          0.00003911061503458768,
+          0.016294777393341064
+        ],
+        "accepted": false,
+        "inferenceMs": 1.293599999975413
+      }
+    },
+    {
+      "question": "Book a flight to Paris",
+      "prediction": {
+        "intent": "unrelated",
+        "meaning": "active",
+        "intentConfidence": 0.596908450126648,
+        "meaningConfidence": 0.9712971448898315,
+        "intentScores": [
+          0.00015389485633932054,
+          0.00669483095407486,
+          0.0005813572788611054,
+          0.018757227808237076,
+          0.08005732297897339,
+          0.12481293082237244,
+          0.0010147679131478071,
+          0.005143253598362207,
+          0.016628239303827286,
+          0.0030010889749974012,
+          0.009156480431556702,
+          0.0013626673026010394,
+          0.01877264492213726,
+          0.04468097165226936,
+          0.07062315940856934,
+          0.0016507344553247094,
+          0.596908450126648
+        ],
+        "meaningScores": [
+          0.9712971448898315,
+          0.00009399493137607351,
+          0.00010352427489124238,
+          0.00001064476055034902,
+          0.000014855175322736613,
+          0.0001025068704620935,
+          0.00004146109858993441,
+          0.000014285592442320194,
+          0.02832152508199215
+        ],
+        "accepted": false,
+        "inferenceMs": 1.0040000000153668
+      }
+    },
+    {
+      "question": "Which angle do you mean?",
+      "prediction": {
+        "intent": "define",
+        "meaning": "active",
+        "intentConfidence": 0.8888299465179443,
+        "meaningConfidence": 0.9982696771621704,
+        "intentScores": [
+          0.002326333662495017,
+          0.8888299465179443,
+          0.008458685129880905,
+          0.004400950390845537,
+          0.0006911820964887738,
+          0.00011602746235439554,
+          0.0010240477276965976,
+          0.0073907398618757725,
+          0.016167525202035904,
+          0.02471436746418476,
+          0.003921588882803917,
+          0.0033948186319321394,
+          0.0005197045393288136,
+          0.0012962964829057455,
+          0.033075325191020966,
+          0.001792572787962854,
+          0.0018799290992319584
+        ],
+        "meaningScores": [
+          0.9982696771621704,
+          0.00019322085427120328,
+          0.0007560758967883885,
+          0.000004456172518985113,
+          0.000012600543414009735,
+          0.00006889377254992723,
+          0.00004683397855842486,
+          0.000014070481483940966,
+          0.0006341706612147391
+        ],
+        "accepted": false,
+        "inferenceMs": 2.0509000000020023
+      }
+    }
+  ],
+  "promotion": "NOT PROMOTED; four meaning classes only, small family count, no human unseen evaluation."
+}

@@ -120,7 +120,7 @@ export default function ParametricDifferentiationTargetLesson295({
       <section className="par295-main">
         <h2>Parametric Differentiation – graph + CAS</h2>
         <section className="par295-flow">
-          {[
+          {([
             [Eye, "1 Observe", "Watch the point move on the curve."],
             [Hand, "2 Manipulate", "Drag t or sliders to change position."],
             [Lightbulb, "3 Notice", "See how x,y and rates change together."],
@@ -129,7 +129,7 @@ export default function ParametricDifferentiationTargetLesson295({
               "4 Understand",
               "Use the rule to find dy/dx at any t where dx/dt ≠ 0.",
             ],
-          ].map(([Icon, title, text]) => (
+          ] as const).map(([Icon, title, text]) => (
             <article key={String(title)}>
               <Icon />
               <div>

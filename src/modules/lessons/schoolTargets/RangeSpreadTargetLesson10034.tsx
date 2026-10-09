@@ -77,7 +77,7 @@ export default function RangeSpreadTargetLesson10034({
   };
   const pointerValue = (
     event: PointerEvent<SVGCircleElement>,
-    ref: RefObject<SVGSVGElement | null>,
+    ref: RefObject<SVGSVGElement>,
   ) => {
     if (!ref.current || !event.currentTarget.hasPointerCapture(event.pointerId))
       return null;

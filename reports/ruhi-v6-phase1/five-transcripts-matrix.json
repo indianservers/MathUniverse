@@ -1,0 +1,2453 @@
+{
+  "source": "reports/ruhi-v5.3/focused-conversations.json",
+  "results": [
+    {
+      "mode": "geometry2d",
+      "conversation": 1,
+      "turns": [
+        {
+          "text": "Draw a circle of radius 5.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "d307ea15-96b6-4eff-8d21-01e30046bfff",
+            "message": "Created 2D circle with radius 5.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created 2D circle with radius 5."
+        },
+        {
+          "text": "Move it right by 3.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "c3f20ddb-5629-4560-9f9d-4487adfd4242",
+            "message": "move circle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "move circle."
+        },
+        {
+          "text": "Make it twice as large.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "569926b3-5301-407a-91d9-036697eb19da",
+            "message": "scale circle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "scale circle."
+        },
+        {
+          "text": "What is its radius?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "9fb88d18-a055-44e5-b35f-adf37480fe8f",
+            "message": "radius = 10 units.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "radius = 10 units."
+        },
+        {
+          "text": "Undo the last change.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "581de143-8e62-4395-8d9d-d871b4088868",
+            "message": "Undid the last Ruhi action.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Undid the last Ruhi action."
+        },
+        {
+          "text": "What is its radius now?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "99490017-469e-4b29-8e81-27c5c07f747f",
+            "message": "radius = 5 units.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "radius = 5 units."
+        }
+      ]
+    },
+    {
+      "mode": "geometry2d",
+      "conversation": 2,
+      "turns": [
+        {
+          "text": "Draw triangle ABC.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "c1d8dcbe-d09e-424d-9297-dab581c1ad80",
+            "message": "Created 2D triangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created 2D triangle."
+        },
+        {
+          "text": "Construct its circumcircle.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "c720dfaa-52a8-45e9-9942-d1ef82063a99",
+            "message": "Created circumcircle with radius 3.125.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created circumcircle with radius 3.125."
+        },
+        {
+          "text": "Change side AB.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "4213f3cd-78d7-42f3-b942-3943e6e7a117",
+            "message": "What should the side length be?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "4213f3cd-78d7-42f3-b942-3943e6e7a117",
+            "question": "What should the side length be?",
+            "slots": [
+              "triangleLength"
+            ],
+            "candidates": [],
+            "references": [
+              "e96f0815-0a6f-49b3-a1ad-02cfcbe6ca4b"
+            ]
+          },
+          "message": "What should the side length be?"
+        },
+        {
+          "text": "Does the circumcircle update?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "3cb8b0dc-9f1d-46f9-b3a0-1e1a35f96c0b",
+            "message": "Yes. Its center and radius are recomputed from the parent triangle after each completed edit. The side edit is still pending if its length or constraints have not been supplied.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Yes. Its center and radius are recomputed from the parent triangle after each completed edit. The side edit is still pending if its length or constraints have not been supplied."
+        },
+        {
+          "text": "Undo.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "0f6a2362-c842-451a-887e-e30554ce8010",
+            "message": "Undid the last Ruhi action.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Undid the last Ruhi action."
+        },
+        {
+          "text": "Explain what changed.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "598de30a-e47f-45fe-99d4-b54e906bbd11",
+            "message": "Undo restored the saved geometry. Removed: C1.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Undo restored the saved geometry. Removed: C1."
+        }
+      ]
+    },
+    {
+      "mode": "geometry2d",
+      "conversation": 3,
+      "turns": [
+        {
+          "text": "Create two intersecting lines.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "18e99d6d-46d5-4bca-a238-6a89bd0cae95",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "18e99d6d-46d5-4bca-a238-6a89bd0cae95",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Find their intersection.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "ff8aff44-635d-4e77-8133-e2e752d5e966",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "ff8aff44-635d-4e77-8133-e2e752d5e966",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Draw a circle centered there.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "241d5b82-f19e-4722-9892-e2a046defc35",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "241d5b82-f19e-4722-9892-e2a046defc35",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Make its radius 4.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "956b9b0f-ba2d-419a-9ae1-ab3bba5ea852",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "956b9b0f-ba2d-419a-9ae1-ab3bba5ea852",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Color only the circle blue.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "26964a3a-515c-42cb-baad-7e3f6ee394d5",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "26964a3a-515c-42cb-baad-7e3f6ee394d5",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Undo only the color change.",
+          "status": "invalid",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "174e3d3a-a367-4dcf-90a2-6ea20032cb70",
+            "message": "No retained color change can be undone.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "No retained color change can be undone."
+        }
+      ]
+    },
+    {
+      "mode": "geometry2d",
+      "conversation": 4,
+      "turns": [
+        {
+          "text": "Draw a rectangle.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "f3f22a91-172f-419c-a69a-99be98f7f17c",
+            "message": "Created 2D rectangle 6 by 4.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created 2D rectangle 6 by 4."
+        },
+        {
+          "text": "Make it 8 units wide.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "26b27b57-1418-4d6c-96f5-451311d33c90",
+            "message": "Changed rectangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Changed rectangle."
+        },
+        {
+          "text": "Make its height half its width.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "fa53e251-a0e7-46f0-85d5-12390ade3eb3",
+            "message": "Changed rectangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Changed rectangle."
+        },
+        {
+          "text": "Rotate it by 30 degrees.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "aa15e33d-f707-4523-b4d0-b65fb6eee170",
+            "message": "rotate rectangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "rotate rectangle."
+        },
+        {
+          "text": "SAVE_RELOAD",
+          "status": "success"
+        },
+        {
+          "text": "What are its dimensions?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "7b81370e-c29b-4914-9b54-1f0da6a94923",
+            "message": "Width 8, height 4.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Width 8, height 4."
+        }
+      ]
+    },
+    {
+      "mode": "geometry2d",
+      "conversation": 5,
+      "turns": [
+        {
+          "text": "Create a vector.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "c873e7c5-de65-4a74-84ca-fabb6441c586",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "c873e7c5-de65-4a74-84ca-fabb6441c586",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Find its magnitude.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "51579d6a-2d36-49a3-a18a-f17c705f7940",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "51579d6a-2d36-49a3-a18a-f17c705f7940",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Rotate it.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "55617d4f-14c0-42ae-b392-c80afdc8873b",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "55617d4f-14c0-42ae-b392-c80afdc8873b",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Find its new direction.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "c01b50a2-eb66-42e3-b2cb-7f7d0602e2c8",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "c01b50a2-eb66-42e3-b2cb-7f7d0602e2c8",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Explain why its magnitude remained unchanged.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "373f2272-ae70-4c81-8892-a8badbf43a9a",
+            "message": "No completed vector rotation is recorded. Supply its endpoints and rotation angle before I can check a particular vector. Rotations preserve Euclidean length.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "No completed vector rotation is recorded. Supply its endpoints and rotation angle before I can check a particular vector. Rotations preserve Euclidean length."
+        }
+      ]
+    },
+    {
+      "mode": "graph2d",
+      "conversation": 1,
+      "turns": [
+        {
+          "text": "Draw a circle of radius 5.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "0a13541e-d9e7-42e4-8162-4f31c48b9d56",
+            "message": "Created 2D circle with radius 5.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created 2D circle with radius 5."
+        },
+        {
+          "text": "Move it right by 3.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "f0653fcc-5482-49ec-bc54-abf64b0b6474",
+            "message": "move circle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "move circle."
+        },
+        {
+          "text": "Make it twice as large.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "299cef22-08d5-419c-b940-ec0815739de7",
+            "message": "scale circle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "scale circle."
+        },
+        {
+          "text": "What is its radius?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "ab197273-a8dd-4afd-b43e-178e5a1d7386",
+            "message": "radius = 10 units.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "radius = 10 units."
+        },
+        {
+          "text": "Undo the last change.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "126cc2a8-e3f5-48f9-8858-0afe076bc73e",
+            "message": "Undid the last Ruhi action.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Undid the last Ruhi action."
+        },
+        {
+          "text": "What is its radius now?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "b5d725da-fe82-4e6e-9c2f-d9e450903fb8",
+            "message": "radius = 5 units.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "radius = 5 units."
+        }
+      ]
+    },
+    {
+      "mode": "graph2d",
+      "conversation": 2,
+      "turns": [
+        {
+          "text": "Draw triangle ABC.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "cb872c59-17cb-4a61-b59e-47f20ac6fc5f",
+            "message": "Created 2D triangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created 2D triangle."
+        },
+        {
+          "text": "Construct its circumcircle.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "6dabbce7-5491-4c3b-a24b-f755f1593652",
+            "message": "Created circumcircle with radius 3.125.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created circumcircle with radius 3.125."
+        },
+        {
+          "text": "Change side AB.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "8067483b-6639-4460-b9a7-bb50317453f3",
+            "message": "What should the side length be?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "8067483b-6639-4460-b9a7-bb50317453f3",
+            "question": "What should the side length be?",
+            "slots": [
+              "triangleLength"
+            ],
+            "candidates": [],
+            "references": [
+              "c9ece5a2-901c-4538-bb21-47dba7e76202"
+            ]
+          },
+          "message": "What should the side length be?"
+        },
+        {
+          "text": "Does the circumcircle update?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "51bf41ca-2b7c-480b-a48c-0b76afcd61de",
+            "message": "Yes. Its center and radius are recomputed from the parent triangle after each completed edit. The side edit is still pending if its length or constraints have not been supplied.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Yes. Its center and radius are recomputed from the parent triangle after each completed edit. The side edit is still pending if its length or constraints have not been supplied."
+        },
+        {
+          "text": "Undo.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "23abaf35-9a36-4a8f-9f1f-4ca68fcd79fb",
+            "message": "Undid the last Ruhi action.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Undid the last Ruhi action."
+        },
+        {
+          "text": "Explain what changed.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "5348020f-6c18-44f2-a6e6-8de7bd69fb1c",
+            "message": "Undo restored the saved geometry. Removed: C1.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Undo restored the saved geometry. Removed: C1."
+        }
+      ]
+    },
+    {
+      "mode": "graph2d",
+      "conversation": 3,
+      "turns": [
+        {
+          "text": "Create two intersecting lines.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "95ba7630-7995-4c27-a49a-a8bb35876367",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "95ba7630-7995-4c27-a49a-a8bb35876367",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Find their intersection.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "25426395-89e1-4d3c-9a14-00d0230dd622",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "25426395-89e1-4d3c-9a14-00d0230dd622",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Draw a circle centered there.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "36727ebb-628b-4caf-9a19-87ef10cdf803",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "36727ebb-628b-4caf-9a19-87ef10cdf803",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Make its radius 4.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "488894ae-dbd9-4aad-9928-1e30bb170845",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "488894ae-dbd9-4aad-9928-1e30bb170845",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Color only the circle blue.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "f8fd77b3-d934-4815-b562-4ea59b55082a",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "f8fd77b3-d934-4815-b562-4ea59b55082a",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Undo only the color change.",
+          "status": "invalid",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "e5a5e25b-9bdb-4548-bb71-19bf97ba993c",
+            "message": "No retained color change can be undone.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "No retained color change can be undone."
+        }
+      ]
+    },
+    {
+      "mode": "graph2d",
+      "conversation": 4,
+      "turns": [
+        {
+          "text": "Draw a rectangle.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "5d1589ad-a1cc-43ab-a6c7-6486086a66e5",
+            "message": "Created 2D rectangle 6 by 4.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created 2D rectangle 6 by 4."
+        },
+        {
+          "text": "Make it 8 units wide.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "7bb20654-1609-48d8-8632-1762628c5fc0",
+            "message": "Changed rectangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Changed rectangle."
+        },
+        {
+          "text": "Make its height half its width.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "324be34d-4b18-4f46-9bca-81c9e26203ae",
+            "message": "Changed rectangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Changed rectangle."
+        },
+        {
+          "text": "Rotate it by 30 degrees.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "cf50ce40-b0f6-4d5c-9e0f-edbfccd1dbee",
+            "message": "rotate rectangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "rotate rectangle."
+        },
+        {
+          "text": "SAVE_RELOAD",
+          "status": "success"
+        },
+        {
+          "text": "What are its dimensions?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "77c5b23b-6608-4671-99da-ff0d900fdfec",
+            "message": "Width 8, height 4.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Width 8, height 4."
+        }
+      ]
+    },
+    {
+      "mode": "graph2d",
+      "conversation": 5,
+      "turns": [
+        {
+          "text": "Create a vector.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "305ee1f6-6918-436f-b896-8ce906f10cc8",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "305ee1f6-6918-436f-b896-8ce906f10cc8",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Find its magnitude.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "9cfbfbe6-e142-4f7c-9451-219cb558714b",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "9cfbfbe6-e142-4f7c-9451-219cb558714b",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Rotate it.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "ad5644e4-1191-4942-b8a9-6bd781d8382e",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "ad5644e4-1191-4942-b8a9-6bd781d8382e",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Find its new direction.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "6fd0b521-8c86-4421-b6ad-bbd8c831177b",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "6fd0b521-8c86-4421-b6ad-bbd8c831177b",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Explain why its magnitude remained unchanged.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "603fa0c1-31cb-431a-84b8-a157c5a85ed5",
+            "message": "No completed vector rotation is recorded. Supply its endpoints and rotation angle before I can check a particular vector. Rotations preserve Euclidean length.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "No completed vector rotation is recorded. Supply its endpoints and rotation angle before I can check a particular vector. Rotations preserve Euclidean length."
+        }
+      ]
+    },
+    {
+      "mode": "geometry3d",
+      "conversation": 1,
+      "turns": [
+        {
+          "text": "Draw a circle of radius 5.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "26b7bbfd-205b-4ae4-86c6-df3768451826",
+            "message": "Created 3D circle with radius 5.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created 3D circle with radius 5."
+        },
+        {
+          "text": "Move it right by 3.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "3acebe1f-18ca-43eb-b2c8-917cdaa4ecd4",
+            "message": "move circle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "move circle."
+        },
+        {
+          "text": "Make it twice as large.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "24f1ab2f-cc30-4fc3-a10a-b014fc094372",
+            "message": "scale circle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "scale circle."
+        },
+        {
+          "text": "What is its radius?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "9cf0685f-a2ea-4bd1-bf81-519f267b9879",
+            "message": "radius = 10 units.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "radius = 10 units."
+        },
+        {
+          "text": "Undo the last change.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "33bd3597-b057-4cae-a8c7-8133b4265daa",
+            "message": "Undid the last Ruhi action.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Undid the last Ruhi action."
+        },
+        {
+          "text": "What is its radius now?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "5eba4a46-12dc-44ac-b25e-ea15fa16322c",
+            "message": "radius = 5 units.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "radius = 5 units."
+        }
+      ]
+    },
+    {
+      "mode": "geometry3d",
+      "conversation": 2,
+      "turns": [
+        {
+          "text": "Draw triangle ABC.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "07a144db-37df-44d8-9c7b-64ec6a1ab32f",
+            "message": "Created 3D triangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created 3D triangle."
+        },
+        {
+          "text": "Construct its circumcircle.",
+          "status": "unsupported",
+          "execution": {
+            "status": "unsupported",
+            "requestId": "ea34f0c5-2ce3-4902-be13-de4fa2ad9a0c",
+            "message": "I cannot construct circumcircle in this workspace yet.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "I cannot construct circumcircle in this workspace yet."
+        },
+        {
+          "text": "Change side AB.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "5d90ed06-38dc-48b6-9161-7867dc737622",
+            "message": "What should the side length be?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "5d90ed06-38dc-48b6-9161-7867dc737622",
+            "question": "What should the side length be?",
+            "slots": [
+              "triangleLength"
+            ],
+            "candidates": [],
+            "references": [
+              "d0b10cad-57dd-49c4-8e42-06cb3bf5c600"
+            ]
+          },
+          "message": "What should the side length be?"
+        },
+        {
+          "text": "Does the circumcircle update?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "91bb6bb2-323c-4e81-9700-da293111877d",
+            "message": "No dependent circumcircle is present in this workspace.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "No dependent circumcircle is present in this workspace."
+        },
+        {
+          "text": "Undo.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "32775529-1b5c-4660-8e61-1a0363c122e1",
+            "message": "Undid the last Ruhi action.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Undid the last Ruhi action."
+        },
+        {
+          "text": "Explain what changed.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "c1811a56-85e4-4262-b62f-2eea07a1245f",
+            "message": "Undo restored the saved geometry. Removed: ABC.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Undo restored the saved geometry. Removed: ABC."
+        }
+      ]
+    },
+    {
+      "mode": "geometry3d",
+      "conversation": 3,
+      "turns": [
+        {
+          "text": "Create two intersecting lines.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "bb57ab76-468b-4e67-83c5-30bf8b3f5ef6",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "bb57ab76-468b-4e67-83c5-30bf8b3f5ef6",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Find their intersection.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "c261cc0f-fbdd-423d-bd08-61f9c0ca3872",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "c261cc0f-fbdd-423d-bd08-61f9c0ca3872",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Draw a circle centered there.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "7f27874f-387c-475c-bc1a-ac06d15d7e85",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "7f27874f-387c-475c-bc1a-ac06d15d7e85",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Make its radius 4.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "556e2a7a-6fc1-4239-bf27-19ef03c10b33",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "556e2a7a-6fc1-4239-bf27-19ef03c10b33",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Color only the circle blue.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "7c9f3cbb-0a34-4fc7-bc7f-4ca1af1b668c",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "7c9f3cbb-0a34-4fc7-bc7f-4ca1af1b668c",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Undo only the color change.",
+          "status": "invalid",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "0d4847b5-06e5-4ba6-8f7a-d7be0b0a1032",
+            "message": "Nothing to undo.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Nothing to undo."
+        }
+      ]
+    },
+    {
+      "mode": "geometry3d",
+      "conversation": 4,
+      "turns": [
+        {
+          "text": "Draw a rectangle.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "aa02de3a-b855-48ce-89c4-96579ef04145",
+            "message": "Created 3D rectangle 6 by 4.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created 3D rectangle 6 by 4."
+        },
+        {
+          "text": "Make it 8 units wide.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "480a52f7-f230-4eeb-b9e4-fa158232b5d2",
+            "message": "Changed rectangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Changed rectangle."
+        },
+        {
+          "text": "Make its height half its width.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "9d80b83c-f370-4de4-8d2b-01dd4897b05a",
+            "message": "Changed rectangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Changed rectangle."
+        },
+        {
+          "text": "Rotate it by 30 degrees.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "7cac187a-d77e-4e12-81ec-d4ac585ec307",
+            "message": "rotate rectangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "rotate rectangle."
+        },
+        {
+          "text": "SAVE_RELOAD",
+          "status": "success"
+        },
+        {
+          "text": "What are its dimensions?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "2c8447bf-ad2e-4b9f-8aa8-3326ce6cef00",
+            "message": "Width 8, height 4, depth 3.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Width 8, height 4, depth 3."
+        }
+      ]
+    },
+    {
+      "mode": "geometry3d",
+      "conversation": 5,
+      "turns": [
+        {
+          "text": "Create a vector.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "86eac739-10c0-4834-bd3e-d69677b6271e",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "86eac739-10c0-4834-bd3e-d69677b6271e",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Find its magnitude.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "094387a5-d459-4082-a7ba-9d8eaca85e70",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "094387a5-d459-4082-a7ba-9d8eaca85e70",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Rotate it.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "ff0fc98e-9b3f-40ea-97dc-feb9e41e0398",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "ff0fc98e-9b3f-40ea-97dc-feb9e41e0398",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Find its new direction.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "fa6ad81a-515c-44c0-8f2a-2333661a9d71",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "fa6ad81a-515c-44c0-8f2a-2333661a9d71",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Explain why its magnitude remained unchanged.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "b8fc010c-8e8f-42f7-b31d-0200af1867c4",
+            "message": "No completed vector rotation is recorded. Supply its endpoints and rotation angle before I can check a particular vector. Rotations preserve Euclidean length.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "No completed vector rotation is recorded. Supply its endpoints and rotation angle before I can check a particular vector. Rotations preserve Euclidean length."
+        }
+      ]
+    },
+    {
+      "mode": "graph3d",
+      "conversation": 1,
+      "turns": [
+        {
+          "text": "Draw a circle of radius 5.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "7b342a9b-d417-49e2-b441-1183de977db3",
+            "message": "Created 3D circle with radius 5.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created 3D circle with radius 5."
+        },
+        {
+          "text": "Move it right by 3.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "cb3395ab-069d-45e9-ab76-672f9d0a98e8",
+            "message": "move circle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "move circle."
+        },
+        {
+          "text": "Make it twice as large.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "1d6dd3e4-5e29-4827-9816-10e1688278e4",
+            "message": "scale circle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "scale circle."
+        },
+        {
+          "text": "What is its radius?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "ccf933b6-56d3-43a9-9054-e0b6b7cb7ec0",
+            "message": "radius = 10 units.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "radius = 10 units."
+        },
+        {
+          "text": "Undo the last change.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "6407f939-d99c-4628-9324-3638a6c77426",
+            "message": "Undid the last Ruhi action.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Undid the last Ruhi action."
+        },
+        {
+          "text": "What is its radius now?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "22fab895-e9dc-4d6a-8a4d-10444d9c75f3",
+            "message": "radius = 5 units.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "radius = 5 units."
+        }
+      ]
+    },
+    {
+      "mode": "graph3d",
+      "conversation": 2,
+      "turns": [
+        {
+          "text": "Draw triangle ABC.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "a1fe38b4-a45c-462c-bfbe-afbd5805b97b",
+            "message": "Created 3D triangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created 3D triangle."
+        },
+        {
+          "text": "Construct its circumcircle.",
+          "status": "unsupported",
+          "execution": {
+            "status": "unsupported",
+            "requestId": "841e7e1b-c0c3-4b1a-951e-1a724fedd3bc",
+            "message": "I cannot construct circumcircle in this workspace yet.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "I cannot construct circumcircle in this workspace yet."
+        },
+        {
+          "text": "Change side AB.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "7ba66527-bfea-4676-ac34-b8d3974f19c1",
+            "message": "What should the side length be?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "7ba66527-bfea-4676-ac34-b8d3974f19c1",
+            "question": "What should the side length be?",
+            "slots": [
+              "triangleLength"
+            ],
+            "candidates": [],
+            "references": [
+              "3c341fdc-f22d-43b8-ba69-8bbf4f1698f6"
+            ]
+          },
+          "message": "What should the side length be?"
+        },
+        {
+          "text": "Does the circumcircle update?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "79b0a2b6-9960-4fe6-b62e-f01af081d926",
+            "message": "No dependent circumcircle is present in this workspace.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "No dependent circumcircle is present in this workspace."
+        },
+        {
+          "text": "Undo.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "ca58478d-8d62-4a16-aa50-0bde5a948398",
+            "message": "Undid the last Ruhi action.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Undid the last Ruhi action."
+        },
+        {
+          "text": "Explain what changed.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "efec87af-664d-4fb8-82f7-4f88a64b9cf0",
+            "message": "Undo restored the saved geometry. Removed: ABC.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Undo restored the saved geometry. Removed: ABC."
+        }
+      ]
+    },
+    {
+      "mode": "graph3d",
+      "conversation": 3,
+      "turns": [
+        {
+          "text": "Create two intersecting lines.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "4eb05a1a-726d-4dc8-a9d2-27aae9122975",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "4eb05a1a-726d-4dc8-a9d2-27aae9122975",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Find their intersection.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "57d774ce-debd-49cb-b8d0-6e31aa5df878",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "57d774ce-debd-49cb-b8d0-6e31aa5df878",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Draw a circle centered there.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "9927a330-625a-48e9-9121-265189aa85b5",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "9927a330-625a-48e9-9121-265189aa85b5",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Make its radius 4.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "5f5fe864-91d9-4c5b-9db6-7f71e098e6a0",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "5f5fe864-91d9-4c5b-9db6-7f71e098e6a0",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Color only the circle blue.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "0a649b37-f9d2-4c07-ab3d-fd79cd499096",
+            "message": "Give four endpoints: two for each intersecting line.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "0a649b37-f9d2-4c07-ab3d-fd79cd499096",
+            "question": "Give four endpoints: two for each intersecting line.",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "Give four endpoints: two for each intersecting line."
+        },
+        {
+          "text": "Undo only the color change.",
+          "status": "invalid",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "52ec8d24-8308-4849-a55e-2c005b65c697",
+            "message": "Nothing to undo.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Nothing to undo."
+        }
+      ]
+    },
+    {
+      "mode": "graph3d",
+      "conversation": 4,
+      "turns": [
+        {
+          "text": "Draw a rectangle.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "67b23d90-60c9-479e-89fb-aa64ac40d1e1",
+            "message": "Created 3D rectangle 6 by 4.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Created 3D rectangle 6 by 4."
+        },
+        {
+          "text": "Make it 8 units wide.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "b9cfce9f-7d42-487a-bf51-93eac22836bd",
+            "message": "Changed rectangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Changed rectangle."
+        },
+        {
+          "text": "Make its height half its width.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "179e6b02-dd82-4761-8fd9-b0190ba4010e",
+            "message": "Changed rectangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Changed rectangle."
+        },
+        {
+          "text": "Rotate it by 30 degrees.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "12243793-0d11-4ae6-bc45-c769ee256e9d",
+            "message": "rotate rectangle.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "rotate rectangle."
+        },
+        {
+          "text": "SAVE_RELOAD",
+          "status": "success"
+        },
+        {
+          "text": "What are its dimensions?",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "de0e7ee2-2016-43fd-b210-8b2e3d932703",
+            "message": "Width 8, height 4, depth 3.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "Width 8, height 4, depth 3."
+        }
+      ]
+    },
+    {
+      "mode": "graph3d",
+      "conversation": 5,
+      "turns": [
+        {
+          "text": "Create a vector.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "d8845a5f-6efe-41be-abd2-4298b9ba0fab",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "d8845a5f-6efe-41be-abd2-4298b9ba0fab",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Find its magnitude.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "0b9bb077-d05d-41b5-a73d-3cc6d1d9a6eb",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "0b9bb077-d05d-41b5-a73d-3cc6d1d9a6eb",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Rotate it.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "296f8066-c394-434e-9fbe-bd003c94939f",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "296f8066-c394-434e-9fbe-bd003c94939f",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Find its new direction.",
+          "status": "ambiguous",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "1ca5dbb2-6521-4af4-8815-278175d548c4",
+            "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "clarification": {
+            "kind": "missing_parameters",
+            "requestId": "1ca5dbb2-6521-4af4-8815-278175d548c4",
+            "question": "What are the two endpoints? Give coordinates such as (0,0) and (4,2).",
+            "slots": [
+              "points"
+            ],
+            "candidates": [],
+            "references": []
+          },
+          "message": "What are the two endpoints? Give coordinates such as (0,0) and (4,2)."
+        },
+        {
+          "text": "Explain why its magnitude remained unchanged.",
+          "status": "success",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "25f11fcf-ed99-4ea5-a94e-438b126d1b36",
+            "message": "No completed vector rotation is recorded. Supply its endpoints and rotation angle before I can check a particular vector. Rotations preserve Euclidean length.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "message": "No completed vector rotation is recorded. Supply its endpoints and rotation angle before I can check a particular vector. Rotations preserve Euclidean length."
+        }
+      ]
+    }
+  ]
+}

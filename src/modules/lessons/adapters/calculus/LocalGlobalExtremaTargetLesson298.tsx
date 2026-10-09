@@ -140,7 +140,7 @@ export default function LocalGlobalExtremaTargetLesson298({
       </nav>
       <section className="ext298-flow">
         <small>LEARN BY DOING</small>
-        {[
+        {([
           [
             Eye,
             "OBSERVE",
@@ -157,7 +157,7 @@ export default function LocalGlobalExtremaTargetLesson298({
             "Identify local extrema and absolute (global) extrema.",
           ],
           [Target, "UNDERSTAND", "Apply the rule and solve similar problems."],
-        ].map(([Icon, t, p], i) => (
+        ] as const).map(([Icon, t, p], i) => (
           <article key={String(t)}>
             <Icon />
             <div>

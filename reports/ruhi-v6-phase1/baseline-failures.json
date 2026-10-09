@@ -1,0 +1,31 @@
+{
+  "fingerprintVerified": true,
+  "failures": [
+    {
+      "id": "RUHI2D-032",
+      "command": "Plot the function f(x) = -1x + -2.",
+      "rootCause": "ENTITY_EXTRACTION_ERROR"
+    },
+    {
+      "id": "RUHI2D-036",
+      "command": "Plot the function f(x) = -2x + 2.",
+      "rootCause": "ENTITY_EXTRACTION_ERROR"
+    },
+    {
+      "id": "RUHI2D-040",
+      "command": "Plot the function f(x) = 2x + -1.",
+      "rootCause": "ENTITY_EXTRACTION_ERROR"
+    },
+    {
+      "id": "RUHI2D-044",
+      "command": "Plot the function f(x) = 1x + 3.",
+      "rootCause": "ENTITY_EXTRACTION_ERROR"
+    },
+    {
+      "id": "RUHI2D-048",
+      "command": "Plot the function f(x) = 0x + 0.",
+      "rootCause": "ENTITY_EXTRACTION_ERROR"
+    }
+  ],
+  "repair": "Normalize named function definitions f(x)=... to a scalar plot expression; preserve creation parser additions from the other user task."
+}

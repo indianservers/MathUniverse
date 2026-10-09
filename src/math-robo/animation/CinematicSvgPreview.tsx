@@ -26,7 +26,7 @@ export function CinematicSvgPreview({mode,toScreen,bounds}:{mode:'graph2d'|'geom
 }
 function CinematicObject({command:c,toScreen,bounds,progress,creating,ghost=false,geometryMode=false}:{command:VisualCommand;toScreen:Screen;bounds:{xMin:number;xMax:number;yMin:number;yMax:number};progress:number;creating:boolean;ghost?:boolean;geometryMode?:boolean}){
  if(c.roboVisible===false)return null;
- let points=outlineVertices(c),closed=!['line','ray','vector','plot','point'].includes(c.kind);
+ let points=outlineVertices(c);const closed=!['line','ray','vector','plot','point'].includes(c.kind);
  if(c.kind==='plot'&&c.expression){const fn=expressionFunction(c.expression),count=240;points=Array.from({length:count+1},(_,i)=>{const x=bounds.xMin+(bounds.xMax-bounds.xMin)*i/count;return [x,fn(x)];});const angle=(c.rotation?.[2]??0)*Math.PI/180,s=c.scale??1,offset=c.points[0]??[0,0];points=points.map(([x,y])=>[offset[0]+s*(x*Math.cos(angle)-y*Math.sin(angle)),offset[1]+s*(x*Math.sin(angle)+y*Math.cos(angle))]);if(creating)points=points.slice(0,Math.max(2,Math.ceil(points.length*progress)));}
  if(['line','ray'].includes(c.kind)&&points.length>1&&(c.kind==='ray'||c.linearExtent!=='segment')){const [a,b]=points,dx=b[0]-a[0],dy=b[1]-a[1],len=Math.hypot(dx,dy);if(len>1e-10){const extent=4*Math.max(bounds.xMax-bounds.xMin,bounds.yMax-bounds.yMin)/len;points=c.kind==='ray'?[a,[a[0]+dx*extent,a[1]+dy*extent]]:[[a[0]-dx*extent,a[1]-dy*extent],[a[0]+dx*extent,a[1]+dy*extent]];}}
  const screen=points.map(p=>toScreen(p[0],p[1]));let d='',pen=false;for(const p of screen){if(!Number.isFinite(p.x)||!Number.isFinite(p.y)){pen=false;continue;}d+=`${pen?'L':'M'}${p.x},${p.y} `;pen=true;}if(closed)d+='Z';

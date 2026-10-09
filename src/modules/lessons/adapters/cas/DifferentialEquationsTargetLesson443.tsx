@@ -322,7 +322,7 @@ function OdeGraph({
   onPointerDown,
   onPointerMove,
 }: {
-  graphRef: RefObject<SVGSVGElement | null>;
+  graphRef: RefObject<SVGSVGElement>;
   equation: Equation;
   initial: Point;
   euler: Point[];

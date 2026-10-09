@@ -1,0 +1,128 @@
+{
+  "browser": {
+    "checks": [
+      {
+        "name": "empty input disables send",
+        "passed": true
+      },
+      {
+        "name": "CAS response",
+        "passed": true
+      },
+      {
+        "name": "real 2D workspace embedded",
+        "passed": true
+      },
+      {
+        "name": "workspace handoff routes to actual graph",
+        "passed": true
+      },
+      {
+        "name": "conversation survives route change",
+        "passed": true
+      },
+      {
+        "name": "motion controls retained",
+        "passed": true
+      },
+      {
+        "name": "clear conversation removes messages",
+        "passed": true
+      },
+      {
+        "name": "missing movement asks question",
+        "passed": true
+      },
+      {
+        "name": "contextual movement chips",
+        "passed": true
+      },
+      {
+        "name": "partial direction asks distance",
+        "passed": true
+      },
+      {
+        "name": "distance reply executes",
+        "passed": true
+      },
+      {
+        "name": "context triangle rotation",
+        "passed": true
+      },
+      {
+        "name": "search filters help",
+        "passed": true
+      },
+      {
+        "name": "Try fills composer without sending",
+        "passed": true
+      },
+      {
+        "name": "real 3D canvas rendered",
+        "passed": true
+      },
+      {
+        "name": "conversation survives close and reopen",
+        "passed": true
+      },
+      {
+        "name": "mobile no horizontal overflow",
+        "passed": true
+      },
+      {
+        "name": "mobile composer visible",
+        "passed": true
+      },
+      {
+        "name": "Shift+Enter adds a newline",
+        "passed": true
+      },
+      {
+        "name": "Shift+Enter does not submit",
+        "passed": true
+      },
+      {
+        "name": "older reading position preserved",
+        "passed": true
+      },
+      {
+        "name": "new response indicator appears",
+        "passed": true
+      },
+      {
+        "name": "pending request cancellation removes chips",
+        "passed": true
+      },
+      {
+        "name": "empty help search explained",
+        "passed": true
+      },
+      {
+        "name": "Escape closes help before chat",
+        "passed": true
+      },
+      {
+        "name": "no browser runtime errors",
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "passed": 26
+  },
+  "conversationTests": {
+    "passed": 487,
+    "failed": 0
+  },
+  "targetedLint": "passed",
+  "typecheck": {
+    "existingErrors": 123,
+    "changedAssistantErrors": 0
+  },
+  "studentBuild": {
+    "status": "passed",
+    "offlineManifestFiles": 1095,
+    "offlineManifestBytes": 160864892,
+    "offlineManifestVersion": "d80409b3fdd73b5861487b23fa41fa55c8fd8fdcb3cb659e7d9740b6103b7c2d",
+    "finalScrollGuardPresentInProductionBundle": true
+  }
+}

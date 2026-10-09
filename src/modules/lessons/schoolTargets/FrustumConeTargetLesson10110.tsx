@@ -187,11 +187,11 @@ export default function FrustumConeTargetLesson10110({
       <main className="fru10110-lab">
         <section className="fru10110-dims">
           <h2>DIMENSIONS</h2>
-          {[
+          {([
             ["R (base radius)", R, 1, 10, setR],
             ["r (top radius)", r, 0.5, Math.max(0.5, R - 0.5), setSmallR],
             ["h (vertical height)", h, 1, 15, setH],
-          ].map(([label, value, min, max, setter]) => (
+          ] as const).map(([label, value, min, max, setter]) => (
             <label key={String(label)}>
               {label}
               <b>{Number(value)}</b>

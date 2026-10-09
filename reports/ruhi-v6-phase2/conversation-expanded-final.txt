@@ -1,0 +1,26 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > A object continuity uses current dimensions, style and reverses only rotation 159ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > B ambiguous references preserve the movement until the second circle is identified 58ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > C relative angle changes use the active angle and end at 89 degrees 11ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > D compound medians, centroid and circumcircle carry live triangle dependencies 32ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > F tutoring checks a wrong rectangle answer, hints and accepts equivalent correct formatting 283ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > G deleted object references cannot survive a geometry follow-up 16ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > H page changes invalidate specialist task memory without deleting workspace objects 19ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > I compound create/transform/measure/verify has no partial mutation on a contradictory step 22ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > J unsupported proof never receives verified execution confidence 1799ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > missing line endpoints can be supplied by a point plus direction angle 11ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > contradictory SSS triangle is rejected with the triangle inequality 6ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > E selected angle and reviewed page explanations are grounded in current state 8ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > medians and centroid recompute on parent translation and survive undo and saved import 39ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > typed memory exposes current evidence and stable dependency versions 9ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > relative resize accounts for physical scale and refuses nonpositive dimensions 34ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > tutoring rejects a stale exercise after its source object changes 13ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > line clarification never infers a missing finite vector magnitude 10ms
+
+ Test Files  1 passed (1)
+      Tests  17 passed (17)
+   Start at  01:46:31
+   Duration  7.07s (transform 2.98s, setup 127ms, import 3.91s, tests 2.54s, environment 0ms)
+

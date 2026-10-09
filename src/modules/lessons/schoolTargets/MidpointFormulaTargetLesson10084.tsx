@@ -51,7 +51,7 @@ export default function MidpointFormulaTargetLesson10084({
       : setChallenge((v) => ({ ...v, [key]: clamp(p) }));
   const local = (
     e: PointerEvent<SVGSVGElement>,
-    ref: RefObject<SVGSVGElement | null>,
+    ref: RefObject<SVGSVGElement>,
   ) => {
     const r = ref.current?.getBoundingClientRect();
     return r
@@ -83,7 +83,7 @@ export default function MidpointFormulaTargetLesson10084({
     model: "main" | "challenge",
     p: { a: Point; b: Point },
     mid: Point,
-    ref: RefObject<SVGSVGElement | null>,
+    ref: RefObject<SVGSVGElement>,
   ) => (
     <svg
       ref={ref}

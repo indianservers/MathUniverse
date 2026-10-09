@@ -1,3 +1,4 @@
+import {pageMathContext,groundedPageQuestion} from './pageMathContext';
 import {inferContext,loadContextModel,type ContextPrediction,type ContextInput} from './ruhiContextNet';
 import {pageKnowledge,knowledgeById,type KnowledgeRecord} from './contextKnowledge';
 import {currentPageCapability,executePigeonhole} from './pageCapabilities';
@@ -18,6 +19,7 @@ export class ContextAssistant{
   const input:ContextInput={question,pageVocabulary:active?.vocabulary??'',previousVocabulary:this.last?.vocabulary??this.previous?.vocabulary,selectedTypes:selected.map(o=>o.type),simulation:capability?.read(),hasPrevious:!!this.last};
   const prediction=inferContext(await loadContextModel(),input);
   this.lastPrediction=prediction;
+  const grounded=groundedPageQuestion(question,pageMathContext(path,scene));if(grounded&&!(grounded.status==='unsupported'&&active?.definition))return {...grounded,prediction,verified:false};
   const reply=(status:Answer['status'],message:string,record?:KnowledgeRecord,extra:Partial<Answer>={}):Answer=>{
    if(status==='success'&&record){if(this.last?.id!==record.id){this.previous=this.last??this.previous;this.last=record;}this.pending=undefined;}
    this.history.push({question,knowledgeId:record?.id});this.history=this.history.slice(-25);

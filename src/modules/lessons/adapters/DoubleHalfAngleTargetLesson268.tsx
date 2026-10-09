@@ -209,14 +209,14 @@ export default function DoubleHalfAngleTargetLesson268({
       </header>
 
       <nav className="target-double-half-tabs" aria-label="Lesson stages">
-        {[
+        {([
           ["lab", Eye, "Interactive Lab"],
           ["observe", Eye, "Observe"],
           ["manipulate", Hand, "Manipulate"],
           ["notice", Lightbulb, "Notice"],
           ["understand", Sparkles, "Understand"],
           ["practice", GraduationCap, "Practice"],
-        ].map(([id, Icon, label]) => (
+        ] as const).map(([id, Icon, label]) => (
           <button
             key={String(id)}
             type="button"
@@ -341,7 +341,7 @@ export default function DoubleHalfAngleTargetLesson268({
       </section>
 
       <section className="target-double-half-flow">
-        {[
+        {([
           [
             Eye,
             "01 Observe",
@@ -362,7 +362,7 @@ export default function DoubleHalfAngleTargetLesson268({
             "04 Understand",
             "Use the correct formula, apply the sign rule, and solve problems confidently.",
           ],
-        ].map(([Icon, title, copy], index) => (
+        ] as const).map(([Icon, title, copy], index) => (
           <article key={String(title)}>
             <Icon />
             <h3>{title}</h3>

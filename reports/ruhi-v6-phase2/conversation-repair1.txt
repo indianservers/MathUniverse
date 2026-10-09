@@ -1,0 +1,62 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > A object continuity uses current dimensions, style and reverses only rotation 50ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > B ambiguous references preserve the movement until the second circle is identified 20ms
+ × src/math-robo/intelligence/phase2Conversation.test.ts > C relative angle changes use the active angle and end at 89 degrees 12ms
+   → Cannot read properties of undefined (reading 'vertex'): expected 'invalid' to be 'success' // Object.is equality
+ × src/math-robo/intelligence/phase2Conversation.test.ts > D compound medians, centroid and circumcircle carry live triangle dependencies 9ms
+   → I cannot construct object in this workspace yet.: expected 'unsupported' to be 'success' // Object.is equality
+ × src/math-robo/intelligence/phase2Conversation.test.ts > F tutoring checks a wrong rectangle answer, hints and accepts equivalent correct formatting 10ms
+   → expected 'Please clarify the request before I c…' to match /36|width|formula/
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > G deleted object references cannot survive a geometry follow-up 6ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > H page changes invalidate specialist task memory without deleting workspace objects 219ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > I compound create/transform/measure/verify has no partial mutation on a contradictory step 7ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > J unsupported proof never receives verified execution confidence 953ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > missing line endpoints can be supplied by a point plus direction angle 4ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > contradictory SSS triangle is rejected with the triangle inequality 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/math-robo/intelligence/phase2Conversation.test.ts > C relative angle changes use the active angle and end at 89 degrees
+AssertionError: Cannot read properties of undefined (reading 'vertex'): expected 'invalid' to be 'success' // Object.is equality
+
+Expected: "success"
+Received: "invalid"
+
+ ❯ src/math-robo/intelligence/phase2Conversation.test.ts:9:238
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/math-robo/intelligence/phase2Conversation.test.ts > D compound medians, centroid and circumcircle carry live triangle dependencies
+AssertionError: I cannot construct object in this workspace yet.: expected 'unsupported' to be 'success' // Object.is equality
+
+Expected: "success"
+Received: "unsupported"
+
+ ❯ src/math-robo/intelligence/phase2Conversation.test.ts:10:275
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/math-robo/intelligence/phase2Conversation.test.ts > F tutoring checks a wrong rectangle answer, hints and accepts equivalent correct formatting
+AssertionError: expected 'Please clarify the request before I c…' to match /36|width|formula/
+
+- Expected:
+/36|width|formula/
+
++ Received:
+"Please clarify the request before I change any objects."
+
+ ❯ src/math-robo/intelligence/phase2Conversation.test.ts:11:270
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 8 passed (11)
+   Start at  01:38:19
+   Duration  3.64s (transform 998ms, setup 40ms, import 2.14s, tests 1.29s, environment 0ms)
+

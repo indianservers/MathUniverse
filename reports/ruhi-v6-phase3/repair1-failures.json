@@ -1,0 +1,1602 @@
+[
+  {
+    "id": "RUHI6P3-negative-0004",
+    "category": "negative",
+    "family": "impossible-triangle",
+    "partition": "development",
+    "passed": false,
+    "problems": [
+      "STATUS:Construct a triangle with sides 5, 6 and 12:success != invalid",
+      "STATE:Construct a triangle with sides 5, 6 and 12: unexpected mutation",
+      "COUNT:1 != 0"
+    ],
+    "elapsedMs": 1.7004999999990105,
+    "fixture": {
+      "id": "RUHI6P3-negative-0004",
+      "category": "negative",
+      "partition": "development",
+      "difficulty": "bounded",
+      "family": "impossible-triangle",
+      "mode": "geometry2d",
+      "page": "/workspace/geometry",
+      "initialScene": {
+        "setup": []
+      },
+      "turns": [
+        {
+          "text": "Construct a triangle with sides 5, 6 and 12",
+          "status": "invalid",
+          "nonmutation": true,
+          "notVerified": true
+        }
+      ],
+      "expected": {
+        "scene": {
+          "count": 0
+        },
+        "verification": "Independent numeric/coordinate fixture or explicit rejection policy; no universal numerical proof"
+      },
+      "provenance": "Seed 20261009. Authored grammar family with controlled numeric/workspace variants. Closed-form arithmetic and Euclidean coordinate oracles authored before execution. Not an unseen human benchmark."
+    },
+    "traces": [
+      {
+        "text": "Construct a triangle with sides 5, 6 and 12",
+        "status": "success",
+        "message": "Created 2D triangle.",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "25b4d15b-a1c1-43c8-8813-596cd2bb1a1a",
+          "message": "Created 2D triangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "schemaVersion": 1,
+          "atomicity": "all-or-nothing",
+          "nodes": [
+            {
+              "id": "ca025542-50b9-49ee-949a-07d303acae17",
+              "action": "CREATE",
+              "subAction": "TRIANGLE",
+              "dependsOn": [],
+              "references": [
+                {
+                  "type": "triangle"
+                }
+              ],
+              "preconditions": [
+                "finite parameters",
+                "existing unambiguous targets",
+                "compatible dimensions"
+              ],
+              "output": "object"
+            }
+          ]
+        }
+      }
+    ],
+    "finalScene": {
+      "snapshotId": "4e82e4fa-311a-44f0-b7f2-9ce01c1a2a74",
+      "objects": [
+        {
+          "id": "5c80d94c-3cd3-448c-ad0f-df350f410341",
+          "type": "triangle",
+          "mode": "geometry2d",
+          "position": [
+            5,
+            6
+          ],
+          "radius": 3,
+          "label": "T1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                5,
+                6
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 5,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "5c80d94c-3cd3-448c-ad0f-df350f410341"
+          },
+          "vertices": [
+            [
+              2,
+              4.666666666666667
+            ],
+            [
+              8,
+              4.666666666666667
+            ],
+            [
+              5,
+              8.666666666666666
+            ]
+          ],
+          "creationOrder": 1
+        }
+      ],
+      "selectedIds": [],
+      "activeMode": "geometry2d",
+      "responseDepth": "compact",
+      "activePagePath": "/workspace/geometry",
+      "lastReferenced": "5c80d94c-3cd3-448c-ad0f-df350f410341",
+      "lastModified": "5c80d94c-3cd3-448c-ad0f-df350f410341",
+      "lastCreated": "5c80d94c-3cd3-448c-ad0f-df350f410341",
+      "activeObjectIds": [
+        "5c80d94c-3cd3-448c-ad0f-df350f410341"
+      ],
+      "previousCommands": [
+        {
+          "id": "ca025542-50b9-49ee-949a-07d303acae17",
+          "rawPhrase": "Construct a triangle with sides 5, 6 and 12",
+          "normalizedPhrase": "construct a triangle with sides 5, 6 and 12",
+          "detectedAction": "CONSTRUCT",
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "geometry2d",
+          "parameters": {
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "depth": 3,
+            "sides": 5,
+            "points": [
+              [
+                5,
+                6
+              ]
+            ]
+          },
+          "confidence": {
+            "overall": 1,
+            "action": 1,
+            "subAction": 1,
+            "parameters": 1
+          },
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          },
+          "requiresExecution": true,
+          "target": {
+            "type": "triangle"
+          }
+        }
+      ],
+      "previousResults": [
+        {
+          "action": "CREATE",
+          "explanation": "Created 2D triangle."
+        }
+      ],
+      "recentlyReferencedObjectIds": [
+        "5c80d94c-3cd3-448c-ad0f-df350f410341"
+      ]
+    }
+  },
+  {
+    "id": "RUHI6P3-negative-0005",
+    "category": "negative",
+    "family": "impossible-triangle",
+    "partition": "development",
+    "passed": false,
+    "problems": [
+      "STATUS:Construct a triangle with sides 6, 7 and 14:success != invalid",
+      "STATE:Construct a triangle with sides 6, 7 and 14: unexpected mutation",
+      "COUNT:1 != 0"
+    ],
+    "elapsedMs": 1.6212999999988824,
+    "fixture": {
+      "id": "RUHI6P3-negative-0005",
+      "category": "negative",
+      "partition": "development",
+      "difficulty": "bounded",
+      "family": "impossible-triangle",
+      "mode": "graph2d",
+      "page": "/workspace/graph",
+      "initialScene": {
+        "setup": []
+      },
+      "turns": [
+        {
+          "text": "Construct a triangle with sides 6, 7 and 14",
+          "status": "invalid",
+          "nonmutation": true,
+          "notVerified": true
+        }
+      ],
+      "expected": {
+        "scene": {
+          "count": 0
+        },
+        "verification": "Independent numeric/coordinate fixture or explicit rejection policy; no universal numerical proof"
+      },
+      "provenance": "Seed 20261009. Authored grammar family with controlled numeric/workspace variants. Closed-form arithmetic and Euclidean coordinate oracles authored before execution. Not an unseen human benchmark."
+    },
+    "traces": [
+      {
+        "text": "Construct a triangle with sides 6, 7 and 14",
+        "status": "success",
+        "message": "Created 2D triangle.",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "407800a4-f143-43b9-a889-1dcee655ca22",
+          "message": "Created 2D triangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "schemaVersion": 1,
+          "atomicity": "all-or-nothing",
+          "nodes": [
+            {
+              "id": "135e5179-0f20-450d-bc2d-5fa2ace80746",
+              "action": "CREATE",
+              "subAction": "TRIANGLE",
+              "dependsOn": [],
+              "references": [
+                {
+                  "type": "triangle"
+                }
+              ],
+              "preconditions": [
+                "finite parameters",
+                "existing unambiguous targets",
+                "compatible dimensions"
+              ],
+              "output": "object"
+            }
+          ]
+        }
+      }
+    ],
+    "finalScene": {
+      "snapshotId": "608a5316-7314-4e27-9b75-b3309a6297ea",
+      "objects": [
+        {
+          "id": "6af1e34d-8fae-494e-b3b6-165743353c07",
+          "type": "triangle",
+          "mode": "graph2d",
+          "position": [
+            6,
+            7
+          ],
+          "radius": 3,
+          "label": "T1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                6,
+                7
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "6af1e34d-8fae-494e-b3b6-165743353c07"
+          },
+          "vertices": [
+            [
+              3,
+              5.666666666666667
+            ],
+            [
+              9,
+              5.666666666666667
+            ],
+            [
+              6,
+              9.666666666666666
+            ]
+          ],
+          "creationOrder": 1
+        }
+      ],
+      "selectedIds": [],
+      "activeMode": "graph2d",
+      "responseDepth": "compact",
+      "activePagePath": "/workspace/graph",
+      "lastReferenced": "6af1e34d-8fae-494e-b3b6-165743353c07",
+      "lastModified": "6af1e34d-8fae-494e-b3b6-165743353c07",
+      "lastCreated": "6af1e34d-8fae-494e-b3b6-165743353c07",
+      "activeObjectIds": [
+        "6af1e34d-8fae-494e-b3b6-165743353c07"
+      ],
+      "previousCommands": [
+        {
+          "id": "135e5179-0f20-450d-bc2d-5fa2ace80746",
+          "rawPhrase": "Construct a triangle with sides 6, 7 and 14",
+          "normalizedPhrase": "construct a triangle with sides 6, 7 and 14",
+          "detectedAction": "CONSTRUCT",
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "graph2d",
+          "parameters": {
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "depth": 3,
+            "sides": 6,
+            "points": [
+              [
+                6,
+                7
+              ]
+            ]
+          },
+          "confidence": {
+            "overall": 1,
+            "action": 1,
+            "subAction": 1,
+            "parameters": 1
+          },
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          },
+          "requiresExecution": true,
+          "target": {
+            "type": "triangle"
+          }
+        }
+      ],
+      "previousResults": [
+        {
+          "action": "CREATE",
+          "explanation": "Created 2D triangle."
+        }
+      ],
+      "recentlyReferencedObjectIds": [
+        "6af1e34d-8fae-494e-b3b6-165743353c07"
+      ]
+    }
+  },
+  {
+    "id": "RUHI6P3-negative-0012",
+    "category": "negative",
+    "family": "impossible-triangle",
+    "partition": "development",
+    "passed": false,
+    "problems": [
+      "STATUS:Construct a triangle with sides 13, 14 and 28:success != invalid",
+      "STATE:Construct a triangle with sides 13, 14 and 28: unexpected mutation",
+      "COUNT:1 != 0"
+    ],
+    "elapsedMs": 1.3293000000048778,
+    "fixture": {
+      "id": "RUHI6P3-negative-0012",
+      "category": "negative",
+      "partition": "development",
+      "difficulty": "bounded",
+      "family": "impossible-triangle",
+      "mode": "geometry2d",
+      "page": "/workspace/geometry",
+      "initialScene": {
+        "setup": []
+      },
+      "turns": [
+        {
+          "text": "Construct a triangle with sides 13, 14 and 28",
+          "status": "invalid",
+          "nonmutation": true,
+          "notVerified": true
+        }
+      ],
+      "expected": {
+        "scene": {
+          "count": 0
+        },
+        "verification": "Independent numeric/coordinate fixture or explicit rejection policy; no universal numerical proof"
+      },
+      "provenance": "Seed 20261009. Authored grammar family with controlled numeric/workspace variants. Closed-form arithmetic and Euclidean coordinate oracles authored before execution. Not an unseen human benchmark."
+    },
+    "traces": [
+      {
+        "text": "Construct a triangle with sides 13, 14 and 28",
+        "status": "success",
+        "message": "Created 2D triangle.",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "20b37be9-12bd-4592-8b10-7e287588b213",
+          "message": "Created 2D triangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "schemaVersion": 1,
+          "atomicity": "all-or-nothing",
+          "nodes": [
+            {
+              "id": "a182a274-7d3e-4c74-adf4-b7779bdb66f5",
+              "action": "CREATE",
+              "subAction": "TRIANGLE",
+              "dependsOn": [],
+              "references": [
+                {
+                  "type": "triangle"
+                }
+              ],
+              "preconditions": [
+                "finite parameters",
+                "existing unambiguous targets",
+                "compatible dimensions"
+              ],
+              "output": "object"
+            }
+          ]
+        }
+      }
+    ],
+    "finalScene": {
+      "snapshotId": "17b56c81-3bc4-42df-b30b-4d137d746bcb",
+      "objects": [
+        {
+          "id": "6f5a749a-8601-44c9-bdfe-b0b7f0a68008",
+          "type": "triangle",
+          "mode": "geometry2d",
+          "position": [
+            13,
+            14
+          ],
+          "radius": 3,
+          "label": "T1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                13,
+                14
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 13,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "6f5a749a-8601-44c9-bdfe-b0b7f0a68008"
+          },
+          "vertices": [
+            [
+              10,
+              12.666666666666666
+            ],
+            [
+              16,
+              12.666666666666666
+            ],
+            [
+              13,
+              16.666666666666668
+            ]
+          ],
+          "creationOrder": 1
+        }
+      ],
+      "selectedIds": [],
+      "activeMode": "geometry2d",
+      "responseDepth": "compact",
+      "activePagePath": "/workspace/geometry",
+      "lastReferenced": "6f5a749a-8601-44c9-bdfe-b0b7f0a68008",
+      "lastModified": "6f5a749a-8601-44c9-bdfe-b0b7f0a68008",
+      "lastCreated": "6f5a749a-8601-44c9-bdfe-b0b7f0a68008",
+      "activeObjectIds": [
+        "6f5a749a-8601-44c9-bdfe-b0b7f0a68008"
+      ],
+      "previousCommands": [
+        {
+          "id": "a182a274-7d3e-4c74-adf4-b7779bdb66f5",
+          "rawPhrase": "Construct a triangle with sides 13, 14 and 28",
+          "normalizedPhrase": "construct a triangle with sides 13, 14 and 28",
+          "detectedAction": "CONSTRUCT",
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "geometry2d",
+          "parameters": {
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "depth": 3,
+            "sides": 13,
+            "points": [
+              [
+                13,
+                14
+              ]
+            ]
+          },
+          "confidence": {
+            "overall": 1,
+            "action": 1,
+            "subAction": 1,
+            "parameters": 1
+          },
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          },
+          "requiresExecution": true,
+          "target": {
+            "type": "triangle"
+          }
+        }
+      ],
+      "previousResults": [
+        {
+          "action": "CREATE",
+          "explanation": "Created 2D triangle."
+        }
+      ],
+      "recentlyReferencedObjectIds": [
+        "6f5a749a-8601-44c9-bdfe-b0b7f0a68008"
+      ]
+    }
+  },
+  {
+    "id": "RUHI6P3-negative-0013",
+    "category": "negative",
+    "family": "impossible-triangle",
+    "partition": "development",
+    "passed": false,
+    "problems": [
+      "STATUS:Construct a triangle with sides 14, 15 and 30:success != invalid",
+      "STATE:Construct a triangle with sides 14, 15 and 30: unexpected mutation",
+      "COUNT:1 != 0"
+    ],
+    "elapsedMs": 1.264499999997497,
+    "fixture": {
+      "id": "RUHI6P3-negative-0013",
+      "category": "negative",
+      "partition": "development",
+      "difficulty": "bounded",
+      "family": "impossible-triangle",
+      "mode": "graph2d",
+      "page": "/workspace/graph",
+      "initialScene": {
+        "setup": []
+      },
+      "turns": [
+        {
+          "text": "Construct a triangle with sides 14, 15 and 30",
+          "status": "invalid",
+          "nonmutation": true,
+          "notVerified": true
+        }
+      ],
+      "expected": {
+        "scene": {
+          "count": 0
+        },
+        "verification": "Independent numeric/coordinate fixture or explicit rejection policy; no universal numerical proof"
+      },
+      "provenance": "Seed 20261009. Authored grammar family with controlled numeric/workspace variants. Closed-form arithmetic and Euclidean coordinate oracles authored before execution. Not an unseen human benchmark."
+    },
+    "traces": [
+      {
+        "text": "Construct a triangle with sides 14, 15 and 30",
+        "status": "success",
+        "message": "Created 2D triangle.",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "4219bc0c-7ac2-4cec-8e5f-82e4384463cc",
+          "message": "Created 2D triangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "schemaVersion": 1,
+          "atomicity": "all-or-nothing",
+          "nodes": [
+            {
+              "id": "a000eb99-b25c-4447-9549-88cf779454e6",
+              "action": "CREATE",
+              "subAction": "TRIANGLE",
+              "dependsOn": [],
+              "references": [
+                {
+                  "type": "triangle"
+                }
+              ],
+              "preconditions": [
+                "finite parameters",
+                "existing unambiguous targets",
+                "compatible dimensions"
+              ],
+              "output": "object"
+            }
+          ]
+        }
+      }
+    ],
+    "finalScene": {
+      "snapshotId": "dc591117-42e6-489c-a4a7-1bed8c92bcc1",
+      "objects": [
+        {
+          "id": "bb63b165-0917-4c51-95b7-0d69e3aa098f",
+          "type": "triangle",
+          "mode": "graph2d",
+          "position": [
+            14,
+            15
+          ],
+          "radius": 3,
+          "label": "T1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                14,
+                15
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 14,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "bb63b165-0917-4c51-95b7-0d69e3aa098f"
+          },
+          "vertices": [
+            [
+              11,
+              13.666666666666666
+            ],
+            [
+              17,
+              13.666666666666666
+            ],
+            [
+              14,
+              17.666666666666668
+            ]
+          ],
+          "creationOrder": 1
+        }
+      ],
+      "selectedIds": [],
+      "activeMode": "graph2d",
+      "responseDepth": "compact",
+      "activePagePath": "/workspace/graph",
+      "lastReferenced": "bb63b165-0917-4c51-95b7-0d69e3aa098f",
+      "lastModified": "bb63b165-0917-4c51-95b7-0d69e3aa098f",
+      "lastCreated": "bb63b165-0917-4c51-95b7-0d69e3aa098f",
+      "activeObjectIds": [
+        "bb63b165-0917-4c51-95b7-0d69e3aa098f"
+      ],
+      "previousCommands": [
+        {
+          "id": "a000eb99-b25c-4447-9549-88cf779454e6",
+          "rawPhrase": "Construct a triangle with sides 14, 15 and 30",
+          "normalizedPhrase": "construct a triangle with sides 14, 15 and 30",
+          "detectedAction": "CONSTRUCT",
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "graph2d",
+          "parameters": {
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "depth": 3,
+            "sides": 14,
+            "points": [
+              [
+                14,
+                15
+              ]
+            ]
+          },
+          "confidence": {
+            "overall": 1,
+            "action": 1,
+            "subAction": 1,
+            "parameters": 1
+          },
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          },
+          "requiresExecution": true,
+          "target": {
+            "type": "triangle"
+          }
+        }
+      ],
+      "previousResults": [
+        {
+          "action": "CREATE",
+          "explanation": "Created 2D triangle."
+        }
+      ],
+      "recentlyReferencedObjectIds": [
+        "bb63b165-0917-4c51-95b7-0d69e3aa098f"
+      ]
+    }
+  },
+  {
+    "id": "RUHI6P3-negative-0020",
+    "category": "negative",
+    "family": "impossible-triangle",
+    "partition": "development",
+    "passed": false,
+    "problems": [
+      "STATUS:Construct a triangle with sides 21, 5 and 27:success != invalid",
+      "STATE:Construct a triangle with sides 21, 5 and 27: unexpected mutation",
+      "COUNT:1 != 0"
+    ],
+    "elapsedMs": 1.291800000006333,
+    "fixture": {
+      "id": "RUHI6P3-negative-0020",
+      "category": "negative",
+      "partition": "development",
+      "difficulty": "bounded",
+      "family": "impossible-triangle",
+      "mode": "geometry2d",
+      "page": "/workspace/geometry",
+      "initialScene": {
+        "setup": []
+      },
+      "turns": [
+        {
+          "text": "Construct a triangle with sides 21, 5 and 27",
+          "status": "invalid",
+          "nonmutation": true,
+          "notVerified": true
+        }
+      ],
+      "expected": {
+        "scene": {
+          "count": 0
+        },
+        "verification": "Independent numeric/coordinate fixture or explicit rejection policy; no universal numerical proof"
+      },
+      "provenance": "Seed 20261009. Authored grammar family with controlled numeric/workspace variants. Closed-form arithmetic and Euclidean coordinate oracles authored before execution. Not an unseen human benchmark."
+    },
+    "traces": [
+      {
+        "text": "Construct a triangle with sides 21, 5 and 27",
+        "status": "success",
+        "message": "Created 2D triangle.",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "f2d05d4b-a509-49bd-90a4-b40eeac1a243",
+          "message": "Created 2D triangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "schemaVersion": 1,
+          "atomicity": "all-or-nothing",
+          "nodes": [
+            {
+              "id": "28291063-5810-4931-9bb1-bdaf60365923",
+              "action": "CREATE",
+              "subAction": "TRIANGLE",
+              "dependsOn": [],
+              "references": [
+                {
+                  "type": "triangle"
+                }
+              ],
+              "preconditions": [
+                "finite parameters",
+                "existing unambiguous targets",
+                "compatible dimensions"
+              ],
+              "output": "object"
+            }
+          ]
+        }
+      }
+    ],
+    "finalScene": {
+      "snapshotId": "eff1b929-6740-45da-b6af-8d8eb3717d32",
+      "objects": [
+        {
+          "id": "e88ddc4e-0c0e-4ed1-886d-b0314da6b7a1",
+          "type": "triangle",
+          "mode": "geometry2d",
+          "position": [
+            21,
+            5
+          ],
+          "radius": 3,
+          "label": "T1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                21,
+                5
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 21,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "e88ddc4e-0c0e-4ed1-886d-b0314da6b7a1"
+          },
+          "vertices": [
+            [
+              18,
+              3.666666666666667
+            ],
+            [
+              24,
+              3.666666666666667
+            ],
+            [
+              21,
+              7.666666666666666
+            ]
+          ],
+          "creationOrder": 1
+        }
+      ],
+      "selectedIds": [],
+      "activeMode": "geometry2d",
+      "responseDepth": "compact",
+      "activePagePath": "/workspace/geometry",
+      "lastReferenced": "e88ddc4e-0c0e-4ed1-886d-b0314da6b7a1",
+      "lastModified": "e88ddc4e-0c0e-4ed1-886d-b0314da6b7a1",
+      "lastCreated": "e88ddc4e-0c0e-4ed1-886d-b0314da6b7a1",
+      "activeObjectIds": [
+        "e88ddc4e-0c0e-4ed1-886d-b0314da6b7a1"
+      ],
+      "previousCommands": [
+        {
+          "id": "28291063-5810-4931-9bb1-bdaf60365923",
+          "rawPhrase": "Construct a triangle with sides 21, 5 and 27",
+          "normalizedPhrase": "construct a triangle with sides 21, 5 and 27",
+          "detectedAction": "CONSTRUCT",
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "geometry2d",
+          "parameters": {
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "depth": 3,
+            "sides": 21,
+            "points": [
+              [
+                21,
+                5
+              ]
+            ]
+          },
+          "confidence": {
+            "overall": 1,
+            "action": 1,
+            "subAction": 1,
+            "parameters": 1
+          },
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          },
+          "requiresExecution": true,
+          "target": {
+            "type": "triangle"
+          }
+        }
+      ],
+      "previousResults": [
+        {
+          "action": "CREATE",
+          "explanation": "Created 2D triangle."
+        }
+      ],
+      "recentlyReferencedObjectIds": [
+        "e88ddc4e-0c0e-4ed1-886d-b0314da6b7a1"
+      ]
+    }
+  },
+  {
+    "id": "RUHI6P3-negative-0021",
+    "category": "negative",
+    "family": "impossible-triangle",
+    "partition": "development",
+    "passed": false,
+    "problems": [
+      "STATUS:Construct a triangle with sides 22, 6 and 29:success != invalid",
+      "STATE:Construct a triangle with sides 22, 6 and 29: unexpected mutation",
+      "COUNT:1 != 0"
+    ],
+    "elapsedMs": 1.8046999999933178,
+    "fixture": {
+      "id": "RUHI6P3-negative-0021",
+      "category": "negative",
+      "partition": "development",
+      "difficulty": "bounded",
+      "family": "impossible-triangle",
+      "mode": "graph2d",
+      "page": "/workspace/graph",
+      "initialScene": {
+        "setup": []
+      },
+      "turns": [
+        {
+          "text": "Construct a triangle with sides 22, 6 and 29",
+          "status": "invalid",
+          "nonmutation": true,
+          "notVerified": true
+        }
+      ],
+      "expected": {
+        "scene": {
+          "count": 0
+        },
+        "verification": "Independent numeric/coordinate fixture or explicit rejection policy; no universal numerical proof"
+      },
+      "provenance": "Seed 20261009. Authored grammar family with controlled numeric/workspace variants. Closed-form arithmetic and Euclidean coordinate oracles authored before execution. Not an unseen human benchmark."
+    },
+    "traces": [
+      {
+        "text": "Construct a triangle with sides 22, 6 and 29",
+        "status": "success",
+        "message": "Created 2D triangle.",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "38286553-9a8a-42f1-ac8e-f9ab0cf821e8",
+          "message": "Created 2D triangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "schemaVersion": 1,
+          "atomicity": "all-or-nothing",
+          "nodes": [
+            {
+              "id": "f784f3d8-43ff-4473-998f-fe7bec0e5296",
+              "action": "CREATE",
+              "subAction": "TRIANGLE",
+              "dependsOn": [],
+              "references": [
+                {
+                  "type": "triangle"
+                }
+              ],
+              "preconditions": [
+                "finite parameters",
+                "existing unambiguous targets",
+                "compatible dimensions"
+              ],
+              "output": "object"
+            }
+          ]
+        }
+      }
+    ],
+    "finalScene": {
+      "snapshotId": "4bfd27d9-c2cd-44e5-bdca-1c80a0c78f1e",
+      "objects": [
+        {
+          "id": "a2b9a054-c8f5-4b55-9df2-94f2bcfd48e5",
+          "type": "triangle",
+          "mode": "graph2d",
+          "position": [
+            22,
+            6
+          ],
+          "radius": 3,
+          "label": "T1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                22,
+                6
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 22,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "a2b9a054-c8f5-4b55-9df2-94f2bcfd48e5"
+          },
+          "vertices": [
+            [
+              19,
+              4.666666666666667
+            ],
+            [
+              25,
+              4.666666666666667
+            ],
+            [
+              22,
+              8.666666666666666
+            ]
+          ],
+          "creationOrder": 1
+        }
+      ],
+      "selectedIds": [],
+      "activeMode": "graph2d",
+      "responseDepth": "compact",
+      "activePagePath": "/workspace/graph",
+      "lastReferenced": "a2b9a054-c8f5-4b55-9df2-94f2bcfd48e5",
+      "lastModified": "a2b9a054-c8f5-4b55-9df2-94f2bcfd48e5",
+      "lastCreated": "a2b9a054-c8f5-4b55-9df2-94f2bcfd48e5",
+      "activeObjectIds": [
+        "a2b9a054-c8f5-4b55-9df2-94f2bcfd48e5"
+      ],
+      "previousCommands": [
+        {
+          "id": "f784f3d8-43ff-4473-998f-fe7bec0e5296",
+          "rawPhrase": "Construct a triangle with sides 22, 6 and 29",
+          "normalizedPhrase": "construct a triangle with sides 22, 6 and 29",
+          "detectedAction": "CONSTRUCT",
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "graph2d",
+          "parameters": {
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "depth": 3,
+            "sides": 22,
+            "points": [
+              [
+                22,
+                6
+              ]
+            ]
+          },
+          "confidence": {
+            "overall": 1,
+            "action": 1,
+            "subAction": 1,
+            "parameters": 1
+          },
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          },
+          "requiresExecution": true,
+          "target": {
+            "type": "triangle"
+          }
+        }
+      ],
+      "previousResults": [
+        {
+          "action": "CREATE",
+          "explanation": "Created 2D triangle."
+        }
+      ],
+      "recentlyReferencedObjectIds": [
+        "a2b9a054-c8f5-4b55-9df2-94f2bcfd48e5"
+      ]
+    }
+  },
+  {
+    "id": "RUHI6P3-negative-0028",
+    "category": "negative",
+    "family": "impossible-triangle",
+    "partition": "development",
+    "passed": false,
+    "problems": [
+      "STATUS:Construct a triangle with sides 29, 13 and 43:success != invalid",
+      "STATE:Construct a triangle with sides 29, 13 and 43: unexpected mutation",
+      "COUNT:1 != 0"
+    ],
+    "elapsedMs": 1.9354999999995925,
+    "fixture": {
+      "id": "RUHI6P3-negative-0028",
+      "category": "negative",
+      "partition": "development",
+      "difficulty": "bounded",
+      "family": "impossible-triangle",
+      "mode": "geometry2d",
+      "page": "/workspace/geometry",
+      "initialScene": {
+        "setup": []
+      },
+      "turns": [
+        {
+          "text": "Construct a triangle with sides 29, 13 and 43",
+          "status": "invalid",
+          "nonmutation": true,
+          "notVerified": true
+        }
+      ],
+      "expected": {
+        "scene": {
+          "count": 0
+        },
+        "verification": "Independent numeric/coordinate fixture or explicit rejection policy; no universal numerical proof"
+      },
+      "provenance": "Seed 20261009. Authored grammar family with controlled numeric/workspace variants. Closed-form arithmetic and Euclidean coordinate oracles authored before execution. Not an unseen human benchmark."
+    },
+    "traces": [
+      {
+        "text": "Construct a triangle with sides 29, 13 and 43",
+        "status": "success",
+        "message": "Created 2D triangle.",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "f24438d7-11e4-4029-8870-dc88cf4e2cf5",
+          "message": "Created 2D triangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "schemaVersion": 1,
+          "atomicity": "all-or-nothing",
+          "nodes": [
+            {
+              "id": "f3af46f8-a710-401d-865b-7c069294375b",
+              "action": "CREATE",
+              "subAction": "TRIANGLE",
+              "dependsOn": [],
+              "references": [
+                {
+                  "type": "triangle"
+                }
+              ],
+              "preconditions": [
+                "finite parameters",
+                "existing unambiguous targets",
+                "compatible dimensions"
+              ],
+              "output": "object"
+            }
+          ]
+        }
+      }
+    ],
+    "finalScene": {
+      "snapshotId": "aed2e849-63de-4b39-96a5-fabf0ea4debb",
+      "objects": [
+        {
+          "id": "fa4e1f2a-28cc-467f-9e39-120e1f628db9",
+          "type": "triangle",
+          "mode": "geometry2d",
+          "position": [
+            29,
+            13
+          ],
+          "radius": 3,
+          "label": "T1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                29,
+                13
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 29,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "fa4e1f2a-28cc-467f-9e39-120e1f628db9"
+          },
+          "vertices": [
+            [
+              26,
+              11.666666666666666
+            ],
+            [
+              32,
+              11.666666666666666
+            ],
+            [
+              29,
+              15.666666666666666
+            ]
+          ],
+          "creationOrder": 1
+        }
+      ],
+      "selectedIds": [],
+      "activeMode": "geometry2d",
+      "responseDepth": "compact",
+      "activePagePath": "/workspace/geometry",
+      "lastReferenced": "fa4e1f2a-28cc-467f-9e39-120e1f628db9",
+      "lastModified": "fa4e1f2a-28cc-467f-9e39-120e1f628db9",
+      "lastCreated": "fa4e1f2a-28cc-467f-9e39-120e1f628db9",
+      "activeObjectIds": [
+        "fa4e1f2a-28cc-467f-9e39-120e1f628db9"
+      ],
+      "previousCommands": [
+        {
+          "id": "f3af46f8-a710-401d-865b-7c069294375b",
+          "rawPhrase": "Construct a triangle with sides 29, 13 and 43",
+          "normalizedPhrase": "construct a triangle with sides 29, 13 and 43",
+          "detectedAction": "CONSTRUCT",
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "geometry2d",
+          "parameters": {
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "depth": 3,
+            "sides": 29,
+            "points": [
+              [
+                29,
+                13
+              ]
+            ]
+          },
+          "confidence": {
+            "overall": 1,
+            "action": 1,
+            "subAction": 1,
+            "parameters": 1
+          },
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          },
+          "requiresExecution": true,
+          "target": {
+            "type": "triangle"
+          }
+        }
+      ],
+      "previousResults": [
+        {
+          "action": "CREATE",
+          "explanation": "Created 2D triangle."
+        }
+      ],
+      "recentlyReferencedObjectIds": [
+        "fa4e1f2a-28cc-467f-9e39-120e1f628db9"
+      ]
+    }
+  },
+  {
+    "id": "RUHI6P3-negative-0029",
+    "category": "negative",
+    "family": "impossible-triangle",
+    "partition": "development",
+    "passed": false,
+    "problems": [
+      "STATUS:Construct a triangle with sides 30, 14 and 45:success != invalid",
+      "STATE:Construct a triangle with sides 30, 14 and 45: unexpected mutation",
+      "COUNT:1 != 0"
+    ],
+    "elapsedMs": 1.593300000000454,
+    "fixture": {
+      "id": "RUHI6P3-negative-0029",
+      "category": "negative",
+      "partition": "development",
+      "difficulty": "bounded",
+      "family": "impossible-triangle",
+      "mode": "graph2d",
+      "page": "/workspace/graph",
+      "initialScene": {
+        "setup": []
+      },
+      "turns": [
+        {
+          "text": "Construct a triangle with sides 30, 14 and 45",
+          "status": "invalid",
+          "nonmutation": true,
+          "notVerified": true
+        }
+      ],
+      "expected": {
+        "scene": {
+          "count": 0
+        },
+        "verification": "Independent numeric/coordinate fixture or explicit rejection policy; no universal numerical proof"
+      },
+      "provenance": "Seed 20261009. Authored grammar family with controlled numeric/workspace variants. Closed-form arithmetic and Euclidean coordinate oracles authored before execution. Not an unseen human benchmark."
+    },
+    "traces": [
+      {
+        "text": "Construct a triangle with sides 30, 14 and 45",
+        "status": "success",
+        "message": "Created 2D triangle.",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "beb1020c-6760-407f-a9af-4fa4971141f6",
+          "message": "Created 2D triangle.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "plan": {
+          "schemaVersion": 1,
+          "atomicity": "all-or-nothing",
+          "nodes": [
+            {
+              "id": "ae48aa77-5841-4e78-a4c1-73486404aedc",
+              "action": "CREATE",
+              "subAction": "TRIANGLE",
+              "dependsOn": [],
+              "references": [
+                {
+                  "type": "triangle"
+                }
+              ],
+              "preconditions": [
+                "finite parameters",
+                "existing unambiguous targets",
+                "compatible dimensions"
+              ],
+              "output": "object"
+            }
+          ]
+        }
+      }
+    ],
+    "finalScene": {
+      "snapshotId": "2e577de9-3a53-4464-b618-f20f7c3bb8e5",
+      "objects": [
+        {
+          "id": "b9af6745-565b-4d3b-965c-47656c7686ad",
+          "type": "triangle",
+          "mode": "graph2d",
+          "position": [
+            30,
+            14
+          ],
+          "radius": 3,
+          "label": "T1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "triangle",
+            "dimension": "2d",
+            "points": [
+              [
+                30,
+                14
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 30,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "T1",
+            "objectId": "b9af6745-565b-4d3b-965c-47656c7686ad"
+          },
+          "vertices": [
+            [
+              27,
+              12.666666666666666
+            ],
+            [
+              33,
+              12.666666666666666
+            ],
+            [
+              30,
+              16.666666666666668
+            ]
+          ],
+          "creationOrder": 1
+        }
+      ],
+      "selectedIds": [],
+      "activeMode": "graph2d",
+      "responseDepth": "compact",
+      "activePagePath": "/workspace/graph",
+      "lastReferenced": "b9af6745-565b-4d3b-965c-47656c7686ad",
+      "lastModified": "b9af6745-565b-4d3b-965c-47656c7686ad",
+      "lastCreated": "b9af6745-565b-4d3b-965c-47656c7686ad",
+      "activeObjectIds": [
+        "b9af6745-565b-4d3b-965c-47656c7686ad"
+      ],
+      "previousCommands": [
+        {
+          "id": "ae48aa77-5841-4e78-a4c1-73486404aedc",
+          "rawPhrase": "Construct a triangle with sides 30, 14 and 45",
+          "normalizedPhrase": "construct a triangle with sides 30, 14 and 45",
+          "detectedAction": "CONSTRUCT",
+          "action": "CREATE",
+          "subAction": "TRIANGLE",
+          "mode": "graph2d",
+          "parameters": {
+            "width": 6,
+            "height": 4,
+            "radius": 3,
+            "depth": 3,
+            "sides": 30,
+            "points": [
+              [
+                30,
+                14
+              ]
+            ]
+          },
+          "confidence": {
+            "overall": 1,
+            "action": 1,
+            "subAction": 1,
+            "parameters": 1
+          },
+          "source": {
+            "action": "rule",
+            "subAction": "rule"
+          },
+          "requiresExecution": true,
+          "target": {
+            "type": "triangle"
+          }
+        }
+      ],
+      "previousResults": [
+        {
+          "action": "CREATE",
+          "explanation": "Created 2D triangle."
+        }
+      ],
+      "recentlyReferencedObjectIds": [
+        "b9af6745-565b-4d3b-965c-47656c7686ad"
+      ]
+    }
+  }
+]

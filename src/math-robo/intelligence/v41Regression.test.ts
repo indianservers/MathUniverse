@@ -1,5 +1,6 @@
 import {describe,it,expect,afterAll} from 'vitest';
-import {writeFileSync,mkdirSync} from 'node:fs';
+import {mkdirSync} from 'node:fs';
+import {writeTestReport as writeFileSync} from '../testReport';
 import {SemanticEngine} from './semanticEngine';
 import {adversarialCorpus} from './adversarialCorpus';
 import {geometryState} from './resultVerifier';

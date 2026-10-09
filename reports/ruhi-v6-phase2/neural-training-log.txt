@@ -1,0 +1,6 @@
+
+============================
+Hi, looks like you are running TensorFlow.js in Node.js. To speed things up dramatically, install our node backend, visit https://github.com/tensorflow/tfjs-node for more details. 
+============================
+candidate validation 32 0.47058823529411764
+candidate validation 64 0.4641544117647059

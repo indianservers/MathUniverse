@@ -8,3500 +8,3500 @@
       "category": "arithmetic-algebra",
       "case": 0,
       "status": "verified_exact",
-      "elapsedMs": 3.6288999999999874,
+      "elapsedMs": 10.79589999999996,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 1,
       "status": "verified_exact",
-      "elapsedMs": 0.3399000000000001,
+      "elapsedMs": 0.539600000000064,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 2,
       "status": "verified_with_assumptions",
-      "elapsedMs": 77.0068,
+      "elapsedMs": 238.4829000000001,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 3,
       "status": "verified_exact",
-      "elapsedMs": 1.1689999999999827,
+      "elapsedMs": 2.2304000000000315,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 4,
       "status": "verified_numerical",
-      "elapsedMs": 0.16440000000000055,
+      "elapsedMs": 0.36970000000007985,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 5,
       "status": "verified_exact",
-      "elapsedMs": 0.16859999999996944,
+      "elapsedMs": 2.917599999999993,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 6,
       "status": "verified_exact",
-      "elapsedMs": 0.07200000000000273,
+      "elapsedMs": 0.16390000000001237,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 7,
       "status": "verified_with_assumptions",
-      "elapsedMs": 1.2399000000000342,
+      "elapsedMs": 2.6554000000000997,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 8,
       "status": "verified_exact",
-      "elapsedMs": 0.7757000000000289,
+      "elapsedMs": 1.7402999999999338,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 9,
       "status": "verified_numerical",
-      "elapsedMs": 0.22380000000003974,
+      "elapsedMs": 0.5512999999999693,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 10,
       "status": "verified_exact",
-      "elapsedMs": 0.172300000000007,
+      "elapsedMs": 0.4817000000000462,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 11,
       "status": "verified_exact",
-      "elapsedMs": 0.07319999999998572,
+      "elapsedMs": 0.22450000000003456,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 12,
       "status": "verified_with_assumptions",
-      "elapsedMs": 1.0828000000000202,
+      "elapsedMs": 2.078200000000038,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 13,
       "status": "verified_exact",
-      "elapsedMs": 0.7789999999999964,
+      "elapsedMs": 1.5498999999999796,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 14,
       "status": "verified_numerical",
-      "elapsedMs": 0.13129999999995334,
+      "elapsedMs": 0.3483999999999696,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 15,
       "status": "verified_exact",
-      "elapsedMs": 0.192799999999977,
+      "elapsedMs": 3.7099000000000615,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 16,
       "status": "verified_exact",
-      "elapsedMs": 0.11089999999995825,
+      "elapsedMs": 0.18719999999996162,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 17,
       "status": "verified_with_assumptions",
-      "elapsedMs": 0.9187000000000012,
+      "elapsedMs": 3.6824000000000296,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 18,
       "status": "verified_exact",
-      "elapsedMs": 0.6791000000000054,
+      "elapsedMs": 1.328800000000001,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 19,
       "status": "verified_numerical",
-      "elapsedMs": 0.09620000000001028,
+      "elapsedMs": 0.20799999999997,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 20,
       "status": "verified_exact",
-      "elapsedMs": 0.1308999999999969,
+      "elapsedMs": 1.1386999999999716,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 21,
       "status": "verified_exact",
-      "elapsedMs": 0.05299999999999727,
+      "elapsedMs": 0.14020000000004984,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 22,
       "status": "verified_with_assumptions",
-      "elapsedMs": 1.3099000000000274,
+      "elapsedMs": 2.634800000000041,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 23,
       "status": "verified_exact",
-      "elapsedMs": 0.6289999999999623,
+      "elapsedMs": 1.3219000000000278,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 24,
       "status": "verified_numerical",
-      "elapsedMs": 0.0917999999999779,
+      "elapsedMs": 0.240099999999984,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 25,
       "status": "verified_exact",
-      "elapsedMs": 0.11539999999996553,
+      "elapsedMs": 0.6251999999999498,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 26,
       "status": "verified_exact",
-      "elapsedMs": 0.03710000000000946,
+      "elapsedMs": 0.11000000000001364,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 27,
       "status": "verified_with_assumptions",
-      "elapsedMs": 0.8799999999999955,
+      "elapsedMs": 10.771100000000047,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 28,
       "status": "verified_exact",
-      "elapsedMs": 0.5949999999999704,
+      "elapsedMs": 1.7758999999999787,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 29,
       "status": "verified_numerical",
-      "elapsedMs": 0.11349999999998772,
+      "elapsedMs": 0.24010000000009768,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 30,
       "status": "verified_exact",
-      "elapsedMs": 0.12259999999997717,
+      "elapsedMs": 0.2946000000000595,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 31,
       "status": "verified_exact",
-      "elapsedMs": 0.043000000000006366,
+      "elapsedMs": 0.12450000000001182,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 32,
       "status": "verified_with_assumptions",
-      "elapsedMs": 0.8736000000000104,
+      "elapsedMs": 2.7572000000000116,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 33,
       "status": "verified_exact",
-      "elapsedMs": 0.7653999999999996,
+      "elapsedMs": 3.5359999999999445,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 34,
       "status": "verified_numerical",
-      "elapsedMs": 0.1409999999999627,
+      "elapsedMs": 0.2516999999999143,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 35,
       "status": "verified_exact",
-      "elapsedMs": 0.14959999999996398,
+      "elapsedMs": 0.28379999999992833,
       "passed": true
     },
     {
       "category": "arithmetic-algebra",
       "case": 36,
       "status": "verified_exact",
-      "elapsedMs": 0.05269999999995889,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 37,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 1.056600000000003,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 38,
-      "status": "verified_exact",
-      "elapsedMs": 0.6687000000000012,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 39,
-      "status": "verified_numerical",
-      "elapsedMs": 0.08839999999997872,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 40,
-      "status": "verified_exact",
-      "elapsedMs": 0.11219999999997299,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 41,
-      "status": "verified_exact",
-      "elapsedMs": 0.04330000000004475,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 42,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.8372999999999706,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 43,
-      "status": "verified_exact",
-      "elapsedMs": 0.5269000000000119,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 44,
-      "status": "verified_numerical",
-      "elapsedMs": 0.08499999999997954,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 45,
-      "status": "verified_exact",
-      "elapsedMs": 0.11730000000000018,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 46,
-      "status": "verified_exact",
-      "elapsedMs": 0.04529999999999745,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 47,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 2.952200000000005,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 48,
-      "status": "verified_exact",
-      "elapsedMs": 0.6685999999999694,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 49,
-      "status": "verified_numerical",
-      "elapsedMs": 0.08670000000000755,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 50,
-      "status": "verified_exact",
-      "elapsedMs": 0.11579999999997881,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 51,
-      "status": "verified_exact",
-      "elapsedMs": 0.03969999999998208,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 52,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.8203000000000316,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 53,
-      "status": "verified_exact",
-      "elapsedMs": 0.5529000000000224,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 54,
-      "status": "verified_numerical",
-      "elapsedMs": 0.07629999999994652,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 55,
-      "status": "verified_exact",
-      "elapsedMs": 0.11700000000001864,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 56,
-      "status": "verified_exact",
-      "elapsedMs": 0.03829999999999245,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 57,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.8133000000000266,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 58,
-      "status": "verified_exact",
-      "elapsedMs": 0.6485000000000127,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 59,
-      "status": "verified_numerical",
-      "elapsedMs": 0.14560000000000173,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 60,
-      "status": "verified_exact",
-      "elapsedMs": 0.15870000000001028,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 61,
-      "status": "verified_exact",
-      "elapsedMs": 0.0544999999999618,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 62,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 1.0009000000000015,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 63,
-      "status": "verified_exact",
-      "elapsedMs": 0.5513000000000261,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 64,
-      "status": "verified_numerical",
-      "elapsedMs": 0.08339999999998327,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 65,
-      "status": "verified_exact",
-      "elapsedMs": 0.1058999999999628,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 66,
-      "status": "verified_exact",
-      "elapsedMs": 0.036000000000001364,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 67,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 1.331799999999987,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 68,
-      "status": "verified_exact",
-      "elapsedMs": 0.5747000000000071,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 69,
-      "status": "verified_numerical",
-      "elapsedMs": 0.10849999999999227,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 70,
-      "status": "verified_exact",
-      "elapsedMs": 0.12659999999999627,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 71,
-      "status": "verified_exact",
-      "elapsedMs": 0.041400000000010095,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 72,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.8473999999999933,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 73,
-      "status": "verified_exact",
-      "elapsedMs": 1.0258000000000038,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 74,
-      "status": "verified_numerical",
-      "elapsedMs": 0.08150000000000546,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 75,
-      "status": "verified_exact",
-      "elapsedMs": 0.10820000000001073,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 76,
-      "status": "verified_exact",
-      "elapsedMs": 0.038000000000010914,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 77,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.7035999999999945,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 78,
-      "status": "verified_exact",
-      "elapsedMs": 0.516399999999976,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 79,
-      "status": "verified_numerical",
-      "elapsedMs": 0.07920000000001437,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 80,
-      "status": "verified_exact",
-      "elapsedMs": 0.10199999999997544,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 81,
-      "status": "verified_exact",
-      "elapsedMs": 0.03969999999998208,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 82,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.7007999999999583,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 83,
-      "status": "verified_exact",
-      "elapsedMs": 0.5278999999999883,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 84,
-      "status": "verified_numerical",
-      "elapsedMs": 0.0777999999999679,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 85,
-      "status": "verified_exact",
-      "elapsedMs": 0.10430000000002337,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 86,
-      "status": "verified_exact",
-      "elapsedMs": 0.03890000000001237,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 87,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.8591000000000122,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 88,
-      "status": "verified_exact",
-      "elapsedMs": 0.5528999999999655,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 89,
-      "status": "verified_numerical",
-      "elapsedMs": 0.09019999999998163,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 90,
-      "status": "verified_exact",
-      "elapsedMs": 0.10930000000001883,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 91,
-      "status": "verified_exact",
-      "elapsedMs": 0.03710000000000946,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 92,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.6663000000000352,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 93,
-      "status": "verified_exact",
-      "elapsedMs": 0.4790999999999599,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 94,
-      "status": "verified_numerical",
-      "elapsedMs": 0.0684999999999718,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 95,
-      "status": "verified_exact",
-      "elapsedMs": 0.10629999999997608,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 96,
-      "status": "verified_exact",
-      "elapsedMs": 0.04450000000002774,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 97,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.6499999999999773,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 98,
-      "status": "verified_exact",
-      "elapsedMs": 0.4396000000000413,
-      "passed": true
-    },
-    {
-      "category": "arithmetic-algebra",
-      "case": 99,
-      "status": "verified_numerical",
-      "elapsedMs": 0.1039000000000101,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 0,
-      "status": "verified_numerical",
-      "elapsedMs": 50.726,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 1,
-      "status": "verified_numerical",
-      "elapsedMs": 0.08440000000001646,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 2,
-      "status": "verified_numerical",
-      "elapsedMs": 0.06689999999997553,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 3,
-      "status": "verified_numerical",
-      "elapsedMs": 0.08439999999995962,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 4,
-      "status": "verified_numerical",
-      "elapsedMs": 0.05639999999999645,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 5,
-      "status": "verified_numerical",
-      "elapsedMs": 0.02559999999999718,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 6,
-      "status": "verified_numerical",
-      "elapsedMs": 0.02590000000003556,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 7,
-      "status": "verified_numerical",
-      "elapsedMs": 0.022600000000011278,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 8,
-      "status": "verified_numerical",
-      "elapsedMs": 0.036000000000001364,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 9,
-      "status": "verified_numerical",
-      "elapsedMs": 0.09209999999995944,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 10,
-      "status": "verified_numerical",
-      "elapsedMs": 0.02719999999999345,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 11,
-      "status": "verified_numerical",
-      "elapsedMs": 0.013300000000015189,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 12,
-      "status": "verified_numerical",
-      "elapsedMs": 0.03289999999998372,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 13,
-      "status": "verified_numerical",
-      "elapsedMs": 0.018999999999948614,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 14,
-      "status": "verified_numerical",
-      "elapsedMs": 0.013500000000021828,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 15,
-      "status": "verified_numerical",
-      "elapsedMs": 0.013500000000021828,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 16,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01089999999999236,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 17,
-      "status": "verified_numerical",
-      "elapsedMs": 0.03640000000001464,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 18,
-      "status": "verified_numerical",
-      "elapsedMs": 0.029899999999997817,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 19,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01779999999996562,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 20,
-      "status": "verified_numerical",
-      "elapsedMs": 0.012999999999976808,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 21,
-      "status": "verified_numerical",
-      "elapsedMs": 0.013199999999983447,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 22,
-      "status": "verified_numerical",
-      "elapsedMs": 0.02539999999999054,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 23,
-      "status": "verified_numerical",
-      "elapsedMs": 0.013900000000035106,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 24,
-      "status": "verified_numerical",
-      "elapsedMs": 0.015800000000012915,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 25,
-      "status": "verified_numerical",
-      "elapsedMs": 0.012000000000000455,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 26,
-      "status": "verified_numerical",
-      "elapsedMs": 0.012100000000032196,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 27,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01490000000001146,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 28,
-      "status": "verified_numerical",
-      "elapsedMs": 0.015899999999987813,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 29,
-      "status": "verified_numerical",
-      "elapsedMs": 0.012999999999976808,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 30,
-      "status": "verified_numerical",
-      "elapsedMs": 0.014100000000041746,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 31,
-      "status": "verified_numerical",
-      "elapsedMs": 0.010600000000010823,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 32,
-      "status": "verified_numerical",
-      "elapsedMs": 0.04550000000000409,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 33,
-      "status": "verified_numerical",
-      "elapsedMs": 0.012999999999976808,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 34,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01140000000003738,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 35,
-      "status": "verified_numerical",
-      "elapsedMs": 0.015800000000012915,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 36,
-      "status": "verified_numerical",
-      "elapsedMs": 0.009899999999959164,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 37,
-      "status": "verified_numerical",
-      "elapsedMs": 0.009899999999959164,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 38,
-      "status": "verified_numerical",
-      "elapsedMs": 0.010499999999979082,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 39,
-      "status": "verified_numerical",
-      "elapsedMs": 0.022299999999972897,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 40,
-      "status": "verified_numerical",
-      "elapsedMs": 0.017899999999997362,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 41,
-      "status": "verified_numerical",
-      "elapsedMs": 0.014400000000023283,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 42,
-      "status": "verified_numerical",
-      "elapsedMs": 0.013299999999958345,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 43,
-      "status": "verified_numerical",
-      "elapsedMs": 0.012099999999975353,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 44,
-      "status": "verified_numerical",
-      "elapsedMs": 0.014000000000010004,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 45,
-      "status": "verified_numerical",
-      "elapsedMs": 0.012100000000032196,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 46,
-      "status": "verified_numerical",
-      "elapsedMs": 0.012500000000045475,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 47,
-      "status": "verified_numerical",
-      "elapsedMs": 0.010199999999997544,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 48,
-      "status": "verified_numerical",
-      "elapsedMs": 0.015199999999992997,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 49,
-      "status": "verified_numerical",
-      "elapsedMs": 0.00940000000002783,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 50,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008800000000007913,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 51,
-      "status": "verified_numerical",
-      "elapsedMs": 0.012400000000013733,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 52,
-      "status": "verified_numerical",
-      "elapsedMs": 0.011000000000024102,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 53,
-      "status": "verified_numerical",
-      "elapsedMs": 0.009200000000021191,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 54,
-      "status": "verified_numerical",
-      "elapsedMs": 0.010300000000029286,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 55,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01290000000000191,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 56,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008800000000007913,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 57,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01290000000000191,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 58,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01310000000000855,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 59,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008699999999976171,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 60,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008299999999962893,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 61,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008699999999976171,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 62,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008699999999976171,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 63,
-      "status": "verified_numerical",
-      "elapsedMs": 0.012800000000027012,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 64,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008999999999957708,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 65,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01259999999996353,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 66,
-      "status": "verified_numerical",
-      "elapsedMs": 0.00909999999998945,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 67,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008499999999969532,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 68,
-      "status": "verified_numerical",
-      "elapsedMs": 0.015699999999981173,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 69,
-      "status": "verified_numerical",
-      "elapsedMs": 0.011199999999973898,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 70,
-      "status": "verified_numerical",
-      "elapsedMs": 0.014099999999984902,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 71,
-      "status": "verified_numerical",
-      "elapsedMs": 0.0252999999999588,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 72,
-      "status": "verified_numerical",
-      "elapsedMs": 0.013300000000015189,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 73,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008900000000039654,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 74,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01290000000000191,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 75,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01089999999999236,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 76,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008699999999976171,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 77,
-      "status": "verified_numerical",
-      "elapsedMs": 0.00889999999998281,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 78,
-      "status": "verified_numerical",
-      "elapsedMs": 0.00909999999998945,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 79,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008399999999994634,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 80,
-      "status": "verified_numerical",
-      "elapsedMs": 0.009500000000002728,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 81,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008700000000033015,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 82,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01160000000004402,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 83,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008800000000007913,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 84,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008800000000007913,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 85,
-      "status": "verified_numerical",
-      "elapsedMs": 0.05129999999996926,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 86,
-      "status": "verified_numerical",
-      "elapsedMs": 0.021400000000028285,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 87,
-      "status": "verified_numerical",
-      "elapsedMs": 0.014999999999986358,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 88,
-      "status": "verified_numerical",
-      "elapsedMs": 0.011899999999968713,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 89,
-      "status": "verified_numerical",
-      "elapsedMs": 0.011399999999980537,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 90,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008500000000026375,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 91,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008000000000038199,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 92,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008600000000001273,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 93,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008600000000001273,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 94,
-      "status": "verified_numerical",
-      "elapsedMs": 0.03129999999998745,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 95,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01089999999999236,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 96,
-      "status": "verified_numerical",
-      "elapsedMs": 0.007900000000006457,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 97,
-      "status": "verified_numerical",
-      "elapsedMs": 0.009200000000021191,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 98,
-      "status": "verified_numerical",
-      "elapsedMs": 0.010400000000004184,
-      "passed": true
-    },
-    {
-      "category": "geometry",
-      "case": 99,
-      "status": "verified_numerical",
-      "elapsedMs": 0.010099999999965803,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 0,
-      "status": "verified_exact",
-      "elapsedMs": 4.04140000000001,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 1,
-      "status": "verified_exact",
-      "elapsedMs": 2.4891000000000076,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 2,
-      "status": "verified_numerical",
-      "elapsedMs": 108.29830000000004,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 3,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.594600000000014,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 4,
-      "status": "verified_numerical",
-      "elapsedMs": 0.358600000000024,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 5,
-      "status": "verified_exact",
-      "elapsedMs": 1.2817999999999756,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 6,
-      "status": "verified_exact",
-      "elapsedMs": 0.8543999999999414,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 7,
-      "status": "verified_numerical",
-      "elapsedMs": 0.11210000000005493,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 8,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.22860000000002856,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 9,
-      "status": "verified_numerical",
-      "elapsedMs": 0.14049999999997453,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 10,
-      "status": "verified_exact",
-      "elapsedMs": 1.1064999999999827,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 11,
-      "status": "verified_exact",
-      "elapsedMs": 0.7901000000000522,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 12,
-      "status": "verified_numerical",
-      "elapsedMs": 0.12750000000005457,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 13,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.12350000000003547,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 14,
-      "status": "verified_numerical",
-      "elapsedMs": 0.15059999999994034,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 15,
-      "status": "verified_exact",
-      "elapsedMs": 0.9740000000000464,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 16,
-      "status": "verified_exact",
-      "elapsedMs": 0.8335000000000719,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 17,
-      "status": "verified_numerical",
-      "elapsedMs": 0.14279999999996562,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 18,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.13679999999999382,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 19,
-      "status": "verified_numerical",
-      "elapsedMs": 0.16020000000003165,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 20,
-      "status": "verified_exact",
-      "elapsedMs": 1.0564000000000533,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 21,
-      "status": "verified_exact",
-      "elapsedMs": 0.7396999999999707,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 22,
-      "status": "verified_numerical",
-      "elapsedMs": 0.11390000000005784,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 23,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.1675000000000182,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 24,
-      "status": "verified_numerical",
-      "elapsedMs": 0.143100000000004,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 25,
-      "status": "verified_exact",
-      "elapsedMs": 0.9722000000000435,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 26,
-      "status": "verified_exact",
-      "elapsedMs": 0.732900000000086,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 27,
-      "status": "verified_numerical",
-      "elapsedMs": 0.13239999999996144,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 28,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.10669999999993252,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 29,
-      "status": "verified_numerical",
-      "elapsedMs": 0.13170000000002346,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 30,
-      "status": "verified_exact",
-      "elapsedMs": 1.0908000000000584,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 31,
-      "status": "verified_exact",
-      "elapsedMs": 0.6595000000000937,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 32,
-      "status": "verified_numerical",
-      "elapsedMs": 0.11869999999998981,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 33,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.14279999999996562,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 34,
-      "status": "verified_numerical",
-      "elapsedMs": 0.17509999999992942,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 35,
-      "status": "verified_exact",
-      "elapsedMs": 1.2115999999999758,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 36,
-      "status": "verified_exact",
-      "elapsedMs": 0.6730999999999767,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 37,
-      "status": "verified_numerical",
-      "elapsedMs": 0.12889999999993051,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 38,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.17649999999991905,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 39,
-      "status": "verified_numerical",
-      "elapsedMs": 0.14460000000008222,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 40,
-      "status": "verified_exact",
-      "elapsedMs": 0.9202999999999975,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 41,
-      "status": "verified_exact",
-      "elapsedMs": 0.6643000000000256,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 42,
-      "status": "verified_numerical",
-      "elapsedMs": 0.10659999999995762,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 43,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.13589999999999236,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 44,
-      "status": "verified_numerical",
-      "elapsedMs": 0.12860000000000582,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 45,
-      "status": "verified_exact",
-      "elapsedMs": 0.935100000000034,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 46,
-      "status": "verified_exact",
-      "elapsedMs": 0.7955000000000609,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 47,
-      "status": "verified_numerical",
-      "elapsedMs": 0.11760000000003856,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 48,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.16430000000002565,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 49,
-      "status": "verified_numerical",
-      "elapsedMs": 0.1413000000000011,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 50,
-      "status": "verified_exact",
-      "elapsedMs": 1.0767999999999347,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 51,
-      "status": "verified_exact",
-      "elapsedMs": 0.8663000000000238,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 52,
-      "status": "verified_numerical",
-      "elapsedMs": 0.13639999999998054,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 53,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.1993000000001075,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 54,
-      "status": "verified_numerical",
-      "elapsedMs": 0.13879999999994652,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 55,
-      "status": "verified_exact",
-      "elapsedMs": 1.0101000000000795,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 56,
-      "status": "verified_exact",
-      "elapsedMs": 0.6136999999999944,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 57,
-      "status": "verified_numerical",
-      "elapsedMs": 0.09440000000006421,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 58,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.1070999999999458,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 59,
-      "status": "verified_numerical",
-      "elapsedMs": 0.11990000000002965,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 60,
-      "status": "verified_exact",
-      "elapsedMs": 0.8808999999999969,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 61,
-      "status": "verified_exact",
-      "elapsedMs": 0.6182999999999765,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 62,
-      "status": "verified_numerical",
-      "elapsedMs": 0.09749999999996817,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 63,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.13840000000004693,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 64,
-      "status": "verified_numerical",
-      "elapsedMs": 0.13239999999996144,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 65,
-      "status": "verified_exact",
-      "elapsedMs": 0.8452000000000908,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 66,
-      "status": "verified_exact",
-      "elapsedMs": 0.828899999999976,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 67,
-      "status": "verified_numerical",
-      "elapsedMs": 0.13149999999995998,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 68,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.41410000000007585,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 69,
-      "status": "verified_numerical",
-      "elapsedMs": 0.1651000000000522,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 70,
-      "status": "verified_exact",
-      "elapsedMs": 0.9743000000000848,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 71,
-      "status": "verified_exact",
-      "elapsedMs": 0.7209000000000287,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 72,
-      "status": "verified_numerical",
-      "elapsedMs": 0.1714000000000624,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 73,
-      "status": "verified_with_assumptions",
-      "elapsedMs": 0.10389999999995325,
-      "passed": true
-    },
-    {
-      "category": "trig-calculus",
-      "case": 74,
-      "status": "verified_numerical",
-      "elapsedMs": 0.12220000000002074,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 0,
-      "status": "verified_numerical",
-      "elapsedMs": 0.07370000000003074,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 1,
-      "status": "verified_numerical",
       "elapsedMs": 0.08749999999997726,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "arithmetic-algebra",
+      "case": 37,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 3.390700000000038,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 38,
+      "status": "verified_exact",
+      "elapsedMs": 2.378500000000031,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 39,
+      "status": "verified_numerical",
+      "elapsedMs": 0.23689999999999145,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 40,
+      "status": "verified_exact",
+      "elapsedMs": 0.25139999999998963,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 41,
+      "status": "verified_exact",
+      "elapsedMs": 0.10599999999999454,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 42,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 3.2113999999999123,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 43,
+      "status": "verified_exact",
+      "elapsedMs": 1.9582000000000335,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 44,
+      "status": "verified_numerical",
+      "elapsedMs": 0.2477999999999838,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 45,
+      "status": "verified_exact",
+      "elapsedMs": 0.3143000000000029,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 46,
+      "status": "verified_exact",
+      "elapsedMs": 0.1268000000000029,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 47,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 2.636299999999892,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 48,
+      "status": "verified_exact",
+      "elapsedMs": 4.732000000000085,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 49,
+      "status": "verified_numerical",
+      "elapsedMs": 0.2798000000000229,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 50,
+      "status": "verified_exact",
+      "elapsedMs": 0.37249999999994543,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 51,
+      "status": "verified_exact",
+      "elapsedMs": 0.16869999999994434,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 52,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 2.5873999999998887,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 53,
+      "status": "verified_exact",
+      "elapsedMs": 1.6178999999999633,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 54,
+      "status": "verified_numerical",
+      "elapsedMs": 0.20409999999992579,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 55,
+      "status": "verified_exact",
+      "elapsedMs": 0.3852999999999156,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 56,
+      "status": "verified_exact",
+      "elapsedMs": 0.18079999999986285,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 57,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 3.715599999999995,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 58,
+      "status": "verified_exact",
+      "elapsedMs": 7.226499999999987,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 59,
+      "status": "verified_numerical",
+      "elapsedMs": 0.2395000000001346,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 60,
+      "status": "verified_exact",
+      "elapsedMs": 0.41830000000004475,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 61,
+      "status": "verified_exact",
+      "elapsedMs": 0.10280000000011569,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 62,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 4.14650000000006,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 63,
+      "status": "verified_exact",
+      "elapsedMs": 0.7456999999999425,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 64,
+      "status": "verified_numerical",
+      "elapsedMs": 0.14450000000010732,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 65,
+      "status": "verified_exact",
+      "elapsedMs": 0.1871000000001004,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 66,
+      "status": "verified_exact",
+      "elapsedMs": 0.056100000000014916,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 67,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 1.1282000000001062,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 68,
+      "status": "verified_exact",
+      "elapsedMs": 0.7974000000001524,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 69,
+      "status": "verified_numerical",
+      "elapsedMs": 0.16390000000001237,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 70,
+      "status": "verified_exact",
+      "elapsedMs": 0.358600000000024,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 71,
+      "status": "verified_exact",
+      "elapsedMs": 0.5443000000000211,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 72,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 1.4967999999998938,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 73,
+      "status": "verified_exact",
+      "elapsedMs": 1.5205000000000837,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 74,
+      "status": "verified_numerical",
+      "elapsedMs": 0.26520000000004984,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 75,
+      "status": "verified_exact",
+      "elapsedMs": 0.4699000000000524,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 76,
+      "status": "verified_exact",
+      "elapsedMs": 0.23650000000020555,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 77,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 2.6902000000000044,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 78,
+      "status": "verified_exact",
+      "elapsedMs": 2.130300000000034,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 79,
+      "status": "verified_numerical",
+      "elapsedMs": 0.1631999999999607,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 80,
+      "status": "verified_exact",
+      "elapsedMs": 0.33779999999978827,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 81,
+      "status": "verified_exact",
+      "elapsedMs": 0.11599999999998545,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 82,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 6.115199999999959,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 83,
+      "status": "verified_exact",
+      "elapsedMs": 1.3365000000001146,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 84,
+      "status": "verified_numerical",
+      "elapsedMs": 0.2717000000000098,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 85,
+      "status": "verified_exact",
+      "elapsedMs": 0.3467000000000553,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 86,
+      "status": "verified_exact",
+      "elapsedMs": 0.08570000000008804,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 87,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 7.627799999999979,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 88,
+      "status": "verified_exact",
+      "elapsedMs": 2.858399999999847,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 89,
+      "status": "verified_numerical",
+      "elapsedMs": 0.20279999999979736,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 90,
+      "status": "verified_exact",
+      "elapsedMs": 0.34520000000020445,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 91,
+      "status": "verified_exact",
+      "elapsedMs": 0.1790000000000873,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 92,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 1.5502000000001317,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 93,
+      "status": "verified_exact",
+      "elapsedMs": 1.4914000000001124,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 94,
+      "status": "verified_numerical",
+      "elapsedMs": 0.1348000000000411,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 95,
+      "status": "verified_exact",
+      "elapsedMs": 0.2197000000001026,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 96,
+      "status": "verified_exact",
+      "elapsedMs": 0.06580000000008113,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 97,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 1.4839999999999236,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 98,
+      "status": "verified_exact",
+      "elapsedMs": 1.0136999999999716,
+      "passed": true
+    },
+    {
+      "category": "arithmetic-algebra",
+      "case": 99,
+      "status": "verified_numerical",
+      "elapsedMs": 0.2314000000001215,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 0,
+      "status": "verified_numerical",
+      "elapsedMs": 50.43809999999985,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 1,
+      "status": "verified_numerical",
+      "elapsedMs": 0.1535999999998694,
+      "passed": true
+    },
+    {
+      "category": "geometry",
       "case": 2,
       "status": "verified_numerical",
-      "elapsedMs": 0.8387000000000171,
+      "elapsedMs": 0.1251999999999498,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "geometry",
       "case": 3,
       "status": "verified_numerical",
-      "elapsedMs": 0.08999999999991815,
+      "elapsedMs": 0.1428000000000793,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "geometry",
       "case": 4,
       "status": "verified_numerical",
-      "elapsedMs": 0.29539999999997235,
+      "elapsedMs": 0.10550000000012005,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "geometry",
       "case": 5,
+      "status": "verified_numerical",
+      "elapsedMs": 0.06099999999992178,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 6,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03520000000003165,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 7,
+      "status": "verified_numerical",
+      "elapsedMs": 0.0340000000001055,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 8,
+      "status": "verified_numerical",
+      "elapsedMs": 0.0726999999999407,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 9,
+      "status": "verified_numerical",
+      "elapsedMs": 0.06769999999983156,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 10,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03370000000018081,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 11,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03230000000007749,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 12,
+      "status": "verified_numerical",
+      "elapsedMs": 0.06440000000020518,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 13,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03890000000001237,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 14,
+      "status": "verified_numerical",
+      "elapsedMs": 0.031400000000076034,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 15,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03089999999997417,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 16,
+      "status": "verified_numerical",
+      "elapsedMs": 0.023500000000012733,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 17,
+      "status": "verified_numerical",
+      "elapsedMs": 0.025599999999940337,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 18,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03160000000002583,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 19,
+      "status": "verified_numerical",
+      "elapsedMs": 0.026700000000118962,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 20,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03809999999998581,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 21,
+      "status": "verified_numerical",
+      "elapsedMs": 0.024000000000114596,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 22,
+      "status": "verified_numerical",
+      "elapsedMs": 0.035700000000133514,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 23,
+      "status": "verified_numerical",
+      "elapsedMs": 0.0420000000001437,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 24,
+      "status": "verified_numerical",
+      "elapsedMs": 0.033699999999953434,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 25,
+      "status": "verified_numerical",
+      "elapsedMs": 0.02769999999986794,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 26,
+      "status": "verified_numerical",
+      "elapsedMs": 0.02250000000003638,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 27,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03530000000000655,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 28,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03600000000005821,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 29,
+      "status": "verified_numerical",
+      "elapsedMs": 0.038499999999885404,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 30,
+      "status": "verified_numerical",
+      "elapsedMs": 0.047000000000025466,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 31,
+      "status": "verified_numerical",
+      "elapsedMs": 0.0567999999998392,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 32,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03470000000015716,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 33,
+      "status": "verified_numerical",
+      "elapsedMs": 0.032999999999901775,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 34,
+      "status": "verified_numerical",
+      "elapsedMs": 0.028700000000071668,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 35,
+      "status": "verified_numerical",
+      "elapsedMs": 0.024400000000014188,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 36,
       "status": "verified_numerical",
       "elapsedMs": 0.024599999999963984,
       "passed": true
     },
     {
+      "category": "geometry",
+      "case": 37,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03290000000015425,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 38,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03050000000007458,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 39,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03520000000003165,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 40,
+      "status": "verified_numerical",
+      "elapsedMs": 0.028199999999969805,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 41,
+      "status": "verified_numerical",
+      "elapsedMs": 0.018799999999828287,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 42,
+      "status": "verified_numerical",
+      "elapsedMs": 0.027399999999943248,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 43,
+      "status": "verified_numerical",
+      "elapsedMs": 0.018700000000080763,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 44,
+      "status": "verified_numerical",
+      "elapsedMs": 0.0181999999999789,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 45,
+      "status": "verified_numerical",
+      "elapsedMs": 0.017299999999977445,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 46,
+      "status": "verified_numerical",
+      "elapsedMs": 0.024599999999963984,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 47,
+      "status": "verified_numerical",
+      "elapsedMs": 0.04079999999999018,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 48,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03219999999987522,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 49,
+      "status": "verified_numerical",
+      "elapsedMs": 0.02189999999995962,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 50,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03780000000006112,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 51,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03289999999992688,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 52,
+      "status": "verified_numerical",
+      "elapsedMs": 0.06979999999998654,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 53,
+      "status": "verified_numerical",
+      "elapsedMs": 0.1046000000001186,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 54,
+      "status": "verified_numerical",
+      "elapsedMs": 0.04079999999999018,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 55,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03340000000002874,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 56,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03099999999994907,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 57,
+      "status": "verified_numerical",
+      "elapsedMs": 0.028999999999996362,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 58,
+      "status": "verified_numerical",
+      "elapsedMs": 0.028900000000021464,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 59,
+      "status": "verified_numerical",
+      "elapsedMs": 0.08999999999991815,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 60,
+      "status": "verified_numerical",
+      "elapsedMs": 0.048800000000028376,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 61,
+      "status": "verified_numerical",
+      "elapsedMs": 0.039599999999836655,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 62,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03819999999996071,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 63,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03739999999993415,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 64,
+      "status": "verified_numerical",
+      "elapsedMs": 0.02860000000009677,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 65,
+      "status": "verified_numerical",
+      "elapsedMs": 0.029299999999921056,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 66,
+      "status": "verified_numerical",
+      "elapsedMs": 0.024100000000089494,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 67,
+      "status": "verified_numerical",
+      "elapsedMs": 0.029499999999870852,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 68,
+      "status": "verified_numerical",
+      "elapsedMs": 0.035499999999956344,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 69,
+      "status": "verified_numerical",
+      "elapsedMs": 0.02860000000009677,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 70,
+      "status": "verified_numerical",
+      "elapsedMs": 0.031199999999898864,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 71,
+      "status": "verified_numerical",
+      "elapsedMs": 0.02769999999986794,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 72,
+      "status": "verified_numerical",
+      "elapsedMs": 0.026299999999991996,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 73,
+      "status": "verified_numerical",
+      "elapsedMs": 0.028999999999996362,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 74,
+      "status": "verified_numerical",
+      "elapsedMs": 0.025900000000092405,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 75,
+      "status": "verified_numerical",
+      "elapsedMs": 0.05079999999998108,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 76,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03669999999988249,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 77,
+      "status": "verified_numerical",
+      "elapsedMs": 0.0522000000000844,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 78,
+      "status": "verified_numerical",
+      "elapsedMs": 0.031799999999975626,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 79,
+      "status": "verified_numerical",
+      "elapsedMs": 0.031099999999923966,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 80,
+      "status": "verified_numerical",
+      "elapsedMs": 0.028599999999869397,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 81,
+      "status": "verified_numerical",
+      "elapsedMs": 0.05170000000020991,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 82,
+      "status": "verified_numerical",
+      "elapsedMs": 0.055000000000063665,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 83,
+      "status": "verified_numerical",
+      "elapsedMs": 0.07580000000007203,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 84,
+      "status": "verified_numerical",
+      "elapsedMs": 0.04670000000010077,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 85,
+      "status": "verified_numerical",
+      "elapsedMs": 0.033100000000104046,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 86,
+      "status": "verified_numerical",
+      "elapsedMs": 0.0238000000001648,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 87,
+      "status": "verified_numerical",
+      "elapsedMs": 0.022800000000188447,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 88,
+      "status": "verified_numerical",
+      "elapsedMs": 0.02369999999996253,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 89,
+      "status": "verified_numerical",
+      "elapsedMs": 0.027600000000120417,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 90,
+      "status": "verified_numerical",
+      "elapsedMs": 0.020500000000083674,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 91,
+      "status": "verified_numerical",
+      "elapsedMs": 0.01950000000010732,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 92,
+      "status": "verified_numerical",
+      "elapsedMs": 0.01999999999998181,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 93,
+      "status": "verified_numerical",
+      "elapsedMs": 0.02970000000004802,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 94,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03679999999985739,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 95,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03719999999998436,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 96,
+      "status": "verified_numerical",
+      "elapsedMs": 0.0283999999999196,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 97,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03150000000005093,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 98,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03530000000000655,
+      "passed": true
+    },
+    {
+      "category": "geometry",
+      "case": 99,
+      "status": "verified_numerical",
+      "elapsedMs": 0.031099999999923966,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 0,
+      "status": "verified_exact",
+      "elapsedMs": 17.75130000000013,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 1,
+      "status": "verified_exact",
+      "elapsedMs": 5.215599999999995,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 2,
+      "status": "verified_numerical",
+      "elapsedMs": 120.66799999999989,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 3,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 1.0050999999998567,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 4,
+      "status": "verified_numerical",
+      "elapsedMs": 0.7490000000000236,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 5,
+      "status": "verified_exact",
+      "elapsedMs": 2.718699999999899,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 6,
+      "status": "verified_exact",
+      "elapsedMs": 2.170799999999872,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 7,
+      "status": "verified_numerical",
+      "elapsedMs": 0.355199999999968,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 8,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.6022000000000389,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 9,
+      "status": "verified_numerical",
+      "elapsedMs": 0.5296000000000731,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 10,
+      "status": "verified_exact",
+      "elapsedMs": 2.6325999999999112,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 11,
+      "status": "verified_exact",
+      "elapsedMs": 2.0856999999998607,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 12,
+      "status": "verified_numerical",
+      "elapsedMs": 0.327199999999948,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 13,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.2925000000000182,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 14,
+      "status": "verified_numerical",
+      "elapsedMs": 0.40239999999994325,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 15,
+      "status": "verified_exact",
+      "elapsedMs": 2.3789999999999054,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 16,
+      "status": "verified_exact",
+      "elapsedMs": 1.543100000000095,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 17,
+      "status": "verified_numerical",
+      "elapsedMs": 0.32770000000004984,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 18,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.3589999999999236,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 19,
+      "status": "verified_numerical",
+      "elapsedMs": 0.4112999999999829,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 20,
+      "status": "verified_exact",
+      "elapsedMs": 2.2936999999999443,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 21,
+      "status": "verified_exact",
+      "elapsedMs": 1.630100000000084,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 22,
+      "status": "verified_numerical",
+      "elapsedMs": 0.7180000000000746,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 23,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.5964999999998781,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 24,
+      "status": "verified_numerical",
+      "elapsedMs": 0.3528999999998632,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 25,
+      "status": "verified_exact",
+      "elapsedMs": 3.5652000000000044,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 26,
+      "status": "verified_exact",
+      "elapsedMs": 2.820899999999938,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 27,
+      "status": "verified_numerical",
+      "elapsedMs": 0.39019999999982247,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 28,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.26060000000006767,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 29,
+      "status": "verified_numerical",
+      "elapsedMs": 0.3213999999998123,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 30,
+      "status": "verified_exact",
+      "elapsedMs": 2.5101999999999407,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 31,
+      "status": "verified_exact",
+      "elapsedMs": 1.562800000000152,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 32,
+      "status": "verified_numerical",
+      "elapsedMs": 0.32559999999989486,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 33,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.3143999999999778,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 34,
+      "status": "verified_numerical",
+      "elapsedMs": 0.4032999999999447,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 35,
+      "status": "verified_exact",
+      "elapsedMs": 2.5796000000000276,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 36,
+      "status": "verified_exact",
+      "elapsedMs": 2.11220000000003,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 37,
+      "status": "verified_numerical",
+      "elapsedMs": 0.3850999999999658,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 38,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.383199999999988,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 39,
+      "status": "verified_numerical",
+      "elapsedMs": 0.3631000000000313,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 40,
+      "status": "verified_exact",
+      "elapsedMs": 2.172800000000052,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 41,
+      "status": "verified_exact",
+      "elapsedMs": 2.2982999999999265,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 42,
+      "status": "verified_numerical",
+      "elapsedMs": 1.3164999999999054,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 43,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.39059999999994943,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 44,
+      "status": "verified_numerical",
+      "elapsedMs": 0.43650000000002365,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 45,
+      "status": "verified_exact",
+      "elapsedMs": 4.3414000000000215,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 46,
+      "status": "verified_exact",
+      "elapsedMs": 1.9822999999998956,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 47,
+      "status": "verified_numerical",
+      "elapsedMs": 0.31790000000000873,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 48,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.3928000000000793,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 49,
+      "status": "verified_numerical",
+      "elapsedMs": 1.574999999999818,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 50,
+      "status": "verified_exact",
+      "elapsedMs": 3.907899999999927,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 51,
+      "status": "verified_exact",
+      "elapsedMs": 1.6228000000000975,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 52,
+      "status": "verified_numerical",
+      "elapsedMs": 0.4592000000000098,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 53,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.4553000000000793,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 54,
+      "status": "verified_numerical",
+      "elapsedMs": 0.2402999999999338,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 55,
+      "status": "verified_exact",
+      "elapsedMs": 2.815800000000081,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 56,
+      "status": "verified_exact",
+      "elapsedMs": 1.3835999999998876,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 57,
+      "status": "verified_numerical",
+      "elapsedMs": 0.27899999999999636,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 58,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.2726000000000113,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 59,
+      "status": "verified_numerical",
+      "elapsedMs": 0.375,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 60,
+      "status": "verified_exact",
+      "elapsedMs": 3.9090000000001055,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 61,
+      "status": "verified_exact",
+      "elapsedMs": 1.0817000000001826,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 62,
+      "status": "verified_numerical",
+      "elapsedMs": 0.18650000000002365,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 63,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.22759999999993852,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 64,
+      "status": "verified_numerical",
+      "elapsedMs": 0.20029999999997017,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 65,
+      "status": "verified_exact",
+      "elapsedMs": 3.5055999999999585,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 66,
+      "status": "verified_exact",
+      "elapsedMs": 1.2907000000000153,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 67,
+      "status": "verified_numerical",
+      "elapsedMs": 0.20639999999980319,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 68,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.29899999999997817,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 69,
+      "status": "verified_numerical",
+      "elapsedMs": 0.2137000000000171,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 70,
+      "status": "verified_exact",
+      "elapsedMs": 1.5703000000000884,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 71,
+      "status": "verified_exact",
+      "elapsedMs": 1.2041999999999007,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 72,
+      "status": "verified_numerical",
+      "elapsedMs": 0.3421000000000731,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 73,
+      "status": "verified_with_assumptions",
+      "elapsedMs": 0.5570999999999913,
+      "passed": true
+    },
+    {
+      "category": "trig-calculus",
+      "case": 74,
+      "status": "verified_numerical",
+      "elapsedMs": 1.1445000000001073,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 0,
+      "status": "verified_numerical",
+      "elapsedMs": 0.14959999999996398,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 1,
+      "status": "verified_numerical",
+      "elapsedMs": 0.20049999999991996,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 2,
+      "status": "verified_numerical",
+      "elapsedMs": 1.4320999999999913,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 3,
+      "status": "verified_numerical",
+      "elapsedMs": 0.12999999999988177,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 4,
+      "status": "verified_numerical",
+      "elapsedMs": 1.0069999999998345,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 5,
+      "status": "verified_numerical",
+      "elapsedMs": 0.05639999999993961,
+      "passed": true
+    },
+    {
       "category": "3d-linear",
       "case": 6,
       "status": "verified_numerical",
-      "elapsedMs": 0.024900000000002365,
+      "elapsedMs": 0.07290000000011787,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 7,
       "status": "verified_numerical",
-      "elapsedMs": 0.15999999999996817,
+      "elapsedMs": 0.39210000000002765,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 8,
       "status": "verified_numerical",
-      "elapsedMs": 0.023000000000024556,
+      "elapsedMs": 0.2676000000001295,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 9,
       "status": "verified_numerical",
-      "elapsedMs": 0.03960000000006403,
+      "elapsedMs": 1.0368000000000848,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 10,
       "status": "verified_numerical",
-      "elapsedMs": 0.012799999999970169,
+      "elapsedMs": 0.1613999999999578,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 11,
       "status": "verified_numerical",
-      "elapsedMs": 0.017800000000079308,
+      "elapsedMs": 0.0704000000000633,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 12,
       "status": "verified_numerical",
-      "elapsedMs": 0.10419999999999163,
+      "elapsedMs": 0.40430000000014843,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 13,
       "status": "verified_numerical",
-      "elapsedMs": 0.025999999999953616,
+      "elapsedMs": 0.4981999999999971,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 14,
       "status": "verified_numerical",
-      "elapsedMs": 0.028400000000033288,
+      "elapsedMs": 0.10920000000010077,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 15,
       "status": "verified_numerical",
-      "elapsedMs": 0.014000000000010004,
+      "elapsedMs": 0.0626999999999498,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 16,
       "status": "verified_numerical",
-      "elapsedMs": 0.01740000000006603,
+      "elapsedMs": 0.06389999999987594,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 17,
       "status": "verified_numerical",
-      "elapsedMs": 0.059799999999995634,
+      "elapsedMs": 0.24290000000019063,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 18,
       "status": "verified_numerical",
-      "elapsedMs": 0.01209999999991851,
+      "elapsedMs": 0.05639999999993961,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 19,
       "status": "verified_numerical",
-      "elapsedMs": 0.023099999999999454,
+      "elapsedMs": 0.07169999999996435,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 20,
       "status": "verified_numerical",
-      "elapsedMs": 0.009500000000002728,
+      "elapsedMs": 0.26840000000015607,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 21,
       "status": "verified_numerical",
-      "elapsedMs": 0.014800000000036562,
+      "elapsedMs": 0.8830000000000382,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 22,
       "status": "verified_numerical",
-      "elapsedMs": 0.06939999999997326,
+      "elapsedMs": 1.3554000000001452,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 23,
       "status": "verified_numerical",
-      "elapsedMs": 0.018000000000029104,
+      "elapsedMs": 0.07629999999994652,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 24,
       "status": "verified_numerical",
-      "elapsedMs": 0.031799999999975626,
+      "elapsedMs": 0.7107999999998356,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 25,
       "status": "verified_numerical",
-      "elapsedMs": 0.009500000000002728,
+      "elapsedMs": 0.044399999999996,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 26,
       "status": "verified_numerical",
-      "elapsedMs": 0.014899999999897773,
+      "elapsedMs": 0.06959999999980937,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 27,
       "status": "verified_numerical",
-      "elapsedMs": 0.06290000000001328,
+      "elapsedMs": 0.2807999999999993,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 28,
       "status": "verified_numerical",
-      "elapsedMs": 0.013399999999933243,
+      "elapsedMs": 0.06069999999999709,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 29,
       "status": "verified_numerical",
-      "elapsedMs": 0.028500000000008185,
+      "elapsedMs": 0.06569999999987886,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 30,
       "status": "verified_numerical",
-      "elapsedMs": 0.012200000000007094,
+      "elapsedMs": 0.030600000000049477,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 31,
       "status": "verified_numerical",
-      "elapsedMs": 0.01340000000004693,
+      "elapsedMs": 0.04259999999999309,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 32,
       "status": "verified_numerical",
-      "elapsedMs": 0.056599999999889405,
+      "elapsedMs": 0.14980000000014115,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 33,
       "status": "verified_numerical",
-      "elapsedMs": 0.010400000000004184,
+      "elapsedMs": 0.028099999999994907,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 34,
       "status": "verified_numerical",
-      "elapsedMs": 0.01630000000000109,
+      "elapsedMs": 0.05030000000010659,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 35,
       "status": "verified_numerical",
-      "elapsedMs": 0.00760000000002492,
+      "elapsedMs": 0.022200000000111686,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 36,
       "status": "verified_numerical",
-      "elapsedMs": 0.010699999999928878,
+      "elapsedMs": 0.03290000000015425,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 37,
       "status": "verified_numerical",
-      "elapsedMs": 0.045999999999935426,
+      "elapsedMs": 0.12520000000017717,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 38,
       "status": "verified_numerical",
-      "elapsedMs": 0.012000000000057298,
+      "elapsedMs": 0.0543999999999869,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 39,
       "status": "verified_numerical",
-      "elapsedMs": 0.014799999999922875,
+      "elapsedMs": 0.07230000000004111,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 40,
       "status": "verified_numerical",
-      "elapsedMs": 0.007400000000075124,
+      "elapsedMs": 0.032000000000152795,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 41,
       "status": "verified_numerical",
-      "elapsedMs": 0.018299999999953798,
+      "elapsedMs": 0.7711000000001604,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 42,
       "status": "verified_numerical",
-      "elapsedMs": 0.06759999999997035,
+      "elapsedMs": 0.3825000000001637,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 43,
       "status": "verified_numerical",
-      "elapsedMs": 0.012499999999931788,
+      "elapsedMs": 0.038000000000010914,
       "passed": true
     },
     {
       "category": "3d-linear",
       "case": 44,
+      "status": "verified_numerical",
+      "elapsedMs": 0.1856999999999971,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 45,
+      "status": "verified_numerical",
+      "elapsedMs": 0.05199999999990723,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 46,
+      "status": "verified_numerical",
+      "elapsedMs": 0.07600000000002183,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 47,
+      "status": "verified_numerical",
+      "elapsedMs": 0.19670000000019172,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 48,
+      "status": "verified_numerical",
+      "elapsedMs": 0.040199999999913416,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 49,
+      "status": "verified_numerical",
+      "elapsedMs": 0.06919999999990978,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 50,
+      "status": "verified_numerical",
+      "elapsedMs": 0.037500000000136424,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 51,
+      "status": "verified_numerical",
+      "elapsedMs": 0.07310000000006767,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 52,
+      "status": "verified_numerical",
+      "elapsedMs": 0.11320000000000618,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 53,
+      "status": "verified_numerical",
+      "elapsedMs": 0.026999999999816282,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 54,
+      "status": "verified_numerical",
+      "elapsedMs": 0.05489999999986139,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 55,
+      "status": "verified_numerical",
+      "elapsedMs": 0.02200000000016189,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 56,
+      "status": "verified_numerical",
+      "elapsedMs": 0.20180000000004839,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 57,
+      "status": "verified_numerical",
+      "elapsedMs": 0.09090000000014697,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 58,
+      "status": "verified_numerical",
+      "elapsedMs": 0.020199999999931606,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 59,
+      "status": "verified_numerical",
+      "elapsedMs": 0.02490000000011605,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 60,
+      "status": "verified_numerical",
+      "elapsedMs": 0.01749999999992724,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 61,
+      "status": "verified_numerical",
+      "elapsedMs": 0.02339999999981046,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 62,
+      "status": "verified_numerical",
+      "elapsedMs": 0.07119999999986248,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 63,
+      "status": "verified_numerical",
+      "elapsedMs": 0.021700000000009823,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 64,
       "status": "verified_numerical",
       "elapsedMs": 0.025100000000065847,
       "passed": true
     },
     {
       "category": "3d-linear",
+      "case": 65,
+      "status": "verified_numerical",
+      "elapsedMs": 0.01999999999998181,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 66,
+      "status": "verified_numerical",
+      "elapsedMs": 0.022100000000136788,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 67,
+      "status": "verified_numerical",
+      "elapsedMs": 0.23929999999995744,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 68,
+      "status": "verified_numerical",
+      "elapsedMs": 0.07989999999995234,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 69,
+      "status": "verified_numerical",
+      "elapsedMs": 0.14320000000020627,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 70,
+      "status": "verified_numerical",
+      "elapsedMs": 0.0682000000001608,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 71,
+      "status": "verified_numerical",
+      "elapsedMs": 0.0863000000001648,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 72,
+      "status": "verified_numerical",
+      "elapsedMs": 0.15640000000007603,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 73,
+      "status": "verified_numerical",
+      "elapsedMs": 0.0364999999999327,
+      "passed": true
+    },
+    {
+      "category": "3d-linear",
+      "case": 74,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03719999999998436,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 0,
+      "status": "verified_numerical",
+      "elapsedMs": 0.1430000000000291,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 1,
+      "status": "verified_numerical",
+      "elapsedMs": 0.1192999999998392,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 2,
+      "status": "verified_numerical",
+      "elapsedMs": 0.04030000000011569,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 3,
+      "status": "verified_numerical",
+      "elapsedMs": 0.7470000000000709,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 4,
+      "status": "verified_numerical",
+      "elapsedMs": 0.4519999999999982,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 5,
+      "status": "verified_numerical",
+      "elapsedMs": 0.12860000000000582,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 6,
+      "status": "verified_numerical",
+      "elapsedMs": 0.05289999999990869,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 7,
+      "status": "verified_numerical",
+      "elapsedMs": 0.05600000000004002,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 8,
+      "status": "verified_numerical",
+      "elapsedMs": 0.14850000000001273,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 9,
+      "status": "verified_numerical",
+      "elapsedMs": 0.7555999999999585,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 10,
+      "status": "verified_numerical",
+      "elapsedMs": 0.04870000000005348,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 11,
+      "status": "verified_numerical",
+      "elapsedMs": 0.057999999999992724,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 12,
+      "status": "verified_numerical",
+      "elapsedMs": 0.05269999999995889,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 13,
+      "status": "verified_numerical",
+      "elapsedMs": 0.48870000000010805,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 14,
+      "status": "verified_numerical",
+      "elapsedMs": 0.3108999999999469,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 15,
+      "status": "verified_numerical",
+      "elapsedMs": 0.25649999999996,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 16,
+      "status": "verified_numerical",
+      "elapsedMs": 0.05660000000011678,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 17,
+      "status": "verified_numerical",
+      "elapsedMs": 0.14470000000005712,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 18,
+      "status": "verified_numerical",
+      "elapsedMs": 0.14220000000000255,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 19,
+      "status": "verified_numerical",
+      "elapsedMs": 0.2175999999999476,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 20,
+      "status": "verified_numerical",
+      "elapsedMs": 0.034099999999853026,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 21,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03219999999987522,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 22,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03710000000000946,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 23,
+      "status": "verified_numerical",
+      "elapsedMs": 0.09560000000010405,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 24,
+      "status": "verified_numerical",
+      "elapsedMs": 0.20470000000000255,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 25,
+      "status": "verified_numerical",
+      "elapsedMs": 0.033800000000155705,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 26,
+      "status": "verified_numerical",
+      "elapsedMs": 0.02500000000009095,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 27,
+      "status": "verified_numerical",
+      "elapsedMs": 0.1391000000000986,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 28,
+      "status": "verified_numerical",
+      "elapsedMs": 0.9560999999998785,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 29,
+      "status": "verified_numerical",
+      "elapsedMs": 0.6984999999999673,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 30,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03999999999996362,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 31,
+      "status": "verified_numerical",
+      "elapsedMs": 0.027600000000120417,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 32,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03240000000005239,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 33,
+      "status": "verified_numerical",
+      "elapsedMs": 0.1427000000001044,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 34,
+      "status": "verified_numerical",
+      "elapsedMs": 1.194400000000087,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 35,
+      "status": "verified_numerical",
+      "elapsedMs": 0.06520000000000437,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 36,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03989999999998872,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 37,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03960000000006403,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 38,
+      "status": "verified_numerical",
+      "elapsedMs": 0.12850000000003092,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 39,
+      "status": "verified_numerical",
+      "elapsedMs": 0.2175999999999476,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 40,
+      "status": "verified_numerical",
+      "elapsedMs": 0.0420000000001437,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 41,
+      "status": "verified_numerical",
+      "elapsedMs": 0.034099999999853026,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 42,
+      "status": "verified_numerical",
+      "elapsedMs": 0.03870000000006257,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 43,
+      "status": "verified_numerical",
+      "elapsedMs": 0.2039999999999509,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
+      "case": 44,
+      "status": "verified_numerical",
+      "elapsedMs": 0.2037000000000262,
+      "passed": true
+    },
+    {
+      "category": "statistics-ode",
       "case": 45,
       "status": "verified_numerical",
-      "elapsedMs": 0.00909999999998945,
+      "elapsedMs": 0.036800000000084765,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 46,
       "status": "verified_numerical",
-      "elapsedMs": 0.020099999999956708,
+      "elapsedMs": 0.03469999999992979,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 47,
       "status": "verified_numerical",
-      "elapsedMs": 0.05920000000003256,
+      "elapsedMs": 0.29179999999996653,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 48,
       "status": "verified_numerical",
-      "elapsedMs": 0.010499999999979082,
+      "elapsedMs": 0.1426000000001295,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 49,
       "status": "verified_numerical",
-      "elapsedMs": 0.019700000000057116,
+      "elapsedMs": 0.3248000000000957,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 50,
       "status": "verified_numerical",
-      "elapsedMs": 0.00839999999993779,
+      "elapsedMs": 0.04970000000002983,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 51,
       "status": "verified_numerical",
-      "elapsedMs": 0.01239999999995689,
+      "elapsedMs": 0.036100000000033106,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 52,
       "status": "verified_numerical",
-      "elapsedMs": 0.0484000000000151,
+      "elapsedMs": 0.03829999999993561,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 53,
       "status": "verified_numerical",
-      "elapsedMs": 0.02299999999991087,
+      "elapsedMs": 0.21580000000017208,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 54,
       "status": "verified_numerical",
-      "elapsedMs": 0.015700000000038017,
+      "elapsedMs": 0.3485000000000582,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 55,
       "status": "verified_numerical",
-      "elapsedMs": 0.008199999999987995,
+      "elapsedMs": 0.04259999999999309,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 56,
       "status": "verified_numerical",
-      "elapsedMs": 0.011499999999955435,
+      "elapsedMs": 0.05259999999998399,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 57,
       "status": "verified_numerical",
-      "elapsedMs": 0.06209999999998672,
+      "elapsedMs": 0.05089999999995598,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 58,
       "status": "verified_numerical",
-      "elapsedMs": 0.008700000000089858,
+      "elapsedMs": 0.16190000000005966,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 59,
       "status": "verified_numerical",
-      "elapsedMs": 0.011399999999980537,
+      "elapsedMs": 0.549199999999928,
       "passed": true
     },
     {
-      "category": "3d-linear",
+      "category": "statistics-ode",
       "case": 60,
-      "status": "verified_numerical",
-      "elapsedMs": 0.0072000000000116415,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 61,
-      "status": "verified_numerical",
-      "elapsedMs": 0.013200000000097134,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 62,
-      "status": "verified_numerical",
-      "elapsedMs": 0.10350000000005366,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 63,
-      "status": "verified_numerical",
-      "elapsedMs": 0.016499999999950887,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 64,
       "status": "verified_numerical",
       "elapsedMs": 0.059799999999995634,
       "passed": true
     },
     {
-      "category": "3d-linear",
-      "case": 65,
-      "status": "verified_numerical",
-      "elapsedMs": 0.02400000000000091,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 66,
-      "status": "verified_numerical",
-      "elapsedMs": 0.013199999999983447,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 67,
-      "status": "verified_numerical",
-      "elapsedMs": 0.0645999999999276,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 68,
-      "status": "verified_numerical",
-      "elapsedMs": 0.0181999999999789,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 69,
-      "status": "verified_numerical",
-      "elapsedMs": 0.023300000000062937,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 70,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01959999999996853,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 71,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01520000000004984,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 72,
-      "status": "verified_numerical",
-      "elapsedMs": 0.05050000000005639,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 73,
-      "status": "verified_numerical",
-      "elapsedMs": 0.009999999999990905,
-      "passed": true
-    },
-    {
-      "category": "3d-linear",
-      "case": 74,
-      "status": "verified_numerical",
-      "elapsedMs": 0.012600000000020373,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 0,
-      "status": "verified_numerical",
-      "elapsedMs": 0.06619999999998072,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 1,
-      "status": "verified_numerical",
-      "elapsedMs": 0.06599999999991724,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 2,
-      "status": "verified_numerical",
-      "elapsedMs": 0.02519999999992706,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 3,
-      "status": "verified_numerical",
-      "elapsedMs": 0.24329999999997654,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 4,
-      "status": "verified_numerical",
-      "elapsedMs": 0.11579999999992197,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 5,
-      "status": "verified_numerical",
-      "elapsedMs": 0.019700000000057116,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 6,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01370000000008531,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 7,
-      "status": "verified_numerical",
-      "elapsedMs": 0.015099999999961256,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 8,
-      "status": "verified_numerical",
-      "elapsedMs": 0.0543999999999869,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 9,
-      "status": "verified_numerical",
-      "elapsedMs": 0.10180000000002565,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 10,
-      "status": "verified_numerical",
-      "elapsedMs": 0.015099999999961256,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 11,
-      "status": "verified_numerical",
-      "elapsedMs": 0.011700000000018917,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 12,
-      "status": "verified_numerical",
-      "elapsedMs": 0.022000000000048203,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 13,
-      "status": "verified_numerical",
-      "elapsedMs": 0.048599999999964894,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 14,
-      "status": "verified_numerical",
-      "elapsedMs": 0.09659999999996671,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 15,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01490000000001146,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 16,
-      "status": "verified_numerical",
-      "elapsedMs": 0.010199999999940701,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 17,
-      "status": "verified_numerical",
-      "elapsedMs": 0.010999999999967258,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 18,
-      "status": "verified_numerical",
-      "elapsedMs": 0.06430000000000291,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 19,
-      "status": "verified_numerical",
-      "elapsedMs": 0.13670000000001892,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 20,
-      "status": "verified_numerical",
-      "elapsedMs": 0.0181999999999789,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 21,
-      "status": "verified_numerical",
-      "elapsedMs": 0.024099999999975807,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 22,
-      "status": "verified_numerical",
-      "elapsedMs": 0.011999999999943611,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 23,
-      "status": "verified_numerical",
-      "elapsedMs": 0.04409999999995762,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 24,
-      "status": "verified_numerical",
-      "elapsedMs": 0.0888999999999669,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 25,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01239999999995689,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 26,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008900000000039654,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 27,
-      "status": "verified_numerical",
-      "elapsedMs": 0.009199999999964348,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 28,
-      "status": "verified_numerical",
-      "elapsedMs": 0.04769999999996344,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 29,
-      "status": "verified_numerical",
-      "elapsedMs": 0.08859999999992851,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 30,
-      "status": "verified_numerical",
-      "elapsedMs": 0.012899999999945067,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 31,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01010000000007949,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 32,
-      "status": "verified_numerical",
-      "elapsedMs": 0.012000000000057298,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 33,
-      "status": "verified_numerical",
-      "elapsedMs": 0.04210000000000491,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 34,
-      "status": "verified_numerical",
-      "elapsedMs": 0.06069999999999709,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 35,
-      "status": "verified_numerical",
-      "elapsedMs": 0.00980000000004111,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 36,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008600000000001273,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 37,
-      "status": "verified_numerical",
-      "elapsedMs": 0.009500000000002728,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 38,
-      "status": "verified_numerical",
-      "elapsedMs": 0.05319999999994707,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 39,
-      "status": "verified_numerical",
-      "elapsedMs": 0.10110000000008768,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 40,
-      "status": "verified_numerical",
-      "elapsedMs": 0.011500000000069122,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 41,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008600000000001273,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 42,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008299999999962893,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 43,
-      "status": "verified_numerical",
-      "elapsedMs": 0.035499999999956344,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 44,
-      "status": "verified_numerical",
-      "elapsedMs": 0.06330000000002656,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 45,
-      "status": "verified_numerical",
-      "elapsedMs": 0.00909999999998945,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 46,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008100000000013097,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 47,
-      "status": "verified_numerical",
-      "elapsedMs": 0.009199999999964348,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 48,
-      "status": "verified_numerical",
-      "elapsedMs": 0.03959999999995034,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 49,
-      "status": "verified_numerical",
-      "elapsedMs": 0.08710000000007767,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 50,
-      "status": "verified_numerical",
-      "elapsedMs": 0.01169999999990523,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 51,
-      "status": "verified_numerical",
-      "elapsedMs": 0.022799999999961074,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 52,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008800000000064756,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 53,
-      "status": "verified_numerical",
-      "elapsedMs": 0.03859999999997399,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 54,
-      "status": "verified_numerical",
-      "elapsedMs": 0.06939999999997326,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 55,
-      "status": "verified_numerical",
-      "elapsedMs": 0.009999999999990905,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 56,
-      "status": "verified_numerical",
-      "elapsedMs": 0.00839999999993779,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 57,
-      "status": "verified_numerical",
-      "elapsedMs": 0.008100000000013097,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 58,
-      "status": "verified_numerical",
-      "elapsedMs": 0.03840000000002419,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 59,
-      "status": "verified_numerical",
-      "elapsedMs": 0.0585999999999558,
-      "passed": true
-    },
-    {
-      "category": "statistics-ode",
-      "case": 60,
-      "status": "verified_numerical",
-      "elapsedMs": 0.022199999999998,
-      "passed": true
-    },
-    {
       "category": "statistics-ode",
       "case": 61,
       "status": "verified_numerical",
-      "elapsedMs": 0.014099999999984902,
+      "elapsedMs": 0.04629999999997381,
       "passed": true
     },
     {
       "category": "statistics-ode",
       "case": 62,
       "status": "verified_numerical",
-      "elapsedMs": 0.011200000000030741,
+      "elapsedMs": 0.055700000000115324,
       "passed": true
     },
     {
       "category": "statistics-ode",
       "case": 63,
       "status": "verified_numerical",
-      "elapsedMs": 0.05779999999992924,
+      "elapsedMs": 0.13959999999997308,
       "passed": true
     },
     {
       "category": "statistics-ode",
       "case": 64,
       "status": "verified_numerical",
-      "elapsedMs": 0.06740000000002055,
+      "elapsedMs": 1.149299999999812,
       "passed": true
     },
     {
       "category": "statistics-ode",
       "case": 65,
       "status": "verified_numerical",
-      "elapsedMs": 0.01089999999999236,
+      "elapsedMs": 0.05389999999988504,
       "passed": true
     },
     {
       "category": "statistics-ode",
       "case": 66,
       "status": "verified_numerical",
-      "elapsedMs": 0.008699999999976171,
+      "elapsedMs": 0.04250000000001819,
       "passed": true
     },
     {
       "category": "statistics-ode",
       "case": 67,
       "status": "verified_numerical",
-      "elapsedMs": 0.008500000000026375,
+      "elapsedMs": 0.04079999999999018,
       "passed": true
     },
     {
       "category": "statistics-ode",
       "case": 68,
       "status": "verified_numerical",
-      "elapsedMs": 0.03769999999997253,
+      "elapsedMs": 0.13550000000009277,
       "passed": true
     },
     {
       "category": "statistics-ode",
       "case": 69,
       "status": "verified_numerical",
-      "elapsedMs": 0.05889999999999418,
+      "elapsedMs": 0.24660000000017135,
       "passed": true
     },
     {
       "category": "statistics-ode",
       "case": 70,
       "status": "verified_numerical",
-      "elapsedMs": 0.010099999999965803,
+      "elapsedMs": 0.04090000000019245,
       "passed": true
     },
     {
       "category": "statistics-ode",
       "case": 71,
       "status": "verified_numerical",
-      "elapsedMs": 0.008100000000013097,
+      "elapsedMs": 0.033100000000104046,
       "passed": true
     },
     {
       "category": "statistics-ode",
       "case": 72,
       "status": "verified_numerical",
-      "elapsedMs": 0.009199999999964348,
+      "elapsedMs": 0.035000000000081855,
       "passed": true
     },
     {
       "category": "statistics-ode",
       "case": 73,
       "status": "verified_numerical",
-      "elapsedMs": 0.0362999999999829,
+      "elapsedMs": 0.11839999999983775,
       "passed": true
     },
     {
       "category": "statistics-ode",
       "case": 74,
       "status": "verified_numerical",
-      "elapsedMs": 0.05669999999997799,
+      "elapsedMs": 0.20460000000002765,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 0,
       "status": "unsupported",
-      "elapsedMs": 4.824299999999994,
+      "elapsedMs": 0.3101000000001477,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 1,
       "status": "verified_exact",
-      "elapsedMs": 1.057800000000043,
+      "elapsedMs": 1.5791999999999007,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 2,
       "status": "unsupported",
-      "elapsedMs": 0.07929999999998927,
+      "elapsedMs": 0.12629999999990105,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 3,
       "status": "verified_exact",
-      "elapsedMs": 0.40640000000007603,
+      "elapsedMs": 0.5609999999999218,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 4,
       "status": "success",
-      "elapsedMs": 6.293599999999969,
+      "elapsedMs": 16.348599999999806,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 5,
       "status": "unsupported",
-      "elapsedMs": 1.9972000000000207,
+      "elapsedMs": 0.24549999999999272,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 6,
       "status": "verified_exact",
-      "elapsedMs": 0.6556999999999107,
+      "elapsedMs": 5.831199999999853,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 7,
       "status": "unsupported",
-      "elapsedMs": 0.06820000000004711,
+      "elapsedMs": 0.16340000000013788,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 8,
       "status": "verified_exact",
-      "elapsedMs": 0.3485000000000582,
+      "elapsedMs": 0.9849000000001524,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 9,
       "status": "success",
-      "elapsedMs": 0.6716999999999871,
+      "elapsedMs": 1.5797000000000025,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 10,
       "status": "unsupported",
-      "elapsedMs": 0.8499000000000478,
+      "elapsedMs": 0.20470000000000255,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 11,
       "status": "verified_exact",
-      "elapsedMs": 0.5636000000000649,
+      "elapsedMs": 1.9467999999999392,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 12,
       "status": "unsupported",
-      "elapsedMs": 0.08219999999994343,
+      "elapsedMs": 0.15560000000004948,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 13,
       "status": "verified_exact",
-      "elapsedMs": 0.3225999999999658,
+      "elapsedMs": 0.686200000000099,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 14,
       "status": "success",
-      "elapsedMs": 1.0743999999999687,
+      "elapsedMs": 2.982699999999795,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 15,
       "status": "unsupported",
-      "elapsedMs": 1.0458999999999605,
+      "elapsedMs": 0.2828999999999269,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 16,
       "status": "verified_exact",
-      "elapsedMs": 0.717899999999986,
+      "elapsedMs": 4.406799999999976,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 17,
       "status": "unsupported",
-      "elapsedMs": 0.06389999999998963,
+      "elapsedMs": 0.1591000000000804,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 18,
       "status": "verified_exact",
-      "elapsedMs": 0.33540000000004966,
+      "elapsedMs": 0.8876999999999953,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 19,
       "status": "success",
-      "elapsedMs": 1.4586000000000467,
+      "elapsedMs": 3.233900000000176,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 20,
       "status": "unsupported",
-      "elapsedMs": 0.8033000000000357,
+      "elapsedMs": 0.22229999999990468,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 21,
       "status": "verified_exact",
-      "elapsedMs": 0.5457000000000107,
+      "elapsedMs": 1.176200000000108,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 22,
       "status": "unsupported",
-      "elapsedMs": 0.062300000000050204,
+      "elapsedMs": 0.12120000000004438,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 23,
       "status": "verified_exact",
-      "elapsedMs": 0.3346000000000231,
+      "elapsedMs": 0.6806000000001404,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 24,
       "status": "success",
-      "elapsedMs": 0.6118999999999915,
+      "elapsedMs": 2.1766999999999825,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 25,
       "status": "unsupported",
-      "elapsedMs": 0.7040999999999258,
+      "elapsedMs": 0.18449999999984357,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 26,
       "status": "verified_exact",
-      "elapsedMs": 0.5733999999999924,
+      "elapsedMs": 1.7533000000000811,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 27,
       "status": "unsupported",
-      "elapsedMs": 0.06510000000002947,
+      "elapsedMs": 0.24270000000001346,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 28,
       "status": "verified_exact",
-      "elapsedMs": 0.3709999999999809,
+      "elapsedMs": 2.6771000000001095,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 29,
       "status": "success",
-      "elapsedMs": 0.5832000000000335,
+      "elapsedMs": 7.6039999999998145,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 30,
       "status": "unsupported",
-      "elapsedMs": 0.7190000000000509,
+      "elapsedMs": 0.29120000000011714,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 31,
       "status": "verified_exact",
-      "elapsedMs": 0.5579999999999927,
+      "elapsedMs": 0.8895999999999731,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 32,
       "status": "unsupported",
-      "elapsedMs": 0.06389999999998963,
+      "elapsedMs": 0.28300000000012915,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 33,
       "status": "verified_exact",
-      "elapsedMs": 0.32799999999997453,
+      "elapsedMs": 0.4823999999998705,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 34,
       "status": "success",
-      "elapsedMs": 1.154800000000023,
+      "elapsedMs": 4.184299999999894,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 35,
       "status": "unsupported",
-      "elapsedMs": 0.6924999999999955,
+      "elapsedMs": 0.20270000000004984,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 36,
       "status": "verified_exact",
-      "elapsedMs": 0.5869000000000142,
+      "elapsedMs": 4.270400000000109,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 37,
       "status": "unsupported",
-      "elapsedMs": 0.0603000000000975,
+      "elapsedMs": 0.1351999999999407,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 38,
       "status": "verified_exact",
-      "elapsedMs": 0.31939999999997326,
+      "elapsedMs": 1.135300000000143,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 39,
       "status": "success",
-      "elapsedMs": 0.5606999999999971,
+      "elapsedMs": 2.658200000000079,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 40,
       "status": "unsupported",
-      "elapsedMs": 1.0141999999999598,
+      "elapsedMs": 0.26710000000002765,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 41,
       "status": "verified_exact",
-      "elapsedMs": 0.7785999999999831,
+      "elapsedMs": 1.408200000000079,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 42,
       "status": "unsupported",
-      "elapsedMs": 0.08360000000004675,
+      "elapsedMs": 0.13390000000003965,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 43,
       "status": "verified_exact",
-      "elapsedMs": 0.4798000000000684,
+      "elapsedMs": 0.8260000000000218,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 44,
       "status": "success",
-      "elapsedMs": 0.9420999999999822,
+      "elapsedMs": 14.885700000000043,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 45,
       "status": "unsupported",
-      "elapsedMs": 1.1181000000000267,
+      "elapsedMs": 0.5043000000000575,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 46,
       "status": "verified_exact",
-      "elapsedMs": 0.9536000000000513,
+      "elapsedMs": 6.547199999999975,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 47,
       "status": "unsupported",
-      "elapsedMs": 0.10469999999997981,
+      "elapsedMs": 0.5934999999999491,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 48,
       "status": "verified_exact",
-      "elapsedMs": 0.6169999999999618,
+      "elapsedMs": 1.7394999999999072,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 49,
       "status": "success",
-      "elapsedMs": 1.9451999999999998,
+      "elapsedMs": 1.5729000000001179,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 50,
       "status": "unsupported",
-      "elapsedMs": 0.7757000000000289,
+      "elapsedMs": 0.22339999999985594,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 51,
       "status": "verified_exact",
-      "elapsedMs": 0.7238999999999578,
+      "elapsedMs": 1.9558999999999287,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 52,
       "status": "unsupported",
-      "elapsedMs": 0.06770000000005894,
+      "elapsedMs": 0.28340000000002874,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 53,
       "status": "verified_exact",
-      "elapsedMs": 0.38369999999997617,
+      "elapsedMs": 1.4145999999998367,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 54,
       "status": "success",
-      "elapsedMs": 0.46030000000007476,
+      "elapsedMs": 0.934400000000096,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 55,
       "status": "unsupported",
-      "elapsedMs": 0.8133000000000266,
+      "elapsedMs": 0.2380000000000564,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 56,
       "status": "verified_exact",
-      "elapsedMs": 0.5520999999999958,
+      "elapsedMs": 1.4890000000000327,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 57,
       "status": "unsupported",
-      "elapsedMs": 0.10130000000003747,
+      "elapsedMs": 0.12059999999996762,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 58,
       "status": "verified_exact",
-      "elapsedMs": 0.6075000000000728,
+      "elapsedMs": 1.6014000000000124,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 59,
       "status": "success",
-      "elapsedMs": 0.42009999999993397,
+      "elapsedMs": 0.68100000000004,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 60,
       "status": "unsupported",
-      "elapsedMs": 1.4577999999999065,
+      "elapsedMs": 1.3907000000001517,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 61,
       "status": "verified_exact",
-      "elapsedMs": 0.9956999999999425,
+      "elapsedMs": 2.2130999999999403,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 62,
       "status": "unsupported",
-      "elapsedMs": 0.14660000000003492,
+      "elapsedMs": 0.15679999999997563,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 63,
       "status": "verified_exact",
-      "elapsedMs": 0.4232999999999265,
+      "elapsedMs": 0.6507000000001426,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 64,
       "status": "success",
-      "elapsedMs": 0.43859999999995125,
+      "elapsedMs": 0.6876999999999498,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 65,
       "status": "unsupported",
-      "elapsedMs": 0.9944000000000415,
+      "elapsedMs": 0.22299999999995634,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 66,
       "status": "verified_exact",
-      "elapsedMs": 1.2130999999999403,
+      "elapsedMs": 1.575399999999945,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 67,
       "status": "unsupported",
-      "elapsedMs": 0.11599999999998545,
+      "elapsedMs": 0.2640999999998712,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 68,
       "status": "verified_exact",
-      "elapsedMs": 0.5267000000000053,
+      "elapsedMs": 0.7830999999998767,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 69,
       "status": "success",
-      "elapsedMs": 0.4151000000000522,
+      "elapsedMs": 2.113200000000006,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 70,
       "status": "unsupported",
-      "elapsedMs": 0.7386000000000195,
+      "elapsedMs": 0.21630000000004657,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 71,
       "status": "verified_exact",
-      "elapsedMs": 0.5661000000000058,
+      "elapsedMs": 1.504699999999957,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 72,
       "status": "unsupported",
-      "elapsedMs": 0.06369999999992615,
+      "elapsedMs": 0.14440000000013242,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 73,
       "status": "verified_exact",
-      "elapsedMs": 0.3686000000000149,
+      "elapsedMs": 1.491899999999987,
       "passed": true
     },
     {
       "category": "reasoning-adversarial",
       "case": 74,
       "status": "success",
-      "elapsedMs": 0.40859999999997854,
+      "elapsedMs": 0.8548000000000684,
       "passed": true
     }
   ]

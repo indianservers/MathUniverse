@@ -4,7 +4,7 @@ const CLOSE_DISTANCE = 72;
 const CLOSE_VELOCITY = 0.55;
 
 export function useMobileWorkspaceGestures(
-  ref: RefObject<HTMLElement | null>,
+  ref: RefObject<HTMLElement>,
   options: {
     enabled: boolean;
     edge: "left" | "right" | "bottom";

@@ -17,7 +17,7 @@ export function isOutsideDismissTarget(
 export function useOutsideDismiss(options: {
   enabled: boolean;
   keepOpenSelector: string;
-  rootRef?: RefObject<HTMLElement | null>;
+  rootRef?: RefObject<HTMLElement>;
   onDismiss: () => void;
 }): void {
   const { enabled, keepOpenSelector, rootRef, onDismiss } = options;

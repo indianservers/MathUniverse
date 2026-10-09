@@ -427,7 +427,7 @@ const LimitGraph = ({
   onPointerDown,
   onPointerMove,
 }: {
-  graphRef: RefObject<SVGSVGElement | null>;
+  graphRef: RefObject<SVGSVGElement>;
   point: number;
   limit: number;
   onPointerDown: (e: PointerEvent<SVGCircleElement>) => void;

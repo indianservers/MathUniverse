@@ -178,7 +178,7 @@ export default function IncreasingDecreasingTargetLesson297({
           </button>
         </header>
         <section className="inc297-flow">
-          {[
+          {([
             [
               Eye,
               "Observe",
@@ -199,7 +199,7 @@ export default function IncreasingDecreasingTargetLesson297({
               "Understand",
               "Derivative signs partition the domain into intervals.",
             ],
-          ].map(([_Icon, t, p], i) => (
+          ] as const).map(([_Icon, t, p], i) => (
             <article key={String(t)}>
               <b>{i + 1}</b>
               <div>

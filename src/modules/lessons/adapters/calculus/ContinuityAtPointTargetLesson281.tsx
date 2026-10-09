@@ -113,7 +113,7 @@ export default function ContinuityAtPointTargetLesson281({
       </nav>
       <section className="cap281-flow">
         <b>HOW TO EXPLORE</b>
-        {[
+        {([
           [Eye, "1. Observe", "Look at the graph near the marked point."],
           [
             Hand,
@@ -130,7 +130,7 @@ export default function ContinuityAtPointTargetLesson281({
             "4. Understand",
             "Make f(a) equal to the limit and see continuity achieved.",
           ],
-        ].map(([Icon, title, copy]) => (
+        ] as const).map(([Icon, title, copy]) => (
           <article key={String(title)}>
             <Icon />
             <div>

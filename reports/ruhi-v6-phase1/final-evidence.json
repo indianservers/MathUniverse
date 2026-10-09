@@ -1,0 +1,317 @@
+{
+  "phase": 1,
+  "seed": 20261009,
+  "frozen100": {
+    "passed": 100,
+    "failed": 0
+  },
+  "nlp300": {
+    "passed": 297,
+    "failed": 0,
+    "blocked": 3,
+    "fingerprintVerified": true,
+    "sourceFingerprint": "62db3ee000757269fd7175e1bd9ea291d482e137ed54f50dad0cf8337dedbb67"
+  },
+  "scoped": {
+    "passed": 7798,
+    "failed": 0,
+    "phase1Added": 35,
+    "otherTaskAdded": 24
+  },
+  "typescriptErrors": 218,
+  "eslint": {
+    "errors": 439,
+    "warnings": 133
+  },
+  "newNative": {
+    "scope": "New Phase 1 constrained edits and versioned import/export on native browser workspaces",
+    "checks": [
+      {
+        "mode": "graph2d",
+        "name": "missing side length produces structured clarification",
+        "passed": true,
+        "details": {
+          "status": "ambiguous",
+          "message": "What should the side length be?",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "1be1e68e-6905-40d3-8f31-25cab315bac0",
+            "message": "What should the side length be?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          }
+        }
+      },
+      {
+        "mode": "graph2d",
+        "name": "constrained side edit reaches native workspace",
+        "passed": true,
+        "details": {
+          "status": "success",
+          "message": "Changed triangle.",
+          "execution": {
+            "status": "verified",
+            "requestId": "81f30dfc-d483-48d0-8199-80fa08c50bf2",
+            "message": "Changed triangle.",
+            "evidence": {
+              "level": "numerical_consistency",
+              "independent": true,
+              "passed": true,
+              "method": "Independent side-length, anchored vertex, ray direction, retained-side and dependent circumcircle incidence invariants",
+              "assumptions": []
+            }
+          }
+        }
+      },
+      {
+        "mode": "graph2d",
+        "name": "semantic ID and style retained",
+        "passed": true
+      },
+      {
+        "mode": "graph2d",
+        "name": "undo retains dependent object IDs",
+        "passed": true
+      },
+      {
+        "mode": "graph2d",
+        "name": "versioned native import restores IDs and no duplicates",
+        "passed": true
+      },
+      {
+        "mode": "graph2d",
+        "name": "versioned native import restores style",
+        "passed": true
+      },
+      {
+        "mode": "geometry2d",
+        "name": "missing side length produces structured clarification",
+        "passed": true,
+        "details": {
+          "status": "ambiguous",
+          "message": "What should the side length be?",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "69b282e4-3cd9-4491-9113-dea17e9a0604",
+            "message": "What should the side length be?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          }
+        }
+      },
+      {
+        "mode": "geometry2d",
+        "name": "constrained side edit reaches native workspace",
+        "passed": true,
+        "details": {
+          "status": "success",
+          "message": "Changed triangle.",
+          "execution": {
+            "status": "verified",
+            "requestId": "de52b655-d2ff-4bf5-ad25-efe4db82ea5f",
+            "message": "Changed triangle.",
+            "evidence": {
+              "level": "numerical_consistency",
+              "independent": true,
+              "passed": true,
+              "method": "Independent side-length, anchored vertex, ray direction, retained-side and dependent circumcircle incidence invariants",
+              "assumptions": []
+            }
+          }
+        }
+      },
+      {
+        "mode": "geometry2d",
+        "name": "semantic ID and style retained",
+        "passed": true
+      },
+      {
+        "mode": "geometry2d",
+        "name": "undo retains dependent object IDs",
+        "passed": true
+      },
+      {
+        "mode": "geometry2d",
+        "name": "versioned native import restores IDs and no duplicates",
+        "passed": true
+      },
+      {
+        "mode": "geometry2d",
+        "name": "versioned native import restores style",
+        "passed": true
+      },
+      {
+        "mode": "graph3d",
+        "name": "missing side length produces structured clarification",
+        "passed": true,
+        "details": {
+          "status": "ambiguous",
+          "message": "What should the side length be?",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "f4795284-3385-4ac0-9f69-cbfc401a3868",
+            "message": "What should the side length be?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          }
+        }
+      },
+      {
+        "mode": "graph3d",
+        "name": "constrained side edit reaches native workspace",
+        "passed": true,
+        "details": {
+          "status": "success",
+          "message": "Changed triangle.",
+          "execution": {
+            "status": "verified",
+            "requestId": "7d23991a-c10b-4cfa-894c-fc6a609cc70a",
+            "message": "Changed triangle.",
+            "evidence": {
+              "level": "numerical_consistency",
+              "independent": true,
+              "passed": true,
+              "method": "Independent side-length, anchored vertex, ray direction, retained-side and dependent circumcircle incidence invariants",
+              "assumptions": []
+            }
+          }
+        }
+      },
+      {
+        "mode": "graph3d",
+        "name": "semantic ID and style retained",
+        "passed": true
+      },
+      {
+        "mode": "graph3d",
+        "name": "undo retains dependent object IDs",
+        "passed": true
+      },
+      {
+        "mode": "graph3d",
+        "name": "versioned native import restores IDs and no duplicates",
+        "passed": true
+      },
+      {
+        "mode": "graph3d",
+        "name": "versioned native import restores style",
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "name": "missing side length produces structured clarification",
+        "passed": true,
+        "details": {
+          "status": "ambiguous",
+          "message": "What should the side length be?",
+          "execution": {
+            "status": "invalid_input",
+            "requestId": "37fcc030-73b7-4411-b3f8-fd3959944840",
+            "message": "What should the side length be?",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          }
+        }
+      },
+      {
+        "mode": "geometry3d",
+        "name": "constrained side edit reaches native workspace",
+        "passed": true,
+        "details": {
+          "status": "success",
+          "message": "Changed triangle.",
+          "execution": {
+            "status": "verified",
+            "requestId": "e7949581-79c1-4742-b6f3-b222cf9db401",
+            "message": "Changed triangle.",
+            "evidence": {
+              "level": "numerical_consistency",
+              "independent": true,
+              "passed": true,
+              "method": "Independent side-length, anchored vertex, ray direction, retained-side and dependent circumcircle incidence invariants",
+              "assumptions": []
+            }
+          }
+        }
+      },
+      {
+        "mode": "geometry3d",
+        "name": "semantic ID and style retained",
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "name": "undo retains dependent object IDs",
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "name": "versioned native import restores IDs and no duplicates",
+        "passed": true
+      },
+      {
+        "mode": "geometry3d",
+        "name": "versioned native import restores style",
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "passed": 24,
+    "failed": 0
+  },
+  "modelsUnchanged": true,
+  "sourceHashes": {
+    "src/math-foundation/executionOutcome.ts": "11a2bcb97df98c635f6eff3092d8b8f06fbbc7e0ca3371b6d2eb1a2a8f1a42de",
+    "src/math-foundation/mathIR.ts": "054b223f85991912f8c174cb9ac64342b0f43bbcb0e6f50bb31bd20ec16b40c7",
+    "src/math-foundation/phase1Contracts.test.ts": "732096a060909e417b4070bcbb253c656e4870cac728510a36c4cbc01915d3d7",
+    "src/math-robo/kernel/types.ts": "2ce80054738595e0299a6808f4aa709b5a63f68370ac1f53cb1240b1f52978a1",
+    "src/math-robo/kernel/kernel.ts": "9f4b6bfa1dd4c66bda4a1cc514e2521c7153b8a86e51b7550017a1995540ff4b",
+    "src/math-robo/kernel/client.ts": "d7882ff02a5261cc094d590d5fff7b9b2733066326bbf4d3e85e242f75ae7ea4",
+    "src/math-robo/kernel/kernel.worker.ts": "a9ae0bde4c7c437b7e7ca1b777fe13f6047c0322b9ac843d151fbd9ee799c4f3",
+    "src/math-robo/kernel/specialistClient.ts": "15fc71da9db916d4bce3c9cdb0ca85634c9f17a84e8f6fb7290d69206b884dd2",
+    "src/math-robo/kernel/specialist.worker.ts": "674b02338309715a6208f597d8c0e196a46cc8868ad294349610000ebe57694c",
+    "src/math-robo/kernel/workerTransport.ts": "7c25b4eaf226ce2d8627ea514e5c6de50331249702949047eaa9dc0ff7fcdd10",
+    "src/math-robo/kernel/independentVerification.ts": "6cd0d8ec12fc3affdcc398036b361622c4714acd9a6d2fbccc3379a4c0884b6c",
+    "src/math-robo/kernel/domains.ts": "bfa36613e52f7dc87892cd0a99a75ecc31a9a3bd69178b12352821a03dad0afd",
+    "src/math-robo/kernel/phase1Transport.test.ts": "5b8dfd99397ffbfd8589dce461c23b3e1057edca91f7bf39c31ab0a52a931d17",
+    "src/math-robo/kernel/phase1Verification.test.ts": "438c44917693faee5da7669e3a64ae88d95183a7fd0a152e4585858dcf160039",
+    "src/math-robo/intelligence/types.ts": "d371a746c6b5c519e65d9a54b3aaf529fd5eaa812f957fb3cf69c5f1e25a61cb",
+    "src/math-robo/intelligence/mathIRAdapter.ts": "60180ffc31ad6b120c65050730b5d24ebdbe02e74f5015d4a3824270bbfe7257",
+    "src/math-robo/intelligence/triangleSide.ts": "0aeeffc179a7faffa7a32816feef381d898ffe84b34afc08f13fb3358b4704c1",
+    "src/math-robo/intelligence/geometryEvidence.ts": "7e654748b1698e126e3cde38cb14fd4e61310c579fa78da2af762a0241b3dd2b",
+    "src/math-robo/intelligence/phase1Integrity.test.ts": "b442305a840f1d4cad18a95bbc976e7a4708f5768ab86fbbeb22586fbb44c0b1",
+    "src/math-robo/intelligence/actionRegistry.ts": "3a90cf68f054d3829b1a4b957bd886b946ce9c93889633d01d6a92462f860906",
+    "src/math-robo/intelligence/semanticParser.ts": "77e7cc2aaf00acda57707ec0ef0b888c92e39c85ea1d66c7af1d82855b97de9b",
+    "src/math-robo/intelligence/conversationEngine.ts": "f33e7a2acf96dce74c4145ca3f5acc27117e9c0fd038eede4c3fc15b7b5a73f5",
+    "src/math-robo/intelligence/executionPlanner.ts": "bc726119e4e831a5af91580c93ea49c4cfb375d08226b1b8a61ad590d59dbcf3",
+    "src/math-robo/intelligence/semanticEngine.ts": "397b1d4ada7a1543dc4a0cd54c57875a1c99f5b29993ce63c9a9b6ecdb98c81e",
+    "src/math-robo/intelligence/resultVerifier.ts": "7511bb4f06ac65d7796b9268da31699a25dfa24f315c5f0608c62c9ab8e2cbe2",
+    "src/math-robo/intelligence/workspaceDependencies.ts": "286499016dcd380dbb9a69446f05db30eec441d9b8e80edfb52ef6541ad2bbb9",
+    "src/math-robo/intelligence/engineRegistryCore.ts": "a28cfc55ffcbbf8c1573c456fa1bf481ab88ba60ba2fa5d06bada6429b8d386e",
+    "src/math-robo/intelligence/engineRouter.ts": "cc391dd75de68044dce0fdc6b7fe7a998eb763b2b255fc14f7e7cb7a674fdbbe",
+    "src/math-robo/intelligence/liveAssistant.ts": "288242b786f177b3d82cd7311d5b18b57596e60e3005841f90118276edde3b1b",
+    "src/math-robo/intelligence/semanticDataset.ts": "dac6c25896aa8a273a8c405019e5fdb930dcd149221dd027022e04363d7329fc",
+    "src/offline-intelligence/OfflineMathAssistant.tsx": "1002594209cf5f9d4c412a032a2236c76ee3fd169ad17f28abc9b0c2f138946e",
+    "src/offline-intelligence/languageEngine.ts": "14c2abf677e712b6755833df4030e588132a5b8f8a6c6107e73525e5a4ffc9ff"
+  }
+}

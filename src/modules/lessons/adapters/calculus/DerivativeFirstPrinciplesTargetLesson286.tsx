@@ -144,7 +144,7 @@ export default function DerivativeFirstPrinciplesTargetLesson286({
         ))}
       </nav>
       <section className="dfp286-flow">
-        {[
+        {([
           [
             Eye,
             "Observe",
@@ -165,7 +165,7 @@ export default function DerivativeFirstPrinciplesTargetLesson286({
             "Understand",
             "That limit is the derivative f′(x), the slope of the tangent line.",
           ],
-        ].map(([Icon, title, text], index) => (
+        ] as const).map(([Icon, title, text], index) => (
           <article key={String(title)}>
             <Icon />
             <div>

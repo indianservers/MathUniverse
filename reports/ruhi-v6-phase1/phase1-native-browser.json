@@ -1,0 +1,256 @@
+{
+  "scope": "New Phase 1 constrained edits and versioned import/export on native browser workspaces",
+  "checks": [
+    {
+      "mode": "graph2d",
+      "name": "missing side length produces structured clarification",
+      "passed": true,
+      "details": {
+        "status": "ambiguous",
+        "message": "What should the side length be?",
+        "execution": {
+          "status": "invalid_input",
+          "requestId": "1be1e68e-6905-40d3-8f31-25cab315bac0",
+          "message": "What should the side length be?",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph2d",
+      "name": "constrained side edit reaches native workspace",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Changed triangle.",
+        "execution": {
+          "status": "verified",
+          "requestId": "81f30dfc-d483-48d0-8199-80fa08c50bf2",
+          "message": "Changed triangle.",
+          "evidence": {
+            "level": "numerical_consistency",
+            "independent": true,
+            "passed": true,
+            "method": "Independent side-length, anchored vertex, ray direction, retained-side and dependent circumcircle incidence invariants",
+            "assumptions": []
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph2d",
+      "name": "semantic ID and style retained",
+      "passed": true
+    },
+    {
+      "mode": "graph2d",
+      "name": "undo retains dependent object IDs",
+      "passed": true
+    },
+    {
+      "mode": "graph2d",
+      "name": "versioned native import restores IDs and no duplicates",
+      "passed": true
+    },
+    {
+      "mode": "graph2d",
+      "name": "versioned native import restores style",
+      "passed": true
+    },
+    {
+      "mode": "geometry2d",
+      "name": "missing side length produces structured clarification",
+      "passed": true,
+      "details": {
+        "status": "ambiguous",
+        "message": "What should the side length be?",
+        "execution": {
+          "status": "invalid_input",
+          "requestId": "69b282e4-3cd9-4491-9113-dea17e9a0604",
+          "message": "What should the side length be?",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "name": "constrained side edit reaches native workspace",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Changed triangle.",
+        "execution": {
+          "status": "verified",
+          "requestId": "de52b655-d2ff-4bf5-ad25-efe4db82ea5f",
+          "message": "Changed triangle.",
+          "evidence": {
+            "level": "numerical_consistency",
+            "independent": true,
+            "passed": true,
+            "method": "Independent side-length, anchored vertex, ray direction, retained-side and dependent circumcircle incidence invariants",
+            "assumptions": []
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry2d",
+      "name": "semantic ID and style retained",
+      "passed": true
+    },
+    {
+      "mode": "geometry2d",
+      "name": "undo retains dependent object IDs",
+      "passed": true
+    },
+    {
+      "mode": "geometry2d",
+      "name": "versioned native import restores IDs and no duplicates",
+      "passed": true
+    },
+    {
+      "mode": "geometry2d",
+      "name": "versioned native import restores style",
+      "passed": true
+    },
+    {
+      "mode": "graph3d",
+      "name": "missing side length produces structured clarification",
+      "passed": true,
+      "details": {
+        "status": "ambiguous",
+        "message": "What should the side length be?",
+        "execution": {
+          "status": "invalid_input",
+          "requestId": "f4795284-3385-4ac0-9f69-cbfc401a3868",
+          "message": "What should the side length be?",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph3d",
+      "name": "constrained side edit reaches native workspace",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Changed triangle.",
+        "execution": {
+          "status": "verified",
+          "requestId": "7d23991a-c10b-4cfa-894c-fc6a609cc70a",
+          "message": "Changed triangle.",
+          "evidence": {
+            "level": "numerical_consistency",
+            "independent": true,
+            "passed": true,
+            "method": "Independent side-length, anchored vertex, ray direction, retained-side and dependent circumcircle incidence invariants",
+            "assumptions": []
+          }
+        }
+      }
+    },
+    {
+      "mode": "graph3d",
+      "name": "semantic ID and style retained",
+      "passed": true
+    },
+    {
+      "mode": "graph3d",
+      "name": "undo retains dependent object IDs",
+      "passed": true
+    },
+    {
+      "mode": "graph3d",
+      "name": "versioned native import restores IDs and no duplicates",
+      "passed": true
+    },
+    {
+      "mode": "graph3d",
+      "name": "versioned native import restores style",
+      "passed": true
+    },
+    {
+      "mode": "geometry3d",
+      "name": "missing side length produces structured clarification",
+      "passed": true,
+      "details": {
+        "status": "ambiguous",
+        "message": "What should the side length be?",
+        "execution": {
+          "status": "invalid_input",
+          "requestId": "37fcc030-73b7-4411-b3f8-fd3959944840",
+          "message": "What should the side length be?",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "name": "constrained side edit reaches native workspace",
+      "passed": true,
+      "details": {
+        "status": "success",
+        "message": "Changed triangle.",
+        "execution": {
+          "status": "verified",
+          "requestId": "e7949581-79c1-4742-b6f3-b222cf9db401",
+          "message": "Changed triangle.",
+          "evidence": {
+            "level": "numerical_consistency",
+            "independent": true,
+            "passed": true,
+            "method": "Independent side-length, anchored vertex, ray direction, retained-side and dependent circumcircle incidence invariants",
+            "assumptions": []
+          }
+        }
+      }
+    },
+    {
+      "mode": "geometry3d",
+      "name": "semantic ID and style retained",
+      "passed": true
+    },
+    {
+      "mode": "geometry3d",
+      "name": "undo retains dependent object IDs",
+      "passed": true
+    },
+    {
+      "mode": "geometry3d",
+      "name": "versioned native import restores IDs and no duplicates",
+      "passed": true
+    },
+    {
+      "mode": "geometry3d",
+      "name": "versioned native import restores style",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": 24,
+  "failed": 0
+}

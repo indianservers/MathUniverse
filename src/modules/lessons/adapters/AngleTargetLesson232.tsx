@@ -363,12 +363,12 @@ export default function AngleTargetLesson232({
           </article>
           <article className="target-angle-options">
             <h2>Display options</h2>
-            {[
+            {([
               ["Show angle arc", showArc, setShowArc],
               ["Show ray AB", showAB, setShowAB],
               ["Show ray AC", showAC, setShowAC],
               ["Show labels", showLabels, setShowLabels],
-            ].map(([label, checked, setter]) => (
+            ] as const).map(([label, checked, setter]) => (
               <label key={String(label)}>
                 {label}
                 <input

@@ -1,0 +1,6 @@
+import {build} from 'esbuild';
+import {spawnSync} from 'node:child_process';
+import fs from 'node:fs';
+await build({entryPoints:['scripts/ruhi-v6-phase2-dialogues.ts'],bundle:true,platform:'node',format:'esm',packages:'external',outfile:'tmp/ruhi-v6-phase2-dialogues.mjs',define:{'import.meta.env':'{"DEV":false,"BASE_URL":"/","VITE_ENABLE_MODEL_TRAINING":"false"}'}});
+const entry='tmp/ruhi-v6-phase2-dialogues.mjs';fs.writeFileSync(entry,fs.readFileSync(entry,'utf8').replace(/"nerdamer\/(Algebra|Calculus|Solve)"/g,'"nerdamer/$1.js"'));
+const result=spawnSync(process.execPath,['tmp/ruhi-v6-phase2-dialogues.mjs'],{stdio:'inherit'});process.exitCode=result.status??1;

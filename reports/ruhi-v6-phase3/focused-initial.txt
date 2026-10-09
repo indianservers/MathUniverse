@@ -1,0 +1,96 @@
+
+ RUN  v4.1.8 C:/Indian Servers/Math Universe Visualizations
+
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > A object continuity uses current dimensions, style and reverses only rotation 45ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > B ambiguous references preserve the movement until the second circle is identified 18ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > C relative angle changes use the active angle and end at 89 degrees 4ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > D compound medians, centroid and circumcircle carry live triangle dependencies 8ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > F tutoring checks a wrong rectangle answer, hints and accepts equivalent correct formatting 167ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > G deleted object references cannot survive a geometry follow-up 5ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > H page changes invalidate specialist task memory without deleting workspace objects 4ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > I compound create/transform/measure/verify has no partial mutation on a contradictory step 5ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > J unsupported proof never receives verified execution confidence 722ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > missing line endpoints can be supplied by a point plus direction angle 3ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > contradictory SSS triangle is rejected with the triangle inequality 2ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > E selected angle and reviewed page explanations are grounded in current state 2ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > medians and centroid recompute on parent translation and survive undo and saved import 13ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > typed memory exposes current evidence and stable dependency versions 3ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > relative resize accounts for physical scale and refuses nonpositive dimensions 7ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > tutoring rejects a stale exercise after its source object changes 4ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > line clarification never infers a missing finite vector magnitude 2ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > D independent coordinate oracle checks all medians, centroid and circumcircle 5ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > I successful multi-intent action graph draws, moves, measures, explains and checks atomically 4ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > proof adapters do not verify nonparallel lines or use 2D evidence for 3D 7ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > fuzzy resizing requests preserve geometry until an exact factor is provided 4ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > geometric references resolve by incidence and containment rather than recency 19ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > previous length uses retained geometry and never resurrects a deleted reference 5ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > circumcenter evidence rejects malformed parents and inconsistent circle radius 4ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > proof follow-ups use their checked geometry and reject a changed scene 6ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > saved scene imports reset proof, pending and specialist session context 6ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > marked rectangle centroid uses four vertices and matches the actual point 3ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > marked triangle centroid carries three coordinates and live dependencies in graph3d 10ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > marked triangle centroid carries three coordinates and live dependencies in geometry3d 8ms
+ ✓ src/math-robo/intelligence/phase2Conversation.test.ts > explicit construction references take precedence over a new triangle in the compound plan 7ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry2d anchored side mutation preserves IDs and styles, certificates and undo/redo 44ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry2d missing side constraints and failed edits cannot mutate state 10ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry2d versioned persistence round trips aliases/styles/history and rejects duplicate identities atomically 17ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph2d anchored side mutation preserves IDs and styles, certificates and undo/redo 7ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph2d missing side constraints and failed edits cannot mutate state 6ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph2d versioned persistence round trips aliases/styles/history and rejects duplicate identities atomically 7ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry3d anchored side mutation preserves IDs and styles, certificates and undo/redo 6ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry3d missing side constraints and failed edits cannot mutate state 6ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry3d versioned persistence round trips aliases/styles/history and rejects duplicate identities atomically 8ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph3d anchored side mutation preserves IDs and styles, certificates and undo/redo 5ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph3d missing side constraints and failed edits cannot mutate state 5ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph3d versioned persistence round trips aliases/styles/history and rejects duplicate identities atomically 6ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > 2D circumcircle follows constrained triangle and missing-constraint question retains intent 13ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > queued native cancellation rolls back before a later request, without committing history 8ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > exact five frozen transcripts run in four modes with ambiguity recorded honestly 94ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > supplied endpoints complete the blocked line/intersection/circle/color transcript 15ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > a uniquely retained triangle-side property supports increase by 2 and undo that change 4ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > cyclic dependencies and native commit exceptions reject proposed scene atomically 3ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry2d a supplied vector and angle preserve magnitude under rotation 4ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph2d a supplied vector and angle preserve magnitude under rotation 4ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > geometry3d a supplied vector and angle preserve magnitude under rotation 4ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > graph3d a supplied vector and angle preserve magnitude under rotation 3ms
+ ✓ src/math-robo/intelligence/phase1Integrity.test.ts > partial side constraints remain underdetermined and never select a hidden anchoring policy 3ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > relative angle grammar accumulates degrees rather than proposing a scale 32ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > line definition retains its first point across clarification turns 10ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > an object label does not become a shorthand radius or movement distance 7ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > construct rejects impossible SSS triangles before mutation 2ms
+ × src/math-robo/intelligence/phase3Adversarial.test.ts > editing a symbolic triangle vertex propagates medians and centroid in graph2d 19ms
+   → This is a derived vertex or edge. Create a separate object before editing it.: expected 'invalid' to be 'success' // Object.is equality
+ × src/math-robo/intelligence/phase3Adversarial.test.ts > editing a symbolic triangle vertex propagates medians and centroid in geometry2d 8ms
+   → This is a derived vertex or edge. Create a separate object before editing it.: expected 'invalid' to be 'success' // Object.is equality
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > history remains bounded through 100 contextual edits 171ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > oversized input and plans reject without scene mutation 23ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > untrusted imported control is rejected before renderer effects 4ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > untrusted imported coordinates is rejected before renderer effects 3ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > untrusted imported selection is rejected before renderer effects 2ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > untrusted imported history is rejected before renderer effects 2ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > untrusted imported mode is rejected before renderer effects 2ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > untrusted imported expression is rejected before renderer effects 2ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > untrusted imported identity is rejected before renderer effects 2ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > studio navigation only proposes registered routes and asks before leaving objects 2ms
+ ✓ src/math-robo/intelligence/phase3Adversarial.test.ts > independent verifier contradicts deliberately wrong symbolic answers 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/math-robo/intelligence/phase3Adversarial.test.ts > editing a symbolic triangle vertex propagates medians and centroid in graph2d
+ FAIL  src/math-robo/intelligence/phase3Adversarial.test.ts > editing a symbolic triangle vertex propagates medians and centroid in geometry2d
+AssertionError: This is a derived vertex or edge. Create a separate object before editing it.: expected 'invalid' to be 'success' // Object.is equality
+
+Expected: "success"
+Received: "invalid"
+
+ ❯ src/math-robo/intelligence/phase3Adversarial.test.ts:13:416
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 68 passed (70)
+   Start at  03:30:02
+   Duration  4.14s (transform 960ms, setup 72ms, import 2.00s, tests 1.68s, environment 0ms)
+

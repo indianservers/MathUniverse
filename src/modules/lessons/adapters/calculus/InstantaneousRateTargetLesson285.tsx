@@ -129,7 +129,7 @@ export default function InstantaneousRateTargetLesson285({
         ))}
       </nav>
       <section className="irc285-flow">
-        {[
+        {([
           [
             Eye,
             "Observe",
@@ -150,7 +150,7 @@ export default function InstantaneousRateTargetLesson285({
             "Understand",
             "That limit is the instantaneous rate of change at x.",
           ],
-        ].map(([Icon, title, text], index) => (
+        ] as const).map(([Icon, title, text], index) => (
           <article key={String(title)}>
             <Icon />
             <div>

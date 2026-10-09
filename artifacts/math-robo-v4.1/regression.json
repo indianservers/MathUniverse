@@ -12,9 +12,9 @@
     "scope": "Intent-negative safety; grouped surface perturbations"
   },
   "registry": {
-    "baselineSubactions": 97,
-    "baselinePairs": 125,
-    "implementedPairs": 169,
+    "baselineSubactions": 99,
+    "baselinePairs": 127,
+    "implementedPairs": 171,
     "unsupported": [
       {
         "action": "CREATE",
@@ -2604,7 +2604,7 @@
     ]
   },
   "dataset": {
-    "rows": 3903,
+    "rows": 3911,
     "classes": [
       {
         "operation": "CREATE:TRIANGLE",
@@ -2893,6 +2893,14 @@
       {
         "operation": "CHANGE:LABEL",
         "count": 16
+      },
+      {
+        "operation": "CHANGE:SIDE",
+        "count": 4
+      },
+      {
+        "operation": "CHECK:MEASUREMENT",
+        "count": 4
       },
       {
         "operation": "CHANGE:ENDPOINTS",
@@ -3287,10 +3295,12 @@
     "maximumClassCount": 90,
     "imbalanceRatio": 90,
     "duplicates": 1540,
-    "nearDuplicates": 2236,
+    "nearDuplicates": 2240,
     "conflictingLabels": 0,
     "duplicateIds": 0,
     "lowClasses": [
+      "CHANGE:SIDE",
+      "CHECK:MEASUREMENT",
       "CHANGE:ENDPOINTS",
       "COMPARE:VOLUME",
       "COMPARE:SURFACE_AREA",

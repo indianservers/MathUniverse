@@ -1,6 +1,7 @@
 import {beforeAll,afterAll,it,expect,vi} from 'vitest';
 import * as tf from '@tensorflow/tfjs';
-import {readFileSync,writeFileSync} from 'node:fs';
+import {readFileSync} from 'node:fs';
+import {writeTestReport as writeFileSync} from '../testReport';
 import {buildContextDataset} from './contextDataset';
 import {inferContext,type ContextRow} from './ruhiContextNet';
 import {ContextAssistant} from './contextAssistant';

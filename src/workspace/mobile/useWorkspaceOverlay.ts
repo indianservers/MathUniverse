@@ -6,7 +6,7 @@ import {
   useMemo,
   useRef,
   useState,
-  type RefObject,
+  type MutableRefObject,
 } from "react";
 import { useOutsideDismiss } from "./useOutsideDismiss";
 
@@ -50,7 +50,7 @@ export type WorkspaceOverlayApi = {
   active: string | null;
   isMobile: boolean;
   canvasGuarded: boolean;
-  rootRef: RefObject<HTMLElement | null>;
+  rootRef: MutableRefObject<HTMLElement | null>;
   isOpen: (id: string) => boolean;
   open: (id: string) => void;
   close: () => void;

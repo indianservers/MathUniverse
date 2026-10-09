@@ -124,7 +124,8 @@ export function useGraphStudioProject<TState>({
   };
   const undo = () => {
     const current = JSON.stringify(state);
-    const index = undoStack.findLastIndex((item) => JSON.stringify(item) !== current);
+    let index = undoStack.length - 1;
+    while (index >= 0 && JSON.stringify(undoStack[index]) === current) index--;
     const previous = index >= 0 ? undoStack[index] : undefined;
     if (!previous) return;
     skipHistoryRef.current = JSON.stringify(previous);
@@ -135,7 +136,8 @@ export function useGraphStudioProject<TState>({
   };
   const redo = () => {
     const current = JSON.stringify(state);
-    const index = redoStack.findLastIndex((item) => JSON.stringify(item) !== current);
+    let index = redoStack.length - 1;
+    while (index >= 0 && JSON.stringify(redoStack[index]) === current) index--;
     const next = index >= 0 ? redoStack[index] : undefined;
     if (!next) return;
     skipHistoryRef.current = JSON.stringify(next);

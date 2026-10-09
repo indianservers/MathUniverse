@@ -6,16 +6,18 @@ import {center,vertices} from './geometryQueries';
 import {FollowUpEngine} from './followUpEngine';
 import {COLORS} from '../../offline-intelligence/shapeCatalog';
 import {geometryState} from './resultVerifier';
-export type PendingCommand={plan:MathRoboPlan;index:number;slot:string;question:string;options:string[];choices?:MathRoboPlan[];references?:string[]};
+export type PendingCommand={plan:MathRoboPlan;index:number;slot:string;question:string;options:string[];choices?:MathRoboPlan[];references?:string[];referenceVersions?:Record<string,string>};
 export class ConversationEngine extends FollowUpEngine {
   turns:{text:string;kind:string;subjectBefore:string[];subjectAfter:string[];pending?:PendingCommand;status:string;message:string;plan:MathRoboPlan;resolvedReferences:string[];missingSlots:string[];confidence:{intent:number;reference:number;answer:number;contextContinuity:number};executed:boolean}[]=[];
-  lastMathResult?:{value:RoboResult['value'];explanation:string;targets:string[]};
+  lastMathResult?:{value:RoboResult['value'];explanation:string;targets:string[];sceneVersion?:string};
   private lastMutation?:MathRoboCommand;
   private lastMutationState?:string;
   private before:string[]=[];
   private text='';
+  resetContext(){this.pending=undefined;this.lastMathResult=undefined;this.lastMutation=undefined;this.lastMutationState=undefined;this.turns=[];this.invalidated=undefined;}
   private invalidated?:string;
   sync(scene:RoboSceneContext){
+    if(this.pending?.referenceVersions&&Object.entries(this.pending.referenceVersions).some(([id,version])=>{const object=scene.objects.find(o=>o.id===id);return !object||geometryState({...scene,objects:[object]})!==version;})){this.pending=undefined;this.invalidated='The referenced geometry changed. Please restate the operation using its current state.';}
     if(scene.activeAngle&&!scene.objects.some(o=>o.id===scene.activeAngle!.objectId))scene.activeAngle=undefined;
     if(this.pending){const target=this.pending.plan.commands[this.pending.index].target;let missing=false;if(typeof target==='string'&&!target.startsWith('last')&&!target.startsWith('$'))try{resolveTarget(target,scene);}catch{missing=true;}if(missing||this.pending.references?.some(id=>!scene.objects.some(o=>o.id===id))){this.pending=undefined;this.invalidated='That object was removed. Please choose an existing object.';}}
     if(this.lastMathResult)this.lastMathResult.targets=this.lastMathResult.targets.filter(id=>scene.objects.some(o=>o.id===id)||id.startsWith('$edge:')&&scene.objects.some(o=>id.endsWith(':'+o.id)));
@@ -25,7 +27,14 @@ export class ConversationEngine extends FollowUpEngine {
   prepare(text:string,plan:MathRoboPlan,scene:RoboSceneContext):{plan:MathRoboPlan;message?:string} {
     this.text=text;this.before=[...(scene.activeObjectIds??[])];
     let normalized=normalizeLanguage(text).replace(/[.!?]+$/,'');
+    if(/^(?:make|scale|enlarge) (?:it|that) (?:a little|slightly|somewhat) (?:larger|bigger|smaller)$/.test(normalized)){const proposed=parseSemanticPlan('Scale it',scene.activeMode);proposed.commands[0].action='SCALE';proposed.commands[0].subAction='UNIFORM';proposed.commands[0].target='lastReferenced';proposed.commands[0].parameters={};return this.ask(proposed,0,'factor','What exact scale factor should I use? A phrase such as “a little larger” does not specify a number.');}
+    const dimensionChange=normalized.match(/^(increase|decrease|reduce) (?:its|the) (width|height|depth|radius|diameter) by (.+)$/);
+    if(dimensionChange){try{const host=resolveTarget('lastReferenced',scene),property=dimensionChange[2],base=property==='diameter'?host.command.radius*2:Number(host.command[property as 'width'|'height'|'depth'|'radius']),value=base*(host.command.scale??1)+(dimensionChange[1]==='increase'?1:-1)*parseNumber(dimensionChange[3]);plan=parseSemanticPlan(`Change its ${property} to ${value}`,scene.activeMode);plan.commands[0].target=host.id;for(const key of ['width','height','depth'] as const)if(key!==property&&host.command[key]!==undefined)plan.commands[0].parameters[key]=host.command[key]!*(host.command.scale??1);}catch{/* Normal resolution retains missing or ambiguous references. */}}
+    const relative=normalized.match(/^(increase|decrease) it by (-?\d+(?:\.\d+)?)$/);
+    if(relative&&this.lastMutation?.action==='CHANGE'&&this.lastMutation.subAction==='SIDE'&&this.lastMutationState===geometryState(scene)){const previous=structuredClone(this.lastMutation);previous.id=crypto.randomUUID();previous.rawPhrase=text;previous.parameters.length=Number(previous.parameters.length)+(relative[1]==='increase'?1:-1)*Number(relative[2]);plan={...plan,commands:[previous]};}
     for(const command of plan.commands){if(!command.parameters.dimensionRatio)continue;try{const target=resolveTarget(command.target,scene),visual=target.command,ratio=command.parameters.dimensionRatio as {destination:'width'|'height'|'depth';source:'width'|'height'|'depth';factor:number};if(!['rectangle','square','cube','cuboid'].includes(target.type))continue;const scale=visual.scale??1;command.parameters.width=visual.width*scale;command.parameters.height=visual.height*scale;command.parameters.depth=(visual.depth??visual.width)*scale;command.parameters[ratio.destination]=(visual[ratio.source]??visual.width)*scale*ratio.factor;}catch{/* Keep missing or ambiguous targets for normal clarification. */}}
+    const relativeAngle=normalized.match(new RegExp(`^make it (?:another )?(${NUMBER_PATTERN}) degrees? (larger|smaller)$`));
+    if(scene.activeAngle&&relativeAngle){const c=plan.commands[0];c.action='CHANGE';c.subAction='ANGLE';c.target=scene.activeAngle.objectId;c.parameters={angle:parseNumber(relativeAngle[1]),vertex:['A','B','C'][scene.activeAngle.vertex],angleOperation:relativeAngle[2]==='larger'?'increment':'decrement'};}
     if(scene.activeAngle&&/^(?:make|set|increase|decrease|reduce)\s+(?:it\s+)?(?:by\s+)?(?:another\s+)?[\d.-]+(?:\s*(?:degrees?|percent|%))?$/.test(normalized)){
       const amount=normalized.match(new RegExp(NUMBER_PATTERN))?.[0];if(amount){const c=plan.commands[0];c.action='CHANGE';c.subAction='ANGLE';c.target=scene.activeAngle.objectId;c.parameters={angle:parseNumber(amount),vertex:['A','B','C'][scene.activeAngle.vertex],angleOperation:/percent|%/.test(normalized)?/decrease|reduce/.test(normalized)?'decrementPercent':'incrementPercent':/increase/.test(normalized)?'increment':/decrease|reduce/.test(normalized)?'decrement':'set'};}
     }
@@ -96,9 +105,14 @@ export class ConversationEngine extends FollowUpEngine {
       let missingTarget=false;if(typeof command.target==='string'&&!command.target.startsWith('last')&&!command.target.startsWith('$'))try{resolveTarget(command.target,scene);}catch{missingTarget=true;}
       if(missingTarget){this.pending=undefined;return {plan,message:'That object was removed. Please choose an existing object.'};}
       if(normalized==='no'){this.pending=undefined;return {plan,message:'Cancelled the pending command.'};}
+      if(pending.slot==='points'&&/^(?:rotate (?:it|that)|draw a circle centered there|make its radius|color only the circle)/.test(normalized))return {plan:pending.plan,message:pending.question};
+      if(['points','triangleLength','trianglePolicy','angle'].includes(pending.slot)&&/^(?:find|what|where|does|explain)\b/.test(normalized))return {plan:pending.plan,message:pending.question};
       let accepted=false;
       const numeric=normalized.match(new RegExp(`^(${NUMBER_PATTERN})(?:\\s+(?:units?|degrees|radians))?(?:\\s+(?:clockwise|anticlockwise|counterclockwise))?$`));
-      if(pending.choices){
+      if(pending.slot==='trianglePolicy'&&(command.parameters.side as string[]).join('')==='AB'&&(/keep a and c fixed.*b on (?:the )?ray ab/.test(normalized)||/preserve ac and bc/.test(normalized)&&/fix a|keep a fixed/.test(normalized)&&/ab direction|direction of ab/.test(normalized)&&/same side/.test(normalized))){command.parameters.sidePolicy=/preserve/.test(normalized)?'preserve_other_sides':'fixed_third_vertex';accepted=true;}
+      else if(pending.slot==='radius'&&plan.commands.length===1&&plan.commands[0].action==='CHANGE'&&plan.commands[0].subAction==='RADIUS'&&typeof plan.commands[0].parameters.radius==='number'){command.parameters.radius=plan.commands[0].parameters.radius;command.parameters.conversationRadiusProvided=true;if(command.parameters.legacy)command.parameters.legacy.radius=command.parameters.radius;accepted=true;}
+      else if(pending.slot==='triangleLength'&&numeric){const length=parseNumber(numeric[1]);if(length>0&&length<=10000){command.parameters.length=length;accepted=true;}}
+      else if(pending.choices){
         const ordinal=normalized.match(/^(?:the )?(first|second)(?: (?:one|1|triangle|rectangle|square|circle|line|point|polygon|object))?$/)?.[1];
         const option=normalized==='yes'?0:ordinal?['first','second'].indexOf(ordinal):/^\d+$/.test(normalized)?Number(normalized)-1:-1;
         if(pending.choices[option]){plan=structuredClone(pending.choices[option]);this.pending=undefined;return {plan};}
@@ -130,7 +144,17 @@ export class ConversationEngine extends FollowUpEngine {
       else if(pending.slot==='planePoints'){const points=coordinates(normalized,3);if(points.length===3){command.parameters.points=points;accepted=true;}}
       else if(['points','position'].includes(pending.slot)){
         const points=coordinates(normalized,scene.activeMode.endsWith('3d')?3:2);
-        if(points.length>=(pending.slot==='points'?2:1)){command.parameters[pending.slot]=pending.slot==='points'?points:points[0];if(command.parameters.legacy){command.parameters.legacy.points=points;}delete command.parameters.parseError;accepted=true;}
+        const direction=normalized.match(/\bat\s+(-?\d+(?:\.\d+)?)\s+degrees?$/);
+        if(pending.slot==='points'&&command.subAction==='LINE'&&command.parameters.count!==2&&!scene.activeMode.endsWith('3d')){
+          const retained=command.parameters.conversationPoint as number[]|undefined;
+          if(direction&&points.length===0&&retained)points.push([...retained]);
+          else if(points.length===1&&!direction){
+            if(retained&&!/^through\b/.test(normalized))points.unshift([...retained]);
+            else{command.parameters.conversationPoint=[...points[0]];pending.question='Give another point or a direction angle, such as “at 45 degrees”.';return {plan:pending.plan,message:pending.question};}
+          }
+        }
+        if(pending.slot==='points'&&command.subAction==='LINE'&&command.parameters.count!==2&&points.length===1&&points[0].length===2&&direction){const radians=Number(direction[1])*Math.PI/180;points.push([points[0][0]+Math.cos(radians),points[0][1]+Math.sin(radians)]);command.parameters.linearExtent='line';}
+        if(points.length>=(pending.slot==='points'?(command.parameters.count===2?4:2):1)){command.parameters[pending.slot]=pending.slot==='points'?points:points[0];if(command.parameters.legacy){command.parameters.legacy.points=points;}delete command.parameters.parseError;accepted=true;}
         else if(pending.slot==='position')try{const point=resolveTarget(normalized.replace(/^through\s+/,'').replace(/^(?:the )?point\s+/,''),scene);if(point.type==='point'){command.parameters.position=point.position;accepted=true;}}catch{/* Keep asking for an actual point. */}
       }
       else if(pending.slot==='destination'){
@@ -156,7 +180,7 @@ export class ConversationEngine extends FollowUpEngine {
           }
         }catch{/* Keep the pending question until a real line is chosen. */}
       }
-      if(accepted){plan=structuredClone(pending.plan);this.pending=undefined;}
+      if(accepted){plan=structuredClone(pending.plan);if(pending.slot==='points'&&command.parameters.count===2){const points=command.parameters.points!;plan.commands=[0,1].map(i=>({...structuredClone(command),id:crypto.randomUUID(),parameters:{...command.parameters,count:1,points:points.slice(i*2,i*2+2),legacy:undefined}}));}this.pending=undefined;}
       else if(/^(draw|create|make|change|set|duplicate|copy|mark|plot|graph|hide|show|move|rotate|reflect|scale|delete|find|what|where|are|is|now|select|undo|redo|actually|instead)\b/.test(normalized)){this.pending=undefined;}
       else return {plan:pending.plan,message:pending.question};
     }
@@ -185,10 +209,11 @@ export class ConversationEngine extends FollowUpEngine {
     }
     for(let index=0;index<plan.commands.length;index++){
       const command=plan.commands[index],p=command.parameters;
+      if(plan.commands.length===1&&/\bthat (circle|triangle|rectangle|square|line|point|vector)\b/.test(normalized)&&!this.pending&&typeof command.target!=='string'&&scene.selectedIds.length!==1){const type=normalized.match(/\bthat (circle|triangle|rectangle|square|line|point|vector)\b/)![1],candidates=scene.objects.filter(o=>o.type===type);if(candidates.length>1)return this.ask(plan,index,'target','Several objects match. Which object should I use?',candidates.map(o=>o.id));}
         if(command.action==='CHANGE'&&['COLOR','FILL_COLOR','STROKE_COLOR'].includes(command.subAction)&&!p.color)return this.ask(plan,index,'color','Which color should I use?');
       if(command.action==='CHANGE'&&command.subAction==='ANGLE'&&!p.impossibleAngles){
         let host;try{host=resolveTarget(command.target,scene);}catch{/* The ordinary resolver will report unavailable objects. */}
-        if(!p.vertex){if(host?.id===scene.activeAngle?.objectId)p.vertex=['A','B','C'][scene.activeAngle!.vertex];else if(host?.type==='angle')p.vertex='A';else return this.ask(plan,index,'angleVertex','Which angle should I change: angle A, B or C?',['A','B','C']);}
+        if(!p.vertex){if(scene.activeAngle&&host?.id===scene.activeAngle.objectId)p.vertex=['A','B','C'][scene.activeAngle.vertex];else if(host?.type==='angle')p.vertex='A';else return this.ask(plan,index,'angleVertex','Which angle should I change: angle A, B or C?',['A','B','C']);}
         if(p.angle===undefined)return this.ask(plan,index,'angle','By how many degrees, or to which angle, should I change it?');
       }
       if(command.action==='CREATE'&&command.subAction==='ANGLE'&&p.angle===undefined)return this.ask(plan,index,'angle','How many degrees should the angle measure?');
@@ -232,9 +257,9 @@ export class ConversationEngine extends FollowUpEngine {
         const point=(Array.isArray(scene.previousResult[0])&&scene.previousResult.length===1?scene.previousResult[0]:scene.previousResult) as number[];
         if(point.every(n=>typeof n==='number')){p.conversationPoint=point;if(/vertical|horizontal/.test(normalized)){const axis=/vertical/.test(normalized)?1:0;p.points=[point.map((n,i)=>n-(i===axis?3:0)),point.map((n,i)=>n+(i===axis?3:0))];delete p.parseError;}else return this.ask(plan,index,'lineDirection','Which direction should the line have: horizontal or vertical?');}
       }
-      if(command.action==='CREATE'&&['LINE','RAY','VECTOR'].includes(command.subAction)&&!(p.points as number[][]|undefined)?.length&&!p.legacy?.points?.length)return this.ask(plan,index,'points','What are the two endpoints? Give coordinates such as (0,0) and (4,2).');
+      if(command.action==='CREATE'&&['LINE','RAY','VECTOR'].includes(command.subAction)&&!(p.points as number[][]|undefined)?.length&&!p.legacy?.points?.length)return this.ask(plan,index,'points',p.count===2?'Give four endpoints: two for each intersecting line.':'What are the two endpoints? Give coordinates such as (0,0) and (4,2).');
       if(command.action==='CREATE'&&command.subAction==='POINT'&&!p.position&&!p.legacy?.points?.length)return this.ask(plan,index,'position','Where should I place the point? Give its coordinates.');
-      if(command.action==='CREATE'&&command.subAction==='CIRCLE'&&Number(p.count)>1&&!/radius|diameter/.test(command.normalizedPhrase)&&!p.conversationRadiusProvided)return this.ask(plan,index,'radius','What radius should the circles have?');
+      if(command.action==='CREATE'&&command.subAction==='CIRCLE'&&(Number(p.count)>1||/centered there|centred there/.test(command.normalizedPhrase))&&!/radius|diameter/.test(command.normalizedPhrase)&&!p.conversationRadiusProvided)return this.ask(plan,index,'radius','What radius should the circles have?');
       if(plan.commands.length===1&&!['CREATE','UNHANDLED','UNSUPPORTED','UNDO','REDO','EXPLAIN','COUNT'].includes(command.action)&&!p.multiple&&!command.targets&&command.target!=='$previousResult'){
         try{const target=resolveTarget(command.target??'lastReferenced',scene);if(scene.objects.some(o=>o.id===target.id))command.target=target.id;}
         catch(error){if(error instanceof ResolutionError&&error.candidates.length)return this.ask(plan,index,'target',`Several objects match. Which object? ${error.candidates.map((id,i)=>`${i+1}: ${scene.objects.find(o=>o.id===id)?.label??id}`).join('; ')}`,error.candidates);}
@@ -249,6 +274,7 @@ export class ConversationEngine extends FollowUpEngine {
           return this.ask(plan,index,'direction','Which direction should I move it?');
         }
       }
+      if(command.action==='CHANGE'&&command.subAction==='SIDE'){if(p.length===undefined)return this.ask(plan,index,'triangleLength','What should the side length be?');if(p.sidePolicy===undefined)return this.ask(plan,index,'trianglePolicy','Which constraints should I preserve? Say “keep A and C fixed and B on ray AB” or “preserve AC and BC, fix A and the AB direction, keep C on the same side”.');}
       if(command.action==='ROTATE'&&p.angle===undefined)return this.ask(plan,index,'angle','By how many degrees should I rotate it?');
       if(command.action==='SCALE'&&p.factor===undefined)return this.ask(plan,index,'factor','What scale factor should I use?');
       if(command.action==='REFLECT'&&command.subAction==='LINE'&&!p.axis&&!p.plane&&!/y\s*=/.test(command.normalizedPhrase))return scene.activeMode.endsWith('3d')?this.ask(plan,index,'plane','Across which plane: xy, xz, or yz?'):this.ask(plan,index,'axis','Across which axis: x or y?');

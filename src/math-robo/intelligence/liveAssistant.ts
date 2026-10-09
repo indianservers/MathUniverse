@@ -1,3 +1,4 @@
+import {executionOutcome} from '../../math-foundation/executionOutcome';
 import {outlineVertices,type VisualCommand} from '../../offline-intelligence/commands';
 import {kernelRequest} from '../kernel/language';
 import { readRoboScene, applyVisualCommand,subscribeRoboScene,waitForRoboWorkspace } from '../../offline-intelligence/workspaceBridge';
@@ -11,22 +12,23 @@ import {migrateCompatibilityPlan} from './migration';
 import {operationFor} from './actionRegistry';
 import {geometryState} from './resultVerifier';
 import {classifyRequest} from './requestClassifier';
-import {liveContextAssistant} from './contextAssistant';
+import {ContextAssistant} from './contextAssistant';
 import {currentPageCapability} from './pageCapabilities';
 import {routeQuery} from '../../utils/mathEngine/queryRouter';
 let corrections:CorrectionStore|undefined;
 const engines=new Map<RoboMode,SemanticEngine>();
-const sessionRouter=new EngineRouter();
-let lastTurnWasContext=false;
+const contextualSessions=new Map<string,ContextAssistant>();
+const contextTurns=new Map<RoboMode,boolean>();
 subscribeRoboScene(mode=>{const engine=engines.get(mode);if(engine&&!engine.executing){const snapshot=readRoboScene(mode);engine.sync(snapshot.objects.map(o=>describeObject(o.command,mode,'vertices' in o?o.vertices as number[][]|undefined:undefined)),snapshot.selectedIds);void engine.refreshDependencies(command=>applyVisualCommand(mode,command)).catch(error=>console.warn('Ruhi dependency refresh:',error));}});
 export function liveEngine(mode:RoboMode){
   if(!corrections){let storage:Storage|undefined;try{storage=window.localStorage;}catch{/* Optional local persistence. */}corrections=new CorrectionStore(storage);}
-  let engine=engines.get(mode);if(!engine){engine=new SemanticEngine(mode,corrections,sessionRouter);engines.set(mode,engine);}return engine;
+  let engine=engines.get(mode);if(!engine){engine=new SemanticEngine(mode,corrections,new EngineRouter());engines.set(mode,engine);}return engine;
 }
 async function runSemanticAssistantNow(phrase:string,mode:RoboMode,pagePath?:string){
-  const engine=liveEngine(mode);if(pagePath)engine.setPageContext(pagePath);if(mode!=='normal')await waitForRoboWorkspace(mode);const snapshot=readRoboScene(mode);
+  const lastTurnWasContext=contextTurns.get(mode)??false;const engine=liveEngine(mode);if(pagePath)engine.setPageContext(pagePath);if(mode!=='normal')await waitForRoboWorkspace(mode);const snapshot=readRoboScene(mode);
   if(mode!=='normal')engine.sync(snapshot.objects.map(o=>describeObject(o.command,mode,'vertices' in o?o.vertices as number[][]|undefined:undefined)),snapshot.selectedIds);
   const beforeHash=geometryState(engine.snapshot());
+  if(phrase.length>4096||/^(?:open|go to|take me to)\b/i.test(phrase)){const result=await engine.execute(phrase,async()=>undefined);return {...result,requestKind:classifyRequest(phrase),neural:undefined,inferenceMs:0,objects:engine.snapshot().objects.length,sceneHash:beforeHash,beforeHash};}
   let neural;const modelStart=performance.now();
   try{if(!kernelRequest(phrase))neural=inferSemanticHeads(await loadIntelligenceModel(),phrase,mode);}catch{/* Validated semantic rules remain local and usable. */}
   const inferenceMs=performance.now()-modelStart;
@@ -37,14 +39,15 @@ async function runSemanticAssistantNow(phrase:string,mode:RoboMode,pagePath?:str
   const nativeAction=plan.commands.some(c=>operationFor(c.action,c.subAction)?.implemented&& !['FIND','SHOW','EXPLAIN'].includes(c.action));
   const followupToMath=!lastTurnWasContext&&!!(engine.engineRouter.last||engine.snapshot().previousResult)&&requestKind==='EXPLANATION_REQUEST';
   const pendingNative=!!(engine.conversation.pending||engine.engineRouter.pending||engine.engineRouter.quiz&&/^(?:hint|show answer|check my answer)\b/i.test(phrase));
-  const sceneContinuation=engine.snapshot().objects.length>0&&(/^(?:no[, ]|actually\b|instead\b|radius\b|center\b|twice\b|(?:and )?(?:now|what about now)[?.!]*$)/i.test(phrase)||/\b(?:changed mathematically|stayed the same)\b/i.test(phrase));
+  const groundedFollowup=engine.snapshot().objects.length>0&&(/^(?:prove|verify|explain why)\b/i.test(phrase)||/^(?:i think (?:the )?area is|my answer is|answer:|give me (?:a|another) hint|explain in detail|explain briefly)\b/i.test(phrase));
+  const sceneContinuation=groundedFollowup||/^(?:does (?:the |its )?circumcircle update|explain what changed|explain why its magnitude remained unchanged)/i.test(phrase)||engine.snapshot().objects.length>0&&(/^(?:no[, ]|actually\b|instead\b|radius\b|center\b|twice\b|(?:and )?(?:now|what about now)[?.!]*$)/i.test(phrase)||/\b(?:changed mathematically|stayed the same)\b/i.test(phrase));
   if(pagePath&&!sceneContinuation&&!pendingNative&&!nativeAction&&!specialist&&!followupToMath&&(plan.commands.every(c=>['UNSUPPORTED','UNHANDLED','EXPLAIN'].includes(c.action))||currentPageCapability()&&mode==='normal'&&!engine.snapshot().objects.length&&plan.commands.every(c=>c.action==='SHOW'))){
     try{
-      const contextual=await liveContextAssistant.answer(phrase,pagePath,engine.snapshot());
+      const key=mode+':'+pagePath;let assistant=contextualSessions.get(key);if(!assistant){assistant=new ContextAssistant();contextualSessions.set(key,assistant);if(contextualSessions.size>32)contextualSessions.delete(contextualSessions.keys().next().value!);}const contextual=await assistant.answer(phrase,pagePath,engine.snapshot());
       if(!(contextual.status==='unsupported'&&contextual.prediction.intent==='practice')){
       const contextPlan={rawPhrase:phrase,confidence:contextual.prediction.intentConfidence,commands:[]};
-      const result:RoboResult={status:contextual.status,message:contextual.message,plan:contextPlan,effects:[],parseMs:0,executionMs:contextual.prediction.inferenceMs,verification:{passed:contextual.verified,checks:contextual.verified?['Reviewed knowledge record or verified native page capability']:[]},engineExecution:{success:contextual.status==='success',engineId:'ruhi-context',capabilityId:contextual.knowledgeId??'clarify',answer:contextual.message,metadata:{contextPrediction:contextual.prediction,simulation:contextual.simulation}}};
-      engine.conversation.beginExternal(phrase,engine.snapshot());engine.conversation.finish(result,engine.snapshot());lastTurnWasContext=true;
+      const result:RoboResult={execution:executionOutcome(contextual.status==='success'?'valid_unverified':contextual.status==='unsupported'?'unsupported':'invalid_input',crypto.randomUUID(),contextual.message),status:contextual.status,message:contextual.message,plan:contextPlan,effects:[],parseMs:0,executionMs:contextual.prediction.inferenceMs,verification:{passed:contextual.verified,checks:contextual.verified?['Reviewed knowledge record or verified native page capability']:[]},engineExecution:{success:contextual.status==='success',engineId:'ruhi-context',capabilityId:contextual.knowledgeId??'clarify',answer:contextual.message,metadata:{contextPrediction:contextual.prediction,simulation:contextual.simulation}}};
+      engine.conversation.beginExternal(phrase,engine.snapshot());engine.conversation.finish(result,engine.snapshot());contextTurns.set(mode,true);
       return {...result,contextPrediction:contextual.prediction,requestKind,neural,inferenceMs,objects:engine.snapshot().objects.length,sceneHash:beforeHash,beforeHash};
       }
     }catch(error){console.warn('Ruhi context model unavailable:',error);}
@@ -67,7 +70,7 @@ async function runSemanticAssistantNow(phrase:string,mode:RoboMode,pagePath?:str
     return {angle:parameters.angle,pivot:parameters.anchor==='origin'?[0,0]:parameters.anchor==='vertex'?vertices[vertex]:undefined};
   };
   const result=await engine.execute(phrase,command=>mode==='normal'?Promise.resolve():applyVisualCommand(mode,command,motionHint(command)),plan,mode==='normal'?undefined:()=>{const committed=readRoboScene(mode);return {objects:committed.objects.map(o=>describeObject(o.command,mode,'vertices' in o?o.vertices as number[][]:undefined)),selectedIds:committed.selectedIds};});
-  lastTurnWasContext=false;
+  contextTurns.set(mode,false);
   return {...result,requestKind,neural,inferenceMs,objects:engine.snapshot().objects.length,sceneHash:geometryState(engine.snapshot()),beforeHash};
 }
 

@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "Manifest generation is idempotent",
+    "Training datasets excluded",
+    "Worker-only changes create a separate atomic cache version"
+  ],
+  "passed": 3,
+  "failed": 0
+}

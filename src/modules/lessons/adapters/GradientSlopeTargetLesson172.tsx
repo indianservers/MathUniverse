@@ -180,10 +180,10 @@ function Graph({
           </text>
         </>
       ) : null}
-      {[
+      {([
         ["a", a, "A", "#2384ef"],
         ["b", b, "B", "#8042df"],
-      ].map(([id, p, name, color]) => {
+      ] as const).map(([id, p, name, color]) => {
         const q = p as Point;
         return (
           <g key={id as string}>

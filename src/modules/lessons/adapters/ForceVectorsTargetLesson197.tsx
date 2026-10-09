@@ -362,11 +362,11 @@ export default function ForceVectorsTargetLesson197({
         <article className="fv197-work">
           <h2>Force board: combine and balance forces</h2>
           <header>
-            {[
+            {([
               ["Show components", components, setComponents],
               ["Show resultant", resultant, setResultant],
               ["Show equilibrant", equilibrant, setEquilibrant],
-            ].map(([n, v, s]) => (
+            ] as const).map(([n, v, s]) => (
               <label key={String(n)}>
                 {n}
                 <input
@@ -474,12 +474,12 @@ export default function ForceVectorsTargetLesson197({
                 </tr>
               </thead>
               <tbody>
-                {[
+                {([
                   ["F1", p1, f1],
                   ["F2", p2, f2],
                   ["R", r, { m: mag(r), a: angle(r) }],
                   ["E", e, { m: mag(e), a: angle(e) }],
-                ].map(([n, p, f]) => (
+                ] as const).map(([n, p, f]) => (
                   <tr key={String(n)}>
                     <td>{n}</td>
                     <td>{fmt((p as P).x)}</td>

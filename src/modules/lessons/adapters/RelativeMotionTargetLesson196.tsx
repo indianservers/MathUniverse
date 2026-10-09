@@ -390,11 +390,11 @@ export default function RelativeMotionTargetLesson196({
                 }}
               />
             </label>
-            {[
+            {([
               ["Show ground trails", trails, setTrails],
               ["Show relative vector", showRelative, setShowRelative],
               ["Lock observer B", locked, setLocked],
-            ].map(([name, value, setter]) => (
+            ] as const).map(([name, value, setter]) => (
               <label key={String(name)}>
                 {name}
                 <input
@@ -465,10 +465,10 @@ export default function RelativeMotionTargetLesson196({
         <article>
           <h2>Set velocities (km/h)</h2>
           <div>
-            {[
+            {([
               ["Object A", a, setA],
               ["Observer B", b, setB],
-            ].map(([name, value, setter]) => (
+            ] as const).map(([name, value, setter]) => (
               <section key={String(name)}>
                 <h3>{name}</h3>
                 {(["x", "y"] as const).map((axis) => (

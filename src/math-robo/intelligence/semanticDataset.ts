@@ -88,14 +88,17 @@ export function generateStarterDataset():SemanticRow[]{
       const context=seedContext(mode);
       if(['COMPONENTS','DIRECTION','PARAMETERIZATION','MAGNITUDE'].includes(op.subAction)){context.objects.push(descriptor('vector_1','vector',mode.endsWith('3d')?[0,0,0]:[0,0],mode,3,mode.endsWith('3d')?[[0,0,0],[3,4,0]]:[[0,0],[3,4]]));context.selected=['vector_1'];context.lastReferenced='vector_1';}
       if(op.action==='CHECK'&&['POINT_ON_LINE','POINT_ON_CIRCLE'].includes(op.subAction))phrases=['Is point A','Check if point A is','Test if point A is','Verify that point A is'].map(prefix=>`${prefix} on the ${op.subAction==='POINT_ON_LINE'?'line':'circle'}`);
-      const preferred=op.subAction==='ENDPOINTS'?'line_1':['COMPONENTS','DIRECTION','PARAMETERIZATION','MAGNITUDE'].includes(op.subAction)?'vector_1':['LENGTH','MIDPOINT','SLOPE'].includes(op.subAction)?'line_1':['VOLUME','SURFACE_AREA'].includes(op.subAction)?'sphere_1':['ROOTS','X_INTERCEPT','Y_INTERCEPT'].includes(op.subAction)?'graph_1':op.action==='CHANGE'&&['WIDTH','HEIGHT','DEPTH'].includes(op.subAction)||op.action==='RESIZE'?'square_1':'circle_1';
+      if(op.action==='CHANGE'&&op.subAction==='SIDE'){phrases=['Change side AB to 8, keep A and C fixed and B on ray AB'];context.objects.push(descriptor('triangle_1','triangle',mode.endsWith('3d')?[0,0,0]:[0,0],mode,3,mode.endsWith('3d')?[[0,0,0],[6,0,0],[0,4,0]]:[[0,0],[6,0],[0,4]]));}
+      const preferred=op.subAction==='SIDE'?'triangle_1':op.subAction==='ENDPOINTS'?'line_1':['COMPONENTS','DIRECTION','PARAMETERIZATION','MAGNITUDE'].includes(op.subAction)?'vector_1':['LENGTH','MIDPOINT','SLOPE'].includes(op.subAction)?'line_1':['VOLUME','SURFACE_AREA'].includes(op.subAction)?'sphere_1':['ROOTS','X_INTERCEPT','Y_INTERCEPT'].includes(op.subAction)?'graph_1':op.action==='CHANGE'&&['WIDTH','HEIGHT','DEPTH'].includes(op.subAction)||op.action==='RESIZE'?'square_1':'circle_1';
       if(preferred==='graph_1')context.objects.push({...descriptor('graph_1','plot',[0,0],mode),parameters:{expression:'x^2'}} as ReturnType<typeof descriptor>);context.selected=[preferred];context.lastReferenced=preferred;
       if(op.action==='CHECK'){context.selected=op.subAction.startsWith('POINT_')?['A']:op.subAction==='EQUAL_AREA'?['circle_1','circle_2']:['line_1','line_2'];context.lastReferenced=context.selected[0];}
+      if(op.action==='CHECK'&&op.subAction==='MEASUREMENT'){phrases=['Verify its length is 10'];context.selected=['line_1'];context.lastReferenced='line_1';}
       phrases.forEach((phrase,index)=>{
         const parsed=parseSemanticCommand(phrase,mode);
         // Labels are authored from the operation registry, not inferred from parser output.
         // Expected numeric fields are authored independently of the parser.
         const parameters:SemanticRow['parameters']={};
+        if(op.action==='CHECK'&&op.subAction==='MEASUREMENT'){parameters.measurement='LENGTH';parameters.expectedValue=10;}
         if(op.action==='CREATE'&&['ray','vector'].includes(sub))parameters.points=mode.endsWith('3d')?[[0,0,0],[6,8,0]]:[[0,0],[6,8]];
         if(op.action==='CREATE'){
           if(sub==='point')parameters.points=[mode.endsWith('3d')?[1,2,3]:[1,2]];
@@ -106,13 +109,13 @@ export function generateStarterDataset():SemanticRow[]{
           else {parameters.width=6;parameters.height=4;parameters.radius=3;}
         }
         if(op.action==='PLOT')parameters.expression=mode.endsWith('3d')?'x^2+y^2':'x^2';
-        if(op.action==='CHANGE'){if(op.subAction==='ENDPOINTS')parameters.points=mode.endsWith('3d')?[[0,0,0],[3,4,1]]:[[0,0],[3,4]];else if(op.subAction==='COLOR')parameters.color='blue';else if(op.subAction==='LABEL')parameters.label='c';else if(['POSITION','COORDINATES'].includes(op.subAction))parameters.position=mode.endsWith('3d')?[2,3,1]:[2,3];else parameters[op.subAction.toLowerCase()]=8;}
+        if(op.action==='CHANGE'){if(op.subAction==='SIDE'){parameters.length=8;parameters.side=['A','B'];parameters.sidePolicy='fixed_third_vertex';}else if(op.subAction==='ENDPOINTS')parameters.points=mode.endsWith('3d')?[[0,0,0],[3,4,1]]:[[0,0],[3,4]];else if(op.subAction==='COLOR')parameters.color='blue';else if(op.subAction==='LABEL')parameters.label='c';else if(['POSITION','COORDINATES'].includes(op.subAction))parameters.position=mode.endsWith('3d')?[2,3,1]:[2,3];else parameters[op.subAction.toLowerCase()]=8;}
         if(op.action==='MOVE')parameters.vector=([[3,2],[3,2],[3,0],[3,0],[3,0],[-2,0]][index]??[3,0]).concat(mode.endsWith('3d')?[index===1?1:0]:[]);
         if(op.action==='ROTATE')parameters.angle=[45,90,30,180/Math.PI,-45][index];
         if(op.action==='SCALE')parameters.factor=[2,2,2,.5,2][index];
         if(op.action==='RESIZE'){if(index===0||index===3){parameters.width=8;if(index===0)parameters.height=5;}if(index===1)parameters.width=4;if(index===2)parameters.radius=6;}
         const needsTarget=!['CREATE','PLOT','COUNT','UNDO','REDO','DESELECT'].includes(op.action)&&!(op.action==='SELECT'&&op.subAction==='ALL')&&!(op.action==='DELETE'&&op.subAction==='ALL')&&!(op.action==='MARK'&&['POINT','INTERSECTION'].includes(op.subAction));
-        const multiple=['COMPARE','CHECK'].includes(op.action)||op.action==='FIND'&&['DISTANCE','INTERSECTION'].includes(op.subAction);
+        const multiple=op.action==='COMPARE'||op.action==='CHECK'&&op.subAction!=='MEASUREMENT'||op.action==='FIND'&&['DISTANCE','INTERSECTION'].includes(op.subAction);
         rows.push({phrase,action:op.action,subAction:op.subAction,mode,parameters,context,source:'controlled-template',group:`${op.action}:${op.subAction}:template-${index}`,...(needsTarget&&!multiple&&parsed.target?{target:parsed.target}:{}),...(parsed.targets?{targets:parsed.targets}:{})});
       });
     }

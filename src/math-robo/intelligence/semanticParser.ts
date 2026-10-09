@@ -14,7 +14,7 @@ const queryWords: Record<string,string> = { 'surface area':'SURFACE_AREA','x int
 export function splitUtterance(phrase:string):string[] {
   // Mask coordinate/function parentheses, then split only before an action word.
   let depth=0;const marks:Array<number>=[];
-  const verbs=[...COMMAND_STARTS,'what','where','are','is'].join('|');
+  const verbs=[...COMMAND_STARTS,'what','where','are','is','explain','verify'].join('|');
   const separator=new RegExp(`^(?:[,;]\\s*|\\s+(?:and|then|after that|next|also|but|followed by)\\s+)(?=(?:${verbs})\\b)`,'i');
   for(let i=0;i<phrase.length;i++){if(phrase[i]==='('||phrase[i]==='['||phrase[i]==='{')depth++;if(phrase[i]===')'||phrase[i]===']'||phrase[i]==='}')depth--;if(depth===0){const match=phrase.slice(i).match(separator);if(match){marks.push(i,i+match[0].length);i+=match[0].length-1;}}}
   if(!marks.length)return [phrase.trim()];const result:string[]=[];let start=0;
@@ -30,6 +30,22 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
   const dimension=mode.endsWith('3d')?3:2;
   const command:MathRoboCommand={id:crypto.randomUUID(),rawPhrase,normalizedPhrase:text,detectedAction:detectedVerb(text),action:'',subAction:'',mode,parameters:{},confidence:{overall:1,action:1,subAction:1,parameters:1},source:{action:'rule',subAction:'rule'},requiresExecution:true};
   const p=command.parameters;
+  const namedConstruction=text.match(/^construct (?:the )?(circumcircle|incircle|median|altitude) (?:of|for) (?:the )?triangle ([a-z][a-z0-9]*)$/);
+  if(namedConstruction){command.action='CONSTRUCT';command.subAction=namedConstruction[1].toUpperCase();command.target={type:'triangle',name:namedConstruction[2]};return command;}
+  if(text==='explain'){command.action='EXPLAIN';command.subAction='PREVIOUS';p.responseDepth='detailed';return command;}
+  const measurementCheck=text.match(/^(?:verify|check) (?:its|the) (area|perimeter|radius|length|volume) (?:is|equals|=) (-?\d+(?:\.\d+)?)$/);
+  if(measurementCheck){command.action='CHECK';command.subAction='MEASUREMENT';command.target='lastReferenced';p.measurement=measurementCheck[1].toUpperCase();p.expectedValue=Number(measurementCheck[2]);return command;}
+  const angleCreation=text.match(/^(?:draw|create|make) (?:an? )?angle (?:of )?(-?\d+(?:\.\d+)?) degrees?$/);
+  if(angleCreation){command.action='CREATE';command.subAction='ANGLE';p.angle=Number(angleCreation[1]);return command;}
+  if(/^(?:construct|draw) (?:its|the|all(?: three)?) medians$/.test(text)){command.action='CONSTRUCT';command.subAction='MEDIAN';command.target={type:'triangle'};p.allMedians=true;return command;}
+  // Add/insert normalize to create. Recognize mathematical payloads before shape
+  // inference so a function cannot fall back to an unrelated predicted shape.
+  const functionPayload=text.replace(/^(?:create|draw|plot|graph|show|display)\s+(?:(?:a|the)\s+)?(?:(?:function|graph)(?:\s+of)?\s+)?/,'');
+  if(/^(?:create|draw|plot|graph|show|display)\s+/.test(text)&&functionPayload!==text&&/[=^+*/()]|^[xy]$/.test(functionPayload)&&/\b[xyz]\b/.test(functionPayload)&&!new RegExp(`\\b(${[...FLAT_SHAPES,...SOLID_SHAPES,'point','line','segment','ray','vector','plane','arc','sector'].join('|')})s?\\b`).test(functionPayload)){
+    command.action='PLOT';command.subAction=dimension===3?'SURFACE_3D':'FUNCTION';p.expression=functionPayload.replace(/^(?:[yz]|[a-z]\([a-z]\))\s*=\s*/,'').trim().replace(/(\d)([xy])/g,'$1*$2');return command;
+  }
+  const side=text.match(/^(?:change|set|resize) (?:the )?side\s+([a-z])([a-z])(?:\s+(?:of|on)\s+(?:that |the )?triangle)?(?:\s+(?:to|length)\s+(-?\d+(?:\.\d+)?))?/);
+  if(side){command.action='CHANGE';command.subAction='SIDE';command.target={type:'triangle'};p.side=[side[1].toUpperCase(),side[2].toUpperCase()];if(side[3])p.length=Number(side[3]);if(side[1]==='a'&&side[2]==='b'&&/keep a and c fixed.*b on (?:the )?ray ab/.test(text))p.sidePolicy='fixed_third_vertex';else if(side[1]==='a'&&side[2]==='b'&&/preserve ac and bc/.test(text)&&/fix a|keep a fixed/.test(text)&&/ab direction|direction of ab/.test(text)&&/same side/.test(text))p.sidePolicy='preserve_other_sides';return command;}
   const composition=parse2dLanguage(command);if(composition)return composition;
   if(dimension===3&&/^(?:draw|create|construct)\s+(?:a\s+|the\s+)?plane\b/.test(text)){
     command.action='CREATE';command.subAction='PLANE';p.points=coordinates(text,3);const through=rawPhrase.match(/\bthrough\s+(.+)/i)?.[1];if(!p.points.length&&through)p.planeParents=[...through.matchAll(/\b([A-Za-z]\d*)\b/g)].map(m=>m[1]).filter(name=>!/^(and|point|points)$/i.test(name));const label=rawPhrase.match(/\bplane\s+([A-Za-z]\d*)\s+through/i)?.[1];if(label)p.label=label;return command;
@@ -122,8 +138,8 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
   command.action=normalizeAction(command.detectedAction||'UNHANDLED');command.subAction='OBJECT';command.confidence.overall=command.action==='UNHANDLED'?0:1;return command;
 }
 export function parseSemanticPlan(phrase:string,mode:RoboMode):MathRoboPlan {
-  const rewritten=mode.endsWith('3d')?phrase:rewrite2dLanguage(phrase);
-  const commands=(/^if\b/i.test(rewritten)?[rewritten]:splitUtterance(rewritten)).map(part=>parseSemanticCommand(part,mode));
+  const rewritten=mode.endsWith('3d')||/^(?:draw|create|make) (?:an? )?angle (?:of )?\d+(?:\.\d+)? degrees?[.!]?$/i.test(phrase)?phrase:rewrite2dLanguage(phrase);
+  const commands=(/^if\b/i.test(rewritten)?[rewritten]:splitUtterance(rewritten)).flatMap(part=>{const c=parseSemanticCommand(part,mode);return c.parameters.allMedians?['A','B','C'].map(from=>({...structuredClone(c),id:crypto.randomUUID(),parameters:{from}})):[c];});
   for(let i=1;i<commands.length;i++)if(commands[i].action==='CHANGE'&&commands[i].subAction==='LABEL'&&commands.slice(0,i).some(c=>['CREATE','MARK','CONSTRUCT'].includes(c.action)))commands[i].target='lastCreated';
   return {rawPhrase:phrase,commands,ir:commands.map(commandIR),atomicity:'all-or-nothing',confidence:Math.min(...commands.map(c=>c.confidence.overall))};
 }
