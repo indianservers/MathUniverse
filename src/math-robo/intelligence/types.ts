@@ -2,6 +2,7 @@ import type { IntelligenceMode, VisualCommand } from '../../offline-intelligence
 export type RoboMode = IntelligenceMode;
 export type RoboTarget = string | { id?: string; name?: string; type?: string; color?: string; index?: number; relation?: 'nearest'|'largest'|'smallest'|'longest'|'leftmost'|'horizontal'|'vertical'|'above'|'below'|'through'|'inside'; to?: string; reference?:'lastReferenced' };
 export type RoboParameters = {
+  preserveTargets?: RoboTarget[];
   width?: number; height?: number; depth?: number; radius?: number; diameter?: number; sides?: number;
   position?: number[]; points?: number[][]; vector?: number[]; dx?: number; dy?: number; dz?: number;
   angle?: number; axis?: string; plane?: string; factor?: number; expression?: string;

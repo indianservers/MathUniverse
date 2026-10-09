@@ -1,0 +1,3329 @@
+{
+  "seed": 20261008,
+  "properties": {
+    "total": 1600,
+    "passed": 1600
+  },
+  "adversarial": {
+    "rows": 2000,
+    "authoredFamilies": 50,
+    "passed": 2000,
+    "falseMutations": 0,
+    "scope": "Intent-negative safety; grouped surface perturbations"
+  },
+  "registry": {
+    "baselineSubactions": 99,
+    "baselinePairs": 127,
+    "implementedPairs": 171,
+    "unsupported": [
+      {
+        "action": "CREATE",
+        "subAction": "ARC",
+        "aliases": [
+          "CREATE",
+          "DRAW",
+          "ADD",
+          "INSERT",
+          "PLACE",
+          "generate",
+          "build",
+          "add",
+          "insert",
+          "put",
+          "place",
+          "sketch"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": true,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CREATE",
+        "subAction": "SECTOR",
+        "aliases": [
+          "CREATE",
+          "DRAW",
+          "ADD",
+          "INSERT",
+          "PLACE",
+          "generate",
+          "build",
+          "add",
+          "insert",
+          "put",
+          "place",
+          "sketch"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": true,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CREATE",
+        "subAction": "RIGHT_TRIANGLE",
+        "aliases": [
+          "CREATE",
+          "DRAW",
+          "ADD",
+          "INSERT",
+          "PLACE",
+          "generate",
+          "build",
+          "add",
+          "insert",
+          "put",
+          "place",
+          "sketch"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": true,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CREATE",
+        "subAction": "EQUILATERAL_TRIANGLE",
+        "aliases": [
+          "CREATE",
+          "DRAW",
+          "ADD",
+          "INSERT",
+          "PLACE",
+          "generate",
+          "build",
+          "add",
+          "insert",
+          "put",
+          "place",
+          "sketch"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": true,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CREATE",
+        "subAction": "ISOSCELES_TRIANGLE",
+        "aliases": [
+          "CREATE",
+          "DRAW",
+          "ADD",
+          "INSERT",
+          "PLACE",
+          "generate",
+          "build",
+          "add",
+          "insert",
+          "put",
+          "place",
+          "sketch"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": true,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "FIND",
+        "subAction": "VERTEX",
+        "aliases": [
+          "FIND",
+          "CALCULATE",
+          "MEASURE",
+          "PROJECT",
+          "INTERSECT",
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": false,
+        "createsObject": false,
+        "returnsValue": true,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "FIND",
+        "subAction": "MAXIMUM",
+        "aliases": [
+          "FIND",
+          "CALCULATE",
+          "MEASURE",
+          "PROJECT",
+          "INTERSECT",
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": false,
+        "createsObject": false,
+        "returnsValue": true,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "FIND",
+        "subAction": "MINIMUM",
+        "aliases": [
+          "FIND",
+          "CALCULATE",
+          "MEASURE",
+          "PROJECT",
+          "INTERSECT",
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": false,
+        "createsObject": false,
+        "returnsValue": true,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "FIND",
+        "subAction": "DOMAIN",
+        "aliases": [
+          "FIND",
+          "CALCULATE",
+          "MEASURE",
+          "PROJECT",
+          "INTERSECT",
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": false,
+        "createsObject": false,
+        "returnsValue": true,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "FIND",
+        "subAction": "RANGE",
+        "aliases": [
+          "FIND",
+          "CALCULATE",
+          "MEASURE",
+          "PROJECT",
+          "INTERSECT",
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": false,
+        "createsObject": false,
+        "returnsValue": true,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "FIND",
+        "subAction": "ASYMPTOTE",
+        "aliases": [
+          "FIND",
+          "CALCULATE",
+          "MEASURE",
+          "PROJECT",
+          "INTERSECT",
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": false,
+        "createsObject": false,
+        "returnsValue": true,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "FIND",
+        "subAction": "FOOT_OF_PERPENDICULAR",
+        "aliases": [
+          "FIND",
+          "CALCULATE",
+          "MEASURE",
+          "PROJECT",
+          "INTERSECT",
+          "CENTER",
+          "measure",
+          "determine",
+          "compute",
+          "work out"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": false,
+        "createsObject": false,
+        "returnsValue": true,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CHANGE",
+        "subAction": "OPACITY",
+        "aliases": [
+          "CHANGE",
+          "SET",
+          "LABEL",
+          "RENAME",
+          "COLOR",
+          "STYLE",
+          "FILL",
+          "OUTLINE",
+          "modify",
+          "edit",
+          "update",
+          "adjust",
+          "alter"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CHANGE",
+        "subAction": "LINE_STYLE",
+        "aliases": [
+          "CHANGE",
+          "SET",
+          "LABEL",
+          "RENAME",
+          "COLOR",
+          "STYLE",
+          "FILL",
+          "OUTLINE",
+          "modify",
+          "edit",
+          "update",
+          "adjust",
+          "alter"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CHANGE",
+        "subAction": "POINT_SIZE",
+        "aliases": [
+          "CHANGE",
+          "SET",
+          "LABEL",
+          "RENAME",
+          "COLOR",
+          "STYLE",
+          "FILL",
+          "OUTLINE",
+          "modify",
+          "edit",
+          "update",
+          "adjust",
+          "alter"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CHANGE",
+        "subAction": "FONT_SIZE",
+        "aliases": [
+          "CHANGE",
+          "SET",
+          "LABEL",
+          "RENAME",
+          "COLOR",
+          "STYLE",
+          "FILL",
+          "OUTLINE",
+          "modify",
+          "edit",
+          "update",
+          "adjust",
+          "alter"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CHANGE",
+        "subAction": "EQUATION",
+        "aliases": [
+          "CHANGE",
+          "SET",
+          "LABEL",
+          "RENAME",
+          "COLOR",
+          "STYLE",
+          "FILL",
+          "OUTLINE",
+          "modify",
+          "edit",
+          "update",
+          "adjust",
+          "alter"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CHECK",
+        "subAction": "CONCURRENT",
+        "aliases": [
+          "CHECK",
+          "TEST",
+          "VERIFY"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": false,
+        "createsObject": false,
+        "returnsValue": true,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CHECK",
+        "subAction": "CONGRUENT",
+        "aliases": [
+          "CHECK",
+          "TEST",
+          "VERIFY"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": false,
+        "createsObject": false,
+        "returnsValue": true,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CHECK",
+        "subAction": "SIMILAR",
+        "aliases": [
+          "CHECK",
+          "TEST",
+          "VERIFY"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": false,
+        "createsObject": false,
+        "returnsValue": true,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CHECK",
+        "subAction": "OVERLAPPING",
+        "aliases": [
+          "CHECK",
+          "TEST",
+          "VERIFY"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": false,
+        "createsObject": false,
+        "returnsValue": true,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CHECK",
+        "subAction": "CONTAINMENT",
+        "aliases": [
+          "CHECK",
+          "TEST",
+          "VERIFY"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": false,
+        "createsObject": false,
+        "returnsValue": true,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "PLOT",
+        "subAction": "EQUATION",
+        "aliases": [
+          "PLOT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": true,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "PLOT",
+        "subAction": "INEQUALITY",
+        "aliases": [
+          "PLOT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": true,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "PLOT",
+        "subAction": "POINTS",
+        "aliases": [
+          "PLOT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": true,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "PLOT",
+        "subAction": "PARAMETRIC",
+        "aliases": [
+          "PLOT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": true,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "PLOT",
+        "subAction": "POLAR",
+        "aliases": [
+          "PLOT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": true,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "PLOT",
+        "subAction": "IMPLICIT",
+        "aliases": [
+          "PLOT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": true,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "PLOT",
+        "subAction": "PLANE_3D",
+        "aliases": [
+          "PLOT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": true,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "PLOT",
+        "subAction": "VECTOR_FIELD",
+        "aliases": [
+          "PLOT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": true,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "STRETCH",
+        "subAction": "OBJECT",
+        "aliases": [
+          "STRETCH"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "SHEAR",
+        "subAction": "OBJECT",
+        "aliases": [
+          "SHEAR"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "ALIGN",
+        "subAction": "OBJECT",
+        "aliases": [
+          "ALIGN"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "DISTRIBUTE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "DISTRIBUTE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "SNAP",
+        "subAction": "OBJECT",
+        "aliases": [
+          "SNAP"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CONNECT",
+        "subAction": "OBJECT",
+        "aliases": [
+          "CONNECT",
+          "join",
+          "link",
+          "attach",
+          "draw between"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "JOIN",
+        "subAction": "OBJECT",
+        "aliases": [
+          "JOIN"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "SPLIT",
+        "subAction": "OBJECT",
+        "aliases": [
+          "SPLIT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "DIVIDE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "DIVIDE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "MERGE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "MERGE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "TRIM",
+        "subAction": "OBJECT",
+        "aliases": [
+          "TRIM"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CUT",
+        "subAction": "OBJECT",
+        "aliases": [
+          "CUT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "PASTE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "PASTE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "GROUP",
+        "subAction": "OBJECT",
+        "aliases": [
+          "GROUP"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "UNGROUP",
+        "subAction": "OBJECT",
+        "aliases": [
+          "UNGROUP"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "INCREASE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "INCREASE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "DECREASE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "DECREASE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "TOGGLE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "TOGGLE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "SOLVE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "SOLVE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "EVALUATE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "EVALUATE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "SIMPLIFY",
+        "subAction": "OBJECT",
+        "aliases": [
+          "SIMPLIFY"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "EXPAND",
+        "subAction": "OBJECT",
+        "aliases": [
+          "EXPAND"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "FACTOR",
+        "subAction": "OBJECT",
+        "aliases": [
+          "FACTOR"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "SUBSTITUTE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "SUBSTITUTE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "DIFFERENTIATE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "DIFFERENTIATE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "INTEGRATE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "INTEGRATE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "APPROXIMATE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "APPROXIMATE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "ESTIMATE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "ESTIMATE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "ROUND",
+        "subAction": "OBJECT",
+        "aliases": [
+          "ROUND"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "CONVERT",
+        "subAction": "OBJECT",
+        "aliases": [
+          "CONVERT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "BISECT",
+        "subAction": "OBJECT",
+        "aliases": [
+          "BISECT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "TRACE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "TRACE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "ANIMATE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "ANIMATE",
+          "play",
+          "demonstrate",
+          "simulate",
+          "show motion"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "PLAY",
+        "subAction": "OBJECT",
+        "aliases": [
+          "PLAY"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "PAUSE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "PAUSE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "STOP",
+        "subAction": "OBJECT",
+        "aliases": [
+          "STOP"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "STEP",
+        "subAction": "OBJECT",
+        "aliases": [
+          "STEP"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "SAVE",
+        "subAction": "OBJECT",
+        "aliases": [
+          "SAVE"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "LOAD",
+        "subAction": "OBJECT",
+        "aliases": [
+          "LOAD"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "IMPORT",
+        "subAction": "OBJECT",
+        "aliases": [
+          "IMPORT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "EXPORT",
+        "subAction": "OBJECT",
+        "aliases": [
+          "EXPORT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "ZOOM",
+        "subAction": "OBJECT",
+        "aliases": [
+          "ZOOM",
+          "magnify",
+          "get closer"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "PAN",
+        "subAction": "OBJECT",
+        "aliases": [
+          "PAN"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "FOCUS",
+        "subAction": "OBJECT",
+        "aliases": [
+          "FOCUS"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "FIT",
+        "subAction": "OBJECT",
+        "aliases": [
+          "FIT"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "SWITCH",
+        "subAction": "OBJECT",
+        "aliases": [
+          "SWITCH"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      },
+      {
+        "action": "EXPLAIN",
+        "subAction": "OBJECT",
+        "aliases": [
+          "EXPLAIN"
+        ],
+        "required": [],
+        "optional": [
+          "target",
+          "targets"
+        ],
+        "allowedTypes": [],
+        "modes": [
+          "normal",
+          "geometry2d",
+          "graph2d",
+          "geometry3d",
+          "graph3d"
+        ],
+        "mutatesScene": true,
+        "createsObject": false,
+        "returnsValue": false,
+        "executor": "unsupported",
+        "implemented": false,
+        "validation": [
+          "finite parameters",
+          "existing unambiguous targets",
+          "compatible dimensions"
+        ],
+        "examples": []
+      }
+    ]
+  },
+  "dataset": {
+    "rows": 3976,
+    "classes": [
+      {
+        "operation": "CREATE:TRIANGLE",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:RECTANGLE",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:SQUARE",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:CIRCLE",
+        "count": 90
+      },
+      {
+        "operation": "CREATE:ELLIPSE",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:SEMICIRCLE",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:PENTAGON",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:HEXAGON",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:HEPTAGON",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:OCTAGON",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:NONAGON",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:DECAGON",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:POLYGON",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:STAR",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:PARALLELOGRAM",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:TRAPEZOID",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:RHOMBUS",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:KITE",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:CUBE",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:CUBOID",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:SPHERE",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:ELLIPSOID",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:HEMISPHERE",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:CYLINDER",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:CONE",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:FRUSTUM",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:TORUS",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:TUBE",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:CAPSULE",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:PRISM",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:PYRAMID",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:TETRAHEDRON",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:OCTAHEDRON",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:DODECAHEDRON",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:ICOSAHEDRON",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:WEDGE",
+        "count": 20
+      },
+      {
+        "operation": "CREATE:POINT",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:LINE",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:RAY",
+        "count": 40
+      },
+      {
+        "operation": "CREATE:VECTOR",
+        "count": 40
+      },
+      {
+        "operation": "FIND:COMPONENTS",
+        "count": 32
+      },
+      {
+        "operation": "FIND:DIRECTION",
+        "count": 32
+      },
+      {
+        "operation": "FIND:PARAMETERIZATION",
+        "count": 32
+      },
+      {
+        "operation": "FIND:MAGNITUDE",
+        "count": 32
+      },
+      {
+        "operation": "PLOT:FUNCTION",
+        "count": 16
+      },
+      {
+        "operation": "PLOT:SURFACE_3D",
+        "count": 16
+      },
+      {
+        "operation": "FIND:DISTANCE",
+        "count": 20
+      },
+      {
+        "operation": "FIND:MIDPOINT",
+        "count": 32
+      },
+      {
+        "operation": "FIND:LENGTH",
+        "count": 32
+      },
+      {
+        "operation": "FIND:AREA",
+        "count": 82
+      },
+      {
+        "operation": "FIND:PERIMETER",
+        "count": 32
+      },
+      {
+        "operation": "FIND:CIRCUMFERENCE",
+        "count": 32
+      },
+      {
+        "operation": "FIND:SLOPE",
+        "count": 32
+      },
+      {
+        "operation": "FIND:CENTER",
+        "count": 32
+      },
+      {
+        "operation": "FIND:RADIUS",
+        "count": 32
+      },
+      {
+        "operation": "FIND:DIAMETER",
+        "count": 32
+      },
+      {
+        "operation": "FIND:CENTROID",
+        "count": 32
+      },
+      {
+        "operation": "FIND:VOLUME",
+        "count": 16
+      },
+      {
+        "operation": "FIND:SURFACE_AREA",
+        "count": 16
+      },
+      {
+        "operation": "FIND:INTERSECTION",
+        "count": 20
+      },
+      {
+        "operation": "FIND:ROOTS",
+        "count": 16
+      },
+      {
+        "operation": "FIND:X_INTERCEPT",
+        "count": 16
+      },
+      {
+        "operation": "FIND:Y_INTERCEPT",
+        "count": 16
+      },
+      {
+        "operation": "CHANGE:COLOR",
+        "count": 74
+      },
+      {
+        "operation": "CHANGE:WIDTH",
+        "count": 20
+      },
+      {
+        "operation": "CHANGE:HEIGHT",
+        "count": 20
+      },
+      {
+        "operation": "CHANGE:DEPTH",
+        "count": 10
+      },
+      {
+        "operation": "CHANGE:RADIUS",
+        "count": 20
+      },
+      {
+        "operation": "CHANGE:DIAMETER",
+        "count": 20
+      },
+      {
+        "operation": "CHANGE:POSITION",
+        "count": 20
+      },
+      {
+        "operation": "CHANGE:COORDINATES",
+        "count": 20
+      },
+      {
+        "operation": "CHANGE:LABEL",
+        "count": 16
+      },
+      {
+        "operation": "CHANGE:SIDE",
+        "count": 4
+      },
+      {
+        "operation": "CHECK:MEASUREMENT",
+        "count": 4
+      },
+      {
+        "operation": "CHANGE:ENDPOINTS",
+        "count": 4
+      },
+      {
+        "operation": "MOVE:OBJECT",
+        "count": 74
+      },
+      {
+        "operation": "ROTATE:OBJECT",
+        "count": 70
+      },
+      {
+        "operation": "SCALE:UNIFORM",
+        "count": 70
+      },
+      {
+        "operation": "RESIZE:OBJECT",
+        "count": 16
+      },
+      {
+        "operation": "REFLECT:X_AXIS",
+        "count": 10
+      },
+      {
+        "operation": "REFLECT:Y_AXIS",
+        "count": 60
+      },
+      {
+        "operation": "REFLECT:ORIGIN",
+        "count": 10
+      },
+      {
+        "operation": "REFLECT:XY_PLANE",
+        "count": 10
+      },
+      {
+        "operation": "REFLECT:XZ_PLANE",
+        "count": 10
+      },
+      {
+        "operation": "REFLECT:YZ_PLANE",
+        "count": 10
+      },
+      {
+        "operation": "CONSTRUCT:PERPENDICULAR",
+        "count": 10
+      },
+      {
+        "operation": "CONSTRUCT:PARALLEL",
+        "count": 10
+      },
+      {
+        "operation": "CONSTRUCT:PERPENDICULAR_BISECTOR",
+        "count": 10
+      },
+      {
+        "operation": "CONSTRUCT:TANGENT",
+        "count": 10
+      },
+      {
+        "operation": "MARK:POINT",
+        "count": 20
+      },
+      {
+        "operation": "MARK:MIDPOINT",
+        "count": 20
+      },
+      {
+        "operation": "MARK:CENTER",
+        "count": 20
+      },
+      {
+        "operation": "MARK:INTERSECTION",
+        "count": 20
+      },
+      {
+        "operation": "SHOW:OBJECT",
+        "count": 70
+      },
+      {
+        "operation": "SHOW:CENTER",
+        "count": 20
+      },
+      {
+        "operation": "SHOW:MIDPOINT",
+        "count": 20
+      },
+      {
+        "operation": "SHOW:RADIUS",
+        "count": 20
+      },
+      {
+        "operation": "SHOW:DIAMETER",
+        "count": 20
+      },
+      {
+        "operation": "SHOW:INTERSECTION",
+        "count": 20
+      },
+      {
+        "operation": "HIDE:OBJECT",
+        "count": 55
+      },
+      {
+        "operation": "DELETE:OBJECT",
+        "count": 66
+      },
+      {
+        "operation": "DELETE:ALL",
+        "count": 81
+      },
+      {
+        "operation": "SELECT:OBJECT",
+        "count": 66
+      },
+      {
+        "operation": "SELECT:ALL",
+        "count": 16
+      },
+      {
+        "operation": "DESELECT:ALL",
+        "count": 66
+      },
+      {
+        "operation": "DUPLICATE:OBJECT",
+        "count": 70
+      },
+      {
+        "operation": "UNDO:LAST",
+        "count": 66
+      },
+      {
+        "operation": "REDO:LAST",
+        "count": 55
+      },
+      {
+        "operation": "COUNT:OBJECTS",
+        "count": 16
+      },
+      {
+        "operation": "COUNT:POINTS",
+        "count": 16
+      },
+      {
+        "operation": "COUNT:LINES",
+        "count": 16
+      },
+      {
+        "operation": "COUNT:SHAPES",
+        "count": 16
+      },
+      {
+        "operation": "COUNT:VERTICES",
+        "count": 16
+      },
+      {
+        "operation": "COMPARE:SIZE",
+        "count": 20
+      },
+      {
+        "operation": "COMPARE:AREA",
+        "count": 16
+      },
+      {
+        "operation": "COMPARE:PERIMETER",
+        "count": 16
+      },
+      {
+        "operation": "COMPARE:LENGTH",
+        "count": 16
+      },
+      {
+        "operation": "COMPARE:VOLUME",
+        "count": 8
+      },
+      {
+        "operation": "COMPARE:SURFACE_AREA",
+        "count": 8
+      },
+      {
+        "operation": "CHECK:PARALLEL",
+        "count": 8
+      },
+      {
+        "operation": "CHECK:PERPENDICULAR",
+        "count": 8
+      },
+      {
+        "operation": "CHECK:EQUAL_LENGTH",
+        "count": 8
+      },
+      {
+        "operation": "CHECK:EQUAL_AREA",
+        "count": 8
+      },
+      {
+        "operation": "CHECK:POINT_INSIDE",
+        "count": 8
+      },
+      {
+        "operation": "CHECK:POINT_ON_LINE",
+        "count": 8
+      },
+      {
+        "operation": "CHECK:POINT_ON_CIRCLE",
+        "count": 8
+      },
+      {
+        "operation": "CHECK:INTERSECTING",
+        "count": 8
+      },
+      {
+        "operation": "CHECK:MEDIAL_TRIANGLE",
+        "count": 3
+      },
+      {
+        "operation": "CHECK:ORIENTATION",
+        "count": 6
+      },
+      {
+        "operation": "FIND:INCENTER",
+        "count": 12
+      },
+      {
+        "operation": "FIND:CIRCUMCENTER",
+        "count": 12
+      },
+      {
+        "operation": "FIND:ORTHOCENTER",
+        "count": 12
+      },
+      {
+        "operation": "FIND:TRIANGLE_TYPE",
+        "count": 12
+      },
+      {
+        "operation": "FIND:LONGEST_SIDE",
+        "count": 12
+      },
+      {
+        "operation": "FIND:LARGEST_ANGLE",
+        "count": 12
+      },
+      {
+        "operation": "FIND:EQUATION",
+        "count": 12
+      },
+      {
+        "operation": "FIND:ANGLE",
+        "count": 12
+      },
+      {
+        "operation": "FIND:PROJECTION",
+        "count": 12
+      },
+      {
+        "operation": "FIND:COORDINATES",
+        "count": 12
+      },
+      {
+        "operation": "FIND:TOUCHING_POINT",
+        "count": 12
+      },
+      {
+        "operation": "CONSTRUCT:MEDIAN",
+        "count": 12
+      },
+      {
+        "operation": "CONSTRUCT:ALTITUDE",
+        "count": 12
+      },
+      {
+        "operation": "CONSTRUCT:INCIRCLE",
+        "count": 12
+      },
+      {
+        "operation": "CONSTRUCT:CIRCUMCIRCLE",
+        "count": 12
+      },
+      {
+        "operation": "CONSTRUCT:ANGLE_BISECTOR",
+        "count": 12
+      },
+      {
+        "operation": "CONSTRUCT:PROJECTION",
+        "count": 12
+      },
+      {
+        "operation": "CONSTRUCT:NORMAL",
+        "count": 12
+      },
+      {
+        "operation": "CHECK:TANGENT",
+        "count": 12
+      },
+      {
+        "operation": "CHECK:COLLINEAR",
+        "count": 12
+      },
+      {
+        "operation": "CHECK:POINT_OUTSIDE",
+        "count": 12
+      },
+      {
+        "operation": "CHECK:RIGHT_TRIANGLE",
+        "count": 12
+      },
+      {
+        "operation": "CHECK:EQUAL_ANGLES",
+        "count": 12
+      },
+      {
+        "operation": "LOCK:OBJECT",
+        "count": 12
+      },
+      {
+        "operation": "UNLOCK:OBJECT",
+        "count": 12
+      },
+      {
+        "operation": "EXTEND:OBJECT",
+        "count": 12
+      },
+      {
+        "operation": "CHANGE:RELATION",
+        "count": 12
+      },
+      {
+        "operation": "CHANGE:LENGTH",
+        "count": 12
+      },
+      {
+        "operation": "CHANGE:SLOPE",
+        "count": 12
+      },
+      {
+        "operation": "REFLECT:DIAGONAL",
+        "count": 12
+      },
+      {
+        "operation": "MARK:SIDE_MIDPOINTS",
+        "count": 12
+      },
+      {
+        "operation": "EXPLAIN:PREVIOUS",
+        "count": 12
+      },
+      {
+        "operation": "CREATE:PLANE",
+        "count": 2
+      },
+      {
+        "operation": "CONSTRUCT:PERP_PLANE",
+        "count": 2
+      },
+      {
+        "operation": "CHANGE:FILL_COLOR",
+        "count": 1
+      },
+      {
+        "operation": "CHANGE:STROKE_COLOR",
+        "count": 1
+      },
+      {
+        "operation": "CHANGE:LINE_WIDTH",
+        "count": 1
+      },
+      {
+        "operation": "CHANGE:ANGLE",
+        "count": 1
+      },
+      {
+        "operation": "CREATE:ANGLE",
+        "count": 1
+      },
+      {
+        "operation": "MARK:CENTROID",
+        "count": 1
+      },
+      {
+        "operation": "CREATE:SEGMENT",
+        "count": 1
+      },
+      {
+        "operation": "CONSTRUCT:CONDITIONAL_INTERSECTION",
+        "count": 1
+      }
+    ],
+    "minimumClassCount": 1,
+    "maximumClassCount": 90,
+    "imbalanceRatio": 90,
+    "duplicates": 1540,
+    "nearDuplicates": 2266,
+    "conflictingLabels": 0,
+    "duplicateIds": 0,
+    "lowClasses": [
+      "CHANGE:SIDE",
+      "CHECK:MEASUREMENT",
+      "CHANGE:ENDPOINTS",
+      "COMPARE:VOLUME",
+      "COMPARE:SURFACE_AREA",
+      "CHECK:PARALLEL",
+      "CHECK:PERPENDICULAR",
+      "CHECK:EQUAL_LENGTH",
+      "CHECK:EQUAL_AREA",
+      "CHECK:POINT_INSIDE",
+      "CHECK:POINT_ON_LINE",
+      "CHECK:POINT_ON_CIRCLE",
+      "CHECK:INTERSECTING",
+      "CHECK:MEDIAL_TRIANGLE",
+      "CHECK:ORIENTATION",
+      "CREATE:PLANE",
+      "CONSTRUCT:PERP_PLANE",
+      "CHANGE:FILL_COLOR",
+      "CHANGE:STROKE_COLOR",
+      "CHANGE:LINE_WIDTH",
+      "CHANGE:ANGLE",
+      "CREATE:ANGLE",
+      "MARK:CENTROID",
+      "CREATE:SEGMENT",
+      "CONSTRUCT:CONDITIONAL_INTERSECTION"
+    ]
+  }
+}

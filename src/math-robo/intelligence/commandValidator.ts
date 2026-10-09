@@ -4,6 +4,7 @@ import {RoboExecutionError} from './executionErrors';
 import {EPSILON} from './tolerances';
 import {cross3,vector3} from '../../workspace/geometry3dKernel';
 export function validateCommand(command:MathRoboCommand) {
+  if(command.action==='DELETE'&&command.subAction==='ALL'&&/\b(?:except|excluding|apart from|other than|but)\b/i.test(command.rawPhrase)&&!command.parameters.preserveTargets)throw new Error('Specify which objects to keep. Nothing was cleared.');
   const op=operationFor(command.action,command.subAction);
   if(command.confidence.overall<.75)throw new RoboExecutionError('LOW_CONFIDENCE','Please clarify the request before I change any objects.');
   if(command.confidence.overall<.9&&!command.target&&!command.targets)throw new RoboExecutionError('LOW_CONFIDENCE','Please specify the object or confirm the exact command.');

@@ -1,3 +1,4 @@
+import {parseSelectiveClear} from './selectiveClear';
 import {parseDirectedGrammar} from './directedGrammar';
 import {parse2dLanguage,rewrite2dLanguage} from './nlp2dExtensions';
 import {commandIR} from './commandIR';
@@ -12,6 +13,7 @@ import {parseExtensions} from './semanticExtensions';
 import {classifyRequest} from './requestClassifier';
 const queryWords: Record<string,string> = { 'surface area':'SURFACE_AREA','x intercept':'X_INTERCEPT','y intercept':'Y_INTERCEPT','midpoint':'MIDPOINT','distance':'DISTANCE','how far':'DISTANCE','components':'COMPONENTS','direction':'DIRECTION','parameterization':'PARAMETERIZATION','magnitude':'MAGNITUDE','length':'LENGTH','circumference':'CIRCUMFERENCE','perimeter':'PERIMETER','area':'AREA','volume':'VOLUME','slope':'SLOPE','center':'CENTER','centre':'CENTER','radius':'RADIUS','diameter':'DIAMETER','centroid':'CENTROID','roots':'ROOTS','root':'ROOTS','intersect':'INTERSECTION','intersection':'INTERSECTION' };
 export function splitUtterance(phrase:string):string[] {
+  if(/^(?:please |kindly |can you |could you )?(?:keep|leave|save)\b/i.test(phrase)&&/\b(?:clear|delete|remove|reset)\b/i.test(phrase))return [phrase.trim()];
   // Mask coordinate/function parentheses, then split only before an action word.
   let depth=0;const marks:Array<number>=[];
   const verbs=[...COMMAND_STARTS,'what','where','are','is','explain','verify'].join('|');
@@ -30,6 +32,7 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
   const dimension=mode.endsWith('3d')?3:2;
   const command:MathRoboCommand={id:crypto.randomUUID(),rawPhrase,normalizedPhrase:text,detectedAction:detectedVerb(text),action:'',subAction:'',mode,parameters:{},confidence:{overall:1,action:1,subAction:1,parameters:1},source:{action:'rule',subAction:'rule'},requiresExecution:true};
   const p=command.parameters;
+  const selectiveClear=parseSelectiveClear(text);if(selectiveClear){command.action='DELETE';command.subAction='ALL';p.preserveTargets=selectiveClear.targets;p.parseError=selectiveClear.error;return command;}
   const namedConstruction=text.match(/^construct (?:the )?(circumcircle|incircle|median|altitude) (?:of|for) (?:the )?triangle ([a-z][a-z0-9]*)$/);
   if(namedConstruction){command.action='CONSTRUCT';command.subAction=namedConstruction[1].toUpperCase();command.target={type:'triangle',name:namedConstruction[2]};return command;}
   if(text==='explain'){command.action='EXPLAIN';command.subAction='PREVIOUS';p.responseDepth='detailed';return command;}

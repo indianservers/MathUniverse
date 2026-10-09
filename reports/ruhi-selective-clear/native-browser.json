@@ -1,0 +1,166 @@
+{
+  "checks": [
+    {
+      "mode": "graph2d",
+      "name": "two circles created in real workspace",
+      "passed": true
+    },
+    {
+      "mode": "graph2d",
+      "name": "normal chat reports selective clear",
+      "passed": true
+    },
+    {
+      "mode": "graph2d",
+      "name": "semantic scene retains only circles",
+      "passed": true
+    },
+    {
+      "mode": "graph2d",
+      "name": "native scene retains only circles",
+      "passed": true
+    },
+    {
+      "mode": "graph2d",
+      "name": "native circle geometry is unchanged",
+      "passed": true
+    },
+    {
+      "mode": "graph2d",
+      "name": "native undo restores removed rectangle",
+      "passed": true
+    },
+    {
+      "mode": "graph2d",
+      "name": "native redo preserves circles again",
+      "passed": true
+    },
+    {
+      "mode": "graph2d",
+      "name": "incomplete exception never clears native objects",
+      "passed": true
+    },
+    {
+      "mode": "graph3d",
+      "name": "two circles created in real workspace",
+      "passed": true
+    },
+    {
+      "mode": "graph3d",
+      "name": "normal chat reports selective clear",
+      "passed": true
+    },
+    {
+      "mode": "graph3d",
+      "name": "semantic scene retains only circles",
+      "passed": true
+    },
+    {
+      "mode": "graph3d",
+      "name": "native scene retains only circles",
+      "passed": true
+    },
+    {
+      "mode": "graph3d",
+      "name": "native circle geometry is unchanged",
+      "passed": true
+    },
+    {
+      "mode": "graph3d",
+      "name": "native undo restores removed rectangle",
+      "passed": true
+    },
+    {
+      "mode": "graph3d",
+      "name": "native redo preserves circles again",
+      "passed": true
+    },
+    {
+      "mode": "graph3d",
+      "name": "incomplete exception never clears native objects",
+      "passed": true
+    },
+    {
+      "mode": "geometry2d",
+      "name": "two circles created in real workspace",
+      "passed": true
+    },
+    {
+      "mode": "geometry2d",
+      "name": "normal chat reports selective clear",
+      "passed": true
+    },
+    {
+      "mode": "geometry2d",
+      "name": "semantic scene retains only circles",
+      "passed": true
+    },
+    {
+      "mode": "geometry2d",
+      "name": "native scene retains only circles",
+      "passed": true
+    },
+    {
+      "mode": "geometry2d",
+      "name": "native circle geometry is unchanged",
+      "passed": true
+    },
+    {
+      "mode": "geometry2d",
+      "name": "native undo restores removed rectangle",
+      "passed": true
+    },
+    {
+      "mode": "geometry2d",
+      "name": "native redo preserves circles again",
+      "passed": true
+    },
+    {
+      "mode": "geometry2d",
+      "name": "incomplete exception never clears native objects",
+      "passed": true
+    },
+    {
+      "mode": "geometry3d",
+      "name": "two circles created in real workspace",
+      "passed": true
+    },
+    {
+      "mode": "geometry3d",
+      "name": "normal chat reports selective clear",
+      "passed": true
+    },
+    {
+      "mode": "geometry3d",
+      "name": "semantic scene retains only circles",
+      "passed": true
+    },
+    {
+      "mode": "geometry3d",
+      "name": "native scene retains only circles",
+      "passed": true
+    },
+    {
+      "mode": "geometry3d",
+      "name": "native circle geometry is unchanged",
+      "passed": true
+    },
+    {
+      "mode": "geometry3d",
+      "name": "native undo restores removed rectangle",
+      "passed": true
+    },
+    {
+      "mode": "geometry3d",
+      "name": "native redo preserves circles again",
+      "passed": true
+    },
+    {
+      "mode": "geometry3d",
+      "name": "incomplete exception never clears native objects",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": 32
+}

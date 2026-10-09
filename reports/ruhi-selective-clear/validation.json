@@ -1,0 +1,14 @@
+{
+  "targetedTests": 110,
+  "regressionTests": 4859,
+  "nativeBrowserChecks": 32,
+  "nativeBrowserErrors": 0,
+  "trainingRows": 65,
+  "neuralWeightsChanged": false,
+  "targetedLint": "passed",
+  "studentBuild": "passed",
+  "typecheck": {
+    "existingErrors": 123,
+    "changedFilesErrors": 0
+  }
+}

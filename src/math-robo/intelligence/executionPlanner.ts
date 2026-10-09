@@ -1,3 +1,4 @@
+import {preservedObjectIds} from './selectiveClear';
 import {triangleSideVertices,type TriangleSidePolicy} from './triangleSide';
 import {planeFromPoints3} from '../kernel/geometry3d';
 import { COLORS } from '../../offline-intelligence/shapeCatalog';
@@ -87,6 +88,16 @@ export function preparePlan(plan:MathRoboPlan,input:Readonly<RoboSceneContext>):
     }
     if(c.action==='COUNT'){let count:number;if(c.subAction==='VERTICES'){const o=resolveTarget(c.target,s),counts:Record<string,number>={circle:0,ellipse:0,sphere:0,cylinder:0,cone:1,cube:8,cuboid:8,tetrahedron:4,octahedron:6,dodecahedron:20,icosahedron:12,prism:6,pyramid:5};count=counts[o.type]??vertices(o).length;}else count=s.objects.filter(o=>c.subAction==='OBJECTS'||c.subAction==='POINTS'&&o.type==='point'||c.subAction==='LINES'&&o.type==='line'||c.subAction==='SHAPES'&&!['line','point','plot'].includes(o.type)).length;s.previousResult=count;messages.push(`Count = ${count}.`);continue;}
     if(c.action==='DESELECT'){s.selectedIds=[];if(s.objects[0])effects.push({...s.objects[0].command,roboControl:'deselect'});messages.push('Selection cleared.');continue;}
+    if(c.action==='DELETE'&&c.subAction==='ALL'&&p.preserveTargets){
+      const keep=preservedObjectIds(p.preserveTargets,s),removed=s.objects.filter(o=>!keep.has(o.id));
+      for(const o of removed.sort((a,b)=>Number(a.type==='point')-Number(b.type==='point')))effects.push({...o.command,roboControl:'delete'});
+      s.objects=s.objects.filter(o=>keep.has(o.id));s.selectedIds=s.selectedIds.filter(id=>keep.has(id));s.activeObjectIds=(s.activeObjectIds??[]).filter(id=>keep.has(id));
+      for(const key of ['previousSelectedIds','recentlyReferencedObjectIds','lastQueryTargets','previousResultTargets'] as const)if(s[key])s[key]=s[key]!.filter(id=>keep.has(id));
+      for(const key of ['lastCreated','lastModified','lastReferenced'] as const)if(s[key]&&!keep.has(s[key]!))s[key]=undefined;
+      if(s.activeAngle&&!keep.has(s.activeAngle.objectId))s.activeAngle=undefined;
+      if(s.objects.length===1)s.lastReferenced=s.objects[0].id;
+      messages.push(`Removed ${removed.length} object${removed.length===1?'':'s'}; kept ${s.objects.length}: ${s.objects.map(o=>o.label??o.type).join(', ')}${s.objects.some(o=>o.command.roboDependency)?' (including required construction objects)':''}.`);continue;
+    }
     if(c.action==='DELETE'&&c.subAction==='ALL'){for(const o of [...s.objects].sort((a,b)=>Number(a.type==='point')-Number(b.type==='point')))effects.push({...o.command,roboControl:'delete'});effects.push({kind:'point',dimension:dimension===3?'3d':'2d',points:[],width:0,height:0,radius:0,color:'#22d3ee',roboControl:'delete',roboClearAll:true});s.objects=[];s.selectedIds=[];s.activeObjectIds=[];s.activeAngle=undefined;s.lastCreated=s.lastModified=s.lastReferenced=undefined;messages.push('Cleared all workspace objects.');continue;}
     if(c.action==='SELECT'&&c.subAction==='ALL'){s.selectedIds=s.objects.map(o=>o.id);effects.push(...s.objects.map(o=>({...o.command,roboControl:'select' as const})));messages.push(`Selected ${s.selectedIds.length} objects.`);continue;}
     if(c.action==='SELECT'&&p.multiple){const objects=twoTargets(c,s);s.selectedIds=objects.map(o=>o.id);s.activeObjectIds=[...s.selectedIds];effects.push(...objects.map(o=>({...o.command,roboControl:'select' as const})));messages.push(`Selected ${objects.length} objects.`);continue;}

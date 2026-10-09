@@ -1,3 +1,4 @@
+import {selectiveClearExamples} from './selectiveClear';
 import { interpretVisualRequest } from '../../offline-intelligence/commands';
 import { OPERATIONS, normalizeAction, operationFor,BASELINE_OPERATION_KEYS } from './actionRegistry';
 import { emptyScene, describeObject } from './sceneContext';
@@ -133,6 +134,7 @@ export function generateStarterDataset():SemanticRow[]{
   const nlpContext={objects:[{...descriptor('T','triangle',[0,0],'graph2d',3,[[0,0],[7,0],[2,6]]),parameters:{roboVertexLabels:['A','B','C']}}],selected:['T'],lastReferenced:'T'};
   for(const phrase of ['Change its interior to orange','Change its outline to teal','Make its two sides thicker','Set angle A to 67 degrees','Draw an angle of 53 degrees','Mark its centroid','Connect its incenter to vertex B']){const parsed=parseSemanticCommand(phrase,'graph2d');rows.push({phrase,mode:'graph2d',action:parsed.action,subAction:parsed.subAction,parameters:parsed.parameters,target:parsed.target,context:nlpContext,source:'controlled-template',group:'nlp2d:'+parsed.action+':'+parsed.subAction});}
   rows.push({phrase:'If the two lines intersect, mark the intersection in red; otherwise tell me they are parallel.',mode:'graph2d',action:'CONSTRUCT',subAction:'CONDITIONAL_INTERSECTION',parameters:{multiple:true,color:'red'},context:{...seedContext('graph2d'),selected:['line_1','line_2']},source:'controlled-template',group:'nlp2d:conditional'});
+  for(const mode of ['normal','graph2d','graph3d','geometry2d','geometry3d'] as RoboMode[])for(const phrase of selectiveClearExamples){const parsed=parseSemanticCommand(phrase,mode);rows.push({phrase,mode,action:parsed.action,subAction:parsed.subAction,parameters:parsed.parameters,source:'user-regression',group:'selective-clear:'+phrase.toLowerCase()});}
   for(const op of OPERATIONS)op.examples=rows.filter(row=>row.action===op.action&&row.subAction===op.subAction).slice(0,5).map(row=>row.phrase);
   return rows;
 }
