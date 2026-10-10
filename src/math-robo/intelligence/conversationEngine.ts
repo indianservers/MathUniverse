@@ -109,7 +109,19 @@ export class ConversationEngine extends FollowUpEngine {
       if(['points','triangleLength','trianglePolicy','angle'].includes(pending.slot)&&/^(?:find|what|where|does|explain)\b/.test(normalized))return {plan:pending.plan,message:pending.question};
       let accepted=false;
       const numeric=normalized.match(new RegExp(`^(${NUMBER_PATTERN})(?:\\s+(?:units?|degrees|radians))?(?:\\s+(?:clockwise|anticlockwise|counterclockwise))?$`));
-      if(pending.slot==='trianglePolicy'&&(command.parameters.side as string[]).join('')==='AB'&&(/keep a and c fixed.*b on (?:the )?ray ab/.test(normalized)||/preserve ac and bc/.test(normalized)&&/fix a|keep a fixed/.test(normalized)&&/ab direction|direction of ab/.test(normalized)&&/same side/.test(normalized))){command.parameters.sidePolicy=/preserve/.test(normalized)?'preserve_other_sides':'fixed_third_vertex';accepted=true;}
+      const moveReply=normalized.replace(/^(?:now |please |to the )/,'').match(new RegExp(`^(left|right|up|down|forward|backward)(?:\\s+(?:by\\s+)?(${NUMBER_PATTERN})(?:\\s+units?)?)?$`));
+      if(['direction','distance'].includes(pending.slot)&&moveReply){
+        const distance=moveReply[2]!==undefined?parseNumber(moveReply[2]):command.parameters.conversationDistance;
+        command.parameters.conversationDirection=moveReply[1];
+        if(distance!==undefined){
+          if(!Number.isFinite(distance)||Number(distance)<0||Number(distance)>10000)return {plan:pending.plan,message:'Use a distance from 0 to 10,000 units. '+pending.question};
+          command.parameters.conversationDistance=distance;
+          command.parameters.vector=directionVector(`${moveReply[1]} ${distance}`,scene.activeMode.endsWith('3d')?3:2);
+          delete command.parameters.parseError;
+          accepted=true;
+        }else return this.ask(pending.plan,pending.index,'distance','How many units should I move it?');
+      }
+      else if(pending.slot==='trianglePolicy'&&(command.parameters.side as string[]).join('')==='AB'&&(/keep a and c fixed.*b on (?:the )?ray ab/.test(normalized)||/preserve ac and bc/.test(normalized)&&/fix a|keep a fixed/.test(normalized)&&/ab direction|direction of ab/.test(normalized)&&/same side/.test(normalized))){command.parameters.sidePolicy=/preserve/.test(normalized)?'preserve_other_sides':'fixed_third_vertex';accepted=true;}
       else if(pending.slot==='radius'&&plan.commands.length===1&&plan.commands[0].action==='CHANGE'&&plan.commands[0].subAction==='RADIUS'&&typeof plan.commands[0].parameters.radius==='number'){command.parameters.radius=plan.commands[0].parameters.radius;command.parameters.conversationRadiusProvided=true;if(command.parameters.legacy)command.parameters.legacy.radius=command.parameters.radius;accepted=true;}
       else if(pending.slot==='triangleLength'&&numeric){const length=parseNumber(numeric[1]);if(length>0&&length<=10000){command.parameters.length=length;accepted=true;}}
       else if(pending.choices){

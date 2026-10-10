@@ -1,4 +1,6 @@
 import {RuhiChatWindow} from './RuhiChatWindow';
+import {readChatDraft} from './ruhiChatTools';
+import {resolveTarget} from '../math-robo/intelligence/targetResolver';
 import {CinematicMotionControls} from '../math-robo/animation/CinematicMotionControls';
 import {useRoboFun} from '../math-robo/character/useRoboFun';
 import {RoboFunMenu,RoboFunStatus} from '../math-robo/character/RoboFunMenu';
@@ -11,7 +13,7 @@ import {roboEvents} from '../math-robo/character/engine';
 import {useRoboPosition} from '../math-robo/character/useRoboPosition';
 import {RoboAnimationLab} from '../math-robo/character/RoboAnimationLab';
 import type {RoboCharacterHandle} from '../math-robo/character/RoboCharacter';
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState, useCallback } from 'react';
 import { useLocation,useNavigate } from 'react-router-dom';
 import { graphExpressions, interpretVisualRequest, modeForPath, type VisualCommand } from './commands';
 import { applyVisualCommand, readRoboObject, readRoboScene } from './workspaceBridge';
@@ -31,7 +33,7 @@ import {CorrectionQueue} from '../math-robo/intelligence/correctionCandidates';
 
 const EmbeddedGraph = lazy(() => import('../studios/geometry/GeometryEmbeddedGraph'));
 const EmbeddedSolid = lazy(() => import('../studios/geometry/GeometryEmbeddedSolid'));
-export type RuhiResponse = { clarification?:import('../math-foundation/executionOutcome').ClarificationRequirement; status?:string; candidates?:string[]; navigation?:import('../math-robo/intelligence/types').RoboResult['navigation']; execution?:import('../math-foundation/executionOutcome').ExecutionOutcome; id:string; text:string; command?:VisualCommand; steps?:string[]; confidence?:string; verification?:import('../math-robo/kernel/types').VerificationStatus; conditions?:string[]; errorBound?:string; method?:string };
+export type RuhiResponse = { objectIds?:string[]; clarification?:import('../math-foundation/executionOutcome').ClarificationRequirement; status?:string; candidates?:string[]; navigation?:import('../math-robo/intelligence/types').RoboResult['navigation']; execution?:import('../math-foundation/executionOutcome').ExecutionOutcome; id:string; text:string; command?:VisualCommand; steps?:string[]; confidence?:string; verification?:import('../math-robo/kernel/types').VerificationStatus; conditions?:string[]; errorBound?:string; method?:string };
 
 export default function OfflineMathAssistant() {
   const { pathname,search } = useLocation();const navigate=useNavigate();
@@ -45,8 +47,12 @@ export default function OfflineMathAssistant() {
   useEffect(()=>{setFunMenu(undefined);},[pathname]);
   const currentRoute=useRef(pathname);currentRoute.current=pathname;
   const [open,setOpen] = useState(false);
-  const [input,setInput] = useState('');
-  const [response,setResponse] = useState<RuhiResponse>();
+  const [input,setInput] = useState(()=>readChatDraft(mode));
+  const draftMode=useRef(mode);
+  useEffect(()=>{if(draftMode.current!==mode){draftMode.current=mode;return;}try{localStorage.setItem('ruhi-chat-draft:'+mode,input);}catch{/* Draft storage is optional. */}},[input,mode]);
+  const [response,setResponseState] = useState<RuhiResponse>();
+  const latestResponse=useRef<RuhiResponse>();
+  const setResponse=useCallback((value:RuhiResponse|undefined)=>{latestResponse.current=value;setResponseState(value);},[]);
   const [busy,setBusy] = useState(false);
 
   const [exampleSearch,setExampleSearch]=useState('');
@@ -62,7 +68,7 @@ export default function OfflineMathAssistant() {
   const lastVisual = useRef<VisualCommand>();
   const roboObjects=useRef<VisualCommand[]>([]);
   const speech = useRoboSpeech(open, pathname, text => { setInput(text); editor.current?.focus(); });
-  useEffect(() => { setResponse(undefined); setInput('');  lastVisual.current=undefined;roboObjects.current=[]; }, [pathname]);
+  useEffect(() => { setResponse(undefined); setInput(readChatDraft(mode));  lastVisual.current=undefined;roboObjects.current=[];return()=>liveEngine(mode).cancelCurrent(); }, [pathname,mode,setResponse]);
   useEffect(() => { if (open) editor.current?.focus(); }, [open]);
   useEffect(() => {
     if (!open) return;
@@ -99,42 +105,43 @@ export default function OfflineMathAssistant() {
   async function spatialRequest(text:string) {
     const request=parseSpatialRequest(text);if(!request)return false;
     const before=awareness.refresh();if(!before)return false;
-    let message='';
+    let message='',status:RuhiResponse['status']='success';
     if(request.type==='stop'){position.stop();message='I stopped moving. '+describeAwareness(awareness.refresh()??before);}
     else if(request.type==='where')message=describeAwareness(before);
     else if(request.type==='nearby')message=describeNearby(before);
     else {
       const resolved=request.type==='move'?undefined:resolveSpatialTarget(before,request.name);
-      if(resolved&&!resolved.target)message=resolved.choices.length?`Which target do you mean? ${resolved.choices.join(', ')}. Please include its label.`:'I cannot find that visible element or graph object. Use its button, tab, heading, or object label, or bring it into view.';
+      if(resolved&&!resolved.target){status=resolved.choices.length?'ambiguous':'invalid';message=resolved.choices.length?`Which target do you mean? ${resolved.choices.join(', ')}. Please include its label.`:'I cannot find that visible element or graph object. Use its button, tab, heading, or object label, or bring it into view.';}
       else if(request.type==='distance'&&resolved?.target){const target=resolved.target;message=`The ${target.kind} “${target.label}” is ${Math.round(target.distancePx)} screen pixels from my feet${target.graphDistance!==undefined?` (approximately ${target.graphDistance.toFixed(2)} graph units)` : ''}${target.boundsOnly&&mode.endsWith('3d')?' to its projected bounds':''}.`;}
       else {
         character.current?.setExpression('focused');
         const movement=request.type==='move'?position.move(request.direction,request.crawl,request.distance):position.moveTo(resolved!.target!.point,'crawl' in request&&request.crawl);
-        if(!movement.started)message='I need to finish my current activity before moving.';
-        else {const result=await movement.completion;await new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve())));if(currentRoute.current!==before.route)return true;message=(result.completed?(result.limited?'I moved as far as the visible workspace allows. ':''):'My movement was cancelled. ')+describeAwareness(awareness.refresh()??before);}
+        if(!movement.started){status='invalid';message='I need to finish my current activity before moving.';}
+        else {const result=await movement.completion;if(!result.completed)status='invalid';await new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve())));if(currentRoute.current!==before.route)return true;message=(result.completed?(result.limited?'I moved as far as the visible workspace allows. ':''):'My movement was cancelled. ')+describeAwareness(awareness.refresh()??before);}
       }
     }
-    setAnswerSource('Ruhi · live surroundings');setResponse({id:crypto.randomUUID(),text:message});
+    setAnswerSource('Ruhi · live surroundings');setResponse({status,id:crypto.randomUUID(),text:message});
     if(position.moving&&['where','nearby','distance'].includes(request.type))character.current?.setExpression('curious');else roboEvents.emit({type:'answer'});return true;
   }
   async function submit(request=input) {
     if (!request.trim() || busy) return;
-    const question=request.trim();setInput('');
+    const question=request.trim(),routeAtStart=pathname;setInput('');
     setBusy(true);
     speech.stopSpeaking();
     if(!parseSpatialRequest(question))roboEvents.emit({type:'thinking'});
     try {
       const spatial=parseSpatialRequest(question);if(!spatial||['move','target','stop'].includes(spatial.type))fun.stop();
-      if(await spatialRequest(question))return;
+      if(await spatialRequest(question))return latestResponse.current;
       {
-        const semantic=await runSemanticAssistant(question,mode,pathname+search);setSemanticDebug(semantic);
+        const semantic=await runSemanticAssistant(question,mode,pathname+search);if(currentRoute.current!==routeAtStart)return;setSemanticDebug(semantic);
+        const objectIds=[...new Set(semantic.plan.commands.flatMap(command=>{try{return command.target?[resolveTarget(command.target,liveEngine(mode).snapshot()).id]:semantic.effects.filter(effect=>!!effect.objectId&&!effect.roboControl).map(effect=>effect.objectId!);}catch{return [];}}))];
         if(semantic.status!=='unhandled'){
           setAnswerSource(semantic.plan.commands.some(command=>command.source.action==='correction')?'Your correction':semantic.neural?'Ruhi Intelligence v5.2 · local model + validated geometry engine':'Ruhi Intelligence v5.2 · validated local semantic engine');
           roboEvents.emit({type:semantic.status==='success'?'answer':semantic.status==='ambiguous'?'unknown':'incorrect'});
           animateRoboResult(mode,semantic);
           const kernel = semantic.engineExecution?.metadata?.kernel as import('../math-robo/kernel/types').KernelResult | undefined;
           if(semantic.navigation&&!semantic.navigation.requiresConfirmation){navigate(semantic.navigation.path);return;}
-          setResponse({clarification:semantic.clarification,candidates:semantic.candidates,status:semantic.status,navigation:semantic.navigation,execution:semantic.execution,conditions:kernel?.conditions,errorBound:kernel?.errorBound,method:semantic.execution?.evidence.method,id:crypto.randomUUID(),text:semantic.message,command:semantic.status==='success'?semantic.effects.filter(c=>!c.roboControl&&!c.roboClearAll).at(-1):undefined,steps:semantic.engineExecution?.steps,verification:semantic.engineExecution?.verificationStatus??semantic.verification?.status});return;
+          const answer:RuhiResponse={objectIds,clarification:semantic.clarification,candidates:semantic.candidates,status:semantic.status,navigation:semantic.navigation,execution:semantic.execution,conditions:kernel?.conditions,errorBound:kernel?.errorBound,method:semantic.execution?.evidence.method,id:crypto.randomUUID(),text:semantic.message,command:semantic.status==='success'?semantic.effects.filter(c=>!c.roboControl&&!c.roboClearAll).at(-1):undefined,steps:semantic.engineExecution?.steps??(objectIds.length&&semantic.plan.commands.some(command=>command.action==='FIND')?[semantic.message]:undefined),verification:semantic.engineExecution?.verificationStatus??semantic.verification?.status};setResponse(answer);return answer;
         }
       }
       const objects=roboObjects.current.flatMap(command=>{
@@ -148,30 +155,31 @@ export default function OfflineMathAssistant() {
       if (result.command) {
         result.command.objectId ??= crypto.randomUUID();
         const sameDimension = mode === 'normal' || result.command.dimension === (mode.endsWith('3d') ? '3d' : '2d');
-        if (!sameDimension) { setResponse({id:crypto.randomUUID(),text:'This request uses a different dimension. Open the matching workspace, or ask on an ordinary page for an embedded visual.'}); return; }
+        if (!sameDimension) { setResponse({status:'ambiguous',id:crypto.randomUUID(),text:'This request uses a different dimension. Open the matching workspace, or ask on an ordinary page for an embedded visual.'}); return latestResponse.current; }
         const error = mode === 'normal' ? undefined : await applyVisualCommand(mode,result.command);
         if(!error) {
           lastVisual.current=result.command;
           roboObjects.current=[...roboObjects.current.filter(command=>command.objectId!==result.command!.objectId),result.command].slice(-200);
         }
         roboEvents.emit({type:error?'error':'answer'});
-        setResponse({id:crypto.randomUUID(),text:error || result.message,command:!error && mode === 'normal' ? result.command : undefined});
-      } else if (result.message) {roboEvents.emit({type:/^(hi|hello|hey)\b/i.test(question)?'greeting':/\b(thanks|thank you)\b/i.test(question)?'thanks':/\b(bye|goodbye)\b/i.test(question)?'goodbye':'answer'});setResponse({id:crypto.randomUUID(),text:result.message});}
+        setResponse({status:error?'error':'success',id:crypto.randomUUID(),text:error || result.message,command:!error && mode === 'normal' ? result.command : undefined});
+      } else if (result.message) {roboEvents.emit({type:/^(hi|hello|hey)\b/i.test(question)?'greeting':/\b(thanks|thank you)\b/i.test(question)?'thanks':/\b(bye|goodbye)\b/i.test(question)?'goodbye':'answer'});setResponse({status:'success',id:crypto.randomUUID(),text:result.message});}
       else {
         const {solveProblem} = await import('../problem-solver/problemSolverEngine');
         const solved = solveProblem(question);
         roboEvents.emit({type:solved.trust.answer?'answer':'unknown'});
-        setResponse({id:crypto.randomUUID(),text:solved.trust.answer ?? solved.trust.unsupportedReason ?? 'Try an equation or a drawing command.',steps:solved.result.steps,confidence:solved.trust.confidence});
+        setResponse({status:solved.trust.answer?'success':'unsupported',id:crypto.randomUUID(),text:solved.trust.answer ?? solved.trust.unsupportedReason ?? 'Try an equation or a drawing command.',steps:solved.result.steps,confidence:solved.trust.confidence});
       }
-    } catch (error) { roboEvents.emit({type:'error'}); setResponse({id:crypto.randomUUID(),text:error instanceof Error ? error.message : 'Unable to create this visual. Check the request.'}); }
+    } catch (error) { roboEvents.emit({type:'error'}); setResponse({status:'error',id:crypto.randomUUID(),text:error instanceof Error ? error.message : 'Unable to create this visual. Check the request.'}); }
     finally {setBusy(false);}
+    return latestResponse.current;
   }
   return <aside className={`offline-assistant ${open?'is-open':''}`} style={position.style} aria-label="Offline math assistant" data-robo-scene-count={semanticDebug?.objects} data-robo-scene-hash={semanticDebug?.sceneHash} data-robo-before-hash={semanticDebug?.beforeHash}>
     <button ref={launcher} className="offline-assistant-toggle" {...position.handlers} title="Right-click or press Shift+F10 to play with Ruhi" onPointerDown={event=>{if(event.button===0)fun.stop();position.handlers.onPointerDown(event);}} onContextMenu={event=>{event.preventDefault();event.stopPropagation();setFunMenu({x:event.clientX,y:event.clientY});awareness.refresh();}} onKeyDown={event=>{if(event.key==='ContextMenu'||event.shiftKey&&event.key==='F10'){event.preventDefault();const rect=event.currentTarget.getBoundingClientRect();setFunMenu({x:rect.left,y:rect.top});awareness.refresh();}}} onDoubleClick={()=>character.current?.playAction('wave')} onClick={()=>{if(position.wasDragged())return;roboEvents.emit({type:'greeting'});if(open)close();else setOpen(true);}} aria-label={open?'Close assistant · Offline':'Ask Math · Offline'} aria-expanded={open} aria-controls="math-robo-panel"><span className="robo-greeting" aria-hidden="true">{busy?'Thinking…':open?'Ruhi · Your maths companion':'Hi! I’m Ruhi'}</span><MathRobot ref={character} thinking={busy&&!position.moving} awake={open} onTravel={position.travel} onCancelTravel={()=>position.stop(false)} getAwareness={awareness.get}/></button>
     {funMenu&&<RoboFunMenu point={funMenu} location={awareness.snapshot?describeAwareness(awareness.snapshot):'Checking my surroundings…'} onClose={()=>{setFunMenu(undefined);launcher.current?.focus({preventScroll:true});}} onAction={action=>{setFunMenu(undefined);void fun.run(action);}}/>}
     <RoboFunStatus message={fun.message} active={fun.active} onStop={fun.stop} onDismiss={fun.clear}/>
     {import.meta.env.DEV && new URLSearchParams(location.search).has('roboLab') && <RoboAnimationLab character={character} mode={mode} speak={speech.speak}/>}
-    {open&&<RuhiChatWindow mode={mode} input={input} setInput={setInput} response={response} busy={busy} editor={editor} launcher={launcher} learningStatus={learningStatus} speech={speech} onSend={submit} onClose={close} onNavigate={navigate} onCancel={()=>liveEngine(mode).cancelCurrent()} choices={semanticDebug} onClear={()=>{setResponse(undefined);void runSemanticAssistant('Clear context',mode,pathname+search);}} onAttach={()=>{const command=readRoboScene(mode).objects.at(-1)?.command??liveEngine(mode).snapshot().objects.at(-1)?.command;setResponse({id:crypto.randomUUID(),text:command?'Attached the current construction.':'Create a graph or object in the workspace first.',command});}} preview={answer=><Suspense fallback={<p role="status">Loading existing workspace…</p>}>{answer.command&& (answer.command.dimension==='3d'&&answer.command.kind!=='plot'?<EmbeddedSolid activityId={`assistant-${answer.id}`} scene={solidScene(answer.command)}/>:<EmbeddedGraph activityId={`assistant-${answer.id}`} dimension={answer.command.dimension} expressions={graphExpressions(answer.command)} title={answer.command.expression??'Your construction'}/>)}</Suspense>} settings={<>
+    {open&&<RuhiChatWindow key={mode} onRestore={async (context,solver)=>{await liveEngine(mode).importState(context,command=>mode==='normal'?Promise.resolve():applyVisualCommand(mode,command));if(solver)liveEngine(mode).engineRouter.restoreContext(solver);setResponse(undefined);setSemanticDebug(undefined);}} mode={mode} input={input} setInput={setInput} response={response} busy={busy} editor={editor} launcher={launcher} learningStatus={learningStatus} speech={speech} onSend={submit} onClose={close} onNavigate={navigate} onCancel={()=>liveEngine(mode).cancelCurrent()} choices={semanticDebug} onClear={()=>{setResponse(undefined);void runSemanticAssistant('Clear context',mode,pathname+search);}} onAttach={()=>{setSemanticDebug(undefined);const command=readRoboScene(mode).objects.at(-1)?.command??liveEngine(mode).snapshot().objects.at(-1)?.command;setResponse({id:crypto.randomUUID(),text:command?'Attached the current construction.':'Create a graph or object in the workspace first.',command});}} preview={answer=><Suspense fallback={<p role="status">Loading existing workspace…</p>}>{answer.command&& (answer.command.dimension==='3d'&&answer.command.kind!=='plot'?<EmbeddedSolid activityId={`assistant-${answer.id}`} scene={solidScene(answer.command)}/>:<EmbeddedGraph activityId={`assistant-${answer.id}`} dimension={answer.command.dimension} expressions={graphExpressions(answer.command)} title={answer.command.expression??'Your construction'}/>)}</Suspense>} settings={<>
       <CinematicMotionControls/>
       <details className="robo-surroundings"><summary>Ruhi’s surroundings</summary>
         <p data-testid="ruhi-location">{awareness.snapshot?describeAwareness(awareness.snapshot):'Checking my surroundings…'}</p>

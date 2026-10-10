@@ -7,6 +7,7 @@ export function useDialogFocus(
   open: boolean,
   dialogRef: RefObject<HTMLElement>,
   restoreRef?: RefObject<HTMLElement>,
+  initialFocusRef?: RefObject<HTMLElement>,
 ) {
   useEffect(() => {
     if (!open) return;
@@ -21,7 +22,7 @@ export function useDialogFocus(
         (element) => !element.hidden && element.offsetParent !== null,
       );
     window.requestAnimationFrame(() =>
-      (focusable()[0] ?? dialog)?.focus({ preventScroll: true }),
+      (initialFocusRef?.current ?? focusable()[0] ?? dialog)?.focus({ preventScroll: true }),
     );
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -49,5 +50,5 @@ export function useDialogFocus(
         previous?.focus({ preventScroll: true }),
       );
     };
-  }, [dialogRef, open, restoreRef]);
+  }, [dialogRef, open, restoreRef,initialFocusRef]);
 }

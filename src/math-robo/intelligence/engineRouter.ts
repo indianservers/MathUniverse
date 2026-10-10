@@ -8,7 +8,7 @@ import type {RoboSceneContext} from './types';
 export class EngineRouter{
   private calculation?:AbortController;
   cancelCalculation(){this.calculation?.abort();}
-  resetContext(){this.cancelCalculation();this.last=undefined;this.recent=[];this.pending=undefined;this.assumptions=[];this.variables={};this.dataset=[];this.notebook=[];this.quiz=undefined;this.quizAnswerModel=undefined;}
+  resetContext(){this.cancelCalculation();this.last=undefined;this.recent=[];this.pending=undefined;this.assumptions=[];this.variables={};this.dataset=[];this.notebook=[];this.quiz=undefined;this.quizHintIndex=0;this.mathHintIndex=0;this.quizAnswerModel=undefined;}
   last?:{input:string;expression:string;result:EngineResult;style:ResponseStyle};
   recent:{input:string;capabilityId:string;success:boolean}[]=[];
   assumptions:string[]=[];
@@ -16,8 +16,23 @@ export class EngineRouter{
   dataset:number[]=[];
   notebook:import('../../cas/casNotebookEngine').NotebookCell[]=[];
   quiz?:import('../../learning-system/types').GeneratedQuestion;
+  private quizHintIndex=0;
+  private mathHintIndex=0;
   quizAnswerModel?:import('../../learning-system/types').AnswerModel;
   pending?:{capabilityId:string;question:string};
+  exportContext(){return structuredClone({last:this.last,quiz:this.quiz,quizAnswerModel:this.quizAnswerModel,variables:this.variables,assumptions:this.assumptions,dataset:this.dataset,pending:this.pending,quizHintIndex:this.quizHintIndex,mathHintIndex:this.mathHintIndex});}
+  restoreContext(state:ReturnType<EngineRouter['exportContext']>){
+    this.resetContext();
+    if(state.last&&typeof state.last.input==='string'&&state.last.result?.success)this.last=structuredClone(state.last);
+    if(state.quiz&&typeof state.quiz.prompt==='string'){this.quiz=structuredClone(state.quiz);this.quizAnswerModel=structuredClone(state.quizAnswerModel);}
+    this.variables=Object.fromEntries(Object.entries(state.variables??{}).filter(([key,value])=>/^[a-z]\w*$/i.test(key)&&typeof value==='string').slice(0,25));
+    this.assumptions=(state.assumptions??[]).filter(value=>typeof value==='string').slice(0,12);
+    this.dataset=(state.dataset??[]).filter(Number.isFinite).slice(0,100000);
+    this.pending=state.pending&&typeof state.pending.capabilityId==='string'&&typeof state.pending.question==='string'?structuredClone(state.pending):undefined;
+    this.quizHintIndex=Number.isFinite(state.quizHintIndex)?Math.max(0,state.quizHintIndex):0;
+    this.mathHintIndex=Number.isFinite(state.mathHintIndex)?Math.max(0,state.mathHintIndex):0;
+  }
+
   async dispatch(raw:string,scene:RoboSceneContext):Promise<{result:EngineResult;message:string}|{visualText:string}|undefined>{
     let text=normalizeLanguage(raw).replace(/[.!?]+$/,'').replace(/^(?:please|can you|could you)\s+/,'');
     if(/^(?:forget that|clear context|reset context|start over)$/.test(text)){this.last=undefined;this.pending=undefined;this.assumptions=[];this.variables={};this.dataset=[];this.notebook=[];this.quiz=undefined;return undefined;}
@@ -41,11 +56,22 @@ export class EngineRouter{
     }
     if(this.last&&/^(?:plot|graph|visualize) (?:it|that|the result)$/.test(text))return {visualText:`Plot y = ${typeof this.last.result.metadata?.plotExpression==='string'?this.last.result.metadata.plotExpression:this.last.expression.split('=')[0]}`};
     if(/^now (?:cosine|sine|tangent)$/.test(text)&&scene.objects.some(o=>o.type==='plot'))return {visualText:`Plot y = ${/cosine/.test(text)?'cos':/sine/.test(text)?'sin':'tan'}(x)`};
-    if(/^what about (?:half|double|twice) (?:of )?it$/.test(text)&&typeof scene.previousResult==='number')return this.run('problem.solve',{text:`${scene.previousResult}${/half/.test(text)?'/2':'*2'}`},String(scene.previousResult));
+    if(/^what about (?:half|double|twice) (?:of )?it$/.test(text)){
+      const prior=typeof scene.previousResult==='number'?String(scene.previousResult):typeof scene.previousResult==='string'&&/^-?\d+(?:\.\d+)?(?:\/\d+)?$/.test(scene.previousResult)?scene.previousResult:undefined;
+      if(prior!==undefined){const expression=`(${prior})${/half/.test(text)?'/2':'*2'}`,request=kernelRequest('Calculate '+expression);if(request)return this.run('kernel.compute',{text:'Calculate '+expression,args:[request]},expression);}
+    }
+    if(!this.quiz&&this.last&&/^(?:hint|give me (?:a|another) hint)$/.test(text)){
+      const hints=[`Start by identifying the operation in your question: ${this.last.input}`,...(this.last.result.steps??[])];
+      return this.reply('hint',hints[this.mathHintIndex++]??'All recorded solution steps have been shown. Ask for an explanation or try another question.');
+    }
     if(this.quiz&&/^(?:my answer is|answer:)\s*/.test(text)){const {evaluateAnswer}=await import('../../learning-system/assessmentEngine');const result=evaluateAnswer(raw.replace(/^(?:my answer is|answer:)\s*/i,''),this.quiz.answer,this.quizAnswerModel??{kind:'EXACT'});return this.reply('assessment',`${result.status}: ${result.feedback.join(' ')}. Expected answer: ${this.quiz.answer}`,result);}
-    if(this.quiz&&/^(?:hint|give me a hint)$/.test(text))return this.reply('practice',this.quiz.hints[0]?.template??'Use the first solution step: '+this.quiz.solutionSteps[0]?.explanation);
+    if(this.quiz&&/^(?:hint|give me (?:a|another) hint)$/.test(text)){
+      const hints=[...new Set([...this.quiz.hints.map(h=>h.template),...this.quiz.solutionSteps.map(step=>step.explanation)])];
+      const hint=hints[this.quizHintIndex++];return this.reply('practice',hint??'All available hints have been shown. Try your answer or ask to show the answer.');
+    }
+    if(this.quiz&&/^show (?:the )?answer$/.test(text))return this.reply('practice',`Answer: ${this.quiz.answer}\n${this.quiz.solutionSteps.map(step=>step.explanation).join('\n')}`);
     if(/^(?:quiz me|give (?:me )?another example)\b/.test(text)){
-      const {practiceFamilies,generateQuestion}=await import('../../learning-system/practiceEngine');const topic=text.match(/quiz me (?:on|about) (.+)/)?.[1]??String(this.last?.result.metadata?.classification??this.last?.result.engineId??scene.objects.find(o=>o.id===scene.lastReferenced)?.type??'');const needle=/complex/.test(topic)?'complex':/equation|algebra|solve/i.test(topic)?'equations':/geometry|line|triangle|circle/.test(topic)?'line':topic;const family=practiceFamilies.find(f=>`${f.id} ${f.conceptIds.join(' ')}`.toLowerCase().includes(needle.toLowerCase()))??practiceFamilies[0];const q=generateQuestion(family,Date.now()%100000);this.quiz=q;this.quizAnswerModel=family.answerModel;return this.reply('practice',`${q.prompt}\n${q.choices?.join(' Â· ')??''}`,q);
+      const {practiceFamilies,generateQuestion}=await import('../../learning-system/practiceEngine');const topic=text.match(/quiz me (?:on|about) (.+)/)?.[1]??String(this.last?.result.metadata?.classification??this.last?.result.engineId??scene.objects.find(o=>o.id===scene.lastReferenced)?.type??'');const needle=/complex/.test(topic)?'complex':/equation|algebra|solve/i.test(topic)?'equations':/geometry|line|triangle|circle/.test(topic)?'line':topic;const family=practiceFamilies.find(f=>`${f.id} ${f.conceptIds.join(' ')}`.toLowerCase().includes(needle.toLowerCase()))??practiceFamilies[0];const q=generateQuestion(family,Date.now()%100000);this.quiz=q;this.quizHintIndex=0;this.quizAnswerModel=family.answerModel;return this.reply('practice',`${q.prompt}\n${q.choices?.join(' Â· ')??''}`,q);
     }
     const explicit=text.match(/^(?:run|use|compute)\s+([a-z][\w-]*\.[a-z][\w]*)\s+(?:with\s+)?(\[[\s\S]*\])$/i);
     if(explicit){let args:unknown[];try{args=JSON.parse(raw.slice(raw.indexOf('[')));}catch{return this.reply('clarification','Use a JSON array of typed arguments for this registered engine operation.',undefined,false);}
@@ -72,6 +98,6 @@ export class EngineRouter{
   private async run(id:string,input:SpecialistInput,expression:string,style:ResponseStyle='answer'){
     this.calculation?.abort();const controller=new AbortController();this.calculation=controller;
     const result=await executeCapability(id,{...input,...(id==='cas.evaluate'?{cells:this.notebook}:{}),signal:controller.signal});if(this.calculation!==controller||controller.signal.aborted){const cancelled:EngineResult={success:false,engineId:result.engineId,capabilityId:id,error:{code:'CANCELLED',message:'Calculation cancelled.'},execution:executionOutcome('cancelled',result.execution?.requestId)};return {result:cancelled,message:'Calculation cancelled.'};}this.calculation=undefined;if(id==='cas.evaluate'&&result.success&&result.metadata?.cells)this.notebook=result.metadata.cells as typeof this.notebook;this.recent=[...this.recent,{input:input.text,capabilityId:id,success:result.success}].slice(-25);
-    if(result.success)this.last={input:input.text,expression,result,style};return {result,message:composeEngineResponse(result,style)};
+    if(result.success){this.mathHintIndex=0;this.last={input:input.text,expression,result,style};}return {result,message:composeEngineResponse(result,style)};
   }
 }

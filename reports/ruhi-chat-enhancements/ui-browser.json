@@ -1,0 +1,162 @@
+{
+  "checks": [
+    {
+      "name": "composer receives keyboard focus",
+      "passed": true
+    },
+    {
+      "name": "workspace badge",
+      "passed": true
+    },
+    {
+      "name": "draggable header",
+      "passed": true
+    },
+    {
+      "name": "full-screen existing workspace preview",
+      "passed": true
+    },
+    {
+      "name": "left docking",
+      "passed": true
+    },
+    {
+      "name": "right docking",
+      "passed": true
+    },
+    {
+      "name": "compact size preset",
+      "passed": true
+    },
+    {
+      "name": "compact header",
+      "passed": true
+    },
+    {
+      "name": "font scaling",
+      "passed": true
+    },
+    {
+      "name": "high contrast",
+      "passed": true
+    },
+    {
+      "name": "named conversation saved",
+      "passed": true
+    },
+    {
+      "name": "Markdown export",
+      "passed": true
+    },
+    {
+      "name": "print / PDF document",
+      "passed": true
+    },
+    {
+      "name": "conversation search",
+      "passed": true
+    },
+    {
+      "name": "pin answer",
+      "passed": true
+    },
+    {
+      "name": "copy answer",
+      "passed": true
+    },
+    {
+      "name": "edit and resend",
+      "passed": true
+    },
+    {
+      "name": "linked diagram step",
+      "passed": true
+    },
+    {
+      "name": "memory inspector",
+      "passed": true
+    },
+    {
+      "name": "sequential queue completes",
+      "passed": true
+    },
+    {
+      "name": "queue stops on clarification",
+      "passed": true
+    },
+    {
+      "name": "motion controls reuse existing engine",
+      "passed": true
+    },
+    {
+      "name": "explicit target picker",
+      "passed": true
+    },
+    {
+      "name": "clarification form and chips",
+      "passed": true
+    },
+    {
+      "name": "follow-up movement completes",
+      "passed": true
+    },
+    {
+      "name": "retry failed command",
+      "passed": true
+    },
+    {
+      "name": "autocomplete",
+      "passed": true
+    },
+    {
+      "name": "scene-aware suggestions",
+      "passed": true
+    },
+    {
+      "name": "pinned answers survive refresh",
+      "passed": true
+    },
+    {
+      "name": "draft survives refresh",
+      "passed": true
+    },
+    {
+      "name": "saved geometry and conversation restore",
+      "passed": true
+    },
+    {
+      "name": "guided practice",
+      "passed": true
+    },
+    {
+      "name": "progressive hints",
+      "passed": true
+    },
+    {
+      "name": "inline undo executes actual scene history",
+      "passed": true
+    },
+    {
+      "name": "deletion preview includes keep and delete highlights",
+      "passed": true
+    },
+    {
+      "name": "deletion waits for confirmation",
+      "passed": true
+    },
+    {
+      "name": "voice transcript review",
+      "passed": true
+    },
+    {
+      "name": "mobile viewport safe",
+      "passed": true
+    },
+    {
+      "name": "composer remains visible in a short viewport",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": 39
+}
