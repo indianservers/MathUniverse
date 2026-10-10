@@ -580,16 +580,16 @@ function UnitCircle({
           ({formatNumber(model.cos)}, {formatNumber(model.sin)})
         </text>
       </g>
-      <text x="170" y="42" fontSize="10">
+      <text x="170" y="42" fontSize="12">
         1
       </text>
-      <text x="170" y="295" fontSize="10">
+      <text x="170" y="295" fontSize="12">
         −1
       </text>
-      <text x="54" y="180" fontSize="10">
+      <text x="54" y="180" fontSize="12">
         −1
       </text>
-      <text x="302" y="180" fontSize="10">
+      <text x="302" y="180" fontSize="12">
         1
       </text>
     </svg>
@@ -667,7 +667,7 @@ function Protractor({
             <text
               x={140 + 120 * Math.cos(a) - 7}
               y={136 - 120 * Math.sin(a)}
-              fontSize="9"
+              fontSize="12"
               fontWeight="700"
             >
               {v}°
@@ -693,10 +693,10 @@ function Protractor({
         fill="#111827"
       />
       <circle cx="140" cy="132" r="5" fill="#1473e6" />
-      <text x="18" y="143" fontSize="9">
+      <text x="18" y="143" fontSize="12">
         180°
       </text>
-      <text x="251" y="143" fontSize="9">
+      <text x="251" y="143" fontSize="12">
         0°
       </text>
     </svg>
@@ -730,10 +730,10 @@ function StageVisual({ index }: { index: number }) {
           stroke="#1785d4"
           strokeWidth="2"
         />
-        <text x="80" y="30" fontSize="7">
+        <text x="80" y="30" fontSize="12">
           x
         </text>
-        <text x="39" y="7" fontSize="7">
+        <text x="39" y="7" fontSize="12">
           y
         </text>
       </svg>
@@ -756,7 +756,7 @@ function StageVisual({ index }: { index: number }) {
         />
         <circle cx="44" cy="43" r="4" fill="#0f9ca8" />
         <path d="M72 23l6-7 2 8" fill="none" stroke="#1785d4" strokeWidth="2" />
-        <text x="73" y="46" fontSize="8">
+        <text x="73" y="46" fontSize="12">
           ↔
         </text>
       </svg>
@@ -800,7 +800,7 @@ function StageVisual({ index }: { index: number }) {
       <text x="55" y="21" fontSize="12">
         +
       </text>
-      <text x="50" y="40" fontSize="8">
+      <text x="50" y="40" fontSize="12">
         360° = 2π rad
       </text>
     </svg>

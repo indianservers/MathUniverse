@@ -574,7 +574,7 @@ function VerticalMini() {
             r="5"
             fill={["#ef4444", "#1685f8", "#22a35a"][i]}
           />
-          <text x="90" y={y + 3} fontSize="9">
+          <text x="90" y={y + 3} fontSize="12">
             {["A", "B", "C"][i]}
           </text>
         </g>

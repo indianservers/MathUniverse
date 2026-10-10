@@ -706,7 +706,7 @@ function RegressionPlot({
             y2={sy(0) + 4}
             stroke="#334155"
           />
-          <text x={sx(v) - 7} y={sy(0) + 18} fontSize="11">
+          <text x={sx(v) - 7} y={sy(0) + 18} fontSize="12">
             {v}
           </text>
         </g>
@@ -720,7 +720,7 @@ function RegressionPlot({
             y2={sy(v)}
             stroke="#334155"
           />
-          <text x={sx(0) - 22} y={sy(v) + 4} fontSize="11">
+          <text x={sx(0) - 22} y={sy(v) + 4} fontSize="12">
             {v}
           </text>
         </g>

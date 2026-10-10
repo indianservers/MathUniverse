@@ -1,0 +1,215 @@
+{
+  "scope": "Only illustration import/binding in existing page",
+  "cards": [
+    {
+      "number": 1,
+      "name": "Limits",
+      "kind": "limits",
+      "label": "Two-sided limit: both points approach the open limit point",
+      "route": "http://127.0.0.1:5190/calculus/limits?v_a=0&v_b=0.5&v_left=0.5&v_right=0.5&v_n=20&v_expression=sin%28x%29%2Fx",
+      "navigation": "passed"
+    },
+    {
+      "number": 2,
+      "name": "Derivatives",
+      "kind": "derivatives",
+      "label": "Derivative of 1−x²: moving contact point and exact tangent",
+      "route": "http://127.0.0.1:5190/calculus/derivatives?v_a=0&v_b=0.01&v_n=12&v_expression=x%5E2&v_order=1",
+      "navigation": "passed"
+    },
+    {
+      "number": 3,
+      "name": "Applications",
+      "kind": "derivative-applications",
+      "label": "Optimization: maximum of 1−x² at x=0",
+      "route": "http://127.0.0.1:5190/calculus/derivative-applications?mode=optimization&v_time=1.5&v_radius=3&v_radius_rate=0.5&v_curve_x=0.75&v_width=24&v_length=36&v_cut=4.2&v_mvt_a=0&v_mvt_b=3",
+      "navigation": "passed"
+    },
+    {
+      "number": 4,
+      "name": "Integrals",
+      "kind": "integration",
+      "label": "Definite integral: progressively shaded area with boundaries",
+      "route": "http://127.0.0.1:5190/calculus/integration?mode=definite&v_function=x%5E2&v_lower_a=-2&v_upper_b=3&v_partitions_n=12&v_method=midpoint&v_probe_x=1",
+      "navigation": "passed"
+    },
+    {
+      "number": 5,
+      "name": "Techniques",
+      "kind": "integration-techniques",
+      "label": "Substitution u=x² transforms the integral of 2x cos(x²)",
+      "route": "http://127.0.0.1:5190/calculus/integration-techniques?v_a=2&v_b=0&v_n=20&v_step=2",
+      "navigation": "passed"
+    },
+    {
+      "number": 6,
+      "name": "Volumes",
+      "kind": "integral-applications",
+      "label": "Three-dimensional solid of revolution with sweeping circular section",
+      "route": "http://127.0.0.1:5190/calculus/integral-applications",
+      "navigation": "passed"
+    },
+    {
+      "number": 7,
+      "name": "Diff. Equations",
+      "kind": "differential-equations",
+      "label": "Slope field y′=x−y and its exact solution y=x−1+1.4 exp(−x)",
+      "route": "http://127.0.0.1:5190/calculus/differential-equations",
+      "navigation": "passed"
+    },
+    {
+      "number": 8,
+      "name": "Series & Polar",
+      "kind": "series-parametric-polar",
+      "label": "Archimedean polar spiral with outward tracing points",
+      "route": "http://127.0.0.1:5190/calculus/series-parametric-polar",
+      "navigation": "passed"
+    },
+    {
+      "number": 9,
+      "name": "Series Tests",
+      "kind": "series-tests",
+      "label": "Geometric series: sum of 2 to the power −n, convergent by the ratio test",
+      "route": "http://127.0.0.1:5190/calculus/series-tests",
+      "navigation": "passed"
+    },
+    {
+      "number": 10,
+      "name": "Curve Tracing",
+      "kind": "curve-tracing",
+      "label": "Three-petal rose r=cos(3θ) with distinct traced segments",
+      "route": "http://127.0.0.1:5190/calculus/curve-tracing",
+      "navigation": "passed"
+    },
+    {
+      "number": 11,
+      "name": "Multivariable",
+      "kind": "multivariable-vector",
+      "label": "Three-dimensional sinusoidal function mesh and its gradient",
+      "route": "http://127.0.0.1:5190/calculus/multivariable-vector?mode=partial&v_a=0&v_b=0&v_n=8&v_expression=x%5E2-y%5E2",
+      "navigation": "passed"
+    },
+    {
+      "number": 12,
+      "name": "Taylor in Two Variables",
+      "kind": "taylor-two-variables",
+      "label": "Three-dimensional paraboloid and exact first-order tangent plane",
+      "route": "http://127.0.0.1:5190/calculus/taylor-two-variables",
+      "navigation": "passed"
+    },
+    {
+      "number": 13,
+      "name": "Lagrange Multipliers",
+      "kind": "lagrange-multipliers",
+      "label": "Circular objective contours and constrained optimum with parallel gradients",
+      "route": "http://127.0.0.1:5190/calculus/lagrange-multipliers",
+      "navigation": "passed"
+    },
+    {
+      "number": 14,
+      "name": "Jacobians",
+      "kind": "jacobians",
+      "label": "Nonlinear coordinate map with determinant and exact mapped region area",
+      "route": "http://127.0.0.1:5190/calculus/jacobians-coordinate-transformations",
+      "navigation": "passed"
+    },
+    {
+      "number": 15,
+      "name": "Change of Order",
+      "kind": "change-order",
+      "label": "Fixed triangular integration region with vertical and horizontal slices",
+      "route": "http://127.0.0.1:5190/calculus/change-order-integration",
+      "navigation": "passed"
+    },
+    {
+      "number": 16,
+      "name": "Integral Applications",
+      "kind": "integral-engineering",
+      "label": "Accumulating geometric area between a parabola and the x axis",
+      "route": "http://127.0.0.1:5190/calculus/multiple-integral-applications",
+      "navigation": "passed"
+    },
+    {
+      "number": 17,
+      "name": "Centroid",
+      "kind": "centroid",
+      "label": "Uniform triangular lamina balancing at its computed centroid",
+      "route": "http://127.0.0.1:5190/calculus/centroid-center-of-mass",
+      "navigation": "passed"
+    },
+    {
+      "number": 18,
+      "name": "Moments of Inertia",
+      "kind": "moments-of-inertia",
+      "label": "Three-dimensional annulus, rotation axis, radial mass and angular direction",
+      "route": "http://127.0.0.1:5190/calculus/moments-of-inertia",
+      "navigation": "passed"
+    },
+    {
+      "number": 19,
+      "name": "Beta & Gamma",
+      "kind": "beta-gamma",
+      "label": "Correct positive Gamma function curve and Beta–Gamma identity",
+      "route": "http://127.0.0.1:5190/calculus/beta-gamma",
+      "navigation": "passed"
+    }
+  ],
+  "viewports": [
+    {
+      "width": 320,
+      "overflow": -15,
+      "cardsFit": 19
+    },
+    {
+      "width": 390,
+      "overflow": -15,
+      "cardsFit": 19
+    },
+    {
+      "width": 768,
+      "overflow": -15,
+      "cardsFit": 19
+    },
+    {
+      "width": 1280,
+      "overflow": -15,
+      "cardsFit": 19
+    },
+    {
+      "width": 1672,
+      "overflow": -15,
+      "cardsFit": 19
+    }
+  ],
+  "themes": [
+    {
+      "theme": "light",
+      "ink": "rgb(21, 56, 107)",
+      "passed": true
+    },
+    {
+      "theme": "dark",
+      "ink": "rgb(220, 238, 255)",
+      "passed": true
+    },
+    {
+      "theme": "glow component preview",
+      "ink": "rgb(215, 250, 255)",
+      "passed": true
+    }
+  ],
+  "lifecycle": {
+    "visibleAdvances": true,
+    "hover": true,
+    "offscreenPaused": true,
+    "reducedMotionStatic": true
+  },
+  "performance": {
+    "medianFrameMs": 16.699999999999818,
+    "p95FrameMs": 33.399999999999636,
+    "visibleIllustrations": 11,
+    "webglContextsForIllustrations": 0,
+    "lazilyInitializedCanvasCount": 13
+  },
+  "errors": []
+}

@@ -733,7 +733,7 @@ function PolylinePlane({
               x={sx(point.x) + 7}
               y={sy(point.y) - 8}
               fill="#1d4ed8"
-              fontSize="10"
+              fontSize="12"
               fontWeight="800"
             >
               {letter(index)}({formatCoordinate(point.x)}, {formatCoordinate(point.y)})

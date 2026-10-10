@@ -1,0 +1,75 @@
+{
+  "records": [
+    {
+      "lab": "factorization",
+      "mode": "QR",
+      "passed": true
+    },
+    {
+      "lab": "factorization",
+      "mode": "SVD",
+      "passed": true
+    },
+    {
+      "lab": "factorization",
+      "mode": "Pivoted LU",
+      "passed": true
+    },
+    {
+      "lab": "flow",
+      "mode": "matching",
+      "passed": true
+    },
+    {
+      "lab": "fields",
+      "mode": "F9",
+      "passed": true
+    },
+    {
+      "lab": "regression",
+      "mode": "multiple",
+      "passed": true
+    },
+    {
+      "lab": "design",
+      "mode": "factorial",
+      "passed": true
+    },
+    {
+      "lab": "boundary",
+      "mode": "Neumann",
+      "passed": true
+    },
+    {
+      "lab": "boundary",
+      "mode": "Robin singularity and recovery",
+      "passed": true
+    },
+    {
+      "lab": "pde",
+      "mode": "Wave",
+      "passed": true
+    },
+    {
+      "lab": "pde",
+      "mode": "Laplace",
+      "passed": true
+    },
+    {
+      "lab": "pde",
+      "mode": "Heat",
+      "passed": true
+    },
+    {
+      "lab": "pde",
+      "check": "accessibility",
+      "passed": true
+    },
+    {
+      "lab": "stiff",
+      "mode": "Adaptive RK4",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

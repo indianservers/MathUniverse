@@ -1,0 +1,4447 @@
+[
+  {
+    "route": "/lessons/core-workspaces/1-basic-calculator",
+    "title": "Basic Calculator",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 222,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 222,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/advanced-concepts/2001-partial-quotients",
+    "title": "Partial Quotients",
+    "catalog": "advanced",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 329,
+        "small": [
+          {
+            "tag": "A",
+            "className": null,
+            "text": "Advanced lessons",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "DIV",
+            "className": "pq-tags",
+            "text": "#2001 · 14 min · Advanced · Continued Fractions",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Extract",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Convergents",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Notation",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Examples",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Practice",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Fraction input",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Numerator",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Denominator",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SELECT",
+            "className": null,
+            "text": "Exact (fraction)Exact terminating decimal",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Exact (fraction)",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Exact terminating decimal",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": "pq-decimal",
+            "text": "Decimal preview: 2.2631578947",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Denominator > 0",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "gcd(43, 19) = 1",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Reduced: 43/19",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-primary",
+            "text": "Next Step",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Auto",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Reset",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": "pq-current",
+            "text": "Step 0: 43 = 2 × 19 + 5.",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Euclidean peel machine",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-index",
+            "text": "0",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Step 0",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-reciprocal",
+            "text": "Reciprocal",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-index",
+            "text": "1",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Step 1",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-reciprocal",
+            "text": "Reciprocal",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-index",
+            "text": "2",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Step 2",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-reciprocal",
+            "text": "Reciprocal",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-index",
+            "text": "3",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Step 3",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Partial Quotients (a₀, a₁, …)",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Nested fraction form",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Convergents ladder",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "k",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "Partial Quotients",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "Convergent pₖ/qₖ",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "Decimal",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "Error to 43/19",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "−1",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "—",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "—",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "—",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "0",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "[2]",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "2",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "0.26315789474",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "1",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "[2; 3]",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "2.3333333333",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "0.070175438596",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "2",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "[2; 3, 1]",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "2.25",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "0.013157894737",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "3",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "[2; 3, 1, 4]",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "2.2631578947",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "0",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Number line approach",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "2/1",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "7/3",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "9/4",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "43/19",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Definition",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Worked reconstruction (forward)",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "[4]",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "=",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "[1; 4]",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "=",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "[3; 1, 4]",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "=",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "[2; 3, 1, 4]",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "=",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": "pq-verified",
+            "text": "Verified: 43/19",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Identity check",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "2",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "3",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "1",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "4",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Common misconception",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Quick practice",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Show answers",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "[a0; a1, ...]",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "[a0; a1, ...]",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "[a0; a1, ...]",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "[a0; a1, ...]",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "Euclidean Algorithm Link",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "Next: Convergents",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Gateway lesson",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Partial Quotients live model, misconception, and exam ticket",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "Next: Convergents",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "15 topic enhancements",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Partial Quotients canvas, traps, generator, and unlock gate",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Show correction",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Reveal counterexample",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Focus and use N / D",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "Next: Collatz Conjecture",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Seed new items",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Show hatch",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Copy",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Partial Quotients labelled charts and numerical examples",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          }
+        ],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 329,
+        "small": [
+          {
+            "tag": "A",
+            "className": null,
+            "text": "Advanced lessons",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "DIV",
+            "className": "pq-tags",
+            "text": "#2001 · 14 min · Advanced · Continued Fractions",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Extract",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Convergents",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Notation",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Examples",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Practice",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Fraction input",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Numerator",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Denominator",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SELECT",
+            "className": null,
+            "text": "Exact (fraction)Exact terminating decimal",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Exact (fraction)",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Exact terminating decimal",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": "pq-decimal",
+            "text": "Decimal preview: 2.2631578947",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Denominator > 0",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "gcd(43, 19) = 1",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Reduced: 43/19",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-primary",
+            "text": "Next Step",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Auto",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Reset",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": "pq-current",
+            "text": "Step 0: 43 = 2 × 19 + 5.",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Euclidean peel machine",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-index",
+            "text": "0",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Step 0",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-reciprocal",
+            "text": "Reciprocal",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-index",
+            "text": "1",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Step 1",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-reciprocal",
+            "text": "Reciprocal",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-index",
+            "text": "2",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Step 2",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-reciprocal",
+            "text": "Reciprocal",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "pq-index",
+            "text": "3",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Step 3",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Partial Quotients (a₀, a₁, …)",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Nested fraction form",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Convergents ladder",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "k",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "Partial Quotients",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "Convergent pₖ/qₖ",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "Decimal",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "Error to 43/19",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "−1",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "—",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "—",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "—",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "0",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "[2]",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "2",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "0.26315789474",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "1",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "[2; 3]",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "2.3333333333",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "0.070175438596",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "2",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "[2; 3, 1]",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "2.25",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "0.013157894737",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "3",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "[2; 3, 1, 4]",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "2.2631578947",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "0",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Number line approach",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "2/1",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "7/3",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "9/4",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "43/19",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Definition",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Worked reconstruction (forward)",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "[4]",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "=",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "[1; 4]",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "=",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "[3; 1, 4]",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "=",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "[2; 3, 1, 4]",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "=",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": "pq-verified",
+            "text": "Verified: 43/19",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Identity check",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "2",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "3",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "1",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "4",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Common misconception",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Quick practice",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Show answers",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "[a0; a1, ...]",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "[a0; a1, ...]",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "[a0; a1, ...]",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "[a0; a1, ...]",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "Euclidean Algorithm Link",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "Next: Convergents",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Gateway lesson",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Partial Quotients live model, misconception, and exam ticket",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "Next: Convergents",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "15 topic enhancements",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Partial Quotients canvas, traps, generator, and unlock gate",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Show correction",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Reveal counterexample",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Focus and use N / D",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "Next: Collatz Conjecture",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Seed new items",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Show hatch",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Copy",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Partial Quotients labelled charts and numerical examples",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          }
+        ],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-unit-rate-table-lab",
+    "title": "Unit Rate Table Lab",
+    "catalog": "school",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 181,
+        "small": [
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "CLASS 7 · NUMBERS AND ARITHMETIC",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Objective: Find unit rates using a unit-rate table. Compare two quantities and decide",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Objective:",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "18 min",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "FOUNDATION",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "CONCEPT",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "number",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "← School lessons",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "active",
+            "text": "Interact",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "",
+            "text": "Learn",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "",
+            "text": "Worked Example",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "",
+            "text": "Formula",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "",
+            "text": "Practice",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Enter any value for one quantity. The table will scale and show the unit rate.",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Reset",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Choose the contextApples (count) and Cost (₹)Rice (kg) and Cost (₹)Time (hours) and D",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SELECT",
+            "className": null,
+            "text": "Apples (count) and Cost (₹)Rice (kg) and Cost (₹)Time (hours) and Distance (km)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Apples (count) and Cost (₹)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Rice (kg) and Cost (₹)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Time (hours) and Distance (km)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "● Quantity A",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Apples (count)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Enter value for A",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "● Quantity B",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Cost (₹)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Enter value for B",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "＋ Add row",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "FOOTER",
+            "className": null,
+            "text": "Rows in table: 5−＋",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "−",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "＋",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Unit-rate table (Divide by the same factor to reach 1 unit)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "(Divide by the same factor to reach 1 unit)",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "Step",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "● Apples (count)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "÷ factor",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "● Cost (₹)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "× 2",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "8",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "× 2",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "24",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "× 1.5",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "6",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "× 1.5",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "18",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "Start",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "4",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "—",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "12",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "× 0.5",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "2",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "× 0.5",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "6",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "÷ 4",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "1",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "÷ 4",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "3",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Unit rate (per 1 apple)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Cost per 1 apple = ₹3",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Rate & comparison",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Unit rate (A → B)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Compare two quantities",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SELECT",
+            "className": null,
+            "text": "Apples (count)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Apples (count)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SELECT",
+            "className": null,
+            "text": "Cost (₹)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Cost (₹)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "= 3 ₹ per apple",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "3",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Interpretation",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Each apple corresponds to ₹3.",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Visualize: Double number line (linked quantities)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Auto-animate to 1",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Replay",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "Apples (count)",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "Cost (₹)",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "0",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "0",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "1",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "3",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "2",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "6",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "3",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "9",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "4",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "12",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "5",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "15",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "6",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "18",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "7",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "21",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "8",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "24",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Live readout",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Start: 4 apples → ₹12",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "÷ 4: 1 apple → ₹3 (unit rate)",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "FOOTER",
+            "className": null,
+            "text": "Both quantities change together. Dividing by 4 takes us from 4 apples & ₹12 to 1 appl",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Learning flow",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "I",
+            "className": null,
+            "text": "1",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Observe",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "See how both quantities change together.",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "I",
+            "className": null,
+            "text": "2",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Manipulate",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Change values and scale the table.",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "I",
+            "className": null,
+            "text": "3",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Notice the pattern",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "The ratio stays the same.",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "I",
+            "className": null,
+            "text": "4",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Understand the rule",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Unit rate = Total amount ÷ Number of units.",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "I",
+            "className": null,
+            "text": "5",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Try independently",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Apply to new situations.",
+            "size": 8,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Worked Example",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "A bag has 5 kg of rice and costs ₹200. What is the cost per 1 kg?",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "×2",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "10",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "400",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "Start",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "5",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "200",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "÷5",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "1",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "40",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Unit rate (per 1 kg) = ₹40",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Key Rule",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Definition",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Unit rate is the value of one unit in a ratio.",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Formula",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Unit rate = Total amount ÷ Number of units",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "For comparison",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Compare unit rates. The greater unit rate corresponds to the greater amount per unit.",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "⚠ Common Mistake",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Dividing the total amount by the unit rate.",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": "wrong",
+            "text": "Incorrect: 12 ÷ 3 = 4 apples ✕",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": "right",
+            "text": "Correct: 12 ÷ 4 = 3 ₹ per apple ✓",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Why it's wrong",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "The unit rate tells how much of B corresponds to 1 unit of A.",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Challenge",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "A notebook costs ₹48 for 6 notebooks. Find the unit price and decide which option is ",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Option A6 notebooks for ₹48",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Option B10 notebooks for ₹75",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Your turn",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Unit price A =  ₹ per notebook",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Unit price B =  ₹ per notebook",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Which option is better?",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Option A",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Option B",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Option same",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check answer",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "← Previous lessonRemainder Reasoning",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Remainder Reasoning",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "Next lesson →Ratio Tables",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Ratio Tables",
+            "size": 10,
+            "style": null,
+            "fontAttribute": null
+          }
+        ],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 181,
+        "small": [
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "CLASS 7 · NUMBERS AND ARITHMETIC",
+            "size": 7.2,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Objective: Find unit rates using a unit-rate table. Compare two quantities and decide",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Objective:",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "18 min",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "FOUNDATION",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "CONCEPT",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SPAN",
+            "className": null,
+            "text": "number",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "← School lessons",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "active",
+            "text": "Interact",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "",
+            "text": "Learn",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "",
+            "text": "Worked Example",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "",
+            "text": "Formula",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": "",
+            "text": "Practice",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Enter any value for one quantity. The table will scale and show the unit rate.",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Reset",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Choose the contextApples (count) and Cost (₹)Rice (kg) and Cost (₹)Time (hours) and D",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SELECT",
+            "className": null,
+            "text": "Apples (count) and Cost (₹)Rice (kg) and Cost (₹)Time (hours) and Distance (km)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Apples (count) and Cost (₹)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Rice (kg) and Cost (₹)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Time (hours) and Distance (km)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "● Quantity A",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Apples (count)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Enter value for A",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "● Quantity B",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Cost (₹)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Enter value for B",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "＋ Add row",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "FOOTER",
+            "className": null,
+            "text": "Rows in table: 5−＋",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "−",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "＋",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Unit-rate table (Divide by the same factor to reach 1 unit)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "(Divide by the same factor to reach 1 unit)",
+            "size": 7.2,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "Step",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "● Apples (count)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "÷ factor",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TH",
+            "className": null,
+            "text": "● Cost (₹)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "× 2",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "8",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "× 2",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "24",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "× 1.5",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "6",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "× 1.5",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "18",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "Start",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "4",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "—",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "12",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "× 0.5",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "2",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "× 0.5",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "6",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "÷ 4",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "1",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "÷ 4",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "3",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Unit rate (per 1 apple)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Cost per 1 apple = ₹3",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Rate & comparison",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Unit rate (A → B)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Compare two quantities",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SELECT",
+            "className": null,
+            "text": "Apples (count)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Apples (count)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SELECT",
+            "className": null,
+            "text": "Cost (₹)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "OPTION",
+            "className": null,
+            "text": "Cost (₹)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "= 3 ₹ per apple",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "3",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Interpretation",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Each apple corresponds to ₹3.",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Visualize: Double number line (linked quantities)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Auto-animate to 1",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Replay",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "Apples (count)",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "Cost (₹)",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "0",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "0",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "1",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "3",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "2",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "6",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "3",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "9",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "4",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "12",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "5",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "15",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "6",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "18",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "7",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "21",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "8",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "text",
+            "className": null,
+            "text": "24",
+            "size": 11,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Live readout",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Start: 4 apples → ₹12",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "÷ 4: 1 apple → ₹3 (unit rate)",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "FOOTER",
+            "className": null,
+            "text": "Both quantities change together. Dividing by 4 takes us from 4 apples & ₹12 to 1 appl",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Learning flow",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "I",
+            "className": null,
+            "text": "1",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Observe",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "See how both quantities change together.",
+            "size": 7.2,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "I",
+            "className": null,
+            "text": "2",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Manipulate",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Change values and scale the table.",
+            "size": 7.2,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "I",
+            "className": null,
+            "text": "3",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Notice the pattern",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "The ratio stays the same.",
+            "size": 7.2,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "I",
+            "className": null,
+            "text": "4",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Understand the rule",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Unit rate = Total amount ÷ Number of units.",
+            "size": 7.2,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "I",
+            "className": null,
+            "text": "5",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Try independently",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "SMALL",
+            "className": null,
+            "text": "Apply to new situations.",
+            "size": 7.2,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Worked Example",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "A bag has 5 kg of rice and costs ₹200. What is the cost per 1 kg?",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "×2",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "10",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "400",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "Start",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "5",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "200",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "÷5",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "1",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "TD",
+            "className": null,
+            "text": "40",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Unit rate (per 1 kg) = ₹40",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Key Rule",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Definition",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Unit rate is the value of one unit in a ratio.",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Formula",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "STRONG",
+            "className": null,
+            "text": "Unit rate = Total amount ÷ Number of units",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "For comparison",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Compare unit rates. The greater unit rate corresponds to the greater amount per unit.",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "⚠ Common Mistake",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Dividing the total amount by the unit rate.",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": "wrong",
+            "text": "Incorrect: 12 ÷ 3 = 4 apples ✕",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": "right",
+            "text": "Correct: 12 ÷ 4 = 3 ₹ per apple ✓",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Why it's wrong",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "The unit rate tells how much of B corresponds to 1 unit of A.",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H2",
+            "className": null,
+            "text": "Challenge",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "A notebook costs ₹48 for 6 notebooks. Find the unit price and decide which option is ",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Option A6 notebooks for ₹48",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Option B10 notebooks for ₹75",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "H3",
+            "className": null,
+            "text": "Your turn",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Unit price A =  ₹ per notebook",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Unit price B =  ₹ per notebook",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "P",
+            "className": null,
+            "text": "Which option is better?",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Option A",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Option B",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "LABEL",
+            "className": null,
+            "text": "Option same",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "INPUT",
+            "className": null,
+            "text": "",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "BUTTON",
+            "className": null,
+            "text": "Check answer",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "← Previous lessonRemainder Reasoning",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Remainder Reasoning",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "A",
+            "className": null,
+            "text": "Next lesson →Ratio Tables",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          },
+          {
+            "tag": "B",
+            "className": null,
+            "text": "Ratio Tables",
+            "size": 9,
+            "style": null,
+            "fontAttribute": null
+          }
+        ],
+        "overflow": []
+      }
+    ]
+  }
+]

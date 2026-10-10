@@ -1,0 +1,554 @@
+{
+  "studios": [
+    {
+      "id": "algebra",
+      "name": "Algebra Studio",
+      "base": "/algebra"
+    },
+    {
+      "id": "algebraic-structures",
+      "name": "Algebraic Structures Studio",
+      "base": "/algebraic-structures"
+    },
+    {
+      "id": "geometry",
+      "name": "Geometry Studio",
+      "base": "/geometry"
+    },
+    {
+      "id": "trigonometry",
+      "name": "Trigonometry Studio",
+      "base": "/trigonometry"
+    },
+    {
+      "id": "calculus",
+      "name": "Calculus Studio",
+      "base": "/calculus"
+    },
+    {
+      "id": "number-systems",
+      "name": "Number Systems Studio",
+      "base": "/number-systems"
+    },
+    {
+      "id": "linear-algebra",
+      "name": "Linear Algebra Studio",
+      "base": "/linear-algebra"
+    },
+    {
+      "id": "complex-numbers",
+      "name": "Complex Numbers Studio",
+      "base": "/complex-numbers"
+    },
+    {
+      "id": "mathematical-modelling",
+      "name": "Mathematical Modelling Studio",
+      "base": "/mathematical-modelling"
+    },
+    {
+      "id": "discrete-world",
+      "name": "Number & Discrete Mathematics Studio",
+      "base": "/discrete-world"
+    },
+    {
+      "id": "set-theory",
+      "name": "Set Theory and Relations",
+      "base": "/set-theory"
+    },
+    {
+      "id": "graph-theory",
+      "name": "Graph Theory",
+      "base": "/graph-theory"
+    },
+    {
+      "id": "probability-statistics",
+      "name": "Statistics & Probability Studio",
+      "base": "/probability-statistics"
+    },
+    {
+      "id": "differential-equations",
+      "name": "Differential Equations Studio",
+      "base": "/differential-equations"
+    },
+    {
+      "id": "continued-fractions",
+      "name": "Continued Fractions Lab",
+      "base": "/math-lab/continued-fractions"
+    },
+    {
+      "id": "famous-problems",
+      "name": "Famous Problems Atlas",
+      "base": "/math-lab/famous-problems"
+    },
+    {
+      "id": "stats-inference",
+      "name": "Statistics Inference Studio",
+      "base": "/math-lab/stats-inference"
+    },
+    {
+      "id": "special-functions",
+      "name": "Special Functions Gallery",
+      "base": "/math-lab/special-functions"
+    },
+    {
+      "id": "advanced-differential-equations",
+      "name": "Advanced Differential Equations Studio",
+      "base": "/math-lab/differential-equations"
+    }
+  ],
+  "routes": [
+    "/trigonometry/identities?mode=Pythagorean&identity=cosecant",
+    "/calculus/derivatives",
+    "/linear-algebra/eigenvectors",
+    "/number-systems/fundamentals"
+  ],
+  "widths": [
+    320,
+    390,
+    768,
+    1280
+  ],
+  "results": [
+    {
+      "route": "/trigonometry/identities?mode=Pythagorean&identity=cosecant",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 284,
+          "height": 304
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 730,
+      "viewportHeight": 730,
+      "firstPlotTop": 819,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceCommon use casesTheory & moreθTrigonometrySTUDIOSite homeStudio HomeUnit",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/identities?mode=Pythagorean&identity=cosecant",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 354,
+          "height": 304
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 730,
+      "viewportHeight": 730,
+      "firstPlotTop": 771,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceCommon use casesTheory & moreθTrigonometrySTUDIOSite homeStudio HomeUnit",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/identities?mode=Pythagorean&identity=cosecant",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 698,
+          "height": 304
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 625,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceCommon use casesTheory & moreθTrigonometrySTUDIOSite homeStudio HomeUnit",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/identities?mode=Pythagorean&identity=cosecant",
+      "width": 1280,
+      "documentOverflow": false,
+      "overflowing": [
+        {
+          "element": "div.msk-units",
+          "width": 100,
+          "content": 104,
+          "text": "DegRad"
+        }
+      ],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 525,
+          "height": 304
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 405,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceCommon use casesTheory & moreθTrigonometrySTUDIOSite homeStudio HomeUnit",
+      "errors": []
+    },
+    {
+      "route": "/calculus/derivatives",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.is-interactive",
+          "width": 298,
+          "height": 520
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 470,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--cs-ink:#071b3a;--cs-muted:#",
+      "errors": []
+    },
+    {
+      "route": "/calculus/derivatives",
+      "width": 320,
+      "section": "Controls expanded",
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.is-interactive",
+          "width": 298,
+          "height": 520
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 1314,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & moreHide controls1 panel.cs-shell{--cs-ink:#071b3a;--cs-muted:#",
+      "errors": []
+    },
+    {
+      "route": "/calculus/derivatives",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.is-interactive",
+          "width": 368,
+          "height": 520
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 453,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--cs-ink:#071b3a;--cs-muted:#",
+      "errors": []
+    },
+    {
+      "route": "/calculus/derivatives",
+      "width": 390,
+      "section": "Controls expanded",
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.is-interactive",
+          "width": 368,
+          "height": 520
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 1277,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & moreHide controls1 panel.cs-shell{--cs-ink:#071b3a;--cs-muted:#",
+      "errors": []
+    },
+    {
+      "route": "/calculus/derivatives",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.is-interactive",
+          "width": 504,
+          "height": 678
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 278,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--cs-ink:#071b3a;--cs-muted:#",
+      "errors": []
+    },
+    {
+      "route": "/calculus/derivatives",
+      "width": 1280,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.is-interactive",
+          "width": 758,
+          "height": 678
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 278,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--cs-ink:#071b3a;--cs-muted:#",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/eigenvectors",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive",
+          "width": 274,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 730,
+      "viewportHeight": 730,
+      "firstPlotTop": 1327,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreLALinear AlgebraSTUDIOMain",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/eigenvectors",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive",
+          "width": 344,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 730,
+      "viewportHeight": 730,
+      "firstPlotTop": 1327,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreLALinear AlgebraSTUDIOMain",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/eigenvectors",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive",
+          "width": 722,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 927,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreLALinear AlgebraSTUDIOMain",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/eigenvectors",
+      "width": 1280,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive",
+          "width": 698,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 211,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreLALinear AlgebraSTUDIOMain",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/fundamentals",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.np-line-svg",
+          "width": 540,
+          "height": 180
+        },
+        {
+          "element": "svg.np-set-svg",
+          "width": 500,
+          "height": 299
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 5428,
+      "viewportHeight": 730,
+      "firstPlotTop": 1131,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & moreShow controls2 panelsInteractive Math LabExplore · Visualiz",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/fundamentals",
+      "width": 320,
+      "section": "Controls expanded",
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.np-line-svg",
+          "width": 540,
+          "height": 180
+        },
+        {
+          "element": "svg.np-set-svg",
+          "width": 500,
+          "height": 299
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 6008,
+      "viewportHeight": 730,
+      "firstPlotTop": 1710,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & moreHide controls2 panelsInteractive Math LabExplore · Visualiz",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/fundamentals",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.np-line-svg",
+          "width": 540,
+          "height": 180
+        },
+        {
+          "element": "svg.np-set-svg",
+          "width": 500,
+          "height": 299
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 4876,
+      "viewportHeight": 730,
+      "firstPlotTop": 1038,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & moreShow controls2 panelsInteractive Math LabExplore · Visualiz",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/fundamentals",
+      "width": 390,
+      "section": "Controls expanded",
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.np-line-svg",
+          "width": 540,
+          "height": 180
+        },
+        {
+          "element": "svg.np-set-svg",
+          "width": 500,
+          "height": 299
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 5378,
+      "viewportHeight": 730,
+      "firstPlotTop": 1539,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & moreHide controls2 panelsInteractive Math LabExplore · Visualiz",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/fundamentals",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.np-line-svg",
+          "width": 477,
+          "height": 190
+        },
+        {
+          "element": "svg.np-set-svg",
+          "width": 416,
+          "height": 249
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 2935,
+      "viewportHeight": 756,
+      "firstPlotTop": 632,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & moreShow controls2 panelsInteractive Math LabExplore · Visualiz",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/fundamentals",
+      "width": 1280,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.np-line-svg",
+          "width": 931,
+          "height": 190
+        },
+        {
+          "element": "svg.np-set-svg",
+          "width": 532,
+          "height": 300
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 2448,
+      "viewportHeight": 756,
+      "firstPlotTop": 637,
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & moreShow controls2 panelsInteractive Math LabExplore · Visualiz",
+      "errors": []
+    }
+  ]
+}

@@ -364,6 +364,7 @@ export default function AppLayout() {
             </button>
             <div
               key={location.pathname}
+              data-lesson-typography={location.pathname.startsWith("/lessons/") ? location.pathname : undefined}
               className="page-transition min-w-0 space-y-1.5 overflow-x-clip"
             >
               <InlinePageNav showBack={showBack} hidden={hasOwnStudioBreadcrumb} />

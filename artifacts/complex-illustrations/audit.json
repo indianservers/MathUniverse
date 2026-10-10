@@ -1,0 +1,405 @@
+{
+  "scope": true,
+  "geometry": true,
+  "cards": [
+    {
+      "route": "/complex-numbers/argand-plane",
+      "name": "Open Argand Plane",
+      "navigation": true
+    },
+    {
+      "route": "/complex-numbers/arithmetic",
+      "name": "Open Arithmetic",
+      "navigation": true
+    },
+    {
+      "route": "/complex-numbers/polar-forms",
+      "name": "Open Polar Forms",
+      "navigation": true
+    },
+    {
+      "route": "/complex-numbers/rotation",
+      "name": "Open Rotation",
+      "navigation": true
+    },
+    {
+      "route": "/complex-numbers/roots",
+      "name": "Open Roots",
+      "navigation": true
+    },
+    {
+      "route": "/complex-numbers/euler",
+      "name": "Open Euler Formula",
+      "navigation": true
+    },
+    {
+      "route": "/complex-numbers/loci",
+      "name": "Open Loci & Transforms",
+      "navigation": true
+    },
+    {
+      "route": "/complex-numbers/fractals",
+      "name": "Open Fractals",
+      "navigation": true
+    },
+    {
+      "route": "/complex-numbers/waves-circuits",
+      "name": "Open Waves & Circuits",
+      "navigation": true
+    }
+  ],
+  "viewports": [
+    {
+      "width": 320,
+      "checks": [
+        {
+          "kind": "argand-plane",
+          "width": 76.625,
+          "height": 71.5,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "arithmetic",
+          "width": 67.296875,
+          "height": 114,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "polar-forms",
+          "width": 109.59375,
+          "height": 61,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "rotation",
+          "width": 84.546875,
+          "height": 136,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "roots",
+          "width": 78.4375,
+          "height": 111,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "euler",
+          "width": 63.21875,
+          "height": 82,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "loci",
+          "width": 112.671875,
+          "height": 61,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "fractals",
+          "width": 116.078125,
+          "height": 20,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "waves-circuits",
+          "width": 90.6875,
+          "height": 111,
+          "inside": true,
+          "overlaps": []
+        }
+      ],
+      "overflow": -15
+    },
+    {
+      "width": 390,
+      "checks": [
+        {
+          "kind": "argand-plane",
+          "width": 60.0625,
+          "height": 129,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "arithmetic",
+          "width": 148,
+          "height": 61,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "polar-forms",
+          "width": 33.984375,
+          "height": 79,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "rotation",
+          "width": 77.484375,
+          "height": 81.25,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "roots",
+          "width": 93.546875,
+          "height": 86.5,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "euler",
+          "width": 148,
+          "height": 61,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "loci",
+          "width": 105.96875,
+          "height": 61,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "fractals",
+          "width": 88.390625,
+          "height": 93.25,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "waves-circuits",
+          "width": 75.4375,
+          "height": 129,
+          "inside": true,
+          "overlaps": []
+        }
+      ],
+      "overflow": -15
+    },
+    {
+      "width": 768,
+      "checks": [
+        {
+          "kind": "argand-plane",
+          "width": 148,
+          "height": 136,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "arithmetic",
+          "width": 148,
+          "height": 136,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "polar-forms",
+          "width": 124.71875,
+          "height": 136,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "rotation",
+          "width": 148,
+          "height": 136,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "roots",
+          "width": 148,
+          "height": 105.59375,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "euler",
+          "width": 136.84375,
+          "height": 136,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "loci",
+          "width": 140.125,
+          "height": 119.59375,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "fractals",
+          "width": 148,
+          "height": 136,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "waves-circuits",
+          "width": 97.890625,
+          "height": 119.59375,
+          "inside": true,
+          "overlaps": []
+        }
+      ],
+      "overflow": -15
+    },
+    {
+      "width": 1280,
+      "checks": [
+        {
+          "kind": "argand-plane",
+          "width": 80.234375,
+          "height": 68.5,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "arithmetic",
+          "width": 80.28125,
+          "height": 64.5,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "polar-forms",
+          "width": 91.265625,
+          "height": 74.09375,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "rotation",
+          "width": 84.265625,
+          "height": 129.5,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "roots",
+          "width": 63.546875,
+          "height": 98,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "euler",
+          "width": 95.578125,
+          "height": 97,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "loci",
+          "width": 74,
+          "height": 97,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "fractals",
+          "width": 89.765625,
+          "height": 129.5,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "waves-circuits",
+          "width": 76.34375,
+          "height": 57,
+          "inside": true,
+          "overlaps": []
+        }
+      ],
+      "overflow": -15
+    },
+    {
+      "width": 1672,
+      "checks": [
+        {
+          "kind": "argand-plane",
+          "width": 148,
+          "height": 136,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "arithmetic",
+          "width": 148,
+          "height": 136,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "polar-forms",
+          "width": 118.71875,
+          "height": 136,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "rotation",
+          "width": 144.15625,
+          "height": 136,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "roots",
+          "width": 148,
+          "height": 105.59375,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "euler",
+          "width": 130.84375,
+          "height": 136,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "loci",
+          "width": 134.125,
+          "height": 119.59375,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "fractals",
+          "width": 143.671875,
+          "height": 136,
+          "inside": true,
+          "overlaps": []
+        },
+        {
+          "kind": "waves-circuits",
+          "width": 91.890625,
+          "height": 119.59375,
+          "inside": true,
+          "overlaps": []
+        }
+      ],
+      "overflow": -15
+    }
+  ],
+  "lifecycle": {
+    "visibleAdvances": true,
+    "hover": true,
+    "offscreenPaused": true,
+    "reducedMotionStatic": true
+  },
+  "errors": []
+}

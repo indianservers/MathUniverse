@@ -812,7 +812,7 @@ function PracticeMini() {
       <line x1="60" x2="60" y1="5" y2="95" stroke="#334155" />
       <line x1="5" x2="115" y1="60" y2="60" stroke="#334155" />
       <circle cx="40" cy="20" r="5" fill="#8b5cf6" />
-      <text x="27" y="15" fontSize="8">
+      <text x="27" y="15" fontSize="12">
         A
       </text>
     </svg>

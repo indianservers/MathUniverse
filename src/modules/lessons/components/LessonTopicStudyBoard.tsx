@@ -10,6 +10,7 @@ import { LessonGatewayEnhancement } from "./LessonGatewayEnhancement";
 import { gatewayEnhancements } from "../strengthening/catalogGatewayEnhancements";
 import { MathText } from "../../../components/ui/MathExpression";
 import "./LessonTopicStudyBoard.css";
+import { studyRolloutLimit } from './LessonStudySession';
 
 type ChartKind = "bars" | "line" | "number-line" | "circle" | "fraction";
 
@@ -45,7 +46,7 @@ const SPECS: Record<number, StudySpec> = {
     ["Part", 36, "#23b56e"],
     ["Base", 240, "#268ff1"],
   ], [[0, 15], [1, 36], [2, 240]]),
-  5: spec("number-line", "Double number-line ratio", "Scale", "Count", "8:12 = 2:3", (t) => `${Math.round(2 + t * 6)}:${Math.round(3 + t * 9)}`, [
+  5: spec("number-line", "Double number-line ratio", "Scale", "Count", "Equivalent 2:3 ratio", (t) => {const k=1+Math.round(t*3);return `${2*k}:${3*k}`;}, [
     ["Left", 8, "#268ff1"],
     ["Right", 12, "#8d4ce4"],
     ["GCF", 4, "#eaa711"],
@@ -59,7 +60,7 @@ const SPECS: Record<number, StudySpec> = {
     ["10^-4", 0.00045, "#268ff1"],
     ["4.5", 4.5, "#eaa711"],
     ["10^4", 45000, "#23b56e"],
-  ], [[-4, 0.45], [0, 4.5], [4, 45000]]),
+  ], [[-4, 0.00045], [0, 4.5], [4, 45000]]),
   8: spec("bars", "Power ladder for log_2", "Power", "Value", "2^c", (t) => String(2 ** Math.round(1 + t * 4)), [
     ["2^1", 2, "#268ff1"],
     ["2^2", 4, "#23b56e"],
@@ -71,7 +72,7 @@ const SPECS: Record<number, StudySpec> = {
     ["n=5", 32, "#23b56e"],
     ["n=6", 64, "#8d4ce4"],
   ], [[0, 1], [2, 4], [4, 16], [6, 64]]),
-  10: spec("circle", "Unit-circle sine and cosine", "θ", "Coordinate", "sin / cos", (t) => `sin ${Math.round(t * 90)}° = ${Math.sin((t * Math.PI) / 2).toFixed(2)}`, [
+  10: spec("circle", "Unit-circle sine and cosine", "θ", "Coordinate", "sin / cos", (t) => `sin ${(t * 360).toFixed(1)}° = ${Math.sin(t * 2 * Math.PI).toFixed(2)}`, [
     ["sin 30°", 0.5, "#268ff1"],
     ["cos 30°", 0.87, "#23b56e"],
     ["tan 45°", 1, "#eaa711"],
@@ -96,8 +97,8 @@ const SPECS: Record<number, StudySpec> = {
     ["|0|", 0, "#eaa711"],
     ["|7|", 7, "#23b56e"],
   ], [[-7, 7], [0, 0], [7, 7]]),
-  15: spec("number-line", "Rounding 22/7", "Decimal", "Place", "2 d.p.", (t) => (3.14 + t * 0.002857).toFixed(4), [
-    ["Exact", 3.1429, "#268ff1"],
+  15: spec("number-line", "Rounding 22/7", "Decimal", "Place", "Rounded 22/7", (t) => {const dp=1+Math.round(t*4);return `${(22/7).toFixed(dp)} (${dp} d.p.)`;}, [
+    ["22/7 (approx.)", 22/7, "#268ff1"],
     ["2 d.p.", 3.14, "#23b56e"],
     ["Error", 0.0029, "#eaa711"],
   ], [[3.14, 1], [3.1429, 1]]),
@@ -171,7 +172,7 @@ const SPECS: Record<number, StudySpec> = {
     ["3x−2", 10, "#23b56e"],
     ["Δy", 1, "#eaa711"],
   ], [[0, 9], [1, 10]]),
-  30: spec("line", "Balance 2x + 3 = 11", "x", "Side", "Intersection", (t) => String(2 * (1 + t * 5) + 3), [
+  30: spec("line", "Balance 2x + 3 = 11", "x", "Side", "Test both sides", (t) => {const x=1+t*5;return `x=${x.toFixed(2)}: left=${(2*x+3).toFixed(2)}, right=11; solution x=4`;}, [
     ["Left at 4", 11, "#268ff1"],
     ["Right", 11, "#23b56e"],
     ["x", 4, "#eaa711"],
@@ -241,7 +242,7 @@ export function LessonTopicStudyBoard({
   const showStudy = Boolean(lesson && specData && (alwaysVisible || isStudyView(view)));
   if (!showStudy && !gateway) return null;
   const maxBar = specData ? Math.max(...specData.bars.map((bar) => Math.abs(bar.value)), 1) : 1;
-  return (
+  const board = (
     <>
       {gateway ? <LessonGatewayEnhancement lessonId={lessonId} boundLive={boundLive} onInteraction={onInteraction} /> : null}
       {showStudy ? (
@@ -307,8 +308,8 @@ export function LessonTopicStudyBoard({
                   <MathText value={example.prompt} />
                 </strong>
                 <ol>
-                  {example.steps.map((step) => (
-                    <li key={step}>
+                  {example.steps.map((step, index) => (
+                    <li key={`${example.id}-step-${index}`}>
                       <MathText value={step} />
                     </li>
                   ))}
@@ -347,6 +348,7 @@ export function LessonTopicStudyBoard({
       ) : null}
     </>
   );
+  return lessonId <= studyRolloutLimit ? <details className="lesson-supplemental-study"><summary>Additional examples and concept checks</summary>{board}</details> : board;
 }
 
 function LineChart({
@@ -371,17 +373,17 @@ function LineChart({
     <svg viewBox="0 0 300 140" role="img" aria-label={`${yLabel} versus ${xLabel}`}>
       <line x1="24" y1="118" x2="290" y2="118" stroke="#94a3b8" />
       <line x1="24" y1="16" x2="24" y2="118" stroke="#94a3b8" />
-      <text x="150" y="136" textAnchor="middle" fontSize="11">
+      <text x="150" y="136" textAnchor="middle" fontSize="12">
         {xLabel}
       </text>
-      <text x="12" y="14" fontSize="11">
+      <text x="12" y="14" fontSize="12">
         {yLabel}
       </text>
       <path d={d} fill="none" stroke="#268ff1" strokeWidth="3" />
       {points.map((point) => (
         <g key={`${point.x}-${point.y}`}>
           <circle cx={sx(point.x)} cy={sy(point.y)} r="4" fill="#0f172a" />
-          <text x={sx(point.x)} y={sy(point.y) - 8} textAnchor="middle" fontSize="10">
+          <text x={sx(point.x)} y={sy(point.y) - 8} textAnchor="middle" fontSize="12">
             ({formatNumber(point.x)}, {formatNumber(point.y)})
           </text>
         </g>
@@ -399,10 +401,10 @@ function CircleChart({ probe }: { probe: number }) {
       <circle cx="70" cy="70" r="48" fill="none" stroke="#94a3b8" />
       <line x1="22" y1="70" x2="118" y2="70" stroke="#cbd5e1" />
       <line x1="70" y1="22" x2="70" y2="118" stroke="#cbd5e1" />
-      <text x="122" y="74" fontSize="10">
+      <text x="122" y="74" fontSize="12">
         cos
       </text>
-      <text x="74" y="18" fontSize="10">
+      <text x="74" y="18" fontSize="12">
         sin
       </text>
       <line x1="70" y1="70" x2={x} y2={y} stroke="#268ff1" strokeWidth="3" />

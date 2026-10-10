@@ -426,7 +426,7 @@ function RelationSummaryCard({ matrix, properties }: { matrix: boolean[][]; prop
 function RepresentationSummaryCard({ classes, setA, setB }: { classes: string[][]; setA: string[]; setB: string[] }) {
   return (
     <SectionCard title="Representation Snapshot" description="Quick counts for products, subsets, and equivalence classes.">
-      <div className="grid gap-2 text-sm font-black sm:grid-cols-3">
+      <div className="set-representation-counts grid gap-2 text-sm font-black sm:grid-cols-3">
         <div className="rounded-lg bg-slate-100 p-3 dark:bg-white/10">|A x B| = {setA.length * setB.length}</div>
         <div className="rounded-lg bg-slate-100 p-3 dark:bg-white/10">|P(A)| = {2 ** Math.min(setA.length, 8)}</div>
         <div className="rounded-lg bg-slate-100 p-3 dark:bg-white/10">Classes = {classes.length}</div>

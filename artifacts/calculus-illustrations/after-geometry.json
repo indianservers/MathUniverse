@@ -1,0 +1,324 @@
+[
+  {
+    "className": "cs-sidebar  ",
+    "text": "",
+    "rect": {
+      "x": 0,
+      "y": 41,
+      "width": 232,
+      "height": 1315.390625,
+      "top": 41,
+      "right": 232,
+      "bottom": 1356.390625,
+      "left": 0
+    }
+  },
+  {
+    "className": "cinematic-hero hero-calculus",
+    "text": "",
+    "rect": {
+      "x": 258,
+      "y": -725,
+      "width": 1358,
+      "height": 677.515625,
+      "top": -725,
+      "right": 1616,
+      "bottom": -47.484375,
+      "left": 258
+    }
+  },
+  {
+    "className": "cs-header cs-header-home",
+    "text": "",
+    "rect": {
+      "x": 289,
+      "y": -216,
+      "width": 424.59375,
+      "height": 116.28125,
+      "top": -216,
+      "right": 713.59375,
+      "bottom": -99.71875,
+      "left": 289
+    }
+  },
+  {
+    "className": "cs-topic-card tone-1",
+    "text": "Limits",
+    "rect": {
+      "x": 258,
+      "y": 107.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 107.515625,
+      "right": 589.328125,
+      "bottom": 303.515625,
+      "left": 258
+    }
+  },
+  {
+    "className": "cs-topic-card tone-2",
+    "text": "Derivatives",
+    "rect": {
+      "x": 603.328125,
+      "y": 107.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 107.515625,
+      "right": 934.65625,
+      "bottom": 303.515625,
+      "left": 603.328125
+    }
+  },
+  {
+    "className": "cs-topic-card tone-3",
+    "text": "Applications",
+    "rect": {
+      "x": 948.65625,
+      "y": 107.515625,
+      "width": 331.34375,
+      "height": 196,
+      "top": 107.515625,
+      "right": 1280,
+      "bottom": 303.515625,
+      "left": 948.65625
+    }
+  },
+  {
+    "className": "cs-topic-card tone-4",
+    "text": "Integrals",
+    "rect": {
+      "x": 258,
+      "y": 317.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 317.515625,
+      "right": 589.328125,
+      "bottom": 513.515625,
+      "left": 258
+    }
+  },
+  {
+    "className": "cs-topic-card tone-5",
+    "text": "Techniques",
+    "rect": {
+      "x": 603.328125,
+      "y": 317.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 317.515625,
+      "right": 934.65625,
+      "bottom": 513.515625,
+      "left": 603.328125
+    }
+  },
+  {
+    "className": "cs-topic-card tone-6",
+    "text": "Volumes",
+    "rect": {
+      "x": 948.65625,
+      "y": 317.515625,
+      "width": 331.34375,
+      "height": 196,
+      "top": 317.515625,
+      "right": 1280,
+      "bottom": 513.515625,
+      "left": 948.65625
+    }
+  },
+  {
+    "className": "cs-topic-card tone-7",
+    "text": "Diff. Equations",
+    "rect": {
+      "x": 258,
+      "y": 527.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 527.515625,
+      "right": 589.328125,
+      "bottom": 723.515625,
+      "left": 258
+    }
+  },
+  {
+    "className": "cs-topic-card tone-8",
+    "text": "Series & Polar",
+    "rect": {
+      "x": 258,
+      "y": 747.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 747.515625,
+      "right": 589.328125,
+      "bottom": 943.515625,
+      "left": 258
+    }
+  },
+  {
+    "className": "cs-topic-card tone-9",
+    "text": "Series Tests",
+    "rect": {
+      "x": 603.328125,
+      "y": 747.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 747.515625,
+      "right": 934.65625,
+      "bottom": 943.515625,
+      "left": 603.328125
+    }
+  },
+  {
+    "className": "cs-topic-card tone-1",
+    "text": "Curve Tracing",
+    "rect": {
+      "x": 948.65625,
+      "y": 747.515625,
+      "width": 331.34375,
+      "height": 196,
+      "top": 747.515625,
+      "right": 1280,
+      "bottom": 943.515625,
+      "left": 948.65625
+    }
+  },
+  {
+    "className": "cs-topic-card tone-2",
+    "text": "Multivariable",
+    "rect": {
+      "x": 258,
+      "y": 967.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 967.515625,
+      "right": 589.328125,
+      "bottom": 1163.515625,
+      "left": 258
+    }
+  },
+  {
+    "className": "cs-topic-card tone-3",
+    "text": "Taylor in Two Variables",
+    "rect": {
+      "x": 603.328125,
+      "y": 967.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 967.515625,
+      "right": 934.65625,
+      "bottom": 1163.515625,
+      "left": 603.328125
+    }
+  },
+  {
+    "className": "cs-topic-card tone-4",
+    "text": "Lagrange Multipliers",
+    "rect": {
+      "x": 948.65625,
+      "y": 967.515625,
+      "width": 331.34375,
+      "height": 196,
+      "top": 967.515625,
+      "right": 1280,
+      "bottom": 1163.515625,
+      "left": 948.65625
+    }
+  },
+  {
+    "className": "cs-topic-card tone-5",
+    "text": "Jacobians",
+    "rect": {
+      "x": 258,
+      "y": 1177.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 1177.515625,
+      "right": 589.328125,
+      "bottom": 1373.515625,
+      "left": 258
+    }
+  },
+  {
+    "className": "cs-topic-card tone-6",
+    "text": "Change of Order",
+    "rect": {
+      "x": 258,
+      "y": 1397.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 1397.515625,
+      "right": 589.328125,
+      "bottom": 1593.515625,
+      "left": 258
+    }
+  },
+  {
+    "className": "cs-topic-card tone-7",
+    "text": "Integral Applications",
+    "rect": {
+      "x": 603.328125,
+      "y": 1397.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 1397.515625,
+      "right": 934.65625,
+      "bottom": 1593.515625,
+      "left": 603.328125
+    }
+  },
+  {
+    "className": "cs-topic-card tone-8",
+    "text": "Centroid",
+    "rect": {
+      "x": 948.65625,
+      "y": 1397.515625,
+      "width": 331.34375,
+      "height": 196,
+      "top": 1397.515625,
+      "right": 1280,
+      "bottom": 1593.515625,
+      "left": 948.65625
+    }
+  },
+  {
+    "className": "cs-topic-card tone-9",
+    "text": "Moments of Inertia",
+    "rect": {
+      "x": 258,
+      "y": 1607.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 1607.515625,
+      "right": 589.328125,
+      "bottom": 1803.515625,
+      "left": 258
+    }
+  },
+  {
+    "className": "cs-topic-card tone-1",
+    "text": "Beta & Gamma",
+    "rect": {
+      "x": 258,
+      "y": 1827.515625,
+      "width": 331.328125,
+      "height": 196,
+      "top": 1827.515625,
+      "right": 589.328125,
+      "bottom": 2023.515625,
+      "left": 258
+    }
+  },
+  {
+    "className": "cs-home-side",
+    "text": "",
+    "rect": {
+      "x": 1298,
+      "y": -27.484375,
+      "width": 318,
+      "height": 895.5,
+      "top": -27.484375,
+      "right": 1616,
+      "bottom": 868.015625,
+      "left": 1298
+    }
+  }
+]

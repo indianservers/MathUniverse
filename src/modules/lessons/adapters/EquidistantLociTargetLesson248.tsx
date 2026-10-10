@@ -667,10 +667,10 @@ function EquidistantGraph({
       )}
       <g transform="translate(10 10)">
         <rect width="135" height="52" rx="6" fill="#f8fafc" stroke="#bae6fd" />
-        <text x="12" y="21" fontSize="10">
+        <text x="12" y="21" fontSize="12">
           ◉ Drag points A or B.
         </text>
-        <text x="12" y="39" fontSize="10">
+        <text x="12" y="39" fontSize="12">
           ◉ Drag locus anchor.
         </text>
       </g>
@@ -679,7 +679,7 @@ function EquidistantGraph({
 }
 function AxisLabels({ origin, scale }: { origin: Point; scale: number }) {
   return (
-    <g fill="#475569" fontSize="9">
+    <g fill="#475569" fontSize="12">
       {Array.from({ length: 13 }, (_, i) => i - 6)
         .filter((n) => n !== 0)
         .map((n) => (
@@ -748,13 +748,13 @@ function WorkedBisector() {
       <circle cx="20" cy="15" r="4" fill="#1685f8" />
       <circle cx="155" cy="78" r="4" fill="#8b5cf6" />
       <circle cx="88" cy="47" r="4" fill="#0f9f8f" />
-      <text x="7" y="12" fontSize="9">
+      <text x="7" y="12" fontSize="12">
         A
       </text>
-      <text x="160" y="84" fontSize="9">
+      <text x="160" y="84" fontSize="12">
         B
       </text>
-      <text x="92" y="46" fontSize="9">
+      <text x="92" y="46" fontSize="12">
         M
       </text>
     </svg>
@@ -769,13 +769,13 @@ function MiniLine({ wrong = false }: { wrong?: boolean }) {
       {!wrong && (
         <line x1="85" x2="85" y1="4" y2="52" stroke="#06a7ca" strokeWidth="2" />
       )}
-      <text x="14" y="18" fontSize="9">
+      <text x="14" y="18" fontSize="12">
         A
       </text>
-      <text x="148" y="18" fontSize="9">
+      <text x="148" y="18" fontSize="12">
         B
       </text>
-      <text x="80" y="18" fontSize="11" fill={wrong ? "#dc2626" : "#059669"}>
+      <text x="80" y="18" fontSize="12" fill={wrong ? "#dc2626" : "#059669"}>
         {wrong ? "✕" : "✓"}
       </text>
     </svg>

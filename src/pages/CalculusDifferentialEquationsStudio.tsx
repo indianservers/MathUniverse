@@ -152,7 +152,7 @@ export default function CalculusDifferentialEquationsStudio({ mode }: { mode: st
   };
 
   return (
-    <div className="de-studio" data-testid="de-studio" data-de-mode={active} data-lab-mode={active} data-mode-canvas={active}>
+    <div className="calculus-de-studio" data-testid="de-studio" data-de-mode={active} data-lab-mode={active} data-mode-canvas={active}>
       <div className="de-workspace">
         <aside className="de-panel de-controls">
           <h2><span>1</span>{info.title}</h2>

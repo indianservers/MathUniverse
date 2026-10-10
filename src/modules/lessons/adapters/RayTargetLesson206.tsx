@@ -328,10 +328,10 @@ export default function RayTargetLesson206({
                 />
                 <circle cx="35" cy="38" r="4" fill="#1685e5" />
                 <circle cx="125" cy="32" r="4" fill="#7c3aed" />
-                <text x="28" y="22" fontSize="11" fontWeight="700">
+                <text x="28" y="22" fontSize="12" fontWeight="700">
                   A
                 </text>
-                <text x="120" y="18" fontSize="11" fontWeight="700">
+                <text x="120" y="18" fontSize="12" fontWeight="700">
                   B
                 </text>
               </svg>
@@ -444,10 +444,10 @@ export default function RayTargetLesson206({
               />
               <circle cx="55" cy="66" r="5" fill="#1685e5" />
               <circle cx="150" cy="29" r="5" fill="#7c3aed" />
-              <text x="38" y="86" fontSize="10">
+              <text x="38" y="86" fontSize="12">
                 P(-2,1)
               </text>
-              <text x="145" y="20" fontSize="10">
+              <text x="145" y="20" fontSize="12">
                 Q(2,5)
               </text>
             </svg>
@@ -625,7 +625,7 @@ function RayPlane({
               x={sx(value)}
               y={cy + 16}
               textAnchor="middle"
-              fontSize="9"
+              fontSize="12"
               fill="#334155"
             >
               {value}
@@ -641,17 +641,17 @@ function RayPlane({
               x={cx - 8}
               y={sy(value) + 3}
               textAnchor="end"
-              fontSize="9"
+              fontSize="12"
               fill="#334155"
             >
               {value}
             </text>
           </g>
         ))}
-        <text x={width - 12} y={cy - 8} fontSize="11" fontWeight="800">
+        <text x={width - 12} y={cy - 8} fontSize="12" fontWeight="800">
           x
         </text>
-        <text x={cx + 8} y="14" fontSize="11" fontWeight="800">
+        <text x={cx + 8} y="14" fontSize="12" fontWeight="800">
           y
         </text>
         <line

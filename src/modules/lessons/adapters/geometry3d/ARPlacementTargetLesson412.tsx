@@ -544,7 +544,7 @@ function CubeDiagram({ size }: { size: number }) {
         <path d="M60 40 110 66 110 126 60 98Z" />
         <path d="M110 66 160 40 160 98 110 126Z" />
       </g>
-      <g fill="#176dc4" fontSize="10">
+      <g fill="#176dc4" fontSize="12">
         <text x="25" y="75">
           {size.toFixed(2)} m
         </text>

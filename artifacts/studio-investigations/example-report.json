@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "studio": "linear-algebra",
+  "investigation": "factorization",
+  "title": "General matrix factorizations",
+  "conditions": "Rectangular matrices up to 8×8; LU requires square nonsingular input.",
+  "inputs": {
+    "data": "1,2,3;4,5,6",
+    "mode": "SVD"
+  },
+  "result": {
+    "metrics": {
+      "Reconstruction residual": 9.930136612989092e-16,
+      "Singular values": "9.508032, 0.7728696"
+    },
+    "steps": [
+      "Rotate column pairs until they become orthogonal (one-sided Jacobi).",
+      "Normalize nonzero columns to form left singular directions.",
+      "Reconstruct A as UΣVᵀ and inspect the residual."
+    ],
+    "curves": [
+      {
+        "label": "Singular values",
+        "points": [
+          [
+            1,
+            9.508032000695724
+          ],
+          [
+            2,
+            0.772869635673484
+          ]
+        ]
+      }
+    ],
+    "check": {
+      "prompt": "How many thin singular values are reported?",
+      "answer": 2,
+      "reason": "A thin SVD has min(rows,columns) singular values."
+    },
+    "accuracy": "Thin factors; zero singular-value columns in U are left zero and do not provide an orthonormal null-space completion.",
+    "table": {
+      "headers": [
+        "Factor",
+        "Rows"
+      ],
+      "rows": [
+        [
+          "U",
+          "[[0.3863177031186115,0.9223657800770595],[0.9223657800770583,-0.3863177031186089]]"
+        ],
+        [
+          "V",
+          "[[0.42866713354862634,-0.8059639085892977],[0.5663069188480352,-0.11238241409659354],[0.7039467041474441,0.5811990803961101]]"
+        ]
+      ]
+    }
+  },
+  "prediction": "",
+  "reflection": "",
+  "assessment": "Numeric transfer check and learner reflection; no automated proof grading."
+}

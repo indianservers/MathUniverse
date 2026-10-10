@@ -792,10 +792,10 @@ function TriangleCanvas({
         <line x1={sx(0)} y1="25" x2={sx(0)} y2="555" stroke="#94a3b8" />
         {[-6, -4, -2, 2, 4, 6].map((v) => (
           <g key={v}>
-            <text x={sx(v) - 6} y={sy(0) + 18} fontSize="10">
+            <text x={sx(v) - 6} y={sy(0) + 18} fontSize="12">
               {v}
             </text>
-            <text x={sx(0) - 18} y={sy(v) + 4} fontSize="10">
+            <text x={sx(0) - 18} y={sy(v) + 4} fontSize="12">
               {v}
             </text>
           </g>
@@ -877,7 +877,7 @@ function TriangleCanvas({
               x={sx(vertices[key].x) - 22}
               y={sy(vertices[key].y) + 27}
               fill="#0369a1"
-              fontSize="11"
+              fontSize="12"
             >
               ({vertices[key].x.toFixed(1)}, {vertices[key].y.toFixed(1)})
             </text>
@@ -901,26 +901,26 @@ function WorkedTriangle() {
         stroke="#2563eb"
         strokeWidth="2"
       />
-      <text x="5" y="130" fontSize="11" fontWeight="800">
+      <text x="5" y="130" fontSize="12" fontWeight="800">
         A(−3, 0)
       </text>
-      <text x="170" y="130" fontSize="11" fontWeight="800">
+      <text x="170" y="130" fontSize="12" fontWeight="800">
         B(3, 0)
       </text>
-      <text x="115" y="16" fontSize="11" fontWeight="800">
+      <text x="115" y="16" fontSize="12" fontWeight="800">
         C
       </text>
-      <text x="103" y="130" fontSize="10">
+      <text x="103" y="130" fontSize="12">
         6
       </text>
-      <text x="48" y="67" fontSize="10">
+      <text x="48" y="67" fontSize="12">
         5
       </text>
-      <text x="170" y="67" fontSize="10">
+      <text x="170" y="67" fontSize="12">
         √31
       </text>
       <path d="M48 115 A28 28 0 0 0 34 91" fill="none" stroke="#7c3aed" />
-      <text x="48" y="103" fontSize="10">
+      <text x="48" y="103" fontSize="12">
         60°
       </text>
     </svg>

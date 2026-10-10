@@ -461,7 +461,7 @@ function VectorScene({
       )}
       {mode === "Dot" && angle !== null && (
         <Billboard position={[0.9, 0.25, 0.7]}>
-          <Text fontSize={0.28} color="#fff">
+          <Text fontSize={12} color="#fff">
             angle ≈ {angle}°
           </Text>
         </Billboard>
@@ -509,7 +509,7 @@ function Axis({
     <>
       <Line points={[[0, 0, 0], end]} color={color} lineWidth={2} />
       <Billboard position={end}>
-        <Text fontSize={0.28} color={color}>
+        <Text fontSize={12} color={color}>
           {label}
         </Text>
       </Billboard>
@@ -569,7 +569,7 @@ function VectorArrow({
         <meshBasicMaterial transparent opacity={0.01} />
       </mesh>
       <Billboard position={endpoint.clone().add(new Vector3(0.35, 0.25, 0))}>
-        <Text fontSize={0.25} color={color}>
+        <Text fontSize={12} color={color}>
           {label}
         </Text>
       </Billboard>

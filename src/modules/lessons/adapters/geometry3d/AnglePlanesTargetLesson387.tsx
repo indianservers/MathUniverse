@@ -587,7 +587,7 @@ function AnglePlanesScene({
       )}{" "}
       {result.valid && (
         <Billboard position={[1.2, 1.3, 0.2]}>
-          <Text fontSize={0.3} color="#ff9d00">
+          <Text fontSize={12} color="#ff9d00">
             {result.angle}°
           </Text>
         </Billboard>
@@ -644,7 +644,7 @@ function NormalArrow({
         />
       </mesh>
       <Billboard position={[end[0] + 0.45, end[1] + 0.3, end[2]]}>
-        <Text fontSize={0.28} color={color}>
+        <Text fontSize={12} color={color}>
           {label}
         </Text>
       </Billboard>

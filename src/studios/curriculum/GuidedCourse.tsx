@@ -1,11 +1,14 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { ChallengeBox } from '../mockup/studioLabKit';
 import { masteryCourses } from './masteryContent';
 
 export function GuidedCourse({studioId}:{studioId:string}) {
  const course=masteryCourses[studioId];
- const [selected,setSelected]=useState(0),[choice,setChoice]=useState<string>('');
+ const [params]=useSearchParams();
+ const requestedLesson=params.get('lesson');
+ const [selected,setSelected]=useState(()=>Math.max(0,course?.units.findIndex(unit=>unit.id===requestedLesson)??0)),[choice,setChoice]=useState<string>('');
+ useEffect(()=>{const index=course?.units.findIndex(unit=>unit.id===requestedLesson)??-1;if(index>=0){setSelected(index);setChoice('');}},[course,requestedLesson]);
  const [solved,setSolved]=useState<string[]>(()=>{try{const x=JSON.parse(localStorage.getItem(`guided-exercises:v1:${studioId}`)||'[]');return Array.isArray(x)?x.filter(v=>typeof v==='string'):[];}catch{return [];}});
  const recordSolved=(id:string)=>setSolved(previous=>{const next=previous.includes(id)?previous:[...previous,id];try{localStorage.setItem(`guided-exercises:v1:${studioId}`,JSON.stringify(next));}catch{/* Exercise feedback still works when browser storage is unavailable. */}return next;});
  if(!course)return null;

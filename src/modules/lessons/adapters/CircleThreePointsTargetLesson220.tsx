@@ -784,16 +784,16 @@ function MiniCircumcircle() {
       <circle cx="85" cy="15" r="5" fill="#1683e6" />
       <circle cx="30" cy="115" r="5" fill="#1683e6" />
       <circle cx="140" cy="115" r="5" fill="#1683e6" />
-      <text x="92" y="78" fontSize="10">
+      <text x="92" y="78" fontSize="12">
         O
       </text>
-      <text x="70" y="13" fontSize="10">
+      <text x="70" y="13" fontSize="12">
         A
       </text>
-      <text x="14" y="120" fontSize="10">
+      <text x="14" y="120" fontSize="12">
         B
       </text>
-      <text x="146" y="120" fontSize="10">
+      <text x="146" y="120" fontSize="12">
         C
       </text>
     </svg>

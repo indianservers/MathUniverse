@@ -39,6 +39,7 @@
     "verify:phase5": "npm run verify:phase4 && npm run test:phase5 && npm run validate:phase5-benchmarks && npm run typecheck && npm run build",
     "test:batched": "node scripts/run-vitest-batches.mjs",
     "test:e2e": "npm run test:e2e:visual-proofs",
+    "test:studios:mobile": "node scripts/audit-studio-mobile.mjs --controls --strict",
     "test:e2e:visual-proofs": "npm run build && playwright test tests/visual-proofs/visualProofsSmoke.e2e.ts",
     "test:e2e:visual-proofs:export": "npm run build && playwright test tests/visual-proofs/visualProofsExport.e2e.ts",
     "test:e2e:visual-proofs:export:full": "npm run build && playwright test tests/visual-proofs/visualProofsExportFullMatrix.e2e.ts",

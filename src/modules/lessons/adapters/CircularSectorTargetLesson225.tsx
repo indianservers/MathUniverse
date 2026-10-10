@@ -582,10 +582,10 @@ function SectorPlot({
       >
         θ
       </text>
-      <text x={origin.x - 53} y={origin.y + 20} fontSize="11">
+      <text x={origin.x - 53} y={origin.y + 20} fontSize="12">
         O ({format(center.x)}, {format(center.y)})
       </text>
-      <text x={a.x + 8} y={a.y + 20} fontSize="11">
+      <text x={a.x + 8} y={a.y + 20} fontSize="12">
         A (r, 0)
       </text>
       <text x={b.x + 8} y={b.y - 9} fontSize="12" fontWeight="700">

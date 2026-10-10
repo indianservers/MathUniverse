@@ -1,0 +1,616 @@
+{
+  "studios": [
+    {
+      "id": "algebra",
+      "name": "Algebra Studio",
+      "base": "/algebra"
+    },
+    {
+      "id": "algebraic-structures",
+      "name": "Algebraic Structures Studio",
+      "base": "/algebraic-structures"
+    },
+    {
+      "id": "geometry",
+      "name": "Geometry Studio",
+      "base": "/geometry"
+    },
+    {
+      "id": "trigonometry",
+      "name": "Trigonometry Studio",
+      "base": "/trigonometry"
+    },
+    {
+      "id": "calculus",
+      "name": "Calculus Studio",
+      "base": "/calculus"
+    },
+    {
+      "id": "number-systems",
+      "name": "Number Systems Studio",
+      "base": "/number-systems"
+    },
+    {
+      "id": "linear-algebra",
+      "name": "Linear Algebra Studio",
+      "base": "/linear-algebra"
+    },
+    {
+      "id": "complex-numbers",
+      "name": "Complex Numbers Studio",
+      "base": "/complex-numbers"
+    },
+    {
+      "id": "mathematical-modelling",
+      "name": "Mathematical Modelling Studio",
+      "base": "/mathematical-modelling"
+    },
+    {
+      "id": "discrete-world",
+      "name": "Number & Discrete Mathematics Studio",
+      "base": "/discrete-world"
+    },
+    {
+      "id": "set-theory",
+      "name": "Set Theory and Relations",
+      "base": "/set-theory"
+    },
+    {
+      "id": "graph-theory",
+      "name": "Graph Theory",
+      "base": "/graph-theory"
+    },
+    {
+      "id": "probability-statistics",
+      "name": "Statistics & Probability Studio",
+      "base": "/probability-statistics"
+    },
+    {
+      "id": "differential-equations",
+      "name": "Differential Equations Studio",
+      "base": "/differential-equations"
+    },
+    {
+      "id": "continued-fractions",
+      "name": "Continued Fractions Lab",
+      "base": "/math-lab/continued-fractions"
+    },
+    {
+      "id": "famous-problems",
+      "name": "Famous Problems Atlas",
+      "base": "/math-lab/famous-problems"
+    },
+    {
+      "id": "stats-inference",
+      "name": "Statistics Inference Studio",
+      "base": "/math-lab/stats-inference"
+    },
+    {
+      "id": "special-functions",
+      "name": "Special Functions Gallery",
+      "base": "/math-lab/special-functions"
+    },
+    {
+      "id": "advanced-differential-equations",
+      "name": "Advanced Differential Equations Studio",
+      "base": "/math-lab/differential-equations"
+    }
+  ],
+  "routes": [
+    "/geometry/solids",
+    "/shapes",
+    "/linear-algebra/row-reduction",
+    "/linear-algebra/vectors",
+    "/complex-numbers",
+    "/calculus/derivatives"
+  ],
+  "widths": [
+    320,
+    390,
+    768,
+    1280
+  ],
+  "results": [
+    {
+      "route": "/geometry/solids",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.h-[300px].w-full.sm:h-[360px]",
+          "width": 302,
+          "height": 300
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspace2D & 3D Shapes ExplorerExplorePropertiesFormulasCompareLearnIn Simple wo",
+      "errors": []
+    },
+    {
+      "route": "/geometry/solids",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.h-[300px].w-full.sm:h-[360px]",
+          "width": 372,
+          "height": 300
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspace2D & 3D Shapes ExplorerExplorePropertiesFormulasCompareLearnIn Simple wo",
+      "errors": []
+    },
+    {
+      "route": "/geometry/solids",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.h-[300px].w-full.sm:h-[360px]",
+          "width": 750,
+          "height": 360
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspace2D & 3D Shapes ExplorerExplorePropertiesFormulasCompareLearnIn Simple wo",
+      "errors": []
+    },
+    {
+      "route": "/geometry/solids",
+      "width": 1280,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.h-[300px].w-full.sm:h-[360px]",
+          "width": 950,
+          "height": 360
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspace2D & 3D Shapes ExplorerExplorePropertiesFormulasCompareLearnIn Simple wo",
+      "errors": []
+    },
+    {
+      "route": "/shapes",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.h-[300px].w-full.sm:h-[360px]",
+          "width": 302,
+          "height": 300
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspace2D & 3D Shapes ExplorerExplorePropertiesFormulasCompareLearnIn Simple wo",
+      "errors": []
+    },
+    {
+      "route": "/shapes",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.h-[300px].w-full.sm:h-[360px]",
+          "width": 372,
+          "height": 300
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspace2D & 3D Shapes ExplorerExplorePropertiesFormulasCompareLearnIn Simple wo",
+      "errors": []
+    },
+    {
+      "route": "/shapes",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.h-[300px].w-full.sm:h-[360px]",
+          "width": 750,
+          "height": 360
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspace2D & 3D Shapes ExplorerExplorePropertiesFormulasCompareLearnIn Simple wo",
+      "errors": []
+    },
+    {
+      "route": "/shapes",
+      "width": 1280,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.h-[300px].w-full.sm:h-[360px]",
+          "width": 690,
+          "height": 360
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspace2D & 3D Shapes ExplorerExplorePropertiesFormulasCompareLearnIn Simple wo",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/row-reduction",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 264,
+          "height": 358
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreLALinear AlgebraSTUDIOMain",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/row-reduction",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 334,
+          "height": 358
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreLALinear AlgebraSTUDIOMain",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/row-reduction",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 704,
+          "height": 358
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreLALinear AlgebraSTUDIOMain",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/row-reduction",
+      "width": 1280,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 676,
+          "height": 358
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreLALinear AlgebraSTUDIOMain",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/vectors",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 264,
+          "height": 358
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreLALinear AlgebraSTUDIOMain",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/vectors",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 334,
+          "height": 358
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreLALinear AlgebraSTUDIOMain",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/vectors",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 704,
+          "height": 358
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreLALinear AlgebraSTUDIOMain",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/vectors",
+      "width": 1280,
+      "documentOverflow": false,
+      "overflowing": [
+        {
+          "element": "div.la-rail",
+          "width": 252,
+          "content": 266,
+          "text": "Vectorsa = (2, 1, 3)x−+y−+z−+b = (-1, 2, 1)x−+y−+z−+Show com"
+        },
+        {
+          "element": "section.la-card",
+          "width": 250,
+          "content": 265,
+          "text": "Vectorsa = (2, 1, 3)x−+y−+z−+b = (-1, 2, 1)x−+y−+z−+Show com"
+        },
+        {
+          "element": "div.la-vec",
+          "width": 220,
+          "content": 250,
+          "text": "a = (2, 1, 3)x−+y−+z−+"
+        },
+        {
+          "element": "div.la-xyz",
+          "width": 200,
+          "content": 240,
+          "text": "x−+y−+z−+"
+        },
+        {
+          "element": "div.la-step",
+          "width": 63,
+          "content": 104,
+          "text": "x−+"
+        },
+        {
+          "element": "div.la-step",
+          "width": 63,
+          "content": 103,
+          "text": "y−+"
+        },
+        {
+          "element": "div.la-step",
+          "width": 63,
+          "content": 103,
+          "text": "z−+"
+        },
+        {
+          "element": "div.la-vec",
+          "width": 220,
+          "content": 250,
+          "text": "b = (-1, 2, 1)x−+y−+z−+"
+        },
+        {
+          "element": "div.la-xyz",
+          "width": 200,
+          "content": 240,
+          "text": "x−+y−+z−+"
+        },
+        {
+          "element": "div.la-step",
+          "width": 63,
+          "content": 104,
+          "text": "x−+"
+        },
+        {
+          "element": "div.la-step",
+          "width": 63,
+          "content": 103,
+          "text": "y−+"
+        },
+        {
+          "element": "div.la-step",
+          "width": 63,
+          "content": 103,
+          "text": "z−+"
+        }
+      ],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 676,
+          "height": 358
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreLALinear AlgebraSTUDIOMain",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 294,
+          "height": 221
+        },
+        {
+          "element": "svg.cxs-mini-argand",
+          "width": 264,
+          "height": 62
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeiCOMPLEXSTUDIO MainStudio HomeArgand PlaneArithmeticPolar FormsRotationRootsEuler FormulaLoci",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 364,
+          "height": 273
+        },
+        {
+          "element": "svg.cxs-mini-argand",
+          "width": 334,
+          "height": 62
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeiCOMPLEXSTUDIO MainStudio HomeArgand PlaneArithmeticPolar FormsRotationRootsEuler FormulaLoci",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 738,
+          "height": 631
+        },
+        {
+          "element": "svg.cxs-mini-argand",
+          "width": 708,
+          "height": 62
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeiCOMPLEXSTUDIO MainStudio HomeArgand PlaneArithmeticPolar FormsRotationRootsEuler FormulaLoci",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers",
+      "width": 1280,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 662,
+          "height": 606
+        },
+        {
+          "element": "svg.cxs-mini-argand",
+          "width": 298,
+          "height": 62
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeiCOMPLEXSTUDIO MainStudio HomeArgand PlaneArithmeticPolar FormsRotationRootsEuler FormulaLoci",
+      "errors": []
+    },
+    {
+      "route": "/calculus/derivatives",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.is-interactive",
+          "width": 298,
+          "height": 520
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & more.cs-shell{--cs-ink:#071b3a;--cs-muted:#526586;--cs-line:#d6",
+      "errors": []
+    },
+    {
+      "route": "/calculus/derivatives",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.is-interactive",
+          "width": 368,
+          "height": 520
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & more.cs-shell{--cs-ink:#071b3a;--cs-muted:#526586;--cs-line:#d6",
+      "errors": []
+    },
+    {
+      "route": "/calculus/derivatives",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.is-interactive",
+          "width": 498,
+          "height": 610
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & more.cs-shell{--cs-ink:#071b3a;--cs-muted:#526586;--cs-line:#d6",
+      "errors": []
+    },
+    {
+      "route": "/calculus/derivatives",
+      "width": 1280,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.is-interactive",
+          "width": 742,
+          "height": 610
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceTheory & more.cs-shell{--cs-ink:#071b3a;--cs-muted:#526586;--cs-line:#d6",
+      "errors": []
+    }
+  ]
+}

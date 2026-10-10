@@ -40328,14 +40328,13 @@ html { overflow-y: auto; scrollbar-gutter: stable; }
 .dynamic-membership-head { border-top:0; color:#67e8f9; font-weight:900; }
 @media (max-width: 760px) { .dynamic-venn-show-heading .action-primary { width:100%; justify-content:center; } .dynamic-show-buttons { justify-content:flex-start; } }
 
-/* Dedicated mockups are pixel artboards. Shared shell/readability rules used
-   to stretch them to 100% width, zoom them, and force auto heights on heroes
-   and footers. That stacked five-tab bars and spilled machine footers onto
-   the theory cards. Keep the authored layout; only undo screenshot offsets. */
+/* Lesson surfaces follow the available app width. Keep diagram coordinates
+   and authored section heights independent of the responsive outer shell. */
 .lesson-school-target,
 .lesson-page-target {
   width: 100%;
   max-width: 100%;
+  min-width: 0;
 }
 
 .lesson-school-target > [class*="-page"],
@@ -40351,10 +40350,31 @@ html { overflow-y: auto; scrollbar-gutter: stable; }
   margin-left: auto !important;
   margin-right: auto !important;
   max-width: 100% !important;
+  width: 100% !important;
+  min-width: 0;
   zoom: 1;
   letter-spacing: 0 !important;
   word-spacing: normal !important;
-  container-type: normal;
+}
+
+.lesson-school-target :is(main, section, article, aside, header, footer, div),
+.lesson-page-target :is(main, section, article, aside, header, footer, div) {
+  min-width: 0;
+}
+
+@media (max-width: 799px) {
+  .lesson-page-shell,
+  .lesson-school-shell {
+    padding-inline: 0 !important;
+  }
+  .lesson-school-target header :is(div, section, small),
+  .lesson-page-target header :is(div, section, small) {
+    flex-wrap: wrap;
+  }
+  .lesson-school-target :is(img, svg, canvas, video),
+  .lesson-page-target :is(img, svg, canvas, video) {
+    max-width: 100%;
+  }
 }
 
 .lesson-school-target > [class*="-page"] *,

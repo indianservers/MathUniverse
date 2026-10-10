@@ -2,12 +2,12 @@ import { describe, expect, it } from 'vitest';
 import { masteryCourses } from './masteryContent';
 import { curriculumStudios, chaptersFor, studioForPath } from './curriculumCatalog';
 describe('guided curriculum delivery',()=>{
- it('delivers a distinct five-lesson course for every main and advanced studio',()=>{
+ it('delivers the core course and content-gap lessons for every main and advanced studio',()=>{
   expect(curriculumStudios).toHaveLength(19);
   expect(Object.keys(masteryCourses)).toHaveLength(19);
   for(const studio of curriculumStudios){
-   const c=masteryCourses[studio.id];expect(c.units).toHaveLength(5);
-   expect(new Set(c.units.map(u=>u.id)).size).toBe(5);
+   const c=masteryCourses[studio.id];expect(c.units).toHaveLength(7);
+   expect(new Set(c.units.map(u=>u.id)).size).toBe(c.units.length);
    expect(c.outcomes.length).toBeGreaterThanOrEqual(2);
    expect(c.capstone.solution.length).toBeGreaterThan(60);
    for(const u of c.units){

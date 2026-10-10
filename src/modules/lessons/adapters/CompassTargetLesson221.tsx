@@ -976,10 +976,10 @@ function MiniTransfer() {
       <line x1="175" y1="36" x2="195" y2="13" stroke="#64748b" />
       <circle cx="65" cy="36" r="3" fill="#0759a5" />
       <circle cx="175" cy="36" r="3" fill="#7c3aed" />
-      <text x="60" y="54" fontSize="9">
+      <text x="60" y="54" fontSize="12">
         B
       </text>
-      <text x="170" y="54" fontSize="9">
+      <text x="170" y="54" fontSize="12">
         A
       </text>
     </svg>
@@ -999,10 +999,10 @@ function MiniCircle() {
       <line x1="90" y1="55" x2="120" y2="28" stroke="#334155" />
       <circle cx="90" cy="55" r="4" fill="#0759a5" />
       <circle cx="120" cy="28" r="4" fill="#2563eb" />
-      <text x="67" y="72" fontSize="10">
+      <text x="67" y="72" fontSize="12">
         B (x1, y1)
       </text>
-      <text x="125" y="24" fontSize="10">
+      <text x="125" y="24" fontSize="12">
         P (x2, y2)
       </text>
     </svg>

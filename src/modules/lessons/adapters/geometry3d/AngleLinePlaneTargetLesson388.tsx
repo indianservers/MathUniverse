@@ -507,7 +507,7 @@ function LinePlaneAngleScene({
             lineWidth={4}
           />
           <Billboard position={world(result.projection)}>
-            <Text fontSize={0.25} color="#ffe229">
+            <Text fontSize={12} color="#ffe229">
               projection ⟨{result.projection.join(", ")}⟩
             </Text>
           </Billboard>
@@ -526,12 +526,12 @@ function LinePlaneAngleScene({
       {result.valid && (
         <>
           <Billboard position={[1.4, 0.8, 0.1]}>
-            <Text fontSize={0.28} color="#ffd42a">
+            <Text fontSize={12} color="#ffd42a">
               θ ≈ {result.angle}°
             </Text>
           </Billboard>
           <Billboard position={[-0.5, 1.25, 0.1]}>
-            <Text fontSize={0.22} color="#58d9ee">
+            <Text fontSize={12} color="#58d9ee">
               normal angle ≈ {result.normalAngle}°
             </Text>
           </Billboard>
@@ -592,7 +592,7 @@ function DragArrow({
         />
       </mesh>
       <Billboard position={[mapped[0] + 0.45, mapped[1] + 0.25, mapped[2]]}>
-        <Text fontSize={0.25} color={color}>
+        <Text fontSize={12} color={color}>
           {label}
         </Text>
       </Billboard>

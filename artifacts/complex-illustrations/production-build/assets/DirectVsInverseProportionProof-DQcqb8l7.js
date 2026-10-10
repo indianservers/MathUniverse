@@ -1,0 +1,1 @@
+import{j as t}from"./vendor-react-3d-CqfazwJj.js";import{RatioProofExperience as i}from"./RatioProofModels-CwZtPkGH.js";import"./vendor-icons-D3J0Hqzz.js";import"./vendor-three-mVyhenrq.js";import"./proportionalReasoningMath-thYBBWmB.js";function f({category:r,proof:o}){return t.jsx(i,{category:r,proof:o,kind:"direct-inverse"})}export{f as default};

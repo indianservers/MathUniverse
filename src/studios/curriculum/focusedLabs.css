@@ -3,4 +3,11 @@
 .focused-lab [data-lab-navigation=true]{display:none!important}.focused-lab :is(.msk-shell,.alg-studio,.cs-studio,.cxs-lab,.de-studio):has(>[data-lab-navigation=true]){grid-template-columns:minmax(0,1fr)!important}
 .focused-lab [data-lab-no-sidebar=true]{grid-template-columns:minmax(0,1fr)!important}.focused-lab [data-lab-no-sidebar=true]>:not([data-lab-navigation=true]){grid-column:1!important;margin-left:0!important;min-width:0;max-width:none!important}.focused-lab .np-main{max-width:none}.focused-lab[data-focus-pane=workspace] .obl-hero{padding-block:6px}.focused-lab[data-focus-pane=workspace] .obl-hero>div>span{display:none}.focused-lab[data-focus-pane=workspace] .obl-hero h1{margin:0}.focused-lab[data-focus-pane=workspace] .obl-header{padding-block:6px}.focused-lab[data-focus-pane=workspace] .obl-brand small{display:none}
 .studio-learning-host:has(.focused-lab)>.studio-learning-nav{display:flex!important}.focused-lab :is(.obl-header,.ivt-header,.np-header){display:none!important}.focused-lab .obl-subnav{margin:0}.focused-lab .geometry-focused-workspace{width:100%;min-width:0}
+/* A lab returning one workspace owns the entire outer grid, not its controls column. */
+.focused-lab .msk-lab > :only-child { grid-column: 1 / -1; min-width: 0; width: 100%; }
+.msk-three-column { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; width: 100%; min-width: 0; }
+.msk-three-column > * { min-width: 0; }
+@media (min-width: 1024px) {
+  .msk-three-column { grid-template-columns: minmax(220px, .8fr) minmax(0, 1.6fr) minmax(260px, 1fr); align-items: start; }
+}
 html body #main-content .focused-lab nav[aria-label="Breadcrumb"],html body #main-content .focused-lab .ivt-breadcrumb{display:none!important}

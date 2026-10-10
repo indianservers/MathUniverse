@@ -581,14 +581,14 @@ function ComparisonScene({
         <Line points={[c1, c2]} color="#fff" dashed lineWidth={2} />
       )}
       <Billboard position={[c1.x - 2, c1.y + 0.35, c1.z]}>
-        <Text fontSize={0.28} color="#35cdeb">
+        <Text fontSize={12} color="#35cdeb">
           Plane A{"\n"}
           {planeA[0]}x+{planeA[1]}y+{planeA[2]}z={planeA[3]}
           {"\n"}n₁=({n1.join(",")})
         </Text>
       </Billboard>
       <Billboard position={[c2.x - 2, c2.y + 0.35, c2.z]}>
-        <Text fontSize={0.28} color="#c28bff">
+        <Text fontSize={12} color="#c28bff">
           Plane B{"\n"}
           {planeB[0]}x+{planeB[1]}y+{planeB[2]}z={planeB[3]}
           {"\n"}n₂=({n2.join(",")})

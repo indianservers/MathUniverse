@@ -571,7 +571,7 @@ function AngleScene({
       )}
       {layers[0] && result.valid && (
         <Billboard position={[1.3, 1.1, 0.2]}>
-          <Text fontSize={0.28} color="#ff9d00">
+          <Text fontSize={12} color="#ff9d00">
             θ = {result.angle}°
           </Text>
         </Billboard>
@@ -634,7 +634,7 @@ function VectorArrow({
         />
       </mesh>
       <Billboard position={[end[0] + 0.5, end[1] + 0.35, end[2]]}>
-        <Text fontSize={0.3} color={color}>
+        <Text fontSize={12} color={color}>
           {label}
         </Text>
       </Billboard>

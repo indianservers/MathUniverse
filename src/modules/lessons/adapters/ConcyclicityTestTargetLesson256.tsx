@@ -569,7 +569,7 @@ function PracticeGraph({
               r="5"
               fill={["#2563eb", "#8b5cf6", "#16a34a", "#f97316"][i]}
             />
-            <text x={q.x + 6} y={q.y - 5} fontSize="8">
+            <text x={q.x + 6} y={q.y - 5} fontSize="12">
               {key.toUpperCase()}
             </text>
           </g>

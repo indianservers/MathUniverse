@@ -527,10 +527,10 @@ function MiniExtrema() {
       />
       <circle cx="80" cy="30" r="4" fill="#7134db" />
       <circle cx="205" cy="22" r="5" fill="#f1771b" />
-      <text x="70" y="17" fontSize="8">
+      <text x="70" y="17" fontSize="12">
         Higher local max
       </text>
-      <text x="190" y="10" fontSize="8">
+      <text x="190" y="10" fontSize="12">
         Global max
       </text>
     </svg>

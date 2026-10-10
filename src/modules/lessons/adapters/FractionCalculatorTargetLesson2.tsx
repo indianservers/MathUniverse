@@ -453,7 +453,7 @@ export default function FractionCalculatorTargetLesson2({
           </span>
         </a>
         <div>
-          Lesson progress <progress value="35" max="100" /> 35%
+          Explore the model, then use the study checks below to test your understanding.
         </div>
         <a href="/lessons/core-workspaces/3-mixed-numbers">
           <span>

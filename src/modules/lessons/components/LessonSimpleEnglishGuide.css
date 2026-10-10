@@ -52,3 +52,13 @@
 .lesson-simple-english aside p:last-child {
   margin-bottom: 0;
 }
+
+.lesson-simple-english summary{cursor:pointer;min-height:44px;outline-offset:4px}
+.lesson-simple-english summary h2{display:inline;margin-left:8px;font-size:18px}
+.lesson-simple-english details[open]>summary{margin-bottom:12px}
+.lesson-simple-english details>p{margin:0 0 12px}
+.dark .lesson-simple-english{background:#142031;border-color:#43516a;color:#e3edf9}
+.dark .lesson-simple-english h2{color:#e3edf9}
+.dark .lesson-simple-english-kicker,.dark .lesson-simple-english aside b{color:#7dd3fc}
+.dark .lesson-simple-english aside{background:#1d2b3f;box-shadow:inset 0 0 0 1px #43516a}
+@media(max-width:600px){.lesson-simple-english{padding:12px;margin:10px auto}.lesson-simple-english summary h2{display:block;margin:4px 0;font-size:17px}}

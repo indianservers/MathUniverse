@@ -714,7 +714,7 @@ function PolygonCanvas({
             <text
               x={sx(p.x) + (p.x >= model.center.x ? 10 : -62)}
               y={sy(p.y) + (p.y >= model.center.y ? -8 : 18)}
-              fontSize="11"
+              fontSize="12"
               fontWeight="800"
             >
               {letters[i]} ({p.x.toFixed(2)}, {p.y.toFixed(2)})
@@ -745,7 +745,7 @@ function PolygonCanvas({
       <text
         x={sx(model.center.x) + model.radius * 18}
         y={sy(model.center.y) - 10}
-        fontSize="11"
+        fontSize="12"
       >
         r = {model.radius.toFixed(2)}
       </text>

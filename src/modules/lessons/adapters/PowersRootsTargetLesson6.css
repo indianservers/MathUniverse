@@ -552,6 +552,19 @@
   }
 }
 @media (max-width: 899px) {
+  .target-powers-header > div {
+    flex-wrap: wrap;
+  }
+  .target-powers-header {
+    height: auto;
+  }
+  .powers-equation {
+    flex-wrap: wrap;
+    gap: 8px;
+    height: auto;
+    min-height: 111px;
+    padding: 8px;
+  }
   .target-powers-page {
     top: 0;
     height: auto;

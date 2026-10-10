@@ -514,24 +514,24 @@ function PointsScene({
       />
       {[-5, -4, -3, -2, -1, 1, 2, 3, 4, 5].map((tick) => (
         <group key={tick}>
-          <Text position={[tick, -0.23, 0.15]} fontSize={0.2} color="#e9f4ff">
+          <Text position={[tick, -0.23, 0.15]} fontSize={12} color="#e9f4ff">
             {tick}
           </Text>
-          <Text position={[0.15, -0.23, tick]} fontSize={0.2} color="#e9f4ff">
+          <Text position={[0.15, -0.23, tick]} fontSize={12} color="#e9f4ff">
             {tick}
           </Text>
-          <Text position={[0.18, tick, 0]} fontSize={0.2} color="#e9f4ff">
+          <Text position={[0.18, tick, 0]} fontSize={12} color="#e9f4ff">
             {tick}
           </Text>
         </group>
       ))}
-      <Text position={[5.8, 0.22, 0]} fontSize={0.34} color="#ff625a">
+      <Text position={[5.8, 0.22, 0]} fontSize={12} color="#ff625a">
         x
       </Text>
-      <Text position={[0, 0.22, 5.8]} fontSize={0.34} color="#65d94c">
+      <Text position={[0, 0.22, 5.8]} fontSize={12} color="#65d94c">
         y
       </Text>
-      <Text position={[0.25, 5.7, 0]} fontSize={0.34} color="#36d2eb">
+      <Text position={[0.25, 5.7, 0]} fontSize={12} color="#36d2eb">
         z
       </Text>
       {points.map((point) => {
@@ -579,7 +579,7 @@ function PointsScene({
               />
             </mesh>
             {labels && (
-              <Text position={[0.48, 0.38, 0]} fontSize={0.42} color="#fff">
+              <Text position={[0.48, 0.38, 0]} fontSize={12} color="#fff">
                 {point.id} ({point.value.join(", ")})
               </Text>
             )}

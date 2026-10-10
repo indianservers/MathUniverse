@@ -5,6 +5,7 @@ import {
   type LessonSimpleEnglish,
 } from "./lessonSimpleEnglish";
 import "./LessonSimpleEnglishGuide.css";
+import { resolveStudyLessonId, studyRolloutLimit } from './LessonStudySession';
 
 export default function LessonSimpleEnglishGuide({
   lessonId,
@@ -25,6 +26,11 @@ export default function LessonSimpleEnglishGuide({
           categorySlug: params.categorySlug,
         });
   if (!guide) return null;
+  const compact = (lessonId ?? resolveStudyLessonId(params) ?? Infinity) <= studyRolloutLimit;
+  const content = <>
+    {guide.paragraphs.map((paragraph) => <p key={paragraph.slice(0, 48)}>{paragraph}</p>)}
+    <aside><b>Try this example</b><p>{guide.examplePrompt}</p><details><summary>Compare your answer</summary><p>Answer: <strong>{guide.exampleAnswer}</strong></p></details></aside>
+  </>;
   return (
     <section
       className="lesson-simple-english"
@@ -32,18 +38,7 @@ export default function LessonSimpleEnglishGuide({
       data-testid="lesson-simple-english"
       aria-label={`Simple English explanation of ${guide.title}`}
     >
-      <p className="lesson-simple-english-kicker">In simple English</p>
-      <h2>Understand {guide.title}</h2>
-      {guide.paragraphs.map((paragraph) => (
-        <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-      ))}
-      <aside>
-        <b>Try this example</b>
-        <p>{guide.examplePrompt}</p>
-        <p>
-          Answer: <strong>{guide.exampleAnswer}</strong>
-        </p>
-      </aside>
+      {compact ? <details><summary><span className="lesson-simple-english-kicker">In simple English</span><h2>Understand {guide.title}</h2></summary>{content}</details> : <><p className="lesson-simple-english-kicker">In simple English</p><h2>Understand {guide.title}</h2>{content}</>}
     </section>
   );
 }

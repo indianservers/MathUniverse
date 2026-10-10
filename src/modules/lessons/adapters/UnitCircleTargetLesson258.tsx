@@ -182,7 +182,7 @@ function LinkedCircle({ angle, model, onAngle }: { angle: number; model: ReturnT
     <circle data-testid="unit-circle-point" data-angle={angle.toFixed(1)} cx={p.x} cy={p.y} r="7" fill="#7446d8" onPointerDown={(e) => { dragging.current = true; e.currentTarget.setPointerCapture(e.pointerId); }} />
     <circle cx={c.x} cy={p.y} r="4" fill="#2563eb" /><circle cx={p.x} cy={c.y} r="4" fill="#18a7aa" />
     <text x={p.x + 8} y={p.y - 8} fontSize="12" fontWeight="800">P (cos θ, sin θ)</text><text x={c.x - 40} y={p.y + 4} fontSize="12" fill="#2563eb">sin θ</text><text x={p.x - 16} y={c.y + 20} fontSize="12" fill="#07989d">cos θ</text><text x={(c.x + p.x) / 2} y={(c.y + p.y) / 2 - 7} fontSize="12">1</text>
-    <text x="409" y={c.y - 8} fontSize="11">x (cos θ)</text><text x={c.x + 7} y="14" fontSize="11">y (sin θ)</text><text x={c.x - 16} y={c.y + 18}>O</text>
+    <text x="409" y={c.y - 8} fontSize="12">x (cos θ)</text><text x={c.x + 7} y="14" fontSize="12">y (sin θ)</text><text x={c.x - 16} y={c.y + 18}>O</text>
     <text x={c.x + r + 8} y={c.y - 7}>0°</text><text x={c.x - 16} y={c.y - r - 7}>90°</text><text x={c.x - r - 28} y={c.y - 7}>180°</text><text x={c.x + 7} y={c.y + r + 18}>270°</text>
     <text x={c.x + r + 7} y={c.y + 18}>(1, 0)</text><text x={c.x - r - 46} y={c.y + 5}>(−1, 0)</text><text x={c.x + 7} y={c.y + r + 34}>(0, −1)</text>
   </svg>;

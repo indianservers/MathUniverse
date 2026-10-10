@@ -30,7 +30,7 @@ export default function RoundingPrecisionTargetLesson15({
     [view, setView] = useState(0),
     [actions, setActions] = useState(0),
     [problem, setProblem] = useState(0),
-    [revealed, setRevealed] = useState(true);
+    [revealed, setRevealed] = useState(false);
   const exact = numerator / denominator,
     reported = Number(exact.toFixed(precision)),
     fixed = reported.toFixed(precision),
@@ -54,7 +54,7 @@ export default function RoundingPrecisionTargetLesson15({
     setView(0);
     setActions(0);
     setProblem(0);
-    setRevealed(true);
+    setRevealed(false);
     onInteraction();
   };
   useEffect(() => {
@@ -64,7 +64,7 @@ export default function RoundingPrecisionTargetLesson15({
     setView(0);
     setActions(0);
     setProblem(0);
-    setRevealed(true);
+    setRevealed(false);
   }, [resetToken]);
   const marker = (value: number) =>
     Math.max(0, Math.min(100, ((value - (reported - 0.03)) / 0.06) * 100));

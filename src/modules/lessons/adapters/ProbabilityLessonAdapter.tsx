@@ -906,7 +906,7 @@ function MassVisual({
               x={x + (width - 6) / 2}
               y="345"
               textAnchor="middle"
-              fontSize="11"
+              fontSize="12"
             >
               {bin.label}
             </text>
@@ -1036,7 +1036,7 @@ function SimulationVisual({
           stroke="#7c3aed"
           strokeDasharray="7 5"
         />
-        <text x="310" y="82" textAnchor="middle" fontSize="11" fontWeight="800">
+        <text x="310" y="82" textAnchor="middle" fontSize="12" fontWeight="800">
           Convergence over {sampleSize.toLocaleString()} samples
         </text>
       </svg>

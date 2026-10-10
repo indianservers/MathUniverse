@@ -34,6 +34,7 @@ import ComplexEnhancementWorkbench from "../studios/complex/ComplexEnhancementWo
 import { studioMockups } from "../studios/mockup/studioMockupCatalog";
 import { studioLabMeta } from "../studios/mockup/studioLabMeta";
 import "./ComplexNumbersStudio.css";
+import ComplexLabIllustration from "../studios/complex/illustrations/ComplexLabIllustration";
 
 const catalog = studioMockups["complex-numbers"];
 
@@ -240,6 +241,7 @@ function StudioHome() {
                     <article key={item.id} className="cxs-topic-card msk-card-article">
                       <Link className="msk-card-hit" to={item.route} aria-label={`Open ${item.label}`} />
                       <span className="cxs-topic-number">{index + 1}</span>
+                      <ComplexLabIllustration kind={item.id} />
                       <Link to={item.route}>
                         <header><TopicPreview id={item.id} /><b>{item.label}</b></header>
                         <p>{item.description}</p>

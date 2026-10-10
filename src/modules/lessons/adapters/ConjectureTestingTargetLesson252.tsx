@@ -740,10 +740,10 @@ function RuleMini() {
         stroke="#334155"
         markerEnd="url(#arrow)"
       />
-      <text x="15" y="73" fontSize="9">
+      <text x="15" y="73" fontSize="12">
         P (x,y)
       </text>
-      <text x="115" y="16" fontSize="9">
+      <text x="115" y="16" fontSize="12">
         P′ (x+a,y+b)
       </text>
     </svg>

@@ -104,7 +104,7 @@
 }
 .ea10065-lab {
   display: grid;
-  grid-template-columns: 168px 1fr;
+  grid-template-columns: clamp(200px, 18vw, 280px) minmax(0, 1fr);
   height: 585px;
   border: 1px solid #dce5ea;
   border-radius: 9px;
@@ -219,6 +219,7 @@
 .ea10065-lab > article {
   position: relative;
   padding: 10px;
+  min-height: calc(clamp(450px, 58vh, 660px) + 120px);
 }
 .ea10065-lab > article > button {
   position: absolute;
@@ -234,7 +235,7 @@
 }
 .ea10065-diagram {
   width: 100% !important;
-  height: 450px !important;
+  height: clamp(450px, 58vh, 660px) !important;
 }
 .ea10065-diagram .triangle {
   fill: #e8f7fa88;
@@ -553,6 +554,10 @@
   }
   .ea10065-lab > article {
     height: 570px;
+    min-height: 570px;
+  }
+  .ea10065-diagram {
+    height: 450px !important;
   }
   .ea10065-theory {
     grid-template-columns: 1fr;

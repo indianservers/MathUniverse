@@ -658,7 +658,7 @@ function EllipsePlot({
         x={(left.x + p.x) / 2 - 25}
         y={(left.y + p.y) / 2 - 9}
         fill="#2468e5"
-        fontSize="11"
+        fontSize="12"
         fontWeight="800"
       >
         PF₁ = {d1.toFixed(2)}
@@ -667,7 +667,7 @@ function EllipsePlot({
         x={(right.x + p.x) / 2 + 4}
         y={(right.y + p.y) / 2 + 18}
         fill="#15989c"
-        fontSize="11"
+        fontSize="12"
         fontWeight="800"
       >
         PF₂ = {d2.toFixed(2)}
@@ -721,7 +721,7 @@ function EllipsePlot({
         y={left.y + 28}
         textAnchor="middle"
         fill="#2468e5"
-        fontSize="11"
+        fontSize="12"
         fontWeight="800"
       >
         F₁
@@ -734,7 +734,7 @@ function EllipsePlot({
         y={right.y + 28}
         textAnchor="middle"
         fill="#2468e5"
-        fontSize="11"
+        fontSize="12"
         fontWeight="800"
       >
         F₂
@@ -742,7 +742,7 @@ function EllipsePlot({
           ({format(center.x + c)}, {format(center.y)})
         </tspan>
       </text>
-      <text x={origin.x + 8} y={origin.y + 23} fontSize="11">
+      <text x={origin.x + 8} y={origin.y + 23} fontSize="12">
         O
       </text>
     </svg>

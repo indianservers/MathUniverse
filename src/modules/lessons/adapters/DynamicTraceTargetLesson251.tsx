@@ -731,10 +731,10 @@ function WorkedMini() {
       <line x1="5" x2="175" y1="50" y2="50" stroke="#334155" />
       <circle cx="120" cy="70" r="5" fill="#1685f8" />
       <circle cx="150" cy="90" r="5" fill="#6d28d9" />
-      <text x="124" y="67" fontSize="8">
+      <text x="124" y="67" fontSize="12">
         A (3,-2)
       </text>
-      <text x="140" y="84" fontSize="8">
+      <text x="140" y="84" fontSize="12">
         B′ (6,-4)
       </text>
     </svg>
@@ -752,10 +752,10 @@ function TraceMini() {
       />
       <circle cx="22" cy="80" r="5" fill="#1685f8" />
       <circle cx="172" cy="50" r="6" fill="#6d28d9" />
-      <text x="28" y="78" fontSize="8">
+      <text x="28" y="78" fontSize="12">
         A
       </text>
-      <text x="145" y="45" fontSize="8">
+      <text x="145" y="45" fontSize="12">
         Trace of B′
       </text>
     </svg>

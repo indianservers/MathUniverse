@@ -1,0 +1,622 @@
+[
+  {
+    "route": "/studios/algebra/labs/parameter",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/algebra/labs/domain",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/algebra/labs/recurrence",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/algebraic-structures/labs/permutations",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/algebraic-structures/labs/quotients",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/algebraic-structures/labs/fields",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/geometry/labs/construction",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/geometry/labs/conics",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/geometry/labs/geodesics",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/trigonometry/labs/fourier",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/trigonometry/labs/polar",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/trigonometry/labs/uncertainty",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/calculus/labs/epsilon",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/calculus/labs/convergence",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/calculus/labs/flux",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/number-systems/labs/floating",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/number-systems/labs/bases",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/number-systems/labs/completeness",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/linear-algebra/labs/factorization",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/linear-algebra/labs/subspaces",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/linear-algebra/labs/spectral",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/complex-numbers/labs/contours",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/complex-numbers/labs/analytic",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/complex-numbers/labs/continuation",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/mathematical-modelling/labs/calibration",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/mathematical-modelling/labs/identifiability",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/mathematical-modelling/labs/optimization",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/discrete-world/labs/counting",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/discrete-world/labs/euclid",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/discrete-world/labs/automata",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/set-theory/labs/quantifiers",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/set-theory/labs/orders",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/set-theory/labs/cardinality",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/graph-theory/labs/flow",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/graph-theory/labs/planarity",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/graph-theory/labs/random-graphs",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/probability-statistics/labs/joint",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/probability-statistics/labs/regression",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/probability-statistics/labs/design",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/differential-equations/labs/boundary",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/differential-equations/labs/pde",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/differential-equations/labs/convolution",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/continued-fractions/labs/surds",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/continued-fractions/labs/pell",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/continued-fractions/labs/approximation",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/famous-problems/labs/proof",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/famous-problems/labs/constructibility",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/famous-problems/labs/bounded-search",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/stats-inference/labs/likelihood",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/stats-inference/labs/decisions",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/stats-inference/labs/resampling",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/special-functions/labs/orthogonal",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/special-functions/labs/bessel",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/special-functions/labs/evaluation",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/advanced-differential-equations/labs/stiff",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/advanced-differential-equations/labs/dynamics",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "route": "/studios/advanced-differential-equations/labs/sturm",
+    "width": 390,
+    "checked": true,
+    "errors": [],
+    "overflow": {
+      "own": 0,
+      "document": -15
+    }
+  },
+  {
+    "lab": "fourier",
+    "width": 320,
+    "checked": true
+  },
+  {
+    "lab": "factorization",
+    "width": 320,
+    "checked": true
+  },
+  {
+    "lab": "flow",
+    "width": 320,
+    "checked": true
+  },
+  {
+    "lab": "regression",
+    "width": 320,
+    "checked": true
+  },
+  {
+    "lab": "boundary",
+    "width": 320,
+    "checked": true
+  },
+  {
+    "lab": "fourier",
+    "width": 1280,
+    "checked": true
+  },
+  {
+    "lab": "factorization",
+    "width": 1280,
+    "checked": true
+  },
+  {
+    "lab": "flow",
+    "width": 1280,
+    "checked": true
+  },
+  {
+    "lab": "regression",
+    "width": 1280,
+    "checked": true
+  },
+  {
+    "lab": "boundary",
+    "width": 1280,
+    "checked": true
+  }
+]

@@ -20,6 +20,7 @@ import { differentialEquationRouteAliases } from "./studios/differential-equatio
 import StandaloneStudioTheory from "./studios/mockup/StandaloneStudioTheory";
 import { StudioModelProvider } from "./studios/phase1/StudioModelProvider";
 import StudioCurriculum from "./studios/curriculum/StudioCurriculum";
+const StudioInvestigations = lazy(() => import('./studios/investigations/StudioInvestigations'));
 
 const routeChunkReloadPrefix = "math-universe-route-chunk-reload:";
 const routeChunkReloadWindowMs = 30_000;
@@ -394,6 +395,8 @@ export default function App() {
             <Route index element={<Home />} />
             <Route path="studios/curriculum" element={<StudioCurriculum />} />
             <Route path="studios/:studioId/curriculum" element={<StudioCurriculum />} />
+            <Route path="studios/:studioId/labs" element={<StudioInvestigations />} />
+            <Route path="studios/:studioId/labs/:labId" element={<StudioInvestigations />} />
             <Route
               path="accuracy-certification"
               element={<AccuracyCertification />}

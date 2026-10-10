@@ -1,3 +1,5 @@
+import { studioGapContent } from './gapLessons';
+
 export type MasteryUnit = {
   id: string; title: string; idea: string; conditions: string; method: string[];
   problem: string; solution: string[]; calculation: {prompt:string;answer:number};
@@ -259,3 +261,9 @@ extendCourse('advanced-differential-equations',['Analyze phase-plane equilibria 
  ['Resonant forcing','Forcing at an undamped natural frequency produces secular growth.','Damping changes resonance behavior; distinguish homogeneous and forced solutions.','Solve y″+y=sin t with a particular solution.',['Try y_p=−(t/2)cos t.','Differentiation gives y_p″+y_p=sin t.','The amplitude grows with t, unlike a bounded homogeneous sinusoid.'],'Magnitude of the t coefficient in this particular solution?',.5,'Sinusoidal input always gives bounded sinusoidal output.','Undamped resonance produces growing amplitude.'],
  ['Boundary eigenvalues','Boundary data impose spectral conditions on separated spatial solutions.','Use the prescribed operator, interval and boundary type.','On [0,π], zero endpoints for X″+λX=0.',['Nonzero solutions require λ=n².','The first mode is sin x.','The second is sin 2x with eigenvalue 4.'],'Third eigenvalue?',9,'Initial-value uniqueness automatically applies to every boundary problem.','Boundary constraints have distinct existence and uniqueness conditions.'],
  ['Heat modes and decay','Each sine mode of the heat equation decays at rate κn².','This applies to zero Dirichlet ends on [0,π] and κ>0.','Initial state sin(2x), diffusivity κ=3.',['Spatial eigenvalue is 4.','Time coefficient solves a′=−12a.','Solution is e^(−12t)sin(2x).'],'Decay rate?',12,'Every spatial mode decays at the same rate.','Higher-frequency modes have larger n² decay rates.']]);
+
+// Add the audited teaching gaps after the original five-lesson courses are assembled.
+for (const [studioId, content] of Object.entries(studioGapContent)) {
+  masteryCourses[studioId].units.push(...content.lessons);
+  masteryCourses[studioId].outcomes.push(...content.topics);
+}

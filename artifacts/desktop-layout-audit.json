@@ -1,0 +1,395 @@
+{
+  "studios": [
+    {
+      "id": "algebra",
+      "name": "Algebra Studio",
+      "base": "/algebra"
+    },
+    {
+      "id": "algebraic-structures",
+      "name": "Algebraic Structures Studio",
+      "base": "/algebraic-structures"
+    },
+    {
+      "id": "geometry",
+      "name": "Geometry Studio",
+      "base": "/geometry"
+    },
+    {
+      "id": "trigonometry",
+      "name": "Trigonometry Studio",
+      "base": "/trigonometry"
+    },
+    {
+      "id": "calculus",
+      "name": "Calculus Studio",
+      "base": "/calculus"
+    },
+    {
+      "id": "number-systems",
+      "name": "Number Systems Studio",
+      "base": "/number-systems"
+    },
+    {
+      "id": "linear-algebra",
+      "name": "Linear Algebra Studio",
+      "base": "/linear-algebra"
+    },
+    {
+      "id": "complex-numbers",
+      "name": "Complex Numbers Studio",
+      "base": "/complex-numbers"
+    },
+    {
+      "id": "mathematical-modelling",
+      "name": "Mathematical Modelling Studio",
+      "base": "/mathematical-modelling"
+    },
+    {
+      "id": "discrete-world",
+      "name": "Number & Discrete Mathematics Studio",
+      "base": "/discrete-world"
+    },
+    {
+      "id": "set-theory",
+      "name": "Set Theory and Relations",
+      "base": "/set-theory"
+    },
+    {
+      "id": "graph-theory",
+      "name": "Graph Theory",
+      "base": "/graph-theory"
+    },
+    {
+      "id": "probability-statistics",
+      "name": "Statistics & Probability Studio",
+      "base": "/probability-statistics"
+    },
+    {
+      "id": "differential-equations",
+      "name": "Differential Equations Studio",
+      "base": "/differential-equations"
+    },
+    {
+      "id": "continued-fractions",
+      "name": "Continued Fractions Lab",
+      "base": "/math-lab/continued-fractions"
+    },
+    {
+      "id": "famous-problems",
+      "name": "Famous Problems Atlas",
+      "base": "/math-lab/famous-problems"
+    },
+    {
+      "id": "stats-inference",
+      "name": "Statistics Inference Studio",
+      "base": "/math-lab/stats-inference"
+    },
+    {
+      "id": "special-functions",
+      "name": "Special Functions Gallery",
+      "base": "/math-lab/special-functions"
+    },
+    {
+      "id": "advanced-differential-equations",
+      "name": "Advanced Differential Equations Studio",
+      "base": "/math-lab/differential-equations"
+    }
+  ],
+  "routes": [
+    "/probability-statistics/interactive-distributions?mode=Binomial",
+    "/probability-statistics/data-explorer",
+    "/algebraic-structures/groups-rings-fields",
+    "/complex-numbers/argand-plane",
+    "/trigonometry/identities"
+  ],
+  "widths": [
+    390,
+    1366,
+    1920
+  ],
+  "results": [
+    {
+      "route": "/probability-statistics/interactive-distributions?mode=Binomial",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.statistics-chart",
+          "width": 344,
+          "height": 185
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 644,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/interactive-distributions?mode=Binomial",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.statistics-chart",
+          "width": 596,
+          "height": 320
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 401,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/interactive-distributions?mode=Binomial",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.statistics-chart",
+          "width": 857,
+          "height": 380
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 401,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/data-explorer",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.statistics-chart",
+          "width": 344,
+          "height": 185
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 644,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/data-explorer",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.statistics-chart",
+          "width": 596,
+          "height": 320
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 401,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/data-explorer",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.statistics-chart",
+          "width": 857,
+          "height": 380
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 401,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/algebraic-structures/groups-rings-fields",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls2 panelsALGEBRASTUDIO MainSkip to",
+      "errors": []
+    },
+    {
+      "route": "/algebraic-structures/groups-rings-fields",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls2 panelsALGEBRASTUDIO MainSkip to",
+      "errors": []
+    },
+    {
+      "route": "/algebraic-structures/groups-rings-fields",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls2 panelsALGEBRASTUDIO MainSkip to",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers/argand-plane",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.cx-mini-art.is-interactive",
+          "width": 342,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 538,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls1 paneliCOMPLEXSTUDIO MainStudio ",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers/argand-plane",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.cx-mini-art.is-interactive",
+          "width": 627,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 324,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls1 paneliCOMPLEXSTUDIO MainStudio ",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers/argand-plane",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.cx-mini-art.is-interactive",
+          "width": 904,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 324,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls1 paneliCOMPLEXSTUDIO MainStudio ",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/identities",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 354,
+          "height": 236
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 730,
+      "viewportHeight": 730,
+      "firstPlotTop": 453,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceCommon use casesTheory & moreθTrigonometrySTUD",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/identities",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 577,
+          "height": 304
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 405,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceCommon use casesTheory & moreθTrigonometrySTUD",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/identities",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 913,
+          "height": 304
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 405,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceCommon use casesTheory & moreθTrigonometrySTUD",
+      "errors": []
+    }
+  ]
+}

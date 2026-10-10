@@ -26,7 +26,8 @@
   --studio-warning-bg: #3c2932;
 }
 .lesson-studio {
-  max-width: 1280px;
+  width: 100%;
+  max-width: none;
   margin-inline: auto;
   color: var(--studio-ink);
   font: 16px/1.55 Inter, Arial, sans-serif;

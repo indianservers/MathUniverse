@@ -1,0 +1,622 @@
+[
+  {
+    "selector": "cxs-sidebar",
+    "text": "iCOMPLEXSTUDIO MainStudio HomeArgand PlaneArithmeticPolar FormsRotationRootsEuler FormulaLoci & TransformsFractalsWaves & Circuits",
+    "box": {
+      "x": 0,
+      "y": 41,
+      "width": 212,
+      "height": 2434.4375
+    }
+  },
+  {
+    "selector": "cinematic-hero hero-complex-numbers",
+    "text": "Complex Numbers Studio · Explore · VisualizeBeyond theReal AxisExplore a richer plane through rotation, magnitude, roots and Euler’s relation.◉ Visual intuition✧ Real-world ideas↗ Hands-on discovery▶ Start Learning →Explore All Topics ↓More studio controlsHomeStudio HomeHome › Mathematics › Complex NumbersWelcome to Complex Numbers StudioExplore, visualize, and master complex numbers through interactive experiments.Ctrl K6 concept animationsReduced motionReplay sceneeⁱθ = cos θ + i sin θExplore the objectsComplex addition(a + bi) + (c + di)Conjugate mirrorz̄ = a − biMultiply by iiz: rotation by π/2Roots of unityz⁵ = 1Exponential spiralz = e^((0.1+i)t)Unit-circle phaseeⁱθ = cos θ + i sin θ",
+    "box": {
+      "x": 236,
+      "y": 73,
+      "width": 1382,
+      "height": 677.515625
+    }
+  },
+  {
+    "selector": "cxs-header",
+    "text": "HomeStudio HomeHome › Mathematics › Complex NumbersWelcome to Complex Numbers StudioExplore, visualize, and master complex numbers through interactive experiments.Ctrl K",
+    "box": {
+      "x": 267,
+      "y": 582,
+      "width": 433,
+      "height": 267.34375
+    }
+  },
+  {
+    "selector": "cxs-concept-map",
+    "text": "Argand Planez₁ + z₂Arithmeticr cis θPolar Forms× i = +90°RotationiCOMPLEXⁿ√zRootse^{iθ}Euler Formula|z − c| = rLoci & Transformsz² + cFractals",
+    "box": {
+      "x": 236,
+      "y": 1719.4375,
+      "width": 1038,
+      "height": 392
+    }
+  },
+  {
+    "selector": "cxs-map-overflow",
+    "text": "Z = R + jXWaves & Circuits",
+    "box": {
+      "x": 236,
+      "y": 2137.4375,
+      "width": 1038,
+      "height": 84
+    }
+  },
+  {
+    "selector": "cxs-flow",
+    "text": "1Argand→2Arithmetic→3Polar→4Roots→5Euler",
+    "box": {
+      "x": 236,
+      "y": 2251.4375,
+      "width": 1038,
+      "height": 80
+    }
+  },
+  {
+    "selector": "cxs-topic-card msk-card-article",
+    "text": "1Argand PlaneDrag the blue point.Start here · 8 minPlot · Modulus · ArgumentOpen Argand PlanePlotModulusArgumentConjugateDistanceLocus",
+    "box": {
+      "x": 251,
+      "y": 822.65625,
+      "width": 328,
+      "height": 280.59375
+    }
+  },
+  {
+    "selector": "",
+    "text": "Argand Plane",
+    "box": {
+      "x": 295,
+      "y": 857.65625,
+      "width": 101.390625,
+      "height": 24
+    }
+  },
+  {
+    "selector": "",
+    "text": "Drag the blue point.",
+    "box": {
+      "x": 267,
+      "y": 908.65625,
+      "width": 296,
+      "height": 18.59375
+    }
+  },
+  {
+    "selector": "cxs-topic-meta",
+    "text": "Start here · 8 min",
+    "box": {
+      "x": 267,
+      "y": 935.25,
+      "width": 296,
+      "height": 16.5
+    }
+  },
+  {
+    "selector": "cxs-topic-open",
+    "text": "Open Argand Plane",
+    "box": {
+      "x": 267,
+      "y": 982.25,
+      "width": 296,
+      "height": 18
+    }
+  },
+  {
+    "selector": "cxs-topic-tabs",
+    "text": "PlotModulusArgumentConjugateDistanceLocus",
+    "box": {
+      "x": 267,
+      "y": 1000.25,
+      "width": 296,
+      "height": 71
+    }
+  },
+  {
+    "selector": "cxs-topic-card msk-card-article",
+    "text": "2z₁ + z₂ArithmeticParallelogram addition.Core · 8 minAdd · Subtract · MultiplyOpen ArithmeticAddSubtractMultiplyDivideConjugate",
+    "box": {
+      "x": 591,
+      "y": 822.65625,
+      "width": 328,
+      "height": 280.59375
+    }
+  },
+  {
+    "selector": "",
+    "text": "Arithmetic",
+    "box": {
+      "x": 664.453125,
+      "y": 865.65625,
+      "width": 79.859375,
+      "height": 24
+    }
+  },
+  {
+    "selector": "",
+    "text": "Parallelogram addition.",
+    "box": {
+      "x": 607,
+      "y": 924.65625,
+      "width": 296,
+      "height": 18.59375
+    }
+  },
+  {
+    "selector": "cxs-topic-meta",
+    "text": "Core · 8 min",
+    "box": {
+      "x": 607,
+      "y": 951.25,
+      "width": 296,
+      "height": 16.5
+    }
+  },
+  {
+    "selector": "cxs-topic-open",
+    "text": "Open Arithmetic",
+    "box": {
+      "x": 607,
+      "y": 998.25,
+      "width": 296,
+      "height": 18
+    }
+  },
+  {
+    "selector": "cxs-topic-tabs",
+    "text": "AddSubtractMultiplyDivideConjugate",
+    "box": {
+      "x": 607,
+      "y": 1016.25,
+      "width": 296,
+      "height": 71
+    }
+  },
+  {
+    "selector": "cxs-topic-card msk-card-article",
+    "text": "3r cis θPolar FormsLinked sliders.Core · 8 minRectangular · Polar · ExponentialOpen Polar FormsRectangularPolarExponential",
+    "box": {
+      "x": 931,
+      "y": 822.65625,
+      "width": 328,
+      "height": 280.59375
+    }
+  },
+  {
+    "selector": "",
+    "text": "Polar Forms",
+    "box": {
+      "x": 1002.59375,
+      "y": 865.65625,
+      "width": 89.28125,
+      "height": 24
+    }
+  },
+  {
+    "selector": "",
+    "text": "Linked sliders.",
+    "box": {
+      "x": 947,
+      "y": 924.65625,
+      "width": 296,
+      "height": 18.59375
+    }
+  },
+  {
+    "selector": "cxs-topic-meta",
+    "text": "Core · 8 min",
+    "box": {
+      "x": 947,
+      "y": 951.25,
+      "width": 296,
+      "height": 16.5
+    }
+  },
+  {
+    "selector": "cxs-topic-open",
+    "text": "Open Polar Forms",
+    "box": {
+      "x": 947,
+      "y": 998.25,
+      "width": 296,
+      "height": 18
+    }
+  },
+  {
+    "selector": "cxs-topic-tabs",
+    "text": "RectangularPolarExponential",
+    "box": {
+      "x": 947,
+      "y": 1016.25,
+      "width": 296,
+      "height": 38.5
+    }
+  },
+  {
+    "selector": "cxs-topic-card msk-card-article",
+    "text": "4× i = +90°RotationSpiral of powers.Next · 8 minRotate · Scale · SequenceOpen RotationRotateScaleSequence",
+    "box": {
+      "x": 251,
+      "y": 1115.25,
+      "width": 328,
+      "height": 280.59375
+    }
+  },
+  {
+    "selector": "",
+    "text": "Rotation",
+    "box": {
+      "x": 353.9375,
+      "y": 1158.25,
+      "width": 64.90625,
+      "height": 24
+    }
+  },
+  {
+    "selector": "",
+    "text": "Spiral of powers.",
+    "box": {
+      "x": 267,
+      "y": 1217.25,
+      "width": 296,
+      "height": 18.59375
+    }
+  },
+  {
+    "selector": "cxs-topic-meta",
+    "text": "Next · 8 min",
+    "box": {
+      "x": 267,
+      "y": 1243.84375,
+      "width": 296,
+      "height": 16.5
+    }
+  },
+  {
+    "selector": "cxs-topic-open",
+    "text": "Open Rotation",
+    "box": {
+      "x": 267,
+      "y": 1290.84375,
+      "width": 296,
+      "height": 18
+    }
+  },
+  {
+    "selector": "cxs-topic-tabs",
+    "text": "RotateScaleSequence",
+    "box": {
+      "x": 267,
+      "y": 1308.84375,
+      "width": 296,
+      "height": 38.5
+    }
+  },
+  {
+    "selector": "cxs-topic-card msk-card-article",
+    "text": "5ⁿ√zRootsDe Moivre in action.Next · 10 minSquare Roots · nth Roots · Roots of UnityOpen RootsSquare Rootsnth RootsRoots of UnityPolynomial Roots",
+    "box": {
+      "x": 591,
+      "y": 1115.25,
+      "width": 328,
+      "height": 280.59375
+    }
+  },
+  {
+    "selector": "",
+    "text": "Roots",
+    "box": {
+      "x": 641.90625,
+      "y": 1158.25,
+      "width": 42.875,
+      "height": 24
+    }
+  },
+  {
+    "selector": "",
+    "text": "De Moivre in action.",
+    "box": {
+      "x": 607,
+      "y": 1217.25,
+      "width": 296,
+      "height": 18.59375
+    }
+  },
+  {
+    "selector": "cxs-topic-meta",
+    "text": "Next · 10 min",
+    "box": {
+      "x": 607,
+      "y": 1243.84375,
+      "width": 296,
+      "height": 16.5
+    }
+  },
+  {
+    "selector": "cxs-topic-open",
+    "text": "Open Roots",
+    "box": {
+      "x": 607,
+      "y": 1290.84375,
+      "width": 296,
+      "height": 18
+    }
+  },
+  {
+    "selector": "cxs-topic-tabs",
+    "text": "Square Rootsnth RootsRoots of UnityPolynomial Roots",
+    "box": {
+      "x": 607,
+      "y": 1308.84375,
+      "width": 296,
+      "height": 71
+    }
+  },
+  {
+    "selector": "cxs-topic-card msk-card-article",
+    "text": "6e^{iθ}Euler FormulaFour linked views.Next · 10 minUnit Circle · Helix · ProjectionsOpen Euler FormulaUnit CircleHelixProjectionsTaylor",
+    "box": {
+      "x": 931,
+      "y": 1115.25,
+      "width": 328,
+      "height": 280.59375
+    }
+  },
+  {
+    "selector": "",
+    "text": "Euler Formula",
+    "box": {
+      "x": 1004.9375,
+      "y": 1158.25,
+      "width": 104.1875,
+      "height": 24
+    }
+  },
+  {
+    "selector": "",
+    "text": "Four linked views.",
+    "box": {
+      "x": 947,
+      "y": 1217.25,
+      "width": 296,
+      "height": 18.59375
+    }
+  },
+  {
+    "selector": "cxs-topic-meta",
+    "text": "Next · 10 min",
+    "box": {
+      "x": 947,
+      "y": 1243.84375,
+      "width": 296,
+      "height": 16.5
+    }
+  },
+  {
+    "selector": "cxs-topic-open",
+    "text": "Open Euler Formula",
+    "box": {
+      "x": 947,
+      "y": 1290.84375,
+      "width": 296,
+      "height": 18
+    }
+  },
+  {
+    "selector": "cxs-topic-tabs",
+    "text": "Unit CircleHelixProjectionsTaylor",
+    "box": {
+      "x": 947,
+      "y": 1308.84375,
+      "width": 296,
+      "height": 71
+    }
+  },
+  {
+    "selector": "cxs-topic-card msk-card-article",
+    "text": "7|z − c| = rLoci & TransformsBefore and after planes.Extend · 10 minCircle Loci · Line Loci · MöbiusOpen Loci & TransformsCircle LociLine LociMöbiusInversionAffine Map",
+    "box": {
+      "x": 251,
+      "y": 1407.84375,
+      "width": 328,
+      "height": 280.59375
+    }
+  },
+  {
+    "selector": "",
+    "text": "Loci & Transforms",
+    "box": {
+      "x": 352.4375,
+      "y": 1450.84375,
+      "width": 136.5,
+      "height": 24
+    }
+  },
+  {
+    "selector": "",
+    "text": "Before and after planes.",
+    "box": {
+      "x": 267,
+      "y": 1509.84375,
+      "width": 296,
+      "height": 18.59375
+    }
+  },
+  {
+    "selector": "cxs-topic-meta",
+    "text": "Extend · 10 min",
+    "box": {
+      "x": 267,
+      "y": 1536.4375,
+      "width": 296,
+      "height": 16.5
+    }
+  },
+  {
+    "selector": "cxs-topic-open",
+    "text": "Open Loci & Transforms",
+    "box": {
+      "x": 267,
+      "y": 1583.4375,
+      "width": 296,
+      "height": 18
+    }
+  },
+  {
+    "selector": "cxs-topic-tabs",
+    "text": "Circle LociLine LociMöbiusInversionAffine Map",
+    "box": {
+      "x": 267,
+      "y": 1601.4375,
+      "width": 296,
+      "height": 71
+    }
+  },
+  {
+    "selector": "cxs-topic-card msk-card-article",
+    "text": "8z² + cFractalsLinked Mandelbrot and Julia.Extend · 10 minMandelbrot Set · Julia SetOpen FractalsMandelbrot SetJulia Set",
+    "box": {
+      "x": 591,
+      "y": 1407.84375,
+      "width": 328,
+      "height": 280.59375
+    }
+  },
+  {
+    "selector": "",
+    "text": "Fractals",
+    "box": {
+      "x": 658.3125,
+      "y": 1450.84375,
+      "width": 57.40625,
+      "height": 24
+    }
+  },
+  {
+    "selector": "",
+    "text": "Linked Mandelbrot and Julia.",
+    "box": {
+      "x": 607,
+      "y": 1509.84375,
+      "width": 296,
+      "height": 18.59375
+    }
+  },
+  {
+    "selector": "cxs-topic-meta",
+    "text": "Extend · 10 min",
+    "box": {
+      "x": 607,
+      "y": 1536.4375,
+      "width": 296,
+      "height": 16.5
+    }
+  },
+  {
+    "selector": "cxs-topic-open",
+    "text": "Open Fractals",
+    "box": {
+      "x": 607,
+      "y": 1583.4375,
+      "width": 296,
+      "height": 18
+    }
+  },
+  {
+    "selector": "cxs-topic-tabs",
+    "text": "Mandelbrot SetJulia Set",
+    "box": {
+      "x": 607,
+      "y": 1601.4375,
+      "width": 296,
+      "height": 38.5
+    }
+  },
+  {
+    "selector": "cxs-topic-card msk-card-article",
+    "text": "9Z = R + jXWaves & CircuitsRLC in the complex plane.Apply · 8 minPhasors · AC Circuits · Signal RotationOpen Waves & CircuitsPhasorsAC CircuitsSignal RotationImpedance",
+    "box": {
+      "x": 931,
+      "y": 1407.84375,
+      "width": 328,
+      "height": 280.59375
+    }
+  },
+  {
+    "selector": "",
+    "text": "Waves & Circuits",
+    "box": {
+      "x": 1034,
+      "y": 1450.84375,
+      "width": 126.6875,
+      "height": 24
+    }
+  },
+  {
+    "selector": "",
+    "text": "RLC in the complex plane.",
+    "box": {
+      "x": 947,
+      "y": 1509.84375,
+      "width": 296,
+      "height": 18.59375
+    }
+  },
+  {
+    "selector": "cxs-topic-meta",
+    "text": "Apply · 8 min",
+    "box": {
+      "x": 947,
+      "y": 1536.4375,
+      "width": 296,
+      "height": 16.5
+    }
+  },
+  {
+    "selector": "cxs-topic-open",
+    "text": "Open Waves & Circuits",
+    "box": {
+      "x": 947,
+      "y": 1583.4375,
+      "width": 296,
+      "height": 18
+    }
+  },
+  {
+    "selector": "cxs-topic-tabs",
+    "text": "PhasorsAC CircuitsSignal RotationImpedance",
+    "box": {
+      "x": 947,
+      "y": 1601.4375,
+      "width": 296,
+      "height": 71
+    }
+  },
+  {
+    "selector": "cxs-home-aside",
+    "text": " Continue ExperimentArgand PlaneResume Argand Plane · 0%Continue Experiment →Your Learning Journey0%Argand PlaneArithmeticPolar FormsRotationRootsEuler FormulaLabs completed0 / 9Overall Progress0%Daily Visual Challenge|3+4i| = ?Try Challenge →Open Argand Plane",
+    "box": {
+      "x": 1288,
+      "y": 770.515625,
+      "width": 330,
+      "height": 1574.921875
+    }
+  },
+  {
+    "selector": "cxs-learning-strip",
+    "text": "ObserveWatch z move on the Argand plane.UnderstandRead modulus and argument together.WhyGeometry is algebra on the plane.TryRotate by i and plot conjugates.Challenge|3+4i| = ?",
+    "box": {
+      "x": 236,
+      "y": 2365.4375,
+      "width": 1382,
+      "height": 92
+    }
+  }
+]

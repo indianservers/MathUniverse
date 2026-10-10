@@ -29,7 +29,7 @@ export function LessonGraphInkLegend({ x = 16, y = 16 }: { x?: number; y?: numbe
             strokeWidth="4"
             strokeLinecap="round"
           />
-          <text x="32" y="4" fontSize="11" fontWeight="800" fill="#1e293b">
+          <text x="32" y="4" fontSize="12" fontWeight="800" fill="#1e293b">
             {item.label}
           </text>
         </g>

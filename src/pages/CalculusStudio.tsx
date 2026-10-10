@@ -51,6 +51,7 @@ import StudioBreadcrumb, { mathStudioCrumbs } from "../components/ui/StudioBread
 import StudioHomeButtons from "../components/ui/StudioHomeButtons";
 import { StudioCanvasToolbar } from "../components/ui/StudioCanvasToolbar";
 import { CalculusLaunchArt, CalculusNavIcon } from "./calculusStudioIcons";
+import CalculusLabIllustration from "../studios/calculus/illustrations/CalculusLabIllustration";
 import {
   dailyChallenge,
   dailyChallengeBank,
@@ -174,7 +175,7 @@ export default function CalculusStudio({ page = "home" }: { page?: CalculusStudi
 
   return (
     <main className={`cs-shell ${settings.theme === "dark" ? "cs-dark" : ""} ${darkNavPages.includes(activePage) ? "cs-nav-dark" : ""} ${settings.graphLight ? "cs-graph-light" : ""} ${settings.collapseControls ? "cs-hide-controls" : ""} ${settings.collapseResults ? "cs-hide-results" : ""}`}>
-      {activePage === "home" ? <style>{calculusHomeStyles}</style> : null}
+      <style>{calculusHomeStyles}</style>
       {drawerOpen && <button className="cs-backdrop" aria-label="Close Calculus Studio menu" onClick={() => setDrawerOpen(false)} />}
       <StudioSidebar page={activePage} collapsed={collapsed} open={drawerOpen} onCollapse={() => setCollapsed((value) => !value)} onClose={() => setDrawerOpen(false)} />
       <section className="cs-page">
@@ -372,7 +373,7 @@ function StudioHome() {
                       <span className="cs-topic-n">{index + 1}</span>
                       <strong>{card.title}</strong>
                       <small>{card.note}</small>
-                      <CalculusLaunchArt kind={card.page} />
+                      <CalculusLabIllustration kind={card.page} />
                       <i className="cs-topic-go" aria-hidden="true"><ChevronRight /></i>
                     </button>
                   );

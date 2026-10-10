@@ -449,7 +449,7 @@ function MatrixGraph({ model }: { model: ReturnType<typeof matrixModel> }) {
             x={sx(point[0]) + 7}
             y={sy(point[1]) + (index === 2 ? -8 : 16)}
             fill="#5b21b6"
-            fontSize="11"
+            fontSize="12"
             fontWeight="700"
           >
             {String.fromCharCode(65 + index)}′{formatPoint(point)}
@@ -469,7 +469,7 @@ function MatrixGraph({ model }: { model: ReturnType<typeof matrixModel> }) {
           x={sx(point[0]) + 5}
           y={sy(point[1]) - 7}
           fill="#475569"
-          fontSize="10"
+          fontSize="12"
         >
           {formatPoint(point)}
         </text>

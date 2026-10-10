@@ -1,0 +1,20 @@
+[
+  {
+    "mode": "baseline",
+    "medianFrameMs": 16.69999999999891,
+    "p95FrameMs": 16.700000000000728,
+    "approximateFPS": 60.0024897298643,
+    "longTasks": 0,
+    "longestTaskMs": 0,
+    "activeIllustrations": 0
+  },
+  {
+    "mode": "upgraded",
+    "medianFrameMs": 16.699999999999818,
+    "p95FrameMs": 16.799999999999272,
+    "approximateFPS": 60.00398366696544,
+    "longTasks": 0,
+    "longestTaskMs": 0,
+    "activeIllustrations": 11
+  }
+]

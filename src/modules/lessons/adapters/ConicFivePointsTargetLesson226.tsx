@@ -660,7 +660,7 @@ function ConicPlot({
               y={p.y - 12}
               textAnchor={point.x > 2 ? "end" : "start"}
               fill="#172554"
-              fontSize="11"
+              fontSize="12"
               fontWeight="800"
             >
               P{index + 1}

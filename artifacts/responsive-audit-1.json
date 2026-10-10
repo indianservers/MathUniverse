@@ -1,0 +1,3201 @@
+{
+  "studios": [
+    {
+      "id": "algebra",
+      "name": "Algebra Studio",
+      "base": "/algebra"
+    },
+    {
+      "id": "algebraic-structures",
+      "name": "Algebraic Structures Studio",
+      "base": "/algebraic-structures"
+    },
+    {
+      "id": "geometry",
+      "name": "Geometry Studio",
+      "base": "/geometry"
+    },
+    {
+      "id": "trigonometry",
+      "name": "Trigonometry Studio",
+      "base": "/trigonometry"
+    },
+    {
+      "id": "calculus",
+      "name": "Calculus Studio",
+      "base": "/calculus"
+    },
+    {
+      "id": "number-systems",
+      "name": "Number Systems Studio",
+      "base": "/number-systems"
+    },
+    {
+      "id": "linear-algebra",
+      "name": "Linear Algebra Studio",
+      "base": "/linear-algebra"
+    },
+    {
+      "id": "complex-numbers",
+      "name": "Complex Numbers Studio",
+      "base": "/complex-numbers"
+    },
+    {
+      "id": "mathematical-modelling",
+      "name": "Mathematical Modelling Studio",
+      "base": "/mathematical-modelling"
+    },
+    {
+      "id": "discrete-world",
+      "name": "Number & Discrete Mathematics Studio",
+      "base": "/discrete-world"
+    },
+    {
+      "id": "set-theory",
+      "name": "Set Theory and Relations",
+      "base": "/set-theory"
+    },
+    {
+      "id": "graph-theory",
+      "name": "Graph Theory",
+      "base": "/graph-theory"
+    },
+    {
+      "id": "probability-statistics",
+      "name": "Statistics & Probability Studio",
+      "base": "/probability-statistics"
+    },
+    {
+      "id": "differential-equations",
+      "name": "Differential Equations Studio",
+      "base": "/differential-equations"
+    },
+    {
+      "id": "continued-fractions",
+      "name": "Continued Fractions Lab",
+      "base": "/math-lab/continued-fractions"
+    },
+    {
+      "id": "famous-problems",
+      "name": "Famous Problems Atlas",
+      "base": "/math-lab/famous-problems"
+    },
+    {
+      "id": "stats-inference",
+      "name": "Statistics Inference Studio",
+      "base": "/math-lab/stats-inference"
+    },
+    {
+      "id": "special-functions",
+      "name": "Special Functions Gallery",
+      "base": "/math-lab/special-functions"
+    },
+    {
+      "id": "advanced-differential-equations",
+      "name": "Advanced Differential Equations Studio",
+      "base": "/math-lab/differential-equations"
+    }
+  ],
+  "routes": [
+    "/calculus/differential-equations",
+    "/calculus/integration",
+    "/calculus/limits",
+    "/calculus/multivariable-vector",
+    "/calculus/series-parametric-polar",
+    "/complex-numbers/argand-plane",
+    "/complex-numbers/loci",
+    "/complex-numbers/waves-circuits",
+    "/differential-equations/cauchy-euler",
+    "/differential-equations/growth-models",
+    "/differential-equations/initial-value",
+    "/differential-equations/mechanical-oscillations",
+    "/differential-equations/phase-plane",
+    "/differential-equations/systems",
+    "/discrete-world/algorithms",
+    "/discrete-world/logic",
+    "/discrete-world/primes",
+    "/geometry/circles",
+    "/geometry/polygons",
+    "/geometry/triangles",
+    "/linear-algebra/determinants",
+    "/linear-algebra/least-squares",
+    "/linear-algebra/orthogonality",
+    "/linear-algebra/row-reduction",
+    "/math-lab/continued-fractions",
+    "/math-lab/stats-inference",
+    "/mathematical-modelling/epidemics",
+    "/mathematical-modelling/numerical",
+    "/mathematical-modelling/regression",
+    "/number-systems/concepts",
+    "/number-systems/integers",
+    "/number-systems/practice",
+    "/number-systems/space",
+    "/probability-statistics/advanced-models",
+    "/probability-statistics/clt",
+    "/probability-statistics/data-explorer",
+    "/probability-statistics/experiments",
+    "/probability-statistics/module",
+    "/probability-statistics/quality-control",
+    "/probability-statistics/statistical-computing",
+    "/probability-statistics/time-series",
+    "/studios/algebra/curriculum",
+    "/studios/continued-fractions/curriculum",
+    "/studios/geometry/curriculum",
+    "/studios/number-systems/curriculum",
+    "/studios/stats-inference/curriculum",
+    "/trigonometry/ar",
+    "/trigonometry/inverse",
+    "/trigonometry/right-triangle"
+  ],
+  "widths": [
+    390,
+    1366,
+    1920
+  ],
+  "results": [
+    {
+      "route": "/calculus/differential-equations",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de-graph.is-interactive",
+          "width": 348,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 515,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/differential-equations",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de-graph.is-interactive",
+          "width": 734,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 364,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/differential-equations",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de-graph.is-interactive",
+          "width": 1288,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 364,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/integration",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ci-graph",
+          "width": 352,
+          "height": 354
+        },
+        {
+          "element": "svg.ci-graph",
+          "width": 352,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 505,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/integration",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ci-graph",
+          "width": 740,
+          "height": 354
+        },
+        {
+          "element": "svg.ci-graph",
+          "width": 740,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 356,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/integration",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ci-graph",
+          "width": 1294,
+          "height": 354
+        },
+        {
+          "element": "svg.ci-graph",
+          "width": 1294,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 356,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/limits",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.cls-graph.is-interactive",
+          "width": 368,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 1260,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/limits",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.cls-graph.is-interactive",
+          "width": 759,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 332,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/limits",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.cls-graph.is-interactive",
+          "width": 1313,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 332,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/multivariable-vector",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "scrollHeight": 0,
+      "viewportHeight": 0,
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/multivariable-vector",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "scrollHeight": 0,
+      "viewportHeight": 0,
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/multivariable-vector",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 1343,
+          "height": 671
+        },
+        {
+          "element": "svg.",
+          "width": 202,
+          "height": 135
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 376,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/series-parametric-polar",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.cs-graph",
+          "width": 340,
+          "height": 212
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 547,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/series-parametric-polar",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.cs-graph",
+          "width": 784,
+          "height": 488
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 351,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/calculus/series-parametric-polar",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.cs-graph",
+          "width": 1005,
+          "height": 625
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 351,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceTheory & moreShow controls1 panel.cs-shell{--c",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers/argand-plane",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.cx-mini-art.is-interactive",
+          "width": 342,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 538,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls1 paneliCOMPLEXSTUDIO MainStudio ",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers/argand-plane",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.cx-mini-art.is-interactive",
+          "width": 627,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 324,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls1 paneliCOMPLEXSTUDIO MainStudio ",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers/argand-plane",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.cx-mini-art.is-interactive",
+          "width": 904,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 324,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls1 paneliCOMPLEXSTUDIO MainStudio ",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers/loci",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.cxs-graph.is-interactive",
+          "width": 300,
+          "height": 200
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 583,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls1 paneliCOMPLEXSTUDIO MainStudio ",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers/loci",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.cxs-graph.is-interactive",
+          "width": 627,
+          "height": 418
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 324,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls1 paneliCOMPLEXSTUDIO MainStudio ",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers/loci",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.cxs-graph.is-interactive",
+          "width": 904,
+          "height": 520
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 324,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls1 paneliCOMPLEXSTUDIO MainStudio ",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers/waves-circuits",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.cxs-graph",
+          "width": 300,
+          "height": 183
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 583,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls1 paneliCOMPLEXSTUDIO MainStudio ",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers/waves-circuits",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.cxs-graph",
+          "width": 627,
+          "height": 383
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 324,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls1 paneliCOMPLEXSTUDIO MainStudio ",
+      "errors": []
+    },
+    {
+      "route": "/complex-numbers/waves-circuits",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.cxs-graph",
+          "width": 904,
+          "height": 520
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 324,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceShow controls1 paneliCOMPLEXSTUDIO MainStudio ",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/cauchy-euler",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de1-graph",
+          "width": 332,
+          "height": 265
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 3112,
+      "viewportHeight": 730,
+      "firstPlotTop": 1805,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/cauchy-euler",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de1-graph",
+          "width": 525,
+          "height": 300
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 1530,
+      "viewportHeight": 756,
+      "firstPlotTop": 1008,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/cauchy-euler",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de1-graph",
+          "width": 759,
+          "height": 357
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 1593,
+      "viewportHeight": 756,
+      "firstPlotTop": 1015,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/growth-models",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de1-graph",
+          "width": 332,
+          "height": 470
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 2437,
+      "viewportHeight": 730,
+      "firstPlotTop": 1476,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/growth-models",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de1-graph",
+          "width": 640,
+          "height": 470
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 992,
+      "viewportHeight": 756,
+      "firstPlotTop": 455,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/growth-models",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de1-graph",
+          "width": 923,
+          "height": 470
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 998,
+      "viewportHeight": 756,
+      "firstPlotTop": 462,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/initial-value",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de1-graph",
+          "width": 332,
+          "height": 520
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 3056,
+      "viewportHeight": 730,
+      "firstPlotTop": 1309,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/initial-value",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de1-graph",
+          "width": 656,
+          "height": 520
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 1085,
+      "viewportHeight": 756,
+      "firstPlotTop": 367,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/initial-value",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de1-graph",
+          "width": 945,
+          "height": 520
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 1092,
+      "viewportHeight": 756,
+      "firstPlotTop": 374,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/mechanical-oscillations",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de1-graph",
+          "width": 332,
+          "height": 265
+        },
+        {
+          "element": "svg.de1-graph",
+          "width": 332,
+          "height": 265
+        },
+        {
+          "element": "svg.de2-schematic",
+          "width": 332,
+          "height": 125
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 3245,
+      "viewportHeight": 730,
+      "firstPlotTop": 1643,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/mechanical-oscillations",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de1-graph",
+          "width": 525,
+          "height": 300
+        },
+        {
+          "element": "svg.de1-graph",
+          "width": 240,
+          "height": 300
+        },
+        {
+          "element": "svg.de2-schematic",
+          "width": 240,
+          "height": 90
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 1269,
+      "viewportHeight": 756,
+      "firstPlotTop": 468,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/mechanical-oscillations",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de1-graph",
+          "width": 759,
+          "height": 410
+        },
+        {
+          "element": "svg.de1-graph",
+          "width": 358,
+          "height": 300
+        },
+        {
+          "element": "svg.de2-schematic",
+          "width": 358,
+          "height": 134
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 1386,
+      "viewportHeight": 756,
+      "firstPlotTop": 474,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/phase-plane",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de2-portrait",
+          "width": 332,
+          "height": 239
+        },
+        {
+          "element": "svg.de1-graph",
+          "width": 332,
+          "height": 265
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 3296,
+      "viewportHeight": 730,
+      "firstPlotTop": 1506,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/phase-plane",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de2-portrait",
+          "width": 525,
+          "height": 377
+        },
+        {
+          "element": "svg.de1-graph",
+          "width": 525,
+          "height": 300
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 1401,
+      "viewportHeight": 756,
+      "firstPlotTop": 412,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/phase-plane",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de2-portrait",
+          "width": 759,
+          "height": 545
+        },
+        {
+          "element": "svg.de1-graph",
+          "width": 759,
+          "height": 300
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 1557,
+      "viewportHeight": 756,
+      "firstPlotTop": 418,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/systems",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de2-portrait",
+          "width": 332,
+          "height": 239
+        },
+        {
+          "element": "svg.de1-graph",
+          "width": 332,
+          "height": 265
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 3067,
+      "viewportHeight": 730,
+      "firstPlotTop": 1477,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/systems",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de2-portrait",
+          "width": 525,
+          "height": 377
+        },
+        {
+          "element": "svg.de1-graph",
+          "width": 525,
+          "height": 300
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 1423,
+      "viewportHeight": 756,
+      "firstPlotTop": 502,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/differential-equations/systems",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.de2-portrait",
+          "width": 759,
+          "height": 545
+        },
+        {
+          "element": "svg.de1-graph",
+          "width": 759,
+          "height": 300
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 1579,
+      "viewportHeight": 756,
+      "firstPlotTop": 508,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/discrete-world/algorithms",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 344,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 644,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/discrete-world/algorithms",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 376,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 378,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/discrete-world/algorithms",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 540,
+          "height": 354
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 378,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/discrete-world/logic",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 344,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 644,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/discrete-world/logic",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 661,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 378,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/discrete-world/logic",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 946,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 378,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/discrete-world/primes",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/discrete-world/primes",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/discrete-world/primes",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/geometry/circles",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.clab-svg.is-interactive",
+          "width": 344,
+          "height": 340
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 730,
+      "viewportHeight": 730,
+      "firstPlotTop": 568,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/geometry/circles",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.clab-svg.is-interactive",
+          "width": 686,
+          "height": 405
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 344,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/geometry/circles",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.clab-svg.is-interactive",
+          "width": 1240,
+          "height": 405
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 344,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/geometry/polygons",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.poly-svg",
+          "width": 344,
+          "height": 340
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 518,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/geometry/polygons",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.poly-svg",
+          "width": 680,
+          "height": 405
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 286,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/geometry/polygons",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.poly-svg",
+          "width": 1234,
+          "height": 405
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 282,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/geometry/triangles",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 344,
+          "height": 340
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 564,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/geometry/triangles",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 998,
+          "height": 405
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 380,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/geometry/triangles",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 1552,
+          "height": 405
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 380,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/determinants",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive",
+          "width": 344,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 427,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/determinants",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive",
+          "width": 784,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 262,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/determinants",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive",
+          "width": 1338,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 262,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/least-squares",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive",
+          "width": 344,
+          "height": 295
+        },
+        {
+          "element": "svg.msk-graph",
+          "width": 344,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 353,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/least-squares",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive",
+          "width": 784,
+          "height": 295
+        },
+        {
+          "element": "svg.msk-graph",
+          "width": 784,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 204,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/least-squares",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive",
+          "width": 1338,
+          "height": 295
+        },
+        {
+          "element": "svg.msk-graph",
+          "width": 1338,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 204,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/orthogonality",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 342,
+          "height": 352
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 485,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/orthogonality",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 782,
+          "height": 352
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 241,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/orthogonality",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 1336,
+          "height": 352
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 241,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/row-reduction",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 342,
+          "height": 352
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 462,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/row-reduction",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 782,
+          "height": 352
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 241,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/linear-algebra/row-reduction",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 1336,
+          "height": 352
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 241,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/math-lab/continued-fractions",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 388,
+          "height": 291
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 364,
+          "height": 836
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 364,
+          "height": 402
+        }
+      ],
+      "styleIssues": [],
+      "firstPlotTop": 434,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAdvanced Concept StudiosFocused interactive coverage for Wolfram-st",
+      "errors": []
+    },
+    {
+      "route": "/math-lab/continued-fractions",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 887,
+          "height": 606
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 1332,
+          "height": 336
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 1340,
+          "height": 74
+        }
+      ],
+      "styleIssues": [],
+      "firstPlotTop": 120,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAdvanced Concept StudiosFocused interactive coverage for Wolfram-st",
+      "errors": []
+    },
+    {
+      "route": "/math-lab/continued-fractions",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 1247,
+          "height": 606
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 1886,
+          "height": 336
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 1894,
+          "height": 74
+        }
+      ],
+      "styleIssues": [],
+      "firstPlotTop": 120,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAdvanced Concept StudiosFocused interactive coverage for Wolfram-st",
+      "errors": []
+    },
+    {
+      "route": "/math-lab/stats-inference",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 388,
+          "height": 291
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 364,
+          "height": 845
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 364,
+          "height": 402
+        }
+      ],
+      "styleIssues": [],
+      "firstPlotTop": 434,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAdvanced Concept StudiosFocused interactive coverage for Wolfram-st",
+      "errors": []
+    },
+    {
+      "route": "/math-lab/stats-inference",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 887,
+          "height": 606
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 1332,
+          "height": 222
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 1340,
+          "height": 74
+        }
+      ],
+      "styleIssues": [],
+      "firstPlotTop": 120,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAdvanced Concept StudiosFocused interactive coverage for Wolfram-st",
+      "errors": []
+    },
+    {
+      "route": "/math-lab/stats-inference",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 1247,
+          "height": 606
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 1886,
+          "height": 192
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 1894,
+          "height": 74
+        }
+      ],
+      "styleIssues": [],
+      "firstPlotTop": 120,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAdvanced Concept StudiosFocused interactive coverage for Wolfram-st",
+      "errors": []
+    },
+    {
+      "route": "/mathematical-modelling/epidemics",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 344,
+          "height": 295
+        },
+        {
+          "element": "svg.msk-graph",
+          "width": 344,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 821,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/mathematical-modelling/epidemics",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 661,
+          "height": 295
+        },
+        {
+          "element": "svg.msk-graph",
+          "width": 661,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 484,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/mathematical-modelling/epidemics",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 946,
+          "height": 295
+        },
+        {
+          "element": "svg.msk-graph",
+          "width": 946,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 484,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/mathematical-modelling/numerical",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 344,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 691,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/mathematical-modelling/numerical",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 661,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 408,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/mathematical-modelling/numerical",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 946,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 408,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/mathematical-modelling/regression",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 344,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 691,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/mathematical-modelling/regression",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 661,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 408,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/mathematical-modelling/regression",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph",
+          "width": 946,
+          "height": 295
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 408,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/concepts",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ns-mini-sets",
+          "width": 346,
+          "height": 100
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 151,
+          "height": 53
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 160,
+          "height": 56
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 169,
+          "height": 59
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 133,
+          "height": 47
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 119,
+          "height": 42
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 139,
+          "height": 49
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 124,
+          "height": 43
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 125,
+          "height": 44
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 120,
+          "height": 42
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 134,
+          "height": 47
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 114,
+          "height": 40
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 101,
+          "height": 35
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 3223,
+      "viewportHeight": 730,
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceNUMBERSYSTEMSMainStudio HomeRationalIrrational",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/concepts",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ns-mini-sets",
+          "width": 1068,
+          "height": 309
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 323,
+          "height": 113
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 323,
+          "height": 113
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 323,
+          "height": 113
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 323,
+          "height": 113
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 323,
+          "height": 113
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 323,
+          "height": 113
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 323,
+          "height": 113
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 323,
+          "height": 113
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 323,
+          "height": 113
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 323,
+          "height": 113
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 323,
+          "height": 113
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 323,
+          "height": 113
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 2446,
+      "viewportHeight": 756,
+      "firstPlotTop": 396,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceNUMBERSYSTEMSMainStudio HomeRationalIrrational",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/concepts",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ns-mini-sets",
+          "width": 1622,
+          "height": 470
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 508,
+          "height": 178
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 508,
+          "height": 178
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 508,
+          "height": 178
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 508,
+          "height": 178
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 508,
+          "height": 178
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 508,
+          "height": 178
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 508,
+          "height": 178
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 508,
+          "height": 178
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 508,
+          "height": 178
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 508,
+          "height": 178
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 508,
+          "height": 178
+        },
+        {
+          "element": "svg.ns-mini-canvas",
+          "width": 508,
+          "height": 178
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 2817,
+      "viewportHeight": 756,
+      "firstPlotTop": 396,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceNUMBERSYSTEMSMainStudio HomeRationalIrrational",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/integers",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.np-line-svg",
+          "width": 540,
+          "height": 180
+        },
+        {
+          "element": "svg.",
+          "width": 282,
+          "height": 92
+        },
+        {
+          "element": "svg.np-line-svg",
+          "width": 540,
+          "height": 205
+        },
+        {
+          "element": "svg.np-line-svg",
+          "width": 540,
+          "height": 175
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 4103,
+      "viewportHeight": 730,
+      "firstPlotTop": 1003,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceQuizTheory & moreShow controls2 panelsInteract",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/integers",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.np-line-svg",
+          "width": 1017,
+          "height": 190
+        },
+        {
+          "element": "svg.",
+          "width": 993,
+          "height": 92
+        },
+        {
+          "element": "svg.np-line-svg",
+          "width": 1304,
+          "height": 205
+        },
+        {
+          "element": "svg.np-line-svg",
+          "width": 290,
+          "height": 175
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 2526,
+      "viewportHeight": 756,
+      "firstPlotTop": 637,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceQuizTheory & moreShow controls2 panelsInteract",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/integers",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.np-line-svg",
+          "width": 1571,
+          "height": 190
+        },
+        {
+          "element": "svg.",
+          "width": 1547,
+          "height": 92
+        },
+        {
+          "element": "svg.np-line-svg",
+          "width": 1858,
+          "height": 205
+        },
+        {
+          "element": "svg.np-line-svg",
+          "width": 429,
+          "height": 175
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 2526,
+      "viewportHeight": 756,
+      "firstPlotTop": 637,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceQuizTheory & moreShow controls2 panelsInteract",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/practice",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "scrollHeight": 1628,
+      "viewportHeight": 730,
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceNUMBERSYSTEMSMainStudio HomeRationalIrrational",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/practice",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "scrollHeight": 1152,
+      "viewportHeight": 756,
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceNUMBERSYSTEMSMainStudio HomeRationalIrrational",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/practice",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "scrollHeight": 1152,
+      "viewportHeight": 756,
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceNUMBERSYSTEMSMainStudio HomeRationalIrrational",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/space",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.np-line-svg",
+          "width": 540,
+          "height": 180
+        },
+        {
+          "element": "svg.np-set-svg",
+          "width": 500,
+          "height": 299
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 4567,
+      "viewportHeight": 730,
+      "firstPlotTop": 983,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceQuizTheory & moreShow controls1 panelInteracti",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/space",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.np-line-svg",
+          "width": 1017,
+          "height": 190
+        },
+        {
+          "element": "svg.np-set-svg",
+          "width": 644,
+          "height": 300
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 2537,
+      "viewportHeight": 756,
+      "firstPlotTop": 637,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceQuizTheory & moreShow controls1 panelInteracti",
+      "errors": []
+    },
+    {
+      "route": "/number-systems/space",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.np-line-svg",
+          "width": 1571,
+          "height": 190
+        },
+        {
+          "element": "svg.np-set-svg",
+          "width": 932,
+          "height": 300
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 2517,
+      "viewportHeight": 756,
+      "firstPlotTop": 637,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceQuizTheory & moreShow controls1 panelInteracti",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/advanced-models",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.h-full.w-full",
+          "width": 346,
+          "height": 154
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 364,
+          "height": 380
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 3904,
+      "viewportHeight": 730,
+      "firstPlotTop": 1956,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceReady - 0%Advanced Statistical Models StudioSe",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/advanced-models",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.h-full.w-full",
+          "width": 950,
+          "height": 422
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 968,
+          "height": 440
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 2230,
+      "viewportHeight": 756,
+      "firstPlotTop": 609,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceReady - 0%Advanced Statistical Models StudioSe",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/advanced-models",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.h-full.w-full",
+          "width": 1504,
+          "height": 668
+        },
+        {
+          "element": "canvas.absolute.inset-0.z-10.touch-none.rounded-2xl.pointer-events-none.cursor-default",
+          "width": 1522,
+          "height": 686
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 2182,
+      "viewportHeight": 756,
+      "firstPlotTop": 609,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeInteractive workspaceReady - 0%Advanced Statistical Models StudioSe",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/clt",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 322,
+          "height": 252
+        },
+        {
+          "element": "svg.",
+          "width": 322,
+          "height": 252
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 655,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/clt",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 303,
+          "height": 237
+        },
+        {
+          "element": "svg.",
+          "width": 303,
+          "height": 237
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 390,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/clt",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 445,
+          "height": 349
+        },
+        {
+          "element": "svg.",
+          "width": 445,
+          "height": 349
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 390,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/data-explorer",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.statistics-chart",
+          "width": 344,
+          "height": 185
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 644,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/data-explorer",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.statistics-chart",
+          "width": 596,
+          "height": 320
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 401,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/data-explorer",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.statistics-chart",
+          "width": 857,
+          "height": 380
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 401,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/probability-statistics/experiments",
+      "error": "TimeoutError: locator.waitFor: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.studio-learning-host') to be visible\u001b[22m\n"
+    },
+    {
+      "route": "/probability-statistics/module",
+      "error": "TimeoutError: locator.waitFor: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.studio-learning-host') to be visible\u001b[22m\n"
+    },
+    {
+      "route": "/probability-statistics/quality-control",
+      "error": "Error: page.goto: net::ERR_NETWORK_IO_SUSPENDED at http://127.0.0.1:5190/probability-statistics/quality-control\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5190/probability-statistics/quality-control\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "route": "/probability-statistics/statistical-computing",
+      "error": "Error: page.goto: net::ERR_NETWORK_IO_SUSPENDED at http://127.0.0.1:5190/probability-statistics/statistical-computing\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5190/probability-statistics/statistical-computing\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "route": "/probability-statistics/time-series",
+      "error": "TimeoutError: locator.waitFor: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.studio-learning-host') to be visible\u001b[22m\n"
+    },
+    {
+      "route": "/studios/algebra/curriculum",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsAlgebra Studio · Learning pathExpressions → equat",
+      "errors": []
+    },
+    {
+      "route": "/studios/algebra/curriculum",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsAlgebra Studio · Learning pathExpressions → equat",
+      "errors": []
+    },
+    {
+      "route": "/studios/algebra/curriculum",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsAlgebra Studio · Learning pathExpressions → equat",
+      "errors": []
+    },
+    {
+      "route": "/studios/continued-fractions/curriculum",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsContinued Fractions Lab · Learning pathExpansions",
+      "errors": []
+    },
+    {
+      "route": "/studios/continued-fractions/curriculum",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsContinued Fractions Lab · Learning pathExpansions",
+      "errors": []
+    },
+    {
+      "route": "/studios/continued-fractions/curriculum",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsContinued Fractions Lab · Learning pathExpansions",
+      "errors": []
+    },
+    {
+      "route": "/studios/geometry/curriculum",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsGeometry Studio · Learning pathConstructions and ",
+      "errors": []
+    },
+    {
+      "route": "/studios/geometry/curriculum",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsGeometry Studio · Learning pathConstructions and ",
+      "errors": []
+    },
+    {
+      "route": "/studios/geometry/curriculum",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsGeometry Studio · Learning pathConstructions and ",
+      "errors": []
+    },
+    {
+      "route": "/studios/number-systems/curriculum",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsNumber Systems Studio · Learning pathIntegers → r",
+      "errors": []
+    },
+    {
+      "route": "/studios/number-systems/curriculum",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsNumber Systems Studio · Learning pathIntegers → r",
+      "errors": []
+    },
+    {
+      "route": "/studios/number-systems/curriculum",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsNumber Systems Studio · Learning pathIntegers → r",
+      "errors": []
+    },
+    {
+      "route": "/studios/stats-inference/curriculum",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsStatistics Inference Studio · Learning pathEstima",
+      "errors": []
+    },
+    {
+      "route": "/studios/stats-inference/curriculum",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsStatistics Inference Studio · Learning pathEstima",
+      "errors": []
+    },
+    {
+      "route": "/studios/stats-inference/curriculum",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [],
+      "styleIssues": [],
+      "firstPlotTop": null,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeAll learning pathsStatistics Inference Studio · Learning pathEstima",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/ar",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 342,
+          "height": 352
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 434,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": [
+        "Failed to fetch dynamically imported module: http://127.0.0.1:5190/src/pages/Trigonometry.tsx?t=1791617351439",
+        "Failed to fetch dynamically imported module: http://127.0.0.1:5190/src/pages/Trigonometry.tsx?t=1791617351439"
+      ]
+    },
+    {
+      "route": "/trigonometry/ar",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 731,
+          "height": 352
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 258,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": [
+        "Failed to fetch dynamically imported module: http://127.0.0.1:5190/src/pages/Trigonometry.tsx?t=1791617351439",
+        "Failed to fetch dynamically imported module: http://127.0.0.1:5190/src/pages/Trigonometry.tsx?t=1791617351439"
+      ]
+    },
+    {
+      "route": "/trigonometry/ar",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "canvas.",
+          "width": 1047,
+          "height": 352
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 258,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": [
+        "Failed to fetch dynamically imported module: http://127.0.0.1:5190/src/pages/Trigonometry.tsx?t=1791617351439",
+        "Failed to fetch dynamically imported module: http://127.0.0.1:5190/src/pages/Trigonometry.tsx?t=1791617351439"
+      ]
+    },
+    {
+      "route": "/trigonometry/inverse",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ivt-alpine",
+          "width": 250,
+          "height": 303
+        },
+        {
+          "element": "svg.ivt-graph",
+          "width": 342,
+          "height": 196
+        },
+        {
+          "element": "svg.ivt-circle",
+          "width": 342,
+          "height": 210
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 324,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-circle.ivt-preview",
+          "width": 324,
+          "height": 190
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 324,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-numberline",
+          "width": 324,
+          "height": 93
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 3871,
+      "viewportHeight": 730,
+      "firstPlotTop": 114,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/inverse",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ivt-alpine",
+          "width": 874,
+          "height": 321
+        },
+        {
+          "element": "svg.ivt-circle.ivt-preview",
+          "width": 450,
+          "height": 275
+        },
+        {
+          "element": "svg.ivt-graph",
+          "width": 847,
+          "height": 270
+        },
+        {
+          "element": "svg.ivt-circle",
+          "width": 423,
+          "height": 270
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 220,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-circle.ivt-preview",
+          "width": 220,
+          "height": 178
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 220,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-numberline",
+          "width": 220,
+          "height": 63
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 1672,
+      "viewportHeight": 756,
+      "firstPlotTop": 88,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/inverse",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ivt-alpine",
+          "width": 1229,
+          "height": 321
+        },
+        {
+          "element": "svg.ivt-circle.ivt-preview",
+          "width": 688,
+          "height": 275
+        },
+        {
+          "element": "svg.ivt-graph",
+          "width": 1212,
+          "height": 270
+        },
+        {
+          "element": "svg.ivt-circle",
+          "width": 606,
+          "height": 270
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 327,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-circle.ivt-preview",
+          "width": 327,
+          "height": 220
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 327,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-numberline",
+          "width": 327,
+          "height": 94
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 1663,
+      "viewportHeight": 756,
+      "firstPlotTop": 88,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/right-triangle",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive.rt-target-frame",
+          "width": 344,
+          "height": 295
+        },
+        {
+          "element": "svg.",
+          "width": 220,
+          "height": 116
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 782,
+      "viewportHeight": 730,
+      "firstPlotTop": 433,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/right-triangle",
+      "width": 1366,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive.rt-target-frame",
+          "width": 695,
+          "height": 295
+        },
+        {
+          "element": "svg.",
+          "width": 220,
+          "height": 116
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 257,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/right-triangle",
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive.rt-target-frame",
+          "width": 995,
+          "height": 295
+        },
+        {
+          "element": "svg.",
+          "width": 220,
+          "height": 116
+        }
+      ],
+      "styleIssues": [],
+      "scrollHeight": 756,
+      "viewportHeight": 756,
+      "firstPlotTop": 257,
+      "bodyText": "Studio HomeLessons & PracticeInteractive InvestigationsApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & more",
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,345 @@
+{
+  "fileHeader": {
+    "magic": "MATHAPP_PORTABLE_FILE",
+    "fileKind": "lesson",
+    "fileExtension": ".mathlesson",
+    "mimeType": "application/vnd.mathapp.lesson",
+    "schemaVersion": 1,
+    "minimumReaderVersion": "1.0.0",
+    "createdByApp": "Math Universe",
+    "createdByAppVersion": "1.0.1"
+  },
+  "workspace": {
+    "type": "cas",
+    "typeLabel": "CAS",
+    "engine": "math-universe-symbolic-notebook",
+    "engineVersion": "1.0.1"
+  },
+  "document": {
+    "id": "aa00f720-81f5-4454-a638-2fc2c1b4e97c",
+    "title": "Solve and Verify a Quadratic Equation",
+    "description": "Factor, solve and substitute to verify x² − 5x + 6 = 0.",
+    "author": {
+      "name": "Math Universe",
+      "organization": "Sample Lesson Library"
+    },
+    "createdAt": "2026-08-20T10:30:00.000Z",
+    "updatedAt": "2026-08-20T10:30:00.000Z",
+    "language": "en",
+    "tags": [
+      "quadratic",
+      "factor",
+      "solve",
+      "verification",
+      "cas"
+    ],
+    "difficulty": "intermediate",
+    "gradeLevel": [
+      "8",
+      "9"
+    ],
+    "subject": "Mathematics",
+    "topic": "Algebra",
+    "estimatedDurationMinutes": 20
+  },
+  "preview": {
+    "thumbnailIncluded": true,
+    "thumbnailDataUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIj48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgcng9IjI4IiBmaWxsPSIjMDcxMTFmIi8+PHBhdGggZD0iTTAgMjgwIFExNjAgODAgMzIwIDIxMCBUNjQwIDkwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzNGQzOTkiIHN0cm9rZS13aWR0aD0iMTAiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSIyMTAiIHI9IjEzIiBmaWxsPSIjZmJiZjI0Ii8+PHRleHQgeD0iMzIiIHk9IjU4IiBmaWxsPSIjZTZmYmZmIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPlNvbHZlIGFuZCBWZXJpZnkgYSBRdWFkcmF0aWMgRXF1YXRpb248L3RleHQ+PHRleHQgeD0iMzIiIHk9IjMzMCIgZmlsbD0iIzkzYzVmZCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4Ij5NYXRoIFVuaXZlcnNlIHNhbXBsZSBsZXNzb248L3RleHQ+PC9zdmc+",
+    "objectCount": 4,
+    "expressionCount": 5,
+    "hasSolution": true
+  },
+  "scene": {
+    "workspaceSnapshot": {
+      "input": "",
+      "results": [],
+      "plots": [],
+      "construction": {
+        "points": [],
+        "lines": [],
+        "circles": [],
+        "polygons": [],
+        "arcs": [],
+        "loci": [],
+        "constraints": []
+      },
+      "geometryGraphSettings": {
+        "showGrid": true,
+        "showAxes": true,
+        "showUnitLabels": true,
+        "showPointLabels": true,
+        "showMeasurements": true,
+        "highContrastGrid": false,
+        "snapToGrid": true,
+        "snapToObjects": true
+      },
+      "lockedGeometryIds": [],
+      "surface": "paraboloid",
+      "surfaceExpression": "x^2+y^2",
+      "cameraPreset3d": "isometric",
+      "sceneAnimationSpeed": 0,
+      "solid": "cube",
+      "surfaceScale": 1,
+      "height3d": 2.5,
+      "crossSection": 0,
+      "showSurface": false,
+      "showSolid": true,
+      "autoRotate3d": false,
+      "zoom3d": 1,
+      "transforms3d": {},
+      "added3dObjects": [],
+      "deletedBase3dIds": [],
+      "images": [],
+      "protocol": []
+    },
+    "casNotebookState": {
+      "assumptions": "x is real",
+      "mode": "exact",
+      "cells": [
+        {
+          "id": "cas-1",
+          "input": "x^2 - 5*x + 6 = 0",
+          "operation": "solve",
+          "output": "",
+          "exact": "",
+          "numeric": "",
+          "ok": true,
+          "detail": "",
+          "steps": [],
+          "createdAt": "2026-08-20T10:30:00.000Z"
+        }
+      ]
+    },
+    "selectedCasCellId": "cas-1",
+    "composerInput": "",
+    "composerOperation": "solve",
+    "workspaceType": "cas"
+  },
+  "lesson": {
+    "lessonId": "90d75f92-f4ee-4e48-861c-35fa980fb597",
+    "title": "Solve and Verify a Quadratic Equation",
+    "shortDescription": "Factor, solve and substitute to verify x² − 5x + 6 = 0.",
+    "subject": "Mathematics",
+    "workspaceType": "cas",
+    "topic": "Algebra",
+    "subtopic": "Quadratic equations",
+    "difficulty": "intermediate",
+    "gradeLevel": [
+      "8",
+      "9"
+    ],
+    "learningObjectives": [
+      "The exact solutions are x = 2 and x = 3, and both substitutions return zero."
+    ],
+    "prerequisites": [
+      "Basic coordinate and algebra fluency"
+    ],
+    "instructions": [
+      "Factor the polynomial.",
+      "Use the zero-product property.",
+      "Substitute each root into the original equation."
+    ],
+    "hints": [
+      "Find two numbers whose product is 6 and sum is −5.",
+      "The factors are (x−2) and (x−3).",
+      "A valid root makes the original left side equal zero."
+    ],
+    "checkpoints": [],
+    "solutionSteps": [
+      "Factor x²−5x+6 as (x−2)(x−3).",
+      "Set each factor equal to zero.",
+      "Obtain x=2 and x=3.",
+      "Substitute both values and verify the output is 0."
+    ],
+    "expectedResult": "The exact solutions are x = 2 and x = 3, and both substitutions return zero.",
+    "teacherNotes": "Invite students to explain why the visual and symbolic results agree.",
+    "estimatedDurationMinutes": 20,
+    "maximumScore": 100,
+    "attemptLimit": null,
+    "allowSolutionView": true,
+    "tags": [
+      "quadratic",
+      "factor",
+      "solve",
+      "verification",
+      "cas"
+    ],
+    "initialScene": {
+      "workspaceSnapshot": {
+        "input": "",
+        "results": [],
+        "plots": [],
+        "construction": {
+          "points": [],
+          "lines": [],
+          "circles": [],
+          "polygons": [],
+          "arcs": [],
+          "loci": [],
+          "constraints": []
+        },
+        "geometryGraphSettings": {
+          "showGrid": true,
+          "showAxes": true,
+          "showUnitLabels": true,
+          "showPointLabels": true,
+          "showMeasurements": true,
+          "highContrastGrid": false,
+          "snapToGrid": true,
+          "snapToObjects": true
+        },
+        "lockedGeometryIds": [],
+        "surface": "paraboloid",
+        "surfaceExpression": "x^2+y^2",
+        "cameraPreset3d": "isometric",
+        "sceneAnimationSpeed": 0,
+        "solid": "cube",
+        "surfaceScale": 1,
+        "height3d": 2.5,
+        "crossSection": 0,
+        "showSurface": false,
+        "showSolid": true,
+        "autoRotate3d": false,
+        "zoom3d": 1,
+        "transforms3d": {},
+        "added3dObjects": [],
+        "deletedBase3dIds": [],
+        "images": [],
+        "protocol": []
+      },
+      "casNotebookState": {
+        "assumptions": "x is real",
+        "mode": "exact",
+        "cells": [
+          {
+            "id": "cas-1",
+            "input": "x^2 - 5*x + 6 = 0",
+            "operation": "solve",
+            "output": "",
+            "exact": "",
+            "numeric": "",
+            "ok": true,
+            "detail": "",
+            "steps": [],
+            "createdAt": "2026-08-20T10:30:00.000Z"
+          }
+        ]
+      },
+      "selectedCasCellId": "cas-1",
+      "composerInput": "",
+      "composerOperation": "solve",
+      "workspaceType": "cas"
+    },
+    "solutionScene": {
+      "workspaceSnapshot": {
+        "input": "",
+        "results": [],
+        "plots": [],
+        "construction": {
+          "points": [],
+          "lines": [],
+          "circles": [],
+          "polygons": [],
+          "arcs": [],
+          "loci": [],
+          "constraints": []
+        },
+        "geometryGraphSettings": {
+          "showGrid": true,
+          "showAxes": true,
+          "showUnitLabels": true,
+          "showPointLabels": true,
+          "showMeasurements": true,
+          "highContrastGrid": false,
+          "snapToGrid": true,
+          "snapToObjects": true
+        },
+        "lockedGeometryIds": [],
+        "surface": "paraboloid",
+        "surfaceExpression": "x^2+y^2",
+        "cameraPreset3d": "isometric",
+        "sceneAnimationSpeed": 0,
+        "solid": "cube",
+        "surfaceScale": 1,
+        "height3d": 2.5,
+        "crossSection": 0,
+        "showSurface": false,
+        "showSolid": true,
+        "autoRotate3d": false,
+        "zoom3d": 1,
+        "transforms3d": {},
+        "added3dObjects": [],
+        "deletedBase3dIds": [],
+        "images": [],
+        "protocol": []
+      },
+      "casNotebookState": {
+        "assumptions": "x is real",
+        "mode": "exact",
+        "cells": [
+          {
+            "id": "cas-1",
+            "input": "x^2 - 5*x + 6",
+            "operation": "factor",
+            "output": "(x - 2)*(x - 3)",
+            "exact": "(x - 2)*(x - 3)",
+            "numeric": "",
+            "ok": true,
+            "detail": "",
+            "steps": [],
+            "createdAt": "2026-08-20T10:30:00.000Z"
+          },
+          {
+            "id": "cas-2",
+            "input": "x^2 - 5*x + 6 = 0",
+            "operation": "solve",
+            "output": "x = 2, x = 3",
+            "exact": "x = 2, x = 3",
+            "numeric": "",
+            "ok": true,
+            "detail": "",
+            "steps": [],
+            "createdAt": "2026-08-20T10:30:00.000Z"
+          },
+          {
+            "id": "cas-3",
+            "input": "substitute x=2 into x^2 - 5*x + 6",
+            "operation": "simplify",
+            "output": "0",
+            "exact": "0",
+            "numeric": "",
+            "ok": true,
+            "detail": "",
+            "steps": [],
+            "createdAt": "2026-08-20T10:30:00.000Z"
+          },
+          {
+            "id": "cas-4",
+            "input": "substitute x=3 into x^2 - 5*x + 6",
+            "operation": "simplify",
+            "output": "0",
+            "exact": "0",
+            "numeric": "",
+            "ok": true,
+            "detail": "",
+            "steps": [],
+            "createdAt": "2026-08-20T10:30:00.000Z"
+          }
+        ]
+      },
+      "selectedCasCellId": "cas-1",
+      "composerInput": "",
+      "composerOperation": "solve",
+      "workspaceType": "cas"
+    },
+    "openMode": "practice"
+  },
+  "metadata": {
+    "sample": true,
+    "license": "CC BY 4.0"
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "contentHash": "1042f20638199181e82716f198b0b079332e6d39316626a85d869552bf4fdb60"
+  }
+}

@@ -597,7 +597,7 @@ function DistancePlane({
           <text
             x={graph.originX + value * graph.scale - 4}
             y={graph.originY + 17}
-            fontSize="9"
+            fontSize="12"
             fill="#334155"
           >
             {value}
@@ -606,7 +606,7 @@ function DistancePlane({
             <text
               x={graph.originX - 16}
               y={graph.originY - value * graph.scale + 3}
-              fontSize="9"
+              fontSize="12"
               fill="#334155"
             >
               {value}
@@ -614,10 +614,10 @@ function DistancePlane({
           )}
         </g>
       ))}
-      <text x="430" y={graph.originY - 6} fontSize="11" fontWeight="700">
+      <text x="430" y={graph.originY - 6} fontSize="12" fontWeight="700">
         x
       </text>
-      <text x={graph.originX + 7} y="12" fontSize="11" fontWeight="700">
+      <text x={graph.originX + 7} y="12" fontSize="12" fontWeight="700">
         y
       </text>
       {pointsVisible >= 2 && (
@@ -687,7 +687,7 @@ function DistancePlane({
               fill="#eff8ff"
               stroke="#38a6e8"
             />
-            <text x="7" y="17" fill="#0872b8" fontSize="10" fontWeight="800">
+            <text x="7" y="17" fill="#0872b8" fontSize="12" fontWeight="800">
               AB = {measurement.distance.toFixed(2)}
             </text>
           </g>
@@ -711,7 +711,7 @@ function DistancePlane({
             x={pointA.x + 8}
             y={pointA.y + 25}
             fill="#0995aa"
-            fontSize="11"
+            fontSize="12"
             fontWeight="800"
           >
             A ({format(a.x)}, {format(a.y)})
@@ -736,7 +736,7 @@ function DistancePlane({
             x={pointB.x}
             y={pointB.y - 15}
             fill="#7438e5"
-            fontSize="11"
+            fontSize="12"
             fontWeight="800"
           >
             B ({format(b.x)}, {format(b.y)})
@@ -824,19 +824,19 @@ function MiniTriangle({
       <path d="M164 82V71H175" fill="none" stroke="#0ca9be" />
       <circle cx="28" cy="82" r="4" fill="#0ca9be" />
       <circle cx="175" cy="22" r="4" fill="#7438e5" />
-      <text x="12" y="90" fontSize="10" fill="#0ca9be" fontWeight="800">
+      <text x="12" y="90" fontSize="12" fill="#0ca9be" fontWeight="800">
         A
       </text>
-      <text x="183" y="20" fontSize="10" fill="#7438e5" fontWeight="800">
+      <text x="183" y="20" fontSize="12" fill="#7438e5" fontWeight="800">
         B
       </text>
-      <text x="78" y="99" fontSize="9" fill="#0ca9be">
+      <text x="78" y="99" fontSize="12" fill="#0ca9be">
         |Δx| = {Math.abs(measurement.dx)}
       </text>
-      <text x="180" y="57" fontSize="9" fill="#7438e5">
+      <text x="180" y="57" fontSize="12" fill="#7438e5">
         |Δy| = {Math.abs(measurement.dy)}
       </text>
-      <text x="62" y="43" fontSize="9" fill="#334155" fontWeight="800">
+      <text x="62" y="43" fontSize="12" fill="#334155" fontWeight="800">
         AB = {measurement.distance.toFixed(2)}
       </text>
     </svg>
@@ -939,7 +939,7 @@ function PracticePlane({
         x={pointP.x - 26}
         y={pointP.y - 10}
         fill="#0995aa"
-        fontSize="10"
+        fontSize="12"
         fontWeight="800"
       >
         P ({format(p.x)}, {format(p.y)})
@@ -948,7 +948,7 @@ function PracticePlane({
         x={pointQ.x - 20}
         y={pointQ.y + 22}
         fill="#7438e5"
-        fontSize="10"
+        fontSize="12"
         fontWeight="800"
       >
         Q ({format(q.x)}, {format(q.y)})

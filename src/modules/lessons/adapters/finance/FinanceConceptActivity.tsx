@@ -106,7 +106,7 @@ export function FinanceConceptActivity({
                     y={Math.max(14, item.cy - 10)}
                     textAnchor="middle"
                     fill="white"
-                    fontSize="11"
+                    fontSize="12"
                   >
                     {item.label}
                   </text>

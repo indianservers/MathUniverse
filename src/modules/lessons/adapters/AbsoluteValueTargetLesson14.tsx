@@ -22,10 +22,10 @@ export default function AbsoluteValueTargetLesson14({
     [mode, setMode] = useState<"distance" | "direction">("distance"),
     [view, setView] = useState(0),
     [actions, setActions] = useState(0),
-    [firstAnswer, setFirstAnswer] = useState("7"),
-    [secondAnswer, setSecondAnswer] = useState("7"),
-    [checked, setChecked] = useState(true),
-    [revealed, setRevealed] = useState(true);
+    [firstAnswer, setFirstAnswer] = useState(""),
+    [secondAnswer, setSecondAnswer] = useState(""),
+    [checked, setChecked] = useState(false),
+    [revealed, setRevealed] = useState(false);
   const distance = Math.abs(value),
     direction =
       value < 0 ? "Left of zero" : value > 0 ? "Right of zero" : "At zero",
@@ -40,10 +40,10 @@ export default function AbsoluteValueTargetLesson14({
     setMode("distance");
     setView(0);
     setActions(0);
-    setFirstAnswer("7");
-    setSecondAnswer("7");
-    setChecked(true);
-    setRevealed(true);
+    setFirstAnswer("");
+    setSecondAnswer("");
+    setChecked(false);
+    setRevealed(false);
     onInteraction();
   };
   useEffect(() => {
@@ -51,10 +51,10 @@ export default function AbsoluteValueTargetLesson14({
     setMode("distance");
     setView(0);
     setActions(0);
-    setFirstAnswer("7");
-    setSecondAnswer("7");
-    setChecked(true);
-    setRevealed(true);
+    setFirstAnswer("");
+    setSecondAnswer("");
+    setChecked(false);
+    setRevealed(false);
   }, [resetToken]);
   const grade = () => {
     setChecked(Number(firstAnswer) === 7 && Number(secondAnswer) === 7);

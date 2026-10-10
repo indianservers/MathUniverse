@@ -1066,6 +1066,30 @@ body:has(.surds100-page)
   line-height: 27px;
   vertical-align: 8px;
 }
+@media (max-width: 799px) {
+  .surds100-tree {
+    left: 12px;
+    width: calc(100% - 24px);
+    height: 315px !important;
+    overflow-x: auto;
+  }
+  .surds100-tree article.remainder {
+    right: 0;
+  }
+  .surds100-extraction {
+    left: 12px;
+    width: min(271px, calc(100% - 24px));
+  }
+  .surds100-lab > footer {
+    left: 12px;
+    max-width: calc(100% - 24px);
+  }
+  .surds100-examples > article:nth-child(2) > div p {
+    white-space: normal;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+}
 body:has(.surds100-page) nav[aria-label="Adjacent lessons"] {
   display: none;
 }

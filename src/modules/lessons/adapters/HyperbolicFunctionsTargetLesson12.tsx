@@ -28,7 +28,7 @@ export default function HyperbolicFunctionsTargetLesson12({
     [view, setView] = useState(0),
     [actions, setActions] = useState(0),
     [problem, setProblem] = useState(0),
-    [revealed, setRevealed] = useState(true);
+    [revealed, setRevealed] = useState(false);
   const positive = Math.exp(x),
     negative = Math.exp(-x),
     sinh = (positive - negative) / 2;
@@ -45,7 +45,7 @@ export default function HyperbolicFunctionsTargetLesson12({
     setView(0);
     setActions(0);
     setProblem(0);
-    setRevealed(true);
+    setRevealed(false);
     onInteraction();
   };
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function HyperbolicFunctionsTargetLesson12({
     setView(0);
     setActions(0);
     setProblem(0);
-    setRevealed(true);
+    setRevealed(false);
   }, [resetToken]);
   const curves = useMemo(
     () =>

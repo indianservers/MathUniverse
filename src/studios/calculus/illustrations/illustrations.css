@@ -1,0 +1,39 @@
+.calculus-lab-illustration {
+  --cli-paper: #f7fbff;
+  --cli-ink: #15386b;
+  pointer-events: none;
+  overflow: hidden;
+  contain: paint;
+  isolation: isolate;
+}
+.calculus-lab-illustration .cli-canvas { visibility: hidden; pointer-events: none; }
+.calculus-lab-illustration .cli-canvas canvas { display: block; width: 180px; height: 78px; }
+.calculus-lab-illustration .cli-canvas { transition: filter 350ms ease; }
+.calculus-lab-illustration[data-hover="true"] .cli-canvas { filter: brightness(1.08) saturate(1.08); }
+.calculus-lab-illustration[data-canvas-ready="true"] .cli-scene { visibility: hidden; }
+.calculus-lab-illustration[data-canvas-ready="true"] .cli-canvas { visibility: visible; }
+.calculus-lab-illustration .cli-label {
+  fill: var(--cli-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+}
+.calculus-lab-illustration .cli-scene {
+  transition: filter 350ms ease;
+}
+.calculus-lab-illustration[data-hover="true"] .cli-scene {
+  filter: drop-shadow(0 0 1.3px #24c9f955);
+}
+.cs-dark .calculus-lab-illustration,
+.calculus-lab-illustration[data-theme="dark"] {
+  --cli-paper: #18233b;
+  --cli-ink: #dceeff;
+}
+.workspace-glow .calculus-lab-illustration,
+.calculus-lab-illustration[data-theme="glow"] {
+  --cli-paper: #19263d;
+  --cli-ink: #d7faff;
+}
+@media (prefers-reduced-motion: reduce) {
+  .calculus-lab-illustration .cli-scene,
+  .calculus-lab-illustration .cli-canvas { transition: none; }
+}

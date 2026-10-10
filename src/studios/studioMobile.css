@@ -1,0 +1,425 @@
+/* Shared touch and sizing contract for every Studio, including custom labs.
+   Phone layouts use one content column; larger layouts keep their own grids. */
+.studio-learning-host[data-mobile-first] {
+  min-width: 0;
+  max-width: 100%;
+  color-scheme: light;
+}
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(.is-dark, .cs-dark) { color-scheme: dark; }
+.studio-learning-host[data-mobile-first] :where(section, article, aside, main, div, nav, header, footer, form, label, fieldset) {
+  min-width: 0;
+}
+@media (max-width: 767px) {
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"])),
+.studio-theory-drawer :is(button, select, textarea, input:not([type="checkbox"]):not([type="radio"]):not([type="range"])) {
+  min-height: 44px;
+  min-width: 44px;
+  max-width: 100%;
+}
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(button, select), .studio-theory-drawer button {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  height: auto;
+}
+.studio-learning-host[data-mobile-first] .studio-learning-content a[href],
+.studio-learning-host[data-mobile-first] .studio-learning-nav a {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+}
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(p, output, dd, h1, h2, h3, h4, code) {
+  overflow-wrap: anywhere;
+}
+.studio-learning-host[data-mobile-first] img {
+  max-width: 100%;
+  height: auto;
+}
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(canvas, svg) {
+  max-width: 100%;
+}
+.studio-learning-host[data-mobile-first] :focus-visible {
+  outline: 3px solid #0284c7;
+  outline-offset: 3px;
+}
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(input[type="range"], input[type="checkbox"], input[type="radio"]) {
+  accent-color: #0284c7;
+}
+@media (max-width: 767px) {
+.studio-learning-host[data-mobile-first] input[type="range"] {
+  min-height: 44px;
+  max-width: 100%;
+}
+.studio-learning-host[data-mobile-first] summary,
+.studio-theory-drawer summary {
+  min-height: 44px;
+  display: list-item;
+  padding-block: 8px;
+  overflow-wrap: anywhere;
+}
+}
+
+@media (max-width: 767px) {
+  .studio-learning-host[data-mobile-first] {
+    --studio-phone-gap: 12px;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(input, select, textarea) {
+    font-size: 16px !important; /* Override compact lab inputs to avoid focus zoom. */
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 6px;
+    padding: 6px max(8px, env(safe-area-inset-left));
+    scroll-padding-inline: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-nav > a {
+    flex: 0 0 auto;
+    justify-content: center;
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  .studio-learning-host[data-mobile-first] .lab-section-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 6px 8px;
+    gap: 6px;
+    scroll-padding-inline: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .studio-learning-host[data-mobile-first] .lab-section-tabs button {
+    flex: 0 0 auto;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  .studio-learning-host[data-mobile-first] .focused-lab > [role="tabpanel"] {
+    padding-bottom: calc(100px + env(safe-area-inset-bottom));
+    scroll-padding-block: 12px;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.msk-lab, .msk-home, .msk-split-canvas, .msk-dual-dark, .de-lab-grid, .odes-lab, .studio-curriculum-layout, .studio-parameter-grid) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--studio-phone-gap);
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.alg-expr-dash, .alg-seq-grid, .as-grid-3, .as-bottom, .as-bool, .as-poset, .cxs-home-grid, .cs-header, .de-topbar) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .studio-learning-host[data-mobile-first] .alg-dash-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.alg-expr-dash, .alg-dash-layout) > * {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.alg-sidebar, .cxs-sidebar) nav {
+    flex: 0 0 auto;
+    min-width: max-content;
+  }
+  .studio-learning-host[data-mobile-first] .cs-header-home {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.alg-tile-actions, .de-phase1-quicklinks, .de-search-wrap, .as-circuit, .cxs-flow) {
+    flex-wrap: wrap;
+    max-width: 100%;
+    gap: 8px;
+  }
+  .studio-learning-host[data-mobile-first] .de-search-wrap { width: 100%; }
+  .studio-learning-host[data-mobile-first] .de-topbar {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.de-phase1-quicklinks, .de-search-wrap) > * {
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.as-circuit, .as-switch) { flex-wrap: wrap; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.as-circuit, .as-switch) :is(input[type="checkbox"], input[type="radio"]) {
+    min-width: 20px;
+    min-height: 20px;
+    flex-shrink: 0;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(h1, h2, h3, h4, small, b, strong, .truncate) {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .studio-learning-host[data-mobile-first] .alg-built-tiles {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.alg-home-target, .as-home) nav {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.msk-shell, .la-lab, .la-play-grid, .la-play-canvases) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .studio-learning-host[data-mobile-first] .msk-stage {
+    grid-column: 1;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.la-topic-grid, .la-xyz) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.la-home-dock, .la-dock-continue) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .studio-learning-host[data-mobile-first] .la-dock-continue {
+    flex-wrap: wrap;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.la-topic-card, .la-topic-card > a) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.la-topic-card, .la-topic-card > a) :is(b, strong) {
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+  .studio-learning-host[data-mobile-first] .studio-canvas-tools {
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
+    max-width: 100%;
+    gap: 6px;
+    height: auto;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.cs-header-actions, .gt-header-actions) {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  .studio-learning-host[data-mobile-first] .cds-expression {
+    grid-template-columns: auto minmax(0, 1fr) 44px;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content header {
+    flex-wrap: wrap;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.shapes-viewport-toolbar, .shapes-segmented-control, .shapes-viewport-actions) {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .studio-learning-host[data-mobile-first] .shapes-viewport-actions { display: flex; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .graph-studio-3d-shell {
+    grid-template-rows: auto minmax(300px, 1fr) 22px auto !important;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.gs3d-topbar, .gs3d-top-actions, .gs2d-view-toolbar) {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 44px;
+    gap: 6px;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .gs3d-topbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px;
+  }
+  .studio-learning-host[data-mobile-first] .ci-visual-actions {
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.cls-learning-tabs, .ci-learning nav) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .studio-learning-host[data-mobile-first] .cds-stepper {
+    grid-template-columns: 20px minmax(0, 1fr) 44px 44px;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.gt-status, .geo-lesson-workspace-tools) {
+    flex-wrap: wrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    gap: 6px;
+  }
+  .studio-learning-host[data-mobile-first] .geo-lesson-workspace-tools > label {
+    flex: 1 1 140px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .studio-learning-host[data-mobile-first] .geo-lesson-workspace-tools select {
+    flex: 1;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.msk-stage, .alg-main, .cs-main, .cxs-main, .de-main-content, .studio-curriculum) {
+    padding: 12px;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.msk-extra-frame, .msk-panel, .alg-card, .cs-card, .cxs-card, .de-panel) {
+    max-height: none;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.msk-top, .alg-header-actions, .cs-header-actions, .cxs-header-actions, .de-header-actions, .la-header) {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.msk-tabs, .la-mode-tabs, .alg-header-modes, .cxs-header-modes, .cs-mode-tabs) {
+    max-width: 100%;
+    overflow-x: auto;
+    gap: 6px;
+    scroll-padding-inline: 8px;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.msk-tabs, .la-mode-tabs) > button {
+    flex-shrink: 0;
+  }
+  .studio-learning-host[data-mobile-first] table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .studio-learning-host[data-mobile-first] pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+  .studio-learning-host[data-mobile-first] .cinematic-hero {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    min-height: 0;
+    height: auto;
+  }
+  .studio-learning-host[data-mobile-first] .cinematic-hero > .cinematic-copy {
+    padding: 20px 16px;
+  }
+  .studio-learning-host[data-mobile-first] .cinematic-copy h1 {
+    font-size: clamp(26px, 8vw, 36px);
+    letter-spacing: -0.7px;
+  }
+  .studio-learning-host[data-mobile-first] .cinematic-hero > .cinematic-scene {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+  }
+  .studio-learning-host[data-mobile-first] .cinematic-motion-tools {
+    flex-wrap: wrap;
+    max-width: calc(100% - 16px);
+  }
+  .studio-learning-host[data-mobile-first] .cinematic-hero .cinematic-equation {
+    max-width: 90%;
+    white-space: normal;
+    text-align: center;
+    top: 30%;
+  }
+  .studio-learning-host[data-mobile-first] .studio-curriculum-layout article {
+    padding: 16px;
+  }
+  .studio-learning-host[data-mobile-first] .studio-curriculum :is(h2, summary) {
+    overflow-wrap: anywhere;
+  }
+  .studio-theory-drawer {
+    width: 100%;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .studio-theory-drawer > header {
+    padding: 8px max(12px, env(safe-area-inset-right));
+  }
+  .studio-theory-fab {
+    bottom: max(12px, env(safe-area-inset-bottom));
+    right: max(12px, env(safe-area-inset-right));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-learning-host[data-mobile-first] * {
+    scroll-behavior: auto;
+  }
+}
+
+/* Intrinsic content must not force a narrow grid track wider than the screen. */
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(.katex, .katex-display) { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.studio-learning-host[data-mobile-first] .katex { display: inline-block; padding-block: 3px; }
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(small, strong) { white-space: normal; overflow-wrap: anywhere; }
+.studio-learning-host[data-mobile-first] .alg-home-hero-tools { flex-wrap: wrap; }
+.studio-learning-host[data-mobile-first] .alg-home-hero-tools label { min-width: 0; max-width: 100%; }
+.studio-learning-host[data-mobile-first] .as-switch button { display: flex; align-items: center; justify-content: center; width: 56px; min-width: 56px; padding: 4px; }
+@media (max-width: 767px) {
+  html body #main-content .studio-learning-host[data-mobile-first] nav[aria-label="Breadcrumb"] a { min-height: 44px !important; min-width: 44px; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.msk-lab-tools, .la-tool, .rt-target-inline-toolbar, .msk-icon-tools, .da-graph-card header > div) { flex-wrap: wrap; }
+  .studio-learning-host[data-mobile-first] .la-tool > span { white-space: normal; overflow-wrap: anywhere; }
+  .studio-learning-host[data-mobile-first] .la-thumbs { max-width: 100%; overflow-x: auto; padding-bottom: 8px; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.cs-series-lab, .np-live-inputs) { grid-template-columns: minmax(0, 1fr); }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .np-live-nudge { grid-template-columns: 44px minmax(0, 1fr) 44px; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .de2-point-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 44px; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.ci-function, .cls-expression-row) { grid-template-columns: auto minmax(0, 1fr) 44px; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .ci-range > div { grid-template-columns: 44px minmax(0, 1fr) 44px; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .mvc-expression > div { grid-template-columns: minmax(0, 1fr) 44px; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .its-stepper { grid-template-columns: 44px 44px minmax(0, 1fr) 44px 44px; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .ci-visual-actions { flex: 0 0 auto; }
+}
+
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(.la-slider, .msk-num-row) { grid-template-columns: minmax(0, 70px) minmax(0, 1fr) 48px; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .msk-num-row { grid-template-columns: minmax(0, 1fr) 42px; }
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(.la-slider input, .msk-num-row input) { min-width: 0; width: 100%; }
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(.de-top-actions, .geo-lesson-workspace-tools, .la-canvas-tools, .shapes-viewport-toolbar, .shapes-segmented-control) { flex-wrap: wrap; }
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(.la-thumbs) { overflow-x: auto; max-width: 100%; }
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(.cs-player, .cds-tip) { display: flex; flex-wrap: wrap; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .cs-player > * { flex: 1 1 60px; min-width: 44px; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .cds-tip button { flex: 1 1 100%; min-height: 44px; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .cxs-map-group { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.studio-learning-host[data-mobile-first] .studio-learning-content :is(.cxs-mini-formula, .shapes-library-item span, .truncate) { white-space: normal; overflow-wrap: anywhere; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .la-step { grid-template-columns: max-content 44px minmax(0, 1fr) 44px; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .its-graphs > * { grid-column: auto; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .its-graphs > .studio-graph-widget { grid-column: 1 / -1; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .la-bar { grid-template-columns: max-content minmax(0, 1fr) 48px; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .la-xyz { grid-template-columns: minmax(0, 1fr); }
+.studio-learning-host[data-mobile-first] .studio-learning-content .msk-tools .msk-teacher { width: auto; min-width: 90px; flex-shrink: 0; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .geo-lesson-workspace-tools > label { display: flex; flex-wrap: wrap; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .shapes-library-item span { white-space: normal; overflow-wrap: anywhere; }
+@media (max-width: 1180px) {
+  .studio-learning-host[data-mobile-first] .studio-learning-content .de-topbar { display: flex; flex-wrap: wrap; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .de-phase1-quicklinks { flex-wrap: wrap; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .gs2d-view-toolbar { flex-wrap: wrap; }
+}
+@media (max-width: 767px) {
+  .studio-learning-host[data-mobile-first] .studio-learning-content .cs-workspace > * { width: 100%; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .gs3d-topbar { display: flex !important; flex-direction: row; flex-wrap: wrap !important; height: auto !important; max-height: none; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .gs3d-top-actions { width: 100%; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.cs-tabs, .cs-mode-tabs, .alg-header-modes, .cxs-header-modes, .la-mode-tabs) { display: flex; overflow-x: auto; flex-wrap: nowrap; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.cs-tabs, .cs-mode-tabs, .alg-header-modes, .cxs-header-modes, .la-mode-tabs) > button { flex: 0 0 auto; min-width: max-content; white-space: nowrap; padding-inline: 12px; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .cs-header-actions > button { min-width: max-content !important; width: auto; padding-inline: 12px; white-space: nowrap; }
+}
+@media (max-width: 900px) {
+  .studio-learning-host[data-mobile-first] .studio-learning-content .shapes-inspector-panel { grid-column: 1 / -1; width: 100%; margin: 0; visibility: hidden; display: none; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .has-mobile-inspector .shapes-inspector-panel { visibility: visible; display: block; }
+}
+@media (min-width: 1024px) {
+  .studio-learning-host[data-mobile-first] .studio-learning-content .cxs-map-group { grid-template-columns: minmax(0, 1fr); }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .cxs-map-node { flex-wrap: wrap; }
+}
+@media (max-width: 1023px) {
+  .studio-learning-host[data-mobile-first] .studio-learning-content .la-lab-root.is-wide .la-lab { grid-template-columns: minmax(0, 1fr); }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.app-target-lab, .wv-target-lab) { grid-template-columns: minmax(0, 1fr); }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .tgh-hero h1 { white-space: normal; overflow-wrap: anywhere; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .msk-units { flex: 0 0 auto; min-width: max-content; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .msk-top { flex-wrap: wrap; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .msk-tools { flex-wrap: wrap; width: 100%; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .ids-chrome-tools { min-width: 110px; }
+}
+@media (max-width: 767px) {
+  .studio-learning-host[data-mobile-first] .studio-learning-content .ivt-features > div { flex-wrap: wrap; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .ivt-features span { min-width: 0; overflow-wrap: anywhere; }
+}
+@media (min-width: 768px) and (max-width: 1180px) {
+  .studio-learning-host[data-mobile-first] .msk-shell { grid-template-columns: minmax(0, 1fr); }
+  .studio-learning-host[data-mobile-first] .msk-stage { grid-column: 1; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.alg-expr-dash, .alg-dash-layout, .as-grid-3, .as-bottom, .as-bool, .as-poset, .la-lab, .la-play-grid) { grid-template-columns: minmax(0, 1fr); }
+  .studio-learning-host[data-mobile-first] .studio-learning-content :is(.alg-expr-dash, .alg-dash-layout) > * { grid-column: auto; grid-row: auto; }
+  .studio-learning-host[data-mobile-first] .alg-tile-actions { flex-wrap: wrap; }
+}
+/* Desktop toolbar labels must keep their intrinsic width in crowded rows. */
+@media (min-width: 768px) {
+  .studio-learning-host[data-mobile-first] .studio-learning-content .shapes-toolbar-button {
+    flex-shrink: 0;
+    min-width: max-content;
+  }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .tgh-hero h1 {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}

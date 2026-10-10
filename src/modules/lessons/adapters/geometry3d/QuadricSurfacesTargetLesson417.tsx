@@ -580,7 +580,7 @@ function AxisLabel({
 }) {
   return (
     <Html position={position} center>
-      <b style={{ color, fontSize: 11, textShadow: "0 1px 2px #001" }}>
+      <b style={{ color, fontSize: 12, textShadow: "0 1px 2px #001" }}>
         {label}
       </b>
     </Html>

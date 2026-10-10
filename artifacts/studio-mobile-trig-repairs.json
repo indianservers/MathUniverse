@@ -1,0 +1,757 @@
+{
+  "studios": [
+    {
+      "id": "algebra",
+      "name": "Algebra Studio",
+      "base": "/algebra"
+    },
+    {
+      "id": "algebraic-structures",
+      "name": "Algebraic Structures Studio",
+      "base": "/algebraic-structures"
+    },
+    {
+      "id": "geometry",
+      "name": "Geometry Studio",
+      "base": "/geometry"
+    },
+    {
+      "id": "trigonometry",
+      "name": "Trigonometry Studio",
+      "base": "/trigonometry"
+    },
+    {
+      "id": "calculus",
+      "name": "Calculus Studio",
+      "base": "/calculus"
+    },
+    {
+      "id": "number-systems",
+      "name": "Number Systems Studio",
+      "base": "/number-systems"
+    },
+    {
+      "id": "linear-algebra",
+      "name": "Linear Algebra Studio",
+      "base": "/linear-algebra"
+    },
+    {
+      "id": "complex-numbers",
+      "name": "Complex Numbers Studio",
+      "base": "/complex-numbers"
+    },
+    {
+      "id": "mathematical-modelling",
+      "name": "Mathematical Modelling Studio",
+      "base": "/mathematical-modelling"
+    },
+    {
+      "id": "discrete-world",
+      "name": "Number & Discrete Mathematics Studio",
+      "base": "/discrete-world"
+    },
+    {
+      "id": "set-theory",
+      "name": "Set Theory and Relations",
+      "base": "/set-theory"
+    },
+    {
+      "id": "graph-theory",
+      "name": "Graph Theory",
+      "base": "/graph-theory"
+    },
+    {
+      "id": "probability-statistics",
+      "name": "Statistics & Probability Studio",
+      "base": "/probability-statistics"
+    },
+    {
+      "id": "differential-equations",
+      "name": "Differential Equations Studio",
+      "base": "/differential-equations"
+    },
+    {
+      "id": "continued-fractions",
+      "name": "Continued Fractions Lab",
+      "base": "/math-lab/continued-fractions"
+    },
+    {
+      "id": "famous-problems",
+      "name": "Famous Problems Atlas",
+      "base": "/math-lab/famous-problems"
+    },
+    {
+      "id": "stats-inference",
+      "name": "Statistics Inference Studio",
+      "base": "/math-lab/stats-inference"
+    },
+    {
+      "id": "special-functions",
+      "name": "Special Functions Gallery",
+      "base": "/math-lab/special-functions"
+    },
+    {
+      "id": "advanced-differential-equations",
+      "name": "Advanced Differential Equations Studio",
+      "base": "/math-lab/differential-equations"
+    }
+  ],
+  "routes": [
+    "/trigonometry",
+    "/trigonometry/applications",
+    "/trigonometry/identities",
+    "/trigonometry/inverse",
+    "/trigonometry/inverse/*",
+    "/trigonometry/waves"
+  ],
+  "widths": [
+    320,
+    390,
+    768
+  ],
+  "results": [
+    {
+      "route": "/trigonometry",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.tgh-space",
+          "width": 320,
+          "height": 275
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 140,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 140,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 140,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 140,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 140,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 140,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 140,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 140,
+          "height": 112
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeTRIGONOMETRYSTUDIOStudio HomeMain App Home▥Learn • Visualize • PracticeMath. Anywhere. For a ",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.tgh-space",
+          "width": 390,
+          "height": 275
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 172,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 172,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 172,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 172,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 172,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 172,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 172,
+          "height": 112
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 172,
+          "height": 112
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeTRIGONOMETRYSTUDIOStudio HomeMain App Home▥Learn • Visualize • PracticeMath. Anywhere. For a ",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.tgh-space",
+          "width": 507,
+          "height": 369
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 179,
+          "height": 145
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 179,
+          "height": 145
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 179,
+          "height": 145
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 179,
+          "height": 145
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 179,
+          "height": 145
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 179,
+          "height": 145
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 179,
+          "height": 145
+        },
+        {
+          "element": "svg.tgh-art",
+          "width": 179,
+          "height": 145
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeTRIGONOMETRYSTUDIOStudio HomeMain App Home▥Learn • Visualize • PracticeMath. Anywhere. For a ",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/applications",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive",
+          "width": 272,
+          "height": 180
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreθTrigonometrySTUDIOSite ho",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/applications",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive",
+          "width": 342,
+          "height": 226
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreθTrigonometrySTUDIOSite ho",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/applications",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.msk-graph.is-interactive",
+          "width": 708,
+          "height": 468
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreθTrigonometrySTUDIOSite ho",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/identities",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 284,
+          "height": 235
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceCommon use casesTheory & moreθTrigonometrySTUDIOSite homeStudio HomeUnit",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/identities",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 354,
+          "height": 235
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceCommon use casesTheory & moreθTrigonometrySTUDIOSite homeStudio HomeUnit",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/identities",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [
+        {
+          "element": "div.msk-tools",
+          "width": 102,
+          "content": 106,
+          "text": "Theory & examplesDegRadTeacher mode"
+        }
+      ],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 698,
+          "height": 419
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeInteractive workspaceCommon use casesTheory & moreθTrigonometrySTUDIOSite homeStudio HomeUnit",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/inverse",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ivt-alpine",
+          "width": 205,
+          "height": 367
+        },
+        {
+          "element": "svg.ivt-graph",
+          "width": 272,
+          "height": 156
+        },
+        {
+          "element": "svg.ivt-circle",
+          "width": 272,
+          "height": 210
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 254,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-circle.ivt-preview",
+          "width": 254,
+          "height": 190
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 254,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-numberline",
+          "width": 254,
+          "height": 73
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreTrigonometry StudioVisuali",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/inverse",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ivt-alpine",
+          "width": 250,
+          "height": 303
+        },
+        {
+          "element": "svg.ivt-graph",
+          "width": 342,
+          "height": 196
+        },
+        {
+          "element": "svg.ivt-circle",
+          "width": 342,
+          "height": 210
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 324,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-circle.ivt-preview",
+          "width": 324,
+          "height": 190
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 324,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-numberline",
+          "width": 324,
+          "height": 93
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreTrigonometry StudioVisuali",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/inverse",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ivt-alpine",
+          "width": 492,
+          "height": 234
+        },
+        {
+          "element": "svg.ivt-graph",
+          "width": 336,
+          "height": 193
+        },
+        {
+          "element": "svg.ivt-circle",
+          "width": 336,
+          "height": 270
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 218,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-circle.ivt-preview",
+          "width": 218,
+          "height": 178
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 218,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-numberline",
+          "width": 218,
+          "height": 62
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreTrigonometry StudioVisuali",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/inverse/*",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ivt-alpine",
+          "width": 205,
+          "height": 367
+        },
+        {
+          "element": "svg.ivt-graph",
+          "width": 272,
+          "height": 156
+        },
+        {
+          "element": "svg.ivt-circle",
+          "width": 272,
+          "height": 210
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 254,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-circle.ivt-preview",
+          "width": 254,
+          "height": 190
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 254,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-numberline",
+          "width": 254,
+          "height": 73
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreTrigonometry StudioVisuali",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/inverse/*",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ivt-alpine",
+          "width": 250,
+          "height": 303
+        },
+        {
+          "element": "svg.ivt-graph",
+          "width": 342,
+          "height": 196
+        },
+        {
+          "element": "svg.ivt-circle",
+          "width": 342,
+          "height": 210
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 324,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-circle.ivt-preview",
+          "width": 324,
+          "height": 190
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 324,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-numberline",
+          "width": 324,
+          "height": 93
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreTrigonometry StudioVisuali",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/inverse/*",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.ivt-alpine",
+          "width": 492,
+          "height": 234
+        },
+        {
+          "element": "svg.ivt-graph",
+          "width": 336,
+          "height": 193
+        },
+        {
+          "element": "svg.ivt-circle",
+          "width": 336,
+          "height": 270
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 218,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-circle.ivt-preview",
+          "width": 218,
+          "height": 178
+        },
+        {
+          "element": "svg.ivt-graph.ivt-preview",
+          "width": 218,
+          "height": 200
+        },
+        {
+          "element": "svg.ivt-numberline",
+          "width": 218,
+          "height": 62
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreTrigonometry StudioVisuali",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/waves",
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 254,
+          "height": 244
+        },
+        {
+          "element": "svg.",
+          "width": 254,
+          "height": 244
+        },
+        {
+          "element": "svg.",
+          "width": 254,
+          "height": 244
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreθTrigonometrySTUDIOSite ho",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/waves",
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 324,
+          "height": 312
+        },
+        {
+          "element": "svg.",
+          "width": 324,
+          "height": 312
+        },
+        {
+          "element": "svg.",
+          "width": 324,
+          "height": 312
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreθTrigonometrySTUDIOSite ho",
+      "errors": []
+    },
+    {
+      "route": "/trigonometry/waves",
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "smallTargets": [],
+      "plots": [
+        {
+          "element": "svg.",
+          "width": 690,
+          "height": 663
+        },
+        {
+          "element": "svg.",
+          "width": 690,
+          "height": 663
+        },
+        {
+          "element": "svg.",
+          "width": 690,
+          "height": 663
+        }
+      ],
+      "styleIssues": [],
+      "bodyText": "Studio HomeLessons & PracticeApp HomeWhat it meansInteractive workspaceCommon use casesQuizTheory & moreθTrigonometrySTUDIOSite ho",
+      "errors": []
+    }
+  ]
+}

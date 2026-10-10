@@ -93,7 +93,7 @@ export function SequenceConceptActivity({
                   y="286"
                   textAnchor="middle"
                   fill="#94a3b8"
-                  fontSize="10"
+                  fontSize="12"
                 >
                   {index + 1}
                 </text>

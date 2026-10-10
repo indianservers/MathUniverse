@@ -1,0 +1,215 @@
+MATH UNIVERSE: STUDIO CONTENT AND LAB GAP AUDIT
+Date: 10 October 2026
+
+MAIN FINDING
+The 19 registered studios cover a broad range of school mathematics and introductory university topics. Topic presence is substantially stronger than full-course depth. Prioritize proof construction, reusable input-driven experiments, numerical error reporting, and assessed projects before adding more introductory cards.
+
+BOUNDARY AND METHOD
+This is a source-code and curriculum audit against selected public university schedules, course descriptions and syllabi. It is not a browser usability test, mathematical certification, exhaustive lesson-by-lesson review, or percentage of degree equivalence. Existing local edits were included as the current snapshot and left unchanged.
+“Top 10” is interpreted as ten leading mathematics institutions, not a verified ranking: MIT, Stanford, Harvard, Princeton, Cambridge, Oxford, UC Berkeley, Caltech, ETH Zurich, and University of Chicago. The sources vary in age and detail; historical materials are labelled below. No single institution requires every elective listed here.
+University topics are benchmarks. The specific interactive lab designs and priority order are audit recommendations, not claims that universities prescribe these exact labs.
+Partial means a topic, representative example or limited computational tool exists, but a complete teaching and investigation workflow was not established in this audit. Candidate extension means the reviewed files did not establish sufficient coverage; check the wider lesson bank before implementation.
+
+LOCAL EVIDENCE
+src/studios/curriculum/curriculumCatalog.ts registers 19 studios and their scope.
+src/studios/mockup/studioMockupCatalog.ts and studioTheoryContent.ts describe existing labs and reference content.
+src/studios/curriculum/curriculumExtensions.ts, masteryContent.ts, gapLessons.ts and supplementalModels.ts supply curriculum additions and representative computations.
+STUDIO_CONTENT_GAPS.md records previous teaching additions and explicitly distinguishes them from general solvers.
+src/studios/*/*EnhancementEngine.ts and *Workbench.tsx contain advanced computational demonstrations.
+src/modules/graph-theory/IMPLEMENTATION_STATUS.md and graphTheoryEngine.ts establish existing matching, flow, graph metrics and classroom-scale algorithms.
+src/studios/differential-equations/EnrichmentLabs.tsx supplies exact single-mode heat/wave families and a restricted delayed-forcing family.
+
+CORRECTIONS TO PREVIOUS GAP LISTS
+1. Do not call all 25 statistics enhancements missing. StatisticsEnhancementWorkbench exists and is rendered by src/pages/ProbabilityStatistics.tsx on the advanced tab, although studioEnhancementManifest.ts marks STAT entries missing. Reconcile evidence before reusing coverage scores.
+2. Do not rebuild matching and flow from scratch. Graph Theory already exposes these. Develop editable traces, certificates and scale handling around the existing algorithms.
+3. Linear-algebra routines such as lu2, qr2, singularValues2, inverse2 and conditionNumber2 provide restricted 2x2 demonstrations. They do not establish general matrix-course parity.
+4. Import, calibration and validation helpers already exist in Modelling. Its gap is a robust reusable analysis workflow, rather than complete absence of data fitting.
+5. Heat/wave and boundary-eigenmode demonstrations already exist in Differential Equations. The next need is general initial/boundary data and verified discretization workflows.
+
+PRIORITY KEY
+P0: broad foundational or heavily reused work; implement first.
+P1: substantial undergraduate course-depth improvement.
+P2: specialist elective extension after prerequisites.
+Each studio has three proposed lab packages below: 57 packages in total. Several extend existing tools rather than create new routes.
+
+01 ALGEBRA — P1 — foundation bridge, not an abstract-algebra degree course
+Existing: tiles, equations, inequalities, polynomials, functions, sequences; parameter and rational-domain lessons.
+Gap: generated multi-case reasoning, domain-aware equivalence and systematic transfer practice. Benchmark: Stanford foundation sequence; Oxford introductory calculus preparation.
+A. Parameter Cases Lab: edit coefficients; classify zero, positive and negative cases; produce intervals and explain sign reversal.
+B. Domain and Equivalence Lab: track excluded inputs through cancellation, radicals and inverses; distinguish sampled agreement from a proof.
+C. Functions and Recurrences Lab: editable piecewise domains, inverse/composition validity, recurrence experiments and induction justification.
+
+02 ALGEBRAIC STRUCTURES — P1/P2
+Existing: operations, groups, quotients, rings/fields and guided permutation/finite-field examples.
+Gap: sustained proof and general object manipulation; candidate advanced modules, Sylow and Galois sequences. Benchmark: Stanford 120/121/122; Cambridge Groups, Rings and Modules/Galois; Caltech algebra sequence.
+A. Permutations and Group Actions Lab: cycle composition, subgroup/coset views, stabilizers and orbit-stabilizer verification.
+B. Ideals and Quotients Lab: editable finite rings, homomorphism kernels, quotient operations and isomorphism-theorem examples.
+C. Field Extensions Lab: arithmetic modulo an irreducible polynomial, extension bases and automorphisms; add a prerequisite-based Galois extension later.
+
+03 GEOMETRY — P1/P2
+Existing: Euclidean construction, congruence, circles, transformations, conic samples, solids and curved-angle demonstrations.
+Gap: linked formal proof, broader conic constraints; candidate undergraduate differential/projective geometry sequence. Benchmark: Oxford Geometry; Stanford 143/144; Cambridge Geometry/Differential Geometry.
+A. Construction and Proof Lab: drag dependent figures, declare hypotheses and justify each proof step; show counterexamples when hypotheses fail.
+B. Conics and Projective Maps Lab: construct focus/directrix loci and intersections; investigate degeneracy and mappings.
+C. Curvature and Geodesics Lab: surfaces, tangent planes, metric-dependent lengths and sphere geodesics with prerequisite lessons.
+
+04 TRIGONOMETRY — P1
+Existing: circle, identities, inverse branches, triangle laws, waves; Fourier/Gibbs and polar lessons.
+Gap: editable coefficient fitting, quantitative approximation and full polar tracing workflows. Benchmark: Stanford 53 Fourier methods; Oxford Fourier Series/PDEs. Standalone trigonometry is primarily preparatory.
+A. Fourier Approximation Lab: edit coefficients, compare partial sums, compute error and inspect jumps/Gibbs behavior.
+B. Polar Curves Lab: editable curves, negative radii, tracing intervals, intersections and enclosed area.
+C. Measurement Uncertainty Lab: enter uncertain bearings/angles, compare ambiguous solutions and propagate measurement error.
+
+05 CALCULUS — P0/P1
+Existing: limits through vector calculus, numerical methods and representative convergence/theorem lessons.
+Gap: analysis-level reasoning and reusable hypothesis-aware theorem investigations. Benchmark: Princeton 216–218; Oxford Analysis; Stanford 171/172.
+A. Real Analysis Lab: epsilon-delta and sequence arguments, quantifier order, continuity counterexamples and learner-written proofs.
+B. Convergence Lab: sequences of functions, pointwise versus uniform convergence, series tests and remainder/error bounds.
+C. Multivariable Theorem Lab: editable regions/orientations, Jacobians, constrained extrema and direct-versus-theorem flux/circulation checks.
+
+06 NUMBER SYSTEMS — P0/P1
+Existing: rational/irrational/real hierarchy, bases, completeness introductions and rounding lessons.
+Gap: arbitrary precision, exact representations and constructive completeness arguments. Benchmark: Cambridge Numbers and Sets/Analysis; Berkeley 128A arithmetic/error.
+A. Floating-Point Lab: choose precision and rounding, expose cancellation, overflow and accumulated error against an exact reference.
+B. Exact Base Representation Lab: fractions in bases 2–36, recurring digits, termination criteria and rational reconstruction.
+C. Completeness Lab: rational approximants, Cauchy sequences, suprema and nested intervals; connect visual evidence to proofs.
+
+07 LINEAR ALGEBRA — P0
+Existing: vector/matrix operations, elimination, subspaces and restricted factorization/eigen/SVD tools.
+Gap: general dimensions, full decomposition outputs and numerical/proof depth. Benchmark: MIT 18.06; Stanford 113; Princeton 216–218.
+A. General Matrix Factorization Lab: rectangular matrices, pivoted LU, QR and complete SVD; show reconstruction and residual checks.
+B. Four Subspaces Lab: bases for all four spaces, rank-nullity, projection/least squares and geometric proof exercises.
+C. Spectral and Conditioning Lab: symmetric versus defective matrices, complex eigenpairs, quadratic forms and perturbation/error experiments.
+
+08 COMPLEX NUMBERS — P1
+Existing: arithmetic, roots, mappings, contour/residue helpers and branch examples.
+Gap: arbitrary contour workflows and connected analytic-theorem reasoning. Benchmark: MIT 18.04; Cambridge Complex Analysis; Stanford 116.
+A. Contour and Residue Lab: draw piecewise contours, inspect poles/orientation and compare numerical integration with verified residue cases.
+B. Analytic Functions Lab: Cauchy-Riemann hypotheses, Taylor/Laurent annuli, singularity classification and Cauchy theorem/counterexamples.
+C. Continuation and Winding Lab: track argument along a path, log/square-root sheets, winding counts and argument-principle examples.
+
+09 MATHEMATICAL MODELLING — P0/P1
+Existing: fitting/import helpers, criteria, residuals, sensitivity, population/agent models and representative validation lessons.
+Gap: robust user-data pipeline, nonlinear uncertainty and identifiability; candidate optimization-course depth. Benchmark: Cambridge Optimization/Mathematical Biology; ETH numerical/optimization content.
+A. Calibration and Validation Lab: import typed data, choose models/constraints, reserve holdouts, fit and export residual/validation evidence.
+B. Identifiability and Uncertainty Lab: sensitivity matrices, rank limitations, parameter profiles and uncertainty propagation; pairwise correlation alone is insufficient.
+C. Optimization and Scaling Lab: nondimensionalize a model, solve constrained objectives and inspect optimality conditions against scenarios.
+
+10 NUMBER & DISCRETE MATHEMATICS — P1
+Existing: counting, modular arithmetic, Euclid/CRT/RSA demonstrations, recurrences, automata and limited formal-language helpers.
+Gap: deeper proof construction, general recurrence/generating-function workflows and editable computation models. Benchmark: Cambridge Automata/Coding; Stanford 108/110/152.
+A. Combinatorics Lab: counting bijections, inclusion-exclusion, coefficient extraction and recurrence verification.
+B. Number Theory Lab: exact Euclid/CRT traces, arithmetic-function and congruence proofs; distinguish primality evidence from certificates.
+C. Automata and Computability Lab: editable DFA/NFA/CFG and bounded Turing simulations; bounded agreement must not be labelled language equivalence.
+
+11 SET THEORY & RELATIONS — P1/P2
+Existing: set operations, relations, functions, cardinality and Cantor/Russell lessons.
+Gap: sustained formal logic, order and axiomatic development. Benchmark: Cambridge Logic and Set Theory; Stanford 161.
+A. Quantifiers and Proof Lab: nested quantifiers, implication, negation, witness/counterexample construction and deduction steps.
+B. Orders and Ordinals Lab: Hasse diagrams, least/greatest versus minimal/maximal elements, well-orders and transfinite-induction examples.
+C. Cardinality and Axioms Lab: explicit bijections/injections, power-set diagonalization, axioms and choice; separate finite simulation from infinite proof.
+
+12 GRAPH THEORY — P1
+Existing: editable classroom graphs, traversal, trees, coloring, matching, flow/cuts and metrics.
+Gap: editable explanatory certificates, stronger planarity detection, scalability and theorem-level problem sets. Benchmark: Stanford 107; Cambridge Graph Theory.
+A. Matching and Flow Certificates Lab: animate alternating/residual paths; verify matching maximality versus maximum size and min-cut certificates.
+B. Planarity and Coloring Lab: embeddings/obstruction evidence and coloring bounds; drawn crossings and Euler bounds alone are not planarity tests.
+C. Spectral and Random Graph Lab: Laplacians, components/eigenvalues and random-graph experiments with reproducible seeds; candidate elective extension.
+
+13 STATISTICS & PROBABILITY — P0
+Existing: descriptive statistics, distribution atlas, inference/regression and a wired advanced workbench with limited examples.
+Gap: formal probability depth and real-data multi-variable workflows; existing tool titles do not establish full procedure coverage. Benchmark: Oxford Probability/Statistics; Cambridge Probability and Measure/Statistical Modelling; Stanford 151/136.
+A. Joint Distributions and Probability Lab: editable joint laws, transformations, conditioning and covariance; add proof lessons on LLN/CLT hypotheses.
+B. Data and Linear Models Lab: typed tables/missing data, predictor selection, fitted logistic/multiple regression, diagnostics and assumption evidence.
+C. Sampling and Experimental Design Lab: user-defined stratified/cluster populations, inclusion probabilities, factorial designs and randomization analysis.
+
+14 DIFFERENTIAL EQUATIONS — P0/P1
+Existing: first-order, higher-order, numerical/system routes; restricted transform and single-mode boundary/PDE demonstrations.
+Gap: general forcing, initial/boundary functions and quantitative solver convergence. Benchmark: Oxford Fourier/PDEs/DE; Stanford 53/131P; Berkeley 128A.
+A. Boundary-Value Lab: shooting/finite differences, Dirichlet/Neumann/Robin data, residuals and grid refinement.
+B. Heat/Wave/Laplace Lab: editable initial data and mode sums, boundary checks, stability restrictions and numerical-versus-exact comparison.
+C. Transform and Green Function Lab: broader forcing families, convolution and impulse responses with explicit validity conditions.
+
+15 CONTINUED FRACTIONS — P2
+Existing: rational expansion, convergents and periodic/Pell teaching examples.
+Gap: general exact quadratic-irrational and Diophantine investigation. Benchmark: Cambridge Number Theory; Stanford 152. This is a specialist slice, not a standalone universal core course.
+A. Quadratic Surd Lab: exact state recurrence and detected periods for sqrt(D), with domain checks.
+B. Pell Equation Lab: generate solutions, verify norms exactly and explain the minimal-solution argument.
+C. Best Approximation Lab: convergents/semiconvergents, rational error comparisons and theorem assumptions.
+
+16 FAMOUS PROBLEMS ATLAS — P2
+Existing: problem statements, bounded Collatz experiments and representative proofs.
+Gap: source-linked proof pathways and proof-versus-experiment assessment. Benchmark: Harvard tutorial/expository work; Chicago inquiry-based learning.
+A. Proof Reconstruction Lab: premises, dependencies, missing steps and counterexamples for selected proved results.
+B. Constructibility Lab: compass-straightedge operations, algebraic degree and classic impossibility arguments.
+C. Reproducible Open-Problem Lab: bounded searches with seeds/limits and a record of exactly what was established; never imply a universal proof.
+
+17 STATISTICS INFERENCE — P0/P1
+Existing: likelihood, confidence/testing introductions, Welch and equivalence examples.
+Gap: coherent theoretical inference and fully controlled procedure/design comparisons. Benchmark: Cambridge Principles of Statistics; Oxford Statistics.
+A. Likelihood and Estimation Lab: score/Fisher information, MLE, bias, sufficiency and simulation-based coverage.
+B. Tests and Decision Lab: exact/approximate tests, Type I/II errors, paired/independent designs, power and equivalence margins.
+C. Resampling and Multiplicity Lab: permutation/bootstrap procedures, familywise/FDR control and Bayesian posterior comparison.
+
+18 SPECIAL FUNCTIONS — P2
+Existing: gamma/beta/erf/zeta/Bessel/Legendre introductions and representative recurrence/error lessons.
+Gap: linked differential equations, orthogonality and reliable numerical evaluation. Benchmark: Cambridge Methods/Asymptotic Methods; Oxford Fourier/PDE methods. NIST DLMF is a reference anchor, not a university syllabus.
+A. Orthogonal Families Lab: weighted inner products, Legendre/Hermite/Laguerre recurrence, projection coefficients and truncation error.
+B. Bessel Boundary Modes Lab: zeros, radial eigenfunctions and drum/heat modes linked to the DE studio.
+C. Stable Evaluation Lab: series versus recurrence versus asymptotic evaluation; compare domains, precision and independent reference values.
+
+19 ADVANCED DIFFERENTIAL EQUATIONS — P1/P2
+Existing: companion demonstrations on eigenmodes, stiffness, resonance and heat boundaries.
+Gap: broader stiff solvers, nonlinear dynamics and operator/PDE depth. Benchmark: Cambridge Dynamical Systems; Stanford 173; ETH numerical methods.
+A. Stiff Solver Lab: explicit/implicit methods, step control, stability regions, accuracy and work comparisons.
+B. Nonlinear Dynamics Lab: equilibria, Jacobian classification, bifurcation continuation and limit-cycle experiments with numerical caveats.
+C. Sturm-Liouville and PDE Lab: weighted eigenfunctions, boundary conditions, modal projections and finite-difference convergence; weak-form/FEM extensions belong in a later track.
+Architecture: share solver and boundary/mode engines with the main DE studio. Use the companion for advanced investigations rather than duplicating introductory teaching.
+
+TEXTBOOK DEPTH: REQUIREMENTS ACROSS ALL STUDIOS
+The current reference/guided content should develop into chapter sequences containing definitions, prerequisites, theorem hypotheses, complete derivations, several materially different worked examples, graded procedural and proof problems, solutions explaining invalid approaches, and a cumulative project.
+Map each chapter to an identified public course unit and an exact textbook section/edition where accessible. This audit does not claim to have read or compared every chapter of commercial textbooks.
+Verified textbook anchor: Berkeley Fall 2026 Math 128A assigns Burden and Faires, Numerical Analysis, 10th edition (9th also supported), with error analysis, root finding, interpolation, quadrature, IVPs and direct linear systems. Use this to sequence numerical labs across Number Systems, Calculus, Linear Algebra and DE.
+Cambridge's published schedules include reading lists after courses; choose relevant readings per studio instead of one shared generic reading footer. Existing GuidedCourse uses broad shared links, which are not a per-chapter syllabus/textbook crosswalk.
+Do not treat Algebra, Trigonometry, Continued Fractions or Famous Problems as identically scoped university courses. They serve foundation or elective roles.
+
+PLATFORM CONTENT GAPS
+1. Shared Proof and Reasoning pathway feeding algebraic structures, analysis, sets, graphs and number theory.
+2. Real Analysis/Metric Spaces pathway: sequence limits, completeness, compactness, uniform convergence and proof-based integration.
+3. Topology pathway: open/closed sets, continuity, connectedness/compactness and quotient examples. The 19-studio registry has no dedicated topology course; scattered mentions would not establish its depth.
+4. Numerical Analysis pathway: interpolation/splines, root finding, conditioning, quadrature and solver convergence across existing studios.
+5. Optimization pathway: linear/convex/constrained optimization, optimality conditions and modelling applications.
+6. Probability/Measure and stochastic-process progression for learners beyond elementary probability.
+These may be coherent tracks inside existing studios; new studio branding is not necessary to close the content gap.
+
+FIRST IMPLEMENTATION WAVE
+Proof/analysis progression; general matrix decompositions; typed-data statistics and inference; general boundary/PDE workflows; exact/floating-point comparison; reusable calibration/validation.
+Acceptance for each completed lab: meaningful editable inputs, stated mathematical domain, degenerate-case handling, visual and numeric evidence, exact/approximate labels, an independent check or residual/error bound, guided exercises, a transfer task and a saved report. Numeric examples and plots support exploration; they do not automatically prove general statements.
+
+PUBLIC BENCHMARK SOURCES
+MIT: historical OCW syllabi, 18.06SC (2011) and 18.04 (2018):
+https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/pages/syllabus/
+https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/pages/syllabus/
+Stanford: current public prerequisite/course map (catalogue map, not a detailed syllabus):
+https://mathematics.stanford.edu/academics/math-course-flowchart
+Harvard: 2024–25 course guide, including tutorial and expository work:
+https://www.math.harvard.edu/media/Courses-in-Mathematics-2024-2025.pdf
+Princeton: public MAT216–218 description (proof-based analysis/linear algebra):
+https://www.math.princeton.edu/undergraduate/placement/MAT216
+Cambridge: public course list and detailed schedules/reading lists:
+https://www.maths.cam.ac.uk/undergrad/node/40
+https://www.maths.cam.ac.uk/undergrad/files/schedules.pdf
+Oxford: 2025–26 BA/MMath handbook with course structure and practical/tutorial expectations:
+https://courses.maths.ox.ac.uk/mod/book/tool/print/index.php?id=65588
+UC Berkeley: Fall 2026 Math 128A detailed syllabus:
+https://persson.berkeley.edu/math128a/
+Caltech: 2025–26 catalogue initially returned; repeat detailed extraction failed. Use accessible historical 2023–24 description for algebra/analysis depth, without implying 2026 offerings:
+https://www.catalog.caltech.edu/archive/2023-24/2023-24/department/Ma/
+ETH Zurich: published mathematics prerequisite-content checklist; this is an admissions background benchmark, not a current module syllabus:
+https://ethz.ch/content/dam/ethz/common/docs/master-profile/course-content/form-math.pdf
+University of Chicago: official undergraduate course portal and official IBL scripts. Detailed current catalogue/PDF retrieval failed, so this benchmark is limited to the public material and indexed catalogue summary; no exact current-course equivalence is claimed:
+https://mathematics.uchicago.edu/undergraduate/courses/
+https://math.uchicago.edu/~boller/IBL/
+
+CONCLUSION
+Use this as a prioritized development backlog, not a scorecard claiming top-university parity. Confirm candidate extensions against the wider lesson bank and verify each shipped workflow before marking its gap closed.

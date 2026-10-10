@@ -33,7 +33,7 @@ export default function CountingChoicesTargetLesson13({
     [slots, setSlots] = useState<(number | null)[]>(Array(6).fill(null)),
     [view, setView] = useState(0),
     [actions, setActions] = useState(0),
-    [revealed, setRevealed] = useState(true);
+    [revealed, setRevealed] = useState(false);
   const count = mode === "factorial" ? n : r,
     result = calculate(mode, n, r),
     choices = useMemo(
@@ -50,7 +50,7 @@ export default function CountingChoicesTargetLesson13({
     setSlots(Array(6).fill(null));
     setView(0);
     setActions(0);
-    setRevealed(true);
+    setRevealed(false);
     onInteraction();
   };
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function CountingChoicesTargetLesson13({
     setSlots(Array(6).fill(null));
     setView(0);
     setActions(0);
-    setRevealed(true);
+    setRevealed(false);
   }, [resetToken]);
   const selectMode = (next: Mode) => {
     setMode(next);

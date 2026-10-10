@@ -19,14 +19,14 @@ export default function LogarithmsTargetLesson8({
     [exponent, setExponent] = useState(3),
     [view, setView] = useState(0),
     [help, setHelp] = useState(false),
-    [revealed, setRevealed] = useState(true);
+    [revealed, setRevealed] = useState(false);
   const target = useMemo(() => base ** exponent, [base, exponent]);
   useEffect(() => {
     setBase(10);
     setExponent(3);
     setView(0);
     setHelp(false);
-    setRevealed(true);
+    setRevealed(false);
   }, [resetToken]);
   const changeBase = (next: number) => {
     setBase(Math.max(2, Math.min(12, Math.round(next))));

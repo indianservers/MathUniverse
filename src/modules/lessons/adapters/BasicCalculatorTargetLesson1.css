@@ -564,6 +564,13 @@
   }
 }
 @media (max-width: 900px) {
+  .target-basic-title > div,
+  .target-basic-modes {
+    flex-wrap: wrap;
+  }
+  .target-basic-unlocked {
+    max-width: 100%;
+  }
   .target-basic-page {
     height: auto;
     top: 0;

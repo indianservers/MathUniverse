@@ -49,9 +49,9 @@ export default function SimultaneousLinearEquationsTargetLesson112({
   const [activeTab, setActiveTab] = useState("Interaction + visualization");
   const [favorite, setFavorite] = useState(false);
   const [practiceIndex, setPracticeIndex] = useState(0);
-  const [practiceX, setPracticeX] = useState("3");
-  const [practiceY, setPracticeY] = useState("2");
-  const [practiceChecked, setPracticeChecked] = useState(true);
+  const [practiceX, setPracticeX] = useState("");
+  const [practiceY, setPracticeY] = useState("");
+  const [practiceChecked, setPracticeChecked] = useState(false);
   const [showPracticeSolution, setShowPracticeSolution] = useState(false);
   const [actions, setActions] = useState(0);
 
@@ -90,9 +90,9 @@ export default function SimultaneousLinearEquationsTargetLesson112({
     setActiveTab("Interaction + visualization");
     setFavorite(false);
     setPracticeIndex(0);
-    setPracticeX("3");
-    setPracticeY("2");
-    setPracticeChecked(true);
+    setPracticeX("");
+    setPracticeY("");
+    setPracticeChecked(false);
     setShowPracticeSolution(false);
     setActions(0);
     if (notify) onInteraction();

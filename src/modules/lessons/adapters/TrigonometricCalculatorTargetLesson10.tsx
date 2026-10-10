@@ -52,9 +52,9 @@ export default function TrigonometricCalculatorTargetLesson10({
   const [actions, setActions] = useState(0);
   const [view, setView] = useState(0);
   const [problem, setProblem] = useState(0);
-  const [answer, setAnswer] = useState("about 1.414");
+  const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState<"idle" | "correct" | "incorrect">(
-    "correct",
+    "idle",
   );
   const circleRef = useRef<SVGSVGElement>(null);
   const sinValue = trig("sin", sinAngle, mode);
@@ -86,8 +86,8 @@ export default function TrigonometricCalculatorTargetLesson10({
     setActions(0);
     setView(0);
     setProblem(0);
-    setAnswer("about 1.414");
-    setFeedback("correct");
+    setAnswer("");
+    setFeedback("idle");
   }, [resetToken]);
   const setAngle = (kind: "sin" | "cos", value: number) => {
     const nearest = ANGLES.reduce(
@@ -445,7 +445,7 @@ export default function TrigonometricCalculatorTargetLesson10({
               Reveal answer
               <output>
                 {feedback === "correct"
-                  ? `√2 (about ${practiceResult})`
+                  ? `${practiceSin === 45 && practiceCos === 45 ? "√2" : practiceSin === 30 && practiceCos === 60 ? "1" : "√3"} (about ${practiceResult})`
                   : feedback === "incorrect"
                     ? "Try the special-angle table"
                     : "Check your answer"}

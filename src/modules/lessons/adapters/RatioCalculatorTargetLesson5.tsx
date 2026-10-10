@@ -33,9 +33,9 @@ export default function RatioCalculatorTargetLesson5({
     [view, setView] = useState(0),
     [actions, setActions] = useState(0),
     [example, setExample] = useState(0);
-  const [answers, setAnswers] = useState(["18", "30", "3", "5"]),
+  const [answers, setAnswers] = useState(["18", "30", "", ""]),
     [feedback, setFeedback] = useState<"idle" | "correct" | "incorrect">(
-      "correct",
+      "idle",
     );
   const model = useMemo(() => ratioModel(a, b), [a, b]);
   useEffect(() => {
@@ -44,8 +44,8 @@ export default function RatioCalculatorTargetLesson5({
     setView(0);
     setActions(0);
     setExample(0);
-    setAnswers(["18", "30", "3", "5"]);
-    setFeedback("correct");
+    setAnswers(["18", "30", "", ""]);
+    setFeedback("idle");
   }, [resetToken]);
   const update = (side: "a" | "b", value: number) => {
     const safe = Math.max(1, Math.min(60, Math.round(value)));

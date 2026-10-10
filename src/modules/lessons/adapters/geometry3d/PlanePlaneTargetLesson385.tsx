@@ -620,7 +620,7 @@ function PlanePlaneScene({
             />
           </mesh>
           <Billboard position={[0.7, 0.3, 0]}>
-            <Text fontSize={0.34} color="#ffd329">
+            <Text fontSize={12} color="#ffd329">
               P ({result.point.join(", ")})
             </Text>
           </Billboard>

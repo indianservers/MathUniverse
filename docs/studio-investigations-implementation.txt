@@ -1,0 +1,57 @@
+STUDIO INVESTIGATIONS — IMPLEMENTATION RECORD
+
+Delivered: 57 interactive investigations, three in each of the 19 registered studios.
+Entry point: choose Interactive Investigations in the studio navigation, or open a studio's Lessons & Practice checklist. Each investigation is also included in that studio's searchable reference library.
+Routes: /studios/{studioId}/labs and /studios/{studioId}/labs/{investigationId}.
+
+LEARNING FLOW
+1. Predict an outcome and record the reason before revealing the computation.
+2. Change sliders, numeric inputs, data tables, matrices, transitions or coefficients. Evidence updates live after reveal. Capture a baseline to compare metric changes, or reset the worked example.
+3. Follow the input-specific derivation and inspect the misconception correction.
+4. Solve a parameter-dependent transfer exercise. Blank, invalid and incorrect responses receive distinct feedback; numeric fractions are accepted. Worked answers are available for learning.
+5. Explain the evidence and a boundary case. Download a JSON report containing inputs, conditions, computed results, derivation, prediction and reflection.
+Written proofs and reflections are self-assessed. A numeric check does not establish a universal proof.
+
+CONTENT AND COMPUTATIONS
+Algebra: zero/sign parameter cases; retained rational holes; recurrence-to-formula induction.
+Algebraic Structures: permutation powers, cyclic actions/orbits/stabilizers; finite-ring quotients; editable prime-field quadratic extensions, inverses, reducibility and Frobenius images.
+Geometry: coordinate midpoint proof; ellipse focal relationships/projective maps; spherical arc/chord and curvature investigation.
+Trigonometry: Fourier square-wave approximation and quadrature error; rose tracing/petal area; exact versus linearized measurement uncertainty.
+Calculus: constructive epsilon–delta bounds; pointwise versus uniform convergence; direct versus divergence-theorem flux.
+Number Systems: significant-digit cancellation; exact rational base remainders; exact nested rational intervals.
+Linear Algebra: rectangular Householder QR and thin Jacobi SVD, pivoted LU; all four fundamental-subspace bases; symmetric eigenspectra and conditioning.
+Complex Numbers: oriented circle-contour quadrature/residue checks; Taylor/Laurent annuli; continuous argument and logarithm/square-root sheets.
+Mathematical Modelling: held-out linear/quadratic calibration; full sensitivity rank and parameter null directions; constrained rectangle optimization and nondimensionalization.
+Discrete Mathematics: binomial generating coefficients/bijections; Euclid/Bézout/CRT; editable binary DFA transitions and traces.
+Set Theory: finite quantifier witnesses; divisibility orders; diagonal power-set construction connected to Cantor's general proof.
+Graph Theory: augmenting max-flow/min-cut traces; bipartite matching/minimum-cover certificates; explicit planarity obstructions and coloring bounds; seeded random-graph Laplacians.
+Statistics & Probability: joint laws/marginals/covariance/independence; linear, multiple linear and regularized logistic fits; stratified sampling variance and editable factorial interaction contrasts.
+Differential Equations: finite-difference Dirichlet/Neumann/Robin boundary problems; finite sine-series heat/wave/harmonic-strip profiles with nonzero endpoint values; convolution versus exact forced response.
+Continued Fractions: exact surd periods; BigInt Pell-unit/norm certificates; bounded rational approximation comparisons.
+Famous Problems: Euclid proof reconstruction; constructibility/degree obstruction; exact bounded Collatz experiments.
+Statistics Inference: binomial likelihood/score/information; normal-model power/equivalence; seeded bootstrap and multiplicity decisions.
+Special Functions: weighted Legendre/Hermite/Laguerre orthogonality; radial Bessel boundary modes; erf series versus integral and next-term conditions.
+Advanced DE: fixed explicit/implicit decay and adaptive RK4 error control; pitchfork equilibria/stability and trajectories; Sturm–Liouville discrete/continuous eigenvalue refinement.
+
+MATHEMATICAL BOUNDARIES
+Every lab states its supported family and input constraints. These are teaching investigations, not claims of unrestricted symbolic solving or complete university-course equivalence.
+Matrix teaching inputs are bounded to 8×8; data regressions accept 4–200 complete records and up to five predictors for multiple linear fitting. Field extensions are monic quadratics over p=2,3,5,7. PDE profiles use finite sine expansions on a unit interval/strip. BVP forcing supports constant or sine families with mixed left and Dirichlet right boundaries. Adaptive RK4 currently investigates scalar decay. Planarity may be inconclusive when an explicit obstruction is not found; passing an edge bound is never labelled proof of planarity.
+Exact integer certificates, analytic identities and approximate numerical computations are distinguished. Singular/invalid/out-of-range inputs produce explanations. Thin SVD zero columns do not claim a full orthonormal null-space completion. Numerical overflow is rejected rather than presented as a meaningful result.
+Topic-specific reading links point to university course/schedule material and OpenStax/NIST references. They support further learning, not an assertion that the university prescribes these exact interactive activities.
+
+VALIDATION
+82 focused investigation/curriculum tests pass, including all 57 defaults and independent mathematical checks for restrictions, exact certificates, decompositions, holdout isolation, matching, field extensions, mixed boundaries, adaptive integration, inference and numerical overflow.
+67 browser route checks pass: all 57 at 390 pixels, with selected 320-pixel and desktop checks. Prediction/reveal, answer feedback, reset, invalid-input recovery, curriculum navigation and exported SVD reports were exercised.
+14 additional mode/accessibility browser checks pass, including QR/LU/SVD, bipartite matching, F9 arithmetic, multiple regression, factorial effects, Neumann/Robin boundaries, multi-mode PDEs and adaptive RK4. No page errors were recorded; the scoped PDE accessibility check had no serious/critical violations.
+Focused TypeScript compilation and targeted ESLint pass. The full repository type check reports errors outside the new investigation files; a clean repository-wide type check is not claimed.
+Production build passes. Build results and browser evidence are saved under artifacts/studio-investigations/.
+
+IMPLEMENTATION FILES
+src/studios/investigations/catalog.ts — authored content, controls and readings.
+src/studios/investigations/math.ts — matrix and numerical helpers.
+src/studios/investigations/models.ts — topic-specific computations, derivations and transfer questions.
+src/studios/investigations/StudioInvestigations.tsx and investigations.css — shared accessible learning flow and responsive figures.
+src/studios/investigations/investigations.test.ts — mathematical and coverage checks.
+scripts/check-studio-investigations.mjs and check-studio-investigation-modes.mjs — browser verification.
+
+Existing local work in other files was preserved. The implementation adds studio routes/navigation and curriculum entries; it does not duplicate the earlier standalone workbenches or claim that every wider course-depth gap is closed.

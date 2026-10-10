@@ -460,9 +460,9 @@ function FixedAngleGraph({
       </g>
       <path d={`M ${center.x - 4} 18 L ${center.x} 10 L ${center.x + 4} 18`} fill="#64748b" />
       <path d={`M 482 ${center.y - 4} L 490 ${center.y} L 482 ${center.y + 4}`} fill="#64748b" />
-      <text x="492" y={center.y + 5} fill="#334155" fontSize="11">x</text>
-      <text x={center.x - 12} y="13" fill="#334155" fontSize="11">y</text>
-      {[-10, -8, -6, -4, -2, 2, 4, 6, 8, 10].map((value) => <g key={value} fill="#475569" fontSize="8">
+      <text x="492" y={center.y + 5} fill="#334155" fontSize="12">x</text>
+      <text x={center.x - 12} y="13" fill="#334155" fontSize="12">y</text>
+      {[-10, -8, -6, -4, -2, 2, 4, 6, 8, 10].map((value) => <g key={value} fill="#475569" fontSize="12">
         <text x={center.x + value * scaleX - 5} y={center.y + 16}>{value}</text>
         <text x={center.x - 20} y={center.y - value * scaleY + 3}>{value}</text>
       </g>)}
@@ -495,7 +495,7 @@ function FixedAngleGraph({
         strokeWidth="2"
         onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); onDrag("point"); }}
       />
-      {showCoordinates && <g data-testid="fixed-coordinates" fill="#475569" fontSize="9">
+      {showCoordinates && <g data-testid="fixed-coordinates" fill="#475569" fontSize="12">
         <text x={o.x + 8} y={o.y + 19}>O ({origin.x.toFixed(2)}, {origin.y.toFixed(2)})</text>
         <text x={p.x - 24} y={p.y - 13}>P ({polarPoint(origin, length, angle).x.toFixed(2)}, {polarPoint(origin, length, angle).y.toFixed(2)})</text>
       </g>}
@@ -540,10 +540,10 @@ function PracticeGraph({ angle, length, locked, dragging, onDrag, onMove }: {
     <path d={`M ${center.x + 40} ${center.y} A 40 40 0 0 0 ${polarScreen(center, 40, angle).x} ${polarScreen(center, 40, angle).y}`} fill="none" stroke="#38bdf8" strokeDasharray="5 4" />
     <circle cx={center.x} cy={center.y} r="6" fill="#1769e8" />
     <circle data-testid="fixed-practice-point" data-angle={angle.toFixed(6)} data-length={length.toFixed(6)} cx={endpoint.x} cy={endpoint.y} r="6" fill="#1769e8" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); onDrag(true); }} />
-    <text x={endpoint.x + 7} y={endpoint.y - 7} fill="#172554" fontSize="10" fontWeight="800">P</text>
-    <text x={center.x - 14} y={center.y + 17} fill="#334155" fontSize="9">O</text>
-    <text x="285" y={center.y + 12} fill="#334155" fontSize="9">x</text>
-    <text x={center.x - 13} y="13" fill="#334155" fontSize="9">y</text>
+    <text x={endpoint.x + 7} y={endpoint.y - 7} fill="#172554" fontSize="12" fontWeight="800">P</text>
+    <text x={center.x - 14} y={center.y + 17} fill="#334155" fontSize="12">O</text>
+    <text x="285" y={center.y + 12} fill="#334155" fontSize="12">x</text>
+    <text x={center.x - 13} y="13" fill="#334155" fontSize="12">y</text>
   </svg>;
 }
 
@@ -558,7 +558,7 @@ function AngleDial({ value }: { value: number }) {
     <path d={`M ${start.x} ${start.y} A 52 52 0 ${progress > 180 ? 1 : 0} 0 ${handle.x} ${handle.y}`} fill="none" stroke="url(#fixed-dial-gradient)" strokeWidth="8" strokeLinecap="round" />
     <circle cx={handle.x} cy={handle.y} r="6" fill="#fff" stroke="#168ddd" strokeWidth="2" />
     <text x="80" y="78" textAnchor="middle" fill="#0876c9" fontSize="24" fontWeight="900">{value.toFixed(1)}°</text>
-    <text x="80" y="99" textAnchor="middle" fill="#64748b" fontSize="8">-180° to 180°</text>
+    <text x="80" y="99" textAnchor="middle" fill="#64748b" fontSize="12">-180° to 180°</text>
   </svg>;
 }
 
@@ -570,7 +570,7 @@ function AngleIcon({ angle }: { angle: number }) {
 function MiniAngle({ angle }: { angle: number }) {
   const o = { x: 18, y: 82 };
   const p = polarScreen(o, 112, angle);
-  return <svg viewBox="0 0 180 100" role="img" aria-label="Worked example fixed thirty degree angle"><line x1={o.x} y1={o.y} x2="168" y2={o.y} stroke="#334155" /><line x1={o.x} y1={o.y} x2={p.x} y2={p.y} stroke="#1769e8" strokeWidth="2" /><path d={`M ${o.x + 42} ${o.y} A 42 42 0 0 0 ${polarScreen(o, 42, angle).x} ${polarScreen(o, 42, angle).y}`} fill="none" stroke="#38bdf8" strokeDasharray="4 3" /><circle cx={o.x} cy={o.y} r="4" fill="#1769e8" /><circle cx={p.x} cy={p.y} r="4" fill="#1769e8" /><text x={o.x - 5} y={o.y + 14} fontSize="9">O</text><text x={p.x + 6} y={p.y} fontSize="9">P</text><text x={o.x + 55} y={o.y - 12} fill="#1769e8" fontSize="10" fontWeight="800">{angle}°</text></svg>;
+  return <svg viewBox="0 0 180 100" role="img" aria-label="Worked example fixed thirty degree angle"><line x1={o.x} y1={o.y} x2="168" y2={o.y} stroke="#334155" /><line x1={o.x} y1={o.y} x2={p.x} y2={p.y} stroke="#1769e8" strokeWidth="2" /><path d={`M ${o.x + 42} ${o.y} A 42 42 0 0 0 ${polarScreen(o, 42, angle).x} ${polarScreen(o, 42, angle).y}`} fill="none" stroke="#38bdf8" strokeDasharray="4 3" /><circle cx={o.x} cy={o.y} r="4" fill="#1769e8" /><circle cx={p.x} cy={p.y} r="4" fill="#1769e8" /><text x={o.x - 5} y={o.y + 14} fontSize="12">O</text><text x={p.x + 6} y={p.y} fontSize="12">P</text><text x={o.x + 55} y={o.y - 12} fill="#1769e8" fontSize="12" fontWeight="800">{angle}°</text></svg>;
 }
 
 function Switch({ checked, label, onChange }: { checked: boolean; label: string; onChange: (value: boolean) => void }) {

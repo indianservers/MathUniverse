@@ -1,0 +1,19 @@
+.cxs-topic-card.msk-card-article > .complex-card-illustration {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  contain: layout paint;
+  isolation: isolate;
+  border-radius: 12px;
+  background: radial-gradient(ellipse at 78% 48%, #163b68bb, transparent 78%), linear-gradient(90deg, #06152d00, #09233ee8 44%, #07162ffa);
+  opacity: 0;
+}
+.cxs-topic-card.msk-card-article > .complex-card-illustration[data-fitted="true"] { opacity: 1; }
+.complex-card-illustration > svg,
+.complex-card-illustration > canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: contain; }
+.complex-card-illustration > canvas { visibility: hidden; transition: filter 350ms ease; }
+.complex-card-illustration[data-canvas-ready="true"] > canvas { visibility: visible; }
+.complex-card-illustration[data-canvas-ready="true"] > svg { visibility: hidden; }
+.complex-card-illustration[data-hover="true"] > canvas { filter: brightness(1.16) saturate(1.08); }
+@media(prefers-reduced-motion:reduce) { .complex-card-illustration > canvas { transition: none; } }

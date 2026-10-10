@@ -2000,7 +2000,7 @@ function FinancialModelsPreview() {
         <path d={`M28 150 C92 150 130 ${142 - rate * 3} 172 ${132 - rate * 4} C220 ${118 - rate * 4} 260 ${88 - rate * 5} 292 ${42}`} fill="none" stroke="#a3e635" strokeWidth="4" />
         {[35, 70, 108, 150].map((height, index) => <rect key={index} x={310 + index * 22} y={156 - height} width="14" height={height} fill="#86efac" opacity={.45 + index * .12} />)}
         <line x1="298" y1="80" x2="396" y2="80" stroke="#67e8f9" />
-        {[0, 1, 2, 3].map((step) => <g key={step}><line x1={310 + step * 27} y1="92" x2={310 + step * 27} y2="62" stroke="#fef3c7" /><text x={302 + step * 27} y="55" fill="#fef3c7" fontSize="11" fontWeight="950">3k</text></g>)}
+        {[0, 1, 2, 3].map((step) => <g key={step}><line x1={310 + step * 27} y1="92" x2={310 + step * 27} y2="62" stroke="#fef3c7" /><text x={302 + step * 27} y="55" fill="#fef3c7" fontSize="12" fontWeight="950">3k</text></g>)}
         <text x="28" y="34" fill="#fff" fontSize="14" fontWeight="950">Future value ${value.toLocaleString()}</text>
       </svg>
       <label>r = {rate.toFixed(1)}%<input type="range" min="1" max="15" step=".5" value={rate} onClick={(event) => event.preventDefault()} onChange={(event) => setRate(Number(event.target.value))} /></label>
@@ -2287,7 +2287,7 @@ function CollatzSvg({ sequence, step }: { sequence: number[]; step: number }) {
     <svg viewBox="0 0 460 180" role="img" aria-label="Collatz sequence trajectory for 27">
       <rect width="460" height="180" rx="16" fill="#111827" />
       <polyline points={points} fill="none" stroke="#f97316" strokeWidth="3" />
-      {shown.slice(0, 12).map((value, index) => <g key={index}><circle cx={34 + index * 34} cy={88 + (index % 3) * 22} r="13" fill={index === step ? "#ef4444" : "#1f2937"} stroke="#fca5a5" strokeWidth="2" /><text x={34 + index * 34} y={93 + (index % 3) * 22} textAnchor="middle" fill="#fff" fontSize="10" fontWeight="950">{value}</text></g>)}
+      {shown.slice(0, 12).map((value, index) => <g key={index}><circle cx={34 + index * 34} cy={88 + (index % 3) * 22} r="13" fill={index === step ? "#ef4444" : "#1f2937"} stroke="#fca5a5" strokeWidth="2" /><text x={34 + index * 34} y={93 + (index % 3) * 22} textAnchor="middle" fill="#fff" fontSize="12" fontWeight="950">{value}</text></g>)}
     </svg>
   );
 }

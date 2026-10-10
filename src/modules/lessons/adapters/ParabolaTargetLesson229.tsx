@@ -701,7 +701,7 @@ function ParabolaPlot({
         strokeWidth="2"
         pointerEvents="none"
       />
-      <text x="20" y={directrixY + 18} fill="#7e22ce" fontSize="11">
+      <text x="20" y={directrixY + 18} fill="#7e22ce" fontSize="12">
         y = {format(directrix)}
       </text>
       {showTrace && (
@@ -739,10 +739,10 @@ function ParabolaPlot({
           if (tool === "select") onDrag("point");
         }}
       />
-      <text x={f.x + 10} y={f.y - 10} fill="#2468e5" fontSize="11">
+      <text x={f.x + 10} y={f.y - 10} fill="#2468e5" fontSize="12">
         F ({format(focus.x)}, {format(focus.y)})
       </text>
-      <text x={p.x + 10} y={p.y + 5} fill="#f97316" fontSize="11">
+      <text x={p.x + 10} y={p.y + 5} fill="#f97316" fontSize="12">
         P ({format(point.x)}, {format(point.y)})
       </text>
     </svg>

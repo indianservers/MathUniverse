@@ -462,7 +462,7 @@ function LineScene({
                 />
               </mesh>
               <Billboard position={[0.35, 0.3, 0]}>
-                <Text fontSize={0.27} color="#fff">
+                <Text fontSize={12} color="#fff">
                   t = {sample}
                   {"\n"}({point.join(", ")})
                 </Text>
@@ -482,12 +482,12 @@ function LineScene({
       </group>
       {equations && (
         <Billboard position={[p[0] + 1.2, p[2] + 0.8, p[1]]}>
-          <Text fontSize={0.27} color="#22c7e5">
+          <Text fontSize={12} color="#22c7e5">
             P₀ = ({p.join(", ")})
           </Text>
         </Billboard>
       )}
-      <Text position={[0, 7.3, 0]} fontSize={0.35} color="#23bcd9">
+      <Text position={[0, 7.3, 0]} fontSize={12} color="#23bcd9">
         z
       </Text>
     </>

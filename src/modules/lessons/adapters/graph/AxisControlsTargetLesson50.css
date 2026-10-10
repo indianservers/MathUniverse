@@ -297,7 +297,8 @@
     overflow: auto;
   }
   .ac50-graph > svg {
-    min-width: 620px;
+    min-width: 0;
+    width: 100%;
   }
   .ac50-summary,
   .ac50-adjacent {

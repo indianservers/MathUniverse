@@ -66,7 +66,7 @@ export default function AlgebraWorkspaceTargetLesson19({
   const [workspaceOpen, setWorkspaceOpen] = useState(false);
   const [shareState, setShareState] = useState("Share");
   const [practiceIndex, setPracticeIndex] = useState(0);
-  const [answerVisible, setAnswerVisible] = useState(true);
+  const [answerVisible, setAnswerVisible] = useState(false);
   const output = a * x + b;
   const practiceX = PRACTICE_VALUES[practiceIndex];
   const practiceAnswer = a * practiceX + b;
@@ -88,7 +88,7 @@ export default function AlgebraWorkspaceTargetLesson19({
     setWorkspaceOpen(false);
     setShareState("Share");
     setPracticeIndex(0);
-    setAnswerVisible(true);
+    setAnswerVisible(false);
     if (notify) onInteraction();
   };
   useEffect(() => {
@@ -103,7 +103,7 @@ export default function AlgebraWorkspaceTargetLesson19({
     setWorkspaceOpen(false);
     setShareState("Share");
     setPracticeIndex(0);
-    setAnswerVisible(true);
+    setAnswerVisible(false);
   }, [resetToken]);
 
   const commitRule = () => {

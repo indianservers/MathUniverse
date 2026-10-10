@@ -1792,13 +1792,13 @@ function MisconceptionTriangle({ correct }: { correct: boolean }) {
           strokeWidth="2"
         />
         <path d="M110 65V55H120" fill="none" stroke="#10b981" />
-        <text x="30" y="60" fontSize="9">
+        <text x="30" y="60" fontSize="12">
           θ
         </text>
-        <text x="68" y="73" fill="#059669" fontSize="8">
+        <text x="68" y="73" fill="#059669" fontSize="12">
           {correct ? "adjacent" : "opposite"}
         </text>
-        <text x="122" y="44" fill="#db2777" fontSize="8">
+        <text x="122" y="44" fill="#db2777" fontSize="12">
           {correct ? "opposite" : "hypotenuse"}
         </text>
       </svg>

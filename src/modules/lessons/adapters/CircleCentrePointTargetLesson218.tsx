@@ -755,13 +755,13 @@ function MiniCircle() {
       />
       <circle cx="60" cy="62" r="4" fill="#1683e6" />
       <circle cx="105" cy="25" r="4" fill="#7c3aed" />
-      <text x="55" y="58" fontSize="10">
+      <text x="55" y="58" fontSize="12">
         C
       </text>
-      <text x="111" y="22" fontSize="10">
+      <text x="111" y="22" fontSize="12">
         P
       </text>
-      <text x="74" y="39" fontSize="10">
+      <text x="74" y="39" fontSize="12">
         r
       </text>
     </svg>

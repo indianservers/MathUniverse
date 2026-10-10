@@ -25,11 +25,11 @@ export default function InverseTrigonometryTargetLesson11({
   const [mode, setMode] = useState<"DEG" | "RAD">("DEG");
   const [view, setView] = useState(0);
   const [practiceRatio, setPracticeRatio] = useState(1);
-  const [answer, setAnswer] = useState("90");
+  const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState<"idle" | "correct" | "incorrect">(
-    "correct",
+    "idle",
   );
-  const [revealed, setRevealed] = useState(true);
+  const [revealed, setRevealed] = useState(false);
   const circleRef = useRef<SVGSVGElement>(null);
   const radians = Math.asin(ratio);
   const degrees = (radians * 180) / Math.PI;
@@ -47,9 +47,9 @@ export default function InverseTrigonometryTargetLesson11({
     setMode("DEG");
     setView(0);
     setPracticeRatio(1);
-    setAnswer("90");
-    setFeedback("correct");
-    setRevealed(true);
+    setAnswer("");
+    setFeedback("idle");
+    setRevealed(false);
     onInteraction();
   };
   useEffect(() => {
@@ -57,9 +57,9 @@ export default function InverseTrigonometryTargetLesson11({
     setMode("DEG");
     setView(0);
     setPracticeRatio(1);
-    setAnswer("90");
-    setFeedback("correct");
-    setRevealed(true);
+    setAnswer("");
+    setFeedback("idle");
+    setRevealed(false);
   }, [resetToken]);
   const dragRay = (event: ReactPointerEvent<SVGSVGElement>) => {
     if (!(event.buttons & 1)) return;

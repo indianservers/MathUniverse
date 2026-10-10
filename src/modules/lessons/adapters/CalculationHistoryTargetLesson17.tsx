@@ -81,8 +81,8 @@ export default function CalculationHistoryTargetLesson17({
   const [pinnedRows, setPinnedRows] = useState<number[]>([]);
   const [copiedResult, setCopiedResult] = useState("");
   const [reusedExpression, setReusedExpression] = useState("");
-  const [practiceChoice, setPracticeChoice] = useState<number | null>(1);
-  const [practiceChecked, setPracticeChecked] = useState(true);
+  const [practiceChoice, setPracticeChoice] = useState<number | null>(null);
+  const [practiceChecked, setPracticeChecked] = useState(false);
   const [shareState, setShareState] = useState("Share");
   const [workspaceOpen, setWorkspaceOpen] = useState(false);
   const active = ROWS.find((row) => row.id === selectedRow) ?? ROWS[0];
@@ -94,8 +94,8 @@ export default function CalculationHistoryTargetLesson17({
     setPinnedRows([]);
     setCopiedResult("");
     setReusedExpression("");
-    setPracticeChoice(1);
-    setPracticeChecked(true);
+    setPracticeChoice(null);
+    setPracticeChecked(false);
     setShareState("Share");
     setWorkspaceOpen(false);
     if (notify) onInteraction();
@@ -108,8 +108,8 @@ export default function CalculationHistoryTargetLesson17({
     setPinnedRows([]);
     setCopiedResult("");
     setReusedExpression("");
-    setPracticeChoice(1);
-    setPracticeChecked(true);
+    setPracticeChoice(null);
+    setPracticeChecked(false);
     setShareState("Share");
     setWorkspaceOpen(false);
   }, [resetToken]);

@@ -36,13 +36,13 @@ function spec(
 }
 
 export const batch2StudySpecs: Record<number, StudySpec> = {
-  31: spec("number-line", "Open ray for x > 4", "x", "True", "x>4", (t) => (t > 0.4 ? "visible" : "hidden"), [
+  31: spec("number-line", "Open ray for x > 4", "x", "True", "x>4", (t) => {const x=-1+t*9;return `x=${x.toFixed(2)}: ${x>4?'true':'false'}`;}, [
     ["Hidden", 4, "#eaa711"], ["Open", 4, "#268ff1"], ["True", 8, "#23b56e"]
   ], [[-1, 0], [4, 0], [8, 1]]),
-  32: spec("bars", "List summary of [3,5,7,9]", "Index", "Value", "Sum", (t) => String([3,5,7,9][Math.round(t*3)]), [
+  32: spec("bars", "List summary of [3,5,7,9]", "Index", "Value", "Selected entry", (t) => {const i=Math.round(t*3);return `entry ${i+1} = ${[3,5,7,9][i]}; sum = 24`;}, [
     ["3", 3, "#268ff1"], ["5", 5, "#23b56e"], ["7", 7, "#8d4ce4"], ["9", 9, "#eaa711"]
   ], [[1, 3], [2, 5], [3, 7], [4, 9]]),
-  33: spec("bars", "2x2 matrix [[1,2],[3,4]]", "Entry", "Value", "det", (t) => String([1,2,3,4][Math.round(t*3)]), [
+  33: spec("bars", "2x2 matrix [[1,2],[3,4]]", "Entry", "Value", "Selected entry", (t) => {const i=Math.round(t*3);return `${['a11','a12','a21','a22'][i]} = ${[1,2,3,4][i]}; determinant = -2`;}, [
     ["a11", 1, "#268ff1"], ["a12", 2, "#23b56e"], ["a21", 3, "#8d4ce4"], ["det", -2, "#eaa711"]
   ], [[1, 1], [2, 2], [3, 3], [4, 4]]),
   34: spec("line", "Arithmetic sequence 3,5,7,9", "n", "a_n", "3+2(n-1)", (t) => String(3+2*Math.round(t*4)), [
@@ -51,7 +51,7 @@ export const batch2StudySpecs: Record<number, StudySpec> = {
   35: spec("line", "Two-branch f(x)", "x", "f(x)", "Active branch", (t) => (t<0.5 ? "x+1" : "2x"), [
     ["Left", 1, "#268ff1"], ["Join", 2, "#23b56e"], ["Right", 4, "#8d4ce4"]
   ], [[-1, 0], [1, 2], [2, 4]]),
-  36: spec("bars", "AND, OR, and NOT of P=1, Q=0", "Gate", "Bit", "P AND Q", (t) => String([0,1,0][Math.round(t*2)]), [
+  36: spec("bars", "AND, OR, and NOT of P=1, Q=0", "Gate", "Bit", "Selected gate", (t) => {const i=Math.round(t*2);return `${['P AND Q','P OR Q','NOT P'][i]} = ${[0,1,0][i]}`;}, [
     ["AND", 0, "#268ff1"], ["OR", 1, "#23b56e"], ["NOT P", 0, "#8d4ce4"]
   ], [[0, 0], [1, 1], [2, 0]]),
   37: spec("bars", "Template tokens x,y,z", "Token", "Value", "Printed text", (t) => `P(${Math.round(1+t*4)},${Math.round(2+t*2)})`, [
@@ -66,22 +66,22 @@ export const batch2StudySpecs: Record<number, StudySpec> = {
   40: spec("line", "y = x^2 − 4", "x", "y", "f(x)", (t) => String((((-3+t*6)**2)-4).toFixed(1)), [
     ["roots", 0, "#268ff1"], ["vertex", -4, "#23b56e"], ["f(3)", 5, "#8d4ce4"]
   ], [[-2, 0], [0, -4], [2, 0], [3, 5]]),
-  41: spec("line", "Intersection of 2x+3=11", "x", "y", "Both sides", (t) => String((2*(1+t*5)+3).toFixed(1)), [
+  41: spec("line", "Intersection of 2x+3=11", "x", "y", "Test both sides", (t) => {const x=1+t*5;return `x=${x.toFixed(2)}: left=${(2*x+3).toFixed(2)}, right=11; intersection (4,11)`;}, [
     ["Left@4", 11, "#268ff1"], ["Right", 11, "#23b56e"], ["x", 4, "#eaa711"]
   ], [[0, 3], [4, 11], [6, 15]]),
-  42: spec("number-line", "Half-plane y < 2x+1", "x", "y", "Test point", (t) => (2*t < 1+t ? "inside" : "outside"), [
+  42: spec("number-line", "Half-plane y < 2x+1", "x", "y", "Test point", (t) => {const x=1,y=6*t;return `(1,${y.toFixed(2)}): ${y<2*x+1?'inside':'outside or on boundary'}`;}, [
     ["Line", 1, "#268ff1"], ["Inside", 1, "#23b56e"], ["Test", 0, "#eaa711"]
   ], [[0, 1], [1, 3], [2, 5]]),
-  43: spec("line", "Circle x=cos t, y=sin t", "t", "Point", "t in [0,2π]", (t) => `(${Math.cos(t*6.28).toFixed(2)},${Math.sin(t*6.28).toFixed(2)})`, [
+  43: spec("line", "Circle x=cos t, y=sin t", "x", "y", "t in [0,2π]", (t) => `(${Math.cos(t*2*Math.PI).toFixed(2)},${Math.sin(t*2*Math.PI).toFixed(2)})`, [
     ["t=0", 1, "#268ff1"], ["t=π/2", 1, "#23b56e"], ["t=π", -1, "#8d4ce4"]
   ], [[1, 0], [0, 1], [-1, 0], [0, -1]]),
-  44: spec("circle", "r = 2 cos θ", "θ", "r", "Polar point", (t) => `r=${(2*Math.cos(t*3.14)).toFixed(2)}`, [
+  44: spec("line", "r = 2 cos θ", "θ (radians)", "r", "Polar radius", (t) => `θ=${(t*Math.PI/2).toFixed(2)}, r=${(2*Math.cos(t*Math.PI/2)).toFixed(2)}`, [
     ["θ=0", 2, "#268ff1"], ["θ=π/3", 1, "#23b56e"], ["θ=π/2", 0, "#eaa711"]
-  ], [[0, 2], [1, 1], [1.57, 0]]),
+  ], [[0, 2], [Math.PI/3, 1], [Math.PI/2, 0]]),
   45: spec("line", "Plotted sample (2,5)", "x", "y", "Point list", (t) => `(${Math.round(1+t*4)},${Math.round(2+t*6)})`, [
     ["P1", 2, "#268ff1"], ["P2", 5, "#23b56e"], ["count", 3, "#eaa711"]
   ], [[1, 2], [2, 5], [4, 8]]),
-  46: spec("bars", "Data set 2,5,5,8", "Index", "Value", "Mean", (t) => String([2,5,5,8][Math.round(t*3)]), [
+  46: spec("bars", "Data set 2,5,5,8", "Index", "Value", "Selected value", (t) => `entry ${Math.round(t*3)+1} = ${[2,5,5,8][Math.round(t*3)]}; mean = 5`, [
     ["2", 2, "#268ff1"], ["5", 5, "#23b56e"], ["8", 8, "#8d4ce4"], ["mean", 5, "#eaa711"]
   ], [[1, 2], [2, 5], [3, 5], [4, 8]]),
   47: spec("bars", "y=2x+3 at x=0,1,2,3", "x", "y", "2x+3", (t) => String(2*Math.round(t*3)+3), [

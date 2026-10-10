@@ -36,9 +36,9 @@ export default function ExponentialCalculationsTargetLesson9({
     [animationStep, setAnimationStep] = useState(8),
     [animating, setAnimating] = useState(false),
     [problem, setProblem] = useState(0),
-    [answer, setAnswer] = useState("81"),
+    [answer, setAnswer] = useState(""),
     [feedback, setFeedback] = useState<"idle" | "correct" | "incorrect">(
-      "correct",
+      "idle",
     );
   const output = useMemo(() => base ** exponent, [base, exponent]);
   const [practiceBase, practiceExponent] = PRACTICE[problem],
@@ -50,8 +50,8 @@ export default function ExponentialCalculationsTargetLesson9({
     setAnimationStep(8);
     setAnimating(false);
     setProblem(0);
-    setAnswer("81");
-    setFeedback("correct");
+    setAnswer("");
+    setFeedback("idle");
   }, [resetToken]);
   useEffect(() => {
     if (!animating) return;
@@ -324,7 +324,7 @@ export default function ExponentialCalculationsTargetLesson9({
                 />
               </label>
               <label>
-                Correct answer<output>{practiceResult}</output>
+                Result<output>{feedback === "correct" ? practiceResult : "Try the problem first"}</output>
               </label>
               <aside className={feedback}>
                 <button type="button" onClick={grade}>
@@ -338,10 +338,10 @@ export default function ExponentialCalculationsTargetLesson9({
                       ? "Try again"
                       : "Check your answer"}
                 </b>
-                <p>
+                {feedback === "correct" ? <p>
                   {practiceBase}
                   <sup>{practiceExponent}</sup> = {practiceResult}
-                </p>
+                </p> : <p>Multiply the base by itself once for each factor.</p>}
               </aside>
             </div>
           </section>

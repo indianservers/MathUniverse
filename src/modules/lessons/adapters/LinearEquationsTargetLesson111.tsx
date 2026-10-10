@@ -56,8 +56,8 @@ export default function LinearEquationsTargetLesson111({
   const [shared, setShared] = useState(false);
   const [workspaceOpen, setWorkspaceOpen] = useState(false);
   const [practiceIndex, setPracticeIndex] = useState(0);
-  const [practiceAnswer, setPracticeAnswer] = useState("7");
-  const [practiceChecked, setPracticeChecked] = useState(true);
+  const [practiceAnswer, setPracticeAnswer] = useState("");
+  const [practiceChecked, setPracticeChecked] = useState(false);
   const [actions, setActions] = useState(0);
 
   const problem = useMemo(
@@ -94,8 +94,8 @@ export default function LinearEquationsTargetLesson111({
     setShared(false);
     setWorkspaceOpen(false);
     setPracticeIndex(0);
-    setPracticeAnswer("7");
-    setPracticeChecked(true);
+    setPracticeAnswer("");
+    setPracticeChecked(false);
     setActions(0);
     if (notify) onInteraction();
   };

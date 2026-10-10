@@ -681,10 +681,10 @@ function AreaPlot({
             y2={height}
             stroke="#475569"
           />
-          <text x={width - 10} y={origin.y - 7} fontSize="11">
+          <text x={width - 10} y={origin.y - 7} fontSize="12">
             x
           </text>
-          <text x={origin.x + 7} y="13" fontSize="11">
+          <text x={origin.x + 7} y="13" fontSize="12">
             y
           </text>
         </>
@@ -732,7 +732,7 @@ function AreaPlot({
               x={point.x + 9}
               y={point.y - 9}
               fill="#172554"
-              fontSize="10"
+              fontSize="12"
               fontWeight="800"
             >
               {LABELS[index]} ({format(vertices[index].x)},{" "}

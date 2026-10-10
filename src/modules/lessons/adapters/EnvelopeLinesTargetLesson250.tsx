@@ -560,7 +560,7 @@ function TangentMini() {
         strokeDasharray="5 3"
       />
       <circle cx="110" cy="47" r="5" fill="#111827" />
-      <text x="116" y="43" fontSize="10">
+      <text x="116" y="43" fontSize="12">
         P
       </text>
     </svg>

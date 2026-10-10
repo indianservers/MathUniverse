@@ -882,7 +882,7 @@ function DependencyGraph({
         <line x1={origin.x} x2={origin.x} y1="10" y2="410" />
       </g>
       {[-6, -4, -2, 0, 2, 4, 6].map((value) => (
-        <g key={value} fill="#475569" fontSize="9">
+        <g key={value} fill="#475569" fontSize="12">
           <text x={origin.x + value * scale - 5} y={origin.y + 17}>
             {value}
           </text>

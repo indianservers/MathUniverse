@@ -664,7 +664,7 @@ function PerpendicularPlane({
             <text
               x={sx(p.x) - 36}
               y={sy(p.y) - 20}
-              fontSize="10"
+              fontSize="12"
               pointerEvents="none"
             >
               90°

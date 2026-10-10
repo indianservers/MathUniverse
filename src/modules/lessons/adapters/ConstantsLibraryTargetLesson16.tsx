@@ -78,7 +78,7 @@ export default function ConstantsLibraryTargetLesson16({
     [precision, setPrecision] = useState(40),
     [view, setView] = useState(0),
     [actions, setActions] = useState(0),
-    [revealed, setRevealed] = useState(true);
+    [revealed, setRevealed] = useState(false);
   const constant = CONSTANTS[selected],
     numeric = Number(constant.stored),
     output = constant.output(numeric),
@@ -94,7 +94,7 @@ export default function ConstantsLibraryTargetLesson16({
     setPrecision(40);
     setView(0);
     setActions(0);
-    setRevealed(true);
+    setRevealed(false);
     onInteraction();
   };
   useEffect(() => {
@@ -102,7 +102,7 @@ export default function ConstantsLibraryTargetLesson16({
     setPrecision(40);
     setView(0);
     setActions(0);
-    setRevealed(true);
+    setRevealed(false);
   }, [resetToken]);
   const choose = (id: ConstantId) => {
     setSelected(id);

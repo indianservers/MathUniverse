@@ -1234,10 +1234,10 @@ function LineThroughPointsGraph({
             stroke="#0f172a"
             strokeWidth="1.5"
           />
-          <text x="604" y="238" fontSize="11">
+          <text x="604" y="238" fontSize="12">
             x
           </text>
-          <text x="322" y="18" fontSize="11">
+          <text x="322" y="18" fontSize="12">
             y
           </text>
         </>
@@ -1247,10 +1247,10 @@ function LineThroughPointsGraph({
             const n = index - 6;
             return (
               <g key={n}>
-                <text x={sx(n) - 5} y="268" fontSize="9" fill="#475569">
+                <text x={sx(n) - 5} y="268" fontSize="12" fill="#475569">
                   {n}
                 </text>
-                <text x="290" y={sy(n) + 3} fontSize="9" fill="#475569">
+                <text x="290" y={sy(n) + 3} fontSize="12" fill="#475569">
                   {n}
                 </text>
               </g>
@@ -1759,10 +1759,10 @@ function SegmentGraph({
       ))}
       <line x1="20" x2="505" y1="230" y2="230" stroke="#334155" />
       <line x1="260" x2="260" y1="15" y2="445" stroke="#334155" />
-      <text x="504" y="220" fontSize="10">
+      <text x="504" y="220" fontSize="12">
         x
       </text>
-      <text x="270" y="18" fontSize="10">
+      <text x="270" y="18" fontSize="12">
         y
       </text>
       <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#087ff5" strokeWidth="4" />
@@ -2972,7 +2972,7 @@ function FreePointCanvas({
           x={220 + t * 30}
           y="238"
           textAnchor="middle"
-          fontSize="10"
+          fontSize="12"
           fill="#52627e"
         >
           {t}
@@ -2984,7 +2984,7 @@ function FreePointCanvas({
           x="206"
           y={224 - t * 30}
           textAnchor="end"
-          fontSize="10"
+          fontSize="12"
           fill="#52627e"
         >
           {t}
@@ -3077,7 +3077,7 @@ function FreePointWorkedExample() {
         <line x1="130" y1="12" x2="130" y2="158" stroke="#172033" />
         <line x1="15" y1="85" x2="245" y2="85" stroke="#172033" />
         <circle cx="64" cy="41" r="5" fill="#1478e8" />
-        <text x="71" y="36" fontSize="10" fill="#1478e8">
+        <text x="71" y="36" fontSize="12" fill="#1478e8">
           P(-3, 4)
         </text>
       </svg>
@@ -3626,7 +3626,7 @@ function PointOnObjectGraph({
           x={originX + t * scale}
           y={originY + 18}
           textAnchor="middle"
-          fontSize="10"
+          fontSize="12"
           fill="#52627e"
         >
           {t}
@@ -3638,7 +3638,7 @@ function PointOnObjectGraph({
           x={originX - 10}
           y={originY - t * scale + 4}
           textAnchor="end"
-          fontSize="10"
+          fontSize="12"
           fill="#52627e"
         >
           {t}
@@ -4351,7 +4351,7 @@ function IntersectionGraph({
           x={sx(t)}
           y={oy + 15}
           textAnchor="middle"
-          fontSize="9"
+          fontSize="12"
         >
           {t}
         </text>
@@ -4362,7 +4362,7 @@ function IntersectionGraph({
           x={ox - 8}
           y={sy(t) + 3}
           textAnchor="end"
-          fontSize="9"
+          fontSize="12"
         >
           {t}
         </text>
@@ -4391,7 +4391,7 @@ function IntersectionGraph({
           <circle cx={sx(ix)} cy={sy(iy)} r="6" fill="#312e81" />
           <g transform={`translate(${sx(ix) + 18} ${sy(iy) - 42})`}>
             <rect width="85" height="48" rx="6" fill="white" stroke="#93c5fd" />
-            <text x="10" y="18" fontSize="10" fontWeight="800">
+            <text x="10" y="18" fontSize="12" fontWeight="800">
               Intersection
             </text>
             <text x="10" y="37" fontSize="15" fontWeight="900">
@@ -5606,7 +5606,7 @@ function AttachDetachCanvas({
           y="210"
           textAnchor="middle"
           fill="#52627e"
-          fontSize="11"
+          fontSize="12"
         >
           {tick}
         </text>
@@ -5618,7 +5618,7 @@ function AttachDetachCanvas({
           y={190 - tick * 34}
           textAnchor="end"
           fill="#52627e"
-          fontSize="11"
+          fontSize="12"
         >
           {tick}
         </text>

@@ -20,7 +20,7 @@ export default function PowersRootsTargetLesson6({
     [exponent, setExponent] = useState(3),
     [view, setView] = useState(0),
     [actions, setActions] = useState(0),
-    [revealed, setRevealed] = useState(true);
+    [revealed, setRevealed] = useState(false);
   const model = useMemo(() => {
     const root = Math.sqrt(radicand),
       power = Math.pow(base, exponent);
@@ -37,7 +37,7 @@ export default function PowersRootsTargetLesson6({
     setExponent(3);
     setView(0);
     setActions(0);
-    setRevealed(true);
+    setRevealed(false);
   }, [resetToken]);
   const change = (
     setter: (value: number) => void,

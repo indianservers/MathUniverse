@@ -366,7 +366,7 @@ function CuboidScene({
               lineWidth={3}
             />
             <Billboard position={[0.8, h / 2 + 0.5, 0]}>
-              <Text fontSize={0.25} color="#ffe55e">
+              <Text fontSize={12} color="#ffe55e">
                 Face diagonal √{clean(l * l + w * w)} ≈ {face}
               </Text>
             </Billboard>
@@ -384,7 +384,7 @@ function CuboidScene({
               lineWidth={3}
             />
             <Billboard position={[0.5, 0, 0]}>
-              <Text fontSize={0.25} color="#b9a6ff">
+              <Text fontSize={12} color="#b9a6ff">
                 Space diagonal √{clean(l * l + w * w + h * h)} ≈ {space}
               </Text>
             </Billboard>
@@ -399,17 +399,17 @@ function Labels({ dims: [l, w, h] }: { dims: Dims }) {
   return (
     <>
       <Billboard position={[0, -h / 2 - 0.35, w / 2]}>
-        <Text fontSize={0.24} color="#4c86ff">
+        <Text fontSize={12} color="#4c86ff">
           l = {l}
         </Text>
       </Billboard>
       <Billboard position={[l / 2 + 0.35, -h / 2, 0]}>
-        <Text fontSize={0.24} color="#37d56f">
+        <Text fontSize={12} color="#37d56f">
           w = {w}
         </Text>
       </Billboard>
       <Billboard position={[l / 2 + 0.3, 0, -w / 2]}>
-        <Text fontSize={0.24} color="#ff5767">
+        <Text fontSize={12} color="#ff5767">
           h = {h}
         </Text>
       </Billboard>

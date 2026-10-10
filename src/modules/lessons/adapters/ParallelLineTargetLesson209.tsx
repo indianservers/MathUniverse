@@ -536,7 +536,7 @@ function ParallelPlane({
           P
         </text>
         {showAngle ? (
-          <text x={sx(p.x) + 15} y={sy(p.y) + 25} fill="#7c3aed" fontSize="11">
+          <text x={sx(p.x) + 15} y={sy(p.y) + 25} fill="#7c3aed" fontSize="12">
             {(((Math.atan(slope) * 180) / Math.PI + 180) % 180).toFixed(2)}°
           </text>
         ) : null}
@@ -551,16 +551,16 @@ function ParallelPlane({
               fill="white"
               stroke="#cbd5e1"
             />
-            <text x="18" y="32" fontSize="10" fontWeight="800">
+            <text x="18" y="32" fontSize="12" fontWeight="800">
               Line ℓ (given)
             </text>
-            <text x="18" y="52" fontSize="10">
+            <text x="18" y="52" fontSize="12">
               y = {slope}x + {intercept}
             </text>
-            <text x="18" y="77" fontSize="10" fontWeight="800">
+            <text x="18" y="77" fontSize="12" fontWeight="800">
               Line m (through P)
             </text>
-            <text x="18" y="97" fontSize="10">
+            <text x="18" y="97" fontSize="12">
               y = {slope}x + {pi.toFixed(2)}
             </text>
           </g>

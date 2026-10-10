@@ -521,7 +521,7 @@ function MiniSaddle() {
       />
       <line x1="85" x2="85" y1="10" y2="65" stroke="#aab6c5" />
       <circle cx="85" cy="35" r="5" fill="#7135df" />
-      <text x="105" y="45" fontSize="8">
+      <text x="105" y="45" fontSize="12">
         Saddle point
       </text>
     </svg>

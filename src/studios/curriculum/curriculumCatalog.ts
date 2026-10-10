@@ -4,6 +4,7 @@ import { standaloneStudioTheoryRoutes } from '../mockup/StandaloneStudioTheory';
 import { distributionSpecs } from '../../modules/probability-statistics/data/distributionAtlas';
 import { curriculumExtensions } from './curriculumExtensions';
 import { masteryCourses } from './masteryContent';
+import {labsForStudio} from '../investigations/catalog';
 export type CurriculumStudio={id:string;name:string;base:string;prerequisites:string;scope:string};
 const definitions:[string,string,string,string][]=[
  ['algebra','Algebra Studio','/algebra','Arithmetic, fractions and signed numbers'],
@@ -49,7 +50,7 @@ const scopes:Record<string,string>={
 };
 export const curriculumStudios:CurriculumStudio[]=definitions.map(([id,name,base,prerequisites])=>({id,name,base,prerequisites,scope:scopes[id]}));
 export const slug=(label:string)=>label.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-export type CurriculumChapter={id:string;title:string;copy:StudioTheoryCopy;href:string;exercise?:{prompt:string;expected:number};source:'existing'|'extension'|'distribution'|'guided'};
+export type CurriculumChapter={id:string;title:string;copy:StudioTheoryCopy;href:string;exercise?:{prompt:string;expected:number};source:'existing'|'extension'|'distribution'|'guided'|'investigation'};
 export function chaptersFor(id:string):CurriculumChapter[]{
  const s=curriculumStudios.find(s=>s.id===id);if(!s)return [];
  const aliases:Record<string,string>={'probability-statistics':'statistics','mathematical-modelling':'modelling','discrete-world':'discrete','advanced-differential-equations':'differential-equations'};
@@ -62,6 +63,7 @@ export function chaptersFor(id:string):CurriculumChapter[]{
  const distributions=id==='probability-statistics'?distributionSpecs.map(d=>({id:`distribution-${d.id}`,title:d.name,href:d.route,source:'distribution' as const,copy:{principle:`${d.shortUse} ${d.theory.join(' ')}`,method:`Use the stated distribution with its parameter constraints: ${d.formula}`,caution:`Check support and parameter constraints. ${d.kind==='discrete'?'Add probability masses over eligible outcomes.':'Integrate density; height is not probability.'}`,examples:d.examples.slice(0,3).map((example,i)=>({title:`Application ${i+1}`,setup:example,result:d.formula})) as StudioTheoryCopy['examples']}})):[];
  const extended=id==='probability-statistics'?Object.entries(studioTheoryContent['statistics-extended']||{}).map(([key,copy])=>({id:key,title:key.replaceAll('-',' '),copy,href:`/probability-statistics/${key}`,source:'existing' as const})):[];
  const guided=(masteryCourses[id]?.units||[]).map(u=>({id:`guided-${u.id}`,title:u.title,href:u.href,source:'guided' as const,exercise:{prompt:u.calculation.prompt,expected:u.calculation.answer},copy:{principle:`${u.idea} ${u.conditions}`,method:u.method.join(' '),caution:`${u.conditions} Common misconception: ${u.misconception} Correction: ${u.explanation}`,examples:[{title:'Worked solution',setup:u.problem,result:u.solution.join(' ')},{title:'Transfer exercise',setup:u.calculation.prompt,result:`Answer: ${u.calculation.answer}`},{title:'Investigation',setup:u.investigation,result:'Explain your prediction and observation using the stated hypotheses.'}] as StudioTheoryCopy['examples']}}));
- return [...existing,...extensions,...distributions,...extended,...guided];
+ const investigations=labsForStudio(id).map(lab=>({id:`investigation-${lab.id}`,title:lab.title,href:`/studios/${id}/labs/${lab.id}`,source:'investigation' as const,copy:{principle:`${lab.idea} ${lab.conditions}`,method:'Predict the outcome, change the editable inputs, inspect the live evidence and follow the model derivation. Then solve a transfer problem and explain a boundary case.',caution:`${lab.conditions} Misconception: ${lab.misconception}`,examples:[{title:'Predict',setup:lab.prediction,result:lab.idea},{title:'Investigate',setup:lab.transfer,result:lab.conditions},{title:'Reason',setup:lab.misconception,result:'Use the interactive derivation and evidence to explain the flaw.'}] as StudioTheoryCopy['examples']}}));
+ return [...existing,...extensions,...distributions,...extended,...guided,...investigations];
 }
-export function studioForPath(path:string){return [...curriculumStudios].sort((a,b)=>b.base.length-a.base.length).find(s=>path===s.base||path.startsWith(s.base+'/'));}
+export function studioForPath(path:string){if(path==='/shapes')return curriculumStudios.find(s=>s.id==='geometry');return [...curriculumStudios].sort((a,b)=>b.base.length-a.base.length).find(s=>path===s.base||path.startsWith(s.base+'/'));}

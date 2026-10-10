@@ -57,7 +57,7 @@ function headingText(element: HTMLElement) {
 function isChrome(element: HTMLElement) {
   return Boolean(
     element.closest(
-      "header, nav, [class*='-hero'], [class*='-tabs'], [class*='-adjacent'], [data-lesson-study-board], .lesson-topic-study-board, [data-lesson-simple-english]",
+      "header, nav, [class*='-hero'], [class*='-tabs'], [class*='-adjacent'], [data-lesson-study-board], .lesson-topic-study-board, [data-lesson-simple-english], [data-lesson-study-session]",
     ),
   );
 }

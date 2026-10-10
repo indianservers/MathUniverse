@@ -539,14 +539,14 @@ function IntersectionScene({
             />
           </mesh>
           <Billboard position={[0.5, 0.3, 0]}>
-            <Text fontSize={0.42} color="#fff">
+            <Text fontSize={12} color="#fff">
               I=({result.intersection.join(",")}), t={result.t}
             </Text>
           </Billboard>
         </group>
       )}
       <Billboard position={[2, 2, 1]}>
-        <Text fontSize={0.36} color="#ddd0ff">
+        <Text fontSize={12} color="#ddd0ff">
           {plane[0]}x+{plane[1]}y+{plane[2]}z={plane[3]}
         </Text>
       </Billboard>

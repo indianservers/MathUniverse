@@ -1,7 +1,8 @@
 import {describe,it,expect} from 'vitest';
-import {curriculumStudios,chaptersFor} from './curriculumCatalog';
+import {curriculumStudios,chaptersFor,studioForPath} from './curriculumCatalog';
 import {supplementalDefaults,supplementalModel} from './supplementalModels';
 describe('studio learning paths',()=>{
+  it('keeps the linked shapes lab inside the Geometry Studio mobile shell',()=>{expect(studioForPath('/shapes')?.id).toBe('geometry');});
   it('gives every main and advanced studio substantive chapters and a working supplemental model',()=>{expect(curriculumStudios).toHaveLength(19);for(const studio of curriculumStudios){const chapters=chaptersFor(studio.id);expect(chapters.length,studio.id).toBeGreaterThanOrEqual(2);expect(new Set(chapters.map(c=>c.id)).size).toBe(chapters.length);for(const c of chapters){expect(c.copy.principle.length).toBeGreaterThan(50);expect(c.copy.method.length).toBeGreaterThan(20);expect(c.copy.caution.length).toBeGreaterThan(20);expect(c.href.startsWith('/')).toBe(true);}const d=supplementalDefaults[studio.id],model=supplementalModel(studio.id,d.a,d.b);expect(model.series.length).toBeGreaterThan(0);for(const v of Object.values(model.outputs))if(typeof v==='number')expect(Number.isFinite(v)).toBe(true);}});
   it('calculates boundary cases without inventing a result',()=>{expect(supplementalModel('set-theory',0,0).outputs.functionCount).toBe(1);expect(supplementalModel('algebra',-2,6).outputs.solution).toBe('x ≤ 3');expect(supplementalModel('geometry',5,3).outputs.eccentricity).toBe(.8);expect(supplementalModel('linear-algebra',4,0).outputs.condition).toBe('Infinite (singular)');expect(supplementalModel('continued-fractions',43,19).series).toEqual([2,3,1,4]);expect(supplementalModel('trigonometry',1,1).outputs.count).toBe(1);expect(()=>supplementalModel('complex-numbers',0,0)).toThrow();});
 });

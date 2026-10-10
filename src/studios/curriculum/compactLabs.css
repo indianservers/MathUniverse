@@ -1,0 +1,89 @@
+/* Lab density follows the available screen height, without shrinking touch targets. */
+.lab-compact-controls { display: none; }
+.studio-learning-host .focused-lab > [role="tabpanel"] { padding-bottom: 56px; }
+.studio-learning-host .focused-lab :is(.msk-stage,.cs-page,.alg-page,.cxs-page,.de-main-content) { padding: 8px 12px; }
+.studio-learning-host .focused-lab :is(.msk-top,.cs-header,.alg-header,.cxs-header,.de-topbar) { gap: 6px; margin-bottom: 6px; padding-block: 4px; }
+.studio-learning-host .focused-lab :is(.msk-top,.cs-header,.alg-header,.cxs-header) h1 { font-size: clamp(18px,2vw,24px); line-height: 1.2; margin: 0; }
+.studio-learning-host .focused-lab .msk-title-block h1 { white-space: normal; overflow-wrap: anywhere; }
+.studio-learning-host .focused-lab :is(.msk-top,.cs-header,.alg-header,.cxs-header) p { font-size: 12px; margin: 3px 0; line-height: 1.4; }
+.studio-learning-host .focused-lab :is(.msk-panel,.msk-card,.la-card,.cds-controls,.ci-controls,.cls-controls,.de-panel) { padding: 10px; }
+.studio-learning-host .focused-lab :is(.msk-panel,.msk-card,.la-card,.cds-controls,.ci-controls,.cls-controls,.de-panel) h2 { font-size: 15px; margin-block: 0 6px; }
+.studio-learning-host .focused-lab :is(.msk-lab,.la-lab,.ci-workspace,.cds-workspace,.cls-workspace,.its-layout,.mvc-workspace,.de-workspace) { gap: 8px; }
+.studio-learning-host .focused-lab :is(.ci-graph,.cds-graph,.cls-graph,.mvc-graph,.de-graph,.msk-graph,.studio-graph-widget > svg) { min-height: 0 !important; height: clamp(230px,42dvh,420px); max-height: 48dvh; width: 100%; }
+.studio-learning-host .focused-lab .studio-graph-widget { min-height: 0; }
+.studio-learning-host .focused-lab .studio-graph-widget > svg { min-height: 0 !important; }
+.studio-learning-host .focused-lab .studio-math-3d { min-height: 0; height: clamp(240px,42dvh,420px); }
+.studio-learning-host .focused-lab :is(.msk-canvas,.la-viz,.cds-graph-wrap,.ci-visual-panel,.cls-graph-card) > svg:not([viewBox="0 0 24 24"]) { min-height: 0 !important; height: clamp(220px,35dvh,360px); max-height: 48dvh; width: 100%; }
+.studio-learning-host .focused-lab .msk-units { min-width: 106px; flex-shrink: 0; }
+.studio-learning-host .focused-lab .ids-chrome-tools { min-width: 110px; }
+.studio-learning-host .focused-lab .la-metrics :is(b,small) { white-space: normal; overflow-wrap: anywhere; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .alg-home-hero { flex-wrap: wrap; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .alg-home-hero-tools { flex: 1 1 100%; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .alg-home-hero-tools input { width: 100%; min-width: 0; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .set-representation-counts { grid-template-columns: repeat(auto-fit,minmax(min(100%,100px),1fr)); overflow-wrap: anywhere; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .msk-geo-hero-actions { overflow-wrap: anywhere; }
+.studio-learning-host[data-mobile-first] .studio-learning-content .ivt-studio h2 { overflow-wrap: anywhere; white-space: normal; }
+
+/* The identity catalog is available on demand, rather than above every experiment. */
+.studio-learning-host .focused-lab .ids-picker > summary { padding: 6px 12px; min-height: 44px; cursor: pointer; font-size: 12px; font-weight: 700; }
+.studio-learning-host .focused-lab .ids-heading { margin-bottom: 4px; }
+.studio-learning-host .focused-lab .ids-heading h2 { font-size: 14px; }
+.studio-learning-host .focused-lab .ids-activity { margin-bottom: 6px; }
+.studio-learning-host .focused-lab .ids-equation { padding: 6px 10px; }
+.studio-learning-host .focused-lab .ids-equation .ids-legend { gap: 4px 10px; padding: 2px 0; }
+.studio-learning-host .focused-lab .ids-figure svg { min-height: 0; height: clamp(220px,36dvh,350px); }
+.studio-learning-host .focused-lab .ids-wave-panel svg { max-height: 150px; }
+.studio-learning-host .focused-lab .ids-controller { position: static; padding: 6px 10px; }
+.studio-learning-host .focused-lab :is(.ids-view-tools,.ids-activity) { flex-wrap: nowrap; overflow-x: auto; padding-block: 4px; gap: 4px; }
+.studio-learning-host .focused-lab :is(.ids-view-tools,.ids-activity) > button { flex: 0 0 auto; white-space: nowrap; padding-inline: 8px; }
+.studio-learning-host .focused-lab .ids-activity > span { flex: 0 0 auto; width: auto; }
+.studio-learning-host .focused-lab .ids-hint { padding: 4px 10px; }
+.studio-learning-host .focused-lab .ids-domain { padding: 4px 10px; }
+
+@media (max-width: 767px) {
+  .studio-learning-host[data-mobile-first] .studio-learning-content .focused-lab .msk-top { padding-block: 2px; margin-bottom: 4px; gap: 4px; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .focused-lab .msk-top > div:first-child { flex: 1 1 180px; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .focused-lab .msk-top h1 { font-size: 18px; line-height: 1.25; }
+  .studio-learning-host[data-mobile-first] .studio-learning-content .focused-lab :is(.msk-title-block,.cs-title,.alg-header > div:first-child,.cxs-header > div:first-child) > p { display: none; }
+  .studio-learning-host[data-mobile-first] .focused-lab[data-focus-pane="workspace"][data-controls-expanded="false"] [data-compact-controls] { display: none !important; }
+  .studio-learning-host .focused-lab .lab-compact-controls { display: block; padding: 4px 8px; }
+  .studio-learning-host .focused-lab .lab-compact-controls button { display: flex; gap: 8px; align-items: center; min-height: 44px; padding: 6px 12px; border: 1px solid #b8d7ee; border-radius: 8px; background: #eff8ff; color: #123653; font-size: 12px; font-weight: 700; }
+  .lab-compact-controls span { font-size: 10px; font-weight: 400; }
+  .studio-learning-host[data-mobile-first] .focused-lab :is(.msk-stage,.cs-page,.alg-page,.cxs-page,.de-main-content) { padding: 6px 8px; }
+  .studio-learning-host[data-mobile-first] .focused-lab :is(.studio-canvas-tools,.cs-header-actions,.alg-header-actions,.cxs-header-actions,.msk-icon-tools,.la-canvas-tools) { flex-wrap: nowrap; overflow-x: auto; width: 100%; max-width: 100%; padding: 2px; gap: 4px; }
+  .studio-learning-host[data-mobile-first] .focused-lab :is(.studio-canvas-tools,.cs-header-actions,.alg-header-actions,.cxs-header-actions,.msk-icon-tools,.la-canvas-tools) > * { flex-shrink: 0; }
+  .studio-learning-host[data-mobile-first] .focused-lab :is(.studio-canvas-tools,.cs-header-actions,.alg-header-actions,.cxs-header-actions,.msk-icon-tools) > button { height: 44px; min-height: 44px; }
+  .studio-learning-host[data-mobile-first] .focused-lab .studio-canvas-tools { width: fit-content; flex: 0 0 auto; }
+  .studio-learning-host[data-mobile-first] .focused-lab .rt-target-inline-toolbar { width: calc(100% - 28px); max-width: calc(100% - 28px); }
+  .studio-learning-host[data-mobile-first] .lab-section-tabs { padding: 3px 8px; }
+  .studio-learning-host[data-mobile-first] .focused-lab > [role="tabpanel"] { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-heading { display: none; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-activity > span { display: none; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-equation > .math-expression { font-size: 13px; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-controller-top { flex-wrap: nowrap; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-controller-top > div { display: flex; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-controller-top strong { font-size: 11px; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-view-tools { padding: 4px 8px; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-live { display: flex; flex-direction: column; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-live > * { width: 100%; min-width: 0; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-picker { order: 0; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-equation { order: 1; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-view-tools { order: 2; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-figure { order: 3; width: calc(100% - 10px); }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-figure svg { height: clamp(200px,28dvh,240px); }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-controller { order: 4; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-domain { order: 5; }
+  .studio-learning-host[data-mobile-first] .focused-lab .ids-hint { order: 6; }
+  .studio-learning-host[data-mobile-first] .focused-lab :is(.ids-point-control,.ids-wave-panel,.ids-numeric,.ids-verdict,.ids-algebra) { order: 7; }
+  .studio-learning-host[data-mobile-first] .focused-lab :is(.ids-point-control,.ids-wave-panel,.ids-numeric,.ids-verdict) { width: calc(100% - 20px); margin-inline: 10px; }
+}
+@media (min-width: 768px) {
+  .studio-learning-host .focused-lab .ids-live { display: grid; grid-template-columns: minmax(210px,.65fr) minmax(0,1fr); align-items: start; }
+  .studio-learning-host .focused-lab .ids-live > :is(.ids-picker,.ids-equation,.ids-wave-panel,.ids-numeric,.ids-verdict,.ids-algebra,.ids-point-control) { grid-column: 1 / -1; }
+  .studio-learning-host .focused-lab .ids-live > .ids-controller { grid-column: 1; grid-row: 3; }
+  .studio-learning-host .focused-lab .ids-live > .ids-domain { grid-column: 1; grid-row: 4; }
+  .studio-learning-host .focused-lab .ids-live > .ids-hint { grid-column: 1; grid-row: 5; }
+  .studio-learning-host .focused-lab .ids-live > .ids-view-tools { grid-column: 1; grid-row: 6; }
+  .studio-learning-host .focused-lab .ids-live > .ids-figure { grid-column: 2; grid-row: 3 / 7; }
+  .studio-learning-host .focused-lab .ids-view-tools { flex-wrap: wrap; }
+}

@@ -524,7 +524,7 @@ function TetraScene({
           </mesh>
           <Text
             position={[0.25, 0.22, 0]}
-            fontSize={0.28}
+            fontSize={12}
             color={["#0ba1b4", "#0865d7", "#df7609", "#8421c9"][index]}
           >
             {names[index]}

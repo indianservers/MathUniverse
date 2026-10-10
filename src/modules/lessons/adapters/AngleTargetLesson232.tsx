@@ -764,7 +764,7 @@ function PracticeAnglePlot({
         x={center.x - 15}
         y={center.y + 20}
         fill="#1769e8"
-        fontSize="11"
+        fontSize="12"
         fontWeight="900"
       >
         A
@@ -773,7 +773,7 @@ function PracticeAnglePlot({
         x="250"
         y={center.y + 20}
         fill="#1769e8"
-        fontSize="11"
+        fontSize="12"
         fontWeight="900"
       >
         B
@@ -782,7 +782,7 @@ function PracticeAnglePlot({
         x={endpoint.x + 7}
         y={endpoint.y - 5}
         fill="#1769e8"
-        fontSize="11"
+        fontSize="12"
         fontWeight="900"
       >
         C
@@ -818,7 +818,7 @@ function Protractor({ center, radius }: { center: Point; radius: number }) {
               x={center.x + (radius - 22) * Math.cos(angle) - 5}
               y={center.y - (radius - 22) * Math.sin(angle) + 3}
               fill="#64748b"
-              fontSize="6"
+              fontSize="12"
             >
               {index * 10}
             </text>
@@ -861,13 +861,13 @@ function WorkedAngle() {
       <text x="76" y="73" fill="#16a34a" fontSize="13" fontWeight="900">
         60°
       </text>
-      <text x="14" y="116" fill="#1769e8" fontSize="11" fontWeight="900">
+      <text x="14" y="116" fill="#1769e8" fontSize="12" fontWeight="900">
         A
       </text>
-      <text x="151" y="116" fill="#1769e8" fontSize="11" fontWeight="900">
+      <text x="151" y="116" fill="#1769e8" fontSize="12" fontWeight="900">
         B
       </text>
-      <text x="70" y="18" fill="#1769e8" fontSize="11" fontWeight="900">
+      <text x="70" y="18" fill="#1769e8" fontSize="12" fontWeight="900">
         C
       </text>
     </svg>
@@ -903,10 +903,10 @@ function Gauge({ angle }: { angle: number }) {
         stroke="#172554"
         strokeWidth="2"
       />
-      <text x="12" y="94" fontSize="8">
+      <text x="12" y="94" fontSize="12">
         0°
       </text>
-      <text x="181" y="94" fontSize="8">
+      <text x="181" y="94" fontSize="12">
         180°
       </text>
     </svg>

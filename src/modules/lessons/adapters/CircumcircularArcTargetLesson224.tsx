@@ -868,7 +868,7 @@ function CircumCanvas({
             x={screenPoints[1]!.x + 45}
             y={screenPoints[1]!.y - 12}
             fill="#f97316"
-            fontSize="11"
+            fontSize="12"
             fontWeight="700"
           >
             {model.inscribedAngle.toFixed(2)}°
@@ -877,7 +877,7 @@ function CircumCanvas({
             x={screenPoints[2]!.x - 74}
             y={screenPoints[2]!.y - 12}
             fill="#f97316"
-            fontSize="11"
+            fontSize="12"
             fontWeight="700"
           >
             {model.inscribedAngle.toFixed(2)}°
@@ -897,7 +897,7 @@ function CircumCanvas({
             x={center.x - 34}
             y={center.y + 33}
             fill="#9333ea"
-            fontSize="11"
+            fontSize="12"
           >
             O ({format(model.center.x)}, {format(model.center.y)})
           </text>
@@ -921,7 +921,7 @@ function CircumCanvas({
                 x={screenPoints[index]!.x + (index === 1 ? -48 : 10)}
                 y={screenPoints[index]!.y + (index === 0 ? -12 : 24)}
                 fill="#334155"
-                fontSize="11"
+                fontSize="12"
               >
                 {names[index]} ({format(point.x)}, {format(point.y)})
               </text>
