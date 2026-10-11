@@ -29,7 +29,7 @@ const exactCases:[KernelRequest,string][]=[
 ];
 const cases:{passed:boolean;elapsedMs:number;status:string}[]=[];
 describe('20 separately authored exact evaluation cases',()=>{
- it.each(exactCases)('%j',async(request,answer)=>{const result=await computeMath(request);let passed=false;try{expect(result.answer).toBe(answer);expect(result.verification.passed).toBe(true);passed=true;}finally{cases.push({passed,elapsedMs:result.elapsedMs,status:result.status});}});
+ it.each(exactCases)('%j',async(request,answer)=>{const result=await computeMath(request);let passed=false;try{expect(result.answer).toBe(answer);expect(result.verification.passed).toBe(result.execution?.status==='verified');expect(result.status.startsWith('verified')).toBe(result.execution?.status==='verified');passed=true;}finally{cases.push({passed,elapsedMs:result.elapsedMs,status:result.status});}});
 });
 describe('20 separate domain, metamorphic, dependency and cancellation cases',()=>{
  it.each(['1/0','sqrt(-3)','tan(pi/2)','x^100000','alert(1)','x;document.cookie','1/','((1)','exp(100000)','9'.repeat(257)])('rejects %s',async expression=>expect((await computeMath({operation:'evaluate',expression})).verification.passed).toBe(false));

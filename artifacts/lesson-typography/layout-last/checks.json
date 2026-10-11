@@ -1,0 +1,21 @@
+[
+  {
+    "route": "/lessons/school/class-10/class-10-circle-proofs-equal-chords-and-equal-angles",
+    "title": "Equal Chords and Equal Angles",
+    "catalog": "school",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 116,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 116,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  }
+]

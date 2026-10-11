@@ -1,3 +1,6 @@
+import MobileSceneFit from "../workspace/mobile/MobileSceneFit";
+import { useIsMobileWorkspace, MOBILE_WORKSPACE_QUERY } from "../workspace/mobile/useWorkspaceOverlay";
+import {geometry3dInventory,visibleBaseTransforms,type SceneEntry3D} from '../offline-intelligence/geometry3dInventory';
 import {CinematicThreePreview} from '../math-robo/animation/CinematicThreePreview';
 import {cinematicPreview} from '../math-robo/animation/RuhiCinematicMotionEngine';
 import {registerRoboUnprojector,registerRoboSpatialProvider,readSVGSpatialObjects} from '../math-robo/character/spatialAwareness';
@@ -372,6 +375,8 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
   });
   const [tool, setTool] = useState<GeometryTool>("select");
   const [construction, setConstruction] = useState<Construction>(initialConstruction);
+  const mobileGeometryPlacement = useRef<string[]>([]);
+  const isMobileControls=useIsMobileWorkspace(MOBILE_WORKSPACE_QUERY);
   const [selectedGeometry, setSelectedGeometry] = useState<SelectedGeometryObject | null>(null);
   const [workspaceImages, setWorkspaceImages] = useState<WorkspaceImage[]>([]);
   const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
@@ -838,6 +843,14 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
   };
 
   const handleBoardPointerDown = (event: PointerEvent<SVGSVGElement>) => {
+    if (mobileGeometryPlacement.current.length && window.matchMedia("(max-width: 1180px)").matches) {
+      const position=clientToBoard(event);if(!position)return;
+      const ids=mobileGeometryPlacement.current;mobileGeometryPlacement.current=[];
+      setConstruction(current=>{const points=current.points.filter(p=>ids.includes(p.id));const cx=points.reduce((v,p)=>v+p.x,0)/Math.max(1,points.length),cy=points.reduce((v,p)=>v+p.y,0)/Math.max(1,points.length);
+        return solveConstruction({...current,points:current.points.map(p=>ids.includes(p.id)?{...p,x:p.x+position.x-cx,y:p.y+position.y-cy}:p)});});
+      event.preventDefault();return;
+    }
+
     if (controlsLocked) return;
     setContextMenu(null);
     if (event.button === 2) return;
@@ -1620,6 +1633,24 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
     setContextMenu(null);
   };
 
+  const mobileGeometryOperations = {
+    selectImage:(id:string)=>{setSelectedImageId(id);setSelectedGeometry(null);},
+    patchImage:(id:string,patch:Partial<WorkspaceImage>)=>{recordWorkspaceStep("Edit image", "Mobile image properties changed.");setWorkspaceImages(current=>current.map(image=>image.id===id?{...image,...patch}:image));},
+    removeImage:(id:string)=>{recordWorkspaceStep("Delete image", "Mobile image removed.");setWorkspaceImages(current=>current.filter(image=>image.id!==id));setSelectedImageId(null);},
+    canUndo:undoStack.length>0,canRedo:redoStack.length>0,
+    snap:(point:{x:number;y:number})=>snapBoardPoint(point,construction,geometryGraphSettings),
+    setLength:(value:number)=>{if(selectedGeometry?.type!=="line")return;const line=construction.lines.find(l=>l.id===selectedGeometry.id);const a=line&&pointById(construction.points,line.a),b=line&&pointById(construction.points,line.b);if(!a||!b||!line)return;recordWorkspaceStep("Set segment length",`${value} units`);const direction=normalize(b.x-a.x,b.y-a.y);setConstruction(current=>solveConstruction({...current,points:current.points.map(p=>p.id===b.id?{...p,x:a.x+direction.x*value*(geometryGraphSettings.gridSpacing??40),y:a.y+direction.y*value*(geometryGraphSettings.gridSpacing??40)}:p)},b.id));},
+    lockedIds:lockedGeometryIds,
+    selectMany:(ids:string[])=>setSelectedPointIds([...new Set(ids.flatMap(id=>{const row=workspaceObjects.find(row=>row.ref.id===id);return row&&row.ref.kind!=="function"&&row.ref.kind!=="3d"?pointIdsForObject(construction,{type:row.ref.kind as GeometryObjectType,id}):construction.points.some(p=>p.id===id)?[id]:[];}))]),
+    remove:(selection:SelectedGeometryObject)=>deleteGeometryObject(selection),
+    lock:(selection:SelectedGeometryObject)=>toggleGeometryLock(selection),
+    duplicatePlace:()=>{if(!selectedGeometry)return;recordWorkspaceStep("Duplicate geometry", "Tap canvas to place the copy.");const next=duplicateGeometryObjectInConstruction(construction,selectedGeometry);mobileGeometryPlacement.current=next.points.filter(p=>!construction.points.some(old=>old.id===p.id)).map(p=>p.id);setConstruction(next);setTool("select");},
+    fitSelection:()=>{const ids=selectedGeometry?pointIdsForObject(construction,selectedGeometry):selectedPointIds;const points=construction.points.filter(p=>ids.includes(p.id));if(!points.length)return;const minX=Math.min(...points.map(p=>p.x)),maxX=Math.max(...points.map(p=>p.x)),minY=Math.min(...points.map(p=>p.y)),maxY=Math.max(...points.map(p=>p.y));const width=Math.max(160,maxX-minX+96),height=Math.max(105,maxY-minY+96);setGeometryCamera({x:(minX+maxX-width)/2,y:(minY+maxY-height)/2,width,height});},
+    updatePoint:updateSelectedPoint,
+    updateRadius:updateSelectedCircleRadius,
+    rotate:(degrees:number)=>{const ids=selectedGeometry?pointIdsForObject(construction,selectedGeometry):selectedPointIds;if(!ids.length)return;recordWorkspaceStep("Rotate geometry",`${degrees} degrees`);setConstruction(current=>{const ps=current.points.filter(p=>ids.includes(p.id));const cx=ps.reduce((v,p)=>v+p.x,0)/ps.length,cy=ps.reduce((v,p)=>v+p.y,0)/ps.length,a=-degrees*Math.PI/180;return solveConstruction({...current,points:current.points.map(p=>ids.includes(p.id)?{...p,x:cx+(p.x-cx)*Math.cos(a)-(p.y-cy)*Math.sin(a),y:cy+(p.x-cx)*Math.sin(a)+(p.y-cy)*Math.cos(a)}:p)});});},
+  };
+
   const restoreGeometryObject = (object = selectedGeometry) => {
     if (!object) return;
     recordWorkspaceStep("Restore geometry object", `${object.type} style restored.`);
@@ -1694,8 +1725,12 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
   useEffect(()=>{if(workspaceView!=='geometry')return;return registerRoboUnprojector('geometry2d',point=>{const svg=svgRef.current,matrix=svg?.getScreenCTM();if(!svg||!matrix)return;const rect=svg.getBoundingClientRect();if(point.x<rect.left||point.x>rect.right||point.y<rect.top||point.y>rect.bottom)return;const p=new DOMPoint(point.x,point.y).matrixTransform(matrix.inverse());return [(p.x-320)/40,(210-p.y)/40];});},[workspaceView]);
   useEffect(()=>{if(workspaceView!=='geometry')return;return registerRoboProjector('geometry2d',p=>svgClientPoint(svgRef.current,{x:320+p[0]*40,y:210-p[1]*40}));},[workspaceView]);
   useEffect(()=>{if(workspaceView!=='geometry'||!selectedGeometry)return;const point=construction.points.find(p=>p.id===selectedGeometry.id);const object=nativeGeometryCommands(construction).find(o=>o.objectId===selectedGeometry.id);const boardPoint=point??(object?.points[0]?{x:320+object.points[0][0]*40,y:210-object.points[0][1]*40}:undefined);if(boardPoint)roboEvents.emit({type:'workspace',kind:'selection',target:()=>svgClientPoint(svgRef.current,boardPoint)});},[workspaceView,selectedGeometry,construction]);
+  const readGeometry3dCommands = () => geometry3dInventory([
+    ...threeBaseIds.filter(id=>!deletedBase3dIds.includes(id)).map((id):SceneEntry3D=>({id,kind:id==='solid'?(solid==='polyhedron'?'icosahedron':solid):id==='surface'?'plot':id==='point'?'point':id==='vector'?'vector':id==='line3d'?'line':['slice','plane3d'].includes(id)?'polygon':(threeObjectSolidMap[id]==='polyhedron'?'icosahedron':threeObjectSolidMap[id]??'cube') as VisualCommand['kind'],transform:id==='solid'?{...transforms3d[id],position:[transforms3d[id].position[0],transforms3d[id].position[1]+height3d/4,transforms3d[id].position[2]],dimensions:[height3d,height3d,height3d]}:transforms3d[id],label:threeObjectLabels[id],localPoints:id==='vector'?[[-3,0.05,-3],transforms3d.point.position]:undefined})),
+    ...added3dObjects.map((object):SceneEntry3D=>({id:object.id,kind:object.nlpCommand?.kind??(object.render==='solid'?(object.solid==='polyhedron'?'icosahedron':object.solid??'cube'):object.render==='point'?'point':object.render==='vector'?'vector':object.render==='line3d'?'line':object.render==='surface'?'plot':'polygon'),transform:object.transform,command:object.nlpCommand,label:object.label})),
+  ]);
   useIntelligenceWorkspace(workspaceView === '3d' ? 'geometry3d' : 'geometry2d', command => {
-    if(command.roboClearAll){recordWorkspaceStep('Clear all workspace objects',command.kind);if(workspaceView==='geometry'){setConstruction(structuredClone(initialConstruction));setLockedGeometryIds([]);setSelectedGeometry(null);setSelectedPointIds([]);}else{setDeletedBase3dIds([...threeBaseIds]);setAdded3dObjects([]);setSelected3d('');setDrag3d(null);}return;}
+    if(command.roboClearAll){recordWorkspaceStep('Clear all workspace objects',command.kind);if(workspaceView==='geometry'){setConstruction(structuredClone(initialConstruction));setLockedGeometryIds([]);setSelectedGeometry(null);setSelectedPointIds([]);}else{setDeletedBase3dIds([...threeBaseIds]);setAdded3dObjects([]);setSelected3d('');setDrag3d(null);setVectorWorkbenchVisible(false);setVectorFocus3d(false);}return;}
     if(workspaceView==='geometry'&&command.roboLocked!==undefined){const ids=command.roboNativeIds?[...command.roboNativeIds.points,...(command.roboNativeIds.shape?[command.roboNativeIds.shape]:[])]:[...command.points.map((_,i)=>`${command.objectId}-p${i}`),`${command.objectId}-shape`];setLockedGeometryIds(previous=>command.roboLocked?[...new Set([...previous,...ids])]:previous.filter(id=>!ids.includes(id)));}
     if(command.roboControl==='deselect'){setSelectedGeometry(null);setSelectedPointIds([]);setSelected3d('');return;}
     if(command.roboControl==='select'){
@@ -1705,7 +1740,8 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
     if(command.roboControl==='delete'||command.roboControl==='visibility'){
       recordWorkspaceStep(command.roboControl==='delete'?'Delete Robo object':'Set Robo visibility',command.kind);
       if(workspaceView==='geometry')setConstruction(current=>addIntelligenceGeometry(current,command));
-      else if(command.roboControl==='delete')setAdded3dObjects(current=>current.filter(object=>object.id!==command.objectId));
+      else if(command.roboControl==='delete'){if(isBase3dId(command.objectId??''))setDeletedBase3dIds(current=>[...new Set([...current,command.objectId as ThreeObjectId])]);setAdded3dObjects(current=>current.filter(object=>object.id!==command.objectId));}
+      else if(isBase3dId(command.objectId??'')&&!added3dObjects.some(object=>object.id===command.objectId))setTransforms3d(current=>({...current,[command.objectId!]:{...current[command.objectId as ThreeObjectId],visible:command.roboVisible??true}}));
       else setAdded3dObjects(current=>current.map(object=>object.id===command.objectId?{...object,transform:{...object.transform,visible:command.roboVisible??true}}:object));
       return;
     }
@@ -1716,7 +1752,8 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
       return;
     }
     const id=command.objectId??crypto.randomUUID();
-    if(command.action==='update'&&!added3dObjects.some(object=>object.id===id))return 'The last Ruhi object was removed. Create an object again before editing it.';
+    if(command.action==='update'&&!readGeometry3dCommands().some(object=>object.objectId===id))return 'The last Ruhi object was removed. Create an object again before editing it.';
+    if(isBase3dId(id))setDeletedBase3dIds(current=>[...new Set([...current,id])]);
     const baseId:ThreeObjectId=['line','ray','vector'].includes(command.kind)?'line3d':command.kind==='point'?'point':'solid';
     recordWorkspaceStep(command.action==='update'?'Edit Robo object':'Create Robo object',command.kind);
       const next:Added3DObject={id,label:command.roboLabel??command.kind,baseId,render:['line','ray','vector'].includes(command.kind)?'line3d':command.kind==='point'?'point':'solid',nlpCommand:command,transform:{...defaultTransforms3d[baseId],...commandTransform3d(command),scale:command.scale??1,visible:command.roboVisible??true,name:command.kind,locked:command.roboLocked??false}};
@@ -1733,10 +1770,9 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
         const materialized=['line','ray','vector'].includes(command.kind)||command.kind==='point'?{...command,points:vertices.map(p=>p.slice(0,2)),rotation:[0,0,0] as [number,number,number],scale:1}:command;
         return {command:materialized,vertices:vertices.length?vertices:undefined};
     }
-    const actual=added3dObjects.find(object=>object.id===command.objectId);
-    if(!actual)return undefined;
-      return {command:{...command,points:['ray','vector','triangle','polygon'].includes(command.kind)?command.points.map(p=>p.map((n,i)=>n+actual.transform.position[i]-commandTransform3d(command).position[i])):command.kind==='line'?command.points:[actual.transform.position],rotation:command.kind==='line'?command.rotation:actual.transform.rotation,scale:actual.transform.scale,color:actual.transform.color,roboVisible:actual.transform.visible}};
-    },()=>workspaceView==='geometry'?{commands:nativeGeometryCommands(construction,id=>isKnownRoboObject('geometry2d',id)).map(command=>({...command,roboLocked:command.roboNativeIds?.points.some(id=>lockedGeometryIds.includes(id))??false})),selectedIds:selectedGeometry?[(isKnownRoboObject('geometry2d',selectedGeometry.id)?selectedGeometry.id.replace(/-(?:shape|p\d+)$/,''):selectedGeometry.id)]:undefined}:{commands:added3dObjects.flatMap(o=>o.nlpCommand?[{...o.nlpCommand,objectId:o.id,points:['ray','vector','triangle','polygon'].includes(o.nlpCommand.kind)?o.nlpCommand.points.map(p=>p.map((n,i)=>n+o.transform.position[i]-commandTransform3d(o.nlpCommand!).position[i])):o.nlpCommand.kind==='line'?o.nlpCommand.points:[o.transform.position],rotation:o.nlpCommand.kind==='line'?o.nlpCommand.rotation:o.transform.rotation,scale:o.transform.scale,roboLocked:o.transform.locked}]:[]),selectedIds:selected3d?[selected3d]:undefined});
+    const actual=readGeometry3dCommands().find(object=>object.objectId===command.objectId);
+    return actual?{command:actual}:undefined;
+    },()=>workspaceView==='geometry'?{commands:nativeGeometryCommands(construction,id=>isKnownRoboObject('geometry2d',id)).map(command=>({...command,roboLocked:command.roboNativeIds?.points.some(id=>lockedGeometryIds.includes(id))??false})),selectedIds:selectedGeometry?[(isKnownRoboObject('geometry2d',selectedGeometry.id)?selectedGeometry.id.replace(/-(?:shape|p\d+)$/,''):selectedGeometry.id)]:undefined}:{commands:readGeometry3dCommands(),selectedIds:selected3d?[selected3d]:undefined});
   useEffect(() => {
     const begin = () => { if(workspaceView === "3d" || workspaceView === "geometry") { recordWorkspaceStep("Hand gesture", "Transform object with hand controls."); immersive3dTransaction.current=true; } };
     const end = () => { immersive3dTransaction.current=false; };
@@ -1829,6 +1865,8 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
     setDeletedBase3dIds([...threeBaseIds]);
     setAdded3dObjects([]);
     setSelected3d("");
+    setVectorWorkbenchVisible(false);
+    setVectorFocus3d(false);
     setDrag3d(null);
     setProjectStatus("3D scene cleared. Add a shape to begin again.");
   };
@@ -3020,7 +3058,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
                 performanceMode={performanceMode}
                 cameraPreset={cameraPreset3d}
                 selected={selected3d}
-                transforms={transforms3d}
+                transforms={visibleBaseTransforms(transforms3d,deletedBase3dIds)}
                 addedObjects={added3dObjects}
                 dragging={drag3d}
                 interactionTool={objectStudioTool}
@@ -3035,12 +3073,14 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
                   setContextMenu({ x: event.nativeEvent.clientX, y: event.nativeEvent.clientY, target: { type: "3d", id } });
                 }}
               />
+              {isMobileControls && <MobileSceneFit />}
               <OrbitControls
+                makeDefault={isMobileControls}
                 enableDamping
                 enabled={!immersiveGeometry?.session && !drag3d && ["select", "orbit", "pan", "zoom"].includes(objectStudioTool)}
                 enableRotate={objectStudioTool === "select" || objectStudioTool === "orbit"}
-                enablePan={objectStudioTool === "select" || objectStudioTool === "pan"}
-                enableZoom={objectStudioTool === "select" || objectStudioTool === "zoom"}
+                enablePan={["select", "orbit", "pan", "zoom"].includes(objectStudioTool)}
+                enableZoom={["select", "orbit", "pan", "zoom"].includes(objectStudioTool)}
                 mouseButtons={{
                   LEFT: objectStudioTool === "pan" ? THREE.MOUSE.PAN : objectStudioTool === "zoom" ? THREE.MOUSE.DOLLY : THREE.MOUSE.ROTATE,
                   MIDDLE: THREE.MOUSE.DOLLY,
@@ -3109,6 +3149,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
 
       {workspaceView === "geometry" && (singleView ? (
         <GeometryWorkspacePanel
+          mobileOperations={mobileGeometryOperations}
           shareControl={<ShareExportControl adapter={portableAdapter} className="portable-share-inline" />}
           activeTool={tool}
           construction={construction}
@@ -3138,7 +3179,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
           onTraceSelected={() => setSelectedGeometryTrace(true)}
           onStopTrace={() => setSelectedGeometryTrace(false)}
           onClearTrace={clearGeometryTrace}
-          onReset={() => { recordWorkspaceStep("Clear geometry", "Removed all 2D geometry objects."); setConstruction(initialConstruction); setSelectedGeometry(null); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
+          onReset={() => { recordWorkspaceStep("Clear geometry", "Removed all 2D geometry objects."); if(window.matchMedia("(max-width: 1180px)").matches){setWorkspaceImages([]);setSelectedImageId(null);} setConstruction(initialConstruction); setSelectedGeometry(null); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
           onSave={saveConstruction}
           onRestoreSaved={restoreSavedConstruction}
           onLoad={openPortableWorkspaceImport}
@@ -3149,7 +3190,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
           onResetView={resetGeometryView}
           onBoardWheel={handleGeometryWheel}
           onBoardKeyDown={handleGeometryKeyDown}
-          onClearPendingPicks={() => { setGeometryObjectPicks([]); setSelectedPointIds([]); setPolygonDraft([]); }}
+          onClearPendingPicks={() => { mobileGeometryPlacement.current=[]; setGeometryObjectPicks([]); setSelectedPointIds([]); setPolygonDraft([]); }}
           onBoardPointerDown={handleBoardPointerDown}
           onBoardPointerMove={handleBoardPointerMove}
           onBoardPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); geometryPanRef.current = null; geometryFreehandRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
@@ -3199,6 +3240,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
       ) : (
         <SectionCard title="Geometry Constructor" description="Create points, lines, circles, polygons, drag points, and inspect live measurements.">
           <GeometryWorkspacePanel
+          mobileOperations={mobileGeometryOperations}
           shareControl={<ShareExportControl adapter={portableAdapter} className="portable-share-inline" />}
             activeTool={tool}
             construction={construction}
@@ -3228,7 +3270,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
             onTraceSelected={() => setSelectedGeometryTrace(true)}
             onStopTrace={() => setSelectedGeometryTrace(false)}
             onClearTrace={clearGeometryTrace}
-            onReset={() => { recordWorkspaceStep("Clear geometry", "Removed all 2D geometry objects."); setConstruction(initialConstruction); setSelectedGeometry(null); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
+            onReset={() => { recordWorkspaceStep("Clear geometry", "Removed all 2D geometry objects."); if(window.matchMedia("(max-width: 1180px)").matches){setWorkspaceImages([]);setSelectedImageId(null);} setConstruction(initialConstruction); setSelectedGeometry(null); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
             onSave={saveConstruction}
             onRestoreSaved={restoreSavedConstruction}
             onLoad={openPortableWorkspaceImport}
@@ -3239,7 +3281,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
           onResetView={resetGeometryView}
           onBoardWheel={handleGeometryWheel}
           onBoardKeyDown={handleGeometryKeyDown}
-            onClearPendingPicks={() => { setGeometryObjectPicks([]); setSelectedPointIds([]); setPolygonDraft([]); }}
+            onClearPendingPicks={() => { mobileGeometryPlacement.current=[]; setGeometryObjectPicks([]); setSelectedPointIds([]); setPolygonDraft([]); }}
             onBoardPointerDown={handleBoardPointerDown}
             onBoardPointerMove={handleBoardPointerMove}
           onBoardPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); geometryPanRef.current = null; geometryFreehandRef.current = null; setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
@@ -5776,6 +5818,8 @@ function CasStudioNotebookBlock({ cell, index, active, onSelect, onRun, onChange
           <div className="cas-block-result">
             <p>Exact result</p>
             <strong><MathExpression value={cell.exact ?? cell.output} /></strong>
+            {cell.execution && <p role="status">{cell.execution.status === 'verified' ? 'Independently verified' : 'Unverified'} · {cell.execution.evidence.level.replaceAll('_',' ')}{cell.execution.evidence.complete ? ' · Complete solution set' : ''}</p>}
+            {cell.conditions?.map(condition=><p key={condition}><MathExpression value={condition} /></p>)}
           </div>
           {cell.numeric && <div className="cas-block-result muted"><p>Decimal approximation</p><strong><MathExpression value={cell.numeric} /></strong></div>}
           {!!cell.warnings?.length && <div className="cas-warning"><AlertTriangle className="h-4 w-4" />{cell.warnings.join(" ")}</div>}
@@ -7965,7 +8009,7 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
   });
 
   return (
-    <group ref={groupRef} scale={zoom}>
+    <group ref={groupRef} scale={zoom} userData={{ mobileSceneRoot: true }}>
       <Axes3D />
       <gridHelper args={[10, 10, "#334155", "#1e293b"]} rotation={[0, 0, 0]} />
       {vectorWorkbench.visible && <VectorWorkbenchOverlay3D a={vectorWorkbench.a} b={vectorWorkbench.b} view={vectorWorkbench.view} focus={vectorWorkbench.focus} />}
@@ -8015,7 +8059,7 @@ function TransformGroup3D({ transform, selected, yOffset = 0, children }: { tran
   ];
   const outerGlowSize: [number, number, number] = glowSize.map((value) => value + 0.22) as [number, number, number];
   return (
-    <group position={[transform.position[0], transform.position[1] + yOffset, transform.position[2]]} rotation={transform.rotation.map((value) => THREE.MathUtils.degToRad(value)) as [number, number, number]} scale={transform.scale}>
+    <group userData={{ mobileTransformRoot: true }} position={[transform.position[0], transform.position[1] + yOffset, transform.position[2]]} rotation={transform.rotation.map((value) => THREE.MathUtils.degToRad(value)) as [number, number, number]} scale={transform.scale}>
       {children}
       {selected && (
         <group renderOrder={20}>
@@ -8384,8 +8428,8 @@ function MeasurementOverlays3D({ transforms }: { transforms: Record<ThreeObjectI
   const vectorLength = Math.hypot(point[0] + 3, point[1] - 0.05, point[2] + 3);
   return (
     <group>
-      <TextSprite position={[point[0] + 0.25, point[1] + 0.25, point[2]]} text={`${transforms.point.name ?? "P"} (${point.map((value) => roundTo(value, 1)).join(", ")})`} />
-      <TextSprite position={[-1.5, 0.35, -1.8]} text={`|v|=${roundTo(vectorLength, 2)}`} />
+      {transforms.point.visible && <TextSprite position={[point[0] + 0.25, point[1] + 0.25, point[2]]} text={`${transforms.point.name ?? "P"} (${point.map((value) => roundTo(value, 1)).join(", ")})`} />}
+      {transforms.vector.visible && <TextSprite position={[-1.5, 0.35, -1.8]} text={`|v|=${roundTo(vectorLength, 2)}`} />}
       {transforms.plane3d.visible && transforms.sphere3d.visible && <TextSprite position={[0, 2.8, 0]} text="sphere-plane slice available" />}
       {transforms.line3d.visible && transforms.plane3d.visible && <TextSprite position={[1.2, 2.4, 0]} text="line-plane intersection" />}
     </group>

@@ -1,5 +1,6 @@
 import {executionOutcome} from '../../math-foundation/executionOutcome';
 import {certifyKernel} from './independentVerification';
+import {boundedEquation} from './boundedEquation';
 import {normalizedAssumptions} from './assumptions';
 import {coreEvaluation,domainConditions,validateInputDomains,substituteAst} from './domains';
 import {expressionText} from './safeExpression';
@@ -23,11 +24,11 @@ export async function computeMath(request:KernelRequest):Promise<KernelResult>{c
   else if(request.operation==='geometry2d')result=(await import('./geometry2d')).geometry2d(request);
   else if(['root','quadrature','ode'].includes(request.operation))result=(await import('./numerical')).numericalCalculation(request)!;
   else if(['geometry','linear','statistics'].includes(request.operation))result=(await import('./specialists')).specialistCalculation(request)!;
-  else result=(await import('./advancedCas')).advancedCas(request)??(await import('./symbolic')).symbolicCalculation(request)??unsupported('The requested mathematical operation is not supported.');
+  else result=boundedEquation(request)??(await import('./advancedCas')).advancedCas(request)??(await import('./symbolic')).symbolicCalculation(request)??unsupported('The requested mathematical operation is not supported.');
  }catch(error){result=unsupported(error instanceof Error?error.message:String(error));result.execution=executionOutcome(phase==='input'||/division by zero|undefined|indeterminate|domain|must be|requires|require |invalid|positive|negative|nonfinite|collinear|degenerate|contradict|singular/i.test(result.answer)?'invalid_input':'internal_error',crypto.randomUUID(),result.answer);}
  result.inputExpression=originalExpression;result.operation=request.operation;result.domain=request.domain??'real';result.assumptions=request?.assumptions??[];
  try{if(request.expression){const ast=safeAst(request.expression);result.normalizedExpression=expressionText(ast);result.conditions=[...new Set([...result.conditions,...domainConditions(ast,request.domain)])];}}catch{/* Unsupported input still has a structured result. */}
- if(['solve','trigSolve','inequality','system'].includes(request.operation))result.solutionSet=result.value;
+ if(['solve','trigSolve','inequality','system'].includes(request.operation)&&result.solutionSet===undefined)result.solutionSet=result.value;
  if(['geometry2d','geometry3d'].includes(request.operation))result.geometry=result.value;
  result.elapsedMs=performance.now()-start;return certifyKernel(request,result);
 }

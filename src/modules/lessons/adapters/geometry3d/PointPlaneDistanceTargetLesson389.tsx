@@ -1,4 +1,5 @@
-import { Billboard, Line, OrbitControls, Text } from "@react-three/drei";
+import { Billboard, Line, OrbitControls} from "@react-three/drei";
+import Text from "../../components/LessonSceneLabel";
 import { Canvas, type ThreeEvent, useThree } from "@react-three/fiber";
 import { ExternalLink, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -445,7 +446,7 @@ function DistanceScene({
       <PlanePatch plane={plane} />
       <Line points={[[0, 0, 0], normalEnd]} color="#9b51eb" lineWidth={3} />
       <Billboard position={normalEnd}>
-        <Text fontSize={12} color="#ba77ff">
+        <Text fontSize={0.3} color="#ba77ff">
           n = ⟨{normal.join(", ")}⟩
         </Text>
       </Billboard>
@@ -465,7 +466,7 @@ function DistanceScene({
           />
         </mesh>
         <Billboard position={[0.6, 0.25, 0]}>
-          <Text fontSize={12} color="#ffd329">
+          <Text fontSize={0.32} color="#ffd329">
             P = ({point.join(", ")})
           </Text>
         </Billboard>
@@ -485,7 +486,7 @@ function DistanceScene({
             <meshStandardMaterial color="#5ce5ef" />
           </mesh>
           <Billboard position={[0.55, -0.25, 0]}>
-            <Text fontSize={12} color="#5ce5ef">
+            <Text fontSize={0.28} color="#5ce5ef">
               H = ({result.foot.join(", ")})
             </Text>
           </Billboard>
@@ -499,7 +500,7 @@ function DistanceScene({
             ) as V3,
           )}
         >
-          <Text fontSize={12} color="#fff">
+          <Text fontSize={0.3} color="#fff">
             distance ≈ {result.distance}
           </Text>
         </Billboard>

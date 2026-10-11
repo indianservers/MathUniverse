@@ -1,0 +1,1 @@
+function c(e,i,n,t="No independent verification",o=[],r=[],d){return{status:e,answer:i,value:n,conditions:r,steps:o,verification:{passed:e.startsWith("verified"),method:t,residual:d},diagnostics:[],elapsedMs:0,...e==="verified_exact"?{exact:i}:{}}}function p(e){return c("unsupported",e)}export{c as o,p as u};

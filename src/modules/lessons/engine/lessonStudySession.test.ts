@@ -6,8 +6,12 @@ describe('study answer grading and learning evidence',()=>{
   it('accepts equivalent fractions, mixed numbers, arithmetic, and Unicode signs',()=>{
     for(const value of ['1.5','3/2','6÷4','1 1/2'])expect(gradeStudyAnswer(question('3/2'),value)).toBe('correct');
     expect(gradeStudyAnswer(question('-7/3'),'-2 1/3')).toBe('correct');
+    expect(gradeStudyAnswer(question('-1/2'),'-0 1/2')).toBe('correct');
     expect(gradeStudyAnswer(question('-4'),'−4')).toBe('correct');
     expect(gradeStudyAnswer(question('5'),'√25')).toBe('correct');
+    expect(gradeStudyAnswer(question('0.000072'),'7.2e-5')).toBe('correct');
+    expect(gradeStudyAnswer(question('pi/2'),'π/2')).toBe('correct');
+    expect(gradeStudyAnswer(question('5'),'sqrt(16+9)')).toBe('correct');
   });
   it('rejects blank, malformed, nonfinite, or code-like answers',()=>{
     expect(gradeStudyAnswer(question('0'),' ')).toBe('empty');
@@ -20,6 +24,22 @@ describe('study answer grading and learning evidence',()=>{
     expect(gradeStudyAnswer(q,'(4,3)')).toBe('incorrect');
     expect(gradeStudyAnswer(q,'(3,4,0)')).toBe('incorrect');
     expect(gradeStudyAnswer({...question('1.175'),tolerance:.001},'1.1752')).toBe('correct');
+  });
+  it('grades explicit angle and percentage units without confusing their dimensions',()=>{
+    expect(questionKind('90°')).toBe('quantity');
+    expect(gradeStudyAnswer(question('90°','quantity'),'pi/2 rad')).toBe('correct');
+    expect(gradeStudyAnswer(question('90°','quantity'),'90%')).toBe('incorrect');
+    expect(gradeStudyAnswer(question('90°','quantity'),'90')).toBe('incorrect');
+    expect(gradeStudyAnswer(question('25%','quantity'),'1/4')).toBe('correct');
+    expect(gradeStudyAnswer(question('25%','quantity'),'25')).toBe('incorrect');
+  });
+  it('distinguishes unordered solutions from ordered points and preserves repeated values',()=>{
+    expect(questionKind('(2,3)','Find the roots')).toBe('set');
+    expect(questionKind('(2,3)','Find the point coordinates')).toBe('tuple');
+    expect(questionKind('<2,3>','Find the vector')).toBe('tuple');
+    expect(gradeStudyAnswer(question('(2,3)','set'),'(3,2)')).toBe('correct');
+    expect(gradeStudyAnswer(question('30°,150°','set'),'150 degrees, 30 degrees')).toBe('correct');
+    expect(gradeStudyAnswer(question('(2,2)','set'),'(2,3)')).toBe('incorrect');
   });
   it('does not pretend to grade arbitrary prose, proofs, or symbolic expressions',()=>{
     expect(questionKind('explain the principal-value restriction')).toBe('reflection');

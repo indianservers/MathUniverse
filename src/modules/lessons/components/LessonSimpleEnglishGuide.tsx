@@ -29,7 +29,7 @@ export default function LessonSimpleEnglishGuide({
   const compact = (lessonId ?? resolveStudyLessonId(params) ?? Infinity) <= studyRolloutLimit;
   const content = <>
     {guide.paragraphs.map((paragraph) => <p key={paragraph.slice(0, 48)}>{paragraph}</p>)}
-    <aside><b>Try this example</b><p>{guide.examplePrompt}</p><details><summary>Compare your answer</summary><p>Answer: <strong>{guide.exampleAnswer}</strong></p></details></aside>
+    <aside><b>Try this example</b><p>{guide.examplePrompt}</p><details><summary>Compare your answer</summary>{guide.exampleSteps?.length ? <ol>{guide.exampleSteps.map((step,index)=><li key={index}>{step}</li>)}</ol> : null}<p>Answer: <strong>{guide.exampleAnswer}</strong></p></details></aside>
   </>;
   return (
     <section

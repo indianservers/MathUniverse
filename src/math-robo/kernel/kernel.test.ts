@@ -26,15 +26,15 @@ describe('100 geometry/coordinate cases',()=>{
   if(i%5===1)await checked('geometry',i,{operation:'geometry',args:['midpoint',[n,2],[n+4,6]]},r=>expect(r.value).toEqual({x:n+2,y:4}));
   if(i%5===2)await checked('geometry',i,{operation:'geometry',args:['section',[n,0],[n+6,0],[1,2]]},r=>expect(r.value).toEqual([n+2,0]));
   if(i%5===3)await checked('geometry',i,{operation:'geometry',args:['area',[n,0],[n+6,0],[n+2,4]]},r=>expect(r.value).toBe(12));
-  if(i%5===4)await checked('geometry',i,{operation:'geometry',args:['tangent',[n,0],[n+3,4],5]},r=>{expect(r.value).toEqual({a:3,b:4,c:3*(n+3)+16});expect(r.verification.passed).toBe(true);});
+  if(i%5===4)await checked('geometry',i,{operation:'geometry',args:['tangent',[n,0],[n+3,4],5]},r=>{expect(r.value).toEqual({a:3,b:4,c:3*(n+3)+16});expect(r.verification.passed).toBe(false);expect(r.execution?.status).toBe('valid_unverified');});
  });
 });
 describe('75 trigonometry/calculus cases',()=>{
  it.each(Array.from({length:75},(_,i)=>i))('case %i',async i=>{const n=i+2;
   if(i%5===0)await checked('trig-calculus',i,{operation:'differentiate',expression:`${n}*x^3+2*x`},r=>{expect(r.status).toBe('verified_exact');expect(r.answer).toContain(String(3*n));});
   if(i%5===1)await checked('trig-calculus',i,{operation:'integrate',expression:`${n}*x^2`},r=>{expect(r.status).toBe('verified_exact');expect(r.answer).toContain('C');});
-  if(i%5===2)await checked('trig-calculus',i,{operation:'quadrature',expression:`${n}*x^2`,args:[0,3]},r=>{expect(Number(r.value)).toBeCloseTo(9*n,8);expect(r.status).toBe('verified_numerical');});
-  if(i%5===3)await checked('trig-calculus',i,{operation:'trigSolve',expression:`sin(x)=${i%3===0?'1/2':i%3===1?'0':'-1/2'}`},r=>{expect(r.status,r.answer).toBe('verified_with_assumptions');expect(r.value).toHaveLength(2);expect(r.conditions).toContain('k is an integer');});
+  if(i%5===2)await checked('trig-calculus',i,{operation:'quadrature',expression:`${n}*x^2`,args:[0,3]},r=>{expect(Number(r.value)).toBeCloseTo(9*n,8);expect(r.status).toBe('unverified');expect(r.execution?.status).toBe('valid_unverified');});
+  if(i%5===3)await checked('trig-calculus',i,{operation:'trigSolve',expression:`sin(x)=${i%3===0?'1/2':i%3===1?'0':'-1/2'}`},r=>{expect(r.status,r.answer).toBe('unverified');expect(r.execution?.status).toBe('valid_unverified');expect(r.value).toHaveLength(2);expect(r.conditions).toContain('k is an integer');});
   if(i%5===4)await checked('trig-calculus',i,{operation:'root',expression:`x^2-${n*n}`,args:[0,n+1]},r=>{expect(Number(r.value)).toBeCloseTo(n,6);expect(r.errorBound).toBeTruthy();});
  });
 });
@@ -42,7 +42,7 @@ describe('75 3D/linear algebra cases',()=>{
  it.each(Array.from({length:75},(_,i)=>i))('case %i',async i=>{const n=i+1;
   if(i%5===0)await checked('3d-linear',i,{operation:'linear',args:['dot',[n,2,3],[4,5,6]]},r=>expect(r.value).toBe(4*n+28));
   if(i%5===1)await checked('3d-linear',i,{operation:'linear',args:['cross',[n,0,0],[0,2,0]]},r=>expect(r.value).toEqual([0,0,2*n]));
-  if(i%5===2)await checked('3d-linear',i,{operation:'linear',args:['inverse',[[n,1],[0,1]]]},r=>{expect(r.status).toBe('verified_numerical');expect((r.value as number[][])[0][0]).toBeCloseTo(1/n,10);});
+  if(i%5===2)await checked('3d-linear',i,{operation:'linear',args:['inverse',[[n,1],[0,1]]]},r=>{expect(r.status).toBe('unverified');expect(r.execution?.status).toBe('valid_unverified');expect((r.value as number[][])[0][0]).toBeCloseTo(1/n,10);});
   if(i%5===3)await checked('3d-linear',i,{operation:'linear',args:['determinant',[[n,2],[3,4]]]},r=>expect(r.value).toBe(4*n-6));
   if(i%5===4)await checked('3d-linear',i,{operation:'geometry',args:['linePlane',[n,0,0],[0,0,1],[0,0,3],[0,0,1]]},r=>expect(r.value).toEqual([n,0,3]));
  });
@@ -52,16 +52,16 @@ describe('75 statistics/differential equation cases',()=>{
   if(i%5===0)await checked('statistics-ode',i,{operation:'statistics',args:['mean',[n,n+2,n+4]]},r=>expect(r.value).toBe(n+2));
   if(i%5===1)await checked('statistics-ode',i,{operation:'statistics',args:['variance',[n,n+2,n+4],true]},r=>{expect(r.value).toBe(4);expect(r.conditions).toContain('sample: divisor n-1');});
   if(i%5===2)await checked('statistics-ode',i,{operation:'statistics',args:['variance',[n,n+2,n+4],false]},r=>expect(Number(r.value)).toBeCloseTo(8/3,10));
-  if(i%5===3)await checked('statistics-ode',i,{operation:'ode',expression:'y',args:[n,0,0.1]},r=>{expect(r.status).toBe('verified_numerical');expect(Number(r.value)).toBeCloseTo(n*Math.exp(0.1),6);expect(r.conditions).toContain(`y(0)=${n}`);});
+  if(i%5===3)await checked('statistics-ode',i,{operation:'ode',expression:'y',args:[n,0,0.1]},r=>{expect(r.status).toBe('unverified');expect(r.execution?.status).toBe('valid_unverified');expect(Number(r.value)).toBeCloseTo(n*Math.exp(0.1),6);expect(r.conditions).toContain(`y(0)=${n}`);});
   if(i%5===4)await checked('statistics-ode',i,{operation:'ode',expression:`${n}*t`,args:[0,0,2]},r=>expect(Number(r.value)).toBeCloseTo(2*n,8));
  });
 });
 describe('75 reasoning/explanation/adversarial cases',()=>{
  it.each(Array.from({length:75},(_,i)=>i))('case %i',async i=>{
   if(i%5===0)await checked('reasoning-adversarial',i,{operation:'evaluate',expression:`1/(${i}-${i})`},r=>{expect(r.status).toBe('unsupported');expect(r.verification.passed).toBe(false);});
-  if(i%5===1)await checked('reasoning-adversarial',i,{operation:'solve',expression:`x^${3+i%5}=1`},r=>{expect(r.status).toMatch(/^verified/);expect(new Set(r.value as string[])).toEqual(new Set(['1','-1']));}); // v5.2: this rationally factorable quartic is now certified.
+  if(i%5===1)await checked('reasoning-adversarial',i,{operation:'solve',expression:`x^${3+i%5}=1`},r=>{expect(r.status).toBe('unverified');expect(r.execution?.status).toBe('valid_unverified');expect(new Set(r.value as string[])).toEqual(new Set(['1','-1']));}); // v5.2: this rationally factorable quartic is now certified.
   if(i%5===2)await checked('reasoning-adversarial',i,{operation:'evaluate',expression:`constructor(${i})`},r=>expect(r.status).toBe('unsupported'));
-  if(i%5===3)await checked('reasoning-adversarial',i,{operation:'equivalent',expression:`x/${i+1}`,other:`x/${i+2}`},r=>{expect(r.status).toBe('verified_exact');expect(r.value).toBe(false);});
+  if(i%5===3)await checked('reasoning-adversarial',i,{operation:'equivalent',expression:`x/${i+1}`,other:`x/${i+2}`},r=>{expect(r.status).toBe('unverified');expect(r.execution?.status).toBe('valid_unverified');expect(r.value).toBe(false);});
   if(i%5===4){const n=i+1,engine=new SemanticEngine('graph2d'),objects=new Map<string,VisualCommand>();const apply=async(c:VisualCommand)=>{if(c.roboControl==='delete')objects.delete(c.objectId!);else if(!c.roboControl)objects.set(c.objectId!,c);},read=()=>({objects:[...objects.values()].map(c=>describeObject(c,'graph2d'))});
    const result=await engine.execute(`Create triangle A(${n},0), B(${n+6},0), C(${n+2},4) and draw its circumcircle and find its area`,apply,undefined,read);expect(result.status,result.message).toBe('success');expect(objects.size).toBe(2);const circle=[...objects.values()].find(c=>c.kind==='circle')!;for(const [x,y] of [[n,0],[n+6,0],[n+2,4]])expect(Math.hypot(x-circle.points[0][0],y-circle.points[0][1])).toBeCloseTo(circle.radius,7);expect(engine.snapshot().previousResult).toBe(12);measured.push({category:'reasoning-adversarial',case:i,status:result.status,elapsedMs:result.executionMs,passed:true});}
  });

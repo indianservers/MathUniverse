@@ -1,7 +1,8 @@
-import type { ReactNode } from "react";
+import { useId, type ReactNode } from "react";
 
 /** Small, purpose-drawn vector diagrams for the studio cards. */
 export default function DifferentialEquationsArtwork({ id }: { id: string }) {
+  const gradient = useId();
   let drawing: ReactNode;
   switch (id) {
     case "explorer":
@@ -70,11 +71,21 @@ export default function DifferentialEquationsArtwork({ id }: { id: string }) {
     case "newton-cooling":
       drawing = <><path d="M25 15a7 7 0 0 1 14 0v31a13 13 0 1 1-14 0z" /><path d="M32 23v31" strokeWidth="5" /><path className="de-art-muted" d="M51 59h34M52 24h30" /><path d="M52 27c13 2 15 24 31 29" /></>;
       break;
+    case "laplace":
+      drawing = <><path className="de-art-muted" d="M10 60h76M20 65V10"/><path d="M20 18C34 42 49 54 82 58"/><text x="42" y="23">ℒ</text><path d="M48 35h30m-6-5 6 5-6 5"/></>;
+      break;
+    case "boundary-values":
+      drawing = <><path className="de-art-muted" d="M12 60h73M20 66V10"/><path d="M22 51Q48 5 80 39"/><path strokeDasharray="3 4" d="M22 51V60M80 39V60"/><circle cx="22" cy="51" r="4" fill="currentColor"/><circle cx="80" cy="39" r="4" fill="currentColor"/></>;
+      break;
+    case "pde":
+      drawing = <>{[0,1,2,3,4].map(i=><path key={i} d={`M12 ${25+i*8}Q35 ${3+i*8} 52 ${26+i*8}T86 ${25+i*8}`}/>)}<path className="de-art-muted" d="M12 65h74"/></>;
+      break;
     default:
       drawing = <><path d="M19 53c14-32 24 32 38 0s17-32 22 0" /></>;
   }
 
   return <svg className="de-artwork" viewBox="0 0 96 76" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    {drawing}
+    <defs><linearGradient id={gradient} gradientUnits="userSpaceOnUse" x1="10" y1="10" x2="86" y2="66"><stop stopColor="#05bcea"/><stop offset=".5" stopColor="#3975f4"/><stop offset="1" stopColor="#ad45e9"/></linearGradient></defs>
+    <g stroke={`url(#${gradient})`}>{drawing}</g>
   </svg>;
 }

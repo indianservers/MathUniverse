@@ -9,9 +9,10 @@ import { batchOneStudyChecks } from '../strengthening/studyBatchOne';
 import { gradeStudyAnswer } from '../engine/lessonStudySession';
 import LessonStudySession, { makeStudyQuestions, resolveStudyLessonId } from './LessonStudySession';
 describe('first study batch',()=>{
-  it('builds valid, separate question banks and resolves routes across all 919 lessons',()=>{
-    const catalog=[...lessonCatalog,...advancedConceptLessons,...schoolLessonCatalog];
-    expect(catalog).toHaveLength(919);
+  it.each(Array.from({length:19},(_,index)=>index))('builds valid question banks and resolves routes for catalog batch %i',(batch)=>{
+    const all=[...lessonCatalog,...advancedConceptLessons,...schoolLessonCatalog];
+    expect(all).toHaveLength(919);
+    const catalog=all.slice(batch*50,(batch+1)*50);
     for(const item of catalog){
       const id='numericId' in item?item.numericId:item.id;
       const lesson=getStrengthenedFoundationLesson(id)!;
@@ -26,6 +27,10 @@ describe('first study batch',()=>{
       }
       const parts=item.route.split('/');
       expect(resolveStudyLessonId({categorySlug:parts[2],levelSlug:parts[3],lessonSlug:parts.at(-1)}),`lesson ${id} route`).toBe(id);
+      const path=parts[2]==='school'?'/lessons/school/:levelSlug/:lessonSlug':'/lessons/:categorySlug/:lessonSlug';
+      const html=renderToStaticMarkup(<MemoryRouter initialEntries={[item.route]}><Routes><Route path={path} element={<LessonStudySession/>}/></Routes></MemoryRouter>);
+      expect(html,`lesson ${id} study panel enabled`).toContain('study-session-header');
+      expect(html,`lesson ${id} starts collapsed`).toContain('aria-expanded="false"');
     }
   });
   it('has distinct topic checks and complete practice content for every lesson in batch one',()=>{

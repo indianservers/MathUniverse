@@ -1,0 +1,2106 @@
+{
+  "date": "2026-10-11",
+  "method": "Provisional source-based readiness groups; ties, not independent numeric scores",
+  "rows": [
+    {
+      "studio": "algebra",
+      "title": "equations",
+      "route": "/algebra/equations",
+      "id": "equations",
+      "rank": 1,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Assess each balancing step and diagnose sign, zero-coefficient and extraneous-solution errors.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "Geometry Studio",
+      "title": "Circles Lab",
+      "route": "/geometry/circles",
+      "id": "circles",
+      "rank": 1,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Let learners choose hypotheses and build a circle-theorem proof; show a counterexample when a hypothesis is removed.",
+      "learn": "Drag a tangent. Then: Find an angle from an arc."
+    },
+    {
+      "studio": "Geometry Studio",
+      "title": "Construction Workspace",
+      "route": "/geometry/construction",
+      "id": "construction",
+      "rank": 1,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Ask the learner to construct a perpendicular bisector, then check dependencies and require a justification that survives dragging.",
+      "learn": "Add a circle through two points. Then: Reconstruct a perpendicular bisector."
+    },
+    {
+      "studio": "Geometry Studio",
+      "title": "Triangles Lab",
+      "route": "/geometry/triangles",
+      "id": "triangles",
+      "rank": 1,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Generate near-degenerate and misleading diagrams; assess congruence and similarity reasoning rather than only measured values.",
+      "learn": "Use transformations to move one triangle onto the other. Then: Create two non-congruent triangles that look similar."
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Systems & Row Reduction Lab",
+      "route": "/linear-algebra/row-reduction",
+      "id": "row-reduction",
+      "rank": 1,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Require the learner to choose legal row operations; diagnose the first incorrect step and relate pivots to solution sets.",
+      "learn": "Modify the matrix or add a free variable. What happens? Then: Create a system with infinitely many solutions."
+    },
+    {
+      "studio": "Statistics Studio",
+      "title": "Confidence Intervals Lab",
+      "route": "/probability-statistics/confidence-intervals",
+      "id": "confidence-intervals",
+      "rank": 1,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Use repeated-interval coverage tasks and diagnose the probability-of-a-fixed-parameter misconception.",
+      "learn": "Change n. Then: Get margin of error under 2."
+    },
+    {
+      "studio": "Statistics Studio",
+      "title": "Data Explorer",
+      "route": "/probability-statistics/data-explorer",
+      "id": "data-explorer",
+      "rank": 1,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Make data cleaning decisions visible and assess how each decision changes conclusions.",
+      "learn": "Filter a category. Then: Name a pattern."
+    },
+    {
+      "studio": "Statistics Studio",
+      "title": "Sampling & Central Limit Theorem Lab",
+      "route": "/probability-statistics/clt",
+      "id": "clt",
+      "rank": 1,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Compare skewed, discrete and heavy-tailed populations; assess what converges and when familiar CLT assumptions fail.",
+      "learn": "Increase n. Then: Get an almost-normal sampling distribution."
+    },
+    {
+      "studio": "Trigonometry Studio",
+      "title": "Right Triangle Studio",
+      "route": "/trigonometry/right-triangle",
+      "id": "right-triangle",
+      "rank": 1,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Fade ratio hints; generate reverse problems and assess choice of ratio, units and reasonableness.",
+      "learn": "Change inputs or drag vertices to create your own problems. Then: Solve triangle puzzles and beat your best time."
+    },
+    {
+      "studio": "Trigonometry Studio",
+      "title": "Unit Circle & Angle Studio",
+      "route": "/trigonometry/unit-circle",
+      "id": "unit-circle",
+      "rank": 1,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Ask learners to derive an unfamiliar exact value and explain quadrant signs without reading the displayed answer.",
+      "learn": "Practice with angles and check your understanding. Then: Solve problems and apply trig concepts."
+    },
+    {
+      "studio": "advanced-differential-equations",
+      "title": "Bifurcation and nonlinear dynamics",
+      "route": "/studios/advanced-differential-equations/labs/dynamics",
+      "id": "dynamics",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “How many real equilibria exist on each side of zero?” Existing model limits: One-dimensional pitchfork normal form; at μ=0 linearization is inconclusive. Next: generate varied cases within those limits and assess the reason behind “A zero linearized eigenvalue determines stability by itself.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Use the nonlinear term to classify stability at the bifurcation."
+    },
+    {
+      "studio": "advanced-differential-equations",
+      "title": "Stiff solvers and stability",
+      "route": "/studios/advanced-differential-equations/labs/stiff",
+      "id": "stiff",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Can a stable solver still be inaccurate?” Existing model limits: y′=−ky, y(0)=1; compare fixed-step Euler or adaptive RK4 by step doubling. Adaptive explicit methods still face stiffness restrictions. Next: generate varied cases within those limits and assess the reason behind “Numerical stability alone guarantees accuracy.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Derive amplification factors and compare work, rejected steps and global error."
+    },
+    {
+      "studio": "advanced-differential-equations",
+      "title": "Sturm–Liouville investigations",
+      "route": "/studios/advanced-differential-equations/labs/sturm",
+      "id": "sturm",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Do discrete eigenvalues converge from above or below?” Existing model limits: Constant weight 1; compare analytic eigenvalues with a finite-difference discretization. Next: generate varied cases within those limits and assess the reason behind “A numerical eigenvalue is exact for the continuous operator.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Derive the discrete eigenvalue formula and explain second-order convergence."
+    },
+    {
+      "studio": "algebra",
+      "title": "Domains and equivalence",
+      "route": "/studios/algebra/labs/domain",
+      "id": "domain",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Will the simplified line include the canceled point?” Existing model limits: Explore (x²−r²)/(x−r); x=r remains excluded. Next: generate varied cases within those limits and assess the reason behind “A canceled factor restores its excluded input.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Choose a test point where the canceled and original formulas agree; explain why this does not restore the hole."
+    },
+    {
+      "studio": "algebra",
+      "title": "Functions and recurrences",
+      "route": "/studios/algebra/labs/recurrence",
+      "id": "recurrence",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “How do negative ratios change the signs?” Existing model limits: a₀=b and aₖ₊₁=r aₖ; finite plots do not prove the formula. Next: generate varied cases within those limits and assess the reason behind “Agreement of a few terms proves every term.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Derive the formula at k+1 from the induction hypothesis at k."
+    },
+    {
+      "studio": "algebra",
+      "title": "Parameter cases",
+      "route": "/studios/algebra/labs/parameter",
+      "id": "parameter",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “What changes when a passes through zero?” Existing model limits: Real a and b; a=0 is a separate case. Next: generate varied cases within those limits and assess the reason behind “Dividing an inequality by a negative number preserves its direction.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Find coefficients giving all real solutions, then no solutions. Explain both."
+    },
+    {
+      "studio": "algebraic-structures",
+      "title": "Field extension arithmetic",
+      "route": "/studios/algebraic-structures/labs/fields",
+      "id": "fields",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Which nonzero products become zero in a reducible quotient?” Existing model limits: Prime p∈{2,3,5,7}; code u+p·v represents u+vα. A quadratic is irreducible exactly when it has no base-field root. Next: generate varied cases within those limits and assess the reason behind “Every polynomial quotient over a field is a field.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Verify inverses and compare the Frobenius image αᵖ with α."
+    },
+    {
+      "studio": "algebraic-structures",
+      "title": "Ideals and quotient operations",
+      "route": "/studios/algebraic-structures/labs/quotients",
+      "id": "quotients",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “How many cosets occur when d divides n?” Existing model limits: Finite commutative ring Zₙ; d is any integer. Next: generate varied cases within those limits and assess the reason behind “Every quotient of a ring is a field.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Explain why quotient representatives give the same product."
+    },
+    {
+      "studio": "algebraic-structures",
+      "title": "Permutations and group actions",
+      "route": "/studios/algebraic-structures/labs/permutations",
+      "id": "permutations",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Does a relabeling change cycle lengths or element order?” Existing model limits: Enter a bijection of labels 1…n, n≤8; products act right to left. Next: generate varied cases within those limits and assess the reason behind “The order of disjoint cycles is always their product.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Compare the orbit and stabilizer of different labels and prove their product equals group order."
+    },
+    {
+      "studio": "calculus",
+      "title": "Epsilon–delta reasoning",
+      "route": "/studios/calculus/labs/epsilon",
+      "id": "epsilon",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “How small must delta be when c increases?” Existing model limits: ε>0; use δ=min(1, ε/(2|c|+1)). Next: generate varied cases within those limits and assess the reason behind “Sampling finitely many points proves the epsilon–delta definition.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Prove the implication using |x−c|<δ and |x+c|≤2|c|+1."
+    },
+    {
+      "studio": "calculus",
+      "title": "Multivariable theorem verification",
+      "route": "/studios/calculus/labs/flux",
+      "id": "flux",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “What changes if every surface normal is reversed?” Existing model limits: Box [0,L]³; outward orientation; smooth field. Next: generate varied cases within those limits and assess the reason behind “Orientation does not affect a flux integral.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Derive the flux face by face before applying the divergence theorem."
+    },
+    {
+      "studio": "calculus",
+      "title": "Pointwise and uniform convergence",
+      "route": "/studios/calculus/labs/convergence",
+      "id": "convergence",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Does the largest error on [0,1) tend to zero?” Existing model limits: n≥1; compare [0,1] with [0,q], q<1. Next: generate varied cases within those limits and assess the reason behind “Pointwise convergence guarantees uniform convergence.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Prove uniform convergence on [0,q] using the bound qⁿ."
+    },
+    {
+      "studio": "Complex Numbers Studio",
+      "title": "Applications to Waves & Circuits Lab",
+      "route": "/complex-numbers/waves-circuits",
+      "id": "waves-circuits",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Assess phase, impedance and units using a new circuit; compare model predictions with supplied measurements.",
+      "learn": "Adjust components, frequency, and observe the effects. Then: Match a target power factor and minimize current."
+    },
+    {
+      "studio": "Complex Numbers Studio",
+      "title": "Argand Plane Lab",
+      "route": "/complex-numbers/argand-plane",
+      "id": "argand-plane",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Translate between geometric locations and exact complex values; assess modulus and argument reasoning.",
+      "learn": "Show the conjugate. Then: Open locus |z|=2."
+    },
+    {
+      "studio": "Complex Numbers Studio",
+      "title": "Complex Arithmetic & Geometry Lab",
+      "route": "/complex-numbers/arithmetic",
+      "id": "arithmetic",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Predict multiplication and division geometrically before computing; include zero and branch conventions.",
+      "learn": "Switch operations and explore products, quotients, and more. Then: Can you make z₁ × z₂ purely imaginary?"
+    },
+    {
+      "studio": "Complex Numbers Studio",
+      "title": "Euler's Formula Lab",
+      "route": "/complex-numbers/euler",
+      "id": "euler",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Predict stability and compare convergence as step size changes; report global error against a reference.",
+      "learn": "Change θ, terms, and trace length. Predict where e^{iθ} goes next. Then: Prove e^{iπ} + 1 = 0 and explore e^{i2π} = 1. Can you generalize?"
+    },
+    {
+      "studio": "Complex Numbers Studio",
+      "title": "Loci & Transformations Lab",
+      "route": "/complex-numbers/loci",
+      "id": "loci",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Build a locus from a complex constraint and justify its equation and exclusions.",
+      "learn": "Change the transformation, drag points, and experiment. Then: Can you map this circle to a line? Find parameters to try."
+    },
+    {
+      "studio": "Complex Numbers Studio",
+      "title": "Mandelbrot & Julia Sets Lab",
+      "route": "/complex-numbers/fractals",
+      "id": "fractals",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Compare escape criteria, iteration caps and resolution; explain why a finite render is not a membership proof.",
+      "learn": "Drag c, change iterations and palette. Then: Find a c where the Julia set is disconnected."
+    },
+    {
+      "studio": "Complex Numbers Studio",
+      "title": "Multiplication as Rotation Lab",
+      "route": "/complex-numbers/rotation",
+      "id": "rotation",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Reconstruct a complex multiplier from a target transformation and explain composition.",
+      "learn": "Change θ to −60° and see rotation in the opposite direction. Then: Find w such that wz = −z for any nonzero z."
+    },
+    {
+      "studio": "Complex Numbers Studio",
+      "title": "Polar & Exponential Forms Lab",
+      "route": "/complex-numbers/polar-forms",
+      "id": "polar-forms",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Explain equivalent arguments and principal values; assess conversions without visible solutions.",
+      "learn": "Pick a point, change branch, see what happens. Then: Convert tricky numbers and explore multiple branches."
+    },
+    {
+      "studio": "Complex Numbers Studio",
+      "title": "Roots of Complex Numbers Lab",
+      "route": "/complex-numbers/roots",
+      "id": "roots",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Derive all roots and their spacing; diagnose missing roots and duplicated arguments.",
+      "learn": "Change n, drag the angle θ, or try random z. Explore patterns and special cases. Then: Find z such that one of its cube roots is purely imaginary. What about fourth roots?"
+    },
+    {
+      "studio": "complex-numbers",
+      "title": "Continuation and winding",
+      "route": "/studios/complex-numbers/labs/continuation",
+      "id": "continuation",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Does a square root return to its starting value after one turn?” Existing model limits: Path is a circle avoiding 0; log increment after a turn is 2πi. Next: generate varied cases within those limits and assess the reason behind “The principal logarithm is globally continuous on the punctured plane.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Explain why two turns restore the square-root sheet."
+    },
+    {
+      "studio": "complex-numbers",
+      "title": "Contours and residues",
+      "route": "/studios/complex-numbers/labs/contours",
+      "id": "contours",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “What happens when p crosses the contour?” Existing model limits: Circle centered at 0; pole p real and not on the contour. Next: generate varied cases within those limits and assess the reason behind “A pole outside a closed contour contributes the same residue integral.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Reverse orientation and justify the sign change."
+    },
+    {
+      "studio": "complex-numbers",
+      "title": "Taylor and Laurent annuli",
+      "route": "/studios/complex-numbers/labs/analytic",
+      "id": "analytic",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Does adding terms help outside a series’ region of convergence?” Existing model limits: p>0, evaluate on positive real z≠p; series only valid in its own annulus. Next: generate varied cases within those limits and assess the reason behind “One Taylor expansion represents a function everywhere except its pole.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Derive both expansions from the geometric series."
+    },
+    {
+      "studio": "continued-fractions",
+      "title": "Best rational approximation",
+      "route": "/studios/continued-fractions/labs/approximation",
+      "id": "approximation",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Is every good approximation a convergent for every notion of error?” Existing model limits: Target √D, nonsquare D≤30; compare all denominators up to a chosen limit. Next: generate varied cases within those limits and assess the reason behind “Any rational with small error is the best approximation.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → State the denominator bound and error criterion before making a best-approximation claim."
+    },
+    {
+      "studio": "continued-fractions",
+      "title": "Exact quadratic surds",
+      "route": "/studios/continued-fractions/labs/surds",
+      "id": "surds",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Which state indicates the period has returned?” Existing model limits: Nonsquare positive D≤100; state arithmetic is integer. Next: generate varied cases within those limits and assess the reason behind “Expanding a decimal approximation proves the exact period.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Derive the update for m,d,a by rationalizing the reciprocal."
+    },
+    {
+      "studio": "continued-fractions",
+      "title": "Pell equations and norms",
+      "route": "/studios/continued-fractions/labs/pell",
+      "id": "pell",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Why does multiplying norm-one units preserve the equation?” Existing model limits: Nonsquare D≤30; solutions verified with BigInt; bounded search is labelled. Next: generate varied cases within those limits and assess the reason behind “A large verified solution is automatically the smallest solution.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Derive the recurrence for the next solution from (x+y√D)(u+v√D)."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Bernoulli Equations",
+      "route": "/differential-equations/bernoulli",
+      "id": "bernoulli",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Diagnose excluded zero solutions and substitution limits; verify the transformed and original equations.",
+      "learn": "Solve the linear equation. Then: Substitute back."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Boundary-Value Eigenfunctions",
+      "route": "/differential-equations/boundary-values",
+      "id": "boundary-values",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Compare boundary residuals and grid convergence; diagnose singular and ill-conditioned problems.",
+      "learn": "Change the domain length. Then: Predict how λ scales with L."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Cauchy–Euler Equations",
+      "route": "/differential-equations/cauchy-euler",
+      "id": "cauchy-euler",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Assess repeated and complex roots and the singular point at zero.",
+      "learn": "Stay on x > 0. Then: Compare with constant coefficients."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Differential Equation Explorer",
+      "route": "/differential-equations/explorer",
+      "id": "explorer",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Make learners classify equations and choose a method before revealing the solution.",
+      "learn": "Compare a family with one initial condition. Then: Name what is still unknown."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Direction Fields & Solution Curves",
+      "route": "/differential-equations/slope-fields",
+      "id": "slope-fields",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Sketch and justify a solution before computation; explore uniqueness and equilibrium behavior.",
+      "learn": "Click a new initial point. Then: Find where the slope vanishes."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Euler Method",
+      "route": "/differential-equations/euler",
+      "id": "euler",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Predict stability and compare convergence as step size changes; report global error against a reference.",
+      "learn": "Read the error. Then: Compare with RK4."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Exact Differential Equations",
+      "route": "/differential-equations/exact",
+      "id": "exact",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Assess the exactness test and reconstruction of a potential; show counterexamples and valid integrating factors.",
+      "learn": "Solve for g(y). Then: Contours of F are solutions."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "First-Order Method Selector",
+      "route": "/differential-equations/method-selector",
+      "id": "method-selector",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Ask for method selection and justification on unseen equations, including cases outside supported families.",
+      "learn": "Open the lab. Then: Try another preset."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Growth and Decay",
+      "route": "/differential-equations/growth-models",
+      "id": "growth-models",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Fit observations and interpret parameters; test sensitivity and model mismatch.",
+      "learn": "See the curve flatten. Then: Compare with pure exponential growth."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Heat & Wave Equation Modes",
+      "route": "/differential-equations/pde",
+      "id": "pde",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Extend the existing finite-mode workflow with quantitative convergence evidence and richer initial conditions.",
+      "learn": "Change the mode number. Then: Verify the PDE by differentiation."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Higher-Order Linear ODEs",
+      "route": "/differential-equations/higher-order-linear",
+      "id": "higher-order-linear",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Classify characteristic roots and reconstruct solutions satisfying independent initial conditions.",
+      "learn": "Match the solution form. Then: Set an initial condition."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Homogeneous First-Order Equations",
+      "route": "/differential-equations/homogeneous-first-order",
+      "id": "homogeneous-first-order",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Ask learners to justify the substitution and handle singular lines and domain restrictions.",
+      "learn": "Separate the new equation. Then: Return to x and y."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Improved Euler / Heun",
+      "route": "/differential-equations/heun",
+      "id": "heun",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Compare predictor and corrector stages and observed convergence against Euler.",
+      "learn": "Compare errors. Then: Shrink h."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Initial Value Problems",
+      "route": "/differential-equations/initial-value",
+      "id": "initial-value",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Assess existence, uniqueness and sensitivity to initial data; compare analytical and numerical results.",
+      "learn": "Change y0. Then: Keep the curve on the ticks."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Laplace Transforms & Step Responses",
+      "route": "/differential-equations/laplace",
+      "id": "laplace",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Require setup, partial fractions and recovery of initial conditions; verify a new forcing case.",
+      "learn": "Change the forcing and decay. Then: Predict the steady state."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "LCR Circuits",
+      "route": "/differential-equations/lcr-circuit",
+      "id": "lcr-circuit",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Connect circuit quantities, units and initial conditions; assess resonance and damping with a new scenario.",
+      "learn": "Compare charge and current. Then: Open the mechanical twin."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Linear Equations & Integrating Factor",
+      "route": "/differential-equations/linear-first-order",
+      "id": "linear-first-order",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Require integrating-factor derivation and solution verification on a changed input.",
+      "learn": "Recognize a product derivative. Then: Solve for y."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Mechanical Oscillations",
+      "route": "/differential-equations/mechanical-oscillations",
+      "id": "mechanical-oscillations",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Assess resonance, damping and energy; compare model predictions with observed motion.",
+      "learn": "Add a force. Then: Compare x(t) with the picture."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Method of Undetermined Coefficients",
+      "route": "/differential-equations/undetermined-coefficients",
+      "id": "undetermined-coefficients",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Generate resonance cases and assess the trial-form adjustment before revealing coefficients.",
+      "learn": "Equate coefficients. Then: Write the general solution."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Newton Cooling",
+      "route": "/differential-equations/newton-cooling",
+      "id": "newton-cooling",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Estimate parameters from data and validate the ambient-temperature assumption.",
+      "learn": "Read the half-gap time. Then: Start below the room and watch warming."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Phase Plane Explorer",
+      "route": "/differential-equations/phase-plane",
+      "id": "phase-plane",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Ask learners to classify equilibria and separatrices before plotting; explore nonlinear limits of linearization.",
+      "learn": "Toggle the field. Then: Compare with the eigenvalue label."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Runge–Kutta RK4",
+      "route": "/differential-equations/rk4",
+      "id": "rk4",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Expose all four stages and compare accuracy, cost and stability across step sizes.",
+      "learn": "Watch the error drop. Then: Keep the curve on the field."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Separable Equations",
+      "route": "/differential-equations/separable",
+      "id": "separable",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Diagnose lost equilibrium solutions when dividing; require domain and initial-condition checks.",
+      "learn": "Watch the family. Then: Mark the singular solution y=0."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Systems of First-Order ODEs",
+      "route": "/differential-equations/systems",
+      "id": "systems",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Connect matrix structure, eigenpairs and trajectories; include defective and complex-eigenvalue cases.",
+      "learn": "Follow a trajectory. Then: Compare with eigenvectors."
+    },
+    {
+      "studio": "Differential Equations Studio",
+      "title": "Variation of Parameters",
+      "route": "/differential-equations/variation-of-parameters",
+      "id": "variation-of-parameters",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Let learners construct and verify the particular solution; show Wronskian conditions.",
+      "learn": "Integrate. Then: Add the complementary function."
+    },
+    {
+      "studio": "differential-equations",
+      "title": "Boundary-value solver",
+      "route": "/studios/differential-equations/labs/boundary",
+      "id": "boundary",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Does halving grid size halve or quarter the error for a smooth nonquadratic forcing?” Existing model limits: Domain [0,1]; right endpoint u(1)=c. Left endpoint is Dirichlet, Neumann or Robin; a singular Robin family is rejected. Next: generate varied cases within those limits and assess the reason behind “A zero discrete residual means zero discretization error.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Check the equation and boundary residuals and distinguish them from continuous-solution error."
+    },
+    {
+      "studio": "differential-equations",
+      "title": "Convolution and impulse responses",
+      "route": "/studios/differential-equations/labs/convolution",
+      "id": "convolution",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “How does damping alter response amplitude and phase?” Existing model limits: Zero initial value; sinusoidal forcing; Simpson quadrature checks an exact formula. Next: generate varied cases within those limits and assess the reason behind “The forced response ignores initial conditions in every problem.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Differentiate the convolution and recover the differential equation."
+    },
+    {
+      "studio": "differential-equations",
+      "title": "Heat, wave and Laplace modes",
+      "route": "/studios/differential-equations/labs/pde",
+      "id": "pde",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Which heat mode decays faster and why?” Existing model limits: Unit interval/strip, up to 20 sine coefficients; linear steady boundary profile is added. Wave initial velocity is zero; Laplace decays with strip height. Next: generate varied cases within those limits and assess the reason behind “Every initial condition is represented exactly by two modes.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Verify the initial profile, nonzero endpoint values and the PDE for each term."
+    },
+    {
+      "studio": "discrete-world",
+      "title": "Combinatorics and generating functions",
+      "route": "/studios/discrete-world/labs/counting",
+      "id": "counting",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Why are coefficients symmetric around n/2?” Existing model limits: n≤20; integer subset size; exact integer counts remain within safe range. Next: generate varied cases within those limits and assess the reason behind “Every combinatorial identity needs numerical verification for all n.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Construct a complement bijection between k-subsets and (n−k)-subsets."
+    },
+    {
+      "studio": "discrete-world",
+      "title": "Editable finite automata",
+      "route": "/studios/discrete-world/labs/automata",
+      "id": "automata",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Can a transition change alter acceptance of only one tested word?” Existing model limits: Binary alphabet; states indexed 0…n−1, two columns per row. Next: generate varied cases within those limits and assess the reason behind “Agreement on a finite set of words proves language equivalence.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Describe the language of the default parity automaton and prove its invariant."
+    },
+    {
+      "studio": "discrete-world",
+      "title": "Exact Euclid and CRT traces",
+      "route": "/studios/discrete-world/labs/euclid",
+      "id": "euclid",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “What changes when the moduli are not coprime?” Existing model limits: Positive integer inputs ≤100; CRT uses residues 1 and 2. Next: generate varied cases within those limits and assess the reason behind “CRT’s product modulus applies unchanged to all pairs of moduli.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Back-substitute the Euclid trace to obtain a Bézout certificate."
+    },
+    {
+      "studio": "famous-problems",
+      "title": "Constructibility and algebraic degree",
+      "route": "/studios/famous-problems/labs/constructibility",
+      "id": "constructibility",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Why is doubling a cube different from constructing a square root?” Existing model limits: Compare roots of z²−m with z³−2; degree condition is necessary, not sufficient by itself. Next: generate varied cases within those limits and assess the reason behind “Every algebraic number is compass-straightedge constructible.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Explain irreducibility of x³−2 and the tower-degree obstruction."
+    },
+    {
+      "studio": "famous-problems",
+      "title": "Proof reconstruction",
+      "route": "/studios/famous-problems/labs/proof",
+      "id": "proof",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Must the product plus one be prime?” Existing model limits: Choose a finite initial prime list; displayed integer range is exact. Next: generate varied cases within those limits and assess the reason behind “The product of listed primes plus one is always prime.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Write the contradiction for an arbitrary finite list of all alleged primes."
+    },
+    {
+      "studio": "famous-problems",
+      "title": "Reproducible bounded experiments",
+      "route": "/studios/famous-problems/labs/bounded-search",
+      "id": "bounded-search",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Does reaching 1 for one start prove the conjecture?” Existing model limits: Exact BigInt states; finite step cap; chart uses logarithmic magnitude. Next: generate varied cases within those limits and assess the reason behind “Many successful experiments establish a universal theorem.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → State exactly what a run proves and what remains open."
+    },
+    {
+      "studio": "geometry",
+      "title": "Conics and projective maps",
+      "route": "/studios/geometry/labs/conics",
+      "id": "conics",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Does perspective preserve the ellipse’s focal distances?” Existing model limits: Ellipse a≥b>0; projective denominator 1+kx must not vanish. Next: generate varied cases within those limits and assess the reason behind “Projective transformations preserve Euclidean distances.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Find where the projective map has a pole and explain its geometry."
+    },
+    {
+      "studio": "geometry",
+      "title": "Construction and proof",
+      "route": "/studios/geometry/labs/construction",
+      "id": "construction",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “What happens to the ratio when the apex moves?” Existing model limits: A=(0,0), B=(b,0), C=(a,h); h≠0. Next: generate varied cases within those limits and assess the reason behind “A diagram proves a theorem without its hypotheses.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Use coordinate subtraction to prove the statement for every allowed apex."
+    },
+    {
+      "studio": "geometry",
+      "title": "Curvature and geodesics",
+      "route": "/studios/geometry/labs/geodesics",
+      "id": "geodesics",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “How does the arc–chord difference change with angle?” Existing model limits: Two equatorial points separated by 0≤θ≤π; angles in radians. Next: generate varied cases within those limits and assess the reason behind “The straight chord lies on the sphere.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Use the small-angle limit to explain local flatness."
+    },
+    {
+      "studio": "Geometry Studio",
+      "title": "2D & 3D Shapes Explorer",
+      "route": "/shapes",
+      "id": "solids",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Predict a cross-section before slicing; connect a net, solid and formula in one assessed task.",
+      "learn": "Unfold a cylinder. Then: Sketch a cross-section."
+    },
+    {
+      "studio": "Geometry Studio",
+      "title": "Coordinate Geometry Lab",
+      "route": "/geometry/coordinate",
+      "id": "coordinate",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Translate a geometric locus into an equation and back; check vertical lines and degenerate cases.",
+      "learn": "Create your own lines, loci, and solve challenges. Then: Find the locus of points equidistant from A and B."
+    },
+    {
+      "studio": "Geometry Studio",
+      "title": "Geometry AR Lab",
+      "route": "/geometry/ar",
+      "id": "ar",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Validate measurement calibration on physical devices; attach uncertainty and an assessed measurement task to the camera interaction.",
+      "learn": "Measure a room corner. Then: Capture a triangle overlay."
+    },
+    {
+      "studio": "Geometry Studio",
+      "title": "Measurement Lab",
+      "route": "/geometry/measurement",
+      "id": "measurement",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Add instrument resolution and unit-conversion reasoning; assess an uncertainty interval rather than only a displayed measure.",
+      "learn": "Drag orange points to modify the shape. Switch to other modes to measure angles and more. Then: Create a shape with the same area but different perimeter. Can you minimize the perimeter?"
+    },
+    {
+      "studio": "Geometry Studio",
+      "title": "Polygons Lab",
+      "route": "/geometry/polygons",
+      "id": "polygons",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Connect triangulation, angle sums and diagonals; require a general argument for arbitrary n.",
+      "learn": "Decompose area into triangles or use the shoelace formula. Then: Count n(n−3)/2 diagonals of an octagon."
+    },
+    {
+      "studio": "Geometry Studio",
+      "title": "Theorem & Visual Proof",
+      "route": "/geometry/proofs",
+      "id": "proofs",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Let learners supply and justify proof steps; distinguish a dynamic illustration from a general proof.",
+      "learn": "Rearrange the squares. Then: Write a two-column proof."
+    },
+    {
+      "studio": "Geometry Studio",
+      "title": "Transformations Lab",
+      "route": "/geometry/transformations",
+      "id": "transformations",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Predict the result before composing maps; assess order dependence and recovery of the inverse transformation.",
+      "learn": "Compose reflect then rotate. Then: Map a triangle onto another."
+    },
+    {
+      "studio": "graph-theory",
+      "title": "Matching, flow and certificates",
+      "route": "/studios/graph-theory/labs/flow",
+      "id": "flow",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Can an augmenting path use an edge in reverse?” Existing model limits: Flow: square nonnegative capacity matrix, source 0 and sink last. Matching: rectangular 0/1 matrix from left rows to right columns, each side ≤8. Next: generate varied cases within those limits and assess the reason behind “An unavailable forward path proves maximal flow without inspecting reverse residual edges.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Check flow/cut equality or matching/minimum-vertex-cover equality as an optimality certificate."
+    },
+    {
+      "studio": "graph-theory",
+      "title": "Planarity and coloring bounds",
+      "route": "/studios/graph-theory/labs/planarity",
+      "id": "planarity",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Can an Euler edge bound pass for a nonplanar graph?” Existing model limits: Simple undirected adjacency matrix ≤8 vertices; inconclusive cases are labelled. Next: generate varied cases within those limits and assess the reason behind “Passing E≤3V−6 proves planarity.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Compare K₃,₃ with a cycle and explain why a drawn crossing is inconclusive."
+    },
+    {
+      "studio": "graph-theory",
+      "title": "Spectral and random graphs",
+      "route": "/studios/graph-theory/labs/random-graphs",
+      "id": "random-graphs",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “How does increasing p affect components for the same seed?” Existing model limits: Seeded simple G(n,p), n≤8; symmetric eigensolver is approximate. Next: generate varied cases within those limits and assess the reason behind “One connected random graph proves connectivity with probability one.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Prove that component-indicator vectors lie in the Laplacian kernel."
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "2D & 3D Transformation Playground",
+      "route": "/linear-algebra/playground",
+      "id": "playground",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Turn unrestricted exploration into a saved conjecture, experiment and explanation with a transfer task.",
+      "learn": "Experiment with different matrices and objects. Then: Can you build a transformation with a specific effect?"
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Cayley–Hamilton Lab",
+      "route": "/linear-algebra/cayley-hamilton",
+      "id": "cayley-hamilton",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Derive a matrix polynomial identity and use it on a new matrix; validate reconstruction residuals.",
+      "learn": "Reduce a power. Then: Stop if the determinant is zero."
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Determinants Lab",
+      "route": "/linear-algebra/determinants",
+      "id": "determinants",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Predict area scaling and sign before computing; justify singularity geometrically.",
+      "learn": "Create a matrix with det(A) = −2. What happens to area & orientation? Then: Find a matrix with det(A) = −1 that swaps the axes."
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Diagonalization Lab",
+      "route": "/linear-algebra/diagonalization",
+      "id": "diagonalization",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Ask whether diagonalization exists before showing it; relate multiplicity to independent eigenvectors.",
+      "learn": "Multiply back. Then: Reject a defective example."
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Eigenvalues & Eigenvectors Lab",
+      "route": "/linear-algebra/eigenvectors",
+      "id": "eigenvectors",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Compare real, complex and defective cases; require the learner to explain invariant directions.",
+      "learn": "Adjust the matrix and explore different behaviors. Then: Find a matrix with complex eigenvalues."
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Jordan Form Lab",
+      "route": "/linear-algebra/jordan-form",
+      "id": "jordan-form",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Connect generalized eigenvector chains to powers and dynamics; explain numerical sensitivity.",
+      "learn": "Rebuild A. Then: Do not force a diagonal form."
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Least Squares Lab",
+      "route": "/linear-algebra/least-squares",
+      "id": "least-squares",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Compare residuals for competing fits and explain orthogonality; include rank-deficient data.",
+      "learn": "Change the data or add noise to test the robustness. Then: Add outliers or try a quadratic model. Can you do better?"
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Linear Transformations Lab",
+      "route": "/linear-algebra/linear-transforms",
+      "id": "linear-transforms",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Reconstruct a transformation from basis images; explain kernel, orientation and rank.",
+      "learn": "Create your own matrix, compose transforms, and predict the result before seeing it. Then: Find a matrix that reflects across the line y = x and then stretches by 2 in the y-direction."
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Matrices & Operations Lab",
+      "route": "/linear-algebra/matrices",
+      "id": "matrices",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Connect each matrix operation to its geometric effect; include rectangular and singular cases.",
+      "learn": "Edit entries, switch operations, or try non-square matrices. Then: Find matrices A, B where A × B = I (but A and B are not square)."
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Matrix Factorizations Lab",
+      "route": "/linear-algebra/matrix-factorizations",
+      "id": "matrix-factorizations",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Show complete factors, dimensions and residuals; compare stability on poorly conditioned inputs.",
+      "learn": "Read the singular values. Then: Reject a singular pivot."
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Orthogonality & Projections Lab",
+      "route": "/linear-algebra/orthogonality",
+      "id": "orthogonality",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Construct a projection and interpret its residual; test dependent and nearly dependent inputs.",
+      "learn": "Change vectors, switch steps, or try random examples. Then: Can you build an ON basis from these vectors in a different order?"
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Principal Axes Lab",
+      "route": "/linear-algebra/principal-axes",
+      "id": "principal-axes",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Have learners recover the rotation and explain why cross terms disappear.",
+      "learn": "Read λ₁ u² + λ₂ v². Then: Watch the axes turn."
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Quadratic Forms Lab",
+      "route": "/linear-algebra/quadratic-forms",
+      "id": "quadratic-forms",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Link signs of eigenvalues to level sets and definiteness; assess a changed basis.",
+      "learn": "Leave the semidefinite case to the eigenvalues. Then: Move the test vector."
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Similar Matrices Lab",
+      "route": "/linear-algebra/similarity",
+      "id": "similarity",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Explore preserved invariants and construct the change-of-basis map rather than only compare outputs.",
+      "learn": "Reject a singular P. Then: Open diagonalization as a special case."
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Vector Spaces & Basis Lab",
+      "route": "/linear-algebra/vector-spaces",
+      "id": "vector-spaces",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Ask for bases and counterexamples to closure; separate numerical evidence from a proof.",
+      "learn": "Add or remove vectors to find a basis for the plane or for all of R³. Then: Can you find a basis that includes v3 instead of v1 or v2?"
+    },
+    {
+      "studio": "Linear Algebra Studio",
+      "title": "Vectors Lab",
+      "route": "/linear-algebra/vectors",
+      "id": "vectors",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Ask learners to construct a target vector in two bases and explain coordinate dependence.",
+      "learn": "Change vectors, compute projections, or test a × (b + c) = a × b + a × c. Then: Can you make a · b = 0? What maximizes |a × b|?"
+    },
+    {
+      "studio": "linear-algebra",
+      "title": "General matrix factorizations",
+      "route": "/studios/linear-algebra/labs/factorization",
+      "id": "factorization",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Which methods still describe a rank-deficient matrix?” Existing model limits: Rectangular matrices up to 8×8; LU requires square nonsingular input. Next: generate varied cases within those limits and assess the reason behind “Every matrix admits LU without row permutations.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Compare reconstruction residuals after scaling a column by 1000."
+    },
+    {
+      "studio": "linear-algebra",
+      "title": "Spectral analysis and conditioning",
+      "route": "/studios/linear-algebra/labs/spectral",
+      "id": "spectral",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “What happens as the smallest singular value approaches zero?” Existing model limits: Symmetric matrices up to 8×8; SVD condition estimate uses working precision. Next: generate varied cases within those limits and assess the reason behind “A small residual always guarantees a small solution error.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Change one diagonal entry and compare eigenvalue and condition-number changes."
+    },
+    {
+      "studio": "linear-algebra",
+      "title": "The four fundamental subspaces",
+      "route": "/studios/linear-algebra/labs/subspaces",
+      "id": "subspaces",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “What happens to nullity when a new independent column is added?” Existing model limits: Numerical rank uses a displayed tolerance; near dependence is precision-sensitive. Next: generate varied cases within those limits and assess the reason behind “Column space and row space always live in the same ambient space.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Check A times each null vector and Aᵀ times each left-null vector."
+    },
+    {
+      "studio": "mathematical-modelling",
+      "title": "Calibration and validation",
+      "route": "/studios/mathematical-modelling/labs/calibration",
+      "id": "calibration",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Can adding flexibility lower training error but worsen prediction?” Existing model limits: Rows x,y; at least six observations; hold out the last two. Next: generate varied cases within those limits and assess the reason behind “The smallest training error identifies the best predictive model.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Change the last two outcomes without refitting; explain which error changes."
+    },
+    {
+      "studio": "mathematical-modelling",
+      "title": "Identifiability and uncertainty",
+      "route": "/studios/mathematical-modelling/labs/identifiability",
+      "id": "identifiability",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Can infinitely many parameter pairs fit identical observations?” Existing model limits: Compare confounded slope with intercept+slope using a full sensitivity rank check. Next: generate varied cases within those limits and assess the reason behind “Low pairwise correlations alone prove identifiability.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Describe the null direction and design a measurement that removes it."
+    },
+    {
+      "studio": "mathematical-modelling",
+      "title": "Optimization and scaling",
+      "route": "/studios/mathematical-modelling/labs/optimization",
+      "id": "optimization",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Where should the optimum occur after nondimensionalizing width?” Existing model limits: Perimeter P>0; width in [0,P/2]. Next: generate varied cases within those limits and assess the reason behind “An interior stationary point is automatically a global maximum.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Prove the optimum with a square term and compare boundary values."
+    },
+    {
+      "studio": "Modelling Studio",
+      "title": "Epidemic Modelling Lab",
+      "route": "/mathematical-modelling/epidemics",
+      "id": "epidemics",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Fit and compare scenarios with uncertainty; explain identifiability and the limits of homogeneous mixing.",
+      "learn": "Test your own scenarios and see the impact. Then: Can you keep Rₑ < 1 and stay within hospital capacity?"
+    },
+    {
+      "studio": "Modelling Studio",
+      "title": "Finance & Compound Interest Lab",
+      "route": "/mathematical-modelling/finance",
+      "id": "finance",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Compare compounding, fees and inflation; assess the distinction between nominal and effective rates.",
+      "learn": "What if you increase contributions or the interest rate? Then: Can you reach $2M in real value within 30 years?"
+    },
+    {
+      "studio": "Modelling Studio",
+      "title": "Model Comparison & Error Lab",
+      "route": "/mathematical-modelling/comparison",
+      "id": "comparison",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Make learners justify model selection using residuals, assumptions and out-of-sample evidence.",
+      "learn": "Adjust models, parameters, and see how performance changes. Then: Can you build a better model with justified assumptions?"
+    },
+    {
+      "studio": "Modelling Studio",
+      "title": "Motion Modelling Lab",
+      "route": "/mathematical-modelling/motion",
+      "id": "motion",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Infer a model from position data; validate velocity and acceleration and explain units.",
+      "learn": "Adjust parameters and test your own scenarios. Then: Can you minimize the error with the best model?"
+    },
+    {
+      "studio": "Modelling Studio",
+      "title": "Networks & Routing Lab",
+      "route": "/mathematical-modelling/networks",
+      "id": "networks",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Expose editable routing traces and certificates; assess why a route is optimal under the chosen cost.",
+      "learn": "Change traffic, close roads, or switch algorithms and compare. Then: Can you find a faster route with different assumptions?"
+    },
+    {
+      "studio": "Modelling Studio",
+      "title": "Numerical Experiments Lab",
+      "route": "/mathematical-modelling/numerical",
+      "id": "numerical",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Compare step sizes and methods against a reference; distinguish truncation and floating-point error.",
+      "learn": "Change N, seeds, and settings. Run batches and compare. Then: Can you reach 6-digit accuracy for π? Optimize the experiment."
+    },
+    {
+      "studio": "Modelling Studio",
+      "title": "Optimization Modelling Lab",
+      "route": "/mathematical-modelling/optimization",
+      "id": "optimization",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Require a formulated objective and constraints, an optimality argument and sensitivity to changed assumptions.",
+      "learn": "Adjust resources, move objective line, and test scenarios. Then: Can you increase profit with the same resources?"
+    },
+    {
+      "studio": "Modelling Studio",
+      "title": "Periodic Phenomena Lab",
+      "route": "/mathematical-modelling/periodic",
+      "id": "periodic",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Estimate period and phase from observations; compare competing models on unseen data.",
+      "learn": "Test new models or change assumptions. Then: Can you improve the model or predict further ahead?"
+    },
+    {
+      "studio": "Modelling Studio",
+      "title": "Population Growth Lab",
+      "route": "/mathematical-modelling/population",
+      "id": "population",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Compare exponential and logistic fits on held-out observations; explain carrying-capacity assumptions.",
+      "learn": "Test different scenarios and see how sensitive the outcomes are. Then: Can you keep the population near K using harvesting?"
+    },
+    {
+      "studio": "Modelling Studio",
+      "title": "Regression & Prediction Lab",
+      "route": "/mathematical-modelling/regression",
+      "id": "regression",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Complete a user-data fit, holdout validation and residual interpretation; address leakage and extrapolation.",
+      "learn": "Adjust degree, handle outliers, or transform variables. Then: Can you improve predictions and reduce extrapolation risk?"
+    },
+    {
+      "studio": "Number & Discrete Studio",
+      "title": "Algorithms Lab",
+      "route": "/discrete-world/algorithms",
+      "id": "algorithms",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Ask the learner to predict the next state, edit inputs and explain correctness and complexity.",
+      "learn": "Switch to bubble sort. Then: Compare complexity curves."
+    },
+    {
+      "studio": "Number & Discrete Studio",
+      "title": "Combinatorics Lab",
+      "route": "/discrete-world/combinatorics",
+      "id": "combinatorics",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Ask learners to choose and justify a counting model; diagnose order, replacement and double counting.",
+      "learn": "Allow repeats. Then: Count with no adjacent repeats."
+    },
+    {
+      "studio": "Number & Discrete Studio",
+      "title": "Cryptography Playground",
+      "route": "/discrete-world/cryptography",
+      "id": "cryptography",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Explain the arithmetic at each step and generate failure cases; assess why inverses are necessary.",
+      "learn": "Encrypt a letter. Then: Decrypt with d."
+    },
+    {
+      "studio": "Number & Discrete Studio",
+      "title": "Factors, Primes & Divisibility Lab",
+      "route": "/discrete-world/primes",
+      "id": "primes",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Expose factorization and primality evidence; distinguish a bounded test from a general proof.",
+      "learn": "Change the range. Then: Find a number with 18 divisors."
+    },
+    {
+      "studio": "Number & Discrete Studio",
+      "title": "Graph Theory & Networks Lab",
+      "route": "/discrete-world/graphs",
+      "id": "graphs",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Have learners reconstruct a hidden function from its graph; require an explanation of amplitude, phase and period.",
+      "learn": "Color the graph. Then: Find a spanning tree."
+    },
+    {
+      "studio": "Number & Discrete Studio",
+      "title": "Mathematical Logic Lab",
+      "route": "/discrete-world/logic",
+      "id": "logic",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Translate language into logic and supply countermodels; assess quantifier order and implication.",
+      "learn": "Build XOR. Then: Find a counterexample."
+    },
+    {
+      "studio": "Number & Discrete Studio",
+      "title": "Modular Arithmetic Lab",
+      "route": "/discrete-world/modular-arithmetic",
+      "id": "modular-arithmetic",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Generate solvable and unsolvable congruences; require gcd-based justification and CRT conditions.",
+      "learn": "Solve 5x≡10 (mod 12). Then: Prove a congruence."
+    },
+    {
+      "studio": "Number & Discrete Studio",
+      "title": "Number Patterns Lab",
+      "route": "/discrete-world/number-patterns",
+      "id": "number-patterns",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Compare several rules fitting the same finite pattern; require justification of a recurrence.",
+      "learn": "Change n and animate the construction. Then: Find T20 without counting every dot."
+    },
+    {
+      "studio": "Number & Discrete Studio",
+      "title": "Number Sense & Number Lines Lab",
+      "route": "/discrete-world/number-sense",
+      "id": "number-sense",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Ask for estimates before exact answers; assess magnitude and flexible strategies.",
+      "learn": "Drag a point or add a hop. Then: Which is greater, −7 or −2?"
+    },
+    {
+      "studio": "Number & Discrete Studio",
+      "title": "Sets & Relations Lab",
+      "route": "/discrete-world/sets",
+      "id": "sets",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Provide an assessed set task through the linked engine and preserve the learner’s work across navigation.",
+      "learn": "Test symmetry. Then: Make R an equivalence."
+    },
+    {
+      "studio": "number-systems",
+      "title": "Completeness and nested intervals",
+      "route": "/studios/number-systems/labs/completeness",
+      "id": "completeness",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “How many steps halve the interval width below your target?” Existing model limits: Initial interval [1,2]; comparisons use exact integer numerators. Next: generate varied cases within those limits and assess the reason behind “A Cauchy sequence of rational numbers must have a rational limit.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Explain why completeness supplies a real limit even though √2 is not rational."
+    },
+    {
+      "studio": "number-systems",
+      "title": "Exact base representations",
+      "route": "/studios/number-systems/labs/bases",
+      "id": "bases",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Will 1/10 terminate in base 2 or base 10?” Existing model limits: Integer numerator/denominator; bases 2…16; exact remainder tracking. Next: generate varied cases within those limits and assess the reason behind “Every rational has a terminating decimal expansion.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Explain termination using prime factors of the reduced denominator."
+    },
+    {
+      "studio": "number-systems",
+      "title": "Floating-point error",
+      "route": "/studios/number-systems/labs/floating",
+      "id": "floating",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “What happens to (large+small)−large at low precision?” Existing model limits: Decimal significant-digit teaching arithmetic, not IEEE binary emulation. Next: generate varied cases within those limits and assess the reason behind “A small rounded intermediate error guarantees a small relative final error.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Compare absolute and relative error when the exact small value changes."
+    },
+    {
+      "studio": "probability-statistics",
+      "title": "Data and fitted linear models",
+      "route": "/studios/probability-statistics/labs/regression",
+      "id": "regression",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Will one extreme response change slope and residuals?” Existing model limits: 4–200 complete rows; single-predictor rows x,y or multiple predictors followed by y. Logistic response must be binary. Next: generate varied cases within those limits and assess the reason behind “A fitted association establishes causation.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Compare an estimate with the uncertainty/assumptions needed to interpret it."
+    },
+    {
+      "studio": "probability-statistics",
+      "title": "Joint distributions and conditioning",
+      "route": "/studios/probability-statistics/labs/joint",
+      "id": "joint",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Does zero covariance imply independence for this table?” Existing model limits: Nonnegative weights are normalized; row/column labels are integer indices. Next: generate varied cases within those limits and assess the reason behind “Zero covariance always means independence.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Construct a dependent table with zero covariance and explain the difference."
+    },
+    {
+      "studio": "probability-statistics",
+      "title": "Sampling and experimental design",
+      "route": "/studios/probability-statistics/labs/design",
+      "id": "design",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “When does stratification improve precision, and how does a factorial interaction change a main effect?” Existing model limits: Sampling: two equally weighted strata. Factorial: complete rows A,B,y with coded levels −1,+1; all four cells required. Next: generate varied cases within those limits and assess the reason behind “Large sample size removes selection bias.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Explain why random assignment supports causal comparison and replication supports variance estimation."
+    },
+    {
+      "studio": "set-theory",
+      "title": "Cardinality and diagonalization",
+      "route": "/studios/set-theory/labs/cardinality",
+      "id": "cardinality",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Which bit differs between row i and the diagonal set?” Existing model limits: Finite n≤8 visualization supports the general proof, not a simulation of infinite cardinality. Next: generate varied cases within those limits and assess the reason behind “A finite visualization alone proves Cantor’s theorem for arbitrary sets.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Write the contradiction for an arbitrary set A and a proposed surjection A→P(A)."
+    },
+    {
+      "studio": "set-theory",
+      "title": "Orders and finite well-orders",
+      "route": "/studios/set-theory/labs/orders",
+      "id": "orders",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Does the numerically largest element dominate every other element by divisibility?” Existing model limits: Positive integer set; ≤12 elements; ordinals here are introductory finite examples. Next: generate varied cases within those limits and assess the reason behind “Every finite partial order is a total order.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Distinguish maximal from greatest and minimal from least."
+    },
+    {
+      "studio": "set-theory",
+      "title": "Quantifiers and proof witnesses",
+      "route": "/studios/set-theory/labs/quantifiers",
+      "id": "quantifiers",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Can one witness work for every x?” Existing model limits: Finite domain {0,…,n−1}; relation y>x or y≥x. Next: generate varied cases within those limits and assess the reason behind “Swapping quantifiers never changes truth.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Explain how the answer changes on the infinite natural-number domain."
+    },
+    {
+      "studio": "special-functions",
+      "title": "Bessel boundary modes",
+      "route": "/studios/special-functions/labs/bessel",
+      "id": "bessel",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Why does changing the radius rescale the eigenvalue?” Existing model limits: Axisymmetric unit disk; first five J₀ zeros; positive radius scaling. Next: generate varied cases within those limits and assess the reason behind “A sine mode on a line solves the radial disk equation unchanged.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Check the boundary residual and behavior at the center."
+    },
+    {
+      "studio": "special-functions",
+      "title": "Orthogonal polynomial families",
+      "route": "/studios/special-functions/labs/orthogonal",
+      "id": "orthogonal",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Does the ordinary unweighted integral work for every family?” Existing model limits: Legendre weight 1 on [−1,1]; Hermite exp(−x²) over truncated [−8,8]; Laguerre exp(−x) over [0,40]. Next: generate varied cases within those limits and assess the reason behind “Different polynomial degrees are orthogonal under every weight.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Relate the squared norm to the coefficient used in a projection."
+    },
+    {
+      "studio": "special-functions",
+      "title": "Stable numerical evaluation",
+      "route": "/studios/special-functions/labs/evaluation",
+      "id": "evaluation",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Can more terms initially make a truncated answer worse?” Existing model limits: Compare series and numerical integral on 0≤x≤4; quadrature is an independent approximation. Next: generate varied cases within those limits and assess the reason behind “A convergent series is automatically stable in floating-point arithmetic.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Use the next-term bound only after the term magnitudes decrease."
+    },
+    {
+      "studio": "Statistics Studio",
+      "title": "ANOVA & Experimental Design Lab",
+      "route": "/probability-statistics/anova",
+      "id": "anova",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Link design, residual diagnostics and contrasts; assess why the omnibus result does not identify every differing pair.",
+      "learn": "Add a group. Then: Run post-hoc."
+    },
+    {
+      "studio": "Statistics Studio",
+      "title": "Combinatorics Lab",
+      "route": "/probability-statistics/counting",
+      "id": "counting",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Connect sample-space construction to probability and diagnose overlapping events.",
+      "learn": "Read Pascal's row. Then: Count with restrictions."
+    },
+    {
+      "studio": "Statistics Studio",
+      "title": "Correlation & Regression Lab",
+      "route": "/probability-statistics/correlation",
+      "id": "correlation",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Explore outliers, confounding and nonlinear associations; require a careful interpretation without causal claims.",
+      "learn": "Show the confidence band. Then: Predict at a new x."
+    },
+    {
+      "studio": "Statistics Studio",
+      "title": "Descriptive Statistics Lab",
+      "route": "/probability-statistics/descriptive",
+      "id": "descriptive",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Compare datasets with equal means and different shapes; require a justified summary statistic.",
+      "learn": "Show ±2σ bands. Then: Build a skewed set."
+    },
+    {
+      "studio": "Statistics Studio",
+      "title": "Hypothesis Testing Lab",
+      "route": "/probability-statistics/hypothesis",
+      "id": "hypothesis",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Add power and assumption checks; assess effect size, uncertainty and interpretation beyond a p-value.",
+      "learn": "Change n. Then: Inspect Type I / II."
+    },
+    {
+      "studio": "Statistics Studio",
+      "title": "Interactive Distributions Lab",
+      "route": "/probability-statistics/interactive-distributions",
+      "id": "interactive-distributions",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Ask learners to select a distribution from a scenario and explain assumptions, not only tune parameters.",
+      "learn": "Switch to binomial. Then: Match a scenario."
+    },
+    {
+      "studio": "Statistics Studio",
+      "title": "Probability Experiments Lab",
+      "route": "/probability-statistics/experiments",
+      "id": "experiments",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Record predictions, run repeated trials and distinguish empirical frequencies from model probabilities.",
+      "learn": "Build an event. Then: Estimate a rare event."
+    },
+    {
+      "studio": "stats-inference",
+      "title": "Likelihood and estimation",
+      "route": "/studios/stats-inference/labs/likelihood",
+      "id": "likelihood",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “How does the likelihood sharpen with larger n at the same proportion?” Existing model limits: n trials, integer successes 0≤k≤n; independent equal-probability Bernoulli trials. Next: generate varied cases within those limits and assess the reason behind “The likelihood is the probability distribution of the parameter.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Derive the score equation and explain the boundary MLE cases."
+    },
+    {
+      "studio": "stats-inference",
+      "title": "Power and equivalence decisions",
+      "route": "/studios/stats-inference/labs/decisions",
+      "id": "decisions",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Can a nonsignificant difference also fail equivalence?” Existing model limits: Known-SD normal mean, z procedures; prespecified symmetric equivalence margin. Next: generate varied cases within those limits and assess the reason behind “p>0.05 proves the effects are equal.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Explain why equivalence at 5% uses a 90% interval inside the margins."
+    },
+    {
+      "studio": "stats-inference",
+      "title": "Resampling and multiplicity",
+      "route": "/studios/stats-inference/labs/resampling",
+      "id": "resampling",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Will a bootstrap remove bias from an unrepresentative sample?” Existing model limits: Seeded mean bootstrap; independent representative observations; sorted p-values in [0,1]. Next: generate varied cases within those limits and assess the reason behind “Bootstrap fixes any sampling design or selection problem.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Compare Bonferroni and BH decisions and state which error rate each targets."
+    },
+    {
+      "studio": "trigonometry",
+      "title": "Fourier approximation and error",
+      "route": "/studios/trigonometry/labs/fourier",
+      "id": "fourier",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Do more harmonics remove the overshoot near a jump?” Existing model limits: Square wave ±1 on (−π,π), value 0 at jumps. Next: generate varied cases within those limits and assess the reason behind “A Fourier sum converges uniformly to a discontinuous square wave.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Compare pointwise improvement away from jumps with behavior near zero."
+    },
+    {
+      "studio": "trigonometry",
+      "title": "Measurement uncertainty",
+      "route": "/studios/trigonometry/labs/uncertainty",
+      "id": "uncertainty",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Which angle ranges amplify uncertainty most?” Existing model limits: Angle interval stays in (0°,90°); distance is exact in this experiment. Next: generate varied cases within those limits and assess the reason behind “Equal angular errors create equal height errors at every angle.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Compare the exact interval with the linear derivative estimate."
+    },
+    {
+      "studio": "trigonometry",
+      "title": "Polar tracing and area",
+      "route": "/studios/trigonometry/labs/polar",
+      "id": "polar",
+      "rank": 2,
+      "evidence": "Current investigation definition and shared experiment renderer reviewed",
+      "next": "Existing prompt: “Why do odd and even k produce different petal counts?” Existing model limits: Integer k≥1; one petal traced from −π/(2k) to π/(2k). Next: generate varied cases within those limits and assess the reason behind “Integrating over 0…2π always counts each petal once.”. Shared numeric feedback does not assess written reasoning.",
+      "learn": "Predict → compare with a captured baseline → explain the correction → Explain how negative radius represents the same Cartesian point at angle θ+π."
+    },
+    {
+      "studio": "Trigonometry Studio",
+      "title": "Identities & Visual Proofs Studio",
+      "route": "/trigonometry/identities",
+      "id": "identities",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Add learner-controlled proof transformations with domain restrictions and invalid-step feedback.",
+      "learn": "Expand sin(2θ). Then: Verify a double-angle value."
+    },
+    {
+      "studio": "Trigonometry Studio",
+      "title": "Inverse Trigonometry Studio",
+      "route": "/trigonometry/inverse",
+      "id": "inverse",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Assess branch selection and compositions outside principal intervals using counterexamples.",
+      "learn": "Compose sin(arcsin x). Then: Find arctan(1)."
+    },
+    {
+      "studio": "Trigonometry Studio",
+      "title": "Oblique Triangle Studio",
+      "route": "/trigonometry/oblique",
+      "id": "oblique",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Make learners discover the zero, one and two-solution SSA cases and justify which are possible.",
+      "learn": "Change the known values and solve new triangles. Then: Test yourself with real-world problems and puzzles."
+    },
+    {
+      "studio": "Trigonometry Studio",
+      "title": "Trigonometric Functions & Graphs Studio",
+      "route": "/trigonometry/graphs",
+      "id": "graphs",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Have learners reconstruct a hidden function from its graph; require an explanation of amplitude, phase and period.",
+      "learn": "Change B to 2 and C to −π/2. What happens to the graph? Then: Can you make the graph pass through (0, 1.5) with a period of π?"
+    },
+    {
+      "studio": "Trigonometry Studio",
+      "title": "Trigonometry Applications Studio",
+      "route": "/trigonometry/applications",
+      "id": "applications",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Provide a complete measurement-to-model task with uncertainty, units and interpretation.",
+      "learn": "Work a bearing problem. Then: Model a tide."
+    },
+    {
+      "studio": "Trigonometry Studio",
+      "title": "Trigonometry AR Lab",
+      "route": "/trigonometry/ar",
+      "id": "ar",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Validate measurement calibration on physical devices; attach uncertainty and an assessed measurement task to the camera interaction.",
+      "learn": "Measure a building. Then: Project a unit circle."
+    },
+    {
+      "studio": "Trigonometry Studio",
+      "title": "Waves & Harmonics Studio",
+      "route": "/trigonometry/waves",
+      "id": "waves",
+      "rank": 2,
+      "evidence": "Current catalog and dispatch; implementation family reviewed",
+      "next": "Infer frequencies and phase from a target waveform; quantify approximation error and explain beats.",
+      "learn": "Adjust parameters to matching a target waveform. Then: Build a waveform using specific harmonic coefficients."
+    },
+    {
+      "studio": "algebra",
+      "title": "cas",
+      "route": "/algebra/cas",
+      "id": "cas",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Require prediction and interpretation before revealing CAS output; verify solutions in the original domain.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "algebra",
+      "title": "exponents logs",
+      "route": "/algebra/exponents-logs",
+      "id": "exponents-logs",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Assess domain conditions and invalid exponent laws with counterexamples.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "algebra",
+      "title": "expressions",
+      "route": "/algebra/expressions",
+      "id": "expressions",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Require learner-chosen transformations with equivalence and domain checks; fade tile support.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "algebra",
+      "title": "functions",
+      "route": "/algebra/functions",
+      "id": "functions",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Assess composition and inverse domains on learner-entered functions, including piecewise cases.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "algebra",
+      "title": "polynomials",
+      "route": "/algebra/polynomials",
+      "id": "polynomials",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Link roots, multiplicity, factors and graph behavior; require explanations on a new polynomial.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "algebra",
+      "title": "proof",
+      "route": "/algebra/proof",
+      "id": "proof",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Assess a learner-written argument with step-level justification and counterexample tasks.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "algebra",
+      "title": "sequences",
+      "route": "/algebra/sequences",
+      "id": "sequences",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Require a justified nth term or recurrence and transfer to an unfamiliar sequence.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "algebra",
+      "title": "systems",
+      "route": "/algebra/systems",
+      "id": "systems",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Connect matrix structure, eigenpairs and trajectories; include defective and complex-eigenvalue cases.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "algebraic-structures",
+      "title": "boolean algebra",
+      "route": "/algebraic-structures/boolean-algebra",
+      "id": "boolean-algebra",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn boolean algebra into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "algebraic-structures",
+      "title": "cayley tables",
+      "route": "/algebraic-structures/cayley-tables",
+      "id": "cayley-tables",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn cayley tables into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "algebraic-structures",
+      "title": "groups rings fields",
+      "route": "/algebraic-structures/groups-rings-fields",
+      "id": "groups-rings-fields",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn groups rings fields into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "algebraic-structures",
+      "title": "posets lattices",
+      "route": "/algebraic-structures/posets-lattices",
+      "id": "posets-lattices",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn posets lattices into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "algebraic-structures",
+      "title": "semigroups monoids",
+      "route": "/algebraic-structures/semigroups-monoids",
+      "id": "semigroups-monoids",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn semigroups monoids into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "algebraic-structures",
+      "title": "structure test",
+      "route": "/algebraic-structures/structure-test",
+      "id": "structure-test",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn structure test into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "applications",
+      "route": "/calculus/applications",
+      "id": "applications",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Provide a complete measurement-to-model task with uncertainty, units and interpretation.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "beta gamma",
+      "route": "/calculus/beta-gamma",
+      "id": "beta-gamma",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn beta gamma into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "centroid center of mass",
+      "route": "/calculus/centroid-center-of-mass",
+      "id": "centroid-center-of-mass",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn centroid center of mass into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "change order integration",
+      "route": "/calculus/change-order-integration",
+      "id": "change-order-integration",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn change order integration into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "curve tracing",
+      "route": "/calculus/curve-tracing",
+      "id": "curve-tracing",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn curve tracing into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "derivative applications",
+      "route": "/calculus/derivative-applications",
+      "id": "derivative-applications",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn derivative applications into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "derivatives",
+      "route": "/calculus/derivatives",
+      "id": "derivatives",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn derivatives into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "differential equations",
+      "route": "/calculus/differential-equations",
+      "id": "differential-equations",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn differential equations into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "integral applications",
+      "route": "/calculus/integral-applications",
+      "id": "integral-applications",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn integral applications into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "integrals",
+      "route": "/calculus/integrals",
+      "id": "integrals",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn integrals into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "integration",
+      "route": "/calculus/integration",
+      "id": "integration",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn integration into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "integration techniques",
+      "route": "/calculus/integration-techniques",
+      "id": "integration-techniques",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn integration techniques into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "jacobians coordinate transformations",
+      "route": "/calculus/jacobians-coordinate-transformations",
+      "id": "jacobians-coordinate-transformations",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn jacobians coordinate transformations into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "lagrange multipliers",
+      "route": "/calculus/lagrange-multipliers",
+      "id": "lagrange-multipliers",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn lagrange multipliers into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "limits",
+      "route": "/calculus/limits",
+      "id": "limits",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn limits into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "moments of inertia",
+      "route": "/calculus/moments-of-inertia",
+      "id": "moments-of-inertia",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn moments of inertia into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "motion",
+      "route": "/calculus/motion",
+      "id": "motion",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Infer a model from position data; validate velocity and acceleration and explain units.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "multiple integral applications",
+      "route": "/calculus/multiple-integral-applications",
+      "id": "multiple-integral-applications",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn multiple integral applications into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "multivariable vector",
+      "route": "/calculus/multivariable-vector",
+      "id": "multivariable-vector",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn multivariable vector into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "practice",
+      "route": "/calculus/practice",
+      "id": "practice",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn practice into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "proof problems",
+      "route": "/calculus/proof-problems",
+      "id": "proof-problems",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn proof problems into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "series blocks",
+      "route": "/calculus/series-blocks",
+      "id": "series-blocks",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn series blocks into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "series parametric polar",
+      "route": "/calculus/series-parametric-polar",
+      "id": "series-parametric-polar",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn series parametric polar into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "series tests",
+      "route": "/calculus/series-tests",
+      "id": "series-tests",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn series tests into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "calculus",
+      "title": "taylor two variables",
+      "route": "/calculus/taylor-two-variables",
+      "id": "taylor-two-variables",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn taylor two variables into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "number-systems",
+      "title": "absolute distance intervals",
+      "route": "/number-systems/absolute-distance-intervals",
+      "id": "absolute-distance-intervals",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn absolute distance intervals into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "number-systems",
+      "title": "fractions decimals percentages",
+      "route": "/number-systems/fractions-decimals-percentages",
+      "id": "fractions-decimals-percentages",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn fractions decimals percentages into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "number-systems",
+      "title": "fundamentals",
+      "route": "/number-systems/fundamentals",
+      "id": "fundamentals",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn fundamentals into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "number-systems",
+      "title": "hierarchy",
+      "route": "/number-systems/hierarchy",
+      "id": "hierarchy",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn hierarchy into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "number-systems",
+      "title": "integers",
+      "route": "/number-systems/integers",
+      "id": "integers",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn integers into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "number-systems",
+      "title": "irrational",
+      "route": "/number-systems/irrational",
+      "id": "irrational",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn irrational into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "number-systems",
+      "title": "natural whole",
+      "route": "/number-systems/natural-whole",
+      "id": "natural-whole",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn natural whole into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "number-systems",
+      "title": "ordering comparing",
+      "route": "/number-systems/ordering-comparing",
+      "id": "ordering-comparing",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn ordering comparing into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "number-systems",
+      "title": "practice",
+      "route": "/number-systems/practice",
+      "id": "practice",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn practice into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "number-systems",
+      "title": "properties operations",
+      "route": "/number-systems/properties-operations",
+      "id": "properties-operations",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn properties operations into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "number-systems",
+      "title": "rational",
+      "route": "/number-systems/rational",
+      "id": "rational",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn rational into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "number-systems",
+      "title": "real line",
+      "route": "/number-systems/real-line",
+      "id": "real-line",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn real line into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    },
+    {
+      "studio": "set-theory",
+      "title": ":pageSlug",
+      "route": "/set-theory/:pageSlug",
+      "id": ":pageSlug",
+      "rank": 3,
+      "evidence": "Current explicit route; not individually implementation-reviewed",
+      "next": "Turn :pageSlug into a learner-built example and counterexample; diagnose reasoning and assess an unfamiliar application.",
+      "learn": "Predict an outcome → change one input → explain the relationship → solve a new case without displayed answers."
+    }
+  ]
+}

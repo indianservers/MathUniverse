@@ -15,5 +15,6 @@ export function linearIntersection2(first:Linear2,second:Linear2):unknown{
  let otherLow:Fraction|undefined,otherHigh:Fraction|undefined;if(second.kind==='segment'){const t1=add(t0,rate);[otherLow,otherHigh]=sign(sub(t0,t1))<=0?[t0,t1]:[t1,t0];}else if(second.kind==='ray'){if(sign(rate)>0)otherLow=t0;else otherHigh=t0;}
  if(otherLow&&(!low||sign(sub(otherLow,low))>0))low=otherLow;if(otherHigh&&(!high||sign(sub(otherHigh,high))<0))high=otherHigh;
  if(low&&high&&sign(sub(low,high))>0)return {kind:'none'};const point=(t:Fraction)=>a.map((x,i)=>approximate(add(x,mul(t,u[i]))));if(low&&high&&sign(sub(low,high))===0)return {kind:'point',point:point(low)};
+ if(first.kind==='line'&&second.kind==='line')return {kind:'coincident'};
  return {kind:'overlap',parameterInterval:{lower:low?fractionText(low):'-∞',upper:high?fractionText(high):'∞'},endpoints:[...(low?[point(low)]:[]),...(high?[point(high)]:[])]};
 }

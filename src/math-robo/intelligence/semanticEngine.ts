@@ -45,8 +45,10 @@ export class SemanticEngine {
   snapshot(){return readonlySnapshot(this.scene);}
   workingMemory(){return {...this.conversation.snapshot(this.scene),activePagePath:this.scene.activePagePath,specialist:{last:this.engineRouter.last,recent:this.engineRouter.recent,assumptions:this.engineRouter.assumptions,variables:this.engineRouter.variables,pending:this.engineRouter.pending}};}
   sync(objects:RoboObjectDescriptor[],selected?:string[],context?:Pick<RoboSceneContext,'lastReferenced'|'previousResult'|'previousResults'|'activeObjectIds'>){
+    const previousGeometry=geometryState(this.scene);
     if(context)Object.assign(this.scene,structuredClone(context));
     this.scene.objects=objects.map(object=>({...object,command:{...object.command,roboDependency:object.command.roboDependency??this.scene.objects.find(o=>o.id===object.id)?.command.roboDependency},creationOrder:this.scene.objects.find(o=>o.id===object.id)?.creationOrder??object.creationOrder,derivedFrom:this.scene.objects.find(o=>o.id===object.id)?.derivedFrom??object.derivedFrom,originalId:this.scene.objects.find(o=>o.id===object.id)?.originalId??object.originalId}));
+    if(previousGeometry!==geometryState(this.scene)){this.engineRouter.invalidateCalculation();this.lastOutcome=undefined;}
     if(selected&&JSON.stringify(selected)!==JSON.stringify(this.automaticSelection)){this.scene.previousSelectedIds=this.scene.selectedIds;this.scene.selectedIds=selected;}
     this.scene.selectedIds=this.scene.selectedIds.filter(id=>objects.some(o=>o.id===id));
     for(const key of ['activeObjectIds','lastQueryTargets','recentlyReferencedObjectIds','previousSelectedIds'] as const)this.scene[key]=this.scene[key]?.filter(id=>objects.some(o=>o.id===id));

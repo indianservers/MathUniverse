@@ -1,0 +1,142 @@
+[
+  {
+    "route": "/geometry/triangles",
+    "width": 390,
+    "feedback": "Correct. Yes. The total remains 180°, so the other two together compensate for the increase.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/geometry/circles",
+    "width": 390,
+    "feedback": "Reconsider. 140° is the central angle for that arc. The inscribed angle has half its measure.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/geometry/construction",
+    "width": 390,
+    "feedback": "Reconsider. Most points on AB are closer to one endpoint. Only its midpoint is equally distant.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/trigonometry/unit-circle",
+    "width": 390,
+    "feedback": "Correct. Yes. At 210° the point is in quadrant III, left of and below the origin.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/trigonometry/right-triangle",
+    "width": 390,
+    "feedback": "Reconsider. Sine also needs the hypotenuse. Use the ratio involving both supplied sides.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/algebra/equations",
+    "width": 390,
+    "feedback": "Reconsider. Dividing by a negative number reverses the comparison.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/probability-statistics/data-explorer",
+    "width": 390,
+    "feedback": "Correct. Yes. Data quality and context guide the decision; sensitivity analysis makes its effect visible.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/probability-statistics/clt",
+    "width": 390,
+    "feedback": "Reconsider. Individual observations retain their population distribution. The theorem concerns sums or means.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/probability-statistics/confidence-intervals",
+    "width": 390,
+    "feedback": "Reconsider. A confidence interval for a parameter is not an interval containing 95% of observations.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/linear-algebra/row-reduction",
+    "width": 390,
+    "feedback": "Reconsider. A free variable gives infinitely many solutions only when the system is consistent. This row says 0 = 5.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/geometry/triangles",
+    "width": 1280,
+    "feedback": "Correct. Yes. The total remains 180°, so the other two together compensate for the increase.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/geometry/circles",
+    "width": 1280,
+    "feedback": "Reconsider. 140° is the central angle for that arc. The inscribed angle has half its measure.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/geometry/construction",
+    "width": 1280,
+    "feedback": "Reconsider. Most points on AB are closer to one endpoint. Only its midpoint is equally distant.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/trigonometry/unit-circle",
+    "width": 1280,
+    "feedback": "Correct. Yes. At 210° the point is in quadrant III, left of and below the origin.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/trigonometry/right-triangle",
+    "width": 1280,
+    "feedback": "Reconsider. Sine also needs the hypotenuse. Use the ratio involving both supplied sides.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/algebra/equations",
+    "width": 1280,
+    "feedback": "Reconsider. Dividing by a negative number reverses the comparison.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/probability-statistics/data-explorer",
+    "width": 1280,
+    "feedback": "Correct. Yes. Data quality and context guide the decision; sensitivity analysis makes its effect visible.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/probability-statistics/clt",
+    "width": 1280,
+    "feedback": "Reconsider. Individual observations retain their population distribution. The theorem concerns sums or means.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/probability-statistics/confidence-intervals",
+    "width": 1280,
+    "feedback": "Reconsider. A confidence interval for a parameter is not an interval containing 95% of observations.",
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "route": "/linear-algebra/row-reduction",
+    "width": 1280,
+    "feedback": "Reconsider. A free variable gives infinitely many solutions only when the system is consistent. This row says 0 = 5.",
+    "overflow": false,
+    "errors": []
+  }
+]

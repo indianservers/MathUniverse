@@ -1,4 +1,5 @@
 import "./pageDensity.css";
+import "../../modules/lessons/components/LessonTypography.css";
 import StudioLearningOutlet from "../../studios/curriculum/StudioLearningOutlet";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";

@@ -1,4 +1,5 @@
-import { Line, OrbitControls, Text } from "@react-three/drei";
+import { Line, OrbitControls} from "@react-three/drei";
+import Text from "../../components/LessonSceneLabel";
 import { Canvas, type ThreeEvent } from "@react-three/fiber";
 import { Box, ExternalLink, Maximize2, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -487,18 +488,18 @@ function SpatialScene({
       </mesh>
       {labels && (
         <>
-          <Text position={[6.3, 0, 0]} fontSize={12} color="#ff594e">
+          <Text position={[6.3, 0, 0]} fontSize={0.35} color="#ff594e">
             x
           </Text>
-          <Text position={[0, 0, 6.3]} fontSize={12} color="#66c94c">
+          <Text position={[0, 0, 6.3]} fontSize={0.35} color="#66c94c">
             y
           </Text>
-          <Text position={[0, 7.2, 0]} fontSize={12} color="#31c5e2">
+          <Text position={[0, 7.2, 0]} fontSize={0.35} color="#31c5e2">
             z
           </Text>
           <Text
             position={[point[0] + 0.4, point[2] + 0.4, point[1]]}
-            fontSize={12}
+            fontSize={0.3}
             color="#31c5e2"
           >
             P = ({point.join(", ")})

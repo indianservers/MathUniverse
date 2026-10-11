@@ -15,11 +15,11 @@ function html(route: string) {
 }
 
 describe("Differential Equations Studio", () => {
-  it("keeps the featured cards and gives every lab an illustrated launch card", () => {
+  it("keeps resources separate and gives every lab one illustrated launch card", () => {
     const home = renderToStaticMarkup(
       <MemoryRouter><DifferentialEquationsHome studio={studioMockups["differential-equations"]} /></MemoryRouter>,
     );
-    expect((home.match(/class="de-feature-card/g) ?? [])).toHaveLength(12);
+    expect((home.match(/class="de-feature-card/g) ?? [])).toHaveLength(3);
     expect((home.match(/class="de-lab-card tone-/g) ?? [])).toHaveLength(25);
     expect((home.match(/class="de-artwork"/g) ?? []).length).toBeGreaterThanOrEqual(25);
     for (const id of studioMockups["differential-equations"].pages.filter((item) => item.id !== "home").map((item) => item.id)) {

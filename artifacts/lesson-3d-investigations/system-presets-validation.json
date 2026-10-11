@@ -1,0 +1,10 @@
+{
+  "id": 113,
+  "passed": true,
+  "fixedControlsHidden": true,
+  "classifications": [
+    "Infinitely many solutions",
+    "No solution",
+    "Unique solution"
+  ]
+}

@@ -2,6 +2,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import LessonSimpleEnglishGuide from "./LessonSimpleEnglishGuide";
 import LessonStudySession from "./LessonStudySession";
+import Lesson3DInvestigationEntry from "./Lesson3DInvestigationEntry";
 import {
   applyDedicatedTabVisibility,
   normalizeLessonTab,
@@ -53,6 +54,7 @@ export default function DedicatedLessonTabHost({
     <div ref={rootRef} className={className} data-testid={testId}>
       <LessonSimpleEnglishGuide />
       {children}
+      <Lesson3DInvestigationEntry />
       <LessonStudySession />
     </div>
   );

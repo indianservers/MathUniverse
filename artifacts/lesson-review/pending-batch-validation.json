@@ -1,0 +1,7114 @@
+{
+  "total": 335,
+  "completed": 335,
+  "results": [
+    {
+      "id": 586,
+      "title": "Subsets and Power Sets",
+      "route": "/lessons/discrete-and-applied-mathematics/586-subsets-and-power-sets",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Subsets and Power Sets",
+          "586. Subsets and Power Sets"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 587,
+      "title": "Truth Tables",
+      "route": "/lessons/discrete-and-applied-mathematics/587-truth-tables",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Truth Tables",
+          "587 Truth Tables"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 588,
+      "title": "Logical Connectives",
+      "route": "/lessons/discrete-and-applied-mathematics/588-logical-connectives",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Logical Connectives",
+          "Logical Connectives"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 589,
+      "title": "Quantifiers",
+      "route": "/lessons/discrete-and-applied-mathematics/589-quantifiers",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Quantifiers",
+          "Quantifiers – Discrete Lab"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 590,
+      "title": "Proof Methods",
+      "route": "/lessons/discrete-and-applied-mathematics/590-proof-methods",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Proof Methods",
+          "Proof Methods – Discrete Lab"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 591,
+      "title": "Simple Interest",
+      "route": "/lessons/discrete-and-applied-mathematics/591-simple-interest",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Simple Interest",
+          "591 Simple Interest"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 592,
+      "title": "Compound Interest",
+      "route": "/lessons/discrete-and-applied-mathematics/592-compound-interest",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Compound Interest",
+          "592. Compound Interest"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 593,
+      "title": "Effective Interest Rate",
+      "route": "/lessons/discrete-and-applied-mathematics/593-effective-interest-rate",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Effective Interest Rate",
+          "Effective Interest Rate"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 594,
+      "title": "Present Value",
+      "route": "/lessons/discrete-and-applied-mathematics/594-present-value",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Present Value",
+          "Present Value"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 595,
+      "title": "Future Value",
+      "route": "/lessons/discrete-and-applied-mathematics/595-future-value",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Future Value",
+          "595. Future Value"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 596,
+      "title": "Annuities",
+      "route": "/lessons/discrete-and-applied-mathematics/596-annuities",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Annuities",
+          "Annuities: Cash-Flow Timeline"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 597,
+      "title": "Loans and EMIs",
+      "route": "/lessons/discrete-and-applied-mathematics/597-loans-and-emis",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Loans and EMIs",
+          "Loans and EMIs"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 601,
+      "title": "Currency Conversion",
+      "route": "/lessons/discrete-and-applied-mathematics/601-currency-conversion",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Currency Conversion",
+          "Currency Conversion"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 600,
+      "title": "Inflation",
+      "route": "/lessons/discrete-and-applied-mathematics/600-inflation",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Inflation",
+          "Inflation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 599,
+      "title": "Depreciation",
+      "route": "/lessons/discrete-and-applied-mathematics/599-depreciation",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Depreciation",
+          "599 Depreciation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 602,
+      "title": "Profit, Loss, Markup and Margin",
+      "route": "/lessons/discrete-and-applied-mathematics/602-profit-loss-markup-and-margin",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Profit, Loss, Markup and Margin",
+          "Profit, Loss, Markup and Margin"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 603,
+      "title": "Break-Even Analysis",
+      "route": "/lessons/discrete-and-applied-mathematics/603-break-even-analysis",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Break-Even Analysis",
+          "Break-Even Analysis"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 604,
+      "title": "Tax and Discounts",
+      "route": "/lessons/discrete-and-applied-mathematics/604-tax-and-discounts",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Tax and Discounts",
+          "Tax and Discounts"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 605,
+      "title": "Investment Comparison",
+      "route": "/lessons/discrete-and-applied-mathematics/605-investment-comparison",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Investment Comparison",
+          "Investment Comparison"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 606,
+      "title": "Model Builder",
+      "route": "/lessons/discrete-and-applied-mathematics/606-model-builder",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Model Builder",
+          "Model Builder · Finance and Modelling Lab"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 607,
+      "title": "Linear Models",
+      "route": "/lessons/discrete-and-applied-mathematics/607-linear-models",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Linear Models",
+          "Linear Models: Finance and Modelling Lab"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 608,
+      "title": "Quadratic Models",
+      "route": "/lessons/discrete-and-applied-mathematics/608-quadratic-models",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Quadratic Models"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 598,
+      "title": "Amortisation Table",
+      "route": "/lessons/discrete-and-applied-mathematics/598-amortisation-table",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Amortisation Table",
+          "598 Amortisation Table"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true,
+      "repaired": true
+    },
+    {
+      "id": 609,
+      "title": "Exponential and Logistic Models",
+      "route": "/lessons/discrete-and-applied-mathematics/609-exponential-and-logistic-models",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Exponential and Logistic Models",
+          "Exponential and Logistic Models"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 610,
+      "title": "Periodic Models",
+      "route": "/lessons/discrete-and-applied-mathematics/610-periodic-models",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Periodic Models",
+          "Periodic Models"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 611,
+      "title": "Piecewise Models",
+      "route": "/lessons/discrete-and-applied-mathematics/611-piecewise-models",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Piecewise Models"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 612,
+      "title": "Parameter Estimation",
+      "route": "/lessons/discrete-and-applied-mathematics/612-parameter-estimation",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Parameter Estimation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 614,
+      "title": "Sensitivity Analysis",
+      "route": "/lessons/discrete-and-applied-mathematics/614-sensitivity-analysis",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Sensitivity Analysis"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 613,
+      "title": "Dimensional Analysis",
+      "route": "/lessons/discrete-and-applied-mathematics/613-dimensional-analysis",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Dimensional Analysis"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 615,
+      "title": "Residual and Error Analysis",
+      "route": "/lessons/discrete-and-applied-mathematics/615-residual-and-error-analysis",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Residual and Error Analysis"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 616,
+      "title": "Scenario Comparison",
+      "route": "/lessons/discrete-and-applied-mathematics/616-scenario-comparison",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Scenario Comparison"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 617,
+      "title": "Linear Programming",
+      "route": "/lessons/discrete-and-applied-mathematics/617-linear-programming",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Linear Programming"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 619,
+      "title": "Checkbox",
+      "route": "/lessons/authoring-and-learning-system/619-checkbox",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Checkbox"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 618,
+      "title": "Slider Component",
+      "route": "/lessons/authoring-and-learning-system/618-slider-component",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Slider Component"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 620,
+      "title": "Button",
+      "route": "/lessons/authoring-and-learning-system/620-button",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Button"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 621,
+      "title": "Input Box",
+      "route": "/lessons/authoring-and-learning-system/621-input-box",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Input Box"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 622,
+      "title": "Drop-Down List",
+      "route": "/lessons/authoring-and-learning-system/622-drop-down-list",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Drop-Down List"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 623,
+      "title": "Dynamic Text",
+      "route": "/lessons/authoring-and-learning-system/623-dynamic-text",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Dynamic Text"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 624,
+      "title": "Formula Display",
+      "route": "/lessons/authoring-and-learning-system/624-formula-display",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Formula Display"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 625,
+      "title": "Image Object",
+      "route": "/lessons/authoring-and-learning-system/625-image-object",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Image Object"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 626,
+      "title": "Audio and Video",
+      "route": "/lessons/authoring-and-learning-system/626-audio-and-video",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Audio and Video"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 627,
+      "title": "Pen and Highlighter",
+      "route": "/lessons/authoring-and-learning-system/627-pen-and-highlighter",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Pen and Highlighter"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 628,
+      "title": "Tables",
+      "route": "/lessons/authoring-and-learning-system/628-tables",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Tables"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 629,
+      "title": "Multiple Pages",
+      "route": "/lessons/authoring-and-learning-system/629-multiple-pages",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Multiple Pages"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 630,
+      "title": "Reset Construction",
+      "route": "/lessons/authoring-and-learning-system/630-reset-construction",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Reset Construction"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 631,
+      "title": "Undo and Redo",
+      "route": "/lessons/authoring-and-learning-system/631-undo-and-redo",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Undo and Redo"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 632,
+      "title": "Object Locking",
+      "route": "/lessons/authoring-and-learning-system/632-object-locking",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Object Locking"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 633,
+      "title": "Conditional Feedback",
+      "route": "/lessons/authoring-and-learning-system/633-conditional-feedback",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Conditional Feedback"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 634,
+      "title": "Custom Tool Builder",
+      "route": "/lessons/authoring-and-learning-system/634-custom-tool-builder",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Custom Tool Builder"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 635,
+      "title": "Command Library",
+      "route": "/lessons/authoring-and-learning-system/635-command-library",
+      "batch": 1,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Command Library"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 639,
+      "title": "Import and Export",
+      "route": "/lessons/authoring-and-learning-system/639-import-and-export",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Import and Export"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 638,
+      "title": "Automatic Checking",
+      "route": "/lessons/authoring-and-learning-system/638-automatic-checking",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Automatic Checking"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 636,
+      "title": "Object Scripting",
+      "route": "/lessons/authoring-and-learning-system/636-object-scripting",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Object Scripting"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 637,
+      "title": "Randomisation",
+      "route": "/lessons/authoring-and-learning-system/637-randomisation",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Randomisation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 641,
+      "title": "Visualise",
+      "route": "/lessons/authoring-and-learning-system/641-visualise",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Visualise"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 643,
+      "title": "Guided Exploration",
+      "route": "/lessons/authoring-and-learning-system/643-guided-exploration",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Guided Exploration"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 640,
+      "title": "Concept Introduction",
+      "route": "/lessons/authoring-and-learning-system/640-concept-introduction",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Concept Introduction"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 642,
+      "title": "Manipulative Laboratory",
+      "route": "/lessons/authoring-and-learning-system/642-manipulative-laboratory",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Manipulative Laboratory"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 646,
+      "title": "Step-by-Step Practice",
+      "route": "/lessons/authoring-and-learning-system/646-step-by-step-practice",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Step-by-Step Practice"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 644,
+      "title": "Predict–Test–Explain",
+      "route": "/lessons/authoring-and-learning-system/644-predicttestexplain",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Predict–Test–Explain"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 645,
+      "title": "Worked Example",
+      "route": "/lessons/authoring-and-learning-system/645-worked-example",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Worked Example"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 647,
+      "title": "Construction Challenge",
+      "route": "/lessons/authoring-and-learning-system/647-construction-challenge",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Construction Challenge"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 648,
+      "title": "Graph Matching",
+      "route": "/lessons/authoring-and-learning-system/648-graph-matching",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Graph Matching"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 649,
+      "title": "Error Diagnosis",
+      "route": "/lessons/authoring-and-learning-system/649-error-diagnosis",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Error Diagnosis"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 650,
+      "title": "Multiple Representations",
+      "route": "/lessons/authoring-and-learning-system/650-multiple-representations",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Multiple Representations"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 651,
+      "title": "Real-World Application",
+      "route": "/lessons/authoring-and-learning-system/651-real-world-application",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Real-World Application"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 652,
+      "title": "Open Investigation",
+      "route": "/lessons/authoring-and-learning-system/652-open-investigation",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Open Investigation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 653,
+      "title": "Dynamic Question Generator",
+      "route": "/lessons/authoring-and-learning-system/653-dynamic-question-generator",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Dynamic Question Generator"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 655,
+      "title": "Exit Ticket",
+      "route": "/lessons/authoring-and-learning-system/655-exit-ticket",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Exit Ticket"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 654,
+      "title": "Mastery Challenge",
+      "route": "/lessons/authoring-and-learning-system/654-mastery-challenge",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Mastery Challenge"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 656,
+      "title": "Revision Summary",
+      "route": "/lessons/authoring-and-learning-system/656-revision-summary",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Revision Summary"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 657,
+      "title": "Drag and Manipulate",
+      "route": "/lessons/platform-capabilities/657-drag-and-manipulate",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Drag and Manipulate"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 659,
+      "title": "Reset View",
+      "route": "/lessons/platform-capabilities/659-reset-view",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Reset View"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 658,
+      "title": "Zoom and Pan",
+      "route": "/lessons/platform-capabilities/658-zoom-and-pan",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Zoom and Pan"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 660,
+      "title": "Undo and Redo",
+      "route": "/lessons/platform-capabilities/660-undo-and-redo",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Undo and Redo"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 661,
+      "title": "Animation Player",
+      "route": "/lessons/platform-capabilities/661-animation-player",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Animation Player"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 663,
+      "title": "Trace and Locus",
+      "route": "/lessons/platform-capabilities/663-trace-and-locus",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Trace and Locus"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 662,
+      "title": "Snap Controls",
+      "route": "/lessons/platform-capabilities/662-snap-controls",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Snap Controls"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 664,
+      "title": "Exact and Decimal Output",
+      "route": "/lessons/platform-capabilities/664-exact-and-decimal-output",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Exact and Decimal Output"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 665,
+      "title": "Linked Views",
+      "route": "/lessons/platform-capabilities/665-linked-views",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Linked Views"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 667,
+      "title": "Export",
+      "route": "/lessons/platform-capabilities/667-export",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Export"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 666,
+      "title": "Save, Duplicate and Share",
+      "route": "/lessons/platform-capabilities/666-save-duplicate-and-share",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Save, Duplicate and Share"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 668,
+      "title": "Teacher Presentation Mode",
+      "route": "/lessons/platform-capabilities/668-teacher-presentation-mode",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Teacher Presentation Mode"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 669,
+      "title": "Learner Practice Mode",
+      "route": "/lessons/platform-capabilities/669-learner-practice-mode",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Learner Practice Mode"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 670,
+      "title": "Exam Mode",
+      "route": "/lessons/platform-capabilities/670-exam-mode",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Exam Mode"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 671,
+      "title": "Keyboard Navigation",
+      "route": "/lessons/platform-capabilities/671-keyboard-navigation",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Keyboard Navigation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 672,
+      "title": "Screen Reader Support",
+      "route": "/lessons/platform-capabilities/672-screen-reader-support",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Screen Reader Support"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 673,
+      "title": "High Contrast and Large Text",
+      "route": "/lessons/platform-capabilities/673-high-contrast-and-large-text",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "High Contrast and Large Text"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 674,
+      "title": "Multi-Language Terminology",
+      "route": "/lessons/platform-capabilities/674-multi-language-terminology",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Multi-Language Terminology"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2001,
+      "title": "Partial Quotients",
+      "route": "/lessons/advanced-concepts/2001-partial-quotients",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Partial Quotients"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2002,
+      "title": "Convergents",
+      "route": "/lessons/advanced-concepts/2002-convergents",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Convergents"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2003,
+      "title": "Euclidean Algorithm Link",
+      "route": "/lessons/advanced-concepts/2003-euclidean-algorithm-continued-fractions",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Euclidean Algorithm Link"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2004,
+      "title": "Best Rational Approximations",
+      "route": "/lessons/advanced-concepts/2004-best-rational-approximations",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Best Rational Approximations"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2005,
+      "title": "Periodic Square Roots",
+      "route": "/lessons/advanced-concepts/2005-periodic-square-root-continued-fractions",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Periodic Square Roots"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2006,
+      "title": "Collatz Conjecture",
+      "route": "/lessons/advanced-concepts/2006-collatz-conjecture",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Collatz Conjecture"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2007,
+      "title": "Goldbach Conjecture",
+      "route": "/lessons/advanced-concepts/2007-goldbach-conjecture",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Goldbach Conjecture"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2008,
+      "title": "Riemann Hypothesis and Primes",
+      "route": "/lessons/advanced-concepts/2008-riemann-hypothesis-primes",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Riemann Hypothesis and Primes"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2009,
+      "title": "Fermat's Last Theorem",
+      "route": "/lessons/advanced-concepts/2009-fermats-last-theorem",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Fermat's Last Theorem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2010,
+      "title": "Four-Color Theorem",
+      "route": "/lessons/advanced-concepts/2010-four-color-theorem",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Four-Color Theorem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2011,
+      "title": "Confidence Intervals",
+      "route": "/lessons/advanced-concepts/2011-confidence-intervals",
+      "batch": 2,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Confidence Intervals"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2013,
+      "title": "Hypothesis Tests",
+      "route": "/lessons/advanced-concepts/2013-hypothesis-tests",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Hypothesis Tests"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2015,
+      "title": "Type I and Type II Error",
+      "route": "/lessons/advanced-concepts/2015-type-i-type-ii-error",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Type I and Type II Error"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2014,
+      "title": "p-Values",
+      "route": "/lessons/advanced-concepts/2014-p-values",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "p-Values"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2012,
+      "title": "Margin of Error and Sample Size",
+      "route": "/lessons/advanced-concepts/2012-margin-of-error-sample-size",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Margin of Error and Sample Size"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2017,
+      "title": "Euler Method",
+      "route": "/lessons/advanced-concepts/2017-euler-method",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Euler Method"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2016,
+      "title": "Slope Fields",
+      "route": "/lessons/advanced-concepts/2016-slope-fields",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Slope Fields"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2018,
+      "title": "Growth and Decay IVPs",
+      "route": "/lessons/advanced-concepts/2018-growth-decay-ivps",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Growth and Decay IVPs"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2019,
+      "title": "Logistic Differential Equation",
+      "route": "/lessons/advanced-concepts/2019-logistic-differential-equation",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Logistic Differential Equation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2020,
+      "title": "Second-Order Oscillator",
+      "route": "/lessons/advanced-concepts/2020-second-order-oscillator",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Second-Order Oscillator"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2021,
+      "title": "Gamma Function",
+      "route": "/lessons/advanced-concepts/2021-gamma-function",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Gamma Function"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2022,
+      "title": "Beta Function",
+      "route": "/lessons/advanced-concepts/2022-beta-function",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Beta Function"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2023,
+      "title": "Error Function",
+      "route": "/lessons/advanced-concepts/2023-error-function",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Error Function"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2024,
+      "title": "Zeta Function",
+      "route": "/lessons/advanced-concepts/2024-zeta-function",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Zeta Function"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 2025,
+      "title": "Bessel Function",
+      "route": "/lessons/advanced-concepts/2025-bessel-function",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Bessel Function Jn(x)J_n(x)Jn​(x)"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10002,
+      "title": "Indian and International Number Naming Systems",
+      "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-indian-and-international-number-naming-systems",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Indian and International Number Naming Systems"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10001,
+      "title": "Place Value Explorer",
+      "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-place-value-explorer",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Place Value Explorer"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10004,
+      "title": "Approximation and Error Bounds",
+      "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-approximation-and-error-bounds",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Approximation and Error Bounds 16 min"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10003,
+      "title": "Estimation and Rounding Lab",
+      "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-estimation-and-rounding-lab",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Estimation and Rounding Lab"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10005,
+      "title": "Mixed Units and Unit Conversion",
+      "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-mixed-units-and-unit-conversion",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Mixed Units and Unit Conversion"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10006,
+      "title": "Pictograph Builder",
+      "route": "/lessons/school/class-6/class-6-data-handling-pictograph-builder",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Pictograph Builder Interact"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10008,
+      "title": "Survey to Frequency Table",
+      "route": "/lessons/school/class-6/class-6-data-handling-survey-to-frequency-table",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Survey to Frequency Table"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10007,
+      "title": "Bar Graph Builder",
+      "route": "/lessons/school/class-6/class-6-data-handling-bar-graph-builder",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Bar Graph Builder"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10009,
+      "title": "Misleading Graph Detection",
+      "route": "/lessons/school/class-6/class-6-data-handling-misleading-graph-detection",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Misleading Graph Detection"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10010,
+      "title": "Number Pattern Completion",
+      "route": "/lessons/school/class-6/class-6-patterns-number-pattern-completion",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Number Pattern Completion"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10011,
+      "title": "Shape Pattern Completion",
+      "route": "/lessons/school/class-6/class-6-patterns-shape-pattern-completion",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Shape Pattern Completion"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10012,
+      "title": "Input-Output Rule Machines",
+      "route": "/lessons/school/class-6/class-6-patterns-input-output-rule-machines",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Input-Output Rule Machines"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10013,
+      "title": "Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11",
+      "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-divisibility-tests-for-2-4-5-6-8-10-and-11",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10014,
+      "title": "Digital Root and Divisibility",
+      "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-digital-root-and-divisibility",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Digital Root and Divisibility"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10016,
+      "title": "Unit Rate Table Lab",
+      "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-unit-rate-table-lab",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Unit Rate Table Lab"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10015,
+      "title": "Remainder Reasoning",
+      "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-remainder-reasoning",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Remainder Reasoning"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10017,
+      "title": "Ratio Tables",
+      "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-ratio-tables",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Ratio Tables"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10018,
+      "title": "Bills, Discounts and Tax",
+      "route": "/lessons/school/class-7/class-7-applied-arithmetic-bills-discounts-and-tax",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Bills, Discounts and Tax"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10019,
+      "title": "Profit, Loss and Marked Price",
+      "route": "/lessons/school/class-7/class-7-applied-arithmetic-profit-loss-and-marked-price",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Profit, Loss and Marked Price"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10020,
+      "title": "Household Budget Arithmetic",
+      "route": "/lessons/school/class-7/class-7-applied-arithmetic-household-budget-arithmetic",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Household Budget Arithmetic"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10021,
+      "title": "Scale Factor in Maps and Recipes",
+      "route": "/lessons/school/class-7/class-7-applied-arithmetic-scale-factor-in-maps-and-recipes",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Scale Factor in Maps and Recipes → Class 7 · Applied Arithmetic"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10022,
+      "title": "Copying a Line Segment",
+      "route": "/lessons/school/class-7/class-7-practical-geometry-copying-a-line-segment",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Copying a Line Segment"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10023,
+      "title": "Copying an Angle",
+      "route": "/lessons/school/class-7/class-7-practical-geometry-copying-an-angle",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Copying an Angle"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10024,
+      "title": "Perpendicular Bisector Construction",
+      "route": "/lessons/school/class-7/class-7-practical-geometry-perpendicular-bisector-construction",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Perpendicular Bisector Construction"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10025,
+      "title": "Angle Bisector Construction",
+      "route": "/lessons/school/class-7/class-7-practical-geometry-angle-bisector-construction",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Angle Bisector Construction"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10026,
+      "title": "Perpendicular Through a Point",
+      "route": "/lessons/school/class-7/class-7-practical-geometry-perpendicular-through-a-point",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Perpendicular Through a Point"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10027,
+      "title": "Parallel Line Construction",
+      "route": "/lessons/school/class-7/class-7-practical-geometry-parallel-line-construction",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Parallel Line Construction"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10028,
+      "title": "Triangle Construction by SSS",
+      "route": "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-sss",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Triangle Construction by SSS ☆"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10029,
+      "title": "Triangle Construction by SAS",
+      "route": "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-sas",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Triangle Construction by SAS"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10030,
+      "title": "Triangle Construction by ASA",
+      "route": "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-asa",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Triangle Construction by ASA"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10031,
+      "title": "Right Triangle Construction by RHS",
+      "route": "/lessons/school/class-8/class-8-practical-geometry-right-triangle-construction-by-rhs",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Right Triangle Construction by RHS"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10032,
+      "title": "Double Bar Graph Comparison",
+      "route": "/lessons/school/class-8/class-8-data-handling-double-bar-graph-comparison",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Double Bar Graph Comparison ♧"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10033,
+      "title": "Mean Median and Mode Practice Path",
+      "route": "/lessons/school/class-8/class-8-data-handling-mean-median-and-mode-practice-path",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Mean, Median and Mode Practice Path"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10034,
+      "title": "Range and Spread Explorer",
+      "route": "/lessons/school/class-8/class-8-data-handling-range-and-spread-explorer",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Range and Spread Explorer"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10035,
+      "title": "Flowchart Logic",
+      "route": "/lessons/school/class-8/class-8-information-processing-flowchart-logic",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Flowchart Logic"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10036,
+      "title": "Pattern Encoding",
+      "route": "/lessons/school/class-8/class-8-information-processing-pattern-encoding",
+      "batch": 3,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Pattern Encoding"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10039,
+      "title": "Tabular Pattern Completion",
+      "route": "/lessons/school/class-8/class-8-information-processing-tabular-pattern-completion",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Tabular Pattern Completion"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10037,
+      "title": "Magic Squares",
+      "route": "/lessons/school/class-8/class-8-information-processing-magic-squares",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Magic Squares"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10040,
+      "title": "Decimal Expansion of Rational Numbers",
+      "route": "/lessons/school/class-9/class-9-real-numbers-decimal-expansion-of-rational-numbers",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Decimal Expansion of Rational Numbers"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10038,
+      "title": "Route Map Reasoning",
+      "route": "/lessons/school/class-8/class-8-information-processing-route-map-reasoning",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Route Map Reasoning"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10043,
+      "title": "Successive Magnification on the Number Line",
+      "route": "/lessons/school/class-9/class-9-real-numbers-successive-magnification-on-the-number-line",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Successive Magnification on the Number Line"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10042,
+      "title": "Rational and Irrational Classification",
+      "route": "/lessons/school/class-9/class-9-real-numbers-rational-and-irrational-classification",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Rational and Irrational Classification"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10041,
+      "title": "Terminating and Non-Terminating Decimals",
+      "route": "/lessons/school/class-9/class-9-real-numbers-terminating-and-non-terminating-decimals",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Terminating and Non-Terminating Decimals"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10044,
+      "title": "Rationalisation of Denominators",
+      "route": "/lessons/school/class-9/class-9-real-numbers-rationalisation-of-denominators",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Rationalisation of Denominators"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10045,
+      "title": "nth Roots and Radical Meaning",
+      "route": "/lessons/school/class-9/class-9-real-numbers-nth-roots-and-radical-meaning",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Nth Roots and Radical Meaning"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10046,
+      "title": "Graphical Zeros of Polynomials",
+      "route": "/lessons/school/class-9/class-9-polynomials-graphical-zeros-of-polynomials",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Graphical Zeros of Polynomials "
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10047,
+      "title": "Polynomial Division",
+      "route": "/lessons/school/class-9/class-9-polynomials-polynomial-division",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Polynomial Division"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10048,
+      "title": "Remainder Theorem",
+      "route": "/lessons/school/class-9/class-9-polynomials-remainder-theorem",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Remainder Theorem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10049,
+      "title": "Factor Theorem",
+      "route": "/lessons/school/class-9/class-9-polynomials-factor-theorem",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Factor Theorem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10050,
+      "title": "Relationship Between Zeros and Coefficients",
+      "route": "/lessons/school/class-9/class-9-polynomials-relationship-between-zeros-and-coefficients",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Relationship Between Zeros and Coefficients"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10052,
+      "title": "Polynomial Factorisation Practice",
+      "route": "/lessons/school/class-9/class-9-polynomials-polynomial-factorisation-practice",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Polynomial Factorisation Practice"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10051,
+      "title": "Cubic Algebraic Identities",
+      "route": "/lessons/school/class-9/class-9-polynomials-cubic-algebraic-identities",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Cubic Algebraic Identities"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10053,
+      "title": "Definitions Axioms and Postulates",
+      "route": "/lessons/school/class-9/class-9-euclidean-geometry-definitions-axioms-and-postulates",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Definitions, Axioms and Postulates"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10054,
+      "title": "Euclid's Five Postulates",
+      "route": "/lessons/school/class-9/class-9-euclidean-geometry-euclid-s-five-postulates",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Euclid's Five Postulates"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10055,
+      "title": "Equivalent Forms of the Fifth Postulate",
+      "route": "/lessons/school/class-9/class-9-euclidean-geometry-equivalent-forms-of-the-fifth-postulate",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Equivalent Forms of the Fifth Postulate"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10056,
+      "title": "Axiom versus Theorem",
+      "route": "/lessons/school/class-9/class-9-euclidean-geometry-axiom-versus-theorem",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Axiom versus Theorem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10057,
+      "title": "Proof Structure and Logical Statements",
+      "route": "/lessons/school/class-9/class-9-euclidean-geometry-proof-structure-and-logical-statements",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Proof Structure and Logical Statements"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10058,
+      "title": "Vertically Opposite Angles",
+      "route": "/lessons/school/class-9/class-9-euclidean-geometry-vertically-opposite-angles",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Vertically Opposite Angles"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10060,
+      "title": "Corresponding Angles",
+      "route": "/lessons/school/class-9/class-9-euclidean-geometry-corresponding-angles",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Corresponding Angles"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10059,
+      "title": "Linear Pair Axiom and Converse",
+      "route": "/lessons/school/class-9/class-9-euclidean-geometry-linear-pair-axiom-and-converse",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Linear Pair Axiom and Converse"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10061,
+      "title": "Alternate Interior Angles",
+      "route": "/lessons/school/class-9/class-9-euclidean-geometry-alternate-interior-angles",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Alternate Interior Angles"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10062,
+      "title": "Interior Angles on the Same Side",
+      "route": "/lessons/school/class-9/class-9-euclidean-geometry-interior-angles-on-the-same-side",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Interior Angles on the Same Side"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10064,
+      "title": "Triangle Angle Sum Theorem",
+      "route": "/lessons/school/class-9/class-9-euclidean-geometry-triangle-angle-sum-theorem",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Triangle Angle Sum Theorem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10063,
+      "title": "Parallel Line Converse Theorems",
+      "route": "/lessons/school/class-9/class-9-euclidean-geometry-parallel-line-converse-theorems",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Parallel Line Converse Theorems"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10065,
+      "title": "Exterior Angle Theorem",
+      "route": "/lessons/school/class-9/class-9-euclidean-geometry-exterior-angle-theorem",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Exterior Angle Theorem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10066,
+      "title": "SAS Congruence",
+      "route": "/lessons/school/class-9/class-9-triangle-proofs-sas-congruence",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "SAS Congruence"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10067,
+      "title": "ASA Congruence",
+      "route": "/lessons/school/class-9/class-9-triangle-proofs-asa-congruence",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "ASA Congruence "
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10068,
+      "title": "AAS Congruence",
+      "route": "/lessons/school/class-9/class-9-triangle-proofs-aas-congruence",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "AAS Congruence"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10069,
+      "title": "SSS Congruence",
+      "route": "/lessons/school/class-9/class-9-triangle-proofs-sss-congruence",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "SSS Congruence"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10070,
+      "title": "RHS Congruence",
+      "route": "/lessons/school/class-9/class-9-triangle-proofs-rhs-congruence",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "RHS Congruence"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10071,
+      "title": "Equal Sides and Equal Angles",
+      "route": "/lessons/school/class-9/class-9-triangle-proofs-equal-sides-and-equal-angles",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Equal Sides and Equal Angles"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10072,
+      "title": "Triangle Inequality",
+      "route": "/lessons/school/class-9/class-9-triangle-proofs-triangle-inequality",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Triangle Inequality"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10073,
+      "title": "Parallelogram Opposite Sides",
+      "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-parallelogram-opposite-sides",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Parallelogram Opposite Sides"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10074,
+      "title": "Parallelogram Opposite Angles",
+      "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-parallelogram-opposite-angles",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Parallelogram Opposite Angles"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10075,
+      "title": "Parallelogram Diagonals",
+      "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-parallelogram-diagonals",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Parallelogram Diagonals"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10076,
+      "title": "Conditions for a Quadrilateral to Be a Parallelogram",
+      "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-conditions-for-a-quadrilateral-to-be-a-parallelogram",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Conditions for a Quadrilateral to Be a Parallelogram"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10078,
+      "title": "Converse of Midpoint Theorem",
+      "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-converse-of-midpoint-theorem",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Converse of Midpoint Theorem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10077,
+      "title": "Midpoint Theorem",
+      "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-midpoint-theorem",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Midpoint Theorem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10079,
+      "title": "Heron's Formula Derivation",
+      "route": "/lessons/school/class-9/class-9-mensuration-heron-s-formula-derivation",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Heron's Formula Derivation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10080,
+      "title": "Semi-Perimeter Lab",
+      "route": "/lessons/school/class-9/class-9-mensuration-semi-perimeter-lab",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Semi-Perimeter Lab"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10081,
+      "title": "Coordinate Area versus Heron's Formula",
+      "route": "/lessons/school/class-9/class-9-mensuration-coordinate-area-versus-heron-s-formula",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Coordinate Area versus Heron's Formula"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10082,
+      "title": "Combined Solids",
+      "route": "/lessons/school/class-9/class-9-mensuration-combined-solids",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Combined Solids"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10083,
+      "title": "Distance Formula",
+      "route": "/lessons/school/class-10/class-10-coordinate-geometry-distance-formula",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Distance Formula ☆"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10084,
+      "title": "Midpoint Formula",
+      "route": "/lessons/school/class-10/class-10-coordinate-geometry-midpoint-formula",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Midpoint Formula"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10085,
+      "title": "Internal Section Formula",
+      "route": "/lessons/school/class-10/class-10-coordinate-geometry-internal-section-formula",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Internal Section Formula"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10086,
+      "title": "External Section Formula",
+      "route": "/lessons/school/class-10/class-10-coordinate-geometry-external-section-formula",
+      "batch": 4,
+      "checks": {
+        "http": true,
+        "heading": [
+          "External Section Formula"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10089,
+      "title": "Equal Chords and Equal Angles",
+      "route": "/lessons/school/class-10/class-10-circle-proofs-equal-chords-and-equal-angles",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Equal Chords and Equal Angles"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10090,
+      "title": "Perpendicular from Centre to Chord",
+      "route": "/lessons/school/class-10/class-10-circle-proofs-perpendicular-from-centre-to-chord",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Perpendicular from Centre to Chord"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10087,
+      "title": "Area of Triangle Using Coordinates",
+      "route": "/lessons/school/class-10/class-10-coordinate-geometry-area-of-triangle-using-coordinates",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Area of Triangle Using Coordinates"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10088,
+      "title": "Collinearity Using Coordinate Area",
+      "route": "/lessons/school/class-10/class-10-coordinate-geometry-collinearity-using-coordinate-area",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Collinearity Using Coordinate Area"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10094,
+      "title": "Cyclic Quadrilateral",
+      "route": "/lessons/school/class-10/class-10-circle-proofs-cyclic-quadrilateral",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Cyclic Quadrilateral"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10093,
+      "title": "Angles in the Same Segment",
+      "route": "/lessons/school/class-10/class-10-circle-proofs-angles-in-the-same-segment",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Angles in the Same Segment"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10091,
+      "title": "Angle Subtended by an Arc",
+      "route": "/lessons/school/class-10/class-10-circle-proofs-angle-subtended-by-an-arc",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Angle Subtended by an Arc"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10092,
+      "title": "Angle in a Semicircle",
+      "route": "/lessons/school/class-10/class-10-circle-proofs-angle-in-a-semicircle",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Angle in a Semicircle"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10096,
+      "title": "Tangent Perpendicular to Radius",
+      "route": "/lessons/school/class-10/class-10-circle-proofs-tangent-perpendicular-to-radius",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Tangent Perpendicular to Radius"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10095,
+      "title": "Opposite Angles of a Cyclic Quadrilateral",
+      "route": "/lessons/school/class-10/class-10-circle-proofs-opposite-angles-of-a-cyclic-quadrilateral",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Opposite Angles of a Cyclic Quadrilateral"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10098,
+      "title": "Angle of Elevation",
+      "route": "/lessons/school/class-10/class-10-trigonometry-applications-angle-of-elevation",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Angle of Elevation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10097,
+      "title": "Tangent Lengths from an External Point",
+      "route": "/lessons/school/class-10/class-10-circle-proofs-tangent-lengths-from-an-external-point",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Tangent Lengths from an External Point"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10099,
+      "title": "Angle of Depression",
+      "route": "/lessons/school/class-10/class-10-trigonometry-applications-angle-of-depression",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Angle of Depression"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10101,
+      "title": "Two-Observer Height Problems",
+      "route": "/lessons/school/class-10/class-10-trigonometry-applications-two-observer-height-problems",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Two-Observer Height Problems"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10100,
+      "title": "Shadow-Length Modelling",
+      "route": "/lessons/school/class-10/class-10-trigonometry-applications-shadow-length-modelling",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Shadow Length Modelling"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10102,
+      "title": "Grouped Mean by Direct Method",
+      "route": "/lessons/school/class-10/class-10-statistics-grouped-mean-by-direct-method",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Grouped Mean by Direct Method"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10103,
+      "title": "Grouped Mean by Assumed Mean",
+      "route": "/lessons/school/class-10/class-10-statistics-grouped-mean-by-assumed-mean",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Grouped Mean by Assumed Mean"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10105,
+      "title": "Less-Than Cumulative Frequency",
+      "route": "/lessons/school/class-10/class-10-statistics-less-than-cumulative-frequency",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Less-Than Cumulative Frequency"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10104,
+      "title": "Grouped Mean by Step Deviation",
+      "route": "/lessons/school/class-10/class-10-statistics-grouped-mean-by-step-deviation",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Grouped Mean by Step Deviation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10106,
+      "title": "More-Than Cumulative Frequency",
+      "route": "/lessons/school/class-10/class-10-statistics-more-than-cumulative-frequency",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "More-Than Cumulative Frequency"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10107,
+      "title": "Less-Than Ogive",
+      "route": "/lessons/school/class-10/class-10-statistics-less-than-ogive",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Less-Than Ogive"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10108,
+      "title": "More-Than Ogive",
+      "route": "/lessons/school/class-10/class-10-statistics-more-than-ogive",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "More-Than Ogive"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10109,
+      "title": "Median from an Ogive",
+      "route": "/lessons/school/class-10/class-10-statistics-median-from-an-ogive",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Median from an Ogive"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10110,
+      "title": "Frustum of a Cone",
+      "route": "/lessons/school/class-10/class-10-mensuration-frustum-of-a-cone",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Frustum of a Cone"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10111,
+      "title": "Combined Solids",
+      "route": "/lessons/school/class-10/class-10-mensuration-combined-solids",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Combined Solids ☆"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10112,
+      "title": "Types of Relations",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-types-of-relations",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Types of Relations"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10113,
+      "title": "Reflexive Relations",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-reflexive-relations",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Reflexive Relations"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10114,
+      "title": "Symmetric Relations",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-symmetric-relations",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Symmetric Relations"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10115,
+      "title": "Transitive Relations",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-transitive-relations",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Transitive Relations"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10116,
+      "title": "Equivalence Relations",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-equivalence-relations",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Equivalence Relations"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10117,
+      "title": "One-One Functions",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-one-one-functions",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "One-One Functions"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10118,
+      "title": "Many-One Functions",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-many-one-functions",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Many-One Functions"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10119,
+      "title": "Into Functions",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-into-functions",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Into Functions"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10121,
+      "title": "Composition of Functions",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-composition-of-functions",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Composition of Functions"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10120,
+      "title": "Onto Functions",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-onto-functions",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Onto Functions"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10122,
+      "title": "Invertible Functions",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-invertible-functions",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Invertible Functions"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10123,
+      "title": "Binary Operations",
+      "route": "/lessons/school/class-11/class-11-relations-and-functions-binary-operations",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Binary Operations"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10125,
+      "title": "Transformation of Trigonometric Graphs",
+      "route": "/lessons/school/class-11/class-11-trigonometry-transformation-of-trigonometric-graphs",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Transformation of Trigonometric Graphs"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10124,
+      "title": "Domain and Range of Trigonometric Functions",
+      "route": "/lessons/school/class-11/class-11-trigonometry-domain-and-range-of-trigonometric-functions",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Domain and Range of Trigonometric Functions"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10126,
+      "title": "General Solutions of Trigonometric Equations",
+      "route": "/lessons/school/class-11/class-11-trigonometry-general-solutions-of-trigonometric-equations",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "General Solutions of Trigonometric Equations"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10127,
+      "title": "Principal Solutions",
+      "route": "/lessons/school/class-11/class-11-trigonometry-principal-solutions",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Principal Solutions"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10128,
+      "title": "Logic of Mathematical Induction",
+      "route": "/lessons/school/class-11/class-11-mathematical-induction-logic-of-mathematical-induction",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Logic of Mathematical Induction"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10129,
+      "title": "Base Case and Inductive Step",
+      "route": "/lessons/school/class-11/class-11-mathematical-induction-base-case-and-inductive-step",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Base Case and Inductive Step"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10130,
+      "title": "Sum Formula by Induction",
+      "route": "/lessons/school/class-11/class-11-mathematical-induction-sum-formula-by-induction",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Sum Formula by Induction"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10131,
+      "title": "Divisibility by Induction",
+      "route": "/lessons/school/class-11/class-11-mathematical-induction-divisibility-by-induction",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Divisibility by Induction"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10132,
+      "title": "Inequality by Induction",
+      "route": "/lessons/school/class-11/class-11-mathematical-induction-inequality-by-induction",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Inequality by Induction"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10133,
+      "title": "Strong Induction Introduction",
+      "route": "/lessons/school/class-11/class-11-mathematical-induction-strong-induction-introduction",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Strong Induction Introduction"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10134,
+      "title": "Binomial Expansion",
+      "route": "/lessons/school/class-11/class-11-binomial-theorem-binomial-expansion",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Binomial Expansion Expansion Studio"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10135,
+      "title": "General Term",
+      "route": "/lessons/school/class-11/class-11-binomial-theorem-general-term",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "General Term"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10136,
+      "title": "Middle Term",
+      "route": "/lessons/school/class-11/class-11-binomial-theorem-middle-term",
+      "batch": 5,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Middle Term"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10140,
+      "title": "Combinatorial Interpretation",
+      "route": "/lessons/school/class-11/class-11-binomial-theorem-combinatorial-interpretation",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Combinatorial Interpretation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10137,
+      "title": "Independent Term",
+      "route": "/lessons/school/class-11/class-11-binomial-theorem-independent-term",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Independent Term"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10139,
+      "title": "Pascal Identity",
+      "route": "/lessons/school/class-11/class-11-binomial-theorem-pascal-identity",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Pascal Identity"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10138,
+      "title": "Binomial Approximation",
+      "route": "/lessons/school/class-11/class-11-binomial-theorem-binomial-approximation",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Binomial Approximation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10141,
+      "title": "Parabola Standard Forms",
+      "route": "/lessons/school/class-11/class-11-conic-sections-parabola-standard-forms",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Parabola Standard Forms"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10142,
+      "title": "Focus-Directrix Definition",
+      "route": "/lessons/school/class-11/class-11-conic-sections-focus-directrix-definition",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Focus-Directrix Definition"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10143,
+      "title": "Ellipse Standard Forms",
+      "route": "/lessons/school/class-11/class-11-conic-sections-ellipse-standard-forms",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Ellipse Standard Forms"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10144,
+      "title": "Hyperbola Standard Forms",
+      "route": "/lessons/school/class-11/class-11-conic-sections-hyperbola-standard-forms",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Hyperbola Standard Forms"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10146,
+      "title": "Parametric Coordinates",
+      "route": "/lessons/school/class-11/class-11-conic-sections-parametric-coordinates",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Parametric Coordinates"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10145,
+      "title": "Eccentricity",
+      "route": "/lessons/school/class-11/class-11-conic-sections-eccentricity",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Eccentricity"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10148,
+      "title": "Normal to a Parabola",
+      "route": "/lessons/school/class-11/class-11-conic-sections-normal-to-a-parabola",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Normal to a Parabola"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10147,
+      "title": "Tangent to a Parabola",
+      "route": "/lessons/school/class-11/class-11-conic-sections-tangent-to-a-parabola",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Tangent to a Parabola"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10149,
+      "title": "Tangent to an Ellipse",
+      "route": "/lessons/school/class-11/class-11-conic-sections-tangent-to-an-ellipse",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Tangent to an Ellipse"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10150,
+      "title": "Tangent to a Hyperbola",
+      "route": "/lessons/school/class-11/class-11-conic-sections-tangent-to-a-hyperbola",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Tangent to a Hyperbola"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10152,
+      "title": "Direction Ratios",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-direction-ratios",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Direction Ratios"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10151,
+      "title": "Conic Identification from General Equation",
+      "route": "/lessons/school/class-11/class-11-conic-sections-conic-identification-from-general-equation",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Conic Identification from General Equation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10153,
+      "title": "Direction Cosines",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-direction-cosines",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Direction Cosines"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10154,
+      "title": "Line Through Two Points in 3D",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-line-through-two-points-in-3d",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Line Through Two Points in 3D"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10155,
+      "title": "Vector Equation of a Line",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-vector-equation-of-a-line",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Vector Equation of a Line"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10156,
+      "title": "Cartesian Equation of a Line",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-cartesian-equation-of-a-line",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Cartesian Equation of a Line"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10157,
+      "title": "Skew Lines",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-skew-lines",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Skew Lines"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10158,
+      "title": "Shortest Distance Between Lines",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-shortest-distance-between-lines",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Shortest Distance Between Lines"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10159,
+      "title": "Plane Equation",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-plane-equation",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Plane Equation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10160,
+      "title": "Point-Normal Form",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-point-normal-form",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Point-Normal Form"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10161,
+      "title": "Intercept Form of a Plane",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-intercept-form-of-a-plane",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Intercept Form of a Plane"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10162,
+      "title": "Distance from Point to Plane",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-distance-from-point-to-plane",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Distance from Point to Plane"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10163,
+      "title": "Angle Between Two Planes",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-angle-between-two-planes",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Angle Between Two Planes"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10164,
+      "title": "Angle Between Line and Plane",
+      "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-angle-between-line-and-plane",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Angle Between Line and Plane"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10165,
+      "title": "Left-Hand and Right-Hand Limits",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-left-hand-and-right-hand-limits",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Left-Hand and Right-Hand Limits"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10168,
+      "title": "Removable Discontinuity",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-removable-discontinuity",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Removable Discontinuity"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10167,
+      "title": "Continuity on an Interval",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-continuity-on-an-interval",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Continuity on an Interval"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10166,
+      "title": "Continuity at a Point",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-continuity-at-a-point",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Continuity at a Point"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10169,
+      "title": "Jump Discontinuity",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-jump-discontinuity",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Jump Discontinuity"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10172,
+      "title": "Rolle's Theorem",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-rolle-s-theorem",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Rolle's Theorem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10170,
+      "title": "Infinite Discontinuity",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-infinite-discontinuity",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Infinite Discontinuity"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10171,
+      "title": "Differentiability versus Continuity",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-differentiability-versus-continuity",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Differentiability versus Continuity"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10173,
+      "title": "Lagrange Mean Value Theorem",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-lagrange-mean-value-theorem",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Lagrange Mean Value Theorem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10176,
+      "title": "Increasing and Decreasing Functions",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-increasing-and-decreasing-functions",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Increasing and Decreasing Functions"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10174,
+      "title": "Rate of Change",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-rate-of-change",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Rate of Change"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10175,
+      "title": "Tangents and Normals",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-tangents-and-normals",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Tangents and Normals"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10177,
+      "title": "Local Maxima and Minima",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-local-maxima-and-minima",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Local Maxima and Minima"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10178,
+      "title": "Absolute Maxima and Minima",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-absolute-maxima-and-minima",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Absolute Maxima and Minima"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10179,
+      "title": "Approximation Using Differentials",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-approximation-using-differentials",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Approximation Using Differentials"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10180,
+      "title": "Integration by Substitution",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-integration-by-substitution",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Integration by Substitution"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10181,
+      "title": "Integration by Parts",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-integration-by-parts",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Integration by Parts"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10182,
+      "title": "Integration by Partial Fractions",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-integration-by-partial-fractions",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Integration by Partial Fractions"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10183,
+      "title": "Definite Integral Properties",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-definite-integral-properties",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Definite Integral Properties"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10185,
+      "title": "Area Between Curves",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-area-between-curves",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Area Between Curves"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10184,
+      "title": "Area Under a Curve",
+      "route": "/lessons/school/class-12/class-12-formal-calculus-area-under-a-curve",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Area Under a Curve"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10186,
+      "title": "Formation of Differential Equations",
+      "route": "/lessons/school/class-12/class-12-differential-equations-formation-of-differential-equations",
+      "batch": 6,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Formation of Differential Equations"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10189,
+      "title": "Homogeneous First-Order Equations",
+      "route": "/lessons/school/class-12/class-12-differential-equations-homogeneous-first-order-equations",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Homogeneous First-Order Equations"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10190,
+      "title": "Linear First-Order Equations",
+      "route": "/lessons/school/class-12/class-12-differential-equations-linear-first-order-equations",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Linear First-Order Equations: Integrating Factor Pipeline"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10188,
+      "title": "Variable-Separable Equations",
+      "route": "/lessons/school/class-12/class-12-differential-equations-variable-separable-equations",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Variable-Separable Equations"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10187,
+      "title": "Order and Degree",
+      "route": "/lessons/school/class-12/class-12-differential-equations-order-and-degree",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Order and Degree of a Differential Equation"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10191,
+      "title": "General and Particular Solutions",
+      "route": "/lessons/school/class-12/class-12-differential-equations-general-and-particular-solutions",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "General and Particular Solutions"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10193,
+      "title": "Minors and Cofactors",
+      "route": "/lessons/school/class-12/class-12-matrices-and-determinants-minors-and-cofactors",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Minors and Cofactors"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10194,
+      "title": "Adjoint of a Matrix",
+      "route": "/lessons/school/class-12/class-12-matrices-and-determinants-adjoint-of-a-matrix",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Adjoint of a Matrix"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10192,
+      "title": "Direction Fields",
+      "route": "/lessons/school/class-12/class-12-differential-equations-direction-fields",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Direction Fields"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10196,
+      "title": "Determinants and Geometric Area",
+      "route": "/lessons/school/class-12/class-12-matrices-and-determinants-determinants-and-geometric-area",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Determinants and Geometric Area"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10195,
+      "title": "Inverse by Adjoint",
+      "route": "/lessons/school/class-12/class-12-matrices-and-determinants-inverse-by-adjoint",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Inverse by Adjoint"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10197,
+      "title": "Solving Linear Equations by Matrices",
+      "route": "/lessons/school/class-12/class-12-matrices-and-determinants-solving-linear-equations-by-matrices",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Solving Linear Equations by Matrices"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10198,
+      "title": "Cramer's Rule",
+      "route": "/lessons/school/class-12/class-12-matrices-and-determinants-cramer-s-rule",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Cramer's Rule DETERMINANT COLUMN-REPLACEMENT LAB"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10199,
+      "title": "Consistency of Linear Systems",
+      "route": "/lessons/school/class-12/class-12-matrices-and-determinants-consistency-of-linear-systems",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Consistency of Linear Systems"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10200,
+      "title": "Formulating Linear Programming Problems",
+      "route": "/lessons/school/class-12/class-12-linear-programming-formulating-linear-programming-problems",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Formulating Linear Programming Problems"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10201,
+      "title": "Feasible Region",
+      "route": "/lessons/school/class-12/class-12-linear-programming-feasible-region",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Feasible Region"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10202,
+      "title": "Corner-Point Method",
+      "route": "/lessons/school/class-12/class-12-linear-programming-corner-point-method",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Corner-Point Method"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10205,
+      "title": "Multiple Optimal Solutions",
+      "route": "/lessons/school/class-12/class-12-linear-programming-multiple-optimal-solutions",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Multiple Optimal Solutions"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10204,
+      "title": "Unbounded Feasible Region",
+      "route": "/lessons/school/class-12/class-12-linear-programming-unbounded-feasible-region",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Unbounded Feasible Region"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10203,
+      "title": "Bounded Feasible Region",
+      "route": "/lessons/school/class-12/class-12-linear-programming-bounded-feasible-region",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Bounded Feasible Region"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10206,
+      "title": "Infeasible Problems",
+      "route": "/lessons/school/class-12/class-12-linear-programming-infeasible-problems",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Infeasible Problems"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10207,
+      "title": "Diet Problem",
+      "route": "/lessons/school/class-12/class-12-linear-programming-diet-problem",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Diet Problem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10208,
+      "title": "Production Planning Problem",
+      "route": "/lessons/school/class-12/class-12-linear-programming-production-planning-problem",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Production Planning Problem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10209,
+      "title": "Transportation-Style LPP Introduction",
+      "route": "/lessons/school/class-12/class-12-linear-programming-transportation-style-lpp-introduction",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Transportation-Style LPP Introduction"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10210,
+      "title": "Conditional Probability",
+      "route": "/lessons/school/class-12/class-12-probability-conditional-probability",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Conditional Probability"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10212,
+      "title": "Independent Events",
+      "route": "/lessons/school/class-12/class-12-probability-independent-events",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Independent Events"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10211,
+      "title": "Multiplication Rule",
+      "route": "/lessons/school/class-12/class-12-probability-multiplication-rule",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Multiplication Rule"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10213,
+      "title": "Total Probability Theorem",
+      "route": "/lessons/school/class-12/class-12-probability-total-probability-theorem",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Total Probability Theorem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10214,
+      "title": "Bayes' Theorem",
+      "route": "/lessons/school/class-12/class-12-probability-bayes-theorem",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Bayes' Theorem"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10218,
+      "title": "Variance",
+      "route": "/lessons/school/class-12/class-12-probability-variance",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Variance"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10217,
+      "title": "Expected Value",
+      "route": "/lessons/school/class-12/class-12-probability-expected-value",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Expected Value"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10215,
+      "title": "Random Variables",
+      "route": "/lessons/school/class-12/class-12-probability-random-variables",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Random Variables"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10216,
+      "title": "Probability Distribution of a Random Variable",
+      "route": "/lessons/school/class-12/class-12-probability-probability-distribution-of-a-random-variable",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Probability Distribution of a Random Variable"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 558,
+      "title": "Permutations",
+      "route": "/lessons/discrete-and-applied-mathematics/558-permutations",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Permutations"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10219,
+      "title": "Bernoulli Trials",
+      "route": "/lessons/school/class-12/class-12-probability-bernoulli-trials",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Bernoulli Trials"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "id": 10220,
+      "title": "Binomial Distribution",
+      "route": "/lessons/school/class-12/class-12-probability-binomial-distribution",
+      "batch": 7,
+      "checks": {
+        "http": true,
+        "heading": [
+          "Binomial Distribution"
+        ],
+        "studyPanel": true,
+        "emptyAnswerGuard": true,
+        "reasoningGuard": true,
+        "hint": true,
+        "undo": true,
+        "desktopOverflow": true,
+        "mobileOverflow": true
+      },
+      "errors": [],
+      "passed": true
+    }
+  ],
+  "passed": 335,
+  "failed": 0,
+  "finishedAt": "2026-10-10T19:02:24.936Z",
+  "batches": [
+    {
+      "batch": 1,
+      "total": 50,
+      "passed": 50
+    },
+    {
+      "batch": 2,
+      "total": 50,
+      "passed": 50
+    },
+    {
+      "batch": 3,
+      "total": 50,
+      "passed": 50
+    },
+    {
+      "batch": 4,
+      "total": 50,
+      "passed": 50
+    },
+    {
+      "batch": 5,
+      "total": 50,
+      "passed": 50
+    },
+    {
+      "batch": 6,
+      "total": 50,
+      "passed": 50
+    },
+    {
+      "batch": 7,
+      "total": 35,
+      "passed": 35
+    }
+  ],
+  "validation": {
+    "focusedTests": 29,
+    "focusedTestsPassed": true,
+    "scopedLintPassed": true,
+    "productionBuildPassed": true,
+    "initialBuildFailure": "Node heap limit; retry with 8 GB heap passed",
+    "fullTypecheck": "Failed in untouched workspace, studio, and visual-proof TypeScript files; see final-typecheck.log"
+  }
+}

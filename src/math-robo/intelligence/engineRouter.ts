@@ -8,6 +8,7 @@ import type {RoboSceneContext} from './types';
 export class EngineRouter{
   private calculation?:AbortController;
   cancelCalculation(){this.calculation?.abort();}
+  invalidateCalculation(){this.cancelCalculation();this.last=undefined;}
   resetContext(){this.cancelCalculation();this.last=undefined;this.recent=[];this.pending=undefined;this.assumptions=[];this.variables={};this.dataset=[];this.notebook=[];this.quiz=undefined;this.quizHintIndex=0;this.mathHintIndex=0;this.quizAnswerModel=undefined;}
   last?:{input:string;expression:string;result:EngineResult;style:ResponseStyle};
   recent:{input:string;capabilityId:string;success:boolean}[]=[];
@@ -35,13 +36,13 @@ export class EngineRouter{
 
   async dispatch(raw:string,scene:RoboSceneContext):Promise<{result:EngineResult;message:string}|{visualText:string}|undefined>{
     let text=normalizeLanguage(raw).replace(/[.!?]+$/,'').replace(/^(?:please|can you|could you)\s+/,'');
-    if(/^(?:forget that|clear context|reset context|start over)$/.test(text)){this.last=undefined;this.pending=undefined;this.assumptions=[];this.variables={};this.dataset=[];this.notebook=[];this.quiz=undefined;return undefined;}
+    if(/^(?:forget that|clear context|reset context|start over)$/.test(text)){this.invalidateCalculation();this.pending=undefined;this.assumptions=[];this.variables={};this.dataset=[];this.notebook=[];this.quiz=undefined;return undefined;}
     if(this.pending?.capabilityId.startsWith('statistics.')&&/^\s*\[?[-+\d.,\s]+\]?\s*$/.test(raw)){const {parseNumberList}=await import('../../utils/mathEngine/expressionUtils');const values=parseNumberList(raw.replace(/^\s*\[|\]\s*$/g,''));if(values.length){this.dataset=values.slice(0,100000);const id=this.pending.capabilityId.replace('standard deviation','standardDeviation');this.pending=undefined;return this.run(id,{text:raw,args:[this.dataset]},raw);}}
     if(this.pending&&/^(?:draw|create|make|move|rotate|delete|undo|solve|differentiate|integrate|cas|convert|run)\b/.test(text))this.pending=undefined;
     const assignment=raw.match(/^(?:let\s+)?([a-z]\w*)\s*(?::=|=)\s*(-?\d+(?:\.\d+)?)\s*[.!]?$/i);
-    if(assignment&&/^let\b|:=/i.test(raw)){this.variables={...this.variables,[assignment[1]]:assignment[2]};if(Object.keys(this.variables).length>25)delete this.variables[Object.keys(this.variables)[0]];return this.reply('variables',`${assignment[1]} = ${assignment[2]}`,Number(assignment[2]));}
+    if(assignment&&/^let\b|:=/i.test(raw)){this.invalidateCalculation();this.variables={...this.variables,[assignment[1]]:assignment[2]};if(Object.keys(this.variables).length>25)delete this.variables[Object.keys(this.variables)[0]];return this.reply('variables',`${assignment[1]} = ${assignment[2]}`,Number(assignment[2]));}
     const mathematical=kernelRequest(raw);if(mathematical)return this.run('kernel.compute',{text:raw,args:[{...mathematical,assumptions:[...this.assumptions,...(mathematical.assumptions??[])]}]},mathematical.expression??raw);
-    if(/^assume\s+/.test(text)){this.assumptions=[...this.assumptions,text.replace(/^assume\s+/,'')].slice(-12);return this.reply('assumptions',`Assumption saved: ${this.assumptions.at(-1)}.`);}
+    if(/^assume\s+/.test(text)){this.invalidateCalculation();this.assumptions=[...this.assumptions,text.replace(/^assume\s+/,'')].slice(-12);return this.reply('assumptions',`Assumption saved: ${this.assumptions.at(-1)}.`);}
     if(/\b(?:what can you do|what .*operations.*support|can you solve differential equations)\b/.test(text)){
       const catalog=engineCapabilities(),topic=text.match(/matrices|matrix|geometry|calculus|statistics|differential equations|sets|graph/ )?.[0];
       if(topic==='differential equations')return this.reply('capabilities',catalog.flatMap(e=>e.capabilities.filter(c=>/differential equations|ode/i.test(c.description+' '+c.id)).map(c=>`${e.label}: ${c.label} — ${c.description}`)).join('\n')||'No differential-equation operation is registered.');
@@ -96,7 +97,7 @@ export class EngineRouter{
   }
   private reply(id:string,answer:string,value?:unknown,success=true){return {result:{verificationStatus:success?'unverified':'unsupported',success,engineId:'conversation',capabilityId:id,answer,value} as EngineResult,message:answer};}
   private async run(id:string,input:SpecialistInput,expression:string,style:ResponseStyle='answer'){
-    this.calculation?.abort();const controller=new AbortController();this.calculation=controller;
+    this.invalidateCalculation();const controller=new AbortController();this.calculation=controller;
     const result=await executeCapability(id,{...input,...(id==='cas.evaluate'?{cells:this.notebook}:{}),signal:controller.signal});if(this.calculation!==controller||controller.signal.aborted){const cancelled:EngineResult={success:false,engineId:result.engineId,capabilityId:id,error:{code:'CANCELLED',message:'Calculation cancelled.'},execution:executionOutcome('cancelled',result.execution?.requestId)};return {result:cancelled,message:'Calculation cancelled.'};}this.calculation=undefined;if(id==='cas.evaluate'&&result.success&&result.metadata?.cells)this.notebook=result.metadata.cells as typeof this.notebook;this.recent=[...this.recent,{input:input.text,capabilityId:id,success:result.success}].slice(-25);
     if(result.success){this.mathHintIndex=0;this.last={input:input.text,expression,result,style};}return {result,message:composeEngineResponse(result,style)};
   }

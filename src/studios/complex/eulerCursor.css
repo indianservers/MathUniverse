@@ -1,0 +1,220 @@
+.ec-tools {
+  background: linear-gradient(120deg, #edf8ff, #f3edff);
+  border: 1px solid #cddff8;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 10px 0;
+  color: #1e3768;
+  font-size: 12px;
+}
+.ec-tools header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ec-tools header b {
+  color: #0768e8;
+  font-size: 14px;
+}
+.ec-tools p {
+  margin: 7px 0;
+  line-height: 1.5;
+}
+.ec-controls,
+.ec-landmarks,
+.ec-terms,
+.ec-readouts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+}
+.ec-tools button,
+.ec-tools select {
+  border: 1px solid #c4d7f4;
+  background: white;
+  color: #245186;
+  border-radius: 8px;
+  padding: 7px 10px;
+  min-height: 34px;
+  font-size: 12px;
+}
+.ec-tools button[aria-pressed="true"] {
+  background: #7750f5;
+  color: white;
+  border-color: #7750f5;
+}
+.ec-tools button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.ec-controls label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.ec-readouts > span {
+  background: white;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 11px;
+}
+.ec-readouts b {
+  margin-left: 6px;
+}
+.ec-tools .ec-status {
+  font-size: 11px;
+  color: #61759a;
+  margin-bottom: 0;
+}
+.ec-tools.is-dragging {
+  border-color: #0abbe0;
+  box-shadow: 0 0 15px #0abbe030;
+}
+.ec-tools button:focus-visible,
+.ec-tools select:focus-visible {
+  outline: 3px solid #1c8bff;
+  outline-offset: 2px;
+}
+svg[data-cursor-enabled="true"] {
+  cursor: crosshair;
+  touch-action: none;
+}
+svg[data-cursor-enabled="true"]:active {
+  cursor: grabbing;
+}
+svg[data-cursor-enabled]:focus-visible {
+  outline: 3px solid #22b7ff;
+  outline-offset: 3px;
+}
+.ec-hover-label {
+  pointer-events: none;
+  fill: #ffb600;
+  font-size: 13px;
+  font-weight: 700;
+}
+.ec-term-target {
+  cursor: pointer;
+}
+.ec-term-target:hover {
+  filter: drop-shadow(0 0 6px #ffb600);
+}
+@media (max-width: 650px) {
+  .ec-tools header {
+    flex-wrap: wrap;
+  }
+  .ec-tools {
+    padding: 10px;
+  }
+  .ec-tools button {
+    min-height: 40px;
+  }
+  .ec-controls {
+    gap: 8px;
+  }
+  .ec-readouts > span {
+    flex: 1;
+    min-width: 100px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ec-tools * {
+    transition: none !important;
+  }
+}
+.er-canvas:has(.ec-tools),
+.pr-visual:has(.ec-tools),
+.tr-visual:has(.ec-tools) {
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  display: flex !important;
+  flex-direction: column;
+}
+.er-canvas:has(.ec-tools) > .er-canvas-heading,
+.er-canvas:has(.ec-tools) > .er-canvas-legend,
+.er-canvas:has(.ec-tools) > .er-canvas-play,
+.pr-visual:has(.ec-tools) > header,
+.pr-visual:has(.ec-tools) > footer,
+.tr-visual:has(.ec-tools) > header,
+.tr-visual:has(.ec-tools) > footer,
+.tr-visual:has(.ec-tools) > .tr-legend {
+  position: static !important;
+  inset: auto !important;
+  margin: 10px 14px !important;
+  pointer-events: auto !important;
+}
+.er-canvas:has(.ec-tools) > .er-canvas-legend {
+  display: flex !important;
+  flex-wrap: wrap;
+}
+.er-canvas:has(.ec-tools) > .er-circle {
+  height: 380px !important;
+  flex: none;
+  margin: 0 !important;
+}
+.pr-visual:has(.ec-tools) > .pr-diagram {
+  height: 410px !important;
+  flex: none;
+}
+.tr-visual:has(.ec-tools) > .tr-plot {
+  height: 480px !important;
+  flex: none;
+}
+.er-canvas > .ec-tools,
+.pr-visual > .ec-tools,
+.tr-visual > .ec-tools {
+  margin: 10px 14px !important;
+}
+.ec-tools > header {
+  position: static !important;
+  inset: auto !important;
+  display: flex !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  pointer-events: auto !important;
+  color: #1e3768 !important;
+}
+.ec-tools .ec-controls label,
+.ec-tools p,
+.ec-tools .ec-terms {
+  color: #244571 !important;
+}
+.ec-mode-hint {
+  color: #b9d6f7;
+  font-size: 12px;
+  margin: 4px 16px;
+  line-height: 1.5;
+}
+@media (max-width: 650px) {
+  .er-canvas:has(.ec-tools) > .er-circle {
+    height: 280px !important;
+  }
+  .pr-visual:has(.ec-tools) > .pr-diagram {
+    height: 300px !important;
+  }
+  .tr-visual:has(.ec-tools) > .tr-plot {
+    height: 350px !important;
+  }
+}
+.ec-tools > header {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+.ec-tools > header > output {
+  color: #244571 !important;
+  background: transparent !important;
+  font-size: 12px !important;
+}
+.ec-tools .ec-readouts b {
+  color: #244571 !important;
+}
+.ec-tools .ec-readouts span {
+  color: #244571 !important;
+}

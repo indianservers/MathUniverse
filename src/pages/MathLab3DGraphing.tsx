@@ -1,3 +1,5 @@
+import { useMobileGraphSampling } from "../workspace/mobile/useMobileGraphSampling";
+import { useIsMobileWorkspace } from "../workspace/mobile/useWorkspaceOverlay";
 import {CinematicThreePreview} from '../math-robo/animation/CinematicThreePreview';
 import {commandTransform3d} from '../offline-intelligence/solidAdapter';
 import {useRoboThreeAwareness} from '../math-robo/character/useRoboThreeAwareness';
@@ -158,6 +160,7 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
   const [referenceObject, setReferenceObject] = useState<ReferenceObjectKind>(() => embeddedState?.referenceObject ?? "none");
   const [cameraPosition, setCameraPosition] = useState<[number, number, number]>(() => embeddedState?.cameraPosition ?? [4, 3.2, 6]);
   const cameraCaptureRef = useRef<[number, number, number]>([4, 3.2, 6]);
+  const [cameraZoomRequest,setCameraZoomRequest]=useState({id:0,factor:1});
   const [savedGraphs, setSavedGraphs] = useState<SavedGraphWorkspace<Graph3DWorkspaceState>[]>(() => readSavedGraphWorkspaces(GRAPH_3D_STORAGE_KEY));
   const [graphVariables, setGraphVariables] = useState<GraphStudioVariable[]>(() => embeddedState?.variables ?? []);
   const [sliceAxis, setSliceAxis] = useState<SliceAxis>("x");
@@ -219,7 +222,9 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
   const selectedSurface = surfaces.find((item) => item.id === selectedSurfaceId) ?? surfaces[0] ?? EMPTY_SURFACE;
   const expression = selectedSurface.expression;
   const resolvedExpression = substituteGraphVariables(expression, graphVariables);
-  const sampledSurfaces = useMemo(() => surfaces.map((item) => {
+  const mobileViewport=useIsMobileWorkspace();
+  const mobileSampling=useMobileGraphSampling(mobileViewport,{surfaces,variables:graphVariables,xRange,yRange,resolution});
+  const desktopSampledSurfaces = useMemo(() => mobileViewport ? [] : surfaces.map((item) => {
     const xMin = item.xMin ?? -xRange;
     const xMax = item.xMax ?? xRange;
     const yMin = item.yMin ?? -yRange;
@@ -231,8 +236,10 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
         ? restrictDomain(sampleSurface(substituteGraphVariables(item.expression, graphVariables), xMin, xMax, yMin, yMax, sampleCount), item.domainPredicate)
         : { grid: [], minZ: null, maxZ: null } as SurfaceSampleResult,
     };
-  }), [graphVariables, morphResolution, resolution, surfaces, xRange, yRange]);
-  const advancedLayers = useMemo(() => Object.fromEntries(surfaces.map((item) => [item.id, buildAdvancedLayer(item, graphVariables, xRange, yRange, resolution)])) as Record<string, AdvancedLayerResult>, [graphVariables, resolution, surfaces, xRange, yRange]);
+  }), [mobileViewport, graphVariables, morphResolution, resolution, surfaces, xRange, yRange]);
+  const sampledSurfaces=mobileViewport?mobileSampling.sampled:desktopSampledSurfaces;
+  const desktopAdvancedLayers = useMemo(() => mobileViewport ? {} : Object.fromEntries(surfaces.map((item) => [item.id, buildAdvancedLayer(item, graphVariables, xRange, yRange, resolution)])) as Record<string, AdvancedLayerResult>, [mobileViewport, graphVariables, resolution, surfaces, xRange, yRange]);
+  const advancedLayers=mobileViewport?mobileSampling.advanced:desktopAdvancedLayers;
   const surface = sampledSurfaces.find(({ item }) => item.id === selectedSurface.id)?.samples ?? sampledSurfaces[0]?.samples ?? EMPTY_SAMPLES;
   const layerErrors = useMemo(() => Object.fromEntries(surfaces.map((item) => [item.id, advancedLayers[item.id]?.error ?? sampledSurfaces.find((sampled) => sampled.item.id === item.id)?.samples.error])), [advancedLayers, sampledSurfaces, surfaces]);
   const visibleValidSurfaces = surfaces.filter((item) => item.visible && !layerErrors[item.id]);
@@ -405,6 +412,8 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
       onAddExpression={() => addSurface("x^2 - y^2")}
       onAddLayer={addAdvancedLayer}
       onDuplicateExpression={duplicateSurface}
+      onMobileExpression={expression=>{if(!expression.trim())return;const row=createGraph3DSurface(expression,surfaces.length);if(expression.includes("=")||/\bz\b/.test(expression))row.kind="implicit";setSurfaces(current=>[...current,row]);setSelectedSurfaceId(row.id);}}
+      onDeleteMany={ids=>{setSurfaces(current=>current.filter(row=>!ids.includes(row.id)));if(ids.includes(selectedSurfaceId))setSelectedSurfaceId(surfaces.find(row=>!ids.includes(row.id))?.id??"");}}
       onDeleteExpression={deleteSurface}
       onClearExpressions={() => { setSurfaces([]); setSelectedSurfaceId(""); }}
       onSetAllVisibility={(visible) => setSurfaces((current) => current.map((item) => ({ ...item, visible })))}
@@ -458,7 +467,7 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
             {annotations.map((item) => <AnnotationMarker key={item.id} annotation={item} />)}
             <ReferenceObject kind={referenceObject} scale={Math.max(1.4, Math.min(xRange, yRange) * 0.48)} />
           </group>
-          <CameraPositionTracker labels={Object.fromEntries(surfaces.map(s=>[s.id,s.name??s.id]))} selectedId={selectedSurface.id} onChange={(position) => { cameraCaptureRef.current = position; }} />
+          <CameraPositionTracker zoomRequest={cameraZoomRequest} labels={Object.fromEntries(surfaces.map(s=>[s.id,s.name??s.id]))} selectedId={selectedSurface.id} onChange={(position) => { cameraCaptureRef.current = position; }} />
           <KeyframeCameraAnimator keyframes={keyframes} playing={keyframesPlaying} onVariables={applyKeyframeVariables} onFinish={() => setKeyframesPlaying(false)} />
           <FlyController enabled={flyMode} />
           <EnableClipping />
@@ -468,6 +477,8 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
       crossSectionPreview={sliceEnabled && supportsDifferential ? <CrossSectionChart axis={sliceAxis} value={sliceX} samples={surface} theme={graphTheme} /> : undefined}
       onCameraView={setCameraView}
       onResetCamera={() => setCameraView([4, 3.2, 6])}
+      mobileSampling={mobileSampling}
+      onZoomCamera={factor => setCameraZoomRequest(previous=>({id:previous.id+1,factor}))}
       surface={surface}
       sampleRows={sampleRows}
       differential={surfaceDifferential}
@@ -686,6 +697,7 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
   }
 
   function setCameraView(position: [number, number, number]) {
+    setCameraZoomRequest({id:0,factor:1});
     setCameraPosition(position);
     setCameraKey((value) => value + 1);
   }
@@ -1009,8 +1021,16 @@ function VolumeBetweenSurfaces({ top, bottom, theme }: { top: SurfaceSampleResul
   return <group>{blocks.map(({ point, bottom: lower }, index) => { const topZ = point.z!; const bottomZ = lower!.z!; const height = Math.max(0.012, Math.abs(topZ - bottomZ) * scale); return <mesh key={`${index}-${point.x}-${point.y}`} position={[point.x, (topZ + bottomZ) * scale / 2, point.y]}><boxGeometry args={[Math.max(0.04, dx * 0.82), height, Math.max(0.04, dy * 0.82)]} /><meshBasicMaterial color={theme.crossSection} transparent opacity={0.055} depthWrite={false} /></mesh>; })}</group>;
 }
 
-function CameraPositionTracker({ onChange, selectedId,labels }: { labels:Record<string,string>; selectedId:string; onChange: (position: [number, number, number]) => void }) {
+function CameraPositionTracker({ onChange, selectedId,labels,zoomRequest }: { zoomRequest:{id:number;factor:number}; labels:Record<string,string>; selectedId:string; onChange: (position: [number, number, number]) => void }) {
   const { camera,gl,scene } = useThree();
+  const controls=useThree(state=>state.controls) as unknown as {target?:THREE.Vector3;update?:()=>void}|undefined;
+  useEffect(()=>{
+    if(!zoomRequest.id)return;
+    const target=controls?.target??new THREE.Vector3(),offset=camera.position.clone().sub(target);
+    offset.setLength(Math.max(.5,Math.min(100,offset.length()*zoomRequest.factor)));
+    camera.position.copy(target).add(offset);camera.updateProjectionMatrix();controls?.update?.();
+  },[camera,controls,zoomRequest]);
+
   useRoboThreeAwareness('graph3d',id=>({label:labels[id]??id,kind:'surface',selected:id===selectedId}));
   useEffect(()=>{
     const project=(p:number[])=>{let selected:THREE.Object3D|undefined;scene.traverse(o=>{if(o.userData.immersiveId===selectedId)selected=o;});let mesh:THREE.Object3D|undefined;selected?.traverse(o=>{if(!mesh&&o instanceof THREE.Mesh)mesh=o;});const v=new THREE.Vector3(p[0],p[2]??0,p[1]);if(mesh){mesh.updateWorldMatrix(true,false);mesh.localToWorld(v);}v.project(camera);if(v.z < -1 || v.z > 1)return;const r=gl.domElement.getBoundingClientRect();return {x:r.left+(v.x+1)*r.width/2,y:r.top+(1-v.y)*r.height/2};};

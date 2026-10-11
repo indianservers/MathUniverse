@@ -1,0 +1,15 @@
+{"phrase":"Draw a rectangle 4 by 6","canonical":"Create rectangle width 4 height 6","mode":"geometry2d","label":"rectangle"}
+{"phrase":"Draw a circle of radius 5","canonical":"Create circle radius 5","mode":"geometry2d","label":"circle"}
+{"phrase":"What is the midpoint of that line?","canonical":"Find midpoint of the last line","mode":"graph2d","label":"midpoint","context":["Draw line (0,0) to (6,8)"]}
+{"phrase":"Draw a perpendicular line through the midpoint","canonical":"Draw perpendicular through midpoint of last line","mode":"geometry2d","label":"perpendicular","context":["Draw line (0,0) to (6,8)"]}
+{"phrase":"Move the triangle 3 units right and 2 units up","canonical":"Translate the triangle (3,2)","mode":"geometry2d","label":"move","context":["Draw triangle (0,0) (4,0) (2,3)"]}
+{"phrase":"Reflect the shape across the y-axis","canonical":"Reflect last object across y-axis","mode":"geometry2d","label":"reflect","context":["Create triangle (1,1) (4,1) (2,3)"]}
+{"phrase":"Find where these two lines intersect","canonical":"Find intersection of last two lines","mode":"graph2d","label":"intersection","context":["Draw line (0,0) to (4,4)","Draw line (0,4) to (4,0)"]}
+{"phrase":"Which object is larger?","canonical":"Compare area of last two objects","mode":"geometry2d","label":"compare","context":["Create square side 3","Create circle radius 2"]}
+{"phrase":"Is this point inside the circle?","canonical":"Check if last point lies inside last circle","mode":"geometry2d","label":"contains","context":["Create circle radius 5","Create point (1,2)"]}
+{"phrase":"Rotate the square by 90 degrees","canonical":"Rotate the square 90 degrees","mode":"geometry2d","label":"rotate","context":["Create square side 4"]}
+{"phrase":"Plot y equals x squared","canonical":"Plot y = x^2","mode":"graph2d","label":"plot"}
+{"phrase":"Draw a sphere of radius 3","canonical":"Create sphere radius 3","mode":"geometry3d","label":"sphere"}
+{"phrase":"Draw a cube with side 4","canonical":"Create cube side 4","mode":"geometry3d","label":"cube"}
+{"phrase":"Plot z equals sine x times cosine y","canonical":"Plot z = sin(x)*cos(y)","mode":"graph3d","label":"plot"}
+{"phrase":"What is the midpoint of the 3D line?","canonical":"Find midpoint of last line","mode":"graph3d","label":"midpoint","context":["Draw line (0,0,0) to (6,8,2)"]}

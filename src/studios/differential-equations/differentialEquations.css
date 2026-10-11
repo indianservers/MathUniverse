@@ -297,3 +297,14 @@
 @media (prefers-reduced-motion: reduce) {
   .de-studio *, .de-studio *::before, .de-studio *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* One lab catalog, with a compact row of supporting resources. */
+.de-home .de-feature-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+.de-home .de-feature-card { min-height:130px; }
+.de-home .de-lab-card-art { color:#3975f4; background:radial-gradient(ellipse,#e1f6ff,#edf0ff 65%,transparent 72%); border-radius:14px; margin-bottom:6px; }
+.de-home .de-artwork { filter:drop-shadow(0 3px 4px #5784d32b); stroke-width:2.4; }
+.de-home .de-lab-card-art .de-artwork { width:98px; height:76px; }
+.de-home .de-artwork text { stroke:none; fill:#3975f4; }
+.de-home .de-lab-card { background:linear-gradient(145deg,#fff,var(--de-card-bg)); }
+@media(max-width:700px) { .de-home .de-feature-grid { grid-template-columns:1fr; } .de-home .de-feature-card { min-height:90px; } }
+

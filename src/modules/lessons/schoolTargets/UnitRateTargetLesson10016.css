@@ -148,6 +148,8 @@ main:has(.ur10016-page) nav[aria-label="Breadcrumb"] {
 }
 .ur10016-workspace input,
 .ur10016-workspace select {
+  max-width: 100%;
+  min-width: 0;
   height: 30px;
   margin-top: 5px;
   padding: 0 8px;
@@ -513,7 +515,12 @@ main:has(.ur10016-page) nav[aria-label="Breadcrumb"] {
     grid-template-columns: 1fr;
   }
   .ur10016-manipulate > header {
-    height: 80px;
+    height: auto;
+    padding-bottom: 12px;
+  }
+  .ur10016-manipulate > header button {
+    position: static;
+    margin-top: 8px;
   }
   .ur10016-workspace > aside,
   .ur10016-workspace > article {

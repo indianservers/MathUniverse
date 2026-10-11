@@ -1,4 +1,5 @@
-import { Edges, Line, OrbitControls, Text } from "@react-three/drei";
+import { Edges, Line, OrbitControls} from "@react-three/drei";
+import Text from "../../components/LessonSceneLabel";
 import { Canvas, type ThreeEvent } from "@react-three/fiber";
 import { RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -524,7 +525,7 @@ function TetraScene({
           </mesh>
           <Text
             position={[0.25, 0.22, 0]}
-            fontSize={12}
+            fontSize={0.28}
             color={["#0ba1b4", "#0865d7", "#df7609", "#8421c9"][index]}
           >
             {names[index]}

@@ -1,0 +1,2134 @@
+[
+  {
+    "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-estimation-and-rounding-lab",
+    "width": 390,
+    "entries": [
+      {
+        "tag": "TH",
+        "text": "Actual",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 349.8125,
+          "y": 2448.296875,
+          "width": 82.78125,
+          "height": 37,
+          "top": 2448.296875,
+          "right": 432.59375,
+          "bottom": 2485.296875,
+          "left": 349.8125
+        },
+        "parents": [
+          {
+            "tag": "TR",
+            "cls": null,
+            "display": "table-row",
+            "columns": "none",
+            "width": "599px",
+            "position": "static"
+          },
+          {
+            "tag": "THEAD",
+            "cls": null,
+            "display": "table-header-group",
+            "columns": "none",
+            "width": "599px",
+            "position": "static"
+          },
+          {
+            "tag": "TABLE",
+            "cls": null,
+            "display": "table",
+            "columns": "none",
+            "width": "600px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "TH",
+        "text": "Error",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 432.59375,
+          "y": 2448.296875,
+          "width": 187.90625,
+          "height": 37,
+          "top": 2448.296875,
+          "right": 620.5,
+          "bottom": 2485.296875,
+          "left": 432.59375
+        },
+        "parents": [
+          {
+            "tag": "TR",
+            "cls": null,
+            "display": "table-row",
+            "columns": "none",
+            "width": "599px",
+            "position": "static"
+          },
+          {
+            "tag": "THEAD",
+            "cls": null,
+            "display": "table-header-group",
+            "columns": "none",
+            "width": "599px",
+            "position": "static"
+          },
+          {
+            "tag": "TABLE",
+            "cls": null,
+            "display": "table",
+            "columns": "none",
+            "width": "600px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "TD",
+        "text": "53",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 349.8125,
+          "y": 2485.296875,
+          "width": 82.78125,
+          "height": 37,
+          "top": 2485.296875,
+          "right": 432.59375,
+          "bottom": 2522.296875,
+          "left": 349.8125
+        },
+        "parents": [
+          {
+            "tag": "TR",
+            "cls": null,
+            "display": "table-row",
+            "columns": "none",
+            "width": "599px",
+            "position": "static"
+          },
+          {
+            "tag": "TBODY",
+            "cls": null,
+            "display": "table-row-group",
+            "columns": "none",
+            "width": "599px",
+            "position": "static"
+          },
+          {
+            "tag": "TABLE",
+            "cls": null,
+            "display": "table",
+            "columns": "none",
+            "width": "600px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "TD",
+        "text": "|53 − 50| = 3",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 432.59375,
+          "y": 2485.296875,
+          "width": 187.90625,
+          "height": 37,
+          "top": 2485.296875,
+          "right": 620.5,
+          "bottom": 2522.296875,
+          "left": 432.59375
+        },
+        "parents": [
+          {
+            "tag": "TR",
+            "cls": null,
+            "display": "table-row",
+            "columns": "none",
+            "width": "599px",
+            "position": "static"
+          },
+          {
+            "tag": "TBODY",
+            "cls": null,
+            "display": "table-row-group",
+            "columns": "none",
+            "width": "599px",
+            "position": "static"
+          },
+          {
+            "tag": "TABLE",
+            "cls": null,
+            "display": "table",
+            "columns": "none",
+            "width": "600px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "B",
+        "text": "3",
+        "cls": null,
+        "size": "13px",
+        "rect": {
+          "x": 553.09375,
+          "y": 2495.375,
+          "width": 7.234375,
+          "height": 15,
+          "top": 2495.375,
+          "right": 560.328125,
+          "bottom": 2510.375,
+          "left": 553.09375
+        },
+        "parents": [
+          {
+            "tag": "TD",
+            "cls": null,
+            "display": "table-cell",
+            "columns": "none",
+            "width": "187.906px",
+            "position": "static"
+          },
+          {
+            "tag": "TR",
+            "cls": null,
+            "display": "table-row",
+            "columns": "none",
+            "width": "599px",
+            "position": "static"
+          },
+          {
+            "tag": "TBODY",
+            "cls": null,
+            "display": "table-row-group",
+            "columns": "none",
+            "width": "599px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "TD",
+        "text": "27",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 349.8125,
+          "y": 2522.296875,
+          "width": 82.78125,
+          "height": 37,
+          "top": 2522.296875,
+          "right": 432.59375,
+          "bottom": 2559.296875,
+          "left": 349.8125
+        },
+        "parents": [
+          {
+            "tag": "TR",
+            "cls": null,
+            "display": "table-row",
+            "columns": "none",
+            "width": "599px",
+            "position": "static"
+          },
+          {
+            "tag": "TBODY",
+            "cls": null,
+            "display": "table-row-group",
+            "columns": "none",
+            "width": "599px",
+            "position": "static"
+          },
+          {
+            "tag": "TABLE",
+            "cls": null,
+            "display": "table",
+            "columns": "none",
+            "width": "600px",
+            "position": "static"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-approximation-and-error-bounds",
+    "width": 390,
+    "entries": [
+      {
+        "tag": "SPAN",
+        "text": "NUMBER",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 360.453125,
+          "y": 1090.875,
+          "width": 78.65625,
+          "height": 44.78125,
+          "top": 1090.875,
+          "right": 439.109375,
+          "bottom": 1135.65625,
+          "left": 360.453125
+        },
+        "parents": [
+          {
+            "tag": "DL",
+            "cls": null,
+            "display": "flex",
+            "columns": "none",
+            "width": "323px",
+            "position": "static"
+          },
+          {
+            "tag": "HEADER",
+            "cls": "eb10004-hero",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "eb10004-page",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "relative"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-mixed-units-and-unit-conversion",
+    "width": 390,
+    "entries": []
+  },
+  {
+    "route": "/lessons/school/class-6/class-6-data-handling-pictograph-builder",
+    "width": 390,
+    "entries": [
+      {
+        "tag": "SPAN",
+        "text": "Class 6",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 343.21875,
+          "y": 971.390625,
+          "width": 54,
+          "height": 44.78125,
+          "top": 971.390625,
+          "right": 397.21875,
+          "bottom": 1016.171875,
+          "left": 343.21875
+        },
+        "parents": [
+          {
+            "tag": "DL",
+            "cls": null,
+            "display": "flex",
+            "columns": "none",
+            "width": "327px",
+            "position": "static"
+          },
+          {
+            "tag": "HEADER",
+            "cls": "pg10006-hero",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "relative"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "pg10006-page",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "relative"
+          }
+        ]
+      },
+      {
+        "tag": "TH",
+        "text": "Pictograph (each icon = 1 fruit)",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 85.515625,
+          "y": 1804.453125,
+          "width": 311.84375,
+          "height": 30.390625,
+          "top": 1804.453125,
+          "right": 397.359375,
+          "bottom": 1834.84375,
+          "left": 85.515625
+        },
+        "parents": [
+          {
+            "tag": "TR",
+            "cls": null,
+            "display": "table-row",
+            "columns": "none",
+            "width": "376.859px",
+            "position": "static"
+          },
+          {
+            "tag": "THEAD",
+            "cls": null,
+            "display": "table-header-group",
+            "columns": "none",
+            "width": "376.859px",
+            "position": "static"
+          },
+          {
+            "tag": "TABLE",
+            "cls": null,
+            "display": "table",
+            "columns": "none",
+            "width": "377.859px",
+            "position": "static"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-6/class-6-patterns-number-pattern-completion",
+    "width": 390,
+    "entries": [
+      {
+        "tag": "P",
+        "text": "Objective: Predict missing and next",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 31,
+          "y": 964.15625,
+          "width": 520,
+          "height": 34.78125,
+          "top": 964.15625,
+          "right": 551,
+          "bottom": 998.9375,
+          "left": 31
+        },
+        "parents": [
+          {
+            "tag": "HEADER",
+            "cls": "np10010-hero",
+            "display": "block",
+            "columns": "none",
+            "width": "347px",
+            "position": "relative"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "np10010-page",
+            "display": "block",
+            "columns": "none",
+            "width": "347px",
+            "position": "relative"
+          },
+          {
+            "tag": "DIV",
+            "cls": "lesson-school-target",
+            "display": "block",
+            "columns": "none",
+            "width": "347px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "SPAN",
+        "text": "5",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 354,
+          "y": 1342.0625,
+          "width": 50,
+          "height": 17.390625,
+          "top": 1342.0625,
+          "right": 404,
+          "bottom": 1359.453125,
+          "left": 354
+        },
+        "parents": [
+          {
+            "tag": "DIV",
+            "cls": "sequence",
+            "display": "grid",
+            "columns": "75px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px",
+            "width": "317px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "np10010-observe",
+            "display": "block",
+            "columns": "none",
+            "width": "347px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "np10010-page",
+            "display": "block",
+            "columns": "none",
+            "width": "347px",
+            "position": "relative"
+          }
+        ]
+      },
+      {
+        "tag": "SPAN",
+        "text": "6",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 414,
+          "y": 1342.0625,
+          "width": 50,
+          "height": 17.390625,
+          "top": 1342.0625,
+          "right": 464,
+          "bottom": 1359.453125,
+          "left": 414
+        },
+        "parents": [
+          {
+            "tag": "DIV",
+            "cls": "sequence",
+            "display": "grid",
+            "columns": "75px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px",
+            "width": "317px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "np10010-observe",
+            "display": "block",
+            "columns": "none",
+            "width": "347px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "np10010-page",
+            "display": "block",
+            "columns": "none",
+            "width": "347px",
+            "position": "relative"
+          }
+        ]
+      },
+      {
+        "tag": "SPAN",
+        "text": "7",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 474,
+          "y": 1342.0625,
+          "width": 50,
+          "height": 17.390625,
+          "top": 1342.0625,
+          "right": 524,
+          "bottom": 1359.453125,
+          "left": 474
+        },
+        "parents": [
+          {
+            "tag": "DIV",
+            "cls": "sequence",
+            "display": "grid",
+            "columns": "75px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px",
+            "width": "317px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "np10010-observe",
+            "display": "block",
+            "columns": "none",
+            "width": "347px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "np10010-page",
+            "display": "block",
+            "columns": "none",
+            "width": "347px",
+            "position": "relative"
+          }
+        ]
+      },
+      {
+        "tag": "SPAN",
+        "text": "8",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 534,
+          "y": 1342.0625,
+          "width": 50,
+          "height": 17.390625,
+          "top": 1342.0625,
+          "right": 584,
+          "bottom": 1359.453125,
+          "left": 534
+        },
+        "parents": [
+          {
+            "tag": "DIV",
+            "cls": "sequence",
+            "display": "grid",
+            "columns": "75px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px",
+            "width": "317px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "np10010-observe",
+            "display": "block",
+            "columns": "none",
+            "width": "347px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "np10010-page",
+            "display": "block",
+            "columns": "none",
+            "width": "347px",
+            "position": "relative"
+          }
+        ]
+      },
+      {
+        "tag": "SPAN",
+        "text": "9",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 594,
+          "y": 1342.0625,
+          "width": 50,
+          "height": 17.390625,
+          "top": 1342.0625,
+          "right": 644,
+          "bottom": 1359.453125,
+          "left": 594
+        },
+        "parents": [
+          {
+            "tag": "DIV",
+            "cls": "sequence",
+            "display": "grid",
+            "columns": "75px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px",
+            "width": "317px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "np10010-observe",
+            "display": "block",
+            "columns": "none",
+            "width": "347px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "np10010-page",
+            "display": "block",
+            "columns": "none",
+            "width": "347px",
+            "position": "relative"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-6/class-6-patterns-shape-pattern-completion",
+    "width": 390,
+    "entries": [
+      {
+        "tag": "P",
+        "text": "Objective: Represent the given shap",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 29,
+          "y": 965.328125,
+          "width": 565,
+          "height": 36,
+          "top": 965.328125,
+          "right": 594,
+          "bottom": 1001.328125,
+          "left": 29
+        },
+        "parents": [
+          {
+            "tag": "HEADER",
+            "cls": "sp10011-hero",
+            "display": "block",
+            "columns": "none",
+            "width": "351px",
+            "position": "relative"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "sp10011-page",
+            "display": "block",
+            "columns": "none",
+            "width": "351px",
+            "position": "relative"
+          },
+          {
+            "tag": "DIV",
+            "cls": "lesson-school-target",
+            "display": "block",
+            "columns": "none",
+            "width": "351px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "B",
+        "text": "Figure 3",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 367,
+          "y": 1390.515625,
+          "width": 170,
+          "height": 18,
+          "top": 1390.515625,
+          "right": 537,
+          "bottom": 1408.515625,
+          "left": 367
+        },
+        "parents": [
+          {
+            "tag": "ARTICLE",
+            "cls": null,
+            "display": "grid",
+            "columns": "170px",
+            "width": "170px",
+            "position": "static"
+          },
+          {
+            "tag": "DIV",
+            "cls": "figures",
+            "display": "grid",
+            "columns": "170px 170px 170px 170px 170px",
+            "width": "321px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "sp10011-observe",
+            "display": "block",
+            "columns": "1fr",
+            "width": "351px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "B",
+        "text": "Figure 4",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 537,
+          "y": 1390.515625,
+          "width": 182,
+          "height": 18,
+          "top": 1390.515625,
+          "right": 719,
+          "bottom": 1408.515625,
+          "left": 537
+        },
+        "parents": [
+          {
+            "tag": "ARTICLE",
+            "cls": null,
+            "display": "grid",
+            "columns": "182px",
+            "width": "170px",
+            "position": "static"
+          },
+          {
+            "tag": "DIV",
+            "cls": "figures",
+            "display": "grid",
+            "columns": "170px 170px 170px 170px 170px",
+            "width": "321px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "sp10011-observe",
+            "display": "block",
+            "columns": "1fr",
+            "width": "351px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "B",
+        "text": "Figure 5",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 707,
+          "y": 1390.515625,
+          "width": 234,
+          "height": 18,
+          "top": 1390.515625,
+          "right": 941,
+          "bottom": 1408.515625,
+          "left": 707
+        },
+        "parents": [
+          {
+            "tag": "ARTICLE",
+            "cls": null,
+            "display": "grid",
+            "columns": "234px",
+            "width": "170px",
+            "position": "static"
+          },
+          {
+            "tag": "DIV",
+            "cls": "figures",
+            "display": "grid",
+            "columns": "170px 170px 170px 170px 170px",
+            "width": "321px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "sp10011-observe",
+            "display": "block",
+            "columns": "1fr",
+            "width": "351px",
+            "position": "static"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-6/class-6-patterns-input-output-rule-machines",
+    "width": 390,
+    "entries": [
+      {
+        "tag": "SPAN",
+        "text": "Class 6",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 358.734375,
+          "y": 1012.71875,
+          "width": 52,
+          "height": 42,
+          "top": 1012.71875,
+          "right": 410.734375,
+          "bottom": 1054.71875,
+          "left": 358.734375
+        },
+        "parents": [
+          {
+            "tag": "DL",
+            "cls": null,
+            "display": "flex",
+            "columns": "none",
+            "width": "323px",
+            "position": "static"
+          },
+          {
+            "tag": "HEADER",
+            "cls": "rm10012-hero",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "relative"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "rm10012-page",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "relative"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-digital-root-and-divisibility",
+    "width": 390,
+    "entries": [
+      {
+        "tag": "SPAN",
+        "text": "divisibility",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 351.671875,
+          "y": 1014.9375,
+          "width": 85.3125,
+          "height": 40.78125,
+          "top": 1014.9375,
+          "right": 436.984375,
+          "bottom": 1055.71875,
+          "left": 351.671875
+        },
+        "parents": [
+          {
+            "tag": "DL",
+            "cls": null,
+            "display": "flex",
+            "columns": "none",
+            "width": "325px",
+            "position": "static"
+          },
+          {
+            "tag": "HEADER",
+            "cls": "dr10014-hero",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "relative"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "dr10014-page",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "relative"
+          }
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Check",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 369.6875,
+          "y": 3623.90625,
+          "width": 60.015625,
+          "height": 33.390625,
+          "top": 3623.90625,
+          "right": 429.703125,
+          "bottom": 3657.296875,
+          "left": 369.6875
+        },
+        "parents": [
+          {
+            "tag": "SECTION",
+            "cls": null,
+            "display": "block",
+            "columns": "none",
+            "width": "331px",
+            "position": "relative"
+          },
+          {
+            "tag": "ARTICLE",
+            "cls": null,
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "dr10014-practice",
+            "display": "grid",
+            "columns": "359px",
+            "width": "359px",
+            "position": "static"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-remainder-reasoning",
+    "width": 390,
+    "entries": [
+      {
+        "tag": "SPAN",
+        "text": "arithmetic",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 343.671875,
+          "y": 991.828125,
+          "width": 84,
+          "height": 42,
+          "top": 991.828125,
+          "right": 427.671875,
+          "bottom": 1033.828125,
+          "left": 343.671875
+        },
+        "parents": [
+          {
+            "tag": "DL",
+            "cls": null,
+            "display": "flex",
+            "columns": "none",
+            "width": "325px",
+            "position": "static"
+          },
+          {
+            "tag": "HEADER",
+            "cls": "rr10015-hero",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "relative"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "rr10015-page",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "relative"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-ratio-tables",
+    "width": 390,
+    "entries": [
+      {
+        "tag": "SPAN",
+        "text": "ARITHMETIC",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 351.46875,
+          "y": 995.390625,
+          "width": 102.671875,
+          "height": 42.78125,
+          "top": 995.390625,
+          "right": 454.140625,
+          "bottom": 1038.171875,
+          "left": 351.46875
+        },
+        "parents": [
+          {
+            "tag": "DL",
+            "cls": null,
+            "display": "flex",
+            "columns": "none",
+            "width": "325px",
+            "position": "static"
+          },
+          {
+            "tag": "HEADER",
+            "cls": "rt10017-hero",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "relative"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "rt10017-page",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "relative"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-7/class-7-applied-arithmetic-bills-discounts-and-tax",
+    "width": 390,
+    "entries": [
+      {
+        "tag": "SPAN",
+        "text": "Learning Path: Applied Arithmetic",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 343.671875,
+          "y": 1034.578125,
+          "width": 85.3125,
+          "height": 77.5625,
+          "top": 1034.578125,
+          "right": 428.984375,
+          "bottom": 1112.140625,
+          "left": 343.671875
+        },
+        "parents": [
+          {
+            "tag": "DL",
+            "cls": null,
+            "display": "flex",
+            "columns": "none",
+            "width": "325px",
+            "position": "static"
+          },
+          {
+            "tag": "HEADER",
+            "cls": "bt10018-hero",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "relative"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "bt10018-page",
+            "display": "block",
+            "columns": "none",
+            "width": "359px",
+            "position": "relative"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-8/class-8-information-processing-flowchart-logic",
+    "width": 390,
+    "entries": [
+      {
+        "tag": "text",
+        "text": "Output \"Odd\"",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 354.6015625,
+          "y": 2031.109375,
+          "width": 87.783203125,
+          "height": 17,
+          "top": 2031.109375,
+          "right": 442.384765625,
+          "bottom": 2048.109375,
+          "left": 354.6015625
+        },
+        "parents": [
+          {
+            "tag": "g",
+            "cls": "flow-node io",
+            "display": "inline",
+            "columns": "none",
+            "width": "auto",
+            "position": "static"
+          },
+          {
+            "tag": "svg",
+            "cls": "flow-diagram",
+            "display": "block",
+            "columns": "none",
+            "width": "339px",
+            "position": "static"
+          },
+          {
+            "tag": "DIV",
+            "cls": "flow10035-canvas",
+            "display": "block",
+            "columns": "none",
+            "width": "341px",
+            "position": "absolute"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-10/class-10-circle-proofs-equal-chords-and-equal-angles",
+    "width": 1280,
+    "entries": [
+      {
+        "tag": "BUTTON",
+        "text": "Center view",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 1268.625,
+          "y": 941.359375,
+          "width": 57.03125,
+          "height": 531,
+          "top": 941.359375,
+          "right": 1325.65625,
+          "bottom": 1472.359375,
+          "left": 1268.625
+        },
+        "parents": [
+          {
+            "tag": "ASIDE",
+            "cls": "tools",
+            "display": "flex",
+            "columns": "none",
+            "width": "179.547px",
+            "position": "static"
+          },
+          {
+            "tag": "DIV",
+            "cls": "workspace",
+            "display": "grid",
+            "columns": "275.297px 742.125px 179.547px",
+            "width": "1197px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "eca10089-investigate",
+            "display": "block",
+            "columns": "none",
+            "width": "1225px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "H3",
+        "text": "KEY",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 1328.65625,
+          "y": 954.359375,
+          "width": 24.015625,
+          "height": 525,
+          "top": 954.359375,
+          "right": 1352.671875,
+          "bottom": 1479.359375,
+          "left": 1328.65625
+        },
+        "parents": [
+          {
+            "tag": "ASIDE",
+            "cls": "tools",
+            "display": "flex",
+            "columns": "none",
+            "width": "179.547px",
+            "position": "static"
+          },
+          {
+            "tag": "DIV",
+            "cls": "workspace",
+            "display": "grid",
+            "columns": "275.297px 742.125px 179.547px",
+            "width": "1197px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "eca10089-investigate",
+            "display": "block",
+            "columns": "none",
+            "width": "1225px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "P",
+        "text": "● A",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 1355.671875,
+          "y": 943.359375,
+          "width": 8.015625,
+          "height": 527,
+          "top": 943.359375,
+          "right": 1363.6875,
+          "bottom": 1470.359375,
+          "left": 1355.671875
+        },
+        "parents": [
+          {
+            "tag": "ASIDE",
+            "cls": "tools",
+            "display": "flex",
+            "columns": "none",
+            "width": "179.547px",
+            "position": "static"
+          },
+          {
+            "tag": "DIV",
+            "cls": "workspace",
+            "display": "grid",
+            "columns": "275.297px 742.125px 179.547px",
+            "width": "1197px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "eca10089-investigate",
+            "display": "block",
+            "columns": "none",
+            "width": "1225px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "P",
+        "text": "● B",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 1366.6875,
+          "y": 943.359375,
+          "width": 8,
+          "height": 527,
+          "top": 943.359375,
+          "right": 1374.6875,
+          "bottom": 1470.359375,
+          "left": 1366.6875
+        },
+        "parents": [
+          {
+            "tag": "ASIDE",
+            "cls": "tools",
+            "display": "flex",
+            "columns": "none",
+            "width": "179.547px",
+            "position": "static"
+          },
+          {
+            "tag": "DIV",
+            "cls": "workspace",
+            "display": "grid",
+            "columns": "275.297px 742.125px 179.547px",
+            "width": "1197px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "eca10089-investigate",
+            "display": "block",
+            "columns": "none",
+            "width": "1225px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "P",
+        "text": "● C",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 1377.6875,
+          "y": 943.359375,
+          "width": 8.65625,
+          "height": 527,
+          "top": 943.359375,
+          "right": 1386.34375,
+          "bottom": 1470.359375,
+          "left": 1377.6875
+        },
+        "parents": [
+          {
+            "tag": "ASIDE",
+            "cls": "tools",
+            "display": "flex",
+            "columns": "none",
+            "width": "179.547px",
+            "position": "static"
+          },
+          {
+            "tag": "DIV",
+            "cls": "workspace",
+            "display": "grid",
+            "columns": "275.297px 742.125px 179.547px",
+            "width": "1197px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "eca10089-investigate",
+            "display": "block",
+            "columns": "none",
+            "width": "1225px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "P",
+        "text": "● D",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 1389.34375,
+          "y": 943.359375,
+          "width": 8.65625,
+          "height": 527,
+          "top": 943.359375,
+          "right": 1398,
+          "bottom": 1470.359375,
+          "left": 1389.34375
+        },
+        "parents": [
+          {
+            "tag": "ASIDE",
+            "cls": "tools",
+            "display": "flex",
+            "columns": "none",
+            "width": "179.547px",
+            "position": "static"
+          },
+          {
+            "tag": "DIV",
+            "cls": "workspace",
+            "display": "grid",
+            "columns": "275.297px 742.125px 179.547px",
+            "width": "1197px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "eca10089-investigate",
+            "display": "block",
+            "columns": "none",
+            "width": "1225px",
+            "position": "static"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-10/class-10-circle-proofs-tangent-perpendicular-to-radius",
+    "width": 390,
+    "entries": [
+      {
+        "tag": "INPUT",
+        "text": "",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 34,
+          "y": 1536.125,
+          "width": 359,
+          "height": 13,
+          "top": 1536.125,
+          "right": 393,
+          "bottom": 1549.125,
+          "left": 34
+        },
+        "parents": [
+          {
+            "tag": "LABEL",
+            "cls": "tpr10096-switch",
+            "display": "grid",
+            "columns": "272px 30px",
+            "width": "307px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": null,
+            "display": "block",
+            "columns": "none",
+            "width": "329px",
+            "position": "static"
+          },
+          {
+            "tag": "ASIDE",
+            "cls": null,
+            "display": "block",
+            "columns": "none",
+            "width": "329px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 34,
+          "y": 1568.125,
+          "width": 359,
+          "height": 13,
+          "top": 1568.125,
+          "right": 393,
+          "bottom": 1581.125,
+          "left": 34
+        },
+        "parents": [
+          {
+            "tag": "LABEL",
+            "cls": "tpr10096-switch",
+            "display": "grid",
+            "columns": "272px 30px",
+            "width": "307px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": null,
+            "display": "block",
+            "columns": "none",
+            "width": "329px",
+            "position": "static"
+          },
+          {
+            "tag": "ASIDE",
+            "cls": null,
+            "display": "block",
+            "columns": "none",
+            "width": "329px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 34,
+          "y": 1600.125,
+          "width": 359,
+          "height": 13,
+          "top": 1600.125,
+          "right": 393,
+          "bottom": 1613.125,
+          "left": 34
+        },
+        "parents": [
+          {
+            "tag": "LABEL",
+            "cls": "tpr10096-switch",
+            "display": "grid",
+            "columns": "272px 30px",
+            "width": "307px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": null,
+            "display": "block",
+            "columns": "none",
+            "width": "329px",
+            "position": "static"
+          },
+          {
+            "tag": "ASIDE",
+            "cls": null,
+            "display": "block",
+            "columns": "none",
+            "width": "329px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "INPUT",
+        "text": "",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 34,
+          "y": 1632.125,
+          "width": 359,
+          "height": 13,
+          "top": 1632.125,
+          "right": 393,
+          "bottom": 1645.125,
+          "left": 34
+        },
+        "parents": [
+          {
+            "tag": "LABEL",
+            "cls": "tpr10096-switch",
+            "display": "grid",
+            "columns": "272px 30px",
+            "width": "307px",
+            "position": "static"
+          },
+          {
+            "tag": "SECTION",
+            "cls": null,
+            "display": "block",
+            "columns": "none",
+            "width": "329px",
+            "position": "static"
+          },
+          {
+            "tag": "ASIDE",
+            "cls": null,
+            "display": "block",
+            "columns": "none",
+            "width": "329px",
+            "position": "static"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-10/class-10-mensuration-combined-solids",
+    "width": 390,
+    "entries": []
+  },
+  {
+    "route": "/lessons/school/class-10/class-10-mensuration-combined-solids",
+    "width": 1280,
+    "entries": []
+  },
+  {
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-types-of-relations",
+    "width": 390,
+    "entries": []
+  },
+  {
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-invertible-functions",
+    "width": 390,
+    "entries": [
+      {
+        "tag": "EM",
+        "text": "1",
+        "cls": null,
+        "size": "15px",
+        "rect": {
+          "x": 388,
+          "y": 4141.84375,
+          "width": 45,
+          "height": 29,
+          "top": 4141.84375,
+          "right": 433,
+          "bottom": 4170.84375,
+          "left": 388
+        },
+        "parents": [
+          {
+            "tag": "P",
+            "cls": null,
+            "display": "grid",
+            "columns": "45px 20px 45px 20px 45px 35px",
+            "width": "111px",
+            "position": "static"
+          },
+          {
+            "tag": "ARTICLE",
+            "cls": "verify",
+            "display": "block",
+            "columns": "none",
+            "width": "135px",
+            "position": "absolute"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "inv10122-right",
+            "display": "grid",
+            "columns": "343px",
+            "width": "343px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "EM",
+        "text": "2",
+        "cls": null,
+        "size": "15px",
+        "rect": {
+          "x": 388,
+          "y": 4190.84375,
+          "width": 45,
+          "height": 29,
+          "top": 4190.84375,
+          "right": 433,
+          "bottom": 4219.84375,
+          "left": 388
+        },
+        "parents": [
+          {
+            "tag": "P",
+            "cls": null,
+            "display": "grid",
+            "columns": "45px 20px 45px 20px 45px 35px",
+            "width": "111px",
+            "position": "static"
+          },
+          {
+            "tag": "ARTICLE",
+            "cls": "verify",
+            "display": "block",
+            "columns": "none",
+            "width": "135px",
+            "position": "absolute"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "inv10122-right",
+            "display": "grid",
+            "columns": "343px",
+            "width": "343px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "EM",
+        "text": "3",
+        "cls": null,
+        "size": "15px",
+        "rect": {
+          "x": 388,
+          "y": 4239.84375,
+          "width": 45,
+          "height": 29,
+          "top": 4239.84375,
+          "right": 433,
+          "bottom": 4268.84375,
+          "left": 388
+        },
+        "parents": [
+          {
+            "tag": "P",
+            "cls": null,
+            "display": "grid",
+            "columns": "45px 20px 45px 20px 45px 35px",
+            "width": "111px",
+            "position": "static"
+          },
+          {
+            "tag": "ARTICLE",
+            "cls": "verify",
+            "display": "block",
+            "columns": "none",
+            "width": "135px",
+            "position": "absolute"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "inv10122-right",
+            "display": "grid",
+            "columns": "343px",
+            "width": "343px",
+            "position": "static"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-invertible-functions",
+    "width": 1280,
+    "entries": [
+      {
+        "tag": "EM",
+        "text": "1",
+        "cls": null,
+        "size": "15px",
+        "rect": {
+          "x": 1240,
+          "y": 714.78125,
+          "width": 45,
+          "height": 29,
+          "top": 714.78125,
+          "right": 1285,
+          "bottom": 743.78125,
+          "left": 1240
+        },
+        "parents": [
+          {
+            "tag": "P",
+            "cls": null,
+            "display": "grid",
+            "columns": "45px 20px 45px 20px 45px 35px",
+            "width": "131px",
+            "position": "static"
+          },
+          {
+            "tag": "ARTICLE",
+            "cls": "verify",
+            "display": "block",
+            "columns": "none",
+            "width": "155px",
+            "position": "absolute"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "inv10122-right",
+            "display": "grid",
+            "columns": "361.5px",
+            "width": "361.5px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "EM",
+        "text": "2",
+        "cls": null,
+        "size": "15px",
+        "rect": {
+          "x": 1240,
+          "y": 763.78125,
+          "width": 45,
+          "height": 29,
+          "top": 763.78125,
+          "right": 1285,
+          "bottom": 792.78125,
+          "left": 1240
+        },
+        "parents": [
+          {
+            "tag": "P",
+            "cls": null,
+            "display": "grid",
+            "columns": "45px 20px 45px 20px 45px 35px",
+            "width": "131px",
+            "position": "static"
+          },
+          {
+            "tag": "ARTICLE",
+            "cls": "verify",
+            "display": "block",
+            "columns": "none",
+            "width": "155px",
+            "position": "absolute"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "inv10122-right",
+            "display": "grid",
+            "columns": "361.5px",
+            "width": "361.5px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "EM",
+        "text": "3",
+        "cls": null,
+        "size": "15px",
+        "rect": {
+          "x": 1240,
+          "y": 812.78125,
+          "width": 45,
+          "height": 29,
+          "top": 812.78125,
+          "right": 1285,
+          "bottom": 841.78125,
+          "left": 1240
+        },
+        "parents": [
+          {
+            "tag": "P",
+            "cls": null,
+            "display": "grid",
+            "columns": "45px 20px 45px 20px 45px 35px",
+            "width": "131px",
+            "position": "static"
+          },
+          {
+            "tag": "ARTICLE",
+            "cls": "verify",
+            "display": "block",
+            "columns": "none",
+            "width": "155px",
+            "position": "absolute"
+          },
+          {
+            "tag": "SECTION",
+            "cls": "inv10122-right",
+            "display": "grid",
+            "columns": "361.5px",
+            "width": "361.5px",
+            "position": "static"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-11/class-11-conic-sections-parabola-standard-forms",
+    "width": 1280,
+    "entries": [
+      {
+        "tag": "TH",
+        "text": "Directrix",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 1239.78125,
+          "y": 857.359375,
+          "width": 71.046875,
+          "height": 35,
+          "top": 857.359375,
+          "right": 1310.828125,
+          "bottom": 892.359375,
+          "left": 1239.78125
+        },
+        "parents": [
+          {
+            "tag": "TR",
+            "cls": null,
+            "display": "table-row",
+            "columns": "none",
+            "width": "277.891px",
+            "position": "static"
+          },
+          {
+            "tag": "THEAD",
+            "cls": null,
+            "display": "table-header-group",
+            "columns": "none",
+            "width": "277.891px",
+            "position": "static"
+          },
+          {
+            "tag": "TABLE",
+            "cls": null,
+            "display": "table",
+            "columns": "none",
+            "width": "278.891px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "TH",
+        "text": "Axis",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 1310.828125,
+          "y": 857.359375,
+          "width": 41.5625,
+          "height": 35,
+          "top": 857.359375,
+          "right": 1352.390625,
+          "bottom": 892.359375,
+          "left": 1310.828125
+        },
+        "parents": [
+          {
+            "tag": "TR",
+            "cls": null,
+            "display": "table-row",
+            "columns": "none",
+            "width": "277.891px",
+            "position": "static"
+          },
+          {
+            "tag": "THEAD",
+            "cls": null,
+            "display": "table-header-group",
+            "columns": "none",
+            "width": "277.891px",
+            "position": "static"
+          },
+          {
+            "tag": "TABLE",
+            "cls": null,
+            "display": "table",
+            "columns": "none",
+            "width": "278.891px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "TD",
+        "text": "x=-a",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 1239.78125,
+          "y": 892.359375,
+          "width": 71.046875,
+          "height": 35,
+          "top": 892.359375,
+          "right": 1310.828125,
+          "bottom": 927.359375,
+          "left": 1239.78125
+        },
+        "parents": [
+          {
+            "tag": "TR",
+            "cls": null,
+            "display": "table-row",
+            "columns": "none",
+            "width": "277.891px",
+            "position": "static"
+          },
+          {
+            "tag": "TBODY",
+            "cls": null,
+            "display": "table-row-group",
+            "columns": "none",
+            "width": "277.891px",
+            "position": "static"
+          },
+          {
+            "tag": "TABLE",
+            "cls": null,
+            "display": "table",
+            "columns": "none",
+            "width": "278.891px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "TD",
+        "text": "y=0",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 1310.828125,
+          "y": 892.359375,
+          "width": 41.5625,
+          "height": 35,
+          "top": 892.359375,
+          "right": 1352.390625,
+          "bottom": 927.359375,
+          "left": 1310.828125
+        },
+        "parents": [
+          {
+            "tag": "TR",
+            "cls": null,
+            "display": "table-row",
+            "columns": "none",
+            "width": "277.891px",
+            "position": "static"
+          },
+          {
+            "tag": "TBODY",
+            "cls": null,
+            "display": "table-row-group",
+            "columns": "none",
+            "width": "277.891px",
+            "position": "static"
+          },
+          {
+            "tag": "TABLE",
+            "cls": null,
+            "display": "table",
+            "columns": "none",
+            "width": "278.891px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "TD",
+        "text": "x=a",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 1239.78125,
+          "y": 927.359375,
+          "width": 71.046875,
+          "height": 35,
+          "top": 927.359375,
+          "right": 1310.828125,
+          "bottom": 962.359375,
+          "left": 1239.78125
+        },
+        "parents": [
+          {
+            "tag": "TR",
+            "cls": null,
+            "display": "table-row",
+            "columns": "none",
+            "width": "277.891px",
+            "position": "static"
+          },
+          {
+            "tag": "TBODY",
+            "cls": null,
+            "display": "table-row-group",
+            "columns": "none",
+            "width": "277.891px",
+            "position": "static"
+          },
+          {
+            "tag": "TABLE",
+            "cls": null,
+            "display": "table",
+            "columns": "none",
+            "width": "278.891px",
+            "position": "static"
+          }
+        ]
+      },
+      {
+        "tag": "TD",
+        "text": "y=0",
+        "cls": null,
+        "size": "12px",
+        "rect": {
+          "x": 1310.828125,
+          "y": 927.359375,
+          "width": 41.5625,
+          "height": 35,
+          "top": 927.359375,
+          "right": 1352.390625,
+          "bottom": 962.359375,
+          "left": 1310.828125
+        },
+        "parents": [
+          {
+            "tag": "TR",
+            "cls": null,
+            "display": "table-row",
+            "columns": "none",
+            "width": "277.891px",
+            "position": "static"
+          },
+          {
+            "tag": "TBODY",
+            "cls": null,
+            "display": "table-row-group",
+            "columns": "none",
+            "width": "277.891px",
+            "position": "static"
+          },
+          {
+            "tag": "TABLE",
+            "cls": null,
+            "display": "table",
+            "columns": "none",
+            "width": "278.891px",
+            "position": "static"
+          }
+        ]
+      }
+    ]
+  }
+]

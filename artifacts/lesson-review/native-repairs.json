@@ -1,0 +1,39 @@
+[
+  {
+    "id": 558,
+    "status": "Implemented and browser verified",
+    "verification": [
+      "Scoped ESLint passed",
+      "Browser bundle compilation passed",
+      "Live discovery, shuffle preservation, keyboard removal, six-object tree, reset and mobile board checks passed"
+    ],
+    "repairs": [
+      "Discovery progress starts at zero and resets to zero.",
+      "Shuffle rearranges the available objects without erasing the learner's current arrangement.",
+      "The choice tree includes all selected objects, including the sixth object.",
+      "The two-choice tree is explicitly distinguished from the learner's r-choice count.",
+      "Object counts reject non-finite values and normalize fractions to integers.",
+      "Selection counts reject non-finite values and stay within the available objects.",
+      "Drag inputs must belong to the current object set and target a valid slot.",
+      "Used objects cannot be selected a second time.",
+      "Filled slots can be cleared with pointer or keyboard activation.",
+      "Slot labels describe their current object and removal action.",
+      "Third-position ordinal is corrected to 3rd.",
+      "Discovery progress has an accessible name and an empty-history explanation.",
+      "Previous and Next links navigate to the adjacent lessons.",
+      "Slots wrap on narrow screens and controls show visible keyboard focus."
+    ]
+  },
+  {
+    "id": 598,
+    "status": "Implemented and browser verified on desktop and mobile",
+    "verification": [
+      "Browser study controls, answer guards, hints, reset/undo passed",
+      "No horizontal overflow at 1365px and 390px"
+    ],
+    "repairs": [
+      "Loan summary and extra-payment controls now remain in the document flow instead of covering study controls while scrolling.",
+      "The summary uses a single column on mobile and remains available to learners."
+    ]
+  }
+]

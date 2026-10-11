@@ -1,3 +1,4 @@
+import {certifiedEquation,equationDisplay} from './certifiedEquationAdapter';
 import {
   symbolicBinomialDist,
   symbolicBinomialCdf,
@@ -167,6 +168,9 @@ export type CasVerification =
     };
 
 export type CasResult = {
+  execution?: import('../math-foundation/executionOutcome').ExecutionOutcome;
+  conditions?: string[];
+  solutionSet?: import('../math-robo/kernel/types').RealSolutionSet;
   id: string;
   input: string;
   parsed: ParsedCasInput;
@@ -349,6 +353,16 @@ export function evaluateCasInput(
     });
   }
 
+  if (command.name === 'Solve') {
+    const equation = certifiedEquation(parsed.args[0] ?? '', parsed.args[1] ?? 'x', assumptions, JSON.stringify([input,resolved.input,assumptions]));
+    if (equation) {
+      const set = equation.solutionSet as import('../math-robo/kernel/types').RealSolutionSet | undefined;
+      const answer = set ? equationDisplay(set) : equation.answer;
+      return createCasResult({input,parsed,command,status:equation.status==='unsupported'?'error':'ok',exact:set?answer:undefined,
+        summary:answer,detail:equation.verification.method,steps:equation.steps,warnings:baseWarnings,assumptions,
+        dependencies:resolved.dependencies,execution:equation.execution,conditions:equation.conditions,solutionSet:set});
+    }
+  }
   const symbolic = runImplementedCommand(command.name, parsed.args);
   if (!symbolic) {
     return createCasResult({
@@ -894,6 +908,9 @@ function runImplementedCommand(
 }
 
 function createCasResult(data: {
+  execution?: CasResult['execution'];
+  conditions?: CasResult['conditions'];
+  solutionSet?: CasResult['solutionSet'];
   input: string;
   parsed: ParsedCasInput;
   command?: CasCommandSpec;
@@ -910,6 +927,9 @@ function createCasResult(data: {
 }): CasResult {
   return {
     id: createId(),
+    execution: data.execution,
+    conditions: data.conditions,
+    solutionSet: data.solutionSet,
     input: data.input,
     parsed: data.parsed,
     command: data.command,

@@ -1,25 +1,46 @@
-import { CheckCircle2, Redo2, Undo2 } from "lucide-react";
-import { PointerEvent, useRef, useState } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { Link } from "react-router-dom";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
-import "./CopyAngleTargetLesson10023.css";
 import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { applyDedicatedTabVisibility } from "../components/dedicatedLessonTabs";
+import { angleChord, angleFromChord } from "./copyAngleMath";
+import "./CopyAngleTargetLesson10023.css";
 
-const clampAngle = (angle: number) =>
-  Math.min(150, Math.max(15, Math.round(angle)));
-const endpoint = (angle: number, length = 150) => ({
-  x: 28 + Math.cos((angle * Math.PI) / 180) * length,
-  y: 190 - Math.sin((angle * Math.PI) / 180) * length,
-});
-const stepLabels = [
-  "Draw arc from A",
-  "Draw arc from P",
-  "Mark intersection 1",
-  "Draw arc from 1",
-  "Mark intersection 2",
-  "Draw PR",
+const steps = [
+  [
+    "Draw the source arc",
+    "Place the compass at A. Draw an arc cutting both rays at B and C. These two points are equally far from A.",
+  ],
+  [
+    "Copy the same radius",
+    "Keep this compass opening. Centre it at P and draw an arc cutting the base ray at Q. Now AB = AC = PQ.",
+  ],
+  [
+    "Measure the chord BC",
+    "Change the compass opening to the straight-line distance from B to C. Transfer this gap, not the curved arc length.",
+  ],
+  [
+    "Swing an arc from Q",
+    "Keep the BC opening. Centre the compass at Q and swing a second arc across the first target arc.",
+  ],
+  [
+    "Mark their intersection R",
+    "Choose the intersection above the base ray. QR = BC, and PR has the original radius.",
+  ],
+  [
+    "Draw the ray PR",
+    "Use a straightedge through P and R. Extend the ray: the new angle is a copy of the source angle.",
+  ],
 ];
+const point = (angle: number, length: number) => ({
+  x: 155 + length * Math.cos((angle * Math.PI) / 180),
+  y: 230 - length * Math.sin((angle * Math.PI) / 180),
+});
+const arc = (angle: number, radius: number) => {
+  const p = point(angle, radius);
+  return `M ${155 + radius} 230 A ${radius} ${radius} 0 0 0 ${p.x} ${p.y}`;
+};
 
 export default function CopyAngleTargetLesson10023({
   lesson,
@@ -27,466 +48,416 @@ export default function CopyAngleTargetLesson10023({
   lesson: SchoolSyllabusLesson;
 }) {
   const [angle, setAngle] = useState(36);
-  const [copiedAngle, setCopiedAngle] = useState(36);
   const [radius, setRadius] = useState(2.5);
-  const [steps, setSteps] = useState([true, true, true, true, true, true]);
-  const [tool, setTool] = useState("Compass");
-  const [history, setHistory] = useState<number[]>([]);
-  const [future, setFuture] = useState<number[]>([]);
-  const [challengeDone, setChallengeDone] = useState(true);
-  const [checked, setChecked] = useState(true);
-  const [actions, setActions] = useState(0);
+  const [stage, setStage] = useState(0);
   const [tab, setTab] = useState("Interact");
-  const sourceSvg = useRef<SVGSVGElement>(null);
-  const complete = steps.every(Boolean);
-  const congruent = complete && checked && Math.abs(angle - copiedAngle) < 0.01;
-  const sourceEnd = endpoint(angle);
-  const targetEnd = endpoint(copiedAngle);
+  const [ratio, setRatio] = useState(1);
+  const [practice, setPractice] = useState(false);
+  const [revealed, setRevealed] = useState(false);
+  const [answer, setAnswer] = useState("");
+  const pageRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (pageRef.current) applyDedicatedTabVisibility(pageRef.current, tab);
+  }, [tab]);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const chord = angleChord(angle, radius);
+  const experimentalAngle = angleFromChord(chord, radius * ratio);
+  const r = radius * 25;
+  const source = point(angle, 175);
+  const c = point(angle, r);
+  const q = point(0, r);
   const idx = schoolLessonCatalog.findIndex((item) => item.id === lesson.id);
-  const prev = schoolLessonCatalog[idx - 1];
-  const next = schoolLessonCatalog[idx + 1];
-  const act = (fn: () => void) => {
-    fn();
-    setActions((v) => v + 1);
+  const restart = () => {
+    setStage(0);
+    setRevealed(false);
   };
   const changeAngle = (value: number) => {
-    setHistory((values) => [...values, angle]);
-    setFuture([]);
-    setAngle(clampAngle(value));
-    setChecked(false);
-    setActions((v) => v + 1);
+    setAngle(Math.min(150, Math.max(15, Math.round(value))));
+    restart();
   };
-  const dragSource = (event: PointerEvent<SVGCircleElement>) => {
-    const svg = sourceSvg.current;
+  const drag = (event: PointerEvent<SVGCircleElement>) => {
+    const svg = svgRef.current;
     if (!svg) return;
-    const rect = svg.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 220;
-    const y = ((event.clientY - rect.top) / rect.height) * 230;
-    changeAngle((Math.atan2(190 - y, x - 28) * 180) / Math.PI);
+    const matrix = svg.getScreenCTM();
+    if (!matrix) return;
+    const p = new DOMPoint(event.clientX, event.clientY).matrixTransform(
+      matrix.inverse(),
+    );
+    changeAngle((Math.atan2(230 - p.y, p.x - 155) * 180) / Math.PI);
   };
-  const undo = () => {
-    const value = history.at(-1);
-    if (value === undefined) return;
-    setFuture((values) => [angle, ...values]);
-    setHistory((values) => values.slice(0, -1));
-    setAngle(value);
-    setChecked(false);
-  };
-  const redo = () => {
-    const value = future[0];
-    if (value === undefined) return;
-    setHistory((values) => [...values, angle]);
-    setFuture((values) => values.slice(1));
-    setAngle(value);
-    setChecked(false);
-  };
-  const copy = () =>
-    act(() => {
-      setCopiedAngle(angle);
-      setSteps([true, true, true, true, true, true]);
-      setChecked(true);
-    });
+  const diagram = (target: boolean) => (
+    <svg
+      ref={target ? undefined : svgRef}
+      viewBox="0 0 380 290"
+      role="img"
+      aria-label={
+        target ? "Target compass construction at P" : "Source angle at A"
+      }
+    >
+      <line x1="155" y1="230" x2="350" y2="230" />
+      {(!target || stage >= 6) && (
+        <line
+          className={target ? "copy-ray" : ""}
+          x1="155"
+          y1="230"
+          x2={source.x}
+          y2={source.y}
+        />
+      )}
+      {(!target ? stage >= 1 : stage >= 2) && (
+        <path className="radius-arc" d={arc(165, r)} />
+      )}
+      {!target && stage >= 1 && (
+        <>
+          <circle cx={q.x} cy={q.y} r="5" />
+          <circle cx={c.x} cy={c.y} r="5" />
+          <text x={q.x + 7} y="251">
+            B
+          </text>
+          <text x={c.x - 17} y={c.y - 10}>
+            C
+          </text>
+        </>
+      )}
+      {!target && stage >= 3 && (
+        <line className="chord" x1={q.x} y1={q.y} x2={c.x} y2={c.y} />
+      )}
+      {target && stage >= 2 && (
+        <>
+          <circle cx={q.x} cy={q.y} r="5" />
+          <text x={q.x + 7} y="251">
+            Q
+          </text>
+        </>
+      )}
+      {target && stage >= 4 && (
+        <circle className="transfer-arc" cx={q.x} cy={q.y} r={chord * 25} />
+      )}
+      {target && stage >= 5 && (
+        <>
+          <line className="chord" x1={q.x} y1={q.y} x2={c.x} y2={c.y} />
+          <circle className="intersection" cx={c.x} cy={c.y} r="7" />
+          <text x={c.x - 17} y={c.y - 12}>
+            R
+          </text>
+        </>
+      )}
+      <circle cx="155" cy="230" r="5" />
+      <text x="140" y="255">
+        {target ? "P" : "A"}
+      </text>
+      {!target && (
+        <circle
+          className={practice ? undefined : "drag"}
+          cx={source.x}
+          cy={source.y}
+          r="12"
+          role={practice ? undefined : "slider"}
+          tabIndex={practice ? undefined : 0}
+          aria-label="Change source angle"
+          aria-valuemin={15}
+          aria-valuemax={150}
+          aria-valuenow={practice ? undefined : angle}
+          onKeyDown={(e) => {
+            if (
+              ["ArrowLeft", "ArrowDown", "ArrowRight", "ArrowUp"].includes(
+                e.key,
+              )
+            ) {
+              e.preventDefault();
+              changeAngle(
+                angle + (["ArrowLeft", "ArrowDown"].includes(e.key) ? -1 : 1),
+              );
+            }
+          }}
+          onPointerDown={(e) => {
+            if (!practice) e.currentTarget.setPointerCapture(e.pointerId);
+          }}
+          onPointerMove={(e) => {
+            if (e.currentTarget.hasPointerCapture(e.pointerId)) drag(e);
+          }}
+        />
+      )}
+    </svg>
+  );
   return (
     <section
+      ref={pageRef}
       className="ca10023-page"
       data-testid="school-mockup-0697"
       data-object-model="dedicated-equal-radius-arc-chord-transfer-angle-copy-construction"
       data-source-angle={angle}
-      data-copied-angle={copiedAngle}
+      data-copied-angle={stage === 6 ? angle : 0}
       data-radius={radius.toFixed(2)}
-      data-complete={complete}
-      data-congruent={congruent}
-      data-tool={tool}
-      data-steps={steps.filter(Boolean).length}
-      data-challenge={challengeDone}
-      data-actions={actions}
-      data-tab={tab}
+      data-steps={stage}
+      data-congruent={stage === 6}
+      data-tool={stage === 5 ? "Straightedge" : "Compass"}
     >
       <header className="ca10023-hero">
-        <small>Class 7 &gt; Practical Geometry</small>
-        <h1>▣ Copying an Angle</h1>
+        <small>Class 7 · Practical Geometry</small>
+        <h1>Copying an Angle</h1>
         <p>
-          <b>Objective:</b> Use compass and straightedge to copy a given angle
-          with equal measure.
+          Build an equal angle with a compass and straightedge. Discover what
+          you need to carry across.
         </p>
-        <dl>
-          <span>♙ Level 7</span>
-          <span>▣ Practical Geometry</span>
-          <span>♙ Construction</span>
-          <span>◷ Time 24 min</span>
-          <span>▣ Syllabus: NCERT Class 7</span>
-        </dl>
       </header>
       <nav className="ca10023-tabs" aria-label="Lesson sections">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (item) => (
             <button
-              className={item === tab ? "active" : ""}
-              aria-pressed={item === tab}
-              onClick={() => act(() => setTab(item))}
               key={item}
+              className={tab === item ? "active" : ""}
+              aria-pressed={tab === item}
+              onClick={() => setTab(item)}
             >
               {item}
             </button>
           ),
         )}
       </nav>
-      <section className="ca10023-process">
-        {[
-          ["1", "Observe", "See the given angle."],
-          ["2", "Manipulate", "Construct the copy step by step."],
-          ["3", "Pattern", "Notice what stays the same."],
-          ["4", "Rule", "Understand the key idea."],
-          ["5", "Try", "Build it on your own."],
-        ].map((item) => (
-          <article className={item[0] === "1" ? "active" : ""} key={item[0]}>
-            <i>{item[0]}</i>
-            <span>
-              <b>{item[1]}</b>
-              <small>{item[2]}</small>
-            </span>
-          </article>
-        ))}
-      </section>
       <section className="ca10023-lab">
-        <article className="ca10023-source">
-          <h2>Given angle (source) ⓘ</h2>
-          <svg
-            ref={sourceSvg}
-            viewBox="0 0 220 230"
-            role="img"
-            aria-label="Draggable source angle CAB"
-          >
-            <line x1="28" y1="190" x2="190" y2="190" />
-            <line x1="28" y1="190" x2={sourceEnd.x} y2={sourceEnd.y} />
-            <path
-              d={`M68 190 A40 40 0 0 0 ${28 + 40 * Math.cos((angle * Math.PI) / 180)} ${190 - 40 * Math.sin((angle * Math.PI) / 180)}`}
+        <h2>Angle-copying lab</h2>
+        <p>
+          Start with the base ray at P. Follow each compass action to build the
+          second ray.
+        </p>
+        <div className="ca10023-settings">
+          <label>
+            Source angle: {practice && !revealed ? "hidden" : `${angle}°`}
+            <input
+              aria-label="Source angle"
+              type="range"
+              min="15"
+              max="150"
+              value={angle}
+              disabled={practice}
+              onChange={(e) => changeAngle(Number(e.target.value))}
             />
-            <circle cx="28" cy="190" r="5" />
-            <circle cx="190" cy="190" r="5" />
-            <circle
-              className="drag"
-              role="slider"
-              tabIndex={0}
-              aria-label="Source point C"
-              aria-valuemin={15}
-              aria-valuemax={150}
-              aria-valuenow={angle}
-              onPointerDown={(e) =>
-                e.currentTarget.setPointerCapture(e.pointerId)
-              }
-              onPointerMove={(e) => {
-                if (e.currentTarget.hasPointerCapture(e.pointerId))
-                  dragSource(e);
+          </label>
+          <label>
+            Source arc radius: {radius.toFixed(2)} cm
+            <input
+              aria-label="Arc radius"
+              type="range"
+              min="1.5"
+              max="3.5"
+              step=".25"
+              value={radius}
+              onChange={(e) => {
+                setRadius(Number(e.target.value));
+                restart();
               }}
-              cx={sourceEnd.x}
-              cy={sourceEnd.y}
-              r="6"
             />
-            <text x="20" y="211">
-              A
-            </text>
-            <text x="187" y="211">
-              B
-            </text>
-            <text x={sourceEnd.x - 8} y={sourceEnd.y - 9}>
-              C
-            </text>
-          </svg>
-          <strong>∠CAB = {angle}°</strong>
-          <footer>
-            <button onClick={() => changeAngle(36)}>
-              ↻ Reset source angle
-            </button>
-            <button onClick={() => changeAngle(angle >= 120 ? 24 : angle + 12)}>
-              ◷ Change angle
-            </button>
-          </footer>
-          <p>
-            m∠CAB = <b>{angle}°</b>
-          </p>
-        </article>
-        <aside className="ca10023-controls">
-          <section>
-            <h2>Construction Steps</h2>
-            {stepLabels.map((label, i) => (
-              <button
-                onClick={() =>
-                  act(() =>
-                    setSteps((values) =>
-                      values.map((value, j) => (j === i ? !value : value)),
-                    ),
-                  )
-                }
-                key={label}
-              >
-                <i>{i + 1}</i>
-                {label}
-                <CheckCircle2 className={steps[i] ? "done" : ""} />
-              </button>
-            ))}
-          </section>
-          <section>
-            <h2>Tools</h2>
-            <div>
-              {["Select", "Compass", "Straightedge"].map((item, i) => (
-                <button
-                  aria-label={item}
-                  className={tool === item ? "active" : ""}
-                  onClick={() => act(() => setTool(item))}
-                  key={item}
-                >
-                  {["⌁", "♧", "╱"][i]}
-                </button>
-              ))}
-            </div>
-            <footer>
-              <button
-                aria-label="Undo angle change"
-                disabled={!history.length}
-                onClick={undo}
-              >
-                <Undo2 />
-              </button>
-              <button
-                aria-label="Redo angle change"
-                disabled={!future.length}
-                onClick={redo}
-              >
-                <Redo2 />
-              </button>
-            </footer>
-          </section>
-          <section>
-            <label>
-              Arc radius<strong>{radius.toFixed(2)} cm</strong>
-              <button
-                aria-label="Decrease arc radius"
-                onClick={() => act(() => setRadius(Math.max(1, radius - 0.25)))}
-              >
-                −
-              </button>
-              <button
-                aria-label="Increase arc radius"
-                onClick={() => act(() => setRadius(Math.min(5, radius + 0.25)))}
-              >
-                ＋
-              </button>
-              <input
-                aria-label="Arc radius"
-                type="range"
-                min="1"
-                max="5"
-                step=".25"
-                value={radius}
-                onChange={(e) => act(() => setRadius(Number(e.target.value)))}
-              />
-            </label>
-          </section>
-          <aside className={congruent ? "ok" : "bad"}>
-            <h2>ⓞ Congruence Check</h2>
-            <p>m∠CAB = {angle}°</p>
-            <p>m∠RPQ = {copiedAngle}°</p>
-            <b>
-              {congruent
-                ? "✓ Angles are congruent"
-                : "Copy and check the angle"}
-            </b>
-          </aside>
-        </aside>
-        <article className="ca10023-target">
-          <h2>Constructed angle (target) ⓘ</h2>
-          <svg
-            viewBox="0 0 220 230"
-            role="img"
-            aria-label="Constructed target angle RPQ"
-          >
-            <line x1="28" y1="190" x2="190" y2="190" />
-            <line x1="28" y1="190" x2={targetEnd.x} y2={targetEnd.y} />
-            <path className="arc1" d="M105 190A77 77 0 0 0 91 146" />
-            <path
-              className="arc2"
-              d={`M105 190A48 48 0 0 1 ${28 + 77 * Math.cos((copiedAngle * Math.PI) / 180)} ${190 - 77 * Math.sin((copiedAngle * Math.PI) / 180)}`}
-            />
-            <circle cx="28" cy="190" r="5" />
-            <circle cx="190" cy="190" r="5" />
-            <circle cx="105" cy="190" r="5" />
-            <circle cx={targetEnd.x} cy={targetEnd.y} r="5" />
-            <text x="20" y="211">
-              P
-            </text>
-            <text x="187" y="211">
-              Q
-            </text>
-            <text x={targetEnd.x - 8} y={targetEnd.y - 9}>
-              R
-            </text>
-            <text x="101" y="211">
-              1
-            </text>
-            <text x="87" y="144">
-              2
-            </text>
-          </svg>
-          <footer>
-            <button
-              onClick={() =>
-                act(() => {
-                  setCopiedAngle(0);
-                  setSteps([false, false, false, false, false, false]);
-                  setChecked(false);
-                })
-              }
-            >
-              ↻ Reset construction
-            </button>
-            <button onClick={copy}>＠ Check again</button>
-          </footer>
-          <p>
-            m∠RPQ = <b>{copiedAngle}°</b>
-          </p>
-        </article>
-      </section>
-      <aside className="ca10023-how">
-        ⓘ <b>How to copy:</b> Use equal-radius arcs. Transfer the chord AB to
-        the new base PQ. The new angle RPQ equals the given angle CAB.
-      </aside>
-      <section className="ca10023-theory">
-        <article>
-          <h2>
-            ◉ Worked Example <small>✓ Solved</small>
-          </h2>
-          <p>Copy ∠CAB = 50° to a new base PQ.</p>
-          <div>
-            <svg viewBox="0 0 130 120">
-              <line x1="15" y1="95" x2="112" y2="95" />
-              <line x1="15" y1="95" x2="80" y2="30" />
-              <path d="M48 95A33 33 0 0 0 38 72" />
-              <text x="48" y="79">
-                50°
-              </text>
-            </svg>
-            <svg viewBox="0 0 130 120">
-              <line x1="15" y1="95" x2="112" y2="95" />
-              <line x1="15" y1="95" x2="80" y2="30" />
-              <path d="M70 95A55 55 0 0 0 50 54" />
-              <path d="M85 95A70 70 0 0 0 61 43" />
-            </svg>
-          </div>
-          <aside>
-            <b>Result:</b> m∠RPQ = 50° = m∠CAB
-            <br />
-            Therefore, ∠RPQ is a copy of ∠CAB.
-          </aside>
-        </article>
-        <article>
-          <h2>▣ Key Rule / Definition</h2>
-          <h3>Angle Copying Rule</h3>
-          <p>
-            If two angles are constructed by the steps of copying an angle, then
-            they are congruent.
-          </p>
-          <aside>
-            <b>Idea</b>
+          </label>
+        </div>
+        <div className="ca10023-diagrams">
+          <article>
+            <h3>1. Given angle</h3>
+            {diagram(false)}
             <p>
-              Equal-radius arcs create equal chords.
-              <br />
-              Equal chords on equal radii subtend equal angles.
+              {practice ? "The source is fixed for this challenge. Copy its shape using the compass steps." : "Drag the blue handle or use the angle slider. Changing the source starts a fresh construction."}
             </p>
-          </aside>
-          <footer>
-            <b>Notation</b>
-            <p>∠CAB ≅ ∠RPQ</p>
-          </footer>
-        </article>
-        <article>
-          <h2>ⓘ Common Mistake</h2>
-          <svg viewBox="0 0 210 125">
-            <line x1="15" y1="95" x2="95" y2="95" />
-            <line x1="120" y1="95" x2="200" y2="95" />
-            <path d="M80 95A65 65 0 0 0 36 34" />
-            <path d="M168 95A48 48 0 0 0 143 54" />
-            <circle cx="80" cy="95" r="4" />
-            <circle cx="168" cy="95" r="4" />
-          </svg>
-          <p>
-            Using different arc radii changes the chord length, so the copied
-            angle will not be equal.
-          </p>
-          <b>Tip: Keep the compass width same throughout the construction.</b>
-        </article>
-      </section>
-      <section className="ca10023-challenge">
-        <article>
-          <h2>
-            ◉ Try this Challenge <small>Challenge 1</small>
-          </h2>
-          <p>
-            Copy the given angle of 72° to the base XY. Show your construction
-            and check congruence.
-          </p>
+          </article>
+          <article>
+            <h3>2. Your construction</h3>
+            {diagram(true)}
+            <p>
+              {stage === 6
+                ? practice && !revealed
+                  ? "Construction complete. Reveal the measures to check."
+                  : `∠QPR = ∠BAC = ${angle}°`
+                : "The next compass action adds a new piece."}
+            </p>
+          </article>
+        </div>
+        <div className="ca10023-guide">
+          <ol>
+            {steps.map(([title], i) => (
+              <li
+                key={title}
+                className={stage > i ? "done" : stage === i ? "current" : ""}
+              >
+                {stage > i ? "✓ " : `${i + 1}. `}
+                {title}
+              </li>
+            ))}
+          </ol>
           <div>
-            <svg viewBox="0 0 130 115">
-              <line x1="15" y1="90" x2="112" y2="90" />
-              <line x1="15" y1="90" x2="73" y2="25" />
-              <path d="M48 90A33 33 0 0 0 25 59" />
-              <text x="45" y="70">
-                72°
-              </text>
-            </svg>
-            <svg viewBox="0 0 170 115">
-              <line x1="15" y1="90" x2="155" y2="90" />
-              <line x1="15" y1="90" x2="95" y2="20" />
-              <path d="M95 90A80 80 0 0 0 67 29" />
-              <path d="M112 90A97 97 0 0 0 78 16" />
-            </svg>
-            <aside>
-              <b>Answer & Check</b>
-              <p>m∠RXY = 72°</p>
-              <button onClick={() => setChallengeDone(true)}>
-                Check answer
+            <p className="ca10023-step-count">
+              {stage < 6 ? `Step ${stage + 1} of 6` : "Construction complete"} ·{" "}
+              {stage === 5 ? "Straightedge" : "Compass"}
+            </p>
+            <h3>{stage < 6 ? steps[stage][0] : "You copied the angle!"}</h3>
+            <p aria-live="polite">
+              {stage < 6
+                ? steps[stage][1]
+                : "The two triangles have the same three side lengths, so their angles at A and P are equal."}
+            </p>
+            <div className="ca10023-actions">
+              <button
+                disabled={stage === 6}
+                onClick={() => setStage(stage + 1)}
+              >
+                {stage < 6 ? steps[stage][0] : "All steps completed"}
               </button>
-              <button onClick={() => setChallengeDone(false)}>Reset</button>
-              {challengeDone && <strong>✓ Congruent</strong>}
-            </aside>
+              <button
+                disabled={stage === 0}
+                onClick={() => {
+                  setStage(stage - 1);
+                  setRevealed(false);
+                }}
+              >
+                Back one step
+              </button>
+              <button onClick={restart}>Reset construction</button>
+              {practice && stage === 6 && (
+                <button onClick={() => setRevealed(true)}>
+                  Reveal and check
+                </button>
+              )}
+            </div>
+            {practice && revealed && (
+              <p role="status">
+                ✓ Both angles measure {angle}°. You constructed the copy without
+                reading a protractor.
+              </p>
+            )}
           </div>
-        </article>
-        <aside>
-          <h2>▣ Quick Check</h2>
-          <p>Drag the blue point C to change the given angle.</p>
-          <svg viewBox="0 0 210 110">
-            <line x1="25" y1="85" x2="180" y2="85" />
-            <line
-              x1="25"
-              y1="85"
-              x2={25 + 120 * Math.cos((angle * Math.PI) / 180)}
-              y2={85 - 120 * Math.sin((angle * Math.PI) / 180)}
-            />
-            <text x="82" y="75">
-              {angle}°
-            </text>
-          </svg>
-          <footer>
-            Current m∠CAB<strong>{angle}°</strong>
-          </footer>
-        </aside>
+        </div>
+        <p className="ca10023-key">
+          Blue arcs: same radius. Orange segments: same chord length. Green ray:
+          your copied angle.
+        </p>
+      </section>
+      <section className="ca10023-learn">
+        <h2>Learn: why it works</h2>
+        <p>
+          The source arc makes AB = AC. Copying its radius gives PQ = PR.
+          Transferring the straight chord gives BC = QR. Triangles ABC and PQR
+          therefore match by SSS (side–side–side), so ∠BAC = ∠QPR.
+        </p>
+        <h3>Experiment: what if the radius changes?</h3>
+        <p>
+          Keep the source chord BC fixed, but change the target radius. Predict
+          whether the new angle gets smaller or larger, then move the slider.
+        </p>
+        <label>
+          Target radius: {(radius * ratio).toFixed(2)} cm
+          <input
+            aria-label="Experimental target radius"
+            type="range"
+            min=".5"
+            max="1.5"
+            step=".05"
+            value={ratio}
+            onChange={(e) => setRatio(Number(e.target.value))}
+          />
+        </label>
+        <p role="status">
+          Source: {angle}°. Target:{" "}
+          {experimentalAngle === null
+            ? "no intersection — the chord is longer than the circle’s diameter"
+            : `${experimentalAngle.toFixed(1)}°`}
+          .{" "}
+          {ratio === 1
+            ? "Equal radius + equal chord = equal angle."
+            : ratio > 1
+              ? "A larger radius makes a smaller angle for the same chord."
+              : "A smaller radius needs a larger angle, if the circles can intersect."}
+        </p>
+        <button onClick={() => setRatio(1)}>Restore equal radii</button>
+        <p>
+          <b>Common mistake:</b> Keep the opening unchanged when copying the
+          first radius. Then change it to BC, and keep that new opening
+          unchanged while transferring the chord. The compass uses two different
+          openings.
+        </p>
+      </section>
+      <section className="ca10023-example">
+        <h2>Worked Example</h2>
+        <p>
+          Copy a 50° angle using a 2.5 cm source radius. First draw both radius
+          arcs. Measure BC, swing the chord arc from Q, mark R, then draw PR.
+          The result is 50° because the triangles match — no protractor is
+          needed.
+        </p>
+        <button
+          onClick={() => {
+            setAngle(50);
+            setRadius(2.5);
+            setPractice(false);
+            restart();
+            setTab("Interact");
+          }}
+        >
+          Build the 50° example in the lab
+        </button>
+      </section>
+      <section className="ca10023-formula">
+        <h2>Key rules and formula</h2>
+        <p>AB = AC = PQ = PR and BC = QR ⇒ ∠BAC = ∠QPR.</p>
+        <p>
+          Optional connection: chord length = 2 × radius × sin(angle ÷ 2). The
+          compass transfers this length directly; you do not need trigonometry
+          for the construction.
+        </p>
+        <p>
+          Current chord BC: {chord.toFixed(2)} cm. Copying only the radius is
+          insufficient: many different angles fit on the same circle.
+        </p>
+      </section>
+      <section className="ca10023-practice">
+        <h2>Practice independently</h2>
+        <p>
+          Construct a hidden angle without measuring it. Follow all six actions,
+          then reveal both measures to check.
+        </p>
+        <button
+          onClick={() => {
+            setAngle([42, 72, 108, 135][Math.floor(Math.random() * 4)]);
+            setPractice(true);
+            restart();
+            setTab("Interact");
+          }}
+        >
+          Start a hidden-angle challenge
+        </button>
+        <h3>Think before you answer</h3>
+        <p>
+          After copying the radius, which distance should the compass transfer?
+        </p>
+        <div className="ca10023-actions">
+          {[
+            "The curved arc BC",
+            "The straight chord BC",
+            "The whole base ray",
+          ].map((choice) => (
+            <button
+              key={choice}
+              aria-pressed={answer === choice}
+              onClick={() => setAnswer(choice)}
+            >
+              {choice}
+            </button>
+          ))}
+        </div>
+        {answer && (
+          <p role="status">
+            {answer === "The straight chord BC"
+              ? "Correct! BC is a straight side of the source triangle. Copying it completes the SSS match."
+              : "Try again: a compass opening measures a straight distance between its tips. Transfer the segment joining the two arc intersections."}
+          </p>
+        )}
       </section>
       <nav className="ca10023-adjacent">
-        <Link to={prev.route}>
-          ←
-          <span>
-            Previous Lesson<b>Copying a Line Segment</b>
-          </span>
-        </Link>
-        <Link to={next.route}>
-          <span>
-            Next Lesson<b>Perpendicular Bisector Construction</b>
-          </span>
-          →
-        </Link>
+        {schoolLessonCatalog[idx - 1] && (
+          <Link to={schoolLessonCatalog[idx - 1].route}>← Previous lesson</Link>
+        )}
+        {schoolLessonCatalog[idx + 1] && (
+          <Link to={schoolLessonCatalog[idx + 1].route}>Next lesson →</Link>
+        )}
       </nav>
       <LessonTopicStudyBoard lessonId={10023} view={tab} />
-
     </section>
   );
 }

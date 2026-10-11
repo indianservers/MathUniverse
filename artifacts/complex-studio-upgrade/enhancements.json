@@ -1,0 +1,186 @@
+{
+  "scope": "Dedicated complex-numbers studio",
+  "enhancements": [
+    {
+      "id": 1,
+      "title": "Mode label",
+      "implementation": "Dedicated label and a 2 × 2 phone mode selector."
+    },
+    {
+      "id": 2,
+      "title": "Mobile navigation",
+      "implementation": "Collapsible studio navigation; redundant phone sidebar removed."
+    },
+    {
+      "id": 3,
+      "title": "Visible modes",
+      "implementation": "All four Euler modes remain visible without horizontal scrolling."
+    },
+    {
+      "id": 4,
+      "title": "Compact toolbar",
+      "implementation": "Zoom, fit and reset stay visible; other actions are under More."
+    },
+    {
+      "id": 5,
+      "title": "Single scrolling",
+      "implementation": "The outer lab panel scrolls; nested complex studio containers do not."
+    },
+    {
+      "id": 6,
+      "title": "Earlier visualization",
+      "implementation": "Compact learning tabs and header; camera presets follow the figure."
+    },
+    {
+      "id": 7,
+      "title": "Unobstructed content",
+      "implementation": "Reserved footer space for the smaller assistant and learning button."
+    },
+    {
+      "id": 8,
+      "title": "Typeset mathematics",
+      "implementation": "KaTeX equations in the Euler workspace, topic preview and learning panels."
+    },
+    {
+      "id": 9,
+      "title": "Control contrast",
+      "implementation": "Readable text controls with explicit selected and disabled states."
+    },
+    {
+      "id": 10,
+      "title": "Control grouping",
+      "implementation": "Separate modes, mathematical parameters, camera presets and coaching."
+    },
+    {
+      "id": 11,
+      "title": "Degrees and radians",
+      "implementation": "Both units appear together, with exact labels at quarter turns."
+    },
+    {
+      "id": 12,
+      "title": "Direct angle entry",
+      "implementation": "Bounded numerical input from 0° to 720°, linked with the slider."
+    },
+    {
+      "id": 13,
+      "title": "Angle shortcuts",
+      "implementation": "0, π/2, π, 3π/2, 2π and 4π shortcuts."
+    },
+    {
+      "id": 14,
+      "title": "Playback",
+      "implementation": "Play/pause, 15° steps, speed selection and a 720° stop."
+    },
+    {
+      "id": 15,
+      "title": "Helix axes",
+      "implementation": "Colored Re, Im and θ axes, with radians on the angle axis."
+    },
+    {
+      "id": 16,
+      "title": "Third dimension explained",
+      "implementation": "Unwrapped angle is distinguished from the complex components."
+    },
+    {
+      "id": 17,
+      "title": "Camera presets",
+      "implementation": "3D, complex plane, cosine and sine projections."
+    },
+    {
+      "id": 18,
+      "title": "Interaction guidance",
+      "implementation": "Visible drag/pinch instructions and expanded Help."
+    },
+    {
+      "id": 19,
+      "title": "Consistent colors",
+      "implementation": "Blue real, purple imaginary, amber angle, teal exact, pink Taylor."
+    },
+    {
+      "id": 20,
+      "title": "Legend",
+      "implementation": "Text and marker shapes distinguish exact and Taylor values."
+    },
+    {
+      "id": 21,
+      "title": "Trace length",
+      "implementation": "Quarter-turn to two-turn history control for the circle and helix."
+    },
+    {
+      "id": 22,
+      "title": "Angle and radius",
+      "implementation": "Angle arc, unit radius and projected component guides."
+    },
+    {
+      "id": 23,
+      "title": "Linked comparison",
+      "implementation": "Optional simultaneous helix, circle and sine/cosine views."
+    },
+    {
+      "id": 24,
+      "title": "Taylor error",
+      "implementation": "Live Euclidean error between the partial sum and exact point."
+    },
+    {
+      "id": 25,
+      "title": "Taylor terms explained",
+      "implementation": "N counts n = 0 through N−1; the constant term and radians are explicit."
+    },
+    {
+      "id": 26,
+      "title": "Guided learning",
+      "implementation": "Five selectable steps, sequential progression and relevant-panel highlighting."
+    },
+    {
+      "id": 27,
+      "title": "Prediction",
+      "implementation": "Next-quarter-turn prediction with checking and reveal on the figure."
+    },
+    {
+      "id": 28,
+      "title": "Challenge feedback",
+      "implementation": "Separate blank, invalid, incorrect and correct responses with a hint."
+    },
+    {
+      "id": 29,
+      "title": "Accessibility",
+      "implementation": "Keyboard controls, focus rings, point descriptions, reduced-motion playback and 3D fallback."
+    },
+    {
+      "id": 30,
+      "title": "Complete shared state",
+      "implementation": "Angle, terms, trace, camera position/target, split view, grid, labels, zoom and speed saved in fig URL state."
+    }
+  ],
+  "studioDepth": {
+    "labs": 9,
+    "conceptualChecks": 27,
+    "learningPaths": 3,
+    "foundationDiagnostic": 3,
+    "panes": [
+      "Meaning",
+      "Explore",
+      "Uses",
+      "Quiz",
+      "Theory"
+    ]
+  },
+  "browserVerification": [
+    "390 × 844 and 1366 × 900 Euler layouts",
+    "No horizontal page overflow",
+    "Single workspace scroll container",
+    "Live angle and Taylor linking",
+    "Playback advancement and pause",
+    "Reduced motion disables playback",
+    "Quiz grading and per-question explanations",
+    "Completion reflected on studio home",
+    "Shared state restored after reload",
+    "SVG file written to Downloads"
+  ],
+  "limits": [
+    "Print and fullscreen controls are implemented but their platform dialogs were not exercised.",
+    "Full repository typecheck has errors outside this scope.",
+    "Broader route regression includes a failing pre-existing trigonometry class-name expectation.",
+    "Not deployed to the live website."
+  ]
+}

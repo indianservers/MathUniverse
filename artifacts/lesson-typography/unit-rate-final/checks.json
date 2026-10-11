@@ -1,0 +1,21 @@
+[
+  {
+    "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-unit-rate-table-lab",
+    "title": "Unit Rate Table Lab",
+    "catalog": "school",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 181,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 181,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  }
+]

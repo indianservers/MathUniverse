@@ -1,0 +1,68 @@
+/* Give the minimum readable type room without changing lesson coordinates. */
+[data-lesson-typography] :is(input, select, textarea) {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* A viewport can also be a grid. Its columns own their available width. */
+[data-lesson-typography] [data-lesson-viewport] > :is(main, section, article, aside, div) {
+  width: auto !important;
+}
+
+[data-lesson-typography] .inv10122-right .verify p {
+  grid-template-columns: repeat(3, minmax(0, 1fr) auto);
+  gap: 2px;
+}
+
+[data-lesson-typography] .reference {
+  overflow-x: auto;
+}
+
+[data-lesson-typography] .pg10006-chart {
+  overflow-x: auto;
+}
+
+[data-lesson-typography] .eca10089-investigate .tools > :is(h3, p, button) {
+  position: static;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  transform: none;
+}
+
+[data-lesson-typography] .eca10089-investigate .tools {
+  position: static;
+  transform: none;
+  margin: 0;
+  width: auto;
+  overflow-x: auto;
+}
+
+@media (max-width: 799px) {
+  [data-lesson-typography] :is(header, [class$="-hero"]) dl {
+    flex-wrap: wrap;
+    height: auto;
+  }
+  [data-lesson-typography] :is(header, [class$="-hero"]) > p {
+    width: auto;
+    max-width: 100%;
+  }
+  [data-lesson-typography] .er10003-challenge article > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  [data-lesson-typography] .er10003-challenge button {
+    grid-column: 1 / -1;
+  }
+  [data-lesson-typography] .dr10014-practice section > button {
+    left: auto;
+    top: auto;
+    margin-top: 8px;
+  }
+  [data-lesson-typography] .dr10014-practice > article:first-child > section {
+    height: auto;
+  }
+  [data-lesson-typography] .flow10035-canvas {
+    overflow-x: auto;
+  }
+}
+

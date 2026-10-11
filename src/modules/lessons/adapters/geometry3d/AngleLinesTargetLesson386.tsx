@@ -1,4 +1,5 @@
-import { Billboard, Line, OrbitControls, Text } from "@react-three/drei";
+import { Billboard, Line, OrbitControls} from "@react-three/drei";
+import Text from "../../components/LessonSceneLabel";
 import { Canvas, type ThreeEvent, useThree } from "@react-three/fiber";
 import {
   ExternalLink,
@@ -571,7 +572,7 @@ function AngleScene({
       )}
       {layers[0] && result.valid && (
         <Billboard position={[1.3, 1.1, 0.2]}>
-          <Text fontSize={12} color="#ff9d00">
+          <Text fontSize={0.28} color="#ff9d00">
             θ = {result.angle}°
           </Text>
         </Billboard>
@@ -634,7 +635,7 @@ function VectorArrow({
         />
       </mesh>
       <Billboard position={[end[0] + 0.5, end[1] + 0.35, end[2]]}>
-        <Text fontSize={12} color={color}>
+        <Text fontSize={0.3} color={color}>
           {label}
         </Text>
       </Billboard>

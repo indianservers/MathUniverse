@@ -24,12 +24,12 @@ export function ComboWorkspace({
 }) {
   return (
     <div className="combo-workspace">
-      <section className={`combo-col combo-controls${collapsed ? " is-collapsed" : ""}`}>
+      <section data-lab-pane="workspace" className={`combo-col combo-controls${collapsed ? " is-collapsed" : ""}`}>
         <button type="button" className="combo-mobile-toggle" onClick={onToggle}>{collapsed ? "Show controls" : "Hide controls"}</button>
         {controls}
       </section>
-      <section className={`combo-col combo-viz theme-${theme}`}>{viz}</section>
-      <aside className="combo-col combo-insights">{insights}</aside>
+      <section data-lab-pane="workspace" className={`combo-col combo-viz theme-${theme}`}>{viz}</section>
+      <aside data-lab-pane="workspace" className="combo-col combo-insights">{insights}</aside>
     </div>
   );
 }

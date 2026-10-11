@@ -1,0 +1,21 @@
+[
+  {
+    "route": "/lessons/core-workspaces/24-animation-controls",
+    "title": "Animation Controls",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 93,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 93,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  }
+]

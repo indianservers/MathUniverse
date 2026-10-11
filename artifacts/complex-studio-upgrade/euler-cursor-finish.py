@@ -1,0 +1,2 @@
+from pathlib import Path
+p=Path('src/studios/complex/EulerCursor.tsx');s=p.read_text(encoding='utf-8');s=s.replace('c.setDegrees(Math.max(0, Math.min(720, value)));','c.setDegrees(Number(Math.max(0, Math.min(720, value)).toFixed(2)));');s=s.replace('e.key === "Escape" && gesture.current !== null','e.key === "Escape" && capture.current && gesture.current !== null');s=s.replace('Math.abs((c.degrees % 360) - (v % 360)) < 0.01','Math.abs(c.degrees - v) < 0.01');p.write_text(s,encoding='utf-8')

@@ -188,6 +188,7 @@ export function useWorkspaceOverlay(options?: {
     const sync = () => {
       const height = viewport?.height ?? window.innerHeight;
       document.documentElement.style.setProperty("--mws-vvh", `${height}px`);
+      document.documentElement.style.setProperty("--mws-visible-bottom", `${Math.max(0,window.innerHeight-height-(viewport?.offsetTop??0))}px`);
       document.documentElement.style.setProperty(
         "--mws-keyboard",
         `${Math.max(0, window.innerHeight - height)}px`,

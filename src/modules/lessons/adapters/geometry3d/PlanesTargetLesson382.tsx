@@ -1,4 +1,5 @@
-import { Billboard, Line, OrbitControls, Text } from "@react-three/drei";
+import { Billboard, Line, OrbitControls} from "@react-three/drei";
+import Text from "../../components/LessonSceneLabel";
 import { Canvas, useThree } from "@react-three/fiber";
 import { ExternalLink, Maximize2, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -516,7 +517,7 @@ function PlaneScene({
             </mesh>
             <Billboard position={[0.35, 0.28, 0]}>
               <Text
-                fontSize={12}
+                fontSize={0.25}
                 color={["#ff625a", "#65d94c", "#36d2eb"][index]}
               >
                 ({cut.join(", ")})
@@ -528,7 +529,7 @@ function PlaneScene({
         <>
           <Line points={[start, end]} color="#f6bd2a" lineWidth={5} />
           <Billboard position={[end[0] + 0.2, end[1] + 0.2, end[2]]}>
-            <Text fontSize={12} color="#f6bd2a">
+            <Text fontSize={0.25} color="#f6bd2a">
               n = ({a}, {b}, {c})
             </Text>
           </Billboard>
@@ -541,7 +542,7 @@ function PlaneScene({
             <meshStandardMaterial color="#fff" />
           </mesh>
           <Billboard position={[0.35, 0.25, 0]}>
-            <Text fontSize={12} color="#fff">
+            <Text fontSize={0.24} color="#fff">
               P (1, 1, 1)
             </Text>
           </Billboard>
@@ -549,18 +550,18 @@ function PlaneScene({
       )}
       {showEquation && (
         <Billboard position={[2.5, 3.1, 1]}>
-          <Text fontSize={12} color="#d9ccff">
+          <Text fontSize={0.3} color="#d9ccff">
             {a}x + {b}y + {c}z = {d}
           </Text>
         </Billboard>
       )}
-      <Text position={[7.5, 0.2, 0]} fontSize={12} color="#ef5148">
+      <Text position={[7.5, 0.2, 0]} fontSize={0.35} color="#ef5148">
         x
       </Text>
-      <Text position={[0, 0.2, 7.5]} fontSize={12} color="#56b43c">
+      <Text position={[0, 0.2, 7.5]} fontSize={0.35} color="#56b43c">
         y
       </Text>
-      <Text position={[0.2, 7.5, 0]} fontSize={12} color="#23bcd9">
+      <Text position={[0.2, 7.5, 0]} fontSize={0.35} color="#23bcd9">
         z
       </Text>
     </>

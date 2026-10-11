@@ -1,3 +1,4 @@
+import "./mobileEnhancements.css";
 export { default as MobileWorkspaceShell } from "./MobileWorkspaceShell";
 export { default as WorkspaceBottomSheet } from "./WorkspaceBottomSheet";
 export { default as WorkspaceDrawer } from "./WorkspaceDrawer";

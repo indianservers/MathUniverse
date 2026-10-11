@@ -19,6 +19,14 @@ export default function MobileWorkspaceShell({
   return (
     <div
       {...rest}
+      onPointerDownCapture={event=>{
+        rest.onPointerDownCapture?.(event);
+        if(!overlay.isMobile)return;
+        const button=(event.target as Element).closest("button");if(!button?.disabled)return;
+        const label=button.getAttribute("aria-label") || button.textContent || "this action";
+        const reason=button.closest("fieldset:disabled") ? "Unlock the selected object to edit it." : /undo/i.test(label) ? "There are no changes to undo." : /redo/i.test(label) ? "There are no changes to redo." : "Select or mark an object to enable this action.";
+        window.dispatchEvent(new CustomEvent("mws-unavailable",{detail:reason}));
+      }}
       ref={(node) => {
         overlay.rootRef.current = node;
         if (typeof rootRef === "function") rootRef(node);

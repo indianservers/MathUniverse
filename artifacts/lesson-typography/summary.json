@@ -1,10 +1,32 @@
 {
-  "lessons": 3,
-  "checks": 6,
-  "undersized": [
-    "/lessons/advanced-concepts/2001-partial-quotients",
-    "/lessons/school/class-7/class-7-numbers-and-arithmetic-unit-rate-table-lab"
+  "lessons": 919,
+  "checks": 1836,
+  "undersized": [],
+  "errors": [
+    {
+      "route": "/lessons/core-workspaces/24-animation-controls",
+      "title": "Animation Controls",
+      "error": "TimeoutError: page.waitForFunction: Timeout 60000ms exceeded."
+    }
   ],
-  "errors": [],
-  "overflow": []
+  "overflow": [
+    "/lessons/school/class-6/class-6-numbers-and-arithmetic-estimation-and-rounding-lab",
+    "/lessons/school/class-6/class-6-numbers-and-arithmetic-approximation-and-error-bounds",
+    "/lessons/school/class-6/class-6-numbers-and-arithmetic-mixed-units-and-unit-conversion",
+    "/lessons/school/class-6/class-6-data-handling-pictograph-builder",
+    "/lessons/school/class-6/class-6-patterns-number-pattern-completion",
+    "/lessons/school/class-6/class-6-patterns-shape-pattern-completion",
+    "/lessons/school/class-6/class-6-patterns-input-output-rule-machines",
+    "/lessons/school/class-7/class-7-numbers-and-arithmetic-digital-root-and-divisibility",
+    "/lessons/school/class-7/class-7-numbers-and-arithmetic-remainder-reasoning",
+    "/lessons/school/class-7/class-7-numbers-and-arithmetic-ratio-tables",
+    "/lessons/school/class-7/class-7-applied-arithmetic-bills-discounts-and-tax",
+    "/lessons/school/class-8/class-8-information-processing-flowchart-logic",
+    "/lessons/school/class-10/class-10-circle-proofs-equal-chords-and-equal-angles",
+    "/lessons/school/class-10/class-10-circle-proofs-tangent-perpendicular-to-radius",
+    "/lessons/school/class-10/class-10-mensuration-combined-solids",
+    "/lessons/school/class-11/class-11-relations-and-functions-types-of-relations",
+    "/lessons/school/class-11/class-11-relations-and-functions-invertible-functions",
+    "/lessons/school/class-11/class-11-conic-sections-parabola-standard-forms"
+  ]
 }

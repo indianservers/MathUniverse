@@ -1,3 +1,6 @@
+import MobileMathInput from "../workspace/mobile/MobileMathInput";
+import MobileActionCenter, { useMobileActions } from "../workspace/mobile/MobileActionCenter";
+import MobileNumber from "../workspace/mobile/MobileNumber";
 import { identityTransform, screenTarget, transformDelta } from "../workspace/immersive/types";
 import { ImmersiveSettings, ImmersiveToolbar, useImmersiveAdapter } from "../workspace/immersive/ImmersiveInteractionManager";
 import {
@@ -247,6 +250,7 @@ export default function GraphStudio2DWorkspace(
   const [renaming, setRenaming] = useState(false);
   const [fps, setFps] = useState(60);
   const overlay = useWorkspaceOverlay();
+  const mobileActions = useMobileActions(overlay.isMobile, props.onUndo);
   const leftPanelRef = useRef<HTMLElement>(null);
   const rightPanelRef = useRef<HTMLElement>(null);
   const sceneHostRef = useRef<HTMLDivElement>(null);
@@ -549,7 +553,7 @@ export default function GraphStudio2DWorkspace(
               onSelect={() => props.onSelect(item.id)}
               onUpdate={(patch) => props.onUpdate(item.id, patch)}
               onDuplicate={() => props.onDuplicate(item.id)}
-              onRemove={() => props.onRemove(item.id)}
+              onRemove={() => mobileActions.deleted(()=>props.onRemove(item.id))}
               onMove={(direction) => props.onMove(item.id, direction)}
             />
           ))}
@@ -562,7 +566,7 @@ export default function GraphStudio2DWorkspace(
             Add expression
           </button>
           {props.functions.length > 0 && (
-            <button type="button" className="gs2d-wide-action" onClick={props.onClear}>
+            <button type="button" className="gs2d-wide-action" onClick={overlay.isMobile?()=>mobileActions.clear(props.functions.length,props.onClear):props.onClear}>
               <Trash2 />
               Clear all graphs
             </button>
@@ -817,9 +821,28 @@ export default function GraphStudio2DWorkspace(
           Table
         </button>
       </nav>
+      <MobileActionCenter overlay={overlay} actions={mobileActions} undo={props.onUndo} redo={props.onRedo} canUndo={props.canUndo} canRedo={props.canRedo}
+        instructions={props.traceMode ? "Drag the trace slider to inspect curve coordinates. Pinch to zoom." : "Drag empty space to pan; pinch to zoom. Open Add to enter an expression."}
+        cancel={()=>props.onTraceModeChange(false)} onClear={()=>mobileActions.clear(props.functions.length,props.onClear)}
+        objects={props.functions.map(row=>({id:row.id,name:row.name ? `${row.name}: ${row.input}` : row.input || "Expression",kind:"function",selected:row.id===props.selectedId,visible:row.visible,locked:row.locked,
+          select:()=>props.onSelect(row.id),visibility:()=>props.onUpdate(row.id,{visible:!row.visible}),lock:()=>props.onUpdate(row.id,{locked:!row.locked}),remove:()=>props.onRemove(row.id)}))}
+        add={<><button type="button" onClick={props.onAdd}>Add expression</button><MobileMathInput value={props.functions.find(row=>row.id===props.selectedId)?.input ?? ""} onChange={expression=>props.onUpdate(props.selectedId,{input:expression})}
+          error={props.plotted.find(row=>row.id===props.selectedId)?.error} templates={[{label:"Sine of x²",expression:"sin(x^2)"},{label:"Parabola",expression:"x^2"},{label:"Circle",expression:"x^2+y^2=9"},{label:"Inequality",expression:"y<=x^2"},{label:"Square root",expression:"sqrt(x)"}]} /></>}
+        edit={<>{props.functions.find(row=>row.id===props.selectedId) && <fieldset disabled={props.functions.find(row=>row.id===props.selectedId)?.locked}><MobileMathInput value={props.functions.find(row=>row.id===props.selectedId)!.input} onChange={expression=>props.onUpdate(props.selectedId,{input:expression})} error={props.plotted.find(row=>row.id===props.selectedId)?.error} templates={[]} />
+          <button type="button" onClick={()=>props.onDuplicate(props.selectedId)}>Duplicate expression</button><button type="button" onClick={()=>mobileActions.deleted(()=>props.onRemove(props.selectedId))}>Delete expression</button></fieldset>}
+          <label><input type="checkbox" checked={props.traceMode} onChange={e=>props.onTraceModeChange(e.target.checked)} />Trace curve</label>
+          <label>Trace coordinate<input type="range" aria-label="Mobile trace slider" min={props.view.xMin} max={props.view.xMax} step={(props.view.xMax-props.view.xMin)/500} value={props.traceX} onChange={e=>props.onTraceXChange(Number(e.target.value))}/></label><MobileNumber label="Trace x" value={props.traceX} onChange={props.onTraceXChange}/>
+          <output aria-live="polite">x = {props.traceX.toFixed(3)}; y = {props.plotted.find(row=>row.id===props.selectedId)?.points.filter(p=>p.y!==null).reduce((best,p)=>Math.abs(p.x-props.traceX)<Math.abs(best.x-props.traceX)?p:best,{x:Infinity,y:null} as GraphSample).y ?? "undefined"}</output></>}
+        view={<div className="mws-action-grid"><button type="button" onClick={props.onFitView}>Fit curves</button><button type="button" onClick={()=>{const points=props.plotted.find(row=>row.id===props.selectedId)?.points.filter(p=>p.y!==null&&Number.isFinite(p.y))??[];if(!points.length)return;const ys=points.map(p=>p.y!);const min=Math.min(...ys),max=Math.max(...ys),pad=Math.max(1,(max-min)*.1);props.onViewChange({...props.view,yMin:min-pad,yMax:max+pad});}}>Fit selected curve</button><button type="button" onClick={props.onResetView}>Reset axes</button><button type="button" onClick={()=>{props.onTraceModeChange(false);overlay.close();}}>Pan canvas</button></div>}
+      />
       <WorkspaceToolbar
         label="Graph workspace tools"
         items={[
+          { id: "delete", label: "Delete", icon: <Trash2 />, danger: true, disabled: !props.functions.some(row => row.id === props.selectedId), onSelect: () => { mobileActions.deleted(() => props.onRemove(props.selectedId)); overlay.close(); } },
+          { id: "zoom-in", label: "Zoom in", icon: <ZoomIn />, onSelect: () => props.onViewChange(zoomGraphView(props.view, .8)) },
+          { id: "zoom-out", label: "Zoom out", icon: <ZoomOut />, onSelect: () => props.onViewChange(zoomGraphView(props.view, 1.25)) },
+          { id: "reset-view", label: "Reset view", icon: <RotateCcw />, onSelect: props.onResetView },
+
           {
             id: "expression",
             label: "Expression",
@@ -864,6 +887,10 @@ export default function GraphStudio2DWorkspace(
         title="Graph tools"
         onClose={overlay.close}
       >
+        {props.functions.some(row=>row.id===props.selectedId) && <>
+          <button type="button" onClick={() => { mobileActions.deleted(() => props.onRemove(props.selectedId)); overlay.close(); }}>Delete selected expression</button>
+          <button type="button" onClick={() => { props.onDuplicate(props.selectedId); overlay.close(); }}>Duplicate selected expression</button>
+        </>}
         <button type="button" disabled={!props.canUndo} onClick={() => { props.onUndo(); overlay.close(); }}>Undo</button>
         <button type="button" disabled={!props.canRedo} onClick={() => { props.onRedo(); overlay.close(); }}>Redo</button>
         <button type="button" onClick={() => overlay.open("inspector")}>
@@ -888,7 +915,7 @@ export default function GraphStudio2DWorkspace(
           Add expression
         </button>
         {props.functions.length > 0 && (
-          <button type="button" onClick={() => { props.onClear(); overlay.close(); }}>
+          <button type="button" onClick={() => { mobileActions.clear(props.functions.length, props.onClear); overlay.close(); }}>
             Clear all graphs
           </button>
         )}

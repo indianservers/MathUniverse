@@ -1,4 +1,5 @@
-import { Billboard, Line, OrbitControls, Text } from "@react-three/drei";
+import { Billboard, Line, OrbitControls} from "@react-three/drei";
+import Text from "../../components/LessonSceneLabel";
 import { Canvas, type ThreeEvent, useThree } from "@react-three/fiber";
 import { ExternalLink, Maximize2, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -462,21 +463,21 @@ function DistanceScene({
           <Line points={[c2, bw]} color="#23bcd9" lineWidth={4} />
           <Text
             position={[(a[0] + b[0]) / 2, a[2] - 0.3, a[1]]}
-            fontSize={12}
+            fontSize={0.33}
             color="#ff625a"
           >
             Δx = {b[0] - a[0]}
           </Text>
           <Text
             position={[b[0], a[2] - 0.3, (a[1] + b[1]) / 2]}
-            fontSize={12}
+            fontSize={0.33}
             color="#65d94c"
           >
             Δy = {b[1] - a[1]}
           </Text>
           <Text
             position={[b[0] + 0.35, (a[2] + b[2]) / 2, b[1]]}
-            fontSize={12}
+            fontSize={0.33}
             color="#36d2eb"
           >
             Δz = {b[2] - a[2]}
@@ -539,7 +540,7 @@ function DraggablePoint({
         />
       </mesh>
       <Billboard position={[0.35, 0.35, 0]}>
-        <Text fontSize={12} color={color}>
+        <Text fontSize={0.25} color={color}>
           {id} ({point.join(", ")})
         </Text>
       </Billboard>

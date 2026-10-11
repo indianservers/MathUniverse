@@ -1,5 +1,33 @@
 # Ruhi mathematical kernel 5.2
 
+## Independent bounded foundation
+
+`execution.status` is authoritative. Legacy `status` and `verification.passed`
+are now aligned with independent evidence; unsupported certificates leave a
+successful solver result `valid_unverified`. Earlier capability descriptions
+below describe solver checks, not necessarily independent certificates.
+
+Real rational equations reducing to degree at most two now expose a
+`RealSolutionSet` (`finite`, `empty`, or domain-restricted `infinite`). The
+independent verifier reconstructs rational coefficients, uses exact quadratic
+field arithmetic for radicals and assumptions, checks original denominator
+exclusions, and certifies completeness separately from candidate validity.
+Higher-degree and other existing specialist solvers remain available unverified.
+
+Covered intersection certificates include 2D line/segment/ray pairs,
+line–circle and circle–circle pairs, and 3D line–line, line–plane, plane–plane
+and sphere–plane pairs. Geometry uses exact binary coordinate predicates;
+rounded coordinates receive numerical consistency evidence with scaled bounds.
+The new `circleCircle` operation and mixed `intersection` inputs are additive.
+Skew bounded 3D pairs report no intersection; nearest endpoint distances are
+still outside scope. Zero directions and plane normals are invalid inputs.
+
+Evidence optionally records `scope`, `complete`, and `inputRevision`. Local
+worker clients snapshot requests and discard replies after caller input changes.
+CAS Solve commands and notebook cells use the same synchronous certification
+boundary, expose conditions and evidence, and invalidate saved certificates
+before reevaluation after edits or restoration.
+
 ## v5.2 additions
 
 The local typed kernel now accepts bounded Unicode/basic LaTeX notation, substitution values and assumptions, structured interval/set/vector/matrix/calculus/piecewise ASTs, exact affine systems, polynomial division/GCD, rational inequalities, function analysis for degree-two polynomials, and explicit 2D/3D geometry requests. Parsed syntax has an `unverified` status until an operation supplies mathematical verification.

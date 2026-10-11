@@ -7,6 +7,8 @@ export type ConvergenceReport = { converged: boolean; iterations: number; maximu
 export type VerifiedMathStep = { id: string; before: string; after: string; ruleId: string; ruleVersion: string; ruleName: string; preconditions: string[]; assumptionsUsed: string[]; explanation: string; verificationStatus: "VERIFIED" | "CONDITIONAL" | "FAILED" };
 
 export type CertifiedCasResult = {
+  execution?: import('../math-foundation/executionOutcome').ExecutionOutcome;
+  solutionSet?: import('../math-robo/kernel/types').RealSolutionSet;
   status: CasStatus;
   inputNodeId: string;
   resultNodeIds: string[];

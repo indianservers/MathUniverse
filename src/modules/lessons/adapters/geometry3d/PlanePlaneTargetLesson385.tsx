@@ -1,4 +1,5 @@
-import { Billboard, Line, OrbitControls, Text } from "@react-three/drei";
+import { Billboard, Line, OrbitControls} from "@react-three/drei";
+import Text from "../../components/LessonSceneLabel";
 import { Canvas, useThree } from "@react-three/fiber";
 import { Copy, ExternalLink, Maximize2, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -620,7 +621,7 @@ function PlanePlaneScene({
             />
           </mesh>
           <Billboard position={[0.7, 0.3, 0]}>
-            <Text fontSize={12} color="#ffd329">
+            <Text fontSize={0.34} color="#ffd329">
               P ({result.point.join(", ")})
             </Text>
           </Billboard>

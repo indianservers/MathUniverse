@@ -1,4 +1,5 @@
-import { Billboard, Edges, Line, OrbitControls, Text } from "@react-three/drei";
+import { Billboard, Edges, Line, OrbitControls} from "@react-three/drei";
+import Text from "../../components/LessonSceneLabel";
 import { Canvas } from "@react-three/fiber";
 import { ExternalLink, Maximize2, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -395,7 +396,7 @@ function CubeScene({
                 lineWidth={3}
               />
               <Billboard position={[1.25, 0.45, 1]}>
-                <Text fontSize={12} color="#eaa2ff">
+                <Text fontSize={0.18} color="#eaa2ff">
                   dᶠ = {side}√2 ≈ {clean(side * Math.SQRT2)}
                 </Text>
               </Billboard>
@@ -413,7 +414,7 @@ function CubeScene({
                 lineWidth={3}
               />
               <Billboard position={[-0.9, 0.05, 0]}>
-                <Text fontSize={12} color="#fff">
+                <Text fontSize={0.18} color="#fff">
                   d = {side}√3 ≈ {clean(side * Math.sqrt(3))}
                 </Text>
               </Billboard>

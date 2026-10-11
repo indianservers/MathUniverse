@@ -1,4 +1,4 @@
-/* global document, window, getComputedStyle, Node */
+/* global document, window, getComputedStyle, Node, PopStateEvent */
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -7,22 +7,28 @@ import { chromium } from 'playwright';
 const data = JSON.parse(fs.readFileSync('tmp/lesson-audit-data.json', 'utf8'));
 const lessons = ['core', 'school', 'advanced'].flatMap(catalog => data[catalog].map(lesson => ({ ...lesson, catalog })));
 const base = process.env.LESSON_AUDIT_URL || 'http://127.0.0.1:5191';
-const output = 'artifacts/lesson-typography';
+const output = process.env.LESSON_AUDIT_OUTPUT || 'artifacts/lesson-typography';
 fs.mkdirSync(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
-const results = [];
+const results = process.env.LESSON_AUDIT_RESUME === '1' && fs.existsSync(path.join(output, 'checks.json'))
+  ? JSON.parse(fs.readFileSync(path.join(output, 'checks.json'), 'utf8')).filter(result => result.checks)
+  : [];
 let cursor = 0;
 const workers = Number(process.env.LESSON_AUDIT_WORKERS || 2);
 const only = process.env.LESSON_AUDIT_ROUTES?.split(',');
 const targets = only ? lessons.filter(lesson => only.includes(lesson.route)) : lessons;
+const completed = new Set(results.map(result => result.route));
+const pending = targets.filter(lesson => !completed.has(lesson.route));
 
 async function inspect(page, lesson, width) {
   await page.setViewportSize({ width, height: 900 });
-  await page.evaluate(() => new Promise(resolve => window.requestAnimationFrame(() => window.requestAnimationFrame(resolve))));
+  // Some animation lessons pause their animation clock. Measurement must not
+  // depend on that clock; getComputedStyle below forces up-to-date layout.
+  await page.waitForTimeout(80);
   return page.evaluate(() => {
     const root = document.querySelector('[data-lesson-typography]');
     const textElements = [...root.querySelectorAll('*')].filter(element =>
-      !element.closest('script, style, .katex-mathml, [aria-hidden="true"]') &&
+      !element.closest('script, style, .katex-mathml') &&
       ([...element.childNodes].some(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim()) ||
         element.matches('input, textarea, select')));
     const small = textElements.map(element => ({
@@ -33,7 +39,7 @@ async function inspect(page, lesson, width) {
       style: element.getAttribute('style'),
       fontAttribute: element.getAttribute('font-size'),
     })).filter(item => item.size > 0 && item.size < 11.99);
-    const visible = textElements.filter(element => element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden');
+    const visible = textElements.filter(element => element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden' && getComputedStyle(element).opacity !== '0');
     return {
       width: window.innerWidth,
       textElements: textElements.length,
@@ -50,16 +56,17 @@ async function inspect(page, lesson, width) {
 }
 
 async function worker() {
+  if (!pending.length) return;
   const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   await page.goto(base + targets[0].route, { waitUntil: 'domcontentloaded', timeout: 120000 });
-  while (cursor < targets.length) {
-    const lesson = targets[cursor++];
+  while (cursor < pending.length) {
+    const lesson = pending[cursor++];
     try {
       await page.evaluate(route => { window.history.pushState({}, '', route); window.dispatchEvent(new PopStateEvent('popstate')); }, lesson.route);
       await page.waitForFunction(route => {
         const root = document.querySelector('[data-lesson-typography]');
-        return window.location.pathname === route && root?.getAttribute('data-lesson-typography') === route && root.querySelector('h1') &&
-          !root.querySelector('[aria-label*="Loading"], .animate-spin');
+        return window.location.pathname === route && root?.getAttribute('data-lesson-typography') === route && root.querySelector('h1, h2') &&
+          !root.querySelector('[aria-label="Loading lesson interaction"]');
       }, lesson.route, { timeout: 60000 });
       // Lazy lesson imports and tab-specific styles settle before measuring.
       await page.waitForTimeout(120);

@@ -1,3 +1,8 @@
+import MobileRectangleSelection from "../workspace/mobile/MobileRectangleSelection";
+import MobileOrientationCube from "../workspace/mobile/MobileOrientationCube";
+import { requestMobileSceneFit } from "../workspace/mobile/MobileSceneFit";
+import MobileSolidEditor from "../workspace/mobile/MobileSolidEditor";
+import MobileActionCenter, { useMobileActions } from "../workspace/mobile/MobileActionCenter";
 import { identityTransform, transformDelta } from "../workspace/immersive/types";
 import { ImmersiveSettings, ImmersiveToolbar, useImmersiveAdapter, useImmersive } from "../workspace/immersive/ImmersiveInteractionManager";
 import { GeometryAppearanceControls, type GeometryPaint } from "../components/workspace/GeometryAppearance";
@@ -33,6 +38,7 @@ import {
   Shapes,
   SlidersHorizontal,
   Trash2,
+  RotateCcw,
   Undo2,
   Unlock,
   ZoomIn,
@@ -186,6 +192,11 @@ export default function ObjectStudioWorkspace(props: Props) {
       typeof window === "undefined" ||
       !window.matchMedia("(max-width: 1100px)").matches,
   );
+  const [rectangleMode, setRectangleMode] = useState(false);
+  const [surfaceMode, setSurfaceMode] = useState(false);
+  const [mobilePreview, setMobilePreview] = useState<string | null>(null);
+  const [mobilePlaceCopy, setMobilePlaceCopy] = useState(false);
+  const [mobileDimensionPending, setMobileDimensionPending] = useState(false);
   const [search, setSearch] = useState("");
   const [category, setCategory] =
     useState<ObjectStudioShape["category"]>("primitives");
@@ -196,6 +207,7 @@ export default function ObjectStudioWorkspace(props: Props) {
     readWorkspaceChromeTheme(CHROME_THEME_STORAGE_KEYS.geometry3d, "light"),
   );
   const overlay = useWorkspaceOverlay();
+  const mobileActions = useMobileActions(overlay.isMobile, props.onUndo);
   const leftPanelRef = useRef<HTMLElement>(null);
   const rightPanelRef = useRef<HTMLElement>(null);
   const sceneHostRef = useRef<HTMLDivElement>(null);
@@ -304,10 +316,27 @@ export default function ObjectStudioWorkspace(props: Props) {
   const insert = (id: string) => {
     props.onAdd(id);
     setMode("transform");
-    props.onTool("move");
-    if (overlay.isMobile) overlay.open("inspector");
+    props.onTool(overlay.isMobile ? "select" : "move");
+    if (overlay.isMobile) { setMobileDimensionPending(Boolean(mobilePreview)); overlay.open("inspector"); }
     else setRightOpen(true);
   };
+  useEffect(() => {
+    if (!overlay.isMobile || !mobileDimensionPending || !selected) return;
+    setMobileDimensionPending(false); overlay.open("mobile-actions"); window.dispatchEvent(new Event("mws-show-edit"));
+  }, [selected, mobileDimensionPending, overlay]);
+  useEffect(() => {
+    if (!overlay.isMobile) return;
+    const placed = (event: Event) => {
+      const { id, offset } = (event as CustomEvent<{ id: string; offset: number[] }>).detail;
+      const object = props.objects.find(o => o.id === id);
+      if (!surfaceMode || !object || object.transform.locked) return;
+      props.onTransform(id, { position: object.transform.position.map((n, i) => n + offset[i]) as [number, number, number] });
+      setSurfaceMode(false);
+    };
+    window.addEventListener('mws-surface-placed', placed);
+    return () => { window.removeEventListener('mws-surface-placed', placed); };
+  }, [overlay.isMobile, props, surfaceMode]);
+  const mobileFitSelection = () => { if(selected)requestMobileSceneFit(selected.id); };
   const dropShape = (event: DragEvent) => {
     event.preventDefault();
     const id = event.dataTransfer.getData("application/x-math-universe-shape");
@@ -486,7 +515,7 @@ export default function ObjectStudioWorkspace(props: Props) {
                 type="button"
                 key={shape.id}
                 className="os-shape-tile"
-                draggable
+                draggable={!overlay.isMobile}
                 onDragStart={(event) => {
                   event.dataTransfer.setData(
                     "application/x-math-universe-shape",
@@ -516,7 +545,7 @@ export default function ObjectStudioWorkspace(props: Props) {
           )}
           <p className="os-drag-hint">
             <Move3D />
-            Drag a shape into the scene
+            {overlay.isMobile ? "Tap a shape to add it" : "Drag a shape into the scene"}
           </p>
           <section className="os-scene-tools">
             <h3>Scene Tools</h3>
@@ -671,6 +700,13 @@ export default function ObjectStudioWorkspace(props: Props) {
           }}
         >
           {props.scene}
+          {overlay.isMobile && rectangleMode && <MobileRectangleSelection onCancel={() => setRectangleMode(false)} onSelect={rect => { const host = sceneHostRef.current?.getBoundingClientRect(), canvas = sceneHostRef.current?.querySelector('canvas')?.getBoundingClientRect(); if (host && canvas) { window.dispatchEvent(new CustomEvent('mws-select-solid-rectangle', { detail: { left: (host.left + rect.left * host.width - canvas.left) / canvas.width, right: (host.left + rect.right * host.width - canvas.left) / canvas.width, top: (host.top + rect.top * host.height - canvas.top) / canvas.height, bottom: (host.top + rect.bottom * host.height - canvas.top) / canvas.height } })); } setRectangleMode(false); overlay.open('mobile-actions'); }} />}
+          {overlay.isMobile && surfaceMode && <div className="mws-surface-layer" aria-label="Surface placement canvas" onPointerDown={event => {
+            event.preventDefault(); event.stopPropagation();
+            const bounds = sceneHostRef.current?.querySelector("canvas")?.getBoundingClientRect() ?? event.currentTarget.getBoundingClientRect();
+            window.dispatchEvent(new CustomEvent('mws-place-solid', { detail: { id: props.selectedId, x: (event.clientX - bounds.left) / bounds.width, y: (event.clientY - bounds.top) / bounds.height } }));
+          }}><div className="mws-selection-hint">Tap another object's face.<button type="button" onPointerDown={event => event.stopPropagation()} onClick={() => setSurfaceMode(false)}>Cancel</button></div></div>}
+          {overlay.isMobile && !overlay.active && !rectangleMode && !surfaceMode && <MobileOrientationCube onOrient={() => props.onAutoRotate(false)} />}
         </div>
         {props.vectorFocus && <div className="os-vector-legend" aria-label="Vector colors"><span><i className="a" /> A</span><span><i className="b" /> B</span><span><i className="result" /> Result</span></div>}
         {selected && mode !== "create" && <TransformGizmo tool={props.tool} />}
@@ -691,7 +727,7 @@ export default function ObjectStudioWorkspace(props: Props) {
                 icon={<Move3D />}
                 active={props.tool === "move"}
                 onClick={() => {
-                  props.onTool("move");
+                  props.onTool(overlay.isMobile ? "select" : "move");
                   setMode("transform");
                 }}
               />
@@ -1076,9 +1112,31 @@ export default function ObjectStudioWorkspace(props: Props) {
           }
         />
       ) : null}
+      <MobileActionCenter overlay={overlay} actions={mobileActions} undo={props.onUndo} redo={props.onRedo} canUndo={props.canUndo} canRedo={props.canRedo}
+        instructions={`${props.tool === "move" ? "Drag the selected object to move it. Choose Orbit camera to pan or pinch to zoom." : props.tool === "orbit" || props.tool === "select" ? "Drag empty space to orbit; use two fingers to pan or pinch to zoom." : `Use ${props.tool} on the selected object.`}`}
+        cancel={() => { props.onTool("select"); setMobilePreview(null); setMobilePlaceCopy(false); }}
+        onClear={() => mobileActions.clear(props.objects.length, props.onClear)}
+        objects={props.objects.map(o => ({id:o.id,name:o.transform.name || o.label,kind:o.kind,selected:o.id===props.selectedId,visible:o.transform.visible,locked:o.transform.locked,
+          select:()=>props.onSelect(o.id),visibility:()=>props.onTransform(o.id,{visible:!o.transform.visible}),lock:()=>props.onTransform(o.id,{locked:!o.transform.locked}),remove:()=>props.onDelete(o.id)}))}
+        add={<><label>Find a solid<input aria-label="Mobile solid search" value={search} onChange={e=>setSearch(e.target.value)} /></label>
+          <div className="mws-action-grid">{(["primitives","geometry","vectors"] as const).map(c=><button key={c} type="button" aria-pressed={category===c} onClick={()=>setCategory(c)}>{c}</button>)}</div>
+          <div className="mws-action-grid">{filteredShapes.map(shape=><button key={shape.id} type="button" onClick={()=>setMobilePreview(shape.id)}><span className={`os-shape-preview ${shape.preview}`} />Preview {shape.label}</button>)}</div>
+          {mobilePreview && <div><h3>{props.shapes.find(x=>x.id===mobilePreview)?.label}</h3><span className={`os-shape-preview mws-solid-preview ${props.shapes.find(x=>x.id===mobilePreview)?.preview}`} /><p>Added at the scene origin. Edit dimensions and position after placement.</p><button type="button" onClick={()=>{insert(mobilePreview);setMobilePreview(null);}}>Place previewed object</button><button type="button" onClick={()=>setMobilePreview(null)}>Cancel preview</button></div>}</>}
+        edit={<><button type="button" disabled={!selected || selected.transform.locked || !selected.transform.visible} onClick={() => { setSurfaceMode(true); setRectangleMode(false); props.onAutoRotate(false); overlay.close(); }}>Place on another surface</button><MobileSolidEditor object={selected} update={patch=>{if(selected)props.onTransform(selected.id,patch);}} tool={value=>{props.onTool(value);overlay.close();}} duplicate={()=>{if(selected){props.onDuplicate(selected.id);setMobilePlaceCopy(true);}}} remove={()=>{if(selected)mobileActions.deleted(()=>props.onDelete(selected.id));}} snap={props.snapEnabled} onSnap={props.onSnapEnabled} step={props.snapStep} onStep={props.onSnapStep} />
+          {mobilePlaceCopy && <p>Copy selected. Set its position above or use Move object to place it.</p>}</>}
+        view={<><div className="mws-view-cube">{(["front","top","right","isometric"] as const).map(preset=><button key={preset} type="button" aria-pressed={props.cameraPreset===preset} onClick={()=>props.onCamera(preset)}>{preset === "right" ? "Side" : preset}</button>)}</div>
+          <div className="mws-action-grid"><button type="button" onClick={()=>{setRectangleMode(true);setSurfaceMode(false);props.onAutoRotate(false);overlay.close();}}>Rectangle select</button><button type="button" onClick={()=>{props.onTool("orbit");overlay.close();}}>Orbit camera</button><button type="button" onClick={()=>{props.onTool("pan");overlay.close();}}>Pan camera</button><button type="button" disabled={!selected} onClick={mobileFitSelection}>Fit selection</button><button type="button" onClick={()=>requestMobileSceneFit()}>Fit all</button>
+          <button type="button" disabled={!selected} onClick={()=>props.objects.forEach(o=>props.onTransform(o.id,{visible:o.id===selected?.id}))}>Isolate selected</button><button type="button" onClick={()=>props.objects.forEach(o=>props.onTransform(o.id,{visible:true}))}>Show all</button></div>
+          <p>Choose object resolves overlapping solids from the searchable Objects tab.</p></>}
+      />
       <WorkspaceToolbar
         label="3D geometry tools"
         items={[
+          { id: "delete", label: "Delete", icon: <Trash2 />, danger: true, disabled: !selected, onSelect: () => { if(selected) mobileActions.deleted(() => props.onDelete(selected.id)); overlay.close(); } },
+          { id: "zoom-in", label: "Zoom in", icon: <ZoomIn />, onSelect: () => props.onZoom(Math.min(5, props.zoom * 1.25)) },
+          { id: "zoom-out", label: "Zoom out", icon: <ZoomOut />, onSelect: () => props.onZoom(Math.max(.2, props.zoom / 1.25)) },
+          { id: "reset-view", label: "Reset view", icon: <RotateCcw />, onSelect: () => { props.onZoom(1); props.onCamera("isometric"); props.onTool("select"); overlay.close(); } },
+
           {
             id: "select",
             label: "Select",
@@ -1125,9 +1183,16 @@ export default function ObjectStudioWorkspace(props: Props) {
         title="Object tools"
         onClose={overlay.close}
       >
+        {selected && <>
+          <button type="button" onClick={() => { mobileActions.deleted(() => props.onDelete(selected.id)); overlay.close(); }}>Delete selected object</button>
+          <button type="button" onClick={() => { props.onDuplicate(selected.id); overlay.close(); }}>Duplicate selected object</button>
+          <button type="button" onClick={() => { props.onTool("move"); overlay.close(); }}>Move selected object</button>
+          <button type="button" onClick={() => { props.onTool("rotate"); overlay.close(); }}>Rotate selected object</button>
+          <button type="button" onClick={() => { props.onTool("scale"); overlay.close(); }}>Resize selected object</button>
+        </>}
         <button type="button" disabled={!props.canUndo} onClick={() => { props.onUndo(); overlay.close(); }}>Undo</button>
         <button type="button" disabled={!props.canRedo} onClick={() => { props.onRedo(); overlay.close(); }}>Redo</button>
-        <button type="button" onClick={() => { props.onClear(); overlay.close(); }}>Clear all objects</button>
+        <button type="button" onClick={() => { mobileActions.clear(props.objects.length, props.onClear); overlay.close(); }}>Clear all objects</button>
         <button type="button" onClick={() => overlay.open("inspector")}>
           Inspector
         </button>
@@ -1152,6 +1217,11 @@ export default function ObjectStudioWorkspace(props: Props) {
         title="View"
         onClose={overlay.close}
       >
+        <button type="button" onClick={() => props.onZoom(Math.min(5, props.zoom * 1.25))}>Zoom in</button>
+        <button type="button" onClick={() => props.onZoom(Math.max(.2, props.zoom / 1.25))}>Zoom out</button>
+        <button type="button" onClick={() => { props.onZoom(1); props.onCamera("isometric"); props.onTool("select"); overlay.close(); }}>Reset view</button>
+        <button type="button" onClick={() => { props.onTool("pan"); overlay.close(); }}>Pan</button>
+        <button type="button" onClick={() => { props.onTool("orbit"); overlay.close(); }}>Orbit</button>
         {(["isometric", "top", "front", "right", "free"] as const).map(
           (preset) => (
             <button

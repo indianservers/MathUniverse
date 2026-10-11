@@ -1,0 +1,24 @@
+{
+  "lessons": 919,
+  "viewportChecks": 1838,
+  "undersized": 0,
+  "loadErrors": 0,
+  "horizontalOverflow": 0,
+  "tabChecks": 75,
+  "inlinePixelLabelsRaised": 228,
+  "screenAnchored3DLabels": 53,
+  "sceneLabelChecks": [
+    {
+      "width": 390,
+      "labels": 36,
+      "minimum": 12,
+      "errors": []
+    },
+    {
+      "width": 1280,
+      "labels": 36,
+      "minimum": 12,
+      "errors": []
+    }
+  ]
+}

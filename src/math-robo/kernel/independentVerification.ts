@@ -2,6 +2,8 @@ import type {MathAstNode} from '../../math-foundation/types';
 import {executionOutcome,noEvidence,type VerificationEvidence} from '../../math-foundation/executionOutcome';
 import {safeAst} from './safeExpression';
 import type {KernelRequest,KernelResult} from './types';
+import {equationCertificate} from './equationCertificate';
+import {geometryCertificate} from './geometryCertificate';
 type Rat={n:bigint;d:bigint};
 const abs=(n:bigint)=>n<0n?-n:n;
 function fraction(n:bigint,d=1n):Rat{if(!d)throw new Error('Zero denominator.');let a=abs(n),b=abs(d);while(b)[a,b]=[b,a%b];const sign=d<0n?-1n:1n;return {n:sign*n/(a||1n),d:sign*d/(a||1n)};}
@@ -39,6 +41,8 @@ const equalPoly=(a:Poly,b:Poly)=>a.size===b.size&&[...a].every(([key,value])=>b.
 const certificate=(method:string,conditions:string[]):VerificationEvidence=>({level:'exact_symbolic',passed:true,independent:true,method,assumptions:conditions});
 export function independentlyVerifyKernel(request:KernelRequest,result:KernelResult):VerificationEvidence{
  if(result.status==='unsupported')return noEvidence();
+ if(request.operation==='solve')return equationCertificate(request,result);
+ if(request.operation==='geometry2d'||request.operation==='geometry3d')return geometryCertificate(request,result);
  const conditions=[...(request.assumptions??[]),...result.conditions];
  if(request.operation==='equivalent'&&result.value===false&&conditions.length)return noEvidence('Polynomial inequality alone does not establish a counterexample under restricting assumptions.');
  try{
@@ -66,8 +70,11 @@ export function independentlyVerifyKernel(request:KernelRequest,result:KernelRes
 export function certifyKernel(request:KernelRequest,result:KernelResult,requestId:string=crypto.randomUUID()):KernelResult{
  if(result.execution&&['invalid_input','unsupported','cancelled','timeout','internal_error'].includes(result.execution.status))return result;
  if(result.status==='unsupported'){result.execution=executionOutcome('unsupported',requestId,result.answer);return result;}
- const evidence=independentlyVerifyKernel(request,result);
+ const evidence={...independentlyVerifyKernel(request,result),inputRevision:request.inputRevision??crypto.randomUUID()};
  result.execution=executionOutcome(evidence.level==='contradicted'?'internal_error':evidence.independent&&evidence.passed?'verified':'valid_unverified',requestId,result.answer,evidence);
+ result.verification={passed:evidence.independent&&evidence.passed,method:evidence.method,...(evidence.residual!==undefined?{residual:evidence.residual}:{})};
+ if(result.execution.status==='valid_unverified')result.status='unverified';
+ else if(result.execution.status==='verified'){if(evidence.level==='numerical_consistency')result.status='verified_numerical';else if(result.status==='unverified')result.status=result.conditions.length?'verified_with_assumptions':'verified_exact';}
  if(evidence.level==='contradicted'){result.status='unsupported';result.verification={passed:false,method:evidence.method};result.answer='Independent verification contradicted the solver result.';}
  return result;
 }

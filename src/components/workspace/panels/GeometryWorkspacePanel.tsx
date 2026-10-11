@@ -1,3 +1,6 @@
+import MobileRectangleSelection from "../../../workspace/mobile/MobileRectangleSelection";
+import MobileActionCenter, { useMobileActions } from "../../../workspace/mobile/MobileActionCenter";
+import MobileNumber from "../../../workspace/mobile/MobileNumber";
 import { ImmersiveSettings, ImmersiveToolbar } from "../../../workspace/immersive/ImmersiveInteractionManager";
 import {clipRay} from "../../../offline-intelligence/directedGeometry";
 import { GeometryPaintDefs, paintId, paintValue, lineDash, type GeometryPaint } from "../GeometryAppearance";
@@ -70,6 +73,7 @@ import {
 } from "../../../workspace/workspaceChromeTheme";
 import {
   GEOMETRY_MOBILE_QUERY,
+  useIsMobileWorkspace,
   MobileWorkspaceShell,
   useMobileWorkspaceGestures,
   useWorkspaceOverlay,
@@ -280,6 +284,14 @@ type GeometryUnit = "units" | "mm" | "cm" | "m" | "in";
 type GeometryPane = "tools" | "canvas" | "inspector";
 
 interface GeometryWorkspacePanelProps {
+  mobileOperations?: {
+    canUndo: boolean; canRedo: boolean; snap: (point: {x:number;y:number})=>{x:number;y:number}; setLength:(value:number)=>void;
+    selectImage:(id:string)=>void; patchImage:(id:string,patch:Partial<WorkspaceImage>)=>void; removeImage:(id:string)=>void;
+    lockedIds: string[]; selectMany: (ids: string[]) => void;
+    remove: (selection: SelectedGeometryObject) => void; lock: (selection: SelectedGeometryObject) => void;
+    duplicatePlace: () => void; fitSelection: () => void; updatePoint: (patch: Partial<GeoPoint>) => void;
+    updateRadius: (radius: number) => void; rotate: (degrees: number) => void;
+  };
   activeTool: GeometryTool;
   construction: Construction;
   selectedGeometry: SelectedGeometryObject | null;
@@ -483,6 +495,7 @@ export function geometryToolObjectPickHint(
 }
 
 export default function GeometryWorkspacePanel({
+  mobileOperations,
   activeTool,
   construction,
   selectedGeometry,
@@ -552,6 +565,12 @@ export default function GeometryWorkspacePanel({
   const [projectName, setProjectName] = useState("Circle Theorem Exploration");
   const [mobilePanel, setMobilePanel] = useState<GeometryMobilePanel>(null);
   const overlay = useWorkspaceOverlay({ query: GEOMETRY_MOBILE_QUERY });
+  const mobileActions=useMobileActions(overlay.isMobile,onUndo);
+  const [rectangleMode, setRectangleMode] = useState(false);
+  const [mobileDragging,setMobileDragging]=useState(false);
+  const [mobileSnapPoint,setMobileSnapPoint]=useState<{x:number;y:number}|null>(null);
+  const [mobileRotation,setMobileRotation]=useState(15);
+
   const drawerRef = useRef<HTMLElement>(null);
   useMobileWorkspaceGestures(drawerRef, {
     enabled: overlay.isMobile && Boolean(mobilePanel),
@@ -686,6 +705,7 @@ export default function GeometryWorkspacePanel({
       x: (boardX - 320) / coordinateUnit,
       y: (220 - boardY) / coordinateUnit,
     });
+    if(overlay.isMobile){const snap=mobileOperations?.snap({x:boardX,y:boardY});if(snap)setMobileSnapPoint({x:(snap.x-320)/coordinateUnit,y:(220-snap.y)/coordinateUnit});}
     onBoardPointerMove(event);
   };
   useEffect(() => {
@@ -892,13 +912,13 @@ export default function GeometryWorkspacePanel({
           onResizeSelected={onResizeSelected}
           onUndo={onUndo}
           onRedo={onRedo}
-          onDeleteSelected={onDeleteSelected}
+          onDeleteSelected={overlay.isMobile?()=>mobileActions.deleted(onDeleteSelected):onDeleteSelected}
           onShowHide={onShowHide}
           onLockSelected={onLockSelected}
           onTraceSelected={onTraceSelected}
           onStopTrace={onStopTrace}
           onClearTrace={onClearTrace}
-          onReset={onReset}
+          onReset={overlay.isMobile?()=>mobileActions.clear(construction.points.length+construction.lines.length+construction.circles.length+construction.polygons.length+construction.arcs.length+construction.loci.length+workspaceImages.length,onReset):onReset}
           onSave={onSave}
           onLoad={onLoad}
           onAddImage={() => imageInputRef.current?.click()}
@@ -929,13 +949,42 @@ export default function GeometryWorkspacePanel({
               onKeyDown={onBoardKeyDown}
               onPointerDown={(event) => {
                 if (guardCanvasPointer(overlay, event)) return;
+                if(overlay.isMobile && event.pointerType === "touch")setMobileDragging(true);
                 onBoardPointerDown(event);
               }}
               onPointerMove={handleBoardMove}
-              onPointerUp={onBoardPointerUp}
-              onPointerLeave={onBoardPointerLeave}
+              onPointerUp={event=>{setMobileDragging(false);onBoardPointerUp(event);}}
+              onPointerLeave={()=>{setMobileDragging(false);onBoardPointerLeave();}}
               onContextMenu={onBoardContextMenu}
             />
+            {overlay.isMobile && rectangleMode && <MobileRectangleSelection onCancel={() => setRectangleMode(false)} onSelect={rect => {
+              const board = boardRef.current, stage = board?.parentElement?.getBoundingClientRect(), matrix = board?.getScreenCTM();
+              if (!board || !stage || !matrix) return;
+              const convert = (x: number, y: number) => new DOMPoint(stage.left + x * stage.width, stage.top + y * stage.height).matrixTransform(matrix.inverse());
+              const start = convert(rect.left, rect.top), end = convert(rect.right, rect.bottom);
+              const left = Math.min(start.x, end.x), right = Math.max(start.x, end.x), top = Math.min(start.y, end.y), bottom = Math.max(start.y, end.y);
+              const inside = (p: { x: number; y: number }) => p.x >= left && p.x <= right && p.y >= top && p.y <= bottom;
+              const containedPoints = new Set(construction.points.filter(inside).map(p => p.id));
+              const ids = construction.points.filter(p => p.style?.visible !== false && inside(p)).map(p => p.id);
+              construction.lines.filter(l => l.style?.visible !== false && containedPoints.has(l.a) && containedPoints.has(l.b)).forEach(l => ids.push(l.id));
+              construction.polygons.filter(p => p.style?.visible !== false && p.points.every(id => containedPoints.has(id))).forEach(p => ids.push(p.id));
+              construction.circles.filter(c => {
+                const center = pointById(construction.points, c.center), edge = pointById(construction.points, c.edge);
+                if (!center || !edge || c.style?.visible === false) return false;
+                const radius = Math.hypot(edge.x - center.x, edge.y - center.y);
+                return inside({ x: center.x - radius, y: center.y - radius }) && inside({ x: center.x + radius, y: center.y + radius });
+              }).forEach(c => ids.push(c.id));
+              construction.arcs.filter(a => a.style?.visible !== false && [a.center, a.start, a.end].every(id => containedPoints.has(id))).forEach(a => ids.push(a.id));
+              construction.loci.filter(l => l.style?.visible !== false && l.points.length && l.points.every(inside)).forEach(l => ids.push(l.id));
+              mobileOperations?.selectMany(ids); window.dispatchEvent(new CustomEvent('mws-rectangle-selection', { detail: ids }));
+              setRectangleMode(false); overlay.open('mobile-actions');
+            }} />}
+            {overlay.isMobile && activeTool!=="select" && activeTool!=="move-canvas" && <div className="mws-construction-progress" role="status">{geometryToolLabel(activeTool)} · {activeTool==="polygon" ? `${polygonDraft.length} vertices picked` : `Select point ${selectedPointIds.length+1}${["circle-3-points","triangle","angle"].includes(activeTool)?" of 3":["line","segment","circle","rectangle","square"].includes(activeTool)?" of 2":""}`}<button type="button" onClick={()=>{onClearPendingPicks();chooseTool("select");}}>Cancel construction</button></div>}
+            {overlay.isMobile && mobileDragging && pointerCoordinate && <svg className="mws-loupe" aria-label="Magnified point placement" viewBox={`${320+pointerCoordinate.x*(graphSettings.gridSpacing??40)-28} ${220-pointerCoordinate.y*(graphSettings.gridSpacing??40)-28} 56 56`}>
+              {construction.lines.map(l=>{const a=pointById(construction.points,l.a),b=pointById(construction.points,l.b);return a&&b?<line key={l.id} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="#22d3ee" strokeWidth="1"/>:null;})}
+              {construction.points.map(p=><circle key={p.id} cx={p.x} cy={p.y} r="3" fill="#f59e0b"/>)}
+              <path d={`M ${320+pointerCoordinate.x*(graphSettings.gridSpacing??40)-6} ${220-pointerCoordinate.y*(graphSettings.gridSpacing??40)} h 12 m -6 -6 v 12`} stroke="#fb7185" strokeWidth="1"/>
+            </svg>}
             <div className="geometry-canvas-hint">
               {studioMode === "Measure"
                 ? "Lengths, angles, and areas update as you drag points"
@@ -961,7 +1010,7 @@ export default function GeometryWorkspacePanel({
             />
             <GeometrySnapCandidate
               tool={activeTool}
-              coordinate={pointerCoordinate}
+              coordinate={overlay.isMobile ? mobileSnapPoint : pointerCoordinate}
               settings={graphSettings}
             />
           </div>
@@ -1052,6 +1101,22 @@ export default function GeometryWorkspacePanel({
       </main>
       <div className="geometry-pane-resizer geometry-inspector-resizer" role="separator" aria-label="Resize inspector pane" aria-orientation="vertical" onPointerDown={(event) => beginPaneResize(event, "inspector")} />
 
+      <MobileActionCenter overlay={overlay} actions={mobileActions} undo={onUndo} redo={onRedo} canUndo={mobileOperations?.canUndo} canRedo={mobileOperations?.canRedo} cancel={()=>{onClearPendingPicks();chooseTool("select");}} instructions={activeHint}
+        onClear={()=>mobileActions.clear(construction.points.length+construction.lines.length+construction.circles.length+construction.polygons.length+construction.arcs.length+construction.loci.length+workspaceImages.length,onReset)}
+        onBulkSelect={ids=>mobileOperations?.selectMany(ids)}
+        objects={[...([
+          ["point",construction.points], ["line",construction.lines], ["circle",construction.circles], ["polygon",construction.polygons], ["arc",construction.arcs], ["locus",construction.loci]
+        ] as Array<[GeometryObjectType,Array<{id:string;label?:string;style?:GeoStyle}>]>).flatMap(([type,rows])=>rows.map(row=>({id:row.id,name:row.style?.label || row.label || `${type} ${row.id.slice(0,6)}`,kind:type,visible:row.style?.visible!==false,selected:selectedGeometry?.id===row.id,locked:mobileOperations?.lockedIds.includes(row.id),select:()=>onSelectGeometry?.({type,id:row.id}),visibility:()=>onToggleGeometryVisibility?.({type,id:row.id}),lock:()=>mobileOperations?.lock({type,id:row.id}),remove:()=>mobileOperations?.remove({type,id:row.id})}))),...workspaceImages.map(image=>({id:image.id,name:image.name,kind:"image",visible:image.visible!==false,locked:image.locked,selected:selectedImageId===image.id,select:()=>mobileOperations?.selectImage(image.id),visibility:()=>mobileOperations?.patchImage(image.id,{visible:image.visible===false}),lock:()=>mobileOperations?.patchImage(image.id,{locked:!image.locked}),remove:()=>mobileOperations?.removeImage(image.id)}))]}
+        add={<><p>Choose a construction, then tap the canvas. The progress card shows which point is needed next.</p><div className="mws-action-grid">{(["point","segment","line","circle","circle-3-points","fixed-length","angle","triangle","rectangle","square","polygon","regular-polygon","ellipse","parabola"] as GeometryTool[]).map(tool=><button type="button" key={tool} onClick={()=>chooseTool(tool)}><svg width="44" height="32" viewBox="0 0 44 32" aria-hidden="true">{tool.includes("circle")?<circle cx="22" cy="16" r="12" fill="none" stroke="currentColor" strokeWidth="2"/>:tool==="point"?<circle cx="22" cy="16" r="4" fill="currentColor"/>:["line","segment","fixed-length"].includes(tool)?<path d="M5 26 L39 6" stroke="currentColor" strokeWidth="2"/>:<path d="M6 26 L22 4 L38 26 Z" fill="none" stroke="currentColor" strokeWidth="2"/>}</svg>{geometryToolLabel(tool)}</button>)}</div></>}
+        edit={<fieldset disabled={selectedGeometry ? mobileOperations?.lockedIds.includes(selectedGeometry.id) : false}><h3>{selectedGeometry ? geometryObjectLabel(construction,selectedGeometry) : "Select an object"}</h3>{selectedPoint && <div className="mws-action-grid"><MobileNumber label="Point x coordinate" value={(selectedPoint.x-320)/(graphSettings.gridSpacing??40)} onChange={value=>mobileOperations?.updatePoint({x:320+value*(graphSettings.gridSpacing??40)})}/><MobileNumber label="Point y coordinate" value={(220-selectedPoint.y)/(graphSettings.gridSpacing??40)} onChange={value=>mobileOperations?.updatePoint({y:220-value*(graphSettings.gridSpacing??40)})}/></div>}
+          {selectedGeometry?.type==="circle" && <MobileNumber label="Circle radius" value={(()=>{const c=construction.circles.find(c=>c.id===selectedGeometry.id),a=c&&pointById(construction.points,c.center),b=c&&pointById(construction.points,c.edge);return a&&b?Math.hypot(a.x-b.x,a.y-b.y)/40:1;})()} min={.01} onChange={value=>mobileOperations?.updateRadius(value)}/>}
+          {selectedGeometry?.type==="line" && <MobileNumber label="Segment length" value={(()=>{const l=construction.lines.find(l=>l.id===selectedGeometry.id),a=l&&pointById(construction.points,l.a),b=l&&pointById(construction.points,l.b);return a&&b?Math.hypot(a.x-b.x,a.y-b.y)/(graphSettings.gridSpacing??40):1;})()} min={.01} onChange={value=>mobileOperations?.setLength(value)}/>}
+          <div className="mws-action-grid"><button type="button" onClick={()=>{onMoveSelected();overlay.close();}}>Move selected</button><button type="button" onClick={()=>{onResizeSelected("increase");}}>Resize larger</button><button type="button" onClick={()=>onResizeSelected("decrease")}>Resize smaller</button><button type="button" onClick={()=>{mobileOperations?.duplicatePlace();overlay.close();}}>Duplicate and place</button><button type="button" onClick={()=>mobileActions.deleted(onDeleteSelected)}>Delete selected</button></div>
+          <MobileNumber label="Rotation angle degrees" value={mobileRotation} onChange={setMobileRotation}/><button type="button" onClick={()=>mobileOperations?.rotate(mobileRotation)}>Rotate selected by angle</button>
+          <p>For constrained lengths and angles, choose Fixed length or Angle from construction tools.</p>{selectedImageId ? imageInspector : objectInspector}</fieldset>}
+        view={<><div className="mws-action-grid"><button type="button" onClick={()=>{onClearPendingPicks();chooseTool("select");setRectangleMode(true);overlay.close();}}>Rectangle select</button><button type="button" onClick={onFitView}>Fit all objects</button><button type="button" onClick={()=>mobileOperations?.fitSelection()}>Fit selection</button><button type="button" onClick={onResetView}>Reset axes</button><button type="button" onClick={()=>chooseTool("move-canvas")}>Pan canvas</button></div>
+          <label><input type="checkbox" checked={graphSettings.snapToGrid} onChange={e=>onGraphSettingsChange({...graphSettings,snapToGrid:e.target.checked})}/>Snap to grid</label><label><input type="checkbox" checked={graphSettings.snapToObjects} onChange={e=>onGraphSettingsChange({...graphSettings,snapToObjects:e.target.checked})}/>Snap to objects and intersections</label></>}
+      />
       <nav
         className="geometry-mobile-tools"
         aria-label="Essential geometry tools"
@@ -1094,6 +1159,9 @@ export default function GeometryWorkspacePanel({
             <span>{label}</span>
           </button>
         ))}
+        <button type="button" onClick={()=>mobileActions.deleted(onDeleteSelected)} disabled={!selectedGeometry && selectedPointIds.length === 0 && !selectedImageId} className="danger">
+          <Trash2 /><span>Delete</span>
+        </button>
         <button type="button" onClick={onUndo} aria-label="Undo geometry change">
           <RotateCcw />
           <span>Undo</span>
@@ -1312,13 +1380,13 @@ export default function GeometryWorkspacePanel({
                 onResizeSelected={onResizeSelected}
                 onUndo={onUndo}
                 onRedo={onRedo}
-                onDeleteSelected={onDeleteSelected}
+                onDeleteSelected={overlay.isMobile?()=>mobileActions.deleted(onDeleteSelected):onDeleteSelected}
                 onShowHide={onShowHide}
                 onLockSelected={onLockSelected}
                 onTraceSelected={onTraceSelected}
                 onStopTrace={onStopTrace}
                 onClearTrace={onClearTrace}
-                onReset={onReset}
+                onReset={overlay.isMobile?()=>mobileActions.clear(construction.points.length+construction.lines.length+construction.circles.length+construction.polygons.length+construction.arcs.length+construction.loci.length+workspaceImages.length,onReset):onReset}
                 onSave={onSave}
                 onLoad={onLoad}
                 onAddImage={() => imageInputRef.current?.click()}
@@ -2699,6 +2767,15 @@ function GeometryBoard({
   onContextMenu: (event: PointerEvent<SVGSVGElement>) => void;
 }) {
   const [boardSize, setBoardSize] = useState({ width: 0, height: 0 });
+  const pinch = useRef({ touches: new Map<number,{x:number;y:number}>(), distance: 0, active: false });
+  const pinchDistance = () => { const [a,b]=[...pinch.current.touches.values()];return a&&b?Math.hypot(a.x-b.x,a.y-b.y):0; };
+  const finishPinch = (event: PointerEvent<SVGSVGElement>) => {
+    pinch.current.touches.delete(event.pointerId);
+    if(!pinch.current.active)return;
+    event.stopPropagation();event.preventDefault();onPointerLeave();
+    if(!pinch.current.touches.size){pinch.current.active=false;pinch.current.distance=0;}
+  };
+
   useLayoutEffect(() => {
     const board = boardRef.current;
     if (!board) return;
@@ -2711,9 +2788,11 @@ function GeometryBoard({
     observer.observe(board);
     return () => observer.disconnect();
   }, [boardRef]);
+  const mobileBoard=useIsMobileWorkspace(GEOMETRY_MOBILE_QUERY);
+  const touchRadius=mobileBoard?24:22;
   const pointHitRadius = boardSize.width && boardSize.height
-    ? 22 * Math.max(camera.width / boardSize.width, camera.height / boardSize.height)
-    : 22;
+    ? touchRadius * Math.max(camera.width / boardSize.width, camera.height / boardSize.height)
+    : touchRadius;
   useCanvasZoomLock(boardRef, (event) => {
     onWheel(event as unknown as WheelEvent<SVGSVGElement>);
   });
@@ -2726,6 +2805,29 @@ function GeometryBoard({
       role="application"
       tabIndex={0}
       aria-label="Geometry constructor. Select a point and use arrow keys to nudge it. Press Escape to return to select mode."
+
+      onPointerDownCapture={event => {
+        if(event.pointerType!=="touch")return;
+        pinch.current.touches.set(event.pointerId,{x:event.clientX,y:event.clientY});
+        if(pinch.current.touches.size<2&&!pinch.current.active)return;
+        pinch.current.active=true;pinch.current.distance=pinchDistance();
+        event.preventDefault();event.stopPropagation();onPointerLeave();event.currentTarget.setPointerCapture(event.pointerId);
+      }}
+      onPointerMoveCapture={event => {
+        if(!pinch.current.touches.has(event.pointerId))return;
+        pinch.current.touches.set(event.pointerId,{x:event.clientX,y:event.clientY});
+        if(!pinch.current.active)return;
+        event.preventDefault();event.stopPropagation();
+        const distance=pinchDistance(),previous=pinch.current.distance;
+        if(!distance||!previous)return;
+        const ratio=distance/previous;
+        if(ratio<1.1&&ratio>.9)return;
+        const [a,b]=[...pinch.current.touches.values()];
+        onWheel({currentTarget:event.currentTarget,clientX:(a.x+b.x)/2,clientY:(a.y+b.y)/2,deltaY:ratio>1?-1:1,preventDefault:()=>{}} as WheelEvent<SVGSVGElement>);
+        pinch.current.distance=distance;
+      }}
+      onPointerUpCapture={finishPinch}
+      onPointerCancelCapture={finishPinch}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onContextMenu={onContextMenu}

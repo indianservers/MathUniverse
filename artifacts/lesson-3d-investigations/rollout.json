@@ -1,0 +1,1082 @@
+[
+  {
+    "id": 113,
+    "family": "matrix",
+    "operation": "system",
+    "question": "Can three planes have one, infinitely many, or no common points?",
+    "extension": false,
+    "title": "Three-Variable Systems",
+    "route": "/lessons/algebra/113-three-variable-systems"
+  },
+  {
+    "id": 183,
+    "family": "vector",
+    "operation": "intro",
+    "question": "Which coordinates change when you lift a vector out of the xy-plane?",
+    "extension": false,
+    "title": "Vector Introduction",
+    "route": "/lessons/geometry/183-vector-introduction"
+  },
+  {
+    "id": 184,
+    "family": "vector",
+    "operation": "components",
+    "question": "Can you reconstruct the arrow from its three perpendicular components?",
+    "extension": false,
+    "title": "Component Form",
+    "route": "/lessons/geometry/184-component-form"
+  },
+  {
+    "id": 185,
+    "family": "vector",
+    "operation": "position",
+    "question": "How does a point’s position vector locate it in space?",
+    "extension": false,
+    "title": "Position Vectors",
+    "route": "/lessons/geometry/185-position-vectors"
+  },
+  {
+    "id": 186,
+    "family": "vector",
+    "operation": "add",
+    "question": "Predict the endpoint of u + v before showing the head-to-tail construction.",
+    "extension": false,
+    "title": "Vector Addition",
+    "route": "/lessons/geometry/186-vector-addition"
+  },
+  {
+    "id": 187,
+    "family": "vector",
+    "operation": "subtract",
+    "question": "Why does u − v connect the tip of v to the tip of u?",
+    "extension": false,
+    "title": "Vector Subtraction",
+    "route": "/lessons/geometry/187-vector-subtraction"
+  },
+  {
+    "id": 188,
+    "family": "vector",
+    "operation": "scale",
+    "question": "What happens to direction and length when the scalar becomes negative?",
+    "extension": false,
+    "title": "Scalar Multiplication",
+    "route": "/lessons/geometry/188-scalar-multiplication"
+  },
+  {
+    "id": 189,
+    "family": "vector",
+    "operation": "unit",
+    "question": "Does normalising change direction? What happens to the zero vector?",
+    "extension": false,
+    "title": "Magnitude and Unit Vectors",
+    "route": "/lessons/geometry/189-magnitude-and-unit-vectors"
+  },
+  {
+    "id": 190,
+    "family": "vector",
+    "operation": "dot",
+    "question": "When does the dot product change sign as you move one vector?",
+    "extension": false,
+    "title": "Dot Product",
+    "route": "/lessons/geometry/190-dot-product"
+  },
+  {
+    "id": 191,
+    "family": "vector",
+    "operation": "cross",
+    "question": "Swap u and v: which direction changes, and which magnitude stays the same?",
+    "extension": false,
+    "title": "Cross Product",
+    "route": "/lessons/geometry/191-cross-product"
+  },
+  {
+    "id": 192,
+    "family": "vector",
+    "operation": "projection",
+    "question": "Move u out of the plane. Is its residual still perpendicular to v?",
+    "extension": false,
+    "title": "Vector Projection",
+    "route": "/lessons/geometry/192-vector-projection"
+  },
+  {
+    "id": 193,
+    "family": "vector",
+    "operation": "span",
+    "question": "Which points can two independent vectors reach?",
+    "extension": false,
+    "title": "Linear Combinations",
+    "route": "/lessons/geometry/193-linear-combinations"
+  },
+  {
+    "id": 194,
+    "family": "vector",
+    "operation": "line",
+    "question": "What does the parameter change in r = u + t v?",
+    "extension": false,
+    "title": "Vector Equation of a Line",
+    "route": "/lessons/geometry/194-vector-equation-of-a-line"
+  },
+  {
+    "id": 195,
+    "family": "vector",
+    "operation": "plane",
+    "question": "When do two spanning directions fail to define a plane?",
+    "extension": false,
+    "title": "Vector Equation of a Plane",
+    "route": "/lessons/geometry/195-vector-equation-of-a-plane"
+  },
+  {
+    "id": 196,
+    "family": "vector",
+    "operation": "motion",
+    "question": "How does relative velocity differ from either individual velocity?",
+    "extension": false,
+    "title": "Relative Motion",
+    "route": "/lessons/geometry/196-relative-motion"
+  },
+  {
+    "id": 197,
+    "family": "vector",
+    "operation": "force",
+    "question": "Which resultant balances two applied forces?",
+    "extension": false,
+    "title": "Force Vectors",
+    "route": "/lessons/geometry/197-force-vectors"
+  },
+  {
+    "id": 227,
+    "family": "conic",
+    "operation": "ellipse",
+    "question": "Tilt a plane through a cone and inspect its closed section.",
+    "extension": true,
+    "title": "Ellipse",
+    "route": "/lessons/geometry/227-ellipse"
+  },
+  {
+    "id": 228,
+    "family": "conic",
+    "operation": "hyperbola",
+    "question": "Why does this plane cut both halves of the double cone?",
+    "extension": true,
+    "title": "Hyperbola",
+    "route": "/lessons/geometry/228-hyperbola"
+  },
+  {
+    "id": 229,
+    "family": "conic",
+    "operation": "parabola",
+    "question": "What happens when the cutting plane is parallel to a cone generator?",
+    "extension": true,
+    "title": "Parabola",
+    "route": "/lessons/geometry/229-parabola"
+  },
+  {
+    "id": 273,
+    "family": "trig",
+    "operation": "bearing",
+    "question": "Measure bearing clockwise from north in the horizontal plane.",
+    "extension": true,
+    "title": "Bearings",
+    "route": "/lessons/trigonometry/273-bearings"
+  },
+  {
+    "id": 274,
+    "family": "trig",
+    "operation": "elevation",
+    "question": "Separate the horizontal distance from the vertical rise.",
+    "extension": true,
+    "title": "Elevation and Depression",
+    "route": "/lessons/trigonometry/274-elevation-and-depression"
+  },
+  {
+    "id": 317,
+    "family": "integral",
+    "operation": "slices",
+    "question": "Compare a solid’s volume with a stack of thin cross-sectional slabs.",
+    "extension": false,
+    "title": "Volume by Slicing",
+    "route": "/lessons/calculus/317-volume-by-slicing"
+  },
+  {
+    "id": 318,
+    "family": "integral",
+    "operation": "washers",
+    "question": "How does subtracting the inner disc create a washer?",
+    "extension": false,
+    "title": "Disc and Washer Methods",
+    "route": "/lessons/calculus/318-disc-and-washer-methods"
+  },
+  {
+    "id": 319,
+    "family": "integral",
+    "operation": "shells",
+    "question": "Why does a thin cylindrical shell have volume approximately 2πrh Δr?",
+    "extension": false,
+    "title": "Shell Method",
+    "route": "/lessons/calculus/319-shell-method"
+  },
+  {
+    "id": 321,
+    "family": "integral",
+    "operation": "revolution-area",
+    "question": "Why does cone surface area use slant height rather than vertical height?",
+    "extension": false,
+    "title": "Surface Area of Revolution",
+    "route": "/lessons/calculus/321-surface-area-of-revolution"
+  },
+  {
+    "id": 350,
+    "family": "matrix",
+    "operation": "composition",
+    "question": "Compare A(Bv) with (AB)v using two spatial transformations.",
+    "extension": true,
+    "title": "Matrix Multiplication",
+    "route": "/lessons/advanced-mathematics/350-matrix-multiplication"
+  },
+  {
+    "id": 353,
+    "family": "matrix",
+    "operation": "determinant",
+    "question": "Watch the signed volume change as the three matrix columns move.",
+    "extension": false,
+    "title": "Determinant",
+    "route": "/lessons/advanced-mathematics/353-determinant"
+  },
+  {
+    "id": 354,
+    "family": "matrix",
+    "operation": "inverse",
+    "question": "Can an inverse recover the original cube after the matrix becomes singular?",
+    "extension": true,
+    "title": "Matrix Inverse",
+    "route": "/lessons/advanced-mathematics/354-matrix-inverse"
+  },
+  {
+    "id": 355,
+    "family": "matrix",
+    "operation": "row-operation",
+    "question": "Does adding a multiple of one equation to another preserve their solutions?",
+    "extension": true,
+    "title": "Row Operations",
+    "route": "/lessons/advanced-mathematics/355-row-operations"
+  },
+  {
+    "id": 356,
+    "family": "matrix",
+    "operation": "rref",
+    "question": "Compare the original planes with the reduced equations.",
+    "extension": true,
+    "title": "RREF",
+    "route": "/lessons/advanced-mathematics/356-rref"
+  },
+  {
+    "id": 357,
+    "family": "matrix",
+    "operation": "augmented",
+    "question": "Which column contains constants rather than spatial directions?",
+    "extension": true,
+    "title": "Augmented Matrices",
+    "route": "/lessons/advanced-mathematics/357-augmented-matrices"
+  },
+  {
+    "id": 358,
+    "family": "matrix",
+    "operation": "transform",
+    "question": "Predict the transformed unit cube from the images of its basis vectors.",
+    "extension": false,
+    "title": "Linear Transformations",
+    "route": "/lessons/advanced-mathematics/358-linear-transformations"
+  },
+  {
+    "id": 359,
+    "family": "matrix",
+    "operation": "eigen",
+    "question": "When does the image of e₁ remain on its original line?",
+    "extension": false,
+    "title": "Eigenvalues and Eigenvectors",
+    "route": "/lessons/advanced-mathematics/359-eigenvalues-and-eigenvectors"
+  },
+  {
+    "id": 360,
+    "family": "matrix",
+    "operation": "basis",
+    "question": "Does adding this third vector increase the span’s dimension?",
+    "extension": false,
+    "title": "Basis and Dimension",
+    "route": "/lessons/advanced-mathematics/360-basis-and-dimension"
+  },
+  {
+    "id": 361,
+    "family": "matrix",
+    "operation": "independence",
+    "question": "What happens to the spanning volume when one direction becomes dependent?",
+    "extension": false,
+    "title": "Linear Independence",
+    "route": "/lessons/advanced-mathematics/361-linear-independence"
+  },
+  {
+    "id": 362,
+    "family": "matrix",
+    "operation": "space",
+    "question": "Compare a one-dimensional line, a two-dimensional plane, and three-dimensional space.",
+    "extension": false,
+    "title": "Vector Spaces",
+    "route": "/lessons/advanced-mathematics/362-vector-spaces"
+  },
+  {
+    "id": 363,
+    "family": "matrix",
+    "operation": "gram-schmidt",
+    "question": "Remove projections in sequence to build an orthonormal basis.",
+    "extension": false,
+    "title": "Gram–Schmidt",
+    "route": "/lessons/advanced-mathematics/363-gramschmidt"
+  },
+  {
+    "id": 364,
+    "family": "matrix",
+    "operation": "least-squares",
+    "question": "Is the residual perpendicular to the approximation subspace?",
+    "extension": true,
+    "title": "Least Squares",
+    "route": "/lessons/advanced-mathematics/364-least-squares"
+  },
+  {
+    "id": 376,
+    "family": "complex",
+    "operation": "mobius",
+    "question": "Use stereographic projection to compare z and 1/z on the sphere, including z = 0.",
+    "extension": true,
+    "title": "Möbius Transformations",
+    "route": "/lessons/advanced-mathematics/376-mobius-transformations"
+  },
+  {
+    "id": 377,
+    "family": "complex",
+    "operation": "magnitude",
+    "question": "Explore the magnitude surface |z²| and compare it with the complex input plane.",
+    "extension": true,
+    "title": "Complex Functions",
+    "route": "/lessons/advanced-mathematics/377-complex-functions"
+  },
+  {
+    "id": 378,
+    "family": "geometry",
+    "operation": "coordinates",
+    "question": "Rotate the axes: do the coordinates change when only the camera moves?",
+    "extension": false,
+    "title": "3D Coordinate System",
+    "route": "/lessons/3d-mathematics/378-3d-coordinate-system"
+  },
+  {
+    "id": 379,
+    "family": "geometry",
+    "operation": "point",
+    "question": "Move a point and compare its three coordinate projections.",
+    "extension": false,
+    "title": "3D Points",
+    "route": "/lessons/3d-mathematics/379-3d-points"
+  },
+  {
+    "id": 380,
+    "family": "geometry",
+    "operation": "distance",
+    "question": "Why does spatial distance involve all three squared coordinate differences?",
+    "extension": false,
+    "title": "Distance in 3D",
+    "route": "/lessons/3d-mathematics/380-distance-in-3d"
+  },
+  {
+    "id": 381,
+    "family": "geometry",
+    "operation": "lines",
+    "question": "Which line configurations can exist only in three dimensions?",
+    "extension": false,
+    "title": "Lines in 3D",
+    "route": "/lessons/3d-mathematics/381-lines-in-3d"
+  },
+  {
+    "id": 382,
+    "family": "geometry",
+    "operation": "plane",
+    "question": "How does a plane’s normal control its orientation?",
+    "extension": false,
+    "title": "Planes",
+    "route": "/lessons/3d-mathematics/382-planes"
+  },
+  {
+    "id": 383,
+    "family": "geometry",
+    "operation": "plane-angle",
+    "question": "Can parallel planes have opposite normal directions?",
+    "extension": false,
+    "title": "Parallel and Perpendicular Planes",
+    "route": "/lessons/3d-mathematics/383-parallel-and-perpendicular-planes"
+  },
+  {
+    "id": 384,
+    "family": "geometry",
+    "operation": "line-plane",
+    "question": "When does a line meet, miss, or lie entirely within a plane?",
+    "extension": false,
+    "title": "Line–Plane Intersection",
+    "route": "/lessons/3d-mathematics/384-lineplane-intersection"
+  },
+  {
+    "id": 385,
+    "family": "geometry",
+    "operation": "plane-intersection",
+    "question": "Why do two nonparallel planes meet in a line?",
+    "extension": false,
+    "title": "Plane–Plane Intersection",
+    "route": "/lessons/3d-mathematics/385-planeplane-intersection"
+  },
+  {
+    "id": 386,
+    "family": "geometry",
+    "operation": "line-angle",
+    "question": "How is the smaller angle between lines related to their direction vectors?",
+    "extension": false,
+    "title": "Angle Between Lines",
+    "route": "/lessons/3d-mathematics/386-angle-between-lines"
+  },
+  {
+    "id": 387,
+    "family": "geometry",
+    "operation": "plane-angle",
+    "question": "Compare the plane angle with the angle between their normals.",
+    "extension": false,
+    "title": "Angle Between Planes",
+    "route": "/lessons/3d-mathematics/387-angle-between-planes"
+  },
+  {
+    "id": 388,
+    "family": "geometry",
+    "operation": "line-plane-angle",
+    "question": "Why is the line–plane angle complementary to the normal angle?",
+    "extension": false,
+    "title": "Angle Between Line and Plane",
+    "route": "/lessons/3d-mathematics/388-angle-between-line-and-plane"
+  },
+  {
+    "id": 389,
+    "family": "geometry",
+    "operation": "point-plane",
+    "question": "Which segment gives the shortest distance from a point to a plane?",
+    "extension": false,
+    "title": "Point-to-Plane Distance",
+    "route": "/lessons/3d-mathematics/389-point-to-plane-distance"
+  },
+  {
+    "id": 390,
+    "family": "vector",
+    "operation": "components",
+    "question": "How do the components determine a vector’s spatial direction?",
+    "extension": false,
+    "title": "3D Vectors",
+    "route": "/lessons/3d-mathematics/390-3d-vectors"
+  },
+  {
+    "id": 391,
+    "family": "solid",
+    "operation": "cube",
+    "question": "Which lengths remain equal when you rotate the cube?",
+    "extension": false,
+    "title": "Cube",
+    "route": "/lessons/3d-mathematics/391-cube"
+  },
+  {
+    "id": 392,
+    "family": "solid",
+    "operation": "cuboid",
+    "question": "How does changing height affect volume and surface area differently?",
+    "extension": false,
+    "title": "Cuboid",
+    "route": "/lessons/3d-mathematics/392-cuboid"
+  },
+  {
+    "id": 393,
+    "family": "solid",
+    "operation": "prism",
+    "question": "Why is a prism’s volume base area times height?",
+    "extension": false,
+    "title": "Prism",
+    "route": "/lessons/3d-mathematics/393-prism"
+  },
+  {
+    "id": 394,
+    "family": "solid",
+    "operation": "pyramid",
+    "question": "Compare this pyramid with the prism sharing its base and height.",
+    "extension": false,
+    "title": "Pyramid",
+    "route": "/lessons/3d-mathematics/394-pyramid"
+  },
+  {
+    "id": 395,
+    "family": "solid",
+    "operation": "tetrahedron",
+    "question": "Inspect all four triangular faces and six edges.",
+    "extension": false,
+    "title": "Tetrahedron",
+    "route": "/lessons/3d-mathematics/395-tetrahedron"
+  },
+  {
+    "id": 396,
+    "family": "solid",
+    "operation": "octahedron",
+    "question": "Count the faces, edges, and vertices of the regular octahedron.",
+    "extension": false,
+    "title": "Regular Polyhedra",
+    "route": "/lessons/3d-mathematics/396-regular-polyhedra"
+  },
+  {
+    "id": 397,
+    "family": "solid",
+    "operation": "cylinder",
+    "question": "Separate the circular bases from the curved surface.",
+    "extension": false,
+    "title": "Cylinder",
+    "route": "/lessons/3d-mathematics/397-cylinder"
+  },
+  {
+    "id": 398,
+    "family": "solid",
+    "operation": "cone",
+    "question": "How does cone volume compare with its matching cylinder?",
+    "extension": false,
+    "title": "Cone",
+    "route": "/lessons/3d-mathematics/398-cone"
+  },
+  {
+    "id": 399,
+    "family": "solid",
+    "operation": "sphere",
+    "question": "Why do horizontal circular sections change size with height?",
+    "extension": false,
+    "title": "Sphere",
+    "route": "/lessons/3d-mathematics/399-sphere"
+  },
+  {
+    "id": 400,
+    "family": "solid",
+    "operation": "hemisphere",
+    "question": "Does total surface area include the flat circular base?",
+    "extension": false,
+    "title": "Hemisphere",
+    "route": "/lessons/3d-mathematics/400-hemisphere"
+  },
+  {
+    "id": 401,
+    "family": "solid",
+    "operation": "frustum",
+    "question": "How does the upper radius affect the removed cone?",
+    "extension": false,
+    "title": "Frustum",
+    "route": "/lessons/3d-mathematics/401-frustum"
+  },
+  {
+    "id": 402,
+    "family": "solid",
+    "operation": "revolution",
+    "question": "Rotate a straight generating segment to create a cone.",
+    "extension": false,
+    "title": "Surface of Revolution",
+    "route": "/lessons/3d-mathematics/402-surface-of-revolution"
+  },
+  {
+    "id": 403,
+    "family": "solid",
+    "operation": "extrusion",
+    "question": "How does extrusion connect a square region to a cuboid?",
+    "extension": false,
+    "title": "Extrusion",
+    "route": "/lessons/3d-mathematics/403-extrusion"
+  },
+  {
+    "id": 404,
+    "family": "solid",
+    "operation": "net",
+    "question": "Follow each hinged face as a flat net closes into a cube.",
+    "extension": false,
+    "title": "Nets of Solids",
+    "route": "/lessons/3d-mathematics/404-nets-of-solids"
+  },
+  {
+    "id": 405,
+    "family": "solid",
+    "operation": "section",
+    "question": "Predict how the section area changes as the cutting plane moves.",
+    "extension": false,
+    "title": "Cross-Sections",
+    "route": "/lessons/3d-mathematics/405-cross-sections"
+  },
+  {
+    "id": 406,
+    "family": "solid",
+    "operation": "volume",
+    "question": "Change size: does volume scale linearly or cubically?",
+    "extension": false,
+    "title": "Volume",
+    "route": "/lessons/3d-mathematics/406-volume"
+  },
+  {
+    "id": 407,
+    "family": "solid",
+    "operation": "area",
+    "question": "How does surface area scale when every length doubles?",
+    "extension": false,
+    "title": "Surface Area",
+    "route": "/lessons/3d-mathematics/407-surface-area"
+  },
+  {
+    "id": 408,
+    "family": "solid",
+    "operation": "euler",
+    "question": "Count V, E, and F, then test V − E + F.",
+    "extension": false,
+    "title": "Euler's Polyhedron Formula",
+    "route": "/lessons/3d-mathematics/408-euler-s-polyhedron-formula"
+  },
+  {
+    "id": 409,
+    "family": "solid",
+    "operation": "xray",
+    "question": "Use transparency to identify edges hidden behind the visible faces.",
+    "extension": false,
+    "title": "Transparent / X-Ray Mode",
+    "route": "/lessons/3d-mathematics/409-transparent-x-ray-mode"
+  },
+  {
+    "id": 410,
+    "family": "solid",
+    "operation": "camera",
+    "question": "Does rotating the camera change the mathematical dimensions?",
+    "extension": false,
+    "title": "Camera Controls",
+    "route": "/lessons/3d-mathematics/410-camera-controls"
+  },
+  {
+    "id": 411,
+    "family": "solid",
+    "operation": "orthographic",
+    "question": "Compare front, top, and side views without perspective foreshortening.",
+    "extension": false,
+    "title": "Orthographic Views",
+    "route": "/lessons/3d-mathematics/411-orthographic-views"
+  },
+  {
+    "id": 412,
+    "family": "solid",
+    "operation": "placement",
+    "question": "Rehearse positioning a model relative to a ground plane.",
+    "extension": false,
+    "title": "AR Placement",
+    "route": "/lessons/3d-mathematics/412-ar-placement"
+  },
+  {
+    "id": 413,
+    "family": "surface",
+    "operation": "graph",
+    "question": "How does moving x or y change the height z = f(x,y)?",
+    "extension": false,
+    "title": "Surface z=f(x,y)",
+    "route": "/lessons/3d-mathematics/413-surface-z-f-x-y"
+  },
+  {
+    "id": 414,
+    "family": "surface",
+    "operation": "implicit",
+    "question": "Which points satisfy x² + y² + z² = c?",
+    "extension": false,
+    "title": "Implicit Surfaces",
+    "route": "/lessons/3d-mathematics/414-implicit-surfaces"
+  },
+  {
+    "id": 415,
+    "family": "surface",
+    "operation": "parametric",
+    "question": "How do two parameters locate a point on a torus?",
+    "extension": false,
+    "title": "Parametric Surfaces",
+    "route": "/lessons/3d-mathematics/415-parametric-surfaces"
+  },
+  {
+    "id": 416,
+    "family": "surface",
+    "operation": "curve",
+    "question": "Follow the position and tangent as a helix parameter changes.",
+    "extension": false,
+    "title": "Space Curves",
+    "route": "/lessons/3d-mathematics/416-space-curves"
+  },
+  {
+    "id": 417,
+    "family": "surface",
+    "operation": "quadric",
+    "question": "Compare the curvature of a paraboloid and saddle; inspect their coordinate-plane slices.",
+    "extension": false,
+    "title": "Quadric Surfaces",
+    "route": "/lessons/3d-mathematics/417-quadric-surfaces"
+  },
+  {
+    "id": 418,
+    "family": "surface",
+    "operation": "cylindrical",
+    "question": "Convert a radius, azimuth, and height into Cartesian coordinates.",
+    "extension": false,
+    "title": "Cylindrical Coordinates",
+    "route": "/lessons/3d-mathematics/418-cylindrical-coordinates"
+  },
+  {
+    "id": 419,
+    "family": "surface",
+    "operation": "spherical",
+    "question": "Distinguish azimuth from the polar angle measured from +z.",
+    "extension": false,
+    "title": "Spherical Coordinates",
+    "route": "/lessons/3d-mathematics/419-spherical-coordinates"
+  },
+  {
+    "id": 420,
+    "family": "surface",
+    "operation": "contour",
+    "question": "Link a horizontal cut of the surface to its contour in the xy-plane.",
+    "extension": false,
+    "title": "Contour Curves",
+    "route": "/lessons/3d-mathematics/420-contour-curves"
+  },
+  {
+    "id": 421,
+    "family": "surface",
+    "operation": "level",
+    "question": "How does the level c change the sphere x² + y² + z² = c?",
+    "extension": false,
+    "title": "Level Surfaces",
+    "route": "/lessons/3d-mathematics/421-level-surfaces"
+  },
+  {
+    "id": 422,
+    "family": "surface",
+    "operation": "partial",
+    "question": "Hold one coordinate fixed and compare the two tangent slopes.",
+    "extension": false,
+    "title": "Partial Derivatives",
+    "route": "/lessons/3d-mathematics/422-partial-derivatives"
+  },
+  {
+    "id": 423,
+    "family": "surface",
+    "operation": "gradient",
+    "question": "Why does the gradient point toward the fastest increase?",
+    "extension": false,
+    "title": "Gradient Vector",
+    "route": "/lessons/3d-mathematics/423-gradient-vector"
+  },
+  {
+    "id": 424,
+    "family": "surface",
+    "operation": "tangent",
+    "question": "How close is the tangent plane to the surface near the contact point?",
+    "extension": false,
+    "title": "Tangent Plane",
+    "route": "/lessons/3d-mathematics/424-tangent-plane"
+  },
+  {
+    "id": 425,
+    "family": "surface",
+    "operation": "normal",
+    "question": "Check that the normal is perpendicular to both tangent directions.",
+    "extension": false,
+    "title": "Normal Vector",
+    "route": "/lessons/3d-mathematics/425-normal-vector"
+  },
+  {
+    "id": 426,
+    "family": "surface",
+    "operation": "double-integral",
+    "question": "Increase the partition count: do the column volumes approach the exact integral?",
+    "extension": false,
+    "title": "Double Integrals",
+    "route": "/lessons/3d-mathematics/426-double-integrals"
+  },
+  {
+    "id": 427,
+    "family": "surface",
+    "operation": "optimisation",
+    "question": "Does a zero gradient imply a minimum? Compare a bowl with a saddle.",
+    "extension": false,
+    "title": "Multivariable Optimisation",
+    "route": "/lessons/3d-mathematics/427-multivariable-optimisation"
+  },
+  {
+    "id": 10051,
+    "family": "solid",
+    "operation": "cubic",
+    "question": "Identify a³, b³, three a²b blocks, and three ab² blocks in (a + b)³.",
+    "extension": false,
+    "title": "Cubic Algebraic Identities",
+    "route": "/lessons/school/class-9/class-9-polynomials-cubic-algebraic-identities"
+  },
+  {
+    "id": 10082,
+    "family": "solid",
+    "operation": "combined",
+    "question": "Which shared face becomes internal when two solids are joined?",
+    "extension": false,
+    "title": "Combined Solids",
+    "route": "/lessons/school/class-9/class-9-mensuration-combined-solids"
+  },
+  {
+    "id": 10098,
+    "family": "trig",
+    "operation": "elevation",
+    "question": "Compare elevation with the height-to-distance ratio.",
+    "extension": true,
+    "title": "Angle of Elevation",
+    "route": "/lessons/school/class-10/class-10-trigonometry-applications-angle-of-elevation"
+  },
+  {
+    "id": 10099,
+    "family": "trig",
+    "operation": "depression",
+    "question": "Why do depression and elevation have equal angles for parallel horizontals?",
+    "extension": true,
+    "title": "Angle of Depression",
+    "route": "/lessons/school/class-10/class-10-trigonometry-applications-angle-of-depression"
+  },
+  {
+    "id": 10100,
+    "family": "trig",
+    "operation": "shadow",
+    "question": "How does the sun’s elevation affect the shadow length?",
+    "extension": true,
+    "title": "Shadow-Length Modelling",
+    "route": "/lessons/school/class-10/class-10-trigonometry-applications-shadow-length-modelling"
+  },
+  {
+    "id": 10101,
+    "family": "trig",
+    "operation": "observers",
+    "question": "Compare the two observers’ distances and elevation angles.",
+    "extension": true,
+    "title": "Two-Observer Height Problems",
+    "route": "/lessons/school/class-10/class-10-trigonometry-applications-two-observer-height-problems"
+  },
+  {
+    "id": 10110,
+    "family": "solid",
+    "operation": "frustum",
+    "question": "Compare the frustum with a full cone and the removed small cone.",
+    "extension": false,
+    "title": "Frustum of a Cone",
+    "route": "/lessons/school/class-10/class-10-mensuration-frustum-of-a-cone"
+  },
+  {
+    "id": 10111,
+    "family": "solid",
+    "operation": "combined",
+    "question": "Add component volumes while excluding the internal joining face from surface area.",
+    "extension": false,
+    "title": "Combined Solids",
+    "route": "/lessons/school/class-10/class-10-mensuration-combined-solids"
+  },
+  {
+    "id": 10141,
+    "family": "conic",
+    "operation": "parabola",
+    "question": "Connect a cone section to a parabola’s planar equation.",
+    "extension": true,
+    "title": "Parabola Standard Forms",
+    "route": "/lessons/school/class-11/class-11-conic-sections-parabola-standard-forms"
+  },
+  {
+    "id": 10142,
+    "family": "conic",
+    "operation": "focus-directrix",
+    "question": "See how a cone section gives a planar conic; compare its focus–directrix description in the main lesson.",
+    "extension": true,
+    "title": "Focus-Directrix Definition",
+    "route": "/lessons/school/class-11/class-11-conic-sections-focus-directrix-definition"
+  },
+  {
+    "id": 10143,
+    "family": "conic",
+    "operation": "ellipse",
+    "question": "Which cutting-plane orientations produce ellipses?",
+    "extension": true,
+    "title": "Ellipse Standard Forms",
+    "route": "/lessons/school/class-11/class-11-conic-sections-ellipse-standard-forms"
+  },
+  {
+    "id": 10144,
+    "family": "conic",
+    "operation": "hyperbola",
+    "question": "Find the two branches on opposite halves of the cone.",
+    "extension": true,
+    "title": "Hyperbola Standard Forms",
+    "route": "/lessons/school/class-11/class-11-conic-sections-hyperbola-standard-forms"
+  },
+  {
+    "id": 10145,
+    "family": "conic",
+    "operation": "eccentricity",
+    "question": "Move between ellipse, parabola, and hyperbola by changing the cut.",
+    "extension": true,
+    "title": "Eccentricity",
+    "route": "/lessons/school/class-11/class-11-conic-sections-eccentricity"
+  },
+  {
+    "id": 10151,
+    "family": "conic",
+    "operation": "identify",
+    "question": "Identify the conic from the cone’s cutting-plane slope.",
+    "extension": true,
+    "title": "Conic Identification from General Equation",
+    "route": "/lessons/school/class-11/class-11-conic-sections-conic-identification-from-general-equation"
+  },
+  {
+    "id": 10152,
+    "family": "geometry",
+    "operation": "ratios",
+    "question": "Does scaling the direction ratios change the line’s direction?",
+    "extension": false,
+    "title": "Direction Ratios",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-direction-ratios"
+  },
+  {
+    "id": 10153,
+    "family": "geometry",
+    "operation": "cosines",
+    "question": "Why do the three squared direction cosines sum to one?",
+    "extension": false,
+    "title": "Direction Cosines",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-direction-cosines"
+  },
+  {
+    "id": 10154,
+    "family": "geometry",
+    "operation": "two-points",
+    "question": "How do two points determine a line’s direction vector?",
+    "extension": false,
+    "title": "Line Through Two Points in 3D",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-line-through-two-points-in-3d"
+  },
+  {
+    "id": 10155,
+    "family": "geometry",
+    "operation": "parameter-line",
+    "question": "Predict the point reached at a negative line parameter.",
+    "extension": false,
+    "title": "Vector Equation of a Line",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-vector-equation-of-a-line"
+  },
+  {
+    "id": 10156,
+    "family": "geometry",
+    "operation": "cartesian-line",
+    "question": "What does a zero direction component mean in a line equation?",
+    "extension": false,
+    "title": "Cartesian Equation of a Line",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-cartesian-equation-of-a-line"
+  },
+  {
+    "id": 10157,
+    "family": "geometry",
+    "operation": "skew",
+    "question": "Can two nonparallel lines fail to meet? Rotate to check their depth.",
+    "extension": false,
+    "title": "Skew Lines",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-skew-lines"
+  },
+  {
+    "id": 10158,
+    "family": "geometry",
+    "operation": "closest",
+    "question": "Is the shortest connecting segment perpendicular to both lines?",
+    "extension": false,
+    "title": "Shortest Distance Between Lines",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-shortest-distance-between-lines"
+  },
+  {
+    "id": 10159,
+    "family": "geometry",
+    "operation": "plane",
+    "question": "Move the normal and offset independently: which rotates the plane?",
+    "extension": false,
+    "title": "Plane Equation",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-plane-equation"
+  },
+  {
+    "id": 10160,
+    "family": "geometry",
+    "operation": "point-normal",
+    "question": "Check n · (r − p) = 0 at a point on the plane.",
+    "extension": false,
+    "title": "Point-Normal Form",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-point-normal-form"
+  },
+  {
+    "id": 10161,
+    "family": "geometry",
+    "operation": "intercepts",
+    "question": "Which axis intercept disappears when a normal component is zero?",
+    "extension": false,
+    "title": "Intercept Form of a Plane",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-intercept-form-of-a-plane"
+  },
+  {
+    "id": 10162,
+    "family": "geometry",
+    "operation": "point-plane",
+    "question": "Compare perpendicular distance with other point-to-plane segments.",
+    "extension": false,
+    "title": "Distance from Point to Plane",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-distance-from-point-to-plane"
+  },
+  {
+    "id": 10163,
+    "family": "geometry",
+    "operation": "plane-angle",
+    "question": "Predict the angle when the normals become perpendicular.",
+    "extension": false,
+    "title": "Angle Between Two Planes",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-angle-between-two-planes"
+  },
+  {
+    "id": 10164,
+    "family": "geometry",
+    "operation": "line-plane-angle",
+    "question": "When is a line parallel or perpendicular to the plane?",
+    "extension": false,
+    "title": "Angle Between Line and Plane",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-angle-between-line-and-plane"
+  },
+  {
+    "id": 10197,
+    "family": "matrix",
+    "operation": "system",
+    "question": "Compare the matrix solution with the common point of three planes.",
+    "extension": true,
+    "title": "Solving Linear Equations by Matrices",
+    "route": "/lessons/school/class-12/class-12-matrices-and-determinants-solving-linear-equations-by-matrices"
+  },
+  {
+    "id": 10198,
+    "family": "matrix",
+    "operation": "cramer",
+    "question": "When is division by the determinant valid?",
+    "extension": true,
+    "title": "Cramer's Rule",
+    "route": "/lessons/school/class-12/class-12-matrices-and-determinants-cramer-s-rule"
+  },
+  {
+    "id": 10199,
+    "family": "matrix",
+    "operation": "consistency",
+    "question": "Does a singular matrix always mean there are no solutions?",
+    "extension": true,
+    "title": "Consistency of Linear Systems",
+    "route": "/lessons/school/class-12/class-12-matrices-and-determinants-consistency-of-linear-systems"
+  }
+]

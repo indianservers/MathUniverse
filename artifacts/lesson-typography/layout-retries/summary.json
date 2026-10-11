@@ -1,0 +1,10 @@
+{
+  "lessons": 7,
+  "checks": 14,
+  "undersized": [],
+  "errors": [],
+  "overflow": [
+    "/lessons/school/class-6/class-6-data-handling-pictograph-builder",
+    "/lessons/school/class-10/class-10-circle-proofs-equal-chords-and-equal-angles"
+  ]
+}

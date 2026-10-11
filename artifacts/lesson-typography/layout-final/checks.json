@@ -1,0 +1,69 @@
+[
+  {
+    "route": "/lessons/school/class-10/class-10-circle-proofs-equal-chords-and-equal-angles",
+    "title": "Equal Chords and Equal Angles",
+    "catalog": "school",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 116,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 116,
+        "small": [],
+        "overflow": [
+          {
+            "className": null,
+            "text": "Center view"
+          },
+          {
+            "className": null,
+            "text": "KEY"
+          },
+          {
+            "className": null,
+            "text": "● A"
+          },
+          {
+            "className": null,
+            "text": "● B"
+          },
+          {
+            "className": null,
+            "text": "● C"
+          },
+          {
+            "className": null,
+            "text": "● D"
+          },
+          {
+            "className": null,
+            "text": "● O Centre"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-6/class-6-data-handling-pictograph-builder",
+    "title": "Pictograph Builder",
+    "catalog": "school",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 207,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 207,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  }
+]

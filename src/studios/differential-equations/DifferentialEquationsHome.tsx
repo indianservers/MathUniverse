@@ -2,9 +2,9 @@ import CinematicHero from "../heroes/CinematicHero";
 import { useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import {
-  ArrowRight, BookOpen, ChartNoAxesCombined, ChevronRight,
-  Cog, FileText, FlaskConical, GitBranch,
-  Goal, Search, Sigma, Sparkles, Trophy, Waves,
+  ArrowRight, BookOpen, ChevronRight,
+  FileText, FlaskConical,
+  Trophy,
   type LucideIcon,
 } from "lucide-react";
 import type { StudioMockupDefinition } from "../mockup/studioMockupCatalog";
@@ -24,15 +24,6 @@ type Feature = {
 };
 
 const features: Feature[] = [
-  { title: "Equation Explorer", detail: "Classify order, linearity and understand solutions", href: "/differential-equations/equation-explorer", icon: Search, artId: "explorer", tone: "blue" },
-  { title: "Direction Fields", detail: "Visualize slope fields and solution curves", href: "/differential-equations/direction-fields", icon: Sparkles, artId: "slope-fields", tone: "green" },
-  { title: "Initial Value Problems", detail: "Use an initial point to find a solution", href: "/differential-equations/initial-value", icon: Goal, artId: "initial-value", tone: "orange" },
-  { title: "Method Selector", detail: "Find the best method for a given equation", href: "/differential-equations/method-selector", icon: Cog, artId: "method-selector", tone: "purple" },
-  { title: "First-Order Equations", detail: "Separable, Linear, Exact, Bernoulli and more", href: "/differential-equations/separable", icon: Waves, artId: "separable", tone: "pink" },
-  { title: "Higher-Order Equations", detail: "Solve and explore advanced equations", href: "/differential-equations/higher-order-linear", icon: Sigma, artId: "higher-order-linear", tone: "mint" },
-  { title: "Systems & Trajectories", detail: "Phase plane, eigenvalues and stability", href: "/differential-equations/systems", icon: GitBranch, artId: "systems", tone: "yellow" },
-  { title: "Numerical Methods", detail: "Euler, Improved Euler, Runge–Kutta, and more", href: "/differential-equations/euler", icon: ChartNoAxesCombined, artId: "rk4", tone: "indigo" },
-  { title: "Engineering Models", detail: "Real-world applications and simulations", href: "/differential-equations/oscillations", icon: Cog, artId: "mechanical-oscillations", tone: "jade" },
   { title: "Calculus DE Page", detail: "Original Calculus differential equations", href: "/calculus/differential-equations", icon: BookOpen, tone: "rose" },
   { title: "Formula Sheet", detail: "Key formulas at a glance", action: "formulas", icon: FileText, tone: "sky" },
   { title: "Practice & Quizzes", detail: "Test your understanding", action: "practice", icon: Trophy, tone: "peach" },
@@ -65,11 +56,11 @@ const quiz = [
   { question: "How many slope evaluations does one RK4 step use?", choices: ["One", "Two", "Four"], answer: 2, note: "RK4 combines four slopes, k₁ through k₄." },
 ];
 
-function FeatureCard({ feature, number, onAction }: { feature: Feature; number: number; onAction: (action: "formulas" | "practice") => void }) {
+function FeatureCard({ feature, onAction }: { feature: Feature; onAction: (action: "formulas" | "practice") => void }) {
   const Icon = feature.icon;
   const content = <>
     <span className="de-feature-art">{feature.artId ? <DifferentialEquationsArtwork id={feature.artId} /> : <Icon size={58} strokeWidth={1.85} aria-hidden="true" />}</span>
-    <span className="de-feature-copy"><strong>{number <= 10 ? `${number}. ` : ""}{feature.title}</strong><small>{feature.detail}</small></span>
+    <span className="de-feature-copy"><strong>{feature.title}</strong><small>{feature.detail}</small></span>
     <span className="de-feature-arrow"><ChevronRight size={17} /></span>
   </>;
   return feature.href ? <Link className={`de-feature-card tone-${feature.tone}`} to={feature.href}>{content}</Link> : <button type="button" className={`de-feature-card tone-${feature.tone}`} onClick={() => onAction(feature.action!)}>{content}</button>;
@@ -94,7 +85,7 @@ export default function DifferentialEquationsHome({ studio }: { studio: StudioMo
     <CinematicHero id="differential-equations" />
 
     <div className="de-feature-grid" aria-label="Explore Differential Equations Studio">
-      {features.map((feature, index) => <FeatureCard key={feature.title} feature={feature} number={index + 1} onAction={setPanel} />)}
+      {features.map((feature) => <FeatureCard key={feature.title} feature={feature} onAction={setPanel} />)}
     </div>
 
     <section className="de-all-labs" aria-label="All interactive labs">

@@ -4,6 +4,7 @@ import type { LessonAdapterProps } from "../../types";
 import "../geometry3d/CoordinateSystemTargetLesson378.css";
 import "./PermutationsTargetLesson558.css";
 import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
+import { Link } from "react-router-dom";
 
 const colors = [
   "#337be0",
@@ -26,7 +27,8 @@ export default function PermutationsTargetLesson558({
   const [n, setNState] = useState(5);
   const [r, setRState] = useState(2);
   const [slots, setSlots] = useState<(string | null)[]>([null, null]);
-  const [history, setHistory] = useState<string[]>(["AB", "BA", "AC"]);
+  const [history, setHistory] = useState<string[]>([]);
+  const [displayOrder, setDisplayOrder] = useState<string[]>(letters(5));
   const [tab, setTab] = useState("Interact");
   const [practice, setPractice] = useState<(string | null)[]>([null, null]);
   const [checked, setChecked] = useState(false);
@@ -44,7 +46,8 @@ export default function PermutationsTargetLesson558({
     setNState(5);
     setRState(2);
     setSlots([null, null]);
-    setHistory(["AB", "BA", "AC"]);
+    setHistory([]);
+    setDisplayOrder(letters(5));
     setTab("Interact");
     setPractice([null, null]);
     setChecked(false);
@@ -55,23 +58,26 @@ export default function PermutationsTargetLesson558({
   const clearBoard = () => act(() => setSlots(Array(r).fill(null)));
   const setN = (value: number) =>
     act(() => {
-      const next = Math.max(2, Math.min(6, value));
+      if (!Number.isFinite(value)) return;
+      const next = Math.max(2, Math.min(6, Math.trunc(value)));
       const nextR = Math.min(r, next);
       setNState(next);
       setRState(nextR);
       setSlots(Array(nextR).fill(null));
       setHistory([]);
+      setDisplayOrder(letters(next));
     });
   const setR = (value: number) =>
     act(() => {
-      const next = Math.max(1, Math.min(n, value));
+      if (!Number.isFinite(value)) return;
+      const next = Math.max(1, Math.min(n, Math.trunc(value)));
       setRState(next);
       setSlots(Array(next).fill(null));
       setHistory([]);
     });
   const place = (item: string, index = slots.findIndex((v) => v === null)) =>
     act(() => {
-      if (index < 0 || slots.includes(item)) return;
+      if (index < 0 || index >= slots.length || !objects.includes(item) || slots.includes(item)) return;
       const next = [...slots];
       next[index] = item;
       setSlots(next);
@@ -172,15 +178,17 @@ export default function PermutationsTargetLesson558({
               />
             </label>
             <div className="perm558-objects">
-              {objects.map((item, i) => (
+              {displayOrder.map((item) => (
                 <button
                   key={item}
                   draggable
+                  disabled={slots.includes(item)}
+                  aria-label={`Place ${item} in the next empty slot`}
                   onDragStart={(e) =>
                     e.dataTransfer.setData("text/plain", item)
                   }
                   onClick={() => place(item)}
-                  style={{ background: colors[i] }}
+                  style={{ background: colors[objects.indexOf(item)] }}
                 >
                   {item}
                 </button>
@@ -206,7 +214,12 @@ export default function PermutationsTargetLesson558({
                 onClick={() =>
                   act(() => {
                     setShuffles((v) => v + 1);
-                    setSlots(Array(r).fill(null));
+                    const shuffled = [...displayOrder];
+                    for (let i = shuffled.length - 1; i > 0; i--) {
+                      const j = Math.floor(Math.random() * (i + 1));
+                      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                    }
+                    setDisplayOrder(shuffled);
                   })
                 }
               >
@@ -218,22 +231,25 @@ export default function PermutationsTargetLesson558({
             <b>Arrange r = {r} (ordered slots)</b>
             <div className="perm558-slots">
               {slots.map((item, i) => (
-                <span
+                <button
+                  type="button"
                   key={i}
                   className={item ? "filled" : ""}
                   data-testid={`permutation-slot-${i + 1}`}
+                  aria-label={`Slot ${i + 1}: ${item ?? 'empty'}${item ? ', activate to remove' : ''}`}
+                  onClick={() => act(() => setSlots(old => old.map((value, index) => index === i ? null : value)))}
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={(e) => place(e.dataTransfer.getData("text/plain"), i)}
                 >
                   <small>
                     {i + 1}
-                    {i === 0 ? "st" : i === 1 ? "nd" : "th"}
+                    {i === 0 ? "st" : i === 1 ? "nd" : i === 2 ? "rd" : "th"}
                   </small>
                   {item ?? "?"}
-                </span>
+                </button>
               ))}
             </div>
-            <p>Drag objects above into the slots.</p>
+            <p>Drag an object or activate its button to fill the next empty slot. Activate a filled slot to remove its object. No object can be used twice.</p>
           </main>
           <section>
             <article>
@@ -249,13 +265,14 @@ export default function PermutationsTargetLesson558({
               <output>
                 {history.length} / {total}
               </output>
-              <progress value={history.length} max={total} />
+              <progress aria-label="Distinct ordered selections discovered" value={history.length} max={total} />
             </article>
           </section>
         </div>
         <div className="perm558-history">
           <b>Recent permutations</b>
           <div>
+            {history.length === 0 && <p>No arrangements recorded yet. Fill every slot to record one.</p>}
             {history.slice(-5).map((value) => (
               <span key={value}>{value}</span>
             ))}
@@ -270,7 +287,7 @@ export default function PermutationsTargetLesson558({
           <h2>
             <i>2</i> Notice the Pattern (Choice Tree)
           </h2>
-          <p>Build permutations step by step.</p>
+          <p>This tree illustrates the first two choices without replacement. For your selection of {r} objects, multiply {r} descending factors.</p>
           <ChoiceTree objects={objects} />
           <output>
             Total = {n} × {n - 1} = {n * (n - 1)} permutations
@@ -403,7 +420,7 @@ export default function PermutationsTargetLesson558({
             </strong>
           </span>
           <span>
-            Tree total
+            Two-choice tree total
             <strong>
               {n} × {n - 1} = {n * (n - 1)}
             </strong>
@@ -417,16 +434,16 @@ export default function PermutationsTargetLesson558({
         </div>
       </section>
       <nav className="perm558-adjacent">
-        <button>
+        <Link to="/lessons/discrete-and-applied-mathematics/557-factorials">
           Previous
           <br />
           <b>Factorials</b>
-        </button>
-        <button>
+        </Link>
+        <Link to="/lessons/discrete-and-applied-mathematics/559-permutations-with-repetition">
           Next
           <br />
           <b>Permutations with Repetition</b>
-        </button>
+        </Link>
       </nav>
       <LessonTopicStudyBoard lessonId={558} view={tab} onInteraction={onInteraction} />
 
@@ -435,7 +452,7 @@ export default function PermutationsTargetLesson558({
 }
 
 function ChoiceTree({ objects }: { objects: string[] }) {
-  const first = objects.slice(0, 5);
+  const first = objects;
   return (
     <div className="perm558-tree">
       <b>Start</b>

@@ -32,6 +32,16 @@ for (const [route, canvasSelector] of routes) {
           const rect = element.getBoundingClientRect();
           return { width: rect.width, height: rect.height, overflow: document.documentElement.scrollWidth - innerWidth };
         });
+        const toolbar = page.locator('.mws-toolbar:visible, .geometry-mobile-tools:visible').first();
+        await expect(toolbar).toBeVisible();
+        const bounds = await toolbar.getByRole('button').evaluateAll(buttons => buttons.map(button => {
+          const r = button.getBoundingClientRect();
+          return { label: button.textContent, fits: r.left >= 0 && r.right <= innerWidth && r.top >= 0 && r.bottom <= innerHeight, touchSize: r.width >= 44 && r.height >= 44 };
+        }));
+        for (const button of bounds) {
+          expect(button.fits, `${route} ${button.label} at ${w}x${h}`).toBe(true);
+          expect(button.touchSize, `${route} ${button.label} at ${w}x${h}`).toBe(true);
+        }
         expect(state.overflow, `${route} at ${w}x${h}`).toBeLessThanOrEqual(4);
         expect(state.width, `${route} at ${w}x${h}`).toBeGreaterThan(200);
         expect(state.height, `${route} at ${w}x${h}`).toBeGreaterThan(180);

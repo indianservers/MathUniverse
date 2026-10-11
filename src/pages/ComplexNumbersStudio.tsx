@@ -1,3 +1,4 @@
+import MathExpression from "../components/ui/MathExpression";
 import CinematicHero from "../studios/heroes/CinematicHero";
 import "../studios/landing/studioLanding.css";
 import {
@@ -6,7 +7,7 @@ import {
   Flower2,
   GitBranch,
   Home,
-  Infinity,
+  Infinity as InfinityIcon,
   Lightbulb,
   Play,
   Plus,
@@ -34,6 +35,8 @@ import ComplexEnhancementWorkbench from "../studios/complex/ComplexEnhancementWo
 import { studioMockups } from "../studios/mockup/studioMockupCatalog";
 import { studioLabMeta } from "../studios/mockup/studioLabMeta";
 import "./ComplexNumbersStudio.css";
+import { ComplexStudioDepth } from "../studios/complex/ComplexLearningDepth";
+import "../studios/complex/complexExperience.css";
 import ComplexLabIllustration from "../studios/complex/illustrations/ComplexLabIllustration";
 
 const catalog = studioMockups["complex-numbers"];
@@ -64,7 +67,7 @@ const studioNav: StudioNavItem[] = [
   { id: "polar-forms", label: "Polar Forms", route: "/complex-numbers/polar-forms", icon: Target },
   { id: "rotation", label: "Rotation", route: "/complex-numbers/rotation", icon: RotateCw },
   { id: "roots", label: "Roots", route: "/complex-numbers/roots", icon: Flower2 },
-  { id: "euler", label: "Euler Formula", route: "/complex-numbers/euler", icon: Infinity },
+  { id: "euler", label: "Euler Formula", route: "/complex-numbers/euler", icon: InfinityIcon },
   { id: "loci", label: "Loci & Transforms", route: "/complex-numbers/loci", icon: GitBranch },
   { id: "fractals", label: "Fractals", route: "/complex-numbers/fractals", icon: Sparkles },
   { id: "waves-circuits", label: "Waves & Circuits", route: "/complex-numbers/waves-circuits", icon: Waves },
@@ -182,6 +185,7 @@ function StudioHome() {
           <kbd>Ctrl K</kbd>
         </label>
       </header></CinematicHero>
+      <ComplexStudioDepth />
       <div className="cxs-home-grid">
         <div>
           <section className="cxs-concept-map" aria-label="Complex numbers concept map">
@@ -279,10 +283,10 @@ function StudioHome() {
             <h2>Your Learning Journey</h2>
             <div className="cxs-progress" aria-label={`${progress}% completed`}><strong>{progress}%</strong></div>
             <ol className="cxs-journey-list">
-              {labs.slice(0, 6).map((item, index) => {
+              {labs.map((item) => {
                 const complete = session.completed.includes(item.id);
                 return (
-                  <li key={item.id} data-journey-status={complete ? "completed" : index === 0 ? "in-progress" : "locked"}>
+                  <li key={item.id} data-journey-status={complete ? "completed" : item.route === session.lastRoute ? "in-progress" : "available"}>
                     <Link to={item.route}>{item.label}</Link>
                   </li>
                 );
@@ -298,7 +302,7 @@ function StudioHome() {
               <h2>Daily Visual Challenge</h2>
               <p>{challenge.challenge.prompt}</p>
               <input value={answer} onChange={(event) => { setAnswer(event.target.value); setStatus(""); }} aria-label="Challenge answer" />
-              <button className="cxs-gradient-button" type="button" onClick={() => setStatus(Math.abs(Number(answer) - challenge.challenge.expected) < 0.02 ? "Correct." : challenge.challenge.hint)}>Try Challenge →</button>
+              <button className="cxs-gradient-button" type="button" onClick={() => setStatus(!answer.trim() ? "Enter an answer before checking." : Number.isFinite(Number(answer)) && Math.abs(Number(answer) - challenge.challenge.expected) < 0.02 ? "Correct." : challenge.challenge.hint)}>Try Challenge →</button>
               {status ? <p role="status">{status}</p> : null}
               <Link className="cxs-soft" to={challenge.route}>Open {challenge.label}</Link>
             </section>
@@ -322,7 +326,7 @@ function TopicPreview({ id }: { id: string }) {
   if (id === "polar-forms") return <div className="cxs-mini-formula" aria-hidden="true">r cis θ</div>;
   if (id === "rotation") return <div className="cxs-mini-formula" aria-hidden="true">× i = +90°</div>;
   if (id === "roots") return <div className="cxs-mini-formula" aria-hidden="true">ⁿ√z</div>;
-  if (id === "euler") return <div className="cxs-mini-formula" aria-hidden="true">{"e^{iθ}"}</div>;
+  if (id === "euler") return <div className="cxs-mini-formula" aria-hidden="true"><MathExpression value={String.raw`e^{i\theta}`} /></div>;
   if (id === "loci") return <div className="cxs-mini-formula" aria-hidden="true">|z − c| = r</div>;
   if (id === "fractals") return <div className="cxs-mini-formula" aria-hidden="true">z² + c</div>;
   if (id === "waves-circuits") return <div className="cxs-mini-formula" aria-hidden="true">Z = R + jX</div>;

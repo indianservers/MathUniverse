@@ -1,3 +1,6 @@
+import MobileMathInput from "../workspace/mobile/MobileMathInput";
+import MobileActionCenter, { useMobileActions } from "../workspace/mobile/MobileActionCenter";
+import MobileNumber from "../workspace/mobile/MobileNumber";
 import { identityTransform, transformDelta } from "../workspace/immersive/types";
 import { ImmersiveSettings, ImmersiveToolbar, useImmersiveAdapter, useImmersive } from "../workspace/immersive/ImmersiveInteractionManager";
 import {
@@ -35,6 +38,8 @@ import {
   Sigma,
   SlidersHorizontal,
   Trash2,
+  ZoomOut,
+  ZoomIn,
   Undo2,
   Video,
   MoreHorizontal,
@@ -120,6 +125,8 @@ export type GraphStudio3DWorkspaceProps = {
   onDuplicateExpression: (surfaceId: string) => void;
   onDeleteExpression: (surfaceId: string) => void;
   onClearExpressions: () => void;
+  onDeleteMany?: (ids: string[]) => void;
+  onMobileExpression?: (expression: string) => void;
   onSetAllVisibility: (visible: boolean) => void;
   surfaceErrors: Record<string, string | undefined>;
   examples: string[];
@@ -133,6 +140,8 @@ export type GraphStudio3DWorkspaceProps = {
   crossSectionPreview?: ReactNode;
   onCameraView: (position: [number, number, number]) => void;
   onResetCamera: () => void;
+  onZoomCamera: (factor: number) => void;
+  mobileSampling?: { busy: boolean; progress: number; error?: string; cancel: () => void; resume: () => void };
   surface: SurfaceSampleResult;
   sampleRows: Array<{ x: number; y: number; z: number | null; valid: boolean }>;
   differential: SurfaceDifferential | null;
@@ -249,6 +258,11 @@ export default function GraphStudio3DWorkspace(
   const [viewLabel, setViewLabel] = useState("Perspective");
   const projectInput = useRef<HTMLInputElement>(null);
   const overlay = useWorkspaceOverlay();
+  const [mobileDraft, setMobileDraft] = useState("");
+  const [mobilePlotPending,setMobilePlotPending] = useState(false);
+  const mobilePlotTimer=useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(()=>()=>{if(mobilePlotTimer.current)clearTimeout(mobilePlotTimer.current);},[]);
+  const mobileActions = useMobileActions(overlay.isMobile, props.onUndo);
   const leftPanelRef = useRef<HTMLElement>(null);
   const rightPanelRef = useRef<HTMLElement>(null);
   const sceneHostRef = useRef<HTMLDivElement>(null);
@@ -261,13 +275,14 @@ export default function GraphStudio3DWorkspace(
   }, []);
   const immersive = useImmersive();
   useImmersiveAdapter({
-    gestureObjects:()=>props.surfaces.filter(s=>s.visible).map(s=>({id:s.id,name:s.name||`Surface ${s.expression}`,kind:'3d',capabilities:{move:true,scale:true,rotate:true,tilt:true,reset:true},read:()=>s.displayTransform??identityTransform(),write:t=>props.onSurfaceChange(s.id,{displayTransform:t}),select:selected=>{if(selected)props.onSelectedSurfaceChange(s.id);}})),
+    gestureObjects:()=>props.surfaces.filter(s=>s.visible).map(s=>({id:s.id,name:s.name||`Surface ${s.expression}`,kind:'3d',capabilities:{move:!(overlay.isMobile&&s.mobileLocked),scale:!(overlay.isMobile&&s.mobileLocked),rotate:!(overlay.isMobile&&s.mobileLocked),tilt:!(overlay.isMobile&&s.mobileLocked),reset:!(overlay.isMobile&&s.mobileLocked)},read:()=>s.displayTransform??identityTransform(),write:t=>{if(!overlay.isMobile||!s.mobileLocked)props.onSurfaceChange(s.id,{displayTransform:t});},select:selected=>{if(selected)props.onSelectedSurfaceChange(s.id);}})),
     kind:"3d",element:()=>sceneHostRef.current,
     targets:()=>props.surfaces.filter(s=>s.visible).map(s=>{
       const target=immersive?.projected.current.get(s.id);return target?{...target,name:s.name||`Surface ${s.expression}`,semanticType:"surface",allowedInteractions:{translate:true,rotate:true,scale:true,sampleSurface:true}}:null;
     }).filter((t):t is NonNullable<typeof t>=>!!t),
     transform:id=>props.surfaces.find(s=>s.id===id)?.displayTransform??identityTransform(),select:props.onSelectedSurfaceChange,
     apply:(state,result,previous)=>{
+      if(overlay.isMobile && props.surfaces.find(row=>row.id===state.targetObjectId)?.mobileLocked)return;
       if(result.inspection&&state.primaryTarget?.zone.sample){const p=state.primaryTarget.zone.sample;props.onAnalysisPointChange({x:p[0],y:p[2]});}
       if(!result.transform)return;const d=transformDelta(result.transform,previous);
       const surface=props.surfaces.find(s=>s.id===state.targetObjectId);if(!surface)return;
@@ -368,6 +383,7 @@ export default function GraphStudio3DWorkspace(
       overlay={overlay}
       id="graph-studio-3d-root"
       className={`graph-studio-3d-shell graph-studio-surface-shell ${leftOpen ? "has-left" : ""} ${rightOpen ? "has-right" : ""} ${props.presentationMode ? "is-presenting" : ""}`}
+      data-mobile-rendering={overlay.isMobile ? (props.mobileSampling?.busy ? "busy" : "ready") : undefined}
       data-chrome-theme={chromeTheme}
     >
       <header className="gs3d-topbar">
@@ -568,7 +584,7 @@ export default function GraphStudio3DWorkspace(
                 onSelect={() => props.onSelectedSurfaceChange(surface.id)}
                 onChange={(patch) => props.onSurfaceChange(surface.id, patch)}
                 onDuplicate={() => props.onDuplicateExpression(surface.id)}
-                onDelete={() => props.onDeleteExpression(surface.id)}
+                onDelete={() => mobileActions.deleted(()=>props.onDeleteExpression(surface.id))}
               />
             ))}
           </div>
@@ -581,7 +597,7 @@ export default function GraphStudio3DWorkspace(
             Add explicit surface
           </button>
           {overlay.isMobile && (
-            <button type="button" className="gs3d-add-expression" disabled={!props.surfaces.length} onClick={props.onClearExpressions}>
+            <button type="button" className="gs3d-add-expression" disabled={!props.surfaces.length} onClick={overlay.isMobile?()=>mobileActions.clear(props.surfaces.length,props.onClearExpressions):props.onClearExpressions}>
               <Trash2 />
               Clear all surfaces
             </button>
@@ -966,9 +982,41 @@ export default function GraphStudio3DWorkspace(
           }
         />
       ) : null}
+      <MobileActionCenter removeMany={props.onDeleteMany} overlay={overlay} actions={mobileActions} undo={props.onUndo} redo={props.onRedo} canUndo={props.canUndo} canRedo={props.canRedo}
+        instructions={tool === "slice" ? "Choose X, Y, or Z and slide the cross-section plane." : "Drag to orbit the camera. Pinch to zoom; two-finger drag pans."}
+        cancel={()=>{if(mobilePlotTimer.current)clearTimeout(mobilePlotTimer.current);setMobilePlotPending(false);chooseTool("select");}} onClear={()=>mobileActions.clear(props.surfaces.length,props.onClearExpressions)}
+        objects={props.surfaces.map(row=>({id:row.id,name:row.name || row.expression,kind:row.kind,selected:row.id===props.selectedSurfaceId,visible:row.visible,locked:row.mobileLocked,
+          select:()=>props.onSelectedSurfaceChange(row.id),visibility:()=>props.onSurfaceChange(row.id,{visible:!row.visible}),lock:()=>props.onSurfaceChange(row.id,{mobileLocked:!row.mobileLocked}),remove:()=>props.onDeleteExpression(row.id)}))}
+        add={<><div className="mws-action-grid">{(["explicit","implicit","parametric","curve","vector-field"] as const).map(kind=><button key={kind} type="button" onClick={()=>props.onAddLayer(kind)}>Add {kind}</button>)}</div>
+          <MobileMathInput value={mobileDraft} onChange={setMobileDraft} label="New 3D expression" templates={[{label:"Ripple",expression:"sin(x)*cos(y)"},{label:"Paraboloid",expression:"x^2+y^2"},{label:"Implicit sphere",expression:"x^2+y^2+z^2=9"}]}
+            onApply={()=>{setMobilePlotPending(true);mobilePlotTimer.current=setTimeout(()=>{(props.onMobileExpression??props.onPlotCasExpression)(mobileDraft);setMobilePlotPending(false);},250);}}
+            onCancel={()=>{if(mobilePlotTimer.current)clearTimeout(mobilePlotTimer.current);setMobilePlotPending(false);}} />
+          {mobilePlotPending && <p role="status">Preparing plot…</p>}<p>For parametric surfaces edit x(u,v), y(u,v), z(u,v) in Edit. For curves use t.</p></>}
+        edit={<><h3>{selectedSurface?.name || "Select a surface"}</h3>{selectedSurface && <fieldset disabled={selectedSurface.mobileLocked}>
+          <MobileMathInput value={selectedSurface.expression} onChange={expression=>props.onSurfaceChange(selectedSurface.id,{expression})} error={props.surfaceErrors[selectedSurface.id]} templates={[]} />
+          {(["parametric","curve","vector-field"] as string[]).includes(selectedSurface.kind) && (["x","y","z"] as const).map(axis=><label key={axis}>{axis} component<input aria-label={`Mobile ${axis} component`} value={selectedSurface.components[axis]} onChange={e=>props.onSurfaceChange(selectedSurface.id,{components:{...selectedSurface.components,[axis]:e.target.value}})} /></label>)}
+          <label>Surface color<input type="color" aria-label="Mobile surface color" value={selectedSurface.colorLow} onChange={e=>props.onSurfaceChange(selectedSurface.id,{palette:"custom",colorLow:e.target.value,colorHigh:e.target.value})}/></label>
+          <label>Opacity<input type="range" aria-label="Mobile surface opacity" min=".05" max="1" step=".05" value={selectedSurface.opacity} onChange={e=>props.onSurfaceChange(selectedSurface.id,{opacity:Number(e.target.value)})}/></label>
+          <label><input type="checkbox" checked={selectedSurface.visible} onChange={e=>props.onSurfaceChange(selectedSurface.id,{visible:e.target.checked})}/>Surface visible</label>
+          <div className="mws-action-grid"><button type="button" onClick={()=>props.onDuplicateExpression(selectedSurface.id)}>Duplicate surface</button><button type="button" onClick={()=>mobileActions.deleted(()=>props.onDeleteExpression(selectedSurface.id))}>Delete surface</button></div>
+        </fieldset>}</>}
+        view={<><div className="mws-action-grid"><button type="button" onClick={()=>{chooseTool("select");overlay.close();}}>Orbit camera</button><button type="button" onClick={props.onResetCamera}>Reset camera</button></div>
+          <label>Rendering quality<select aria-label="Mobile rendering quality" value={props.resolution<=24?"fast":props.resolution<=44?"balanced":"detailed"} onChange={e=>props.onResolutionChange(e.target.value==="fast"?20:e.target.value==="balanced"?40:64)}><option value="fast">Fast · low detail</option><option value="balanced">Balanced</option><option value="detailed">Detailed</option></select></label>
+          <label><input type="checkbox" checked={props.sliceEnabled} onChange={e=>props.onSliceEnabledChange(e.target.checked)}/>Show cross-section</label>
+          <div className="mws-action-grid">{(["x","y","z"] as const).map(axis=><button key={axis} type="button" aria-pressed={props.sliceAxis===axis} onClick={()=>{props.onSliceAxisChange(axis);props.onSliceEnabledChange(true);}}>{axis.toUpperCase()} slice</button>)}</div>
+          <input className="mws-slice-slider" aria-label="Mobile slice position" type="range" min={-Math.max(props.xRange,props.yRange)} max={Math.max(props.xRange,props.yRange)} step=".05" value={props.sliceValue} onChange={e=>props.onSliceValueChange(Number(e.target.value))}/><MobileNumber label="Slice coordinate" value={props.sliceValue} onChange={props.onSliceValueChange}/>
+          {props.mobileSampling && <button type="button" onClick={props.mobileSampling.resume}>Rebuild plot</button>}</>}
+      />
+      {overlay.isMobile && props.mobileSampling?.busy && <div className="mws-progress" data-mws-panel="progress" role="status">Building plot: {Math.round(props.mobileSampling.progress*100)}%<progress max="1" value={props.mobileSampling.progress}/><button type="button" onClick={props.mobileSampling.cancel}>Cancel rendering</button></div>}
+      {overlay.isMobile && props.mobileSampling?.error && <div className="mws-progress" data-mws-panel="progress" role="alert">{props.mobileSampling.error}<button type="button" onClick={props.mobileSampling.resume}>Retry rendering</button></div>}
       <WorkspaceToolbar
         label="3D graph tools"
         items={[
+          { id: "delete", label: "Delete", icon: <Trash2 />, danger: true, disabled: !props.selectedSurfaceId, onSelect: () => { mobileActions.deleted(() => props.onDeleteExpression(props.selectedSurfaceId)); overlay.close(); } },
+          { id: "zoom-in", label: "Zoom in", icon: <ZoomIn />, onSelect: () => props.onZoomCamera(.8) },
+          { id: "zoom-out", label: "Zoom out", icon: <ZoomOut />, onSelect: () => props.onZoomCamera(1.25) },
+          { id: "reset-view", label: "Reset view", icon: <RotateCcw />, onSelect: props.onResetCamera },
+
           {
             id: "add",
             label: "Add",
@@ -1017,9 +1065,13 @@ export default function GraphStudio3DWorkspace(
         title="3D graph tools"
         onClose={overlay.close}
       >
+        {props.surfaces.some(surface=>surface.id===props.selectedSurfaceId) && <>
+          <button type="button" onClick={() => { mobileActions.deleted(() => props.onDeleteExpression(props.selectedSurfaceId)); overlay.close(); }}>Delete selected surface</button>
+          <button type="button" onClick={() => { props.onDuplicateExpression(props.selectedSurfaceId); overlay.close(); }}>Duplicate selected surface</button>
+        </>}
         <button type="button" disabled={!props.canUndo} onClick={() => { props.onUndo(); overlay.close(); }}>Undo</button>
         <button type="button" disabled={!props.canRedo} onClick={() => { props.onRedo(); overlay.close(); }}>Redo</button>
-        <button type="button" disabled={!props.surfaces.length} onClick={() => { props.onClearExpressions(); overlay.close(); }}>Clear all surfaces</button>
+        <button type="button" disabled={!props.surfaces.length} onClick={() => { mobileActions.clear(props.surfaces.length, props.onClearExpressions); overlay.close(); }}>Clear all surfaces</button>
         <button type="button" onClick={() => overlay.open("inspector")}>
           Inspector
         </button>
@@ -1046,6 +1098,8 @@ export default function GraphStudio3DWorkspace(
         title="Camera"
         onClose={overlay.close}
       >
+        <button type="button" onClick={() => props.onZoomCamera(.8)}>Zoom in</button>
+        <button type="button" onClick={() => props.onZoomCamera(1.25)}>Zoom out</button>
         {(["Top", "Front", "Side", "Isometric"] as const).map((label) => (
           <button
             key={label}

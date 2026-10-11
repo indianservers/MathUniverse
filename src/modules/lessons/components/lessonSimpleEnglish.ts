@@ -9,6 +9,7 @@ export type LessonSimpleEnglish = {
   paragraphs: [string, string, string];
   examplePrompt: string;
   exampleAnswer: string;
+  exampleSteps?: string[];
 };
 
 const cannedCopy =
@@ -102,16 +103,14 @@ export function getLessonSimpleEnglish(
                 ? `Use ${formula.label}: ${formula.expression}`
                 : `Use the definition of ${title}, then check the result`
               : lesson.howItWorks,
-            `Example: ${worked.prompt}`,
-            worked.steps.slice(0, 2).join(" "),
-            `So the answer is ${worked.answer}`,
+            "Try the example below. Write your steps and choose an answer before opening the comparison",
           )
         : joinSentences(
             isCanned(lesson.howItWorks)
               ? `Try one small case of ${title}. Write each step in plain words, then check the result`
               : lesson.howItWorks,
             "Change one value in the interactive tool and watch what happens",
-            "If the same rule works on two small examples, you can trust it on a bigger one",
+            "Use small examples to discover a pattern, then justify the rule and its conditions before generalising",
           ),
       "Change one value and ask whether the same rule still holds",
     );
@@ -134,6 +133,7 @@ export function getLessonSimpleEnglish(
       title,
       paragraphs: [what, how, why],
       examplePrompt,
+      exampleSteps: worked && !workedIsWeak ? worked.steps : [],
       exampleAnswer:
         worked && !workedIsWeak
           ? worked.answer
@@ -153,7 +153,7 @@ export function getLessonSimpleEnglish(
       ),
       joinSentences(
         "Change one value in the interactive tool and watch what happens",
-        "If the same rule works on two small examples, you can trust it on a bigger one",
+        "Use small examples to discover a pattern, then justify the rule and its conditions before generalising",
       ),
       joinSentences(
         `A useful habit with ${title} is to check a tiny case before you solve the full question`,

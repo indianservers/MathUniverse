@@ -11,7 +11,7 @@ export function readCasNotebookState(
     ) as NotebookState | null;
     return value?.cells?.length &&
       (value.mode === "exact" || value.mode === "numeric")
-      ? value
+      ? {...value,cells:value.cells.map(cell=>({...cell,execution:undefined,conditions:undefined,solutionSet:undefined}))}
       : null;
   } catch {
     return null;

@@ -32,7 +32,9 @@ describe("LessonTopicStudyBoard", () => {
     expect(html).toContain('data-testid="lesson-gateway-2"');
     expect(html).toContain("Fraction Calculator labelled charts");
     expect(html).toContain("x: Part");
-    expect(html).toContain("Add 1/2 + 3/4");
+    expect(html).toContain("Add");
+    expect(html).toContain('\\frac{1}{2}');
+    expect(html).toContain('\\frac{3}{4}');
     expect(html).toContain("5/4");
     expect(html).toContain('aria-label="Fraction Calculator study probe"');
   });

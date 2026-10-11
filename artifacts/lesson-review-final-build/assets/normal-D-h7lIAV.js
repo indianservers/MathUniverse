@@ -1,0 +1,1 @@
+const c=Math.random,d=(function u(a){function e(l,t){var r,n;return l=l==null?0:+l,t=t==null?1:+t,function(){var o;if(r!=null)o=r,r=null;else do r=a()*2-1,o=a()*2-1,n=r*r+o*o;while(!n||n>1);return l+t*o*Math.sqrt(-2*Math.log(n)/n)}}return e.source=u,e})(c);export{c as d,d as r};

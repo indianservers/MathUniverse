@@ -2604,7 +2604,7 @@
     ]
   },
   "dataset": {
-    "rows": 3911,
+    "rows": 3976,
     "classes": [
       {
         "operation": "CREATE:TRIANGLE",
@@ -3012,7 +3012,7 @@
       },
       {
         "operation": "DELETE:ALL",
-        "count": 16
+        "count": 81
       },
       {
         "operation": "SELECT:OBJECT",
@@ -3295,7 +3295,7 @@
     "maximumClassCount": 90,
     "imbalanceRatio": 90,
     "duplicates": 1540,
-    "nearDuplicates": 2240,
+    "nearDuplicates": 2266,
     "conflictingLabels": 0,
     "duplicateIds": 0,
     "lowClasses": [

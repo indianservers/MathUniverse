@@ -11,6 +11,7 @@ import ObliqueStudio from "../trigonometry/oblique/ObliqueStudio";
 import InverseTrigStudio from "../trigonometry/inverse/InverseTrigStudio";
 import StatisticsEnhancementWorkbench from "../statistics/StatisticsEnhancementWorkbench";
 import ModellingEnhancementWorkbench from "../modelling/ModellingEnhancementWorkbench";
+import LabLearningGuide from "../learning-guides/LabLearningGuide";
 const advancedWorkbenches: Record<string, () => ReactNode> = {
   "linear-algebra": LinearAlgebraEnhancementWorkbench,
   geometry: GeometryEnhancementWorkbench,
@@ -38,6 +39,7 @@ export default function MockupStudioApp({
   return (
     <MockupStudioChrome studio={studio} page={page}>
       {advanced ? <Advanced /> : page.id === "home" ? <MockupStudioHome studio={studio} /> : <MockupInteractiveLab page={page} extra={extras?.[page.id]} />}
+      {!advanced && page.id !== "home" ? <LabLearningGuide route={page.route} /> : null}
     </MockupStudioChrome>
   );
 }

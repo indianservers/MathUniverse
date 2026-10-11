@@ -16,6 +16,7 @@ export type Graph3DSurface = {
   name: string;
   expression: string;
   visible: boolean;
+  mobileLocked?: boolean;
   palette: SurfacePalette;
   colorLow: string;
   colorHigh: string;

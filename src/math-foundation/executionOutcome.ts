@@ -2,7 +2,7 @@
  * remain adapters; a successful calculation alone never establishes verification. */
 export type ExecutionStatus='verified'|'valid_unverified'|'invalid_input'|'unsupported'|'cancelled'|'timeout'|'internal_error';
 export type VerificationLevel='exact_symbolic'|'exact_geometric_invariant'|'numerical_consistency'|'not_independently_verified'|'contradicted';
-export type VerificationEvidence={level:VerificationLevel;independent:boolean;passed:boolean;method:string;assumptions:string[];residual?:number;counterexample?:{input:unknown;expected:unknown;actual:unknown;reason:string}};
+export type VerificationEvidence={level:VerificationLevel;independent:boolean;passed:boolean;method:string;assumptions:string[];scope?:'value'|'solutions'|'intersection';complete?:boolean;inputRevision?:string;residual?:number;counterexample?:{input:unknown;expected:unknown;actual:unknown;reason:string}};
 type Common={requestId:string;message?:string;evidence:VerificationEvidence};
 export type ExecutionOutcome=(Common&{status:'verified';evidence:VerificationEvidence&{independent:true;passed:true}})|(Common&{status:Exclude<ExecutionStatus,'verified'>});
 export const noEvidence=(method='No independent mathematical verification'):VerificationEvidence=>({level:'not_independently_verified',independent:false,passed:false,method,assumptions:[]});

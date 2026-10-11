@@ -1,4 +1,5 @@
-import { Billboard, Line, OrbitControls, Text } from "@react-three/drei";
+import { Billboard, Line, OrbitControls} from "@react-three/drei";
+import Text from "../../components/LessonSceneLabel";
 import { Canvas, type ThreeEvent, useThree } from "@react-three/fiber";
 import { ExternalLink, Maximize2, RotateCcw, Share2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -587,7 +588,7 @@ function AnglePlanesScene({
       )}{" "}
       {result.valid && (
         <Billboard position={[1.2, 1.3, 0.2]}>
-          <Text fontSize={12} color="#ff9d00">
+          <Text fontSize={0.3} color="#ff9d00">
             {result.angle}°
           </Text>
         </Billboard>
@@ -644,7 +645,7 @@ function NormalArrow({
         />
       </mesh>
       <Billboard position={[end[0] + 0.45, end[1] + 0.3, end[2]]}>
-        <Text fontSize={12} color={color}>
+        <Text fontSize={0.28} color={color}>
           {label}
         </Text>
       </Billboard>

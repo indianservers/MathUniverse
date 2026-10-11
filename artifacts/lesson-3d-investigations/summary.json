@@ -1,0 +1,79 @@
+{
+  "implemented": 120,
+  "primary": 94,
+  "extensions": 26,
+  "byFamily": {
+    "matrix": 17,
+    "vector": 16,
+    "conic": 9,
+    "trig": 6,
+    "integral": 4,
+    "complex": 2,
+    "geometry": 25,
+    "solid": 26,
+    "surface": 15
+  },
+  "browser": {
+    "passed": 120,
+    "batches": [
+      {
+        "batch": 1,
+        "total": 50,
+        "passed": 50
+      },
+      {
+        "batch": 2,
+        "total": 50,
+        "passed": 50
+      },
+      {
+        "batch": 3,
+        "total": 20,
+        "passed": 20
+      }
+    ]
+  },
+  "tests": {
+    "files": 5,
+    "passed": 46
+  },
+  "scopedTypecheck": "passed",
+  "scopedLint": "passed",
+  "productionBuild": "passed",
+  "dragValidation": [
+    {
+      "id": 191,
+      "before": "2",
+      "after": "3",
+      "passed": true
+    },
+    {
+      "id": 422,
+      "before": "1",
+      "after": "2.587",
+      "passed": true
+    }
+  ],
+  "systemPresets": {
+    "id": 113,
+    "passed": true,
+    "fixedControlsHidden": true,
+    "classifications": [
+      "Infinitely many solutions",
+      "No solution",
+      "Unique solution"
+    ]
+  },
+  "notes": [
+    "Open the 3D investigation section below each mapped lesson to load the interactive canvas.",
+    "Numeric controls remain available when WebGL cannot render.",
+    "Camera presets, fitting, keyboard controls, responsive layouts, and prediction/observation reflection are included.",
+    "Placement lessons provide a spatial rehearsal; they do not start an AR session.",
+    "Whole-project TypeScript validation has pre-existing failures outside this rollout; the new 3D components pass scoped validation."
+  ],
+  "webglFallback": {
+    "id": 192,
+    "passed": true,
+    "numericControlsWorkWithoutWebGL": true
+  }
+}

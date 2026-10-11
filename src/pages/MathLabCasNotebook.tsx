@@ -64,7 +64,7 @@ export default function MathLabCasNotebook() {
   const warningCount = state.cells.reduce((total, cell) => total + (cell.warnings?.length ?? 0), 0);
 
   function updateCell(id: string, patch: Partial<NotebookCell>) {
-    setState((current) => ({ ...current, cells: current.cells.map((cell) => (cell.id === id ? { ...cell, ...patch } : cell)) }));
+    setState((current) => ({ ...current, cells: current.cells.map((cell) => ({...(cell.id === id ? { ...cell, ...patch } : cell),execution:undefined,solutionSet:undefined,conditions:undefined})) }));
   }
 
   function runCell(id: string) {
@@ -85,6 +85,9 @@ export default function MathLabCasNotebook() {
       cells: current.cells.map((cell) => ({
         ...cell,
         output: "",
+        execution: undefined,
+        conditions: undefined,
+        solutionSet: undefined,
         exact: undefined,
         numeric: undefined,
         resolvedInput: undefined,
@@ -137,7 +140,7 @@ export default function MathLabCasNotebook() {
                     key={mode}
                     type="button"
                     className={state.mode === mode ? "action-primary py-2" : "action-secondary py-2"}
-                    onClick={() => setState((current) => ({ ...current, mode }))}
+                    onClick={() => setState((current) => ({ ...current, mode, cells:current.cells.map(cell=>({...cell,execution:undefined,solutionSet:undefined,conditions:undefined})) }))}
                   >
                     {mode}
                   </button>
@@ -148,7 +151,7 @@ export default function MathLabCasNotebook() {
               Assumptions
               <textarea
                 value={state.assumptions}
-                onChange={(event) => setState((current) => ({ ...current, assumptions: event.target.value }))}
+                onChange={(event) => setState((current) => ({ ...current, assumptions: event.target.value, cells: current.cells.map(cell=>({...cell,execution:undefined,solutionSet:undefined,conditions:undefined})) }))}
                 className="mt-2 min-h-24 w-full rounded-lg border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-950"
                 placeholder="x real; x > 0; n integer"
               />
@@ -268,6 +271,8 @@ function CasNotebookCell({ cell, index, onRun, onChange, onRemove, onDuplicate }
           <div className="rounded-lg bg-slate-100 p-4 dark:bg-white/10">
             <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Output</p>
             <p className="mt-2 break-words font-mono text-lg font-black">{cell.output}</p>
+            {cell.execution && <p className="mt-2 text-sm" role="status">{cell.execution.status === 'verified' ? 'Independently verified' : 'Unverified'} · {cell.execution.evidence.level.replaceAll('_',' ')}{cell.execution.evidence.complete ? ' · Complete solution set' : ''}</p>}
+            {cell.conditions?.map(condition=><p key={condition} className="mt-1 text-sm">{condition}</p>)}
             {cell.resolvedInput && cell.resolvedInput !== cell.input && <p className="mt-2 break-words font-mono text-sm text-slate-600 dark:text-slate-300">resolved: {cell.resolvedInput}</p>}
             {cell.numeric && <p className="mt-2 break-words font-mono text-sm text-cyan-700 dark:text-cyan-200">numeric: {cell.numeric}</p>}
           </div>
@@ -310,7 +315,7 @@ function readNotebookState(): NotebookState {
     const parsed = JSON.parse(localStorage.getItem(historyKey) ?? localStorage.getItem("math-universe-cas-notebook-v2") ?? "null") as Partial<NotebookState> | null;
     if (parsed && Array.isArray(parsed.cells)) {
       return {
-        cells: parsed.cells.filter(isNotebookCell).slice(0, 30),
+        cells: parsed.cells.filter(isNotebookCell).slice(0, 30).map(cell=>({...cell,execution:undefined,solutionSet:undefined,conditions:undefined})),
         assumptions: typeof parsed.assumptions === "string" ? parsed.assumptions : "x real",
         mode: parsed.mode === "numeric" ? "numeric" : "exact",
       };

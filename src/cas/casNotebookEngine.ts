@@ -1,3 +1,6 @@
+import {certifiedEquation,equationDisplay} from './certifiedEquationAdapter';
+import type {ExecutionOutcome} from '../math-foundation/executionOutcome';
+import type {RealSolutionSet} from '../math-robo/kernel/types';
 import {
   symbolicCompleteSquare,
   symbolicComplexSolve,
@@ -87,6 +90,9 @@ export type NotebookStructuredStep = {
 export type EvaluationMode = "exact" | "numeric";
 
 export type NotebookCell = {
+  execution?: ExecutionOutcome;
+  conditions?: string[];
+  solutionSet?: RealSolutionSet;
   id: string;
   input: string;
   operation: NotebookOperation;
@@ -276,6 +282,9 @@ export function evaluateNotebookCell(
   if (!input) {
     return {
       ...cell,
+      execution: undefined,
+      conditions: undefined,
+      solutionSet: undefined,
       ok: false,
       output: "Enter an expression first.",
       detail: "The cell is empty.",
@@ -293,6 +302,17 @@ export function evaluateNotebookCell(
 
   const resolved = resolveNotebookInput(input, context.memory);
   const assignment = parseNotebookAssignment(resolved.input);
+  const certified = !assignment && cell.operation === 'solve'
+    ? certifiedEquation(resolved.input, inferVariable(resolved.input), assumptionSummary, JSON.stringify([cell.id,input,resolved.input,context.assumptions,cell.operation]))
+    : undefined;
+  if (certified) {
+    const set = certified.solutionSet as RealSolutionSet | undefined;
+    return {...cell,execution:certified.execution,conditions:certified.conditions,solutionSet:set,
+      output:set?equationDisplay(set):certified.answer,exact:set?equationDisplay(set):undefined,numeric:undefined,
+      ok:certified.status!=='unsupported',detail:certified.verification.method,steps:certified.steps,structuredSteps:[],
+      createdAt:new Date().toLocaleString(),resolvedInput:resolved.input,dependencies:resolved.dependencies,
+      warnings:resolved.warnings,assumptionSummary};
+  }
   const result = assignment
     ? assignmentResult(assignment.name, assignment.value, context.memory)
     : runNotebookOperation(cell.operation, resolved.input, context.assumptions);
@@ -326,6 +346,9 @@ export function evaluateNotebookCell(
 
   return {
     ...cell,
+    execution: undefined,
+    conditions: undefined,
+    solutionSet: undefined,
     output,
     exact: result?.exact ?? result?.result,
     numeric,

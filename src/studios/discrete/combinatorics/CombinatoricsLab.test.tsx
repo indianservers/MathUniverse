@@ -12,6 +12,14 @@ function renderCombo(url: string) {
 }
 
 describe("Combinatorics Lab", () => {
+  it("explicitly keeps controls, visualization, and live values in the workspace in every mode", () => {
+    for (const mode of ["arrangements", "selections", "pigeonhole", "inclusion-exclusion", "generating-tree"]) {
+      const html = renderCombo(`/discrete-world/combinatorics?mode=${mode}`);
+      expect(html).toMatch(/<section data-lab-pane="workspace" class="combo-col combo-controls/);
+      expect(html).toMatch(/<section data-lab-pane="workspace" class="combo-col combo-viz/);
+      expect(html).toContain('<aside data-lab-pane="workspace" class="combo-col combo-insights">');
+    }
+  });
   it("keeps Number & Discrete chrome and defaults to Arrangements", () => {
     const html = renderCombo("/discrete-world/combinatorics");
     expect(html).toContain("Combinatorics Lab");

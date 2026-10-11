@@ -1,0 +1,23 @@
+Implemented 11 October 2026
+
+Scope: additive improvements to ten existing Studio lab pages and reasoning hints in the 57 investigation labs. Existing mathematical tools, theory, examples, model state and calculations were retained.
+
+Pilot pages: Geometry Construction, Triangles, Circles; Trigonometry Unit Circle and Right Triangle; Algebra Equations; Linear Algebra Row Reduction; Statistics Data Explorer, CLT, Confidence Intervals.
+
+Each pilot has an optional, initially collapsed guide: learning objective, concept explanation with conditions, three-step worked example, an experiment using the existing tool, a prediction note and a multiple-choice reasoning check with answer-specific feedback. Prediction text is session-local and explicitly ungraded. No new completion or XP awards were added. Existing lab engines were not modified.
+
+Investigation numeric practice now offers a collapsible reasoning hint drawn from the existing computed answer explanation. Existing questions and worked answers remain available. Written reasoning remains self-assessed; this change does not introduce automated proof grading.
+
+Validation:
+- 91 tests passed across new guide tests, existing phase-1 lab checks and investigation mathematical checks.
+- ESLint passed on all touched application files.
+- Focused strict TypeScript check passed for the new learning-guide components.
+- 20 Chromium checks passed: ten pages at 390px and 1280px, opening guides, writing predictions, selecting answers, displaying feedback, and checking guide overflow and page runtime errors.
+- Phone screenshot visually inspected.
+- Full production build failed on an unrelated missing sqrtApproximate export from src/math-robo/kernel/geometryPrecision.ts, imported by circleIntersections.ts. Those files were not edited for this task.
+- Full-project typecheck was stopped after an extended run without results; full-project typecheck is unverified.
+
+Browser evidence: artifacts/lab-learning-guide-browser-results.json
+Repeat browser checks: node artifacts/check-lab-learning-guides.mjs (Vite at 127.0.0.1:5193).
+
+These changes are saved locally. No deployment was performed. This is a focused first implementation, not a claim that every lab page or recommendation has been completed.

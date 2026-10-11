@@ -1,5 +1,5 @@
 import {rationalAdd as add,rationalSubtract as sub,rationalMultiply as mul,rationalDivide as div} from '../../math-foundation/values';
-import {zero,polynomial,gcd,fractionText,type Fraction} from './exact';
+import {zero,polynomial,gcd,fractionText,rational,type Fraction} from './exact';
 import {safeAst} from './safeExpression';
 import type {MathAstNode} from '../../math-foundation/types';
 export type Poly=Fraction[];
@@ -15,7 +15,14 @@ export function at(p:Poly,x:Fraction):Fraction{return [...p].reverse().reduce((a
 export function rationalForm(n:MathAstNode,v='x'):{n:Poly;d:Poly}|undefined{
  const p=polynomial(n,v);if(p)return {n:trim(p),d:[one]};
  if(n.type==='UNARY_OPERATION'){const a=rationalForm(n.operand,v);return a&&{...a,n:a.n.map(c=>n.operator==='-'?{...c,numerator:-c.numerator}:c)};}
- if(n.type!=='BINARY_OPERATION')return;const a=rationalForm(n.left,v),b=rationalForm(n.right,v);if(!a||!b)return;
+ if(n.type!=='BINARY_OPERATION')return;const a=rationalForm(n.left,v);if(!a)return;
+ if(n.operator==='^'){
+  let exponent:Fraction;try{exponent=rational(n.right.type==='LITERAL'?n.right.value:n.right.type==='UNARY_OPERATION'&&n.right.operand.type==='LITERAL'?`${n.right.operator}${n.right.operand.value}`:'');}catch{return;}
+  if(exponent.denominator!==1n||exponent.numerator<-16n||exponent.numerator>16n)return;
+  let value={n:[one],d:[one]};for(let i=0n;i<(exponent.numerator<0n?-exponent.numerator:exponent.numerator);i++)value={n:times(value.n,a.n),d:times(value.d,a.d)};
+  if(exponent.numerator<=0n&&a.n.every(c=>!c.numerator))throw new Error('Undefined zero power.');return exponent.numerator<0n?{n:value.d,d:value.n}:value;
+ }
+ const b=rationalForm(n.right,v);if(!b)return;
  if(n.operator==='+')return {n:plus(times(a.n,b.d),times(b.n,a.d)),d:times(a.d,b.d)};
  if(n.operator==='-')return {n:plus(times(a.n,b.d),times(b.n,a.d),true),d:times(a.d,b.d)};
  if(n.operator==='*')return {n:times(a.n,b.n),d:times(a.d,b.d)};

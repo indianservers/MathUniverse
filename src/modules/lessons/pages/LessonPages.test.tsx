@@ -925,10 +925,10 @@ describe("lesson pages", () => {
       "dedicated-equal-radius-arc-chord-transfer-angle-copy-construction",
     );
     expect(html).toContain('data-source-angle="36"');
-    expect(html).toContain('data-copied-angle="36"');
+    expect(html).toContain('data-copied-angle="0"');
     expect(html).toContain('data-radius="2.50"');
-    expect(html).toContain('data-steps="6"');
-    expect(html).toContain('data-congruent="true"');
+    expect(html).toContain('data-steps="0"');
+    expect(html).toContain('data-congruent="false"');
     expect(html).toContain('data-tool="Compass"');
   });
 

@@ -1,0 +1,169 @@
+[
+  {
+    "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-mixed-units-and-unit-conversion",
+    "title": "Mixed Units and Unit Conversion",
+    "catalog": "school",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 191,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 191,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-6/class-6-data-handling-pictograph-builder",
+    "title": "Pictograph Builder",
+    "catalog": "school",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 207,
+        "small": [],
+        "overflow": [
+          {
+            "className": null,
+            "text": "Pictograph (each icon = 1 fruit)"
+          }
+        ]
+      },
+      {
+        "width": 1280,
+        "textElements": 207,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-digital-root-and-divisibility",
+    "title": "Digital Root and Divisibility",
+    "catalog": "school",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 170,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 170,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-8/class-8-information-processing-flowchart-logic",
+    "title": "Flowchart Logic",
+    "catalog": "school",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 121,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 121,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-10/class-10-circle-proofs-equal-chords-and-equal-angles",
+    "title": "Equal Chords and Equal Angles",
+    "catalog": "school",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 116,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 116,
+        "small": [],
+        "overflow": [
+          {
+            "className": null,
+            "text": "Center view"
+          },
+          {
+            "className": null,
+            "text": "KEY"
+          },
+          {
+            "className": null,
+            "text": "● A"
+          },
+          {
+            "className": null,
+            "text": "● B"
+          },
+          {
+            "className": null,
+            "text": "● C"
+          },
+          {
+            "className": null,
+            "text": "● D"
+          },
+          {
+            "className": null,
+            "text": "● O Centre"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-10/class-10-mensuration-combined-solids",
+    "title": "Combined Solids",
+    "catalog": "school",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 188,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 188,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-invertible-functions",
+    "title": "Invertible Functions",
+    "catalog": "school",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 174,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 174,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  }
+]

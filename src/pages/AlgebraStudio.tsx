@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ExpressionsLab, FunctionsLab, PolynomialsLab, SystemsLab, ExponentsLab, SequencesLab, ProofLab, CasGateway } from "../studios/algebra/AlgebraInteractiveLabs";
 import EquationsLab from "../studios/algebra/EquationsLab";
+import LabLearningGuide from "../studios/learning-guides/LabLearningGuide";
 import { useProgress } from "../hooks/useProgress";
 import AlgebraEnhancementWorkbench from "../studios/algebra/AlgebraEnhancementWorkbench";
 import { answersMatchChallenge } from "../studios/algebra/algebraStudioMath";
@@ -80,6 +81,7 @@ export default function AlgebraStudio() {
         {page === "home" && <StudioHome />}
         {page === "expressions" && <ExpressionsLab />}
         {page === "equations" && <EquationsLab />}
+        {page === "equations" && <LabLearningGuide route="/algebra/equations" />}
         {page === "functions" && <FunctionsLab />}
         {page === "polynomials" && <PolynomialsLab />}
         {page === "systems" && <SystemsLab />}

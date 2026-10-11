@@ -1,0 +1,76 @@
+MOBILE WORKSPACES — VERSION 002
+Date: 11 October 2026
+Scope: 2D geometry, 3D geometry, 2D graph, 3D graph. Mobile-only UI; desktop uses its existing controls and sampling path.
+
+RESTORE POINTS
+Version 001 is the source before these 50 enhancements, including existing uncommitted work.
+  backups/mobile-workspaces-v001/code-v001.zip — source, tests, scripts, configuration and docs
+  backups/mobile-workspaces-v001/source-v001-verified.zip — full repository source and assets
+  code-manifest.json and manifest.json — SHA-256 checksums
+To inspect or restore, extract into a separate directory first. Copy only the files you intend to restore. Do not overwrite newer unrelated work.
+Version 002 contains the enhanced code after verification. Its code archive overlays the unchanged Version 001 assets.
+  backups/mobile-workspaces-v002/code-v002.zip
+Verify: python scripts/restore-mobile-workspace-version.py 001 --verify
+Restore separately: python scripts/restore-mobile-workspace-version.py 001 --full --destination "C:/Indian Servers/restored-mobile-v001"
+For the enhanced version, substitute 002. The restore command refuses a non-empty destination.
+
+FEATURE REGISTER
+01. Primary Add, Delete, zoom and view actions stay on the mobile toolbars.
+02. Touch controls use 48px buttons in toolbars, panels, numeric editors and the math keyboard, with spacing.
+03. Primary actions have icons and text labels.
+04. Active tools, axes, camera presets and panel tabs are highlighted.
+05. Disabled actions provide a selection, lock or history explanation when touched.
+06. Tool changes display brief instructions.
+07. Cancel construction stops pending geometry picks; Cancel preview and Cancel plot stop pending additions.
+08. Undo and Redo are available in the quick controls, with history-aware disabled states.
+09. Deletion notifications provide Undo and automatically expire.
+10. Clear-all confirmation includes the actual object count and a Keep objects action.
+11. Searchable object lists expose visibility and locks, including default solids and geometry images.
+12. Marking multiple rows enables group visibility and deletion operations.
+13. Camera Orbit/Pan and object Move/Rotate/Resize are explicit separate modes.
+14. Help explains selection, pinch, pan, orbit and object editing gestures.
+15. Bottom-sheet handles support swipe expansion, compact mode and dismissal, plus keyboard activation.
+16. Property panels occupy part of the mobile viewport and keep the canvas available.
+17. Visual-viewport height and keyboard offsets reposition and size mobile panels.
+18. Phone layouts respect safe areas and dynamic viewport dimensions.
+19. The closed assistant moves above controls and hides while a mobile sheet is open.
+20. Landscape uses a compact single-row toolbar; portrait uses two rows.
+21. 2D geometry: construction picker includes point, line, circle and polygon previews.
+22. 2D geometry: touch point hit areas increase without changing the visible point size.
+23. 2D geometry: a magnified placement preview appears during touch dragging.
+24. 2D geometry: grid, object and intersection snapping reuse the construction solver.
+25. 2D geometry: snap coordinates are previewed while positioning objects.
+26. 2D geometry: progress shows the next point or polygon vertex count.
+27. 2D geometry: numeric point coordinates, segment lengths, circle radii and rotation angles are editable.
+28. 2D geometry: selected-object controls include Move, Resize, Rotate and Delete.
+29. 2D geometry: Fit selection is distinct from Fit all objects.
+30. 2D geometry: Duplicate and place creates a copy, then the next canvas tap positions it.
+31. 3D geometry: the catalog groups primitives, geometry and vectors and supports search.
+32. 3D geometry: the mobile catalog previews a shape before placement.
+33. 3D geometry: preview placement opens precise dimensions and position editing.
+34. 3D geometry: Orbit camera and Move object have separate buttons.
+35. 3D geometry: X, Y and Z axis selection controls movement and rotation.
+36. 3D geometry: numeric coordinates and step-based movement allow precise placement.
+37. 3D geometry: rotation controls support optional 15-degree snapping and numeric angles.
+38. 3D geometry: a compact camera preset grid offers Front, Top, Side and Isometric.
+39. 3D geometry: the object browser resolves overlapping selections by name and ID.
+40. 3D geometry: Isolate selected and Show all simplify crowded scenes.
+41. 2D graph: the math keyboard includes powers, division, roots and common functions.
+42. 2D graph: templates include sin(x^2), parabolas, circles, inequalities and square roots.
+43. 2D graph: expression errors appear beside the mobile editor with correction guidance.
+44. 2D graph: a large trace slider, numeric x input and coordinate readout support finger tracing.
+45. 2D graph: Fit curves, Fit selected curve and Reset axes are separate actions.
+46. 3D graph: explicit, implicit, parametric, curve and vector-field starters are available; implicit input is routed correctly.
+47. 3D graph: cross-sections have X/Y/Z buttons, a large slider and numeric coordinate input.
+48. 3D graph: Fast, Balanced and Detailed quality settings control sampling resolution.
+49. 3D graph: background workers report progress, allow cancellation and retry, and retain completed samples.
+50. 3D graph: the compact surface editor exposes expression, color, opacity, visibility, duplication and deletion.
+
+VALIDATION
+See reports/mobile-v002-release-results and mobile-v002-final-typecheck.log. Tests exercise mobile touch actions, numeric editing, duplicate placement, clear/undo, locking, templates, camera controls, slices, background cancellation, portrait/landscape layouts and desktop regressions. Browser tests emulate phones; physical iOS/Android devices were not tested.
+
+FINAL CHECK RESULTS
+25 browser tests passed across the main run and two isolated reruns after a development-server reload (23 + 2). This includes 8 desktop checks, 8 existing touch interaction tests, 5 new mobile workflows and 4 viewport matrix tests covering seven phone sizes in both orientations.
+7 unit tests passed (mobile sampling and existing overlay behavior). Targeted ESLint and diff whitespace checks passed.
+Full-project type checking still reports existing repository errors in geometry constraint types, keyboard event typing, studio modules and test fixtures. The checks did not report errors in the new mobile modules or the three graph/object workspace components.
+No deployment or physical-device test was performed.

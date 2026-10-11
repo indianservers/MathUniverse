@@ -450,3 +450,109 @@
     display: none;
   }
 }
+
+/* Keep phone controls usable with touch and the on-screen keyboard. */
+@media (max-width: 1180px) {
+  .mws-root[data-mws-mobile="true"] :is(input:not([type="range"]):not([type="checkbox"]):not([type="radio"]), textarea, select) {
+    font-size: 16px;
+  }
+  .mws-root[data-mws-mobile="true"] :is(.gs3d-left-panel, .gs3d-right-panel, .mws-sheet-body, .geometry-drawer-content) {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  .mws-root[data-mws-mobile="true"] :is(.gs3d-panel-header button, .os-right-heading button, .os-object-list button, .gs3d-expression-actions button, .geometry-zoom-controls button) {
+    min-width: 44px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  .geometry-studio-shell.mws-root .geometry-view-range { display: none; }
+  .geometry-studio-shell.mws-root .geometry-zoom-controls { top: 8px; right: 8px; gap: 2px; }
+}
+@media (max-width: 1100px) {
+  .object-studio-shell.mws-root .os-right-panel { grid-template-rows: minmax(140px, 45%) minmax(0, 1fr); }
+  .object-studio-shell.mws-root .os-shape-tile { min-height: 76px; touch-action: manipulation; }
+  .object-studio-shell.mws-root .os-object-list { overflow-y: auto; overscroll-behavior: contain; }
+}
+
+@media (max-width: 1180px) {
+  .geometry-studio-shell.mws-root .geometry-mobile-tools {
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    bottom: calc(8px + env(safe-area-inset-bottom));
+    max-width: none;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    z-index: 120;
+  }
+  .geometry-studio-shell.mws-root .geometry-context-toolbar {
+    position: fixed;
+    bottom: calc(118px + env(safe-area-inset-bottom));
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+    overflow-x: auto;
+    gap: 4px;
+    z-index: 110;
+  }
+  .geometry-studio-shell.mws-root .geometry-context-toolbar > div:first-child { display: none; }
+  .geometry-studio-shell.mws-root .geometry-context-toolbar button { flex: 0 0 44px; min-height: 44px; }
+  .geometry-studio-shell.mws-root .geometry-context-toolbar button.danger { order: -1; }
+  body:has(.mws-root[data-mws-mobile="true"]) .offline-assistant:not(.is-open) { z-index: 75; }
+}
+@media (max-width: 1180px) and (orientation: landscape) {
+  .geometry-studio-shell.mws-root .geometry-mobile-tools { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+}
+
+@media (max-width: 1180px) and (orientation: portrait) {
+  .geometry-studio-shell.mws-root .geometry-mobile-drawer { bottom: calc(118px + env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 1100px) {
+  .math-workspace-layout .mws-root[data-mws-mobile="true"] .gs3d-left-panel.open,
+  .math-workspace-layout .mws-root[data-mws-mobile="true"] .gs3d-right-panel.open { display: flex; }
+  .math-workspace-layout .object-studio-shell.mws-root[data-mws-mobile="true"] .os-right-panel.open { display: grid; }
+}
+
+/* Keep primary phone actions visible without opening a menu. */
+@media (max-width: 1100px) {
+  .mws-root[data-mws-mobile="true"].graph-studio-3d-shell,
+  .mws-root[data-mws-mobile="true"].object-studio-shell {
+    grid-template-rows: 48px minmax(0, 1fr) 22px 116px;
+  }
+  .mws-root[data-mws-mobile="true"] .mws-toolbar {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-self: end;
+  }
+  .mws-toolbar button { min-height: 48px; touch-action: manipulation; font-size: 11px; }
+  .mws-toolbar button.is-danger { color: #fb7185; }
+  .mws-toolbar button:disabled { opacity: .4; cursor: default; }
+  .mws-toolbar button:focus-visible { outline: 2px solid #22d3ee; outline-offset: -2px; }
+  .mws-root[data-mws-mobile="true"] :is(.gs3d-left-panel, .gs3d-right-panel, .gs3d-dock),
+  .mws-sheet { bottom: calc(124px + env(safe-area-inset-bottom)); }
+}
+@media (max-width: 1180px) {
+  .geometry-studio-shell.mws-root .geometry-mobile-tools { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2px; }
+  .geometry-mobile-tools button.danger { color: #fb7185; }
+  .geometry-mobile-tools button:disabled { opacity: .4; }
+}
+@media (max-width: 1100px) and (orientation: landscape) {
+  .mws-root[data-mws-mobile="true"].graph-studio-3d-shell,
+  .mws-root[data-mws-mobile="true"].object-studio-shell { grid-template-rows: 48px minmax(0, 1fr) 22px 64px; }
+  .mws-root[data-mws-mobile="true"] .mws-toolbar { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+  .mws-root[data-mws-mobile="true"] :is(.gs3d-left-panel, .gs3d-right-panel, .gs3d-dock),
+  .mws-sheet { bottom: calc(72px + env(safe-area-inset-bottom)); }
+}
+@media (max-width: 1180px) and (orientation: landscape) {
+  .geometry-studio-shell.mws-root .geometry-mobile-tools { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+}
+
+@media (max-width: 1180px) {
+  body:has(.mws-root[data-mws-mobile="true"]) .offline-assistant:not(.is-open) {
+    bottom: calc(132px + env(safe-area-inset-bottom));
+  }
+}
+@media (max-width: 1180px) and (orientation: landscape) {
+  body:has(.mws-root[data-mws-mobile="true"]) .offline-assistant:not(.is-open) {
+    bottom: calc(80px + env(safe-area-inset-bottom));
+  }
+}

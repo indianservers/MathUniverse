@@ -1,0 +1,249 @@
+[
+  {
+    "route": "/lessons/3d-mathematics/378-3d-coordinate-system",
+    "title": "3D Coordinate System",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 305,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 305,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/data-and-probability/537-sampling-distributions",
+    "title": "Sampling Distributions",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 500,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 500,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/3d-mathematics/379-3d-points",
+    "title": "3D Points",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 376,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 376,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/discrete-and-applied-mathematics/556-fundamental-counting-principle",
+    "title": "Fundamental Counting Principle",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 316,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 316,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/discrete-and-applied-mathematics/557-factorials",
+    "title": "Factorials",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 336,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 336,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/discrete-and-applied-mathematics/558-permutations",
+    "title": "Permutations",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 376,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 376,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/discrete-and-applied-mathematics/559-permutations-with-repetition",
+    "title": "Permutations with Repetition",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 553,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 553,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/discrete-and-applied-mathematics/591-simple-interest",
+    "title": "Simple Interest",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 349,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 349,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/discrete-and-applied-mathematics/593-effective-interest-rate",
+    "title": "Effective Interest Rate",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 359,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 359,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/discrete-and-applied-mathematics/592-compound-interest",
+    "title": "Compound Interest",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 373,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 373,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/discrete-and-applied-mathematics/594-present-value",
+    "title": "Present Value",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 343,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 343,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/discrete-and-applied-mathematics/595-future-value",
+    "title": "Future Value",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 366,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 366,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  },
+  {
+    "route": "/lessons/discrete-and-applied-mathematics/596-annuities",
+    "title": "Annuities",
+    "catalog": "core",
+    "checks": [
+      {
+        "width": 390,
+        "textElements": 450,
+        "small": [],
+        "overflow": []
+      },
+      {
+        "width": 1280,
+        "textElements": 450,
+        "small": [],
+        "overflow": []
+      }
+    ]
+  }
+]

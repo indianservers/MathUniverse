@@ -9,7 +9,7 @@ it('bounds multivariable symbolic expansion',async()=>expect((await computeMath(
 it('does not certify a nonfinite dot product',async()=>expect((await computeMath({operation:'linear',args:['dot',[1e308],[1e308]]})).status).toBe('unsupported'));
 it('does not certify an overflowing vector norm',async()=>expect((await computeMath({operation:'linear',args:['magnitude',[1e308,1e308]]})).status).toBe('unsupported'));
 it('does not silently select a zero-power convention',async()=>expect((await computeMath({operation:'evaluate',expression:'(2-2)^0'})).status).toBe('unsupported'));
-it('routes an unprefixed exact student question through the shared kernel',async()=>{const r=await new SemanticEngine('normal').execute('sin(pi/6)',async()=>{});expect(r.message).toBe('1/2');expect(r.engineExecution?.verificationStatus).toBe('verified_exact');});
+it('routes an unprefixed exact student question through the shared kernel',async()=>{const r=await new SemanticEngine('normal').execute('sin(pi/6)',async()=>{});expect(r.message).toBe('1/2');expect(r.engineExecution?.verificationStatus).toBe('unverified');expect(r.execution?.status).toBe('valid_unverified');});
 it('checks trig range beyond binary floating precision',async()=>expect((await computeMath({operation:'trigSolve',expression:'sin(x)=1+1/10^20'})).value).toEqual([]));
 it('rejects a tiny extraneous principal-root solution',async()=>{const r=await computeMath({operation:'solve',expression:'sqrt(x^2)=x-1/10^20'});expect(r.value,r.answer).toEqual([]);});
 it('keeps tiny real quadratic solutions exact',async()=>{const r=await computeMath({operation:'solve',expression:'x^2=1/10^64'});expect(r.status,r.answer).toMatch(/^verified/);expect(r.value).toHaveLength(2);});
