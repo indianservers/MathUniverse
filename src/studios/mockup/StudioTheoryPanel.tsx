@@ -5,6 +5,7 @@ import { studioSimpleWords } from "./studioSimpleWords";
 import { studioTheoryContent } from "./studioTheoryContent";
 import { studioFormulaCards } from "./studioLearningTabs";
 import "./StudioTheoryPanel.css";
+import {conceptTheoryBlocks} from "../learning-guides/StudioTheoryDepth";
 
 export const studioTheoryId = (studioId: string, pageId: string) => `studio-theory-${studioId}-${pageId}`;
 const theoryTabs = [
@@ -62,6 +63,7 @@ export default function StudioTheoryPanel({ studioId, page, mode }: { studioId: 
         <article className="studio-theory-caution"><h3>Watch for</h3><p>{theory.caution}</p></article>
       </div>
       <div className="studio-theory-example-heading"><h3>Three worked examples</h3><p>Use the lab controls to test these relationships.</p></div>
+      <div className="studio-theory-depth">{conceptTheoryBlocks({title:page.label,key:`${studioId}/${page.id}`,studioId}).map((block,i)=><article key={i} className="rounded-xl border border-slate-200 bg-white p-5 dark:border-slate-600 dark:bg-slate-900"><h3>{block.heading}</h3>{block.paragraphs.map((text,j)=><p key={j} style={{lineHeight:1.85,marginTop:12}}>{text}</p>)}</article>)}</div>
       <div className="studio-theory-examples">
         {theory.examples.map((example, index) => (
           <article key={example.title}>

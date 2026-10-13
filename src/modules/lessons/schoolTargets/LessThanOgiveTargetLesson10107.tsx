@@ -1,3 +1,4 @@
+import GroupedDataEditor from "../components/GroupedDataEditor";
 import {
   Calculator,
   Download,
@@ -77,6 +78,7 @@ export default function LessThanOgiveTargetLesson10107({
           Math.min(following?.cf ?? 50, candidate.cf),
         ),
       );
+      if(index===0)candidate.cf=0;
       return current.map((point) => (point.id === id ? candidate : point));
     });
   const dragPoint = (event: PointerEvent<SVGCircleElement>, point: Point) => {
@@ -161,6 +163,7 @@ export default function LessThanOgiveTargetLesson10107({
           <span>statistics</span>
         </nav>
       </header>
+      <GroupedDataEditor data={{bounds:points.map(point=>point.x),frequencies:points.slice(1).map((point,i)=>point.cf-points[i].cf)}} defaults={{bounds:defaults.map(point=>point.x),frequencies:defaults.slice(1).map((point,i)=>point.cf-defaults[i].cf)}} onChange={data=>act(()=>{let cf=0;setPoints(data.bounds.map((x,i)=>({id:i+1,x,cf:i===0?0:(cf+=data.frequencies[i-1])})));})}/>
       <main className="lto10107-lab">
         <header>
           <div>

@@ -3,8 +3,8 @@
   top: -8px;
   width: min(1360px, calc(100vw - 320px));
   margin: auto;
-  color: #e7eef8;
-  background: #031328;
+  color: var(--lesson-ink,#e7eef8);
+  background: var(--lesson-surface,#031328);
   font:
     11px/1.45 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .tf10125-page * {
   box-sizing: border-box;
 }
@@ -36,7 +36,7 @@
 }
 .tf10125-page > header small,
 .tf10125-page h2 {
-  color: #55cef0;
+  color: var(--lesson-accent,#55cef0);
   font-weight: 900;
   letter-spacing: 0.6px;
 }
@@ -52,19 +52,19 @@
 .tf10125-page > header nav span {
   padding: 4px 11px;
   border-radius: 12px;
-  background: #12243a;
+  background: var(--lesson-surface,#12243a);
   font-weight: 800;
 }
 .tf10125-page > main {
   display: grid;
   grid-template-columns: minmax(230px, 23fr) minmax(0, 57fr) minmax(220px, 20fr);
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 8px;
-  background: #06172d;
+  background: var(--lesson-surface,#06172d);
 }
 .tf10125-controls {
   padding: 14px;
-  border-right: 1px solid #29435c;
+  border-right: 1px solid var(--lesson-border,#29435c);
 }
 .tf10125-controls > .formula {
   margin: 17px 0;
@@ -74,7 +74,7 @@
   color: #43a5ee;
 }
 .tf10125-controls > .formula b {
-  color: #48d7d1;
+  color: var(--lesson-accent,#48d7d1);
 }
 .tf10125-controls > .formula strong {
   color: #ad69ef;
@@ -99,9 +99,9 @@
 .tf10125-controls > label input[type="number"] {
   width: 55px;
   padding: 5px;
-  border: 1px solid #304960;
+  border: 1px solid var(--lesson-border,#304960);
   border-radius: 6px;
-  background: #0b1c31;
+  background: var(--lesson-surface,#0b1c31);
 }
 .tf10125-controls > .reset,
 .tf10125-steps button,
@@ -111,9 +111,9 @@
   align-items: center;
   gap: 6px;
   padding: 8px;
-  border: 1px solid #304960;
+  border: 1px solid var(--lesson-border,#304960);
   border-radius: 6px;
-  background: #09192d;
+  background: var(--lesson-surface,#09192d);
 }
 .tf10125-page svg {
   width: 16px;
@@ -121,7 +121,7 @@
 .tf10125-steps {
   margin-top: 14px;
   padding: 10px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 7px;
 }
 .tf10125-steps > button {
@@ -131,7 +131,7 @@
 }
 .tf10125-steps > button.active {
   border-color: #2ad8d2;
-  background: #0d3d49;
+  background: var(--lesson-surface,#0d3d49);
 }
 .tf10125-steps > button b {
   display: grid;
@@ -139,7 +139,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #132942;
+  background: var(--lesson-surface,#132942);
 }
 .tf10125-steps footer {
   display: flex;
@@ -152,8 +152,8 @@
   align-items: center;
   gap: 4px;
   padding: 7px;
-  border: 1px solid #304960;
-  background: #0a1a30;
+  border: 1px solid var(--lesson-border,#304960);
+  background: var(--lesson-surface,#0a1a30);
 }
 .tf10125-graph > header {
   display: flex;
@@ -161,7 +161,7 @@
   gap: 20px;
   height: 52px;
   padding: 10px;
-  border-bottom: 1px solid #29435c;
+  border-bottom: 1px solid var(--lesson-border,#29435c);
 }
 .tf10125-graph > header label {
   font-size: 12px;
@@ -177,9 +177,9 @@
 .tf10125-graph > header button {
   height: 31px;
   padding: 6px;
-  border: 1px solid #304960;
+  border: 1px solid var(--lesson-border,#304960);
   border-radius: 6px;
-  background: #0d1d31;
+  background: var(--lesson-surface,#0d1d31);
 }
 .tf10125-graph > svg {
   width: 100%;
@@ -189,7 +189,7 @@
   stroke: #183047;
 }
 .tf10125-graph .axis {
-  stroke: #dce8f2;
+  stroke: var(--lesson-ink,#dce8f2);
 }
 .tf10125-graph path {
   fill: none;
@@ -199,7 +199,7 @@
   stroke: #378cf0;
 }
 .tf10125-graph .changed {
-  stroke: #33ded9;
+  stroke: var(--lesson-accent,#33ded9);
 }
 .tf10125-graph .midline {
   stroke: #ef8a2b;
@@ -210,11 +210,11 @@
   stroke-dasharray: 7 5;
 }
 .tf10125-graph circle {
-  fill: #d8ffff;
-  stroke: #2edbd6;
+  fill: var(--lesson-ink,#d8ffff);
+  stroke: var(--lesson-accent,#2edbd6);
 }
 .tf10125-graph text {
-  fill: #34d8d3;
+  fill: var(--lesson-accent,#34d8d3);
   font: 12px Georgia;
 }
 .tf10125-graph > footer {
@@ -225,7 +225,7 @@
 }
 .tf10125-graph > footer article {
   padding: 11px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 7px;
 }
 .tf10125-graph > footer p {
@@ -237,23 +237,23 @@
   display: grid;
   gap: 10px;
   padding: 0 0 0 10px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
 }
 .tf10125-info article {
   padding: 13px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 8px;
-  background: #06172d;
+  background: var(--lesson-surface,#06172d);
 }
 .tf10125-info article p,
 .tf10125-info li {
   margin-top: 9px;
 }
 .tf10125-info article:nth-child(3) h2 {
-  color: #f0b945;
+  color: var(--lesson-highlight,#f0b945);
 }
 .tf10125-info article:last-child h2 {
-  color: #55dea3;
+  color: var(--lesson-accent,#55dea3);
 }
 .tf10125-info button {
   margin-top: 10px;

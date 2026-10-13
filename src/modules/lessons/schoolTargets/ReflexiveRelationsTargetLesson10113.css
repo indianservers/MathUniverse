@@ -4,8 +4,8 @@
   left: 1px;
   width: min(1390px, calc(100vw - 294px));
   margin: auto;
-  color: #e6edfb;
-  background: #031328;
+  color: var(--lesson-ink,#e6edfb);
+  background: var(--lesson-surface,#031328);
   font:
     12px/1.45 Inter,
     Arial,
@@ -16,9 +16,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .rfx10113-page * {
   box-sizing: border-box;
 }
@@ -40,7 +40,7 @@
 }
 .rfx10113-page > header small,
 .rfx10113-page h2 {
-  color: #45dfdd;
+  color: var(--lesson-accent,#45dfdd);
   font-weight: 900;
   letter-spacing: 1px;
 }
@@ -55,19 +55,19 @@
 }
 .rfx10113-page > header nav span {
   padding: 4px 12px;
-  border: 1px solid #30445d;
+  border: 1px solid var(--lesson-border,#30445d);
   border-radius: 14px;
-  background: #10213a;
+  background: var(--lesson-surface,#10213a);
   font-weight: 700;
 }
 .rfx10113-page > header aside {
   padding: 17px;
-  border: 1px solid #29445d;
+  border: 1px solid var(--lesson-border,#29445d);
   border-radius: 8px;
-  background: #06152b;
+  background: var(--lesson-surface,#06152b);
 }
 .rfx10113-page > header aside b {
-  color: #64bff3;
+  color: var(--lesson-accent,#64bff3);
 }
 .rfx10113-page > header aside p {
   margin: 14px 0;
@@ -77,7 +77,7 @@
 }
 .rfx10113-page > header aside strong {
   display: block;
-  color: #39dfe0;
+  color: var(--lesson-accent,#39dfe0);
   text-align: center;
   font:
     italic 19px Georgia,
@@ -92,9 +92,9 @@
 .rfx10113-page > main > aside {
   min-width: 0;
   padding: 14px;
-  border: 1px solid #29445d;
+  border: 1px solid var(--lesson-border,#29445d);
   border-radius: 8px;
-  background: #06152b;
+  background: var(--lesson-surface,#06152b);
 }
 .rfx10113-editor > .setline {
   display: flex;
@@ -108,8 +108,8 @@
     serif;
 }
 .rfx10113-editor button {
-  border: 1px solid #34506a;
-  background: #09182e;
+  border: 1px solid var(--lesson-border,#34506a);
+  background: var(--lesson-surface,#09182e);
 }
 .rfx10113-editor > .setline button {
   display: flex;
@@ -147,35 +147,35 @@
   padding: 0 12px;
 }
 .rfx10113-work > article + article {
-  border-left: 1px solid #29445d;
+  border-left: 1px solid var(--lesson-border,#29445d);
 }
 .rfx10113-work > article > svg {
   width: 100%;
   height: 220px;
 }
 .rfx10113-work svg .on {
-  stroke: #39dce0;
+  stroke: var(--lesson-accent,#39dce0);
   stroke-width: 2;
   fill: none;
 }
 .rfx10113-work svg .off {
-  stroke: #68768e;
+  stroke: var(--lesson-muted,#68768e);
   stroke-width: 1.5;
   stroke-dasharray: 6 5;
 }
 .rfx10113-work svg marker path {
-  fill: #39dce0;
+  fill: var(--lesson-accent,#39dce0);
 }
 .rfx10113-work svg g {
   cursor: pointer;
 }
 .rfx10113-work svg circle {
   fill: #071a31;
-  stroke: #38dce0;
+  stroke: var(--lesson-accent,#38dce0);
   stroke-width: 2;
 }
 .rfx10113-work svg text {
-  fill: #f5f8ff;
+  fill: var(--lesson-ink,#f5f8ff);
   text-anchor: middle;
   font-weight: 800;
 }
@@ -183,7 +183,7 @@
   display: flex;
   justify-content: space-around;
   padding: 8px;
-  border: 1px solid #29445d;
+  border: 1px solid var(--lesson-border,#29445d);
   border-radius: 6px;
   font:
     italic 11px Georgia,
@@ -200,7 +200,7 @@
   place-items: center;
 }
 .rfx10113-matrix button {
-  border: 1px solid #30445d;
+  border: 1px solid var(--lesson-border,#30445d);
   font-size: 16px;
 }
 .rfx10113-matrix button.one {
@@ -227,21 +227,21 @@
   padding: 9px;
   border-color: #2cdde0;
   border-radius: 7px;
-  color: #4fdce5;
+  color: var(--lesson-accent,#4fdce5);
 }
 .rfx10113-editor > footer button span {
   display: grid;
   text-align: left;
 }
 .rfx10113-editor > footer small {
-  color: #c8d2e2;
+  color: var(--lesson-ink,#c8d2e2);
 }
 .rfx10113-checker > header {
   display: flex;
   gap: 12px;
   margin: 13px 0;
   padding: 13px;
-  border: 1px solid #30445d;
+  border: 1px solid var(--lesson-border,#30445d);
   border-radius: 7px;
 }
 .rfx10113-checker > header > svg {
@@ -251,7 +251,7 @@
   color: #ff6462;
 }
 .rfx10113-checker > header.yes {
-  color: #44e58a;
+  color: var(--lesson-accent,#44e58a);
 }
 .rfx10113-checker > header strong {
   font-size: 16px;
@@ -259,13 +259,13 @@
 .rfx10113-checker table {
   width: 100%;
   margin-top: 12px;
-  border: 1px solid #30445d;
+  border: 1px solid var(--lesson-border,#30445d);
   border-collapse: collapse;
 }
 .rfx10113-checker th,
 .rfx10113-checker td {
   padding: 10px 15px;
-  border-bottom: 1px solid #30445d;
+  border-bottom: 1px solid var(--lesson-border,#30445d);
   text-align: left;
 }
 .rfx10113-checker td:nth-child(2) {
@@ -277,17 +277,17 @@
 .rfx10113-checker .missing {
   padding: 5px 8px;
   border-radius: 3px;
-  background: #103d3b;
-  color: #56dda0;
+  background: var(--lesson-surface,#103d3b);
+  color: var(--lesson-accent,#56dda0);
 }
 .rfx10113-checker .missing {
-  background: #432438;
+  background: var(--lesson-surface,#432438);
   color: #ff6868;
 }
 .rfx10113-checker > article {
   margin-top: 12px;
   padding: 12px;
-  border: 1px solid #29445d;
+  border: 1px solid var(--lesson-border,#29445d);
   border-radius: 7px;
 }
 .rfx10113-checker > article p {
@@ -299,24 +299,24 @@
 .rfx10113-checker .tested {
   display: block;
   margin-top: 10px;
-  color: #41dfe0;
+  color: var(--lesson-accent,#41dfe0);
 }
 .rfx10113-notes {
   display: grid;
   grid-template-columns: 60% 40%;
   margin-top: 12px;
-  border: 1px solid #29445d;
+  border: 1px solid var(--lesson-border,#29445d);
   border-radius: 8px;
-  background: #06152b;
+  background: var(--lesson-surface,#06152b);
 }
 .rfx10113-notes section {
   padding: 11px 48px;
 }
 .rfx10113-notes section + section {
-  border-left: 1px solid #29445d;
+  border-left: 1px solid var(--lesson-border,#29445d);
 }
 .rfx10113-notes b {
-  color: #a9d9fb;
+  color: var(--lesson-ink,#a9d9fb);
 }
 .rfx10113-notes p {
   font-size: 11px;
@@ -365,6 +365,6 @@
   }
   .rfx10113-notes section + section {
     border: 0;
-    border-top: 1px solid #29445d;
+    border-top: 1px solid var(--lesson-border,#29445d);
   }
 }

@@ -3,8 +3,8 @@
   top: -8px;
   width: min(1368px, calc(100vw - 310px));
   margin: auto;
-  color: #edf3fb;
-  background: #03152a;
+  color: var(--lesson-ink,#edf3fb);
+  background: var(--lesson-surface,#03152a);
   font:
     12px/1.45 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #03152a;
+  background: var(--lesson-surface,#03152a);
   content: "";
-}
+display:none;}
 .it10137-page * {
   box-sizing: border-box;
 }
@@ -35,15 +35,15 @@
 .it10137-page h2,
 .it10137-page h3,
 .it10137-page > header small {
-  color: #4dd6df;
+  color: var(--lesson-accent,#4dd6df);
   font-weight: 900;
 }
 .it10137-page > header {
   min-height: 152px;
   padding: 17px 25px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 8px;
-  background: #071a31;
+  background: var(--lesson-surface,#071a31);
 }
 .it10137-page > header h1 {
   margin: 7px 0;
@@ -60,16 +60,16 @@
 .it10137-page > header span {
   padding: 5px 13px;
   border-radius: 14px;
-  background: #182d50;
+  background: var(--lesson-surface,#182d50);
   color: #82acef;
   font-weight: 800;
 }
 .it10137-page > main {
   margin-top: 12px;
   padding: 14px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 8px;
-  background: #071a31;
+  background: var(--lesson-surface,#071a31);
 }
 .it10137-page > main > header {
   display: flex;
@@ -87,9 +87,9 @@
   align-items: center;
   gap: 7px;
   padding: 8px 13px;
-  border: 1px solid #405b77;
+  border: 1px solid var(--lesson-border,#405b77);
   border-radius: 7px;
-  background: #0b1f37;
+  background: var(--lesson-surface,#0b1f37);
 }
 .it10137-page svg {
   width: 17px;
@@ -104,7 +104,7 @@
 .it10137-steps,
 .it10137-check > section,
 .it10137-check > footer {
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 8px;
 }
 .it10137-inputs > div {
@@ -118,13 +118,13 @@
 }
 .it10137-inputs input {
   padding: 7px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 5px;
-  background: #0b1f37;
+  background: var(--lesson-surface,#0b1f37);
 }
 .it10137-inputs > section {
   padding: 14px;
-  border-top: 1px solid #38516b;
+  border-top: 1px solid var(--lesson-border,#38516b);
 }
 .it10137-inputs > section > p {
   margin-top: 13px;
@@ -147,7 +147,7 @@
 }
 .it10137-page .valid {
   border-color: #28c7ad !important;
-  color: #55dfc5;
+  color: var(--lesson-accent,#55dfc5);
 }
 .it10137-page .invalid {
   border-color: #da6371 !important;
@@ -173,8 +173,8 @@
   width: 23px;
   height: 23px;
   border-radius: 50%;
-  background: #0d4b61;
-  color: #5be2e1;
+  background: var(--lesson-surface,#0d4b61);
+  color: var(--lesson-accent,#5be2e1);
 }
 .it10137-steps li p {
   margin-top: 4px;
@@ -183,13 +183,13 @@
 .it10137-steps > footer {
   margin-top: 11px;
   padding: 10px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 7px;
   text-align: center;
   font-size: 16px;
 }
 .it10137-steps > footer strong {
-  color: #45d6cd;
+  color: var(--lesson-accent,#45d6cd);
   font-size: 26px;
 }
 .it10137-check {
@@ -211,7 +211,7 @@
   display: grid;
   gap: 5px;
   padding: 10px 22px;
-  border: 1px solid #535e8c;
+  border: 1px solid var(--lesson-border,#535e8c);
   border-radius: 7px;
   text-align: center;
 }
@@ -238,8 +238,8 @@
 .it10137-check label button,
 .it10137-check label input {
   height: 36px;
-  border: 1px solid #38516b;
-  background: #0b1f37;
+  border: 1px solid var(--lesson-border,#38516b);
+  background: var(--lesson-surface,#0b1f37);
   text-align: center;
 }
 .it10137-check > section:nth-child(2) > strong {
@@ -253,7 +253,7 @@
   align-items: center;
   gap: 10px;
   padding: 13px;
-  background: #16133f;
+  background: var(--lesson-surface,#16133f);
 }
 .it10137-bottom {
   display: grid;
@@ -263,9 +263,9 @@
 }
 .it10137-bottom > article {
   padding: 14px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 8px;
-  background: #071a31;
+  background: var(--lesson-surface,#071a31);
 }
 .it10137-bottom > article > div {
   display: grid;

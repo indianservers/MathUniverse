@@ -1,8 +1,8 @@
-import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import GeometryLessonCanvas from "./TriangleReferenceCanvas";
 import { triangleLessonScene } from "../geometryLessonScene";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef } from "react";
-import { ChipRow, Field, Panel, SliderRow, StatusOk } from "../../mockup/studioLabKit";
+import { Field, Panel, SliderRow, StatusOk } from "../../mockup/studioLabKit";
 import {
   almostEqual,
   clampPoint,
@@ -20,9 +20,10 @@ import {
   triangleArea,
   type Pt,
 } from "./triangleGeometry";
-import { ChallengeCard, FormulaCard, InsightStack, LabFrame, MeasureRow, Toggle, okNum } from "./triangleLabKit";
+import { ChallengeCard, FormulaCard, InsightStack, LabFrame, MeasureRow, Toggle, okNum, useTriangleReset } from "./triangleLabKit";
 import {
   AngleArc,
+  GridLayer,
   DraggableVertex,
   RightAngleMarker,
   SideMeasurement,
@@ -47,25 +48,30 @@ export default function CongruenceLab({ pulse = "observe" }: { pulse?: string })
   const [test, setTest] = useStudioState<Test>("CongruenceLab:CongruenceLab:test", "SSS");
   const [swap, setSwap] = useStudioState("CongruenceLab:CongruenceLab:swap", false);
   const [ab, setAb] = useStudioState("CongruenceLab:CongruenceLab:ab", 5.2);
-  const [bc, setBc] = useStudioState("CongruenceLab:CongruenceLab:bc", 6.4);
+  const [bc, setBc] = useStudioState("CongruenceLab:CongruenceLab:bc", 4.4);
   const [ca, setCa] = useStudioState("CongruenceLab:CongruenceLab:ca", 4.8);
   const [angA, setAngA] = useStudioState("CongruenceLab:CongruenceLab:angA", 52);
   const [angB, setAngB] = useStudioState("CongruenceLab:CongruenceLab:angB", 58);
   const [hyp, setHyp] = useStudioState("CongruenceLab:CongruenceLab:hyp", 6.5);
   const [leg, setLeg] = useStudioState("CongruenceLab:CongruenceLab:leg", 3.9);
-  const [rot, setRot] = useStudioState("CongruenceLab:CongruenceLab:rot", 8);
+  const [rot, setRot] = useStudioState("CongruenceLab:CongruenceLab:rot", 0);
   const [ssaA, setSsaA] = useStudioState("CongruenceLab:CongruenceLab:ssaA", 40);
   const [ssaAopp, setSsaAopp] = useStudioState("CongruenceLab:CongruenceLab:ssaAopp", 3.1);
   const [ssaB, setSsaB] = useStudioState("CongruenceLab:CongruenceLab:ssaB", 4.4);
   const [labels, setLabels] = useStudioState("CongruenceLab:CongruenceLab:labels", true);
-  const [free, setFree] = useStudioState("CongruenceLab:CongruenceLab:free", { A: { x: 2.4, y: 6.6 }, B: { x: 1.5, y: 1.5 }, C: { x: 7.2, y: 1.6 } });
+  const draftRef = useRef<{ A: Pt; B: Pt; C: Pt } | null>(null);
+  const [grid, setGrid] = useStudioState("CongruenceLab:grid", true);
+  const [angleLabels, setAngleLabels] = useStudioState("CongruenceLab:angleLabels", true);
 
   const map = swapMap(swap);
   const leftOrigin = { x: 1.2, y: 1.5 };
   const rightOrigin = { x: 10.3, y: 1.5 };
 
   const pair = useMemo(() => {
-    if (test === "SSS") return { L: constructSSS(bc, ca, ab, leftOrigin), R: constructSSS(bc, ca, ab, rightOrigin, rot) };
+    if (test === "SSS") {
+      const build = (origin: Pt, rotation = 0) => { const t = constructSSS(ab, bc, ca, origin, rotation); return { A: t.B, B: t.C, C: t.A, ok: t.ok }; };
+      return { L: build(leftOrigin), R: build(rightOrigin, rot) };
+    }
     if (test === "SAS") return { L: constructSAS(ab, angA, ca, leftOrigin), R: constructSAS(ab, angA, ca, rightOrigin, rot) };
     if (test === "ASA") return { L: constructASAc(angA, ab, angB, leftOrigin), R: constructASAc(angA, ab, angB, rightOrigin, rot) };
     if (test === "AAS") return { L: constructAAS(angA, angB, bc, leftOrigin), R: constructAAS(angA, angB, bc, rightOrigin, rot) };
@@ -79,7 +85,7 @@ export default function CongruenceLab({ pulse = "observe" }: { pulse?: string })
     });
     if (sols.length >= 2) return { L: place(sols[0], leftOrigin), R: place(sols[1], { x: 9.6, y: 1.5 }) };
     if (sols.length === 1) return { L: place(sols[0], leftOrigin), R: place(sols[0], rightOrigin) };
-    return { L: constructSAS(ssaB, ssaA, 2.2, leftOrigin), R: constructSAS(ssaB, ssaA, 2.2, rightOrigin) };
+    return { L: { A: leftOrigin, B: leftOrigin, C: leftOrigin, ok: false }, R: { A: rightOrigin, B: rightOrigin, C: rightOrigin, ok: false } };
   }, [ab, angA, angB, bc, ca, hyp, leg, rot, ssaA, ssaAopp, ssaB, test]);
 
   const L = pair.L;
@@ -88,28 +94,35 @@ export default function CongruenceLab({ pulse = "observe" }: { pulse?: string })
   const mR = measureTriangle(R.A, R.B, R.C);
   const sidesEq = almostEqual(mL.sides.AB, mR.sides.AB) && almostEqual(mL.sides.BC, mR.sides.BC) && almostEqual(mL.sides.CA, mR.sides.CA);
   const anglesEq = almostEqual(mL.angles.A, mR.angles.A, 0.8) && almostEqual(mL.angles.B, mR.angles.B, 0.8) && almostEqual(mL.angles.C, mR.angles.C, 0.8);
-  const congruent = test !== "SSA" && sidesEq && anglesEq;
+  const congruent = test !== "SSA" && L.ok && R.ok && mL.area > 1e-8 && mR.area > 1e-8 && sidesEq && anglesEq;
 
   const startDrag = (who: "A" | "B" | "C") => (event: React.PointerEvent) => {
     event.preventDefault();
     drag.current = who;
+    draftRef.current = L;
     bindSvgDrag(svgRef, (ev) => {
       const svg = svgRef.current;
       if (!svg || !drag.current) return;
       const s = pointerToSvg(svg, ev);
       const next = clampPoint(fromSvg(plane, s.x, s.y), 0.5, 9.2, 0.4, 11);
-      setFree((prev) => {
+      const prev = draftRef.current;
+      if (prev) {
         const draft = { ...prev, [drag.current!]: next };
-        if (triangleArea(draft.A, draft.B, draft.C) < 0.4) return prev;
+        if (triangleArea(draft.A, draft.B, draft.C) < 0.4) return;
         setAb(Math.hypot(draft.A.x - draft.B.x, draft.A.y - draft.B.y));
         setBc(Math.hypot(draft.B.x - draft.C.x, draft.B.y - draft.C.y));
         setCa(Math.hypot(draft.C.x - draft.A.x, draft.C.y - draft.A.y));
-        return draft;
-      });
+        const angles = triangleAngles(draft.A, draft.B, draft.C);
+        setAngA(angles.A); setAngB(angles.B);
+        if (test === "RHS") { setHyp(Math.hypot(draft.A.x - draft.B.x, draft.A.y - draft.B.y)); setLeg(Math.hypot(draft.B.x - draft.C.x, draft.B.y - draft.C.y)); }
+        if (test === "SSA") { setSsaA(angles.A); setSsaAopp(Math.hypot(draft.B.x - draft.C.x, draft.B.y - draft.C.y)); setSsaB(Math.hypot(draft.A.x - draft.C.x, draft.A.y - draft.C.y)); }
+        draftRef.current = draft;
+      }
     }, () => { drag.current = null; });
   };
 
   const proof = () => {
+    if (!L.ok || !R.ok) return ["The given measurements do not form a valid triangle.", "Use positive sides satisfying the strict triangle inequalities and angles totaling less than 180°."];
     if (test === "SSS") return [`AB = ${map.AB} = ${okNum(mL.sides.AB)}`, `BC = ${map.BC} = ${okNum(mL.sides.BC)}`, `CA = ${map.CA} = ${okNum(mL.sides.CA)}`, `△ABC ≅ △${map.A}${map.B}${map.C} by SSS.`];
     if (test === "SAS") return [`AB = ${map.AB} = ${okNum(mL.sides.AB)}`, `AC = ${swap ? "DE" : "DF"} = ${okNum(mL.sides.CA)}`, `Included ∠A = ∠${map.A} = ${okNum(mL.angles.A, 1)}°`, `△ABC ≅ △${map.A}${map.B}${map.C} by SAS.`];
     if (test === "ASA") return [`∠B = ∠${map.B} = ${okNum(mL.angles.B, 1)}°`, `Included AB = ${map.AB}`, `∠A = ∠${map.A} = ${okNum(mL.angles.A, 1)}°`, `△ABC ≅ △${map.A}${map.B}${map.C} by ASA.`];
@@ -119,8 +132,8 @@ export default function CongruenceLab({ pulse = "observe" }: { pulse?: string })
   };
 
   const reset = () => {
-    setTest("SSS"); setAb(5.2); setBc(6.4); setCa(4.8); setAngA(52); setAngB(58); setHyp(6.5); setLeg(3.9); setRot(8); setSwap(false);
-    setFree({ A: { x: 2.4, y: 6.6 }, B: { x: 1.5, y: 1.5 }, C: { x: 7.2, y: 1.6 } });
+    setTest("SSS"); setAb(5.2); setBc(4.4); setCa(4.8); setAngA(52); setAngB(58); setHyp(6.5); setLeg(3.9); setRot(0); setSwap(false);
+    setGrid(true); setAngleLabels(true); setLabels(true);
   };
 
   useEffect(() => {
@@ -130,18 +143,18 @@ export default function CongruenceLab({ pulse = "observe" }: { pulse?: string })
     if (pulse === "try" || pulse === "challenge") setTest("SAS");
   }, [pulse]);
 
+  useTriangleReset("congruence", reset);
+
   return (
     <LabFrame
       theme="congruence"
       ariaLabel="Congruence laboratory"
       controls={
-        <Panel title="Congruence test">
+        <Panel title="Congruence criteria">
           <Field label="Criterion">
-            <ChipRow value={test} onChange={(id) => setTest(id as Test)} options={[
-              { id: "SSS", label: "SSS" }, { id: "SAS", label: "SAS" }, { id: "ASA", label: "ASA" },
-              { id: "AAS", label: "AAS" }, { id: "RHS", label: "RHS" }, { id: "SSA", label: "SSA (not a test)" },
-            ]} />
+            <div className="tri-criteria">{([['SSS','Side-Side-Side'],['SAS','Side-Angle-Side'],['ASA','Angle-Side-Angle'],['AAS','Angle-Angle-Side'],['RHS','Right angle-Hypotenuse-Side'],['SSA','SSA investigation (not a test)']] as const).map(([id,label]) => <button type="button" key={id} aria-label={id === 'SSA' ? 'SSA (not a test)' : id} aria-pressed={test === id} className={test === id ? 'active' : ''} onClick={() => setTest(id)}><span className="tri-criterion-icon">△<small>{id}</small></span><span>{label}</span></button>)}</div>
           </Field>
+          <details className="tri-more"><summary>Adjust lengths & angles</summary>
           {test === "SSS" ? (
             <>
               <SliderRow label="AB = DE" value={ab} min={2} max={8} step={0.1} onChange={setAb} />
@@ -184,8 +197,11 @@ export default function CongruenceLab({ pulse = "observe" }: { pulse?: string })
             </>
           ) : null}
           {test !== "SSA" ? <SliderRow label="Rotate △DEF" value={rot} min={-40} max={40} step={1} onChange={setRot} unit="°" /> : null}
+          </details>
           <Toggle checked={swap} onChange={setSwap}>Swap correspondence</Toggle>
           <Toggle checked={labels} onChange={setLabels}>Show measures</Toggle>
+          <Toggle checked={grid} onChange={setGrid}>Show grid</Toggle>
+          <Toggle checked={angleLabels} onChange={setAngleLabels}>Show angle values</Toggle>
           {test === "SSA"
             ? <p className="tri-warn">SSA is not a congruence criterion. Two different triangles can share those data.</p>
             : <StatusOk>{congruent ? `△ABC ≅ △${map.A}${map.B}${map.C} by ${test}.` : "Adjust the given parts until the triangles match."}</StatusOk>}
@@ -193,6 +209,7 @@ export default function CongruenceLab({ pulse = "observe" }: { pulse?: string })
       }
       canvas={
         <GeometryLessonCanvas scene={triangleLessonScene(plane, [L, R], p => toSvg(plane, p))} ref={svgRef} viewBox={`0 0 ${plane.width} ${plane.height}`} role="img" aria-label={`Two corresponding triangles. ${test}${test === "SSA" ? " is not a congruence test." : congruent ? ` match.` : " parts not yet equal."}`}>
+          {grid ? <GridLayer plane={plane} /> : null}
           <polygon points={polyPoints(plane, [L.A, L.B, L.C])} fill="rgba(20,125,242,.10)" stroke="#147df2" strokeWidth="2.1" />
           <polygon points={polyPoints(plane, [R.A, R.B, R.C])} fill="rgba(139,69,244,.10)" stroke="#8b45f4" strokeWidth="2.1" />
           <SideTickMark plane={plane} a={L.A} b={L.B} count={1} color="#147df2" />
@@ -201,11 +218,13 @@ export default function CongruenceLab({ pulse = "observe" }: { pulse?: string })
           <SideTickMark plane={plane} a={R.B} b={R.C} count={2} color="#8b45f4" />
           <SideTickMark plane={plane} a={L.C} b={L.A} count={3} color="#147df2" />
           <SideTickMark plane={plane} a={R.C} b={R.A} count={3} color="#8b45f4" />
-          <AngleArc plane={plane} vertex={L.A} p={L.B} q={L.C} ticks={1} color="#08b9dd" radius={20} />
-          <AngleArc plane={plane} vertex={R.A} p={R.B} q={R.C} ticks={1} color="#c084fc" radius={20} />
-          <AngleArc plane={plane} vertex={L.B} p={L.A} q={L.C} ticks={2} color="#147df2" radius={16} />
-          <AngleArc plane={plane} vertex={R.B} p={R.A} q={R.C} ticks={2} color="#8b45f4" radius={16} />
-          {test === "RHS" || Math.abs(triangleAngles(L.A, L.B, L.C).C - 90) < 2 ? (
+          <AngleArc plane={plane} vertex={L.A} p={L.B} q={L.C} ticks={1} color="#00a776" radius={20} label={angleLabels ? `${okNum(mL.angles.A, 1)}°` : undefined} />
+          <AngleArc plane={plane} vertex={R.A} p={R.B} q={R.C} ticks={1} color="#00a776" radius={20} label={angleLabels ? `${okNum(mR.angles.A, 1)}°` : undefined} />
+          <AngleArc plane={plane} vertex={L.B} p={L.A} q={L.C} ticks={2} color="#ff9500" radius={16} label={angleLabels ? `${okNum(mL.angles.B, 1)}°` : undefined} />
+          <AngleArc plane={plane} vertex={R.B} p={R.A} q={R.C} ticks={2} color="#ff9500" radius={16} label={angleLabels ? `${okNum(mR.angles.B, 1)}°` : undefined} />
+          <AngleArc plane={plane} vertex={L.C} p={L.A} q={L.B} color="#853aff" radius={20} label={angleLabels ? `${okNum(mL.angles.C, 1)}°` : undefined} />
+          <AngleArc plane={plane} vertex={R.C} p={R.A} q={R.B} color="#853aff" radius={20} label={angleLabels ? `${okNum(mR.angles.C, 1)}°` : undefined} />
+          {test === "RHS" || Math.abs(triangleAngles(L.A, L.B, L.C).C - 90) < 1e-5 ? (
             <>
               <RightAngleMarker plane={plane} vertex={L.C} p={L.A} q={L.B} />
               <RightAngleMarker plane={plane} vertex={R.C} p={R.A} q={R.B} />

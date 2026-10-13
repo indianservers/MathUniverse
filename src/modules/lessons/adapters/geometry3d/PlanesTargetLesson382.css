@@ -32,7 +32,7 @@
   overflow: hidden;
   border: 1px solid #dfe7ee;
   border-radius: 9px;
-  background: #06172b;
+  background: var(--lesson-surface,#06172b);
 }
 .pl382-canvas {
   height: 476px;
@@ -47,7 +47,7 @@
   top: 14px;
   left: 14px;
   padding: 6px 9px;
-  border: 1px solid #52667e;
+  border: 1px solid var(--lesson-border,#52667e);
   border-radius: 15px;
   color: #fff;
 }
@@ -59,7 +59,7 @@
   width: 100px;
   padding: 9px;
   gap: 4px;
-  border: 1px solid #50647d;
+  border: 1px solid var(--lesson-border,#50647d);
   border-radius: 7px;
   background: #07182eea;
   color: #fff;
@@ -217,7 +217,7 @@
   color: #1768c8;
 }
 .pl382-learning article:nth-child(3) h2 {
-  color: #a66a00;
+  color: var(--lesson-highlight,#a66a00);
 }
 .pl382-learning p {
   margin-top: 12px;
@@ -259,7 +259,7 @@
   position: absolute;
   top: 4px;
   left: 50%;
-  color: #d38a00;
+  color: var(--lesson-highlight,#d38a00);
   font-weight: 900;
 }
 .pl382-practice {

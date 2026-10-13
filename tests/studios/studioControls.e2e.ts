@@ -26,10 +26,12 @@ test("algebra signed tiles, modes, equivalent equation operations and degenerate
   await page.getByLabel("a", { exact: true }).fill("-2");
   await expect(solution).toContainText("sign reversed");
   await page.goto("/algebra/systems");
-  await page.getByRole("button", { name: "None", exact: true }).click();
-  await expect(page.getByRole("heading", { name: "Solution classification" }).locator("..")).toContainText("No solution: parallel lines");
-  await page.getByRole("button", { name: "Infinite", exact: true }).click();
-  await expect(page.getByRole("heading", { name: "Solution classification" }).locator("..")).toContainText("Infinite solutions");
+  await page.getByLabel("Equation 2", { exact: true }).fill("y = 2x + 4");
+  await page.getByLabel("Equation 2", { exact: true }).blur();
+  await expect(page.locator(".sys-solution-badge")).toContainText("No solution");
+  await page.getByLabel("Equation 2", { exact: true }).fill("y = 2x + 1");
+  await page.getByLabel("Equation 2", { exact: true }).blur();
+  await expect(page.locator(".sys-solution-badge")).toContainText("Infinitely many solutions");
 });
 
 test("algebra polynomial degree, sequence grading, symbolic proof and CAS computation", async ({ page }) => {

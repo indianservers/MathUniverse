@@ -1,0 +1,30 @@
+/* Only the nine launch-card illustrations; no hero selectors or shared styles. */
+.alg-studio-target .alg-launch-card:has(.alg-topic-art){padding-right:clamp(108px,10vw,150px);min-height:172px;isolation:isolate}
+.alg-studio-target .alg-launch-card .alg-topic-art{--art-color:#3dc5f4;--art-motion:alg-art-float;--art-rotate-x:0deg;--art-rotate-y:0deg;position:absolute;inset:auto 4px 10px auto;top:10px;width:clamp(98px,10vw,144px);height:auto;display:flex;align-items:center;justify-content:center;z-index:2;pointer-events:auto;perspective:650px;cursor:pointer;overflow:visible}
+.alg-topic-art__tilt{display:block;width:100%;transform:rotateX(var(--art-rotate-x)) rotateY(var(--art-rotate-y));transform-style:preserve-3d;transition:transform .22s ease-out;pointer-events:none}
+.alg-topic-art__image{display:block;width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 9px 8px #293c6b18);animation:var(--art-motion) 5s ease-in-out var(--art-delay,0s) infinite;animation-play-state:paused;pointer-events:none;user-select:none}
+.alg-topic-art.is-visible .alg-topic-art__image{animation-play-state:running}
+.alg-topic-art__glow{position:absolute;inset:20% 8% 12%;border-radius:50%;opacity:0;background:radial-gradient(ellipse at var(--art-glow-x,50%) var(--art-glow-y,50%),color-mix(in srgb,var(--art-color) 24%,transparent),transparent 70%);transition:opacity .25s;pointer-events:none}
+.alg-topic-art__sparkle{position:absolute;width:7px;height:7px;top:20%;right:16%;background:#fff;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);opacity:0;pointer-events:none}
+.alg-launch-card:is(:hover,:focus-within) .alg-topic-art__glow{opacity:1}
+.alg-launch-card:is(:hover,:focus-within) .alg-topic-art__image{animation-duration:2.4s;filter:drop-shadow(0 10px 10px #293c6b28) saturate(1.08)}
+.alg-launch-card:is(:hover,:focus-within) .alg-topic-art__sparkle{animation:alg-art-sparkle 1.8s ease-in-out infinite}
+.alg-topic-art--equations{--art-motion:alg-art-balance!important;--art-color:#af82ed!important}
+.alg-topic-art--functions{--art-color:#22c5ae!important}
+.alg-topic-art--polynomials{--art-motion:alg-art-curve!important;--art-color:#ec71cd!important}
+.alg-topic-art--systems{--art-motion:alg-art-planes!important;--art-color:#c27aef!important}
+.alg-topic-art--exponents{--art-motion:alg-art-rise!important;--art-color:#389dff!important}
+.alg-topic-art--sequences{--art-motion:alg-art-rise!important;--art-color:#21d8ab!important}
+.alg-topic-art--proof{--art-motion:alg-art-write!important;--art-color:#a287ef!important}
+.alg-topic-art--cas{--art-motion:alg-art-screen!important;--art-color:#9570f0!important}
+@keyframes alg-art-float{0%,100%{transform:translateY(2px) rotate(-1deg)}50%{transform:translateY(-5px) rotate(1deg)}}
+@keyframes alg-art-balance{0%,100%{transform:rotate(-3deg) translateY(1px)}50%{transform:rotate(3deg) translateY(-2px)}}
+@keyframes alg-art-curve{0%,100%{transform:translateY(2px) scale(.98)}50%{transform:translateY(-4px) scale(1.025)}}
+@keyframes alg-art-planes{0%,100%{transform:rotateY(-9deg) translateY(1px)}50%{transform:rotateY(9deg) translateY(-4px)}}
+@keyframes alg-art-rise{0%,100%{transform:translate(-2px,3px)}50%{transform:translate(2px,-4px)}}
+@keyframes alg-art-write{0%,100%{transform:rotate(-2deg) translateY(2px)}50%{transform:rotate(2deg) translateY(-3px)}}
+@keyframes alg-art-screen{0%,100%{transform:translateY(2px) rotate(-1deg)}50%{transform:translateY(-4px) rotate(1deg)}}
+@keyframes alg-art-sparkle{0%,100%{opacity:0;transform:scale(.5)}45%{opacity:.9;transform:scale(1.3)}}
+@media(max-width:1100px) and (min-width:701px){.alg-studio-target .alg-launch-card:has(.alg-topic-art){padding-right:90px}.alg-studio-target .alg-launch-card .alg-topic-art{width:88px;right:0}}
+@media(max-width:700px){.alg-studio-target .alg-launch-card:has(.alg-topic-art){padding-right:130px;min-height:158px}.alg-studio-target .alg-launch-card .alg-topic-art{width:122px;right:2px;top:5px;bottom:5px}}
+@media(prefers-reduced-motion:reduce){.alg-topic-art__image,.alg-topic-art__sparkle{animation:none!important}.alg-topic-art__tilt{transform:none!important;transition:none}.alg-topic-art__glow{transition:none}}

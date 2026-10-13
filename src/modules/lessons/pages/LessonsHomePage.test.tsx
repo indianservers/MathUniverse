@@ -61,4 +61,11 @@ describe("LessonsHomePage", () => {
     expect(curriculum).toContain("School Curriculum");
     expect(curriculum).toContain("Curriculum Map");
   });
+  it('makes the full inventory and draft concepts searchable',()=>{
+    expect(renderPage('/lessons?browse=all')).toMatch(/1367(?:<!-- -->)? matching lessons/);
+    const draft=renderPage('/lessons?q=32033');
+    expect(draft).toContain('Tensor products, Bell states and entanglement');
+    expect(draft).not.toMatch(/Upcoming|JNTU|Recent draft|Batch/);
+    expect(renderPage('/lessons?category=geometry')).toContain('Show more lessons');
+  });
 });

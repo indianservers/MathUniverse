@@ -5,9 +5,9 @@
   height: 958px;
   margin-bottom: -42px;
   overflow: hidden;
-  border: 1px solid #27374c;
-  background: #07111d;
-  color: #edf1f7;
+  border: 1px solid var(--lesson-border,#27374c);
+  background: var(--lesson-canvas,#07111d);
+  color: var(--lesson-ink,#edf1f7);
   font-size: 11px;
   letter-spacing: 0;
 }
@@ -38,17 +38,17 @@
 .hyp145-header {
   height: 164px;
   padding: 10px 13px 0;
-  border-bottom: 1px solid #27364a;
-  background: #08121e;
+  border-bottom: 1px solid var(--lesson-border,#27364a);
+  background: var(--lesson-canvas,#08121e);
 }
 .hyp145-header > nav {
   display: flex;
   height: 30px;
   justify-content: space-between;
-  border-bottom: 1px solid #26364a;
+  border-bottom: 1px solid var(--lesson-border,#26364a);
 }
 .hyp145-header > nav small {
-  color: #c2cad6;
+  color: var(--lesson-ink,#c2cad6);
 }
 .hyp145-header > nav div {
   display: flex;
@@ -71,7 +71,7 @@
   line-height: 34px;
 }
 .hyp145-header > p {
-  color: #b8c1cf;
+  color: var(--lesson-ink,#b8c1cf);
   font-size: 12px;
 }
 .hyp145-tabs {
@@ -108,9 +108,9 @@
 .hyp145-upper article,
 .hyp145-lower article,
 .hyp145-rail section {
-  border: 1px solid #2a3b51;
+  border: 1px solid var(--lesson-border,#2a3b51);
   border-radius: 8px;
-  background: #0a1522;
+  background: var(--lesson-canvas,#0a1522);
 }
 .hyp145-unit {
   padding: 13px;
@@ -133,23 +133,23 @@
 }
 .hyp145-hyperbola .axis,
 .hyp145-graph .axis {
-  stroke: #dce5ef;
+  stroke: var(--lesson-ink,#dce5ef);
   stroke-width: 1.2;
 }
 .hyp145-hyperbola .branch {
   fill: none;
-  stroke: #45d8f0;
+  stroke: var(--lesson-accent,#45d8f0);
   stroke-width: 2;
 }
 .hyp145-hyperbola text {
-  fill: #dce6f1;
+  fill: var(--lesson-ink,#dce6f1);
   font-size: 12px;
 }
 .hyp145-hyperbola .identity {
-  fill: #36dfca;
+  fill: var(--lesson-accent,#36dfca);
 }
 .hyp145-hyperbola .point-label {
-  fill: #f2ca23;
+  fill: var(--lesson-highlight,#f2ca23);
   font-size: 15px;
 }
 .hyp145-hyperbola .sinh-guide {
@@ -157,11 +157,11 @@
   stroke-dasharray: 5 4;
 }
 .hyp145-hyperbola .cosh-guide {
-  stroke: #aab4c1;
+  stroke: var(--lesson-ink,#aab4c1);
   stroke-dasharray: 5 4;
 }
 .hyp145-hyperbola .handle {
-  fill: #f1c21e;
+  fill: var(--lesson-highlight,#f1c21e);
   stroke: #fff;
   stroke-width: 1.5;
   cursor: grab;
@@ -169,7 +169,7 @@
 .hyp145-unit footer {
   height: 89px;
   padding: 9px;
-  border: 1px solid #2b3c51;
+  border: 1px solid var(--lesson-border,#2b3c51);
   border-radius: 7px;
 }
 .hyp145-unit footer p {
@@ -204,7 +204,7 @@
   display: grid;
   height: 45px;
   padding: 9px 12px;
-  border-bottom: 1px solid #2a394e;
+  border-bottom: 1px solid var(--lesson-border,#2a394e);
   grid-template-columns: repeat(5, 1fr);
 }
 .hyp145-plot > nav label {
@@ -235,7 +235,7 @@
   touch-action: none;
 }
 .hyp145-graph text {
-  fill: #dbe5f1;
+  fill: var(--lesson-ink,#dbe5f1);
   font-size: 12px;
 }
 .hyp145-graph path {
@@ -252,13 +252,13 @@
   stroke: #58c550;
 }
 .hyp145-graph .exp {
-  stroke: #f5c313;
+  stroke: var(--lesson-highlight,#f5c313);
 }
 .hyp145-graph .inverse-exp {
   stroke: #ff7919;
 }
 .hyp145-graph .probe-line {
-  stroke: #edf1f5;
+  stroke: var(--lesson-ink,#edf1f5);
   stroke-dasharray: 6 5;
 }
 .hyp145-graph .tanh-guide {
@@ -279,13 +279,13 @@
   fill: #55bd4d;
 }
 .hyp145-graph .exp-point {
-  fill: #f5c313;
+  fill: var(--lesson-highlight,#f5c313);
 }
 .hyp145-graph .inverse-exp-point {
   fill: #ff7919;
 }
 .hyp145-graph .probe-label rect {
-  fill: #e8edf2;
+  fill: var(--lesson-ink,#e8edf2);
 }
 .hyp145-graph .probe-label text {
   fill: #1c2634;
@@ -293,7 +293,7 @@
   font-size: 14px;
 }
 .hyp145-graph .handle {
-  fill: #f2c21b;
+  fill: var(--lesson-highlight,#f2c21b);
   cursor: grab;
 }
 .hyp145-plot > footer {
@@ -308,9 +308,9 @@
   width: 34px;
   height: 31px;
   place-items: center;
-  border: 1px solid #2d3e54;
+  border: 1px solid var(--lesson-border,#2d3e54);
   border-radius: 5px;
-  background: #0c1827;
+  background: var(--lesson-surface,#0c1827);
 }
 .hyp145-plot > footer svg {
   width: 15px;
@@ -337,7 +337,7 @@
 .hyp145-values th,
 .hyp145-values td {
   height: 37px;
-  border: 1px solid #2b3c52;
+  border: 1px solid var(--lesson-border,#2b3c52);
 }
 .hyp145-values td:first-child {
   text-align: left;
@@ -403,7 +403,7 @@
 .hyp145-challenge > em {
   display: block;
   margin-top: 10px;
-  color: #99a8bb;
+  color: var(--lesson-ink,#99a8bb);
 }
 .hyp145-rail {
   display: grid;
@@ -421,7 +421,7 @@
   justify-content: space-between;
 }
 .hyp145-parameter header b {
-  color: #48b8ff;
+  color: var(--lesson-accent,#48b8ff);
   font-family: Georgia, serif;
   font-size: 14px;
 }
@@ -442,7 +442,7 @@
 }
 .hyp145-parameter output {
   padding: 10px;
-  border: 1px solid #2d3e52;
+  border: 1px solid var(--lesson-border,#2d3e52);
   border-radius: 6px;
   text-align: center;
 }
@@ -471,12 +471,12 @@
 }
 .hyp145-decomposition hr {
   border: 0;
-  border-top: 1px solid #304157;
+  border-top: 1px solid var(--lesson-border,#304157);
 }
 .hyp145-identities > div {
   margin-top: 12px;
   padding: 12px;
-  border: 1px solid #3f9055;
+  border: 1px solid var(--lesson-border,#3f9055);
   border-radius: 7px;
   text-align: center;
 }
@@ -498,7 +498,7 @@
 }
 .hyp145-identities > p {
   margin-top: 10px;
-  color: #4eb5ff;
+  color: var(--lesson-accent,#4eb5ff);
   font-size: 13px;
 }
 .hyp145-identities > em {
@@ -508,7 +508,7 @@
   font-size: 12px;
 }
 .hyp145-compare {
-  background: #19152d !important;
+  background: var(--lesson-surface,#19152d) !important;
 }
 .hyp145-compare > div {
   display: grid;
@@ -522,15 +522,15 @@
 .hyp145-compare th,
 .hyp145-compare td {
   height: 30px;
-  border: 1px solid #39334f;
+  border: 1px solid var(--lesson-border,#39334f);
   font-family: Georgia, serif;
 }
 .hyp145-compare svg line {
-  stroke: #dce4ee;
+  stroke: var(--lesson-ink,#dce4ee);
 }
 .hyp145-compare svg path {
   fill: none;
-  stroke: #4bd5ed;
+  stroke: var(--lesson-accent,#4bd5ed);
   stroke-width: 1.5;
 }
 .hyp145-compare svg circle {

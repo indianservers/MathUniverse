@@ -3,8 +3,8 @@
   top: -8px;
   width: min(1368px, calc(100vw - 306px));
   margin: auto;
-  color: #eaf1fb;
-  background: #03152b;
+  color: var(--lesson-ink,#eaf1fb);
+  background: var(--lesson-surface,#03152b);
   font:
     12px/1.45 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #03152b;
+  background: var(--lesson-surface,#03152b);
   content: "";
-}
+display:none;}
 .sf10130-page * {
   box-sizing: border-box;
 }
@@ -35,15 +35,15 @@
 .sf10130-page > header {
   min-height: 152px;
   padding: 20px 24px;
-  border: 1px solid #27435e;
+  border: 1px solid var(--lesson-border,#27435e);
   border-radius: 8px;
-  background: #071b34;
+  background: var(--lesson-surface,#071b34);
 }
 .sf10130-page > header small,
 .sf10130-page main > h2,
 .sf10130-page main h3,
 .sf10130-summary small {
-  color: #51d5e4;
+  color: var(--lesson-accent,#51d5e4);
   font-weight: 900;
 }
 .sf10130-page > header h1 {
@@ -61,15 +61,15 @@
 .sf10130-page > header span {
   padding: 4px 11px;
   border-radius: 14px;
-  background: #233a56;
+  background: var(--lesson-surface,#233a56);
   font-weight: 800;
 }
 .sf10130-page > main {
   margin-top: 10px;
   padding: 18px;
-  border: 1px solid #29445f;
+  border: 1px solid var(--lesson-border,#29445f);
   border-radius: 8px;
-  background: #071a31;
+  background: var(--lesson-surface,#071a31);
 }
 .sf10130-page main > h2 {
   display: flex;
@@ -90,8 +90,8 @@
 .sf10130-summary article {
   min-height: 104px;
   padding: 14px 17px;
-  border: 1px solid #38516b;
-  background: #0a1d35;
+  border: 1px solid var(--lesson-border,#38516b);
+  background: var(--lesson-surface,#0a1d35);
 }
 .sf10130-summary p {
   margin-top: 12px;
@@ -102,7 +102,7 @@
   align-items: center;
   gap: 8px;
   margin-top: 10px;
-  color: #44dfda;
+  color: var(--lesson-accent,#44dfda);
 }
 .sf10130-visual {
   display: grid;
@@ -111,7 +111,7 @@
   gap: 12px;
   margin-top: 8px;
   padding: 8px 16px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
 }
 .sf10130-visual article {
   text-align: center;
@@ -121,7 +121,7 @@
   height: 145px;
 }
 .sf10130-visual circle.old {
-  fill: #32bbcf;
+  fill: var(--lesson-accent,#32bbcf);
 }
 .sf10130-visual circle.new {
   fill: #9156da;
@@ -151,17 +151,17 @@
 .sf10130-add strong {
   display: block;
   margin-top: 8px;
-  color: #b490ee;
+  color: var(--lesson-muted,#b490ee);
 }
 .sf10130-visual aside {
   display: grid;
   gap: 12px;
   padding: 17px;
-  border: 1px solid #304a65;
+  border: 1px solid var(--lesson-border,#304a65);
   border-radius: 7px;
 }
 .sf10130-visual aside span:first-child {
-  color: #3ed1db;
+  color: var(--lesson-accent,#3ed1db);
 }
 .sf10130-visual aside span:nth-child(2) {
   color: #a96ce8;
@@ -169,13 +169,13 @@
 .sf10130-visual input {
   width: 48px;
   padding: 4px;
-  border: 1px solid #496079;
-  background: #08182d;
+  border: 1px solid var(--lesson-border,#496079);
+  background: var(--lesson-surface,#08182d);
 }
 .sf10130-algebra {
   margin-top: 8px;
   padding: 10px 15px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
 }
 .sf10130-algebra > div {
   display: grid;
@@ -187,7 +187,7 @@
 .sf10130-algebra span,
 .sf10130-algebra strong {
   padding: 10px;
-  border: 1px solid #344f6c;
+  border: 1px solid var(--lesson-border,#344f6c);
   border-radius: 6px;
   text-align: center;
   font: 16px Georgia;
@@ -197,22 +197,22 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  color: #51e5de;
+  color: var(--lesson-accent,#51e5de);
   border-color: #1bb8b4;
-  background: #0c3b45;
+  background: var(--lesson-surface,#0c3b45);
   font: 13px Inter;
 }
 .sf10130-builder {
   display: grid;
   grid-template-columns: 1fr 1fr 300px;
   margin-top: 8px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
 }
 .sf10130-builder > div,
 .sf10130-builder > aside {
   min-width: 0;
   padding: 12px;
-  border-right: 1px solid #38516b;
+  border-right: 1px solid var(--lesson-border,#38516b);
 }
 .sf10130-builder > aside {
   border-right: 0;
@@ -227,9 +227,9 @@
   min-height: 34px;
   margin-top: 4px;
   padding: 5px 8px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 4px;
-  background: #0b203b;
+  background: var(--lesson-surface,#0b203b);
   text-align: left;
 }
 .sf10130-steps button {
@@ -241,8 +241,8 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #12435a;
-  color: #66dae6;
+  background: var(--lesson-surface,#12435a);
+  color: var(--lesson-accent,#66dae6);
 }
 .sf10130-steps button span,
 .sf10130-slots button span {
@@ -253,7 +253,7 @@
 .sf10130-slots button {
   grid-template-columns: 25px 1fr 24px;
   border-style: dashed;
-  color: #8ea0b7;
+  color: var(--lesson-ink,#8ea0b7);
 }
 .sf10130-slots button > b {
   display: grid;
@@ -261,15 +261,15 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #142945;
-  color: #dce8f5;
+  background: var(--lesson-surface,#142945);
+  color: var(--lesson-ink,#dce8f5);
 }
 .sf10130-slots button.filled {
   border-style: solid;
-  color: #eaf1fb;
+  color: var(--lesson-ink,#eaf1fb);
 }
 .sf10130-slots em {
-  color: #53dce0;
+  color: var(--lesson-accent,#53dce0);
   font-style: normal;
   font-weight: 900;
 }
@@ -286,7 +286,7 @@
   align-items: center;
   gap: 7px;
   margin-top: 14px;
-  color: #55ddd7;
+  color: var(--lesson-accent,#55ddd7);
 }
 .sf10130-page main > footer {
   display: flex;
@@ -300,9 +300,9 @@
   align-items: center;
   gap: 7px;
   padding: 9px 13px;
-  border: 1px solid #3b536d;
+  border: 1px solid var(--lesson-border,#3b536d);
   border-radius: 7px;
-  background: #10253e;
+  background: var(--lesson-surface,#10253e);
 }
 .sf10130-page main > footer span {
   margin-left: auto;
@@ -348,7 +348,7 @@
   .sf10130-builder > div,
   .sf10130-builder > aside {
     border-right: 0;
-    border-bottom: 1px solid #38516b;
+    border-bottom: 1px solid var(--lesson-border,#38516b);
   }
   .sf10130-page main > footer {
     flex-wrap: wrap;

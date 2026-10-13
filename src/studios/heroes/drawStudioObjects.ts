@@ -30,16 +30,17 @@ export function objectPlot(variant:string,x:number):number{
 }
 function erf(x:number){const sign=Math.sign(x),v=Math.abs(x),t=1/(1+.3275911*v);return sign*(1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-.284496736)*t+.254829592)*t*Math.exp(-v*v));}
 
-function drawObject(c:C,item:StudioObject,t:number,color:string){
+function drawObject(c:C,item:StudioObject,t:number,color:string,glass=false){
+ const palette=glass?['#25b9ed','#9e6bea','#6198ee','#45cbb7']:['#3cdcff','#ae7aff','#ffcc78','#70edc5'];
  const v=item.variant||'',d=item.data||[],p=(Math.sin(t*.6)+1)/2;
- const line=(points:Point[],stroke=color,width=1.5)=>{c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.strokeStyle=stroke;c.lineWidth=width;c.stroke();};
- const dot=(x:number,y:number,r=2.5,fill=color)=>{c.beginPath();c.arc(x,y,r,0,tau);c.fillStyle=fill;c.fill();};
+ const line=(points:Point[],stroke=color,width=1.5)=>{c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));if(glass&&width>=1){const gradient=c.createRadialGradient(-20,-25,0,0,0,90);gradient.addColorStop(0,'#b4edff');gradient.addColorStop(.35,stroke);gradient.addColorStop(1,palette[1]+'b8');c.strokeStyle=gradient;}else c.strokeStyle=stroke;c.lineWidth=width;c.stroke();};
+ const dot=(x:number,y:number,r=2.5,fill=color)=>{c.beginPath();c.arc(x,y,r,0,tau);if(glass){const gradient=c.createRadialGradient(x-r*.35,y-r*.4,0,x,y,r);gradient.addColorStop(0,'#ffffff');gradient.addColorStop(.4,fill);gradient.addColorStop(1,palette[1]);c.fillStyle=gradient;}else c.fillStyle=fill;c.fill();};
  const text=(s:string,x:number,y:number,size=12,fill=color)=>{c.fillStyle=fill;c.font=`${size}px "Cambria Math", Georgia, serif`;c.textAlign='center';c.fillText(s,x,y);};
  const ellipse=(x:number,y:number,rx:number,ry=rx,stroke=color)=>{c.beginPath();c.ellipse(x,y,rx,ry,0,0,tau);c.strokeStyle=stroke;c.lineWidth=1.4;c.stroke();};
  const curve=(f:(x:number)=>number,stroke=color)=>{let points:Point[]=[];for(let k=0;k<=70;k++){const x=-2+k/70*4,y=f(x);if(!Number.isFinite(y)||Math.abs(y)>2.6){if(points.length)line(points,stroke);points=[];}else points.push([x*23,12-y*16]);}if(points.length)line(points,stroke);};
  const axes=()=>{line([[-49,16],[49,16]],'#48628b',.7);line([[0,-27],[0,30]],'#48628b',.7);};
  const pointOnCurve=(f:(x:number)=>number)=>{const x=-1.8+3.6*p,y=f(x);if(Number.isFinite(y)&&Math.abs(y)<2.6)dot(x*23,12-y*16,3,'#fff');};
- c.shadowColor=color;c.shadowBlur=5;
+ c.shadowColor=color;c.shadowBlur=glass?10:5;
  switch(item.kind){
   case 'plot':{
    axes();const f=(x:number)=>objectPlot(v,x);curve(f);pointOnCurve(f);
@@ -186,14 +187,15 @@ function drawObject(c:C,item:StudioObject,t:number,color:string){
 export const objectPositions:Point[]=[...Array.from({length:5},(_,k)=>[100+k*140,72] as Point),...Array.from({length:5},(_,k)=>[100+k*140,535] as Point),[65,210],[65,320],[65,430],[695,240],[695,380]];
 
 export function drawStudioObjects(c:C,id:string,time:number,compact=false){
+ const glass=id==='algebra',colors=glass?['#25b9ed','#9e6bea','#6198ee','#45cbb7']:palette;
  const objects=visibleStudioObjects(id);if(!objects.length)return;
  objects.forEach((item,index)=>{
-  const [x,y]=compact?[100+(index%2)*200,320+Math.floor(index/2)*145]:[135+(index%3)*245,index<3?72:535],t=time*(.6+(index%5)*.08)+index*.65,color=palette[index%4];
+  const [x,y]=compact?[100+(index%2)*200,320+Math.floor(index/2)*145]:[135+(index%3)*245,index<3?72:535],t=time*(.6+(index%5)*.08)+index*.65,color=colors[index%4];
   c.save();c.translate(x,y);c.globalAlpha*=Math.min(1,Math.max(0,(time-index*.055)/.8));
   const glow=c.createRadialGradient(0,0,2,0,0,53);glow.addColorStop(0,color+'15');glow.addColorStop(1,color+'00');c.fillStyle=glow;c.fillRect(-58,-48,116,96);
-  if(['plot','matrix','table','identity'].includes(item.kind)){c.fillStyle='#091a3433';c.strokeStyle=color+'33';c.lineWidth=.7;c.beginPath();c.roundRect(-55,-40,110,77,7);c.fill();c.stroke();}
-  drawObject(c,item,t,color);
-  c.shadowBlur=0;c.textAlign='center';c.font='600 12px system-ui';c.fillStyle='#c3ddf6';c.fillText(item.name,0,45);
+  if(['plot','matrix','table','identity'].includes(item.kind)){if(glass){const pane=c.createRadialGradient(-25,-25,0,0,0,80);pane.addColorStop(0,'#ffffffb0');pane.addColorStop(.6,'#cfe6ff66');pane.addColorStop(1,'#cfc3ff38');c.fillStyle=pane;}else c.fillStyle='#091a3433';c.strokeStyle=color+'33';c.lineWidth=.7;c.beginPath();c.roundRect(-55,-40,110,77,7);c.fill();c.stroke();}
+  drawObject(c,item,t,color,glass);
+  c.shadowBlur=0;c.textAlign='center';c.font='600 12px system-ui';c.fillStyle=glass?'#5873a3':'#c3ddf6';c.fillText(item.name,0,45);
   c.font='11px "Cambria Math", Georgia, serif';c.fillStyle=color;c.fillText(item.formula,0,61,126);c.restore();
  });
 }

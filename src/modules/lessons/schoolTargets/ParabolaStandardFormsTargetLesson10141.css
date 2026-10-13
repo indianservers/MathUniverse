@@ -3,8 +3,8 @@
   top: -2px;
   width: min(1370px, calc(100vw - 300px));
   margin: auto;
-  color: #edf3fb;
-  background: #03152a;
+  color: var(--lesson-ink,#edf3fb);
+  background: var(--lesson-surface,#03152a);
   font:
     12px/1.42 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 270px;
-  background: #03152a;
+  background: var(--lesson-surface,#03152a);
   content: "";
-}
+display:none;}
 .ps10141-page * {
   box-sizing: border-box;
 }
@@ -34,7 +34,7 @@
 }
 .ps10141-page h2,
 .ps10141-page > header small {
-  color: #45dce0;
+  color: var(--lesson-accent,#45dce0);
   font-weight: 900;
 }
 .ps10141-page > header {
@@ -42,9 +42,9 @@
   justify-content: space-between;
   height: 148px;
   padding: 9px 20px;
-  border: 1px solid #3a506a;
+  border: 1px solid var(--lesson-border,#3a506a);
   border-radius: 17px;
-  background: #07182e;
+  background: var(--lesson-surface,#07182e);
 }
 .ps10141-page > header h1 {
   margin: 6px 0;
@@ -61,21 +61,21 @@
 .ps10141-page > header span {
   padding: 5px 12px;
   border-radius: 13px;
-  background: #17243e;
+  background: var(--lesson-surface,#17243e);
 }
 .ps10141-page > header > button {
   align-self: flex-start;
   padding: 10px 15px;
-  border: 1px solid #364d68;
+  border: 1px solid var(--lesson-border,#364d68);
   border-radius: 7px;
-  background: #081a30;
+  background: var(--lesson-surface,#081a30);
 }
 .ps10141-page > main {
   margin-top: 14px;
   padding: 14px;
-  border: 1px solid #2f4864;
+  border: 1px solid var(--lesson-border,#2f4864);
   border-radius: 16px;
-  background: #06172c;
+  background: var(--lesson-surface,#06172c);
 }
 .ps10141-workspace {
   display: grid;
@@ -85,30 +85,30 @@
 }
 .controls {
   overflow: hidden;
-  border: 1px solid #344d67;
+  border: 1px solid var(--lesson-border,#344d67);
   border-radius: 7px;
 }
 .controls nav {
   display: flex;
   width: 620px;
-  border-bottom: 1px solid #334c67;
+  border-bottom: 1px solid var(--lesson-border,#334c67);
 }
 .controls nav button {
   width: 98px;
   padding: 9px;
   border: 0;
-  border-right: 1px solid #334c67;
-  background: #0a1930;
+  border-right: 1px solid var(--lesson-border,#334c67);
+  background: var(--lesson-surface,#0a1930);
   font: 16px Georgia;
 }
 .controls nav button.active {
   border-bottom: 2px solid #35dce2;
-  background: #0a2942;
-  color: #49e5e6;
+  background: var(--lesson-surface,#0a2942);
+  color: var(--lesson-accent,#49e5e6);
 }
 .controls > section {
   padding: 17px 10px;
-  border-bottom: 1px solid #2e455e;
+  border-bottom: 1px solid var(--lesson-border,#2e455e);
 }
 .controls .range {
   position: relative;
@@ -125,9 +125,9 @@
   right: 0;
   top: -32px;
   padding: 6px 9px;
-  border: 1px solid #415671;
+  border: 1px solid var(--lesson-border,#415671);
   border-radius: 5px;
-  background: #0c1c33;
+  background: var(--lesson-surface,#0c1c33);
 }
 .ticks {
   display: flex;
@@ -146,9 +146,9 @@
 }
 .focus-read > * {
   padding: 8px;
-  border: 1px solid #3b526c;
+  border: 1px solid var(--lesson-border,#3b526c);
   border-radius: 5px;
-  background: #091b31;
+  background: var(--lesson-surface,#091b31);
 }
 .focus-read button {
   display: flex;
@@ -161,13 +161,13 @@
 .controls > article {
   margin: 12px;
   padding: 14px;
-  border: 1px solid #344d67;
+  border: 1px solid var(--lesson-border,#344d67);
   border-radius: 7px;
 }
 .controls > article b {
   display: flex;
   gap: 7px;
-  color: #62dff0;
+  color: var(--lesson-accent,#62dff0);
 }
 .controls > article svg {
   width: 15px;
@@ -181,11 +181,11 @@
   display: block;
   margin-top: 10px;
   text-align: center;
-  color: #32dce1;
+  color: var(--lesson-accent,#32dce1);
   font: 22px Georgia;
 }
 .graph {
-  border: 1px solid #344d67;
+  border: 1px solid var(--lesson-border,#344d67);
   border-radius: 7px;
   overflow: hidden;
 }
@@ -194,13 +194,13 @@
   width: 100%;
   height: 360px;
   touch-action: none;
-  background: #06182c;
+  background: var(--lesson-surface,#06182c);
 }
 .graph .grid {
   stroke: #142b41;
 }
 .graph .axisline {
-  stroke: #d9e1ea;
+  stroke: var(--lesson-ink,#d9e1ea);
   stroke-width: 1;
 }
 .graph .directrix {
@@ -210,15 +210,15 @@
 }
 .graph path {
   fill: none;
-  stroke: #27d4d8;
+  stroke: var(--lesson-accent,#27d4d8);
   stroke-width: 2;
 }
 .graph .latus {
-  stroke: #f0c419;
+  stroke: var(--lesson-highlight,#f0c419);
   stroke-width: 2;
 }
 .graph .vertex {
-  fill: #edf3fb;
+  fill: var(--lesson-ink,#edf3fb);
 }
 .graph .focus {
   fill: #f59a31;
@@ -226,7 +226,7 @@
   cursor: grab;
 }
 .graph text {
-  fill: #edf3fb;
+  fill: var(--lesson-ink,#edf3fb);
   font-size: 12px;
 }
 .graph footer {
@@ -234,7 +234,7 @@
   flex-wrap: wrap;
   gap: 14px;
   padding: 10px;
-  border-top: 1px solid #344d67;
+  border-top: 1px solid var(--lesson-border,#344d67);
 }
 .graph footer span:nth-child(2) {
   color: #f49d3b;
@@ -244,23 +244,23 @@
 }
 .elements {
   padding: 12px;
-  border: 1px solid #344d67;
+  border: 1px solid var(--lesson-border,#344d67);
   border-radius: 7px;
 }
 .elements h3 {
   text-align: center;
-  color: #65c6de;
+  color: var(--lesson-accent,#65c6de);
 }
 .elements dl {
   margin: 12px 0;
 }
 .elements dt {
   margin-top: 8px;
-  color: #4ad6de;
+  color: var(--lesson-accent,#4ad6de);
 }
 .elements dt:nth-of-type(2),
 .elements dt:nth-of-type(5) {
-  color: #f4a52b;
+  color: var(--lesson-highlight,#f4a52b);
 }
 .elements dd {
   margin: 2px 0;
@@ -270,7 +270,7 @@
   padding: 10px;
   border: 1px solid #2dbdc6;
   border-radius: 6px;
-  color: #4de1e2;
+  color: var(--lesson-accent,#4de1e2);
 }
 .elements article svg {
   float: left;
@@ -278,7 +278,7 @@
 }
 .elements article p {
   margin-top: 5px;
-  color: #dce6f2;
+  color: var(--lesson-ink,#dce6f2);
   font-size: 10px;
 }
 .reference {
@@ -288,11 +288,11 @@
 }
 .reference section {
   padding: 12px;
-  border: 1px solid #344d67;
+  border: 1px solid var(--lesson-border,#344d67);
   border-radius: 7px;
 }
 .reference h3 {
-  color: #69bed5;
+  color: var(--lesson-accent,#69bed5);
 }
 .reference table {
   width: 100%;
@@ -303,7 +303,7 @@
 .reference th,
 .reference td {
   padding: 10px 7px;
-  border: 1px solid #2d425a;
+  border: 1px solid var(--lesson-border,#2d425a);
   text-align: center;
 }
 .reference section + section {
@@ -319,7 +319,7 @@
   color: #f6a43c;
 }
 .reference p:nth-of-type(2) svg {
-  color: #dbe4ef;
+  color: var(--lesson-ink,#dbe4ef);
 }
 .ps10141-page > main > footer.relationships {
   position: static;
@@ -328,11 +328,11 @@
   height: auto;
   margin-top: 12px;
   padding: 8px 12px;
-  border: 1px solid #344d67;
+  border: 1px solid var(--lesson-border,#344d67);
   border-radius: 7px;
 }
 .ps10141-page .relationships b {
-  color: #67c5d8;
+  color: var(--lesson-accent,#67c5d8);
 }
 .ps10141-page .relationships div {
   display: grid;
@@ -341,7 +341,7 @@
 }
 .ps10141-page .relationships span {
   padding: 2px 15px;
-  border-right: 1px solid #45576b;
+  border-right: 1px solid var(--lesson-border,#45576b);
 }
 .ps10141-page .relationships span:last-child {
   border: 0;
@@ -385,7 +385,7 @@
   .ps10141-page .relationships span {
     padding: 7px 0;
     border-right: 0;
-    border-bottom: 1px solid #45576b;
+    border-bottom: 1px solid var(--lesson-border,#45576b);
   }
   .reference {
     grid-row: auto;

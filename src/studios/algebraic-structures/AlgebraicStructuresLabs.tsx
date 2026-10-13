@@ -1,26 +1,19 @@
+import BooleanAlgebraDashboard from "./BooleanAlgebraDashboard";
+import PosetsLatticesDashboard from "./PosetsLatticesDashboard";
 import { useStudioState } from "../phase1/StudioModelProvider";
 import { Check, GitFork, GitMerge, Grid3X3, HelpCircle, Share2, ToggleLeft, Trophy } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { CayleyMiniTeaser } from "../landing/StudioLandingTeasers";
+import StructureTopicArt from "./StructureTopicArt";
 import { ObserveStrip } from "../landing/StudioLandingExtras";
 import { markLandingVisit, relativeOpened, useLandingSession } from "../landing/studioLandingSession";
 import "../landing/studioLanding.css";
 import {
-  booleanCircuitLayers,
-  booleanLawSteps,
-  booleanPosForm,
   classifyOperation,
-  coverRelations,
-  evaluateBoolean,
-  meetJoin,
   modularTable,
-  parseBooleanExpression,
   parseCarrierSet,
-  posetProperties,
   randomOperationTable,
   rebuildOperationTable,
-  simplifyBooleanExpression,
   type OperationTable,
   type StructureClassification,
 } from "../../modules/algebraic-structures/algebraicStructuresEngine";
@@ -73,12 +66,12 @@ export function StructuresHome() {
       </div>
       <p className="sl-kicker">Continue {session.lastLabel} · {relativeOpened(session.lastOpenedAt)}</p>
       <div className="as-home-grid">
-        {structureTabs.filter((tab) => tab.id !== "home").map((tab) => (
+        {structureTabs.filter((tab) => tab.id !== "home").map((tab, index) => (
           <Link key={tab.id} className="as-card as-home-card" to={tab.to} onClick={() => markLandingVisit("structures", tab.id, tab.to, tab.label)}>
             <b>{tab.label}</b>
             <small>{tab.hint}</small>
-            {tab.id === "cayley-tables" ? <CayleyMiniTeaser /> : tab.id === "structure-test" ? <p className="sl-kicker">closure · assoc · identity · inverse</p> : tab.id === "posets-lattices" ? <p className="sl-kicker">Hasse: cover edges only</p> : tab.id === "boolean-algebra" ? <p className="sl-kicker">2-variable K-map</p> : <p className="sl-kicker">Group vs monoid vs semigroup</p>}
-            <em>Launch →</em>
+            <StructureTopicArt topic={tab.id} index={index} />
+            <em><span>Launch</span><span aria-hidden="true">→</span></em>
           </Link>
         ))}
       </div>
@@ -579,228 +572,6 @@ export function SemigroupsMonoidsLab() {
   );
 }
 
-export function PosetsLatticesLab() {
-  const [setText, setSetText] = useStudioState("AlgebraicStructuresLabs:PosetsLatticesLab:setText", "0, a, b, 1");
-  const [relText, setRelText] = useStudioState("AlgebraicStructuresLabs:PosetsLatticesLab:relText", "0 ≤ a, 0 ≤ b, a ≤ 1, b ≤ 1");
-  const [meetA, setMeetA] = useStudioState("AlgebraicStructuresLabs:PosetsLatticesLab:meetA", "a");
-  const [meetB, setMeetB] = useStudioState("AlgebraicStructuresLabs:PosetsLatticesLab:meetB", "b");
-  const [nodes, setNodes] = useStudioState<Record<string, [number, number]>>("AlgebraicStructuresLabs:PosetsLatticesLab:nodes", { "1": [180, 48], a: [90, 140], b: [270, 140], "0": [180, 232] });
-  const drag = useRef<string | null>(null);
-  const elements = parseSet(setText, ["0", "a", "b", "1"]);
-  const pairs = relText
-    .split(/[,;]/)
-    .map((item) => item.replace(/≤|<=/g, " ").trim().split(/\s+/))
-    .filter((item): item is [string, string] => item.length >= 2)
-    .map(([a, b]) => [a, b] as [string, string]);
-  const covers = coverRelations(elements, pairs);
-  const lattice = meetJoin(elements, pairs, meetA, meetB);
-  const props = posetProperties(elements, pairs);
-  return (
-    <div>
-      <div className="as-poset">
-        <section className="as-card">
-          <h2>Poset Visualizer (Hasse Diagram)</h2>
-          <p>Drag nodes to rearrange. Add, remove, or connect elements to build an order.</p>
-          <div className="as-hasse">
-            <svg viewBox="0 0 360 280" style={{ width: "100%", height: 280, touchAction: "none" }} onPointerMove={(event) => {
-              if (!drag.current) return;
-              const rect = event.currentTarget.getBoundingClientRect();
-              const x = ((event.clientX - rect.left) / rect.width) * 360;
-              const y = ((event.clientY - rect.top) / rect.height) * 280;
-              setNodes((prev) => ({ ...prev, [drag.current!]: [x, y] }));
-            }} onPointerUp={() => { drag.current = null; }}>
-              {covers.map(([a, b]) => {
-                const [x1, y1] = nodes[a] ?? [180, 160];
-                const [x2, y2] = nodes[b] ?? [180, 80];
-                return <line key={`${a}-${b}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={a === meetA || b === meetA || a === meetB || b === meetB ? "#0891b2" : "#64748b"} strokeWidth="3" />;
-              })}
-              {elements.map((label, index) => {
-                const [x, y] = nodes[label] ?? [60 + (index % 3) * 100, 60 + Math.floor(index / 3) * 90];
-                const fill = nodeColors[index % nodeColors.length];
-                return (
-                  <g key={label} style={{ cursor: "grab" }} onPointerDown={(event) => { drag.current = label; event.currentTarget.setPointerCapture(event.pointerId); }}>
-                    <circle cx={x} cy={y} r="20" fill={fill} stroke={label === meetA || label === meetB ? "#0f172a" : "none"} strokeWidth="3" />
-                    <text x={x} y={y + 5} textAnchor="middle" fill="#fff" fontSize="14" fontWeight="700">{label}</text>
-                  </g>
-                );
-              })}
-            </svg>
-          </div>
-        </section>
-        <section className="as-card">
-          <h2>Lattice Explorer</h2>
-          <p>Select two elements to compute their meet and join.</p>
-          <div className="as-meet">
-            <label className="as-field">∧ Meet<select value={meetA} onChange={(event) => setMeetA(event.target.value)}>{elements.map((el) => <option key={el}>{el}</option>)}</select><output>{meetA} ∧ {meetB} = {lattice.meet ?? "?"}</output></label>
-            <label className="as-field">∨ Join<select value={meetB} onChange={(event) => setMeetB(event.target.value)}>{elements.map((el) => <option key={el}>{el}</option>)}</select><output className="join">{meetA} ∨ {meetB} = {lattice.join ?? "?"}</output></label>
-          </div>
-          <h2>Hasse diagram info</h2>
-          <div className="as-info">
-            <div><span>Elements</span><b>{elements.length}</b></div>
-            <div><span>Relations (edges)</span><b>{covers.length}</b></div>
-            <div><span>Type</span><b>{props.bounded ? "Bounded lattice" : props.lattice ? "Lattice" : props.partialOrder ? "Poset" : "Not a poset"}</b></div>
-          </div>
-        </section>
-        <section className="as-card">
-          <h2>Properties</h2>
-          {[
-            ["Reflexive", props.reflexive],
-            ["Antisymmetric", props.antisymmetric],
-            ["Transitive", props.transitive],
-            ["Partial order", props.partialOrder],
-            ["Lattice", props.lattice],
-            ["Bounded lattice", props.bounded],
-          ].map(([title, on]) => (
-            <div className={`as-prop ${on ? "" : "is-off"}`} key={String(title)}><Check /><div><b>{title}</b></div></div>
-          ))}
-        </section>
-      </div>
-      <div className="as-bottom">
-        <section className="as-card">
-          <h2>Order Relation Input</h2>
-          <label className="as-field">Carrier set S<input value={setText} onChange={(event) => setSetText(event.target.value)} /></label>
-          <label className="as-field">Relations (a ≤ b)<input value={relText} onChange={(event) => setRelText(event.target.value)} /></label>
-        </section>
-        <section className="as-card">
-          <h2>Relation Matrix</h2>
-          <table className="as-table"><thead><tr><th>≤</th>{elements.map((el) => <th key={el}>{el}</th>)}</tr></thead>
-            <tbody>{elements.map((row) => <tr key={row}><th>{row}</th>{elements.map((col) => <td key={col}>{row === col || pairs.some(([x, y]) => x === row && y === col) ? "1" : "0"}</td>)}</tr>)}</tbody>
-          </table>
-        </section>
-        <section className="as-card">
-          <h2>Examples</h2>
-          <p>Diamond lattice (M₃)</p>
-          <button className="as-cta" type="button" onClick={() => { setSetText("0, a, b, 1"); setRelText("0 ≤ a, 0 ≤ b, a ≤ 1, b ≤ 1"); }}>Load example</button>
-        </section>
-      </div>
-      <div className="as-footer-ok">{props.bounded ? "This poset is a bounded lattice on the live relation." : props.partialOrder ? "Partial order, but not every pair has a meet and join." : "The live relation is not a partial order yet."}</div>
-      <div style={{ marginTop: 12 }}><Challenge prompt="Using the current poset, find a ∧ b and a ∨ b." expected={`${lattice.meet ?? "?"},${lattice.join ?? "?"}`} hint="Use the Hasse diagram or the relation matrix." /></div>
-    </div>
-  );
-}
+export function PosetsLatticesLab() { return <PosetsLatticesDashboard />; }
 
-export function BooleanAlgebraLab() {
-  const [expr, setExpr] = useStudioState("AlgebraicStructuresLabs:BooleanAlgebraLab:expr", "A & (!B | C)");
-  const [law, setLaw] = useStudioState<"de-morgan" | "distributive" | "associative" | "complement">("AlgebraicStructuresLabs:BooleanAlgebraLab:law", "de-morgan");
-  const [a, setA] = useStudioState("AlgebraicStructuresLabs:BooleanAlgebraLab:a", true);
-  const [b, setB] = useStudioState("AlgebraicStructuresLabs:BooleanAlgebraLab:b", false);
-  const [c, setC] = useStudioState("AlgebraicStructuresLabs:BooleanAlgebraLab:c", true);
-  const [view, setView] = useStudioState<"simp" | "truth" | "kmap">("AlgebraicStructuresLabs:BooleanAlgebraLab:view", "simp");
-  const [group, setGroup] = useStudioState<Record<string, boolean>>("AlgebraicStructuresLabs:BooleanAlgebraLab:group", {});
-  const analysis = useMemo(() => {
-    try {
-      return { ...simplifyBooleanExpression(expr), error: "" };
-    } catch (error) {
-      return { error: error instanceof Error ? error.message : "Invalid expression.", simplified: "", variables: [] as string[], rows: [] as Array<{ values: Record<string, boolean>; result: boolean }>, kmap: [] as boolean[][], circuit: [] as Array<Array<{ id: string; label: string }>> };
-    }
-  }, [expr]);
-  const pos = analysis.rows ? booleanPosForm(analysis.variables, analysis.rows) : "—";
-  let y = false;
-  try {
-    y = evaluateBoolean(parseBooleanExpression(expr), { A: a, B: b, C: c, a, b, c });
-  } catch {
-    y = a && (!b || c);
-  }
-  const steps = booleanLawSteps(law);
-  const layers = analysis.circuit?.length ? analysis.circuit : booleanCircuitLayers({ type: "var", name: "A" });
-  return (
-    <div>
-      <div className="as-bool">
-        <section className="as-card">
-          <h2>Expression Input</h2>
-          <p>Enter a Boolean expression using variables, operators, and parentheses.</p>
-          <label className="as-field"><input value={expr} onChange={(event) => setExpr(event.target.value)} aria-label="Boolean expression" /></label>
-          <p>Input helpers</p>
-          <div className="as-helpers">{["!", "&", "|", "^", "(", ")"].map((token) => <button type="button" key={token} onClick={() => setExpr((value) => `${value}${token}`)}>{token}</button>)}</div>
-          <button className="as-cta" type="button" onClick={() => setView("truth")}>Generate Analysis</button>
-          <h2>Quick examples</h2>
-          <div className="as-examples">
-            <button type="button" onClick={() => setExpr("A & C")}>A & C</button>
-            <button type="button" onClick={() => setExpr("A | B")}>A | B</button>
-            <button type="button" onClick={() => setExpr("!(A & B)")}>!(A & B)</button>
-            <button type="button" onClick={() => setExpr("A ^ B")}>A ^ B</button>
-          </div>
-        </section>
-        <section className="as-card">
-          <h2>Boolean Algebra Studio</h2>
-          <div className="as-viz-tabs">
-            <button className={view === "simp" ? "active" : ""} type="button" onClick={() => setView("simp")}>Simplification</button>
-            <button className={view === "truth" ? "active" : ""} type="button" onClick={() => setView("truth")}>Truth Table</button>
-            <button className={view === "kmap" ? "active" : ""} type="button" onClick={() => setView("kmap")}>K-map (3 vars)</button>
-          </div>
-          {view === "simp" ? (
-            <>
-              <p>Original expression</p>
-              <p style={{ fontFamily: "Georgia, serif" }}>{expr}</p>
-              <div className="as-sop">Simplified expression (SOP)<br />{analysis.simplified || analysis.error}</div>
-              <div className="as-pos">Simplified expression (POS)<br />{pos}</div>
-              <div className={analysis.error ? "as-note" : "as-ok"}>{analysis.error ? analysis.error : <><Check /> Expressions are equivalent on the truth table.</>}</div>
-            </>
-          ) : null}
-          {view === "truth" ? (
-            <table className="as-table" aria-label="Truth table">
-              <thead><tr>{analysis.variables.map((name) => <th key={name}>{name}</th>)}<th>Y</th></tr></thead>
-              <tbody>
-                {analysis.rows.map((row, index) => (
-                  <tr key={index}>{analysis.variables.map((name) => <td key={name}>{row.values[name] ? "1" : "0"}</td>)}<td>{row.result ? "1" : "0"}</td></tr>
-                ))}
-              </tbody>
-            </table>
-          ) : null}
-          {view === "kmap" ? (
-            <>
-              <h2>K-map (3 variables)</h2>
-              <p>Drag across 1-cells to group them.</p>
-              <table className="as-kmap"><thead><tr><th>A \ BC</th><th>00</th><th>01</th><th>11</th><th>10</th></tr></thead>
-                <tbody>
-                  {(analysis.kmap.length ? analysis.kmap.slice(0, 2) : [[false, false, false, false], [false, false, false, false]]).map((row, rowIndex) => (
-                    <tr key={rowIndex}><th>{rowIndex}</th>{row.map((cell, col) => {
-                      const key = `${rowIndex}-${col}`;
-                      return (
-                        <td
-                          className={`${cell ? "on" : ""} ${group[key] ? "grouped" : ""}`}
-                          key={col}
-                          onPointerDown={() => setGroup((prev) => ({ ...prev, [key]: !prev[key] }))}
-                          onPointerEnter={(event) => { if (event.buttons === 1) setGroup((prev) => ({ ...prev, [key]: true })); }}
-                        >{cell ? "1" : "0"}</td>
-                      );
-                    })}</tr>
-                  ))}
-                </tbody>
-              </table>
-              <p className="as-note">Grouped cells: {Object.values(group).filter(Boolean).length}</p>
-            </>
-          ) : null}
-        </section>
-        <section className="as-card">
-          <h2>Logic Gate Sandbox</h2>
-          <div className="as-circuit">
-            <label className={`as-switch ${a ? "on" : ""}`}>A <button type="button" onClick={() => setA((value) => !value)} aria-pressed={a}><i /></button></label>
-            <label className={`as-switch ${b ? "on" : ""}`}>B <button type="button" onClick={() => setB((value) => !value)} aria-pressed={b}><i /></button></label>
-            <label className={`as-switch ${c ? "on" : ""}`}>C <button type="button" onClick={() => setC((value) => !value)} aria-pressed={c}><i /></button></label>
-            <p>Current output</p>
-            <p style={{ fontFamily: "Georgia, serif" }}>{expr}</p>
-            <div className="as-y">Y</div>
-            <p>Y = {y ? 1 : 0}</p>
-          </div>
-        </section>
-      </div>
-      <div className="as-bottom">
-        <section className="as-card">
-          <h2>Boolean Laws Visualizer</h2>
-          <div className="as-laws">
-            {([["de-morgan", "De Morgan's Law"], ["distributive", "Distributive"], ["associative", "Associative"], ["complement", "Complement"]] as const).map(([id, label]) => (
-              <button key={id} className={law === id ? "active" : ""} type="button" onClick={() => setLaw(id)}>{label}</button>
-            ))}
-          </div>
-          <div className="as-law-box">{steps[0]} → {steps[1]}<p>{steps[2]}</p></div>
-        </section>
-        <section className="as-card">
-          <h2>Generated Circuit Layers</h2>
-          <div className="as-layers">{layers.map((layer, index) => <span key={index}>Layer {index + 1}: {layer.map((item) => item.label).join(", ")}</span>)}</div>
-        </section>
-        <Challenge kind="concept" prompt="Simplify the following Boolean expression to minimal form: !(A | B) & (A | !C)" expected={(() => { try { return simplifyBooleanExpression("!(A | B) & (A | !C)").simplified.replace(/\s/g, ""); } catch { return "!A&!B"; } })()} hint="De Morgan: !(A | B) = !A & !B, then absorb with (A | !C)." />
-      </div>
-    </div>
-  );
-}
+export function BooleanAlgebraLab() { return <BooleanAlgebraDashboard />; }

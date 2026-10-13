@@ -3,8 +3,8 @@
   top: -8px;
   width: min(1360px, calc(100vw - 320px));
   margin: auto;
-  color: #e8eef8;
-  background: #031328;
+  color: var(--lesson-ink,#e8eef8);
+  background: var(--lesson-surface,#031328);
   font:
     11px/1.45 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .bs10129-page * {
   box-sizing: border-box;
 }
@@ -39,7 +39,7 @@
 }
 .bs10129-page > header small,
 .bs10129-page h2 {
-  color: #51d7d4;
+  color: var(--lesson-accent,#51d7d4);
   font-weight: 900;
   letter-spacing: 0.5px;
 }
@@ -51,7 +51,7 @@
   display: inline-block;
   margin-top: 8px;
   padding: 8px 13px;
-  border: 1px solid #40536b;
+  border: 1px solid var(--lesson-border,#40536b);
   border-radius: 6px;
   font: 17px Georgia;
 }
@@ -63,13 +63,13 @@
   gap: 10px;
   width: 490px;
   padding: 14px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 8px;
-  background: #0d1d32;
+  background: var(--lesson-surface,#0d1d32);
 }
 .bs10129-page > header > aside svg {
   width: 18px;
-  color: #e9b846;
+  color: var(--lesson-highlight,#e9b846);
 }
 .bs10129-page > main {
   display: grid;
@@ -79,9 +79,9 @@
 .bs10129-proof,
 .bs10129-visual {
   padding: 13px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 8px;
-  background: #07192e;
+  background: var(--lesson-surface,#07192e);
 }
 .bs10129-proof > article {
   display: grid;
@@ -89,7 +89,7 @@
   gap: 10px;
   margin-top: 8px;
   padding: 12px;
-  border: 1px solid #304961;
+  border: 1px solid var(--lesson-border,#304961);
   border-radius: 7px;
 }
 .bs10129-proof > article > b {
@@ -102,7 +102,7 @@
 }
 .bs10129-proof > article.valid {
   border-color: #29c9c2;
-  background: #0b2f3c;
+  background: var(--lesson-surface,#0b2f3c);
 }
 .bs10129-proof > article.valid > b {
   background: #35d8d1;
@@ -128,9 +128,9 @@
 .bs10129-proof article input {
   width: 100%;
   padding: 7px;
-  border: 1px solid #40536b;
+  border: 1px solid var(--lesson-border,#40536b);
   border-radius: 5px;
-  background: #0a1a30;
+  background: var(--lesson-surface,#0a1a30);
 }
 .bs10129-proof article button {
   display: flex;
@@ -140,8 +140,8 @@
   padding: 7px;
   border: 1px solid #2ccdc7;
   border-radius: 12px;
-  background: #103d43;
-  color: #56e4d5;
+  background: var(--lesson-surface,#103d43);
+  color: var(--lesson-accent,#56e4d5);
 }
 .bs10129-proof article > svg {
   width: 16px;
@@ -158,7 +158,7 @@
   margin-top: 15px;
 }
 .bs10129-visual > header div span:first-child {
-  color: #27bcb8;
+  color: var(--lesson-accent,#27bcb8);
 }
 .bs10129-visual > header div span:nth-child(2) {
   color: #9253dd;
@@ -174,8 +174,8 @@
 .bs10129-visual > header input {
   width: 45px;
   padding: 4px;
-  border: 1px solid #40536b;
-  background: #091a30;
+  border: 1px solid var(--lesson-border,#40536b);
+  background: var(--lesson-surface,#091a30);
 }
 .bs10129-diagrams {
   display: grid;
@@ -191,7 +191,7 @@
   height: 235px;
 }
 .bs10129-diagrams circle.old {
-  fill: #2fbab6;
+  fill: var(--lesson-accent,#2fbab6);
 }
 .bs10129-diagrams circle.new {
   fill: #8d52d5;
@@ -207,12 +207,12 @@
   gap: 12px;
   margin-top: 15px;
   padding: 13px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 7px;
 }
 .bs10129-visual > aside svg {
   width: 18px;
-  color: #e8b948;
+  color: var(--lesson-highlight,#e8b948);
 }
 .bs10129-visual > aside p {
   margin-top: 7px;
@@ -223,7 +223,7 @@
   gap: 10px;
   margin-top: 15px;
   padding: 12px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 7px;
 }
 .bs10129-visual > footer.ready {
@@ -239,9 +239,9 @@
   display: flex;
   gap: 6px;
   padding: 8px;
-  border: 1px solid #40536b;
+  border: 1px solid var(--lesson-border,#40536b);
   border-radius: 6px;
-  background: #0d1d32;
+  background: var(--lesson-surface,#0d1d32);
 }
 .bs10129-visual > footer button:disabled {
   opacity: 0.5;

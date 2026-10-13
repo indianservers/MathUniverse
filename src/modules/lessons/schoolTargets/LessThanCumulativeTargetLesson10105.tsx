@@ -1,3 +1,4 @@
+import GroupedDataEditor from "../components/GroupedDataEditor";
 import {
   AlertTriangle,
   Info,
@@ -86,12 +87,12 @@ export default function LessThanCumulativeTargetLesson10105({
       setRandomCycle(cycle);
     });
   const bars = cumulative.map((row, index) => {
-    const x = 45 + index * 62;
+    const x = 45 + index * 390/rows.length;
     const height = (row.cumulative / maxValue) * 180;
     return { ...row, x, y: 220 - height, height };
   });
   const point = (upper: number, cf: number) => ({
-    x: 40 + (upper / 60) * 390,
+    x: 40 + ((upper-rows[0].lower)/(rows.at(-1)!.upper-rows[0].lower)) * 390,
     y: 220 - (cf / maxValue) * 180,
   });
   const ogivePoints = [
@@ -142,6 +143,7 @@ export default function LessThanCumulativeTargetLesson10105({
           <RotateCcw /> Reset
         </button>
       </header>
+      <GroupedDataEditor data={{bounds:[rows[0].lower,...rows.map(row=>row.upper)],frequencies:rows.map(row=>row.frequency)}} defaults={{bounds:[defaults[0].lower,...defaults.map(row=>row.upper)],frequencies:defaults.map(row=>row.frequency)}} onChange={data=>act(()=>setRows(data.frequencies.map((frequency,i)=>({id:i+1,lower:data.bounds[i],upper:data.bounds[i+1],frequency}))))}/>
       <main>
         <section className="ltc10105-table">
           <h2>1) EDITABLE FREQUENCY TABLE</h2>
@@ -173,8 +175,8 @@ export default function LessThanCumulativeTargetLesson10105({
                       role="slider"
                       tabIndex={0}
                       aria-label={`Frequency row ${index + 1}`}
-                      aria-valuemin="1"
-                      aria-valuemax="99"
+                      aria-valuemin={1}
+                      aria-valuemax={99}
                       aria-valuenow={row.frequency}
                       onPointerDown={(event) => {
                         event.currentTarget.setPointerCapture(event.pointerId);
@@ -258,7 +260,7 @@ export default function LessThanCumulativeTargetLesson10105({
             <line x1="40" y1="35" x2="40" y2="220" />
             {bars.map((bar, index) => (
               <g key={bar.id} className={`c${index}`}>
-                <rect x={bar.x} y={bar.y} width="48" height={bar.height} />
+                <rect x={bar.x} y={bar.y} width={Math.max(1,390/rows.length-8)} height={bar.height} />
                 {showValues && (
                   <text x={bar.x + 18} y={bar.y - 6}>
                     {bar.cumulative}
@@ -298,12 +300,12 @@ export default function LessThanCumulativeTargetLesson10105({
             aria-label="Less-than cumulative frequency ogive"
           >
             <g className="grid">
-              {[0, 10, 20, 30, 40, 50, 60].map((tick) => (
+              {[rows[0].lower,...rows.map(row=>row.upper)].map((tick) => (
                 <line
                   key={`v${tick}`}
-                  x1={40 + (tick / 60) * 390}
+                  x1={40 + ((tick-rows[0].lower)/(rows.at(-1)!.upper-rows[0].lower)) * 390}
                   y1="35"
-                  x2={40 + (tick / 60) * 390}
+                  x2={40 + ((tick-rows[0].lower)/(rows.at(-1)!.upper-rows[0].lower)) * 390}
                   y2="220"
                 />
               ))}

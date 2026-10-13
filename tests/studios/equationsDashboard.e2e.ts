@@ -1,0 +1,93 @@
+import { test, expect } from '@playwright/test';
+
+test('four reference modes render without overflow on desktop and mobile', async ({ page }) => {
+  test.setTimeout(120_000);
+  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
+  await page.setViewportSize({ width: 1680, height: 1050 });
+  for (const mode of ['Linear', 'Quadratic', 'Absolute Value', 'Inequalities']) {
+    await page.goto(`/algebra/equations?mode=${encodeURIComponent(mode)}`);
+    const lab = page.locator('.equations-dashboard');
+    await expect(lab).toHaveAttribute('data-mode-canvas', mode);
+    await expect(lab.getByRole('img', { name: /Balance model/ })).toBeVisible();
+    await expect(lab.locator('.eq-validation')).toContainText(mode === 'Linear' ? 'x = -6' : mode === 'Quadratic' ? '2/3' : mode === 'Absolute Value' ? 'No real solution' : 'x > -2');
+    await page.evaluate(() => document.documentElement.classList.remove('dark'));
+    expect(await lab.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+    await lab.screenshot({ animations: 'disabled', path: `artifacts/equations-dashboard-${mode.toLowerCase().replaceAll(' ', '-')}.png` });
+    await page.setViewportSize({ width: 390, height: 844 });
+    expect(await lab.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
+    await page.setViewportSize({ width: 1680, height: 1050 });
+  }
+  expect(errors).toEqual([]);
+});
+
+test('operations, mode memory, guided replay and validation are interactive', async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.goto('/algebra/equations?mode=Inequalities');
+  const lab = page.locator('.equations-dashboard');
+  await lab.getByLabel('Operand', { exact: true }).fill('-2');
+  await lab.getByRole('button', { name: 'Multiply', exact: true }).click();
+  await expect(lab.locator('.eq-original').nth(1)).toContainText('−6x − 10 < 2');
+  await expect(lab.locator('.eq-notice')).toContainText('direction flipped');
+  await expect(lab.locator('.eq-validation')).toContainText('x > -2');
+  await lab.getByRole('button', { name: 'Undo', exact: true }).click();
+  await expect(lab.locator('.eq-original').nth(1)).toContainText('3x + 5 > −1');
+  await lab.getByLabel('Operand', { exact: true }).fill('0');
+  await lab.getByRole('button', { name: 'Divide', exact: true }).click();
+  await expect(lab.locator('.eq-notice')).toContainText('nonzero');
+  await lab.getByRole('button', { name: 'Solve step by step', exact: true }).click();
+  await expect(lab.locator('.eq-original').nth(1)).toContainText('3x > −6');
+  await lab.getByRole('button', { name: 'Next step', exact: true }).click();
+  await expect(lab.locator('.eq-original').nth(1)).toContainText('x > −2');
+  await lab.getByRole('button', { name: 'Show all', exact: true }).click();
+  await expect(lab.locator('.eq-original').nth(1)).toContainText('x > −2');
+  await lab.getByRole('button', { name: 'Absolute Value', exact: true }).click();
+  await lab.getByLabel('Right side', { exact: true }).fill('7');
+  await expect(lab.locator('.eq-validation')).toContainText('x = -4; x = 2/3');
+  await lab.getByLabel('Operand', { exact: true }).fill('3');
+  await lab.getByRole('button', { name: 'Add', exact: true }).click();
+  await expect(lab.locator('.eq-original').nth(1)).toContainText('|3x + 5| + 3 = 10');
+  await expect(lab.locator('.eq-validation')).toContainText('Valid solution');
+  await lab.getByRole('button', { name: 'Inequalities', exact: true }).click();
+  await expect(lab.locator('.eq-original').nth(1)).toContainText('x > −2');
+  await lab.getByRole('button', { name: 'Quadratic', exact: true }).click();
+  await lab.getByLabel('Equation', { exact: true }).fill('3x^2 + 5x + 4 = 2');
+  await lab.getByRole('button', { name: 'Load equation', exact: true }).click();
+  await expect(lab.locator('.eq-validation')).toContainText('x = -1; x = -2/3');
+  await lab.getByRole('button', { name: 'Linear', exact: true }).click();
+  await lab.getByLabel('Auto-balance', { exact: true }).uncheck();
+  await lab.getByLabel('Operand', { exact: true }).fill('1');
+  await lab.getByRole('button', { name: 'Add', exact: true }).click();
+  await expect(lab.locator('.eq-feedback')).toContainText('One-sided');
+  await expect(lab.locator('.eq-validation')).toContainText('Original equation not satisfied');
+});
+
+test('Solve loads typed input, starts visibly, rejects invalid input, and flips negative inequalities', async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.goto('/algebra/equations?mode=Inequalities');
+  const lab = page.locator('.equations-dashboard');
+  await lab.getByLabel('Inequality', { exact: true }).fill('-2x + 4 >= 10');
+  await lab.getByRole('button', { name: 'Solve step by step', exact: true }).click();
+  await expect(lab.locator('.eq-original').first()).toContainText('−2x + 4 ≥ 10');
+  await expect(lab.locator('.eq-original').nth(1)).toContainText('−2x ≥ 6');
+  await expect(lab.locator('.eq-coefficients select')).toHaveValue('>=');
+  await lab.getByRole('button', { name: 'Next step', exact: true }).click();
+  await expect(lab.locator('.eq-original').nth(1)).toContainText('x ≤ −3');
+  await expect(lab.locator('.eq-coefficients select')).toHaveValue('<=');
+  await expect(lab.locator('.eq-step-current')).toContainText('Reverse the inequality direction');
+  await lab.getByLabel('Inequality', { exact: true }).fill('not an inequality');
+  await lab.getByRole('button', { name: 'Solve step by step', exact: true }).click();
+  await expect(lab.locator('.eq-notice')).toContainText('Enter an inequality');
+  await expect(lab.locator('.eq-original').nth(1)).toContainText('x ≤ −3');
+  await lab.getByRole('button', { name: 'Quadratic', exact: true }).click();
+  await lab.getByLabel('Equation', { exact: true }).fill('3x^2 + 5x + 4 = 2');
+  await lab.getByRole('button', { name: 'Solve step by step', exact: true }).click();
+  await expect(lab.locator('.eq-original').nth(1)).toContainText('3x² + 5x + 2 = 0');
+  await lab.getByRole('button', { name: 'Show all', exact: true }).click();
+  await expect(lab.locator('.eq-step-current')).toContainText('x = -1; x = -2/3');
+  await lab.getByRole('button', { name: 'Absolute Value', exact: true }).click();
+  await lab.getByLabel('Equation', { exact: true }).fill('|3x + 5| = 7');
+  await lab.getByRole('button', { name: 'Solve step by step', exact: true }).click();
+  await lab.getByRole('button', { name: 'Show all', exact: true }).click();
+  await expect(lab.locator('.eq-step-current')).toContainText('x = -4; x = 2/3');
+});

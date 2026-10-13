@@ -3,8 +3,8 @@
   top: 0;
   width: min(1360px, 100%);
   margin: auto;
-  color: #e8eef8;
-  background: #031328;
+  color: var(--lesson-ink,#e8eef8);
+  background: var(--lesson-surface,#031328);
   font:
     14px/1.5 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 0;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .tr10124-page * {
   box-sizing: border-box;
 }
@@ -64,20 +64,20 @@
 }
 .tr10124-page > header small,
 .tr10124-page h2 {
-  color: #56d7d4;
+  color: var(--lesson-accent,#56d7d4);
   font-weight: 900;
   letter-spacing: 0.7px;
 }
 .tr10124-page select {
   padding: 8px;
-  border: 1px solid #304961;
+  border: 1px solid var(--lesson-border,#304961);
   border-radius: 6px;
-  background: #091b31;
+  background: var(--lesson-surface,#091b31);
 }
 .tr10124-page > header fieldset button {
   padding: 7px 16px;
   border: 0;
-  background: #13243c;
+  background: var(--lesson-surface,#13243c);
 }
 .tr10124-page > header fieldset button.active {
   background: #1cc4c2;
@@ -86,7 +86,7 @@
 .tr10124-tabs {
   display: flex;
   gap: 10px;
-  border-bottom: 1px solid #29435c;
+  border-bottom: 1px solid var(--lesson-border,#29435c);
 }
 .tr10124-tabs button {
   position: relative;
@@ -113,9 +113,9 @@
 .tr10124-page > main > section,
 .tr10124-facts article,
 .tr10124-gallery {
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 7px;
-  background: #071a30;
+  background: var(--lesson-surface,#071a30);
 }
 .tr10124-page > main h2 {
   padding: 11px;
@@ -127,30 +127,30 @@
 }
 .tr10124-circle svg .axis,
 .tr10124-graph .axis {
-  stroke: #dce9f5;
+  stroke: var(--lesson-ink,#dce9f5);
   stroke-width: 1;
 }
 .tr10124-circle .unit {
   fill: none;
-  stroke: #e3ebf5;
+  stroke: var(--lesson-ink,#e3ebf5);
 }
 .tr10124-circle .ray {
-  stroke: #66dddc;
+  stroke: var(--lesson-accent,#66dddc);
 }
 .tr10124-circle .projection {
-  stroke: #3bd8d5;
+  stroke: var(--lesson-accent,#3bd8d5);
   stroke-dasharray: 5 4;
 }
 .tr10124-circle .angle {
   fill: #1eb8b842;
-  stroke: #24c9c7;
+  stroke: var(--lesson-accent,#24c9c7);
 }
 .tr10124-circle .handle {
-  fill: #31dfdb;
+  fill: var(--lesson-accent,#31dfdb);
   cursor: grab;
 }
 .tr10124-circle text {
-  fill: #dce7f2;
+  fill: var(--lesson-ink,#dce7f2);
   font-size: 12px;
 }
 .tr10124-slider {
@@ -165,7 +165,7 @@
 }
 .tr10124-circle > strong {
   display: block;
-  color: #30d8d4;
+  color: var(--lesson-accent,#30d8d4);
   text-align: center;
   font-size: 13px;
 }
@@ -177,21 +177,21 @@
 .tr10124-presets button {
   flex: 1;
   padding: 6px;
-  border: 1px solid #304961;
-  background: #091a30;
+  border: 1px solid var(--lesson-border,#304961);
+  background: var(--lesson-surface,#091a30);
 }
 .tr10124-circle footer {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border-top: 1px solid #29435c;
+  border-top: 1px solid var(--lesson-border,#29435c);
 }
 .tr10124-graph {
   position: relative;
 }
 .tr10124-graph h2 em {
   float: right;
-  color: #e9eef7;
+  color: var(--lesson-ink,#e9eef7);
   font: italic 16px Georgia;
 }
 .tr10124-graph > svg {
@@ -206,14 +206,14 @@
   stroke-width: 2;
 }
 .tr10124-graph svg .trace {
-  stroke: #57deda;
+  stroke: var(--lesson-accent,#57deda);
   stroke-dasharray: 5 4;
 }
 .tr10124-graph > footer {
   display: flex;
   justify-content: space-between;
   padding: 11px;
-  border-top: 1px solid #29435c;
+  border-top: 1px solid var(--lesson-border,#29435c);
 }
 .tr10124-graph > footer label {
   display: flex;
@@ -245,7 +245,7 @@
 }
 .tr10124-facts p.selected {
   border-color: #35d9d3;
-  background: #10263b;
+  background: var(--lesson-surface,#10263b);
 }
 .tr10124-facts p span {
   font-family: Georgia, serif;
@@ -271,9 +271,9 @@
   gap: 3px;
   min-width: 0;
   padding: 8px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 6px;
-  background: #07172b;
+  background: var(--lesson-surface,#07172b);
   text-align: left;
 }
 .tr10124-gallery > button.active {

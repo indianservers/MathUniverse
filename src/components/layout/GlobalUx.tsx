@@ -1,7 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
+import {publicLessonLevel} from '../../modules/lessons/lessonPresentation';
 import {
   ArrowUp,
   Calculator,
+  BookOpen,
   CheckCircle2,
   Command,
   Download,
@@ -282,20 +284,29 @@ export function CommandPalette() {
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const [lessonSearch,setLessonSearch]=useState<null|((query:string)=>import('../../modules/lessons/catalog/unified/unifiedLessons').UnifiedLesson[])>(null);
+  useEffect(()=>{
+    if(!open||lessonSearch)return;
+    let active=true;
+    import('../../modules/lessons/catalog/unified/searchLessons').then(module=>{if(active)setLessonSearch(()=>module.searchLessons);});
+    return ()=>{active=false;};
+  },[open,lessonSearch]);
+  const lessonResults=useMemo(()=>query.trim()&&lessonSearch?lessonSearch(query):[],[query,lessonSearch]);
 
   const commandItems = useMemo(() => buildCommandItems(), []);
   const filtered = useMemo(() => {
     const needle = query.trim().toLowerCase();
     const recentRoutes = recentRouteItems(5).map((item) => item.route);
-    return commandItems
+    const toolMatches=commandItems
       .map((item) => ({
         ...item,
         score: scoreCommandItem(item, needle, recentRoutes),
       }))
       .filter((item) => item.score > 0)
-      .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title))
-      .slice(0, 18);
-  }, [commandItems, query]);
+      .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title));
+    const lessonMatches=lessonResults.map((lesson,index)=>({id:`lesson:${lesson.id}`,kind:'route' as const,title:lesson.title,subtitle:`Lesson ${lesson.id} · ${lesson.category} · ${publicLessonLevel(lesson.level)}`,group:'Lesson',route:lesson.route,keywords:lesson.topic,icon:BookOpen,score:String(lesson.id)===needle?1000:Math.max(25,75-index)}));
+    return [...toolMatches,...lessonMatches].sort((a,b)=>b.score-a.score||a.title.localeCompare(b.title)).slice(0,18);
+  }, [commandItems, query,lessonResults]);
 
   useEffect(() => {
     setActiveIndex(0);
@@ -377,7 +388,7 @@ export function CommandPalette() {
                   onChange={(event) => setQuery(event.target.value)}
                   onKeyDown={handlePaletteKeyDown}
                   className="min-w-0 flex-1 bg-transparent text-base font-semibold outline-none"
-                  placeholder="Search tools, formulas, workspace commands, exports..."
+                  placeholder="Search lessons, concepts, topics, tools, formulas..."
                 />
                 <kbd className="hidden rounded-lg bg-slate-100 px-2 py-1 font-mono text-[11px] font-black text-slate-500 dark:bg-white/10 dark:text-slate-300 sm:inline">
                   Enter
@@ -419,9 +430,10 @@ export function CommandPalette() {
                   })}
                   {filtered.length === 0 && (
                     <p className="p-5 text-sm font-semibold text-slate-500">
-                      No matching tools.
+                      No matching lessons or tools.
                     </p>
                   )}
+                  {lessonResults.length>0&&<button type="button" className="w-full rounded-xl border p-3 text-sm font-bold text-cyan-700 dark:text-cyan-300" onClick={()=>{navigate(`/lessons?q=${encodeURIComponent(query)}`);setOpen(false);}}>View all {lessonResults.length} matching lessons</button>}
                 </div>
                 <aside className="hidden border-l border-slate-200 bg-slate-50/70 p-4 dark:border-white/10 dark:bg-white/[0.03] md:block">
                   <p className="text-xs font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">

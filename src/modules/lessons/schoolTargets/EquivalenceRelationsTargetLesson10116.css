@@ -4,8 +4,8 @@
   left: 1px;
   width: min(1390px, calc(100vw - 294px));
   margin: auto;
-  color: #e7eefb;
-  background: #031328;
+  color: var(--lesson-ink,#e7eefb);
+  background: var(--lesson-surface,#031328);
   font:
     11px/1.42 Inter,
     Arial,
@@ -16,9 +16,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .eqv10116-page * {
   box-sizing: border-box;
 }
@@ -37,9 +37,9 @@
   grid-template-columns: 58% 42%;
   min-height: 180px;
   padding: 17px 20px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
   border-radius: 10px;
-  background: linear-gradient(110deg, #071e37, #04142a);
+  background: linear-gradient(110deg, var(--lesson-surface,#071e37), var(--lesson-surface,#04142a));
 }
 .eqv10116-page > header small {
   font-weight: 900;
@@ -55,7 +55,7 @@
 }
 .eqv10116-page > header section > strong span,
 .eqv10116-page h2 em {
-  color: #3ddfdb;
+  color: var(--lesson-accent,#3ddfdb);
 }
 .eqv10116-page > header nav {
   display: flex;
@@ -64,7 +64,7 @@
 }
 .eqv10116-page > header nav i {
   padding: 4px 11px;
-  border: 1px solid #304860;
+  border: 1px solid var(--lesson-border,#304860);
   border-radius: 14px;
   font-style: normal;
   font-weight: 800;
@@ -75,7 +75,7 @@
   gap: 9px;
   align-items: start;
   padding: 24px 15px;
-  border-left: 1px solid #29455e;
+  border-left: 1px solid var(--lesson-border,#29455e);
 }
 .eqv10116-page > header aside svg {
   width: 18px;
@@ -84,9 +84,9 @@
   display: flex;
   gap: 6px;
   padding: 9px;
-  border: 1px solid #40536b;
+  border: 1px solid var(--lesson-border,#40536b);
   border-radius: 7px;
-  background: #07172c;
+  background: var(--lesson-surface,#07172c);
 }
 .eqv10116-page > main {
   display: grid;
@@ -98,9 +98,9 @@
   min-width: 0;
   height: 455px;
   padding: 12px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
   border-radius: 8px;
-  background: #06162b;
+  background: var(--lesson-surface,#06162b);
 }
 .eqv10116-page h2 {
   font-size: 12px;
@@ -112,7 +112,7 @@
   width: 23px;
   height: 23px;
   margin-right: 7px;
-  border: 1px solid #547088;
+  border: 1px solid var(--lesson-border,#547088);
   border-radius: 6px;
 }
 .eqv10116-page h2 em {
@@ -129,19 +129,19 @@
 }
 .eqv10116-graph svg .edge,
 .eqv10116-graph svg .loop {
-  stroke: #37dedb;
+  stroke: var(--lesson-accent,#37dedb);
   stroke-width: 2;
   fill: none;
 }
 .eqv10116-graph svg marker path {
-  fill: #37dedb;
+  fill: var(--lesson-accent,#37dedb);
 }
 .eqv10116-graph svg g {
   cursor: pointer;
 }
 .eqv10116-graph svg circle {
   fill: #0a3d4d;
-  stroke: #3ddedb;
+  stroke: var(--lesson-accent,#3ddedb);
   stroke-width: 2;
 }
 .eqv10116-graph svg .g2 circle {
@@ -150,7 +150,7 @@
 }
 .eqv10116-graph svg .g3 circle {
   fill: #4b3510;
-  stroke: #ffbc38;
+  stroke: var(--lesson-highlight,#ffbc38);
 }
 .eqv10116-graph svg .selected circle {
   stroke-width: 5;
@@ -169,9 +169,9 @@
   display: flex;
   gap: 5px;
   padding: 7px;
-  border: 1px solid #40536b;
+  border: 1px solid var(--lesson-border,#40536b);
   border-radius: 6px;
-  background: #09182d;
+  background: var(--lesson-surface,#09182d);
 }
 .eqv10116-graph > footer svg {
   width: 15px;
@@ -187,12 +187,12 @@
   place-items: center;
 }
 .eqv10116-matrix button {
-  border: 1px solid #304860;
-  background: #08172b;
+  border: 1px solid var(--lesson-border,#304860);
+  background: var(--lesson-surface,#08172b);
   font-size: 14px;
 }
 .eqv10116-matrix button.one {
-  color: #74eee4;
+  color: var(--lesson-accent,#74eee4);
   box-shadow: inset 0 0 13px #0c5d65;
 }
 .eqv10116-matrix > footer {
@@ -206,8 +206,8 @@
 }
 .eqv10116-matrix > footer span {
   padding: 4px;
-  background: #17334a;
-  color: #60e2df;
+  background: var(--lesson-surface,#17334a);
+  color: var(--lesson-accent,#60e2df);
 }
 .eqv10116-gates > article {
   display: grid;
@@ -216,11 +216,11 @@
   align-items: start;
   margin-top: 10px;
   padding: 12px;
-  border: 1px solid #208665;
+  border: 1px solid var(--lesson-border,#208665);
   border-radius: 8px;
 }
 .eqv10116-gates > article.fail {
-  border-color: #a44242;
+  border-color: var(--lesson-border,#a44242);
 }
 .eqv10116-gates > article > span {
   display: grid;
@@ -229,7 +229,7 @@
   height: 25px;
   border: 2px solid #42e494;
   border-radius: 50%;
-  color: #42e494;
+  color: var(--lesson-accent,#42e494);
 }
 .eqv10116-gates > article.fail > span {
   border-color: #ff5b5b;
@@ -241,11 +241,11 @@
 .eqv10116-gates article strong {
   padding: 3px;
   border-radius: 10px;
-  background: #10453e;
-  color: #61e5a3;
+  background: var(--lesson-surface,#10453e);
+  color: var(--lesson-accent,#61e5a3);
 }
 .eqv10116-gates article.fail strong {
-  background: #47252b;
+  background: var(--lesson-surface,#47252b);
   color: #ff7777;
 }
 .eqv10116-gates > aside {
@@ -255,7 +255,7 @@
   padding: 13px;
   border: 1px solid #2fdedb;
   border-radius: 8px;
-  color: #4ce5a0;
+  color: var(--lesson-accent,#4ce5a0);
 }
 .eqv10116-gates > aside.invalid {
   border-color: #bd5555;
@@ -294,15 +294,15 @@
 .eqv10116-classes > aside {
   margin-top: 12px;
   padding: 12px;
-  border: 1px solid #a34d4d;
+  border: 1px solid var(--lesson-border,#a34d4d);
 }
 .eqv10116-classes > div {
   margin-top: 16px;
   padding: 10px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
 }
 .eqv10116-classes > div h3 {
-  color: #43deda;
+  color: var(--lesson-accent,#43deda);
 }
 .eqv10116-classes > div p {
   margin: 8px 0;
@@ -311,25 +311,25 @@
   display: block;
   padding: 7px;
   border: 1px solid #37b777;
-  color: #61e5a3;
+  color: var(--lesson-accent,#61e5a3);
   text-align: center;
 }
 .eqv10116-help {
   display: grid;
   grid-template-columns: 34% 34% 32%;
   margin-top: 10px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
   border-radius: 8px;
-  background: #06162b;
+  background: var(--lesson-surface,#06162b);
 }
 .eqv10116-help section {
   padding: 11px 30px;
 }
 .eqv10116-help section + section {
-  border-left: 1px solid #29455e;
+  border-left: 1px solid var(--lesson-border,#29455e);
 }
 .eqv10116-help h3 {
-  color: #3eddda;
+  color: var(--lesson-accent,#3eddda);
 }
 @media (max-width: 800px) {
   .eqv10116-page {
@@ -349,7 +349,7 @@
   .eqv10116-page > header aside {
     margin-top: 12px;
     border: 0;
-    border-top: 1px solid #29455e;
+    border-top: 1px solid var(--lesson-border,#29455e);
   }
   .eqv10116-page > main > article {
     height: auto;
@@ -357,6 +357,6 @@
   }
   .eqv10116-help section + section {
     border: 0;
-    border-top: 1px solid #29455e;
+    border-top: 1px solid var(--lesson-border,#29455e);
   }
 }

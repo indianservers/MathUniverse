@@ -1,3 +1,4 @@
+import GroupedDataEditor from "../components/GroupedDataEditor";
 import {
   AlertTriangle,
   ArrowLeft,
@@ -11,13 +12,15 @@ import "./MoreThanCumulativeTargetLesson10106.css";
 import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const defaultFrequencies = [6, 9, 12, 8, 5];
-const boundaries = [9.5, 19.5, 29.5, 39.5, 49.5];
+const defaultBoundaries = [9.5, 19.5, 29.5, 39.5, 49.5];
 
 export default function MoreThanCumulativeTargetLesson10106({
   lesson: _lesson,
 }: {
   lesson: SchoolSyllabusLesson;
 }) {
+  const [bounds,setBounds] = useState([...defaultBoundaries,59.5]);
+  const boundaries=bounds.slice(0,-1);
   const [frequencies, setFrequencies] = useState(defaultFrequencies);
   const [drag, setDrag] = useState<{
     index: number;
@@ -41,7 +44,7 @@ export default function MoreThanCumulativeTargetLesson10106({
     setFrequencies((current) =>
       current.map((item, itemIndex) =>
         itemIndex === index
-          ? Math.max(0, Math.min(20, Math.round(value)))
+          ? Math.max(0, Math.min(1000000, Math.round(value)))
           : item,
       ),
     );
@@ -60,9 +63,10 @@ export default function MoreThanCumulativeTargetLesson10106({
   const reset = () =>
     act(() => {
       setFrequencies(defaultFrequencies);
+      setBounds([...defaultBoundaries,59.5]);
       setDrag(null);
     });
-  const chartX = (index: number) => 40 + index * 77;
+  const chartX = (index: number) => 40 + (bounds[index]-bounds[0])/(bounds.at(-1)!-bounds[0])*385;
   const chartY = (value: number) => 230 - (value / Math.max(40, total)) * 180;
   const staircase = moreThan
     .slice(0, -1)
@@ -102,6 +106,7 @@ export default function MoreThanCumulativeTargetLesson10106({
         </button>
       </header>
 
+      <GroupedDataEditor data={{bounds,frequencies}} defaults={{bounds:[...defaultBoundaries,59.5],frequencies:defaultFrequencies}} onChange={data=>act(()=>{setBounds(data.bounds);setFrequencies(data.frequencies);})}/>
       <main className="mtc10106-workspace">
         <section className="mtc10106-table-card">
           <h2>Editable grouped table (lower class boundaries)</h2>
@@ -157,8 +162,8 @@ export default function MoreThanCumulativeTargetLesson10106({
                         role="slider"
                         tabIndex={0}
                         aria-label={`Frequency row ${index + 1}`}
-                        aria-valuemin="0"
-                        aria-valuemax="20"
+                        aria-valuemin={0}
+                        aria-valuemax={20}
                         aria-valuenow={row.frequency}
                         onPointerDown={(event) => {
                           event.currentTarget.setPointerCapture(
@@ -255,7 +260,7 @@ export default function MoreThanCumulativeTargetLesson10106({
                   {value}
                 </text>
                 <text x={chartX(index) - 11} y="250">
-                  {index === 0 ? "Start" : boundaries[index - 1]}
+                  {bounds[index]}
                 </text>
               </g>
             ))}

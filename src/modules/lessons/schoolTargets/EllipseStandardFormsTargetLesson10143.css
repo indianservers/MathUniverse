@@ -1,8 +1,8 @@
 .el10143-page {
   width: min(1390px, calc(100vw - 300px));
   margin: auto;
-  color: #edf4fc;
-  background: #03152a;
+  color: var(--lesson-ink,#edf4fc);
+  background: var(--lesson-surface,#03152a);
   font:
     13px/1.45 Inter,
     Arial,
@@ -13,9 +13,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 270px;
-  background: #03152a;
+  background: var(--lesson-surface,#03152a);
   content: "";
-}
+display:none;}
 .el10143-page * {
   box-sizing: border-box;
 }
@@ -33,13 +33,13 @@
 .el10143-page > header {
   height: 157px;
   padding: 16px;
-  border: 1px solid #263e59;
+  border: 1px solid var(--lesson-border,#263e59);
   border-radius: 9px;
-  background: #07182e;
+  background: var(--lesson-surface,#07182e);
 }
 .el10143-page > header small,
 .el10143-page h2 {
-  color: #42dce0;
+  color: var(--lesson-accent,#42dce0);
   font-weight: 900;
   letter-spacing: 2px;
 }
@@ -49,7 +49,7 @@
 }
 .el10143-page > header p {
   max-width: 920px;
-  color: #bdc8d8;
+  color: var(--lesson-ink,#bdc8d8);
 }
 .el10143-page > header div {
   display: flex;
@@ -59,28 +59,28 @@
 .el10143-page > header span {
   padding: 3px 11px;
   border-radius: 13px;
-  background: #17253f;
+  background: var(--lesson-surface,#17253f);
 }
 .el10143-page > main {
   display: grid;
   grid-template-columns: 445px 1fr;
   gap: 4px;
   margin-top: 0;
-  border: 1px solid #263e59;
+  border: 1px solid var(--lesson-border,#263e59);
   border-radius: 9px;
-  background: #07182e;
+  background: var(--lesson-surface,#07182e);
   overflow: hidden;
 }
 .el-controls {
   padding: 14px 10px;
-  border-right: 1px solid #263e59;
+  border-right: 1px solid var(--lesson-border,#263e59);
 }
 .el-controls h3 {
   margin: 8px 0;
   font-size: 18px;
 }
 .el-controls > p {
-  color: #c2cddd;
+  color: var(--lesson-ink,#c2cddd);
 }
 .orientation {
   display: grid;
@@ -91,14 +91,14 @@
 .orientation button {
   min-height: 72px;
   padding: 7px;
-  border: 1px solid #344b69;
+  border: 1px solid var(--lesson-border,#344b69);
   border-radius: 8px;
-  background: #09192f;
+  background: var(--lesson-surface,#09192f);
   text-align: center;
 }
 .orientation button.active {
   border-color: #24d5de;
-  background: #073148;
+  background: var(--lesson-surface,#073148);
 }
 .orientation b,
 .orientation span,
@@ -106,10 +106,10 @@
   display: block;
 }
 .orientation b {
-  color: #dce5f2;
+  color: var(--lesson-ink,#dce5f2);
 }
 .orientation .active b {
-  color: #37e1e4;
+  color: var(--lesson-accent,#37e1e4);
 }
 .orientation span {
   font-size: 11px;
@@ -124,7 +124,7 @@
   align-items: center;
   gap: 8px;
   min-height: 45px;
-  border-top: 1px solid #1d344f;
+  border-top: 1px solid var(--lesson-border,#1d344f);
 }
 .el-controls label b span {
   font-weight: 400;
@@ -135,7 +135,7 @@
 }
 .el-controls output {
   padding: 8px;
-  border: 1px solid #354c68;
+  border: 1px solid var(--lesson-border,#354c68);
   border-radius: 5px;
   text-align: center;
 }
@@ -143,19 +143,19 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #43dcad;
+  color: var(--lesson-accent,#43dcad);
 }
 .el-controls .constraint svg {
   width: 14px;
 }
 .el-controls .constraint span {
   margin-left: auto;
-  color: #c1ccda;
+  color: var(--lesson-ink,#c1ccda);
 }
 .el-controls dl {
   margin: 8px 0 0;
   padding: 9px;
-  border: 1px solid #304862;
+  border: 1px solid var(--lesson-border,#304862);
   border-radius: 7px;
 }
 .el-controls dl > div {
@@ -175,7 +175,7 @@
 .el-controls dd {
   margin: 0;
   text-align: right;
-  color: #cdd7e5;
+  color: var(--lesson-ink,#cdd7e5);
 }
 .violet {
   color: #9b67e8;
@@ -193,15 +193,15 @@
   color: #fa9818;
 }
 .cyan {
-  color: #44bed3;
+  color: var(--lesson-accent,#44bed3);
 }
 .yellow {
-  color: #f7d642;
+  color: var(--lesson-highlight,#f7d642);
 }
 .el-board {
   position: relative;
   min-width: 0;
-  background: #06172b;
+  background: var(--lesson-surface,#06172b);
 }
 .el-board .checks {
   position: absolute;
@@ -235,15 +235,15 @@
   stroke-width: 1;
 }
 .el-board .axis {
-  stroke: #b8c6d4;
+  stroke: var(--lesson-ink,#b8c6d4);
 }
 .el-board .ellipse {
   fill: none;
-  stroke: #25dbe1;
+  stroke: var(--lesson-accent,#25dbe1);
   stroke-width: 2;
 }
 .el-board .distance {
-  stroke: #e9edf4;
+  stroke: var(--lesson-ink,#e9edf4);
   stroke-width: 1.5;
   stroke-dasharray: 6 4;
 }
@@ -257,17 +257,17 @@
   fill: #f04d54;
 }
 .el-board .point circle {
-  fill: #f1c51d;
+  fill: var(--lesson-highlight,#f1c51d);
   stroke: #7f6500;
   stroke-width: 2;
   cursor: grab;
 }
 .el-board .point text {
-  fill: #ffd72e;
+  fill: var(--lesson-highlight,#ffd72e);
   font-weight: 700;
 }
 .el-board .distance-label {
-  fill: #f4f6fa;
+  fill: var(--lesson-ink,#f4f6fa);
 }
 .el-board .dimensions {
   stroke: #f49a15;
@@ -279,9 +279,9 @@
   font-weight: 700;
 }
 .el-board .dimensions .minor-dimension {
-  color: #43bce8;
-  fill: #43bce8;
-  stroke: #43bce8;
+  color: var(--lesson-accent,#43bce8);
+  fill: var(--lesson-accent,#43bce8);
+  stroke: var(--lesson-accent,#43bce8);
 }
 .el-board svg text {
   font-size: 13px;
@@ -291,7 +291,7 @@
   stroke: #3b4d67;
 }
 .el-board .sum text {
-  fill: #f4f5f7;
+  fill: var(--lesson-ink,#f4f5f7);
   text-anchor: middle;
   font: 16px Georgia;
 }
@@ -302,24 +302,24 @@
   gap: 10px;
   margin: 0 10px 10px;
   padding: 9px 12px;
-  border: 1px solid #263e59;
+  border: 1px solid var(--lesson-border,#263e59);
   border-radius: 7px;
 }
 .el-board footer > svg {
   width: 20px;
-  color: #33e5e4;
+  color: var(--lesson-accent,#33e5e4);
 }
 .el-board footer p {
-  color: #c0cad9;
+  color: var(--lesson-ink,#c0cad9);
 }
 .el-board footer button {
   display: flex;
   align-items: center;
   gap: 7px;
   padding: 8px 15px;
-  border: 1px solid #263e59;
+  border: 1px solid var(--lesson-border,#263e59);
   border-radius: 7px;
-  background: #07172c;
+  background: var(--lesson-surface,#07172c);
 }
 .el-board footer button svg {
   width: 16px;
@@ -341,7 +341,7 @@
   }
   .el-controls {
     border-right: 0;
-    border-bottom: 1px solid #263e59;
+    border-bottom: 1px solid var(--lesson-border,#263e59);
   }
   .el-board > svg {
     height: auto;

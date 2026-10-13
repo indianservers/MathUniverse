@@ -220,7 +220,8 @@ export function parseBooleanExpression(input: string): BooleanAst {
       while (
         ops.length &&
         ops[ops.length - 1].type === "op" &&
-        precedence[ops[ops.length - 1].value] >= precedence[token.value]
+        (precedence[ops[ops.length - 1].value] > precedence[token.value] ||
+          (precedence[ops[ops.length - 1].value] === precedence[token.value] && token.value !== "!"))
       )
         output.push(ops.pop()!);
       ops.push(token);

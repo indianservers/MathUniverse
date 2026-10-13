@@ -210,7 +210,7 @@ export function centerLocation(point: Pt, A: Pt, B: Pt, C: Pt, vertexHit = 0.12)
 
 export function circumcenterLocation(A: Pt, B: Pt, C: Pt): CenterLocation {
   const angles = triangleAngles(A, B, C);
-  const cls = classifyByAngles(angles.A, angles.B, angles.C);
+  const cls = classifyByAngles(angles.A, angles.B, angles.C, 1e-5);
   if (cls === "Right") return "hypotenuse midpoint";
   if (cls === "Obtuse") return "outside";
   return "inside";
@@ -218,7 +218,7 @@ export function circumcenterLocation(A: Pt, B: Pt, C: Pt): CenterLocation {
 
 export function orthocenterLocation(A: Pt, B: Pt, C: Pt): CenterLocation {
   const angles = triangleAngles(A, B, C);
-  const cls = classifyByAngles(angles.A, angles.B, angles.C);
+  const cls = classifyByAngles(angles.A, angles.B, angles.C, 1e-5);
   if (cls === "Right") return "vertex";
   if (cls === "Obtuse") return "outside";
   return "inside";
@@ -255,7 +255,7 @@ export function constructASAc(angleA: number, c: number, angleB: number, origin:
   const angleC = 180 - angleA - angleB;
   const radA = (angleA * Math.PI) / 180;
   const ok = c > 0 && angleA > 0.5 && angleB > 0.5 && angleC > 0.5;
-  const a = ok ? (c * Math.sin((angleC * Math.PI) / 180)) / Math.sin(radA) : c;
+  const a = ok ? (c * Math.sin(radA)) / Math.sin((angleC * Math.PI) / 180) : c;
   return constructASA(angleB, a, angleC, origin, rotation);
 }
 
@@ -275,9 +275,7 @@ export function constructASA(angleB: number, a: number, angleC: number, origin: 
 
 export function constructAAS(angleA: number, angleB: number, sideA: number, origin: Pt, rotation = 0): ConstructedTriangle {
   const angleC = 180 - angleA - angleB;
-  const ok = sideA > 0 && angleA > 0.5 && angleB > 0.5 && angleC > 0.5;
-  const sideC = ok ? (sideA * Math.sin((angleC * Math.PI) / 180)) / Math.sin((angleA * Math.PI) / 180) : sideA;
-  return constructASA(angleB, sideC || 1, angleC, origin, rotation);
+  return constructASA(angleB, sideA, angleC, origin, rotation);
 }
 
 export function constructRHS(hyp: number, leg: number, origin: Pt, rotation = 0): ConstructedTriangle {
@@ -379,12 +377,12 @@ export function clampPoint(p: Pt, minX = 0.4, maxX = 18.6, minY = 0.35, maxY = 1
 }
 
 export const EXPLORER_PRESETS: Record<string, TrianglePts> = {
-  scalene: { A: { x: 2.2, y: 7.4 }, B: { x: 1.4, y: 1.3 }, C: { x: 9.6, y: 1.6 } },
+  scalene: constructSSS(8.21, 8.76, 7.88, { x: 2.4, y: 1.4 }),
   isosceles: { A: { x: 5.5, y: 8.4 }, B: { x: 1.6, y: 1.4 }, C: { x: 9.4, y: 1.4 } },
   equilateral: { A: { x: 5.5, y: 1.4 + (7 * Math.sqrt(3)) / 2 }, B: { x: 2, y: 1.4 }, C: { x: 9, y: 1.4 } },
   right: { A: { x: 1.8, y: 7.6 }, B: { x: 1.8, y: 1.4 }, C: { x: 9.2, y: 1.4 } },
   acute: { A: { x: 5.2, y: 8.1 }, B: { x: 2.2, y: 1.6 }, C: { x: 10.2, y: 2.1 } },
-  obtuse: { A: { x: 3.2, y: 6.6 }, B: { x: 1.4, y: 1.6 }, C: { x: 11.2, y: 1.8 } },
+  obtuse: { A: { x: 3.2, y: 4.4 }, B: { x: 1.4, y: 1.6 }, C: { x: 11.2, y: 1.8 } },
 };
 
 export function measureTriangle(A: Pt, B: Pt, C: Pt) {
@@ -400,8 +398,8 @@ export function measureTriangle(A: Pt, B: Pt, C: Pt) {
     perimeter,
     semiperimeter: perimeter / 2,
     heron: heron.area,
-    bySides: classifyBySides(sides.BC, sides.CA, sides.AB),
-    byAngles: classifyByAngles(angles.A, angles.B, angles.C),
+    bySides: classifyBySides(sides.BC, sides.CA, sides.AB, 1e-6),
+    byAngles: classifyByAngles(angles.A, angles.B, angles.C, 1e-5),
     angleSum: angles.A + angles.B + angles.C,
   };
 }

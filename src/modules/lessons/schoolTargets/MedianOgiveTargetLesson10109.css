@@ -4,8 +4,8 @@
   left: 1px;
   width: min(1390px, calc(100vw - 290px));
   margin: auto;
-  color: #e4edff;
-  background: #031328;
+  color: var(--lesson-ink,#e4edff);
+  background: var(--lesson-surface,#031328);
   font:
     12px/1.45 Inter,
     Arial,
@@ -16,9 +16,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .med10109-page * {
   box-sizing: border-box;
 }
@@ -42,12 +42,12 @@
   gap: 20px;
   height: 151px;
   padding: 18px;
-  border: 1px solid #29435e;
+  border: 1px solid var(--lesson-border,#29435e);
   border-radius: 11px;
-  background: linear-gradient(110deg, #071f39, #031328);
+  background: linear-gradient(110deg, var(--lesson-surface,#071f39), var(--lesson-surface,#031328));
 }
 .med10109-hero small {
-  color: #38dce5;
+  color: var(--lesson-accent,#38dce5);
   font-weight: 900;
   letter-spacing: 1.4px;
 }
@@ -62,13 +62,13 @@
 }
 .med10109-hero nav span {
   padding: 4px 11px;
-  border: 1px solid #34506b;
+  border: 1px solid var(--lesson-border,#34506b);
   border-radius: 15px;
   font-weight: 800;
 }
 .med10109-hero aside {
   padding: 12px;
-  border: 1px solid #314b65;
+  border: 1px solid var(--lesson-border,#314b65);
   border-radius: 9px;
 }
 .med10109-hero aside b,
@@ -89,15 +89,15 @@
 .med10109-right > section {
   min-width: 0;
   padding: 11px;
-  border: 1px solid #29435e;
+  border: 1px solid var(--lesson-border,#29435e);
   border-radius: 9px;
-  background: #06182f;
+  background: var(--lesson-surface,#06182f);
 }
 .med10109-page h2 {
   font-size: 13px;
 }
 .med10109-page h2 span {
-  color: #e4edff;
+  color: var(--lesson-ink,#e4edff);
 }
 .med10109-data table,
 .med10109-compare table {
@@ -112,7 +112,7 @@
 .med10109-compare td {
   height: 34px;
   padding: 3px;
-  border: 1px solid #304a64;
+  border: 1px solid var(--lesson-border,#304a64);
 }
 .med10109-data td:first-child {
   white-space: nowrap;
@@ -120,11 +120,11 @@
 .med10109-data td:first-child svg {
   width: 13px;
   vertical-align: middle;
-  color: #9cb0c4;
+  color: var(--lesson-ink,#9cb0c4);
 }
 .med10109-data [role="slider"] {
   padding: 5px;
-  border: 1px solid #27617c;
+  border: 1px solid var(--lesson-border,#27617c);
   border-radius: 4px;
   cursor: ns-resize;
   touch-action: none;
@@ -141,7 +141,7 @@
   align-items: center;
   margin-top: 16px;
   padding: 12px;
-  border: 1px solid #314b65;
+  border: 1px solid var(--lesson-border,#314b65);
   border-radius: 7px;
   font-size: 16px;
   text-align: center;
@@ -170,9 +170,9 @@
   align-items: center;
   gap: 6px;
   padding: 6px 9px;
-  border: 1px solid #31506b;
+  border: 1px solid var(--lesson-border,#31506b);
   border-radius: 6px;
-  background: #07192d;
+  background: var(--lesson-surface,#07192d);
 }
 .med10109-dual > svg {
   display: block;
@@ -180,7 +180,7 @@
   height: 330px;
 }
 .med10109-dual svg line {
-  stroke: #dce9f8;
+  stroke: var(--lesson-ink,#dce9f8);
 }
 .med10109-dual .grid line {
   stroke: #29445d;
@@ -190,12 +190,12 @@
   stroke-width: 3;
 }
 .med10109-dual path.less {
-  stroke: #2bdedb;
+  stroke: var(--lesson-accent,#2bdedb);
   fill: none;
 }
 .med10109-dual circle.less {
-  fill: #20acb9;
-  stroke: #2bdedb;
+  fill: var(--lesson-accent,#20acb9);
+  stroke: var(--lesson-accent,#2bdedb);
 }
 .med10109-dual path.more {
   stroke: #976ae8;
@@ -206,20 +206,20 @@
   stroke: #976ae8;
 }
 .med10109-dual .guide line {
-  stroke: #ffbd2e;
+  stroke: var(--lesson-highlight,#ffbd2e);
   stroke-width: 2;
   stroke-dasharray: 5 4;
 }
 .med10109-dual .guide circle {
-  fill: #ffb32c;
+  fill: var(--lesson-highlight,#ffb32c);
   stroke: #fff;
 }
 .med10109-dual text {
-  fill: #e4edff;
+  fill: var(--lesson-ink,#e4edff);
   font-size: 10px;
 }
 .med10109-dual .guide text {
-  fill: #ffbd2e;
+  fill: var(--lesson-highlight,#ffbd2e);
   font-weight: 900;
 }
 .med10109-read {
@@ -229,7 +229,7 @@
 }
 .med10109-read article {
   padding: 10px;
-  border: 1px solid #1b8b89;
+  border: 1px solid var(--lesson-border,#1b8b89);
   border-radius: 7px;
   text-align: center;
 }
@@ -237,7 +237,7 @@
   border-color: #704db8;
 }
 .med10109-read article b {
-  color: #34dce1;
+  color: var(--lesson-accent,#34dce1);
 }
 .med10109-read article strong {
   display: block;
@@ -246,7 +246,7 @@
 .med10109-dual > aside {
   margin-top: 10px;
   padding: 10px;
-  border: 1px solid #29435e;
+  border: 1px solid var(--lesson-border,#29435e);
   border-radius: 7px;
 }
 .med10109-right {
@@ -259,7 +259,7 @@
   display: block;
   margin: 18px 0;
   padding: 12px;
-  border: 1px solid #435d77;
+  border: 1px solid var(--lesson-border,#435d77);
   border-radius: 8px;
   font:
     italic 18px Georgia,
@@ -269,7 +269,7 @@
 .med10109-formula > div {
   margin-top: 12px;
   padding: 10px;
-  border: 1px solid #314b65;
+  border: 1px solid var(--lesson-border,#314b65);
   border-radius: 7px;
   line-height: 1.7;
 }
@@ -277,10 +277,10 @@
   display: block;
   margin-top: 10px;
   padding: 7px;
-  border: 1px solid #9b7721;
+  border: 1px solid var(--lesson-border,#9b7721);
   border-radius: 4px;
-  background: #382e16;
-  color: #ffd14d;
+  background: var(--lesson-surface,#382e16);
+  color: var(--lesson-highlight,#ffd14d);
   font-weight: 900;
   text-align: center;
 }
@@ -293,7 +293,7 @@
   margin-top: 10px;
 }
 .med10109-compare p svg {
-  color: #30d89a;
+  color: var(--lesson-accent,#30d89a);
 }
 @media (max-width: 900px) {
   .med10109-page {

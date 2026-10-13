@@ -1,8 +1,8 @@
 .pt10147-page {
   width: min(1390px, calc(100vw - 300px));
   margin: auto;
-  color: #edf4fc;
-  background: #03152a;
+  color: var(--lesson-ink,#edf4fc);
+  background: var(--lesson-surface,#03152a);
   font:
     13px/1.45 Inter,
     Arial,
@@ -13,9 +13,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 270px;
-  background: #03152a;
+  background: var(--lesson-surface,#03152a);
   content: "";
-}
+display:none;}
 .pt10147-page * {
   box-sizing: border-box;
 }
@@ -32,14 +32,14 @@
 .pt10147-page > header {
   height: 165px;
   padding: 16px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 9px;
-  background: #07182e;
+  background: var(--lesson-surface,#07182e);
 }
 .pt10147-page > header small,
 .pt10147-page h2,
 .pt-toolbar > b {
-  color: #40dce0;
+  color: var(--lesson-accent,#40dce0);
   font-weight: 900;
   letter-spacing: 1px;
 }
@@ -48,7 +48,7 @@
   font-size: 27px;
 }
 .pt10147-page > header p {
-  color: #c7d2df;
+  color: var(--lesson-ink,#c7d2df);
 }
 .pt10147-page > header div {
   display: flex;
@@ -58,13 +58,13 @@
 .pt10147-page > header span {
   padding: 4px 11px;
   border-radius: 13px;
-  background: #17253f;
+  background: var(--lesson-surface,#17253f);
 }
 .pt10147-page > main {
   margin-top: 10px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 9px;
-  background: #07182e;
+  background: var(--lesson-surface,#07182e);
   overflow: hidden;
 }
 .pt-toolbar {
@@ -72,7 +72,7 @@
   align-items: center;
   gap: 10px;
   padding: 9px 14px;
-  border-bottom: 1px solid #29435f;
+  border-bottom: 1px solid var(--lesson-border,#29435f);
 }
 .pt-toolbar > button {
   display: flex;
@@ -80,9 +80,9 @@
   justify-content: center;
   height: 32px;
   padding: 5px 10px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 7px;
-  background: #08192e;
+  background: var(--lesson-surface,#08192e);
 }
 .pt-toolbar > button svg {
   width: 16px;
@@ -96,7 +96,7 @@
 .pt-toolbar > label:first-of-type {
   flex: 1;
   padding: 5px 10px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 7px;
 }
 .pt-toolbar input[type="range"] {
@@ -108,7 +108,7 @@
 }
 .pt-toolbar output {
   padding: 7px 10px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 6px;
 }
 .pt-toolbar .reset {
@@ -124,9 +124,9 @@
 .pt-proof article,
 .pt-context article {
   position: relative;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 8px;
-  background: #06172b;
+  background: var(--lesson-surface,#06172b);
 }
 .pt-board > svg {
   display: block;
@@ -139,21 +139,21 @@
   stroke-dasharray: 2 3;
 }
 .pt-board .axis {
-  stroke: #cbd6e1;
+  stroke: var(--lesson-ink,#cbd6e1);
 }
 .pt-board .directrix {
   stroke: #d266e9;
   stroke-dasharray: 6 4;
 }
 .pt-board .focus {
-  fill: #f2d52b;
+  fill: var(--lesson-highlight,#f2d52b);
 }
 .pt-board .focus-label {
-  fill: #f2d52b;
+  fill: var(--lesson-highlight,#f2d52b);
 }
 .pt-board .parabola {
   fill: none;
-  stroke: #f2f4f8;
+  stroke: var(--lesson-ink,#f2f4f8);
   stroke-width: 2;
 }
 .pt-board .tangent {
@@ -187,7 +187,7 @@
   padding: 8px 12px;
   border: 1px solid #4b7ec9;
   border-radius: 7px;
-  background: #07182e;
+  background: var(--lesson-surface,#07182e);
 }
 .pt-board .formula b {
   color: #65a2ff;
@@ -198,8 +198,8 @@
   bottom: 92px;
   display: grid;
   padding: 8px;
-  background: #07182e;
-  border: 1px solid #29435f;
+  background: var(--lesson-surface,#07182e);
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 6px;
 }
 .pt-board .legend span {
@@ -213,8 +213,8 @@
 }
 .pt-board .zoom button {
   padding: 6px;
-  border: 1px solid #29435f;
-  background: #07182e;
+  border: 1px solid var(--lesson-border,#29435f);
+  background: var(--lesson-surface,#07182e);
 }
 .pt-board .zoom svg {
   width: 16px;
@@ -228,11 +228,11 @@
 .pt-board > footer article {
   text-align: center;
   padding: 8px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 7px;
 }
 .pt-board > footer b {
-  color: #49d9df;
+  color: var(--lesson-accent,#49d9df);
 }
 .pt-board > footer p {
   font: 17px Georgia;
@@ -248,7 +248,7 @@
 }
 .pt-proof article svg {
   width: 16px;
-  color: #53e495;
+  color: var(--lesson-accent,#53e495);
 }
 .pt-proof article div {
   display: grid;
@@ -257,7 +257,7 @@
 }
 .pt-proof article div span {
   padding: 9px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   text-align: center;
 }
 .pt-proof article:last-child svg {

@@ -1,4 +1,4 @@
-import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import GeometryLessonCanvas from "./TriangleReferenceCanvas";
 import { triangleLessonScene } from "../geometryLessonScene";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -15,7 +15,7 @@ import {
   triangleInequality,
 } from "./triangleGeometry";
 import { useGeoLabUi } from "../geometryLabUx";
-import { ChallengeCard, FormulaCard, InsightStack, LabFrame, MeasureRow, Toggle, okNum } from "./triangleLabKit";
+import { ChallengeCard, FormulaCard, InsightStack, LabFrame, MeasureRow, Toggle, okNum, useTriangleReset } from "./triangleLabKit";
 import {
   AngleArc,
   DashedLine,
@@ -66,7 +66,7 @@ export default function TriangleInequalitiesLab({ pulse = "observe" }: { pulse?:
     const origin = { x: 2.6, y: 2.2 };
     const P = origin;
     const Q = { x: origin.x + c, y: origin.y };
-    const maxOpen = Math.PI * 0.92;
+    const maxOpen = Math.PI;
     const ang = hinge * maxOpen;
     const R = { x: origin.x + b * Math.cos(ang), y: origin.y + b * Math.sin(ang) };
     const gap = Math.hypot(R.x - Q.x, R.y - Q.y);
@@ -77,15 +77,14 @@ export default function TriangleInequalitiesLab({ pulse = "observe" }: { pulse?:
 
   useEffect(() => {
     if (animate) return;
-    const maxOpen = Math.PI * 0.92;
+    const maxOpen = Math.PI;
     const closeCos = (b * b + c * c - a * a) / (2 * b * c);
     if (!Number.isFinite(closeCos)) {
       setHinge(0.05);
       return;
     }
     const closeAng = Math.acos(Math.max(-1, Math.min(1, closeCos)));
-    if (tests.valid) setHinge(Math.min(0.98, Math.max(0.05, closeAng / maxOpen)));
-    else if (tests.degenerate) setHinge(0.02);
+    if (tests.valid || tests.degenerate) setHinge(closeAng / maxOpen);
   }, [a, b, c, animate, tests.degenerate, tests.valid]);
 
   useEffect(() => {
@@ -97,7 +96,7 @@ export default function TriangleInequalitiesLab({ pulse = "observe" }: { pulse?:
       setA(3);
       setB(4);
       setC(7);
-      setHinge(0.02);
+      setHinge(0);
     }
   }, [pulse]);
 
@@ -122,6 +121,8 @@ export default function TriangleInequalitiesLab({ pulse = "observe" }: { pulse?:
   const q = toSvg(plane, hingeGeom.Q);
   const r = toSvg(plane, hingeGeom.R);
 
+  useTriangleReset("inequalities", reset);
+
   return (
     <LabFrame
       theme="inequalities"
@@ -140,7 +141,7 @@ export default function TriangleInequalitiesLab({ pulse = "observe" }: { pulse?:
               <SliderRow label="Side a (BC)" value={a} min={0.8} max={12} step={0.1} onChange={setA} />
               <SliderRow label="Side b (AC)" value={b} min={0.8} max={12} step={0.1} onChange={setB} />
               <SliderRow label="Side c (AB)" value={c} min={0.8} max={12} step={0.1} onChange={setC} />
-              <SliderRow label="Hinge opening" value={hinge} min={0.05} max={1} step={0.01} onChange={setHinge} />
+              <SliderRow label="Hinge opening" value={hinge} min={0} max={1} step={0.01} onChange={setHinge} />
               <Toggle checked={animate} onChange={setAnimate}>Animate hinge</Toggle>
             </>
           ) : null}
@@ -180,7 +181,7 @@ export default function TriangleInequalitiesLab({ pulse = "observe" }: { pulse?:
               {mode === "exterior" ? (
                 <>
                   <DashedLine plane={plane} a={tri.B} b={{ x: tri.C.x + (tri.C.x - tri.B.x) * 0.45, y: tri.C.y + (tri.C.y - tri.B.y) * 0.45 }} color="#64748b" />
-                  <AngleArc plane={plane} vertex={tri.C} p={tri.B} q={{ x: tri.C.x + (tri.C.x - tri.B.x), y: tri.C.y + (tri.C.y - tri.B.y) }} color="#ef4444" radius={28} label="ext" />
+                  <AngleArc plane={plane} vertex={tri.C} p={tri.A} q={{ x: tri.C.x + (tri.C.x - tri.B.x), y: tri.C.y + (tri.C.y - tri.B.y) }} color="#ef4444" radius={28} label={`${okNum(180 - m.angles.C, 1)}°`} />
                 </>
               ) : null}
               <g onPointerDown={startDrag("A")}><DraggableVertex plane={plane} p={tri.A} label="A" /></g>

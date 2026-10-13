@@ -3,8 +3,8 @@
   top: -8px;
   width: min(1368px, calc(100vw - 310px));
   margin: auto;
-  color: #edf3fb;
-  background: #03152a;
+  color: var(--lesson-ink,#edf3fb);
+  background: var(--lesson-surface,#03152a);
   font:
     12px/1.45 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #03152a;
+  background: var(--lesson-surface,#03152a);
   content: "";
-}
+display:none;}
 .ii10132-page * {
   box-sizing: border-box;
 }
@@ -39,7 +39,7 @@
 .ii10132-page > header small,
 .ii10132-page h2,
 .ii10132-page h3 {
-  color: #4bd6df;
+  color: var(--lesson-accent,#4bd6df);
   font-weight: 900;
 }
 .ii10132-page > header h1 {
@@ -54,13 +54,13 @@
 .ii10132-page > header span {
   padding: 6px 13px;
   border-radius: 7px;
-  background: #0c4153;
-  color: #52e4df;
+  background: var(--lesson-surface,#0c4153);
+  color: var(--lesson-accent,#52e4df);
   font-weight: 900;
 }
 .ii10132-page > header span:last-child {
-  background: #252453;
-  color: #bc9bf4;
+  background: var(--lesson-surface,#252453);
+  color: var(--lesson-muted,#bc9bf4);
 }
 .ii10132-page > main {
   display: grid;
@@ -70,9 +70,9 @@
 .ii10132-proof,
 .ii10132-evidence {
   padding: 15px;
-  border: 1px solid #38516c;
+  border: 1px solid var(--lesson-border,#38516c);
   border-radius: 8px;
-  background: #071a31;
+  background: var(--lesson-surface,#071a31);
 }
 .ii10132-proof > article {
   display: grid;
@@ -102,7 +102,7 @@
 }
 .ii10132-proof .box {
   padding: 7px 35px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 6px;
 }
 .ii10132-lines {
@@ -112,7 +112,7 @@
 }
 .ii10132-lines span {
   padding: 3px 15px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   font: 16px Georgia;
   text-align: center;
 }
@@ -123,11 +123,11 @@
 .ii10132-proof fieldset {
   margin-top: 5px;
   padding: 8px 12px;
-  border: 1px solid #6647a0;
-  background: #17163f;
+  border: 1px solid var(--lesson-border,#6647a0);
+  background: var(--lesson-surface,#17163f);
 }
 .ii10132-proof fieldset legend {
-  color: #d9c5ff;
+  color: var(--lesson-ink,#d9c5ff);
 }
 .ii10132-proof fieldset label {
   display: block;
@@ -136,23 +136,23 @@
 .ii10132-proof fieldset button {
   margin-top: 6px;
   padding: 6px 13px;
-  border: 1px solid #415a75;
+  border: 1px solid var(--lesson-border,#415a75);
   border-radius: 5px;
-  background: #10263f;
+  background: var(--lesson-surface,#10263f);
 }
 .ii10132-proof fieldset strong {
   display: block;
   margin-top: 6px;
 }
 .ii10132-page .valid {
-  color: #56e0d9;
+  color: var(--lesson-accent,#56e0d9);
 }
 .ii10132-page .invalid {
   color: #ff9197;
 }
 .ii10132-proof > footer {
   padding: 10px;
-  border: 1px solid #5d4594;
+  border: 1px solid var(--lesson-border,#5d4594);
   border-radius: 6px;
 }
 .ii10132-evidence > header {
@@ -177,9 +177,9 @@
 .ii10132-evidence output,
 .ii10132-evidence select {
   padding: 7px 12px;
-  border: 1px solid #425b77;
+  border: 1px solid var(--lesson-border,#425b77);
   border-radius: 5px;
-  background: #0d1e35;
+  background: var(--lesson-surface,#0d1e35);
 }
 .ii10132-table {
   overflow-x: auto;
@@ -193,7 +193,7 @@
 .ii10132-table th,
 .ii10132-table td {
   height: 40px;
-  border: 1px solid #30465f;
+  border: 1px solid var(--lesson-border,#30465f);
   text-align: center;
 }
 .ii10132-table th:first-child {
@@ -201,7 +201,7 @@
   font: 15px Georgia;
 }
 .ii10132-table .selected {
-  background: #17344f;
+  background: var(--lesson-surface,#17344f);
   border-top: 2px solid #65dfe1;
 }
 .ii10132-table td {
@@ -223,7 +223,7 @@
 }
 .ii10132-table td svg {
   width: 15px;
-  color: #42da91;
+  color: var(--lesson-accent,#42da91);
 }
 .ii10132-legend {
   display: flex;
@@ -234,13 +234,13 @@
 .ii10132-legend span {
   padding: 0;
   background: none;
-  color: #eef3fb;
+  color: var(--lesson-ink,#eef3fb);
 }
 .ii10132-legend span:first-child {
-  color: #32c6c0;
+  color: var(--lesson-accent,#32c6c0);
 }
 .ii10132-legend span:nth-child(2) {
-  color: #43a8e3;
+  color: var(--lesson-accent,#43a8e3);
 }
 .ii10132-legend svg {
   width: 14px;
@@ -251,11 +251,11 @@
   padding: 10px;
   border: 1px solid #3076c0;
   border-radius: 6px;
-  background: #0b2350;
+  background: var(--lesson-surface,#0b2350);
 }
 .ii10132-evidence > aside svg {
   width: 18px;
-  color: #4adbe2;
+  color: var(--lesson-accent,#4adbe2);
 }
 .ii10132-evidence > section {
   display: grid;
@@ -265,7 +265,7 @@
 }
 .ii10132-evidence > section article {
   padding: 13px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 7px;
 }
 .ii10132-evidence > section h2 {
@@ -283,7 +283,7 @@
   margin-top: 8px;
 }
 .ii10132-evidence > section strong {
-  color: #45ded7;
+  color: var(--lesson-accent,#45ded7);
 }
 .ii10132-page > footer {
   display: flex;
@@ -291,7 +291,7 @@
   justify-content: space-between;
   margin-top: 9px;
   padding: 9px 14px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 7px;
 }
 .ii10132-page > footer button {
@@ -299,9 +299,9 @@
   align-items: center;
   gap: 7px;
   padding: 6px 10px;
-  border: 1px solid #425c78;
+  border: 1px solid var(--lesson-border,#425c78);
   border-radius: 5px;
-  background: #0d213a;
+  background: var(--lesson-surface,#0d213a);
 }
 .ii10132-page > footer svg {
   width: 16px;

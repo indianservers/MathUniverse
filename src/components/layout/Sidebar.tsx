@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { siteLinks } from "../../data/siteLinks";
+import type {UnifiedLesson} from '../../modules/lessons/catalog/unified/unifiedLessons';
+import {publicLessonLevel} from '../../modules/lessons/lessonPresentation';
 import {
   basicNavItemSearchText,
   iconMap,
@@ -67,6 +69,13 @@ export default function Sidebar() {
     Array.from(new Set(["Start Here", ...activeSections, ...activeNavKeys])),
   );
   const [query, setQuery] = useState("");
+  const [lessonMatches,setLessonMatches]=useState<UnifiedLesson[]>([]);
+  useEffect(()=>{
+    let active=true;
+    if(!query.trim()){setLessonMatches([]);return;}
+    import('../../modules/lessons/catalog/unified/searchLessons').then(module=>{if(active)setLessonMatches(module.searchLessons(query));});
+    return ()=>{active=false;};
+  },[query]);
   const [recentRoutes, setRecentRoutes] = useState<string[]>([]);
   const [collapsed, setCollapsed] = useState(
     () => localStorage.getItem("math-universe-sidebar-collapsed") === "true",
@@ -228,7 +237,8 @@ export default function Sidebar() {
           </div>
         )}
         <nav className="min-w-0 space-y-2" aria-label="Primary navigation">
-          {filteredSections.length === 0 && (
+          {query.trim()&&!collapsed&&lessonMatches.length>0&&<section aria-label="Lesson search results" className="space-y-2 rounded-xl border border-white/15 p-3"><h3 className="text-sm font-black text-white">{lessonMatches.length} matching lessons</h3>{lessonMatches.slice(0,8).map(lesson=><NavLink key={lesson.id} to={lesson.route} className="block rounded-lg p-2 text-sm text-slate-200 hover:bg-white/10"><strong className="block">{lesson.title}</strong><small>Lesson {lesson.id} · {lesson.category} · {publicLessonLevel(lesson.level)}</small></NavLink>)}<NavLink to={`/lessons?q=${encodeURIComponent(query)}`} className="block text-sm font-bold text-cyan-300">View all lesson matches</NavLink></section>}
+          {filteredSections.length === 0 && lessonMatches.length===0 && (
             <div className="rounded-2xl border border-dashed border-slate-300 p-4 text-sm font-semibold text-slate-500 dark:border-white/15 dark:text-slate-400">
               No tools found. Try graph, matrix, solver, or quiz.
             </div>

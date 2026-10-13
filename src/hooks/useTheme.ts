@@ -41,11 +41,7 @@ export function useTheme() {
     setColorBlindPalette,
     toggleTheme: () =>
       setTheme((current) =>
-        current === "dark"
-          ? "high-contrast"
-          : current === "high-contrast"
-            ? "light"
-            : "dark",
+        current === "light" ? "dark" : "light",
       ),
   };
 }

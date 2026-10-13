@@ -92,7 +92,7 @@ export function StepByStepPanel({
   if (!steps.length) return null;
 
   return (
-    <SectionCard title="Step-by-Step Explanation">
+    <SectionCard title="Step-by-Step Explanation" className="matrix-operation-steps" compact>
       <div className="space-y-4">
         <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10">
           <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">
@@ -167,7 +167,7 @@ export function MatrixResult({
 }) {
   if (!matrix.length) return null;
   return (
-    <SectionCard title={title}>
+    <SectionCard title={title} className="matrix-operation-answer" compact>
       <div className="flex justify-center">
         <MatrixGrid matrix={matrix} color="result" />
       </div>
@@ -280,10 +280,10 @@ export function MatrixOperationLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="space-y-6">
+    <div className="matrix-operation-page">
       <MatrixBreadcrumb current={title} />
       <MatrixBackLink />
-      <SectionCard className="overflow-hidden border-cyan-200/80 dark:border-cyan-400/20">
+      <SectionCard className="matrix-operation-heading overflow-hidden border-cyan-200/80 dark:border-cyan-400/20" compact>
         <div className="rounded-2xl bg-gradient-to-br from-cyan-500 via-violet-500 to-fuchsia-500 p-6 text-white">
           <p className="text-sm font-black uppercase text-white/75">
             Matrix Operations
@@ -294,7 +294,7 @@ export function MatrixOperationLayout({
           </p>
         </div>
       </SectionCard>
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="matrix-operation-concepts">
         <SectionCard title="Concept Explanation">
           <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">
             {explanation}
@@ -308,7 +308,7 @@ export function MatrixOperationLayout({
         <MatrixFormulaBlock formula={formula} />
       </div>
       {children}
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="matrix-operation-context">
         <SectionCard title="Common Mistake">
           <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">
             {mistake}

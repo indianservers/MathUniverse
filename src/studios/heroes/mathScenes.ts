@@ -4,25 +4,27 @@ type C = CanvasRenderingContext2D;
 
 function gamma(x:number):number { const coefficients=[676.5203681218851,-1259.1392167224028,771.3234287776531,-176.6150291621406,12.507343278686905,-.13857109526572012,9.984369578019572e-6,1.5056327351493116e-7]; if(x<.5)return Math.PI/(Math.sin(Math.PI*x)*gamma(1-x));const z=x-1;let a=.9999999999998099;coefficients.forEach((v,i)=>{a+=v/(z+i+1);});const t=z+7.5;return Math.sqrt(2*Math.PI)*t**(z+.5)*Math.exp(-t)*a; }
 function besselJ0(x:number){let term=1,sum=1;for(let k=1;k<60;k++){term*=-(x*x/4)/(k*k);sum+=term;if(Math.abs(term)<1e-13)break;}return sum;}
-const cyan='#36d9ff',purple='#aa72ff',gold='#ffc66a';
+const defaultCyan='#36d9ff',defaultPurple='#aa72ff',defaultGold='#ffc66a';
 export function drawMathScene(c:C,id:string,width:number,height:number,t:number){
+ const glass=id==='algebra';
+ const cyan=glass?'#24b9ef':defaultCyan,purple=glass?'#9b65ef':defaultPurple,gold=glass?'#79dce8':defaultGold;
  const compact=width<520,stageWidth=compact?400:760,stageHeight=compact?760:620;
  c.clearRect(0,0,width,height);c.save();const fit=Math.min(width/stageWidth,height/stageHeight);c.translate((width-stageWidth*fit)/2,(height-stageHeight*fit)/2);c.scale(fit,fit);
  c.save();c.translate(compact?30:38,compact?60:150);c.scale(compact?.45:.9,compact?.45:.9);
  const reveal=Math.min(1,t/1.1);c.globalAlpha=reveal;
  const line=(points:number[][],color=cyan,w=2)=>{c.beginPath();const visiblePoints=t<.9?points.slice(0,Math.max(2,Math.ceil(points.length*t/.9))):points;visiblePoints.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.strokeStyle=color;c.lineWidth=w;c.shadowColor=color;c.shadowBlur=w>1?9:0;c.stroke();c.shadowBlur=0;};
- const text=(s:string,x:number,y:number,color='#a7c9ec',size=14)=>{c.save();c.globalAlpha*=Math.min(1,Math.max(0,(t-.45)/.55));c.font=`${size}px "Cambria Math", Georgia, serif`;c.fillStyle=color;c.fillText(s,x,y);c.restore();};
+ const text=(s:string,x:number,y:number,color=glass?'#6177ab':'#a7c9ec',size=14)=>{c.save();c.globalAlpha*=Math.min(1,Math.max(0,(t-.45)/.55));c.font=`${size}px "Cambria Math", Georgia, serif`;c.fillStyle=color;c.fillText(s,x,y);c.restore();};
  const dot=(x:number,y:number,r=4,color=cyan)=>{c.fillStyle=color;c.shadowColor=color;c.shadowBlur=15;c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fill();c.shadowBlur=0;};
  const ring=(x:number,y:number,rx:number,ry=rx,color=cyan)=>{c.strokeStyle=color;c.lineWidth=1.5;c.shadowColor=color;c.shadowBlur=8;c.beginPath();c.ellipse(x,y,rx,ry,0,0,Math.PI*2);c.stroke();c.shadowBlur=0;};
  const curve=(f:(x:number)=>number,x0=100,x1=690,color=cyan)=>line(Array.from({length:130},(_,i)=>{const x=x0+(x1-x0)*i/129;return[x,f(x)];}),color);
  const axes=(ox=250,oy=260)=>{line([[100,oy],[710,oy]],'#527197',1);line([[ox,65],[ox,310]],'#527197',1);};
  // A quiet observatory floor with subject-specific structures above it.
- for(let i=0;i<8;i++)line([[80,325+i*4],[720,325+i*4]],'#1c3557',.7);
- for(let i=0;i<18;i++){const x=90+((i*137)%620),y=30+((i*83)%275);dot(x,y, .7+.3*Math.sin(t*.4+i),'#648bb0');}
- ring(410,329,220,18,'#254d7a');ring(410,329,145,11,'#296390');
+ for(let i=0;i<8;i++)line([[80,325+i*4],[720,325+i*4]],glass?'#c3d6f3':'#1c3557',.7);
+ for(let i=0;i<18;i++){const x=90+((i*137)%620),y=30+((i*83)%275);dot(x,y, .7+.3*Math.sin(t*.4+i),glass?'#93a7ed':'#648bb0');}
+ ring(410,329,220,18,glass?'#b1bafa':'#254d7a');ring(410,329,145,11,glass?'#7cdcf2':'#296390');
  const phase=t%12,angle=t*.22;
  if(id==='algebra'){
-  const tilt=.06*Math.sin(t*.65);c.save();c.translate(385,125);c.rotate(tilt);line([[-145,0],[145,0]],gold,3);line([[-110,0],[-145,70],[-75,70],[-110,0]],gold);line([[110,0],[75,70],[145,70],[110,0]],gold);text(phase<4?'3x + 5':phase<6?'3x':'x',-143,58,cyan,23);text(phase<4?'2x − 1':phase<6?'−1':'−6',77,58,purple,23);if(phase>=4&&phase<6){const u=(phase-4)/2;text('−2x',90-200*u,22-28*Math.sin(u*Math.PI),purple,20);text('−5',-110+210*u,88+15*Math.sin(u*Math.PI),gold,20);}c.restore();line([[385,125],[385,240],[335,250],[435,250]],gold);dot(385,125,5,gold);text(phase<6?'Subtract 2x and 5 from both sides':'Balanced: x = −6',280,285,'#a8cffb',15);axes(155,285);curve(x=>285-((x-165)/9)**2,105,255,purple);text('x² − 4 = (x − 2)(x + 2)',465,260,purple,16);line([[565,273],[520,295]],purple);line([[565,273],[635,295]],purple);text('x − 2',490,314);text('x + 2',616,314);
+  const tilt=.06*Math.sin(t*.65);c.save();c.translate(385,125);c.rotate(tilt);line([[-145,0],[145,0]],gold,3);line([[-110,0],[-145,70],[-75,70],[-110,0]],gold);line([[110,0],[75,70],[145,70],[110,0]],gold);text(phase<4?'3x + 5':phase<6?'3x':'x',-143,58,cyan,23);text(phase<4?'2x − 1':phase<6?'−1':'−6',77,58,purple,23);if(phase>=4&&phase<6){const u=(phase-4)/2;text('−2x',90-200*u,22-28*Math.sin(u*Math.PI),purple,20);text('−5',-110+210*u,88+15*Math.sin(u*Math.PI),gold,20);}c.restore();line([[385,125],[385,240],[335,250],[435,250]],gold);dot(385,125,5,gold);text(phase<6?'Subtract 2x and 5 from both sides':'Balanced: x = −6',280,285,'#5576af',15);axes(155,285);curve(x=>285-((x-165)/9)**2,105,255,purple);text('x² − 4 = (x − 2)(x + 2)',465,260,purple,16);line([[565,273],[520,295]],purple);line([[565,273],[635,295]],purple);text('x − 2',490,314);text('x + 2',616,314);
  }else if(id==='structures'){
   text('Cayley table · ℤ₄',112,75);for(let a=0;a<4;a++)for(let b=0;b<4;b++){const x=112+b*30,y=88+a*30;c.fillStyle=(a+b)%4===Math.floor(t/2)%4?'#2479a7':'#122b50';c.fillRect(x,y,27,27);text(String((a+b)%4),x+9,y+19,cyan,16);}
   ring(380,148,65,65,purple);for(let k=0;k<4;k++){const a=k*Math.PI/2+angle;dot(380+65*Math.cos(a),148+65*Math.sin(a),6);text(String(k),373+85*Math.cos(a),153+85*Math.sin(a));}text('a ↦ a + 1 (mod 4)',310,242);

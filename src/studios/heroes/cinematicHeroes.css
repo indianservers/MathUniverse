@@ -27,3 +27,6 @@
 @container(max-width:600px){.cinematic-expanded canvas{height:850px}.cinematic-expanded{padding:20px 8px}}
 @container(max-width:600px){.cinematic-expanded canvas{height:1280px}}
 @container(max-width:520px){.cinematic-hero>.cinematic-scene{aspect-ratio:400/760}}
+/* Algebra reference palette: translucent ice blue, lavender glass and cyan bloom. */
+.hero-algebra .cinematic-scene{background:radial-gradient(ellipse at 52% 64%,#a7dfff55,transparent 57%),radial-gradient(ellipse at 70% 28%,#d8c9ff66,transparent 60%),linear-gradient(135deg,#f3f9ff,#e8f2ff 52%,#f5f1ff)}.hero-algebra .cinematic-scene canvas{opacity:.94;filter:drop-shadow(0 0 7px #50cfff38)}.hero-algebra .cinematic-equation{color:#5576c0;text-shadow:0 0 12px #67d8ff55}.hero-algebra .cinematic-motion-tools,.hero-algebra .cinematic-object-key{color:#536b99;background:#ffffff80;border-color:#a5c8f366}.hero-algebra .cinematic-motion-tools button{color:#546cb2;background:#f5faff99;border-color:#b9d3f5}
+.hero-algebra .cinematic-object-key summary{color:#586ab1}.hero-algebra .cinematic-object-key li span{color:#667ead}

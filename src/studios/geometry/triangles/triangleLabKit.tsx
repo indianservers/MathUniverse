@@ -1,8 +1,17 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { Eye, Brain, Lightbulb, FlaskConical, Trophy } from "lucide-react";
 import { Panel, Segmented, StatusOk, StepList, fmt } from "../../mockup/studioLabKit";
 import { useGeoLabUi } from "../geometryLabUx";
 
 export { fmt };
+
+export function useTriangleReset(mode: string, reset: () => void) {
+  useEffect(() => {
+    const handler = (event: Event) => { if ((event as CustomEvent<string>).detail === mode) reset(); };
+    window.addEventListener("triangles-reset", handler);
+    return () => window.removeEventListener("triangles-reset", handler);
+  }, [mode, reset]);
+}
 
 export function MeasureRow({ label, value, color = "#147df2", metric }: { label: string; value: ReactNode; color?: string; metric?: string }) {
   const ui = useGeoLabUi();
@@ -81,7 +90,7 @@ export function Fold({ title, children, open = true }: { title: string; children
 }
 
 export function LabFrame({
-  controls, canvas, insights, ariaLabel, theme = "explorer", tools,
+  controls, canvas, insights, ariaLabel, theme = "explorer", tools, footer,
 }: {
   controls: ReactNode;
   canvas: ReactNode;
@@ -89,16 +98,18 @@ export function LabFrame({
   ariaLabel: string;
   theme?: "explorer" | "congruence" | "similarity" | "centers" | "inequalities";
   tools?: ReactNode;
+  footer?: ReactNode;
 }) {
   return (
     <div className={`tri-lab tri-lab--${theme}`} aria-label={ariaLabel}>
-      <section className="msk-panel tri-canvas" id="lab-canvas">
+      <section className="tri-controls" data-lab-pane="workspace">{controls}</section>
+      <section className="msk-panel tri-canvas" id="lab-canvas" data-lab-pane="workspace">
         {tools ? <div className="tri-canvas-tools">{tools}</div> : null}
         {canvas}
+        {footer ? <div className="tri-focus-footer">{footer}</div> : null}
       </section>
-      <Fold title="Controls">{controls}</Fold>
       <aside className="tri-insights">
-        <Fold title="Measurements">{insights}</Fold>
+        {insights}
       </aside>
     </div>
   );
@@ -111,31 +122,37 @@ export function LearningStrip({
 }) {
   return (
     <section className="tri-strip" aria-label="Learning loop">
-      {items.map((item) => (
+      {items.map((item, index) => {
+        const Icon = [Eye, Brain, Lightbulb, FlaskConical, Trophy][index % 5];
+        return (
         <button key={item.title} type="button" className={item.active ? "is-on" : ""} onClick={item.onClick}>
+          <Icon />
           <b>{item.title}</b>
           <small>{item.text}</small>
         </button>
-      ))}
+      ); })}
     </section>
   );
 }
 
 export function InsightStack({
-  measurements, property, steps, formula, challenge,
+  measurements, property, steps, formula, challenge, compact = false,
 }: {
   measurements: ReactNode;
   property: ReactNode;
   steps?: string[];
   formula: ReactNode;
   challenge: ReactNode;
+  compact?: boolean;
 }) {
   return (
     <>
       <Panel title="Live measurements">{measurements}</Panel>
-      <Panel title="Key property">{property}{steps ? <StepList items={steps} /> : null}</Panel>
-      {formula}
-      {challenge}
+      {compact ? <details className="tri-more tri-more-challenge"><summary>Understand, experiment & challenge</summary><Panel title="Key property">{property}</Panel>{formula}{challenge}</details> : <>
+      <Panel title="Key property">{property}{steps ? <details className="tri-more"><summary>Step-by-step explanation</summary><StepList items={steps} /></details> : null}</Panel>
+      <details className="tri-more tri-more-formula"><summary>Formula & reasoning</summary>{formula}</details>
+      <details className="tri-more tri-more-challenge"><summary>Interactive challenge</summary>{challenge}</details>
+      </>}
     </>
   );
 }

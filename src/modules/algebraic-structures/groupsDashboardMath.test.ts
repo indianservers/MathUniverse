@@ -1,0 +1,11 @@
+import {describe,it,expect} from 'vitest';
+import {finiteGroup,groupOrder,allSubgroups,modularStructure,residueMap,inverseMod,divisors,powerMod} from './groupsDashboardMath';
+describe('Groups rings fields dashboard math',()=>{
+ for(const kind of ['Cyclic','S₃','D₄'])it(`${kind} has real group operations`,()=>{const g=finiteGroup(kind,8);for(let a=0;a<g.labels.length;a++){expect(g.table[a][0]).toBe(a);expect(g.table[a].includes(0)).toBe(true);for(let b=0;b<g.labels.length;b++)for(let c=0;c<g.labels.length;c++)expect(g.table[g.table[a][b]][c]).toBe(g.table[a][g.table[b][c]]);}expect(allSubgroups(g).map(h=>h.length)).toContain(g.labels.length);});
+ it('computes element orders and all subgroups',()=>{const g=finiteGroup('Cyclic',8);expect(groupOrder(g,2)).toBe(4);expect(allSubgroups(g).map(h=>h.length)).toEqual([1,2,4,8]);expect(allSubgroups(finiteGroup('S₃',6))).toHaveLength(6);expect(allSubgroups(finiteGroup('D₄',8))).toHaveLength(10);});
+ it('partitions Z8 into exactly two equal cosets of <2>',()=>{const m=modularStructure(8,2);expect(m.cosets).toEqual([[0,2,4,6],[1,3,5,7]]);expect(new Set(m.cosets.flat()).size).toBe(8);});
+ it('computes units, zero divisors and ideals in Z12',()=>{const m=modularStructure(12,2);expect(m.units).toEqual([1,5,7,11]);expect(m.zeroDivisors).toEqual([2,3,4,6,8,9,10]);expect(divisors(12)).toEqual([1,2,3,4,6,12]);expect(inverseMod(5,12)).toBe(5);expect(inverseMod(6,12)).toBeUndefined();});
+ it('handles negative powers only for units',()=>{expect(powerMod(3,-1,5)).toBe(2);expect(powerMod(2,-1,6)).toBeUndefined();});
+ it('checks finite field inverses',()=>{expect(modularStructure(5,1).field).toBe(true);expect(modularStructure(4,1).field).toBe(false);for(let a=1;a<5;a++)expect(a*inverseMod(a,5)!%5).toBe(1);});
+ it('validates homomorphisms globally rather than one matching pair',()=>{const good=residueMap(6,3,1);expect(good).toMatchObject({wellDefined:true,kernel:[0,3],image:[0,1,2],onto:true,oneToOne:false,preserves:true});expect(residueMap(5,3,1)).toMatchObject({wellDefined:false,preserves:false});expect(residueMap(5,3,1).witness).not.toBeNull();expect(residueMap(6,4,2)).toMatchObject({wellDefined:true,image:[0,2],onto:false});expect(residueMap(6,3,0)).toMatchObject({wellDefined:true,image:[0]});});
+});

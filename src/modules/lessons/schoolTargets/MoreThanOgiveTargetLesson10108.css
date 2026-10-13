@@ -5,8 +5,8 @@
   width: min(1366px, calc(100vw - 306px));
   margin: auto;
   padding: 0 16px 14px;
-  color: #e4efff;
-  background: #031328;
+  color: var(--lesson-ink,#e4efff);
+  background: var(--lesson-surface,#031328);
   font:
     13px/1.45 Inter,
     Arial,
@@ -17,9 +17,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .mto10108-page * {
   box-sizing: border-box;
 }
@@ -41,13 +41,13 @@
 .mto10108-hero {
   height: 160px;
   padding: 18px;
-  border: 1px solid #29435d;
+  border: 1px solid var(--lesson-border,#29435d);
   border-radius: 10px;
-  background: linear-gradient(110deg, #071f39, #031328);
+  background: linear-gradient(110deg, var(--lesson-surface,#071f39), var(--lesson-surface,#031328));
 }
 .mto10108-hero small,
 .mto10108-lab > header small {
-  color: #2bdde3;
+  color: var(--lesson-accent,#2bdde3);
   font-weight: 900;
   letter-spacing: 1.4px;
 }
@@ -65,7 +65,7 @@
 }
 .mto10108-hero nav span {
   padding: 5px 11px;
-  border: 1px solid #37516b;
+  border: 1px solid var(--lesson-border,#37516b);
   border-radius: 6px;
   font-weight: 800;
 }
@@ -87,9 +87,9 @@
   align-items: center;
   gap: 6px;
   padding: 8px 12px;
-  border: 1px solid #35506b;
+  border: 1px solid var(--lesson-border,#35506b);
   border-radius: 7px;
-  background: #07182c;
+  background: var(--lesson-surface,#07182c);
 }
 .mto10108-workspace {
   display: grid;
@@ -98,9 +98,9 @@
 }
 .mto10108-workspace > section {
   padding: 12px;
-  border: 1px solid #29435d;
+  border: 1px solid var(--lesson-border,#29435d);
   border-radius: 9px;
-  background: #06182f;
+  background: var(--lesson-surface,#06182f);
 }
 .mto10108-page[data-mode="table"] .mto10108-table,
 .mto10108-page[data-mode="graph"] .mto10108-chart {
@@ -112,11 +112,11 @@
   opacity: 0.86;
 }
 .mto10108-page h3 {
-  color: #2bdde3;
+  color: var(--lesson-accent,#2bdde3);
   font-size: 14px;
 }
 .mto10108-page h3 span {
-  color: #e4efff;
+  color: var(--lesson-ink,#e4efff);
   font-size: 11px;
 }
 .mto10108-table table {
@@ -129,7 +129,7 @@
 .mto10108-table td {
   height: 48px;
   padding: 4px;
-  border: 1px solid #2d4862;
+  border: 1px solid var(--lesson-border,#2d4862);
 }
 .mto10108-table input {
   width: 75px;
@@ -139,18 +139,18 @@
 }
 .mto10108-table td b,
 .mto10108-table tfoot td:last-child {
-  color: #2de1e5;
+  color: var(--lesson-accent,#2de1e5);
 }
 .mto10108-table aside {
   display: flex;
   gap: 10px;
   margin-top: 14px;
   padding: 12px;
-  border: 1px solid #1d9aad;
+  border: 1px solid var(--lesson-border,#1d9aad);
   border-radius: 7px;
 }
 .mto10108-table aside svg {
-  color: #2de1e5;
+  color: var(--lesson-accent,#2de1e5);
 }
 .mto10108-table aside p {
   margin-top: 8px;
@@ -174,19 +174,19 @@
   height: 390px;
 }
 .mto10108-plot > svg line {
-  stroke: #dce9f5;
+  stroke: var(--lesson-ink,#dce9f5);
 }
 .mto10108-plot > svg .grid line {
   stroke: #29445d;
 }
 .mto10108-plot > svg path {
   fill: none;
-  stroke: #24d6d6;
+  stroke: var(--lesson-accent,#24d6d6);
   stroke-width: 3;
 }
 .mto10108-plot > svg circle {
-  fill: #20c4cc;
-  stroke: #b6f8ff;
+  fill: var(--lesson-accent,#20c4cc);
+  stroke: var(--lesson-ink,#b6f8ff);
   cursor: ns-resize;
   touch-action: none;
 }
@@ -195,22 +195,22 @@
   stroke-width: 4;
 }
 .mto10108-plot > svg text {
-  fill: #e4efff;
+  fill: var(--lesson-ink,#e4efff);
   font-size: 11px;
 }
 .mto10108-plot > svg .guide line {
-  stroke: #ffc64c;
+  stroke: var(--lesson-highlight,#ffc64c);
   stroke-width: 2;
   stroke-dasharray: 5 4;
 }
 .mto10108-plot > svg .guide text {
-  fill: #ffc64c;
+  fill: var(--lesson-highlight,#ffc64c);
   font-weight: 900;
 }
 .mto10108-plot aside {
   margin-top: 20px;
   padding: 12px;
-  border: 1px solid #415b76;
+  border: 1px solid var(--lesson-border,#415b76);
   border-radius: 7px;
 }
 .mto10108-plot aside p {
@@ -221,12 +221,12 @@
   display: block;
   margin-top: 14px;
   padding: 10px;
-  border: 1px solid #70869c;
+  border: 1px solid var(--lesson-border,#70869c);
   border-radius: 6px;
 }
 .mto10108-plot aside strong {
-  border-color: #1d8693;
-  color: #32dfe4;
+  border-color: var(--lesson-border,#1d8693);
+  color: var(--lesson-accent,#32dfe4);
   font-size: 17px;
 }
 .mto10108-chart > footer {
@@ -234,20 +234,20 @@
   align-items: center;
   gap: 8px;
   padding: 8px;
-  border: 1px solid #314b65;
+  border: 1px solid var(--lesson-border,#314b65);
   border-radius: 6px;
 }
 .mto10108-explain {
   margin-top: 10px;
   padding: 15px;
-  border: 1px solid #29435d;
+  border: 1px solid var(--lesson-border,#29435d);
   border-radius: 8px;
 }
 .mto10108-explain p {
   margin-top: 8px;
 }
 .mto10108-explain b {
-  color: #2de1e5;
+  color: var(--lesson-accent,#2de1e5);
 }
 @media (max-width: 900px) {
   .mto10108-page {

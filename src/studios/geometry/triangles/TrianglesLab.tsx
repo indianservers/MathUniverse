@@ -1,5 +1,7 @@
-import { useStudioState } from "../../phase1/StudioModelProvider";
+import TriangleReferenceHero from "./TriangleReferenceHero";
+import { useStudioState, useStudioModel } from "../../phase1/StudioModelProvider";
 import { useState } from "react";
+import { Target, Info, Undo2, Redo2, RotateCcw } from "lucide-react";
 import { GeometryLabShell } from "../geometryLabUx";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import CongruenceLab from "./CongruenceLab";
@@ -9,6 +11,7 @@ import TriangleExplorerLab from "./TriangleExplorerLab";
 import TriangleInequalitiesLab from "./TriangleInequalitiesLab";
 import TriangleModeTabs from "./TriangleModeTabs";
 import "./TrianglesLab.css";
+import "./TrianglesReference.css";
 import { LearningStrip } from "./triangleLabKit";
 import { useTriangleLabMode, type TriangleModeId } from "./useTriangleLabMode";
 
@@ -63,6 +66,9 @@ export default function TrianglesLab({ page }: { page: StudioMockupPage }) {
   const [pulse, setPulse] = useStudioState("TrianglesLab:TrianglesLab:pulse", "observe");
   const current = modes.find((item) => item.id === mode) ?? modes[0]!;
   const strip = STRIPS[mode];
+  const [help, setHelp] = useState(false);
+  const model = useStudioModel();
+  const [search, setSearch] = useState("");
 
   return (
     <GeometryLabShell
@@ -72,8 +78,12 @@ export default function TrianglesLab({ page }: { page: StudioMockupPage }) {
       onChange={(id) => setMode(id as typeof mode)}
       liveSummary={`${page.title}. ${current.label}: ${current.subtitle}. Drag a vertex, read live sides and angles, then check the challenge.`}
     >
+      <div className="tri-header-search"><input aria-label="Search triangle topics" placeholder="Search topics, lessons..." value={search} onChange={event => setSearch(event.target.value)} />{search && <div>{modes.filter(item => `${item.label} ${item.subtitle}`.toLowerCase().includes(search.toLowerCase())).map(item => <button key={item.id} onClick={() => { setMode(item.id); setSearch(""); }}>{item.label}<small>{item.subtitle}</small></button>)}{!modes.some(item => `${item.label} ${item.subtitle}`.toLowerCase().includes(search.toLowerCase())) && <p>No matching triangle topics.</p>}</div>}</div>
+      <TriangleReferenceHero />
       <TriangleModeTabs modes={modes} mode={mode} onChange={setMode} />
-      <p className="tri-goal">{GOALS[mode]}</p>
+      <span className="tri-learn-ribbon" data-lab-pane="workspace">◇ &nbsp; Learn &nbsp; • &nbsp; Practice &nbsp; • &nbsp; Apply &nbsp; • &nbsp; Master</span>
+      <div className="tri-goal-bar"><p className="tri-goal"><Target />{GOALS[mode]}</p><div className="tri-goal-actions"><button onClick={() => setHelp(!help)} aria-expanded={help}><Info />How to use</button><button aria-label="Undo triangle change" onClick={() => model?.ledger.undo()}><Undo2 /></button><button aria-label="Redo triangle change" onClick={() => model?.ledger.redo()}><Redo2 /></button><button onClick={() => window.dispatchEvent(new CustomEvent("triangles-reset", { detail: mode }))}><RotateCcw />Reset</button></div></div>
+      {help && <div className="tri-help" role="status">Drag a labeled vertex to change the construction. Choose a triangle type or theorem on the left; measurements update on the right. Use Move to drag, Measure to select two points, or Angle to select three points with the angle vertex in the middle. Open advanced controls for exact inputs and the challenge for feedback.</div>}
       {mode === "explorer" ? <TriangleExplorerLab pulse={pulse} /> : null}
       {mode === "congruence" ? <CongruenceLab pulse={pulse} /> : null}
       {mode === "similarity" ? <SimilarityLab pulse={pulse} /> : null}
@@ -84,7 +94,13 @@ export default function TrianglesLab({ page }: { page: StudioMockupPage }) {
           title: item.title,
           text: item.text,
           active: pulse === item.action,
-          onClick: () => setPulse(item.action),
+          onClick: () => {
+            setPulse(item.action);
+            if (item.action === "challenge" || item.action === "why") requestAnimationFrame(() => {
+              const element = document.querySelector<HTMLDetailsElement>(item.action === "challenge" ? ".tri-more-challenge" : ".tri-more-formula");
+              if (element) { element.open = true; element.scrollIntoView({ block: "nearest", behavior: "smooth" }); }
+            });
+          },
         }))}
       />
     </GeometryLabShell>

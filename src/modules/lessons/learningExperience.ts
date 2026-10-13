@@ -3,11 +3,12 @@ import { lessonCatalog } from "./catalog/lessonCatalog";
 import { schoolLessonCatalog } from "./catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "./syllabus/lessonSyllabusTypes";
 import type { LessonDefinition } from "./types";
+import { unifiedLessons } from './catalog/unified/unifiedLessons';
 
 export type LearningLessonRef =
   | { kind: "interactive"; id: number; title: string; route: string; topic: string; level: string; summary: string; minutes: number }
   | { kind: "school"; id: number; title: string; route: string; topic: string; level: string; summary: string; minutes: number }
-  | { kind: "advanced"; id: number; title: string; route: string; topic: string; level: string; summary: string; minutes: number };
+  | { kind: "advanced" | "authored"; id: number; title: string; route: string; topic: string; level: string; summary: string; minutes: number };
 
 export type LearningSubtopic = {
   slug: string;
@@ -221,19 +222,16 @@ export function getFeaturedLesson() {
 
 export function getLessonTotals() {
   return {
-    total: lessonCatalog.length + schoolLessonCatalog.length + advancedConceptLessons.length,
+    total: unifiedLessons.length,
     interactive: lessonCatalog.length,
     school: schoolLessonCatalog.length,
     advanced: advancedConceptLessons.length,
+    drafted: unifiedLessons.filter(l=>l.kind==='authored').length,
   };
 }
 
 export function allLearningLessonRefs() {
-  return [
-    ...lessonCatalog.map(refFromInteractive),
-    ...schoolLessonCatalog.map(refFromSchool),
-    ...advancedConceptLessons.map(refFromAdvanced),
-  ];
+  return unifiedLessons as LearningLessonRef[];
 }
 
 function findLessonsFor(topic: TopicSeed, matchTerms: string[]) {
@@ -241,6 +239,7 @@ function findLessonsFor(topic: TopicSeed, matchTerms: string[]) {
     ...lessonCatalog.filter((lesson) => topic.categories.includes(lesson.category) || topicMatches(lesson.topic, matchTerms) || topicMatches(lesson.title, matchTerms)).map(refFromInteractive),
     ...schoolLessonCatalog.filter((lesson) => topic.schoolFamilies.includes(lesson.metadata.conceptFamily) || topicMatches(lesson.title, matchTerms) || topicMatches(lesson.metadata.searchKeywords.join(" "), matchTerms)).map(refFromSchool),
     ...advancedConceptLessons.filter((lesson) => topic.advancedStrands.includes(lesson.strand) || topicMatches(lesson.title, matchTerms) || topicMatches(lesson.searchKeywords.join(" "), matchTerms)).map(refFromAdvanced),
+    ...unifiedLessons.filter(l=>l.kind==='authored'&&(topicMatches(l.title,matchTerms)||topicMatches(l.topic,matchTerms))) as LearningLessonRef[],
   ];
   return dedupeByRoute(matches)
     .sort((a, b) => lessonMatchScore(b, matchTerms) - lessonMatchScore(a, matchTerms) || a.title.localeCompare(b.title))

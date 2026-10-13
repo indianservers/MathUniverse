@@ -1,8 +1,9 @@
-import { useLayoutEffect, useRef } from 'react';
+import { Suspense, useLayoutEffect, useRef } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { studioForPath, curriculumStudios } from './curriculumCatalog';
 import { useStudioModel } from '../phase1/StudioModelProvider';
 import FocusedLab from './FocusedLab';
+import LabUnderstanding from '../learning-guides/LabUnderstanding';
 import { useSetTheoryStore } from '../../modules/set-theory/setTheoryStore';
 import { useGraphTheoryStore } from '../../modules/graph-theory/graphTheoryStore';
 import './studioLearning.css';
@@ -30,7 +31,8 @@ export default function StudioLearningOutlet(){
   const studio=studioForPath(pathname)||curriculumStudios.find(s=>s.id===curriculumId);
   if(!studio)return <Outlet/>;
   const lab=pathname.replace(/\/$/,'')!==studio.base&&!pathname.startsWith('/studios/');
-  return <div className="studio-learning-host" data-mobile-first data-studio-home={pathname.replace(/\/$/,'') === studio.base ? studio.id : undefined}><StoreBridge id={studio.id}/><nav className="studio-learning-nav" aria-label="Studio learning and model controls"><Link to={studio.base}>Studio Home</Link><Link to={`/studios/${studio.id}/curriculum`}>Lessons & Practice</Link><Link to={`/studios/${studio.id}/labs`}>Interactive Investigations</Link><Link to="/">App Home</Link>{studio.id==='complex-numbers'?<details><summary>Studio navigation</summary><div><Link to={studio.base}>Studio Home</Link><Link to={`/studios/${studio.id}/curriculum`}>Lessons &amp; Practice</Link><Link to={`/studios/${studio.id}/labs`}>Interactive Investigations</Link><Link to="/">App Home</Link></div></details>:null}</nav><div className="studio-learning-content">{lab?<FocusedLab key={pathname}><Outlet/></FocusedLab>:<Outlet/>}</div></div>;
+  const hasGuide=!pathname.endsWith('/labs')&&!pathname.includes('/curriculum');
+  return <div className="studio-learning-host" data-mobile-first data-studio-home={pathname.replace(/\/$/,'') === studio.base ? studio.id : undefined}><StoreBridge id={studio.id}/><nav className="studio-learning-nav" aria-label="Studio learning and model controls"><Link to={studio.base}>Studio Home</Link><Link to={`/studios/${studio.id}/curriculum`}>Lessons & Practice</Link><Link to={`/studios/${studio.id}/labs`}>Interactive Investigations</Link><Link to="/">App Home</Link>{hasGuide&&<button type="button" onClick={()=>document.getElementById("lab-understanding")?.scrollIntoView({block:"start"})}>Compare &amp; learn</button>}{studio.id==='complex-numbers'?<details><summary>Studio navigation</summary><div><Link to={studio.base}>Studio Home</Link><Link to={`/studios/${studio.id}/curriculum`}>Lessons &amp; Practice</Link><Link to={`/studios/${studio.id}/labs`}>Interactive Investigations</Link><Link to="/">App Home</Link></div></details>:null}</nav><div className="studio-learning-content">{lab?<FocusedLab key={pathname}><Suspense fallback={<p role="status">Loading the interactive workspace… The theory and worked examples are available below.</p>}><Outlet/></Suspense></FocusedLab>:<Outlet/>}<LabUnderstanding studioId={studio.id}/></div></div>;
 }
 
 

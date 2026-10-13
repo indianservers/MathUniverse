@@ -6,8 +6,8 @@
   min-height: 854px;
   margin: auto;
   padding: 0 16px 14px;
-  color: #e3edff;
-  background: #031328;
+  color: var(--lesson-ink,#e3edff);
+  background: var(--lesson-surface,#031328);
   font:
     13px/1.45 Inter,
     Arial,
@@ -18,9 +18,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .mtc10106-page * {
   box-sizing: border-box;
 }
@@ -41,12 +41,12 @@
   position: relative;
   height: 150px;
   padding: 23px 18px;
-  border: 1px solid #263f59;
+  border: 1px solid var(--lesson-border,#263f59);
   border-radius: 12px;
-  background: linear-gradient(110deg, #061e37, #031328);
+  background: linear-gradient(110deg, var(--lesson-surface,#061e37), var(--lesson-surface,#031328));
 }
 .mtc10106-hero small {
-  color: #27dce2;
+  color: var(--lesson-accent,#27dce2);
   font-weight: 900;
   letter-spacing: 1.4px;
 }
@@ -65,9 +65,9 @@
   align-items: center;
   gap: 7px;
   padding: 9px 15px;
-  border: 1px solid #314b65;
+  border: 1px solid var(--lesson-border,#314b65);
   border-radius: 8px;
-  background: #06172b;
+  background: var(--lesson-surface,#06172b);
 }
 .mtc10106-workspace {
   display: grid;
@@ -80,12 +80,12 @@
   min-width: 0;
   margin-top: 0;
   padding: 14px;
-  border: 1px solid #263f59;
+  border: 1px solid var(--lesson-border,#263f59);
   border-radius: 9px;
-  background: #05182e;
+  background: var(--lesson-surface,#05182e);
 }
 .mtc10106-page h2 {
-  color: #2bdde3;
+  color: var(--lesson-accent,#2bdde3);
   font-size: 14px;
 }
 .mtc10106-total {
@@ -99,7 +99,7 @@
   padding: 5px 20px;
   border: 1px solid #1ba3be;
   border-radius: 7px;
-  color: #2de3e8;
+  color: var(--lesson-accent,#2de3e8);
   font-size: 23px;
   text-align: center;
 }
@@ -115,7 +115,7 @@
 .mtc10106-table-card td {
   height: 44px;
   padding: 4px;
-  border: 1px solid #314b64;
+  border: 1px solid var(--lesson-border,#314b64);
 }
 .mtc10106-table-card th {
   font-size: 11px;
@@ -126,15 +126,15 @@
 }
 .mtc10106-table-card td strong {
   display: block;
-  color: #29e0e6;
+  color: var(--lesson-accent,#29e0e6);
   font-size: 19px;
 }
 .mtc10106-frequency {
   min-width: 68px;
   padding: 6px;
-  border: 1px solid #3d728f;
+  border: 1px solid var(--lesson-border,#3d728f);
   border-radius: 6px;
-  background: #06182d;
+  background: var(--lesson-surface,#06182d);
   cursor: ns-resize;
   touch-action: none;
 }
@@ -187,7 +187,7 @@
   margin-top: 7px;
 }
 .mtc10106-chart-card svg line {
-  stroke: #7690a5;
+  stroke: var(--lesson-muted,#7690a5);
 }
 .mtc10106-chart-card .grid line {
   stroke: #28455e;
@@ -195,24 +195,24 @@
 }
 .mtc10106-chart-card path {
   fill: rgba(26, 198, 207, 0.12);
-  stroke: #2bdde3;
+  stroke: var(--lesson-accent,#2bdde3);
   stroke-width: 2;
 }
 .mtc10106-chart-card circle {
-  fill: #2be1e5;
+  fill: var(--lesson-accent,#2be1e5);
 }
 .mtc10106-chart-card text {
-  fill: #e4efff;
+  fill: var(--lesson-ink,#e4efff);
   font-size: 11px;
 }
 .mtc10106-chart-card g text:first-of-type {
-  fill: #31e2e7;
+  fill: var(--lesson-accent,#31e2e7);
   font-weight: 900;
   font-size: 14px;
 }
 .mtc10106-chart-card footer {
   padding: 9px;
-  border: 1px solid #365068;
+  border: 1px solid var(--lesson-border,#365068);
   border-radius: 7px;
 }
 .mtc10106-chart-card footer p + p {
@@ -227,7 +227,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #ffb740;
+  color: var(--lesson-highlight,#ffb740);
 }
 .mtc10106-warning h2 svg {
   width: 34px;
@@ -244,13 +244,13 @@
 .mtc10106-warning th,
 .mtc10106-warning td {
   padding: 6px;
-  border: 1px solid #304963;
+  border: 1px solid var(--lesson-border,#304963);
 }
 .mtc10106-rule strong {
   display: block;
   margin: 10px 0;
   padding: 12px;
-  border: 1px solid #5a738d;
+  border: 1px solid var(--lesson-border,#5a738d);
   border-radius: 7px;
   font:
     italic 22px Georgia,
@@ -267,9 +267,9 @@
   align-items: center;
   gap: 8px;
   padding: 9px 14px;
-  border: 1px solid #314b65;
+  border: 1px solid var(--lesson-border,#314b65);
   border-radius: 7px;
-  background: #06172b;
+  background: var(--lesson-surface,#06172b);
 }
 @media (max-width: 900px) {
   .mtc10106-page {

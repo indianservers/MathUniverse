@@ -1,3 +1,4 @@
+import BernoulliDashboard from "../studios/differential-equations/BernoulliDashboard";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -143,6 +144,8 @@ export default function DifferentialEquations() {
     setQuery("");
     navigate(differentialEquationRouteFor(item.id));
   };
+
+  if (page.id === "bernoulli") return <BernoulliDashboard />;
 
   return (
     <main className={`de-studio${compact ? " de-compact" : ""}${phase1 ? ` de-phase1-shell${phase2Ids.has(page.id) ? " de-phase2-shell" : ""}${navExpanded ? " de-phase1-expanded" : ""}` : ""}`}>

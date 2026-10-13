@@ -1,3 +1,4 @@
+import { PosetsStudioSidebar } from "../studios/algebraic-structures/PosetsLatticesDashboard";
 import CinematicHero from "../studios/heroes/CinematicHero";
 import GroupsRingsFieldsLab from '../studios/algebraic-structures/GroupsRingsFieldsLab';
 import { Link, useLocation } from "react-router-dom";
@@ -65,9 +66,10 @@ export default function AlgebraicStructuresStudio({ page = "home" }: { page?: Al
 
   return (
     <main className="alg-studio as-studio">
-      <AlgebraStudioNav page="structures" pathname={location.pathname} />
+      {page === "boolean-algebra" || page === "groups-rings-fields" ? null : page === "posets-lattices" ? <PosetsStudioSidebar /> : <AlgebraStudioNav page="structures" pathname={location.pathname} />}
       <section className="alg-stage" data-testid="algebraic-structures-stage">
         <div className="as-lab">
+          {page !== "posets-lattices" && page !== "boolean-algebra" && page !== "groups-rings-fields" ? <>
           {page !== "home" ? <StudioHomeButtons studioTo="/algebraic-structures" /> : null}
           {page === "home" ? <CinematicHero id="structures"><AlgebraLabHeading labId="structures" subtitle={meta.subtitle} onReset={() => window.dispatchEvent(new Event("as-lab-reset"))}>{meta.title}</AlgebraLabHeading></CinematicHero> : <AlgebraLabHeading labId="structures" subtitle={meta.subtitle} onReset={() => window.dispatchEvent(new Event("as-lab-reset"))}>{meta.title}</AlgebraLabHeading>}
           <header className="as-head">
@@ -84,6 +86,7 @@ export default function AlgebraicStructuresStudio({ page = "home" }: { page?: Al
             <b>{meta.title}</b>
             <small>{meta.subtitle}</small>
           </div>
+          </> : null}
           {page === "groups-rings-fields" ? <GroupsRingsFieldsLab /> : null}
           {page === "home" ? <StructuresHome /> : null}
           {page === "structure-test" ? <StructureTestLab /> : null}

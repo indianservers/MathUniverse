@@ -4,7 +4,7 @@
   left: 9px;
   width: min(1347px, calc(100vw - 333px));
   margin: auto;
-  color: #dcecff;
+  color: var(--lesson-ink,#dcecff);
   font:
     14px/1.45 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 52px 0 0 286px;
-  background: #03142a;
+  background: var(--lesson-surface,#03142a);
   content: "";
-}
+display:none;}
 .gma10103-page * {
   box-sizing: border-box;
 }
@@ -42,12 +42,12 @@
   justify-content: space-between;
   height: 156px;
   padding: 20px 22px;
-  border: 1px solid #27435e;
+  border: 1px solid var(--lesson-border,#27435e);
   border-radius: 20px 20px 0 0;
-  background: linear-gradient(120deg, #06203a, #03142a);
+  background: linear-gradient(120deg, var(--lesson-surface,#06203a), var(--lesson-surface,#03142a));
 }
 .gma10103-hero small {
-  color: #24dce1;
+  color: var(--lesson-accent,#24dce1);
   font-weight: 900;
   letter-spacing: 1.4px;
 }
@@ -63,7 +63,7 @@
 .gma10103-hero nav span {
   padding: 6px 14px;
   border-radius: 8px;
-  background: #142a42;
+  background: var(--lesson-surface,#142a42);
   font-weight: 800;
 }
 .gma10103-hero > button {
@@ -71,25 +71,25 @@
   align-items: center;
   gap: 6px;
   padding: 9px 14px;
-  border: 1px solid #42627c;
+  border: 1px solid var(--lesson-border,#42627c);
   border-radius: 8px;
-  background: #071a2f;
+  background: var(--lesson-surface,#071a2f);
   font-weight: 800;
 }
 .gma10103-page > main {
   display: grid;
   grid-template-columns: 45% 55%;
   height: 500px;
-  border: 1px solid #27435e;
+  border: 1px solid var(--lesson-border,#27435e);
   border-top: 0;
-  background: #04162b;
+  background: var(--lesson-surface,#04162b);
 }
 .gma10103-workbench {
   padding: 14px;
-  border-right: 1px solid #27435e;
+  border-right: 1px solid var(--lesson-border,#27435e);
 }
 .gma10103-page h2 {
-  color: #25dbe0;
+  color: var(--lesson-accent,#25dbe0);
   font-size: 14px;
 }
 .gma10103-page h2 b {
@@ -118,21 +118,21 @@
 .gma10103-workbench td {
   height: 43px;
   padding: 5px;
-  border: 1px solid #2b4862;
+  border: 1px solid var(--lesson-border,#2b4862);
 }
 .gma10103-workbench input {
   width: 52px;
   padding: 5px;
-  border: 1px solid #49647d;
+  border: 1px solid var(--lesson-border,#49647d);
   border-radius: 5px;
-  background: #07192e;
+  background: var(--lesson-surface,#07192e);
   text-align: center;
 }
 .gma10103-workbench td:nth-child(2) input {
   width: 62px;
 }
 .gma10103-workbench td strong {
-  color: #21dce0;
+  color: var(--lesson-accent,#21dce0);
 }
 .gma10103-page .negative {
   color: #ff5b29;
@@ -141,7 +141,7 @@
   color: #7ddb56;
 }
 .gma10103-page .zero {
-  color: #eef6ff;
+  color: var(--lesson-ink,#eef6ff);
 }
 .gma10103-workbench > aside {
   display: flex;
@@ -149,17 +149,17 @@
   gap: 12px;
   margin-top: 18px;
   padding: 14px;
-  border: 1px solid #294762;
+  border: 1px solid var(--lesson-border,#294762);
   border-radius: 8px;
 }
 .gma10103-workbench > aside svg,
 .gma10103-workbench > aside strong {
-  color: #ffd538;
+  color: var(--lesson-highlight,#ffd538);
 }
 .gma10103-model > article {
   height: 285px;
   padding: 14px;
-  border-bottom: 1px solid #27435e;
+  border-bottom: 1px solid var(--lesson-border,#27435e);
 }
 .gma10103-model article > header {
   display: flex;
@@ -177,17 +177,17 @@
 .gma10103-model header input {
   width: 70px;
   padding: 4px;
-  border: 1px solid #42617d;
+  border: 1px solid var(--lesson-border,#42617d);
   border-radius: 5px;
-  background: #081b31;
+  background: var(--lesson-surface,#081b31);
 }
 .gma10103-model header button,
 .gma10103-model header > div > strong {
   display: grid;
   width: 42px;
   height: 35px;
-  border: 1px solid #34516d;
-  background: #0b2037;
+  border: 1px solid var(--lesson-border,#34516d);
+  background: var(--lesson-surface,#0b2037);
   place-items: center;
 }
 .gma10103-model header > div > strong {
@@ -201,19 +201,19 @@
 }
 .gma10103-model svg .axis,
 .gma10103-model svg line {
-  stroke: #dcecff;
+  stroke: var(--lesson-ink,#dcecff);
   stroke-width: 1;
 }
 .gma10103-model svg text {
-  fill: #dcecff;
+  fill: var(--lesson-ink,#dcecff);
   font-size: 12px;
 }
 .gma10103-model svg circle {
-  fill: #1ecfd2;
+  fill: var(--lesson-accent,#1ecfd2);
 }
 .gma10103-model svg path {
   fill: none;
-  stroke: #c8d8e8;
+  stroke: var(--lesson-ink,#c8d8e8);
   stroke-width: 1.5;
 }
 .gma10103-model svg path.negative {
@@ -230,7 +230,7 @@
 }
 .gma10103-model svg .assumed-marker {
   fill: #7136b7;
-  stroke: #d9b6ff;
+  stroke: var(--lesson-ink,#d9b6ff);
   stroke-width: 3;
   cursor: ew-resize;
 }
@@ -259,7 +259,7 @@
 }
 .gma10103-result > div > strong {
   display: block;
-  color: #20dfe2;
+  color: var(--lesson-accent,#20dfe2);
   font:
     italic 28px Georgia,
     serif;
@@ -268,12 +268,12 @@
 .gma10103-result > aside {
   display: grid;
   padding: 18px;
-  border: 1px solid #3d5871;
+  border: 1px solid var(--lesson-border,#3d5871);
   border-radius: 18px;
-  background: #071a30;
+  background: var(--lesson-surface,#071a30);
 }
 .gma10103-result > aside > strong {
-  color: #28cbd0;
+  color: var(--lesson-accent,#28cbd0);
   font-size: 31px;
 }
 .gma10103-result > aside > b {
@@ -290,8 +290,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 18px;
-  border: 1px solid #294762;
-  color: #dcecff;
+  border: 1px solid var(--lesson-border,#294762);
+  color: var(--lesson-ink,#dcecff);
   text-decoration: none;
   font-weight: 800;
 }
@@ -299,9 +299,9 @@
   height: 110px;
   margin-top: 14px;
   padding: 14px 20px;
-  border: 1px solid #294762;
+  border: 1px solid var(--lesson-border,#294762);
   border-radius: 0 0 18px 18px;
-  background: #04162b;
+  background: var(--lesson-surface,#04162b);
 }
 .gma10103-footer > div {
   display: flex;
@@ -311,12 +311,12 @@
   display: grid;
 }
 .gma10103-footer > div svg {
-  color: #27d5d9;
+  color: var(--lesson-accent,#27d5d9);
 }
 .gma10103-footer > p {
   margin-top: 18px !important;
   padding-top: 10px;
-  border-top: 1px solid #27435e;
+  border-top: 1px solid var(--lesson-border,#27435e);
   font-size: 11px;
 }
 @media (max-width: 900px) {
@@ -328,7 +328,7 @@
   }
   .gma10103-page:before {
     inset: 0;
-    background: #03142a;
+    background: var(--lesson-surface,#03142a);
   }
   .gma10103-hero {
     height: auto;
@@ -350,7 +350,7 @@
   }
   .gma10103-workbench {
     border-right: 0;
-    border-bottom: 1px solid #27435e;
+    border-bottom: 1px solid var(--lesson-border,#27435e);
   }
   .gma10103-workbench > div {
     overflow-x: auto;

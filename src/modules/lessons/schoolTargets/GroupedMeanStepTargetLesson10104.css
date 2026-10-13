@@ -4,7 +4,7 @@
   left: 20px;
   width: min(1312px, calc(100vw - 368px));
   margin: auto;
-  color: #dcecff;
+  color: var(--lesson-ink,#dcecff);
   font:
     14px/1.45 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 70px 0 0 305px;
-  background: #03142a;
+  background: var(--lesson-surface,#03142a);
   content: "";
-}
+display:none;}
 .gms10104-page * {
   box-sizing: border-box;
 }
@@ -39,12 +39,12 @@
 .gms10104-hero {
   height: 167px;
   padding: 22px 18px;
-  border: 1px solid #25435e;
+  border: 1px solid var(--lesson-border,#25435e);
   border-radius: 12px;
-  background: linear-gradient(120deg, #06203a, #03142a);
+  background: linear-gradient(120deg, var(--lesson-surface,#06203a), var(--lesson-surface,#03142a));
 }
 .gms10104-hero small {
-  color: #25dfe4;
+  color: var(--lesson-accent,#25dfe4);
   font-weight: 900;
   letter-spacing: 1.5px;
 }
@@ -59,7 +59,7 @@
 }
 .gms10104-hero nav span {
   padding: 6px 14px;
-  border: 1px solid #274761;
+  border: 1px solid var(--lesson-border,#274761);
   border-radius: 18px;
   font-weight: 800;
 }
@@ -72,9 +72,9 @@
 }
 .gms10104-lab,
 .gms10104-side > article {
-  border: 1px solid #25435e;
+  border: 1px solid var(--lesson-border,#25435e);
   border-radius: 10px;
-  background: #04172d;
+  background: var(--lesson-surface,#04172d);
 }
 .gms10104-lab {
   padding: 17px;
@@ -84,7 +84,7 @@
   justify-content: space-between;
 }
 .gms10104-page h2 {
-  color: #24dce1;
+  color: var(--lesson-accent,#24dce1);
   font-size: 15px;
 }
 .gms10104-lab h2 {
@@ -105,9 +105,9 @@
   gap: 6px;
   height: 38px;
   padding: 8px;
-  border: 1px solid #2b7797;
+  border: 1px solid var(--lesson-border,#2b7797);
   border-radius: 7px;
-  background: #071b31;
+  background: var(--lesson-surface,#071b31);
 }
 .gms10104-table {
   margin-top: 18px;
@@ -122,17 +122,17 @@
 .gms10104-table td {
   height: 47px;
   padding: 5px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
 }
 .gms10104-table th {
-  color: #42d7e2;
+  color: var(--lesson-accent,#42d7e2);
 }
 .gms10104-table input {
   width: 60px;
   padding: 6px;
-  border: 1px solid #3e5870;
+  border: 1px solid var(--lesson-border,#3e5870);
   border-radius: 5px;
-  background: #0a1e35;
+  background: var(--lesson-surface,#0a1e35);
   text-align: center;
 }
 .gms10104-table td:nth-child(2) input,
@@ -140,39 +140,39 @@
   width: 92px;
 }
 .gms10104-table .negative {
-  color: #52d6ab;
+  color: var(--lesson-accent,#52d6ab);
 }
 .gms10104-table .positive {
   color: #62dc91;
 }
 .gms10104-table tfoot b {
-  color: #2ce0e1;
+  color: var(--lesson-accent,#2ce0e1);
   font-size: 18px;
 }
 .gms10104-lab > footer {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
   margin-top: 20px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
   border-radius: 8px;
 }
 .gms10104-lab > footer > * {
   padding: 12px;
-  border-right: 1px solid #29455e;
+  border-right: 1px solid var(--lesson-border,#29455e);
 }
 .gms10104-lab > footer > *:last-child {
   border: 0;
 }
 .gms10104-lab > footer label {
   display: grid;
-  color: #9bc4e2;
+  color: var(--lesson-ink,#9bc4e2);
 }
 .gms10104-lab > footer input {
   width: 100%;
   margin-top: 6px;
   padding: 8px;
   border: 0;
-  background: #071b31;
+  background: var(--lesson-surface,#071b31);
   text-align: center;
 }
 .gms10104-lab > footer > strong {
@@ -191,7 +191,7 @@
   padding: 14px;
 }
 .gms10104-line h2 {
-  color: #dcecff;
+  color: var(--lesson-ink,#dcecff);
 }
 .gms10104-line h2 small {
   font-weight: 400;
@@ -202,20 +202,20 @@
   height: 80px;
 }
 .gms10104-line svg line {
-  stroke: #dcecff;
+  stroke: var(--lesson-ink,#dcecff);
   stroke-width: 1.5;
 }
 .gms10104-line svg circle {
-  fill: #138bd7;
-  stroke: #54d9ed;
+  fill: var(--lesson-accent,#138bd7);
+  stroke: var(--lesson-accent,#54d9ed);
   stroke-width: 2;
 }
 .gms10104-line svg text {
-  fill: #dcecff;
+  fill: var(--lesson-ink,#dcecff);
   font-size: 12px;
 }
 .gms10104-line svg .gms10104-marker {
-  fill: #e2a80b;
+  fill: var(--lesson-highlight,#e2a80b);
   stroke: #ffe67a;
   cursor: ew-resize;
 }
@@ -225,7 +225,7 @@
   outline: 0;
 }
 .gms10104-summary h2 {
-  color: #25dce1;
+  color: var(--lesson-accent,#25dce1);
 }
 .gms10104-summary > div {
   display: grid;
@@ -235,7 +235,7 @@
 }
 .gms10104-summary span {
   display: grid;
-  border-right: 1px solid #39536c;
+  border-right: 1px solid var(--lesson-border,#39536c);
   font:
     italic 18px Georgia,
     serif;
@@ -244,7 +244,7 @@
   border: 0;
 }
 .gms10104-summary b {
-  color: #22d9da;
+  color: var(--lesson-accent,#22d9da);
   font:
     normal 25px Inter,
     Arial;
@@ -274,33 +274,33 @@
 .gms10104-detector aside {
   margin-top: 12px;
   padding: 10px;
-  border: 1px solid #314c66;
+  border: 1px solid var(--lesson-border,#314c66);
   border-radius: 7px;
 }
 .gms10104-detector aside strong {
   display: block;
-  color: #55cceb;
+  color: var(--lesson-accent,#55cceb);
 }
 .gms10104-detector.valid {
-  border-color: #268b6c;
+  border-color: var(--lesson-border,#268b6c);
 }
 .gms10104-detector.valid > svg,
 .gms10104-detector.valid h2 {
-  color: #54d997;
+  color: var(--lesson-accent,#54d997);
 }
 .gms10104-detector.valid header b {
-  background: #123d37;
-  color: #73e6aa;
+  background: var(--lesson-surface,#123d37);
+  color: var(--lesson-accent,#73e6aa);
 }
 .gms10104-detector.invalid {
-  border-color: #9b3844;
+  border-color: var(--lesson-border,#9b3844);
 }
 .gms10104-detector.invalid > svg,
 .gms10104-detector.invalid h2 {
-  color: #ffbf3a;
+  color: var(--lesson-highlight,#ffbf3a);
 }
 .gms10104-detector.invalid header b {
-  background: #481f29;
+  background: var(--lesson-surface,#481f29);
   color: #ff8585;
 }
 .gms10104-why {
@@ -308,7 +308,7 @@
   gap: 12px;
 }
 .gms10104-why > svg {
-  color: #2bd8e0;
+  color: var(--lesson-accent,#2bd8e0);
 }
 .gms10104-why p {
   margin-top: 6px;
@@ -322,7 +322,7 @@
   }
   .gms10104-page:before {
     inset: 0;
-    background: #03142a;
+    background: var(--lesson-surface,#03142a);
   }
   .gms10104-hero {
     height: auto;

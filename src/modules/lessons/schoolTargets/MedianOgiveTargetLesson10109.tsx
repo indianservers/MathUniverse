@@ -1,3 +1,4 @@
+import GroupedDataEditor from "../components/GroupedDataEditor";
 import { CheckCircle2, GripVertical, RotateCcw } from "lucide-react";
 import { type PointerEvent, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
@@ -5,7 +6,7 @@ import "./MedianOgiveTargetLesson10109.css";
 import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
 const defaults = [5, 9, 12, 15, 7, 2];
-const bounds = [0, 10, 20, 30, 40, 50, 60];
+const defaultBounds = [0, 10, 20, 30, 40, 50, 60];
 const r2 = (value: number) => Number(value.toFixed(2));
 
 export default function MedianOgiveTargetLesson10109({
@@ -13,6 +14,7 @@ export default function MedianOgiveTargetLesson10109({
 }: {
   lesson: SchoolSyllabusLesson;
 }) {
+  const [bounds,setBounds] = useState(defaultBounds);
   const [frequencies, setFrequencies] = useState(defaults);
   const [showLess, setShowLess] = useState(true);
   const [showMore, setShowMore] = useState(true);
@@ -39,7 +41,7 @@ export default function MedianOgiveTargetLesson10109({
   const median = r2(
     lower + ((half - cumulativeBefore) / Math.max(1, medianFrequency)) * width,
   );
-  const sx = (x: number) => 45 + (x / 60) * 455;
+  const sx = (x: number) => 45 + ((x-bounds[0]) / (bounds.at(-1)!-bounds[0])) * 455;
   const sy = (value: number) => 260 - (value / Math.max(60, total)) * 220;
   const lessPath = less
     .map(
@@ -59,7 +61,7 @@ export default function MedianOgiveTargetLesson10109({
     setFrequencies((current) =>
       current.map((item, itemIndex) =>
         itemIndex === index
-          ? Math.max(1, Math.min(30, Math.round(value)))
+          ? Math.max(0, Math.min(1000000, Math.round(value)))
           : item,
       ),
     );
@@ -73,6 +75,7 @@ export default function MedianOgiveTargetLesson10109({
   const reset = () =>
     act(() => {
       setFrequencies(defaults);
+      setBounds(defaultBounds);
       setShowLess(true);
       setShowMore(true);
       setDragging(null);
@@ -117,6 +120,7 @@ export default function MedianOgiveTargetLesson10109({
           </p>
         </aside>
       </header>
+      <GroupedDataEditor data={{bounds,frequencies}} defaults={{bounds:defaultBounds,frequencies:defaults}} onChange={data=>act(()=>{setBounds(data.bounds);setFrequencies(data.frequencies);})}/>
       <main className="med10109-workspace">
         <section className="med10109-data">
           <h2>
@@ -142,8 +146,8 @@ export default function MedianOgiveTargetLesson10109({
                       role="slider"
                       tabIndex={0}
                       aria-label={`Frequency row ${index + 1}`}
-                      aria-valuemin="1"
-                      aria-valuemax="30"
+                      aria-valuemin={0}
+                      aria-valuemax={1000000}
                       aria-valuenow={frequency}
                       onPointerDown={(event) => {
                         event.currentTarget.setPointerCapture(event.pointerId);
@@ -170,7 +174,7 @@ export default function MedianOgiveTargetLesson10109({
                     </div>
                   </td>
                   <td>{less[index + 1]}</td>
-                  <td>{more[index + 1]}</td>
+                  <td>{more[index]}</td>
                 </tr>
               ))}
             </tbody>
@@ -183,7 +187,7 @@ export default function MedianOgiveTargetLesson10109({
               </tr>
             </tfoot>
           </table>
-          <p>Edit frequencies by dragging the values or using arrow keys.</p>
+          <p>Type your data above, or drag frequencies here. More-than cumulative frequency is shown at the lower boundary.</p>
           <aside>
             <b>N = {total}</b>
             <strong>⇒</strong>
@@ -226,7 +230,7 @@ export default function MedianOgiveTargetLesson10109({
             aria-label="Dual ogive median construction"
           >
             <g className="grid">
-              {[0, 10, 20, 30, 40, 50, 60].map((value) => (
+              {Array.from({length:7},(_,i)=>Number((i*Math.max(60,total)/6).toFixed(2))).map((value) => (
                 <line
                   key={value}
                   x1="45"

@@ -3,8 +3,8 @@
   top: 20px;
   width: min(1292px, calc(100vw - 373px));
   margin: 0 0 0 32px;
-  color: #edf3fb;
-  background: #03152a;
+  color: var(--lesson-ink,#edf3fb);
+  background: var(--lesson-surface,#03152a);
   font:
     12px/1.42 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #03152a;
+  background: var(--lesson-surface,#03152a);
   content: "";
-}
+display:none;}
 .pi10139-page * {
   box-sizing: border-box;
 }
@@ -32,7 +32,7 @@
 }
 .pi10139-page h2,
 .pi10139-page > header small {
-  color: #41d8e4;
+  color: var(--lesson-accent,#41d8e4);
   font-weight: 900;
 }
 .pi10139-page h2 {
@@ -62,9 +62,9 @@
   align-items: center;
   gap: 7px;
   padding: 10px 14px;
-  border: 1px solid #49627a;
+  border: 1px solid var(--lesson-border,#49627a);
   border-radius: 7px;
-  background: #071a31;
+  background: var(--lesson-surface,#071a31);
 }
 .pi10139-page > header svg {
   width: 16px;
@@ -75,15 +75,15 @@
   gap: 16px;
 }
 .pi10139-page main section {
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 8px;
-  background: #071a31;
+  background: var(--lesson-surface,#071a31);
 }
 .pi10139-triangle {
   padding: 15px 10px 14px;
 }
 .pi10139-triangle h2 span {
-  color: #c3ccda;
+  color: var(--lesson-ink,#c3ccda);
   font-weight: 400;
 }
 .pi10139-triangle .axis-head {
@@ -92,26 +92,26 @@
   align-items: end;
   margin-top: 12px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #41556b;
+  border-bottom: 1px solid var(--lesson-border,#41556b);
   text-align: center;
 }
 .pi10139-triangle .axis-head span {
   display: grid;
-  color: #5fe1e4;
+  color: var(--lesson-accent,#5fe1e4);
 }
 .pi10139-triangle .axis-head span b {
-  color: #edf3fb;
+  color: var(--lesson-ink,#edf3fb);
 }
 .pi10139-triangle .axis-head span i {
-  color: #5fe1e4;
+  color: var(--lesson-accent,#5fe1e4);
 }
 .pi10139-triangle .axis-head i {
-  color: #68e6e4;
+  color: var(--lesson-accent,#68e6e4);
   font-style: normal;
 }
 .triangle-grid {
   padding: 3px 0 14px;
-  border-left: 1px solid #41556b;
+  border-left: 1px solid var(--lesson-border,#41556b);
   margin-left: 58px;
 }
 .triangle-row {
@@ -144,7 +144,7 @@
   cursor: pointer;
 }
 .triangle-row button:enabled:hover {
-  background: #102c46;
+  background: var(--lesson-surface,#102c46);
 }
 .triangle-row button:disabled {
   opacity: 1;
@@ -156,17 +156,17 @@
 }
 .pi10139-page .left {
   border-color: #ad64ef;
-  background: #25184e;
+  background: var(--lesson-surface,#25184e);
 }
 .pi10139-page .right {
   border-color: #33aefa;
-  background: #0b294d;
+  background: var(--lesson-surface,#0b294d);
 }
 .pi10139-triangle .legend {
   display: flex;
   gap: 17px;
   padding: 10px 9px;
-  border: 1px solid #3d536c;
+  border: 1px solid var(--lesson-border,#3d536c);
   border-radius: 6px;
   font-size: 10px;
 }
@@ -184,7 +184,7 @@
 .pi10139-triangle .current {
   margin-top: 10px;
   padding: 11px;
-  border: 1px solid #354c65;
+  border: 1px solid var(--lesson-border,#354c65);
   border-radius: 6px;
 }
 .pi10139-right {
@@ -214,7 +214,7 @@
   text-align: center;
 }
 .equation article em {
-  color: #dce7fa;
+  color: var(--lesson-ink,#dce7fa);
 }
 .equation article b {
   font-size: 22px;
@@ -226,10 +226,10 @@
   display: flex;
   align-items: center;
   padding: 7px 10px;
-  border: 1px solid #218f77;
+  border: 1px solid var(--lesson-border,#218f77);
   border-radius: 6px;
-  background: #073a3e;
-  color: #66e7b0;
+  background: var(--lesson-surface,#073a3e);
+  color: var(--lesson-accent,#66e7b0);
   font-family: Georgia, serif;
   font-size: 14px;
 }
@@ -268,12 +268,12 @@
   color: #ca78f4;
 }
 .path-card.right {
-  color: #44bdfd;
+  color: var(--lesson-accent,#44bdfd);
 }
 .path-card span,
 .path-card em {
   margin-top: 5px;
-  color: #edf3fb;
+  color: var(--lesson-ink,#edf3fb);
   font-size: 12px;
 }
 .path-card svg {
@@ -283,7 +283,7 @@
   overflow: visible;
 }
 .path-card .node {
-  fill: #eef3fb;
+  fill: var(--lesson-ink,#eef3fb);
 }
 .path-card .path {
   fill: none;
@@ -292,7 +292,7 @@
   opacity: 0.68;
 }
 .path-card svg text {
-  fill: #edf3fb;
+  fill: var(--lesson-ink,#edf3fb);
   font-size: 9px;
   font-weight: 700;
 }
@@ -312,13 +312,13 @@
   font-size: 18px;
 }
 .total em {
-  color: #31d7d2;
+  color: var(--lesson-accent,#31d7d2);
   font-size: 25px;
 }
 .paths > footer {
   margin-top: 10px;
   padding: 9px;
-  border: 1px solid #3c5269;
+  border: 1px solid var(--lesson-border,#3c5269);
   border-radius: 6px;
   text-align: center;
 }
@@ -328,9 +328,9 @@
   gap: 12px;
   margin-top: 12px;
   padding: 11px 15px;
-  border: 1px solid #21a6a6;
+  border: 1px solid var(--lesson-border,#21a6a6);
   border-radius: 7px;
-  background: #06313c;
+  background: var(--lesson-surface,#06313c);
 }
 .identity svg {
   width: 30px;

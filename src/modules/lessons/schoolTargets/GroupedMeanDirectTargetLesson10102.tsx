@@ -39,6 +39,11 @@ export default function GroupedMeanDirectTargetLesson10102({
   const totalFrequency = enriched.reduce((sum, row) => sum + row.frequency, 0);
   const totalProduct = enriched.reduce((sum, row) => sum + row.product, 0);
   const mean = totalFrequency ? totalProduct / totalFrequency : 0;
+  const midpointAverage = enriched.length ? enriched.reduce((sum,row)=>sum+row.midpoint,0)/enriched.length : 0;
+  const applyScenario=(scenario:'original'|'equal'|'high')=>act(()=>{
+    setRows(initialRows.map((row,index)=>({...row,frequency:scenario==='equal'?8:scenario==='high'?[1,2,3,6,18][index]:row.frequency})));
+    setSelected(4);setCalculated(true);
+  });
   const selectedRow =
     enriched.find((row) => row.id === selected) ?? enriched[0];
   const maxProduct = Math.max(1, ...enriched.map((row) => row.product));
@@ -132,6 +137,12 @@ export default function GroupedMeanDirectTargetLesson10102({
           <RotateCcw /> Reset workbench
         </button>
       </header>
+      <section className="gmd10102-scenarios" aria-label="Frequency weighting scenarios">
+        <h2>Investigate frequency weighting</h2>
+        <p>Predict how the mean moves when higher classes become more frequent. Compare with equal frequencies.</p>
+        <div><button onClick={()=>applyScenario('original')}>Original dataset</button><button onClick={()=>applyScenario('equal')}>Equal frequencies</button><button onClick={()=>applyScenario('high')}>Higher values more frequent</button></div>
+        <p data-testid="grouped-mean-comparison">{totalFrequency>0?`Weighted mean: ${round(mean)} · Unweighted midpoint average: ${round(midpointAverage)} · Difference: ${round(mean-midpointAverage)}`:'A positive total frequency is needed to calculate the weighted mean.'}</p>
+      </section>
       <main>
         <section className="gmd10102-left">
           <div className="gmd10102-table">

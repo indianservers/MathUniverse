@@ -1,0 +1,37 @@
+export type LessonControl = { key: string; label: string; min: number; max: number; step: number; initial: number };
+export type AuthoredExample = { prompt: string; steps: string[]; answer: string };
+export type AuthoredPractice = AuthoredExample & { hint: string; expected: string; tolerance?: number };
+export type AuthoredLesson = {
+  lessonId: number;
+  title: string;
+  level: string;
+  chapter: string;
+  route: string;
+  sourceStatus: string;
+  sourceId: string;
+  sourceYear: string;
+  sourceUrl: string;
+  pdfPage: number | null;
+  kind: string;
+  batch: number;
+  summary: string;
+  prerequisites: string[];
+  objectives: string[];
+  sections: Array<{ heading: string; paragraphs: string[] }>;
+  formulas: Array<{ expression: string; meaning: string; restriction: string }>;
+  examples: AuthoredExample[];
+  practice: AuthoredPractice[];
+  memoryCue: string;
+  misconceptions: Array<{ mistake: string; correction: string }>;
+  interactive: { model: string; title: string; controls: LessonControl[]; prompts: string[]; limitations: string };
+  relatedLessonIds: number[];
+  reviewStatus: string;
+};
+export type LessonModelResult = {
+  heading: string;
+  formula: string;
+  steps: string[];
+  outputs: Array<{ label: string; value: string }>;
+  table?: { headers: string[]; rows: Array<Array<string | number>> };
+  plot?: { kind: string; values: number[]; labels?: string[] };
+};

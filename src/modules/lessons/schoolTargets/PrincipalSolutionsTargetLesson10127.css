@@ -3,8 +3,8 @@
   top: -8px;
   width: min(1360px, calc(100vw - 320px));
   margin: auto;
-  color: #e8eef8;
-  background: #031328;
+  color: var(--lesson-ink,#e8eef8);
+  background: var(--lesson-surface,#031328);
   font:
     11px/1.45 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .ps10127-page * {
   box-sizing: border-box;
 }
@@ -36,12 +36,12 @@
   position: relative;
   min-height: 150px;
   padding: 17px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 8px;
 }
 .ps10127-page > header small,
 .ps10127-page h2 {
-  color: #54d7d4;
+  color: var(--lesson-accent,#54d7d4);
   font-weight: 900;
   letter-spacing: 0.6px;
 }
@@ -50,7 +50,7 @@
   font-size: 25px;
 }
 .ps10127-page > header > h2 {
-  color: #e8eef8;
+  color: var(--lesson-ink,#e8eef8);
   font: 18px Georgia;
 }
 .ps10127-page > header > p {
@@ -64,13 +64,13 @@
   gap: 10px;
   width: 245px;
   padding: 13px;
-  border: 1px solid #80611e;
+  border: 1px solid var(--lesson-border,#80611e);
   border-radius: 8px;
-  background: #171a1e;
+  background: var(--lesson-canvas,#171a1e);
 }
 .ps10127-page > header > aside svg,
 .ps10127-page > header > aside strong {
-  color: #ffc74d;
+  color: var(--lesson-highlight,#ffc74d);
 }
 .ps10127-page > header > label {
   position: absolute;
@@ -81,7 +81,7 @@
   gap: 20px;
   width: 205px;
   padding: 20px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 8px;
 }
 .ps10127-page > header > label button {
@@ -99,10 +99,10 @@
   width: 17px;
   height: 17px;
   border-radius: 50%;
-  background: #06233b;
+  background: var(--lesson-surface,#06233b);
 }
 .ps10127-page > header > label button[aria-checked="false"] {
-  background: #34485b;
+  background: var(--lesson-surface,#34485b);
 }
 .ps10127-page > header > label button[aria-checked="false"] i {
   right: 22px;
@@ -116,9 +116,9 @@
 .ps10127-page > main > section,
 .ps10127-results {
   padding: 13px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 8px;
-  background: #07192e;
+  background: var(--lesson-surface,#07192e);
 }
 .ps10127-setup > label {
   display: grid;
@@ -128,9 +128,9 @@
 }
 .ps10127-page select {
   padding: 10px;
-  border: 1px solid #304960;
+  border: 1px solid var(--lesson-border,#304960);
   border-radius: 6px;
-  background: #091a30;
+  background: var(--lesson-surface,#091a30);
 }
 .ps10127-setup label small {
   font-weight: 400;
@@ -172,24 +172,24 @@
   height: 390px;
 }
 .ps10127-circle .axis {
-  stroke: #dde7f0;
+  stroke: var(--lesson-ink,#dde7f0);
 }
 .ps10127-circle .unit {
   fill: none;
-  stroke: #dfe8f0;
+  stroke: var(--lesson-ink,#dfe8f0);
 }
 .ps10127-circle .ray {
-  stroke: #cdd9e5;
+  stroke: var(--lesson-ink,#cdd9e5);
 }
 .ps10127-circle .projection {
-  stroke: #2bd7d2;
+  stroke: var(--lesson-accent,#2bd7d2);
   stroke-dasharray: 6 4;
 }
 .ps10127-circle circle {
-  fill: #30d9d4;
+  fill: var(--lesson-accent,#30d9d4);
 }
 .ps10127-circle text {
-  fill: #36dad6;
+  fill: var(--lesson-accent,#36dad6);
   font: 13px Georgia;
 }
 .ps10127-circle label {
@@ -211,17 +211,17 @@
 .ps10127-results th,
 .ps10127-results td {
   padding: 11px 6px;
-  border: 1px solid #304960;
+  border: 1px solid var(--lesson-border,#304960);
   text-align: center;
 }
 .ps10127-results .check {
   margin-top: 10px;
-  color: #5be0d4;
+  color: var(--lesson-accent,#5be0d4);
 }
 .ps10127-hidden {
   margin-top: 22px;
   padding: 14px;
-  border: 1px dashed #708296;
+  border: 1px dashed var(--lesson-border,#708296);
   border-radius: 8px;
 }
 .ps10127-hidden header {
@@ -237,13 +237,13 @@
   gap: 10px;
   margin-top: 12px;
   padding: 13px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 7px;
-  background: #07192e;
+  background: var(--lesson-surface,#07192e);
 }
 .ps10127-tip svg,
 .ps10127-tip strong {
-  color: #55d9d4;
+  color: var(--lesson-accent,#55d9d4);
 }
 @media (max-width: 800px) {
   .ps10127-page {

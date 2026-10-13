@@ -3,8 +3,8 @@
   top: -8px;
   width: min(1368px, calc(100vw - 310px));
   margin: auto;
-  color: #edf3fb;
-  background: #03152a;
+  color: var(--lesson-ink,#edf3fb);
+  background: var(--lesson-surface,#03152a);
   font:
     12px/1.45 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #03152a;
+  background: var(--lesson-surface,#03152a);
   content: "";
-}
+display:none;}
 .si10133-page * {
   box-sizing: border-box;
 }
@@ -33,13 +33,13 @@
 }
 .si10133-page h2,
 .si10133-page > header small {
-  color: #56d9e2;
+  color: var(--lesson-accent,#56d9e2);
   font-weight: 900;
 }
 .si10133-page > header {
   min-height: 112px;
   padding: 17px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 8px;
 }
 .si10133-page > header h1 {
@@ -63,9 +63,9 @@
 .si10133-side > button,
 .si10133-side > article {
   padding: 17px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 8px;
-  background: #071a31;
+  background: var(--lesson-surface,#071a31);
 }
 .si10133-lab > header {
   display: grid;
@@ -84,22 +84,22 @@
 .si10133-lab > header input {
   width: 52px;
   padding: 5px;
-  border: 1px solid #405b78;
-  background: #0b1f37;
+  border: 1px solid var(--lesson-border,#405b78);
+  background: var(--lesson-surface,#0b1f37);
 }
 .si10133-lab > header button {
   display: flex;
   align-items: center;
   gap: 7px;
   padding: 7px 10px;
-  border: 1px solid #405b78;
+  border: 1px solid var(--lesson-border,#405b78);
   border-radius: 6px;
-  background: #0d213a;
+  background: var(--lesson-surface,#0d213a);
 }
 .si10133-lab > hr {
   margin: 16px 0 11px;
   border: 0;
-  border-top: 1px solid #30475f;
+  border-top: 1px solid var(--lesson-border,#30475f);
 }
 .si10133-bases {
   display: grid;
@@ -111,8 +111,8 @@
   grid-template-columns: 220px 1fr 160px;
   align-items: center;
   min-height: 43px;
-  border: 1px solid #38516b;
-  background: #0b1f37;
+  border: 1px solid var(--lesson-border,#38516b);
+  background: var(--lesson-surface,#0b1f37);
   text-align: left;
 }
 .si10133-bases > button > strong {
@@ -125,7 +125,7 @@
   gap: 7px;
   height: 100%;
   padding: 12px;
-  border-left: 1px solid #38516b;
+  border-left: 1px solid var(--lesson-border,#38516b);
 }
 .si10133-tiles {
   display: flex;
@@ -143,18 +143,18 @@
   font-weight: 900;
 }
 .si10133-tiles .t3 {
-  border-color: #0d9e91;
-  background: #075f61;
-  color: #51e1d7;
+  border-color: var(--lesson-border,#0d9e91);
+  background: var(--lesson-surface,#075f61);
+  color: var(--lesson-accent,#51e1d7);
 }
 .si10133-tiles .t5 {
   border-color: #7543bc;
-  background: #342065;
-  color: #c59df5;
+  background: var(--lesson-surface,#342065);
+  color: var(--lesson-muted,#c59df5);
 }
 .si10133-page .valid {
   border-color: #28c9c2 !important;
-  color: #59e1d9;
+  color: var(--lesson-accent,#59e1d9);
 }
 .si10133-page .invalid {
   border-color: #d75e6d !important;
@@ -163,7 +163,7 @@
 .si10133-lab > article {
   margin-top: 9px;
   padding: 12px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 7px;
 }
 .si10133-lab > article p b {
@@ -176,7 +176,7 @@
   gap: 10px;
   margin-top: 10px;
   padding: 8px;
-  border: 1px solid #30475f;
+  border: 1px solid var(--lesson-border,#30475f);
 }
 .si10133-lab > article strong {
   font: 16px Georgia;
@@ -187,7 +187,7 @@
   gap: 10px;
   margin-top: 11px;
   padding: 10px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 6px;
 }
 .si10133-side {
@@ -203,14 +203,14 @@
 }
 .si10133-side > button.active {
   border-color: #2fd2cb;
-  background: #0b303b;
+  background: var(--lesson-surface,#0b303b);
 }
 .si10133-side > button.ordinary {
-  border-color: #67394e;
+  border-color: var(--lesson-border,#67394e);
 }
 .si10133-side > button.ordinary.active {
   border-color: #ef6375;
-  background: #321726;
+  background: var(--lesson-surface,#321726);
 }
 .si10133-side > button p,
 .si10133-side > article p {
@@ -220,7 +220,7 @@
   display: inline-block;
   margin-top: 8px;
   padding: 9px;
-  border: 1px solid #54657b;
+  border: 1px solid var(--lesson-border,#54657b);
   border-radius: 6px;
   font: 16px Georgia;
 }
@@ -235,7 +235,7 @@
   justify-content: space-between;
   margin-top: 16px;
   padding: 12px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 7px;
 }
 @media (max-width: 800px) {

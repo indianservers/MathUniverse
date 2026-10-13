@@ -377,7 +377,7 @@ export default function DirectionCosinesTargetLesson10153({
               <label key={a}>
                 {a}
                 <input
-                  aria-label={`Draft ${a} component`}
+                  aria-label={`Input ${a} component`}
                   type="number"
                   value={draft[a]}
                   onChange={(e) =>

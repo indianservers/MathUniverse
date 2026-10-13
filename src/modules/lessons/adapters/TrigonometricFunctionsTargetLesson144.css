@@ -5,9 +5,9 @@
   height: 958px;
   margin-bottom: -42px;
   overflow: hidden;
-  border: 1px solid #253349;
-  background: #07111e;
-  color: #e9edf7;
+  border: 1px solid var(--lesson-border,#253349);
+  background: var(--lesson-canvas,#07111e);
+  color: var(--lesson-ink,#e9edf7);
   font-size: 11px;
   letter-spacing: 0;
 }
@@ -34,14 +34,14 @@
   height: 126px;
   padding: 14px 15px;
   justify-content: space-between;
-  background: #081321
+  background: var(--lesson-canvas,#081321)
     url("/assets/lesson-surfaces/trigonometric-functions-galaxy.png") right 42%
     center/72% auto no-repeat;
 }
 .trig144-hero::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, #081321 0%, #081321e8 45%, #08132122 100%);
+  background: linear-gradient(90deg, var(--lesson-canvas,#081321) 0%, #081321e8 45%, #08132122 100%);
   content: "";
 }
 .trig144-hero > * {
@@ -49,7 +49,7 @@
   z-index: 1;
 }
 .trig144-hero small {
-  color: #aab5c7;
+  color: var(--lesson-ink,#aab5c7);
   font-size: 11px;
 }
 .trig144-hero small b {
@@ -62,7 +62,7 @@
 }
 .trig144-hero p {
   margin-top: 7px;
-  color: #c1c8d3;
+  color: var(--lesson-ink,#c1c8d3);
   font-size: 12px;
 }
 .trig144-hero nav {
@@ -76,7 +76,7 @@
   padding: 0 13px;
   align-items: center;
   gap: 7px;
-  border: 1px solid #33445c;
+  border: 1px solid var(--lesson-border,#33445c);
   border-radius: 7px;
   background: #0c1725dd;
   color: inherit;
@@ -89,9 +89,9 @@
   display: grid;
   height: 42px;
   padding: 0 14px;
-  border-top: 1px solid #27364b;
-  border-bottom: 1px solid #27364b;
-  background: #0b1522;
+  border-top: 1px solid var(--lesson-border,#27364b);
+  border-bottom: 1px solid var(--lesson-border,#27364b);
+  background: var(--lesson-canvas,#0b1522);
   grid-template-columns: repeat(6, 130px);
 }
 .trig144-tabs button {
@@ -122,14 +122,14 @@
 .trig144-visuals article,
 .trig144-lower article,
 .trig144-rail section {
-  border: 1px solid #25364c;
+  border: 1px solid var(--lesson-border,#25364c);
   border-radius: 8px;
-  background: #0b1724;
+  background: var(--lesson-canvas,#0b1724);
 }
 .trig144-visuals h2,
 .trig144-lower h2,
 .trig144-rail h2 {
-  color: #56dce4;
+  color: var(--lesson-accent,#56dce4);
   font-size: 10px;
 }
 .trig144-unit {
@@ -144,43 +144,43 @@
 }
 .trig144-circle .axis,
 .trig144-graph .axis {
-  stroke: #dce5ef;
+  stroke: var(--lesson-ink,#dce5ef);
   stroke-width: 1.2;
 }
 .trig144-circle .ring {
   fill: none;
-  stroke: #e2e7f1;
+  stroke: var(--lesson-ink,#e2e7f1);
   stroke-width: 1.7;
 }
 .trig144-circle .radius {
-  stroke: #ffd13a;
+  stroke: var(--lesson-highlight,#ffd13a);
   stroke-width: 2;
 }
 .trig144-circle .angle {
   fill: none;
-  stroke: #ffd13a;
+  stroke: var(--lesson-highlight,#ffd13a);
 }
 .trig144-circle .sin-guide {
-  stroke: #19c9e6;
+  stroke: var(--lesson-accent,#19c9e6);
   stroke-dasharray: 5 4;
 }
 .trig144-circle .cos-guide {
-  stroke: #25d3df;
+  stroke: var(--lesson-accent,#25d3df);
   stroke-dasharray: 5 4;
 }
 .trig144-circle text {
-  fill: #e9edf4;
+  fill: var(--lesson-ink,#e9edf4);
   font-size: 12px;
 }
 .trig144-circle .theta {
-  fill: #ffd13a;
+  fill: var(--lesson-highlight,#ffd13a);
   font-size: 18px;
 }
 .trig144-circle .point-label {
   fill: #ad7bff;
 }
 .trig144-circle .handle {
-  fill: #ffc72e;
+  fill: var(--lesson-highlight,#ffc72e);
   stroke: #fff;
   stroke-width: 2;
   cursor: grab;
@@ -191,11 +191,11 @@
   margin: 0 11px;
   grid-template-columns: 1fr 1.25fr;
   align-items: center;
-  border: 1px solid #2a3a50;
+  border: 1px solid var(--lesson-border,#2a3a50);
   border-radius: 7px;
 }
 .trig144-circle-values strong {
-  color: #ffd03c;
+  color: var(--lesson-highlight,#ffd03c);
   font-family: Georgia, serif;
   font-size: 23px;
   text-align: center;
@@ -204,13 +204,13 @@
   display: grid;
   height: 100%;
   padding: 9px 12px;
-  border-left: 1px solid #2b3a4e;
+  border-left: 1px solid var(--lesson-border,#2b3a4e);
 }
 .trig144-circle-values b {
   color: #bb6eff;
 }
 .trig144-circle-values em {
-  color: #22d1eb;
+  color: var(--lesson-accent,#22d1eb);
 }
 .trig144-unit > label {
   display: grid;
@@ -230,7 +230,7 @@
   touch-action: none;
 }
 .trig144-graph text {
-  fill: #dde7f3;
+  fill: var(--lesson-ink,#dde7f3);
   font-size: 12px;
 }
 .trig144-graph .sine {
@@ -240,11 +240,11 @@
 }
 .trig144-graph .cosine {
   fill: none;
-  stroke: #11cde9;
+  stroke: var(--lesson-accent,#11cde9);
   stroke-width: 3;
 }
 .trig144-graph .theta-line {
-  stroke: #f1c62e;
+  stroke: var(--lesson-highlight,#f1c62e);
   stroke-dasharray: 5 4;
 }
 .trig144-graph .sine-point {
@@ -252,7 +252,7 @@
   stroke: #fff;
 }
 .trig144-graph .cosine-point {
-  fill: #12cfe8;
+  fill: var(--lesson-accent,#12cfe8);
   stroke: #fff;
 }
 .trig144-graph .sine-label {
@@ -260,7 +260,7 @@
   font-size: 15px;
 }
 .trig144-graph .cosine-label {
-  fill: #22d9ef;
+  fill: var(--lesson-accent,#22d9ef);
   font-size: 15px;
 }
 .trig144-graph .handle {
@@ -272,10 +272,10 @@
   fill: #af5df4;
 }
 .trig144-graph .period-handle {
-  fill: #64c8ff;
+  fill: var(--lesson-accent,#64c8ff);
 }
 .trig144-graph .trace-handle {
-  fill: #f2bd25;
+  fill: var(--lesson-highlight,#f2bd25);
 }
 .trig144-lower {
   display: grid;
@@ -296,11 +296,11 @@
 .trig144-values th,
 .trig144-values td {
   height: 28px;
-  border: 1px solid #2a3b51;
+  border: 1px solid var(--lesson-border,#2a3b51);
 }
 .trig144-values tr.active {
-  background: #302132;
-  color: #ffd03e;
+  background: var(--lesson-surface,#302132);
+  color: var(--lesson-highlight,#ffd03e);
 }
 .trig144-values tbody tr {
   cursor: pointer;
@@ -311,7 +311,7 @@
 .trig144-period > div {
   height: 125px;
   padding: 5px;
-  border: 1px solid #2a3b51;
+  border: 1px solid var(--lesson-border,#2a3b51);
   border-radius: 7px;
   text-align: center;
 }
@@ -333,7 +333,7 @@
   stroke-width: 2;
 }
 .trig144-period svg path + path {
-  stroke: #19cee8;
+  stroke: var(--lesson-accent,#19cee8);
 }
 .trig144-period > strong {
   display: block;
@@ -346,9 +346,9 @@
 .trig144-period > em {
   display: block;
   padding: 8px;
-  border: 1px solid #276c3e;
+  border: 1px solid var(--lesson-border,#276c3e);
   border-radius: 6px;
-  background: #123425;
+  background: var(--lesson-surface,#123425);
   color: #82e34e;
 }
 .trig144-challenge h2 {
@@ -367,9 +367,9 @@
 }
 .trig144-challenge > div button {
   height: 44px;
-  border: 1px solid #34445b;
+  border: 1px solid var(--lesson-border,#34445b);
   border-radius: 6px;
-  background: #0c1725;
+  background: var(--lesson-canvas,#0c1725);
   font-family: Georgia, serif;
 }
 .trig144-challenge > div button b {
@@ -422,14 +422,14 @@
   grid-column: 2;
   grid-row: 1 / span 2;
   padding: 8px 4px;
-  border: 1px solid #2c3c50;
+  border: 1px solid var(--lesson-border,#2c3c50);
   border-radius: 5px;
   text-align: center;
 }
 .trig144-traces {
   margin: 6px -4px 0;
   padding-top: 6px;
-  border-top: 1px solid #28394e;
+  border-top: 1px solid var(--lesson-border,#28394e);
 }
 .trig144-traces label {
   display: flex;
@@ -442,7 +442,7 @@
 }
 .trig144-identities p {
   margin-top: 8px;
-  color: #bdc5d3;
+  color: var(--lesson-ink,#bdc5d3);
   font-family: Georgia, serif;
   font-size: 14px;
 }
@@ -450,7 +450,7 @@
   display: block;
   margin-top: 13px;
   padding: 8px;
-  border: 1px solid #356944;
+  border: 1px solid var(--lesson-border,#356944);
   border-radius: 6px;
   color: #7cdd4a;
   text-align: center;
@@ -459,8 +459,8 @@
   display: grid;
   height: 44px;
   padding: 5px 10px;
-  border-top: 1px solid #2b3b50;
-  background: #09121e;
+  border-top: 1px solid var(--lesson-border,#2b3b50);
+  background: var(--lesson-canvas,#09121e);
   grid-template-columns: 42px 390px 1fr 90px 75px;
   align-items: center;
   gap: 10px;
@@ -471,9 +471,9 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  border: 1px solid #2f4055;
+  border: 1px solid var(--lesson-border,#2f4055);
   border-radius: 6px;
-  background: #111b2b;
+  background: var(--lesson-surface,#111b2b);
 }
 .trig144-player svg {
   width: 16px;

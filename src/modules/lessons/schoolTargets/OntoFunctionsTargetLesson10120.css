@@ -4,8 +4,8 @@
   left: 1px;
   width: min(1380px, calc(100vw - 294px));
   margin: auto;
-  color: #e7eefb;
-  background: #031328;
+  color: var(--lesson-ink,#e7eefb);
+  background: var(--lesson-surface,#031328);
   font:
     11px/1.45 Inter,
     Arial,
@@ -16,9 +16,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .onto10120-page * {
   box-sizing: border-box;
 }
@@ -36,13 +36,13 @@
   position: relative;
   height: 150px;
   padding: 18px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
   border-radius: 9px;
-  background: linear-gradient(110deg, #071e37, #04142a);
+  background: linear-gradient(110deg, var(--lesson-surface,#071e37), var(--lesson-surface,#04142a));
 }
 .onto10120-page > header small,
 .onto10120-page h2 {
-  color: #42dedc;
+  color: var(--lesson-accent,#42dedc);
   font-weight: 900;
   letter-spacing: 0.8px;
 }
@@ -57,7 +57,7 @@
 }
 .onto10120-page > header nav span {
   padding: 4px 11px;
-  border: 1px solid #304860;
+  border: 1px solid var(--lesson-border,#304860);
   border-radius: 13px;
   font-weight: 800;
 }
@@ -66,9 +66,9 @@
   right: 14px;
   top: 17px;
   padding: 9px 14px;
-  border: 1px solid #304860;
+  border: 1px solid var(--lesson-border,#304860);
   border-radius: 7px;
-  background: #07172c;
+  background: var(--lesson-surface,#07172c);
 }
 .onto10120-page > main {
   display: grid;
@@ -79,9 +79,9 @@
 .onto10120-page > main > aside,
 .onto10120-work {
   padding: 14px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
   border-radius: 8px;
-  background: #06162b;
+  background: var(--lesson-surface,#06162b);
 }
 .onto10120-page > main > aside > p {
   margin: 12px 0;
@@ -89,7 +89,7 @@
 .onto10120-page > main > aside article {
   margin-top: 12px;
   padding: 12px;
-  border: 1px solid #304860;
+  border: 1px solid var(--lesson-border,#304860);
   border-radius: 7px;
 }
 .onto10120-page > main > aside article strong {
@@ -106,7 +106,7 @@
 .onto10120-page > main > aside th,
 .onto10120-page > main > aside td {
   padding: 7px;
-  border: 1px solid #40536b;
+  border: 1px solid var(--lesson-border,#40536b);
   text-align: center;
 }
 .onto10120-page > main > aside article footer {
@@ -114,7 +114,7 @@
 }
 .onto10120-page > main > aside article footer svg {
   width: 18px;
-  color: #4ce596;
+  color: var(--lesson-accent,#4ce596);
 }
 .onto10120-page > main > aside article p {
   margin: 10px 0;
@@ -140,7 +140,7 @@
   position: relative;
   border: 0;
   border-radius: 7px;
-  background: #10233e;
+  background: var(--lesson-surface,#10233e);
   font-size: 18px;
 }
 .onto10120-work .mapper article button.selected {
@@ -161,7 +161,7 @@
   margin: auto;
   border: 4px solid #3c6fb5 !important;
   border-radius: 50% !important;
-  background: #0b1c34 !important;
+  background: var(--lesson-surface,#0b1c34) !important;
 }
 .onto10120-work .codomain button.covered {
   border-color: #55c88c !important;
@@ -173,18 +173,18 @@
 }
 .onto10120-work .mapper > svg path {
   fill: none;
-  stroke: #39dedc;
+  stroke: var(--lesson-accent,#39dedc);
   stroke-width: 2;
 }
 .onto10120-work .mapper > svg .guide {
-  stroke: #5a6a80;
+  stroke: var(--lesson-muted,#5a6a80);
   stroke-dasharray: 8 7;
 }
 .onto10120-work .mapper > svg marker path {
-  fill: #39dedc;
+  fill: var(--lesson-accent,#39dedc);
 }
 .onto10120-work .coverage {
-  border-left: 1px solid #29455e;
+  border-left: 1px solid var(--lesson-border,#29455e);
 }
 .onto10120-work .coverage > div {
   display: grid;
@@ -201,12 +201,12 @@
   border-radius: 50%;
 }
 .onto10120-work .coverage > div span {
-  color: #4ae39b;
+  color: var(--lesson-accent,#4ae39b);
   font-size: 18px;
 }
 .onto10120-work .coverage > footer {
   margin-top: 14px;
-  border-top: 1px solid #29455e;
+  border-top: 1px solid var(--lesson-border,#29455e);
   padding-top: 10px;
 }
 .onto10120-work progress {
@@ -229,15 +229,15 @@
   grid-template-columns: 1.1fr 1fr 1.35fr 0.9fr;
   gap: 10px;
   padding: 12px;
-  border-top: 1px solid #29455e;
+  border-top: 1px solid var(--lesson-border,#29455e);
 }
 .onto10120-work > footer > section,
 .onto10120-work > footer > button {
   min-height: 82px;
   padding: 10px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
   border-radius: 7px;
-  background: #07172c;
+  background: var(--lesson-surface,#07172c);
 }
 .onto10120-work > footer section button {
   display: flex;
@@ -252,10 +252,10 @@
 }
 .onto10120-work > footer section svg {
   width: 25px;
-  color: #4de596;
+  color: var(--lesson-accent,#4de596);
 }
 .onto10120-work > footer section b {
-  color: #42e097;
+  color: var(--lesson-accent,#42e097);
 }
 .onto10120-work > footer section > strong {
   font:

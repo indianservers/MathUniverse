@@ -3,8 +3,8 @@
   top: -8px;
   width: min(1350px, calc(100vw - 330px));
   margin: auto;
-  color: #e8eef8;
-  background: #031328;
+  color: var(--lesson-ink,#e8eef8);
+  background: var(--lesson-surface,#031328);
   font:
     12px/1.45 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .bin10123-page * {
   box-sizing: border-box;
 }
@@ -37,13 +37,13 @@
   position: relative;
   min-height: 145px;
   padding: 20px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 9px;
-  background: #06172d;
+  background: var(--lesson-surface,#06172d);
 }
 .bin10123-page > header small,
 .bin10123-page main > header small {
-  color: #38d8d0;
+  color: var(--lesson-accent,#38d8d0);
   font-weight: 900;
   letter-spacing: 1px;
 }
@@ -61,7 +61,7 @@
 }
 .bin10123-page > header nav span {
   padding: 4px 11px;
-  border: 1px solid #30465d;
+  border: 1px solid var(--lesson-border,#30465d);
   border-radius: 13px;
   font-weight: 800;
 }
@@ -72,9 +72,9 @@
   display: flex;
   gap: 7px;
   padding: 10px 14px;
-  border: 1px solid #30465d;
+  border: 1px solid var(--lesson-border,#30465d);
   border-radius: 7px;
-  background: #07162a;
+  background: var(--lesson-surface,#07162a);
 }
 .bin10123-page svg {
   width: 16px;
@@ -82,9 +82,9 @@
 .bin10123-page > main {
   margin-top: 18px;
   padding: 16px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 9px;
-  background: #06172d;
+  background: var(--lesson-surface,#06172d);
 }
 .bin10123-page main > header h2 {
   margin: 6px 0 2px;
@@ -99,16 +99,16 @@
 .bin10123-controls label {
   display: grid;
   gap: 3px;
-  color: #aebdce;
+  color: var(--lesson-ink,#aebdce);
 }
 .bin10123-controls select,
 .bin10123-controls input,
 .bin10123-controls > button {
   height: 43px;
   padding: 7px 11px;
-  border: 1px solid #30465d;
+  border: 1px solid var(--lesson-border,#30465d);
   border-radius: 7px;
-  background: #081a31;
+  background: var(--lesson-surface,#081a31);
 }
 .bin10123-controls > button {
   align-self: end;
@@ -144,9 +144,9 @@
 .bin10123-inspector article,
 .bin10123-properties {
   padding: 12px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 8px;
-  background: #051428;
+  background: var(--lesson-surface,#051428);
 }
 .bin10123-table table {
   width: 100%;
@@ -157,7 +157,7 @@
 .bin10123-table th,
 .bin10123-table td {
   height: 52px;
-  border: 1px solid #39516b;
+  border: 1px solid var(--lesson-border,#39516b);
   text-align: center;
   font-size: 14px;
   cursor: pointer;
@@ -168,19 +168,19 @@
 .bin10123-table th.row {
   outline: 2px solid #1d9fe5;
   outline-offset: -2px;
-  background: #0b3154;
+  background: var(--lesson-surface,#0b3154);
 }
 .bin10123-table th.column {
-  background: #174a47;
+  background: var(--lesson-surface,#174a47);
 }
 .bin10123-table td.result {
   outline: 2px solid #25d9c8;
   outline-offset: -2px;
-  background: #114844;
+  background: var(--lesson-surface,#114844);
 }
 .bin10123-table > p {
   padding: 9px 0;
-  border-bottom: 1px solid #263e56;
+  border-bottom: 1px solid var(--lesson-border,#263e56);
 }
 .bin10123-table footer {
   display: flex;
@@ -188,13 +188,13 @@
   padding-top: 9px;
 }
 .bin10123-table footer span:first-child {
-  color: #43aeef;
+  color: var(--lesson-accent,#43aeef);
 }
 .bin10123-table footer span:nth-child(2) {
-  color: #54d89d;
+  color: var(--lesson-accent,#54d89d);
 }
 .bin10123-table footer span:last-child {
-  color: #4dd4c8;
+  color: var(--lesson-accent,#4dd4c8);
 }
 .bin10123-inspector {
   display: grid;
@@ -205,7 +205,7 @@
 }
 .bin10123-inspector article > p i,
 .bin10123-inspector em {
-  color: #39d8d2;
+  color: var(--lesson-accent,#39d8d2);
 }
 .bin10123-inspector article > strong {
   display: block;
@@ -214,13 +214,13 @@
 }
 .bin10123-inspector hr {
   border: 0;
-  border-top: 1px solid #30465d;
+  border-top: 1px solid var(--lesson-border,#30465d);
 }
 .bin10123-inspector span {
   display: block;
 }
 .bin10123-inspector .good {
-  color: #57e6a3;
+  color: var(--lesson-accent,#57e6a3);
 }
 .bin10123-inspector .bad {
   color: #ff7474;
@@ -230,9 +230,9 @@
   gap: 6px;
   margin-top: 10px;
   padding: 7px;
-  border: 1px solid #30465d;
+  border: 1px solid var(--lesson-border,#30465d);
   border-radius: 6px;
-  background: #07172c;
+  background: var(--lesson-surface,#07172c);
 }
 .bin10123-properties {
   display: grid;
@@ -244,20 +244,20 @@
   gap: 8px;
   align-items: center;
   padding: 10px;
-  border: 1px solid #263e56;
+  border: 1px solid var(--lesson-border,#263e56);
   border-radius: 7px;
 }
 .bin10123-properties article svg {
   padding: 3px;
   border-radius: 50%;
   background: #1e6d61;
-  color: #62e3a8;
+  color: var(--lesson-accent,#62e3a8);
 }
 .bin10123-properties article p {
-  color: #b8c4d2;
+  color: var(--lesson-ink,#b8c4d2);
 }
 .bin10123-properties article b {
-  color: #5ce6a5;
+  color: var(--lesson-accent,#5ce6a5);
 }
 .bin10123-properties article.fails svg {
   background: #6d2632;
@@ -276,20 +276,20 @@
 }
 .bin10123-properties > footer svg,
 .bin10123-properties > footer strong {
-  color: #ffb82e;
+  color: var(--lesson-highlight,#ffb82e);
 }
 .bin10123-tip {
   display: flex;
   gap: 10px;
   margin-top: 12px;
   padding: 12px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 8px;
-  background: #06172d;
+  background: var(--lesson-surface,#06172d);
 }
 .bin10123-tip svg,
 .bin10123-tip strong {
-  color: #33d8d0;
+  color: var(--lesson-accent,#33d8d0);
 }
 @media (max-width: 800px) {
   .bin10123-page {

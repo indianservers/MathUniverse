@@ -1,3 +1,6 @@
+import PolynomialsDashboard from "./PolynomialsDashboard";
+import FunctionsDashboard from "./FunctionsDashboard";
+import SystemsDashboard from "./SystemsDashboard";
 import { useStudioState, useStudioModel } from "../phase1/StudioModelProvider";
 import AlgebraLabHeading, { ExactBadge } from "./AlgebraLabHeading";
 import { FlaskConical, Lightbulb, Sparkles, Target, Trophy } from "lucide-react";
@@ -6,10 +9,9 @@ import { Link } from "react-router-dom";
 import { useStudioMode } from "../../hooks/useStudioMode";
 import { runCasOperation, type CasOperation } from "../../utils/mathEngine/casUtils";
 import { sampleFunction } from "../../utils/mathEngine/graphSampler";
-import { polynomialFromRoots, syntheticDivide, exponentLawCounterexample, changeLogBase } from "./algebraEnhancementEngine";
+import { exponentLawCounterexample, changeLogBase } from "./algebraEnhancementEngine";
 import { recordChallengeResult } from "./algebraStudioProgress";
 import {
-  addPolynomials,
   answersMatchChallenge,
   combination,
   evaluateAlgebraExpression,
@@ -19,20 +21,12 @@ import {
   formatAlgebraNumber,
   geometricSeriesSum,
   geometricInfiniteSum,
-  inverseExpression,
-  inverseFamilyStatus,
-  inverseOfTransformedFamily,
   logWithBase,
-  multiplyPolynomials,
-  dividePolynomialStrings,
   nthRoot,
   polynomialCoefficients,
-  reduceMatrix,
-  slopeInterceptSystem,
   snapNearZero,
   simplifySquareRadical,
   solveExponentialEquation,
-  solveTwoByTwo,
 } from "./algebraStudioMath";
 import { useAlgebraHistory } from "./useAlgebraHistory";
 
@@ -453,110 +447,11 @@ export function ExpressionsLab() {
   );
 }
 
-export function FunctionsLab() {
-  const modes = ["Families", "Transformations", "Composition", "Inverse", "Piecewise"];
-  const [mode, setMode] = useStudioMode("mode", modes, "Families");
-  const history = useAlgebraHistory({ family: "x^2", a: 1.5, h: 2, k: -1, probe: 2, composeFg: true }, "AlgebraInteractiveLabs.tsx:FunctionsLab");
-  const { family, a, h, k, probe, composeFg } = history.state;
-  const [focus, setFocus] = useStudioState("AlgebraInteractiveLabs:FunctionsLab:focus", "Watch the graph stretch, shift, and flip.");
-  const base = (x: number) => {
-    if (family === "x") return x;
-    if (family === "abs(x)") return Math.abs(x);
-    if (family === "sin(x)") return Math.sin(x);
-    if (family === "sqrt(x)") return x < 0 ? Number.NaN : Math.sqrt(x);
-    if (family === "1/x") return snapNearZero(x) === 0 ? Number.NaN : 1 / x;
-    if (family === "1/x^2") return snapNearZero(x) === 0 ? Number.NaN : 1 / (x * x);
-    if (family === "log(x)") return x <= 0 ? Number.NaN : Math.log(x) / Math.LN10;
-    if (family === "2^x") return 2 ** x;
-    return x * x;
-  };
-  const transformed = `${a}*(${family.replaceAll("x", `(x-(${h}))`)})+(${k})`;
-  const inverseStatus = inverseFamilyStatus(family, a);
-  const fn = (x: number) => {
-    if (mode === "Composition") return composeFg ? base(a * x + k) : a * base(x) + k;
-    if (mode === "Inverse") return inverseOfTransformedFamily(family, a, h, k, x);
-    if (mode === "Piecewise") return x < h ? a * x + k : x === h ? base(x) : base(x);
-    return a * base(x - h) + k;
-  };
-  const expression = mode === "Composition"
-    ? (composeFg ? family.replaceAll("x", `(${a}*x+(${k}))`) : `${a}*(${family})+(${k})`)
-    : mode === "Inverse" ? inverseExpression(family, a, h, k)
-    : transformed;
-  const originalMap = (x: number) => a * base(x - h) + k;
-  const inverseRoundTrip = (() => {
-    const inv = inverseOfTransformedFamily(family, a, h, k, probe);
-    if (!Number.isFinite(inv)) return Number.NaN;
-    return originalMap(inv);
-  })();
-  const functionChallenge = mode === "Inverse"
-    ? {
-      expected: inverseStatus.invertible && Number.isFinite(inverseRoundTrip) ? probe : "undefined",
-      prompt: inverseStatus.invertible
-        ? `Compute f(f⁻¹(${probe})). When the inverse exists it should recover ${probe}.`
-        : "This map is not invertible on the full domain. Enter undefined.",
-    }
-    : mode === "Composition"
-      ? { expected: fn(probe), prompt: `What is ${composeFg ? `f(g(${probe}))` : `g(f(${probe}))`} with the current toggle?` }
-      : mode === "Piecewise"
-        ? { expected: fn(probe), prompt: `Using the closed right branch at x = ${h}, what is f(${probe})?` }
-        : { expected: fn(probe), prompt: `What is the current output at x = ${probe}?` };
-  const domain = family === "sqrt(x)" ? `[${fmt(h)}, ∞)` : family === "1/x" || family === "1/x^2" ? `x ≠ ${fmt(h)}` : family === "log(x)" ? `(${fmt(h)}, ∞)` : "all real values";
-  const range = a === 0 ? `{${k}}` : family === "x^2" || family === "abs(x)" || family === "sqrt(x)" ? a > 0 ? `[${k}, ∞)` : `(−∞, ${k}]` : family === "sin(x)" ? `[${fmt(k - Math.abs(a))}, ${fmt(k + Math.abs(a))}]` : "All real values";
-  const setLive = (patch: Partial<typeof history.state>) => history.replace({ ...history.state, ...patch });
-  return <div className="alg-page alg-dash-page" data-mode-canvas={mode}><AlgebraLabHeading labId="functions" subtitle="Explore families, transformations, composition, inverse, and piecewise functions." modes={modes} mode={mode} onMode={setMode} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody={help.functions[mode as keyof typeof help.functions]}>Functions &amp; Transformations Lab</AlgebraLabHeading><p role="status">{focus}</p><div className="alg-dash-banner" data-lab-mode={mode}><b>y = a · f(x − h) + k</b><small>Parent in dashed cyan, transformed in solid violet. Domain: {domain}. Range: {range}.</small></div><div className="alg-dash-layout alg-fn-layout"><Card title="Transform parameters a, h, k"><label className="alg-field">Base function<select value={family} onChange={(e) => history.commit({ ...history.state, family: e.target.value })}>{["x", "x^2", "sqrt(x)", "abs(x)", "1/x", "1/x^2", "2^x", "log(x)", "sin(x)"].map((f) => <option key={f}>{f}</option>)}</select></label><Numeric label="a (stretch / slope)" value={a} step={0.5} onChange={(value) => setLive({ a: value })} onCommit={(value) => history.commit({ ...history.state, a: value })} /><Numeric label="h (shift / boundary)" value={h} onChange={(value) => setLive({ h: value })} onCommit={(value) => history.commit({ ...history.state, h: value })} /><Numeric label="k (vertical offset)" value={k} onChange={(value) => setLive({ k: value })} onCommit={(value) => history.commit({ ...history.state, k: value })} /><Numeric label="Input x" value={probe} onChange={(value) => setLive({ probe: value })} />{mode === "Composition" && <div className="alg-segmented"><button type="button" aria-pressed={composeFg} className={composeFg ? "active" : ""} onClick={() => history.commit({ ...history.state, composeFg: true })}>f∘g</button><button type="button" aria-pressed={!composeFg} className={!composeFg ? "active" : ""} onClick={() => history.commit({ ...history.state, composeFg: false })}>g∘f</button></div>}{mode === "Transformations" && <p>1. Shift {h >= 0 ? `right ${h}` : `left ${fmt(-h)}`}. 2. {a < 0 ? "Reflect across the x-axis and " : ""}stretch vertically ×{fmt(Math.abs(a))}. 3. Shift {k >= 0 ? `up ${fmt(k)}` : `down ${fmt(-k)}`}.</p>}<div className="alg-machine" aria-label="Function machine"><span>x = {probe}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h12M13 7l7 5-7 5" fill="none" stroke="currentColor" strokeWidth="1.8" /></svg><em>f</em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h12M13 7l7 5-7 5" fill="none" stroke="currentColor" strokeWidth="1.8" /></svg><b>{fmt(fn(probe))}</b></div></Card><Card title="Parent vs transformed graph">{mode === "Piecewise" ? <><p>x &lt; {h}: {a}x + {k}; x ≥ {h}: {family} (closed at x = {h})</p><Plot expressions={[`${a}*x+(${k})`, family]} domains={[{ max: h, maxExclusive: true }, { min: h }]} /><p>The left piece is clipped for x ≥ {h}; the table uses the closed right branch at the boundary.</p></> : <><p>{mode === "Inverse" ? (inverseStatus.invertible ? expression : inverseStatus.note) : expression}</p><Plot expressions={mode === "Inverse" ? (inverseStatus.invertible && a !== 0 ? [transformed, expression, "x"] : [transformed, "x"]) : [family, expression]} equalAspect={mode === "Inverse"} handles={(mode === "Transformations" || mode === "Families") ? { a, h, k, onChange: (next) => setLive({ a: next.a ?? a, h: next.h ?? h, k: next.k ?? k }) } : undefined} verticals={(family === "1/x" || family === "1/x^2" || family === "log(x)") ? [h] : []} /></>}<Result>{mode === "Inverse" ? (inverseStatus.invertible ? `f⁻¹(${probe}) = ${fmt(fn(probe))}. ${inverseStatus.note}` : inverseStatus.note) : `Output at x=${probe}: ${fmt(fn(probe))}`}</Result></Card><Card title="Mapping & domain"><table className="alg-table"><thead><tr><th>x</th><th>Output</th></tr></thead><tbody>{[-2, -1, 0, 1, 2, 3].map((x) => <tr key={x}><td>{x}</td><td>{Number.isFinite(fn(x)) ? fmt(fn(x)) : "undefined"}</td></tr>)}</tbody></table>{a === 0 ? <p className="alg-domain-guard">a = 0 is a constant map; inverse is disabled.</p> : null}<p>Probe steps: x → x−h = {fmt(probe - h)} → f → ×a → +k.</p>{(mode === "Families" || mode === "Transformations") && <p>Domain: {domain}. Range: {range}</p>}{mode === "Composition" && <p>{composeFg ? `f(g(x)): first g(x)=${a}x+${k}, then f(x)=${family}.` : `g(f(x)): first f(x)=${family}, then g(t)=${a}t+${k}.`}</p>}{mode === "Inverse" && <p>{inverseStatus.note || "The graph shows f, f⁻¹, and y = x."}</p>}</Card></div><Challenge expected={functionChallenge.expected} prompt={functionChallenge.prompt} onNew={() => history.commit({ ...history.state, probe: probe === 2 ? 0 : 2 })} /><LabStrip onSelect={(title) => { if (title === "Try") history.commit({ ...history.state, a: 2, h: 3, k: 1, family: "x^2" }); setFocus(title === "Challenge" ? "Find the inverse and check f(f⁻¹(x)) = x." : title === "Try" ? "Loaded g(x)=2(x-3)²+1." : title === "Why" ? "A transformation is a composition of maps." : title === "Understand" ? "a, h, and k rewrite the same family." : "Watch the graph stretch, shift, and flip."); }} items={[["Observe", "Watch the graph stretch, shift, and flip."], ["Understand", "a, h, and k rewrite the same family."], ["Why", "A transformation is a composition of maps."], ["Try", "Match a target graph with a, h, and k."], ["Challenge", "Find the inverse and check f(f⁻¹(x)) = x."]]} /></div>;
-}
+export function FunctionsLab() { return <FunctionsDashboard />; }
 
-export function PolynomialsLab() {
-  const modes = ["Roots", "Factors", "Division", "End Behavior", "Multiplicity"];
-  const [mode, setMode] = useStudioMode("mode", modes, "Roots");
-  const history = useAlgebraHistory({ roots: [-3, -1, 2, 4, 0], degree: 4, scale: 0.08, divisor: -1, extra: "x-1" }, "AlgebraInteractiveLabs.tsx:PolynomialsLab");
-  const { roots, degree, scale, divisor, extra } = history.state;
-  const [focus, setFocus] = useStudioState("AlgebraInteractiveLabs:PolynomialsLab:focus", "Roots pin the graph to the axis.");
-  const selected = roots.slice(0, degree);
-  const coefficients = polynomialFromRoots(selected).map((c) => c * scale);
-  const expression = `${scale}*${selected.map((r) => `(x-(${r}))`).join("*")}`;
-  const parsedExtra = polynomialCoefficients(extra);
-  const typedPlot = parsedExtra.ok && parsedExtra.degree >= 2;
-  const plotExpression = typedPlot ? extra : expression;
-  const liveDegree = parsedExtra.ok && parsedExtra.degree >= 2 ? parsedExtra.degree : degree;
-  const liveLeading = parsedExtra.ok && parsedExtra.degree >= 2 ? parsedExtra.leading : scale;
-  const repeatedRoot = selected.some((root, index) => selected.indexOf(root) !== index);
-  const division = syntheticDivide(coefficients, divisor);
-  const extraDivision = dividePolynomialStrings(expression, extra);
-  const solvedTyped = typedPlot ? runCasOperation(`${extra}=0`, "solve") : null;
-  const setLive = (patch: Partial<typeof history.state>) => history.replace({ ...history.state, ...patch });
-  return <div className="alg-page alg-dash-page" data-mode-canvas={mode}><AlgebraLabHeading labId="polynomials" subtitle="Explore polynomial functions through roots, factors, division, and end behavior." modes={modes} mode={mode} onMode={setMode} onUndo={history.undo} onRedo={history.redo} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => history.reset()} helpTitle={`${mode} help`} helpBody="Roots determine factors. Multiplicity decides whether the graph crosses or touches. Synthetic division uses the current divisor root.">Polynomials Lab</AlgebraLabHeading><p role="status">{focus}</p><div className="alg-dash-banner" data-lab-mode={mode}><b>p(x) = {plotExpression}</b><small>Drag roots to pin intercepts. Even multiplicity touches; odd multiplicity crosses.</small></div><div className="alg-dash-layout alg-poly-layout"><Card title="Root &amp; degree builder"><p>Degree</p><div className="alg-segmented">{[1, 2, 3, 4, 5].map((n) => <button type="button" aria-pressed={n === degree} className={n === degree ? "active" : ""} key={n} onClick={() => history.commit({ ...history.state, degree: n })}>{n}</button>)}</div>{selected.map((r, i) => <Numeric key={i} label={`Root ${i + 1}`} value={r} onChange={(value) => setLive({ roots: roots.map((v, j) => i === j ? value : v) })} onCommit={(value) => history.commit({ ...history.state, roots: roots.map((v, j) => i === j ? value : v) })} />)}<Numeric label="Leading coefficient" value={scale} step={0.01} min={-2} max={2} onChange={(value) => setLive({ scale: value })} onCommit={(value) => history.commit({ ...history.state, scale: value })} />{mode === "Division" && <Numeric label="Divisor root" value={divisor} onChange={(value) => setLive({ divisor: value })} onCommit={(value) => history.commit({ ...history.state, divisor: value })} />}<label className="alg-field">Polynomial<input value={extra} onChange={(e) => setLive({ extra: e.target.value })} onBlur={() => { const parsed = polynomialCoefficients(extra); if (parsed.ok) { history.commit({ ...history.state, extra }); setFocus(`Degree ${parsed.degree}, leading ${fmt(parsed.leading)}, constant ${fmt(parsed.constant)}.`); } }} placeholder="x^3-4x^2+x+6" /></label></Card><Card title="Interactive polynomial graph"><Plot expressions={[plotExpression]} roots={selected} onRootChange={(index, value) => {
-            const nextRoots = roots.map((v, j) => index === j ? value : v);
-            const nextExpr = `${scale}*${nextRoots.slice(0, degree).map((r) => `(x-(${r}))`).join("*")}`;
-            setLive({ roots: nextRoots, extra: nextExpr });
-          }} endBehavior={liveLeading === 0 ? undefined : { leftUp: liveDegree % 2 === 0 ? liveLeading > 0 : liveLeading < 0, rightUp: liveLeading > 0 }} /><Result>{plotExpression}</Result></Card><Card title={`${mode} analysis`}>{mode === "Division" ? <Result>Quotient coefficients: {division.quotient.map(fmt).join(", ")}; remainder: {fmt(division.remainder)}. Remainder theorem: p({divisor}) should match the remainder. {extra} into the builder: {extraDivision.ok ? extraDivision.output : extraDivision.output}</Result> : mode === "End Behavior" ? <Result>{liveLeading === 0 ? "Zero polynomial" : liveDegree % 2 === 0 ? liveLeading > 0 ? "Both ends rise." : "Both ends fall." : liveLeading > 0 ? "Left falls; right rises." : "Left rises; right falls."}</Result> : mode === "Factors" ? <Result>{expression}</Result> : <table className="alg-table"><thead><tr><th>Root</th><th>Multiplicity</th><th>Behavior</th></tr></thead><tbody>{[...new Set(selected)].map((r) => { const count = selected.filter((value) => value === r).length; return <tr key={r}><td>{r}</td><td>{count}</td><td>{scale === 0 ? "Zero polynomial" : count % 2 === 0 ? "Touches" : "Crosses"}</td></tr>; })}</tbody></table>}<p>Coefficients, highest degree first: {coefficients.map(fmt).join(", ")}</p>
-          {typedPlot && solvedTyped && <p>Typed polynomial roots: {solvedTyped.output} <Link to="/complex-numbers">Complex roots on the Argand plane</Link></p>}
-          {mode === "Factors" && <p>Times (x−1): {multiplyPolynomials(coefficients, [1, -1]).map(fmt).join(", ")}. Minus that polynomial: {addPolynomials(coefficients, multiplyPolynomials(polynomialFromRoots([1]), [-1])).map(fmt).join(", ")}. Plus x: {addPolynomials(coefficients, [1, 0]).map(fmt).join(", ")}.</p>}
-          {mode === "Multiplicity" && <p>Set two roots equal to make a repeated factor and watch the crossing change. {repeatedRoot ? "A repeated root is live: even multiplicity touches; odd multiplicity still crosses." : "All listed roots are currently simple (multiplicity 1)."}</p>}</Card></div><Challenge expected={liveLeading > 0 ? 1 : liveLeading < 0 ? -1 : 0} prompt={`The live leading coefficient is ${fmt(liveLeading)} (degree ${liveDegree}). Enter 1 if the right end goes up, or -1 if it goes down.`} onNew={() => history.commit({ ...history.state, degree: degree === 4 ? 3 : 4, scale: scale > 0 ? -Math.abs(scale) || -0.08 : Math.abs(scale) || 0.08 })} /><LabStrip onSelect={(title) => { if (title === "Try") history.commit({ ...history.state, roots: [-1, -1, 2, 4, 0], degree: 3 }); setFocus(title === "Challenge" ? "Predict end behavior from degree and sign." : title === "Try" ? "Set two equal roots and watch the bounce." : title === "Why" ? "Factors multiply to the polynomial." : title === "Understand" ? "Multiplicity decides cross vs touch." : "Roots pin the graph to the axis."); }} items={[["Observe", "Roots pin the graph to the axis."], ["Understand", "Multiplicity decides cross vs touch."], ["Why", "Factors multiply to the polynomial."], ["Try", "Set two equal roots and watch the bounce."], ["Challenge", "Predict end behavior from degree and sign."]]} /></div>;
-}
+export function PolynomialsLab() { return <PolynomialsDashboard />; }
 
-export function SystemsLab() {
-  const modes = ["Graphing", "Substitution", "Elimination", "Matrices", "Inequalities"];
-  const [mode, setMode] = useStudioMode("mode", modes, "Graphing");
-  const history = useAlgebraHistory({ m1: 2, b1: 1, m2: -1, b2: 4, xProbe: 0, yProbe: 0 }, "AlgebraInteractiveLabs.tsx:SystemsLab");
-  const { m1, b1, m2, b2, xProbe, yProbe } = history.state;
-  const [focus, setFocus] = useStudioState("AlgebraInteractiveLabs:SystemsLab:focus", "Two lines meet, miss, or coincide.");
-  const [matrix, setMatrix] = useStudioState("AlgebraInteractiveLabs:SystemsLab:matrix", [[m1, -1, -b1], [m2, -1, -b2]]);
-  const solution = slopeInterceptSystem(m1, b1, m2, b2);
-  const setLive = (patch: Partial<typeof history.state>) => history.replace({ ...history.state, ...patch });
-  const syncMatrix = (state: typeof history.state) => setMatrix([[state.m1, -1, -state.b1], [state.m2, -1, -state.b2]]);
-  const commitSlopes = (patch: Partial<typeof history.state>) => {
-    const next = { ...history.state, ...patch };
-    history.commit(next);
-    syncMatrix(next);
-  };
-  const preset = (kind: "Unique" | "None" | "Infinite") => commitSlopes({ m1: 2, b1: 1, m2: kind === "Unique" ? -1 : 2, b2: kind === "Infinite" ? 1 : 4 });
-  const swapRows = () => setMatrix(([r1, r2]) => [r2 ?? r1 ?? [0, 0, 0], r1 ?? r2 ?? [0, 0, 0]]);
-  const scaleRow1 = () => setMatrix((rows) => rows.map((row, i) => i === 0 ? row.map((v) => v * 2) : row));
-  const addRows = () => setMatrix((rows) => rows.map((row, i) => i === 1 ? row.map((v, j) => v + (rows[0]?.[j] ?? 0)) : row));
-  const reduced = reduceMatrix(matrix);
-  return <div className="alg-page alg-dash-page" data-mode-canvas={mode}><AlgebraLabHeading labId="systems" subtitle="Solve and explore linear systems using multiple methods and visual models." modes={modes} mode={mode} onMode={setMode} onUndo={() => { const next = history.undo(); syncMatrix(next); }} onRedo={() => { const next = history.redo(); syncMatrix(next); }} canUndo={history.canUndo} canRedo={history.canRedo} onReset={() => { const next = history.reset(); syncMatrix(next); }} helpTitle={`${mode} help`} helpBody="Unique, none, and infinite are classified from the same 2×2 system. Matrices show the RREF of the augmented matrix. Inequalities test and shade half-planes.">Systems of Equations Lab</AlgebraLabHeading><p role="status">{focus}</p><div className="alg-dash-banner" data-lab-mode={mode}><b>y = {m1}x + {b1}  ·  y = {m2}x + {b2}</b><small>General form: {m1}x + (−1)y = { -b1 } and {m2}x + (−1)y = { -b2 }. Unique, none, or infinite — from slopes and from RREF.</small></div><div className="alg-dash-layout alg-sys-layout"><Card title="Linear system"><Numeric label="First slope" value={m1} onChange={(value) => setLive({ m1: value })} onCommit={(value) => commitSlopes({ m1: value })} /><Numeric label="First intercept" value={b1} onChange={(value) => setLive({ b1: value })} onCommit={(value) => commitSlopes({ b1: value })} /><Numeric label="Second slope" value={m2} onChange={(value) => setLive({ m2: value })} onCommit={(value) => commitSlopes({ m2: value })} /><Numeric label="Second intercept" value={b2} onChange={(value) => setLive({ b2: value })} onCommit={(value) => commitSlopes({ b2: value })} /><div className="alg-segmented">{(["Unique", "None", "Infinite"] as const).map((item) => <button type="button" key={item} onClick={() => preset(item)}>{item}</button>)}</div>{mode === "Matrices" && <div className="alg-tile-actions"><button type="button" onClick={swapRows}>Swap rows</button><button type="button" onClick={scaleRow1}>Scale row 1 ×2</button><button type="button" onClick={addRows}>Add row 1 to row 2</button></div>}</Card><Card title="Intersection graph"><p>y = {m1}x + {b1}; y = {m2}x + {b2}</p><Plot expressions={[`${m1}*x+(${b1})`, `${m2}*x+(${b2})`]} shade={mode === "Inequalities" ? ["above", "below"] : []} dashed={mode === "Inequalities" ? [false, true] : []} intersections={solution.kind === "one" ? [{ x: solution.x, y: solution.y }] : []} onProbe={(point) => setLive({ xProbe: point.x, yProbe: point.y })} />{mode === "Matrices" && <><p>Augmented table. RREF shown as rows. {solution.kind === "one" ? `Unique (${fmt(solution.x)}, ${fmt(solution.y)})` : solution.kind === "all" ? "Infinite solutions" : "No solution"}</p><table className="alg-table"><tbody>{matrix.map((row, i) => <tr key={i}>{row.map((cell, j) => <td key={j}>{fmt(cell)}</td>)}</tr>)}</tbody></table></>}{mode === "Substitution" && <p>y = {m1}x + {b1} into the second: {m1}x + {b1} = {m2}x + {b2} ⇒ {(fmt(m1 - m2))}x = {fmt(b2 - b1)} ⇒ {solution.kind === "one" ? `x = ${fmt(solution.x)}, y = ${fmt(solution.y)}` : solution.kind === "all" ? "identity (infinite solutions)" : "contradiction (no solution)"}.</p>}{mode === "Elimination" && <p>Write {m1}x − y = {-b1} and {m2}x − y = {-b2}. Subtract: ({fmt(m1 - m2)})x = {fmt(b2 - b1)}. {solution.kind === "one" ? `x = ${fmt(solution.x)}, then y = ${fmt(solution.y)}.` : solution.kind === "all" ? "Rows are dependent." : "Rows are inconsistent."}</p>}</Card><Card title="Unique / none / infinite">{mode === "Inequalities" ? <><p>Test y ≥ {m1}x + {b1} and y &lt; {m2}x + {b2} (solid first boundary, dashed second).</p><Numeric label="Test x" value={xProbe} onChange={(value) => setLive({ xProbe: value })} /><Numeric label="Test y" value={yProbe} onChange={(value) => setLive({ yProbe: value })} /><Result>{yProbe >= m1 * xProbe + b1 && yProbe < m2 * xProbe + b2 ? "Inside both half-planes" : "Outside the feasible region"}</Result></> : <Result>{solution.kind === "one" ? `Unique solution: (${fmt(solution.x)}, ${fmt(solution.y)}). Residual L1 ${fmt(solution.y - (m1 * solution.x + b1))}, L2 ${fmt(solution.y - (m2 * solution.x + b2))}.` : solution.kind === "all" ? "Infinite solutions: coincident lines (dependent rows)." : "No solution: parallel lines (inconsistent rows)."}</Result>}<Link className="alg-soft" to="/linear-algebra/matrices?mode=Inverse">Open Linear Algebra row-reduction</Link></Card></div><Challenge expected={solution.kind === "one" ? 1 : solution.kind === "all" ? -1 : 0} prompt="Classify the live 2×2 system: enter 1 if unique, 0 if none, or −1 if infinite." onNew={() => preset(solution.kind === "one" ? "None" : "Unique")} /><LabStrip onSelect={(title) => { if (title === "Try") preset("None"); setFocus(title === "Challenge" ? "Build a system with no solution." : title === "Why" ? "Algebra and the graph solve the same system." : title === "Understand" ? "Intersection is the shared (x, y)." : "Two lines meet, miss, or coincide."); }} items={[["Observe", "Two lines meet, miss, or coincide."], ["Understand", "Intersection is the shared (x, y)."], ["Why", "Algebra and the graph solve the same system."], ["Try", "Switch Unique / None / Infinite."], ["Challenge", "Build a system with no solution."]]} /></div>;
-}
+export function SystemsLab() { return <SystemsDashboard />; }
 
 export function ExponentsLab() {
   const modes = ["Exponent Laws", "Radicals", "Exponential & Logs", "Equations"];

@@ -4,8 +4,8 @@
   left: 1px;
   width: min(1380px, calc(100vw - 294px));
   margin: auto;
-  color: #e7eefb;
-  background: #031328;
+  color: var(--lesson-ink,#e7eefb);
+  background: var(--lesson-surface,#031328);
   font:
     11px/1.45 Inter,
     Arial,
@@ -16,9 +16,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .into10119-page * {
   box-sizing: border-box;
 }
@@ -36,13 +36,13 @@
   position: relative;
   height: 165px;
   padding: 18px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
   border-radius: 9px;
-  background: linear-gradient(110deg, #071e37, #04142a);
+  background: linear-gradient(110deg, var(--lesson-surface,#071e37), var(--lesson-surface,#04142a));
 }
 .into10119-page > header small,
 .into10119-page h2 {
-  color: #40deda;
+  color: var(--lesson-accent,#40deda);
   font-weight: 900;
   letter-spacing: 0.9px;
 }
@@ -57,7 +57,7 @@
 }
 .into10119-page > header nav span {
   padding: 4px 11px;
-  border: 1px solid #304860;
+  border: 1px solid var(--lesson-border,#304860);
   border-radius: 13px;
   font-weight: 800;
 }
@@ -66,9 +66,9 @@
   right: 14px;
   top: 17px;
   padding: 9px 14px;
-  border: 1px solid #304860;
+  border: 1px solid var(--lesson-border,#304860);
   border-radius: 7px;
-  background: #07172c;
+  background: var(--lesson-surface,#07172c);
 }
 .into10119-page > main {
   display: grid;
@@ -80,9 +80,9 @@
 .into10119-analysis > article,
 .into10119-analysis > div > article {
   padding: 14px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
   border-radius: 8px;
-  background: #06162b;
+  background: var(--lesson-surface,#06162b);
 }
 .into10119-lab .title {
   display: flex;
@@ -92,9 +92,9 @@
   display: flex;
   gap: 6px;
   padding: 7px 10px;
-  border: 1px solid #304860;
+  border: 1px solid var(--lesson-border,#304860);
   border-radius: 6px;
-  background: #07172c;
+  background: var(--lesson-surface,#07172c);
 }
 .into10119-page button svg {
   width: 15px;
@@ -116,7 +116,7 @@
   grid-template-rows: 35px repeat(5, 55px);
   gap: 5px;
   padding: 8px;
-  border: 1px solid #304860;
+  border: 1px solid var(--lesson-border,#304860);
   border-radius: 8px;
 }
 .into10119-lab .mapper > article:first-child {
@@ -136,7 +136,7 @@
   position: absolute;
   left: 3px;
   width: 14px;
-  color: #657286;
+  color: var(--lesson-muted,#657286);
 }
 .into10119-lab .mapper article button i {
   position: absolute;
@@ -164,7 +164,7 @@
   left: -19px;
   right: auto;
   border: 2px solid #9d62e5;
-  background: #15182d;
+  background: var(--lesson-surface,#15182d);
 }
 .into10119-lab .mapper > svg {
   width: 100%;
@@ -172,11 +172,11 @@
 }
 .into10119-lab .mapper > svg path {
   fill: none;
-  stroke: #4adbdc;
+  stroke: var(--lesson-accent,#4adbdc);
   stroke-width: 1.8;
 }
 .into10119-lab .mapper > svg marker path {
-  fill: #4adbdc;
+  fill: var(--lesson-accent,#4adbdc);
 }
 .into10119-lab > aside {
   display: flex;
@@ -189,14 +189,14 @@
 .into10119-lab > footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid #40536b;
+  border-top: 1px solid var(--lesson-border,#40536b);
 }
 .into10119-lab > footer section {
   padding: 12px;
   text-align: center;
 }
 .into10119-lab > footer section + section {
-  border-left: 1px solid #40536b;
+  border-left: 1px solid var(--lesson-border,#40536b);
 }
 .into10119-lab > footer strong {
   display: inline-block;
@@ -244,8 +244,8 @@
   display: block;
   margin-top: 22px;
   padding: 10px;
-  border: 1px solid #29455e;
-  color: #40deda;
+  border: 1px solid var(--lesson-border,#29455e);
+  color: var(--lesson-accent,#40deda);
   text-align: center;
   overflow-wrap: anywhere;
   font-size: 14px;
@@ -257,7 +257,7 @@
 }
 .into10119-analysis .status > strong {
   flex: 0 0 125px;
-  color: #45dedb;
+  color: var(--lesson-accent,#45dedb);
   font-size: 14px;
   text-align: right;
 }
@@ -283,9 +283,9 @@
 .into10119-analysis .example button {
   margin: 12px 5px 0 0;
   padding: 8px;
-  border: 1px solid #304860;
+  border: 1px solid var(--lesson-border,#304860);
   border-radius: 6px;
-  background: #07172c;
+  background: var(--lesson-surface,#07172c);
 }
 @media (max-width: 800px) {
   .into10119-page {
@@ -319,6 +319,6 @@
   }
   .into10119-lab > footer section + section {
     border: 0;
-    border-top: 1px solid #40536b;
+    border-top: 1px solid var(--lesson-border,#40536b);
   }
 }

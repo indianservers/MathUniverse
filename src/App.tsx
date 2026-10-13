@@ -167,6 +167,8 @@ const LessonsCategoryPage = lazyRoute(
 const LessonPage = lazyRoute(
   () => import("./modules/lessons/pages/LessonPage"),
 );
+const StandardLessonFrame = lazy(() => import('./modules/lessons/components/StandardLessonFrame'));
+const LessonUpgradeAuditPage = lazyRoute(() => import('./modules/lessons/pages/LessonUpgradeAuditPage'));
 const AdvancedConceptLessonsPage = lazyRoute(
   () => import("./modules/lessons/pages/AdvancedConceptLessonsPage"),
 );
@@ -175,6 +177,9 @@ const AdvancedConceptLessonPage = lazyRoute(
 );
 const SchoolLessonsPage = lazyRoute(
   () => import("./modules/lessons/pages/SchoolLessonsPage"),
+);
+const AuthoredCurriculumLessonPage = lazyRoute(
+  () => import("./modules/lessons/pages/AuthoredCurriculumLessonPage"),
 );
 const SchoolLessonPage = lazyRoute(
   () => import("./modules/lessons/pages/SchoolLessonPage"),
@@ -440,6 +445,7 @@ export default function App() {
             <Route path="algebra/proof" element={<AlgebraStudio />} />
             <Route path="algebra/cas" element={<AlgebraStudio />} />
             <Route path="algebra/advanced" element={<AlgebraStudio />} />
+            <Route path="algebra/advanced/:toolId" element={<AlgebraStudio />} />
             <Route path="algebra/classic" element={<AlgebraClassic />} />
             <Route path="algebraic-structures" element={<AlgebraicStructuresStudio page="home" />} />
             <Route path="algebraic-structures/groups-rings-fields" element={<AlgebraicStructuresStudio page="groups-rings-fields" />} />
@@ -791,13 +797,16 @@ export default function App() {
               element={<LearnDiscoveryPage />}
             />
             <Route path="lessons" element={<LessonsHomePage />} />
+            <Route path="lessons/upcoming" element={<Navigate to="/lessons?browse=all" replace />} />
+            <Route path="lessons/upgrades" element={<LessonUpgradeAuditPage />} />
+            <Route path="lessons/planned/:lessonSlug" element={<StandardLessonFrame><AuthoredCurriculumLessonPage /></StandardLessonFrame>} />
             <Route
               path="lessons/advanced-concepts"
               element={<AdvancedConceptLessonsPage />}
             />
             <Route
               path="lessons/advanced-concepts/:lessonSlug"
-              element={<AdvancedConceptLessonPage />}
+              element={<StandardLessonFrame><AdvancedConceptLessonPage /></StandardLessonFrame>}
             />
             <Route path="lessons/school" element={<SchoolLessonsPage />} />
             <Route
@@ -806,7 +815,7 @@ export default function App() {
             />
             <Route
               path="lessons/school/:levelSlug/:lessonSlug"
-              element={<SchoolLessonPage />}
+              element={<StandardLessonFrame><SchoolLessonPage /></StandardLessonFrame>}
             />
             <Route
               path="lessons/:categorySlug"
@@ -814,7 +823,7 @@ export default function App() {
             />
             <Route
               path="lessons/:categorySlug/:lessonSlug"
-              element={<LessonPage />}
+              element={<StandardLessonFrame><LessonPage /></StandardLessonFrame>}
             />
             <Route path="olympyard" element={<Olympyard />} />
             <Route path="olympyard/mock-test" element={<OlympyardMockTest />} />

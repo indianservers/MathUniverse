@@ -29,11 +29,26 @@ export function distributeBinomials(a: number, b: number, c: number, d: number) 
 
 export function factorIntegerQuadratic(a: number, b: number, c: number) {
   if (![a, b, c].every(Number.isInteger) || a === 0) return null;
-  const limit = Math.max(24, Math.abs(a), Math.abs(c));
-  for (let p = -limit; p <= limit; p++) for (let r = -limit; r <= limit; r++) {
-    if (p * r !== a) continue;
-    for (let q = -limit; q <= limit; q++) for (let s = -limit; s <= limit; s++) {
-      if (q * s === c && p * s + q * r === b) return { left: [p, q] as const, right: [r, s] as const };
+  const signedDivisors = (value:number) => {
+    const factors:number[]=[];
+    for(let divisor=1;divisor<=Math.sqrt(Math.abs(value));divisor++) {
+      if(value%divisor!==0)continue;
+      factors.push(divisor,-divisor);
+      const other=Math.abs(value)/divisor;
+      if(other!==divisor)factors.push(other,-other);
+    }
+    return factors;
+  };
+  for(const p of signedDivisors(a)) {
+    const r=a/p;
+    if(c===0) {
+      if(Number.isInteger(b/p))return {left:[p,0] as const,right:[r,b/p] as const};
+      if(Number.isInteger(b/r))return {left:[p,b/r] as const,right:[r,0] as const};
+      continue;
+    }
+    for(const q of signedDivisors(c)) {
+      const s=c/q;
+      if(p*s+q*r===b)return {left:[p,q] as const,right:[r,s] as const};
     }
   }
   return null;
@@ -65,7 +80,7 @@ export function completeSquare(a: number, b: number, c: number) {
 
 export function rationalRestrictions(denominatorRoots: number[], numeratorRoots: number[] = []) {
   const excluded = [...new Set(denominatorRoots)].sort((a, b) => a - b);
-  const holes = excluded.filter((root) => numeratorRoots.some((candidate) => nearly(candidate, root)));
+  const holes = excluded.filter(root => numeratorRoots.filter(candidate=>nearly(candidate,root)).length >= denominatorRoots.filter(candidate=>nearly(candidate,root)).length);
   return { excluded, holes, verticalAsymptotes: excluded.filter((root) => !holes.includes(root)) };
 }
 

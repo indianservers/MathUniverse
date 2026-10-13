@@ -4,8 +4,8 @@
   left: 2px;
   width: min(1370px, calc(100vw - 300px));
   margin: auto;
-  color: #e4edff;
-  background: #031328;
+  color: var(--lesson-ink,#e4edff);
+  background: var(--lesson-surface,#031328);
   font:
     12px/1.45 Inter,
     Arial,
@@ -16,9 +16,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .fru10110-page * {
   box-sizing: border-box;
 }
@@ -40,14 +40,14 @@
   position: relative;
   height: 140px;
   padding: 16px 24px;
-  border: 1px solid #29435d;
+  border: 1px solid var(--lesson-border,#29435d);
   border-radius: 11px;
-  background: linear-gradient(110deg, #071f39, #031328);
+  background: linear-gradient(110deg, var(--lesson-surface,#071f39), var(--lesson-surface,#031328));
 }
 .fru10110-hero small,
 .fru10110-page h2,
 .fru10110-results article > b {
-  color: #31dce3;
+  color: var(--lesson-accent,#31dce3);
   font-weight: 900;
   letter-spacing: 1px;
 }
@@ -69,7 +69,7 @@
 }
 .fru10110-hero nav button.active {
   background: #08516a;
-  color: #38e0e3;
+  color: var(--lesson-accent,#38e0e3);
 }
 .fru10110-hero .reset {
   position: absolute;
@@ -78,9 +78,9 @@
   display: flex;
   gap: 6px;
   padding: 8px 12px;
-  border: 1px solid #304b65;
+  border: 1px solid var(--lesson-border,#304b65);
   border-radius: 7px;
-  background: #07192d;
+  background: var(--lesson-surface,#07192d);
 }
 .fru10110-lab {
   display: grid;
@@ -92,9 +92,9 @@
 .fru10110-lab > section {
   min-width: 0;
   padding: 14px;
-  border: 1px solid #29435d;
+  border: 1px solid var(--lesson-border,#29435d);
   border-radius: 9px;
-  background: #06182f;
+  background: var(--lesson-surface,#06182f);
 }
 .fru10110-dims > label {
   display: block;
@@ -118,7 +118,7 @@
 .fru10110-dims aside {
   margin-top: 24px;
   padding: 12px;
-  border: 1px solid #304b65;
+  border: 1px solid var(--lesson-border,#304b65);
   border-radius: 8px;
 }
 .fru10110-dims aside strong {
@@ -129,7 +129,7 @@
     serif;
 }
 .fru10110-dims aside b {
-  color: #32dce3;
+  color: var(--lesson-accent,#32dce3);
 }
 .fru10110-three {
   padding: 12px !important;
@@ -156,13 +156,13 @@
   align-items: center;
   gap: 4px;
   padding: 6px;
-  border: 1px solid #304b65;
+  border: 1px solid var(--lesson-border,#304b65);
   border-radius: 6px;
-  background: #0a1d35;
+  background: var(--lesson-surface,#0a1d35);
 }
 .fru10110-three footer button.active {
   border-color: #31dce3;
-  background: #123153;
+  background: var(--lesson-surface,#123153);
 }
 .fru10110-three footer input {
   width: 100px;
@@ -187,7 +187,7 @@
   height: 315px;
 }
 .fru10110-net path {
-  stroke: #42dce1;
+  stroke: var(--lesson-accent,#42dce1);
   stroke-width: 2;
   transition: 0.3s;
 }
@@ -199,18 +199,18 @@
   transform: scale(0.3, 0.95) translate(420px, 10px);
 }
 .fru10110-net line {
-  stroke: #dce9fa;
+  stroke: var(--lesson-ink,#dce9fa);
   stroke-dasharray: 5 4;
 }
 .fru10110-net text {
-  fill: #e4edff;
+  fill: var(--lesson-ink,#e4edff);
   font:
     italic 17px Georgia,
     serif;
 }
 .fru10110-net aside {
   padding: 10px;
-  border: 1px solid #304b65;
+  border: 1px solid var(--lesson-border,#304b65);
   border-radius: 7px;
   text-align: center;
 }
@@ -228,7 +228,7 @@
   gap: 14px;
   margin-top: 12px;
   padding: 14px;
-  border: 1px solid #29435d;
+  border: 1px solid var(--lesson-border,#29435d);
   border-radius: 9px;
 }
 .fru10110-results > h2 {
@@ -237,9 +237,9 @@
 .fru10110-results article,
 .fru10110-results aside {
   padding: 12px;
-  border: 1px solid #29435d;
+  border: 1px solid var(--lesson-border,#29435d);
   border-radius: 7px;
-  background: #06182f;
+  background: var(--lesson-surface,#06182f);
 }
 .fru10110-results article strong {
   display: block;
@@ -249,11 +249,11 @@
     serif;
 }
 .fru10110-results article p {
-  color: #31dce3;
+  color: var(--lesson-accent,#31dce3);
 }
 .fru10110-results aside {
   border-color: #b92d54;
-  background: #211226;
+  background: var(--lesson-canvas,#211226);
 }
 .fru10110-results aside > b,
 .fru10110-results aside > strong {
@@ -269,8 +269,8 @@
   margin-top: 10px;
   padding: 12px;
   border-radius: 7px;
-  background: #102657;
-  color: #9fcbff;
+  background: var(--lesson-surface,#102657);
+  color: var(--lesson-muted,#9fcbff);
 }
 .fru10110-info svg {
   color: #5a9dff;

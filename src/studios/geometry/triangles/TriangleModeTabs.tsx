@@ -21,10 +21,8 @@ function Icon({ id }: { id: TriangleModeId }) {
   if (id === "centers") {
     return (
       <svg viewBox="0 0 46 46" fill="none" aria-hidden="true">
-        <polygon points="23,6 40,38 6,38" strokeWidth="2" />
-        <line x1="23" y1="6" x2="23" y2="38" strokeWidth="1.4" />
-        <line x1="6" y1="38" x2="32" y2="16" strokeWidth="1.4" />
-        <circle cx="23" cy="26" r="2.4" fill="currentColor" />
+        <circle cx="23" cy="23" r="18" strokeWidth="2" />
+        <circle cx="23" cy="23" r="3" fill="currentColor" />
       </svg>
     );
   }

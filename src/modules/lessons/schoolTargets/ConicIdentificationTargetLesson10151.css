@@ -1,8 +1,8 @@
 .ci10151-page {
   width: min(1390px, calc(100vw - 300px));
   margin: auto;
-  color: #edf4fc;
-  background: #03152a;
+  color: var(--lesson-ink,#edf4fc);
+  background: var(--lesson-surface,#03152a);
   font:
     13px/1.45 Inter,
     Arial,
@@ -13,9 +13,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 270px;
-  background: #03152a;
+  background: var(--lesson-surface,#03152a);
   content: "";
-}
+display:none;}
 .ci10151-page * {
   box-sizing: border-box;
 }
@@ -34,14 +34,14 @@
 .ci10151-page > header {
   height: 103px;
   padding: 14px 18px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 9px;
-  background: #07182e;
+  background: var(--lesson-surface,#07182e);
 }
 .ci10151-page > header small,
 .ci10151-page h2,
 .ci10151-page h3 {
-  color: #42dce1;
+  color: var(--lesson-accent,#42dce1);
   font-weight: 900;
   letter-spacing: 0.5px;
 }
@@ -50,12 +50,12 @@
   font-size: 25px;
 }
 .ci10151-page > header p {
-  color: #c8d2df;
+  color: var(--lesson-ink,#c8d2df);
 }
 .panel {
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 8px;
-  background: #07182e;
+  background: var(--lesson-surface,#07182e);
 }
 .ci10151-page > main {
   display: grid;
@@ -93,9 +93,9 @@
 .coefficient-grid input {
   width: 100%;
   padding: 9px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 6px;
-  background: #091a31;
+  background: var(--lesson-surface,#091a31);
 }
 .input-actions {
   display: flex;
@@ -108,15 +108,15 @@
   justify-content: center;
   gap: 8px;
   padding: 8px 12px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 6px;
-  background: #07182e;
+  background: var(--lesson-surface,#07182e);
   cursor: pointer;
 }
 .ci10151-page button:hover,
 .ci10151-page button.active {
   border-color: #31dce0;
-  color: #43e2e6;
+  color: var(--lesson-accent,#43e2e6);
 }
 .ci10151-page button svg {
   width: 16px;
@@ -129,19 +129,19 @@
 .rotation {
   margin: 6px 0;
   padding: 8px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 6px;
   text-align: center;
 }
 .delta strong,
 .rotation strong {
-  color: #28dce1;
+  color: var(--lesson-accent,#28dce1);
 }
 .result {
   display: grid;
   margin: 6px 0 9px;
   padding: 8px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 6px;
   text-align: center;
 }
@@ -158,7 +158,7 @@
   color: #42da78;
 }
 .result.parabola {
-  color: #ffc525;
+  color: var(--lesson-highlight,#ffc525);
 }
 .key {
   display: grid;
@@ -169,7 +169,7 @@
 }
 .key i {
   font-style: normal;
-  color: #c8d2df;
+  color: var(--lesson-ink,#c8d2df);
 }
 .green-dot,
 .yellow-dot,
@@ -187,7 +187,7 @@
 }
 .ci-classification hr {
   border: 0;
-  border-top: 1px solid #29435f;
+  border-top: 1px solid var(--lesson-border,#29435f);
 }
 .ci-classification h3 {
   font-size: 10px;
@@ -219,7 +219,7 @@
   width: 13px;
 }
 .ci-classification > small {
-  color: #aebccc;
+  color: var(--lesson-ink,#aebccc);
 }
 .graph-heading {
   display: flex;
@@ -233,9 +233,9 @@
 }
 .graph-heading select {
   padding: 6px 30px 6px 10px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 6px;
-  background: #07182e;
+  background: var(--lesson-surface,#07182e);
 }
 .plot-row {
   display: grid;
@@ -254,7 +254,7 @@
   stroke-width: 1;
 }
 .plot-row .axis {
-  stroke: #c7d1dc;
+  stroke: var(--lesson-ink,#c7d1dc);
   stroke-width: 1.2;
 }
 .plot-row .conic {
@@ -287,7 +287,7 @@
   gap: 10px;
   margin-top: 65px;
   padding: 10px;
-  border: 1px solid #29435f;
+  border: 1px solid var(--lesson-border,#29435f);
   border-radius: 6px;
   color: #aa67e5;
 }
@@ -300,7 +300,7 @@
   margin-top: 11px;
 }
 .graph-actions button:first-child {
-  border-color: #20a9a4;
+  border-color: var(--lesson-border,#20a9a4);
 }
 .ci-bottom {
   display: grid;
@@ -324,10 +324,10 @@
   text-align: left;
   gap: 5px;
   padding: 9px 18px;
-  border-color: #378246;
+  border-color: var(--lesson-border,#378246);
 }
 .examples .ex-1 {
-  border-color: #a97b1e;
+  border-color: var(--lesson-border,#a97b1e);
 }
 .examples .ex-2 {
   border-color: #d45b21;
@@ -339,7 +339,7 @@
 }
 .examples .ex-1 > b,
 .examples .ex-1 > strong {
-  color: #ffc525;
+  color: var(--lesson-highlight,#ffc525);
 }
 .examples .ex-2 > b,
 .examples .ex-2 > strong {
@@ -355,7 +355,7 @@
   margin: 3px 0;
 }
 .circle-note small {
-  color: #cbd5df;
+  color: var(--lesson-ink,#cbd5df);
 }
 @media (max-width: 1150px) {
   .ci10151-page > main {

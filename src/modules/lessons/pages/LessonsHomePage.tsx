@@ -18,6 +18,9 @@ import { advancedConceptLessons } from "../catalog/advanced/advancedConceptLesso
 import { lessonCategories } from "../catalog/lessonCatalog";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import { allLearningLessonRefs, getFeaturedLesson, getLearningTopics, getLessonTotals, type LearningLessonRef, type LearningTopic } from "../learningExperience";
+import { unifiedCategories, lessonById } from '../catalog/unified/unifiedLessons';
+import { searchLessons } from '../catalog/unified/searchLessons';
+import {publicLessonLevel,learnerText} from '../lessonPresentation';
 
 const iconBase = "/assets/lesson-topic-icons";
 
@@ -77,35 +80,41 @@ export default function LessonsHomePage() {
   const featuredLesson = useMemo(() => getFeaturedLesson(), []);
   const totals = useMemo(() => getLessonTotals(), []);
   const allLessons = useMemo(() => allLearningLessonRefs(), []);
-  const topicOptions = useMemo(() => Array.from(new Set(allLessons.map((lesson) => lesson.topic))).sort((a, b) => a.localeCompare(b)).slice(0, 80), [allLessons]);
-  const classOptions = useMemo(() => Array.from(new Set(allLessons.map((lesson) => lesson.level))).sort((a, b) => a.localeCompare(b)), [allLessons]);
+  const topicOptions = useMemo(() => Array.from(new Set(allLessons.map((lesson) => learnerText(lesson.topic)))).sort((a, b) => a.localeCompare(b)), [allLessons]);
+  const classOptions = useMemo(() => Array.from(new Set(allLessons.map((lesson) => publicLessonLevel(lesson.level)))).sort((a, b) => a.localeCompare(b)), [allLessons]);
 
   const query = searchParams.get("q") ?? "";
   const selectedClass = searchParams.get("class") ?? "";
   const selectedTopic = searchParams.get("topic") ?? "";
   const selectedType = searchParams.get("type") ?? "";
   const selectedTool = searchParams.get("tool") ?? "";
+  const selectedCategory=searchParams.get('category')??'';
+  const resultLimit=Math.min(totals.total,Math.max(36,Math.floor(Number(searchParams.get('limit'))||36)));
+  const browseAll=searchParams.get('browse')==='all';
   const rawView = searchParams.get("view");
   const selectedView: LessonsLandingView = rawView === "topics" || rawView === "curriculum" ? rawView : "pathway";
 
   const filteredLessonMatches = useMemo(() => {
-    const normalized = query.trim().toLowerCase();
+    const ids=new Set(searchLessons(query).map(l=>l.id));
     return allLessons
-      .filter((lesson) => !normalized || searchableText(lesson).includes(normalized))
-      .filter((lesson) => !selectedClass || lesson.level === selectedClass)
-      .filter((lesson) => !selectedTopic || lesson.topic === selectedTopic)
+      .filter((lesson) => ids.has(lesson.id))
+      .filter((lesson)=>!selectedCategory||lessonById(lesson.id)?.categorySlug===selectedCategory)
+      .filter((lesson) => !selectedClass || publicLessonLevel(lesson.level) === selectedClass)
+      .filter((lesson) => !selectedTopic || learnerText(lesson.topic) === selectedTopic)
       .filter((lesson) => !selectedType || learningTypeFor(lesson) === selectedType)
-      .filter((lesson) => !selectedTool || visualToolFor(lesson) === selectedTool);
-  }, [allLessons, query, selectedClass, selectedTopic, selectedType, selectedTool]);
-  const filteredLessons = filteredLessonMatches.slice(0, 18);
+      .filter((lesson) => !selectedTool || visualToolFor(lesson) === selectedTool)
+      .sort((a,b)=>String(b.id)===query.trim()?1:String(a.id)===query.trim()?-1:a.id-b.id);
+  }, [allLessons, query, selectedClass, selectedTopic, selectedType, selectedTool,selectedCategory]);
+  const filteredLessons = filteredLessonMatches.slice(0,resultLimit);
 
-  const hasActiveFilters = Boolean(query || selectedClass || selectedTopic || selectedType || selectedTool);
+  const hasActiveFilters = Boolean(query || selectedClass || selectedTopic || selectedType || selectedTool||selectedCategory||browseAll);
   const functionsTopic = topics.find((topic) => topic.slug === "functions-and-graphs") ?? topics[0];
   const functionsCount = countTopicLessons(functionsTopic);
 
   function updateFilter(key: string, value: string) {
     setSearchParams((current) => {
       const next = new URLSearchParams(current);
+      next.delete('limit');
       if (value) next.set(key, value);
       else next.delete(key);
       return next;
@@ -145,6 +154,7 @@ export default function LessonsHomePage() {
         <div className="lessons-filter-row" aria-label="Lesson filters">
           <FilterSelect label="Class" value={selectedClass} options={classOptions} onChange={(value) => updateFilter("class", value)} />
           <FilterSelect label="Topic" value={selectedTopic} options={topicOptions} onChange={(value) => updateFilter("topic", value)} />
+          <FilterSelect label="Category" value={selectedCategory} options={unifiedCategories.map(c=>c.slug)} labels={Object.fromEntries(unifiedCategories.map(c=>[c.slug,c.title]))} onChange={value=>updateFilter('category',value)}/>
           <FilterSelect label="Learning Type" value={selectedType} options={learningTypeFilters.map((type) => type.id)} labels={Object.fromEntries(learningTypeFilters.map((type) => [type.id, type.label]))} onChange={(value) => updateFilter("type", value)} />
           <FilterSelect label="Visual Tool" value={selectedTool} options={visualToolOptions} onChange={(value) => updateFilter("tool", value)} />
           <Filter className="lessons-filter-icon h-5 w-5" aria-hidden="true" />
@@ -156,6 +166,7 @@ export default function LessonsHomePage() {
           <strong>{totals.interactive}</strong><span>interactive</span>
           <strong>{totals.school}</strong><span>school</span>
           <strong>{totals.advanced}</strong><span>advanced</span>
+          <strong>{totals.drafted}</strong><span>additional lessons</span>
         </div>
         <SearchShortcutDeck />
         {hasActiveFilters ? (
@@ -165,15 +176,18 @@ export default function LessonsHomePage() {
                 <span>Search results</span>
                 <strong>{filteredLessonMatches.length} matching lessons</strong>
               </div>
-              <small>Showing best {filteredLessons.length}. Refine class, topic, type, or tool to narrow faster.</small>
+              <small>Showing {filteredLessons.length} of {filteredLessonMatches.length}. {selectedCategory?unifiedCategories.find(c=>c.slug===selectedCategory)?.title:''}</small>
             </div>
             <div className="learn-search-results lessons-results">
               {filteredLessons.map((lesson) => <LessonResult key={lesson.route} lesson={lesson} />)}
             </div>
             {filteredLessons.length === 0 ? <p className="learn-empty">No lesson matches those filters yet.</p> : null}
+            {filteredLessons.length<filteredLessonMatches.length&&<button type="button" className="learn-secondary" onClick={()=>setSearchParams(current=>{const next=new URLSearchParams(current);next.set('limit',String(resultLimit+36));return next;})}>Show more lessons</button>}
           </div>
         ) : null}
       </section>
+
+      <section aria-labelledby="all-categories-title" className="learn-pathway lessons-topics"><div className="learn-section-heading"><div><p className="learn-kicker">Complete lesson library</p><h2 id="all-categories-title">{unifiedCategories.length} topic categories · {totals.total} lessons</h2><p>Every registered lesson has one main category. Search also includes its concepts, explanations and formulas.</p><Link to="/lessons?browse=all#lesson-search" className="learn-secondary mt-3">Browse all {totals.total} lessons</Link></div></div><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{unifiedCategories.map(category=><Link key={category.slug} to={`/lessons?category=${category.slug}#lesson-search`} className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950"><h3 className="font-black">{category.title}</h3><p className="mt-2 text-sm">{category.count} lessons</p></Link>)}</div></section>
 
       <section id="pathways" className="lessons-pathway" aria-labelledby="learning-path-title">
         <div className="learn-section-heading">
@@ -247,6 +261,7 @@ export default function LessonsHomePage() {
         </div>
         <div className="lessons-collection-grid">
           <CollectionCard to="/lessons/school" icon={`${iconBase}/01-school-curriculum.png`} title="School Curriculum" text={`${schoolLessonCatalog.length} class-linked lessons`} />
+          <CollectionCard to="/lessons?browse=all" icon={`${iconBase}/01-school-curriculum.png`} title="Complete Lesson Library" text="Explore lessons by topic and class" />
           <CollectionCard to="/lessons/advanced-concepts" icon={`${iconBase}/02-advanced-concepts.png`} title="Advanced Concepts" text={`${advancedConceptLessons.length} university extensions`} />
           <CollectionCard to="/math-lab/graphing-calculator" icon={`${iconBase}/03-core-workspaces.png`} title="Visual Workspaces" text="2D - 3D - CAS - Graphing" />
           <CollectionCard to={`/lessons/${lessonCategories[0]?.slug ?? "calculator-and-arithmetic"}`} icon={`${iconBase}/06-platform-capabilities.png`} title="Legacy Library" text="Every original route preserved" />
@@ -457,11 +472,11 @@ function LessonResult({ lesson }: { lesson: LearningLessonRef }) {
     <Link className="learn-result" to={lesson.route}>
       <span>Lesson {lesson.id} · {type} · {tool}</span>
       <strong>{lesson.title}</strong>
-      <p>{lesson.summary}</p>
+      <p>{learnerText(lesson.summary)}</p>
       <div className="lessons-result-meta">
-        <small>{lesson.level}</small>
+        <small>{publicLessonLevel(lesson.level)}</small>
         <small>{lesson.minutes} min</small>
-        <small>{lesson.topic}</small>
+        <small>{learnerText(lesson.topic)}</small>
       </div>
     </Link>
   );
@@ -572,10 +587,6 @@ function DomainRangePreview() {
       </svg>
     </div>
   );
-}
-
-function searchableText(lesson: LearningLessonRef) {
-  return [lesson.id, lesson.title, lesson.topic, lesson.level, lesson.summary, visualToolFor(lesson), learningTypeFor(lesson)].join(" ").toLowerCase();
 }
 
 function countTopicLessons(topic: LearningTopic) {

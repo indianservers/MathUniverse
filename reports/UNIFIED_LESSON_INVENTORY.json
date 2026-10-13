@@ -1,0 +1,183 @@
+{
+  "total": 1367,
+  "byKind": {
+    "interactive": 674,
+    "school": 220,
+    "advanced": 25,
+    "authored": 448
+  },
+  "categories": [
+    {
+      "title": "Numbers and Arithmetic",
+      "slug": "numbers-and-arithmetic",
+      "count": 93
+    },
+    {
+      "title": "Number Theory",
+      "slug": "number-theory",
+      "count": 33
+    },
+    {
+      "title": "Ratios and Proportion",
+      "slug": "ratios-and-proportion",
+      "count": 54
+    },
+    {
+      "title": "Algebra",
+      "slug": "algebra",
+      "count": 89
+    },
+    {
+      "title": "Equations and Inequalities",
+      "slug": "equations-and-inequalities",
+      "count": 50
+    },
+    {
+      "title": "Functions and Graphs",
+      "slug": "functions-and-graphs",
+      "count": 86
+    },
+    {
+      "title": "Coordinate Geometry",
+      "slug": "coordinate-geometry",
+      "count": 54
+    },
+    {
+      "title": "Geometry",
+      "slug": "geometry",
+      "count": 143
+    },
+    {
+      "title": "Trigonometry",
+      "slug": "trigonometry",
+      "count": 48
+    },
+    {
+      "title": "Mensuration",
+      "slug": "mensuration",
+      "count": 54
+    },
+    {
+      "title": "Vectors and 3D Geometry",
+      "slug": "vectors-and-3d-geometry",
+      "count": 76
+    },
+    {
+      "title": "Matrices and Linear Algebra",
+      "slug": "matrices-and-linear-algebra",
+      "count": 25
+    },
+    {
+      "title": "Complex Numbers",
+      "slug": "complex-numbers",
+      "count": 13
+    },
+    {
+      "title": "Sequences and Series",
+      "slug": "sequences-and-series",
+      "count": 27
+    },
+    {
+      "title": "Limits and Derivatives",
+      "slug": "limits-and-derivatives",
+      "count": 53
+    },
+    {
+      "title": "Integrals",
+      "slug": "integrals",
+      "count": 17
+    },
+    {
+      "title": "Differential Equations",
+      "slug": "differential-equations",
+      "count": 21
+    },
+    {
+      "title": "Probability",
+      "slug": "probability",
+      "count": 58
+    },
+    {
+      "title": "Statistics and Inference",
+      "slug": "statistics-and-inference",
+      "count": 99
+    },
+    {
+      "title": "Combinatorics and Discrete Mathematics",
+      "slug": "combinatorics-and-discrete-mathematics",
+      "count": 12
+    },
+    {
+      "title": "Logic and Proofs",
+      "slug": "logic-and-proofs",
+      "count": 53
+    },
+    {
+      "title": "Graph Theory",
+      "slug": "graph-theory",
+      "count": 18
+    },
+    {
+      "title": "Finance and Optimization",
+      "slug": "finance-and-optimization",
+      "count": 26
+    },
+    {
+      "title": "Numerical Methods",
+      "slug": "numerical-methods",
+      "count": 1
+    },
+    {
+      "title": "Transforms and Special Functions",
+      "slug": "transforms-and-special-functions",
+      "count": 4
+    },
+    {
+      "title": "Machine Learning and AI",
+      "slug": "machine-learning-and-ai",
+      "count": 16
+    },
+    {
+      "title": "NLP and Image Features",
+      "slug": "nlp-and-image-features",
+      "count": 5
+    },
+    {
+      "title": "Quantum Mathematics",
+      "slug": "quantum-mathematics",
+      "count": 3
+    },
+    {
+      "title": "Abstract Algebra and Topology",
+      "slug": "abstract-algebra-and-topology",
+      "count": 1
+    },
+    {
+      "title": "History and Numeral Systems",
+      "slug": "history-and-numeral-systems",
+      "count": 18
+    },
+    {
+      "title": "Authoring and Learning Tools",
+      "slug": "authoring-and-learning-tools",
+      "count": 57
+    },
+    {
+      "title": "Patterns and Algorithms",
+      "slug": "patterns-and-algorithms",
+      "count": 9
+    },
+    {
+      "title": "Calculators and Workspaces",
+      "slug": "calculators-and-workspaces",
+      "count": 38
+    },
+    {
+      "title": "Mathematical Modelling",
+      "slug": "mathematical-modelling",
+      "count": 13
+    }
+  ],
+  "idsUnique": true,
+  "routesUnique": true
+}

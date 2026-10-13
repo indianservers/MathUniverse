@@ -1,0 +1,42 @@
+:root{--app-canvas:#f8fafc;--app-surface:#fff;--app-border:#cbd5e1;--app-text:#17324d;--app-muted:#52677f;--app-cyan:#007d91;--app-blue:#2563eb;--app-violet:#7c3aed;--app-rose:#be123c;--app-amber:#956200}
+html.dark{color-scheme:dark;--app-canvas:#091321;--app-surface:#122237;--app-border:#42556e;--app-text:#edf3fc;--app-muted:#b8c7da;--app-cyan:#67e8f9;--app-blue:#93c5fd;--app-violet:#c4b5fd;--app-rose:#fda4af;--app-amber:#fcd34d}
+html.dark body{background:var(--app-canvas);color:var(--app-text)}
+html.dark #root :is(.bg-white,.bg-slate-50,.bg-slate-100,.bg-gray-50,.bg-gray-100,.bg-cyan-50,.bg-blue-50,.bg-violet-50,.bg-amber-50):not([data-chrome-theme="light"]):not([data-geometry-theme="light"]):not([data-chrome-theme="light"] *):not([data-geometry-theme="light"] *){background-color:var(--app-surface)!important}
+html.dark #root :is(.text-slate-900,.text-slate-800,.text-slate-700,.text-gray-900,.text-gray-800,.text-gray-700):not([data-chrome-theme="light"] *):not([data-geometry-theme="light"] *){color:var(--app-text)!important}
+html.dark #root :is(.text-slate-600,.text-slate-500,.text-gray-600,.text-gray-500):not([data-chrome-theme="light"] *):not([data-geometry-theme="light"] *){color:var(--app-muted)!important}
+html.dark #root :is(input,select,textarea):not([type="range"]):not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([data-chrome-theme="light"]):not([data-geometry-theme="light"]):not([data-chrome-theme="light"] *):not([data-geometry-theme="light"] *){background-color:#0b192b;color:var(--app-text);border-color:var(--app-border)}
+html.dark #root input::placeholder,html.dark #root textarea::placeholder{color:#9db0c9;opacity:1}
+html.dark #root .universe-hero{background:#0e1c30!important;color:var(--app-text)}
+html.dark #root .universe-main{background:linear-gradient(100deg,#0e1c30 30%,#112b40 50%,#061329 75%)!important}
+html.dark #root :is(.universe-copy h1,.universe-features>div,.universe-stats strong,.universe-stats b){color:var(--app-text)!important}
+html.dark #root :is(.universe-copy p,.universe-eyebrow){color:var(--app-muted)!important}
+html.dark #root .universe-stats>div{background:#122237!important;border-color:#42556e}
+html.dark #root .mwc-card{background:linear-gradient(145deg,#122237,#0d1b2d)!important;border-color:#42556e;color:var(--app-text)!important;--mwc-accent:#67e8f9!important;--mwc-accent-strong:#67e8f9!important}
+html.dark #root .mwc-card[data-workspace="cas"]{--mwc-accent:#c4b5fd!important;--mwc-accent-strong:#c4b5fd!important}
+html.dark #root .mwc-card[data-workspace="geometry-3d"]{--mwc-accent:#93c5fd!important;--mwc-accent-strong:#93c5fd!important}
+html.dark #root .mwc-card[data-workspace="graphs-3d"]{--mwc-accent:#a5b4fc!important;--mwc-accent-strong:#a5b4fc!important}
+html.dark #root .mwc-card[data-workspace="shapes"]{--mwc-accent:#6ee7b7!important;--mwc-accent-strong:#6ee7b7!important}
+html.dark #root .mwc-title strong{display:inline!important;visibility:visible!important;color:var(--app-text)!important;-webkit-text-fill-color:var(--app-text)}
+html.dark #root .mwc-card small{color:var(--app-muted)!important}
+html.dark #root :is(.mwc-title em,.mwc-chip){background:#20364c!important;color:var(--mwc-accent)!important;border-color:#48607a}
+html.dark #root .mwc-formula{color:var(--mwc-accent)!important;opacity:.4}
+html.dark #root .mwc-cta{background:linear-gradient(110deg,#2563eb,#4338ca)!important;color:white!important;box-shadow:none}
+html.dark #root .mwc-cta span{color:white!important}
+html.dark #root .mwc-art{--mwc-art-ink:var(--mwc-accent)}
+html.dark #root .mwc-art text{fill:var(--mwc-accent)!important;opacity:1}
+html.dark #root .mwc-art [stroke]:not([stroke="none"]){stroke:var(--mwc-accent)}
+html.dark #root .mwc-icon{color:var(--mwc-accent)}
+html.dark #root :focus-visible{outline-color:#67e8f9}
+
+html.dark #root [class*="bg-white/"]:not([data-chrome-theme="light"] *):not([data-geometry-theme="light"] *){background-color:var(--app-surface)!important}
+html.dark #root .universe-actions :is(a:not(:first-child),button){background:#1a2f49!important;color:#b8dcff!important;border:1px solid #4b6583}
+html.dark #root .universe-actions a:first-child{color:white!important}
+
+html.dark #root .mwc-icon [stroke]:not([stroke="none"]){stroke:var(--mwc-accent)}
+
+/* Keep inherited studio text readable when a panel uses its own palette. */
+html.dark #root :is(.msk-shell,.la-card,.la-note,.la-eq,.msk-panel,.msk-card){color:var(--app-text)}
+html.dark #root :is(.msk-shell,.studio-learning-host) :is(h1,h2,h3,h4,label,th,td,output){color:var(--app-text)}
+html.dark #root .la-eq:is([style*="139, 69, 244"],[style*="139,69,244"],[style*="#8b45f4"]){color:var(--app-violet)!important}
+html.dark #root .la-eq:is([style*="20, 125, 242"],[style*="20,125,242"],[style*="#147df2"]){color:var(--app-blue)!important}
+html.dark #root .la-eq:is([style*="245, 158, 11"],[style*="245,158,11"],[style*="#f59e0b"]){color:var(--app-amber)!important}

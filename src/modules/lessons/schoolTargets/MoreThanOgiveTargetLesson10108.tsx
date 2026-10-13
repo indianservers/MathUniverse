@@ -1,3 +1,4 @@
+import GroupedDataEditor from "../components/GroupedDataEditor";
 import { Eye, Grip, Lightbulb, RotateCcw } from "lucide-react";
 import { type PointerEvent, useRef, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
@@ -19,6 +20,7 @@ export default function MoreThanOgiveTargetLesson10108({
 }: {
   lesson: SchoolSyllabusLesson;
 }) {
+  const [upperBoundary,setUpperBoundary] = useState(50);
   const [rows, setRows] = useState(defaults);
   const [guide, setGuide] = useState(true);
   const [mode, setMode] = useState<"table" | "graph">("graph");
@@ -33,7 +35,7 @@ export default function MoreThanOgiveTargetLesson10108({
   }));
   points.push({
     id: rows.length + 1,
-    boundary: (rows.at(-1)?.boundary ?? 0) + 10,
+    boundary: upperBoundary,
     frequency: 0,
     cf: 0,
   });
@@ -50,7 +52,8 @@ export default function MoreThanOgiveTargetLesson10108({
         )
       : 0;
   const maxBoundary = points.at(-1)?.boundary ?? 50;
-  const sx = (x: number) => 55 + (x / maxBoundary) * 560;
+  const minBoundary=rows[0].boundary;
+  const sx = (x: number) => 55 + ((x-minBoundary) / (maxBoundary-minBoundary)) * 560;
   const sy = (cf: number) => 275 - (cf / Math.max(35, total)) * 220;
   const path = points
     .map(
@@ -66,7 +69,7 @@ export default function MoreThanOgiveTargetLesson10108({
     setRows((current) =>
       current.map((row) =>
         row.id === id
-          ? { ...row, frequency: Math.max(0, Math.min(20, Math.round(value))) }
+          ? { ...row, frequency: Math.max(0, Math.min(1000000, Math.round(value))) }
           : row,
       ),
     );
@@ -85,6 +88,7 @@ export default function MoreThanOgiveTargetLesson10108({
   const reset = () =>
     act(() => {
       setRows(defaults);
+      setUpperBoundary(50);
       setGuide(true);
       setMode("graph");
       setDragging(null);
@@ -120,6 +124,7 @@ export default function MoreThanOgiveTargetLesson10108({
           <span>statistics</span>
         </nav>
       </header>
+      <GroupedDataEditor data={{bounds:[...rows.map(row=>row.boundary),upperBoundary],frequencies:rows.map(row=>row.frequency)}} defaults={{bounds:[0,10,20,30,40,50],frequencies:defaults.map(row=>row.frequency)}} onChange={data=>act(()=>{setUpperBoundary(data.bounds.at(-1)!);setRows(data.frequencies.map((frequency,i)=>({id:i+1,boundary:data.bounds[i],frequency})));})}/>
       <main className="mto10108-lab">
         <header>
           <div>
@@ -162,7 +167,7 @@ export default function MoreThanOgiveTargetLesson10108({
                                 item.id === row.id
                                   ? {
                                       ...item,
-                                      boundary: Number(event.target.value),
+                                      boundary: Math.max(current[index-1]?.boundary+0.01 || -1000000,Math.min((current[index+1]?.boundary ?? upperBoundary)-0.01,Number(event.target.value))),
                                     }
                                   : item,
                               ),
@@ -176,7 +181,7 @@ export default function MoreThanOgiveTargetLesson10108({
                         aria-label={`Frequency row ${row.id}`}
                         type="number"
                         min="0"
-                        max="20"
+                        max="1000000"
                         value={row.frequency}
                         onChange={(event) =>
                           act(() =>
@@ -204,7 +209,7 @@ export default function MoreThanOgiveTargetLesson10108({
               <div>
                 <b>Why does the curve start at N?</b>
                 <p>
-                  At the smallest lower class boundary (0), all observations are
+                  At the smallest lower class boundary ({minBoundary}), all observations are
                   “more than or equal to 0”. Hence the curve starts at total N.
                 </p>
               </div>
@@ -234,7 +239,7 @@ export default function MoreThanOgiveTargetLesson10108({
                 aria-label="Interactive more-than ogive"
               >
                 <g className="grid">
-                  {[0, 5, 10, 15, 20, 25, 30, 35].map((value) => (
+                  {Array.from({length:8},(_,i)=>Number((i*Math.max(35,total)/7).toFixed(2))).map((value) => (
                     <line
                       key={value}
                       x1="55"
@@ -267,7 +272,7 @@ export default function MoreThanOgiveTargetLesson10108({
                       role="slider"
                       tabIndex={0}
                       aria-label={`More-than point ${point.id}`}
-                      aria-valuemin="0"
+                      aria-valuemin={0}
                       aria-valuemax={total}
                       aria-valuenow={point.cf}
                       cx={sx(point.boundary)}

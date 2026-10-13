@@ -19,11 +19,12 @@ import { answersMatchChallenge } from "../studios/algebra/algebraStudioMath";
 import { AlgebraStudioNav, routePage, type AlgebraPage } from "../studios/algebra/AlgebraStudioNav";
 import { challengeOfTheDay, dailyChallenges } from "../studios/algebra/algebraStudioCatalog";
 import { namedExperiments, readLabProgress } from "../studios/algebra/algebraStudioProgress";
-import { BalanceScaleTeaser, CasExpandTeaser, FactorTilesTeaser } from "../studios/landing/StudioLandingTeasers";
+import AlgebraTopicIcon from "../studios/algebra/AlgebraTopicIcon";
 import { relativeOpened } from "../studios/landing/studioLandingSession";
 import "../studios/landing/studioLanding.css";
 import "./AlgebraStudio.css";
 import "./AlgebraTarget.css";
+import "./AlgebraTopicIcons.css";
 
 type TopicStudio = {
   id: Exclude<AlgebraPage, "home">;
@@ -63,7 +64,7 @@ function readStringList(key: string): string[] {
 
 export default function AlgebraStudio() {
   const location = useLocation();
-  const page = routePage[location.pathname] ?? "home";
+  const page = location.pathname.startsWith("/algebra/advanced") ? "advanced" : routePage[location.pathname] ?? "home";
 
   useEffect(() => {
     if (page === "home") return;
@@ -73,6 +74,8 @@ export default function AlgebraStudio() {
     seen.add(page);
     localStorage.setItem(VISITED_KEY, JSON.stringify([...seen]));
   }, [location.pathname, page]);
+
+  if (page === "advanced") return <AlgebraEnhancementWorkbench />;
 
   return (
     <main className="alg-studio alg-studio-target">
@@ -179,7 +182,7 @@ function StudioHome() {
               <article key={item.id} className="alg-launch-card msk-card-article">
                 <Link className="msk-card-hit" to={item.route} aria-label={`Open ${item.label}`} />
                 <Link to={item.route} className="alg-launch-n">{`${index + 1} ${item.label}`}</Link>
-                {item.id === "equations" ? <BalanceScaleTeaser /> : item.id === "expressions" ? <FactorTilesTeaser /> : item.id === "cas" ? <CasExpandTeaser /> : <TopicPreview id={item.id} />}
+                <AlgebraTopicIcon topic={item.id} href={item.route} />
                 <p>{item.description}</p>
                 {item.id === "systems" ? <p className="sl-kicker">Move a line in the lab to see the intersection.</p> : null}
                 {item.id === "exponents" ? <p className="sl-kicker">Log vs exponential overlay in the lab.</p> : null}
@@ -264,35 +267,4 @@ function StudioHome() {
       ) : null}
     </div>
   );
-}
-
-function TopicPreview({ id }: { id: TopicStudio["id"] }) {
-  if (id === "expressions") return <div className="alg-mini-tiles" aria-hidden="true"><i>x</i><i>x</i><i>+</i><i>3</i></div>;
-  if (id === "equations") {
-    return (
-      <svg className="alg-mini-parabola" viewBox="0 0 140 72" aria-hidden="true">
-        <line x1="70" y1="18" x2="70" y2="28" stroke="#64748b" strokeWidth="2" />
-        <path d="M28 28h84" stroke="#94a3b8" strokeWidth="3" strokeLinecap="round" />
-        <path d="M32 28 L48 52 H16 Z" fill="#dbeafe" stroke="#2563eb" />
-        <path d="M92 28 L108 52 H76 Z" fill="#ede9fe" stroke="#7c3aed" />
-        <text x="28" y="46" fontSize="8" fill="#1d4ed8">2x+3</text>
-        <text x="94" y="46" fontSize="8" fill="#6d28d9">7</text>
-      </svg>
-    );
-  }
-  if (id === "functions") return <svg className="alg-mini-parabola" viewBox="0 0 160 62" aria-hidden="true"><path d="M8 50 Q 40 8 80 40 T 152 18" fill="none" stroke="#8b5cf6" strokeWidth="3" /><path d="M8 50 Q 50 20 90 48 T 152 30" fill="none" stroke="#22d3ee" strokeWidth="2" strokeDasharray="4 3" /></svg>;
-  if (id === "polynomials") return <svg className="alg-mini-parabola" viewBox="0 0 160 62" aria-hidden="true"><path d="M6 40 C 30 8, 50 70, 80 28 S 130 8, 154 44" fill="none" stroke="#8b5cf6" strokeWidth="3" /></svg>;
-  if (id === "systems") return <div className="alg-mini-system" aria-hidden="true"><i /><i /></div>;
-  if (id === "exponents") {
-    return (
-      <svg className="alg-mini-parabola" viewBox="0 0 160 62" aria-hidden="true">
-        <path d="M10 54 C 40 52 50 18 80 16 C 110 14 140 8 152 8" fill="none" stroke="#2563eb" strokeWidth="2" />
-        <path d="M10 56 C 50 52 90 36 152 24" fill="none" stroke="#c026d3" strokeWidth="2" />
-      </svg>
-    );
-  }
-  if (id === "sequences") return <div className="alg-mini-sequence" aria-hidden="true">2 5 10 17 26</div>;
-  if (id === "proof") return <div className="alg-mini-proof" aria-hidden="true"><span>Given</span><span>Show</span><span>Therefore</span></div>;
-  if (id === "cas") return <div className="alg-mini-formula" aria-hidden="true">expand((x+2)³)</div>;
-  return null;
 }

@@ -103,6 +103,7 @@ export default function SchoolLessonsPage() {
       </section>
 
       <section className="space-y-4">
+        <Link to="/lessons?browse=all" className="block rounded-2xl border border-cyan-300 bg-cyan-50 p-4 text-sm font-bold text-cyan-900 dark:border-cyan-300/30 dark:bg-cyan-300/10 dark:text-cyan-100">Explore the complete lesson library by topic, class and concept</Link>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-xl font-black">{lessons.length} matching school lessons</h2>
           <span className="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-3 py-1 text-xs font-black text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-100"><Filter className="h-3.5 w-3.5" />{units.length} concepts</span>

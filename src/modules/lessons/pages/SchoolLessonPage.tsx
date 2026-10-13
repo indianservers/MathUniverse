@@ -246,6 +246,7 @@ import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumb
 import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
 import DedicatedLessonTabHost from "../components/DedicatedLessonTabHost";
 import LessonSimpleEnglishGuide from "../components/LessonSimpleEnglishGuide";
+import AuthoredCurriculumLessonPage, { getAuthoredCurriculumLesson } from "./AuthoredCurriculumLessonPage";
 
 const DECIMAL_EXPANSION_ROUTE_SLUG =
   "class-9-real-numbers-decimal-expansion-of-rational-numbers";
@@ -260,6 +261,8 @@ function isDedicatedSchoolLesson(lesson: { numericId: number; slug: string }) {
 export default function SchoolLessonPage() {
   const { levelSlug: routeLevelSlug, lessonSlug } = useParams();
   const [activeSection, setActiveSection] = useState<"interaction" | "learn" | "examples" | "formulas" | "practice">("interaction");
+  const reservedId = Number(lessonSlug?.split("-")[0]);
+  if (getAuthoredCurriculumLesson(reservedId)) return <AuthoredCurriculumLessonPage lessonId={reservedId} />;
   const lesson = findSchoolLesson(routeLevelSlug, lessonSlug);
   if (!lesson) return <LessonNotFound />;
   if (isDedicatedSchoolLesson(lesson)) {

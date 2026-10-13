@@ -1,5 +1,5 @@
 import CinematicHero from "../../studios/heroes/CinematicHero";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { forceCenter, forceLink, forceManyBody, forceSimulation } from "d3";
 import { motion } from "framer-motion";
 import {
@@ -140,6 +140,7 @@ export default function GraphTheoryModule() {
 }
 
 function GraphTheoryStudio() {
+  const navigate = useNavigate();
   const store = useGraphTheoryStore();
   const [activeTab, setActiveTab] = useState<
     "build" | "representations" | "algorithms" | "properties" | "learn"
@@ -219,7 +220,7 @@ function GraphTheoryStudio() {
     setActiveTab(tab);
     const url = new URL(window.location.href);
     url.searchParams.set("tab", tab);
-    window.history.pushState(window.history.state, "", url);
+    navigate({pathname:url.pathname,search:url.search,hash:url.hash});
   };
   const pushHistory = () => {
     setHistory((items) => [...items.slice(-24), project]);

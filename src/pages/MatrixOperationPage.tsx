@@ -36,6 +36,7 @@ import {
   transposeMatrix,
 } from "../utils/matrixOperations";
 import type { Matrix, MatrixStepResult } from "../utils/matrixOperations";
+import "./MatrixOperationPage.css";
 
 const examples: Record<MatrixOperationId, { a: Matrix; b?: Matrix; scalar?: number }> = {
   basics: { a: [[1, 2, 3], [4, 5, 6]] },
@@ -85,7 +86,7 @@ function OperationWorkspace({ id, title }: { id: MatrixOperationId; title: strin
   const rightLabel = swapDisplay ? "A" : "B";
 
   const matrixInputs = (
-    <div className="grid gap-4 xl:grid-cols-2">
+    <div className={`matrix-operation-inputs ${needsMatrixB(id) ? "matrix-operation-inputs--pair" : ""}`}>
       <MatrixInput label="Matrix A" matrix={a} onChange={(matrix) => { setA(matrix); setActive(0); }} example={example.a} maxRows={id === "determinant" || id === "inverse" ? 3 : 4} maxCols={id === "determinant" || id === "inverse" ? 3 : 4} />
       {needsMatrixB(id) && <MatrixInput label="Matrix B" matrix={b} onChange={(matrix) => { setB(matrix); setActive(0); }} example={example.b ?? example.a} />}
     </div>
@@ -93,7 +94,9 @@ function OperationWorkspace({ id, title }: { id: MatrixOperationId; title: strin
 
   return (
     <MatrixOperationLayout {...contentFor(id, title)}>
-      <div className="space-y-6">
+      <div className="matrix-operation-content">
+        <div className={`matrix-operation-workspace ${needsMatrixB(id) ? "matrix-operation-workspace--pair" : ""}`}>
+        <div className="matrix-operation-controls">
         {matrixInputs}
         {id === "scalar-multiplication" && <ScalarControl value={scalar} onChange={setScalar} />}
         {id === "subtraction" && <button className="action-secondary" type="button" onClick={() => { setReverseSubtraction(!reverseSubtraction); setActive(0); }}>{reverseSubtraction ? "Show A - B" : "Show B - A"}</button>}
@@ -101,12 +104,13 @@ function OperationWorkspace({ id, title }: { id: MatrixOperationId; title: strin
         {id === "transformations" && <TransformationPresets onSelect={(matrix) => { setA(matrix); setActive(0); }} />}
         {id === "row-operations" && <RowOperationControls operation={rowOperation} setOperation={setRowOperation} r1={r1} r2={r2} setR1={setR1} setR2={setR2} scalar={rowScalar} setScalar={setRowScalar} rows={a.length} />}
         <MatrixErrorBox error={computed.error} />
-        <SectionCard title="Interactive Visualization">
+        </div>
+        <SectionCard title="Interactive Visualization" className="matrix-operation-visualization" compact>
           {id === "transformations" ? (
             <MatrixTransformationCanvas matrix={a} />
           ) : (
             <div className="mobile-safe-scroll">
-              <div className="flex min-w-max flex-wrap items-center justify-center gap-5">
+              <div className="matrix-operation-equation">
                 <MatrixGrid matrix={leftMatrix} label={leftLabel} highlights={step?.highlightA} color={leftLabel === "A" ? "a" : "b"} />
                 {needsMatrixB(id) && <><span className="text-3xl font-black">{symbolFor(id)}</span><MatrixGrid matrix={rightMatrix} label={rightLabel} highlights={step?.highlightB} color={rightLabel === "A" ? "a" : "b"} /></>}
                 <span className="text-3xl font-black">=</span>
@@ -115,13 +119,18 @@ function OperationWorkspace({ id, title }: { id: MatrixOperationId; title: strin
             </div>
           )}
         </SectionCard>
-        <StepByStepPanel steps={computed.steps} active={active} onActiveChange={setActive} />
-        <MatrixResult matrix={computed.result} />
+        </div>
+        <div className="matrix-operation-solution">
+          <StepByStepPanel steps={computed.steps} active={active} onActiveChange={setActive} />
+          <MatrixResult matrix={computed.result} />
+        </div>
+        <div className="matrix-operation-extras">
         {id === "inverse" && <InverseVerification matrix={a} inverse={computed.result} />}
         {id === "linear-equations" && <LinearEquationGraph matrix={a} solution={solve2x2System(a).solution} />}
         {id === "eigenvalues-eigenvectors" && <EigenNotes matrix={a} />}
         {id === "adjoint-cofactor" && <CofactorMinorPanel step={step} />}
         <MatrixPracticeCard question={practiceFor(id).question} answer={practiceFor(id).answer} />
+        </div>
       </div>
     </MatrixOperationLayout>
   );
@@ -162,7 +171,7 @@ function compute(id: MatrixOperationId, a: Matrix, b: Matrix, scalar: number, re
 function MatrixBasicsPage() {
   const a = examples.basics.a;
   return (
-    <div className="space-y-6">
+    <div className="matrix-operation-page matrix-operation-basics">
       <MatrixBreadcrumb current="Matrix Basics" />
       <MatrixBackLink />
       <SectionCard className="overflow-hidden">

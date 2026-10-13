@@ -1,0 +1,2692 @@
+{
+  "lessons": [
+    {
+      "lessonId": 30001,
+      "batch": 1,
+      "title": "Square numbers and geometric arrays",
+      "route": "/lessons/numbers-and-arithmetic/30001-square-numbers-and-geometric-arrays"
+    },
+    {
+      "lessonId": 30002,
+      "batch": 1,
+      "title": "Perfect-square digit and factor patterns",
+      "route": "/lessons/numbers-and-arithmetic/30002-perfect-square-digit-and-factor-patterns"
+    },
+    {
+      "lessonId": 30003,
+      "batch": 1,
+      "title": "Consecutive squares and sums of odd numbers",
+      "route": "/lessons/numbers-and-arithmetic/30003-consecutive-squares-and-sums-of-odd-numbers"
+    },
+    {
+      "lessonId": 30004,
+      "batch": 1,
+      "title": "Squares and triangular numbers",
+      "route": "/lessons/numbers-and-arithmetic/30004-squares-and-triangular-numbers"
+    },
+    {
+      "lessonId": 30005,
+      "batch": 1,
+      "title": "Square roots by prime factorisation",
+      "route": "/lessons/number-theory/30005-square-roots-by-prime-factorisation"
+    },
+    {
+      "lessonId": 30006,
+      "batch": 1,
+      "title": "Estimating square roots between integers",
+      "route": "/lessons/numbers-and-arithmetic/30006-estimating-square-roots-between-integers"
+    },
+    {
+      "lessonId": 30007,
+      "batch": 1,
+      "title": "Smallest multiplier or divisor to make a square",
+      "route": "/lessons/numbers-and-arithmetic/30007-smallest-multiplier-or-divisor-to-make-a-square"
+    },
+    {
+      "lessonId": 30008,
+      "batch": 1,
+      "title": "Cubic numbers and perfect cubes",
+      "route": "/lessons/numbers-and-arithmetic/30008-cubic-numbers-and-perfect-cubes"
+    },
+    {
+      "lessonId": 30009,
+      "batch": 1,
+      "title": "Taxicab numbers and Ramanujan's 1729",
+      "route": "/lessons/history-and-numeral-systems/30009-taxicab-numbers-and-ramanujan-s-1729"
+    },
+    {
+      "lessonId": 30010,
+      "batch": 1,
+      "title": "Cubes as sums of consecutive odd numbers",
+      "route": "/lessons/numbers-and-arithmetic/30010-cubes-as-sums-of-consecutive-odd-numbers"
+    },
+    {
+      "lessonId": 30011,
+      "batch": 1,
+      "title": "Cube roots by prime factorisation",
+      "route": "/lessons/number-theory/30011-cube-roots-by-prime-factorisation"
+    },
+    {
+      "lessonId": 30012,
+      "batch": 1,
+      "title": "Successive differences of square and cube sequences",
+      "route": "/lessons/sequences-and-series/30012-successive-differences-of-square-and-cube-sequences"
+    },
+    {
+      "lessonId": 30013,
+      "batch": 1,
+      "title": "History of square and cube computation",
+      "route": "/lessons/history-and-numeral-systems/30013-history-of-square-and-cube-computation"
+    },
+    {
+      "lessonId": 30014,
+      "batch": 1,
+      "title": "A Square and a Cube: guided examples and applications",
+      "route": "/lessons/numbers-and-arithmetic/30014-a-square-and-a-cube-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30015,
+      "batch": 1,
+      "title": "A Square and a Cube: mastery assessment and revision",
+      "route": "/lessons/numbers-and-arithmetic/30015-a-square-and-a-cube-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30016,
+      "batch": 1,
+      "title": "A Square and a Cube: practice set 1.1",
+      "route": "/lessons/numbers-and-arithmetic/30016-a-square-and-a-cube-practice-set-1-1"
+    },
+    {
+      "lessonId": 30017,
+      "batch": 1,
+      "title": "A Square and a Cube: practice set 1.2",
+      "route": "/lessons/numbers-and-arithmetic/30017-a-square-and-a-cube-practice-set-1-2"
+    },
+    {
+      "lessonId": 30018,
+      "batch": 1,
+      "title": "Repeated doubling and exponential growth",
+      "route": "/lessons/functions-and-graphs/30018-repeated-doubling-and-exponential-growth"
+    },
+    {
+      "lessonId": 30019,
+      "batch": 1,
+      "title": "Multiplying and dividing powers with a common base",
+      "route": "/lessons/numbers-and-arithmetic/30019-multiplying-and-dividing-powers-with-a-common-base"
+    },
+    {
+      "lessonId": 30020,
+      "batch": 1,
+      "title": "Power of a power and powers of products",
+      "route": "/lessons/numbers-and-arithmetic/30020-power-of-a-power-and-powers-of-products"
+    },
+    {
+      "lessonId": 30021,
+      "batch": 1,
+      "title": "Zero exponents and nonzero-base restrictions",
+      "route": "/lessons/numbers-and-arithmetic/30021-zero-exponents-and-nonzero-base-restrictions"
+    },
+    {
+      "lessonId": 30022,
+      "batch": 1,
+      "title": "Negative powers and reciprocals",
+      "route": "/lessons/numbers-and-arithmetic/30022-negative-powers-and-reciprocals"
+    },
+    {
+      "lessonId": 30023,
+      "batch": 1,
+      "title": "Powers of ten and place value",
+      "route": "/lessons/numbers-and-arithmetic/30023-powers-of-ten-and-place-value"
+    },
+    {
+      "lessonId": 30024,
+      "batch": 1,
+      "title": "Scientific notation for large and small quantities",
+      "route": "/lessons/numbers-and-arithmetic/30024-scientific-notation-for-large-and-small-quantities"
+    },
+    {
+      "lessonId": 30025,
+      "batch": 1,
+      "title": "Comparing quantities in scientific notation",
+      "route": "/lessons/numbers-and-arithmetic/30025-comparing-quantities-in-scientific-notation"
+    },
+    {
+      "lessonId": 30026,
+      "batch": 2,
+      "title": "Order-of-magnitude estimates and Fermi questions",
+      "route": "/lessons/numbers-and-arithmetic/30026-order-of-magnitude-estimates-and-fermi-questions"
+    },
+    {
+      "lessonId": 30027,
+      "batch": 2,
+      "title": "Indian large-number naming and history",
+      "route": "/lessons/history-and-numeral-systems/30027-indian-large-number-naming-and-history"
+    },
+    {
+      "lessonId": 30028,
+      "batch": 2,
+      "title": "Power Play: guided examples and applications",
+      "route": "/lessons/numbers-and-arithmetic/30028-power-play-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30029,
+      "batch": 2,
+      "title": "Power Play: mastery assessment and revision",
+      "route": "/lessons/numbers-and-arithmetic/30029-power-play-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30030,
+      "batch": 2,
+      "title": "Power Play: practice set 2.1",
+      "route": "/lessons/numbers-and-arithmetic/30030-power-play-practice-set-2-1"
+    },
+    {
+      "lessonId": 30031,
+      "batch": 2,
+      "title": "Power Play: practice set 2.2",
+      "route": "/lessons/numbers-and-arithmetic/30031-power-play-practice-set-2-2"
+    },
+    {
+      "lessonId": 30032,
+      "batch": 2,
+      "title": "Need for numeral systems and counting symbols",
+      "route": "/lessons/history-and-numeral-systems/30032-need-for-numeral-systems-and-counting-symbols"
+    },
+    {
+      "lessonId": 30033,
+      "batch": 2,
+      "title": "Indian numerals and zero as a placeholder",
+      "route": "/lessons/history-and-numeral-systems/30033-indian-numerals-and-zero-as-a-placeholder"
+    },
+    {
+      "lessonId": 30034,
+      "batch": 2,
+      "title": "Roman numerals and additive/subtractive rules",
+      "route": "/lessons/history-and-numeral-systems/30034-roman-numerals-and-additive-subtractive-rules"
+    },
+    {
+      "lessonId": 30035,
+      "batch": 2,
+      "title": "Limits of non-positional numeral systems",
+      "route": "/lessons/history-and-numeral-systems/30035-limits-of-non-positional-numeral-systems"
+    },
+    {
+      "lessonId": 30036,
+      "batch": 2,
+      "title": "Egyptian numerals and additive representation",
+      "route": "/lessons/history-and-numeral-systems/30036-egyptian-numerals-and-additive-representation"
+    },
+    {
+      "lessonId": 30037,
+      "batch": 2,
+      "title": "Place value and the base of a number system",
+      "route": "/lessons/history-and-numeral-systems/30037-place-value-and-the-base-of-a-number-system"
+    },
+    {
+      "lessonId": 30038,
+      "batch": 2,
+      "title": "Historical base systems and representations",
+      "route": "/lessons/history-and-numeral-systems/30038-historical-base-systems-and-representations"
+    },
+    {
+      "lessonId": 30404,
+      "batch": 2,
+      "title": "Mesopotamian numerals and base-60 place value",
+      "route": "/lessons/history-and-numeral-systems/30404-mesopotamian-numerals-and-base-60-place-value"
+    },
+    {
+      "lessonId": 30405,
+      "batch": 2,
+      "title": "Mayan numerals and their positional structure",
+      "route": "/lessons/history-and-numeral-systems/30405-mayan-numerals-and-their-positional-structure"
+    },
+    {
+      "lessonId": 30406,
+      "batch": 2,
+      "title": "Chinese rod numerals and positional representation",
+      "route": "/lessons/history-and-numeral-systems/30406-chinese-rod-numerals-and-positional-representation"
+    },
+    {
+      "lessonId": 30407,
+      "batch": 2,
+      "title": "Comparing numeral systems: symbols, base and zero",
+      "route": "/lessons/history-and-numeral-systems/30407-comparing-numeral-systems-symbols-base-and-zero"
+    },
+    {
+      "lessonId": 30039,
+      "batch": 2,
+      "title": "Reading and converting representations across bases",
+      "route": "/lessons/numbers-and-arithmetic/30039-reading-and-converting-representations-across-bases"
+    },
+    {
+      "lessonId": 30040,
+      "batch": 2,
+      "title": "History and contributions to positional notation",
+      "route": "/lessons/history-and-numeral-systems/30040-history-and-contributions-to-positional-notation"
+    },
+    {
+      "lessonId": 30041,
+      "batch": 2,
+      "title": "A Story of Numbers: guided examples and applications",
+      "route": "/lessons/numbers-and-arithmetic/30041-a-story-of-numbers-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30042,
+      "batch": 2,
+      "title": "A Story of Numbers: mastery assessment and revision",
+      "route": "/lessons/numbers-and-arithmetic/30042-a-story-of-numbers-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30043,
+      "batch": 2,
+      "title": "A Story of Numbers: practice set 3.1",
+      "route": "/lessons/numbers-and-arithmetic/30043-a-story-of-numbers-practice-set-3-1"
+    },
+    {
+      "lessonId": 30044,
+      "batch": 2,
+      "title": "A Story of Numbers: practice set 3.2",
+      "route": "/lessons/numbers-and-arithmetic/30044-a-story-of-numbers-practice-set-3-2"
+    },
+    {
+      "lessonId": 30045,
+      "batch": 2,
+      "title": "A Story of Numbers: practice set 3.3",
+      "route": "/lessons/numbers-and-arithmetic/30045-a-story-of-numbers-practice-set-3-3"
+    },
+    {
+      "lessonId": 30046,
+      "batch": 2,
+      "title": "A Story of Numbers: practice set 3.4",
+      "route": "/lessons/numbers-and-arithmetic/30046-a-story-of-numbers-practice-set-3-4"
+    },
+    {
+      "lessonId": 30047,
+      "batch": 3,
+      "title": "A Story of Numbers: practice set 3.5",
+      "route": "/lessons/numbers-and-arithmetic/30047-a-story-of-numbers-practice-set-3-5"
+    },
+    {
+      "lessonId": 30048,
+      "batch": 3,
+      "title": "A Story of Numbers: practice set 3.6",
+      "route": "/lessons/numbers-and-arithmetic/30048-a-story-of-numbers-practice-set-3-6"
+    },
+    {
+      "lessonId": 30049,
+      "batch": 3,
+      "title": "A Story of Numbers: practice set 3.7",
+      "route": "/lessons/numbers-and-arithmetic/30049-a-story-of-numbers-practice-set-3-7"
+    },
+    {
+      "lessonId": 30050,
+      "batch": 3,
+      "title": "A Story of Numbers: practice set 3.8",
+      "route": "/lessons/numbers-and-arithmetic/30050-a-story-of-numbers-practice-set-3-8"
+    },
+    {
+      "lessonId": 30051,
+      "batch": 3,
+      "title": "Definition and classification of quadrilaterals",
+      "route": "/lessons/geometry/30051-definition-and-classification-of-quadrilaterals"
+    },
+    {
+      "lessonId": 30052,
+      "batch": 3,
+      "title": "Rectangles: sides, angles and diagonals",
+      "route": "/lessons/geometry/30052-rectangles-sides-angles-and-diagonals"
+    },
+    {
+      "lessonId": 30053,
+      "batch": 3,
+      "title": "Equal diagonals of a rectangle: congruence proof",
+      "route": "/lessons/geometry/30053-equal-diagonals-of-a-rectangle-congruence-proof"
+    },
+    {
+      "lessonId": 30054,
+      "batch": 3,
+      "title": "Diagonals bisect each other: rectangle proof",
+      "route": "/lessons/geometry/30054-diagonals-bisect-each-other-rectangle-proof"
+    },
+    {
+      "lessonId": 30055,
+      "batch": 3,
+      "title": "Constructing rectangles from diagonal conditions",
+      "route": "/lessons/geometry/30055-constructing-rectangles-from-diagonal-conditions"
+    },
+    {
+      "lessonId": 30056,
+      "batch": 3,
+      "title": "Squares and their diagonal/angle properties",
+      "route": "/lessons/geometry/30056-squares-and-their-diagonal-angle-properties"
+    },
+    {
+      "lessonId": 30057,
+      "batch": 3,
+      "title": "Quadrilateral class inclusion with Venn diagrams",
+      "route": "/lessons/geometry/30057-quadrilateral-class-inclusion-with-venn-diagrams"
+    },
+    {
+      "lessonId": 30058,
+      "batch": 3,
+      "title": "Interior-angle sum of a quadrilateral",
+      "route": "/lessons/geometry/30058-interior-angle-sum-of-a-quadrilateral"
+    },
+    {
+      "lessonId": 30059,
+      "batch": 3,
+      "title": "Rhombus side and diagonal properties",
+      "route": "/lessons/geometry/30059-rhombus-side-and-diagonal-properties"
+    },
+    {
+      "lessonId": 30060,
+      "batch": 3,
+      "title": "Squares as rectangles and rhombi",
+      "route": "/lessons/geometry/30060-squares-as-rectangles-and-rhombi"
+    },
+    {
+      "lessonId": 30061,
+      "batch": 3,
+      "title": "Quadrilateral constructions and investigations",
+      "route": "/lessons/geometry/30061-quadrilateral-constructions-and-investigations"
+    },
+    {
+      "lessonId": 30062,
+      "batch": 3,
+      "title": "Kite properties and diagonals",
+      "route": "/lessons/geometry/30062-kite-properties-and-diagonals"
+    },
+    {
+      "lessonId": 30063,
+      "batch": 3,
+      "title": "Trapezium properties and classification conventions",
+      "route": "/lessons/geometry/30063-trapezium-properties-and-classification-conventions"
+    },
+    {
+      "lessonId": 30064,
+      "batch": 3,
+      "title": "Reasoning from sufficient and necessary properties",
+      "route": "/lessons/geometry/30064-reasoning-from-sufficient-and-necessary-properties"
+    },
+    {
+      "lessonId": 30065,
+      "batch": 3,
+      "title": "Quadrilaterals: guided examples and applications",
+      "route": "/lessons/geometry/30065-quadrilaterals-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30066,
+      "batch": 3,
+      "title": "Quadrilaterals: mastery assessment and revision",
+      "route": "/lessons/geometry/30066-quadrilaterals-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30067,
+      "batch": 3,
+      "title": "Quadrilaterals: practice set 4.1",
+      "route": "/lessons/geometry/30067-quadrilaterals-practice-set-4-1"
+    },
+    {
+      "lessonId": 30068,
+      "batch": 3,
+      "title": "Quadrilaterals: practice set 4.2",
+      "route": "/lessons/geometry/30068-quadrilaterals-practice-set-4-2"
+    },
+    {
+      "lessonId": 30069,
+      "batch": 3,
+      "title": "Quadrilaterals: practice set 4.3",
+      "route": "/lessons/geometry/30069-quadrilaterals-practice-set-4-3"
+    },
+    {
+      "lessonId": 30070,
+      "batch": 3,
+      "title": "Multiples and general algebraic number forms",
+      "route": "/lessons/algebra/30070-multiples-and-general-algebraic-number-forms"
+    },
+    {
+      "lessonId": 30071,
+      "batch": 3,
+      "title": "Parity of sums and products",
+      "route": "/lessons/number-theory/30071-parity-of-sums-and-products"
+    },
+    {
+      "lessonId": 30072,
+      "batch": 4,
+      "title": "Remainders and numbers of the form kn+r",
+      "route": "/lessons/number-theory/30072-remainders-and-numbers-of-the-form-kn-r"
+    },
+    {
+      "lessonId": 30073,
+      "batch": 4,
+      "title": "Visual and algebraic proofs of number patterns",
+      "route": "/lessons/logic-and-proofs/30073-visual-and-algebraic-proofs-of-number-patterns"
+    },
+    {
+      "lessonId": 30074,
+      "batch": 4,
+      "title": "Always, sometimes and never: counterexamples",
+      "route": "/lessons/numbers-and-arithmetic/30074-always-sometimes-and-never-counterexamples"
+    },
+    {
+      "lessonId": 30075,
+      "batch": 4,
+      "title": "Divisibility by 2, 5 and 10",
+      "route": "/lessons/number-theory/30075-divisibility-by-2-5-and-10"
+    },
+    {
+      "lessonId": 30076,
+      "batch": 4,
+      "title": "Divisibility by 4 and 8",
+      "route": "/lessons/number-theory/30076-divisibility-by-4-and-8"
+    },
+    {
+      "lessonId": 30077,
+      "batch": 4,
+      "title": "Divisibility by 3 and 9 using digit sums",
+      "route": "/lessons/number-theory/30077-divisibility-by-3-and-9-using-digit-sums"
+    },
+    {
+      "lessonId": 30078,
+      "batch": 4,
+      "title": "Divisibility by 11 and alternating digit sums",
+      "route": "/lessons/number-theory/30078-divisibility-by-11-and-alternating-digit-sums"
+    },
+    {
+      "lessonId": 30079,
+      "batch": 4,
+      "title": "Justifying divisibility tests using place value",
+      "route": "/lessons/number-theory/30079-justifying-divisibility-tests-using-place-value"
+    },
+    {
+      "lessonId": 30080,
+      "batch": 4,
+      "title": "Cryptarithms with addition and carrying",
+      "route": "/lessons/number-theory/30080-cryptarithms-with-addition-and-carrying"
+    },
+    {
+      "lessonId": 30081,
+      "batch": 4,
+      "title": "Cryptarithms with multiplication and constraints",
+      "route": "/lessons/number-theory/30081-cryptarithms-with-multiplication-and-constraints"
+    },
+    {
+      "lessonId": 30082,
+      "batch": 4,
+      "title": "Number Play: guided examples and applications",
+      "route": "/lessons/numbers-and-arithmetic/30082-number-play-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30083,
+      "batch": 4,
+      "title": "Number Play: mastery assessment and revision",
+      "route": "/lessons/numbers-and-arithmetic/30083-number-play-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30084,
+      "batch": 4,
+      "title": "Number Play: practice set 5.1",
+      "route": "/lessons/numbers-and-arithmetic/30084-number-play-practice-set-5-1"
+    },
+    {
+      "lessonId": 30085,
+      "batch": 4,
+      "title": "Number Play: practice set 5.2",
+      "route": "/lessons/numbers-and-arithmetic/30085-number-play-practice-set-5-2"
+    },
+    {
+      "lessonId": 30086,
+      "batch": 4,
+      "title": "Number Play: practice set 5.3",
+      "route": "/lessons/numbers-and-arithmetic/30086-number-play-practice-set-5-3"
+    },
+    {
+      "lessonId": 30087,
+      "batch": 4,
+      "title": "Number Play: practice set 5.4",
+      "route": "/lessons/numbers-and-arithmetic/30087-number-play-practice-set-5-4"
+    },
+    {
+      "lessonId": 30088,
+      "batch": 4,
+      "title": "Distributive law using area and arithmetic",
+      "route": "/lessons/algebra/30088-distributive-law-using-area-and-arithmetic"
+    },
+    {
+      "lessonId": 30089,
+      "batch": 4,
+      "title": "Changes in products when factors increase",
+      "route": "/lessons/algebra/30089-changes-in-products-when-factors-increase"
+    },
+    {
+      "lessonId": 30090,
+      "batch": 4,
+      "title": "Multiplying signed expressions distributively",
+      "route": "/lessons/algebra/30090-multiplying-signed-expressions-distributively"
+    },
+    {
+      "lessonId": 30091,
+      "batch": 4,
+      "title": "Fast multiplication using distributivity",
+      "route": "/lessons/algebra/30091-fast-multiplication-using-distributivity"
+    },
+    {
+      "lessonId": 30092,
+      "batch": 4,
+      "title": "Square of a sum: geometric derivation",
+      "route": "/lessons/numbers-and-arithmetic/30092-square-of-a-sum-geometric-derivation"
+    },
+    {
+      "lessonId": 30093,
+      "batch": 4,
+      "title": "Square of a difference: geometric derivation",
+      "route": "/lessons/numbers-and-arithmetic/30093-square-of-a-difference-geometric-derivation"
+    },
+    {
+      "lessonId": 30094,
+      "batch": 4,
+      "title": "Product of sum and difference",
+      "route": "/lessons/algebra/30094-product-of-sum-and-difference"
+    },
+    {
+      "lessonId": 30095,
+      "batch": 4,
+      "title": "Finding and correcting expansion mistakes",
+      "route": "/lessons/algebra/30095-finding-and-correcting-expansion-mistakes"
+    },
+    {
+      "lessonId": 30096,
+      "batch": 4,
+      "title": "Equivalent algebraic descriptions of a pattern",
+      "route": "/lessons/algebra/30096-equivalent-algebraic-descriptions-of-a-pattern"
+    },
+    {
+      "lessonId": 30097,
+      "batch": 5,
+      "title": "Applying identities to mental calculation",
+      "route": "/lessons/algebra/30097-applying-identities-to-mental-calculation"
+    },
+    {
+      "lessonId": 30098,
+      "batch": 5,
+      "title": "We Distribute, Yet Things Multiply: guided examples and applications",
+      "route": "/lessons/algebra/30098-we-distribute-yet-things-multiply-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30099,
+      "batch": 5,
+      "title": "We Distribute, Yet Things Multiply: mastery assessment and revision",
+      "route": "/lessons/algebra/30099-we-distribute-yet-things-multiply-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30100,
+      "batch": 5,
+      "title": "We Distribute, Yet Things Multiply: practice set 6.1",
+      "route": "/lessons/algebra/30100-we-distribute-yet-things-multiply-practice-set-6-1"
+    },
+    {
+      "lessonId": 30101,
+      "batch": 5,
+      "title": "We Distribute, Yet Things Multiply: practice set 6.2",
+      "route": "/lessons/algebra/30101-we-distribute-yet-things-multiply-practice-set-6-2"
+    },
+    {
+      "lessonId": 30102,
+      "batch": 5,
+      "title": "We Distribute, Yet Things Multiply: practice set 6.3",
+      "route": "/lessons/algebra/30102-we-distribute-yet-things-multiply-practice-set-6-3"
+    },
+    {
+      "lessonId": 30103,
+      "batch": 5,
+      "title": "Scaling images while preserving proportions",
+      "route": "/lessons/ratios-and-proportion/30103-scaling-images-while-preserving-proportions"
+    },
+    {
+      "lessonId": 30104,
+      "batch": 5,
+      "title": "Meaning and order of a ratio",
+      "route": "/lessons/ratios-and-proportion/30104-meaning-and-order-of-a-ratio"
+    },
+    {
+      "lessonId": 30105,
+      "batch": 5,
+      "title": "Simplifying ratios using a common divisor",
+      "route": "/lessons/ratios-and-proportion/30105-simplifying-ratios-using-a-common-divisor"
+    },
+    {
+      "lessonId": 30106,
+      "batch": 5,
+      "title": "Equivalent ratios and testing a proportion",
+      "route": "/lessons/ratios-and-proportion/30106-equivalent-ratios-and-testing-a-proportion"
+    },
+    {
+      "lessonId": 30107,
+      "batch": 5,
+      "title": "Missing-value proportion problems",
+      "route": "/lessons/ratios-and-proportion/30107-missing-value-proportion-problems"
+    },
+    {
+      "lessonId": 30108,
+      "batch": 5,
+      "title": "Unit-rate and unitary-method problems",
+      "route": "/lessons/ratios-and-proportion/30108-unit-rate-and-unitary-method-problems"
+    },
+    {
+      "lessonId": 30109,
+      "batch": 5,
+      "title": "Recipes, mixtures and scale applications",
+      "route": "/lessons/ratios-and-proportion/30109-recipes-mixtures-and-scale-applications"
+    },
+    {
+      "lessonId": 30110,
+      "batch": 5,
+      "title": "Interpreting non-proportional situations",
+      "route": "/lessons/ratios-and-proportion/30110-interpreting-non-proportional-situations"
+    },
+    {
+      "lessonId": 30111,
+      "batch": 5,
+      "title": "Dividing a quantity in a specified ratio",
+      "route": "/lessons/ratios-and-proportion/30111-dividing-a-quantity-in-a-specified-ratio"
+    },
+    {
+      "lessonId": 30112,
+      "batch": 5,
+      "title": "Converting measurement units before forming ratios",
+      "route": "/lessons/ratios-and-proportion/30112-converting-measurement-units-before-forming-ratios"
+    },
+    {
+      "lessonId": 30113,
+      "batch": 5,
+      "title": "Multi-step proportional modelling",
+      "route": "/lessons/ratios-and-proportion/30113-multi-step-proportional-modelling"
+    },
+    {
+      "lessonId": 30114,
+      "batch": 5,
+      "title": "Proportional Reasoning-1: guided examples and applications",
+      "route": "/lessons/ratios-and-proportion/30114-proportional-reasoning-1-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30115,
+      "batch": 5,
+      "title": "Proportional Reasoning-1: mastery assessment and revision",
+      "route": "/lessons/ratios-and-proportion/30115-proportional-reasoning-1-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30116,
+      "batch": 5,
+      "title": "Proportional Reasoning-1: practice set 7.1",
+      "route": "/lessons/ratios-and-proportion/30116-proportional-reasoning-1-practice-set-7-1"
+    },
+    {
+      "lessonId": 30117,
+      "batch": 5,
+      "title": "Proportional Reasoning-1: practice set 7.2",
+      "route": "/lessons/ratios-and-proportion/30117-proportional-reasoning-1-practice-set-7-2"
+    },
+    {
+      "lessonId": 30118,
+      "batch": 5,
+      "title": "Proportional Reasoning-1: practice set 7.3",
+      "route": "/lessons/ratios-and-proportion/30118-proportional-reasoning-1-practice-set-7-3"
+    },
+    {
+      "lessonId": 30119,
+      "batch": 5,
+      "title": "Proportional Reasoning-1: practice set 7.4",
+      "route": "/lessons/ratios-and-proportion/30119-proportional-reasoning-1-practice-set-7-4"
+    },
+    {
+      "lessonId": 30120,
+      "batch": 5,
+      "title": "Density of rational and irrational numbers",
+      "route": "/lessons/ratios-and-proportion/30120-density-of-rational-and-irrational-numbers"
+    },
+    {
+      "lessonId": 30121,
+      "batch": 5,
+      "title": "Converting recurring decimals to fractions",
+      "route": "/lessons/numbers-and-arithmetic/30121-converting-recurring-decimals-to-fractions"
+    },
+    {
+      "lessonId": 30122,
+      "batch": 6,
+      "title": "Locating irrational roots on a number line",
+      "route": "/lessons/ratios-and-proportion/30122-locating-irrational-roots-on-a-number-line"
+    },
+    {
+      "lessonId": 30123,
+      "batch": 6,
+      "title": "Number Systems: guided examples and applications",
+      "route": "/lessons/numbers-and-arithmetic/30123-number-systems-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30124,
+      "batch": 6,
+      "title": "Number Systems: mastery assessment and revision",
+      "route": "/lessons/numbers-and-arithmetic/30124-number-systems-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30125,
+      "batch": 6,
+      "title": "Number Systems: practice set 1.1",
+      "route": "/lessons/numbers-and-arithmetic/30125-number-systems-practice-set-1-1"
+    },
+    {
+      "lessonId": 30126,
+      "batch": 6,
+      "title": "Number Systems: practice set 1.2",
+      "route": "/lessons/numbers-and-arithmetic/30126-number-systems-practice-set-1-2"
+    },
+    {
+      "lessonId": 30127,
+      "batch": 6,
+      "title": "Number Systems: practice set 1.3",
+      "route": "/lessons/numbers-and-arithmetic/30127-number-systems-practice-set-1-3"
+    },
+    {
+      "lessonId": 30128,
+      "batch": 6,
+      "title": "Number Systems: practice set 1.4",
+      "route": "/lessons/numbers-and-arithmetic/30128-number-systems-practice-set-1-4"
+    },
+    {
+      "lessonId": 30129,
+      "batch": 6,
+      "title": "Polynomial versus non-polynomial expressions",
+      "route": "/lessons/algebra/30129-polynomial-versus-non-polynomial-expressions"
+    },
+    {
+      "lessonId": 30130,
+      "batch": 6,
+      "title": "Terms, coefficients and polynomial degree",
+      "route": "/lessons/algebra/30130-terms-coefficients-and-polynomial-degree"
+    },
+    {
+      "lessonId": 30131,
+      "batch": 6,
+      "title": "Constant, linear, quadratic and cubic polynomials",
+      "route": "/lessons/algebra/30131-constant-linear-quadratic-and-cubic-polynomials"
+    },
+    {
+      "lessonId": 30132,
+      "batch": 6,
+      "title": "Evaluating a polynomial at a given value",
+      "route": "/lessons/algebra/30132-evaluating-a-polynomial-at-a-given-value"
+    },
+    {
+      "lessonId": 30133,
+      "batch": 6,
+      "title": "Polynomials: guided examples and applications",
+      "route": "/lessons/algebra/30133-polynomials-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30134,
+      "batch": 6,
+      "title": "Polynomials: mastery assessment and revision",
+      "route": "/lessons/algebra/30134-polynomials-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30135,
+      "batch": 6,
+      "title": "Polynomials: practice set 2.2",
+      "route": "/lessons/algebra/30135-polynomials-practice-set-2-2"
+    },
+    {
+      "lessonId": 30136,
+      "batch": 6,
+      "title": "Polynomials: practice set 2.3",
+      "route": "/lessons/algebra/30136-polynomials-practice-set-2-3"
+    },
+    {
+      "lessonId": 30137,
+      "batch": 6,
+      "title": "Polynomials: practice set 2.4",
+      "route": "/lessons/algebra/30137-polynomials-practice-set-2-4"
+    },
+    {
+      "lessonId": 30138,
+      "batch": 6,
+      "title": "Cartesian axes, origin and coordinate conventions",
+      "route": "/lessons/coordinate-geometry/30138-cartesian-axes-origin-and-coordinate-conventions"
+    },
+    {
+      "lessonId": 30139,
+      "batch": 6,
+      "title": "Abscissa, ordinate and ordered pairs",
+      "route": "/lessons/coordinate-geometry/30139-abscissa-ordinate-and-ordered-pairs"
+    },
+    {
+      "lessonId": 30140,
+      "batch": 6,
+      "title": "Quadrants and coordinate signs",
+      "route": "/lessons/coordinate-geometry/30140-quadrants-and-coordinate-signs"
+    },
+    {
+      "lessonId": 30141,
+      "batch": 6,
+      "title": "Plotting points and reading their coordinates",
+      "route": "/lessons/coordinate-geometry/30141-plotting-points-and-reading-their-coordinates"
+    },
+    {
+      "lessonId": 30142,
+      "batch": 6,
+      "title": "Coordinates of points on either axis",
+      "route": "/lessons/coordinate-geometry/30142-coordinates-of-points-on-either-axis"
+    },
+    {
+      "lessonId": 30143,
+      "batch": 6,
+      "title": "Location and map applications",
+      "route": "/lessons/coordinate-geometry/30143-location-and-map-applications"
+    },
+    {
+      "lessonId": 30144,
+      "batch": 6,
+      "title": "Coordinate Geometry: guided examples and applications",
+      "route": "/lessons/coordinate-geometry/30144-coordinate-geometry-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30145,
+      "batch": 6,
+      "title": "Coordinate Geometry: mastery assessment and revision",
+      "route": "/lessons/coordinate-geometry/30145-coordinate-geometry-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30146,
+      "batch": 6,
+      "title": "Coordinate Geometry: practice set 3.1",
+      "route": "/lessons/coordinate-geometry/30146-coordinate-geometry-practice-set-3-1"
+    },
+    {
+      "lessonId": 30147,
+      "batch": 7,
+      "title": "Coordinate Geometry: practice set 3.2",
+      "route": "/lessons/coordinate-geometry/30147-coordinate-geometry-practice-set-3-2"
+    },
+    {
+      "lessonId": 30148,
+      "batch": 7,
+      "title": "Standard form ax+by+c=0 and its restrictions",
+      "route": "/lessons/equations-and-inequalities/30148-standard-form-ax-by-c-0-and-its-restrictions"
+    },
+    {
+      "lessonId": 30149,
+      "batch": 7,
+      "title": "Constructing equations from word situations",
+      "route": "/lessons/equations-and-inequalities/30149-constructing-equations-from-word-situations"
+    },
+    {
+      "lessonId": 30150,
+      "batch": 7,
+      "title": "Checking whether an ordered pair is a solution",
+      "route": "/lessons/equations-and-inequalities/30150-checking-whether-an-ordered-pair-is-a-solution"
+    },
+    {
+      "lessonId": 30151,
+      "batch": 7,
+      "title": "Generating multiple solutions of a linear equation",
+      "route": "/lessons/equations-and-inequalities/30151-generating-multiple-solutions-of-a-linear-equation"
+    },
+    {
+      "lessonId": 30152,
+      "batch": 7,
+      "title": "Why two-variable linear equations have infinitely many solutions",
+      "route": "/lessons/equations-and-inequalities/30152-why-two-variable-linear-equations-have-infinitely-many-solutions"
+    },
+    {
+      "lessonId": 30153,
+      "batch": 7,
+      "title": "Linear Equations in Two Variables: guided examples and applications",
+      "route": "/lessons/equations-and-inequalities/30153-linear-equations-in-two-variables-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30154,
+      "batch": 7,
+      "title": "Linear Equations in Two Variables: mastery assessment and revision",
+      "route": "/lessons/equations-and-inequalities/30154-linear-equations-in-two-variables-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30155,
+      "batch": 7,
+      "title": "Linear Equations in Two Variables: practice set 4.1",
+      "route": "/lessons/equations-and-inequalities/30155-linear-equations-in-two-variables-practice-set-4-1"
+    },
+    {
+      "lessonId": 30156,
+      "batch": 7,
+      "title": "Linear Equations in Two Variables: practice set 4.2",
+      "route": "/lessons/equations-and-inequalities/30156-linear-equations-in-two-variables-practice-set-4-2"
+    },
+    {
+      "lessonId": 30157,
+      "batch": 7,
+      "title": "Historical origins of geometry",
+      "route": "/lessons/geometry/30157-historical-origins-of-geometry"
+    },
+    {
+      "lessonId": 30158,
+      "batch": 7,
+      "title": "Common notions and their mathematical use",
+      "route": "/lessons/logic-and-proofs/30158-common-notions-and-their-mathematical-use"
+    },
+    {
+      "lessonId": 30159,
+      "batch": 7,
+      "title": "Introduction to Euclid's Geometry: guided examples and applications",
+      "route": "/lessons/logic-and-proofs/30159-introduction-to-euclid-s-geometry-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30160,
+      "batch": 7,
+      "title": "Introduction to Euclid's Geometry: mastery assessment and revision",
+      "route": "/lessons/logic-and-proofs/30160-introduction-to-euclid-s-geometry-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30161,
+      "batch": 7,
+      "title": "Introduction to Euclid's Geometry: practice set 5.1",
+      "route": "/lessons/logic-and-proofs/30161-introduction-to-euclid-s-geometry-practice-set-5-1"
+    },
+    {
+      "lessonId": 30162,
+      "batch": 7,
+      "title": "Lines, rays, segments and collinear points",
+      "route": "/lessons/geometry/30162-lines-rays-segments-and-collinear-points"
+    },
+    {
+      "lessonId": 30163,
+      "batch": 7,
+      "title": "Acute, right, obtuse and reflex angles",
+      "route": "/lessons/geometry/30163-acute-right-obtuse-and-reflex-angles"
+    },
+    {
+      "lessonId": 30164,
+      "batch": 7,
+      "title": "Intersecting and parallel lines",
+      "route": "/lessons/geometry/30164-intersecting-and-parallel-lines"
+    },
+    {
+      "lessonId": 30165,
+      "batch": 7,
+      "title": "Lines parallel to the same line: theorem and application",
+      "route": "/lessons/geometry/30165-lines-parallel-to-the-same-line-theorem-and-application"
+    },
+    {
+      "lessonId": 30166,
+      "batch": 7,
+      "title": "Lines and Angles: guided examples and applications",
+      "route": "/lessons/geometry/30166-lines-and-angles-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30167,
+      "batch": 7,
+      "title": "Lines and Angles: mastery assessment and revision",
+      "route": "/lessons/geometry/30167-lines-and-angles-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30168,
+      "batch": 7,
+      "title": "Lines and Angles: practice set 6.1",
+      "route": "/lessons/geometry/30168-lines-and-angles-practice-set-6-1"
+    },
+    {
+      "lessonId": 30169,
+      "batch": 7,
+      "title": "Lines and Angles: practice set 6.2",
+      "route": "/lessons/geometry/30169-lines-and-angles-practice-set-6-2"
+    },
+    {
+      "lessonId": 30170,
+      "batch": 7,
+      "title": "Congruence and correspondence of vertices",
+      "route": "/lessons/geometry/30170-congruence-and-correspondence-of-vertices"
+    },
+    {
+      "lessonId": 30171,
+      "batch": 7,
+      "title": "Converse isosceles triangle theorem",
+      "route": "/lessons/geometry/30171-converse-isosceles-triangle-theorem"
+    },
+    {
+      "lessonId": 30172,
+      "batch": 8,
+      "title": "CPCT and applications of triangle congruence",
+      "route": "/lessons/geometry/30172-cpct-and-applications-of-triangle-congruence"
+    },
+    {
+      "lessonId": 30173,
+      "batch": 8,
+      "title": "Triangles: guided examples and applications",
+      "route": "/lessons/geometry/30173-triangles-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30174,
+      "batch": 8,
+      "title": "Triangles: mastery assessment and revision",
+      "route": "/lessons/geometry/30174-triangles-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30175,
+      "batch": 8,
+      "title": "Triangles: practice set 7.1",
+      "route": "/lessons/geometry/30175-triangles-practice-set-7-1"
+    },
+    {
+      "lessonId": 30176,
+      "batch": 8,
+      "title": "Triangles: practice set 7.2",
+      "route": "/lessons/geometry/30176-triangles-practice-set-7-2"
+    },
+    {
+      "lessonId": 30177,
+      "batch": 8,
+      "title": "Triangles: practice set 7.3",
+      "route": "/lessons/geometry/30177-triangles-practice-set-7-3"
+    },
+    {
+      "lessonId": 30178,
+      "batch": 8,
+      "title": "Parallelogram diagonal divides it into congruent triangles",
+      "route": "/lessons/geometry/30178-parallelogram-diagonal-divides-it-into-congruent-triangles"
+    },
+    {
+      "lessonId": 30179,
+      "batch": 8,
+      "title": "Quadrilaterals: guided examples and applications",
+      "route": "/lessons/geometry/30179-quadrilaterals-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30180,
+      "batch": 8,
+      "title": "Quadrilaterals: mastery assessment and revision",
+      "route": "/lessons/geometry/30180-quadrilaterals-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30181,
+      "batch": 8,
+      "title": "Quadrilaterals: practice set 8.1",
+      "route": "/lessons/geometry/30181-quadrilaterals-practice-set-8-1"
+    },
+    {
+      "lessonId": 30182,
+      "batch": 8,
+      "title": "Quadrilaterals: practice set 8.2",
+      "route": "/lessons/geometry/30182-quadrilaterals-practice-set-8-2"
+    },
+    {
+      "lessonId": 30183,
+      "batch": 8,
+      "title": "Equal chords and equal distances from the centre",
+      "route": "/lessons/geometry/30183-equal-chords-and-equal-distances-from-the-centre"
+    },
+    {
+      "lessonId": 30184,
+      "batch": 8,
+      "title": "Circles: guided examples and applications",
+      "route": "/lessons/geometry/30184-circles-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30185,
+      "batch": 8,
+      "title": "Circles: mastery assessment and revision",
+      "route": "/lessons/geometry/30185-circles-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30186,
+      "batch": 8,
+      "title": "Circles: practice set 9.1",
+      "route": "/lessons/geometry/30186-circles-practice-set-9-1"
+    },
+    {
+      "lessonId": 30187,
+      "batch": 8,
+      "title": "Circles: practice set 9.2",
+      "route": "/lessons/geometry/30187-circles-practice-set-9-2"
+    },
+    {
+      "lessonId": 30188,
+      "batch": 8,
+      "title": "Circles: practice set 9.3",
+      "route": "/lessons/geometry/30188-circles-practice-set-9-3"
+    },
+    {
+      "lessonId": 30189,
+      "batch": 8,
+      "title": "Finding area from three sides",
+      "route": "/lessons/mensuration/30189-finding-area-from-three-sides"
+    },
+    {
+      "lessonId": 30190,
+      "batch": 8,
+      "title": "Area, cost and practical triangular-region problems",
+      "route": "/lessons/mensuration/30190-area-cost-and-practical-triangular-region-problems"
+    },
+    {
+      "lessonId": 30191,
+      "batch": 8,
+      "title": "Heron's Formula: guided examples and applications",
+      "route": "/lessons/mensuration/30191-heron-s-formula-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30192,
+      "batch": 8,
+      "title": "Heron's Formula: mastery assessment and revision",
+      "route": "/lessons/mensuration/30192-heron-s-formula-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30193,
+      "batch": 8,
+      "title": "Heron's Formula: practice set 10.1",
+      "route": "/lessons/mensuration/30193-heron-s-formula-practice-set-10-1"
+    },
+    {
+      "lessonId": 30194,
+      "batch": 8,
+      "title": "Right circular cone: radius, height and slant height",
+      "route": "/lessons/mensuration/30194-right-circular-cone-radius-height-and-slant-height"
+    },
+    {
+      "lessonId": 30195,
+      "batch": 8,
+      "title": "Cone curved and total surface areas",
+      "route": "/lessons/mensuration/30195-cone-curved-and-total-surface-areas"
+    },
+    {
+      "lessonId": 30196,
+      "batch": 8,
+      "title": "Sphere and hemisphere surface areas",
+      "route": "/lessons/mensuration/30196-sphere-and-hemisphere-surface-areas"
+    },
+    {
+      "lessonId": 30197,
+      "batch": 9,
+      "title": "Cone volume and comparison with a cylinder",
+      "route": "/lessons/mensuration/30197-cone-volume-and-comparison-with-a-cylinder"
+    },
+    {
+      "lessonId": 30198,
+      "batch": 9,
+      "title": "Sphere and hemisphere volumes",
+      "route": "/lessons/mensuration/30198-sphere-and-hemisphere-volumes"
+    },
+    {
+      "lessonId": 30199,
+      "batch": 9,
+      "title": "Selecting units and solving mensuration applications",
+      "route": "/lessons/mensuration/30199-selecting-units-and-solving-mensuration-applications"
+    },
+    {
+      "lessonId": 30200,
+      "batch": 9,
+      "title": "Surface Areas and Volumes: guided examples and applications",
+      "route": "/lessons/mensuration/30200-surface-areas-and-volumes-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30201,
+      "batch": 9,
+      "title": "Surface Areas and Volumes: mastery assessment and revision",
+      "route": "/lessons/mensuration/30201-surface-areas-and-volumes-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30202,
+      "batch": 9,
+      "title": "Surface Areas and Volumes: practice set 11.1",
+      "route": "/lessons/mensuration/30202-surface-areas-and-volumes-practice-set-11-1"
+    },
+    {
+      "lessonId": 30203,
+      "batch": 9,
+      "title": "Surface Areas and Volumes: practice set 11.2",
+      "route": "/lessons/mensuration/30203-surface-areas-and-volumes-practice-set-11-2"
+    },
+    {
+      "lessonId": 30204,
+      "batch": 9,
+      "title": "Surface Areas and Volumes: practice set 11.3",
+      "route": "/lessons/mensuration/30204-surface-areas-and-volumes-practice-set-11-3"
+    },
+    {
+      "lessonId": 30205,
+      "batch": 9,
+      "title": "Surface Areas and Volumes: practice set 11.4",
+      "route": "/lessons/mensuration/30205-surface-areas-and-volumes-practice-set-11-4"
+    },
+    {
+      "lessonId": 30206,
+      "batch": 9,
+      "title": "Grouped data and class intervals",
+      "route": "/lessons/statistics-and-inference/30206-grouped-data-and-class-intervals"
+    },
+    {
+      "lessonId": 30207,
+      "batch": 9,
+      "title": "Histograms with unequal class widths",
+      "route": "/lessons/statistics-and-inference/30207-histograms-with-unequal-class-widths"
+    },
+    {
+      "lessonId": 30208,
+      "batch": 9,
+      "title": "Frequency polygons and class marks",
+      "route": "/lessons/statistics-and-inference/30208-frequency-polygons-and-class-marks"
+    },
+    {
+      "lessonId": 30209,
+      "batch": 9,
+      "title": "Statistics: guided examples and applications",
+      "route": "/lessons/statistics-and-inference/30209-statistics-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30210,
+      "batch": 9,
+      "title": "Statistics: mastery assessment and revision",
+      "route": "/lessons/statistics-and-inference/30210-statistics-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30211,
+      "batch": 9,
+      "title": "Statistics: practice set 12.1",
+      "route": "/lessons/statistics-and-inference/30211-statistics-practice-set-12-1"
+    },
+    {
+      "lessonId": 30212,
+      "batch": 9,
+      "title": "Fundamental theorem of arithmetic and uniqueness",
+      "route": "/lessons/numbers-and-arithmetic/30212-fundamental-theorem-of-arithmetic-and-uniqueness"
+    },
+    {
+      "lessonId": 30213,
+      "batch": 9,
+      "title": "HCF-LCM relation and application problems",
+      "route": "/lessons/number-theory/30213-hcf-lcm-relation-and-application-problems"
+    },
+    {
+      "lessonId": 30214,
+      "batch": 9,
+      "title": "Proof by contradiction for irrational square roots",
+      "route": "/lessons/logic-and-proofs/30214-proof-by-contradiction-for-irrational-square-roots"
+    },
+    {
+      "lessonId": 30215,
+      "batch": 9,
+      "title": "Rational/irrational combinations and proofs",
+      "route": "/lessons/combinatorics-and-discrete-mathematics/30215-rational-irrational-combinations-and-proofs"
+    },
+    {
+      "lessonId": 30216,
+      "batch": 9,
+      "title": "Real Numbers: guided examples and applications",
+      "route": "/lessons/numbers-and-arithmetic/30216-real-numbers-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30217,
+      "batch": 9,
+      "title": "Real Numbers: mastery assessment and revision",
+      "route": "/lessons/numbers-and-arithmetic/30217-real-numbers-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30218,
+      "batch": 9,
+      "title": "Real Numbers: practice set 1.1",
+      "route": "/lessons/numbers-and-arithmetic/30218-real-numbers-practice-set-1-1"
+    },
+    {
+      "lessonId": 30219,
+      "batch": 9,
+      "title": "Real Numbers: practice set 1.2",
+      "route": "/lessons/numbers-and-arithmetic/30219-real-numbers-practice-set-1-2"
+    },
+    {
+      "lessonId": 30220,
+      "batch": 9,
+      "title": "Zeros of quadratic/cubic polynomials from graphs",
+      "route": "/lessons/functions-and-graphs/30220-zeros-of-quadratic-cubic-polynomials-from-graphs"
+    },
+    {
+      "lessonId": 30221,
+      "batch": 9,
+      "title": "Forming a quadratic polynomial from its zeros",
+      "route": "/lessons/algebra/30221-forming-a-quadratic-polynomial-from-its-zeros"
+    },
+    {
+      "lessonId": 30222,
+      "batch": 10,
+      "title": "Checking zero-coefficient relations in examples",
+      "route": "/lessons/algebra/30222-checking-zero-coefficient-relations-in-examples"
+    },
+    {
+      "lessonId": 30223,
+      "batch": 10,
+      "title": "Polynomials: guided examples and applications",
+      "route": "/lessons/algebra/30223-polynomials-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30224,
+      "batch": 10,
+      "title": "Polynomials: mastery assessment and revision",
+      "route": "/lessons/algebra/30224-polynomials-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30225,
+      "batch": 10,
+      "title": "Polynomials: practice set 2.1",
+      "route": "/lessons/algebra/30225-polynomials-practice-set-2-1"
+    },
+    {
+      "lessonId": 30226,
+      "batch": 10,
+      "title": "Polynomials: practice set 2.2",
+      "route": "/lessons/algebra/30226-polynomials-practice-set-2-2"
+    },
+    {
+      "lessonId": 30227,
+      "batch": 10,
+      "title": "Modelling situations with two linear equations",
+      "route": "/lessons/equations-and-inequalities/30227-modelling-situations-with-two-linear-equations"
+    },
+    {
+      "lessonId": 30228,
+      "batch": 10,
+      "title": "Intersecting, parallel and coincident equation pairs",
+      "route": "/lessons/probability/30228-intersecting-parallel-and-coincident-equation-pairs"
+    },
+    {
+      "lessonId": 30229,
+      "batch": 10,
+      "title": "Coefficient-ratio tests for consistency",
+      "route": "/lessons/ratios-and-proportion/30229-coefficient-ratio-tests-for-consistency"
+    },
+    {
+      "lessonId": 30230,
+      "batch": 10,
+      "title": "Substitution method",
+      "route": "/lessons/equations-and-inequalities/30230-substitution-method"
+    },
+    {
+      "lessonId": 30231,
+      "batch": 10,
+      "title": "Elimination method",
+      "route": "/lessons/equations-and-inequalities/30231-elimination-method"
+    },
+    {
+      "lessonId": 30232,
+      "batch": 10,
+      "title": "Word problems and interpretation of solutions",
+      "route": "/lessons/equations-and-inequalities/30232-word-problems-and-interpretation-of-solutions"
+    },
+    {
+      "lessonId": 30233,
+      "batch": 10,
+      "title": "Pair of Linear Equations in Two Variables: guided examples and applications",
+      "route": "/lessons/equations-and-inequalities/30233-pair-of-linear-equations-in-two-variables-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30234,
+      "batch": 10,
+      "title": "Pair of Linear Equations in Two Variables: mastery assessment and revision",
+      "route": "/lessons/equations-and-inequalities/30234-pair-of-linear-equations-in-two-variables-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30235,
+      "batch": 10,
+      "title": "Pair of Linear Equations in Two Variables: practice set 3.1",
+      "route": "/lessons/equations-and-inequalities/30235-pair-of-linear-equations-in-two-variables-practice-set-3-1"
+    },
+    {
+      "lessonId": 30236,
+      "batch": 10,
+      "title": "Pair of Linear Equations in Two Variables: practice set 3.2",
+      "route": "/lessons/equations-and-inequalities/30236-pair-of-linear-equations-in-two-variables-practice-set-3-2"
+    },
+    {
+      "lessonId": 30237,
+      "batch": 10,
+      "title": "Pair of Linear Equations in Two Variables: practice set 3.3",
+      "route": "/lessons/equations-and-inequalities/30237-pair-of-linear-equations-in-two-variables-practice-set-3-3"
+    },
+    {
+      "lessonId": 30238,
+      "batch": 10,
+      "title": "Solving quadratics by factorisation",
+      "route": "/lessons/algebra/30238-solving-quadratics-by-factorisation"
+    },
+    {
+      "lessonId": 30239,
+      "batch": 10,
+      "title": "Quadratic formula and discriminant",
+      "route": "/lessons/equations-and-inequalities/30239-quadratic-formula-and-discriminant"
+    },
+    {
+      "lessonId": 30240,
+      "batch": 10,
+      "title": "Real, repeated and non-real root cases",
+      "route": "/lessons/equations-and-inequalities/30240-real-repeated-and-non-real-root-cases"
+    },
+    {
+      "lessonId": 30241,
+      "batch": 10,
+      "title": "Modelling problems and rejecting inadmissible roots",
+      "route": "/lessons/numbers-and-arithmetic/30241-modelling-problems-and-rejecting-inadmissible-roots"
+    },
+    {
+      "lessonId": 30242,
+      "batch": 10,
+      "title": "Quadratic Equations: guided examples and applications",
+      "route": "/lessons/equations-and-inequalities/30242-quadratic-equations-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30243,
+      "batch": 10,
+      "title": "Quadratic Equations: mastery assessment and revision",
+      "route": "/lessons/equations-and-inequalities/30243-quadratic-equations-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30244,
+      "batch": 10,
+      "title": "Quadratic Equations: practice set 4.1",
+      "route": "/lessons/equations-and-inequalities/30244-quadratic-equations-practice-set-4-1"
+    },
+    {
+      "lessonId": 30245,
+      "batch": 10,
+      "title": "Quadratic Equations: practice set 4.2",
+      "route": "/lessons/equations-and-inequalities/30245-quadratic-equations-practice-set-4-2"
+    },
+    {
+      "lessonId": 30246,
+      "batch": 10,
+      "title": "Quadratic Equations: practice set 4.3",
+      "route": "/lessons/equations-and-inequalities/30246-quadratic-equations-practice-set-4-3"
+    },
+    {
+      "lessonId": 30247,
+      "batch": 11,
+      "title": "Nth term of an arithmetic progression",
+      "route": "/lessons/sequences-and-series/30247-nth-term-of-an-arithmetic-progression"
+    },
+    {
+      "lessonId": 30248,
+      "batch": 11,
+      "title": "Finding missing terms and term positions",
+      "route": "/lessons/sequences-and-series/30248-finding-missing-terms-and-term-positions"
+    },
+    {
+      "lessonId": 30249,
+      "batch": 11,
+      "title": "Applications of arithmetic progressions",
+      "route": "/lessons/sequences-and-series/30249-applications-of-arithmetic-progressions"
+    },
+    {
+      "lessonId": 30250,
+      "batch": 11,
+      "title": "Arithmetic Progressions: guided examples and applications",
+      "route": "/lessons/sequences-and-series/30250-arithmetic-progressions-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30251,
+      "batch": 11,
+      "title": "Arithmetic Progressions: mastery assessment and revision",
+      "route": "/lessons/sequences-and-series/30251-arithmetic-progressions-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30252,
+      "batch": 11,
+      "title": "Arithmetic Progressions: practice set 5.1",
+      "route": "/lessons/sequences-and-series/30252-arithmetic-progressions-practice-set-5-1"
+    },
+    {
+      "lessonId": 30253,
+      "batch": 11,
+      "title": "Arithmetic Progressions: practice set 5.2",
+      "route": "/lessons/sequences-and-series/30253-arithmetic-progressions-practice-set-5-2"
+    },
+    {
+      "lessonId": 30254,
+      "batch": 11,
+      "title": "Arithmetic Progressions: practice set 5.3",
+      "route": "/lessons/sequences-and-series/30254-arithmetic-progressions-practice-set-5-3"
+    },
+    {
+      "lessonId": 30255,
+      "batch": 11,
+      "title": "Arithmetic Progressions: practice set 5.4",
+      "route": "/lessons/sequences-and-series/30255-arithmetic-progressions-practice-set-5-4"
+    },
+    {
+      "lessonId": 30256,
+      "batch": 11,
+      "title": "Similarity of figures and scale factor",
+      "route": "/lessons/geometry/30256-similarity-of-figures-and-scale-factor"
+    },
+    {
+      "lessonId": 30257,
+      "batch": 11,
+      "title": "Basic proportionality theorem with proof",
+      "route": "/lessons/geometry/30257-basic-proportionality-theorem-with-proof"
+    },
+    {
+      "lessonId": 30258,
+      "batch": 11,
+      "title": "Converse of basic proportionality theorem",
+      "route": "/lessons/geometry/30258-converse-of-basic-proportionality-theorem"
+    },
+    {
+      "lessonId": 30259,
+      "batch": 11,
+      "title": "AA/AAA similarity criterion",
+      "route": "/lessons/geometry/30259-aa-aaa-similarity-criterion"
+    },
+    {
+      "lessonId": 30260,
+      "batch": 11,
+      "title": "SSS similarity criterion",
+      "route": "/lessons/geometry/30260-sss-similarity-criterion"
+    },
+    {
+      "lessonId": 30261,
+      "batch": 11,
+      "title": "SAS similarity criterion",
+      "route": "/lessons/geometry/30261-sas-similarity-criterion"
+    },
+    {
+      "lessonId": 30262,
+      "batch": 11,
+      "title": "Indirect measurement using similar triangles",
+      "route": "/lessons/geometry/30262-indirect-measurement-using-similar-triangles"
+    },
+    {
+      "lessonId": 30263,
+      "batch": 11,
+      "title": "Triangles: guided examples and applications",
+      "route": "/lessons/geometry/30263-triangles-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30264,
+      "batch": 11,
+      "title": "Triangles: mastery assessment and revision",
+      "route": "/lessons/geometry/30264-triangles-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30265,
+      "batch": 11,
+      "title": "Triangles: practice set 6.1",
+      "route": "/lessons/geometry/30265-triangles-practice-set-6-1"
+    },
+    {
+      "lessonId": 30266,
+      "batch": 11,
+      "title": "Triangles: practice set 6.2",
+      "route": "/lessons/geometry/30266-triangles-practice-set-6-2"
+    },
+    {
+      "lessonId": 30267,
+      "batch": 11,
+      "title": "Triangles: practice set 6.3",
+      "route": "/lessons/geometry/30267-triangles-practice-set-6-3"
+    },
+    {
+      "lessonId": 30268,
+      "batch": 11,
+      "title": "Checking collinearity and classifying figures by distances",
+      "route": "/lessons/coordinate-geometry/30268-checking-collinearity-and-classifying-figures-by-distances"
+    },
+    {
+      "lessonId": 30269,
+      "batch": 11,
+      "title": "Coordinates and geometric ratio problems",
+      "route": "/lessons/coordinate-geometry/30269-coordinates-and-geometric-ratio-problems"
+    },
+    {
+      "lessonId": 30270,
+      "batch": 11,
+      "title": "Coordinate Geometry: guided examples and applications",
+      "route": "/lessons/coordinate-geometry/30270-coordinate-geometry-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30271,
+      "batch": 11,
+      "title": "Coordinate Geometry: mastery assessment and revision",
+      "route": "/lessons/coordinate-geometry/30271-coordinate-geometry-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30272,
+      "batch": 12,
+      "title": "Coordinate Geometry: practice set 7.1",
+      "route": "/lessons/coordinate-geometry/30272-coordinate-geometry-practice-set-7-1"
+    },
+    {
+      "lessonId": 30273,
+      "batch": 12,
+      "title": "Coordinate Geometry: practice set 7.2",
+      "route": "/lessons/coordinate-geometry/30273-coordinate-geometry-practice-set-7-2"
+    },
+    {
+      "lessonId": 30274,
+      "batch": 12,
+      "title": "Opposite, adjacent and hypotenuse conventions",
+      "route": "/lessons/trigonometry/30274-opposite-adjacent-and-hypotenuse-conventions"
+    },
+    {
+      "lessonId": 30275,
+      "batch": 12,
+      "title": "Six trigonometric ratios and reciprocal relations",
+      "route": "/lessons/trigonometry/30275-six-trigonometric-ratios-and-reciprocal-relations"
+    },
+    {
+      "lessonId": 30276,
+      "batch": 12,
+      "title": "Trigonometric ratios depend on angle, not triangle size",
+      "route": "/lessons/trigonometry/30276-trigonometric-ratios-depend-on-angle-not-triangle-size"
+    },
+    {
+      "lessonId": 30277,
+      "batch": 12,
+      "title": "Exact ratios at 30, 45 and 60 degrees",
+      "route": "/lessons/trigonometry/30277-exact-ratios-at-30-45-and-60-degrees"
+    },
+    {
+      "lessonId": 30278,
+      "batch": 12,
+      "title": "Ratios at 0 and 90 degrees and undefined cases",
+      "route": "/lessons/trigonometry/30278-ratios-at-0-and-90-degrees-and-undefined-cases"
+    },
+    {
+      "lessonId": 30279,
+      "batch": 12,
+      "title": "Trigonometric identity from Pythagoras",
+      "route": "/lessons/trigonometry/30279-trigonometric-identity-from-pythagoras"
+    },
+    {
+      "lessonId": 30280,
+      "batch": 12,
+      "title": "Introduction to Trigonometry: guided examples and applications",
+      "route": "/lessons/trigonometry/30280-introduction-to-trigonometry-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30281,
+      "batch": 12,
+      "title": "Introduction to Trigonometry: mastery assessment and revision",
+      "route": "/lessons/trigonometry/30281-introduction-to-trigonometry-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30282,
+      "batch": 12,
+      "title": "Introduction to Trigonometry: practice set 8.1",
+      "route": "/lessons/trigonometry/30282-introduction-to-trigonometry-practice-set-8-1"
+    },
+    {
+      "lessonId": 30283,
+      "batch": 12,
+      "title": "Introduction to Trigonometry: practice set 8.2",
+      "route": "/lessons/trigonometry/30283-introduction-to-trigonometry-practice-set-8-2"
+    },
+    {
+      "lessonId": 30284,
+      "batch": 12,
+      "title": "Introduction to Trigonometry: practice set 8.3",
+      "route": "/lessons/trigonometry/30284-introduction-to-trigonometry-practice-set-8-3"
+    },
+    {
+      "lessonId": 30285,
+      "batch": 12,
+      "title": "Height problems with observer's eye height",
+      "route": "/lessons/trigonometry/30285-height-problems-with-observer-s-eye-height"
+    },
+    {
+      "lessonId": 30286,
+      "batch": 12,
+      "title": "Multi-step surveying and contextual interpretation",
+      "route": "/lessons/trigonometry/30286-multi-step-surveying-and-contextual-interpretation"
+    },
+    {
+      "lessonId": 30287,
+      "batch": 12,
+      "title": "Some Applications of Trigonometry: guided examples and applications",
+      "route": "/lessons/trigonometry/30287-some-applications-of-trigonometry-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30288,
+      "batch": 12,
+      "title": "Some Applications of Trigonometry: mastery assessment and revision",
+      "route": "/lessons/trigonometry/30288-some-applications-of-trigonometry-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30289,
+      "batch": 12,
+      "title": "Some Applications of Trigonometry: practice set 9.1",
+      "route": "/lessons/trigonometry/30289-some-applications-of-trigonometry-practice-set-9-1"
+    },
+    {
+      "lessonId": 30290,
+      "batch": 12,
+      "title": "Tangent, secant and point of contact",
+      "route": "/lessons/geometry/30290-tangent-secant-and-point-of-contact"
+    },
+    {
+      "lessonId": 30291,
+      "batch": 12,
+      "title": "Number of tangents from interior/on/exterior points",
+      "route": "/lessons/geometry/30291-number-of-tangents-from-interior-on-exterior-points"
+    },
+    {
+      "lessonId": 30292,
+      "batch": 12,
+      "title": "Tangent length and angle application problems",
+      "route": "/lessons/geometry/30292-tangent-length-and-angle-application-problems"
+    },
+    {
+      "lessonId": 30293,
+      "batch": 12,
+      "title": "Circles: guided examples and applications",
+      "route": "/lessons/geometry/30293-circles-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30294,
+      "batch": 12,
+      "title": "Circles: mastery assessment and revision",
+      "route": "/lessons/geometry/30294-circles-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30295,
+      "batch": 12,
+      "title": "Circles: practice set 10.1",
+      "route": "/lessons/geometry/30295-circles-practice-set-10-1"
+    },
+    {
+      "lessonId": 30296,
+      "batch": 12,
+      "title": "Circles: practice set 10.2",
+      "route": "/lessons/geometry/30296-circles-practice-set-10-2"
+    },
+    {
+      "lessonId": 30297,
+      "batch": 13,
+      "title": "Arc length and sector area",
+      "route": "/lessons/mensuration/30297-arc-length-and-sector-area"
+    },
+    {
+      "lessonId": 30298,
+      "batch": 13,
+      "title": "Area of a segment using sector minus triangle",
+      "route": "/lessons/mensuration/30298-area-of-a-segment-using-sector-minus-triangle"
+    },
+    {
+      "lessonId": 30299,
+      "batch": 13,
+      "title": "Major and minor sectors/segments",
+      "route": "/lessons/mensuration/30299-major-and-minor-sectors-segments"
+    },
+    {
+      "lessonId": 30300,
+      "batch": 13,
+      "title": "Areas of combined circular regions",
+      "route": "/lessons/mensuration/30300-areas-of-combined-circular-regions"
+    },
+    {
+      "lessonId": 30301,
+      "batch": 13,
+      "title": "Area, perimeter and cost applications",
+      "route": "/lessons/mensuration/30301-area-perimeter-and-cost-applications"
+    },
+    {
+      "lessonId": 30302,
+      "batch": 13,
+      "title": "Areas Related to Circles: guided examples and applications",
+      "route": "/lessons/mensuration/30302-areas-related-to-circles-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30303,
+      "batch": 13,
+      "title": "Areas Related to Circles: mastery assessment and revision",
+      "route": "/lessons/mensuration/30303-areas-related-to-circles-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30304,
+      "batch": 13,
+      "title": "Exposed versus joined surfaces of composite solids",
+      "route": "/lessons/mensuration/30304-exposed-versus-joined-surfaces-of-composite-solids"
+    },
+    {
+      "lessonId": 30305,
+      "batch": 13,
+      "title": "Surface area of combined cones, cylinders and hemispheres",
+      "route": "/lessons/mensuration/30305-surface-area-of-combined-cones-cylinders-and-hemispheres"
+    },
+    {
+      "lessonId": 30306,
+      "batch": 13,
+      "title": "Volume of a combination of solids",
+      "route": "/lessons/mensuration/30306-volume-of-a-combination-of-solids"
+    },
+    {
+      "lessonId": 30307,
+      "batch": 13,
+      "title": "Capacity and contextual modelling with units",
+      "route": "/lessons/mensuration/30307-capacity-and-contextual-modelling-with-units"
+    },
+    {
+      "lessonId": 30308,
+      "batch": 13,
+      "title": "Surface Areas and Volumes: guided examples and applications",
+      "route": "/lessons/mensuration/30308-surface-areas-and-volumes-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30309,
+      "batch": 13,
+      "title": "Surface Areas and Volumes: mastery assessment and revision",
+      "route": "/lessons/mensuration/30309-surface-areas-and-volumes-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30310,
+      "batch": 13,
+      "title": "Surface Areas and Volumes: practice set 12.1",
+      "route": "/lessons/mensuration/30310-surface-areas-and-volumes-practice-set-12-1"
+    },
+    {
+      "lessonId": 30311,
+      "batch": 13,
+      "title": "Surface Areas and Volumes: practice set 12.2",
+      "route": "/lessons/mensuration/30311-surface-areas-and-volumes-practice-set-12-2"
+    },
+    {
+      "lessonId": 30312,
+      "batch": 13,
+      "title": "Grouped-data approximation and class marks",
+      "route": "/lessons/statistics-and-inference/30312-grouped-data-approximation-and-class-marks"
+    },
+    {
+      "lessonId": 30313,
+      "batch": 13,
+      "title": "Modal class and grouped-mode formula",
+      "route": "/lessons/statistics-and-inference/30313-modal-class-and-grouped-mode-formula"
+    },
+    {
+      "lessonId": 30314,
+      "batch": 13,
+      "title": "Grouped-median formula and interpolation",
+      "route": "/lessons/statistics-and-inference/30314-grouped-median-formula-and-interpolation"
+    },
+    {
+      "lessonId": 30315,
+      "batch": 13,
+      "title": "Interpreting and comparing mean, median and mode",
+      "route": "/lessons/statistics-and-inference/30315-interpreting-and-comparing-mean-median-and-mode"
+    },
+    {
+      "lessonId": 30316,
+      "batch": 13,
+      "title": "Statistics: guided examples and applications",
+      "route": "/lessons/statistics-and-inference/30316-statistics-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30317,
+      "batch": 13,
+      "title": "Statistics: mastery assessment and revision",
+      "route": "/lessons/statistics-and-inference/30317-statistics-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30318,
+      "batch": 13,
+      "title": "Statistics: practice set 13.1",
+      "route": "/lessons/statistics-and-inference/30318-statistics-practice-set-13-1"
+    },
+    {
+      "lessonId": 30319,
+      "batch": 13,
+      "title": "Statistics: practice set 13.2",
+      "route": "/lessons/statistics-and-inference/30319-statistics-practice-set-13-2"
+    },
+    {
+      "lessonId": 30320,
+      "batch": 13,
+      "title": "Statistics: practice set 13.3",
+      "route": "/lessons/statistics-and-inference/30320-statistics-practice-set-13-3"
+    },
+    {
+      "lessonId": 30321,
+      "batch": 13,
+      "title": "Equally likely outcomes and theoretical probability",
+      "route": "/lessons/probability/30321-equally-likely-outcomes-and-theoretical-probability"
+    },
+    {
+      "lessonId": 30322,
+      "batch": 14,
+      "title": "Listing sample spaces systematically",
+      "route": "/lessons/probability/30322-listing-sample-spaces-systematically"
+    },
+    {
+      "lessonId": 30323,
+      "batch": 14,
+      "title": "Impossible/certain events and probability bounds",
+      "route": "/lessons/probability/30323-impossible-certain-events-and-probability-bounds"
+    },
+    {
+      "lessonId": 30324,
+      "batch": 14,
+      "title": "Complementary events and their probabilities",
+      "route": "/lessons/probability/30324-complementary-events-and-their-probabilities"
+    },
+    {
+      "lessonId": 30325,
+      "batch": 14,
+      "title": "Coin, dice and card probability problems",
+      "route": "/lessons/probability/30325-coin-dice-and-card-probability-problems"
+    },
+    {
+      "lessonId": 30326,
+      "batch": 14,
+      "title": "Comparing experimental and theoretical probability",
+      "route": "/lessons/probability/30326-comparing-experimental-and-theoretical-probability"
+    },
+    {
+      "lessonId": 30327,
+      "batch": 14,
+      "title": "Probability: guided examples and applications",
+      "route": "/lessons/probability/30327-probability-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30328,
+      "batch": 14,
+      "title": "Probability: mastery assessment and revision",
+      "route": "/lessons/probability/30328-probability-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30329,
+      "batch": 14,
+      "title": "Probability: practice set 14.1",
+      "route": "/lessons/probability/30329-probability-practice-set-14-1"
+    },
+    {
+      "lessonId": 30330,
+      "batch": 14,
+      "title": "Multiplying two or more monomials",
+      "route": "/lessons/algebra/30330-multiplying-two-or-more-monomials"
+    },
+    {
+      "lessonId": 30331,
+      "batch": 14,
+      "title": "Multiplying a monomial by a binomial/trinomial",
+      "route": "/lessons/algebra/30331-multiplying-a-monomial-by-a-binomial-trinomial"
+    },
+    {
+      "lessonId": 30332,
+      "batch": 14,
+      "title": "Multiplying two binomials",
+      "route": "/lessons/algebra/30332-multiplying-two-binomials"
+    },
+    {
+      "lessonId": 30333,
+      "batch": 14,
+      "title": "Multiplying a binomial by a trinomial",
+      "route": "/lessons/algebra/30333-multiplying-a-binomial-by-a-trinomial"
+    },
+    {
+      "lessonId": 30334,
+      "batch": 14,
+      "title": "Algebraic Expressions and Identities: guided examples and applications",
+      "route": "/lessons/algebra/30334-algebraic-expressions-and-identities-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30335,
+      "batch": 14,
+      "title": "Algebraic Expressions and Identities: mastery assessment and revision",
+      "route": "/lessons/algebra/30335-algebraic-expressions-and-identities-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30336,
+      "batch": 14,
+      "title": "Algebraic Expressions and Identities: practice set 8.1",
+      "route": "/lessons/algebra/30336-algebraic-expressions-and-identities-practice-set-8-1"
+    },
+    {
+      "lessonId": 30337,
+      "batch": 14,
+      "title": "Algebraic Expressions and Identities: practice set 8.2",
+      "route": "/lessons/algebra/30337-algebraic-expressions-and-identities-practice-set-8-2"
+    },
+    {
+      "lessonId": 30338,
+      "batch": 14,
+      "title": "Algebraic Expressions and Identities: practice set 8.3",
+      "route": "/lessons/algebra/30338-algebraic-expressions-and-identities-practice-set-8-3"
+    },
+    {
+      "lessonId": 30339,
+      "batch": 14,
+      "title": "Algebraic Expressions and Identities: practice set 8.4",
+      "route": "/lessons/algebra/30339-algebraic-expressions-and-identities-practice-set-8-4"
+    },
+    {
+      "lessonId": 30340,
+      "batch": 14,
+      "title": "Area of polygons by decomposition",
+      "route": "/lessons/mensuration/30340-area-of-polygons-by-decomposition"
+    },
+    {
+      "lessonId": 30341,
+      "batch": 14,
+      "title": "Area of trapezia and general quadrilaterals",
+      "route": "/lessons/mensuration/30341-area-of-trapezia-and-general-quadrilaterals"
+    },
+    {
+      "lessonId": 30342,
+      "batch": 14,
+      "title": "Nets and recognition of solid shapes",
+      "route": "/lessons/mensuration/30342-nets-and-recognition-of-solid-shapes"
+    },
+    {
+      "lessonId": 30343,
+      "batch": 14,
+      "title": "Cuboid surface area",
+      "route": "/lessons/mensuration/30343-cuboid-surface-area"
+    },
+    {
+      "lessonId": 30344,
+      "batch": 14,
+      "title": "Cube surface area",
+      "route": "/lessons/mensuration/30344-cube-surface-area"
+    },
+    {
+      "lessonId": 30345,
+      "batch": 14,
+      "title": "Cylinder curved and total surface area",
+      "route": "/lessons/mensuration/30345-cylinder-curved-and-total-surface-area"
+    },
+    {
+      "lessonId": 30346,
+      "batch": 14,
+      "title": "Cuboid and cube volume",
+      "route": "/lessons/mensuration/30346-cuboid-and-cube-volume"
+    },
+    {
+      "lessonId": 30347,
+      "batch": 15,
+      "title": "Cylinder volume",
+      "route": "/lessons/mensuration/30347-cylinder-volume"
+    },
+    {
+      "lessonId": 30348,
+      "batch": 15,
+      "title": "Volume and capacity conversions",
+      "route": "/lessons/mensuration/30348-volume-and-capacity-conversions"
+    },
+    {
+      "lessonId": 30349,
+      "batch": 15,
+      "title": "Mensuration: guided examples and applications",
+      "route": "/lessons/mensuration/30349-mensuration-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30350,
+      "batch": 15,
+      "title": "Mensuration: mastery assessment and revision",
+      "route": "/lessons/mensuration/30350-mensuration-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30351,
+      "batch": 15,
+      "title": "Mensuration: practice set 9.1",
+      "route": "/lessons/mensuration/30351-mensuration-practice-set-9-1"
+    },
+    {
+      "lessonId": 30352,
+      "batch": 15,
+      "title": "Mensuration: practice set 9.2",
+      "route": "/lessons/mensuration/30352-mensuration-practice-set-9-2"
+    },
+    {
+      "lessonId": 30353,
+      "batch": 15,
+      "title": "Mensuration: practice set 9.3",
+      "route": "/lessons/mensuration/30353-mensuration-practice-set-9-3"
+    },
+    {
+      "lessonId": 30354,
+      "batch": 15,
+      "title": "Negative-exponent meaning and evaluation",
+      "route": "/lessons/numbers-and-arithmetic/30354-negative-exponent-meaning-and-evaluation"
+    },
+    {
+      "lessonId": 30355,
+      "batch": 15,
+      "title": "Scientific notation for small numbers",
+      "route": "/lessons/numbers-and-arithmetic/30355-scientific-notation-for-small-numbers"
+    },
+    {
+      "lessonId": 30356,
+      "batch": 15,
+      "title": "Comparing large and small quantities",
+      "route": "/lessons/numbers-and-arithmetic/30356-comparing-large-and-small-quantities"
+    },
+    {
+      "lessonId": 30357,
+      "batch": 15,
+      "title": "Exponents and Powers: guided examples and applications",
+      "route": "/lessons/numbers-and-arithmetic/30357-exponents-and-powers-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30358,
+      "batch": 15,
+      "title": "Exponents and Powers: mastery assessment and revision",
+      "route": "/lessons/numbers-and-arithmetic/30358-exponents-and-powers-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30359,
+      "batch": 15,
+      "title": "Exponents and Powers: practice set 10.1",
+      "route": "/lessons/numbers-and-arithmetic/30359-exponents-and-powers-practice-set-10-1"
+    },
+    {
+      "lessonId": 30360,
+      "batch": 15,
+      "title": "Exponents and Powers: practice set 10.2",
+      "route": "/lessons/numbers-and-arithmetic/30360-exponents-and-powers-practice-set-10-2"
+    },
+    {
+      "lessonId": 30361,
+      "batch": 15,
+      "title": "Direct-proportion contextual problems",
+      "route": "/lessons/ratios-and-proportion/30361-direct-proportion-contextual-problems"
+    },
+    {
+      "lessonId": 30362,
+      "batch": 15,
+      "title": "Work, time and sharing inverse-proportion problems",
+      "route": "/lessons/ratios-and-proportion/30362-work-time-and-sharing-inverse-proportion-problems"
+    },
+    {
+      "lessonId": 30363,
+      "batch": 15,
+      "title": "Distinguishing direct, inverse and non-proportional change",
+      "route": "/lessons/ratios-and-proportion/30363-distinguishing-direct-inverse-and-non-proportional-change"
+    },
+    {
+      "lessonId": 30364,
+      "batch": 15,
+      "title": "Direct and Inverse Proportions: guided examples and applications",
+      "route": "/lessons/ratios-and-proportion/30364-direct-and-inverse-proportions-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30365,
+      "batch": 15,
+      "title": "Direct and Inverse Proportions: mastery assessment and revision",
+      "route": "/lessons/ratios-and-proportion/30365-direct-and-inverse-proportions-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30366,
+      "batch": 15,
+      "title": "Direct and Inverse Proportions: practice set 11.1",
+      "route": "/lessons/ratios-and-proportion/30366-direct-and-inverse-proportions-practice-set-11-1"
+    },
+    {
+      "lessonId": 30367,
+      "batch": 15,
+      "title": "Direct and Inverse Proportions: practice set 11.2",
+      "route": "/lessons/ratios-and-proportion/30367-direct-and-inverse-proportions-practice-set-11-2"
+    },
+    {
+      "lessonId": 30368,
+      "batch": 15,
+      "title": "Factors of numbers and algebraic expressions",
+      "route": "/lessons/number-theory/30368-factors-of-numbers-and-algebraic-expressions"
+    },
+    {
+      "lessonId": 30369,
+      "batch": 15,
+      "title": "Factorisation by regrouping",
+      "route": "/lessons/algebra/30369-factorisation-by-regrouping"
+    },
+    {
+      "lessonId": 30370,
+      "batch": 15,
+      "title": "Factorisation using identities",
+      "route": "/lessons/algebra/30370-factorisation-using-identities"
+    },
+    {
+      "lessonId": 30371,
+      "batch": 15,
+      "title": "Factors of the form (x+a)(x+b)",
+      "route": "/lessons/algebra/30371-factors-of-the-form-x-a-x-b"
+    },
+    {
+      "lessonId": 30372,
+      "batch": 16,
+      "title": "Dividing a monomial by a monomial",
+      "route": "/lessons/algebra/30372-dividing-a-monomial-by-a-monomial"
+    },
+    {
+      "lessonId": 30373,
+      "batch": 16,
+      "title": "Dividing a polynomial by a monomial",
+      "route": "/lessons/algebra/30373-dividing-a-polynomial-by-a-monomial"
+    },
+    {
+      "lessonId": 30374,
+      "batch": 16,
+      "title": "Dividing polynomials using factorisation",
+      "route": "/lessons/algebra/30374-dividing-polynomials-using-factorisation"
+    },
+    {
+      "lessonId": 30375,
+      "batch": 16,
+      "title": "Factorisation: guided examples and applications",
+      "route": "/lessons/algebra/30375-factorisation-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30376,
+      "batch": 16,
+      "title": "Factorisation: mastery assessment and revision",
+      "route": "/lessons/algebra/30376-factorisation-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30377,
+      "batch": 16,
+      "title": "Factorisation: practice set 12.1",
+      "route": "/lessons/algebra/30377-factorisation-practice-set-12-1"
+    },
+    {
+      "lessonId": 30378,
+      "batch": 16,
+      "title": "Factorisation: practice set 12.2",
+      "route": "/lessons/algebra/30378-factorisation-practice-set-12-2"
+    },
+    {
+      "lessonId": 30379,
+      "batch": 16,
+      "title": "Factorisation: practice set 12.3",
+      "route": "/lessons/algebra/30379-factorisation-practice-set-12-3"
+    },
+    {
+      "lessonId": 30380,
+      "batch": 16,
+      "title": "Reading and constructing line graphs",
+      "route": "/lessons/functions-and-graphs/30380-reading-and-constructing-line-graphs"
+    },
+    {
+      "lessonId": 30381,
+      "batch": 16,
+      "title": "Coordinates and plotting points on a grid",
+      "route": "/lessons/coordinate-geometry/30381-coordinates-and-plotting-points-on-a-grid"
+    },
+    {
+      "lessonId": 30382,
+      "batch": 16,
+      "title": "Graphs for distance-time and quantity-cost applications",
+      "route": "/lessons/functions-and-graphs/30382-graphs-for-distance-time-and-quantity-cost-applications"
+    },
+    {
+      "lessonId": 30383,
+      "batch": 16,
+      "title": "Interpreting rates and relationships from graphs",
+      "route": "/lessons/functions-and-graphs/30383-interpreting-rates-and-relationships-from-graphs"
+    },
+    {
+      "lessonId": 30384,
+      "batch": 16,
+      "title": "Introduction to Graphs: guided examples and applications",
+      "route": "/lessons/functions-and-graphs/30384-introduction-to-graphs-guided-examples-and-applications"
+    },
+    {
+      "lessonId": 30385,
+      "batch": 16,
+      "title": "Introduction to Graphs: mastery assessment and revision",
+      "route": "/lessons/functions-and-graphs/30385-introduction-to-graphs-mastery-assessment-and-revision"
+    },
+    {
+      "lessonId": 30386,
+      "batch": 16,
+      "title": "Introduction to Graphs: practice set 13.1",
+      "route": "/lessons/functions-and-graphs/30386-introduction-to-graphs-practice-set-13-1"
+    },
+    {
+      "lessonId": 30387,
+      "batch": 16,
+      "title": "Introduction to Graphs: practice set 13.2",
+      "route": "/lessons/functions-and-graphs/30387-introduction-to-graphs-practice-set-13-2"
+    },
+    {
+      "lessonId": 30388,
+      "batch": 16,
+      "title": "Readiness: factors, primes, squares and cubes",
+      "route": "/lessons/number-theory/30388-readiness-factors-primes-squares-and-cubes"
+    },
+    {
+      "lessonId": 30389,
+      "batch": 16,
+      "title": "Readiness: powers and scientific notation",
+      "route": "/lessons/numbers-and-arithmetic/30389-readiness-powers-and-scientific-notation"
+    },
+    {
+      "lessonId": 30390,
+      "batch": 16,
+      "title": "Readiness: number representations and place value",
+      "route": "/lessons/numbers-and-arithmetic/30390-readiness-number-representations-and-place-value"
+    },
+    {
+      "lessonId": 30391,
+      "batch": 16,
+      "title": "Readiness: quadrilateral vocabulary and constructions",
+      "route": "/lessons/geometry/30391-readiness-quadrilateral-vocabulary-and-constructions"
+    },
+    {
+      "lessonId": 30392,
+      "batch": 16,
+      "title": "Readiness: divisibility, parity and number puzzles",
+      "route": "/lessons/number-theory/30392-readiness-divisibility-parity-and-number-puzzles"
+    },
+    {
+      "lessonId": 30393,
+      "batch": 16,
+      "title": "Readiness: distributivity and algebraic expressions",
+      "route": "/lessons/algebra/30393-readiness-distributivity-and-algebraic-expressions"
+    },
+    {
+      "lessonId": 30394,
+      "batch": 16,
+      "title": "Readiness: ratios and proportion",
+      "route": "/lessons/ratios-and-proportion/30394-readiness-ratios-and-proportion"
+    },
+    {
+      "lessonId": 30395,
+      "batch": 16,
+      "title": "Computational thinking, systematic listing and algorithms",
+      "route": "/lessons/patterns-and-algorithms/30395-computational-thinking-systematic-listing-and-algorithms"
+    },
+    {
+      "lessonId": 30396,
+      "batch": 16,
+      "title": "Mathematical history, communication and creative problem solving",
+      "route": "/lessons/history-and-numeral-systems/30396-mathematical-history-communication-and-creative-problem-solving"
+    },
+    {
+      "lessonId": 30397,
+      "batch": 17,
+      "title": "Mathematical connections and AI activities",
+      "route": "/lessons/machine-learning-and-ai/30397-mathematical-connections-and-ai-activities"
+    },
+    {
+      "lessonId": 30408,
+      "batch": 17,
+      "title": "Square-number patterns and the locker puzzle",
+      "route": "/lessons/numbers-and-arithmetic/30408-square-number-patterns-and-the-locker-puzzle"
+    },
+    {
+      "lessonId": 30409,
+      "batch": 17,
+      "title": "Exponential growth in computational processes",
+      "route": "/lessons/functions-and-graphs/30409-exponential-growth-in-computational-processes"
+    },
+    {
+      "lessonId": 30410,
+      "batch": 17,
+      "title": "Positional notation and representing digital data",
+      "route": "/lessons/history-and-numeral-systems/30410-positional-notation-and-representing-digital-data"
+    },
+    {
+      "lessonId": 30411,
+      "batch": 17,
+      "title": "Quadrilateral features and shape classification",
+      "route": "/lessons/geometry/30411-quadrilateral-features-and-shape-classification"
+    },
+    {
+      "lessonId": 30412,
+      "batch": 17,
+      "title": "Parity and logical rules in rule-based systems",
+      "route": "/lessons/logic-and-proofs/30412-parity-and-logical-rules-in-rule-based-systems"
+    },
+    {
+      "lessonId": 30413,
+      "batch": 17,
+      "title": "Algebraic simplification and systematic computation",
+      "route": "/lessons/algebra/30413-algebraic-simplification-and-systematic-computation"
+    },
+    {
+      "lessonId": 30414,
+      "batch": 17,
+      "title": "Ratios, balanced datasets and fair comparison",
+      "route": "/lessons/ratios-and-proportion/30414-ratios-balanced-datasets-and-fair-comparison"
+    },
+    {
+      "lessonId": 30415,
+      "batch": 17,
+      "title": "Checking mathematical AI outputs and responsible use",
+      "route": "/lessons/machine-learning-and-ai/30415-checking-mathematical-ai-outputs-and-responsible-use"
+    },
+    {
+      "lessonId": 30398,
+      "batch": 17,
+      "title": "Statements, conjectures, counterexamples and mathematical proofs",
+      "route": "/lessons/logic-and-proofs/30398-statements-conjectures-counterexamples-and-mathematical-proofs"
+    },
+    {
+      "lessonId": 30399,
+      "batch": 17,
+      "title": "Logical reasoning and proof-writing practice",
+      "route": "/lessons/logic-and-proofs/30399-logical-reasoning-and-proof-writing-practice"
+    },
+    {
+      "lessonId": 30400,
+      "batch": 17,
+      "title": "Deductive reasoning and proof structure",
+      "route": "/lessons/logic-and-proofs/30400-deductive-reasoning-and-proof-structure"
+    },
+    {
+      "lessonId": 30401,
+      "batch": 17,
+      "title": "Direct proof and proof by contradiction",
+      "route": "/lessons/logic-and-proofs/30401-direct-proof-and-proof-by-contradiction"
+    },
+    {
+      "lessonId": 30402,
+      "batch": 17,
+      "title": "Stages of mathematical modelling and model assumptions",
+      "route": "/lessons/mathematical-modelling/30402-stages-of-mathematical-modelling-and-model-assumptions"
+    },
+    {
+      "lessonId": 30403,
+      "batch": 17,
+      "title": "Formulation, solution, interpretation and validation of models",
+      "route": "/lessons/mathematical-modelling/30403-formulation-solution-interpretation-and-validation-of-models"
+    },
+    {
+      "lessonId": 32001,
+      "batch": 17,
+      "title": "Theory of equations and reciprocal equations",
+      "route": "/lessons/equations-and-inequalities/32001-theory-of-equations-and-reciprocal-equations"
+    },
+    {
+      "lessonId": 32002,
+      "batch": 17,
+      "title": "Translation and rotation of coordinate axes",
+      "route": "/lessons/coordinate-geometry/32002-translation-and-rotation-of-coordinate-axes"
+    },
+    {
+      "lessonId": 32003,
+      "batch": 17,
+      "title": "Pair of straight lines and homogenisation",
+      "route": "/lessons/coordinate-geometry/32003-pair-of-straight-lines-and-homogenisation"
+    },
+    {
+      "lessonId": 32004,
+      "batch": 17,
+      "title": "Circles, systems of circles and radical axis",
+      "route": "/lessons/coordinate-geometry/32004-circles-systems-of-circles-and-radical-axis"
+    },
+    {
+      "lessonId": 32005,
+      "batch": 17,
+      "title": "Cayley-Hamilton theorem",
+      "route": "/lessons/matrices-and-linear-algebra/32005-cayley-hamilton-theorem"
+    },
+    {
+      "lessonId": 32006,
+      "batch": 17,
+      "title": "Laplace and Fourier transforms",
+      "route": "/lessons/transforms-and-special-functions/32006-laplace-and-fourier-transforms"
+    },
+    {
+      "lessonId": 32007,
+      "batch": 17,
+      "title": "Complex analyticity, Cauchy formula and residues",
+      "route": "/lessons/complex-numbers/32007-complex-analyticity-cauchy-formula-and-residues"
+    },
+    {
+      "lessonId": 32008,
+      "batch": 17,
+      "title": "Generating functions",
+      "route": "/lessons/combinatorics-and-discrete-mathematics/32008-generating-functions"
+    },
+    {
+      "lessonId": 32009,
+      "batch": 17,
+      "title": "Euler theorem for homogeneous functions",
+      "route": "/lessons/limits-and-derivatives/32009-euler-theorem-for-homogeneous-functions"
+    },
+    {
+      "lessonId": 32010,
+      "batch": 17,
+      "title": "Positive definite and semidefinite matrices",
+      "route": "/lessons/matrices-and-linear-algebra/32010-positive-definite-and-semidefinite-matrices"
+    },
+    {
+      "lessonId": 32011,
+      "batch": 18,
+      "title": "Groups and rings",
+      "route": "/lessons/abstract-algebra-and-topology/32011-groups-and-rings"
+    },
+    {
+      "lessonId": 32012,
+      "batch": 18,
+      "title": "Nearest-neighbour distance models",
+      "route": "/lessons/machine-learning-and-ai/32012-nearest-neighbour-distance-models"
+    },
+    {
+      "lessonId": 32013,
+      "batch": 18,
+      "title": "Decision trees, impurity and random forests",
+      "route": "/lessons/machine-learning-and-ai/32013-decision-trees-impurity-and-random-forests"
+    },
+    {
+      "lessonId": 32014,
+      "batch": 18,
+      "title": "Naive Bayes classification",
+      "route": "/lessons/machine-learning-and-ai/32014-naive-bayes-classification"
+    },
+    {
+      "lessonId": 32015,
+      "batch": 18,
+      "title": "SVM, margins and kernel trick",
+      "route": "/lessons/machine-learning-and-ai/32015-svm-margins-and-kernel-trick"
+    },
+    {
+      "lessonId": 32016,
+      "batch": 18,
+      "title": "K-means and fuzzy clustering",
+      "route": "/lessons/machine-learning-and-ai/32016-k-means-and-fuzzy-clustering"
+    },
+    {
+      "lessonId": 32017,
+      "batch": 18,
+      "title": "Expectation-maximisation and spectral clustering",
+      "route": "/lessons/machine-learning-and-ai/32017-expectation-maximisation-and-spectral-clustering"
+    },
+    {
+      "lessonId": 32018,
+      "batch": 18,
+      "title": "Perceptron and backpropagation",
+      "route": "/lessons/machine-learning-and-ai/32018-perceptron-and-backpropagation"
+    },
+    {
+      "lessonId": 32019,
+      "batch": 18,
+      "title": "Bias-variance and model evaluation",
+      "route": "/lessons/machine-learning-and-ai/32019-bias-variance-and-model-evaluation"
+    },
+    {
+      "lessonId": 32020,
+      "batch": 18,
+      "title": "PCA, whitening and ZCA",
+      "route": "/lessons/machine-learning-and-ai/32020-pca-whitening-and-zca"
+    },
+    {
+      "lessonId": 32021,
+      "batch": 18,
+      "title": "Bag-of-words, n-grams and TF-IDF",
+      "route": "/lessons/nlp-and-image-features/32021-bag-of-words-n-grams-and-tf-idf"
+    },
+    {
+      "lessonId": 32022,
+      "batch": 18,
+      "title": "SIFT, HOG and image-gradient features",
+      "route": "/lessons/nlp-and-image-features/32022-sift-hog-and-image-gradient-features"
+    },
+    {
+      "lessonId": 32023,
+      "batch": 18,
+      "title": "SGD, momentum, Adam and initialisation",
+      "route": "/lessons/machine-learning-and-ai/32023-sgd-momentum-adam-and-initialisation"
+    },
+    {
+      "lessonId": 32024,
+      "batch": 18,
+      "title": "Regularisation, dropout and batch normalisation",
+      "route": "/lessons/machine-learning-and-ai/32024-regularisation-dropout-and-batch-normalisation"
+    },
+    {
+      "lessonId": 32025,
+      "batch": 18,
+      "title": "Convolution and pooling mathematics",
+      "route": "/lessons/machine-learning-and-ai/32025-convolution-and-pooling-mathematics"
+    },
+    {
+      "lessonId": 32026,
+      "batch": 18,
+      "title": "RNN, LSTM, GRU and gradient stability",
+      "route": "/lessons/machine-learning-and-ai/32026-rnn-lstm-gru-and-gradient-stability"
+    },
+    {
+      "lessonId": 32027,
+      "batch": 18,
+      "title": "Attention and graph neural networks",
+      "route": "/lessons/machine-learning-and-ai/32027-attention-and-graph-neural-networks"
+    },
+    {
+      "lessonId": 32028,
+      "batch": 18,
+      "title": "N-gram probability, smoothing and backoff",
+      "route": "/lessons/nlp-and-image-features/32028-n-gram-probability-smoothing-and-backoff"
+    },
+    {
+      "lessonId": 32029,
+      "batch": 18,
+      "title": "Hidden Markov and maximum entropy models",
+      "route": "/lessons/nlp-and-image-features/32029-hidden-markov-and-maximum-entropy-models"
+    },
+    {
+      "lessonId": 32030,
+      "batch": 18,
+      "title": "Probabilistic grammars and dynamic-programming parsing",
+      "route": "/lessons/nlp-and-image-features/32030-probabilistic-grammars-and-dynamic-programming-parsing"
+    },
+    {
+      "lessonId": 32031,
+      "batch": 18,
+      "title": "Hilbert spaces and quantum measurement",
+      "route": "/lessons/quantum-mathematics/32031-hilbert-spaces-and-quantum-measurement"
+    },
+    {
+      "lessonId": 32032,
+      "batch": 18,
+      "title": "Qubit, Bloch sphere and unitary gates",
+      "route": "/lessons/quantum-mathematics/32032-qubit-bloch-sphere-and-unitary-gates"
+    },
+    {
+      "lessonId": 32033,
+      "batch": 18,
+      "title": "Tensor products, Bell states and entanglement",
+      "route": "/lessons/quantum-mathematics/32033-tensor-products-bell-states-and-entanglement"
+    }
+  ]
+}

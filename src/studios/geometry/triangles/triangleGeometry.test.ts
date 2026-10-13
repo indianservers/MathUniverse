@@ -6,8 +6,11 @@ import {
   classifyBySides,
   constructRHS,
   constructSAS,
+  constructASAc,
+  constructAAS,
   constructSSS,
   dist,
+  EXPLORER_PRESETS,
   incenter,
   inradius,
   measureTriangle,
@@ -25,6 +28,37 @@ import {
 const nearly = (a: number, b: number, eps = 1e-6) => expect(Math.abs(a - b)).toBeLessThan(eps);
 
 describe("triangleGeometry", () => {
+  it("preserves the supplied side and both angles for ASA and AAS", () => {
+    const asa = constructASAc(52, 5.2, 58, { x: 0, y: 0 });
+    const am = measureTriangle(asa.A, asa.B, asa.C);
+    nearly(am.sides.AB, 5.2); nearly(am.angles.A, 52); nearly(am.angles.B, 58);
+    const aas = constructAAS(52, 58, 4.4, { x: 0, y: 0 });
+    const bm = measureTriangle(aas.A, aas.B, aas.C);
+    nearly(bm.sides.BC, 4.4); nearly(bm.angles.A, 52); nearly(bm.angles.B, 58);
+  });
+  it("makes each named preset match its mathematical classification", () => {
+    for (const name of ['scalene', 'isosceles', 'equilateral']) {
+      const t = EXPLORER_PRESETS[name];
+      expect(measureTriangle(t.A, t.B, t.C).bySides.toLowerCase()).toBe(name);
+    }
+    for (const name of ['right', 'acute', 'obtuse']) {
+      const t = EXPLORER_PRESETS[name];
+      expect(measureTriangle(t.A, t.B, t.C).byAngles.toLowerCase()).toBe(name);
+    }
+  });
+  it("does not classify nearly equal sides or nearly right angles as exact cases", () => {
+    const near = measureTriangle({ x: 0, y: 0 }, { x: 3, y: 0 }, { x: .01, y: 3.01 });
+    expect(near.bySides).toBe("Scalene");
+    expect(near.byAngles).toBe("Acute");
+    nearly(near.angleSum, 180);
+  });
+  it("keeps a screenshot-shaped scalene construction mathematically consistent", () => {
+    const t = constructSSS(8.21, 8.76, 7.88, { x: 0, y: 0 });
+    const m = measureTriangle(t.A, t.B, t.C);
+    nearly(m.sides.AB, 7.88); nearly(m.sides.BC, 8.21); nearly(m.sides.CA, 8.76);
+    nearly(m.perimeter, 24.85); nearly(m.angleSum, 180);
+    expect(m.bySides).toBe("Scalene"); expect(m.byAngles).toBe("Acute");
+  });
   const eq = { A: { x: 0, y: 0 }, B: { x: 2, y: 0 }, C: { x: 1, y: Math.sqrt(3) } };
   const right = { A: { x: 0, y: 0 }, B: { x: 3, y: 0 }, C: { x: 0, y: 4 } };
 

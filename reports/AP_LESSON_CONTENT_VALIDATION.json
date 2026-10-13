@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-12",
+  "totals": {
+    "lessons": 448,
+    "school": 415,
+    "higher": 33,
+    "workedExamples": 3584,
+    "practiceQuestions": 3584,
+    "interactiveModels": 114
+  },
+  "tests": {
+    "automated": "12 tests passed: 9 authored content/model/batch tests and 3 curriculum registry tests",
+    "browserRoutes": 15,
+    "mobileRoutes": 6,
+    "controls": "Changed input, invalid domain, reset, wrong and correct practice answers passed",
+    "lint": "Passed for new content files",
+    "typecheck": "Full-project check has 128 errors in other files; no diagnostics in authored lesson files, upcoming page or school route integration.",
+    "workbook": "448 draft rows, 486 school-topic rows; recalculation check passed and formula error scan found 0 errors.",
+    "mobileControls": "Mobile input and reset verified for attention example.",
+    "targetedModelTypecheck": "Passed strict TypeScript checking for all authored numerical models.",
+    "template": "Five standard tabs, eight examples, formulas and eight checked practice inputs verified on five topic-specific pages",
+    "geometry": "Extreme parallelogram, kite and obtuse triangle render inside their diagrams"
+  },
+  "publication": "All 448 remain Upcoming",
+  "coverage": "Not certified: source, exercise equivalence and teaching review remain pending",
+  "scope": "Reserved missing lessons; existing 919 lessons retained",
+  "contentStandard": "Shared five-tab LessonSectionNav; 8 worked examples and 8 checked practice questions per draft; general explanation filler removed.",
+  "loading": "18 lazy batch files verified against the authored content; opening one lesson loads only its batch"
+}

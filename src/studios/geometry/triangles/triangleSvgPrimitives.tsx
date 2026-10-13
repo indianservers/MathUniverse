@@ -57,6 +57,7 @@ export function AngleArc({
   const ly = V.y + (radius + 14) * Math.sin(mid);
   return (
     <g fill="none" stroke={color} strokeWidth="1.7">
+      <path d={`M ${V.x} ${V.y} L ${x1} ${y1} A ${radius} ${radius} 0 ${large} ${sweep} ${x2} ${y2} Z`} fill={color} fillOpacity=".16" stroke="none" />
       <path d={`M ${x1} ${y1} A ${radius} ${radius} 0 ${large} ${sweep} ${x2} ${y2}`} />
       {ticks > 1 ? <path d={`M ${V.x + (radius - 5) * Math.cos(mid)} ${V.y + (radius - 5) * Math.sin(mid)} L ${V.x + (radius + 5) * Math.cos(mid)} ${V.y + (radius + 5) * Math.sin(mid)}`} /> : null}
       {ticks > 2 ? <path d={`M ${V.x + (radius - 5) * Math.cos(mid - 0.12)} ${V.y + (radius - 5) * Math.sin(mid - 0.12)} L ${V.x + (radius + 5) * Math.cos(mid - 0.12)} ${V.y + (radius + 5) * Math.sin(mid - 0.12)}`} /> : null}

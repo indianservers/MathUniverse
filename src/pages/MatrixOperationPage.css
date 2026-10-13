@@ -1,0 +1,51 @@
+/* Shared compact layout for every Matrix Operations page. */
+.matrix-operation-page{display:grid;gap:16px;min-width:0}
+.matrix-operation-page :where(section,div){min-width:0}
+.matrix-operation-content,.matrix-operation-controls,.matrix-operation-inputs{display:grid;gap:12px;min-width:0}
+.matrix-operation-workspace,.matrix-operation-solution,.matrix-operation-concepts,.matrix-operation-context,.matrix-operation-extras{display:grid;gap:16px;align-items:start;min-width:0}
+.matrix-operation-equation{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;padding:8px 4px;min-width:0}
+.matrix-operation-equation>div{flex:none;max-width:100%}
+.matrix-operation-visualization .mobile-safe-scroll{max-width:100%;overflow-x:auto;padding:8px 4px}
+.matrix-operation-answer>div:last-child{max-width:100%;overflow-x:auto;padding:8px 4px}
+.matrix-operation-heading>div:last-child{padding:16px 20px}
+.matrix-operation-heading h1{font-size:clamp(24px,2.5vw,36px);line-height:1.15;margin-top:6px}
+.matrix-operation-heading h1+p{margin-top:8px;max-width:none;font-size:14px;line-height:1.5}
+.matrix-operation-heading>div:last-child>p:first-child{font-size:11px;letter-spacing:.06em}
+.matrix-operation-concepts>section,.matrix-operation-context>section{padding:12px}
+.matrix-operation-concepts>div{padding:12px}
+.matrix-operation-concepts h2,.matrix-operation-context h2{font-size:16px}
+.matrix-operation-concepts p,.matrix-operation-context p{font-size:13px;line-height:1.6}
+.matrix-operation-steps>div:last-child{display:grid;gap:12px}
+.matrix-operation-steps>div:last-child>div{margin-top:0}
+.matrix-operation-steps h3{font-size:18px;line-height:1.35}
+.matrix-operation-extras:empty{display:none}
+.matrix-operation-basics>section:first-of-type>div:last-child{padding:16px 20px}
+.matrix-operation-basics h1{font-size:clamp(24px,2.5vw,36px)}
+@media(min-width:768px){
+  .matrix-operation-concepts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .matrix-operation-context,.matrix-operation-extras{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .matrix-operation-extras>section:only-child{grid-column:1/-1}
+}
+@media(min-width:1024px){
+  .matrix-operation-workspace{grid-template-columns:minmax(320px,.78fr) minmax(0,1.22fr)}
+  .matrix-operation-workspace--pair{grid-template-columns:minmax(320px,.9fr) minmax(0,1.1fr)}
+  .matrix-operation-solution{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+  .matrix-operation-solution>section:only-child{grid-column:1/-1}
+  .matrix-operation-inputs>div{padding:12px}
+  .matrix-operation-page .result-pop{min-height:40px;min-width:40px;padding:4px 6px;font-size:14px}
+  .matrix-operation-page .result-pop input{width:44px}
+  .matrix-operation-inputs .mobile-safe-scroll{padding-bottom:4px}
+  .matrix-operation-inputs button{min-height:32px}
+  .matrix-operation-steps .tool-button{padding:8px 10px;font-size:12px}
+}
+@media(min-width:1440px){
+  .matrix-operation-inputs--pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:767px){
+  .matrix-operation-page{gap:12px}
+  .matrix-operation-workspace,.matrix-operation-solution,.matrix-operation-context,.matrix-operation-extras{gap:12px}
+  .matrix-operation-heading>div:last-child{padding:14px}
+  .matrix-operation-equation{gap:12px;padding:6px 0}
+  .matrix-operation-steps .tool-button{min-height:44px}
+  .matrix-operation-basics .grid.gap-6{gap:12px}
+}

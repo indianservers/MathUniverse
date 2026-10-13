@@ -4,8 +4,8 @@
   left: 1px;
   width: min(1380px, calc(100vw - 294px));
   margin: auto;
-  color: #e7efff;
-  background: #031328;
+  color: var(--lesson-ink,#e7efff);
+  background: var(--lesson-surface,#031328);
   font:
     12px/1.4 Inter,
     Arial,
@@ -16,9 +16,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .rel10112-page * {
   box-sizing: border-box;
 }
@@ -36,13 +36,13 @@
   position: relative;
   height: 125px;
   padding: 16px 23px;
-  border: 1px solid #28546b;
+  border: 1px solid var(--lesson-border,#28546b);
   border-radius: 10px 10px 0 0;
-  background: linear-gradient(110deg, #071f39, #031328);
+  background: linear-gradient(110deg, var(--lesson-surface,#071f39), var(--lesson-surface,#031328));
 }
 .rel10112-page > header small,
 .rel10112-page h2 {
-  color: #38e1dd;
+  color: var(--lesson-accent,#38e1dd);
   font-weight: 900;
   letter-spacing: 1px;
 }
@@ -55,9 +55,9 @@
   right: 16px;
   top: 15px;
   padding: 10px 16px;
-  border: 1px solid #245a73;
+  border: 1px solid var(--lesson-border,#245a73);
   border-radius: 7px;
-  background: #06172c;
+  background: var(--lesson-surface,#06172c);
 }
 .rel10112-page > main {
   display: grid;
@@ -68,15 +68,15 @@
 .rel10112-page > main > section {
   min-width: 0;
   padding: 15px;
-  border-right: 1px solid #29445d;
-  background: #06162a;
+  border-right: 1px solid var(--lesson-border,#29445d);
+  background: var(--lesson-surface,#06162a);
 }
 .rel10112-page h2 {
   font-size: 12px;
 }
 .rel10112-page h2 i {
   margin-left: 5px;
-  color: #dce6f7;
+  color: var(--lesson-ink,#dce6f7);
   font:
     italic 15px Georgia,
     serif;
@@ -91,7 +91,7 @@
   align-items: center;
   gap: 6px;
   margin-left: auto;
-  color: #dce6f7;
+  color: var(--lesson-ink,#dce6f7);
   font-weight: 400;
   letter-spacing: 0;
 }
@@ -101,12 +101,12 @@
 }
 .rel10112-graph > svg .edge,
 .rel10112-graph > svg .draft {
-  stroke: #4be3df;
+  stroke: var(--lesson-accent,#4be3df);
   stroke-width: 2.2;
   fill: none;
 }
 .rel10112-graph > svg marker path {
-  fill: #4be3df;
+  fill: var(--lesson-accent,#4be3df);
 }
 .rel10112-graph > svg .node {
   cursor: crosshair;
@@ -114,11 +114,11 @@
 }
 .rel10112-graph > svg .node circle {
   fill: #0d2442;
-  stroke: #52cfee;
+  stroke: var(--lesson-accent,#52cfee);
   stroke-width: 2;
 }
 .rel10112-graph > svg .node text {
-  fill: #f5f8ff;
+  fill: var(--lesson-ink,#f5f8ff);
   text-anchor: middle;
   font-size: 29px;
   font-weight: 700;
@@ -126,7 +126,7 @@
 }
 .rel10112-graph > label {
   display: block;
-  color: #4be3df;
+  color: var(--lesson-accent,#4be3df);
   font-weight: 700;
 }
 .rel10112-graph > output {
@@ -135,9 +135,9 @@
   margin-top: 3px;
   padding: 10px 14px;
   overflow: auto;
-  border: 1px solid #35506a;
+  border: 1px solid var(--lesson-border,#35506a);
   border-radius: 6px;
-  background: #07182a;
+  background: var(--lesson-surface,#07182a);
   font:
     italic 13px Georgia,
     serif;
@@ -156,16 +156,16 @@
 .matrix-grid > b {
   display: grid;
   place-items: center;
-  color: #f3f6ff;
+  color: var(--lesson-ink,#f3f6ff);
   font-size: 17px;
 }
 .matrix-grid > b:first-child,
 .matrix-grid > b:nth-child(-n + 5) {
-  color: #41dcdd;
+  color: var(--lesson-accent,#41dcdd);
 }
 .matrix-grid button {
-  border: 1px solid #2c4961;
-  background: #071629;
+  border: 1px solid var(--lesson-border,#2c4961);
+  background: var(--lesson-surface,#071629);
   font-size: 18px;
   font-weight: 800;
   cursor: pointer;
@@ -177,7 +177,7 @@
   display: flex;
   justify-content: space-around;
   margin-top: 16px;
-  color: #41dc99;
+  color: var(--lesson-accent,#41dc99);
   font:
     italic 14px Georgia,
     serif;
@@ -198,9 +198,9 @@
   align-items: start;
   margin-top: 10px;
   padding: 11px;
-  border: 1px solid #2b455d;
+  border: 1px solid var(--lesson-border,#2b455d);
   border-radius: 7px;
-  background: #0a1d34;
+  background: var(--lesson-surface,#0a1d34);
 }
 .rel10112-diagnostics article > span {
   display: grid;
@@ -209,7 +209,7 @@
   height: 27px;
   border: 2px solid #3ae787;
   border-radius: 50%;
-  color: #3ae787;
+  color: var(--lesson-accent,#3ae787);
 }
 .rel10112-diagnostics article.bad > span {
   border-color: #ff504d;
@@ -233,7 +233,7 @@
 }
 .rel10112-diagnostics article > strong {
   align-self: center;
-  color: #44e68c;
+  color: var(--lesson-accent,#44e68c);
   font-size: 16px;
 }
 .rel10112-diagnostics article.bad > strong {
@@ -243,16 +243,16 @@
   display: grid;
   grid-template-columns: 1fr 305px;
   min-height: 137px;
-  border: 1px solid #28546b;
+  border: 1px solid var(--lesson-border,#28546b);
   border-radius: 0 0 10px 10px;
-  background: #06162a;
+  background: var(--lesson-surface,#06162a);
 }
 .rel10112-presets > section,
 .rel10112-presets > aside {
   padding: 13px 16px;
 }
 .rel10112-presets > aside {
-  border-left: 1px solid #29445d;
+  border-left: 1px solid var(--lesson-border,#29445d);
 }
 .rel10112-presets nav {
   display: grid;
@@ -264,9 +264,9 @@
   display: grid;
   min-width: 0;
   padding: 7px 5px;
-  border: 1px solid #35506a;
+  border: 1px solid var(--lesson-border,#35506a);
   border-radius: 6px;
-  background: #0a192d;
+  background: var(--lesson-surface,#0a192d);
   cursor: pointer;
 }
 .rel10112-presets nav button b {
@@ -283,7 +283,7 @@
 .rel10112-presets section > p,
 .rel10112-presets aside p {
   margin-top: 8px;
-  color: #bfcade;
+  color: var(--lesson-ink,#bfcade);
   font-size: 10px;
 }
 .rel10112-presets aside > button {
@@ -296,8 +296,8 @@
   padding: 11px;
   border: 1px solid #2bd9dc;
   border-radius: 7px;
-  background: #07182a;
-  color: #41e0e1;
+  background: var(--lesson-surface,#07182a);
+  color: var(--lesson-accent,#41e0e1);
   font-size: 14px;
   font-weight: 800;
 }
@@ -331,7 +331,7 @@
     border: 0;
   }
   .rel10112-page > main > section {
-    border: 1px solid #29445d;
+    border: 1px solid var(--lesson-border,#29445d);
   }
   .rel10112-graph > svg {
     height: 300px;
@@ -344,6 +344,6 @@
   }
   .rel10112-presets > aside {
     border: 0;
-    border-top: 1px solid #29445d;
+    border-top: 1px solid var(--lesson-border,#29445d);
   }
 }

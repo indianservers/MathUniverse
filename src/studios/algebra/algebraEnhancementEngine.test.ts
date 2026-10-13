@@ -69,4 +69,16 @@ describe("Algebra enhancement engine", () => {
     expect(validateEquivalentExpressions((x) => x + 1, (x) => x + 2)).toMatchObject({ equivalentOnSamples: false });
     expect(verifyEquationCandidates([-1, 5], (x) => 2 * x * x - 8 * x - 10).every((result) => result.valid)).toBe(true);
   });
+  it("keeps a pole when cancellation leaves a repeated denominator factor",()=>{
+    expect(rationalRestrictions([2,2],[2])).toEqual({excluded:[2],holes:[],verticalAsymptotes:[2]});
+    expect(rationalRestrictions([2,2],[2,2])).toEqual({excluded:[2],holes:[2],verticalAsymptotes:[]});
+  });
+  it("factors nonmonic and zero-constant quadratics without a bounded trial search",()=>{
+    for(const coefficients of [[100,30,2],[-6,5,0],[2,0,0],[1,1,-2]]){
+      const [a,b,c]=coefficients, factor=factorIntegerQuadratic(a,b,c);
+      expect(factor).not.toBeNull();
+      expect(distributeBinomials(...factor!.left,...factor!.right)).toEqual({quadratic:a,linear:b,constant:c});
+    }
+  });
+
 });

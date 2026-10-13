@@ -3,8 +3,8 @@
   top: -8px;
   width: min(1368px, calc(100vw - 310px));
   margin: auto;
-  color: #edf3fb;
-  background: #03152a;
+  color: var(--lesson-ink,#edf3fb);
+  background: var(--lesson-surface,#03152a);
   font:
     12px/1.45 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #03152a;
+  background: var(--lesson-surface,#03152a);
   content: "";
-}
+display:none;}
 .mt10136-page * {
   box-sizing: border-box;
 }
@@ -35,7 +35,7 @@
 .mt10136-page h2,
 .mt10136-page h3,
 .mt10136-page > header small {
-  color: #56d8df;
+  color: var(--lesson-accent,#56d8df);
   font-weight: 900;
 }
 .mt10136-page > header {
@@ -43,9 +43,9 @@
   grid-template-columns: 1.25fr 0.9fr 0.8fr;
   gap: 12px;
   padding: 16px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 8px;
-  background: #071a31;
+  background: var(--lesson-surface,#071a31);
 }
 .mt10136-page > header h1 {
   margin: 6px 0;
@@ -59,14 +59,14 @@
 .mt10136-page > header > div span {
   padding: 5px 13px;
   border-radius: 14px;
-  background: #182d50;
+  background: var(--lesson-surface,#182d50);
   color: #8cafef;
   font-weight: 800;
 }
 .mt10136-page > header > section,
 .mt10136-page > header > aside {
   padding: 14px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 8px;
 }
 .mt10136-page > header > section label {
@@ -91,22 +91,22 @@
   justify-content: space-between;
   margin: 10px -14px -14px;
   padding: 10px 14px;
-  border-top: 1px solid #38516b;
+  border-top: 1px solid var(--lesson-border,#38516b);
 }
 .mt10136-page > header > section footer span {
   padding: 4px 10px;
   border: 1px solid #2aafb5;
   border-radius: 12px;
-  color: #52dfdc;
+  color: var(--lesson-accent,#52dfdc);
 }
 .mt10136-page > header > aside button {
   float: right;
   display: flex;
   gap: 6px;
   padding: 7px;
-  border: 1px solid #405b77;
+  border: 1px solid var(--lesson-border,#405b77);
   border-radius: 6px;
-  background: #0b1f37;
+  background: var(--lesson-surface,#0b1f37);
 }
 .mt10136-page svg {
   width: 16px;
@@ -128,9 +128,9 @@
 .mt10136-board,
 .mt10136-page main > footer {
   padding: 14px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 8px;
-  background: #071a31;
+  background: var(--lesson-surface,#071a31);
 }
 .mt10136-strip {
   display: flex;
@@ -142,7 +142,7 @@
   flex: 1 0 110px;
   min-height: 100px;
   padding: 8px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   text-align: center;
 }
 .mt10136-strip article b {
@@ -157,13 +157,13 @@
 .mt10136-strip article.middle {
   border: 2px solid #54dedb;
   border-radius: 8px;
-  background: #0b3744;
+  background: var(--lesson-surface,#0b3744);
 }
 .mt10136-strip article small {
   padding: 4px;
   border-radius: 10px;
-  background: #0a4b59;
-  color: #54e2dc;
+  background: var(--lesson-surface,#0a4b59);
+  color: var(--lesson-accent,#54e2dc);
 }
 .mt10136-top > article > p {
   text-align: center;
@@ -181,7 +181,7 @@
 .mt10136-top > aside span.middle {
   border: 1px solid #4bdcda;
   border-radius: 7px;
-  background: #0c3c46;
+  background: var(--lesson-surface,#0c3c46);
 }
 .mt10136-lower {
   display: grid;
@@ -198,7 +198,7 @@
 .mt10136-lower > aside article {
   margin-top: 8px;
   padding: 12px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 7px;
 }
 .mt10136-lower article > p {
@@ -215,7 +215,7 @@
   display: block;
   margin-top: 12px;
   padding: 8px;
-  border: 1px solid #38516b;
+  border: 1px solid var(--lesson-border,#38516b);
   border-radius: 6px;
   text-align: center;
   font: 16px Georgia;
@@ -226,7 +226,7 @@
   margin-top: 10px;
 }
 .mt10136-lower > aside svg {
-  color: #47d9d3;
+  color: var(--lesson-accent,#47d9d3);
 }
 .mt10136-board {
   margin-top: 10px;
@@ -241,14 +241,14 @@
   margin-top: 10px;
 }
 .mt10136-page main > footer > svg {
-  color: #4bd8dc;
+  color: var(--lesson-accent,#4bd8dc);
 }
 .mt10136-page main > footer button {
   margin-left: auto;
   padding: 9px 15px;
-  border: 1px solid #405b77;
+  border: 1px solid var(--lesson-border,#405b77);
   border-radius: 7px;
-  background: #0b1f37;
+  background: var(--lesson-surface,#0b1f37);
 }
 @media (max-width: 800px) {
   .mt10136-page {

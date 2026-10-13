@@ -1,4 +1,4 @@
-import GeometryLessonCanvas from "../GeometryLessonCanvas";
+import GeometryLessonCanvas from "./TriangleReferenceCanvas";
 import { triangleLessonScene } from "../geometryLessonScene";
 import { useStudioState } from "../../phase1/StudioModelProvider";
 import { useEffect, useMemo, useRef } from "react";
@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import { useReducedMotion } from "../../../hooks/useReducedMotion";
 import { ChipRow, Field, Panel, Segmented } from "../../mockup/studioLabKit";
 import { useGeoLabUi } from "../geometryLabUx";
-import { readGeoSession, writeGeoSession } from "../geometryStudioSession";
+
 import {
   EXPLORER_PRESETS,
   altitudeFoot,
@@ -36,7 +36,7 @@ import {
   type LockMode,
   type SnapMode,
 } from "./triangleFigureState";
-import { ChallengeCard, FormulaCard, InsightStack, LabFrame, MeasureRow, Toggle, okNum } from "./triangleLabKit";
+import { ChallengeCard, FormulaCard, InsightStack, LabFrame, MeasureRow, Toggle, okNum, useTriangleReset } from "./triangleLabKit";
 import {
   AngleArc,
   DashedLine,
@@ -95,7 +95,7 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
   const [selected, setSelected] = useStudioState<"A" | "B" | "C">("TriangleExplorerLab:TriangleExplorerLab:selected", "C");
   const [history, setHistory] = useStudioState<TrianglePts[]>("TriangleExplorerLab:TriangleExplorerLab:history", [parseTriangle(params.get("t")) ?? EXPLORER_PRESETS.scalene]);
   const [histIndex, setHistIndex] = useStudioState("TriangleExplorerLab:TriangleExplorerLab:histIndex", 0);
-  const [coach, setCoach] = useStudioState("TriangleExplorerLab:TriangleExplorerLab:coach", () => !readGeoSession().coachDismissed);
+
   const [warn, setWarn] = useStudioState("TriangleExplorerLab:TriangleExplorerLab:warn", "");
 
   const m = useMemo(() => measureTriangle(tri.A, tri.B, tri.C), [tri]);
@@ -280,6 +280,8 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
     commit(next);
   };
 
+  useTriangleReset("explorer", reset);
+
   return (
     <LabFrame
       theme="explorer"
@@ -290,9 +292,7 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
           <button type="button" className="msk-soft" onClick={redo} aria-label="Redo vertex move">Redo</button>
         </>
       )}
-      controls={
-        <Panel title="Explorer controls">
-          <Field label="Focus">
+      footer={<>           <Field label="Focus">
             <Segmented value={sub} onChange={(id) => setSub(id as Sub)} options={[
               { id: "explore", label: "Explore" },
               { id: "area", label: "Area" },
@@ -301,6 +301,9 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
               { id: "invariants", label: "What stays true?" },
             ]} />
           </Field>
+ </>}
+      controls={
+        <Panel title="Triangle type">
           {sub === "invariants" ? <p className="tri-note">Drag any vertex. Green checks hold for this triangle; congruence compares it with the fixed 3-4-5 reference.</p> : null}
           <Field label="Triangle type">
             <div className="tri-preset-row">
@@ -334,6 +337,7 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
               { id: "angle", label: "15°" },
             ]} />
           </Field>
+          <details className="tri-more"><summary>Advanced construction controls</summary>
           <Field label="Lock while dragging">
             <Segmented value={lock} onChange={(id) => setLock(id as LockMode)} options={[
               { id: "none", label: "None" },
@@ -361,12 +365,12 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
               </div>
             ))}
           </Field>
+          </details>
           <Field label="Measure">
             <Toggle checked={layers.sides} onChange={(v) => setLayers({ ...layers, sides: v })}>Side lengths</Toggle>
             <Toggle checked={layers.angles} onChange={(v) => setLayers({ ...layers, angles: v })}>Angles</Toggle>
-            <Toggle checked={layers.arcs} onChange={(v) => setLayers({ ...layers, arcs: v })}>Angle arcs</Toggle>
-            <Toggle checked={layers.coords} onChange={(v) => setLayers({ ...layers, coords: v })}>Coordinates</Toggle>
           </Field>
+          <details className="tri-more"><summary>More display options</summary><Toggle checked={layers.arcs} onChange={(v) => setLayers({ ...layers, arcs: v })}>Angle arcs</Toggle><Toggle checked={layers.coords} onChange={(v) => setLayers({ ...layers, coords: v })}>Coordinates</Toggle><Toggle checked={anim} onChange={setAnim}>Move vertex C</Toggle>
           <Field label="Lines (one family at a time)">
             <Segmented value={layers.altitudes ? "altitudes" : layers.median ? "median" : layers.bisector ? "bisector" : layers.perp ? "perp" : "none"} onChange={(id) => setLayers({
               ...layers,
@@ -382,22 +386,17 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
               { id: "perp", label: "Perp. bisector" },
             ]} />
           </Field>
+          </details>
           <Field label="Grid">
             <Toggle checked={layers.grid} onChange={(v) => setLayers({ ...layers, grid: v })}>Show grid</Toggle>
           </Field>
-          <Toggle checked={anim} onChange={setAnim}>Move vertex C</Toggle>
+          <Toggle checked={lock !== "none"} onChange={(v) => setLock(v ? "isosceles" : "none")}>Lock while dragging</Toggle>
           {warn ? <p className="tri-warn" role="status">{warn}</p> : null}
         </Panel>
       }
       canvas={
         <div className="tri-stage">
-          {coach ? (
-            <div className="tri-coach">
-              <p>Drag A, B, or C. Arrow keys nudge the selected vertex.</p>
-              <button type="button" className="msk-cta" onClick={() => { setCoach(false); writeGeoSession({ coachDismissed: true }); }}>Got it</button>
-            </div>
-          ) : null}
-          <GeometryLessonCanvas onPointChange={(id, point) => { if (id === "A" || id === "B" || id === "C") setTri(current => ({ ...current, [id]: fromSvg(plane, point.x, point.y) })); }} scene={triangleLessonScene(plane, [tri], p => toSvg(plane, p))} ref={svgRef} viewBox={`${vx} ${vy} ${vw} ${vh}`} role="img" aria-label={svgLabel} className={ui?.challengeFlash ? "is-success" : ""} onPointerDown={startPan}>
+          <GeometryLessonCanvas onPointChange={(id, point) => { if (id !== "A" && id !== "B" && id !== "C") return; const raw = snapPoint(clampPoint(fromSvg(plane, point.x, point.y)), snap, id === "C" ? tri.B : tri.A); const draft = applyLock(tri, id, raw, lock); if (triangleArea(draft.A, draft.B, draft.C) < .35) { setWarn("That move would collapse the triangle."); return; } setPreset("custom"); setWarn(""); commit(draft); }} scene={triangleLessonScene(plane, [tri], p => toSvg(plane, p))} ref={svgRef} viewBox={`${vx} ${vy} ${vw} ${vh}`} role="img" aria-label={svgLabel} className={ui?.challengeFlash ? "is-success" : ""} onPointerDown={startPan}>
             {layers.grid ? <GridLayer plane={plane} /> : null}
             <g aria-label="Triangle fill">
               <polygon points={polyPoints(plane, [tri.A, tri.B, tri.C])} fill="rgba(20,125,242,.10)" stroke="#147df2" strokeWidth="2.2" className={hover === "Perimeter" ? "is-hot" : ""} />
@@ -477,11 +476,11 @@ export default function TriangleExplorerLab({ pulse = "observe" }: { pulse?: str
               <MeasureRow label="∠B" value={`${okNum(m.angles.B, 1)}°`} color="#8b45f4" metric="∠B" />
               <MeasureRow label="∠C" value={`${okNum(m.angles.C, 1)}°`} color="#f59e0b" metric="∠C" />
               <MeasureRow label="Perimeter" value={okNum(m.perimeter)} metric="Perimeter" />
-              <MeasureRow label="Semiperimeter s" value={okNum(m.semiperimeter)} />
-              <MeasureRow label="Area" value={okNum(m.area)} metric="Area" />
+              <details className="tri-more"><summary>Area & semiperimeter</summary><MeasureRow label="Semiperimeter s" value={okNum(m.semiperimeter)} />
+              <MeasureRow label="Area" value={okNum(m.area)} metric="Area" /></details>
             </>
           }
-          property={sub === "invariants" ? <div className="tri-invariants"><strong>What stays true as you drag?</strong><p className={Math.abs(m.angleSum - 180) < 0.2 ? "tri-ok" : "tri-warning"}>Angle sum: {okNum(m.angleSum, 1)}° {Math.abs(m.angleSum - 180) < 0.2 ? "✓" : "Check"}</p>{([ ["AB + BC > CA", inequality.ab], ["BC + CA > AB", inequality.bc], ["CA + AB > BC", inequality.ca] ] as const).map(([label, check]) => <p key={label} className={check.ok ? "tri-ok" : "tri-warning"}>{label}: {okNum(check.left)} &gt; {okNum(check.right)} {check.ok ? "✓" : "Not yet"}</p>)}<strong>Congruent to the 3-4-5 reference?</strong>{Object.entries(congruence).map(([test, holds]) => <p key={test} className={holds ? "tri-ok" : "tri-note"}>{test}: {holds ? "matches ✓" : "does not match yet"}</p>)}<button type="button" className="msk-soft" onClick={() => { commit(SPECIAL["3-4-5"]); setPreset("custom"); }}>Match 3-4-5 reference</button></div> : <p className="tri-ok">∠A + ∠B + ∠C = {okNum(m.angles.A, 1)}° + {okNum(m.angles.B, 1)}° + {okNum(m.angles.C, 1)}° = {okNum(m.angleSum, 1)}°</p>}
+          property={sub === "invariants" ? <div className="tri-invariants"><strong>What stays true as you drag?</strong><p className={Math.abs(m.angleSum - 180) < 0.2 ? "tri-ok" : "tri-warning"}>Angle sum: {okNum(m.angleSum, 1)}° {Math.abs(m.angleSum - 180) < 0.2 ? "✓" : "Check"}</p>{([ ["AB + BC > CA", inequality.ab], ["BC + CA > AB", inequality.bc], ["CA + AB > BC", inequality.ca] ] as const).map(([label, check]) => <p key={label} className={check.ok ? "tri-ok" : "tri-warning"}>{label}: {okNum(check.left)} &gt; {okNum(check.right)} {check.ok ? "✓" : "Not yet"}</p>)}<strong>Congruent to the 3-4-5 reference?</strong>{Object.entries(congruence).map(([test, holds]) => <p key={test} className={holds ? "tri-ok" : "tri-note"}>{test}: {holds ? "matches ✓" : "does not match yet"}</p>)}<button type="button" className="msk-soft" onClick={() => { commit(SPECIAL["3-4-5"]); setPreset("custom"); }}>Match 3-4-5 reference</button></div> : <><div className="tri-property-checks"><span>{m.bySides} triangle</span><span>{m.byAngles} triangle</span><span>Sum of angles = 180°</span></div><div className="tri-angle-total"><b>∠A + ∠B + ∠C = 180°</b> {okNum(m.angles.A, 1)}° + {okNum(m.angles.B, 1)}° + {okNum(m.angles.C, 1)}° = {okNum(m.angleSum, 1)}°</div></>}
           formula={
             <FormulaCard
               title={sub === "area" ? "Area" : "Angle sum"}

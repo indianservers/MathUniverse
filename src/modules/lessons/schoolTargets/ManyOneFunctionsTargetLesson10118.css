@@ -4,8 +4,8 @@
   left: 1px;
   width: min(1380px, calc(100vw - 294px));
   margin: auto;
-  color: #e7eefb;
-  background: #031328;
+  color: var(--lesson-ink,#e7eefb);
+  background: var(--lesson-surface,#031328);
   font:
     11px/1.45 Inter,
     Arial,
@@ -16,9 +16,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .mny10118-page * {
   box-sizing: border-box;
 }
@@ -37,14 +37,14 @@
   position: relative;
   height: 168px;
   padding: 18px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
   border-radius: 9px;
-  background: linear-gradient(110deg, #071e37, #04142a);
+  background: linear-gradient(110deg, var(--lesson-surface,#071e37), var(--lesson-surface,#04142a));
 }
 .mny10118-page > header small,
 .mny10118-page h2,
 .mny10118-page h3 {
-  color: #42dedc;
+  color: var(--lesson-accent,#42dedc);
   font-weight: 900;
   letter-spacing: 0.8px;
 }
@@ -59,7 +59,7 @@
 }
 .mny10118-page > header nav span {
   padding: 4px 11px;
-  border: 1px solid #304860;
+  border: 1px solid var(--lesson-border,#304860);
   border-radius: 13px;
   font-weight: 800;
 }
@@ -68,9 +68,9 @@
   right: 14px;
   top: 16px;
   padding: 9px 14px;
-  border: 1px solid #304860;
+  border: 1px solid var(--lesson-border,#304860);
   border-radius: 7px;
-  background: #07172c;
+  background: var(--lesson-surface,#07172c);
 }
 .mny10118-page > header > .reset {
   top: auto;
@@ -90,9 +90,9 @@
 .mny10118-page > main > section,
 .mny10118-page > main > aside > article {
   padding: 14px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
   border-radius: 8px;
-  background: #06162b;
+  background: var(--lesson-surface,#06162b);
 }
 .mny10118-lab .title {
   display: flex;
@@ -108,9 +108,9 @@
 }
 .mny10118-lab select {
   padding: 7px 30px 7px 10px;
-  border: 1px solid #304860;
+  border: 1px solid var(--lesson-border,#304860);
   border-radius: 6px;
-  background: #0a1a31;
+  background: var(--lesson-surface,#0a1a31);
 }
 .mny10118-lab > p {
   margin-top: 5px;
@@ -120,11 +120,11 @@
 }
 .mny10118-lab > aside {
   margin: 14px 0;
-  color: #55e399;
+  color: var(--lesson-accent,#55e399);
 }
 .mny10118-lab > aside span {
   margin-left: 20px;
-  color: #dce4f2;
+  color: var(--lesson-ink,#dce4f2);
 }
 .mny10118-map {
   display: grid;
@@ -142,9 +142,9 @@
   display: grid;
   place-items: center;
   height: 48px;
-  border: 1px solid #4a6ead;
+  border: 1px solid var(--lesson-border,#4a6ead);
   border-radius: 7px;
-  background: #10213a;
+  background: var(--lesson-surface,#10213a);
   font-size: 16px;
 }
 .mny10118-map article button.selected {
@@ -198,7 +198,7 @@
   grid-template-columns: 1.5fr 0.75fr 0.8fr 100px;
   align-items: center;
   padding: 10px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
   border-radius: 7px;
 }
 .mny10118-lab > footer section {
@@ -213,9 +213,9 @@
   display: flex;
   gap: 5px;
   padding: 8px;
-  border: 1px solid #40536b;
+  border: 1px solid var(--lesson-border,#40536b);
   border-radius: 6px;
-  background: #07172c;
+  background: var(--lesson-surface,#07172c);
 }
 .mny10118-info {
   display: grid;
@@ -233,10 +233,10 @@
   padding: 13px;
   border: 1px solid #22bbb3;
   border-radius: 7px;
-  color: #53e4a1;
+  color: var(--lesson-accent,#53e4a1);
 }
 .mny10118-info article > strong span {
-  color: #dbe4f2;
+  color: var(--lesson-ink,#dbe4f2);
 }
 .mny10118-info table {
   width: 100%;
@@ -245,21 +245,21 @@
 .mny10118-info th,
 .mny10118-info td {
   padding: 9px;
-  border: 1px solid #29455e;
+  border: 1px solid var(--lesson-border,#29455e);
   text-align: center;
 }
 .mny10118-info td:first-child {
   text-align: left;
 }
 .mny10118-info td:nth-child(2) {
-  color: #4be29a;
+  color: var(--lesson-accent,#4be29a);
 }
 .mny10118-info article > button {
   width: 100%;
   padding: 12px;
-  border: 1px solid #304860;
+  border: 1px solid var(--lesson-border,#304860);
   border-radius: 7px;
-  background: #0a1a31;
+  background: var(--lesson-surface,#0a1a31);
 }
 @media (max-width: 800px) {
   .mny10118-page {

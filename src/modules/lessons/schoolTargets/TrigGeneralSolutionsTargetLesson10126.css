@@ -3,8 +3,8 @@
   top: -8px;
   width: min(1360px, calc(100vw - 320px));
   margin: auto;
-  color: #e8eef8;
-  background: #031328;
+  color: var(--lesson-ink,#e8eef8);
+  background: var(--lesson-surface,#031328);
   font:
     11px/1.45 Inter,
     Arial,
@@ -15,9 +15,9 @@
   position: fixed;
   z-index: -1;
   inset: 58px 0 0 283px;
-  background: #031328;
+  background: var(--lesson-surface,#031328);
   content: "";
-}
+display:none;}
 .gs10126-page * {
   box-sizing: border-box;
 }
@@ -38,7 +38,7 @@
 .gs10126-page > header small,
 .gs10126-page h2,
 .gs10126-toolbar strong {
-  color: #4ed9d6;
+  color: var(--lesson-accent,#4ed9d6);
   font-weight: 900;
   letter-spacing: 0.6px;
 }
@@ -54,7 +54,7 @@
 .gs10126-page > header nav span {
   padding: 4px 10px;
   border-radius: 12px;
-  background: #12243a;
+  background: var(--lesson-surface,#12243a);
   font-weight: 800;
 }
 .gs10126-toolbar {
@@ -62,7 +62,7 @@
   align-items: center;
   gap: 20px;
   padding: 14px 8px;
-  border-top: 1px solid #29435c;
+  border-top: 1px solid var(--lesson-border,#29435c);
 }
 .gs10126-toolbar > div {
   margin-right: auto;
@@ -75,9 +75,9 @@
 .gs10126-toolbar select,
 .gs10126-toolbar button {
   padding: 9px 13px;
-  border: 1px solid #304960;
+  border: 1px solid var(--lesson-border,#304960);
   border-radius: 6px;
-  background: #09192e;
+  background: var(--lesson-surface,#09192e);
 }
 .gs10126-toolbar button {
   display: flex;
@@ -95,9 +95,9 @@
 .gs10126-families article,
 .gs10126-families > footer,
 .gs10126-bottom article {
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 7px;
-  background: #07192e;
+  background: var(--lesson-surface,#07192e);
 }
 .gs10126-circle {
   padding: 13px;
@@ -107,7 +107,7 @@
   height: 305px;
 }
 .gs10126-circle svg .axis {
-  stroke: #dce8f4;
+  stroke: var(--lesson-ink,#dce8f4);
 }
 .gs10126-circle svg .unit,
 .orbit-row svg circle {
@@ -115,28 +115,28 @@
   stroke: #4b85d7;
 }
 .gs10126-circle svg .level {
-  stroke: #efa427;
+  stroke: var(--lesson-highlight,#efa427);
   stroke-dasharray: 5 4;
 }
 .gs10126-circle svg .ray {
-  stroke: #d8e5f1;
+  stroke: var(--lesson-ink,#d8e5f1);
   stroke-dasharray: 5 4;
 }
 .gs10126-circle svg circle.family0,
 .orbit-row .family0 {
-  fill: #35deda;
+  fill: var(--lesson-accent,#35deda);
 }
 .gs10126-circle svg circle.family1,
 .orbit-row .family1 {
   fill: #ad6bea;
 }
 .gs10126-circle svg text {
-  fill: #33d9d5;
+  fill: var(--lesson-accent,#33d9d5);
   font: 13px Georgia;
 }
 .gs10126-circle footer {
   padding-top: 10px;
-  border-top: 1px solid #29435c;
+  border-top: 1px solid var(--lesson-border,#29435c);
 }
 .gs10126-circle footer label {
   display: grid;
@@ -154,8 +154,8 @@
   place-items: center;
   width: 27px;
   height: 27px;
-  border: 1px solid #304960;
-  background: #08192e;
+  border: 1px solid var(--lesson-border,#304960);
+  background: var(--lesson-surface,#08192e);
 }
 .gs10126-circle footer input {
   width: 100%;
@@ -164,7 +164,7 @@
 .gs10126-circle footer > span {
   display: block;
   margin-top: 8px;
-  color: #55dcd8;
+  color: var(--lesson-accent,#55dcd8);
 }
 .gs10126-families {
   display: grid;
@@ -186,7 +186,7 @@
 }
 .gs10126-families .family0 {
   background: #31ddd9;
-  color: #31ddd9;
+  color: var(--lesson-accent,#31ddd9);
 }
 .gs10126-families .family1 {
   background: #a96be7;
@@ -213,7 +213,7 @@
   top: 42px;
   width: 100%;
   border: 0;
-  border-top: 2px solid #8190a1;
+  border-top: 2px solid var(--lesson-border,#8190a1);
 }
 .timeline .tick {
   position: absolute;
@@ -262,7 +262,7 @@
   width: 68px;
 }
 .orbit-row svg line {
-  stroke: #8495a8;
+  stroke: var(--lesson-muted,#8495a8);
 }
 .gs10126-timeline > footer {
   display: flex;
@@ -271,14 +271,14 @@
   gap: 25px;
   margin-top: 14px;
   padding: 14px;
-  border: 1px solid #29435c;
+  border: 1px solid var(--lesson-border,#29435c);
   border-radius: 7px;
 }
 .gs10126-timeline > footer strong {
   padding: 10px 24px;
   border: 1px solid currentColor;
   border-radius: 6px;
-  color: #31dcd8;
+  color: var(--lesson-accent,#31dcd8);
   font: 16px Georgia;
 }
 .gs10126-timeline > footer strong.family1 {

@@ -302,7 +302,7 @@ export function TryThese({ lessonTitle, items }: { lessonTitle: string; items: L
 }
 
 export function expandedWorkedExamples(lesson: StrengthenedLesson): LessonWorkedExample[] {
-  const candidates: LessonWorkedExample[] = getSupplementalNumericalExamples(lesson.id);
+  const candidates: LessonWorkedExample[] = getSupplementalNumericalExamples(Number(lesson.id));
   const seenPrompts = new Set(candidates.map((example) => example.prompt.trim().toLowerCase()));
   for (const example of lesson.workedExamples) {
     const key = example.prompt.trim().toLowerCase();

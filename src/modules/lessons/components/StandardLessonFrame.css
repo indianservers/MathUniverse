@@ -1,0 +1,22 @@
+.standard-lesson-content [data-legacy-lesson-chrome="true"]{display:none!important}
+.standard-lesson-frame{min-width:0;padding-bottom:1rem}
+.standard-lesson-frame{--lesson-canvas:#f8fafc;--lesson-surface:#ffffff;--lesson-ink:#17324d;--lesson-muted:#52677f;--lesson-border:#cbd5e1;--lesson-accent:#007d91;--lesson-highlight:#956200;color:var(--lesson-ink);isolation:isolate}
+.dark .standard-lesson-frame{--lesson-canvas:#071426;--lesson-surface:#0d2037;--lesson-ink:#e4efff;--lesson-muted:#b4c5da;--lesson-border:#3e5774;--lesson-accent:#35d9e5;--lesson-highlight:#facc15}
+html body #main-content:has(.standard-lesson-frame){background:var(--lesson-host-canvas,#f8fafc)!important}
+html.dark body #main-content:has(.standard-lesson-frame){--lesson-host-canvas:#071426}
+.standard-lesson-frame .standard-lesson-content{min-width:0}
+/* Legacy lesson styles must not disable the application's lesson scroll area. */
+html body #main-content:has(.standard-lesson-frame){
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  min-height:0;
+  scrollbar-gutter:stable;
+  -webkit-overflow-scrolling:touch;
+}
+.standard-lesson-frame:not([data-standard-active-tab="interaction"]) .standard-lesson-content #lesson-section-interaction,
+.standard-lesson-frame:not([data-standard-active-tab="interaction"]) .standard-lesson-content [data-lesson-viewport="interaction"]{display:none!important}
+
+/* Editable statistics data can expand beyond the original mockup height. */
+.standard-lesson-frame :is(.mto10108-page,.med10109-page,.lto10107-page,.ltc10105-page,.mtc10106-page){height:auto!important;max-height:none!important;overflow:visible!important}
+
+.standard-lesson-frame :is(.mto10108-page,.med10109-page,.lto10107-page,.ltc10105-page,.mtc10106-page)>main{height:auto!important;min-height:0;max-height:none!important}
