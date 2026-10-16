@@ -1,4 +1,7 @@
+import {bulkEditTrainingRows} from './bulkEditDataset';
 import {selectiveClearExamples} from './selectiveClear';
+import geometryQuestions from './geometryQuestions150.json';
+import {extendedGeometryTrainingRows} from './geometryExtendedDataset';
 import { interpretVisualRequest } from '../../offline-intelligence/commands';
 import { OPERATIONS, normalizeAction, operationFor,BASELINE_OPERATION_KEYS } from './actionRegistry';
 import { emptyScene, describeObject } from './sceneContext';
@@ -135,8 +138,28 @@ export function generateStarterDataset():SemanticRow[]{
   for(const phrase of ['Change its interior to orange','Change its outline to teal','Make its two sides thicker','Set angle A to 67 degrees','Draw an angle of 53 degrees','Mark its centroid','Connect its incenter to vertex B']){const parsed=parseSemanticCommand(phrase,'graph2d');rows.push({phrase,mode:'graph2d',action:parsed.action,subAction:parsed.subAction,parameters:parsed.parameters,target:parsed.target,context:nlpContext,source:'controlled-template',group:'nlp2d:'+parsed.action+':'+parsed.subAction});}
   rows.push({phrase:'If the two lines intersect, mark the intersection in red; otherwise tell me they are parallel.',mode:'graph2d',action:'CONSTRUCT',subAction:'CONDITIONAL_INTERSECTION',parameters:{multiple:true,color:'red'},context:{...seedContext('graph2d'),selected:['line_1','line_2']},source:'controlled-template',group:'nlp2d:conditional'});
   for(const mode of ['normal','graph2d','graph3d','geometry2d','geometry3d'] as RoboMode[])for(const phrase of selectiveClearExamples){const parsed=parseSemanticCommand(phrase,mode);rows.push({phrase,mode,action:parsed.action,subAction:parsed.subAction,parameters:parsed.parameters,source:'user-regression',group:'selective-clear:'+phrase.toLowerCase()});}
+  rows.push(...geometryCurriculumRows());
+  rows.push(...extendedGeometryTrainingRows());
+  rows.push(...bulkEditTrainingRows());
   for(const op of OPERATIONS)op.examples=rows.filter(row=>row.action===op.action&&row.subAction===op.subAction).slice(0,5).map(row=>row.phrase);
   return rows;
+}
+/** Authored intent labels and read-only contexts for the 150-question curriculum. */
+export function geometryCurriculumRows():SemanticRow[]{
+  const positions:Record<string,number[]>={A:[0,0],B:[6,0],C:[6,8],D:[0,8],E:[-2,4],F:[3,4],M:[3,8],P:[3,2],O:[3,4]};
+  return geometryQuestions.map(row=>{
+    const mode='geometry2d' as const;
+    const objects:NonNullable<SemanticRow['context']>['objects']=Object.entries(positions).map(([label,position])=>({...descriptor(label,'point',position,mode),label}));
+    objects.push(...['c','d'].map((label,i)=>({...descriptor(label,'circle',[3+10*i,4],mode,5),label})));
+    for(const label of ['AB','CD','ABC'])objects.push({...descriptor(label,label.length===3?'triangle':'line',positions[label[0]],mode,3,label.split('').map(k=>positions[k])),label,parameters:{roboVertexLabels:label.split(''),roboExplicitVertices:true}});
+    for(const label of ['angle1','angle2'])objects.push({...descriptor(label,'triangle',[1,0],mode,3,[[1,0],[0,0],[0,1]]),label,parameters:{roboAngle:{vertex:1,degrees:90},roboExplicitVertices:true}});
+    if(row.id===146){for(const [label,position] of [['C',[3,-2]],['D',[3,2]]] as const){const o=objects.find(o=>o.id===label)!;o.position=[...position];}}
+    const selected=row.id===26?['AB','CD']:row.id===37?['A','B']:row.id===67||row.id===68?['angle1','angle2']:[];
+    const parsed=parseSemanticCommand(row.question,mode);
+    const action=row.id<=135?'FIND':row.id<=146?'CREATE':row.id===147?'MOVE':row.id===148?'REFLECT':row.id===149?'ROTATE':'DELETE';
+    const subAction=row.id===1?'NEAREST_POINT':row.id===16?'DISTANCE':row.id<=146?'BOARD_GEOMETRY':row.id===148?'X_AXIS':row.id===150?'ALL':'OBJECT';
+    return {phrase:row.question,mode,action,subAction,parameters:parsed.parameters,target:parsed.target,targets:parsed.targets,context:{objects,selected},source:'user-geometry-curriculum',group:`geometry-curriculum:${row.id}`};
+  });
 }
 export function migrateLegacyRow(row:{phrase:string;canonical:string;mode:RoboMode;label?:string;context?:string[]}):SemanticRow {
   const parsed=parseSemanticCommand(row.canonical,row.mode),objects=(row.context??[]).map((text,index)=>{

@@ -1,0 +1,32 @@
+{
+  "files": [
+    "src/math-robo/intelligence/geometryQuestionGrammar.ts",
+    "src/math-robo/intelligence/geometryAnalyticMath.ts",
+    "src/math-robo/intelligence/analyticConstraints.ts",
+    "src/math-robo/intelligence/geometryBoard.ts",
+    "src/math-robo/intelligence/geometryExtendedQueries.ts",
+    "src/math-robo/intelligence/geometryExtendedActions.ts",
+    "src/math-robo/intelligence/geometryExtended3d.ts",
+    "src/math-robo/intelligence/geometryExtendedCurriculum.ts",
+    "src/math-robo/intelligence/geometryExtendedDataset.ts",
+    "src/math-robo/intelligence/geometryQuestions250.test.ts",
+    "src/math-robo/intelligence/geometryConstraintsNative.test.ts",
+    "src/math-robo/intelligence/geometryCurriculumLive.test.ts",
+    "src/math-robo/intelligence/semanticParser.ts",
+    "src/math-robo/intelligence/requestClassifier.ts",
+    "src/math-robo/intelligence/actionRegistry.ts",
+    "src/math-robo/intelligence/conversationEngine.ts",
+    "src/math-robo/intelligence/executionPlanner.ts",
+    "src/math-robo/intelligence/semanticEngine.ts",
+    "src/math-robo/intelligence/workspaceDependencies.ts",
+    "src/math-robo/intelligence/semanticDataset.ts",
+    "src/math-robo/intelligence/resultVerifier.ts",
+    "src/math-robo/intelligence/selectiveClear.ts",
+    "src/math-robo/intelligence/mathIRAdapter.ts",
+    "src/math-robo/intelligence/importValidation.ts",
+    "src/math-robo/intelligence/targetResolver.ts",
+    "src/offline-intelligence/languageEngine.ts",
+    "src/offline-intelligence/geometryAdapter.ts"
+  ],
+  "errors": []
+}

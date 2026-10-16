@@ -14,7 +14,7 @@
   "registry": {
     "baselineSubactions": 99,
     "baselinePairs": 127,
-    "implementedPairs": 171,
+    "implementedPairs": 176,
     "unsupported": [
       {
         "action": "CREATE",
@@ -2604,7 +2604,7 @@
     ]
   },
   "dataset": {
-    "rows": 3976,
+    "rows": 4626,
     "classes": [
       {
         "operation": "CREATE:TRIANGLE",
@@ -2792,7 +2792,7 @@
       },
       {
         "operation": "FIND:DISTANCE",
-        "count": 20
+        "count": 21
       },
       {
         "operation": "FIND:MIDPOINT",
@@ -2860,7 +2860,7 @@
       },
       {
         "operation": "CHANGE:COLOR",
-        "count": 74
+        "count": 134
       },
       {
         "operation": "CHANGE:WIDTH",
@@ -2908,11 +2908,11 @@
       },
       {
         "operation": "MOVE:OBJECT",
-        "count": 74
+        "count": 75
       },
       {
         "operation": "ROTATE:OBJECT",
-        "count": 70
+        "count": 71
       },
       {
         "operation": "SCALE:UNIFORM",
@@ -2924,7 +2924,7 @@
       },
       {
         "operation": "REFLECT:X_AXIS",
-        "count": 10
+        "count": 11
       },
       {
         "operation": "REFLECT:Y_AXIS",
@@ -2980,7 +2980,7 @@
       },
       {
         "operation": "SHOW:OBJECT",
-        "count": 70
+        "count": 95
       },
       {
         "operation": "SHOW:CENTER",
@@ -3004,7 +3004,7 @@
       },
       {
         "operation": "HIDE:OBJECT",
-        "count": 55
+        "count": 80
       },
       {
         "operation": "DELETE:OBJECT",
@@ -3012,7 +3012,7 @@
       },
       {
         "operation": "DELETE:ALL",
-        "count": 81
+        "count": 82
       },
       {
         "operation": "SELECT:OBJECT",
@@ -3216,11 +3216,11 @@
       },
       {
         "operation": "LOCK:OBJECT",
-        "count": 12
+        "count": 37
       },
       {
         "operation": "UNLOCK:OBJECT",
-        "count": 12
+        "count": 37
       },
       {
         "operation": "EXTEND:OBJECT",
@@ -3260,15 +3260,15 @@
       },
       {
         "operation": "CHANGE:FILL_COLOR",
-        "count": 1
+        "count": 31
       },
       {
         "operation": "CHANGE:STROKE_COLOR",
-        "count": 1
+        "count": 31
       },
       {
         "operation": "CHANGE:LINE_WIDTH",
-        "count": 1
+        "count": 31
       },
       {
         "operation": "CHANGE:ANGLE",
@@ -3289,11 +3289,31 @@
       {
         "operation": "CONSTRUCT:CONDITIONAL_INTERSECTION",
         "count": 1
+      },
+      {
+        "operation": "FIND:NEAREST_POINT",
+        "count": 1
+      },
+      {
+        "operation": "FIND:BOARD_GEOMETRY",
+        "count": 133
+      },
+      {
+        "operation": "CREATE:BOARD_GEOMETRY",
+        "count": 11
+      },
+      {
+        "operation": "FIND:BOARD_ADVANCED",
+        "count": 208
+      },
+      {
+        "operation": "CONSTRUCT:BOARD_ADVANCED",
+        "count": 42
       }
     ],
     "minimumClassCount": 1,
-    "maximumClassCount": 90,
-    "imbalanceRatio": 90,
+    "maximumClassCount": 208,
+    "imbalanceRatio": 208,
     "duplicates": 1540,
     "nearDuplicates": 2266,
     "conflictingLabels": 0,
@@ -3316,14 +3336,12 @@
       "CHECK:ORIENTATION",
       "CREATE:PLANE",
       "CONSTRUCT:PERP_PLANE",
-      "CHANGE:FILL_COLOR",
-      "CHANGE:STROKE_COLOR",
-      "CHANGE:LINE_WIDTH",
       "CHANGE:ANGLE",
       "CREATE:ANGLE",
       "MARK:CENTROID",
       "CREATE:SEGMENT",
-      "CONSTRUCT:CONDITIONAL_INTERSECTION"
+      "CONSTRUCT:CONDITIONAL_INTERSECTION",
+      "FIND:NEAREST_POINT"
     ]
   }
 }

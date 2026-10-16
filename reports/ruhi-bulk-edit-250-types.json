@@ -1,0 +1,24 @@
+{
+  "files": [
+    "src/math-robo/intelligence/bulkEditLanguage.ts",
+    "src/math-robo/intelligence/bulkEditDataset.ts",
+    "src/math-robo/intelligence/bulkEditQuestions250.test.ts",
+    "src/math-robo/intelligence/bulkEditsNative.test.ts",
+    "src/math-robo/intelligence/semanticParser.ts",
+    "src/math-robo/intelligence/semanticDataset.ts",
+    "src/math-robo/intelligence/targetResolver.ts",
+    "src/math-robo/intelligence/types.ts",
+    "src/math-robo/intelligence/executionPlanner.ts",
+    "src/math-robo/intelligence/resultVerifier.ts",
+    "src/math-robo/intelligence/semanticEngine.ts",
+    "src/offline-intelligence/geometryAdapter.ts",
+    "src/offline-intelligence/languageEngine.ts",
+    "src/offline-intelligence/workspaceBridge.ts",
+    "src/vite-env.d.ts",
+    "src/math-robo/intelligence/conversationEngine.ts",
+    "src/math-robo/intelligence/distanceConversation.ts",
+    "src/math-robo/intelligence/geometryCurriculumLive.test.ts"
+  ],
+  "errorCount": 0,
+  "diagnostics": []
+}

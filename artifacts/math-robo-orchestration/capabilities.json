@@ -2296,6 +2296,41 @@
           "mutatesWorkspace": false
         },
         {
+          "id": "workspace.FIND.NEAREST_POINT",
+          "engineId": "active-workspace",
+          "label": "find nearest point",
+          "description": "Verified find:nearest_point; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.FIND.BOARD_GEOMETRY",
+          "engineId": "active-workspace",
+          "label": "find board geometry",
+          "description": "Verified find:board_geometry; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CREATE.BOARD_GEOMETRY",
+          "engineId": "active-workspace",
+          "label": "create board geometry",
+          "description": "Verified create:board_geometry; modes normal, geometry2d, graph2d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.FIND.BOARD_ADVANCED",
+          "engineId": "active-workspace",
+          "label": "find board advanced",
+          "description": "Verified find:board_advanced; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CONSTRUCT.BOARD_ADVANCED",
+          "engineId": "active-workspace",
+          "label": "construct board advanced",
+          "description": "Verified construct:board_advanced; modes normal, geometry2d, graph2d, geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
           "id": "workspace.FIND.COORDINATES",
           "engineId": "active-workspace",
           "label": "find coordinates",

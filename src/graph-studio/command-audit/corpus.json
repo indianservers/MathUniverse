@@ -1,0 +1,2705 @@
+[
+  {
+    "id": 1,
+    "category": "Object Creation",
+    "command": "Create a cube.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "cube"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 2,
+    "category": "Object Creation",
+    "command": "Create 2 cubes.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 2,
+      "type": "cube"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 3,
+    "category": "Object Creation",
+    "command": "Create 5 cubes.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 5,
+      "type": "cube"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 4,
+    "category": "Object Creation",
+    "command": "Draw a sphere.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "sphere"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 5,
+    "category": "Object Creation",
+    "command": "Add a cylinder.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "cylinder"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 6,
+    "category": "Object Creation",
+    "command": "Generate a cone.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "cone"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 7,
+    "category": "Object Creation",
+    "command": "Create a torus.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "torus"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 8,
+    "category": "Object Creation",
+    "command": "Draw a pyramid.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "pyramid"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 9,
+    "category": "Object Creation",
+    "command": "Make a rectangular prism.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "cuboid"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 10,
+    "category": "Object Creation",
+    "command": "Create a tetrahedron.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "tetrahedron"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 11,
+    "category": "Object Creation",
+    "command": "Draw an octahedron.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "octahedron"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 12,
+    "category": "Object Creation",
+    "command": "Create a dodecahedron.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "dodecahedron"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 13,
+    "category": "Object Creation",
+    "command": "Create an icosahedron.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "icosahedron"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 14,
+    "category": "Object Creation",
+    "command": "Add a plane.",
+    "setup": [],
+    "expected": {
+      "kind": "clarify"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 15,
+    "category": "Object Creation",
+    "command": "Draw a 3D triangle.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "triangle"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 16,
+    "category": "Object Creation",
+    "command": "Create a line segment.",
+    "setup": [],
+    "expected": {
+      "kind": "clarify"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 17,
+    "category": "Object Creation",
+    "command": "Plot a point at (2, 3, 4).",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "point",
+      "position": [
+        2,
+        3,
+        4
+      ]
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 18,
+    "category": "Object Creation",
+    "command": "Create a vector from (0, 0, 0) to (3, 4, 5).",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "vector",
+      "points": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          4,
+          5
+        ]
+      ]
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 19,
+    "category": "Object Creation",
+    "command": "Generate 10 random spheres.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 20,
+    "category": "Object Creation",
+    "command": "Place a cube and a sphere side by side.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 21,
+    "category": "Delete & Reset",
+    "command": "Delete all cubes.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "deleteType",
+      "type": "cube"
+    },
+    "expectedActions": [
+      "DELETE"
+    ]
+  },
+  {
+    "id": 22,
+    "category": "Delete & Reset",
+    "command": "Remove the sphere.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "deleteOne"
+    },
+    "expectedActions": [
+      "DELETE"
+    ]
+  },
+  {
+    "id": 23,
+    "category": "Delete & Reset",
+    "command": "Delete the selected object.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "deleteOne"
+    },
+    "expectedActions": [
+      "DELETE"
+    ]
+  },
+  {
+    "id": 24,
+    "category": "Delete & Reset",
+    "command": "Clear all shapes.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "objects",
+      "count": 0
+    },
+    "expectedActions": [
+      "DELETE"
+    ]
+  },
+  {
+    "id": 25,
+    "category": "Delete & Reset",
+    "command": "Remove everything from the scene.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "objects",
+      "count": 0
+    },
+    "expectedActions": [
+      "DELETE"
+    ]
+  },
+  {
+    "id": 26,
+    "category": "Delete & Reset",
+    "command": "Reset all.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "objects",
+      "count": 0
+    },
+    "expectedActions": [
+      "DELETE"
+    ]
+  },
+  {
+    "id": 27,
+    "category": "Delete & Reset",
+    "command": "Delete the last created object.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "deleteOne"
+    },
+    "expectedActions": [
+      "DELETE"
+    ]
+  },
+  {
+    "id": 28,
+    "category": "Delete & Reset",
+    "command": "Remove all cylinders.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "deleteType",
+      "type": "cylinder"
+    },
+    "expectedActions": [
+      "DELETE"
+    ]
+  },
+  {
+    "id": 29,
+    "category": "Delete & Reset",
+    "command": "Delete objects inside the selected group.",
+    "setup": [
+      "Create 3 cubes",
+      "Select all cubes"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 30,
+    "category": "Delete & Reset",
+    "command": "Clear the graph but keep the coordinate axes.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "objects",
+      "count": 0
+    },
+    "expectedActions": [
+      "DELETE"
+    ]
+  },
+  {
+    "id": 31,
+    "category": "Positioning",
+    "command": "Move the cube to (3, 2, 1).",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "position": [
+        3,
+        2,
+        1
+      ]
+    },
+    "expectedActions": [
+      "MOVE"
+    ]
+  },
+  {
+    "id": 32,
+    "category": "Positioning",
+    "command": "Shift the sphere 5 units right.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "sphere",
+      "position": [
+        2,
+        0,
+        0
+      ]
+    },
+    "expectedActions": [
+      "MOVE"
+    ]
+  },
+  {
+    "id": 33,
+    "category": "Positioning",
+    "command": "Move the cube 2 units upward.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "position": [
+        1,
+        4,
+        3
+      ]
+    },
+    "expectedActions": [
+      "MOVE"
+    ]
+  },
+  {
+    "id": 34,
+    "category": "Positioning",
+    "command": "Move the cone backward by 3 units.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cone",
+      "position": [
+        0,
+        0,
+        -3
+      ]
+    },
+    "expectedActions": [
+      "MOVE"
+    ]
+  },
+  {
+    "id": 35,
+    "category": "Positioning",
+    "command": "Place the cylinder at the origin.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cylinder",
+      "position": [
+        0,
+        0,
+        0
+      ]
+    },
+    "expectedActions": [
+      "MOVE"
+    ]
+  },
+  {
+    "id": 36,
+    "category": "Positioning",
+    "command": "Move all cubes 2 units left.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "position": [
+        -1,
+        2,
+        3
+      ]
+    },
+    "expectedActions": [
+      "MOVE"
+    ]
+  },
+  {
+    "id": 37,
+    "category": "Positioning",
+    "command": "Position the sphere above the cube.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 38,
+    "category": "Positioning",
+    "command": "Put the cone next to the cylinder.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 39,
+    "category": "Positioning",
+    "command": "Move the selected object to (0, 0, 0).",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "position": [
+        0,
+        0,
+        0
+      ]
+    },
+    "expectedActions": [
+      "MOVE"
+    ]
+  },
+  {
+    "id": 40,
+    "category": "Positioning",
+    "command": "Translate the cube by vector (2, 3, 4).",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "position": [
+        3,
+        5,
+        7
+      ]
+    },
+    "expectedActions": [
+      "MOVE"
+    ]
+  },
+  {
+    "id": 41,
+    "category": "Positioning",
+    "command": "Move the sphere along the X-axis.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "clarify"
+    },
+    "expectedActions": [
+      "MOVE"
+    ]
+  },
+  {
+    "id": 42,
+    "category": "Positioning",
+    "command": "Align all objects along the Y-axis.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 43,
+    "category": "Positioning",
+    "command": "Place three cubes in a row.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 44,
+    "category": "Positioning",
+    "command": "Distribute five spheres evenly.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 45,
+    "category": "Positioning",
+    "command": "Move all objects to the positive X region.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 46,
+    "category": "Scaling",
+    "command": "Double the cube's size.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "scale": 2
+    },
+    "expectedActions": [
+      "SCALE"
+    ]
+  },
+  {
+    "id": 47,
+    "category": "Scaling",
+    "command": "Reduce the sphere to half its size.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "sphere",
+      "scale": 0.5
+    },
+    "expectedActions": [
+      "SCALE"
+    ]
+  },
+  {
+    "id": 48,
+    "category": "Scaling",
+    "command": "Make the cylinder taller.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cylinder",
+      "height": 6
+    },
+    "expectedActions": [
+      "RESIZE"
+    ]
+  },
+  {
+    "id": 49,
+    "category": "Scaling",
+    "command": "Set the cube's side length to 5 units.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "width": 5,
+      "height": 5,
+      "depth": 5
+    },
+    "expectedActions": [
+      "RESIZE"
+    ]
+  },
+  {
+    "id": 50,
+    "category": "Scaling",
+    "command": "Increase the cone's height to 8 units.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cone",
+      "height": 8
+    },
+    "expectedActions": [
+      "RESIZE"
+    ]
+  },
+  {
+    "id": 51,
+    "category": "Scaling",
+    "command": "Scale all objects by 1.5.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "scale": 1.5
+    },
+    "expectedActions": [
+      "SCALE"
+    ]
+  },
+  {
+    "id": 52,
+    "category": "Scaling",
+    "command": "Make the cube twice as wide.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cuboid",
+      "width": 12,
+      "height": 6,
+      "depth": 6
+    },
+    "expectedActions": [
+      "RESIZE"
+    ]
+  },
+  {
+    "id": 53,
+    "category": "Scaling",
+    "command": "Change the sphere radius to 3.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "sphere",
+      "radius": 3
+    },
+    "expectedActions": [
+      "CHANGE"
+    ]
+  },
+  {
+    "id": 54,
+    "category": "Scaling",
+    "command": "Set the cylinder radius to 2.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cylinder",
+      "radius": 2
+    },
+    "expectedActions": [
+      "CHANGE"
+    ]
+  },
+  {
+    "id": 55,
+    "category": "Scaling",
+    "command": "Stretch the cube along the Z-axis.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cuboid",
+      "width": 6,
+      "height": 6,
+      "depth": 12
+    },
+    "expectedActions": [
+      "RESIZE"
+    ]
+  },
+  {
+    "id": 56,
+    "category": "Scaling",
+    "command": "Make the pyramid smaller.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "pyramid",
+      "scale": 0.5
+    },
+    "expectedActions": [
+      "SCALE"
+    ]
+  },
+  {
+    "id": 57,
+    "category": "Scaling",
+    "command": "Resize the selected shape to 4 × 5 × 6.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cuboid",
+      "width": 4,
+      "height": 5,
+      "depth": 6
+    },
+    "expectedActions": [
+      "RESIZE"
+    ]
+  },
+  {
+    "id": 58,
+    "category": "Scaling",
+    "command": "Make all cubes the same size.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 59,
+    "category": "Scaling",
+    "command": "Restore the selected object's original size.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 60,
+    "category": "Scaling",
+    "command": "Create a sphere with radius 10.",
+    "setup": [],
+    "expected": {
+      "kind": "property",
+      "type": "sphere",
+      "radius": 10
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 61,
+    "category": "Rotation",
+    "command": "Rotate the cube 45 degrees.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "rotation": [
+        0,
+        0,
+        45
+      ]
+    },
+    "expectedActions": [
+      "ROTATE"
+    ]
+  },
+  {
+    "id": 62,
+    "category": "Rotation",
+    "command": "Rotate the sphere around the X-axis by 90 degrees.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "sphere",
+      "rotation": [
+        90,
+        0,
+        0
+      ]
+    },
+    "expectedActions": [
+      "ROTATE"
+    ]
+  },
+  {
+    "id": 63,
+    "category": "Rotation",
+    "command": "Turn the cylinder upside down.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cylinder",
+      "rotation": [
+        180,
+        0,
+        0
+      ]
+    },
+    "expectedActions": [
+      "ROTATE"
+    ]
+  },
+  {
+    "id": 64,
+    "category": "Rotation",
+    "command": "Rotate all cubes 30 degrees around the Y-axis.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "rotation": [
+        0,
+        30,
+        0
+      ]
+    },
+    "expectedActions": [
+      "ROTATE"
+    ]
+  },
+  {
+    "id": 65,
+    "category": "Rotation",
+    "command": "Spin the selected object continuously.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 66,
+    "category": "Rotation",
+    "command": "Stop the rotation.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 67,
+    "category": "Rotation",
+    "command": "Tilt the cube 15 degrees.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "rotation": [
+        15,
+        0,
+        0
+      ]
+    },
+    "expectedActions": [
+      "ROTATE"
+    ]
+  },
+  {
+    "id": 68,
+    "category": "Rotation",
+    "command": "Rotate the cone clockwise by 90 degrees.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cone",
+      "rotation": [
+        0,
+        0,
+        -90
+      ]
+    },
+    "expectedActions": [
+      "ROTATE"
+    ]
+  },
+  {
+    "id": 69,
+    "category": "Rotation",
+    "command": "Align the cylinder with the Z-axis.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 70,
+    "category": "Rotation",
+    "command": "Reset the cube's rotation.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    "expectedActions": [
+      "ROTATE"
+    ]
+  },
+  {
+    "id": 71,
+    "category": "Rotation",
+    "command": "Rotate the selected object around its own center.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "clarify"
+    },
+    "expectedActions": [
+      "ROTATE"
+    ]
+  },
+  {
+    "id": 72,
+    "category": "Rotation",
+    "command": "Rotate the cube around the world origin.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 73,
+    "category": "Rotation",
+    "command": "Animate one complete rotation.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 74,
+    "category": "Rotation",
+    "command": "Rotate the sphere 180 degrees about the Y-axis.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "sphere",
+      "rotation": [
+        0,
+        180,
+        0
+      ]
+    },
+    "expectedActions": [
+      "ROTATE"
+    ]
+  },
+  {
+    "id": 75,
+    "category": "Rotation",
+    "command": "Rotate the grouped objects together.",
+    "setup": [
+      "Create 3 cubes",
+      "Select all cubes"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 76,
+    "category": "Appearance",
+    "command": "Make the cube red.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "color": "red"
+    },
+    "expectedActions": [
+      "CHANGE"
+    ]
+  },
+  {
+    "id": 77,
+    "category": "Appearance",
+    "command": "Change all spheres to blue.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "sphere",
+      "color": "blue"
+    },
+    "expectedActions": [
+      "CHANGE"
+    ]
+  },
+  {
+    "id": 78,
+    "category": "Appearance",
+    "command": "Make the cylinder transparent.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 79,
+    "category": "Appearance",
+    "command": "Set the cone opacity to 50%.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 80,
+    "category": "Appearance",
+    "command": "Give the cube a metallic finish.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 81,
+    "category": "Appearance",
+    "command": "Make the sphere look like glass.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 82,
+    "category": "Appearance",
+    "command": "Change the selected object's color to green.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "color": "green"
+    },
+    "expectedActions": [
+      "CHANGE"
+    ]
+  },
+  {
+    "id": 83,
+    "category": "Appearance",
+    "command": "Apply different colors to all five cubes.",
+    "setup": [
+      "Create 5 cubes"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 84,
+    "category": "Appearance",
+    "command": "Display the cube in wireframe mode.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 85,
+    "category": "Appearance",
+    "command": "Hide the sphere.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "sphere",
+      "visible": false
+    },
+    "expectedActions": [
+      "HIDE"
+    ]
+  },
+  {
+    "id": 86,
+    "category": "Appearance",
+    "command": "Show all hidden objects.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube",
+      "Hide the sphere"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "sphere",
+      "visible": true
+    },
+    "expectedActions": [
+      "SHOW"
+    ]
+  },
+  {
+    "id": 87,
+    "category": "Appearance",
+    "command": "Make the pyramid yellow.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "pyramid",
+      "color": "yellow"
+    },
+    "expectedActions": [
+      "CHANGE"
+    ]
+  },
+  {
+    "id": 88,
+    "category": "Appearance",
+    "command": "Highlight the selected object.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 89,
+    "category": "Appearance",
+    "command": "Remove the highlight.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 90,
+    "category": "Appearance",
+    "command": "Restore the default material.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 91,
+    "category": "3D Graphing",
+    "command": "Plot z = x² + y².",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "plot",
+      "expression": "x^2+y^2"
+    },
+    "expectedActions": [
+      "PLOT"
+    ]
+  },
+  {
+    "id": 92,
+    "category": "3D Graphing",
+    "command": "Plot z = sin(x) × cos(y).",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "plot",
+      "expression": "sin(x)*cos(y)"
+    },
+    "expectedActions": [
+      "PLOT"
+    ]
+  },
+  {
+    "id": 93,
+    "category": "3D Graphing",
+    "command": "Draw the plane z = 5.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "plot",
+      "expression": "5"
+    },
+    "expectedActions": [
+      "PLOT"
+    ]
+  },
+  {
+    "id": 94,
+    "category": "3D Graphing",
+    "command": "Graph x² + y² + z² = 25.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 95,
+    "category": "3D Graphing",
+    "command": "Plot the cone z = sqrt(x² + y²).",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "plot",
+      "expression": "sqrt(x^2+y^2)"
+    },
+    "expectedActions": [
+      "PLOT"
+    ]
+  },
+  {
+    "id": 96,
+    "category": "3D Graphing",
+    "command": "Draw a 3D helix.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 97,
+    "category": "3D Graphing",
+    "command": "Plot z = x² − y².",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "plot",
+      "expression": "x^2-y^2"
+    },
+    "expectedActions": [
+      "PLOT"
+    ]
+  },
+  {
+    "id": 98,
+    "category": "3D Graphing",
+    "command": "Draw the surface z = sin(sqrt(x² + y²)).",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "plot",
+      "expression": "sin(sqrt(x^2+y^2))"
+    },
+    "expectedActions": [
+      "PLOT"
+    ]
+  },
+  {
+    "id": 99,
+    "category": "3D Graphing",
+    "command": "Plot the parametric curve x = cos(t), y = sin(t), z = t for 0 ≤ t ≤ 10.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 100,
+    "category": "3D Graphing",
+    "command": "Plot 100 random points in 3D.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 101,
+    "category": "3D Graphing",
+    "command": "Display the X, Y and Z axes.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 102,
+    "category": "3D Graphing",
+    "command": "Hide the coordinate grid.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 103,
+    "category": "3D Graphing",
+    "command": "Show the coordinate grid again.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 104,
+    "category": "3D Graphing",
+    "command": "Label the coordinate axes.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 105,
+    "category": "3D Graphing",
+    "command": "Change the graph range to −10 through 10 on all three axes.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 106,
+    "category": "Geometry Relations",
+    "command": "Place a sphere inside a cube.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 107,
+    "category": "Geometry Relations",
+    "command": "Put a cube on top of a cylinder.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 108,
+    "category": "Geometry Relations",
+    "command": "Stack three cubes vertically.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 109,
+    "category": "Geometry Relations",
+    "command": "Arrange six spheres in a circle.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 110,
+    "category": "Geometry Relations",
+    "command": "Create a pyramid using four points.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 111,
+    "category": "Geometry Relations",
+    "command": "Connect two selected points with a line.",
+    "setup": [
+      "Create point P1 (0,0,0)",
+      "Create point P2 (3,4,0)",
+      "Select all points"
+    ],
+    "expected": {
+      "kind": "objects",
+      "count": 3,
+      "type": "line",
+      "points": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          4,
+          0
+        ]
+      ]
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 112,
+    "category": "Geometry Relations",
+    "command": "Draw a vector between the two points.",
+    "setup": [
+      "Create point P1 (0,0,0)",
+      "Create point P2 (3,4,0)",
+      "Select all points"
+    ],
+    "expected": {
+      "kind": "objects",
+      "count": 3,
+      "type": "vector",
+      "points": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          4,
+          0
+        ]
+      ]
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 113,
+    "category": "Geometry Relations",
+    "command": "Find the midpoint of the selected line.",
+    "setup": [
+      "Create line (0,0,0) to (4,6,8)",
+      "Select the line"
+    ],
+    "expected": {
+      "kind": "query",
+      "value": [
+        2,
+        3,
+        4
+      ]
+    },
+    "expectedActions": [
+      "FIND"
+    ]
+  },
+  {
+    "id": 114,
+    "category": "Geometry Relations",
+    "command": "Measure the distance between two points.",
+    "setup": [
+      "Create point P1 (0,0,0)",
+      "Create point P2 (3,4,0)",
+      "Select all points"
+    ],
+    "expected": {
+      "kind": "query",
+      "value": 5
+    },
+    "expectedActions": [
+      "FIND"
+    ]
+  },
+  {
+    "id": 115,
+    "category": "Geometry Relations",
+    "command": "Create a plane through three non-collinear points.",
+    "setup": [
+      "Create point P1 (0,0,0)",
+      "Create point P2 (1,0,0)",
+      "Create point P3 (0,1,0)",
+      "Select all points"
+    ],
+    "expected": {
+      "kind": "objects",
+      "count": 4,
+      "type": "plane"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 116,
+    "category": "Geometry Relations",
+    "command": "Find the intersection of two planes.",
+    "setup": [
+      "Create plane through (0,0,0), (1,0,0), (0,1,0)",
+      "Create plane through (0,0,0), (1,0,0), (0,0,1)"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "FIND"
+    ]
+  },
+  {
+    "id": 117,
+    "category": "Geometry Relations",
+    "command": "Group the selected cubes.",
+    "setup": [
+      "Create 3 cubes",
+      "Select all cubes"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 118,
+    "category": "Geometry Relations",
+    "command": "Ungroup the selected objects.",
+    "setup": [
+      "Create 3 cubes",
+      "Select all cubes"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 119,
+    "category": "Geometry Relations",
+    "command": "Duplicate the selected object.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "duplicate"
+    },
+    "expectedActions": [
+      "DUPLICATE"
+    ]
+  },
+  {
+    "id": 120,
+    "category": "Geometry Relations",
+    "command": "Mirror the cube across the YZ-plane.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "position": [
+        -1,
+        2,
+        3
+      ]
+    },
+    "expectedActions": [
+      "REFLECT"
+    ]
+  },
+  {
+    "id": 121,
+    "category": "Conversational AI",
+    "command": "Create a cube, then make it blue.",
+    "setup": [],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "color": "blue"
+    },
+    "expectedActions": [
+      "CREATE",
+      "CHANGE"
+    ]
+  },
+  {
+    "id": 122,
+    "category": "Conversational AI",
+    "command": "Create two spheres and move them apart.",
+    "setup": [],
+    "expected": {
+      "kind": "apart",
+      "type": "sphere",
+      "count": 2
+    },
+    "expectedActions": [
+      "CREATE",
+      "MOVE"
+    ]
+  },
+  {
+    "id": 123,
+    "category": "Conversational AI",
+    "command": "Make another cube just like the previous one.",
+    "setup": [
+      "Create cube",
+      "Create cube",
+      "Select the last cube"
+    ],
+    "expected": {
+      "kind": "duplicate"
+    },
+    "expectedActions": [
+      "DUPLICATE"
+    ]
+  },
+  {
+    "id": 124,
+    "category": "Conversational AI",
+    "command": "Delete the first cube.",
+    "setup": [
+      "Create cube",
+      "Create cube",
+      "Select the last cube"
+    ],
+    "expected": {
+      "kind": "deleteOne"
+    },
+    "expectedActions": [
+      "DELETE"
+    ]
+  },
+  {
+    "id": 125,
+    "category": "Conversational AI",
+    "command": "Make the last object bigger.",
+    "setup": [
+      "Create cube",
+      "Create cube",
+      "Select the last cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "scale": 2
+    },
+    "expectedActions": [
+      "SCALE"
+    ]
+  },
+  {
+    "id": 126,
+    "category": "Conversational AI",
+    "command": "Move it 3 units higher.",
+    "setup": [
+      "Create cube",
+      "Make the last object bigger"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "position": [
+        0,
+        3,
+        0
+      ]
+    },
+    "expectedActions": [
+      "MOVE"
+    ]
+  },
+  {
+    "id": 127,
+    "category": "Conversational AI",
+    "command": "Change its color to purple.",
+    "setup": [
+      "Create cube",
+      "Make the last object bigger",
+      "Move it 3 units higher"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "color": "purple"
+    },
+    "expectedActions": [
+      "CHANGE"
+    ]
+  },
+  {
+    "id": 128,
+    "category": "Conversational AI",
+    "command": "Rotate that same object by 45 degrees.",
+    "setup": [
+      "Create cube",
+      "Make the last object bigger",
+      "Move it 3 units higher",
+      "Change its color to purple"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "rotation": [
+        0,
+        0,
+        45
+      ]
+    },
+    "expectedActions": [
+      "ROTATE"
+    ]
+  },
+  {
+    "id": 129,
+    "category": "Conversational AI",
+    "command": "Create a cube, then a sphere, then delete the cube.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "sphere"
+    },
+    "expectedActions": [
+      "CREATE",
+      "CREATE",
+      "DELETE"
+    ]
+  },
+  {
+    "id": 130,
+    "category": "Conversational AI",
+    "command": "Create five cubes and color the third one green.",
+    "setup": [],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "color": "green",
+      "index": 3,
+      "count": 5
+    },
+    "expectedActions": [
+      "CREATE",
+      "CHANGE"
+    ]
+  },
+  {
+    "id": 131,
+    "category": "Conversational AI",
+    "command": "Select the smallest sphere.",
+    "setup": [
+      "Create sphere radius 3",
+      "Create sphere radius 1",
+      "Create sphere radius 2"
+    ],
+    "expected": {
+      "kind": "selection",
+      "type": "sphere",
+      "radius": 1
+    },
+    "expectedActions": [
+      "SELECT"
+    ]
+  },
+  {
+    "id": 132,
+    "category": "Conversational AI",
+    "command": "Delete all objects except the red cube.",
+    "setup": [
+      "Create red cube",
+      "Create blue cube",
+      "Create sphere"
+    ],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "cube",
+      "color": "red"
+    },
+    "expectedActions": [
+      "DELETE"
+    ]
+  },
+  {
+    "id": 133,
+    "category": "Conversational AI",
+    "command": "Undo the last action.",
+    "setup": [
+      "Create cube",
+      "Move it right by 2"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "position": [
+        0,
+        0,
+        0
+      ]
+    },
+    "expectedActions": [
+      "UNDO"
+    ]
+  },
+  {
+    "id": 134,
+    "category": "Conversational AI",
+    "command": "Redo the undone action.",
+    "setup": [
+      "Create cube",
+      "Move it right by 2",
+      "Undo"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "position": [
+        2,
+        0,
+        0
+      ]
+    },
+    "expectedActions": [
+      "REDO"
+    ]
+  },
+  {
+    "id": 135,
+    "category": "Conversational AI",
+    "command": "Restore the scene to its last saved state.",
+    "setup": [
+      "Create cube"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 136,
+    "category": "Error & Stress Tests",
+    "command": "Create a cube with side length −5.",
+    "setup": [],
+    "expected": {
+      "kind": "invalid"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 137,
+    "category": "Error & Stress Tests",
+    "command": "Make a sphere with radius zero.",
+    "setup": [],
+    "expected": {
+      "kind": "invalid"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 138,
+    "category": "Error & Stress Tests",
+    "command": "Move the cube to (abc, 2, 3).",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "invalid"
+    },
+    "expectedActions": [
+      "MOVE"
+    ]
+  },
+  {
+    "id": 139,
+    "category": "Error & Stress Tests",
+    "command": "Rotate the cube by 999999 degrees.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "rotation": [
+        0,
+        0,
+        279
+      ]
+    },
+    "expectedActions": [
+      "ROTATE"
+    ]
+  },
+  {
+    "id": 140,
+    "category": "Error & Stress Tests",
+    "command": "Create one thousand cubes.",
+    "setup": [],
+    "expected": {
+      "kind": "invalid"
+    },
+    "expectedActions": [
+      "CREATE"
+    ]
+  },
+  {
+    "id": 141,
+    "category": "Error & Stress Tests",
+    "command": "Delete an object that does not exist.",
+    "setup": [],
+    "expected": {
+      "kind": "invalid"
+    },
+    "expectedActions": [
+      "DELETE"
+    ]
+  },
+  {
+    "id": 142,
+    "category": "Error & Stress Tests",
+    "command": "Make the cube infinitely large.",
+    "setup": [
+      "Create cube at (1,2,3)",
+      "Create sphere radius 2 at (-3,0,0)",
+      "Create cylinder at (0,0,0)",
+      "Create cone",
+      "Create pyramid",
+      "Select the cube"
+    ],
+    "expected": {
+      "kind": "invalid"
+    },
+    "expectedActions": [
+      "SCALE"
+    ]
+  },
+  {
+    "id": 143,
+    "category": "Error & Stress Tests",
+    "command": "Create a cylinder with negative height.",
+    "setup": [],
+    "expected": {
+      "kind": "invalid"
+    },
+    "expectedActions": [
+      "SCALE"
+    ]
+  },
+  {
+    "id": 144,
+    "category": "Error & Stress Tests",
+    "command": "Plot z = 1 / (x² + y²).",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 1,
+      "type": "plot",
+      "expression": "1/(x^2+y^2)"
+    },
+    "expectedActions": [
+      "PLOT"
+    ]
+  },
+  {
+    "id": 145,
+    "category": "Error & Stress Tests",
+    "command": "Create a sphere and immediately delete it.",
+    "setup": [],
+    "expected": {
+      "kind": "objects",
+      "count": 0
+    },
+    "expectedActions": [
+      "CREATE",
+      "DELETE"
+    ]
+  },
+  {
+    "id": 146,
+    "category": "Error & Stress Tests",
+    "command": "Undo 10 actions.",
+    "setup": [
+      "Create cube",
+      "Move it right by 1",
+      "Move it right by 1",
+      "Move it right by 1",
+      "Move it right by 1",
+      "Move it right by 1",
+      "Move it right by 1",
+      "Move it right by 1",
+      "Move it right by 1",
+      "Move it right by 1",
+      "Move it right by 1"
+    ],
+    "expected": {
+      "kind": "property",
+      "type": "cube",
+      "position": [
+        0,
+        0,
+        0
+      ]
+    },
+    "expectedActions": [
+      "UNDO"
+    ]
+  },
+  {
+    "id": 147,
+    "category": "Error & Stress Tests",
+    "command": "Repeat the previous command five times.",
+    "setup": [
+      "Create cube",
+      "Move it right by 1"
+    ],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 148,
+    "category": "Error & Stress Tests",
+    "command": "Create two cubes, delete one, then restore it.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  },
+  {
+    "id": 149,
+    "category": "Error & Stress Tests",
+    "command": "Reset everything, create a sphere, and move it to (5, 5, 5).",
+    "setup": [],
+    "expected": {
+      "kind": "property",
+      "type": "sphere",
+      "position": [
+        5,
+        5,
+        5
+      ]
+    },
+    "expectedActions": [
+      "DELETE",
+      "CREATE",
+      "MOVE"
+    ]
+  },
+  {
+    "id": 150,
+    "category": "Error & Stress Tests",
+    "command": "Create five cubes, group them, rotate the group, ungroup them, and delete only the first cube.",
+    "setup": [],
+    "expected": {
+      "kind": "unsupported"
+    },
+    "expectedActions": [
+      "UNSUPPORTED"
+    ]
+  }
+]

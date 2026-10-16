@@ -1,4 +1,0 @@
-graph2d []
-geometry2d []
-graph3d []
-geometry3d []

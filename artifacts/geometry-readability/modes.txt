@@ -1,6 +1,0 @@
-chords keyboard zoom and fit PASS
-tangents keyboard zoom and fit PASS
-angles keyboard zoom and fit PASS
-power keyboard zoom and fit PASS
-arcs keyboard zoom and fit PASS
-Mobile page width 375

@@ -82,7 +82,12 @@ function enable(action:string,subAction:string,options:Partial<OperationSpec>={}
   else register(action,[subAction],options);
 }
 for(const sub of ['INCENTER','CIRCUMCENTER','ORTHOCENTER','TRIANGLE_TYPE','LONGEST_SIDE','LARGEST_ANGLE'])enable('FIND',sub,{modes:two,allowedTypes:['triangle']});
-enable('FIND','COORDINATES');enable('FIND','EQUATION',{modes:two,allowedTypes:['line']});
+  enable('FIND','NEAREST_POINT',{required:['position']});
+  enable('FIND','BOARD_GEOMETRY',{modes:two,required:['geometryLesson']});
+  enable('CREATE','BOARD_GEOMETRY',{modes:two,required:['geometryLesson']});
+  enable('FIND','BOARD_ADVANCED',{required:['extendedLesson']});
+  enable('CONSTRUCT','BOARD_ADVANCED',{required:['extendedLesson'],createsObject:false});
+  enable('FIND','COORDINATES');enable('FIND','EQUATION',{modes:two,allowedTypes:['line']});
 enable('FIND','ANGLE',{modes:two});enable('FIND','PROJECTION',{modes:two});enable('FIND','TOUCHING_POINT',{modes:two});
 for(const sub of ['MEDIAN','ALTITUDE','INCIRCLE','CIRCUMCIRCLE','ANGLE_BISECTOR','PROJECTION','NORMAL'])enable('CONSTRUCT',sub,{modes:two});
 for(const sub of ['TANGENT','COLLINEAR','POINT_OUTSIDE','RIGHT_TRIANGLE','EQUAL_ANGLES','ORIENTATION','MEDIAL_TRIANGLE'])enable('CHECK',sub,{modes:two});
@@ -109,3 +114,5 @@ enable('FIND','INTERSECTION',{modes:allModes});
 
 // Vertex centroid construction is implemented by the 2D and 3D dependency adapters.
 enable('MARK','CENTROID',{modes:allModes,allowedTypes:['triangle','rectangle','square','polygon']});
+
+for(const op of OPERATIONS)if(op.action==='CHANGE'&&['RADIUS','DIAMETER'].includes(op.subAction))op.allowedTypes=['circle','sphere','cylinder','cone'];

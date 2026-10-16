@@ -6,6 +6,7 @@ import {center,vertices} from './geometryQueries';
 import {FollowUpEngine} from './followUpEngine';
 import {COLORS} from '../../offline-intelligence/shapeCatalog';
 import {geometryState} from './resultVerifier';
+import {distanceConversation} from './distanceConversation';
 export type PendingCommand={plan:MathRoboPlan;index:number;slot:string;question:string;options:string[];choices?:MathRoboPlan[];references?:string[];referenceVersions?:Record<string,string>};
 export class ConversationEngine extends FollowUpEngine {
   turns:{text:string;kind:string;subjectBefore:string[];subjectAfter:string[];pending?:PendingCommand;status:string;message:string;plan:MathRoboPlan;resolvedReferences:string[];missingSlots:string[];confidence:{intent:number;reference:number;answer:number;contextContinuity:number};executed:boolean}[]=[];
@@ -14,9 +15,12 @@ export class ConversationEngine extends FollowUpEngine {
   private lastMutationState?:string;
   private before:string[]=[];
   private text='';
-  resetContext(){this.pending=undefined;this.lastMathResult=undefined;this.lastMutation=undefined;this.lastMutationState=undefined;this.turns=[];this.invalidated=undefined;}
+  private lastDistance?:string[];
+  get distanceTargets(){return this.lastDistance?.slice();}
+  resetContext(){this.pending=undefined;this.lastDistance=undefined;this.lastMathResult=undefined;this.lastMutation=undefined;this.lastMutationState=undefined;this.turns=[];this.invalidated=undefined;}
   private invalidated?:string;
   sync(scene:RoboSceneContext){
+    if(this.pending?.slot==='distancePoints'){const ids=(this.pending.plan.commands[0].parameters.distancePointIds as string[]??[]).filter(id=>scene.objects.some(o=>o.id===id));this.pending.plan.commands[0].parameters.distancePointIds=ids;this.pending.references=ids;this.pending.referenceVersions=undefined;}
     if(this.pending?.referenceVersions&&Object.entries(this.pending.referenceVersions).some(([id,version])=>{const object=scene.objects.find(o=>o.id===id);return !object||geometryState({...scene,objects:[object]})!==version;})){this.pending=undefined;this.invalidated='The referenced geometry changed. Please restate the operation using its current state.';}
     if(scene.activeAngle&&!scene.objects.some(o=>o.id===scene.activeAngle!.objectId))scene.activeAngle=undefined;
     if(this.pending){const target=this.pending.plan.commands[this.pending.index].target;let missing=false;if(typeof target==='string'&&!target.startsWith('last')&&!target.startsWith('$'))try{resolveTarget(target,scene);}catch{missing=true;}if(missing||this.pending.references?.some(id=>!scene.objects.some(o=>o.id===id))){this.pending=undefined;this.invalidated='That object was removed. Please choose an existing object.';}}
@@ -26,8 +30,12 @@ export class ConversationEngine extends FollowUpEngine {
   beginExternal(text:string,scene:RoboSceneContext){this.text=text;this.before=[...(scene.activeObjectIds??[])];}
   prepare(text:string,plan:MathRoboPlan,scene:RoboSceneContext):{plan:MathRoboPlan;message?:string} {
     this.text=text;this.before=[...(scene.activeObjectIds??[])];
+    if(plan.commands.some(c=>c.parameters.bulkEdit&&c.parameters.parseError)){this.pending=undefined;return {plan};}
+    const distance=distanceConversation(text,plan,scene,this.pending,this.lastDistance);
+    if(distance){this.pending=distance.pending;this.invalidated=undefined;if(distance.plan.commands.every(c=>c.action==='FIND'))this.lastMutation=undefined;return {plan:distance.plan,message:distance.message};}
     let normalized=normalizeLanguage(text).replace(/[.!?]+$/,'');
     if(/^(?:make|scale|enlarge) (?:it|that) (?:a little|slightly|somewhat) (?:larger|bigger|smaller)$/.test(normalized)){const proposed=parseSemanticPlan('Scale it',scene.activeMode);proposed.commands[0].action='SCALE';proposed.commands[0].subAction='UNIFORM';proposed.commands[0].target='lastReferenced';proposed.commands[0].parameters={};return this.ask(proposed,0,'factor','What exact scale factor should I use? A phrase such as “a little larger” does not specify a number.');}
+    for(const command of plan.commands){if(command.parameters.selectedPoints||command.parameters.selectedPlane){const points=scene.selectedIds.map(id=>scene.objects.find(o=>o.id===id)).filter(o=>o?.type==='point');if(points.length===(command.parameters.selectedPlane?3:2))command.parameters.points=points.map(o=>o!.position);}}
     const dimensionChange=normalized.match(/^(increase|decrease|reduce) (?:its|the) (width|height|depth|radius|diameter) by (.+)$/);
     if(dimensionChange){try{const host=resolveTarget('lastReferenced',scene),property=dimensionChange[2],base=property==='diameter'?host.command.radius*2:Number(host.command[property as 'width'|'height'|'depth'|'radius']),value=base*(host.command.scale??1)+(dimensionChange[1]==='increase'?1:-1)*parseNumber(dimensionChange[3]);plan=parseSemanticPlan(`Change its ${property} to ${value}`,scene.activeMode);plan.commands[0].target=host.id;for(const key of ['width','height','depth'] as const)if(key!==property&&host.command[key]!==undefined)plan.commands[0].parameters[key]=host.command[key]!*(host.command.scale??1);}catch{/* Normal resolution retains missing or ambiguous references. */}}
     const relative=normalized.match(/^(increase|decrease) it by (-?\d+(?:\.\d+)?)$/);
@@ -192,7 +200,7 @@ export class ConversationEngine extends FollowUpEngine {
           }
         }catch{/* Keep the pending question until a real line is chosen. */}
       }
-      if(accepted){plan=structuredClone(pending.plan);if(pending.slot==='points'&&command.parameters.count===2){const points=command.parameters.points!;plan.commands=[0,1].map(i=>({...structuredClone(command),id:crypto.randomUUID(),parameters:{...command.parameters,count:1,points:points.slice(i*2,i*2+2),legacy:undefined}}));}this.pending=undefined;}
+      if(accepted){if(pending.slot==='factor')delete command.parameters.defaultScale;plan=structuredClone(pending.plan);if(pending.slot==='points'&&command.parameters.count===2){const points=command.parameters.points!;plan.commands=[0,1].map(i=>({...structuredClone(command),id:crypto.randomUUID(),parameters:{...command.parameters,count:1,points:points.slice(i*2,i*2+2),legacy:undefined}}));}this.pending=undefined;}
       else if(/^(draw|create|make|change|set|duplicate|copy|mark|plot|graph|hide|show|move|rotate|reflect|scale|delete|find|what|where|are|is|now|select|undo|redo|actually|instead)\b/.test(normalized)){this.pending=undefined;}
       else return {plan:pending.plan,message:pending.question};
     }
@@ -221,6 +229,7 @@ export class ConversationEngine extends FollowUpEngine {
     }
     for(let index=0;index<plan.commands.length;index++){
       const command=plan.commands[index],p=command.parameters;
+      if(p.defaultScale)try{if(['line','ray','vector'].includes(resolveTarget(command.target,scene).type))delete p.factor;}catch{/* Ordinary target clarification follows. */}
       if(plan.commands.length===1&&/\bthat (circle|triangle|rectangle|square|line|point|vector)\b/.test(normalized)&&!this.pending&&typeof command.target!=='string'&&scene.selectedIds.length!==1){const type=normalized.match(/\bthat (circle|triangle|rectangle|square|line|point|vector)\b/)![1],candidates=scene.objects.filter(o=>o.type===type);if(candidates.length>1)return this.ask(plan,index,'target','Several objects match. Which object should I use?',candidates.map(o=>o.id));}
         if(command.action==='CHANGE'&&['COLOR','FILL_COLOR','STROKE_COLOR'].includes(command.subAction)&&!p.color)return this.ask(plan,index,'color','Which color should I use?');
       if(command.action==='CHANGE'&&command.subAction==='ANGLE'&&!p.impossibleAngles){
@@ -272,11 +281,11 @@ export class ConversationEngine extends FollowUpEngine {
       if(command.action==='CREATE'&&['LINE','RAY','VECTOR'].includes(command.subAction)&&!(p.points as number[][]|undefined)?.length&&!p.legacy?.points?.length)return this.ask(plan,index,'points',p.count===2?'Give four endpoints: two for each intersecting line.':'What are the two endpoints? Give coordinates such as (0,0) and (4,2).');
       if(command.action==='CREATE'&&command.subAction==='POINT'&&!p.position&&!p.legacy?.points?.length)return this.ask(plan,index,'position','Where should I place the point? Give its coordinates.');
       if(command.action==='CREATE'&&command.subAction==='CIRCLE'&&(Number(p.count)>1||/centered there|centred there/.test(command.normalizedPhrase))&&!/radius|diameter/.test(command.normalizedPhrase)&&!p.conversationRadiusProvided)return this.ask(plan,index,'radius','What radius should the circles have?');
-      if(plan.commands.length===1&&!['CREATE','UNHANDLED','UNSUPPORTED','UNDO','REDO','EXPLAIN','COUNT'].includes(command.action)&&!p.multiple&&!command.targets&&command.target!=='$previousResult'){
+      if(plan.commands.length===1&&!(command.action==='DELETE'&&command.subAction==='ALL')&&!['BOARD_GEOMETRY','BOARD_ADVANCED'].includes(command.subAction)&&!(command.action==='FIND'&&command.subAction==='NEAREST_POINT')&&!['CREATE','UNHANDLED','UNSUPPORTED','UNDO','REDO','EXPLAIN','COUNT'].includes(command.action)&&!p.multiple&&!command.targets&&command.target!=='$previousResult'){
         try{const target=resolveTarget(command.target??'lastReferenced',scene);if(scene.objects.some(o=>o.id===target.id))command.target=target.id;}
         catch(error){if(error instanceof ResolutionError&&error.candidates.length)return this.ask(plan,index,'target',`Several objects match. Which object? ${error.candidates.map((id,i)=>`${i+1}: ${scene.objects.find(o=>o.id===id)?.label??id}`).join('; ')}`,error.candidates);}
       }
-      if(command.action==='MOVE'&&!p.absolute){
+      if(command.action==='MOVE'&&!p.apart&&!p.absolute){
         const raw=normalizeLanguage(command.rawPhrase),direction=p.conversationDirection??raw.match(/\b(left|right|up|down|forward|backward)\b/)?.[1];
         const vector=p.vector as number[]|undefined;
         if(!vector?.some(v=>v!==0)&&! /\b0\b/.test(raw)){
@@ -294,6 +303,8 @@ export class ConversationEngine extends FollowUpEngine {
     return {plan};
   }
   finish(result:RoboResult,scene:RoboSceneContext){
+    if(result.status==='success'&&result.plan.commands.some(c=>c.action==='FIND'&&c.subAction==='DISTANCE')&&scene.lastQueryTargets?.length===2&&scene.lastQueryTargets.every(id=>scene.objects.some(o=>o.id===id&&o.type==='point')))this.lastDistance=[...scene.lastQueryTargets];
+    else if(result.status==='success'&&result.plan.commands.some(c=>['FIND','CHECK','COMPARE','CREATE','CONSTRUCT'].includes(c.action)))this.lastDistance=undefined;
     if(result.status==='success'&&result.plan.commands.some(c=>['UNDO','REDO'].includes(c.action))){this.pending=undefined;this.lastMutation=structuredClone(scene.previousCommands?.filter(c=>!['FIND','CHECK','COMPARE','SELECT','DESELECT'].includes(c.action)).at(-1));this.lastMutationState=geometryState(scene);}
     if(result.status==='success'&&result.effects.length){const mutation=result.plan.commands.filter(c=>!['FIND','CHECK','COMPARE','SHOW','MARK','SELECT','DESELECT'].includes(c.action)).at(-1);if(mutation){this.lastMutation=structuredClone(mutation);if(['CREATE','DUPLICATE'].includes(mutation.action))this.lastMutation.target=scene.lastCreated;if(mutation.parameters.conversationLogicalVector)this.lastMutation.parameters.vector=mutation.parameters.conversationLogicalVector as number[];if(mutation.parameters.conversationLogicalAngle!==undefined)this.lastMutation.parameters.angle=Number(mutation.parameters.conversationLogicalAngle);this.lastMutationState=geometryState(scene);}}
     if(result.status==='success'&&result.plan.commands.some(c=>['FIND','CHECK','COMPARE','MARK'].includes(c.action)))this.lastMathResult={value:result.value,explanation:result.explanation||result.message,targets:[...(scene.lastQueryTargets??[])]};

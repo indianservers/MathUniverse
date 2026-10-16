@@ -54,7 +54,9 @@
     "verify": "npm run lint && npm run typecheck && npm run build",
     "train:ruhi-candidate": "node scripts/build-math-robo-v41.mjs",
     "build:student": "node scripts/build-ruhi.mjs student",
-    "build:developer": "node scripts/build-ruhi.mjs developer"
+    "build:developer": "node scripts/build-ruhi.mjs developer",
+    "audit:ruhi:3d": "node scripts/audit-graph3d-commands.mjs",
+    "test:ruhi:3d": "vitest run src/graph-studio/command-audit/regressions.test.ts src/offline-intelligence/graph3dAdapter.test.ts --maxWorkers=1 --reporter=dot"
   },
   "dependencies": {
     "@capacitor/app": "^8.1.0",

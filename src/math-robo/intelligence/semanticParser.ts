@@ -1,3 +1,9 @@
+import {parseBulkEdit} from './bulkEditLanguage';
+import {parseGraph3dLanguage} from './graph3dLanguage';
+import {pointDistanceNames} from './pointDistanceLanguage';
+import {nearestPointCoordinates} from './nearestPointLanguage';
+import {matchGeometryLesson} from './geometryCurriculum';
+import {matchExtendedGeometry} from './geometryExtendedCurriculum';
 import {parseSelectiveClear} from './selectiveClear';
 import {parseDirectedGrammar} from './directedGrammar';
 import {parse2dLanguage,rewrite2dLanguage} from './nlp2dExtensions';
@@ -28,10 +34,29 @@ function detectedVerb(text:string) {
   return aliases[word]??(LANGUAGE_ACTIONS.includes(word.toUpperCase())?word.toUpperCase():'');
 }
 export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCommand {
-  const text=normalizeLanguage(rawPhrase).replace(/[?.]+$/,'').replace(/^(?:please|kindly|can you|could you)\s+/,'').replace(/\s+please$/,'').replace(/\bwhose radius is\b/g,'radius').replace(/\br\s*=\s*/g,'radius ').replace(/\br\s+(?=\d)/g,'radius ').replace(/radius-(\d+)/g,'radius $1').replace(/\b(\d+(?:\.\d+)?) units? radius\b/g,'radius $1').replace(/^draw c with /,'draw circle with ').replace(/^put a circle/,'create a circle');
+  const text=normalizeLanguage(rawPhrase).replace(/rectangular prism/g,'cuboid').replace(/²/g,'^2').replace(/−/g,'-').replace(/[?.]+$/,'').replace(/^(?:please|kindly|can you|could you)\s+/,'').replace(/\s+please$/,'').replace(/\bwhose radius is\b/g,'radius').replace(/\br\s*=\s*/g,'radius ').replace(/\br\s+(?=\d)/g,'radius ').replace(/radius-(\d+)/g,'radius $1').replace(/\b(\d+(?:\.\d+)?) units? radius\b/g,'radius $1').replace(/^draw c with /,'draw circle with ').replace(/^put a circle/,'create a circle');
   const dimension=mode.endsWith('3d')?3:2;
   const command:MathRoboCommand={id:crypto.randomUUID(),rawPhrase,normalizedPhrase:text,detectedAction:detectedVerb(text),action:'',subAction:'',mode,parameters:{},confidence:{overall:1,action:1,subAction:1,parameters:1},source:{action:'rule',subAction:'rule'},requiresExecution:true};
   const p=command.parameters;
+  const bulk=parseBulkEdit(command);if(bulk)return bulk;
+  const extendedLesson=matchExtendedGeometry(rawPhrase);
+  if(extendedLesson){command.action=extendedLesson.id>=176&&extendedLesson.id<=217?'CONSTRUCT':'FIND';command.subAction='BOARD_ADVANCED';p.extendedLesson=extendedLesson;return command;}
+  const nearCoordinates=nearestPointCoordinates(rawPhrase);
+  if(nearCoordinates){command.action='FIND';command.subAction='NEAREST_POINT';p.position=nearCoordinates;if(nearCoordinates.length!==dimension)p.parseError=`Provide ${dimension} coordinates for this workspace.`;return command;}
+  const explicitDistance=/\bdistance\b/i.test(rawPhrase)&&pointDistanceNames(rawPhrase);
+  if(explicitDistance){command.action='FIND';command.subAction='DISTANCE';command.targets=explicitDistance.map(name=>({type:'point' as const,name}));p.multiple=true;return command;}
+  const lesson=matchGeometryLesson(rawPhrase);
+  if(lesson){
+    if(lesson.id<=146){command.action=lesson.id<=135?'FIND':'CREATE';command.subAction='BOARD_GEOMETRY';p.geometryLesson=lesson;return command;}
+    const label=(keys:string)=>keys.split('').map(key=>lesson.names[key]).join('');
+    if(lesson.id===147){command.action='MOVE';command.subAction='OBJECT';command.target={type:'point',name:label('A')};p.position=lesson.numbers;p.vector=lesson.numbers;p.absolute=true;return command;}
+    if(lesson.id===148){command.action='REFLECT';command.subAction='X_AXIS';command.target={type:'triangle',name:label('ABC')};return command;}
+    if(lesson.id===149){command.action='ROTATE';command.subAction='OBJECT';command.target={type:'line',name:label('AB')};p.angle=lesson.numbers[0];p.anchor='vertex';p.vertex=label('A').toUpperCase();return command;}
+    command.action='DELETE';command.subAction='ALL';p.preserveTargets=['A','B'].map(key=>({type:'point',name:label(key)}));return command;
+  }
+  const distanceNames=pointDistanceNames(rawPhrase);
+  if(distanceNames){command.action='FIND';command.subAction='DISTANCE';command.targets=distanceNames.map(name=>({type:'point' as const,name}));p.multiple=true;return command;}
+  const spatial=parseGraph3dLanguage(command);if(spatial)return spatial;
   const selectiveClear=parseSelectiveClear(text);if(selectiveClear){command.action='DELETE';command.subAction='ALL';p.preserveTargets=selectiveClear.targets;p.parseError=selectiveClear.error;return command;}
   const namedConstruction=text.match(/^construct (?:the )?(circumcircle|incircle|median|altitude) (?:of|for) (?:the )?triangle ([a-z][a-z0-9]*)$/);
   if(namedConstruction){command.action='CONSTRUCT';command.subAction=namedConstruction[1].toUpperCase();command.target={type:'triangle',name:namedConstruction[2]};return command;}
@@ -93,16 +118,16 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
   if(/^count\b|^how many/.test(text)){command.action='COUNT';command.subAction=/vertices/.test(text)?'VERTICES':/points/.test(text)?'POINTS':/lines/.test(text)?'LINES':/shapes/.test(text)?'SHAPES':'OBJECTS';return command;}
   if(classifyRequest(rawPhrase)==='QUERY'||isQuery){command.action='UNSUPPORTED';command.subAction='OBJECT';command.requiresExecution=false;return command;}
   if(/^deselect\b/.test(text)){command.action='DESELECT';command.subAction='ALL';return command;}
-  if(/\b(delete|remove|clear|reset)\b/.test(text)){command.action='DELETE';command.subAction=/all|everything|clear|reset/.test(text)?'ALL':'OBJECT';p.multiple=/\b(both|them|those)\b/.test(text);return command;}
+  if(/\b(delete|remove|clear|reset)\b/.test(text)){command.action='DELETE';command.subAction=/\b(?:all|everything|clear|reset)\b/.test(text)?'ALL':'OBJECT';p.multiple=/\b(both|them|those)\b/.test(text);return command;}
   if(/^deselect/.test(text)){command.action='DESELECT';command.subAction='ALL';return command;}
-  if(/^select\b/.test(text)){command.action='SELECT';command.subAction=/all|everything/.test(text)?'ALL':'OBJECT';p.multiple=/\bboth\b/.test(text);return command;}
+  if(/^select\b/.test(text)){command.action='SELECT';command.subAction=/\b(?:all|everything)\b/.test(text)?'ALL':'OBJECT';p.multiple=/\bboth\b/.test(text);return command;}
   if((/^hide\b|^show\b|^display\b/.test(text))&&!/\bgraph\s+of\b|[yz]\s*=/.test(text)){command.action=text.startsWith('hide')?'HIDE':'SHOW';command.subAction='OBJECT';return command;}
   if(/^duplicate\b|^copy\b|\bmake a copy\b/.test(text)){command.action='DUPLICATE';command.subAction='OBJECT';return command;}
   if(/\breflect|\bflip/.test(text)){command.action='REFLECT';command.subAction=/xy[ -]?plane/.test(text)?'XY_PLANE':/xz[ -]?plane/.test(text)?'XZ_PLANE':/yz[ -]?plane/.test(text)?'YZ_PLANE':/x[ -]?axis/.test(text)?'X_AXIS':/y[ -]?axis/.test(text)?'Y_AXIS':/origin/.test(text)?'ORIGIN':'LINE';return command;}
-  if(/\b(move|translate)\b/.test(text)){command.action='MOVE';command.subAction='OBJECT';p.vector=pts[0]??directionVector(text,dimension);p.multiple=/\b(them|those|both|everything|all objects)\b/.test(text);[p.dx,p.dy,p.dz]=p.vector;if(/\bto\b/.test(text)&&pts.length)p.absolute=true;
+  if(/\b(move|translate)\b/.test(text)){command.action='MOVE';command.subAction='OBJECT';p.vector=pts[0]??directionVector(text,dimension);p.multiple=p.multiple||/\b(them|those|both|everything|all objects)\b/.test(text);[p.dx,p.dy,p.dz]=p.vector;if(/\bto\b/.test(text)&&pts.length)p.absolute=true;
     if(!pts.length&&p.vector.every(value=>value===0))p.parseError=`Provide ${dimension} destination coordinates, such as ${dimension===3?'(4,0,0)':'(4,0)'}, or a movement direction and distance.`;
     return command;}
-  if(/\b(rotate|turn|tilt)\b/.test(text)&&!color){command.action='ROTATE';command.subAction='OBJECT';const angle=text.replace(/\b[a-z]+\d+\b/g,'').match(new RegExp(NUMBER_PATTERN));p.angle=angle?parseNumber(angle[0]):undefined;if(/radians/.test(text)&&p.angle!==undefined)p.angle=p.angle*180/Math.PI;if(/clockwise/.test(text)&&!/counterclockwise|anticlockwise/.test(text)&&p.angle!==undefined)p.angle=-p.angle;p.axis=text.match(/\b([xyz])[ -]?axis/)?.[1]??'z';return command;}
+  if(/\b(rotate|turn|tilt)\b/.test(text)&&!color){command.action='ROTATE';command.subAction='OBJECT';const angle=text.replace(/\b[a-z]+\d+\b/g,'').match(new RegExp(NUMBER_PATTERN));p.angle=angle?parseNumber(angle[0]):undefined;if(/radians/.test(text)&&p.angle!==undefined)p.angle=p.angle*180/Math.PI;if(/clockwise/.test(text)&&!/counterclockwise|anticlockwise/.test(text)&&p.angle!==undefined)p.angle=-p.angle;p.axis=text.match(/\b([xyz])[ -]?axis/)?.[1]??(/\btilt\b/.test(text)?'x':'z');return command;}
   if(/\b(scale|double|halve|twice|enlarge|shrink)\b/.test(text)){command.action='SCALE';command.subAction='UNIFORM';p.factor=/double|twice/.test(text)?2:/halve/.test(text)?.5:numberAfter(text,'by|factor|scale|shrink');return command;}
   if(/^(?:change|set)\b/.test(text)&&/\b(?:endpoints|tail|head|origin|through)\b/.test(text)&&pts.length===2){command.action='CHANGE';command.subAction='ENDPOINTS';p.points=pts;return command;}
   if(/\b(change|set|resize|make|color|colour|recolor|rename|label)\b/.test(text)&&(!/\b(draw|create|add)\b/.test(text))&&(color||/its|\bit\b|that|this|change|set|resize|rename/.test(text))){
@@ -141,8 +166,9 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
   command.action=normalizeAction(command.detectedAction||'UNHANDLED');command.subAction='OBJECT';command.confidence.overall=command.action==='UNHANDLED'?0:1;return command;
 }
 export function parseSemanticPlan(phrase:string,mode:RoboMode):MathRoboPlan {
-  const rewritten=mode.endsWith('3d')||/^(?:draw|create|make) (?:an? )?angle (?:of )?\d+(?:\.\d+)? degrees?[.!]?$/i.test(phrase)?phrase:rewrite2dLanguage(phrase);
-  const commands=(/^if\b/i.test(rewritten)?[rewritten]:splitUtterance(rewritten)).flatMap(part=>{const c=parseSemanticCommand(part,mode);return c.parameters.allMedians?['A','B','C'].map(from=>({...structuredClone(c),id:crypto.randomUUID(),parameters:{from}})):[c];});
+  phrase=phrase.replace(/\bimmediately (?=(?:delete|remove|move)\b)/gi,'').replace(/\bthen (a|an) (?=[a-z])/gi,'then create $1 ');
+  const rewritten=matchExtendedGeometry(phrase)||matchGeometryLesson(phrase)||mode.endsWith('3d')||/^(?:draw|create|make) (?:an? )?angle (?:of )?\d+(?:\.\d+)? degrees?[.!]?$/i.test(phrase)?phrase:rewrite2dLanguage(phrase);
+  const commands=(matchExtendedGeometry(rewritten)||/^if\b/i.test(rewritten)?[rewritten]:splitUtterance(rewritten)).flatMap(part=>{const c=parseSemanticCommand(part,mode);return c.parameters.allMedians?['A','B','C'].map(from=>({...structuredClone(c),id:crypto.randomUUID(),parameters:{from}})):[c];});
   for(let i=1;i<commands.length;i++)if(commands[i].action==='CHANGE'&&commands[i].subAction==='LABEL'&&commands.slice(0,i).some(c=>['CREATE','MARK','CONSTRUCT'].includes(c.action)))commands[i].target='lastCreated';
   return {rawPhrase:phrase,commands,ir:commands.map(commandIR),atomicity:'all-or-nothing',confidence:Math.min(...commands.map(c=>c.confidence.overall))};
 }

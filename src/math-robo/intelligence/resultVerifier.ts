@@ -1,25 +1,28 @@
 import {planeFromPoints3} from '../kernel/geometry3d';
+import {checkAnalyticConstraints} from './analyticConstraints';
 import {operationFor} from './actionRegistry';
 import {distance,vertices,measurement,center} from './geometryQueries';
 import {near,nearVector,DISPLAY_EPSILON,EPSILON} from './tolerances';
 import {RoboExecutionError} from './executionErrors';
-import {resolveTarget,resolveTargets} from './targetResolver';
+import {resolveTarget,resolveTargets,resolveMutationTargets} from './targetResolver';
 import type {MathRoboPlan,RoboSceneContext} from './types';
 export function geometryState(scene:RoboSceneContext){
   const round=(n:number)=>Math.round(n*1e9)/1e9;
-  return JSON.stringify([...scene.objects].sort((a,b)=>a.id.localeCompare(b.id)).map(o=>({id:o.id,type:o.type,vertices:vertices(o).map(p=>p.map(round)),position:center(o).map(round),width:round(o.command.width),height:round(o.command.height),depth:round(o.command.depth??0),radius:round(o.command.radius),scale:round(o.command.scale??1),rotation:(o.command.rotation??[0,0,0]).map(round),color:o.style.color,fill:o.command.roboFillColor,stroke:o.command.roboStrokeColor,lineWidth:o.command.roboLineWidth,strokeEdges:o.command.roboStrokeEdges,angle:o.command.roboAngle,visible:o.command.roboVisible??true,expression:o.command.expression??null,locked:o.command.roboLocked??false})));
+  return JSON.stringify([...scene.objects].sort((a,b)=>a.id.localeCompare(b.id)).map(o=>({id:o.id,type:o.type,vertices:vertices(o).map(p=>p.map(round)),position:center(o).map(round),width:round(o.command.width),height:round(o.command.height),depth:round(o.command.depth??0),radius:round(o.command.radius),scale:round(o.command.scale??1),rotation:(o.command.rotation??[0,0,0]).map(round),color:o.style.color,fill:o.command.roboFillColor,stroke:o.command.roboStrokeColor,lineWidth:o.command.roboLineWidth,strokeEdges:o.command.roboStrokeEdges,angle:o.command.roboAngle,visible:o.command.roboVisible??true,expression:o.command.expression??null,locked:o.command.roboLocked??false,analyticConstraint:o.command.roboAnalyticConstraint})));
 }
 export function verifyCommittedObjects(expected:RoboSceneContext,actual:RoboSceneContext){
   if(new Set(actual.objects.map(o=>o.id)).size!==actual.objects.length)throw new RoboExecutionError('VERIFICATION_FAILED','Duplicate native semantic identity.');
   if(expected.objects.length!==actual.objects.length)throw new RoboExecutionError('VERIFICATION_FAILED','The workspace did not commit every planned object.');
   for(const wanted of expected.objects){const got=actual.objects.find(o=>o.id===wanted.id);
-    if(got&&(wanted.label!==got.label||JSON.stringify(wanted.command.roboDependency)!==JSON.stringify(got.command.roboDependency)))throw new RoboExecutionError('VERIFICATION_FAILED','The native workspace lost a label or dependency.');
+    if(got&&(wanted.label!==got.label||JSON.stringify(wanted.command.roboDependency)!==JSON.stringify(got.command.roboDependency)||JSON.stringify(wanted.command.roboAnalyticConstraint)!==JSON.stringify(got.command.roboAnalyticConstraint)))throw new RoboExecutionError('VERIFICATION_FAILED','The native workspace lost a label or dependency.');
     for(const property of ['roboFillColor','roboStrokeColor','roboLineWidth','roboVertexLabels'] as const)if(got&&JSON.stringify(wanted.command[property])!==JSON.stringify(got.command[property]))throw new RoboExecutionError('VERIFICATION_FAILED','The native workspace did not preserve the requested style.');
+    if(got&&(wanted.command.roboLocked??false)!==(got.command.roboLocked??false))throw new RoboExecutionError('VERIFICATION_FAILED','The workspace did not preserve the requested lock state.');
     if(!got||got.type!==wanted.type||vertices(wanted).length!==vertices(got).length||vertices(wanted).some((p,i)=>!nearVector(p,vertices(got)[i]))||wanted.style.color!==got.style.color||(wanted.command.roboVisible??true)!==(got.command.roboVisible??true))throw new RoboExecutionError('VERIFICATION_FAILED','The committed object differs from the requested geometry or appearance.');
   }
 }
 export function verifyResult(plan:MathRoboPlan,before:RoboSceneContext,after:RoboSceneContext){
   const checks:string[]=[];const fail=(message:string):never=>{throw new RoboExecutionError('VERIFICATION_FAILED',`I could not verify the result: ${message}`);};
+  checks.push(...checkAnalyticConstraints(after));
   const mutates=plan.commands.some(c=>operationFor(c.action,c.subAction)?.mutatesScene);
   if(!mutates&&geometryState(before)!==geometryState(after))fail('a read-only request changed geometry.');
   if(!mutates)checks.push('Read-only geometry state unchanged');
@@ -42,6 +45,15 @@ export function verifyResult(plan:MathRoboPlan,before:RoboSceneContext,after:Rob
     checks.push(`Incircle side tangency: ${command.id}`);
   }
   if(plan.commands.length===1){const c=plan.commands[0];
+    if(c.action==='FIND'&&c.subAction==='NEAREST_POINT'){
+      const query=c.parameters.position as number[],dimension=before.activeMode.endsWith('3d')?3:2;
+      const points=before.objects.filter(o=>o.type==='point'&&o.command.roboVisible!==false&&o.command.roboDefinitionState?.status!=='undefined'&&o.position.length===dimension&&o.position.every(Number.isFinite));
+      const squared=points.map(o=>o.position.reduce((sum,n,i)=>sum+(n-query[i])**2,0));
+      const minimum=Math.sqrt(Math.min(...squared));
+      const expected=points.filter((_,i)=>Math.abs(Math.sqrt(squared[i])-minimum)<=1e-9*Math.max(1,minimum)).map(o=>o.id).sort();
+      if(!expected.length||typeof after.previousResult!=='number'||!near(after.previousResult,minimum,DISPLAY_EPSILON)||JSON.stringify([...(after.lastQueryTargets??[])].sort())!==JSON.stringify(expected))fail('nearest point or tied point set does not match coordinate distances.');
+      checks.push('Independent nearest-point coordinate comparison');
+    }
     if(c.action==='FIND'&&c.subAction==='DISTANCE'){
       const origin=/\bto (?:the )?origin\b/.test(c.normalizedPhrase),point=origin?resolveTarget({type:'point',reference:'lastReferenced'},before):undefined;
       const [a,b]=origin?[point!,{...point!,position:point!.position.map(()=>0)}]:resolveTargets(c.targets,c.target,before);let expected:number|undefined;
@@ -59,9 +71,15 @@ export function verifyResult(plan:MathRoboPlan,before:RoboSceneContext,after:Rob
     }
     if(c.action==='CREATE'||c.action==='PLOT'){if(after.objects.length-before.objects.length!==Number(c.parameters.count??1))fail('creation count mismatch.');checks.push('Creation count');}
     if(c.action==='FIND'&&c.subAction==='MIDPOINT'){const object=resolveTarget(c.target,before),[a,b]=vertices(object),expected=a.map((n,i)=>(n+b[i])/2);if(!Array.isArray(after.previousResult)||!nearVector(after.previousResult as number[],expected))fail('incorrect midpoint.');checks.push('Midpoint formula');}
-    if(['MOVE','ROTATE','REFLECT','SCALE','EXTEND'].includes(c.action)){
-      const originals=c.parameters.multiple||c.targets?resolveTargets(c.targets,c.target,before):[resolveTarget(c.target,before)];for(const original of originals){const changed=original.derivedFrom?.length===1&&original.type==='point'&&c.action==='MOVE'?resolveTarget(original.label,after):after.objects.find(o=>o.id===original.id);if(!changed)fail('target disappeared.');
-      if(c.action==='MOVE'){const vector=c.parameters.vector!,expected=c.parameters.absolute?vector:center(original).map((n,i)=>n+vector[i]);if(!nearVector(center(changed!),expected))fail('translation coordinates.');checks.push('Translation center');}
+    if(c.action==='MOVE'&&c.parameters.apart){
+      const objects=(before.activeObjectIds??[]).map(id=>after.objects.find(o=>o.id===id));
+      if(objects.length<2||objects.some(o=>!o))fail('moving apart requires at least two retained objects.');
+      for(let i=1;i<objects.length;i++)if(distance(center(objects[i-1]!),center(objects[i]!))<=EPSILON)fail('objects were not moved apart.');
+      checks.push('Distinct centers after moving apart');
+    }
+    if(['MOVE','ROTATE','REFLECT','SCALE','EXTEND'].includes(c.action)&&!c.parameters.apart){
+      const originals=c.parameters.multiple||c.targets?resolveMutationTargets(c.targets,c.target,before):[resolveTarget(c.target,before)];for(const original of originals){const changed=original.derivedFrom?.length===1&&original.type==='point'&&c.action==='MOVE'?resolveTarget(original.label,after):after.objects.find(o=>o.id===original.id);if(!changed)fail('target disappeared.');
+      if(c.action==='MOVE'){const vector=c.parameters.vector!,expected=c.parameters.absolute?vector:center(original).map((n,i)=>n+vector[i]);if(!changed!.command.roboAnalyticConstraint&&!nearVector(center(changed!),expected))fail('translation coordinates.');checks.push(changed!.command.roboAnalyticConstraint?'Movement projected onto verified constraint':'Translation center');}
       if(['ROTATE','REFLECT'].includes(c.action)&&original.type!=='plot'){const kind=original.type==='line'?'LENGTH':original.type==='point'?undefined:original.mode.endsWith('3d')?'VOLUME':'AREA';if(kind)try{if(!near(Number(measurement(original,kind)),Number(measurement(changed!,kind)),DISPLAY_EPSILON))fail('isometry changed measurement.');}catch(error){if(error instanceof RoboExecutionError)throw error;}checks.push('Isometry invariant');}
       if(c.action==='SCALE'&&original.type==='line'&&!near(Number(measurement(changed!,'LENGTH')),Number(measurement(original,'LENGTH'))*Number(c.parameters.factor),DISPLAY_EPSILON))fail('scale invariant.');
       }

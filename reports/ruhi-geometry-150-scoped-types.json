@@ -1,0 +1,14 @@
+{
+  "files": [
+    "src/math-robo/intelligence/geometryCurriculum.ts",
+    "src/math-robo/intelligence/geometryQuestions150.test.ts",
+    "src/math-robo/intelligence/geometryCurriculumLive.test.ts",
+    "src/math-robo/intelligence/semanticDataset.ts",
+    "src/math-robo/intelligence/semanticParser.ts",
+    "src/math-robo/intelligence/requestClassifier.ts",
+    "src/math-robo/intelligence/actionRegistry.ts",
+    "src/math-robo/intelligence/conversationEngine.ts",
+    "src/math-robo/intelligence/executionPlanner.ts"
+  ],
+  "errors": []
+}

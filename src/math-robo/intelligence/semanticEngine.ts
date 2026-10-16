@@ -25,7 +25,7 @@ import {conversationState} from './conversationState';
 import {actionGraph} from './actionGraph';
 import {mathematicalQuestion} from './mathQuestionRouter';
 import {pageMathContext,groundedPageQuestion} from './pageMathContext';
-import {measurement} from './geometryQueries';
+import {measurement,vertices} from './geometryQueries';
 export class SemanticEngine {
   readonly conversation=new ConversationEngine();
   private tutor=new GroundedTutor();
@@ -47,7 +47,7 @@ export class SemanticEngine {
   sync(objects:RoboObjectDescriptor[],selected?:string[],context?:Pick<RoboSceneContext,'lastReferenced'|'previousResult'|'previousResults'|'activeObjectIds'>){
     const previousGeometry=geometryState(this.scene);
     if(context)Object.assign(this.scene,structuredClone(context));
-    this.scene.objects=objects.map(object=>({...object,command:{...object.command,roboDependency:object.command.roboDependency??this.scene.objects.find(o=>o.id===object.id)?.command.roboDependency},creationOrder:this.scene.objects.find(o=>o.id===object.id)?.creationOrder??object.creationOrder,derivedFrom:this.scene.objects.find(o=>o.id===object.id)?.derivedFrom??object.derivedFrom,originalId:this.scene.objects.find(o=>o.id===object.id)?.originalId??object.originalId}));
+    this.scene.objects=objects.map(object=>({...object,command:{...object.command,roboAnalyticConstraint:object.command.roboAnalyticConstraint??this.scene.objects.find(o=>o.id===object.id)?.command.roboAnalyticConstraint,roboDependency:object.command.roboDependency??this.scene.objects.find(o=>o.id===object.id)?.command.roboDependency},creationOrder:this.scene.objects.find(o=>o.id===object.id)?.creationOrder??object.creationOrder,derivedFrom:this.scene.objects.find(o=>o.id===object.id)?.derivedFrom??object.derivedFrom,originalId:this.scene.objects.find(o=>o.id===object.id)?.originalId??object.originalId}));
     if(previousGeometry!==geometryState(this.scene)){this.engineRouter.invalidateCalculation();this.lastOutcome=undefined;}
     if(selected&&JSON.stringify(selected)!==JSON.stringify(this.automaticSelection)){this.scene.previousSelectedIds=this.scene.selectedIds;this.scene.selectedIds=selected;}
     this.scene.selectedIds=this.scene.selectedIds.filter(id=>objects.some(o=>o.id===id));
@@ -100,7 +100,7 @@ export class SemanticEngine {
     const navigation=navigationRequest(phrase,this.scene);if(navigation)return navigation;
     if(providedPlan&&providedPlan.commands.length>32)throw new Error('A request is limited to 32 planned operations.');
     if(/^(?:forget that|start over|clear context|reset context|new question)[.!?]*$/i.test(phrase)){this.tutor.reset();this.lastOutcome=undefined;}
-    const tutoring=await this.tutor.respond(phrase,this.scene);if(tutoring)return tutoring;
+    const tutoring=this.conversation.pending?.slot==='distancePoints'?undefined:await this.tutor.respond(phrase,this.scene);if(tutoring)return tutoring;
     const previousProof=this.conversation.lastMathResult;if(previousProof?.sceneVersion&&/^(?:why|explain that|explain why|can you explain why)[?.]*$/i.test(phrase)){const unchanged=previousProof.sceneVersion===geometryState(this.scene);if(!unchanged)this.conversation.lastMathResult=undefined;return {status:unchanged?'success':'ambiguous',message:unchanged?previousProof.explanation:'The referenced geometry changed. Ask the verification question again for its current state.',plan:{rawPhrase:phrase,commands:[],confidence:1},effects:[],parseMs:0,executionMs:0};}
     const groundedQuestion=mathematicalQuestion(phrase,this.scene);if(groundedQuestion){if(groundedQuestion.status==='success'){this.engineRouter.last=undefined;this.engineRouter.pending=undefined;this.engineRouter.quiz=undefined;this.engineRouter.quizAnswerModel=undefined;this.tutor.reset();this.scene.previousResult=true;this.conversation.beginExternal(phrase,this.scene);this.conversation.lastMathResult={value:true,explanation:groundedQuestion.message,targets:this.scene.objects.map(o=>o.id),sceneVersion:geometryState(this.scene)};this.conversation.finish(groundedQuestion,this.scene);}return groundedQuestion;}
     if(/^what (?:was|is) its previous length[?.]*$/i.test(phrase)){let value:number|undefined;try{const current=resolveTarget(undefined,this.scene),previous=this.lastChange?.before.find(o=>o.id===current.id);if(previous&&['line','ray','vector'].includes(current.type))value=Number(measurement(previous,'LENGTH'));}catch{/* No stale or guessed object. */}return {status:value===undefined?'ambiguous':'success',message:value===undefined?'Choose an existing line with a recorded completed edit.':`Before the last completed scene edit, its endpoint distance was ${value} units.`,value,plan:{rawPhrase:phrase,commands:[],confidence:1},effects:[],parseMs:0,executionMs:0};}
@@ -110,6 +110,7 @@ export class SemanticEngine {
     if(/^explain what changed[?.]*$/i.test(phrase))return {status:'success',message:this.lastChange?.description??'No completed scene change is recorded.',plan:{rawPhrase:phrase,commands:[],confidence:1},effects:[],parseMs:0,executionMs:0};
     if(/^explain why its magnitude remained unchanged[?.]*$/i.test(phrase)){const rotation=this.lastChange?.description.startsWith('ROTATE'),vector=this.scene.objects.find(o=>o.type==='vector');return {status:'success',message:rotation&&vector?'A rotation preserves Euclidean length because its orthogonal transformation preserves the dot product v·v.':'No completed vector rotation is recorded. Supply its endpoints and rotation angle before I can check a particular vector. Rotations preserve Euclidean length.',plan:{rawPhrase:phrase,commands:[],confidence:1},effects:[],parseMs:0,executionMs:0};}
     const parsed=providedPlan??this.parse(phrase),continuation=!!kernelRequest(phrase)||/^(?:run|compute|use [a-z][\w-]*\.|my answer is|answer:|hint|give me (?:a|another) hint|show (?:the )?answer|what about (?:half|double|twice) (?:of )?it|give (?:me )?another example|let|calculate|evaluate|why|explain|show (?:me )?(?:the )?steps|teach me|answer only|quiz me|assume|what can you do|what .*operations.*support|can you solve differential equations|now (?:cosine|sine|tangent)|(?:plot|graph|visualize) (?:it|that|the result))\b/i.test(phrase);
+    if(parsed.commands.some(c=>c.action==='UNSUPPORTED'&&['SPATIAL_CAPABILITY','IMPLICIT_GRAPH'].includes(c.subAction))){const result:RoboResult={status:'unsupported',message:'This spatial capability is not available in this workspace yet. No objects were changed.',plan:parsed,effects:[],parseMs:0,executionMs:0};this.conversation.beginExternal(phrase,this.scene);this.conversation.finish(result,this.scene);return result;}
     const pendingAnswer=this.conversation.pending&&!/^(?:solve|differentiate|integrate|simplify|factor|expand|mean|median|determinant|run|compute)\b/i.test(phrase);
     if(!pendingAnswer&&(this.engineRouter.pending||/^convert\b/i.test(phrase)||/^(?:(?:what is|find|calculate|and|what about) (?:the )?)?(?:mean|median|mode|variance|standard deviation|quartiles)\b/i.test(phrase)||continuation||parsed.commands.every(c=>['UNHANDLED','UNSUPPORTED','SOLVE','EVALUATE','SIMPLIFY','EXPAND','FACTOR','SUBSTITUTE','DIFFERENTIATE','INTEGRATE','EXPLAIN'].includes(c.action)))){
       const started=performance.now(),routed=await this.engineRouter.dispatch(phrase,this.scene);
@@ -145,12 +146,12 @@ export class SemanticEngine {
         this.undoStack.push(before);this.redoStack=[];this.scene=target;this.colorHistory.splice(index,1);return result('success','Undid only the last color change; geometry and thickness are preserved.',effects);
       }
       if(plan.commands.length===1&&['UNDO','REDO'].includes(plan.commands[0].action)){
-        const isUndo=plan.commands[0].action==='UNDO',stack=isUndo?this.undoStack:this.redoStack,target=stack.at(-1);
+        const isUndo=plan.commands[0].action==='UNDO',stack=isUndo?this.undoStack:this.redoStack,steps=Number(plan.commands[0].parameters.steps??1),target=Number.isInteger(steps)&&steps>=1&&steps<=100?stack.at(-steps):undefined;
         if(!target)return result('invalid',`Nothing to ${isUndo?'undo':'redo'}.`);
         effects=[...this.temporary.map(effect=>({...effect,roboControl:'delete' as const})),...this.diff(this.scene,target)];this.temporary=[];
         for(const effect of effects){const error=await apply(effect);if(error)throw new Error(error);}
         if(readCommitted){const committed=readCommitted();if(geometryState({...target,objects:committed.objects.filter(o=>!o.command.roboTemporary)})!==geometryState(target))throw new RoboExecutionError('VERIFICATION_FAILED','History restoration did not match the saved geometry.');}
-        stack.pop();(isUndo?this.redoStack:this.undoStack).push(before);this.scene=structuredClone(target);this.lastChange={before:before.objects,after:this.scene.objects,description:(isUndo?'Undo':'Redo')+' restored the saved geometry. Removed: '+(before.objects.filter(o=>!target.objects.some(t=>t.id===o.id)).map(o=>o.label??o.type).join(', ')||'none')+'.'};return result('success',isUndo?'Undid the last Ruhi action.':'Redid the last Ruhi action.',effects);
+        const other=isUndo?this.redoStack:this.undoStack;other.push(before,...Array.from({length:steps-1},(_,i)=>structuredClone(stack.at(-1-i)!)));stack.splice(-steps);this.scene=structuredClone(target);this.lastChange={before:before.objects,after:this.scene.objects,description:(isUndo?'Undo':'Redo')+' restored the saved geometry. Removed: '+(before.objects.filter(o=>!target.objects.some(t=>t.id===o.id)).map(o=>o.label??o.type).join(', ')||'none')+'.'};return result('success',isUndo?'Undid the last Ruhi action.':'Redid the last Ruhi action.',effects);
       }
       const prepared=preparePlan(plan,readonlySnapshot(this.scene));
       canonicalObjectGraph(prepared.scene);
@@ -178,6 +179,7 @@ export class SemanticEngine {
       if(plan.commands.every(command=>command.action==='SHOW')){prepared.scene.lastCreated=before.lastCreated;prepared.scene.lastReferenced=before.lastReferenced;prepared.scene.lastModified=before.lastModified;}
       for(const object of prepared.scene.objects){const prior=before.objects.find(o=>o.id===object.id);if(prior&&this.colorKey(prior.command)!==this.colorKey(object.command))this.colorHistory.push({id:object.id,before:structuredClone(prior.command),afterKey:this.colorKey(object.command)});}this.colorHistory=this.colorHistory.slice(-64);
       this.scene=prepared.scene;
+      if(plan.commands.some(c=>c.action==='FIND'&&c.subAction==='DISTANCE'))this.tutor.reset();
       const last=plan.commands.at(-1);if(last&&['DUPLICATE','CONSTRUCT'].includes(last.action)&&this.scene.lastCreated)this.scene.activeObjectIds=[this.scene.lastCreated];
       else if(last&&!['CREATE','FIND','CHECK','COMPARE','COUNT','MARK','SHOW','DESELECT'].includes(last.action)){
         const ids=last.targets??[last.target];const resolved=ids.filter((id):id is string=>typeof id==='string'&&this.scene.objects.some(o=>o.id===id));if(resolved.length)this.scene.activeObjectIds=resolved;
@@ -186,12 +188,15 @@ export class SemanticEngine {
       const explanation=explainResult(plan,before);remember(this.scene,plan.commands,explanation||prepared.messages.join('\n'));
       this.engineRouter.last=undefined;
       const message=prepared.messages.join('\n')+(explanation&&this.scene.responseDepth!=='compact'?`\n${explanation}`:'');
-      return {...result('success',message,effects,prepared.value),verification,explanation,execution:executionOutcome(evidence.independent&&evidence.passed?'verified':'valid_unverified',crypto.randomUUID(),message,evidence)};
+      const bisector=plan.commands.map(c=>c.parameters.geometryLesson as {id:number;names:Record<string,string>}|undefined).find(lesson=>lesson?.id===138);
+      const pair=bisector?[bisector.names.C,bisector.names.D].map(n=>n.toUpperCase()).join(''):undefined;
+      const followUps=pair?[{label:'Mark midpoint',prompt:`Mark the midpoint of ${pair}.`},{label:'Midpoint coordinates',prompt:`What is the midpoint of ${pair}?`},{label:'Measure endpoint distance',prompt:`Distance from ${bisector!.names.C} to ${bisector!.names.D}`}]:undefined;
+      return {...result('success',message,effects,prepared.value),followUps,verification,explanation,execution:executionOutcome(evidence.independent&&evidence.passed?'verified':'valid_unverified',crypto.randomUUID(),message,evidence)};
     } catch(error){
       // Restore only affected Robo objects on a failed adapter commit.
       const affected=new Set(effects.map(effect=>effect.objectId).filter((id):id is string=>!!id));
       let rollbackFailed=false;
-      for(const id of affected){const prior=before.objects.find(o=>o.id===id),effect=effects.find(e=>e.objectId===id)!;try{const rollbackError=await rollbackApply(prior?{...prior.command,action:'create'}:{...effect,roboControl:'delete'});if(rollbackError)rollbackFailed=true;}catch{rollbackFailed=true;}}
+      for(const id of affected){const prior=before.objects.find(o=>o.id===id),effect=effects.find(e=>e.objectId===id)!;try{const rollbackError=await rollbackApply(prior?{...prior.command,action:'create',roboAppearanceOnly:effect.roboAppearanceOnly}:{...effect,roboControl:'delete'});if(rollbackError)rollbackFailed=true;}catch{rollbackFailed=true;}}
       if(readCommitted&&affected.size)try{verifyCommittedObjects(before,{...before,objects:readCommitted().objects.filter(o=>!o.command.roboTemporary)});}catch{rollbackFailed=true;}
       if(rollbackFailed)return {...result('invalid','The request failed, and some workspace changes could not be restored. Please inspect the workspace and use its Undo control.'),errorCode:'EXECUTION_FAILED'};
       if(error instanceof ResolutionError)return {...result(error.candidates.length?'ambiguous':'invalid',error.message,[],undefined,error.candidates),errorCode:error.candidates.length?'AMBIGUOUS_OBJECT':'OBJECT_NOT_FOUND'};
@@ -201,6 +206,6 @@ export class SemanticEngine {
   private diff(from:RoboSceneContext,to:RoboSceneContext):VisualCommand[]{
     const selected:VisualCommand[]=to.selectedIds.flatMap(id=>to.objects.filter(o=>o.id===id).map(o=>({...o.command,roboControl:'select' as const})));
     if(!selected.length&&to.objects[0])selected.push({...to.objects[0].command,roboControl:'deselect'});
-    return [...from.objects.filter(o=>!to.objects.some(t=>t.id===o.id)).map(o=>({...o.command,roboControl:'delete' as const})),...to.objects.map(o=>({...o.command,action:'create' as const})),...selected];
+    return [...from.objects.filter(o=>!to.objects.some(t=>t.id===o.id)).map(o=>({...o.command,roboControl:'delete' as const})),...to.objects.map(o=>{const prior=from.objects.find(p=>p.id===o.id),same=prior&&JSON.stringify(vertices(prior))===JSON.stringify(vertices(o))&&prior.command.radius===o.command.radius;return {...o.command,action:'create' as const,roboAppearanceOnly:!!same};}),...selected];
   }
 }

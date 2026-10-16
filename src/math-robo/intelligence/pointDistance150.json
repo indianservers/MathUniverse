@@ -1,0 +1,1352 @@
+[
+  {
+    "id": 1,
+    "question": "distance from C to D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 2,
+    "question": "What is the distance from C to D?",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 3,
+    "question": "Find the distance from C to D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 4,
+    "question": "Calculate the distance from C to D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 5,
+    "question": "Measure the distance from C to D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 6,
+    "question": "distance between C and D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 7,
+    "question": "What is the distance between C and D?",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 8,
+    "question": "Find the distance between points C and D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 9,
+    "question": "Calculate the distance between point C and point D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 10,
+    "question": "Measure the distance between C and D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 11,
+    "question": "How far is C from D?",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 12,
+    "question": "How far are C and D apart?",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 13,
+    "question": "Tell me the distance from C to D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 14,
+    "question": "Give me the distance between C and D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 15,
+    "question": "Compute the distance from C to D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 16,
+    "question": "Work out the distance between C and D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 17,
+    "question": "Please find the distance from C to D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 18,
+    "question": "Can you measure the distance between C and D?",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 19,
+    "question": "Could you calculate the distance from point C to point D?",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 20,
+    "question": "What is the straight-line distance from C to D?",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 21,
+    "question": "Find the Euclidean distance between C and D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 22,
+    "question": "What is the separation between C and D?",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 23,
+    "question": "Find the length between C and D",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 24,
+    "question": "distance from C to D now",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 25,
+    "question": "Kindly measure the distance from C to D in units",
+    "labels": [
+      "C",
+      "D"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 26,
+    "question": "distance from A to B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 27,
+    "question": "What is the distance from A to B?",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 28,
+    "question": "Find the distance from A to B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 29,
+    "question": "Calculate the distance from A to B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 30,
+    "question": "Measure the distance from A to B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 31,
+    "question": "distance between A and B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 32,
+    "question": "What is the distance between A and B?",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 33,
+    "question": "Find the distance between points A and B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 34,
+    "question": "Calculate the distance between point A and point B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 35,
+    "question": "Measure the distance between A and B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 36,
+    "question": "How far is A from B?",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 37,
+    "question": "How far are A and B apart?",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 38,
+    "question": "Tell me the distance from A to B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 39,
+    "question": "Give me the distance between A and B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 40,
+    "question": "Compute the distance from A to B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 41,
+    "question": "Work out the distance between A and B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 42,
+    "question": "Please find the distance from A to B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 43,
+    "question": "Can you measure the distance between A and B?",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 44,
+    "question": "Could you calculate the distance from point A to point B?",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 45,
+    "question": "What is the straight-line distance from A to B?",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 46,
+    "question": "Find the Euclidean distance between A and B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 47,
+    "question": "What is the separation between A and B?",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 48,
+    "question": "Find the length between A and B",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 49,
+    "question": "distance from A to B now",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 50,
+    "question": "Kindly measure the distance from A to B in units",
+    "labels": [
+      "A",
+      "B"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 51,
+    "question": "distance from D to C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 52,
+    "question": "What is the distance from D to C?",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 53,
+    "question": "Find the distance from D to C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 54,
+    "question": "Calculate the distance from D to C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 55,
+    "question": "Measure the distance from D to C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 56,
+    "question": "distance between D and C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 57,
+    "question": "What is the distance between D and C?",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 58,
+    "question": "Find the distance between points D and C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 59,
+    "question": "Calculate the distance between point D and point C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 60,
+    "question": "Measure the distance between D and C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 61,
+    "question": "How far is D from C?",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 62,
+    "question": "How far are D and C apart?",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 63,
+    "question": "Tell me the distance from D to C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 64,
+    "question": "Give me the distance between D and C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 65,
+    "question": "Compute the distance from D to C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 66,
+    "question": "Work out the distance between D and C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 67,
+    "question": "Please find the distance from D to C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 68,
+    "question": "Can you measure the distance between D and C?",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 69,
+    "question": "Could you calculate the distance from point D to point C?",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 70,
+    "question": "What is the straight-line distance from D to C?",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 71,
+    "question": "Find the Euclidean distance between D and C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 72,
+    "question": "What is the separation between D and C?",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 73,
+    "question": "Find the length between D and C",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 74,
+    "question": "distance from D to C now",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 75,
+    "question": "Kindly measure the distance from D to C in units",
+    "labels": [
+      "D",
+      "C"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 76,
+    "question": "distance from P to Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 77,
+    "question": "What is the distance from P to Q?",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 78,
+    "question": "Find the distance from P to Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 79,
+    "question": "Calculate the distance from P to Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 80,
+    "question": "Measure the distance from P to Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 81,
+    "question": "distance between P and Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 82,
+    "question": "What is the distance between P and Q?",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 83,
+    "question": "Find the distance between points P and Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 84,
+    "question": "Calculate the distance between point P and point Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 85,
+    "question": "Measure the distance between P and Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 86,
+    "question": "How far is P from Q?",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 87,
+    "question": "How far are P and Q apart?",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 88,
+    "question": "Tell me the distance from P to Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 89,
+    "question": "Give me the distance between P and Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 90,
+    "question": "Compute the distance from P to Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 91,
+    "question": "Work out the distance between P and Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 92,
+    "question": "Please find the distance from P to Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 93,
+    "question": "Can you measure the distance between P and Q?",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 94,
+    "question": "Could you calculate the distance from point P to point Q?",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 95,
+    "question": "What is the straight-line distance from P to Q?",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 96,
+    "question": "Find the Euclidean distance between P and Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 97,
+    "question": "What is the separation between P and Q?",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 98,
+    "question": "Find the length between P and Q",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 99,
+    "question": "distance from P to Q now",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 100,
+    "question": "Kindly measure the distance from P to Q in units",
+    "labels": [
+      "P",
+      "Q"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 101,
+    "question": "distance from A1 to B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 102,
+    "question": "What is the distance from A1 to B2?",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 103,
+    "question": "Find the distance from A1 to B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 104,
+    "question": "Calculate the distance from A1 to B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 105,
+    "question": "Measure the distance from A1 to B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 106,
+    "question": "distance between A1 and B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 107,
+    "question": "What is the distance between A1 and B2?",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 108,
+    "question": "Find the distance between points A1 and B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 109,
+    "question": "Calculate the distance between point A1 and point B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 110,
+    "question": "Measure the distance between A1 and B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 111,
+    "question": "How far is A1 from B2?",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 112,
+    "question": "How far are A1 and B2 apart?",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 113,
+    "question": "Tell me the distance from A1 to B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 114,
+    "question": "Give me the distance between A1 and B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 115,
+    "question": "Compute the distance from A1 to B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 116,
+    "question": "Work out the distance between A1 and B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 117,
+    "question": "Please find the distance from A1 to B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 118,
+    "question": "Can you measure the distance between A1 and B2?",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 119,
+    "question": "Could you calculate the distance from point A1 to point B2?",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 120,
+    "question": "What is the straight-line distance from A1 to B2?",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 121,
+    "question": "Find the Euclidean distance between A1 and B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 122,
+    "question": "What is the separation between A1 and B2?",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 123,
+    "question": "Find the length between A1 and B2",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 124,
+    "question": "distance from A1 to B2 now",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 125,
+    "question": "Kindly measure the distance from A1 to B2 in units",
+    "labels": [
+      "A1",
+      "B2"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 126,
+    "question": "distance from M to N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 127,
+    "question": "What is the distance from M to N?",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 128,
+    "question": "Find the distance from M to N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 129,
+    "question": "Calculate the distance from M to N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 130,
+    "question": "Measure the distance from M to N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 131,
+    "question": "distance between M and N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 132,
+    "question": "What is the distance between M and N?",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 133,
+    "question": "Find the distance between points M and N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 134,
+    "question": "Calculate the distance between point M and point N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 135,
+    "question": "Measure the distance between M and N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 136,
+    "question": "How far is M from N?",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 137,
+    "question": "How far are M and N apart?",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 138,
+    "question": "Tell me the distance from M to N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 139,
+    "question": "Give me the distance between M and N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 140,
+    "question": "Compute the distance from M to N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 141,
+    "question": "Work out the distance between M and N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 142,
+    "question": "Please find the distance from M to N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 143,
+    "question": "Can you measure the distance between M and N?",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 144,
+    "question": "Could you calculate the distance from point M to point N?",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 145,
+    "question": "What is the straight-line distance from M to N?",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 146,
+    "question": "Find the Euclidean distance between M and N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 147,
+    "question": "What is the separation between M and N?",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 148,
+    "question": "Find the length between M and N",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 149,
+    "question": "distance from M to N now",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  },
+  {
+    "id": 150,
+    "question": "Kindly measure the distance from M to N in units",
+    "labels": [
+      "M",
+      "N"
+    ],
+    "intent": "FIND.DISTANCE"
+  }
+]

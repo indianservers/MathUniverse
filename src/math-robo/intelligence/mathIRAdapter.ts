@@ -1,4 +1,5 @@
 import {validateImportedScene} from './importValidation';
+import {analyticParentIds} from './analyticConstraints';
 import {safeAst} from '../kernel/safeExpression';
 import {validateMathObjectGraph,type MathDefinition,type MathObjectGraph,type MathObjectIR} from '../../math-foundation/mathIR';
 import {vertices,center} from './geometryQueries';
@@ -17,7 +18,7 @@ export function canonicalObjectGraph(scene:Pick<RoboSceneContext,'objects'>):Mat
  const objects:MathObjectIR[]=scene.objects.map(object=>{
   const d=definition(object),command=object.command;
   if(command.roboSchemaVersion!==undefined&&command.roboSchemaVersion!==1)throw new Error('Unsupported persisted Ruhi command schema version.');
-  return {id:object.id,aliases:object.label?[object.label]:[],definition:d,state:command.roboDefinitionState??(d.kind==='unsupported'?{status:'unsupported',reason:d.reason}:{status:'defined'}),unit:{symbol:object.type==='plot'?'1':'u',dimension:object.type==='plot'?'dimensionless':'length',scaleToBase:1},domain:'REAL',assumptions:[],dependencies:[...new Set(command.roboDependency?.parents.map(p=>p.objectId)??[])]};
+  return {id:object.id,aliases:object.label?[object.label]:[],definition:d,state:command.roboDefinitionState??(d.kind==='unsupported'?{status:'unsupported',reason:d.reason}:{status:'defined'}),unit:{symbol:object.type==='plot'?'1':'u',dimension:object.type==='plot'?'dimensionless':'length',scaleToBase:1},domain:'REAL',assumptions:[],dependencies:[...new Set([...(command.roboDependency?.parents.map(p=>p.objectId)??[]),...analyticParentIds(object,scene)])]};
  });
  const graph:MathObjectGraph={schema:'ruhi-math-object-graph',version:1,objects};validateMathObjectGraph(graph);return graph;
 }

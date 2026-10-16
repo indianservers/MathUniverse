@@ -9,6 +9,7 @@ export type VisualCommand = {
   action?:'create'|'update';
   objectId?:string;
   fitDimensions?:boolean;
+  roboAppearanceOnly?:boolean;
   roboControl?: 'delete'|'visibility'|'select'|'deselect';
   /** Clear every object in the active workspace, including native objects. */
   roboSchemaVersion?: number;
@@ -31,6 +32,7 @@ export type VisualCommand = {
   linearExtent?:'line'|'segment';
   roboPlane?:{point:number[];normal:number[];exactCoefficients:string[]};
   roboDependency?:import('../math-robo/intelligence/workspaceDependencies').RoboDependency;
+  roboAnalyticConstraint?:import('../math-robo/intelligence/analyticConstraints').AnalyticConstraint;
 };
 export type Interpretation={command?:VisualCommand;message:string};
 export function modeForPath(path:string):IntelligenceMode {

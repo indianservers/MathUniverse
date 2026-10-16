@@ -33,7 +33,7 @@ import {CorrectionQueue} from '../math-robo/intelligence/correctionCandidates';
 
 const EmbeddedGraph = lazy(() => import('../studios/geometry/GeometryEmbeddedGraph'));
 const EmbeddedSolid = lazy(() => import('../studios/geometry/GeometryEmbeddedSolid'));
-export type RuhiResponse = { objectIds?:string[]; clarification?:import('../math-foundation/executionOutcome').ClarificationRequirement; status?:string; candidates?:string[]; navigation?:import('../math-robo/intelligence/types').RoboResult['navigation']; execution?:import('../math-foundation/executionOutcome').ExecutionOutcome; id:string; text:string; command?:VisualCommand; steps?:string[]; confidence?:string; verification?:import('../math-robo/kernel/types').VerificationStatus; conditions?:string[]; errorBound?:string; method?:string };
+export type RuhiResponse = { followUps?:import('../math-robo/intelligence/types').RoboResult['followUps']; objectIds?:string[]; clarification?:import('../math-foundation/executionOutcome').ClarificationRequirement; status?:string; candidates?:string[]; navigation?:import('../math-robo/intelligence/types').RoboResult['navigation']; execution?:import('../math-foundation/executionOutcome').ExecutionOutcome; id:string; text:string; command?:VisualCommand; steps?:string[]; confidence?:string; verification?:import('../math-robo/kernel/types').VerificationStatus; conditions?:string[]; errorBound?:string; method?:string };
 
 export default function OfflineMathAssistant() {
   const { pathname,search } = useLocation();const navigate=useNavigate();
@@ -134,14 +134,14 @@ export default function OfflineMathAssistant() {
       if(await spatialRequest(question))return latestResponse.current;
       {
         const semantic=await runSemanticAssistant(question,mode,pathname+search);if(currentRoute.current!==routeAtStart)return;setSemanticDebug(semantic);
-        const objectIds=[...new Set(semantic.plan.commands.flatMap(command=>{try{return command.target?[resolveTarget(command.target,liveEngine(mode).snapshot()).id]:semantic.effects.filter(effect=>!!effect.objectId&&!effect.roboControl).map(effect=>effect.objectId!);}catch{return [];}}))];
+        const objectIds=[...new Set(semantic.plan.commands.flatMap(command=>{try{return command.targets?command.targets.map(target=>resolveTarget(target,liveEngine(mode).snapshot()).id):command.target?[resolveTarget(command.target,liveEngine(mode).snapshot()).id]:semantic.effects.filter(effect=>!!effect.objectId&&!effect.roboControl).map(effect=>effect.objectId!);}catch{return [];}}))];
         if(semantic.status!=='unhandled'){
           setAnswerSource(semantic.plan.commands.some(command=>command.source.action==='correction')?'Your correction':semantic.neural?'Ruhi Intelligence v5.2 · local model + validated geometry engine':'Ruhi Intelligence v5.2 · validated local semantic engine');
           roboEvents.emit({type:semantic.status==='success'?'answer':semantic.status==='ambiguous'?'unknown':'incorrect'});
           animateRoboResult(mode,semantic);
           const kernel = semantic.engineExecution?.metadata?.kernel as import('../math-robo/kernel/types').KernelResult | undefined;
           if(semantic.navigation&&!semantic.navigation.requiresConfirmation){navigate(semantic.navigation.path);return;}
-          const answer:RuhiResponse={objectIds,clarification:semantic.clarification,candidates:semantic.candidates,status:semantic.status,navigation:semantic.navigation,execution:semantic.execution,conditions:kernel?.conditions,errorBound:kernel?.errorBound,method:semantic.execution?.evidence.method,id:crypto.randomUUID(),text:semantic.message,command:semantic.status==='success'?semantic.effects.filter(c=>!c.roboControl&&!c.roboClearAll).at(-1):undefined,steps:semantic.engineExecution?.steps??(objectIds.length&&semantic.plan.commands.some(command=>command.action==='FIND')?[semantic.message]:undefined),verification:semantic.engineExecution?.verificationStatus??semantic.verification?.status};setResponse(answer);return answer;
+          const answer:RuhiResponse={followUps:semantic.followUps,objectIds,clarification:semantic.clarification,candidates:semantic.candidates,status:semantic.status,navigation:semantic.navigation,execution:semantic.execution,conditions:kernel?.conditions,errorBound:kernel?.errorBound,method:semantic.execution?.evidence.method,id:crypto.randomUUID(),text:semantic.message,command:semantic.status==='success'?semantic.effects.filter(c=>!c.roboControl&&!c.roboClearAll).at(-1):undefined,steps:semantic.engineExecution?.steps??(objectIds.length&&semantic.plan.commands.some(command=>command.action==='FIND')?[semantic.message]:undefined),verification:semantic.engineExecution?.verificationStatus??semantic.verification?.status};setResponse(answer);return answer;
         }
       }
       const objects=roboObjects.current.flatMap(command=>{

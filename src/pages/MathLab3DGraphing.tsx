@@ -8,6 +8,9 @@ import {registerRoboProjector} from '../math-robo/character/workspaceAdapter';
 import { ImmersiveBoundary } from "../workspace/immersive/ImmersiveInteractionManager";
 import { Line, OrbitControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
+import {Graph3DAuditProbe} from '../graph-studio/command-audit/Graph3DAuditProbe';
+import AssistantGraphMesh from '../offline-intelligence/AssistantGraphMesh';
+import {AssistantSceneVisibility} from '../offline-intelligence/AssistantSceneVisibility';
 import * as THREE from "three";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Trash2 } from "lucide-react";
@@ -440,6 +443,8 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
       ) : (
         <ThreeSceneWrapper key={cameraKey} height="100%" mobileHeight="100%" interactionLabel="Drag to orbit - wheel/pinch zoom - shift-drag pan" cameraPosition={cameraPosition} fov={46} quality="high" chrome="cinematic" showHint={false} sceneOverlay={`radial-gradient(circle at 68% 22%, ${graphTheme.backgroundAccent}99, transparent 42%), linear-gradient(180deg, transparent, ${graphTheme.background}cc)`} sceneLabel={autoRotate && !reducedMotion ? "3D graphing - rotating" : undefined} sceneSummary={`${selectedSurface.name}, a ${selectedSurface.kind} 3D layer. Domain scale ${xRange} by ${yRange}.`} className="h-full rounded-none border-0">
           <color attach="background" args={[graphTheme.background]} />
+          {import.meta.env.DEV && <Graph3DAuditProbe />}
+          <AssistantSceneVisibility surfaces={surfaces}/>
           <ambientLight intensity={graphThemeId === "minimal-pearl" ? 0.88 : 0.58} />
           <hemisphereLight args={[graphTheme.gradient.at(-1)?.color ?? "#ffffff", graphTheme.background, 0.72]} />
           <directionalLight position={[5, 8, 6]} intensity={graphThemeId === "arctic-glass" ? 1.65 : 1.25} color={graphTheme.gradient.at(-1)?.color} />
@@ -803,6 +808,7 @@ function MathLab3DGraphingContent({ embedded }: { embedded?: EmbeddedGraphOption
 }
 
 function buildAdvancedLayer(surface: Graph3DSurface, variables: GraphStudioVariable[], xRange: number, yRange: number, resolution: number): AdvancedLayerResult {
+  if(surface.roboMesh||surface.roboCommand)return {};
   const intrinsic = surface.kind === "parametric" ? new Set(["u", "v"]) : surface.kind === "curve" ? new Set(["t"]) : new Set<string>();
   const activeVariables = variables.filter((variable) => !intrinsic.has(variable.name.toLowerCase()));
   const resolve = (value: string) => substituteGraphVariables(value, activeVariables);
@@ -955,6 +961,7 @@ function buildBeautifulSurfacePresets(): BeautifulSurfacePreset[] {
 }
 
 function Graph3DLayer({ surface, samples, advanced, theme, selected, interactive, onPick, onSelect, clip }: { surface: Graph3DSurface; samples?: SurfaceSampleResult; advanced?: AdvancedLayerResult; onSelect?:()=>void; theme: Graph3DTheme; selected: boolean; interactive: boolean; onPick: (point: THREE.Vector3) => void; clip: { axis: SliceAxis; value: number } | null }) {
+  if(surface.roboMesh&&surface.sourceCommand)return <AssistantGraphMesh surface={surface} onSelect={onSelect}/>;
   if(surface.roboCommand)return <DirectedObject3D command={{...surface.roboCommand,color:selected?theme.selection:surface.colorHigh}} swapYZ eventProps={{onClick:(event:{stopPropagation:()=>void;point:THREE.Vector3})=>{event.stopPropagation();onSelect?.();onPick(event.point);}}}/>;
   if (surface.kind === "explicit" && surface.coordinateMode === "cartesian" && !surface.adaptive && samples) {
     return <group><SurfaceMesh samples={samples} palette={surface.palette} colorLow={surface.colorLow} colorHigh={surface.colorHigh} wireframe={surface.wireframe} opacity={surface.opacity} theme={theme} selected={selected} interactive={interactive} onPick={onPick} twoSided={surface.twoSided} fillBelow={surface.fillBelow} domainPredicate={surface.domainPredicate} clip={clip} />{surface.samplingAnimation && <SamplingSweep samples={samples} active theme={theme} />}{surface.showPoints && <SamplePointCloud samples={samples} color={theme.point} />}</group>;

@@ -8,6 +8,7 @@ export type AdvancedLayerResult = { mesh?: Graph3DMesh; curve?: Graph3DPoint[]; 
 export type MobileSamplingInput = { surfaces: Graph3DSurface[]; variables: GraphStudioVariable[]; xRange: number; yRange: number; resolution: number };
 export type MobileSamplingResult = { sampled: Array<{ item: Graph3DSurface; samples: SurfaceSampleResult }>; advanced: Record<string, AdvancedLayerResult> };
 function buildAdvancedLayer(surface: Graph3DSurface, variables: GraphStudioVariable[], xRange: number, yRange: number, resolution: number): AdvancedLayerResult {
+  if(surface.roboMesh||surface.roboCommand)return {};
   const intrinsic = surface.kind === "parametric" ? new Set(["u", "v"]) : surface.kind === "curve" ? new Set(["t"]) : new Set<string>();
   const activeVariables = variables.filter((variable) => !intrinsic.has(variable.name.toLowerCase()));
   const resolve = (value: string) => substituteGraphVariables(value, activeVariables);

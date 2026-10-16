@@ -1,4 +1,5 @@
 import {canonicalObjectGraph} from './mathIRAdapter';
+import {refreshAnalyticConstraints} from './analyticConstraints';
 import {planeFromPoints3,linePlane3} from '../kernel/geometry3d';
 import {evaluate,type GeomObject} from '../../studios/geometry/construction/constructionEngine';
 import {add3,scale3,point3} from '../../workspace/geometry3dKernel';
@@ -7,13 +8,14 @@ import {vertices,relationship} from './geometryQueries';
 import type {RoboObjectDescriptor,RoboSceneContext} from './types';
 import type {VisualCommand} from '../../offline-intelligence/commands';
 export type DependencyRef={objectId:string;vertex?:number;edge?:[number,number]};
-export type RoboDependency={kind:'midpoint'|'median'|'centroid'|'triangle'|'polygon'|'line'|'perp'|'parallel'|'intersection'|'tangent'|'circumcircle'|'incircle'|'plane3'|'perpPlane3'|'intersection3';parents:DependencyRef[];index?:number;angle?:number};
+export type RoboDependency={kind:'perpBisector'|'midpoint'|'median'|'centroid'|'triangle'|'polygon'|'line'|'perp'|'parallel'|'intersection'|'tangent'|'circumcircle'|'incircle'|'plane3'|'perpPlane3'|'intersection3';parents:DependencyRef[];index?:number;angle?:number};
 export function vertexReference(object:RoboObjectDescriptor,index:number):DependencyRef{return {objectId:object.id,vertex:index};}
 export function recomputeRoboDependencies(scene:RoboSceneContext):VisualCommand[]{
+  const analyticEffects=refreshAnalyticConstraints(scene);
   canonicalObjectGraph(scene);
-  if(!scene.objects.some(o=>o.command.roboDependency))return [];
+  if(!scene.objects.some(o=>o.command.roboDependency))return analyticEffects;
   if(scene.activeMode.endsWith('3d')){
-    const effects:VisualCommand[]=[],visited=new Set<string>(),visiting=new Set<string>();
+    const effects:VisualCommand[]=[...analyticEffects],visited=new Set<string>(),visiting=new Set<string>();
     const refresh=(object:RoboObjectDescriptor)=>{
       if(visited.has(object.id))return;if(visiting.has(object.id))throw new Error('The construction contains a dependency cycle.');visiting.add(object.id);
       const definition=object.command.roboDependency;
@@ -53,7 +55,7 @@ export function recomputeRoboDependencies(scene:RoboSceneContext):VisualCommand[
     if(o.type==='line')graph.push(base(o.id,'line',vs.slice(0,2).map((_,i)=>`${o.id}:v${i}`)));
     else if(vs.length>=3)graph.push(base(o.id,'polygon',vs.map((_,i)=>`${o.id}:v${i}`)));
   }
-  const world=evaluate(graph),effects:VisualCommand[]=[];
+  const world=evaluate(graph),effects:VisualCommand[]=[...analyticEffects];
   for(const o of scene.objects){if(!o.command.roboDependency)continue;const definition=o.command.roboDependency,evaluated=world[o.id],invalidContact=definition.kind==='tangent'&&definition.parents.length>1&&!relationship([scene.objects.find(p=>p.id===definition.parents[1].objectId)!,scene.objects.find(p=>p.id===definition.parents[0].objectId)!],'POINT_ON_CIRCLE');if(!evaluated||evaluated.undefinedReason||invalidContact){if(o.command.roboVisible!==false){const hidden={...o.command,action:'update' as const,roboVisible:false,roboDefinitionState:{status:'undefined' as const,reason:evaluated?.undefinedReason??'No defined construction or invalid tangent contact.'}};effects.push(hidden);o.command=hidden;}continue;}
     const command=structuredClone(o.command);command.action='update';command.roboDefinitionState={status:'defined'};command.roboVisible=true;command.rotation=[0,0,0];command.scale=1;command.roboExplicitVertices=true;
     if(o.type==='circle'&&evaluated.circle){command.points=[[evaluated.circle.center.x,evaluated.circle.center.y]];command.radius=evaluated.circle.r;}

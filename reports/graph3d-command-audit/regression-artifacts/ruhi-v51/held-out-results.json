@@ -1,0 +1,105 @@
+{
+  "trainingUsage": "none",
+  "exactCases": [
+    {
+      "passed": true,
+      "elapsedMs": 9.96429999999998,
+      "status": "verified_exact"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 0.7624999999999318,
+      "status": "verified_exact"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 1.3700000000000045,
+      "status": "unverified"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 0.5736000000000558,
+      "status": "verified_exact"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 184.8093,
+      "status": "unverified"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 1.1246999999999616,
+      "status": "unverified"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 6.668099999999981,
+      "status": "unverified"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 1.3742000000002008,
+      "status": "unverified"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 1.5220999999999094,
+      "status": "unverified"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 2.1699999999998454,
+      "status": "unverified"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 0.7025999999998476,
+      "status": "verified_numerical"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 0.1981999999998152,
+      "status": "verified_numerical"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 0.287900000000036,
+      "status": "unverified"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 0.2748999999998887,
+      "status": "unverified"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 0.13980000000015025,
+      "status": "verified_exact"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 0.10339999999996508,
+      "status": "verified_exact"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 0.10759999999982028,
+      "status": "unverified"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 0.44079999999985375,
+      "status": "verified_exact"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 0.39170000000012806,
+      "status": "verified_exact"
+    },
+    {
+      "passed": true,
+      "elapsedMs": 0.40790000000015425,
+      "status": "verified_exact"
+    }
+  ]
+}

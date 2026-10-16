@@ -66,7 +66,7 @@ async function commitVisualCommand(mode: IntelligenceMode, command: VisualComman
 }
 
 export async function applyVisualCommand(mode:IntelligenceMode,command:VisualCommand,hint?:{angle?:number;pivot?:number[]}){
-  if(command.roboControl||typeof requestAnimationFrame==='undefined')return commitVisualCommand(mode,command);
+  if(command.roboAppearanceOnly||command.roboControl||typeof requestAnimationFrame==='undefined')return commitVisualCommand(mode,command);
   await waitForRoboWorkspace(mode);
   const handler=handlers.get(mode);if(!handler)return commitVisualCommand(mode,command);
   const live=readRoboObject(mode,known.get(mode)?.get(command.objectId!)??command);

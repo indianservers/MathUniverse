@@ -1,6 +1,6 @@
 import type { IntelligenceMode, VisualCommand } from '../../offline-intelligence/commands';
 export type RoboMode = IntelligenceMode;
-export type RoboTarget = string | { id?: string; name?: string; type?: string; color?: string; index?: number; relation?: 'nearest'|'largest'|'smallest'|'longest'|'leftmost'|'horizontal'|'vertical'|'above'|'below'|'through'|'inside'; to?: string; reference?:'lastReferenced' };
+export type RoboTarget = string | { id?: string; name?: string; type?: string; color?: string; selected?:boolean; linearExtent?:'line'|'segment'; index?: number; relation?: 'nearest'|'largest'|'smallest'|'longest'|'leftmost'|'horizontal'|'vertical'|'above'|'below'|'through'|'inside'; to?: string; reference?:'lastReferenced' };
 export type RoboParameters = {
   preserveTargets?: RoboTarget[];
   width?: number; height?: number; depth?: number; radius?: number; diameter?: number; sides?: number;
@@ -33,6 +33,7 @@ export type RoboSceneContext = {
   activeTool?:string;viewport?:unknown;responseDepth?:'compact'|'standard'|'detailed';
 };
 export type RoboResult = {
+  followUps?:{label:string;prompt:string}[];
   navigation?:{path:string;title:string;requiresConfirmation:boolean};
   execution?:import('../../math-foundation/executionOutcome').ExecutionOutcome;
   clarification?:import('../../math-foundation/executionOutcome').ClarificationRequirement;

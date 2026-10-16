@@ -1,0 +1,1502 @@
+[
+  {
+    "id": 1,
+    "question": "Which points have integer coordinates?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 2,
+    "question": "Which points have equal x- and y-coordinates?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 3,
+    "question": "Which points satisfy x + y = 5?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 4,
+    "question": "Which points lie on the line y = 2x?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 5,
+    "question": "Which points are exactly 5 units from A?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 6,
+    "question": "Which points are within 3 units of B?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 7,
+    "question": "Which points lie outside a radius of 4 units from C?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 8,
+    "question": "Which points are closer to A than to B?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 9,
+    "question": "Which points are equally distant from C and D?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 10,
+    "question": "Which point is closest to the x-axis?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 11,
+    "question": "Which point is farthest from the y-axis?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 12,
+    "question": "Which points lie between the lines x = 1 and x = 4?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 13,
+    "question": "Which points lie inside the rectangle defined by (0, 0) and (5, 4)?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 14,
+    "question": "Which points lie on the boundary of square ABCD?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 15,
+    "question": "Which points lie inside both circles c and d?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 16,
+    "question": "Which points lie inside circle c but outside circle d?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 17,
+    "question": "Which point is nearest to A after excluding A itself?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 18,
+    "question": "Which three points are nearest to (1, 2)?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 19,
+    "question": "List the points in increasing order of their x-coordinates.",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 20,
+    "question": "List the points by their distance from B.",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 21,
+    "question": "Which point is directly above C?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 22,
+    "question": "Which point is directly to the right of D?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 23,
+    "question": "Which points lie below line AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 24,
+    "question": "Which side of directed line AB contains P?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 25,
+    "question": "Which points lie inside triangle ABC but outside circle c?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 26,
+    "question": "What are the components of vector AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 27,
+    "question": "What is the magnitude of vector AC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 28,
+    "question": "What is the unit vector in the direction from B to C?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 29,
+    "question": "What is the sum of vectors AB and CD?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 30,
+    "question": "What is the difference between vectors AC and AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 31,
+    "question": "What is the dot product of vectors AB and CD?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 32,
+    "question": "What is the signed 2D cross product of vectors AB and AC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 33,
+    "question": "Are vectors AB and CD pointing in the same direction?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 34,
+    "question": "Are vectors AB and CD pointing in opposite directions?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 35,
+    "question": "What is the projection of vector AB onto vector AC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 36,
+    "question": "What is the scalar component of AB along CD?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 37,
+    "question": "What vector must be added to AB to obtain AC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 38,
+    "question": "What is the shortest distance between segments AB and CD?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 39,
+    "question": "What is the shortest distance from P to segment AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 40,
+    "question": "Is the nearest point on segment AB to P an endpoint?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 41,
+    "question": "What is the shortest distance from P to ray AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 42,
+    "question": "How far must B move along ray AB to make AB 10 units long?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 43,
+    "question": "What fraction of segment AB lies inside circle c?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 44,
+    "question": "Where does segment AB enter and leave rectangle CDEF?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 45,
+    "question": "What is the length of the part of AB inside triangle CDE?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 46,
+    "question": "Which drawn segment is nearest to point P?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 47,
+    "question": "Which drawn segment has the steepest absolute slope?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 48,
+    "question": "What is the angle that vector AB makes with the positive x-axis?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 49,
+    "question": "What is the Manhattan distance between A and B?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 50,
+    "question": "How much shorter is the direct path AC than the route through B?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 51,
+    "question": "What is the equation of the perpendicular bisector of AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 52,
+    "question": "What is the equation of the line through P with slope 3?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 53,
+    "question": "What is the equation of the line through P parallel to AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 54,
+    "question": "What is the equation of the line through P perpendicular to AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 55,
+    "question": "At what angle does line AB meet the positive x-axis?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 56,
+    "question": "Which drawn lines have positive slope?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 57,
+    "question": "Which drawn lines have negative slope?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 58,
+    "question": "Which drawn lines have undefined slope?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 59,
+    "question": "Which pairs of drawn lines are perpendicular?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 60,
+    "question": "Which pairs of drawn lines are parallel?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 61,
+    "question": "Do three selected lines meet at one point?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 62,
+    "question": "What triangle is formed by the intersections of these three lines?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 63,
+    "question": "Are A and B on the same side of line CD?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 64,
+    "question": "Does line AB separate points C and D?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 65,
+    "question": "What are the equations of the two angle bisectors of lines AB and CD?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 66,
+    "question": "Which angle at the intersection of AB and CD is obtuse?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 67,
+    "question": "Are angles ABC and CBD adjacent?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 68,
+    "question": "Do angles ABC and CBD form a linear pair?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 69,
+    "question": "Are angles ABC and DBE vertically opposite?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 70,
+    "question": "What is the sum of angles ABC and CBD?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 71,
+    "question": "What is the difference between angles ABC and DEF?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 72,
+    "question": "Which ray lies inside angle ABC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 73,
+    "question": "Is ray BP inside the smaller angle ABC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 74,
+    "question": "What is the clockwise angle from ray BA to ray BC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 75,
+    "question": "What is the counterclockwise angle from ray BA to ray BC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 76,
+    "question": "What is the radius of the circumcircle of triangle ABC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 77,
+    "question": "What is the radius of the incircle of triangle ABC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 78,
+    "question": "What is the length of the median from B?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 79,
+    "question": "What is the length of the angle bisector from A?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 80,
+    "question": "What is the length of the altitude from C?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 81,
+    "question": "Where does the altitude from B meet line AC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 82,
+    "question": "Does the altitude from A meet segment BC or its extension?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 83,
+    "question": "Is the orthocenter inside triangle ABC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 84,
+    "question": "Is the circumcenter outside triangle ABC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 85,
+    "question": "Are the centroid, circumcenter, and orthocenter collinear?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 86,
+    "question": "What is the ratio of the distances from the centroid to A and to the midpoint of BC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 87,
+    "question": "Where does the angle bisector from B meet AC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 88,
+    "question": "Does the angle bisector from A divide BC in the ratio AB:AC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 89,
+    "question": "What is the area of the triangle formed by the three side midpoints?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 90,
+    "question": "What is the perimeter of the medial triangle of ABC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 91,
+    "question": "Which side should be used as the base to obtain the smallest altitude?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 92,
+    "question": "Do triangles ABC and ABD have equal areas?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 93,
+    "question": "What is the ratio of the areas of triangles ABC and ADE?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 94,
+    "question": "Do triangles ABC and DEF have the same orientation?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 95,
+    "question": "Is the vertex order A, B, C clockwise or counterclockwise?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 96,
+    "question": "Which vertex of triangle ABC is nearest to its centroid?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 97,
+    "question": "Is triangle ABC contained entirely inside triangle DEF?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 98,
+    "question": "Do triangles ABC and DEF overlap?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 99,
+    "question": "What is the area shared by triangles ABC and DEF?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 100,
+    "question": "Which triangle formed from the existing points has the greatest area?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 101,
+    "question": "What is the equation of circle c?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 102,
+    "question": "What is the power of point P with respect to circle c?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 103,
+    "question": "How far is P from the nearest point on circle c?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 104,
+    "question": "How far is P from the farthest point on circle c?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 105,
+    "question": "What is the shortest distance between circles c and d?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 106,
+    "question": "Is circle c completely inside circle d?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 107,
+    "question": "Are circles c and d disjoint?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 108,
+    "question": "How many common tangents do circles c and d have?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 109,
+    "question": "What is the equation of the radical axis of circles c and d?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 110,
+    "question": "What is the length of a tangent from P to circle c?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 111,
+    "question": "Where are the tangent contact points from P to circle c?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 112,
+    "question": "Is chord AB longer than chord CD in circle c?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 113,
+    "question": "Which chord of circle c is closest to its center?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 114,
+    "question": "What is the perpendicular distance from the center of c to chord AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 115,
+    "question": "Does the perpendicular from the center of c bisect chord AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 116,
+    "question": "What is the central angle subtended by chord AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 117,
+    "question": "What is the major arc length from A to B on circle c?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 118,
+    "question": "What is the area of the major sector AOB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 119,
+    "question": "What is the area of the minor circular segment cut off by chord AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 120,
+    "question": "What is the angle between the tangent at A and chord AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 121,
+    "question": "Are A, B, C, and D concyclic?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 122,
+    "question": "What circle passes through A, B, and C?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 123,
+    "question": "Does line AB cut circle c in two distinct points?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 124,
+    "question": "What is the area of overlap between circles c and d?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 125,
+    "question": "What is the area inside circle c but outside circle d?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 126,
+    "question": "Is quadrilateral ABCD a kite?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 127,
+    "question": "Does quadrilateral ABCD have exactly one pair of parallel opposite sides?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 128,
+    "question": "Is ABCD an isosceles trapezoid?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 129,
+    "question": "Is ABCD a cyclic quadrilateral?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 130,
+    "question": "Do the opposite angles of ABCD add up to 180 degrees?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 131,
+    "question": "What is the height of parallelogram ABCD using AB as the base?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 132,
+    "question": "What is the area of rhombus ABCD using its diagonals?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 133,
+    "question": "What is the length of the midsegment of trapezoid ABCD?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 134,
+    "question": "Where do the diagonals of quadrilateral ABCD intersect?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 135,
+    "question": "In what ratio does the diagonal intersection divide AC?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 136,
+    "question": "How many diagonals does polygon ABCDEF have?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 137,
+    "question": "Which diagonals of polygon ABCDE lie entirely inside it?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 138,
+    "question": "What is the centroid of polygon ABCDE?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 139,
+    "question": "What is the perimeter of the convex hull of the existing points?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 140,
+    "question": "Which points are vertices of the convex hull?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 141,
+    "question": "Which existing points lie strictly inside the convex hull?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 142,
+    "question": "Is polygon ABCDE contained inside circle c?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 143,
+    "question": "Does polygon ABCDE contain the center of circle c?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 144,
+    "question": "What is the smallest axis-aligned rectangle containing polygon ABCDE?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 145,
+    "question": "What is the width of polygon ABCDE\u2019s bounding box?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 146,
+    "question": "What is the height of polygon ABCDE\u2019s bounding box?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 147,
+    "question": "What is the signed area of polygon ABCDE?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 148,
+    "question": "Does reversing the vertex order change the polygon\u2019s signed area?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 149,
+    "question": "Which vertex of polygon ABCDE has the smallest interior angle?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 150,
+    "question": "What is the sum of the exterior turning angles of polygon ABCDE?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 151,
+    "question": "What is the reflection of A across the line y = x?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 152,
+    "question": "What is the reflection of B across the line y = \u2212x?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 153,
+    "question": "What is the reflection of C across the line x = 2?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 154,
+    "question": "What is the reflection of D across the line y = 3?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 155,
+    "question": "Where would A move under a translation by vector CD?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 156,
+    "question": "Where would P be after a 30-degree clockwise rotation about B?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 157,
+    "question": "What are the coordinates of A after a dilation of scale factor \u22122 about C?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 158,
+    "question": "What dilation centered at O takes A to B?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 159,
+    "question": "Can a translation map triangle ABC exactly onto triangle DEF?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 160,
+    "question": "Which vertex corresponds to A when triangles ABC and DEF are matched by translation?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 161,
+    "question": "What rotation about O maps A onto B?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 162,
+    "question": "Does reflecting A across AB leave A fixed?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 163,
+    "question": "Which points remain fixed under reflection across line CD?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 164,
+    "question": "Which points remain fixed under a 90-degree rotation about O?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 165,
+    "question": "What is the result of reflecting P across the x-axis and then the y-axis?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 166,
+    "question": "What is the result of reflecting P across two parallel lines?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 167,
+    "question": "What rotation is equivalent to reflections across two intersecting lines?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 168,
+    "question": "Does scaling triangle ABC by \u22121 reverse its orientation?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 169,
+    "question": "What is the perimeter scale factor when a shape is enlarged by 1.5?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 170,
+    "question": "What scale factor would make triangle ABC\u2019s area four times as large?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 171,
+    "question": "What translation takes the midpoint of AB to the origin?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 172,
+    "question": "What rotation would make segment AB horizontal?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 173,
+    "question": "What is the image of circle c under reflection across line AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 174,
+    "question": "What is the image of circle c under a dilation centered at P with scale factor 2?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 175,
+    "question": "Is the transformation from ABC to DEF orientation-preserving or orientation-reversing?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 176,
+    "question": "Draw a line through the two selected points.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 177,
+    "question": "Draw a ray starting at C and passing through D.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 178,
+    "question": "Construct an equilateral triangle on segment AB.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 179,
+    "question": "Construct a square with AB as one side.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 180,
+    "question": "Construct a rectangle with base AB and height 4.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 181,
+    "question": "Construct a regular pentagon centered at O with A as one vertex.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 182,
+    "question": "Construct the two tangents from P to circle c.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 183,
+    "question": "Draw the tangent to circle c at A.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 184,
+    "question": "Draw the common external tangents of circles c and d.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 185,
+    "question": "Draw the common internal tangents of circles c and d.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 186,
+    "question": "Construct a circle with AB as its diameter.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 187,
+    "question": "Construct a circle centered at P and tangent to line AB.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 188,
+    "question": "Construct a circle centered at A with the same radius as circle c.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 189,
+    "question": "Mark the points where circle c crosses the x-axis.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 190,
+    "question": "Mark the points where circle c crosses the y-axis.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 191,
+    "question": "Divide segment AB into five equal parts.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 192,
+    "question": "Construct the external bisector of angle ABC.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 193,
+    "question": "Draw all three altitudes of triangle ABC.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 194,
+    "question": "Draw the Euler line of triangle ABC.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 195,
+    "question": "Construct the nine-point circle of triangle ABC.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 196,
+    "question": "Draw the medial triangle of triangle ABC.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 197,
+    "question": "Construct the parallelogram with consecutive vertices A, B, and C.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 198,
+    "question": "Construct the image of polygon ABCDE after translation by vector PQ.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 199,
+    "question": "Construct the convex hull of all existing points.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 200,
+    "question": "Mark the two points on circle c that are farthest apart along a line parallel to AB.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 201,
+    "question": "Move A along the x-axis until AB becomes 5 units long.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 202,
+    "question": "Move P onto the nearest point of line AB.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 203,
+    "question": "Move P onto the nearest point of circle c.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 204,
+    "question": "Move B while keeping AB equal to 4 units.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 205,
+    "question": "Move C while keeping its distance from A and B equal.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 206,
+    "question": "Keep A and B fixed and move C to make triangle ABC right-angled at C.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 207,
+    "question": "Keep A and B fixed and move C to make triangle ABC equilateral.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 208,
+    "question": "Keep the area of triangle ABC constant while moving C parallel to AB.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 209,
+    "question": "Lock the length of AB while allowing the segment to rotate.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 210,
+    "question": "Constrain P to remain on segment AB.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 211,
+    "question": "Constrain P to remain on circle c.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 212,
+    "question": "Keep line AB parallel to line CD when A moves.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 213,
+    "question": "Keep line AB perpendicular to line CD when C moves.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 214,
+    "question": "Keep circle c tangent to line AB while its center moves.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 215,
+    "question": "Trace the path of P while P stays 3 units from A.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 216,
+    "question": "Trace the locus of points equally distant from A and B.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 217,
+    "question": "Trace the midpoint of AB while B moves around circle c.",
+    "mode": "geometry2d",
+    "mutates": true
+  },
+  {
+    "id": 218,
+    "question": "How does triangle ABC\u2019s area change when C moves straight upward?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 219,
+    "question": "What stays unchanged when triangle ABC is translated?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 220,
+    "question": "Which measurements change when triangle ABC is stretched only horizontally?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 221,
+    "question": "Does the circumcenter move when one vertex of triangle ABC moves?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 222,
+    "question": "What happens to the circumcircle as A, B, and C approach collinearity?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 223,
+    "question": "At what position of P do triangles ABP and CDP have equal areas?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 224,
+    "question": "Can P lie on both circle c and line AB?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 225,
+    "question": "How many positions of P satisfy PA = 3 and PB = 4?",
+    "mode": "geometry2d",
+    "mutates": false
+  },
+  {
+    "id": 226,
+    "question": "What are the three coordinates of point P?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 227,
+    "question": "Which points lie in the xy-plane?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 228,
+    "question": "Which points lie above the xy-plane?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 229,
+    "question": "What is the distance from P to the z-axis?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 230,
+    "question": "What is the distance from P to the xy-plane?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 231,
+    "question": "What is the equation of the plane through A, B, and C?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 232,
+    "question": "Do A, B, C, and D lie in the same plane?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 233,
+    "question": "What is the normal vector of plane ABC?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 234,
+    "question": "What is the angle between line AB and plane CDE?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 235,
+    "question": "What is the angle between planes ABC and DEF?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 236,
+    "question": "Are lines AB and CD skew?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 237,
+    "question": "What is the shortest distance between skew lines AB and CD?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 238,
+    "question": "Where does line AB intersect plane CDE?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 239,
+    "question": "What is the line of intersection of planes ABC and DEF?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 240,
+    "question": "What is the perpendicular projection of P onto plane ABC?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 241,
+    "question": "What is the volume of tetrahedron ABCD?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 242,
+    "question": "What is the surface area of tetrahedron ABCD?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 243,
+    "question": "Is point P inside tetrahedron ABCD?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 244,
+    "question": "What is the space diagonal of the selected cuboid?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 245,
+    "question": "What is the angle between a cube\u2019s space diagonal and one of its edges?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 246,
+    "question": "What is the cross-section of this cube by plane ABC?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 247,
+    "question": "Where does line AB intersect sphere s?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 248,
+    "question": "Is plane ABC tangent to sphere s?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 249,
+    "question": "What is the radius of the circle where plane ABC cuts sphere s?",
+    "mode": "geometry3d",
+    "mutates": false
+  },
+  {
+    "id": 250,
+    "question": "What is the volume shared by the two selected spheres?",
+    "mode": "geometry3d",
+    "mutates": false
+  }
+]

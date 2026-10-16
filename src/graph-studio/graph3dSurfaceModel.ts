@@ -40,6 +40,8 @@ export type Graph3DSurface = {
   yMin: number;
   yMax: number;
   roboCommand?:import('../offline-intelligence/commands').VisualCommand;
+  /** Native local mesh for assistant solids; avoids sampling every triangular face. */
+  roboMesh?:boolean;
   sourceCommand?:import('../offline-intelligence/commands').VisualCommand;
   displayTransform?: { position: [number,number,number]; rotation: [number,number,number]; scale:number };
   zMin: number;

@@ -27,7 +27,17 @@ export function validateImportedScene(value:unknown,mode:RoboSceneContext['activ
   if(command.kind==='plot'){if(typeof command.expression!=='string')throw new Error('Missing plot expression.');if(dimension===2)compileFunctionExpression(command.expression);else compileTwoVariableExpression(command.expression);}
   const parents=(command.roboDependency as {parents?:unknown})?.parents;
   if(parents!==undefined&&(!Array.isArray(parents)||parents.length>256||parents.some(p=>!p||typeof p.objectId!=='string'||p.vertex!==undefined&&(!Number.isInteger(p.vertex)||p.vertex<0||p.vertex>4095))))throw new Error('Invalid dependency references.');
+  const rule=command.roboAnalyticConstraint as Record<string,unknown>|undefined;
+  if(rule!==undefined){
+    if(dimension!==2||!rule||typeof rule!=='object'||!['line','circle','distance','equidistant','rightAngle','parallelEndpoint','tangentCircle'].includes(String(rule.kind))||!Array.isArray(rule.parents)||rule.parents.length>3||rule.parents.some(p=>typeof p!=='string'||p.length>256))throw new Error('Invalid analytic constraint.');
+    if(rule.length!==undefined&&(typeof rule.length!=='number'||!Number.isFinite(rule.length)||rule.length<=0||rule.length>1e9))throw new Error('Invalid constraint length.');
+    for(const key of ['anchor','direction'])if(rule[key]!==undefined&&!point(rule[key]))throw new Error('Invalid constraint vector.');
+    if(rule.sign!==undefined&&rule.sign!==1&&rule.sign!==-1||rule.segment!==undefined&&typeof rule.segment!=='boolean'||rule.perpendicular!==undefined&&typeof rule.perpendicular!=='boolean')throw new Error('Invalid constraint options.');
+    const count=rule.kind==='parallelEndpoint'?3:['equidistant','rightAngle','tangentCircle'].includes(String(rule.kind))?2:rule.kind==='line'?rule.anchor&&rule.direction?0:2:1;
+    if(rule.parents.length!==count||rule.kind==='distance'&&rule.length===undefined||rule.kind==='parallelEndpoint'&&rule.length===undefined)throw new Error('Invalid constraint parameters.');
+  }
  }
+ for(const raw of scene.objects){const object=raw as {command:{roboAnalyticConstraint?:{parents:string[]}}};for(const parent of object.command.roboAnalyticConstraint?.parents??[])if(!ids.has(parent)&&!scene.objects.some((p:{label?:string;command?:{roboVertexLabels?:string[]}})=>p.label?.toLowerCase()===parent.toLowerCase()||p.command?.roboVertexLabels?.some(label=>label.toLowerCase()===parent.toLowerCase())))throw new Error('Dangling analytic constraint parent.');}
  for(const key of ['selectedIds','activeObjectIds','previousSelectedIds','recentlyReferencedObjectIds','lastQueryTargets'] as const){const list=scene[key];if(list!==undefined&&(!Array.isArray(list)||list.length>1000||list.some(id=>typeof id!=='string'||!ids.has(id))))throw new Error('Dangling persisted references.');}
  for(const key of ['lastCreated','lastModified','lastReferenced'])if(scene[key]!==undefined&&!ids.has(String(scene[key])))throw new Error('Dangling persisted object.');
  if(scene.previousCommands!==undefined&&(!Array.isArray(scene.previousCommands)||scene.previousCommands.length>100)||scene.previousResults!==undefined&&(!Array.isArray(scene.previousResults)||scene.previousResults.length>100))throw new Error('Invalid conversation history budget.');

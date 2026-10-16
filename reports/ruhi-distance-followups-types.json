@@ -1,0 +1,18 @@
+{
+  "files": [
+    "src/math-robo/intelligence/distanceConversation.ts",
+    "src/math-robo/intelligence/distanceConversation.test.ts",
+    "src/math-robo/intelligence/conversationEngine.ts",
+    "src/math-robo/intelligence/liveAssistant.ts",
+    "src/math-robo/intelligence/semanticParser.ts",
+    "src/math-robo/intelligence/semanticEngine.ts",
+    "src/math-robo/intelligence/semanticDataset.ts",
+    "src/math-robo/intelligence/executionPlanner.ts",
+    "src/math-robo/intelligence/geometryEvidence.ts",
+    "src/math-robo/intelligence/geometryCurriculumLive.test.ts",
+    "src/offline-intelligence/RuhiChatWindow.tsx",
+    "src/offline-intelligence/OfflineMathAssistant.tsx",
+    "src/vite-env.d.ts"
+  ],
+  "errors": []
+}

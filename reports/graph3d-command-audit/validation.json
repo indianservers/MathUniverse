@@ -1,0 +1,32 @@
+{
+  "broadSweep": {
+    "total": 7989,
+    "passed": 7985,
+    "failed": 4,
+    "recorded": true,
+    "log": "regression-complete.log"
+  },
+  "targetedRegression": {
+    "total": 35,
+    "passed": 35,
+    "failed": 0,
+    "recorded": true,
+    "passedSuite": true
+  },
+  "timeoutRetests": {
+    "total": 32,
+    "passed": 32,
+    "failed": 0,
+    "recorded": true,
+    "passedSuite": true
+  },
+  "allSweepFailuresRetested": true,
+  "dashboardPassed": true,
+  "compositionPassed": true,
+  "typecheck": {
+    "passed": false,
+    "diagnostics": 123,
+    "log": "typecheck-final.log"
+  },
+  "buildPassed": true
+}

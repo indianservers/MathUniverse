@@ -1,0 +1,2802 @@
+[
+  {
+    "id": 1,
+    "question": "Change all circles color to red",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 2,
+    "question": "Change all lines color to red",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 3,
+    "question": "Change all triangles color to red",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 4,
+    "question": "Change all polygons color to red",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 5,
+    "question": "Change all points color to red",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 6,
+    "question": "Make every circle blue",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "blue"
+    }
+  },
+  {
+    "id": 7,
+    "question": "Make every line blue",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "blue"
+    }
+  },
+  {
+    "id": 8,
+    "question": "Make every triangle blue",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "blue"
+    }
+  },
+  {
+    "id": 9,
+    "question": "Make every polygon blue",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "blue"
+    }
+  },
+  {
+    "id": 10,
+    "question": "Make every point blue",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "blue"
+    }
+  },
+  {
+    "id": 11,
+    "question": "Color each circle green",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "green"
+    }
+  },
+  {
+    "id": 12,
+    "question": "Color each line green",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "green"
+    }
+  },
+  {
+    "id": 13,
+    "question": "Color each triangle green",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "green"
+    }
+  },
+  {
+    "id": 14,
+    "question": "Color each polygon green",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "green"
+    }
+  },
+  {
+    "id": 15,
+    "question": "Color each point green",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "green"
+    }
+  },
+  {
+    "id": 16,
+    "question": "Recolor all circles orange",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "orange"
+    }
+  },
+  {
+    "id": 17,
+    "question": "Recolor all lines orange",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "orange"
+    }
+  },
+  {
+    "id": 18,
+    "question": "Recolor all triangles orange",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "orange"
+    }
+  },
+  {
+    "id": 19,
+    "question": "Recolor all polygons orange",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "orange"
+    }
+  },
+  {
+    "id": 20,
+    "question": "Recolor all points orange",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "orange"
+    }
+  },
+  {
+    "id": 21,
+    "question": "Set the color of all circles to purple",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "purple"
+    }
+  },
+  {
+    "id": 22,
+    "question": "Set the color of all lines to purple",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "purple"
+    }
+  },
+  {
+    "id": 23,
+    "question": "Set the color of all triangles to purple",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "purple"
+    }
+  },
+  {
+    "id": 24,
+    "question": "Set the color of all polygons to purple",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "purple"
+    }
+  },
+  {
+    "id": 25,
+    "question": "Set the color of all points to purple",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "purple"
+    }
+  },
+  {
+    "id": 26,
+    "question": "Paint all circles yellow",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "yellow"
+    }
+  },
+  {
+    "id": 27,
+    "question": "Paint all lines yellow",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "yellow"
+    }
+  },
+  {
+    "id": 28,
+    "question": "Paint all triangles yellow",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "yellow"
+    }
+  },
+  {
+    "id": 29,
+    "question": "Paint all polygons yellow",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "yellow"
+    }
+  },
+  {
+    "id": 30,
+    "question": "Paint all points yellow",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "yellow"
+    }
+  },
+  {
+    "id": 31,
+    "question": "Give all circles a pink color",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "pink"
+    }
+  },
+  {
+    "id": 32,
+    "question": "Give all lines a pink color",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "pink"
+    }
+  },
+  {
+    "id": 33,
+    "question": "Give all triangles a pink color",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "pink"
+    }
+  },
+  {
+    "id": 34,
+    "question": "Give all polygons a pink color",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "pink"
+    }
+  },
+  {
+    "id": 35,
+    "question": "Give all points a pink color",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "pink"
+    }
+  },
+  {
+    "id": 36,
+    "question": "Please change all selected circles to teal",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "circle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "teal"
+    }
+  },
+  {
+    "id": 37,
+    "question": "Please change all selected lines to teal",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "line",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "teal"
+    }
+  },
+  {
+    "id": 38,
+    "question": "Please change all selected triangles to teal",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "triangle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "teal"
+    }
+  },
+  {
+    "id": 39,
+    "question": "Please change all selected polygons to teal",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "polygon",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "teal"
+    }
+  },
+  {
+    "id": 40,
+    "question": "Please change all selected points to teal",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "point",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "teal"
+    }
+  },
+  {
+    "id": 41,
+    "question": "Colour all blue circles red",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 42,
+    "question": "Colour all blue lines red",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 43,
+    "question": "Colour all blue triangles red",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 44,
+    "question": "Colour all blue polygons red",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 45,
+    "question": "Colour all blue points red",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 46,
+    "question": "Can you make every green circle cyan?",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "color": "cyan"
+    }
+  },
+  {
+    "id": 47,
+    "question": "Can you make every green line cyan?",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "color": "cyan"
+    }
+  },
+  {
+    "id": 48,
+    "question": "Can you make every green triangle cyan?",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "color": "cyan"
+    }
+  },
+  {
+    "id": 49,
+    "question": "Can you make every green polygon cyan?",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "color": "cyan"
+    }
+  },
+  {
+    "id": 50,
+    "question": "Can you make every green point cyan?",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "color": "cyan"
+    }
+  },
+  {
+    "id": 51,
+    "question": "Apply magenta to all circles",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "magenta"
+    }
+  },
+  {
+    "id": 52,
+    "question": "Apply magenta to all lines",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "magenta"
+    }
+  },
+  {
+    "id": 53,
+    "question": "Apply magenta to all triangles",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "magenta"
+    }
+  },
+  {
+    "id": 54,
+    "question": "Apply magenta to all polygons",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "magenta"
+    }
+  },
+  {
+    "id": 55,
+    "question": "Apply magenta to all points",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "magenta"
+    }
+  },
+  {
+    "id": 56,
+    "question": "Use navy blue for all selected circles",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "circle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "navy blue"
+    }
+  },
+  {
+    "id": 57,
+    "question": "Use navy blue for all selected lines",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "line",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "navy blue"
+    }
+  },
+  {
+    "id": 58,
+    "question": "Use navy blue for all selected triangles",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "triangle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "navy blue"
+    }
+  },
+  {
+    "id": 59,
+    "question": "Use navy blue for all selected polygons",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "polygon",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "navy blue"
+    }
+  },
+  {
+    "id": 60,
+    "question": "Use navy blue for all selected points",
+    "action": "CHANGE",
+    "subAction": "COLOR",
+    "type": "point",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "navy blue"
+    }
+  },
+  {
+    "id": 61,
+    "question": "Fill all circles red",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 62,
+    "question": "Fill all triangles red",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 63,
+    "question": "Fill all polygons red",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 64,
+    "question": "Set the interior color of every circle to blue",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "blue"
+    }
+  },
+  {
+    "id": 65,
+    "question": "Set the interior color of every triangle to blue",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "blue"
+    }
+  },
+  {
+    "id": 66,
+    "question": "Set the interior color of every polygon to blue",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "blue"
+    }
+  },
+  {
+    "id": 67,
+    "question": "Change the fill of all circles to green",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "green"
+    }
+  },
+  {
+    "id": 68,
+    "question": "Change the fill of all triangles to green",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "green"
+    }
+  },
+  {
+    "id": 69,
+    "question": "Change the fill of all polygons to green",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "green"
+    }
+  },
+  {
+    "id": 70,
+    "question": "Make the inside of each circle orange",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "orange"
+    }
+  },
+  {
+    "id": 71,
+    "question": "Make the inside of each triangle orange",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "orange"
+    }
+  },
+  {
+    "id": 72,
+    "question": "Make the inside of each polygon orange",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "orange"
+    }
+  },
+  {
+    "id": 73,
+    "question": "Give all circles a purple fill",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "purple"
+    }
+  },
+  {
+    "id": 74,
+    "question": "Give all triangles a purple fill",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "purple"
+    }
+  },
+  {
+    "id": 75,
+    "question": "Give all polygons a purple fill",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "purple"
+    }
+  },
+  {
+    "id": 76,
+    "question": "Apply yellow fill to all selected circles",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "circle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "yellow"
+    }
+  },
+  {
+    "id": 77,
+    "question": "Apply yellow fill to all selected triangles",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "triangle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "yellow"
+    }
+  },
+  {
+    "id": 78,
+    "question": "Apply yellow fill to all selected polygons",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "polygon",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "yellow"
+    }
+  },
+  {
+    "id": 79,
+    "question": "Colour the interior of all blue circles pink",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "color": "pink"
+    }
+  },
+  {
+    "id": 80,
+    "question": "Colour the interior of all blue triangles pink",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "color": "pink"
+    }
+  },
+  {
+    "id": 81,
+    "question": "Colour the interior of all blue polygons pink",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "color": "pink"
+    }
+  },
+  {
+    "id": 82,
+    "question": "Use teal for the fill of every green circle",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "color": "teal"
+    }
+  },
+  {
+    "id": 83,
+    "question": "Use teal for the fill of every green triangle",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "color": "teal"
+    }
+  },
+  {
+    "id": 84,
+    "question": "Use teal for the fill of every green polygon",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "color": "teal"
+    }
+  },
+  {
+    "id": 85,
+    "question": "Please paint the inside of all circles cyan",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "cyan"
+    }
+  },
+  {
+    "id": 86,
+    "question": "Please paint the inside of all triangles cyan",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "cyan"
+    }
+  },
+  {
+    "id": 87,
+    "question": "Please paint the inside of all polygons cyan",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "cyan"
+    }
+  },
+  {
+    "id": 88,
+    "question": "Can you set all selected circles fill color to magenta?",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "circle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "magenta"
+    }
+  },
+  {
+    "id": 89,
+    "question": "Can you set all selected triangles fill color to magenta?",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "triangle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "magenta"
+    }
+  },
+  {
+    "id": 90,
+    "question": "Can you set all selected polygons fill color to magenta?",
+    "action": "CHANGE",
+    "subAction": "FILL_COLOR",
+    "type": "polygon",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "magenta"
+    }
+  },
+  {
+    "id": 91,
+    "question": "Change the outline of all circles to red",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 92,
+    "question": "Change the outline of all lines to red",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 93,
+    "question": "Change the outline of all triangles to red",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 94,
+    "question": "Change the outline of all polygons to red",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 95,
+    "question": "Change the outline of all points to red",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "red"
+    }
+  },
+  {
+    "id": 96,
+    "question": "Set every circle border color to blue",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "blue"
+    }
+  },
+  {
+    "id": 97,
+    "question": "Set every line border color to blue",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "blue"
+    }
+  },
+  {
+    "id": 98,
+    "question": "Set every triangle border color to blue",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "blue"
+    }
+  },
+  {
+    "id": 99,
+    "question": "Set every polygon border color to blue",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "blue"
+    }
+  },
+  {
+    "id": 100,
+    "question": "Set every point border color to blue",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "blue"
+    }
+  },
+  {
+    "id": 101,
+    "question": "Make the stroke of each circle green",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "green"
+    }
+  },
+  {
+    "id": 102,
+    "question": "Make the stroke of each line green",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "green"
+    }
+  },
+  {
+    "id": 103,
+    "question": "Make the stroke of each triangle green",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "green"
+    }
+  },
+  {
+    "id": 104,
+    "question": "Make the stroke of each polygon green",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "green"
+    }
+  },
+  {
+    "id": 105,
+    "question": "Make the stroke of each point green",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "color": "green"
+    }
+  },
+  {
+    "id": 106,
+    "question": "Recolor all selected circles outlines orange",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "circle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "orange"
+    }
+  },
+  {
+    "id": 107,
+    "question": "Recolor all selected lines outlines orange",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "line",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "orange"
+    }
+  },
+  {
+    "id": 108,
+    "question": "Recolor all selected triangles outlines orange",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "triangle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "orange"
+    }
+  },
+  {
+    "id": 109,
+    "question": "Recolor all selected polygons outlines orange",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "polygon",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "orange"
+    }
+  },
+  {
+    "id": 110,
+    "question": "Recolor all selected points outlines orange",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "point",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "color": "orange"
+    }
+  },
+  {
+    "id": 111,
+    "question": "Use purple for the outline of all blue circles",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "color": "purple"
+    }
+  },
+  {
+    "id": 112,
+    "question": "Use purple for the outline of all blue lines",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "color": "purple"
+    }
+  },
+  {
+    "id": 113,
+    "question": "Use purple for the outline of all blue triangles",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "color": "purple"
+    }
+  },
+  {
+    "id": 114,
+    "question": "Use purple for the outline of all blue polygons",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "color": "purple"
+    }
+  },
+  {
+    "id": 115,
+    "question": "Use purple for the outline of all blue points",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "color": "purple"
+    }
+  },
+  {
+    "id": 116,
+    "question": "Apply teal stroke to every green circle",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "color": "teal"
+    }
+  },
+  {
+    "id": 117,
+    "question": "Apply teal stroke to every green line",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "line",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "color": "teal"
+    }
+  },
+  {
+    "id": 118,
+    "question": "Apply teal stroke to every green triangle",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "color": "teal"
+    }
+  },
+  {
+    "id": 119,
+    "question": "Apply teal stroke to every green polygon",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "color": "teal"
+    }
+  },
+  {
+    "id": 120,
+    "question": "Apply teal stroke to every green point",
+    "action": "CHANGE",
+    "subAction": "STROKE_COLOR",
+    "type": "point",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "color": "teal"
+    }
+  },
+  {
+    "id": 121,
+    "question": "Make all circles thicker",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidthFactor": 2
+    }
+  },
+  {
+    "id": 122,
+    "question": "Make all lines thicker",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidthFactor": 2
+    }
+  },
+  {
+    "id": 123,
+    "question": "Make all triangles thicker",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidthFactor": 2
+    }
+  },
+  {
+    "id": 124,
+    "question": "Make all polygons thicker",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidthFactor": 2
+    }
+  },
+  {
+    "id": 125,
+    "question": "Make all points thicker",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidthFactor": 2
+    }
+  },
+  {
+    "id": 126,
+    "question": "Make every circle thinner",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidthFactor": 0.5
+    }
+  },
+  {
+    "id": 127,
+    "question": "Make every line thinner",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidthFactor": 0.5
+    }
+  },
+  {
+    "id": 128,
+    "question": "Make every triangle thinner",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidthFactor": 0.5
+    }
+  },
+  {
+    "id": 129,
+    "question": "Make every polygon thinner",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidthFactor": 0.5
+    }
+  },
+  {
+    "id": 130,
+    "question": "Make every point thinner",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidthFactor": 0.5
+    }
+  },
+  {
+    "id": 131,
+    "question": "Set all circles stroke width to 5 pixels",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidth": 5
+    }
+  },
+  {
+    "id": 132,
+    "question": "Set all lines stroke width to 5 pixels",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidth": 5
+    }
+  },
+  {
+    "id": 133,
+    "question": "Set all triangles stroke width to 5 pixels",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidth": 5
+    }
+  },
+  {
+    "id": 134,
+    "question": "Set all polygons stroke width to 5 pixels",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidth": 5
+    }
+  },
+  {
+    "id": 135,
+    "question": "Set all points stroke width to 5 pixels",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidth": 5
+    }
+  },
+  {
+    "id": 136,
+    "question": "Change all selected circles line width to 2 px",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "circle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidth": 2
+    }
+  },
+  {
+    "id": 137,
+    "question": "Change all selected lines line width to 2 px",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "line",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidth": 2
+    }
+  },
+  {
+    "id": 138,
+    "question": "Change all selected triangles line width to 2 px",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "triangle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidth": 2
+    }
+  },
+  {
+    "id": 139,
+    "question": "Change all selected polygons line width to 2 px",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "polygon",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidth": 2
+    }
+  },
+  {
+    "id": 140,
+    "question": "Change all selected points line width to 2 px",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "point",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {
+      "lineWidth": 2
+    }
+  },
+  {
+    "id": 141,
+    "question": "Set the outline width of all blue circles to 4",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "lineWidth": 4
+    }
+  },
+  {
+    "id": 142,
+    "question": "Set the outline width of all blue lines to 4",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "line",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "lineWidth": 4
+    }
+  },
+  {
+    "id": 143,
+    "question": "Set the outline width of all blue triangles to 4",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "lineWidth": 4
+    }
+  },
+  {
+    "id": 144,
+    "question": "Set the outline width of all blue polygons to 4",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "lineWidth": 4
+    }
+  },
+  {
+    "id": 145,
+    "question": "Set the outline width of all blue points to 4",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "point",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {
+      "lineWidth": 4
+    }
+  },
+  {
+    "id": 146,
+    "question": "Make every green circle thicker",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "lineWidthFactor": 2
+    }
+  },
+  {
+    "id": 147,
+    "question": "Make every green line thicker",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "line",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "lineWidthFactor": 2
+    }
+  },
+  {
+    "id": 148,
+    "question": "Make every green triangle thicker",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "lineWidthFactor": 2
+    }
+  },
+  {
+    "id": 149,
+    "question": "Make every green polygon thicker",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "lineWidthFactor": 2
+    }
+  },
+  {
+    "id": 150,
+    "question": "Make every green point thicker",
+    "action": "CHANGE",
+    "subAction": "LINE_WIDTH",
+    "type": "point",
+    "selected": false,
+    "sourceColor": "green",
+    "parameters": {
+      "lineWidthFactor": 2
+    }
+  },
+  {
+    "id": 151,
+    "question": "Hide all circles",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 152,
+    "question": "Hide all lines",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 153,
+    "question": "Hide all triangles",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 154,
+    "question": "Hide all polygons",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 155,
+    "question": "Hide all points",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 156,
+    "question": "Conceal every circle",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 157,
+    "question": "Conceal every line",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 158,
+    "question": "Conceal every triangle",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 159,
+    "question": "Conceal every polygon",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 160,
+    "question": "Conceal every point",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 161,
+    "question": "Make each circle invisible",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 162,
+    "question": "Make each line invisible",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 163,
+    "question": "Make each triangle invisible",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 164,
+    "question": "Make each polygon invisible",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 165,
+    "question": "Make each point invisible",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 166,
+    "question": "Hide all selected circles",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 167,
+    "question": "Hide all selected lines",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 168,
+    "question": "Hide all selected triangles",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 169,
+    "question": "Hide all selected polygons",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 170,
+    "question": "Hide all selected points",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 171,
+    "question": "Set all blue circles invisible",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 172,
+    "question": "Set all blue lines invisible",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 173,
+    "question": "Set all blue triangles invisible",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 174,
+    "question": "Set all blue polygons invisible",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 175,
+    "question": "Set all blue points invisible",
+    "action": "HIDE",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 176,
+    "question": "Show all circles",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 177,
+    "question": "Show all lines",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 178,
+    "question": "Show all triangles",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 179,
+    "question": "Show all polygons",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 180,
+    "question": "Show all points",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 181,
+    "question": "Reveal every circle",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 182,
+    "question": "Reveal every line",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 183,
+    "question": "Reveal every triangle",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 184,
+    "question": "Reveal every polygon",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 185,
+    "question": "Reveal every point",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 186,
+    "question": "Make each circle visible",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 187,
+    "question": "Make each line visible",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 188,
+    "question": "Make each triangle visible",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 189,
+    "question": "Make each polygon visible",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 190,
+    "question": "Make each point visible",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 191,
+    "question": "Display all selected circles",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 192,
+    "question": "Display all selected lines",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 193,
+    "question": "Display all selected triangles",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 194,
+    "question": "Display all selected polygons",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 195,
+    "question": "Display all selected points",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 196,
+    "question": "Unhide all blue circles",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 197,
+    "question": "Unhide all blue lines",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 198,
+    "question": "Unhide all blue triangles",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 199,
+    "question": "Unhide all blue polygons",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 200,
+    "question": "Unhide all blue points",
+    "action": "SHOW",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 201,
+    "question": "Lock all circles",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 202,
+    "question": "Lock all lines",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 203,
+    "question": "Lock all triangles",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 204,
+    "question": "Lock all polygons",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 205,
+    "question": "Lock all points",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 206,
+    "question": "Freeze every circle",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 207,
+    "question": "Freeze every line",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 208,
+    "question": "Freeze every triangle",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 209,
+    "question": "Freeze every polygon",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 210,
+    "question": "Freeze every point",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 211,
+    "question": "Make each circle immovable",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 212,
+    "question": "Make each line immovable",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 213,
+    "question": "Make each triangle immovable",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 214,
+    "question": "Make each polygon immovable",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 215,
+    "question": "Make each point immovable",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 216,
+    "question": "Set all selected circles locked",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 217,
+    "question": "Set all selected lines locked",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 218,
+    "question": "Set all selected triangles locked",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 219,
+    "question": "Set all selected polygons locked",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 220,
+    "question": "Set all selected points locked",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 221,
+    "question": "Lock all blue circles",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 222,
+    "question": "Lock all blue lines",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 223,
+    "question": "Lock all blue triangles",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 224,
+    "question": "Lock all blue polygons",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 225,
+    "question": "Lock all blue points",
+    "action": "LOCK",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 226,
+    "question": "Unlock all circles",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 227,
+    "question": "Unlock all lines",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 228,
+    "question": "Unlock all triangles",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 229,
+    "question": "Unlock all polygons",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 230,
+    "question": "Unlock all points",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 231,
+    "question": "Unfreeze every circle",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 232,
+    "question": "Unfreeze every line",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 233,
+    "question": "Unfreeze every triangle",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 234,
+    "question": "Unfreeze every polygon",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 235,
+    "question": "Unfreeze every point",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 236,
+    "question": "Make each circle movable",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 237,
+    "question": "Make each line movable",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 238,
+    "question": "Make each triangle movable",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 239,
+    "question": "Make each polygon movable",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 240,
+    "question": "Make each point movable",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 241,
+    "question": "Set all selected circles unlocked",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 242,
+    "question": "Set all selected lines unlocked",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 243,
+    "question": "Set all selected triangles unlocked",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 244,
+    "question": "Set all selected polygons unlocked",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 245,
+    "question": "Set all selected points unlocked",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": true,
+    "sourceColor": null,
+    "parameters": {}
+  },
+  {
+    "id": 246,
+    "question": "Unlock all blue circles",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "circle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 247,
+    "question": "Unlock all blue lines",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "line",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 248,
+    "question": "Unlock all blue triangles",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "triangle",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 249,
+    "question": "Unlock all blue polygons",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "polygon",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  },
+  {
+    "id": 250,
+    "question": "Unlock all blue points",
+    "action": "UNLOCK",
+    "subAction": "OBJECT",
+    "type": "point",
+    "selected": false,
+    "sourceColor": "blue",
+    "parameters": {}
+  }
+]

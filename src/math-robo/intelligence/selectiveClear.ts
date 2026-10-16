@@ -1,5 +1,6 @@
 import {COLORS,FLAT_SHAPES,SOLID_SHAPES} from '../../offline-intelligence/shapeCatalog';
 import {ResolutionError,resolveTarget} from './targetResolver';
+import {analyticParentIds} from './analyticConstraints';
 import type {RoboTarget,RoboSceneContext} from './types';
 
 const kinds=[...new Set([...FLAT_SHAPES,...SOLID_SHAPES,'point','line','ray','vector','plot','graph','plane','arc','sector'])].sort((a,b)=>b.length-a.length);
@@ -35,7 +36,7 @@ export function preservedObjectIds(targets:RoboTarget[],scene:RoboSceneContext):
   matches.forEach(o=>keep.add(o.id));
  }
  // Preserve the defining construction too: a retained object cannot lose its parents.
- const visit=(id:string)=>{const object=scene.objects.find(o=>o.id===id);for(const parent of object?.command.roboDependency?.parents??[]){if(!keep.has(parent.objectId)){if(!scene.objects.some(o=>o.id===parent.objectId))throw new ResolutionError([],'The retained construction has a missing parent. Nothing was cleared.');keep.add(parent.objectId);visit(parent.objectId);}}};
+ const visit=(id:string)=>{const object=scene.objects.find(o=>o.id===id);const parents=[...(object?.command.roboDependency?.parents.map(p=>p.objectId)??[]),...(object?analyticParentIds(object,scene):[])];for(const parent of parents){if(!keep.has(parent)){if(!scene.objects.some(o=>o.id===parent))throw new ResolutionError([],'The retained construction has a missing parent. Nothing was cleared.');keep.add(parent);visit(parent);}}};
  for(const id of [...keep])visit(id);
  return keep;
 }

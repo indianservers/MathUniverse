@@ -3,13 +3,14 @@ import { compileFunctionExpression } from '../../utils/functionParser';
 const wordValues: Record<string,number> = {zero:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19,twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
 export function normalizeLanguage(phrase:string) {
   const typos:Record<string,string>={rectagle:'rectangle',rectangel:'rectangle',circel:'circle',circl:'circle',perpandicular:'perpendicular',perpendiculer:'perpendicular',intersecton:'intersection',radious:'radius',diametre:'diameter',diamter:'diameter',lenght:'length',midpont:'midpoint',paralel:'parallel',triangel:'triangle',coodinate:'coordinate',pls:'please',rad:'radius'};
-  return normalizeCommandSurface(phrase.toLowerCase().replace(/\b(?:rectagle|rectangel|circel|circl|perpandicular|perpendiculer|intersecton|radious|diametre|diamter|lenght|midpont|paralel|triangel|coodinate|pls|rad)\b/g,value=>typos[value])
+  return normalizeCommandSurface(phrase.toLowerCase().replace(/\b(upward|upwards|higher)\b/g,'up').replace(/\b(downward|downwards)\b/g,'down').replace(/\b(?:rectagle|rectangel|circel|circl|perpandicular|perpendiculer|intersecton|radious|diametre|diamter|lenght|midpont|paralel|triangel|coodinate|pls|rad)\b/g,value=>typos[value])
     .replace(/\b(twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)[ -](one|two|three|four|five|six|seven|eight|nine)\b/g,(_,a:string,b:string)=>String(wordValues[a]+wordValues[b]))
     .replace(/co-ordinate/g,'coordinate').replace(/\b(three|one|two|four|five|six|seven|eight|nine|zero) point (zero|one|two|three|four|five|six|seven|eight|nine)\b/g,(_,a:string,b:string)=>`${wordValues[a]}.${wordValues[b]}`)
     .replace(/\bnegative\s+/g,'-').replace(/°/g,' degrees').replace(/\bwhat's\b/g,'what is').replace(/\bthat's\b/g,'that is')
     .replace(/,{2,}/g,' ').replace(/!+/g,'').replace(/\s+/g,' ').trim()
     .replace(/mid[ -]point/g,'midpoint').replace(/one half/g,'0.5').replace(/three quarters/g,'0.75').replace(/minus\s+/g,'-')
     .replace(/\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)\b/g, word=>String(wordValues[word]))
+    .replace(/\b(\d+) thousand\b/g,(_,n:string)=>String(Number(n)*1000))
     .replace(/\b(that|this|another|other|previous|first|second|third|fourth|red|blue|green) 1\b/g,'$1 one')
     .replace(/\bcomma\b/g,',').replace(/\bsquared\b/g,'^2').replace(/\bcubed\b/g,'^3').replace(/\bplus\b/g,'+')
     .replace(/\bput (?:a |another )?(?:point|dot)\b/g,'create point').replace(/\bdot\b/g,'point')

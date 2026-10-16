@@ -1748,7 +1748,8 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
     if (workspaceView === 'geometry') {
       if(command.action==='update'&&!construction.points.some(p=>command.roboNativeIds?command.roboNativeIds.points.includes(p.id):p.id.startsWith(`${command.objectId}-`))&&!construction.loci.some(p=>p.id.startsWith(`${command.objectId}-`)))return 'The last Ruhi object was removed. Create an object again before editing it.';
       recordWorkspaceStep('Draw with offline intelligence', command.kind);
-      setConstruction(current=>solveConstruction(addIntelligenceGeometry(current,command)));
+      if(command.roboLocked!==undefined){const nativeId=command.roboNativeIds?.shape??command.roboNativeIds?.points[0]??`${command.objectId}-${command.kind==='point'?'p0':'shape'}`;setLockedGeometryIds(current=>command.roboLocked?[...new Set([...current,nativeId])]:current.filter(id=>id!==nativeId));}
+      setConstruction(current=>command.roboAppearanceOnly?addIntelligenceGeometry(current,command):solveConstruction(addIntelligenceGeometry(current,command)));
       return;
     }
     const id=command.objectId??crypto.randomUUID();
@@ -1772,7 +1773,7 @@ function MathWorkspaceContent({ initialView = "graph", singleView = false, dataP
     }
     const actual=readGeometry3dCommands().find(object=>object.objectId===command.objectId);
     return actual?{command:actual}:undefined;
-    },()=>workspaceView==='geometry'?{commands:nativeGeometryCommands(construction,id=>isKnownRoboObject('geometry2d',id)).map(command=>({...command,roboLocked:command.roboNativeIds?.points.some(id=>lockedGeometryIds.includes(id))??false})),selectedIds:selectedGeometry?[(isKnownRoboObject('geometry2d',selectedGeometry.id)?selectedGeometry.id.replace(/-(?:shape|p\d+)$/,''):selectedGeometry.id)]:undefined}:{commands:readGeometry3dCommands(),selectedIds:selected3d?[selected3d]:undefined});
+    },()=>workspaceView==='geometry'?{commands:nativeGeometryCommands(construction,id=>isKnownRoboObject('geometry2d',id)).map(command=>({...command,roboLocked:!!(command.roboNativeIds?.shape&&lockedGeometryIds.includes(command.roboNativeIds.shape)||command.roboNativeIds?.points.some(id=>lockedGeometryIds.includes(id)))})),selectedIds:selectedGeometry?[(isKnownRoboObject('geometry2d',selectedGeometry.id)?selectedGeometry.id.replace(/-(?:shape|p\d+)$/,''):selectedGeometry.id)]:undefined}:{commands:readGeometry3dCommands(),selectedIds:selected3d?[selected3d]:undefined});
   useEffect(() => {
     const begin = () => { if(workspaceView === "3d" || workspaceView === "geometry") { recordWorkspaceStep("Hand gesture", "Transform object with hand controls."); immersive3dTransaction.current=true; } };
     const end = () => { immersive3dTransaction.current=false; };

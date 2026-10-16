@@ -1,0 +1,4246 @@
+{
+  "generatedAt": "2026-10-15T14:32:53.234Z",
+  "url": "http://127.0.0.1:4317",
+  "browser": "Chromium / ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "coverage": "Full runSemanticAssistant → real mounted graph3d workspace → Three.js scene inspection. Frustum/finite-mesh assertions do not establish pixel-perfect visual correctness.",
+  "errors": [],
+  "results": [
+    {
+      "id": 1,
+      "category": "Object Creation",
+      "command": "Create a cube.",
+      "initialSetup": [],
+      "expected": {
+        "kind": "objects",
+        "count": 1,
+        "type": "cube"
+      },
+      "expectedVisibleResult": "Finite geometry for every visible logical object, inside the camera frustum; deletions absent. Rejected requests preserve the scene.",
+      "actualParserOutput": {
+        "rawPhrase": "Create a cube.",
+        "commands": [
+          {
+            "id": "9a89de47-ff56-4d56-a6aa-8f6ed5e6e171",
+            "rawPhrase": "Create a cube.",
+            "normalizedPhrase": "create a cube",
+            "detectedAction": "CREATE",
+            "action": "CREATE",
+            "subAction": "CUBE",
+            "mode": "graph3d",
+            "parameters": {
+              "legacy": {
+                "kind": "cube",
+                "dimension": "3d",
+                "points": [],
+                "width": 6,
+                "height": 6,
+                "depth": 6,
+                "radius": 3,
+                "sides": 6,
+                "color": "#06b6d4",
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": 1,
+                "action": "create",
+                "fitDimensions": false
+              },
+              "width": 6,
+              "height": 6,
+              "radius": 3,
+              "depth": 6,
+              "sides": 6
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": {
+              "type": "cube"
+            }
+          }
+        ],
+        "ir": [
+          {
+            "action": "CREATE",
+            "object": {
+              "kind": "cube",
+              "references": [
+                {
+                  "type": "cube"
+                }
+              ]
+            },
+            "parameters": {
+              "legacy": {
+                "kind": "cube",
+                "dimension": "3d",
+                "points": [],
+                "width": 6,
+                "height": 6,
+                "depth": 6,
+                "radius": 3,
+                "sides": 6,
+                "color": "#06b6d4",
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "scale": 1,
+                "action": "create",
+                "fitDimensions": false
+              },
+              "width": 6,
+              "height": 6,
+              "radius": 3,
+              "depth": 6,
+              "sides": 6
+            },
+            "constraints": {
+              "dimension": 3,
+              "finite": true,
+              "nondegenerate": false
+            },
+            "expected": {
+              "mutates": true,
+              "output": "object"
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "provenance": {
+              "action": "rule",
+              "subAction": "rule"
+            }
+          }
+        ],
+        "atomicity": "all-or-nothing",
+        "confidence": 1,
+        "contextSnapshotId": "e616bbb9-0ee3-4509-9e8f-2cc975d2a6f1",
+        "actionGraph": {
+          "schemaVersion": 1,
+          "atomicity": "all-or-nothing",
+          "nodes": [
+            {
+              "id": "9a89de47-ff56-4d56-a6aa-8f6ed5e6e171",
+              "action": "CREATE",
+              "subAction": "CUBE",
+              "dependsOn": [],
+              "references": [
+                {
+                  "type": "cube"
+                }
+              ],
+              "preconditions": [
+                "finite parameters",
+                "existing unambiguous targets",
+                "compatible dimensions",
+                "required: width"
+              ],
+              "output": "object"
+            }
+          ]
+        }
+      },
+      "actualExecutionResult": {
+        "status": "success",
+        "message": "Created 3D cube.",
+        "effects": [
+          {
+            "kind": "cube",
+            "dimension": "3d",
+            "points": [],
+            "width": 6,
+            "height": 6,
+            "depth": 6,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CU1",
+            "objectId": "1653ab04-00a3-42ed-8859-52759ed18e29"
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Create a cube.",
+          "commands": [
+            {
+              "id": "9a89de47-ff56-4d56-a6aa-8f6ed5e6e171",
+              "rawPhrase": "Create a cube.",
+              "normalizedPhrase": "create a cube",
+              "detectedAction": "CREATE",
+              "action": "CREATE",
+              "subAction": "CUBE",
+              "mode": "graph3d",
+              "parameters": {
+                "legacy": {
+                  "kind": "cube",
+                  "dimension": "3d",
+                  "points": [],
+                  "width": 6,
+                  "height": 6,
+                  "depth": 6,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": false
+                },
+                "width": 6,
+                "height": 6,
+                "radius": 3,
+                "depth": 6,
+                "sides": 6
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": {
+                "type": "cube"
+              }
+            }
+          ],
+          "ir": [
+            {
+              "action": "CREATE",
+              "object": {
+                "kind": "cube",
+                "references": [
+                  {
+                    "type": "cube"
+                  }
+                ]
+              },
+              "parameters": {
+                "legacy": {
+                  "kind": "cube",
+                  "dimension": "3d",
+                  "points": [],
+                  "width": 6,
+                  "height": 6,
+                  "depth": 6,
+                  "radius": 3,
+                  "sides": 6,
+                  "color": "#06b6d4",
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "scale": 1,
+                  "action": "create",
+                  "fitDimensions": false
+                },
+                "width": 6,
+                "height": 6,
+                "radius": 3,
+                "depth": 6,
+                "sides": 6
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "object"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "e616bbb9-0ee3-4509-9e8f-2cc975d2a6f1",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "9a89de47-ff56-4d56-a6aa-8f6ed5e6e171",
+                "action": "CREATE",
+                "subAction": "CUBE",
+                "dependsOn": [],
+                "references": [
+                  {
+                    "type": "cube"
+                  }
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions",
+                  "required: width"
+                ],
+                "output": "object"
+              }
+            ]
+          }
+        },
+        "parseMs": 0.20000001788139343,
+        "executionMs": 85.19999998807907,
+        "verification": {
+          "passed": true,
+          "checks": [
+            "Finite geometry and valid dimensions",
+            "Creation count"
+          ],
+          "status": "verified_numerical"
+        },
+        "explanation": "",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "149fc2c4-5538-4a77-9d3b-3cfc6036e78a",
+          "message": "Created 3D cube.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "CREATE",
+            "score": 0.9928501844406128
+          },
+          "subAction": {
+            "label": "CUBE",
+            "score": 0.6926283836364746
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9977522492408752
+          },
+          "objectType": {
+            "label": "cube",
+            "score": 0.724205493927002
+          }
+        },
+        "inferenceMs": 16.399999976158142,
+        "objects": 1,
+        "sceneHash": "[{\"id\":\"1653ab04-00a3-42ed-8859-52759ed18e29\",\"type\":\"cube\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+        "beforeHash": "[]"
+      },
+      "setupResults": [],
+      "before": [],
+      "after": [
+        {
+          "id": "1653ab04-00a3-42ed-8859-52759ed18e29",
+          "type": "cube",
+          "mode": "graph3d",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3,
+          "label": "CU1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "cube",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 6,
+            "depth": 6,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CU1",
+            "objectId": "1653ab04-00a3-42ed-8859-52759ed18e29",
+            "roboVisible": true
+          },
+          "vertices": [
+            [
+              1.8369701987210297e-16,
+              3,
+              0
+            ],
+            [
+              -2.5980762113533156,
+              1.5000000000000009,
+              0
+            ],
+            [
+              -2.5980762113533165,
+              -1.4999999999999991,
+              0
+            ],
+            [
+              -5.51091059616309e-16,
+              -3,
+              0
+            ],
+            [
+              2.598076211353315,
+              -1.5000000000000013,
+              0
+            ],
+            [
+              2.598076211353316,
+              1.5,
+              0
+            ]
+          ]
+        }
+      ],
+      "selectionBefore": [],
+      "selectionAfter": [
+        "1653ab04-00a3-42ed-8859-52759ed18e29"
+      ],
+      "renderBefore": {
+        "frames": 38,
+        "calls": 8,
+        "triangles": 26,
+        "objects": []
+      },
+      "renderAfter": {
+        "frames": 42,
+        "calls": 11,
+        "triangles": 52,
+        "objects": [
+          {
+            "layerId": "1653ab04-00a3-42ed-8859-52759ed18e29-0",
+            "vertices": 24,
+            "finite": true,
+            "inFrustum": true,
+            "fullyInFrustum": true,
+            "visible": true
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "Parsed action family",
+          "passed": true,
+          "actual": [
+            "CREATE"
+          ],
+          "expected": [
+            "CREATE"
+          ]
+        },
+        {
+          "name": "Execution succeeds",
+          "passed": true,
+          "actual": "Created 3D cube."
+        },
+        {
+          "name": "Logical object count",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "Object type exists",
+          "passed": true,
+          "actual": [
+            "cube"
+          ],
+          "expected": "cube"
+        },
+        {
+          "name": "Committed scene actually changes",
+          "passed": true
+        },
+        {
+          "name": "Preconditions executed successfully",
+          "passed": true,
+          "actual": []
+        },
+        {
+          "name": "GPU frame rendered",
+          "passed": true
+        },
+        {
+          "name": "Mesh coordinates finite",
+          "passed": true
+        },
+        {
+          "name": "Rendered mesh: CU1",
+          "passed": true,
+          "actual": [
+            {
+              "layerId": "1653ab04-00a3-42ed-8859-52759ed18e29-0",
+              "vertices": 24,
+              "finite": true,
+              "inFrustum": true,
+              "fullyInFrustum": true,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "name": "Full mesh bounds visible: CU1",
+          "passed": true
+        }
+      ],
+      "status": "passed",
+      "elapsedMs": 1533.199999988079,
+      "errorCategory": null,
+      "rootCause": null,
+      "fixVerified": false
+    },
+    {
+      "id": 27,
+      "category": "Delete & Reset",
+      "command": "Delete the last created object.",
+      "initialSetup": [
+        "Create cube at (1,2,3)",
+        "Create sphere radius 2 at (-3,0,0)",
+        "Create cylinder at (0,0,0)",
+        "Create cone",
+        "Create pyramid",
+        "Select the cube"
+      ],
+      "expected": {
+        "kind": "deleteOne"
+      },
+      "expectedVisibleResult": "Finite geometry for every visible logical object, inside the camera frustum; deletions absent. Rejected requests preserve the scene.",
+      "actualParserOutput": {
+        "rawPhrase": "Delete the last created object.",
+        "commands": [
+          {
+            "id": "0752e68b-c74b-4618-b6f9-63e077e9f9e8",
+            "rawPhrase": "Delete the last created object.",
+            "normalizedPhrase": "delete the last created object",
+            "detectedAction": "DELETE",
+            "action": "DELETE",
+            "subAction": "OBJECT",
+            "mode": "graph3d",
+            "parameters": {
+              "multiple": false
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "b04b915a-8e04-4cb9-a845-295d03200855"
+          }
+        ],
+        "ir": [
+          {
+            "action": "DELETE",
+            "object": {
+              "references": [
+                "b04b915a-8e04-4cb9-a845-295d03200855"
+              ]
+            },
+            "parameters": {
+              "multiple": false
+            },
+            "constraints": {
+              "dimension": 3,
+              "finite": true,
+              "nondegenerate": false
+            },
+            "expected": {
+              "mutates": true,
+              "output": "answer"
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "provenance": {
+              "action": "rule",
+              "subAction": "rule"
+            }
+          }
+        ],
+        "atomicity": "all-or-nothing",
+        "confidence": 1,
+        "contextSnapshotId": "94171da8-f94a-4b16-b450-a1002e0ca79f",
+        "actionGraph": {
+          "schemaVersion": 1,
+          "atomicity": "all-or-nothing",
+          "nodes": [
+            {
+              "id": "0752e68b-c74b-4618-b6f9-63e077e9f9e8",
+              "action": "DELETE",
+              "subAction": "OBJECT",
+              "dependsOn": [],
+              "references": [
+                "b04b915a-8e04-4cb9-a845-295d03200855"
+              ],
+              "preconditions": [
+                "finite parameters",
+                "existing unambiguous targets",
+                "compatible dimensions"
+              ],
+              "output": "state"
+            }
+          ]
+        }
+      },
+      "actualExecutionResult": {
+        "status": "success",
+        "message": "Deleted pyramid.",
+        "effects": [
+          {
+            "kind": "pyramid",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "PYRAMID1",
+            "objectId": "b04b915a-8e04-4cb9-a845-295d03200855",
+            "roboControl": "delete",
+            "roboVisible": true
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Delete the last created object.",
+          "commands": [
+            {
+              "id": "0752e68b-c74b-4618-b6f9-63e077e9f9e8",
+              "rawPhrase": "Delete the last created object.",
+              "normalizedPhrase": "delete the last created object",
+              "detectedAction": "DELETE",
+              "action": "DELETE",
+              "subAction": "OBJECT",
+              "mode": "graph3d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "b04b915a-8e04-4cb9-a845-295d03200855"
+            }
+          ],
+          "ir": [
+            {
+              "action": "DELETE",
+              "object": {
+                "references": [
+                  "b04b915a-8e04-4cb9-a845-295d03200855"
+                ]
+              },
+              "parameters": {
+                "multiple": false
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "94171da8-f94a-4b16-b450-a1002e0ca79f",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "0752e68b-c74b-4618-b6f9-63e077e9f9e8",
+                "action": "DELETE",
+                "subAction": "OBJECT",
+                "dependsOn": [],
+                "references": [
+                  "b04b915a-8e04-4cb9-a845-295d03200855"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "state"
+              }
+            ]
+          }
+        },
+        "parseMs": 0,
+        "executionMs": 62.20000001788139,
+        "verification": {
+          "passed": true,
+          "checks": [
+            "Finite geometry and valid dimensions"
+          ],
+          "status": "verified_numerical"
+        },
+        "explanation": "",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "b61683b4-3d1c-4163-a624-44f31fd4d634",
+          "message": "Deleted pyramid.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "DELETE",
+            "score": 0.5736697316169739
+          },
+          "subAction": {
+            "label": "OBJECT",
+            "score": 0.973640501499176
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.991175651550293
+          },
+          "objectType": {
+            "label": "none",
+            "score": 0.9868025183677673
+          }
+        },
+        "inferenceMs": 4.9000000059604645,
+        "objects": 4,
+        "sceneHash": "[{\"id\":\"2a33c846-4d69-4946-9d8d-52f442e61ada\",\"type\":\"sphere\",\"vertices\":[[-3,2,0],[-4.732050808,1,0],[-4.732050808,-1,0],[-3,-2,0],[-1.267949192,-1,0],[-1.267949192,1,0]],\"position\":[-3,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":2,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"6deeea9c-6bab-4def-b8ef-117c3336deec\",\"type\":\"cone\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"9a088a64-aa7d-499c-aa29-228396dae4a6\",\"type\":\"cube\",\"vertices\":[[1,5,3],[-1.598076211,3.5,3],[-1.598076211,0.5,3],[1,-1,3],[3.598076211,0.5,3],[3.598076211,3.5,3]],\"position\":[1,2,3],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"c0ff0a19-d534-4f75-bab0-ea8e97ca3891\",\"type\":\"cylinder\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+        "beforeHash": "[{\"id\":\"2a33c846-4d69-4946-9d8d-52f442e61ada\",\"type\":\"sphere\",\"vertices\":[[-3,2,0],[-4.732050808,1,0],[-4.732050808,-1,0],[-3,-2,0],[-1.267949192,-1,0],[-1.267949192,1,0]],\"position\":[-3,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":2,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"6deeea9c-6bab-4def-b8ef-117c3336deec\",\"type\":\"cone\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"9a088a64-aa7d-499c-aa29-228396dae4a6\",\"type\":\"cube\",\"vertices\":[[1,5,3],[-1.598076211,3.5,3],[-1.598076211,0.5,3],[1,-1,3],[3.598076211,0.5,3],[3.598076211,3.5,3]],\"position\":[1,2,3],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"b04b915a-8e04-4cb9-a845-295d03200855\",\"type\":\"pyramid\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"c0ff0a19-d534-4f75-bab0-ea8e97ca3891\",\"type\":\"cylinder\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+      },
+      "setupResults": [
+        {
+          "status": "success",
+          "message": "Created 3D cube.",
+          "effects": [
+            {
+              "kind": "cube",
+              "dimension": "3d",
+              "points": [
+                [
+                  1,
+                  2,
+                  3
+                ]
+              ],
+              "width": 6,
+              "height": 6,
+              "depth": 6,
+              "radius": 3,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 1,
+              "action": "create",
+              "fitDimensions": false,
+              "roboLabel": "CU1",
+              "objectId": "9a088a64-aa7d-499c-aa29-228396dae4a6"
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Create cube at (1,2,3)",
+            "commands": [
+              {
+                "id": "d14fb74e-a43e-4d6b-8446-2d0c95636cba",
+                "rawPhrase": "Create cube at (1,2,3)",
+                "normalizedPhrase": "create cube at (1,2,3)",
+                "detectedAction": "CREATE",
+                "action": "CREATE",
+                "subAction": "CUBE",
+                "mode": "graph3d",
+                "parameters": {
+                  "legacy": {
+                    "kind": "cube",
+                    "dimension": "3d",
+                    "points": [
+                      [
+                        1,
+                        2,
+                        3
+                      ]
+                    ],
+                    "width": 6,
+                    "height": 6,
+                    "depth": 6,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 6,
+                  "radius": 3,
+                  "depth": 6,
+                  "sides": 6,
+                  "points": [
+                    [
+                      1,
+                      2,
+                      3
+                    ]
+                  ]
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "cube"
+                }
+              }
+            ],
+            "ir": [
+              {
+                "action": "CREATE",
+                "object": {
+                  "kind": "cube",
+                  "references": [
+                    {
+                      "type": "cube"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "legacy": {
+                    "kind": "cube",
+                    "dimension": "3d",
+                    "points": [
+                      [
+                        1,
+                        2,
+                        3
+                      ]
+                    ],
+                    "width": 6,
+                    "height": 6,
+                    "depth": 6,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 6,
+                  "radius": 3,
+                  "depth": 6,
+                  "sides": 6,
+                  "points": [
+                    [
+                      1,
+                      2,
+                      3
+                    ]
+                  ]
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "object"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "dcaea154-29ba-4ad6-80d8-72f8ac81be51",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "d14fb74e-a43e-4d6b-8446-2d0c95636cba",
+                  "action": "CREATE",
+                  "subAction": "CUBE",
+                  "dependsOn": [],
+                  "references": [
+                    {
+                      "type": "cube"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions",
+                    "required: width"
+                  ],
+                  "output": "object"
+                }
+              ]
+            }
+          },
+          "parseMs": 0,
+          "executionMs": 67.2999999821186,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions",
+              "Creation count"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "bbab6f9d-6589-479c-a676-5391ae45fd09",
+            "message": "Created 3D cube.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "CREATE",
+              "score": 0.97048419713974
+            },
+            "subAction": {
+              "label": "POINT",
+              "score": 0.9090437293052673
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9998279809951782
+            },
+            "objectType": {
+              "label": "point",
+              "score": 0.9006303548812866
+            }
+          },
+          "inferenceMs": 8.800000011920929,
+          "objects": 1,
+          "sceneHash": "[{\"id\":\"9a088a64-aa7d-499c-aa29-228396dae4a6\",\"type\":\"cube\",\"vertices\":[[1,5,3],[-1.598076211,3.5,3],[-1.598076211,0.5,3],[1,-1,3],[3.598076211,0.5,3],[3.598076211,3.5,3]],\"position\":[1,2,3],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[]"
+        },
+        {
+          "status": "success",
+          "message": "Created 3D sphere with radius 2.",
+          "effects": [
+            {
+              "kind": "sphere",
+              "dimension": "3d",
+              "points": [
+                [
+                  -3,
+                  0,
+                  0
+                ]
+              ],
+              "width": 6,
+              "height": 4,
+              "depth": 3,
+              "radius": 2,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 1,
+              "action": "create",
+              "fitDimensions": false,
+              "roboLabel": "SP1",
+              "objectId": "2a33c846-4d69-4946-9d8d-52f442e61ada"
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Create sphere radius 2 at (-3,0,0)",
+            "commands": [
+              {
+                "id": "8d8b5e3a-a207-4f90-945f-26111f594498",
+                "rawPhrase": "Create sphere radius 2 at (-3,0,0)",
+                "normalizedPhrase": "create sphere radius 2 at (-3,0,0)",
+                "detectedAction": "CREATE",
+                "action": "CREATE",
+                "subAction": "SPHERE",
+                "mode": "graph3d",
+                "parameters": {
+                  "legacy": {
+                    "kind": "sphere",
+                    "dimension": "3d",
+                    "points": [
+                      [
+                        -3,
+                        0,
+                        0
+                      ]
+                    ],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 2,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 2,
+                  "depth": 3,
+                  "sides": 6,
+                  "points": [
+                    [
+                      -3,
+                      0,
+                      0
+                    ]
+                  ]
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "sphere"
+                }
+              }
+            ],
+            "ir": [
+              {
+                "action": "CREATE",
+                "object": {
+                  "kind": "sphere",
+                  "references": [
+                    {
+                      "type": "sphere"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "legacy": {
+                    "kind": "sphere",
+                    "dimension": "3d",
+                    "points": [
+                      [
+                        -3,
+                        0,
+                        0
+                      ]
+                    ],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 2,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 2,
+                  "depth": 3,
+                  "sides": 6,
+                  "points": [
+                    [
+                      -3,
+                      0,
+                      0
+                    ]
+                  ]
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "object"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "68173b15-356b-4be9-827c-a99d4822205c",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "8d8b5e3a-a207-4f90-945f-26111f594498",
+                  "action": "CREATE",
+                  "subAction": "SPHERE",
+                  "dependsOn": [],
+                  "references": [
+                    {
+                      "type": "sphere"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions",
+                    "required: radius"
+                  ],
+                  "output": "object"
+                }
+              ]
+            }
+          },
+          "parseMs": 0.09999999403953552,
+          "executionMs": 70.59999999403954,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions",
+              "Creation count"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "74b753c9-af5b-489e-8391-f9fb6feb186f",
+            "message": "Created 3D sphere with radius 2.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "CREATE",
+              "score": 0.9955400824546814
+            },
+            "subAction": {
+              "label": "SPHERE",
+              "score": 0.6237640380859375
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9999868869781494
+            },
+            "objectType": {
+              "label": "sphere",
+              "score": 0.7361957430839539
+            }
+          },
+          "inferenceMs": 8,
+          "objects": 2,
+          "sceneHash": "[{\"id\":\"2a33c846-4d69-4946-9d8d-52f442e61ada\",\"type\":\"sphere\",\"vertices\":[[-3,2,0],[-4.732050808,1,0],[-4.732050808,-1,0],[-3,-2,0],[-1.267949192,-1,0],[-1.267949192,1,0]],\"position\":[-3,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":2,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"9a088a64-aa7d-499c-aa29-228396dae4a6\",\"type\":\"cube\",\"vertices\":[[1,5,3],[-1.598076211,3.5,3],[-1.598076211,0.5,3],[1,-1,3],[3.598076211,0.5,3],[3.598076211,3.5,3]],\"position\":[1,2,3],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[{\"id\":\"9a088a64-aa7d-499c-aa29-228396dae4a6\",\"type\":\"cube\",\"vertices\":[[1,5,3],[-1.598076211,3.5,3],[-1.598076211,0.5,3],[1,-1,3],[3.598076211,0.5,3],[3.598076211,3.5,3]],\"position\":[1,2,3],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+        },
+        {
+          "status": "success",
+          "message": "Created 3D cylinder.",
+          "effects": [
+            {
+              "kind": "cylinder",
+              "dimension": "3d",
+              "points": [
+                [
+                  0,
+                  0,
+                  0
+                ]
+              ],
+              "width": 6,
+              "height": 4,
+              "depth": 3,
+              "radius": 3,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 1,
+              "action": "create",
+              "fitDimensions": false,
+              "roboLabel": "CYLINDER1",
+              "objectId": "c0ff0a19-d534-4f75-bab0-ea8e97ca3891"
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Create cylinder at (0,0,0)",
+            "commands": [
+              {
+                "id": "e2756712-5d73-4333-b3f4-1edeb7d57330",
+                "rawPhrase": "Create cylinder at (0,0,0)",
+                "normalizedPhrase": "create cylinder at (0,0,0)",
+                "detectedAction": "CREATE",
+                "action": "CREATE",
+                "subAction": "CYLINDER",
+                "mode": "graph3d",
+                "parameters": {
+                  "legacy": {
+                    "kind": "cylinder",
+                    "dimension": "3d",
+                    "points": [
+                      [
+                        0,
+                        0,
+                        0
+                      ]
+                    ],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 3,
+                  "depth": 3,
+                  "sides": 6,
+                  "points": [
+                    [
+                      0,
+                      0,
+                      0
+                    ]
+                  ]
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "cylinder"
+                }
+              }
+            ],
+            "ir": [
+              {
+                "action": "CREATE",
+                "object": {
+                  "kind": "cylinder",
+                  "references": [
+                    {
+                      "type": "cylinder"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "legacy": {
+                    "kind": "cylinder",
+                    "dimension": "3d",
+                    "points": [
+                      [
+                        0,
+                        0,
+                        0
+                      ]
+                    ],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 3,
+                  "depth": 3,
+                  "sides": 6,
+                  "points": [
+                    [
+                      0,
+                      0,
+                      0
+                    ]
+                  ]
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "object"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "ee98c7eb-b13f-43c4-a7ce-8389e0dd28e8",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "e2756712-5d73-4333-b3f4-1edeb7d57330",
+                  "action": "CREATE",
+                  "subAction": "CYLINDER",
+                  "dependsOn": [],
+                  "references": [
+                    {
+                      "type": "cylinder"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                }
+              ]
+            }
+          },
+          "parseMs": 0,
+          "executionMs": 63.900000005960464,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions",
+              "Creation count"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "ec0e35ca-cf82-484d-8de5-8963f35fcfc5",
+            "message": "Created 3D cylinder.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "CREATE",
+              "score": 0.9810301065444946
+            },
+            "subAction": {
+              "label": "SIZE",
+              "score": 0.22191068530082703
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.997586727142334
+            },
+            "objectType": {
+              "label": "none",
+              "score": 0.4467565417289734
+            }
+          },
+          "inferenceMs": 7.9000000059604645,
+          "objects": 3,
+          "sceneHash": "[{\"id\":\"2a33c846-4d69-4946-9d8d-52f442e61ada\",\"type\":\"sphere\",\"vertices\":[[-3,2,0],[-4.732050808,1,0],[-4.732050808,-1,0],[-3,-2,0],[-1.267949192,-1,0],[-1.267949192,1,0]],\"position\":[-3,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":2,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"9a088a64-aa7d-499c-aa29-228396dae4a6\",\"type\":\"cube\",\"vertices\":[[1,5,3],[-1.598076211,3.5,3],[-1.598076211,0.5,3],[1,-1,3],[3.598076211,0.5,3],[3.598076211,3.5,3]],\"position\":[1,2,3],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"c0ff0a19-d534-4f75-bab0-ea8e97ca3891\",\"type\":\"cylinder\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[{\"id\":\"2a33c846-4d69-4946-9d8d-52f442e61ada\",\"type\":\"sphere\",\"vertices\":[[-3,2,0],[-4.732050808,1,0],[-4.732050808,-1,0],[-3,-2,0],[-1.267949192,-1,0],[-1.267949192,1,0]],\"position\":[-3,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":2,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"9a088a64-aa7d-499c-aa29-228396dae4a6\",\"type\":\"cube\",\"vertices\":[[1,5,3],[-1.598076211,3.5,3],[-1.598076211,0.5,3],[1,-1,3],[3.598076211,0.5,3],[3.598076211,3.5,3]],\"position\":[1,2,3],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+        },
+        {
+          "status": "success",
+          "message": "Created 3D cone.",
+          "effects": [
+            {
+              "kind": "cone",
+              "dimension": "3d",
+              "points": [],
+              "width": 6,
+              "height": 4,
+              "depth": 3,
+              "radius": 3,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 1,
+              "action": "create",
+              "fitDimensions": false,
+              "roboLabel": "CONE1",
+              "objectId": "6deeea9c-6bab-4def-b8ef-117c3336deec"
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Create cone",
+            "commands": [
+              {
+                "id": "b8763023-e189-459b-971b-2a7ad908da0d",
+                "rawPhrase": "Create cone",
+                "normalizedPhrase": "create cone",
+                "detectedAction": "CREATE",
+                "action": "CREATE",
+                "subAction": "CONE",
+                "mode": "graph3d",
+                "parameters": {
+                  "legacy": {
+                    "kind": "cone",
+                    "dimension": "3d",
+                    "points": [],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 3,
+                  "depth": 3,
+                  "sides": 6
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "cone"
+                }
+              }
+            ],
+            "ir": [
+              {
+                "action": "CREATE",
+                "object": {
+                  "kind": "cone",
+                  "references": [
+                    {
+                      "type": "cone"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "legacy": {
+                    "kind": "cone",
+                    "dimension": "3d",
+                    "points": [],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 3,
+                  "depth": 3,
+                  "sides": 6
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "object"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "f96eb51a-8e9e-471a-b067-7de8953c6fa9",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "b8763023-e189-459b-971b-2a7ad908da0d",
+                  "action": "CREATE",
+                  "subAction": "CONE",
+                  "dependsOn": [],
+                  "references": [
+                    {
+                      "type": "cone"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                }
+              ]
+            }
+          },
+          "parseMs": 0,
+          "executionMs": 80.2999999821186,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions",
+              "Creation count"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "db64057c-a745-4ef0-8e1a-74c03ad423e4",
+            "message": "Created 3D cone.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "COUNT",
+              "score": 0.7449572086334229
+            },
+            "subAction": {
+              "label": "VOLUME",
+              "score": 0.3465229272842407
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9999680519104004
+            },
+            "objectType": {
+              "label": "none",
+              "score": 0.995218813419342
+            }
+          },
+          "inferenceMs": 9.100000023841858,
+          "objects": 4,
+          "sceneHash": "[{\"id\":\"2a33c846-4d69-4946-9d8d-52f442e61ada\",\"type\":\"sphere\",\"vertices\":[[-3,2,0],[-4.732050808,1,0],[-4.732050808,-1,0],[-3,-2,0],[-1.267949192,-1,0],[-1.267949192,1,0]],\"position\":[-3,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":2,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"6deeea9c-6bab-4def-b8ef-117c3336deec\",\"type\":\"cone\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"9a088a64-aa7d-499c-aa29-228396dae4a6\",\"type\":\"cube\",\"vertices\":[[1,5,3],[-1.598076211,3.5,3],[-1.598076211,0.5,3],[1,-1,3],[3.598076211,0.5,3],[3.598076211,3.5,3]],\"position\":[1,2,3],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"c0ff0a19-d534-4f75-bab0-ea8e97ca3891\",\"type\":\"cylinder\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[{\"id\":\"2a33c846-4d69-4946-9d8d-52f442e61ada\",\"type\":\"sphere\",\"vertices\":[[-3,2,0],[-4.732050808,1,0],[-4.732050808,-1,0],[-3,-2,0],[-1.267949192,-1,0],[-1.267949192,1,0]],\"position\":[-3,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":2,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"9a088a64-aa7d-499c-aa29-228396dae4a6\",\"type\":\"cube\",\"vertices\":[[1,5,3],[-1.598076211,3.5,3],[-1.598076211,0.5,3],[1,-1,3],[3.598076211,0.5,3],[3.598076211,3.5,3]],\"position\":[1,2,3],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"c0ff0a19-d534-4f75-bab0-ea8e97ca3891\",\"type\":\"cylinder\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+        },
+        {
+          "status": "success",
+          "message": "Created 3D pyramid.",
+          "effects": [
+            {
+              "kind": "pyramid",
+              "dimension": "3d",
+              "points": [],
+              "width": 6,
+              "height": 4,
+              "depth": 3,
+              "radius": 3,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 1,
+              "action": "create",
+              "fitDimensions": false,
+              "roboLabel": "PYRAMID1",
+              "objectId": "b04b915a-8e04-4cb9-a845-295d03200855"
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Create pyramid",
+            "commands": [
+              {
+                "id": "cbccbc63-8fef-4286-b89f-24c177b84253",
+                "rawPhrase": "Create pyramid",
+                "normalizedPhrase": "create pyramid",
+                "detectedAction": "CREATE",
+                "action": "CREATE",
+                "subAction": "PYRAMID",
+                "mode": "graph3d",
+                "parameters": {
+                  "legacy": {
+                    "kind": "pyramid",
+                    "dimension": "3d",
+                    "points": [],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 3,
+                  "depth": 3,
+                  "sides": 6
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "pyramid"
+                }
+              }
+            ],
+            "ir": [
+              {
+                "action": "CREATE",
+                "object": {
+                  "kind": "pyramid",
+                  "references": [
+                    {
+                      "type": "pyramid"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "legacy": {
+                    "kind": "pyramid",
+                    "dimension": "3d",
+                    "points": [],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 3,
+                  "depth": 3,
+                  "sides": 6
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "object"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "2ec8d098-b814-48b9-ac8b-b1bdea63cc45",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "cbccbc63-8fef-4286-b89f-24c177b84253",
+                  "action": "CREATE",
+                  "subAction": "PYRAMID",
+                  "dependsOn": [],
+                  "references": [
+                    {
+                      "type": "pyramid"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                }
+              ]
+            }
+          },
+          "parseMs": 0.09999999403953552,
+          "executionMs": 89,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions",
+              "Creation count"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "70e39aa3-32d0-4c10-b726-7a4ae134b029",
+            "message": "Created 3D pyramid.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "UNDO",
+              "score": 0.2642309069633484
+            },
+            "subAction": {
+              "label": "LAST",
+              "score": 0.36825188994407654
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9998970031738281
+            },
+            "objectType": {
+              "label": "none",
+              "score": 0.8912274241447449
+            }
+          },
+          "inferenceMs": 9.699999988079071,
+          "objects": 5,
+          "sceneHash": "[{\"id\":\"2a33c846-4d69-4946-9d8d-52f442e61ada\",\"type\":\"sphere\",\"vertices\":[[-3,2,0],[-4.732050808,1,0],[-4.732050808,-1,0],[-3,-2,0],[-1.267949192,-1,0],[-1.267949192,1,0]],\"position\":[-3,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":2,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"6deeea9c-6bab-4def-b8ef-117c3336deec\",\"type\":\"cone\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"9a088a64-aa7d-499c-aa29-228396dae4a6\",\"type\":\"cube\",\"vertices\":[[1,5,3],[-1.598076211,3.5,3],[-1.598076211,0.5,3],[1,-1,3],[3.598076211,0.5,3],[3.598076211,3.5,3]],\"position\":[1,2,3],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"b04b915a-8e04-4cb9-a845-295d03200855\",\"type\":\"pyramid\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"c0ff0a19-d534-4f75-bab0-ea8e97ca3891\",\"type\":\"cylinder\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[{\"id\":\"2a33c846-4d69-4946-9d8d-52f442e61ada\",\"type\":\"sphere\",\"vertices\":[[-3,2,0],[-4.732050808,1,0],[-4.732050808,-1,0],[-3,-2,0],[-1.267949192,-1,0],[-1.267949192,1,0]],\"position\":[-3,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":2,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"6deeea9c-6bab-4def-b8ef-117c3336deec\",\"type\":\"cone\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"9a088a64-aa7d-499c-aa29-228396dae4a6\",\"type\":\"cube\",\"vertices\":[[1,5,3],[-1.598076211,3.5,3],[-1.598076211,0.5,3],[1,-1,3],[3.598076211,0.5,3],[3.598076211,3.5,3]],\"position\":[1,2,3],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"c0ff0a19-d534-4f75-bab0-ea8e97ca3891\",\"type\":\"cylinder\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+        },
+        {
+          "status": "success",
+          "message": "Selected cube.",
+          "effects": [
+            {
+              "kind": "cube",
+              "dimension": "3d",
+              "points": [
+                [
+                  1,
+                  2,
+                  3
+                ]
+              ],
+              "width": 6,
+              "height": 6,
+              "depth": 6,
+              "radius": 3,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 1,
+              "action": "create",
+              "fitDimensions": false,
+              "roboLabel": "CU1",
+              "objectId": "9a088a64-aa7d-499c-aa29-228396dae4a6",
+              "roboControl": "select",
+              "roboVisible": true
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Select the cube",
+            "commands": [
+              {
+                "id": "09cb8017-e6f9-4e12-aeb8-099adf855d4e",
+                "rawPhrase": "Select the cube",
+                "normalizedPhrase": "select the cube",
+                "detectedAction": "SELECT",
+                "action": "SELECT",
+                "subAction": "OBJECT",
+                "mode": "graph3d",
+                "parameters": {
+                  "multiple": false
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": "9a088a64-aa7d-499c-aa29-228396dae4a6"
+              }
+            ],
+            "ir": [
+              {
+                "action": "SELECT",
+                "object": {
+                  "references": [
+                    "9a088a64-aa7d-499c-aa29-228396dae4a6"
+                  ]
+                },
+                "parameters": {
+                  "multiple": false
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "selection"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "93e11fd7-9c0e-4986-8fd6-b9df63e93a6d",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "09cb8017-e6f9-4e12-aeb8-099adf855d4e",
+                  "action": "SELECT",
+                  "subAction": "OBJECT",
+                  "dependsOn": [],
+                  "references": [
+                    "9a088a64-aa7d-499c-aa29-228396dae4a6"
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "state"
+                }
+              ]
+            }
+          },
+          "parseMs": 0.09999999403953552,
+          "executionMs": 68.7999999821186,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "772f8bdc-f78d-4b1b-b55a-83cd83974976",
+            "message": "Selected cube.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "SELECT",
+              "score": 0.9336245059967041
+            },
+            "subAction": {
+              "label": "OBJECT",
+              "score": 0.8090287446975708
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9990178346633911
+            },
+            "objectType": {
+              "label": "none",
+              "score": 0.8688009977340698
+            }
+          },
+          "inferenceMs": 4.699999988079071,
+          "objects": 5,
+          "sceneHash": "[{\"id\":\"2a33c846-4d69-4946-9d8d-52f442e61ada\",\"type\":\"sphere\",\"vertices\":[[-3,2,0],[-4.732050808,1,0],[-4.732050808,-1,0],[-3,-2,0],[-1.267949192,-1,0],[-1.267949192,1,0]],\"position\":[-3,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":2,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"6deeea9c-6bab-4def-b8ef-117c3336deec\",\"type\":\"cone\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"9a088a64-aa7d-499c-aa29-228396dae4a6\",\"type\":\"cube\",\"vertices\":[[1,5,3],[-1.598076211,3.5,3],[-1.598076211,0.5,3],[1,-1,3],[3.598076211,0.5,3],[3.598076211,3.5,3]],\"position\":[1,2,3],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"b04b915a-8e04-4cb9-a845-295d03200855\",\"type\":\"pyramid\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"c0ff0a19-d534-4f75-bab0-ea8e97ca3891\",\"type\":\"cylinder\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[{\"id\":\"2a33c846-4d69-4946-9d8d-52f442e61ada\",\"type\":\"sphere\",\"vertices\":[[-3,2,0],[-4.732050808,1,0],[-4.732050808,-1,0],[-3,-2,0],[-1.267949192,-1,0],[-1.267949192,1,0]],\"position\":[-3,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":2,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"6deeea9c-6bab-4def-b8ef-117c3336deec\",\"type\":\"cone\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"9a088a64-aa7d-499c-aa29-228396dae4a6\",\"type\":\"cube\",\"vertices\":[[1,5,3],[-1.598076211,3.5,3],[-1.598076211,0.5,3],[1,-1,3],[3.598076211,0.5,3],[3.598076211,3.5,3]],\"position\":[1,2,3],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"b04b915a-8e04-4cb9-a845-295d03200855\",\"type\":\"pyramid\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"c0ff0a19-d534-4f75-bab0-ea8e97ca3891\",\"type\":\"cylinder\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+        }
+      ],
+      "before": [
+        {
+          "id": "9a088a64-aa7d-499c-aa29-228396dae4a6",
+          "type": "cube",
+          "mode": "graph3d",
+          "position": [
+            1,
+            2,
+            3
+          ],
+          "radius": 3,
+          "label": "CU1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "cube",
+            "dimension": "3d",
+            "points": [
+              [
+                1,
+                2,
+                3
+              ]
+            ],
+            "width": 6,
+            "height": 6,
+            "depth": 6,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CU1",
+            "objectId": "9a088a64-aa7d-499c-aa29-228396dae4a6",
+            "roboVisible": true
+          },
+          "vertices": [
+            [
+              1.0000000000000002,
+              5,
+              3
+            ],
+            [
+              -1.5980762113533156,
+              3.500000000000001,
+              3
+            ],
+            [
+              -1.5980762113533165,
+              0.5000000000000009,
+              3
+            ],
+            [
+              0.9999999999999994,
+              -1,
+              3
+            ],
+            [
+              3.598076211353315,
+              0.49999999999999867,
+              3
+            ],
+            [
+              3.598076211353316,
+              3.5,
+              3
+            ]
+          ]
+        },
+        {
+          "id": "2a33c846-4d69-4946-9d8d-52f442e61ada",
+          "type": "sphere",
+          "mode": "graph3d",
+          "position": [
+            -3,
+            0,
+            0
+          ],
+          "radius": 2,
+          "label": "SP1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "sphere",
+            "dimension": "3d",
+            "points": [
+              [
+                -3,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 2,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "SP1",
+            "objectId": "2a33c846-4d69-4946-9d8d-52f442e61ada",
+            "roboVisible": true
+          },
+          "vertices": [
+            [
+              -3,
+              2,
+              0
+            ],
+            [
+              -4.732050807568877,
+              1.0000000000000007,
+              0
+            ],
+            [
+              -4.732050807568878,
+              -0.9999999999999994,
+              0
+            ],
+            [
+              -3.0000000000000004,
+              -2,
+              0
+            ],
+            [
+              -1.2679491924311233,
+              -1.0000000000000009,
+              0
+            ],
+            [
+              -1.2679491924311228,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "c0ff0a19-d534-4f75-bab0-ea8e97ca3891",
+          "type": "cylinder",
+          "mode": "graph3d",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3,
+          "label": "CYLINDER1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "cylinder",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CYLINDER1",
+            "objectId": "c0ff0a19-d534-4f75-bab0-ea8e97ca3891",
+            "roboVisible": true
+          },
+          "vertices": [
+            [
+              1.8369701987210297e-16,
+              3,
+              0
+            ],
+            [
+              -2.5980762113533156,
+              1.5000000000000009,
+              0
+            ],
+            [
+              -2.5980762113533165,
+              -1.4999999999999991,
+              0
+            ],
+            [
+              -5.51091059616309e-16,
+              -3,
+              0
+            ],
+            [
+              2.598076211353315,
+              -1.5000000000000013,
+              0
+            ],
+            [
+              2.598076211353316,
+              1.5,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "6deeea9c-6bab-4def-b8ef-117c3336deec",
+          "type": "cone",
+          "mode": "graph3d",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3,
+          "label": "CONE1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "cone",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CONE1",
+            "objectId": "6deeea9c-6bab-4def-b8ef-117c3336deec",
+            "roboVisible": true
+          },
+          "vertices": [
+            [
+              1.8369701987210297e-16,
+              3,
+              0
+            ],
+            [
+              -2.5980762113533156,
+              1.5000000000000009,
+              0
+            ],
+            [
+              -2.5980762113533165,
+              -1.4999999999999991,
+              0
+            ],
+            [
+              -5.51091059616309e-16,
+              -3,
+              0
+            ],
+            [
+              2.598076211353315,
+              -1.5000000000000013,
+              0
+            ],
+            [
+              2.598076211353316,
+              1.5,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "b04b915a-8e04-4cb9-a845-295d03200855",
+          "type": "pyramid",
+          "mode": "graph3d",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3,
+          "label": "PYRAMID1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "pyramid",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "PYRAMID1",
+            "objectId": "b04b915a-8e04-4cb9-a845-295d03200855",
+            "roboVisible": true
+          },
+          "vertices": [
+            [
+              1.8369701987210297e-16,
+              3,
+              0
+            ],
+            [
+              -2.5980762113533156,
+              1.5000000000000009,
+              0
+            ],
+            [
+              -2.5980762113533165,
+              -1.4999999999999991,
+              0
+            ],
+            [
+              -5.51091059616309e-16,
+              -3,
+              0
+            ],
+            [
+              2.598076211353315,
+              -1.5000000000000013,
+              0
+            ],
+            [
+              2.598076211353316,
+              1.5,
+              0
+            ]
+          ]
+        }
+      ],
+      "after": [
+        {
+          "id": "9a088a64-aa7d-499c-aa29-228396dae4a6",
+          "type": "cube",
+          "mode": "graph3d",
+          "position": [
+            1,
+            2,
+            3
+          ],
+          "radius": 3,
+          "label": "CU1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "cube",
+            "dimension": "3d",
+            "points": [
+              [
+                1,
+                2,
+                3
+              ]
+            ],
+            "width": 6,
+            "height": 6,
+            "depth": 6,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CU1",
+            "objectId": "9a088a64-aa7d-499c-aa29-228396dae4a6",
+            "roboVisible": true
+          },
+          "vertices": [
+            [
+              1.0000000000000002,
+              5,
+              3
+            ],
+            [
+              -1.5980762113533156,
+              3.500000000000001,
+              3
+            ],
+            [
+              -1.5980762113533165,
+              0.5000000000000009,
+              3
+            ],
+            [
+              0.9999999999999994,
+              -1,
+              3
+            ],
+            [
+              3.598076211353315,
+              0.49999999999999867,
+              3
+            ],
+            [
+              3.598076211353316,
+              3.5,
+              3
+            ]
+          ]
+        },
+        {
+          "id": "2a33c846-4d69-4946-9d8d-52f442e61ada",
+          "type": "sphere",
+          "mode": "graph3d",
+          "position": [
+            -3,
+            0,
+            0
+          ],
+          "radius": 2,
+          "label": "SP1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "sphere",
+            "dimension": "3d",
+            "points": [
+              [
+                -3,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 2,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "SP1",
+            "objectId": "2a33c846-4d69-4946-9d8d-52f442e61ada",
+            "roboVisible": true
+          },
+          "vertices": [
+            [
+              -3,
+              2,
+              0
+            ],
+            [
+              -4.732050807568877,
+              1.0000000000000007,
+              0
+            ],
+            [
+              -4.732050807568878,
+              -0.9999999999999994,
+              0
+            ],
+            [
+              -3.0000000000000004,
+              -2,
+              0
+            ],
+            [
+              -1.2679491924311233,
+              -1.0000000000000009,
+              0
+            ],
+            [
+              -1.2679491924311228,
+              1,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "c0ff0a19-d534-4f75-bab0-ea8e97ca3891",
+          "type": "cylinder",
+          "mode": "graph3d",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3,
+          "label": "CYLINDER1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "cylinder",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CYLINDER1",
+            "objectId": "c0ff0a19-d534-4f75-bab0-ea8e97ca3891",
+            "roboVisible": true
+          },
+          "vertices": [
+            [
+              1.8369701987210297e-16,
+              3,
+              0
+            ],
+            [
+              -2.5980762113533156,
+              1.5000000000000009,
+              0
+            ],
+            [
+              -2.5980762113533165,
+              -1.4999999999999991,
+              0
+            ],
+            [
+              -5.51091059616309e-16,
+              -3,
+              0
+            ],
+            [
+              2.598076211353315,
+              -1.5000000000000013,
+              0
+            ],
+            [
+              2.598076211353316,
+              1.5,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "6deeea9c-6bab-4def-b8ef-117c3336deec",
+          "type": "cone",
+          "mode": "graph3d",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3,
+          "label": "CONE1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "cone",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 4,
+            "depth": 3,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CONE1",
+            "objectId": "6deeea9c-6bab-4def-b8ef-117c3336deec",
+            "roboVisible": true
+          },
+          "vertices": [
+            [
+              1.8369701987210297e-16,
+              3,
+              0
+            ],
+            [
+              -2.5980762113533156,
+              1.5000000000000009,
+              0
+            ],
+            [
+              -2.5980762113533165,
+              -1.4999999999999991,
+              0
+            ],
+            [
+              -5.51091059616309e-16,
+              -3,
+              0
+            ],
+            [
+              2.598076211353315,
+              -1.5000000000000013,
+              0
+            ],
+            [
+              2.598076211353316,
+              1.5,
+              0
+            ]
+          ]
+        }
+      ],
+      "selectionBefore": [
+        "9a088a64-aa7d-499c-aa29-228396dae4a6"
+      ],
+      "selectionAfter": [
+        "9a088a64-aa7d-499c-aa29-228396dae4a6"
+      ],
+      "renderBefore": {
+        "frames": 54,
+        "calls": 19,
+        "triangles": 2884,
+        "objects": [
+          {
+            "layerId": "9a088a64-aa7d-499c-aa29-228396dae4a6-0",
+            "vertices": 24,
+            "finite": true,
+            "inFrustum": true,
+            "fullyInFrustum": true,
+            "visible": true
+          },
+          {
+            "layerId": "2a33c846-4d69-4946-9d8d-52f442e61ada-0",
+            "vertices": 693,
+            "finite": true,
+            "inFrustum": true,
+            "fullyInFrustum": true,
+            "visible": true
+          },
+          {
+            "layerId": "c0ff0a19-d534-4f75-bab0-ea8e97ca3891-0",
+            "vertices": 196,
+            "finite": true,
+            "inFrustum": true,
+            "fullyInFrustum": true,
+            "visible": true
+          },
+          {
+            "layerId": "6deeea9c-6bab-4def-b8ef-117c3336deec-0",
+            "vertices": 131,
+            "finite": true,
+            "inFrustum": true,
+            "fullyInFrustum": true,
+            "visible": true
+          },
+          {
+            "layerId": "b04b915a-8e04-4cb9-a845-295d03200855-0",
+            "vertices": 19,
+            "finite": true,
+            "inFrustum": true,
+            "fullyInFrustum": true,
+            "visible": true
+          }
+        ]
+      },
+      "renderAfter": {
+        "frames": 56,
+        "calls": 17,
+        "triangles": 2868,
+        "objects": [
+          {
+            "layerId": "9a088a64-aa7d-499c-aa29-228396dae4a6-0",
+            "vertices": 24,
+            "finite": true,
+            "inFrustum": true,
+            "fullyInFrustum": true,
+            "visible": true
+          },
+          {
+            "layerId": "2a33c846-4d69-4946-9d8d-52f442e61ada-0",
+            "vertices": 693,
+            "finite": true,
+            "inFrustum": true,
+            "fullyInFrustum": true,
+            "visible": true
+          },
+          {
+            "layerId": "c0ff0a19-d534-4f75-bab0-ea8e97ca3891-0",
+            "vertices": 196,
+            "finite": true,
+            "inFrustum": true,
+            "fullyInFrustum": true,
+            "visible": true
+          },
+          {
+            "layerId": "6deeea9c-6bab-4def-b8ef-117c3336deec-0",
+            "vertices": 131,
+            "finite": true,
+            "inFrustum": true,
+            "fullyInFrustum": true,
+            "visible": true
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "Parsed action family",
+          "passed": true,
+          "actual": [
+            "DELETE"
+          ],
+          "expected": [
+            "DELETE"
+          ]
+        },
+        {
+          "name": "Execution succeeds",
+          "passed": true,
+          "actual": "Deleted pyramid."
+        },
+        {
+          "name": "Exactly one object removed",
+          "passed": true,
+          "actual": 4,
+          "expected": 4
+        },
+        {
+          "name": "Last created ID removed despite another selection",
+          "passed": true
+        },
+        {
+          "name": "Committed scene actually changes",
+          "passed": true
+        },
+        {
+          "name": "Preconditions executed successfully",
+          "passed": true,
+          "actual": []
+        },
+        {
+          "name": "GPU frame rendered",
+          "passed": true
+        },
+        {
+          "name": "Mesh coordinates finite",
+          "passed": true
+        },
+        {
+          "name": "Rendered mesh: CU1",
+          "passed": true,
+          "actual": [
+            {
+              "layerId": "9a088a64-aa7d-499c-aa29-228396dae4a6-0",
+              "vertices": 24,
+              "finite": true,
+              "inFrustum": true,
+              "fullyInFrustum": true,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "name": "Full mesh bounds visible: CU1",
+          "passed": true
+        },
+        {
+          "name": "Rendered mesh: SP1",
+          "passed": true,
+          "actual": [
+            {
+              "layerId": "2a33c846-4d69-4946-9d8d-52f442e61ada-0",
+              "vertices": 693,
+              "finite": true,
+              "inFrustum": true,
+              "fullyInFrustum": true,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "name": "Full mesh bounds visible: SP1",
+          "passed": true
+        },
+        {
+          "name": "Rendered mesh: CYLINDER1",
+          "passed": true,
+          "actual": [
+            {
+              "layerId": "c0ff0a19-d534-4f75-bab0-ea8e97ca3891-0",
+              "vertices": 196,
+              "finite": true,
+              "inFrustum": true,
+              "fullyInFrustum": true,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "name": "Full mesh bounds visible: CYLINDER1",
+          "passed": true
+        },
+        {
+          "name": "Rendered mesh: CONE1",
+          "passed": true,
+          "actual": [
+            {
+              "layerId": "6deeea9c-6bab-4def-b8ef-117c3336deec-0",
+              "vertices": 131,
+              "finite": true,
+              "inFrustum": true,
+              "fullyInFrustum": true,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "name": "Full mesh bounds visible: CONE1",
+          "passed": true
+        },
+        {
+          "name": "Deleted object absent from renderer",
+          "passed": true
+        }
+      ],
+      "status": "passed",
+      "elapsedMs": 1122.699999988079,
+      "errorCategory": null,
+      "rootCause": null,
+      "fixVerified": false
+    },
+    {
+      "id": 124,
+      "category": "Conversational AI",
+      "command": "Delete the first cube.",
+      "initialSetup": [
+        "Create cube",
+        "Create cube",
+        "Select the last cube"
+      ],
+      "expected": {
+        "kind": "deleteOne"
+      },
+      "expectedVisibleResult": "Finite geometry for every visible logical object, inside the camera frustum; deletions absent. Rejected requests preserve the scene.",
+      "actualParserOutput": {
+        "rawPhrase": "Delete the first cube.",
+        "commands": [
+          {
+            "id": "ac5af10d-3f9f-40ad-b639-f1cb3fdaadb8",
+            "rawPhrase": "Delete the first cube.",
+            "normalizedPhrase": "delete the first cube",
+            "detectedAction": "DELETE",
+            "action": "DELETE",
+            "subAction": "OBJECT",
+            "mode": "graph3d",
+            "parameters": {
+              "multiple": false
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "source": {
+              "action": "rule",
+              "subAction": "rule"
+            },
+            "requiresExecution": true,
+            "target": "c0bc1955-7d17-48ea-b09a-c4732a84aed2"
+          }
+        ],
+        "ir": [
+          {
+            "action": "DELETE",
+            "object": {
+              "references": [
+                "c0bc1955-7d17-48ea-b09a-c4732a84aed2"
+              ]
+            },
+            "parameters": {
+              "multiple": false
+            },
+            "constraints": {
+              "dimension": 3,
+              "finite": true,
+              "nondegenerate": false
+            },
+            "expected": {
+              "mutates": true,
+              "output": "answer"
+            },
+            "confidence": {
+              "overall": 1,
+              "action": 1,
+              "subAction": 1,
+              "parameters": 1
+            },
+            "provenance": {
+              "action": "rule",
+              "subAction": "rule"
+            }
+          }
+        ],
+        "atomicity": "all-or-nothing",
+        "confidence": 1,
+        "contextSnapshotId": "ea7978c1-1bf6-4cd5-b4e4-9120871fc67e",
+        "actionGraph": {
+          "schemaVersion": 1,
+          "atomicity": "all-or-nothing",
+          "nodes": [
+            {
+              "id": "ac5af10d-3f9f-40ad-b639-f1cb3fdaadb8",
+              "action": "DELETE",
+              "subAction": "OBJECT",
+              "dependsOn": [],
+              "references": [
+                "c0bc1955-7d17-48ea-b09a-c4732a84aed2"
+              ],
+              "preconditions": [
+                "finite parameters",
+                "existing unambiguous targets",
+                "compatible dimensions"
+              ],
+              "output": "state"
+            }
+          ]
+        }
+      },
+      "actualExecutionResult": {
+        "status": "success",
+        "message": "Deleted cube.",
+        "effects": [
+          {
+            "kind": "cube",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 6,
+            "depth": 6,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CU1",
+            "objectId": "c0bc1955-7d17-48ea-b09a-c4732a84aed2",
+            "roboControl": "delete",
+            "roboVisible": true
+          }
+        ],
+        "plan": {
+          "rawPhrase": "Delete the first cube.",
+          "commands": [
+            {
+              "id": "ac5af10d-3f9f-40ad-b639-f1cb3fdaadb8",
+              "rawPhrase": "Delete the first cube.",
+              "normalizedPhrase": "delete the first cube",
+              "detectedAction": "DELETE",
+              "action": "DELETE",
+              "subAction": "OBJECT",
+              "mode": "graph3d",
+              "parameters": {
+                "multiple": false
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "source": {
+                "action": "rule",
+                "subAction": "rule"
+              },
+              "requiresExecution": true,
+              "target": "c0bc1955-7d17-48ea-b09a-c4732a84aed2"
+            }
+          ],
+          "ir": [
+            {
+              "action": "DELETE",
+              "object": {
+                "references": [
+                  "c0bc1955-7d17-48ea-b09a-c4732a84aed2"
+                ]
+              },
+              "parameters": {
+                "multiple": false
+              },
+              "constraints": {
+                "dimension": 3,
+                "finite": true,
+                "nondegenerate": false
+              },
+              "expected": {
+                "mutates": true,
+                "output": "answer"
+              },
+              "confidence": {
+                "overall": 1,
+                "action": 1,
+                "subAction": 1,
+                "parameters": 1
+              },
+              "provenance": {
+                "action": "rule",
+                "subAction": "rule"
+              }
+            }
+          ],
+          "atomicity": "all-or-nothing",
+          "confidence": 1,
+          "contextSnapshotId": "ea7978c1-1bf6-4cd5-b4e4-9120871fc67e",
+          "actionGraph": {
+            "schemaVersion": 1,
+            "atomicity": "all-or-nothing",
+            "nodes": [
+              {
+                "id": "ac5af10d-3f9f-40ad-b639-f1cb3fdaadb8",
+                "action": "DELETE",
+                "subAction": "OBJECT",
+                "dependsOn": [],
+                "references": [
+                  "c0bc1955-7d17-48ea-b09a-c4732a84aed2"
+                ],
+                "preconditions": [
+                  "finite parameters",
+                  "existing unambiguous targets",
+                  "compatible dimensions"
+                ],
+                "output": "state"
+              }
+            ]
+          }
+        },
+        "parseMs": 0.09999999403953552,
+        "executionMs": 53.80000001192093,
+        "verification": {
+          "passed": true,
+          "checks": [
+            "Finite geometry and valid dimensions"
+          ],
+          "status": "verified_numerical"
+        },
+        "explanation": "",
+        "execution": {
+          "status": "valid_unverified",
+          "requestId": "0b00c51f-0f50-480f-a045-9407b54c19e3",
+          "message": "Deleted cube.",
+          "evidence": {
+            "level": "not_independently_verified",
+            "independent": false,
+            "passed": false,
+            "method": "No independent mathematical verification",
+            "assumptions": []
+          }
+        },
+        "requestKind": "COMMAND",
+        "neural": {
+          "action": {
+            "label": "DELETE",
+            "score": 0.5929214954376221
+          },
+          "subAction": {
+            "label": "OBJECT",
+            "score": 0.9967470169067383
+          },
+          "mode": {
+            "label": "graph3d",
+            "score": 0.9704670906066895
+          },
+          "objectType": {
+            "label": "circle",
+            "score": 0.9475716948509216
+          }
+        },
+        "inferenceMs": 4.5999999940395355,
+        "objects": 1,
+        "sceneHash": "[{\"id\":\"67a6fb6a-b524-4084-a9ed-8fd0222aabfc\",\"type\":\"cube\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+        "beforeHash": "[{\"id\":\"67a6fb6a-b524-4084-a9ed-8fd0222aabfc\",\"type\":\"cube\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"c0bc1955-7d17-48ea-b09a-c4732a84aed2\",\"type\":\"cube\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+      },
+      "setupResults": [
+        {
+          "status": "success",
+          "message": "Created 3D cube.",
+          "effects": [
+            {
+              "kind": "cube",
+              "dimension": "3d",
+              "points": [],
+              "width": 6,
+              "height": 6,
+              "depth": 6,
+              "radius": 3,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 1,
+              "action": "create",
+              "fitDimensions": false,
+              "roboLabel": "CU1",
+              "objectId": "c0bc1955-7d17-48ea-b09a-c4732a84aed2"
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Create cube",
+            "commands": [
+              {
+                "id": "d9f20a0d-3c0d-4a88-8412-b5fb10117a56",
+                "rawPhrase": "Create cube",
+                "normalizedPhrase": "create cube",
+                "detectedAction": "CREATE",
+                "action": "CREATE",
+                "subAction": "CUBE",
+                "mode": "graph3d",
+                "parameters": {
+                  "legacy": {
+                    "kind": "cube",
+                    "dimension": "3d",
+                    "points": [],
+                    "width": 6,
+                    "height": 6,
+                    "depth": 6,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 6,
+                  "radius": 3,
+                  "depth": 6,
+                  "sides": 6
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "cube"
+                }
+              }
+            ],
+            "ir": [
+              {
+                "action": "CREATE",
+                "object": {
+                  "kind": "cube",
+                  "references": [
+                    {
+                      "type": "cube"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "legacy": {
+                    "kind": "cube",
+                    "dimension": "3d",
+                    "points": [],
+                    "width": 6,
+                    "height": 6,
+                    "depth": 6,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 6,
+                  "radius": 3,
+                  "depth": 6,
+                  "sides": 6
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "object"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "07b0734a-7df3-4ea1-9884-7d6eadea3811",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "d9f20a0d-3c0d-4a88-8412-b5fb10117a56",
+                  "action": "CREATE",
+                  "subAction": "CUBE",
+                  "dependsOn": [],
+                  "references": [
+                    {
+                      "type": "cube"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions",
+                    "required: width"
+                  ],
+                  "output": "object"
+                }
+              ]
+            }
+          },
+          "parseMs": 0,
+          "executionMs": 59.29999998211861,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions",
+              "Creation count"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "7ec79c3a-3c00-4c6d-808d-e1f7e181faed",
+            "message": "Created 3D cube.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "CREATE",
+              "score": 0.5889770984649658
+            },
+            "subAction": {
+              "label": "OBJECT",
+              "score": 0.23606175184249878
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9997809529304504
+            },
+            "objectType": {
+              "label": "none",
+              "score": 0.9606348872184753
+            }
+          },
+          "inferenceMs": 4.5999999940395355,
+          "objects": 1,
+          "sceneHash": "[{\"id\":\"c0bc1955-7d17-48ea-b09a-c4732a84aed2\",\"type\":\"cube\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[]"
+        },
+        {
+          "status": "success",
+          "message": "Created 3D cube.",
+          "effects": [
+            {
+              "kind": "cube",
+              "dimension": "3d",
+              "points": [],
+              "width": 6,
+              "height": 6,
+              "depth": 6,
+              "radius": 3,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 1,
+              "action": "create",
+              "fitDimensions": false,
+              "roboLabel": "CU2",
+              "objectId": "67a6fb6a-b524-4084-a9ed-8fd0222aabfc"
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Create cube",
+            "commands": [
+              {
+                "id": "c8e64f31-bdc6-415d-ad9e-f761c0270058",
+                "rawPhrase": "Create cube",
+                "normalizedPhrase": "create cube",
+                "detectedAction": "CREATE",
+                "action": "CREATE",
+                "subAction": "CUBE",
+                "mode": "graph3d",
+                "parameters": {
+                  "legacy": {
+                    "kind": "cube",
+                    "dimension": "3d",
+                    "points": [],
+                    "width": 6,
+                    "height": 6,
+                    "depth": 6,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 6,
+                  "radius": 3,
+                  "depth": 6,
+                  "sides": 6
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "cube"
+                }
+              }
+            ],
+            "ir": [
+              {
+                "action": "CREATE",
+                "object": {
+                  "kind": "cube",
+                  "references": [
+                    {
+                      "type": "cube"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "legacy": {
+                    "kind": "cube",
+                    "dimension": "3d",
+                    "points": [],
+                    "width": 6,
+                    "height": 6,
+                    "depth": 6,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": false
+                  },
+                  "width": 6,
+                  "height": 6,
+                  "radius": 3,
+                  "depth": 6,
+                  "sides": 6
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "object"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "1546ef79-8e4f-4fa1-a1e7-577107758d90",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "c8e64f31-bdc6-415d-ad9e-f761c0270058",
+                  "action": "CREATE",
+                  "subAction": "CUBE",
+                  "dependsOn": [],
+                  "references": [
+                    {
+                      "type": "cube"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions",
+                    "required: width"
+                  ],
+                  "output": "object"
+                }
+              ]
+            }
+          },
+          "parseMs": 0.09999999403953552,
+          "executionMs": 84.90000000596046,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions",
+              "Creation count"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "ac0946b9-af81-459e-b335-445c3eb7b89d",
+            "message": "Created 3D cube.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "CREATE",
+              "score": 0.5889770984649658
+            },
+            "subAction": {
+              "label": "OBJECT",
+              "score": 0.23606175184249878
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9997809529304504
+            },
+            "objectType": {
+              "label": "none",
+              "score": 0.9606348872184753
+            }
+          },
+          "inferenceMs": 5,
+          "objects": 2,
+          "sceneHash": "[{\"id\":\"67a6fb6a-b524-4084-a9ed-8fd0222aabfc\",\"type\":\"cube\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"c0bc1955-7d17-48ea-b09a-c4732a84aed2\",\"type\":\"cube\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[{\"id\":\"c0bc1955-7d17-48ea-b09a-c4732a84aed2\",\"type\":\"cube\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+        },
+        {
+          "status": "success",
+          "message": "Selected cube.",
+          "effects": [
+            {
+              "kind": "cube",
+              "dimension": "3d",
+              "points": [
+                [
+                  0,
+                  0,
+                  0
+                ]
+              ],
+              "width": 6,
+              "height": 6,
+              "depth": 6,
+              "radius": 3,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 1,
+              "action": "create",
+              "fitDimensions": false,
+              "roboLabel": "CU2",
+              "objectId": "67a6fb6a-b524-4084-a9ed-8fd0222aabfc",
+              "roboControl": "select",
+              "roboVisible": true
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Select the last cube",
+            "commands": [
+              {
+                "id": "925caef3-f28b-4b92-8239-dbf92c0f3cd7",
+                "rawPhrase": "Select the last cube",
+                "normalizedPhrase": "select the last cube",
+                "detectedAction": "SELECT",
+                "action": "SELECT",
+                "subAction": "OBJECT",
+                "mode": "graph3d",
+                "parameters": {
+                  "multiple": false
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": "67a6fb6a-b524-4084-a9ed-8fd0222aabfc"
+              }
+            ],
+            "ir": [
+              {
+                "action": "SELECT",
+                "object": {
+                  "references": [
+                    "67a6fb6a-b524-4084-a9ed-8fd0222aabfc"
+                  ]
+                },
+                "parameters": {
+                  "multiple": false
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "selection"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "d79badf3-eacc-4575-a679-c04920c1e5f3",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "925caef3-f28b-4b92-8239-dbf92c0f3cd7",
+                  "action": "SELECT",
+                  "subAction": "OBJECT",
+                  "dependsOn": [],
+                  "references": [
+                    "67a6fb6a-b524-4084-a9ed-8fd0222aabfc"
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "state"
+                }
+              ]
+            }
+          },
+          "parseMs": 0,
+          "executionMs": 3.0999999940395355,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "0b944368-3c78-477e-ad79-91abb5484ae2",
+            "message": "Selected cube.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "SELECT",
+              "score": 0.9446709156036377
+            },
+            "subAction": {
+              "label": "OBJECT",
+              "score": 0.9588919281959534
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9990630745887756
+            },
+            "objectType": {
+              "label": "line",
+              "score": 0.5748162269592285
+            }
+          },
+          "inferenceMs": 5,
+          "objects": 2,
+          "sceneHash": "[{\"id\":\"67a6fb6a-b524-4084-a9ed-8fd0222aabfc\",\"type\":\"cube\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"c0bc1955-7d17-48ea-b09a-c4732a84aed2\",\"type\":\"cube\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[{\"id\":\"67a6fb6a-b524-4084-a9ed-8fd0222aabfc\",\"type\":\"cube\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false},{\"id\":\"c0bc1955-7d17-48ea-b09a-c4732a84aed2\",\"type\":\"cube\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+        }
+      ],
+      "before": [
+        {
+          "id": "c0bc1955-7d17-48ea-b09a-c4732a84aed2",
+          "type": "cube",
+          "mode": "graph3d",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3,
+          "label": "CU1",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "cube",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 6,
+            "depth": 6,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CU1",
+            "objectId": "c0bc1955-7d17-48ea-b09a-c4732a84aed2",
+            "roboVisible": true
+          },
+          "vertices": [
+            [
+              1.8369701987210297e-16,
+              3,
+              0
+            ],
+            [
+              -2.5980762113533156,
+              1.5000000000000009,
+              0
+            ],
+            [
+              -2.5980762113533165,
+              -1.4999999999999991,
+              0
+            ],
+            [
+              -5.51091059616309e-16,
+              -3,
+              0
+            ],
+            [
+              2.598076211353315,
+              -1.5000000000000013,
+              0
+            ],
+            [
+              2.598076211353316,
+              1.5,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "67a6fb6a-b524-4084-a9ed-8fd0222aabfc",
+          "type": "cube",
+          "mode": "graph3d",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3,
+          "label": "CU2",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "cube",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 6,
+            "depth": 6,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CU2",
+            "objectId": "67a6fb6a-b524-4084-a9ed-8fd0222aabfc",
+            "roboVisible": true
+          },
+          "vertices": [
+            [
+              1.8369701987210297e-16,
+              3,
+              0
+            ],
+            [
+              -2.5980762113533156,
+              1.5000000000000009,
+              0
+            ],
+            [
+              -2.5980762113533165,
+              -1.4999999999999991,
+              0
+            ],
+            [
+              -5.51091059616309e-16,
+              -3,
+              0
+            ],
+            [
+              2.598076211353315,
+              -1.5000000000000013,
+              0
+            ],
+            [
+              2.598076211353316,
+              1.5,
+              0
+            ]
+          ]
+        }
+      ],
+      "after": [
+        {
+          "id": "67a6fb6a-b524-4084-a9ed-8fd0222aabfc",
+          "type": "cube",
+          "mode": "graph3d",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3,
+          "label": "CU2",
+          "style": {
+            "color": "#06b6d4",
+            "visible": true
+          },
+          "command": {
+            "kind": "cube",
+            "dimension": "3d",
+            "points": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "width": 6,
+            "height": 6,
+            "depth": 6,
+            "radius": 3,
+            "sides": 6,
+            "color": "#06b6d4",
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": 1,
+            "action": "create",
+            "fitDimensions": false,
+            "roboLabel": "CU2",
+            "objectId": "67a6fb6a-b524-4084-a9ed-8fd0222aabfc",
+            "roboVisible": true
+          },
+          "vertices": [
+            [
+              1.8369701987210297e-16,
+              3,
+              0
+            ],
+            [
+              -2.5980762113533156,
+              1.5000000000000009,
+              0
+            ],
+            [
+              -2.5980762113533165,
+              -1.4999999999999991,
+              0
+            ],
+            [
+              -5.51091059616309e-16,
+              -3,
+              0
+            ],
+            [
+              2.598076211353315,
+              -1.5000000000000013,
+              0
+            ],
+            [
+              2.598076211353316,
+              1.5,
+              0
+            ]
+          ]
+        }
+      ],
+      "selectionBefore": [
+        "67a6fb6a-b524-4084-a9ed-8fd0222aabfc"
+      ],
+      "selectionAfter": [
+        "67a6fb6a-b524-4084-a9ed-8fd0222aabfc"
+      ],
+      "renderBefore": {
+        "frames": 68,
+        "calls": 13,
+        "triangles": 76,
+        "objects": [
+          {
+            "layerId": "c0bc1955-7d17-48ea-b09a-c4732a84aed2-0",
+            "vertices": 24,
+            "finite": true,
+            "inFrustum": true,
+            "fullyInFrustum": true,
+            "visible": true
+          },
+          {
+            "layerId": "67a6fb6a-b524-4084-a9ed-8fd0222aabfc-0",
+            "vertices": 24,
+            "finite": true,
+            "inFrustum": true,
+            "fullyInFrustum": true,
+            "visible": true
+          }
+        ]
+      },
+      "renderAfter": {
+        "frames": 70,
+        "calls": 11,
+        "triangles": 52,
+        "objects": [
+          {
+            "layerId": "67a6fb6a-b524-4084-a9ed-8fd0222aabfc-0",
+            "vertices": 24,
+            "finite": true,
+            "inFrustum": true,
+            "fullyInFrustum": true,
+            "visible": true
+          }
+        ]
+      },
+      "checks": [
+        {
+          "name": "Parsed action family",
+          "passed": true,
+          "actual": [
+            "DELETE"
+          ],
+          "expected": [
+            "DELETE"
+          ]
+        },
+        {
+          "name": "Execution succeeds",
+          "passed": true,
+          "actual": "Deleted cube."
+        },
+        {
+          "name": "Exactly one object removed",
+          "passed": true,
+          "actual": 1,
+          "expected": 1
+        },
+        {
+          "name": "First cube ID removed and later cube retained",
+          "passed": true
+        },
+        {
+          "name": "Committed scene actually changes",
+          "passed": true
+        },
+        {
+          "name": "Preconditions executed successfully",
+          "passed": true,
+          "actual": []
+        },
+        {
+          "name": "GPU frame rendered",
+          "passed": true
+        },
+        {
+          "name": "Mesh coordinates finite",
+          "passed": true
+        },
+        {
+          "name": "Context resolves against committed scene",
+          "passed": true
+        },
+        {
+          "name": "Rendered mesh: CU2",
+          "passed": true,
+          "actual": [
+            {
+              "layerId": "67a6fb6a-b524-4084-a9ed-8fd0222aabfc-0",
+              "vertices": 24,
+              "finite": true,
+              "inFrustum": true,
+              "fullyInFrustum": true,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "name": "Full mesh bounds visible: CU2",
+          "passed": true
+        },
+        {
+          "name": "Deleted object absent from renderer",
+          "passed": true
+        }
+      ],
+      "status": "passed",
+      "elapsedMs": 954.1999999880791,
+      "errorCategory": null,
+      "rootCause": null,
+      "fixVerified": false
+    }
+  ]
+}

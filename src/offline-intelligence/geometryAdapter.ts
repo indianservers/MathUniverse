@@ -13,10 +13,10 @@ function addGeometry<T extends Pick<Construction, 'points' | 'lines' | 'circles'
   const base=command.objectId??crypto.randomUUID();
   const retained = <TItem extends {id:string}>(items:TItem[])=>items.filter(item=>!item.id.startsWith(`${base}-`));
   if(command.roboNativeIds){
-    const ids=command.roboNativeIds,drop=new Set([...ids.points,...(ids.shape?[ids.shape]:[])]),deleted=new Set(ids.shape?[ids.shape]:ids.points);
+    const ids=command.roboNativeIds,drop=new Set(command.roboAppearanceOnly&&ids.shape?[ids.shape]:[...ids.points,...(ids.shape?[ids.shape]:[])]),deleted=new Set(ids.shape?[ids.shape]:ids.points);
     const preserve=<TItem extends {id:string;style?:{visible?:boolean;color?:string}}>(items:TItem[])=>command.roboControl==='delete'?items.filter(item=>!deleted.has(item.id)):items.map(item=>drop.has(item.id)?{...item,style:{...item.style,color:command.color,visible:command.roboVisible??true}}:item);
     const coordinates=command.kind==='circle'?[command.points[0],[(command.points[0]?.[0]??0)+command.radius*(command.scale??1),command.points[0]?.[1]??0]]:outlineVertices(command);
-    const points=preserve(current.points).map(point=>{const index=ids.points.indexOf(point.id),p=coordinates[index];return index>=0&&p&&command.roboControl!=='visibility'?{...point,x:320+p[0]*40,y:210-p[1]*40,...(index===0&&command.roboLabel?{label:command.roboLabel}:{})}:point;});
+    const points=preserve(current.points).map(point=>{const index=ids.points.indexOf(point.id),p=coordinates[index];return index>=0&&p&&!command.roboAppearanceOnly&&command.roboControl!=='visibility'?{...point,x:320+p[0]*40,y:210-p[1]*40,...(index===0&&command.roboLabel?{label:command.roboLabel}:{})}:point;});
     const next={...current,points,lines:preserve(current.lines),circles:preserve(current.circles),polygons:preserve(current.polygons),loci:preserve(current.loci)};
     if(command.roboControl!=='delete'){
       ids.points.forEach((id,index)=>{const p=coordinates[index];if(p&&!next.points.some(point=>point.id===id))next.points.push({id,x:320+p[0]*40,y:210-p[1]*40,label:command.roboLabel??id,style:{color:command.color}});});
@@ -52,17 +52,21 @@ export function nativeGeometryCommands(current:Pick<Construction,'points'|'lines
   const base=(id:string,kind:VisualCommand['kind'],points:number[][],color?:string):VisualCommand=>({objectId:id,kind,dimension:'2d',points,width:6,height:4,radius:3,color:color??'#22d3ee',action:'create',rotation:[0,0,0],scale:1});
   const standalone=(id:string)=>!/-p\d+$|-shape$/.test(id);
   const commands:VisualCommand[]=current.points.filter(p=>standalone(p.id)).map(point=>({...base(point.id,'point',[xy(point.id)!],point.style?.color),roboLabel:point.label,roboNativeIds:{points:[point.id]}}));
-  for(const object of current.lines.filter(o=>!owned(o.id))){const a=xy(object.a),b=xy(object.b);if(a&&b)commands.push({...base(object.id,(object.kind==='segment'?'line':object.kind)??(object.style?.label==='ray'?'ray':object.style?.label==='vector'?'vector':'line'),[a,b],object.style?.color),roboLabel:current.points.find(p=>p.id===object.a)?.label,linearExtent:object.kind==='segment'?'segment':'line',roboNativeIds:{points:[object.a,object.b],shape:object.id}});}
+  for(const object of current.lines.filter(o=>!owned(o.id))){const a=xy(object.a),b=xy(object.b);if(a&&b)commands.push({...base(object.id,(object.kind==='segment'?'line':object.kind)??(object.style?.label==='ray'?'ray':object.style?.label==='vector'?'vector':'line'),[a,b],object.style?.color),roboLabel:current.points.find(p=>p.id===object.a)?.label,linearExtent:object.kind==='segment'?'segment':'line',roboVertexLabels:[object.a,object.b].map(id=>current.points.find(p=>p.id===id)?.label??id),roboNativeIds:{points:[object.a,object.b],shape:object.id}});}
   for(const object of current.circles.filter(o=>!owned(o.id))){const c=xy(object.center),e=xy(object.edge);if(c&&e)commands.push({...base(object.id,'circle',[c],object.style?.color),roboLabel:current.points.find(p=>p.id===object.center)?.label,radius:Math.hypot(c[0]-e[0],c[1]-e[1]),roboNativeIds:{points:[object.center,object.edge],shape:object.id}});}
-  for(const object of current.polygons.filter(o=>!owned(o.id))){const points=object.points.map(xy);if(points.every((p):p is number[]=>!!p))commands.push({...base(object.id,points.length===3?'triangle':'polygon',points,object.style?.color),roboLabel:current.points.find(p=>p.id===object.points[0])?.label,roboNativeIds:{points:object.points,shape:object.id},roboExplicitVertices:true});}
+  for(const object of current.polygons.filter(o=>!owned(o.id))){const points=object.points.map(xy);if(points.every((p):p is number[]=>!!p))commands.push({...base(object.id,points.length===3?'triangle':'polygon',points,object.style?.color),roboLabel:current.points.find(p=>p.id===object.points[0])?.label,roboVertexLabels:object.points.map(id=>current.points.find(p=>p.id===id)?.label??id),roboNativeIds:{points:object.points,shape:object.id},roboExplicitVertices:true});}
   const restored=new Map<string,VisualCommand>();
   const metadata=(style:unknown)=>(style as {ruhiCommand?:VisualCommand}|undefined)?.ruhiCommand;
   for(const object of [...current.lines,...current.circles,...current.polygons,...current.points]){
     const command=metadata(object.style);
     if(!command?.objectId||owned(command.objectId))continue;
     const pointIds='center' in object?[object.center,object.edge]:'a' in object?[object.a,object.b]:'points' in object?object.points:[object.id];
-    restored.set(command.objectId,{...structuredClone(command),color:command.roboStrokeColor?command.color:object.style?.color??command.color,roboNativeIds:{points:pointIds,...(!('x' in object)?{shape:object.id}:{})}});
+    const actual=pointIds.map(xy);
+    const constrained=command.roboAnalyticConstraint&&actual.every((p):p is number[]=>!!p)?{points:command.kind==='circle'?[actual[0]!]:actual as number[][],...(command.kind==='circle'?{radius:Math.hypot(actual[0]![0]-actual[1]![0],actual[0]![1]-actual[1]![1])}:{}),scale:1,rotation:[0,0,0] as [number,number,number],roboExplicitVertices:true}:{};
+    restored.set(command.objectId,{...structuredClone(command),...constrained,color:command.roboStrokeColor?command.color:object.style?.color??command.color,roboNativeIds:{points:pointIds,...(!('x' in object)?{shape:object.id}:{})}});
   }
-  const restoredNativeIds=new Set([...restored.values()].flatMap(c=>[...(c.roboNativeIds?.points??[]),...(c.roboNativeIds?.shape?[c.roboNativeIds.shape]:[])]));
+  // A restored shape may reference existing standalone points. Keep those points;
+  // only replace the native item represented by each restored semantic command.
+  const restoredNativeIds=new Set([...restored.values()].flatMap(c=>c.kind==='point'?c.roboNativeIds?.points??[]:c.roboNativeIds?.shape?[c.roboNativeIds.shape]:[]));
   return [...commands.filter(c=>!c.objectId||!restoredNativeIds.has(c.objectId)),...restored.values()];
 }

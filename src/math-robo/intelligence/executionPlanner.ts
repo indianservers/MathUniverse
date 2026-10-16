@@ -1,3 +1,8 @@
+import {resolveMutationTargets} from './targetResolver';
+import {analyticParentIds} from './analyticConstraints';
+import {evaluateGeometryLesson,type GeometryLesson} from './geometryCurriculum';
+import {evaluateExtendedGeometry} from './geometryExtendedCurriculum';
+import type {GeometrySlots} from './geometryQuestionGrammar';
 import {preservedObjectIds} from './selectiveClear';
 import {triangleSideVertices,type TriangleSidePolicy} from './triangleSide';
 import {planeFromPoints3} from '../kernel/geometry3d';
@@ -42,14 +47,46 @@ export function preparePlan(plan:MathRoboPlan,input:Readonly<RoboSceneContext>):
   };
   for(const [commandIndex,c] of plan.commands.entries()){
     const operation=validateCommand(c);const p=c.parameters;
+    if(c.subAction==='BOARD_ADVANCED'){
+      const answer=evaluateExtendedGeometry(p.extendedLesson as GeometrySlots,s);
+      for(const effect of answer.effects)store(effect);
+      s.previousResult=answer.value;s.lastQueryTargets=answer.targets;s.previousResultTargets=answer.targets;
+      messages.push(answer.message);continue;
+    }
+    if(c.subAction==='BOARD_GEOMETRY'){
+      const answer=evaluateGeometryLesson(p.geometryLesson as GeometryLesson,s);
+      for(const effect of answer.effects)store(effect);
+      s.previousResult=answer.value;s.lastQueryTargets=answer.targets;s.previousResultTargets=answer.targets;
+      messages.push(answer.message);continue;
+    }
+    if(c.action==='FIND'&&c.subAction==='NEAREST_POINT'){
+      const query=p.position as number[];
+      if(query.length!==dimension||query.some(n=>!Number.isFinite(n)))throw new Error(`Provide ${dimension} finite coordinates.`);
+      const points=s.objects.filter(o=>o.type==='point'&&o.command.roboVisible!==false&&o.command.roboDefinitionState?.status!=='undefined'&&o.position.length===dimension&&o.position.every(Number.isFinite));
+      if(!points.length)throw new Error('There are no visible, defined points on this board. Create a point first.');
+      const distances=points.map(o=>distance(o.position,query)),minimum=Math.min(...distances);
+      const nearest=points.filter((_,i)=>Math.abs(distances[i]-minimum)<=1e-9*Math.max(1,minimum));
+      s.previousResult=minimum;s.lastQueryTargets=nearest.map(o=>o.id);s.previousResultTargets=s.lastQueryTargets;
+      if(nearest.length===1)s.lastReferenced=nearest[0].id;
+      const names=nearest.map(o=>`${o.label??o.id} at (${o.position.join(', ')})`).join('; ');
+      messages.push(`${nearest.length===1?'The nearest point is':'These points are equally near:'} ${names}. Distance from (${query.join(', ')}) = ${rounded(minimum)} units, using Euclidean coordinate distance.`);
+      continue;
+    }
     if(['UNDO','REDO'].includes(c.action))throw new Error('History commands must be used separately.');
     if(c.action==='EXPLAIN'){const preceding=commandIndex>0&&['FIND','CHECK','COMPARE','COUNT'].includes(plan.commands[commandIndex-1].action)?messages.at(-1):undefined,previous=s.previousResults?.at(-1);if(!preceding&&!previous)throw new Error('First ask a mathematical question.');s.responseDepth=p.responseDepth as RoboSceneContext['responseDepth'];messages.push(preceding?`Using the current object geometry: ${preceding}`:previous!.explanation);continue;}
+    if(c.action==='MOVE'&&p.apart){
+      const targets=(s.activeObjectIds??[]).map(id=>resolveTarget(id,s));
+      if(targets.length<2)throw new Error('Create or select at least two objects to move apart.');
+      const spacing=Math.max(...targets.map(o=>Math.max(o.command.width,2*o.command.radius)*(o.command.scale??1)))+1;
+      const prepared=preparePlan({...plan,commands:targets.map((o,i)=>({...c,target:o.id,parameters:{vector:[(i-(targets.length-1)/2)*spacing,o.position[1],o.position[2]],absolute:true}}))},s);
+      Object.assign(s,prepared.scene);effects.push(...prepared.effects);messages.push(...prepared.messages);continue;
+    }
     if(c.action==='CHECK'&&c.subAction==='MEASUREMENT'){const object=resolveTarget(c.target,s),actual=Number(measurement(object,String(p.measurement))),expected=Number(p.expectedValue);if(!Number.isFinite(actual)||!Number.isFinite(expected))throw new Error('A finite measurement and expected value are required.');s.previousResult=Math.abs(actual-expected)<=1e-7;s.lastQueryTargets=[object.id];messages.push(`${s.previousResult?'Yes':'No'} — ${String(p.measurement).toLowerCase()} is ${actual}, compared with ${expected}. Numerical tolerance 1e-7.`);continue;}
-    if(p.multiple&&['MOVE','ROTATE','SCALE','DELETE','HIDE','SHOW','LOCK','UNLOCK'].includes(c.action)){
-      const targets=twoTargets(c,s),prepared=preparePlan({...plan,commands:targets.map(o=>({...c,target:o.id,parameters:{...p,multiple:false}}))},s);Object.assign(s,prepared.scene);effects.push(...prepared.effects);messages.push(...prepared.messages);continue;
+    if(p.multiple&&['MOVE','ROTATE','SCALE','DELETE','HIDE','SHOW','LOCK','UNLOCK','CHANGE'].includes(c.action)){
+      const targets=resolveMutationTargets(c.targets,c.target,s),prepared=preparePlan({...plan,commands:targets.map(o=>({...c,targets:undefined,target:o.id,parameters:{...p,multiple:false}}))},s);Object.assign(s,prepared.scene);effects.push(...prepared.effects);messages.push(p.bulkEdit?`Updated ${targets.length} matching ${targets.length===1?'object':'objects'}.\n${prepared.messages.join('\n')}`:prepared.messages.join('\n'));continue;
     }
     if(c.action==='CREATE'&&c.subAction==='PLANE'){
-      const parents=(p.planeParents as string[]|undefined)?.map(name=>resolveTarget(name,s));if(parents?.some(o=>o.type!=='point'))throw new Error('A plane must reference point objects.');const points=parents?.map(o=>o.position)??p.points??[],plane=planeFromPoints3(points),command:VisualCommand={kind:'polygon',dimension:'3d',points,width:6,height:4,radius:3,color:'#22d3ee',rotation:[0,0,0],scale:1,action:'create',roboSemanticKind:'plane',roboExplicitVertices:true,roboPlane:plane,roboLabel:p.label,roboDependency:parents?{kind:'plane3',parents:parents.map(o=>({objectId:o.id}))}:undefined};store(command);messages.push(`Created a plane through the three supplied points. Equation coefficients: ${plane.exactCoefficients.join(', ')}. The displayed patch represents an infinite plane.`);continue;
+      const parents=p.selectedPlane?s.selectedIds.map(id=>resolveTarget(id,s)):(p.planeParents as string[]|undefined)?.map(name=>resolveTarget(name,s));if(parents?.some(o=>o.type!=='point'))throw new Error('A plane must reference point objects.');const points=parents?.map(o=>o.position)??p.points??[],plane=planeFromPoints3(points),command:VisualCommand={kind:'polygon',dimension:'3d',points,width:6,height:4,radius:3,color:'#22d3ee',rotation:[0,0,0],scale:1,action:'create',roboSemanticKind:'plane',roboExplicitVertices:true,roboPlane:plane,roboLabel:p.label,roboDependency:parents?{kind:'plane3',parents:parents.map(o=>({objectId:o.id}))}:undefined};store(command);messages.push(`Created a plane through the three supplied points. Equation coefficients: ${plane.exactCoefficients.join(', ')}. The displayed patch represents an infinite plane.`);continue;
     }
     if(c.action==='CONSTRUCT'&&c.subAction==='PERP_PLANE'){
       const host=resolveTarget(c.target,s);if(host.type!=='plane')throw new Error('Choose a plane.');const through=typeof p.throughPoint==='string'?resolveTarget(p.throughPoint,s):undefined,origin=through?.position??p.position;if(!origin||through&&through.type!=='point')throw new Error('Provide the point through which the perpendicular line passes.');const plane=planeFromPoints3(vertices(host).slice(0,3)),line=createAt('line',[origin,origin.map((x,i)=>x+plane.normal[i])],host);line.command.linearExtent='line';line.command.roboDependency={kind:'perpPlane3',parents:[{objectId:host.id},...(through?[{objectId:through.id}]:[])]};effects.at(-1)!.roboDependency=line.command.roboDependency;effects.at(-1)!.linearExtent='line';messages.push('Created the perpendicular line through the supplied point, using the plane normal.');continue;
@@ -60,6 +97,7 @@ export function preparePlan(plan:MathRoboPlan,input:Readonly<RoboSceneContext>):
       if(c.subAction==='ANGLE'){const angle=Number(p.angle);if(!(angle>0&&angle<180))throw new Error('Use an angle strictly between 0 and 180 degrees.');const origin=p.position??[0,0],length=5,command:VisualCommand={kind:'polygon',dimension:'2d',points:[origin,[origin[0]+length,origin[1]],[origin[0]+length*Math.cos(angle*Math.PI/180),origin[1]+length*Math.sin(angle*Math.PI/180)]],width:5,height:5,radius:1,color:'#22d3ee',scale:1,rotation:[0,0,0],roboExplicitVertices:true,roboSemanticKind:'angle',roboAngle:{vertex:0,degrees:angle}};const object=store(command);s.activeAngle={objectId:object.id,vertex:0};messages.push(`Created ${angle}-degree angle with five-unit rays.`);continue;}
       if(p.triangleCenter){const host=resolveTarget(c.target,s),point=triangleCenter(host,String(p.triangleCenter)).point,vs=vertices(host),label=String(p.vertex??'A').toUpperCase(),labels=host.command.roboVertexLabels??['A','B','C'],index=labels.indexOf(label)>=0?labels.indexOf(label):['A','B','C'].indexOf(label[0]);if(index<0)throw new Error('Choose an existing triangle vertex.');const segment=createAt('line',[point,vs[index]],host);segment.command.linearExtent='segment';effects.at(-1)!.linearExtent='segment';messages.push('Connected the triangle center to its vertex.');continue;}
       if(p.fromMarkedPoints){const points=s.objects.filter(o=>o.type==='point'&&o.command.roboDependency?.kind==='midpoint').slice(-3);if(points.length!==3)throw new Error('Mark three side midpoints before joining them.');p.points=points.map(o=>o.position);p.dependency={kind:'triangle',parents:points.map(o=>({objectId:o.id}))};p.originalId=points[0].command.roboDependency?.parents[0].objectId;}
+      if(p.selectedPoints){const points=s.selectedIds.map(id=>resolveTarget(id,s));if(points.length!==2||points.some(o=>o.type!=='point'))throw new Error('Select exactly two point objects.');p.points=points.map(o=>o.position);}
       const creationPhrase=['LINE','RAY','VECTOR'].includes(c.subAction)&&p.points?.length===2?`Draw ${c.subAction.toLowerCase()} (${p.points[0].join(',')}) to (${p.points[1].join(',')})`:c.subAction==='POINT'&&(p.position||p.points?.[0])?`Create point (${(p.position??p.points![0]).join(',')})`:`Create ${c.subAction.toLowerCase()}`;
       const visual=p.legacy?structuredClone(p.legacy):interpretVisualRequest(c.action==='PLOT'?`Plot ${dimension===3?'z':'y'} = ${p.expression}`:creationPhrase,c.mode).command;
       if(visual?.kind==='line')visual.linearExtent=/\bsegment\b/i.test(c.rawPhrase)?'segment':'line';
@@ -120,7 +158,11 @@ export function preparePlan(plan:MathRoboPlan,input:Readonly<RoboSceneContext>):
           if(!relationship(objects,'PARALLEL'))throw new Error('Select parallel lines to measure their perpendicular distance, or specify two points.');
           const u=unit(direction),along=delta.reduce((sum,n,i)=>sum+n*u[i],0);s.previousResult=Math.hypot(...delta.map((n,i)=>n-along*u[i]));
         }else throw new Error('Distance requires two points or two parallel lines.');
-        messages.push(`Distance = ${rounded(s.previousResult)} units.`);
+        if(objects.every(o=>o.type==='point')){
+          const [a,b]=objects;
+          messages.push(`Distance from ${a.label??a.id} to ${b.label??b.id} = ${rounded(s.previousResult)} units. Using (${a.position.join(', ')}) and (${b.position.join(', ')}): d = √(${a.position.map((n,i)=>`(${b.position[i]} − ${n})²`).join(' + ')}).`);
+          if(typeof p.expectedDistance==='number')messages[messages.length-1]=`${Math.abs(s.previousResult-p.expectedDistance)<=1e-8?'Yes':'No'}. ${messages.at(-1)}`;
+        }else messages.push(`Distance = ${rounded(s.previousResult)} units.`);
       }continue;
     }
     if(c.action==='MARK'||c.action==='SHOW'&&c.subAction!=='OBJECT'){
@@ -156,7 +198,7 @@ export function preparePlan(plan:MathRoboPlan,input:Readonly<RoboSceneContext>):
     }
     const o=c.action==='CONSTRUCT'&&['ANGLE_BISECTOR','PROJECTION'].includes(c.subAction)?twoTargets(c,s)[0]:c.action==='CONSTRUCT'&&['MEDIAN','ALTITUDE','CIRCUMCIRCLE','INCIRCLE'].includes(c.subAction)&&implicitTarget(c)&&primaryCreation?.type==='triangle'?primaryCreation:resolveTarget(c.target,s);s.lastReferenced=o.id;
     if(o.derivedFrom&&!s.objects.some(actual=>actual.id===o.id)&&!(c.action==='MOVE'&&o.type==='point'&&o.derivedFrom.length===1)&&!['FIND','CHECK','CONSTRUCT','MARK','SHOW'].includes(c.action))throw new Error('This is a derived vertex or edge. Create a separate object before editing it.');
-    if(o.command.roboLocked&&!['UNLOCK','FIND','CHECK','COMPARE','SELECT','SHOW','HIDE','DUPLICATE'].includes(c.action))throw new Error('This object is locked. Unlock it before editing.');
+    if(o.command.roboLocked&&!['LOCK','UNLOCK','FIND','CHECK','COMPARE','SELECT','SHOW','HIDE','DUPLICATE'].includes(c.action))throw new Error('This object is locked. Unlock it before editing.');
     if(operation.allowedTypes.length&&!operation.allowedTypes.includes(o.type))throw new Error(`${c.subAction.toLowerCase()} is not applicable to ${o.type}.`);
     if(c.action==='FIND'){
       const result=['INCENTER','CIRCUMCENTER','ORTHOCENTER','TRIANGLE_TYPE','COORDINATES','EQUATION','LONGEST_SIDE','LARGEST_ANGLE'].includes(c.subAction)?derivedMeasurement(o,c.subAction):(c.subAction==='ROOTS'||c.subAction==='X_INTERCEPT')&&o.type==='plot'?numericRoots(compileFunctionExpression(o.command.expression??'')).map(x=>[x,0]):measurement(o,c.subAction);
@@ -176,8 +218,8 @@ export function preparePlan(plan:MathRoboPlan,input:Readonly<RoboSceneContext>):
       messages.push(`${perpendicular?'Perpendicular':'Parallel'} line created through the point.`);continue;
     }
     if(c.action==='SELECT'){s.selectedIds=[o.id];effects.push({...o.command,roboControl:'select'});messages.push(`Selected ${o.type}.`);continue;}
-    if(c.action==='DELETE'){if(o.type==='point'&&o.command.roboNativeIds&&s.objects.some(other=>other.id!==o.id&&other.command.roboNativeIds?.points.includes(o.id)))throw new Error('Delete connected shapes before deleting this shared point.');const removed=new Set([o.id]);for(let pass=0;pass<s.objects.length;pass++)for(const child of s.objects)if(child.command.roboDependency?.parents.some(parent=>removed.has(parent.objectId)))removed.add(child.id);for(const object of s.objects.filter(object=>removed.has(object.id)))effects.push({...object.command,roboControl:'delete'});s.objects=s.objects.filter(obj=>!removed.has(obj.id));s.selectedIds=s.selectedIds.filter(id=>!removed.has(id));messages.push(`Deleted ${o.type}${removed.size>1?` and ${removed.size-1} dependent construction(s)`:''}.`);continue;}
-    if(c.action==='SHOW'||c.action==='HIDE'){o.style.visible=c.action==='SHOW';o.command.roboVisible=o.style.visible;effects.push({...o.command,roboControl:'visibility'});messages.push(`${c.action==='SHOW'?'Showing':'Hidden'} ${o.type}.`);continue;}
+    if(c.action==='DELETE'){if(o.type==='point'&&o.command.roboNativeIds&&s.objects.some(other=>other.id!==o.id&&other.command.roboNativeIds?.points.includes(o.id)))throw new Error('Delete connected shapes before deleting this shared point.');const removed=new Set([o.id]);for(let pass=0;pass<s.objects.length;pass++)for(const child of s.objects)if(child.command.roboDependency?.parents.some(parent=>removed.has(parent.objectId))||analyticParentIds(child,s).some(id=>removed.has(id)))removed.add(child.id);for(const object of s.objects.filter(object=>removed.has(object.id)))effects.push({...object.command,roboControl:'delete'});s.objects=s.objects.filter(obj=>!removed.has(obj.id));s.selectedIds=s.selectedIds.filter(id=>!removed.has(id));messages.push(`Deleted ${o.type}${removed.size>1?` and ${removed.size-1} dependent construction(s)`:''}.`);continue;}
+    if(c.action==='SHOW'||c.action==='HIDE'){o.style.visible=c.action==='SHOW';o.command.roboVisible=o.style.visible;effects.push({...o.command,roboControl:'visibility',roboAppearanceOnly:true});messages.push(`${c.action==='SHOW'?'Showing':'Hidden'} ${o.type}.`);continue;}
     if(c.action==='MOVE'&&o.type==='point'&&!s.objects.some(object=>object.id===o.id)&&o.derivedFrom?.length===1){
       const parent=s.objects.find(object=>object.id===o.derivedFrom![0]),index=parent?.command.roboVertexLabels?.findIndex(label=>label.toLowerCase()===o.label?.toLowerCase());
       if(!parent||!['triangle','polygon'].includes(parent.type)||index===undefined||index<0)throw new Error('Name an editable triangle or polygon vertex.');
@@ -187,12 +229,12 @@ export function preparePlan(plan:MathRoboPlan,input:Readonly<RoboSceneContext>):
       if(parent.type==='triangle'){const u=points[1].map((n,i)=>n-points[0][i]),v=points[2].map((n,i)=>n-points[0][i]),area=dimension===2?Math.abs(u[0]*v[1]-u[1]*v[0]):Math.hypot(u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]);if(area<=EPSILON)throw new Error('Moving that vertex would make the triangle degenerate.');}
       store({...parent.command,action:'update',points,scale:1,rotation:[0,0,0],roboExplicitVertices:true,fitDimensions:false});messages.push(`Moved vertex ${o.label}. Its dependent constructions update from the parent polygon.`);continue;
     }
-    const visual=structuredClone(o.command);visual.action='update';visual.roboControl=undefined;
+    const visual=structuredClone(o.command);visual.action='update';visual.roboControl=undefined;visual.roboAppearanceOnly=['LOCK','UNLOCK'].includes(c.action)||c.action==='CHANGE'&&['COLOR','FILL_COLOR','STROKE_COLOR','LINE_WIDTH'].includes(c.subAction);
     if(c.action==='LOCK'||c.action==='UNLOCK'){visual.roboLocked=c.action==='LOCK';store(visual,o.originalId);messages.push(`${c.action==='LOCK'?'Locked':'Unlocked'} ${o.label??o.type}.`);continue;}
     if(c.action==='EXTEND'){const [a,b]=vertices(o);let factor=Number(p.factor);if(p.axisIntersection){const axis=p.axisIntersection==='x'?1:0,delta=b[axis]-a[axis];if(Math.abs(delta)<EPSILON)throw new Error('The line has no unique intersection with that axis.');factor=-a[axis]/delta;}visual.points=Math.abs(factor)<EPSILON?[a,b]:[a,a.map((n,i)=>n+(b[i]-n)*factor)];visual.scale=1;visual.rotation=[0,0,0];}
     if(c.action==='DUPLICATE'){visual.objectId=crypto.randomUUID();visual.roboLabel=undefined;visual.roboNativeIds=undefined;visual.action='create';store(visual,o.id);messages.push(`Duplicated ${o.type}.`);continue;}
     if(c.action==='MOVE'){const v=p.vector!;if(v.length!==dimension)throw new Error(`Provide ${dimension} translation coordinates.`);const delta=p.absolute?v.map((n,i)=>n-center(o)[i]):v;visual.points=(visual.points.length?visual.points:[Array(dimension).fill(0)]).map(pt=>pt.map((n,i)=>n+delta[i]));}
-    if(c.action==='ROTATE'){visual.rotation=[...(visual.rotation??[0,0,0])];const axis=p.axis??'z';if(dimension===2&&axis!=='z')throw new Error('2D rotation uses the z-axis.');if(dimension===2&&p.anchor){const vs=vertices(o),anchor=p.anchor==='origin'?[0,0]:vs[(o.command.roboVertexLabels??['A','B','C']).indexOf(String(p.vertex??'A'))];if(!anchor)throw new Error('That rotation vertex does not exist.');const angle=p.angle!*Math.PI/180;visual.points=vs.map(pt=>{const x=pt[0]-anchor[0],y=pt[1]-anchor[1];return [anchor[0]+x*Math.cos(angle)-y*Math.sin(angle),anchor[1]+x*Math.sin(angle)+y*Math.cos(angle)];});visual.rotation=[0,0,0];visual.scale=1;visual.roboExplicitVertices=true;}else visual.rotation['xyz'.indexOf(axis)]+=p.angle!;}
+    if(c.action==='ROTATE'){visual.rotation=[...(visual.rotation??[0,0,0])];const axis=p.axis??'z';if(dimension===2&&axis!=='z')throw new Error('2D rotation uses the z-axis.');if(dimension===2&&p.anchor){const vs=vertices(o),anchor=p.anchor==='origin'?[0,0]:vs[(o.command.roboVertexLabels??['A','B','C']).indexOf(String(p.vertex??'A'))];if(!anchor)throw new Error('That rotation vertex does not exist.');const angle=p.angle!*Math.PI/180;visual.points=vs.map(pt=>{const x=pt[0]-anchor[0],y=pt[1]-anchor[1];return [anchor[0]+x*Math.cos(angle)-y*Math.sin(angle),anchor[1]+x*Math.sin(angle)+y*Math.cos(angle)];});visual.rotation=[0,0,0];visual.scale=1;visual.roboExplicitVertices=true;}else if(p.resetRotation)visual.rotation=[0,0,0];else visual.rotation['xyz'.indexOf(axis)]=(visual.rotation['xyz'.indexOf(axis)]+p.angle!)%360;}
     if(c.action==='SCALE')visual.scale=(visual.scale??1)*p.factor!;
     if(c.action==='REFLECT'){
       if(c.subAction==='DIAGONAL'){visual.points=vertices(o).map(pt=>[pt[1],pt[0]]);visual.rotation=[0,0,0];visual.scale=1;visual.roboExplicitVertices=true;if(o.type==='circle')visual.points=[center(o).reverse()];}
@@ -208,20 +250,31 @@ export function preparePlan(plan:MathRoboPlan,input:Readonly<RoboSceneContext>):
     }
     if(c.action==='REFLECT'&&p.copy){visual.objectId=crypto.randomUUID();visual.roboLabel=undefined;visual.roboNativeIds=undefined;visual.roboDependency=undefined;visual.action='create';store(visual,o.id);messages.push(`Created reflected copy of ${o.label??o.type}.`);continue;}
       if(c.action==='CHANGE'||c.action==='RESIZE'){
+      const changesDimensions=['width','height','depth','radius','diameter'].some(key=>p[key]!==undefined)||p.widthFactor||p.heightFactor||p.depthFactor||p.dimensionRatio;
+      if(changesDimensions&&(visual.scale??1)!==1){const scale=visual.scale??1;for(const key of ['width','height','depth','radius'] as const)if(visual[key]!==undefined)visual[key]=visual[key]!*scale;visual.scale=1;}
+      if((p.independentDimensions||p.widthFactor||p.heightFactor||p.depthFactor)&&visual.kind==='cube')visual.kind='cuboid';
       if(p.dimensionRatio){const ratio=p.dimensionRatio as {destination:'width'|'height'|'depth';source:'width'|'height'|'depth';factor:number};if(!['rectangle','square','cube','cuboid'].includes(o.type))throw new Error('Dimension ratios require a rectangle or box.');const scale=visual.scale??1;p.width=visual.width*scale;p.height=visual.height*scale;p.depth=(visual.depth??visual.width)*scale;p[ratio.destination]=(visual[ratio.source]??visual.width)*scale*ratio.factor;}
-      if(typeof p.widthFactor==='number')p.width=visual.width*p.widthFactor;if(typeof p.heightFactor==='number')p.height=visual.height*p.heightFactor;
+      if(typeof p.widthFactor==='number')p.width=visual.width*p.widthFactor;if(typeof p.heightFactor==='number')p.height=visual.height*p.heightFactor;if(typeof p.depthFactor==='number')p.depth=(visual.depth??visual.width)*p.depthFactor;if(p.uniformSide){p.height=p.depth=p.width;}
       if(c.subAction==='SIDE'){visual.points=triangleSideVertices(o,{side:p.side as [string,string],length:Number(p.length),policy:p.sidePolicy as TriangleSidePolicy});visual.scale=1;visual.rotation=[0,0,0];visual.roboExplicitVertices=true;visual.roboDependency=undefined;}
       if(c.subAction==='LENGTH'||c.subAction==='SLOPE'){const [a,b]=vertices(o),length=c.subAction==='LENGTH'?Number(p.length):distance(a,b),slope=Number(p.slope),u=c.subAction==='SLOPE'?unit([1,slope]):unit(subtract(b,a));visual.points=[a,a.map((n,i)=>n+u[i]*length)];visual.scale=1;visual.rotation=[0,0,0];}
       if(c.subAction==='ENDPOINTS'&&p.points){if(p.points.length!==2||distance(p.points[0],p.points[1])<EPSILON)throw new Error('Provide two distinct endpoints.');visual.points=p.points;visual.scale=1;visual.rotation=[0,0,0];}
-      if(p.color){const color=COLORS[p.color]??p.color;if(p.styleTarget==='angleArc'){if(!visual.roboAngle)throw new Error('Choose an active angle before styling its arc.');visual.roboAngle={...visual.roboAngle,arcColor:color};}else if(c.subAction==='FILL_COLOR')visual.roboFillColor=color;else{visual.color=color;if(c.subAction==='STROKE_COLOR')visual.roboStrokeColor=color;}}if(p.label)visual.roboLabel=p.label;
-      if(c.subAction==='LINE_WIDTH'){const width=(visual.roboLineWidth??3)*Number(p.lineWidthFactor??1);if(!(width>0&&width<=32))throw new Error('Use a stroke width between 0 and 32 pixels.');visual.roboLineWidth=width;if(p.styleTarget==='rays'&&visual.roboAngle&&visual.roboSemanticKind!=='angle')visual.roboStrokeEdges=[visual.roboAngle.vertex,(visual.roboAngle.vertex+2)%3];if(visual.roboAngle)visual.roboAngle={...visual.roboAngle,lineWidth:width};}
-      if(['RADIUS','DIAMETER'].includes(c.subAction)&&!['circle','sphere'].includes(o.type))throw new Error('Radius changes require a circle or sphere.');
+      if(p.color){const color=COLORS[p.color]??p.color;if(p.styleTarget==='angleArc'){if(!visual.roboAngle)throw new Error('Choose an active angle before styling its arc.');visual.roboAngle={...visual.roboAngle,arcColor:color};}else if(c.subAction==='FILL_COLOR')visual.roboFillColor=color;else{visual.color=color;if(c.subAction==='COLOR'&&visual.roboStrokeColor)visual.roboStrokeColor=color;if(c.subAction==='STROKE_COLOR')visual.roboStrokeColor=color;}}if(p.label)visual.roboLabel=p.label;
+      if(c.subAction==='LINE_WIDTH'){const width=Number(p.lineWidth??(visual.roboLineWidth??3)*Number(p.lineWidthFactor??1));if(!(width>0&&width<=32))throw new Error('Use a stroke width between 0 and 32 pixels.');visual.roboLineWidth=width;if(p.styleTarget==='rays'&&visual.roboAngle&&visual.roboSemanticKind!=='angle')visual.roboStrokeEdges=[visual.roboAngle.vertex,(visual.roboAngle.vertex+2)%3];if(visual.roboAngle)visual.roboAngle={...visual.roboAngle,lineWidth:width};}
+      if(['RADIUS','DIAMETER'].includes(c.subAction)&&!['circle','sphere','cylinder','cone'].includes(o.type))throw new Error('Radius changes require a circle or sphere.');
       for(const key of ['width','height','depth','radius'] as const)if(p[key]!==undefined)visual[key]=p[key]!;
       if(p.diameter!==undefined)visual.radius=p.diameter/2;if(p.position){if(['ray','vector','line'].includes(o.type)){const delta=p.position.map((n,i)=>n-center(o)[i]);visual.points=visual.points.map(pt=>pt.map((n,i)=>n+delta[i]));}else visual.points=[p.position];}
       if(['width','height','depth','radius','diameter'].some(key=>p[key]!==undefined)){visual.scale=1;visual.fitDimensions=true;}
       if(['square','cube'].includes(visual.kind)&&(p.width!==undefined||p.height!==undefined||p.depth!==undefined)){const side=p.width??p.height??p.depth!;visual.width=visual.height=visual.depth=side;}
     }
-    if(visual.width*(visual.scale??1)>10000||visual.radius*(visual.scale??1)>10000)throw new Error('The resulting object exceeds 10,000 units.');
+    if(dimension===2&&o.type==='line'&&['MOVE','ROTATE','REFLECT'].includes(c.action)&&visual.roboVertexLabels){
+      const parents=visual.roboVertexLabels.map(label=>s.objects.find(o=>o.type==='point'&&o.label?.toLowerCase()===label.toLowerCase()));
+      if(parents.some(o=>o?.command.roboAnalyticConstraint)){
+        const transformed=vertices(describeObject(visual,s.activeMode));
+        parents.forEach((parent,i)=>{if(!parent)return;if(parent.command.roboLocked)throw new Error('Unlock the segment endpoint before transforming it.');store({...parent.command,points:[transformed[i]],action:'update'});});
+        visual.points=transformed;visual.rotation=[0,0,0];visual.scale=1;visual.roboExplicitVertices=true;
+      }
+    }
+    if([visual.width,visual.height,visual.depth??1,visual.radius].some(value=>!Number.isFinite(value*(visual.scale??1))||value*(visual.scale??1)<=0||value*(visual.scale??1)>10000))throw new Error('The resulting dimensions must be positive, finite and within 10,000 units.');
     store(visual,o.originalId);messages.push(`${c.action==='CHANGE'?'Changed':c.action.toLowerCase()} ${o.type}${p.color?` to ${p.color}`:''}.`);
   }
   s.snapshotId=crypto.randomUUID();return {scene:s,effects,messages,value:s.previousResult};

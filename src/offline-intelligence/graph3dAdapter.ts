@@ -3,6 +3,7 @@ import { createGraph3DSurface, type Graph3DSurface } from '../graph-studio/graph
 import { centroid, type VisualCommand } from './commands';
 import { createIntelligenceShapeGeometry } from './shapeGeometry3d';
 import {commandTransform3d} from './solidAdapter';
+import {SOLID_SHAPES} from './shapeCatalog';
 
 export function restoredGraph3dCommands(layers:Graph3DSurface[]):VisualCommand[]{
   const commands=new Map<string,VisualCommand>();
@@ -25,12 +26,10 @@ export function restoredGraph3dCommands(layers:Graph3DSurface[]):VisualCommand[]
 export function intelligenceGraph3dLayers(c:VisualCommand):Graph3DSurface[] {
   const layer=()=>{const s=createGraph3DSurface(c.expression??'0');s.sourceCommand=structuredClone(c);s.name=c.kind;s.colorLow=s.colorHigh=c.color;s.palette='custom';s.samplingAnimation=false;s.displayTransform={position:[0,0,0],rotation:(c.rotation??[0,0,0]).map(v=>v*Math.PI/180) as [number,number,number],scale:c.scale??1};return s;};
   if(c.kind==='plot'){const s=layer();s.displayTransform!.position=(c.points[0]??[0,0,0]) as [number,number,number];return [s];}
-  if(c.kind==='line'||c.kind==='ray'||c.kind==='vector'){const s=layer();s.kind='curve';s.roboCommand=structuredClone(c);s.displayTransform={position:[0,0,0],rotation:[0,0,0],scale:1};s.components={x:'0',y:'0',z:'0'};return [s];}
-  if(c.kind==='point'){
-    const s=layer(),p=c.points;
-    s.kind='curve';s.tMin=0;s.tMax=1;
-    const a=p[0],b=p[1]??p[0],center=centroid(p);s.displayTransform!.position=center as [number,number,number];s.components={x:`${a[0]-center[0]}+(${b[0]-a[0]})*t`,y:`${a[1]-center[1]}+(${b[1]-a[1]})*t`,z:`${(a[2]??0)-center[2]}+(${(b[2]??0)-(a[2]??0)})*t`};s.showPoints=c.kind==='point';return [s];
+  if(c.kind==='point'||(SOLID_SHAPES as readonly string[]).includes(c.kind)){
+    const s=layer();s.kind='parametric';s.roboMesh=true;s.displayTransform!.position=(c.points[0]??[0,0,0]) as [number,number,number];return [s];
   }
+  if(c.kind==='line'||c.kind==='ray'||c.kind==='vector'){const s=layer();s.kind='curve';s.roboCommand=structuredClone(c);s.displayTransform={position:[0,0,0],rotation:[0,0,0],scale:1};s.components={x:'0',y:'0',z:'0'};return [s];}
   const center=(c.kind==='triangle'&&c.points.length===3)||(c.kind==='polygon'&&c.points.length>=3)?centroid(c.points):c.points[0]??[0,0,0];
   const parametric=(x:string,y:string,z:string,uMin:number,uMax:number,vMin:number,vMax:number)=>{const s=layer();s.kind='parametric';s.components={x,y,z};Object.assign(s,{uMin,uMax,vMin,vMax});s.displayTransform!.position=center as [number,number,number];return s;};
   const r=c.radius,h=c.height;

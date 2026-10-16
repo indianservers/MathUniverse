@@ -1,0 +1,1126 @@
+{
+  "passed": true,
+  "results": {
+    "box": {
+      "commands": [
+        "Scale it by 2",
+        "Make the cube twice as wide"
+      ],
+      "results": [
+        {
+          "status": "success",
+          "message": "scale cube.",
+          "effects": [
+            {
+              "kind": "cube",
+              "dimension": "3d",
+              "points": [
+                [
+                  0,
+                  0,
+                  0
+                ]
+              ],
+              "width": 6,
+              "height": 6,
+              "depth": 6,
+              "radius": 3,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 2,
+              "action": "update",
+              "fitDimensions": false,
+              "roboLabel": "CU1",
+              "objectId": "4ccf3a07-95de-416a-af24-181a0c04d78d",
+              "roboVisible": true
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Scale it by 2",
+            "commands": [
+              {
+                "id": "6fcad731-ac73-49a4-a7c4-06a4c23e8a5e",
+                "rawPhrase": "Scale it by 2",
+                "normalizedPhrase": "scale it by 2",
+                "detectedAction": "SCALE",
+                "action": "SCALE",
+                "subAction": "UNIFORM",
+                "mode": "graph3d",
+                "parameters": {
+                  "factor": 2
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": "4ccf3a07-95de-416a-af24-181a0c04d78d"
+              }
+            ],
+            "ir": [
+              {
+                "action": "SCALE",
+                "object": {
+                  "references": [
+                    "4ccf3a07-95de-416a-af24-181a0c04d78d"
+                  ]
+                },
+                "parameters": {
+                  "factor": 2
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "c1d4c90c-2fcc-4969-8769-1c0592330d7d",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "6fcad731-ac73-49a4-a7c4-06a4c23e8a5e",
+                  "action": "SCALE",
+                  "subAction": "UNIFORM",
+                  "dependsOn": [],
+                  "references": [
+                    "4ccf3a07-95de-416a-af24-181a0c04d78d"
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions",
+                    "required: factor"
+                  ],
+                  "output": "state"
+                }
+              ]
+            }
+          },
+          "parseMs": 0,
+          "executionMs": 73.40000000596046,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "2973a618-189c-4d69-95ee-56f16eed2f6e",
+            "message": "scale cube.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "SCALE",
+              "score": 0.4304240345954895
+            },
+            "subAction": {
+              "label": "UNIFORM",
+              "score": 0.5617949962615967
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9999536275863647
+            },
+            "objectType": {
+              "label": "none",
+              "score": 0.9946722388267517
+            }
+          },
+          "inferenceMs": 1379,
+          "objects": 1,
+          "sceneHash": "[{\"id\":\"4ccf3a07-95de-416a-af24-181a0c04d78d\",\"type\":\"cube\",\"vertices\":[[0,6,0],[-5.196152423,3,0],[-5.196152423,-3,0],[0,-6,0],[5.196152423,-3,0],[5.196152423,3,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":2,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[{\"id\":\"4ccf3a07-95de-416a-af24-181a0c04d78d\",\"type\":\"cube\",\"vertices\":[[0,3,0],[-2.598076211,1.5,0],[-2.598076211,-1.5,0],[0,-3,0],[2.598076211,-1.5,0],[2.598076211,1.5,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+        },
+        {
+          "status": "success",
+          "message": "resize cube.",
+          "effects": [
+            {
+              "kind": "cuboid",
+              "dimension": "3d",
+              "points": [
+                [
+                  0,
+                  0,
+                  0
+                ]
+              ],
+              "width": 24,
+              "height": 12,
+              "depth": 12,
+              "radius": 6,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 1,
+              "action": "update",
+              "fitDimensions": true,
+              "roboLabel": "CU1",
+              "objectId": "4ccf3a07-95de-416a-af24-181a0c04d78d",
+              "roboVisible": true
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Make the cube twice as wide",
+            "commands": [
+              {
+                "id": "4c1bb46b-692d-4bbe-bc31-cc611b137f8d",
+                "rawPhrase": "Make the cube twice as wide",
+                "normalizedPhrase": "make the cube twice as wide",
+                "detectedAction": "CREATE",
+                "action": "RESIZE",
+                "subAction": "OBJECT",
+                "mode": "graph3d",
+                "parameters": {
+                  "widthFactor": 2,
+                  "width": 24
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": "4ccf3a07-95de-416a-af24-181a0c04d78d"
+              }
+            ],
+            "ir": [
+              {
+                "action": "RESIZE",
+                "object": {
+                  "references": [
+                    "4ccf3a07-95de-416a-af24-181a0c04d78d"
+                  ]
+                },
+                "parameters": {
+                  "widthFactor": 2
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "f9e05954-0b8a-4f88-bd2b-11152c4bad25",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "4c1bb46b-692d-4bbe-bc31-cc611b137f8d",
+                  "action": "RESIZE",
+                  "subAction": "OBJECT",
+                  "dependsOn": [],
+                  "references": [
+                    "4ccf3a07-95de-416a-af24-181a0c04d78d"
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "state"
+                }
+              ]
+            }
+          },
+          "parseMs": 0.09999999403953552,
+          "executionMs": 92.5,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "cffcf12b-e8d9-4858-8cf6-05e4c961f7de",
+            "message": "resize cube.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "FIND",
+              "score": 0.6533010601997375
+            },
+            "subAction": {
+              "label": "UNIFORM",
+              "score": 0.4442947208881378
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9500784873962402
+            },
+            "objectType": {
+              "label": "none",
+              "score": 0.9999986886978149
+            }
+          },
+          "inferenceMs": 37.79999998211861,
+          "objects": 1,
+          "sceneHash": "[{\"id\":\"4ccf3a07-95de-416a-af24-181a0c04d78d\",\"type\":\"cuboid\",\"vertices\":[[0,6,0],[-12,3,0],[-12,-3,0],[0,-6,0],[12,-3,0],[12,3,0]],\"position\":[0,0,0],\"width\":24,\"height\":12,\"depth\":12,\"radius\":6,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[{\"id\":\"4ccf3a07-95de-416a-af24-181a0c04d78d\",\"type\":\"cube\",\"vertices\":[[0,6,0],[-5.196152423,3,0],[-5.196152423,-3,0],[0,-6,0],[5.196152423,-3,0],[5.196152423,3,0]],\"position\":[0,0,0],\"width\":6,\"height\":6,\"depth\":6,\"radius\":3,\"scale\":2,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+        }
+      ],
+      "actual": {
+        "kind": "cuboid",
+        "dimension": "3d",
+        "points": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "width": 24,
+        "height": 12,
+        "depth": 12,
+        "radius": 6,
+        "sides": 6,
+        "color": "#06b6d4",
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": 1,
+        "action": "update",
+        "fitDimensions": true,
+        "roboLabel": "CU1",
+        "objectId": "4ccf3a07-95de-416a-af24-181a0c04d78d",
+        "roboVisible": true
+      }
+    },
+    "cylinder": {
+      "commands": [
+        "Clear all shapes",
+        "Create cylinder height 4 radius 3",
+        "Scale it by 2",
+        "Set the cylinder radius to 2"
+      ],
+      "results": [
+        {
+          "status": "success",
+          "message": "Cleared all workspace objects.",
+          "effects": [
+            {
+              "kind": "cuboid",
+              "dimension": "3d",
+              "points": [
+                [
+                  0,
+                  0,
+                  0
+                ]
+              ],
+              "width": 24,
+              "height": 12,
+              "depth": 12,
+              "radius": 6,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 1,
+              "action": "update",
+              "fitDimensions": true,
+              "roboLabel": "CU1",
+              "objectId": "4ccf3a07-95de-416a-af24-181a0c04d78d",
+              "roboControl": "delete",
+              "roboVisible": true
+            },
+            {
+              "kind": "point",
+              "dimension": "3d",
+              "points": [],
+              "width": 0,
+              "height": 0,
+              "radius": 0,
+              "color": "#22d3ee",
+              "roboControl": "delete",
+              "roboClearAll": true
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Clear all shapes",
+            "commands": [
+              {
+                "id": "0c2df8b1-ee0c-4537-b279-661fe6e38505",
+                "rawPhrase": "Clear all shapes",
+                "normalizedPhrase": "clear all shapes",
+                "detectedAction": "CLEAR",
+                "action": "DELETE",
+                "subAction": "ALL",
+                "mode": "graph3d",
+                "parameters": {
+                  "multiple": false
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": "4ccf3a07-95de-416a-af24-181a0c04d78d"
+              }
+            ],
+            "ir": [
+              {
+                "action": "DELETE",
+                "object": {
+                  "references": [
+                    "4ccf3a07-95de-416a-af24-181a0c04d78d"
+                  ]
+                },
+                "parameters": {
+                  "multiple": false
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "a480ede1-0d0d-44bb-8e6a-1c5d612e7384",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "0c2df8b1-ee0c-4537-b279-661fe6e38505",
+                  "action": "DELETE",
+                  "subAction": "ALL",
+                  "dependsOn": [],
+                  "references": [
+                    "4ccf3a07-95de-416a-af24-181a0c04d78d"
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "state"
+                }
+              ]
+            }
+          },
+          "parseMs": 0,
+          "executionMs": 112.09999999403954,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "83aa255a-1a5a-4f8a-8046-0f192cd8aeff",
+            "message": "Cleared all workspace objects.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "COUNT",
+              "score": 0.6859917044639587
+            },
+            "subAction": {
+              "label": "OBJECTS",
+              "score": 0.4070012867450714
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9991082549095154
+            },
+            "objectType": {
+              "label": "none",
+              "score": 0.9994494318962097
+            }
+          },
+          "inferenceMs": 37,
+          "objects": 0,
+          "sceneHash": "[]",
+          "beforeHash": "[{\"id\":\"4ccf3a07-95de-416a-af24-181a0c04d78d\",\"type\":\"cuboid\",\"vertices\":[[0,6,0],[-12,3,0],[-12,-3,0],[0,-6,0],[12,-3,0],[12,3,0]],\"position\":[0,0,0],\"width\":24,\"height\":12,\"depth\":12,\"radius\":6,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+        },
+        {
+          "status": "success",
+          "message": "Created 3D cylinder.",
+          "effects": [
+            {
+              "kind": "cylinder",
+              "dimension": "3d",
+              "points": [],
+              "width": 6,
+              "height": 4,
+              "depth": 3,
+              "radius": 3,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 1,
+              "action": "create",
+              "fitDimensions": true,
+              "roboLabel": "CYLINDER1",
+              "objectId": "4c51600e-dffb-486d-8266-d816657331ca"
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Create cylinder height 4 radius 3",
+            "commands": [
+              {
+                "id": "a7e841dc-c830-42a3-99c6-abb85774f0cb",
+                "rawPhrase": "Create cylinder height 4 radius 3",
+                "normalizedPhrase": "create cylinder height 4 radius 3",
+                "detectedAction": "CREATE",
+                "action": "CREATE",
+                "subAction": "CYLINDER",
+                "mode": "graph3d",
+                "parameters": {
+                  "legacy": {
+                    "kind": "cylinder",
+                    "dimension": "3d",
+                    "points": [],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": true
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 3,
+                  "depth": 3,
+                  "sides": 6
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": {
+                  "type": "cylinder"
+                }
+              }
+            ],
+            "ir": [
+              {
+                "action": "CREATE",
+                "object": {
+                  "kind": "cylinder",
+                  "references": [
+                    {
+                      "type": "cylinder"
+                    }
+                  ]
+                },
+                "parameters": {
+                  "legacy": {
+                    "kind": "cylinder",
+                    "dimension": "3d",
+                    "points": [],
+                    "width": 6,
+                    "height": 4,
+                    "depth": 3,
+                    "radius": 3,
+                    "sides": 6,
+                    "color": "#06b6d4",
+                    "rotation": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "scale": 1,
+                    "action": "create",
+                    "fitDimensions": true
+                  },
+                  "width": 6,
+                  "height": 4,
+                  "radius": 3,
+                  "depth": 3,
+                  "sides": 6
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "object"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "5124ddd4-370f-4a9a-b33f-f8af1bae996c",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "a7e841dc-c830-42a3-99c6-abb85774f0cb",
+                  "action": "CREATE",
+                  "subAction": "CYLINDER",
+                  "dependsOn": [],
+                  "references": [
+                    {
+                      "type": "cylinder"
+                    }
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions"
+                  ],
+                  "output": "object"
+                }
+              ]
+            }
+          },
+          "parseMs": 0,
+          "executionMs": 75.7999999821186,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions",
+              "Creation count"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "8ced0286-ba3d-43cc-a567-d2127ff987fa",
+            "message": "Created 3D cylinder.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "CREATE",
+              "score": 0.9997109770774841
+            },
+            "subAction": {
+              "label": "CYLINDER",
+              "score": 0.8078098297119141
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9987648725509644
+            },
+            "objectType": {
+              "label": "cylinder",
+              "score": 0.8526282906532288
+            }
+          },
+          "inferenceMs": 34.599999994039536,
+          "objects": 1,
+          "sceneHash": "[{\"id\":\"4c51600e-dffb-486d-8266-d816657331ca\",\"type\":\"cylinder\",\"vertices\":[[0,2,0],[-3,1,0],[-3,-1,0],[0,-2,0],[3,-1,0],[3,1,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[]"
+        },
+        {
+          "status": "success",
+          "message": "scale cylinder.",
+          "effects": [
+            {
+              "kind": "cylinder",
+              "dimension": "3d",
+              "points": [
+                [
+                  0,
+                  0,
+                  0
+                ]
+              ],
+              "width": 6,
+              "height": 4,
+              "depth": 3,
+              "radius": 3,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 2,
+              "action": "update",
+              "fitDimensions": true,
+              "roboLabel": "CYLINDER1",
+              "objectId": "4c51600e-dffb-486d-8266-d816657331ca",
+              "roboVisible": true
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Scale it by 2",
+            "commands": [
+              {
+                "id": "55683366-3202-4f64-960c-c33cc6e87e83",
+                "rawPhrase": "Scale it by 2",
+                "normalizedPhrase": "scale it by 2",
+                "detectedAction": "SCALE",
+                "action": "SCALE",
+                "subAction": "UNIFORM",
+                "mode": "graph3d",
+                "parameters": {
+                  "factor": 2
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": "4c51600e-dffb-486d-8266-d816657331ca"
+              }
+            ],
+            "ir": [
+              {
+                "action": "SCALE",
+                "object": {
+                  "references": [
+                    "4c51600e-dffb-486d-8266-d816657331ca"
+                  ]
+                },
+                "parameters": {
+                  "factor": 2
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "73190409-afa9-436b-a1b2-cac25380446c",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "55683366-3202-4f64-960c-c33cc6e87e83",
+                  "action": "SCALE",
+                  "subAction": "UNIFORM",
+                  "dependsOn": [],
+                  "references": [
+                    "4c51600e-dffb-486d-8266-d816657331ca"
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions",
+                    "required: factor"
+                  ],
+                  "output": "state"
+                }
+              ]
+            }
+          },
+          "parseMs": 0.20000001788139343,
+          "executionMs": 89.7999999821186,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "eb1e09f7-5c87-42d7-86f9-8cc91c84d477",
+            "message": "scale cylinder.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "SCALE",
+              "score": 0.4304240345954895
+            },
+            "subAction": {
+              "label": "UNIFORM",
+              "score": 0.5617949962615967
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9999536275863647
+            },
+            "objectType": {
+              "label": "none",
+              "score": 0.9946722388267517
+            }
+          },
+          "inferenceMs": 38.900000005960464,
+          "objects": 1,
+          "sceneHash": "[{\"id\":\"4c51600e-dffb-486d-8266-d816657331ca\",\"type\":\"cylinder\",\"vertices\":[[0,4,0],[-6,2,0],[-6,-2,0],[0,-4,0],[6,-2,0],[6,2,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":2,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[{\"id\":\"4c51600e-dffb-486d-8266-d816657331ca\",\"type\":\"cylinder\",\"vertices\":[[0,2,0],[-3,1,0],[-3,-1,0],[0,-2,0],[3,-1,0],[3,1,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+        },
+        {
+          "status": "success",
+          "message": "Changed cylinder.",
+          "effects": [
+            {
+              "kind": "cylinder",
+              "dimension": "3d",
+              "points": [
+                [
+                  0,
+                  0,
+                  0
+                ]
+              ],
+              "width": 12,
+              "height": 8,
+              "depth": 6,
+              "radius": 2,
+              "sides": 6,
+              "color": "#06b6d4",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "scale": 1,
+              "action": "update",
+              "fitDimensions": true,
+              "roboLabel": "CYLINDER1",
+              "objectId": "4c51600e-dffb-486d-8266-d816657331ca",
+              "roboVisible": true
+            }
+          ],
+          "plan": {
+            "rawPhrase": "Set the cylinder radius to 2",
+            "commands": [
+              {
+                "id": "a018c597-09fc-41ac-a500-9555ab533555",
+                "rawPhrase": "Set the cylinder radius to 2",
+                "normalizedPhrase": "set the cylinder radius to 2",
+                "detectedAction": "SET",
+                "action": "CHANGE",
+                "subAction": "RADIUS",
+                "mode": "graph3d",
+                "parameters": {
+                  "radius": 2
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "source": {
+                  "action": "rule",
+                  "subAction": "rule"
+                },
+                "requiresExecution": true,
+                "target": "4c51600e-dffb-486d-8266-d816657331ca"
+              }
+            ],
+            "ir": [
+              {
+                "action": "CHANGE",
+                "object": {
+                  "references": [
+                    "4c51600e-dffb-486d-8266-d816657331ca"
+                  ]
+                },
+                "parameters": {
+                  "radius": 2
+                },
+                "constraints": {
+                  "dimension": 3,
+                  "finite": true,
+                  "nondegenerate": false
+                },
+                "expected": {
+                  "mutates": true,
+                  "output": "answer"
+                },
+                "confidence": {
+                  "overall": 1,
+                  "action": 1,
+                  "subAction": 1,
+                  "parameters": 1
+                },
+                "provenance": {
+                  "action": "rule",
+                  "subAction": "rule"
+                }
+              }
+            ],
+            "atomicity": "all-or-nothing",
+            "confidence": 1,
+            "contextSnapshotId": "0f8bcb4d-98df-49fa-a6fd-1b806ef02a7d",
+            "actionGraph": {
+              "schemaVersion": 1,
+              "atomicity": "all-or-nothing",
+              "nodes": [
+                {
+                  "id": "a018c597-09fc-41ac-a500-9555ab533555",
+                  "action": "CHANGE",
+                  "subAction": "RADIUS",
+                  "dependsOn": [],
+                  "references": [
+                    "4c51600e-dffb-486d-8266-d816657331ca"
+                  ],
+                  "preconditions": [
+                    "finite parameters",
+                    "existing unambiguous targets",
+                    "compatible dimensions",
+                    "required: radius"
+                  ],
+                  "output": "state"
+                }
+              ]
+            }
+          },
+          "parseMs": 0,
+          "executionMs": 68.59999999403954,
+          "verification": {
+            "passed": true,
+            "checks": [
+              "Finite geometry and valid dimensions"
+            ],
+            "status": "verified_numerical"
+          },
+          "explanation": "",
+          "execution": {
+            "status": "valid_unverified",
+            "requestId": "1b9a457a-64e1-42ff-9fbc-6749c95dcf53",
+            "message": "Changed cylinder.",
+            "evidence": {
+              "level": "not_independently_verified",
+              "independent": false,
+              "passed": false,
+              "method": "No independent mathematical verification",
+              "assumptions": []
+            }
+          },
+          "requestKind": "COMMAND",
+          "neural": {
+            "action": {
+              "label": "CHANGE",
+              "score": 0.8971965312957764
+            },
+            "subAction": {
+              "label": "RADIUS",
+              "score": 0.8146237730979919
+            },
+            "mode": {
+              "label": "graph3d",
+              "score": 0.9877943992614746
+            },
+            "objectType": {
+              "label": "none",
+              "score": 0.9998863935470581
+            }
+          },
+          "inferenceMs": 31.600000023841858,
+          "objects": 1,
+          "sceneHash": "[{\"id\":\"4c51600e-dffb-486d-8266-d816657331ca\",\"type\":\"cylinder\",\"vertices\":[[0,4,0],[-6,2,0],[-6,-2,0],[0,-4,0],[6,-2,0],[6,2,0]],\"position\":[0,0,0],\"width\":12,\"height\":8,\"depth\":6,\"radius\":2,\"scale\":1,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]",
+          "beforeHash": "[{\"id\":\"4c51600e-dffb-486d-8266-d816657331ca\",\"type\":\"cylinder\",\"vertices\":[[0,4,0],[-6,2,0],[-6,-2,0],[0,-4,0],[6,-2,0],[6,2,0]],\"position\":[0,0,0],\"width\":6,\"height\":4,\"depth\":3,\"radius\":3,\"scale\":2,\"rotation\":[0,0,0],\"color\":\"#06b6d4\",\"visible\":true,\"expression\":null,\"locked\":false}]"
+        }
+      ],
+      "actual": {
+        "kind": "cylinder",
+        "dimension": "3d",
+        "points": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "width": 12,
+        "height": 8,
+        "depth": 6,
+        "radius": 2,
+        "sides": 6,
+        "color": "#06b6d4",
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": 1,
+        "action": "update",
+        "fitDimensions": true,
+        "roboLabel": "CYLINDER1",
+        "objectId": "4c51600e-dffb-486d-8266-d816657331ca",
+        "roboVisible": true
+      }
+    }
+  }
+}
