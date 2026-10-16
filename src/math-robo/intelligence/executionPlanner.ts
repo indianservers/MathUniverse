@@ -1,3 +1,5 @@
+import {evaluateKidGeometry3d} from './kidGeometry3dCurriculum';
+import {rotateKid3d} from './kidGeometry3dActions';
 import {resolveMutationTargets} from './targetResolver';
 import {analyticParentIds} from './analyticConstraints';
 import {evaluateGeometryLesson,type GeometryLesson} from './geometryCurriculum';
@@ -47,6 +49,13 @@ export function preparePlan(plan:MathRoboPlan,input:Readonly<RoboSceneContext>):
   };
   for(const [commandIndex,c] of plan.commands.entries()){
     const operation=validateCommand(c);const p=c.parameters;
+    if(c.subAction==='KID_3D'){
+      const answer=evaluateKidGeometry3d(c,s);
+      c.parameters.kidResolvedTargets=answer.plan?answer.plan.commands.flatMap(c=>typeof c.target==='string'?[c.target]:[]):answer.targets;
+      if(answer.plan){if(!answer.plan.commands.length)throw new Error('There are no matching objects for this request.');const child=preparePlan(answer.plan,s);Object.assign(s,child.scene);effects.push(...child.effects);messages.push(...child.messages);}
+      else {for(const effect of answer.effects)store(effect);s.previousResult=answer.value;s.lastQueryTargets=answer.targets;s.previousResultTargets=answer.targets;messages.push(answer.message!);}
+      continue;
+    }
     if(c.subAction==='BOARD_ADVANCED'){
       const answer=evaluateExtendedGeometry(p.extendedLesson as GeometrySlots,s);
       for(const effect of answer.effects)store(effect);
@@ -229,12 +238,13 @@ export function preparePlan(plan:MathRoboPlan,input:Readonly<RoboSceneContext>):
       if(parent.type==='triangle'){const u=points[1].map((n,i)=>n-points[0][i]),v=points[2].map((n,i)=>n-points[0][i]),area=dimension===2?Math.abs(u[0]*v[1]-u[1]*v[0]):Math.hypot(u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]);if(area<=EPSILON)throw new Error('Moving that vertex would make the triangle degenerate.');}
       store({...parent.command,action:'update',points,scale:1,rotation:[0,0,0],roboExplicitVertices:true,fitDimensions:false});messages.push(`Moved vertex ${o.label}. Its dependent constructions update from the parent polygon.`);continue;
     }
-    const visual=structuredClone(o.command);visual.action='update';visual.roboControl=undefined;visual.roboAppearanceOnly=['LOCK','UNLOCK'].includes(c.action)||c.action==='CHANGE'&&['COLOR','FILL_COLOR','STROKE_COLOR','LINE_WIDTH'].includes(c.subAction);
+    const visual=structuredClone(o.command);visual.action='update';visual.roboControl=undefined;visual.roboAppearanceOnly=['LOCK','UNLOCK'].includes(c.action)||c.action==='CHANGE'&&['COLOR','FILL_COLOR','STROKE_COLOR','LINE_WIDTH','OPACITY'].includes(c.subAction);
     if(c.action==='LOCK'||c.action==='UNLOCK'){visual.roboLocked=c.action==='LOCK';store(visual,o.originalId);messages.push(`${c.action==='LOCK'?'Locked':'Unlocked'} ${o.label??o.type}.`);continue;}
     if(c.action==='EXTEND'){const [a,b]=vertices(o);let factor=Number(p.factor);if(p.axisIntersection){const axis=p.axisIntersection==='x'?1:0,delta=b[axis]-a[axis];if(Math.abs(delta)<EPSILON)throw new Error('The line has no unique intersection with that axis.');factor=-a[axis]/delta;}visual.points=Math.abs(factor)<EPSILON?[a,b]:[a,a.map((n,i)=>n+(b[i]-n)*factor)];visual.scale=1;visual.rotation=[0,0,0];}
     if(c.action==='DUPLICATE'){visual.objectId=crypto.randomUUID();visual.roboLabel=undefined;visual.roboNativeIds=undefined;visual.action='create';store(visual,o.id);messages.push(`Duplicated ${o.type}.`);continue;}
     if(c.action==='MOVE'){const v=p.vector!;if(v.length!==dimension)throw new Error(`Provide ${dimension} translation coordinates.`);const delta=p.absolute?v.map((n,i)=>n-center(o)[i]):v;visual.points=(visual.points.length?visual.points:[Array(dimension).fill(0)]).map(pt=>pt.map((n,i)=>n+delta[i]));}
-    if(c.action==='ROTATE'){visual.rotation=[...(visual.rotation??[0,0,0])];const axis=p.axis??'z';if(dimension===2&&axis!=='z')throw new Error('2D rotation uses the z-axis.');if(dimension===2&&p.anchor){const vs=vertices(o),anchor=p.anchor==='origin'?[0,0]:vs[(o.command.roboVertexLabels??['A','B','C']).indexOf(String(p.vertex??'A'))];if(!anchor)throw new Error('That rotation vertex does not exist.');const angle=p.angle!*Math.PI/180;visual.points=vs.map(pt=>{const x=pt[0]-anchor[0],y=pt[1]-anchor[1];return [anchor[0]+x*Math.cos(angle)-y*Math.sin(angle),anchor[1]+x*Math.sin(angle)+y*Math.cos(angle)];});visual.rotation=[0,0,0];visual.scale=1;visual.roboExplicitVertices=true;}else if(p.resetRotation)visual.rotation=[0,0,0];else visual.rotation['xyz'.indexOf(axis)]=(visual.rotation['xyz'.indexOf(axis)]+p.angle!)%360;}
+    if(c.action==='ROTATE'&&dimension===3&&p.kid3d){const axis=p.axis??'z';Object.assign(visual,rotateKid3d(o,axis==='x'?[1,0,0]:axis==='y'?[0,1,0]:[0,0,1],p.anchor==='origin'?[0,0,0]:center(o),p.angle!));}
+    else if(c.action==='ROTATE'){visual.rotation=[...(visual.rotation??[0,0,0])];const axis=p.axis??'z';if(dimension===2&&axis!=='z')throw new Error('2D rotation uses the z-axis.');if(dimension===2&&p.anchor){const vs=vertices(o),anchor=p.anchor==='origin'?[0,0]:vs[(o.command.roboVertexLabels??['A','B','C']).indexOf(String(p.vertex??'A'))];if(!anchor)throw new Error('That rotation vertex does not exist.');const angle=p.angle!*Math.PI/180;visual.points=vs.map(pt=>{const x=pt[0]-anchor[0],y=pt[1]-anchor[1];return [anchor[0]+x*Math.cos(angle)-y*Math.sin(angle),anchor[1]+x*Math.sin(angle)+y*Math.cos(angle)];});visual.rotation=[0,0,0];visual.scale=1;visual.roboExplicitVertices=true;}else if(p.resetRotation)visual.rotation=[0,0,0];else visual.rotation['xyz'.indexOf(axis)]=(visual.rotation['xyz'.indexOf(axis)]+p.angle!)%360;}
     if(c.action==='SCALE')visual.scale=(visual.scale??1)*p.factor!;
     if(c.action==='REFLECT'){
       if(c.subAction==='DIAGONAL'){visual.points=vertices(o).map(pt=>[pt[1],pt[0]]);visual.rotation=[0,0,0];visual.scale=1;visual.roboExplicitVertices=true;if(o.type==='circle')visual.points=[center(o).reverse()];}
@@ -250,6 +260,7 @@ export function preparePlan(plan:MathRoboPlan,input:Readonly<RoboSceneContext>):
     }
     if(c.action==='REFLECT'&&p.copy){visual.objectId=crypto.randomUUID();visual.roboLabel=undefined;visual.roboNativeIds=undefined;visual.roboDependency=undefined;visual.action='create';store(visual,o.id);messages.push(`Created reflected copy of ${o.label??o.type}.`);continue;}
       if(c.action==='CHANGE'||c.action==='RESIZE'){
+      if(c.subAction==='OPACITY'){if(typeof p.opacity!=='number'||p.opacity<0||p.opacity>1)throw new Error('Use opacity from 0 to 1.');visual.roboOpacity=p.opacity;}
       const changesDimensions=['width','height','depth','radius','diameter'].some(key=>p[key]!==undefined)||p.widthFactor||p.heightFactor||p.depthFactor||p.dimensionRatio;
       if(changesDimensions&&(visual.scale??1)!==1){const scale=visual.scale??1;for(const key of ['width','height','depth','radius'] as const)if(visual[key]!==undefined)visual[key]=visual[key]!*scale;visual.scale=1;}
       if((p.independentDimensions||p.widthFactor||p.heightFactor||p.depthFactor)&&visual.kind==='cube')visual.kind='cuboid';

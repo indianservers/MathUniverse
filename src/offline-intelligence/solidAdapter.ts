@@ -2,7 +2,7 @@ import { centroid, transformPoint, type VisualCommand } from './commands';
 export function commandTransform3d(command:VisualCommand) {
   if(['ray','vector'].includes(command.kind))return {position:centroid(command.points) as [number,number,number],dimensions:[1,1,1] as [number,number,number],rotation:command.rotation??[0,0,0] as [number,number,number],color:command.color};
   const diameter=command.kind==='cube'?command.width:command.radius*2;
-  const center=(command.kind==='triangle'&&command.points.length===3)||(command.kind==='polygon'&&command.points.length>=3)?centroid(command.points):command.points[0]??[0,0,0];
+  const center=(command.kind==='tetrahedron'&&command.points.length===4)||(command.kind==='triangle'&&command.points.length===3)||(command.kind==='polygon'&&command.points.length>=3)?centroid(command.points):command.points[0]??[0,0,0];
   const position=[...center] as [number,number,number];
   const dimensions:[number,number,number]=command.kind==='point'?[0.24,0.24,0.24]:command.kind==='cuboid'||command.kind==='ellipsoid'?[command.width,command.height,command.depth??command.width]:[diameter,command.kind==='sphere'||command.kind==='cube'?diameter:command.height,diameter];
   const rotation:[number,number,number]=[...(command.rotation??[0,0,0])];
@@ -17,5 +17,5 @@ export function commandTransform3d(command:VisualCommand) {
     rotation[1]=Math.atan2(-dz,dx)*180/Math.PI;
     rotation[2]=Math.asin(dy/length)*180/Math.PI;
   }
-  return {position,dimensions,rotation,color:command.color};
+  return {position,dimensions,rotation,color:command.color,opacity:command.roboOpacity??1,material:command.roboMaterial??'matte'};
 }

@@ -44,6 +44,7 @@ export type RoboResult = {
   errorCode?:import('./executionErrors').RoboErrorCode;verification?:{passed:boolean;checks:string[];status?:import('../kernel/types').VerificationStatus};explanation?:string;requestKind?:import('./requestClassifier').RequestKind;
 };
 export type SemanticRow = {
+  expectedStatus?:RoboResult['status'];
   phrase: string; action: string; subAction: string; mode: RoboMode; parameters: RoboParameters;
   target?: RoboTarget; targets?: RoboTarget[]; context?: { objects: Omit<RoboObjectDescriptor, 'command'>[]; selected?: string[]; lastReferenced?: string; previousResult?:RoboSceneContext['previousResult'];previousResults?:RoboSceneContext['previousResults'];activeObjectIds?:string[] };
   group?: string; source?: string;

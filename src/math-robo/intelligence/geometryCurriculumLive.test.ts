@@ -1,3 +1,5 @@
+import kid3dQuestions from './kidGeometry3d300.json';
+import {kidGeometry3dTrainingRows} from './kidGeometry3dDataset';
 import {bulkEditTrainingRows} from './bulkEditDataset';
 import {test,expect,vi} from 'vitest';
 import type {VisualCommand} from '../../offline-intelligence/commands';
@@ -87,4 +89,13 @@ for(const row of bulkEditTrainingRows())test('bulk edit chat route: '+row.phrase
  const result=await runSemanticAssistant(row.phrase,'geometry2d','/workspace/geometry');
  expect(result.status,result.message).toBe('success');expect(result.engineExecution?.engineId).not.toBe('ruhi-context');
  expect(result.effects.some(e=>!e.roboControl||e.roboControl==='visibility')).toBe(true);
+});
+
+for(const [index,row] of kidGeometry3dTrainingRows().entries())test('kid 3D chat route: '+row.phrase,async()=>{
+ const scene=contextToScene(row);board.commands=scene.objects.map(o=>structuredClone(o.command));board.selectedIds=scene.selectedIds;
+ const engine=liveEngine('geometry3d');engine.conversation.resetContext();engine.engineRouter.resetContext();engine.sync(scene.objects,scene.selectedIds,{lastReferenced:scene.lastReferenced,activeObjectIds:scene.activeObjectIds});
+ const ask=(text:string)=>runSemanticAssistant(text,'geometry3d','/workspace/3d');
+ if([293,294,295].includes(index+1)){expect((await ask('Color the cube red.')).status).toBe('success');if(index+1===294)expect((await ask('Undo')).status).toBe('success');}
+ if(index+1===267)expect((await ask('Draw another one like that.')).status).toBe('success');
+ const result=await ask(row.phrase);expect(result.status,result.message).toBe(kid3dQuestions[index].status);expect(result.engineExecution?.engineId).not.toBe('ruhi-context');
 });

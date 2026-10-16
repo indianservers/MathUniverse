@@ -1,3 +1,4 @@
+import {kidGeometry3dTrainingRows} from './kidGeometry3dDataset';
 import {bulkEditTrainingRows} from './bulkEditDataset';
 import {selectiveClearExamples} from './selectiveClear';
 import geometryQuestions from './geometryQuestions150.json';
@@ -13,7 +14,7 @@ import {commandVariants} from './commandVariants';
 export function contextToScene(row:SemanticRow):RoboSceneContext {
   const scene=emptyScene(row.mode);
   scene.objects=(row.context?.objects??[]).map(object=>{
-    const command={kind:object.type as Parameters<typeof describeObject>[0]['kind'],objectId:object.id,dimension:row.mode.endsWith('3d')?'3d' as const:'2d' as const,points:['line','ray','vector'].includes(object.type)||object.type==='triangle'||object.type==='polygon'?object.vertices??[object.position]:[object.position],width:6,height:4,depth:3,radius:object.radius??3,color:object.style?.color??'#22d3ee',roboLabel:object.label,action:'create' as const,scale:1,rotation:[0,0,0] as [number,number,number],...object.parameters};
+    const command={kind:(object.type==='plane'?'polygon':object.type) as Parameters<typeof describeObject>[0]['kind'],objectId:object.id,dimension:row.mode.endsWith('3d')?'3d' as const:'2d' as const,points:['line','ray','vector'].includes(object.type)||object.type==='triangle'||object.type==='polygon'||object.type==='plane'||object.type==='tetrahedron'&&object.vertices?.length===4?object.vertices??[object.position]:[object.position],width:6,height:4,depth:3,radius:object.radius??3,color:object.style?.color??'#22d3ee',roboLabel:object.label,action:'create' as const,scale:1,rotation:[0,0,0] as [number,number,number],...object.parameters};
     return {...describeObject(command,row.mode,object.vertices),...object,command};
   });scene.selectedIds=row.context?.selected??[];scene.lastReferenced=row.context?.lastReferenced;scene.previousResult=row.context?.previousResult;scene.previousResults=row.context?.previousResults;scene.activeObjectIds=row.context?.activeObjectIds;return scene;
 }
@@ -23,11 +24,12 @@ export function validateSemanticRows(input:unknown[]):SemanticRow[] {
     const row=value as SemanticRow;const fail=(message:string):never=>{throw new Error(`Row ${index+1}: ${message}`);};
     if(!row||typeof row.phrase!=='string'||!row.phrase.trim()||row.phrase.length>500)fail('phrase must have 1–500 characters.');
     if(!['normal','graph2d','graph3d','geometry2d','geometry3d'].includes(row.mode))fail('invalid mode.');
+    if(row.expectedStatus!==undefined&&!['success','ambiguous','invalid','unsupported','unhandled'].includes(row.expectedStatus))fail('invalid expected response status.');
     if(typeof row.action!=='string'||typeof row.subAction!=='string')fail('provide action and subAction.');
     const action=normalizeAction(row.action.toUpperCase()),subAction=row.subAction.toUpperCase();
     if(!operationFor(action,subAction)?.implemented)fail('this action/subAction has no implemented executor.');
     if(!row.parameters||typeof row.parameters!=='object'||Array.isArray(row.parameters))fail('parameters must be an object.');
-    try{validateCommand({id:'dataset',rawPhrase:row.phrase,normalizedPhrase:row.phrase,detectedAction:action,action,subAction,mode:row.mode,target:row.target,targets:row.targets,parameters:row.parameters,confidence:{overall:1,action:1,subAction:1},source:{action:'rule',subAction:'rule'},requiresExecution:true});}catch(error){fail(String(error));}
+    try{validateCommand({id:'dataset',rawPhrase:row.phrase,normalizedPhrase:row.phrase,detectedAction:action,action,subAction,mode:row.mode,target:row.target,targets:row.targets,parameters:row.parameters,confidence:{overall:1,action:1,subAction:1},source:{action:'rule',subAction:'rule'},requiresExecution:true},{allowMissingParameters:row.expectedStatus==='ambiguous'});}catch(error){fail(String(error));}
     if(row.context&&(!Array.isArray(row.context.objects)||row.context.objects.length>100||row.context.objects.some(o=>!o||typeof o.id!=='string'||typeof o.type!=='string'||!Array.isArray(o.position)||o.position.some(n=>typeof n!=='number'||!Number.isFinite(n)))))fail('context must be a read-only object snapshot; executable strings are forbidden.');
     if(row.context&&new Set(row.context.objects.map(o=>o.id)).size!==row.context.objects.length)fail('duplicate context object IDs.');
     return {...row,action,subAction};
@@ -141,6 +143,8 @@ export function generateStarterDataset():SemanticRow[]{
   rows.push(...geometryCurriculumRows());
   rows.push(...extendedGeometryTrainingRows());
   rows.push(...bulkEditTrainingRows());
+  rows.push(...kidGeometry3dTrainingRows());
+  rows.push({phrase:'Set its opacity to 0.5',mode:'geometry3d',action:'CHANGE',subAction:'OPACITY',parameters:{opacity:.5},target:'lastReferenced',context:{objects:[descriptor('sphere_1','sphere',[0,0,0],'geometry3d')],selected:['sphere_1'],lastReferenced:'sphere_1'},source:'kid-geometry3d-controls',group:'kid3d:opacity-control'});
   for(const op of OPERATIONS)op.examples=rows.filter(row=>row.action===op.action&&row.subAction===op.subAction).slice(0,5).map(row=>row.phrase);
   return rows;
 }

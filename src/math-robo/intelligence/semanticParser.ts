@@ -1,3 +1,4 @@
+import {parseKidGeometry3d,matchKidGeometry3d} from './kidGeometry3dLanguage';
 import {parseBulkEdit} from './bulkEditLanguage';
 import {parseGraph3dLanguage} from './graph3dLanguage';
 import {pointDistanceNames} from './pointDistanceLanguage';
@@ -37,6 +38,7 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
   const text=normalizeLanguage(rawPhrase).replace(/rectangular prism/g,'cuboid').replace(/²/g,'^2').replace(/−/g,'-').replace(/[?.]+$/,'').replace(/^(?:please|kindly|can you|could you)\s+/,'').replace(/\s+please$/,'').replace(/\bwhose radius is\b/g,'radius').replace(/\br\s*=\s*/g,'radius ').replace(/\br\s+(?=\d)/g,'radius ').replace(/radius-(\d+)/g,'radius $1').replace(/\b(\d+(?:\.\d+)?) units? radius\b/g,'radius $1').replace(/^draw c with /,'draw circle with ').replace(/^put a circle/,'create a circle');
   const dimension=mode.endsWith('3d')?3:2;
   const command:MathRoboCommand={id:crypto.randomUUID(),rawPhrase,normalizedPhrase:text,detectedAction:detectedVerb(text),action:'',subAction:'',mode,parameters:{},confidence:{overall:1,action:1,subAction:1,parameters:1},source:{action:'rule',subAction:'rule'},requiresExecution:true};
+  const kid=parseKidGeometry3d(command);if(kid)return kid;
   const p=command.parameters;
   const bulk=parseBulkEdit(command);if(bulk)return bulk;
   const extendedLesson=matchExtendedGeometry(rawPhrase);
@@ -166,6 +168,7 @@ export function parseSemanticCommand(rawPhrase:string,mode:RoboMode):MathRoboCom
   command.action=normalizeAction(command.detectedAction||'UNHANDLED');command.subAction='OBJECT';command.confidence.overall=command.action==='UNHANDLED'?0:1;return command;
 }
 export function parseSemanticPlan(phrase:string,mode:RoboMode):MathRoboPlan {
+  if(mode==='geometry3d'&&matchKidGeometry3d(phrase)){const c=parseSemanticCommand(phrase,mode);return {rawPhrase:phrase,commands:[c],confidence:1};}
   phrase=phrase.replace(/\bimmediately (?=(?:delete|remove|move)\b)/gi,'').replace(/\bthen (a|an) (?=[a-z])/gi,'then create $1 ');
   const rewritten=matchExtendedGeometry(phrase)||matchGeometryLesson(phrase)||mode.endsWith('3d')||/^(?:draw|create|make) (?:an? )?angle (?:of )?\d+(?:\.\d+)? degrees?[.!]?$/i.test(phrase)?phrase:rewrite2dLanguage(phrase);
   const commands=(matchExtendedGeometry(rewritten)||/^if\b/i.test(rewritten)?[rewritten]:splitUtterance(rewritten)).flatMap(part=>{const c=parseSemanticCommand(part,mode);return c.parameters.allMedians?['A','B','C'].map(from=>({...structuredClone(c),id:crypto.randomUUID(),parameters:{from}})):[c];});

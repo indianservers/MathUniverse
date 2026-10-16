@@ -1,6 +1,7 @@
+import {spatialSection} from './spatialSections';
 import {canonicalObjectGraph} from './mathIRAdapter';
 import {refreshAnalyticConstraints} from './analyticConstraints';
-import {planeFromPoints3,linePlane3} from '../kernel/geometry3d';
+import {planeFromPoints3,linePlane3,planePlane3} from '../kernel/geometry3d';
 import {evaluate,type GeomObject} from '../../studios/geometry/construction/constructionEngine';
 import {add3,scale3,point3} from '../../workspace/geometry3dKernel';
 import {describeObject} from './sceneContext';
@@ -8,7 +9,7 @@ import {vertices,relationship} from './geometryQueries';
 import type {RoboObjectDescriptor,RoboSceneContext} from './types';
 import type {VisualCommand} from '../../offline-intelligence/commands';
 export type DependencyRef={objectId:string;vertex?:number;edge?:[number,number]};
-export type RoboDependency={kind:'perpBisector'|'midpoint'|'median'|'centroid'|'triangle'|'polygon'|'line'|'perp'|'parallel'|'intersection'|'tangent'|'circumcircle'|'incircle'|'plane3'|'perpPlane3'|'intersection3';parents:DependencyRef[];index?:number;angle?:number};
+export type RoboDependency={kind:'section3'|'planeIntersection3'|'tetrahedron'|'perpBisector'|'midpoint'|'median'|'centroid'|'triangle'|'polygon'|'line'|'perp'|'parallel'|'intersection'|'tangent'|'circumcircle'|'incircle'|'plane3'|'perpPlane3'|'intersection3';parents:DependencyRef[];index?:number;angle?:number};
 export function vertexReference(object:RoboObjectDescriptor,index:number):DependencyRef{return {objectId:object.id,vertex:index};}
 export function recomputeRoboDependencies(scene:RoboSceneContext):VisualCommand[]{
   const analyticEffects=refreshAnalyticConstraints(scene);
@@ -26,6 +27,9 @@ export function recomputeRoboDependencies(scene:RoboSceneContext):VisualCommand[
           if(parents.some(p=>p.command.roboVisible===false))throw new Error('A parent construction is invalid.');
           if(definition.kind==='midpoint'){if(positions.length!==2||positions.some(p=>!p))throw new Error('A midpoint needs two defined parents.');const value=scale3(add3(point3(...positions[0] as [number,number,number]),point3(...positions[1] as [number,number,number])),0.5);command={...object.command,roboVisible:true,points:[[value.x,value.y,value.z]]};}
           else if(definition.kind==='centroid'){if(positions.length<3||positions.some(p=>!p||p.length!==3||p.some(x=>!Number.isFinite(x))))throw new Error('A spatial vertex centroid needs three or more defined 3D vertices.');command={...object.command,roboVisible:true,points:[positions.reduce((sum,p)=>sum.map((x,i)=>x+p[i]/positions.length),[0,0,0])]};}
+          else if(definition.kind==='section3'){const section=spatialSection(parents[0],planeFromPoints3(vertices(parents[1]).slice(0,3)));if(!section)throw new Error('The plane does not cut the solid in this configuration.');command={...object.command,kind:section.kind,roboSemanticKind:undefined,roboVisible:true,points:section.points,linearExtent:section.kind==='line'?'segment':undefined};}
+          else if(['line','triangle','tetrahedron'].includes(definition.kind)){command={...object.command,roboVisible:true,points:positions};}
+          else if(definition.kind==='planeIntersection3'){const hit=planePlane3(planeFromPoints3(vertices(parents[0]).slice(0,3)),planeFromPoints3(vertices(parents[1]).slice(0,3)));if(hit.kind!=='line')throw new Error('These planes have no unique intersection line.');command={...object.command,roboVisible:true,points:[hit.point!,hit.point!.map((x,i)=>x+hit.direction![i])]};}
           else if(definition.kind==='plane3'){const plane=planeFromPoints3(positions);command={...object.command,roboVisible:true,points:positions,roboPlane:plane};}
           else if(definition.kind==='perpPlane3'){const plane=planeFromPoints3(vertices(parents[0]).slice(0,3)),origin=positions[1]??vertices(object)[0];command={...object.command,roboVisible:true,points:[origin,origin.map((x,i)=>x+plane.normal[i])]};}
           else if(definition.kind==='intersection3'){const line=parents.find(p=>['line','ray','vector'].includes(p.type)),host=parents.find(p=>p.type==='plane');if(!line||!host)throw new Error('A dependent 3D intersection needs a line and a plane.');const [a,b]=vertices(line),hit=linePlane3({kind:line.type==='ray'?'ray':line.command.linearExtent==='segment'?'segment':'line',point:a,direction:b.map((x,i)=>x-a[i])},planeFromPoints3(vertices(host).slice(0,3)));if(hit.kind!=='point'||!hit.point)throw new Error('No unique intersection in this configuration.');command={...object.command,roboVisible:true,points:[hit.point]};}
@@ -47,8 +51,8 @@ export function recomputeRoboDependencies(scene:RoboSceneContext):VisualCommand[
   };
   for(const o of scene.objects){
     const d=o.command.roboDependency;
-    if(d&&(d.kind==='plane3'||d.kind==='perpPlane3'||d.kind==='intersection3'))throw new Error('A spatial dependency requires a 3D workspace.');
-    if(d){if(d.kind==='circumcircle'||d.kind==='incircle'){const parent=d.parents[0];graph.push(base(o.id,d.kind==='incircle'?'incircle':'circle3',[0,1,2].map(vertex=>refs({...parent,vertex}))));}else if(d.kind==='tangent'){const circleId=d.parents[0].objectId,at=d.parents[1]?refs(d.parents[1]):`${o.id}:at`,radius=`${o.id}:radius`;if(!d.parents[1])graph.push(base(at,'pointOnObject',[circleId],{t:d.angle??0}));graph.push(base(radius,'line',[`${circleId}:center`,at]),base(o.id,'perp',[at,radius]));}else if(d.kind!=='plane3'&&d.kind!=='perpPlane3'&&d.kind!=='intersection3')graph.push(base(o.id,d.kind==='centroid'?'polygon':d.kind,d.parents.map(refs),d.index===undefined?undefined:{index:d.index}));continue;}
+    if(d&&(d.kind==='section3'||d.kind==='planeIntersection3'||d.kind==='tetrahedron'||d.kind==='plane3'||d.kind==='perpPlane3'||d.kind==='intersection3'))throw new Error('A spatial dependency requires a 3D workspace.');
+    if(d){if(d.kind==='circumcircle'||d.kind==='incircle'){const parent=d.parents[0];graph.push(base(o.id,d.kind==='incircle'?'incircle':'circle3',[0,1,2].map(vertex=>refs({...parent,vertex}))));}else if(d.kind==='tangent'){const circleId=d.parents[0].objectId,at=d.parents[1]?refs(d.parents[1]):`${o.id}:at`,radius=`${o.id}:radius`;if(!d.parents[1])graph.push(base(at,'pointOnObject',[circleId],{t:d.angle??0}));graph.push(base(radius,'line',[`${circleId}:center`,at]),base(o.id,'perp',[at,radius]));}else if(d.kind!=='section3'&&d.kind!=='planeIntersection3'&&d.kind!=='tetrahedron'&&d.kind!=='plane3'&&d.kind!=='perpPlane3'&&d.kind!=='intersection3')graph.push(base(o.id,d.kind==='centroid'?'polygon':d.kind,d.parents.map(refs),d.index===undefined?undefined:{index:d.index}));continue;}
     if(o.type==='point'){graph.push(base(o.id,'freePoint',[],{x:o.position[0],y:o.position[1]}));continue;}
     if(o.type==='circle'){const id=`${o.id}:center`;graph.push(base(id,'freePoint',[],{x:o.position[0],y:o.position[1]}),base(o.id,'circleCR',[id],{r:o.command.radius*(o.command.scale??1)}));continue;}
     const vs=vertices(o);vs.forEach((p,i)=>graph.push(base(`${o.id}:v${i}`,'freePoint',[],{x:p[0],y:p[1]})));

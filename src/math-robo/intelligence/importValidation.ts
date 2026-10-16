@@ -13,6 +13,9 @@ export function validateImportedScene(value:unknown,mode:RoboSceneContext['activ
   const object=raw as Record<string,unknown>,command=object.command as Record<string,unknown>|undefined;
   if(typeof object.id!=='string'||!object.id||object.id.length>256||ids.has(object.id)||object.mode!==mode)throw new Error('Invalid or duplicate object identity.');ids.add(object.id);
   if(!command||typeof command!=='object'||!kinds.has(String(command.kind))||!['2d','3d'].includes(String(command.dimension)))throw new Error('Invalid object command.');
+  if(command.roboOpacity!==undefined&&(typeof command.roboOpacity!=='number'||!Number.isFinite(command.roboOpacity)||command.roboOpacity<0||command.roboOpacity>1))throw new Error('Invalid 3D opacity.');
+  if(command.roboMaterial!==undefined&&!['matte','glass','wireframe'].includes(String(command.roboMaterial)))throw new Error('Invalid 3D material.');
+  if(command.roboShowLabel!==undefined&&typeof command.roboShowLabel!=='boolean')throw new Error('Invalid label visibility.');
   if(command.roboControl!==undefined||command.roboClearAll!==undefined)throw new Error('Scene objects cannot contain renderer control commands.');
   if(command.action!==undefined&&!['create','update'].includes(String(command.action))||command.objectId!==undefined&&command.objectId!==object.id)throw new Error('Object command identity mismatch.');
   const dimension=command.dimension==='3d'?3:2;

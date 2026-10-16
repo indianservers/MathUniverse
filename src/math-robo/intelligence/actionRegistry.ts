@@ -116,3 +116,6 @@ enable('FIND','INTERSECTION',{modes:allModes});
 enable('MARK','CENTROID',{modes:allModes,allowedTypes:['triangle','rectangle','square','polygon']});
 
 for(const op of OPERATIONS)if(op.action==='CHANGE'&&['RADIUS','DIAMETER'].includes(op.subAction))op.allowedTypes=['circle','sphere','cylinder','cone'];
+
+for(const action of ['FIND','CONSTRUCT'])enable(action,'KID_3D',{modes:['geometry3d'],required:['kid3d'],createsObject:false});
+enable('CHANGE','OPACITY',{modes:['geometry3d'],required:['opacity']});

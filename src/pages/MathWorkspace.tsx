@@ -8040,7 +8040,7 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
 function AddedSceneObject3D({ object, selected, surfaceScale, solidSize, crossSection, performanceMode, eventProps }: { object: Added3DObject; selected: boolean; surfaceScale: number; solidSize: number; crossSection: number; performanceMode: boolean; eventProps: Record<string, unknown> }) {
   if (!object.transform.visible) return null;
   if(object.nlpCommand&&['line','ray','vector'].includes(object.nlpCommand.kind)){const c=object.nlpCommand,ctr=commandTransform3d(c).position;return <TransformGroup3D transform={object.transform} selected={selected}><DirectedObject3D command={{...c,points:c.points.map(p=>p.map((n,i)=>n-ctr[i])),scale:1,rotation:[0,0,0],color:object.transform.color}} eventProps={eventProps}/></TransformGroup3D>;}
-  if(object.nlpCommand?.kind==='point')return <TransformGroup3D transform={object.transform} selected={selected}><Point3D label={object.nlpCommand.roboLabel??'P'} color={object.transform.color} eventProps={eventProps}/></TransformGroup3D>;
+  if(object.nlpCommand?.kind==='point')return <TransformGroup3D transform={object.transform} selected={selected}><Point3D label={object.nlpCommand.roboShowLabel===false?'':object.nlpCommand.roboLabel??'P'} color={object.transform.color} eventProps={eventProps}/></TransformGroup3D>;
   if(object.nlpCommand) return <TransformGroup3D transform={object.transform} selected={selected}><IntelligenceShapeMesh command={object.nlpCommand} transform={object.transform} eventProps={eventProps}/></TransformGroup3D>;
   if (object.render === "surface") return <TransformGroup3D transform={object.transform} selected={selected}><SurfaceMesh surface={object.surface ?? "paraboloid"} expression="sin(x) * cos(y)" scaleValue={surfaceScale} transform={object.transform} performanceMode={performanceMode} eventProps={eventProps} /></TransformGroup3D>;
   if (object.render === "slice") return <TransformGroup3D transform={{ ...object.transform, position: [object.transform.position[0], crossSection + object.transform.position[1], object.transform.position[2]] }} selected={selected}><CrossSectionPlane color={object.transform.color} eventProps={eventProps} /></TransformGroup3D>;
@@ -8325,7 +8325,9 @@ function IntelligenceShapeMesh({command,transform,eventProps}:{command:VisualCom
   useEffect(()=>()=>geometry.dispose(),[geometry]);
   const base=commandTransform3d(command).dimensions;
   const dimensions=transform.dimensions??base;
-  return <mesh geometry={geometry} scale={dimensions.map((v,i)=>v/base[i]) as [number,number,number]} {...eventProps}><ObjectMaterial transform={transform}/></mesh>;
+  const edges=useMemo(()=>command.roboStrokeColor?new THREE.EdgesGeometry(geometry):undefined,[geometry,command.roboStrokeColor]);
+  useEffect(()=>()=>edges?.dispose(),[edges]);
+  return <group scale={dimensions.map((v,i)=>v/base[i]) as [number,number,number]}><mesh geometry={geometry} {...eventProps}><ObjectMaterial transform={transform}/></mesh>{edges&&<lineSegments geometry={edges}><lineBasicMaterial color={command.roboStrokeColor}/></lineSegments>}</group>;
 }
 
 function Plane3D({ transform, eventProps }: { transform: Transform3D; eventProps?: Record<string, unknown> }) {

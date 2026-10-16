@@ -14,7 +14,7 @@
   "registry": {
     "baselineSubactions": 99,
     "baselinePairs": 127,
-    "implementedPairs": 176,
+    "implementedPairs": 179,
     "unsupported": [
       {
         "action": "CREATE",
@@ -497,49 +497,6 @@
         "mutatesScene": false,
         "createsObject": false,
         "returnsValue": true,
-        "executor": "unsupported",
-        "implemented": false,
-        "validation": [
-          "finite parameters",
-          "existing unambiguous targets",
-          "compatible dimensions"
-        ],
-        "examples": []
-      },
-      {
-        "action": "CHANGE",
-        "subAction": "OPACITY",
-        "aliases": [
-          "CHANGE",
-          "SET",
-          "LABEL",
-          "RENAME",
-          "COLOR",
-          "STYLE",
-          "FILL",
-          "OUTLINE",
-          "modify",
-          "edit",
-          "update",
-          "adjust",
-          "alter"
-        ],
-        "required": [],
-        "optional": [
-          "target",
-          "targets"
-        ],
-        "allowedTypes": [],
-        "modes": [
-          "normal",
-          "geometry2d",
-          "graph2d",
-          "geometry3d",
-          "graph3d"
-        ],
-        "mutatesScene": true,
-        "createsObject": false,
-        "returnsValue": false,
         "executor": "unsupported",
         "implemented": false,
         "validation": [
@@ -2604,7 +2561,7 @@
     ]
   },
   "dataset": {
-    "rows": 4626,
+    "rows": 4927,
     "classes": [
       {
         "operation": "CREATE:TRIANGLE",
@@ -2864,7 +2821,7 @@
       },
       {
         "operation": "CHANGE:WIDTH",
-        "count": 20
+        "count": 21
       },
       {
         "operation": "CHANGE:HEIGHT",
@@ -2908,15 +2865,15 @@
       },
       {
         "operation": "MOVE:OBJECT",
-        "count": 75
+        "count": 78
       },
       {
         "operation": "ROTATE:OBJECT",
-        "count": 71
+        "count": 75
       },
       {
         "operation": "SCALE:UNIFORM",
-        "count": 70
+        "count": 71
       },
       {
         "operation": "RESIZE:OBJECT",
@@ -3032,11 +2989,11 @@
       },
       {
         "operation": "UNDO:LAST",
-        "count": 66
+        "count": 68
       },
       {
         "operation": "REDO:LAST",
-        "count": 55
+        "count": 56
       },
       {
         "operation": "COUNT:OBJECTS",
@@ -3309,13 +3266,25 @@
       {
         "operation": "CONSTRUCT:BOARD_ADVANCED",
         "count": 42
+      },
+      {
+        "operation": "CONSTRUCT:KID_3D",
+        "count": 154
+      },
+      {
+        "operation": "FIND:KID_3D",
+        "count": 133
+      },
+      {
+        "operation": "CHANGE:OPACITY",
+        "count": 2
       }
     ],
     "minimumClassCount": 1,
     "maximumClassCount": 208,
     "imbalanceRatio": 208,
-    "duplicates": 1540,
-    "nearDuplicates": 2266,
+    "duplicates": 1541,
+    "nearDuplicates": 2269,
     "conflictingLabels": 0,
     "duplicateIds": 0,
     "lowClasses": [
@@ -3341,7 +3310,8 @@
       "MARK:CENTROID",
       "CREATE:SEGMENT",
       "CONSTRUCT:CONDITIONAL_INTERSECTION",
-      "FIND:NEAREST_POINT"
+      "FIND:NEAREST_POINT",
+      "CHANGE:OPACITY"
     ]
   }
 }

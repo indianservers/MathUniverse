@@ -9,6 +9,9 @@ export type VisualCommand = {
   action?:'create'|'update';
   objectId?:string;
   fitDimensions?:boolean;
+  roboOpacity?:number;
+  roboMaterial?:'matte'|'glass'|'wireframe';
+  roboShowLabel?:boolean;
   roboAppearanceOnly?:boolean;
   roboControl?: 'delete'|'visibility'|'select'|'deselect';
   /** Clear every object in the active workspace, including native objects. */

@@ -2198,6 +2198,13 @@
           "mutatesWorkspace": true
         },
         {
+          "id": "workspace.CHANGE.OPACITY",
+          "engineId": "active-workspace",
+          "label": "change opacity",
+          "description": "Verified change:opacity; modes geometry3d",
+          "mutatesWorkspace": true
+        },
+        {
           "id": "workspace.CHANGE.LINE_WIDTH",
           "engineId": "active-workspace",
           "label": "change line width",
@@ -2461,6 +2468,20 @@
           "engineId": "active-workspace",
           "label": "construct perp plane",
           "description": "Verified construct:perp_plane; modes geometry3d, graph3d",
+          "mutatesWorkspace": true
+        },
+        {
+          "id": "workspace.FIND.KID_3D",
+          "engineId": "active-workspace",
+          "label": "find kid 3d",
+          "description": "Verified find:kid_3d; modes geometry3d",
+          "mutatesWorkspace": false
+        },
+        {
+          "id": "workspace.CONSTRUCT.KID_3D",
+          "engineId": "active-workspace",
+          "label": "construct kid 3d",
+          "description": "Verified construct:kid_3d; modes geometry3d",
           "mutatesWorkspace": true
         }
       ]

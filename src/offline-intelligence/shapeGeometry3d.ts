@@ -25,6 +25,7 @@ export function createIntelligenceShapeGeometry(c:VisualCommand):THREE.BufferGeo
     const points=outlineVertices({...c,rotation:[0,0,0],scale:1}).map(p=>new THREE.Vector2(p[0]-center[0],p[1]-center[1]));
     return new THREE.ShapeGeometry(new THREE.Shape(points));
   }
+  if(c.kind==='tetrahedron'&&c.points.length===4){const ctr=centroid(c.points),geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(c.points.flatMap(p=>p.map((x,i)=>x-ctr[i])),3));const faces=[[0,1,2,3],[0,3,1,2],[0,2,3,1],[1,3,2,0]].flatMap(([a,b,d,opposite])=>{const p=c.points.map(q=>new THREE.Vector3(...q as [number,number,number])),normal=p[b].clone().sub(p[a]).cross(p[d].clone().sub(p[a]));return normal.dot(p[opposite].clone().sub(p[a]))>0?[a,d,b]:[a,b,d];});geometry.setIndex(faces);geometry.computeVertexNormals();return geometry;}
   switch(c.kind) {
     case 'cube': return new THREE.BoxGeometry(w,w,w);
     case 'cuboid': return new THREE.BoxGeometry(w,h,d);
@@ -35,7 +36,7 @@ export function createIntelligenceShapeGeometry(c:VisualCommand):THREE.BufferGeo
     case 'cone':return new THREE.ConeGeometry(r,h,32);
     case 'frustum':return new THREE.CylinderGeometry(r/2,r,h,32);
     case 'torus':return new THREE.TorusGeometry(r,r/4,12,32);
-    case 'tube':return new THREE.TorusGeometry(r,r/10,12,32);
+    case 'tube':return new THREE.LatheGeometry([[r*.7,-h/2],[r,-h/2],[r,h/2],[r*.7,h/2],[r*.7,-h/2]].map(([x,y])=>new THREE.Vector2(x,y)),48);
     case 'capsule':return new THREE.CapsuleGeometry(r,h,8,24);
     case 'prism':return new THREE.CylinderGeometry(r,r,h,3);
     case 'pyramid':return new THREE.ConeGeometry(r,h,4);

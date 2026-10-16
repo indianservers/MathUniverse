@@ -1,0 +1,1802 @@
+[
+  {
+    "id": 1,
+    "question": "Can you draw a cube for me?",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 2,
+    "question": "Make a ball.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 3,
+    "question": "Draw a cone like an ice cream cone.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 4,
+    "question": "Can you make a cylinder like a tin can?",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 5,
+    "question": "Draw a box that is longer than it is tall.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 6,
+    "question": "Make a pyramid with a square bottom.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 7,
+    "question": "Draw a pyramid with a triangle bottom.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 8,
+    "question": "Can you draw a triangular prism?",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 9,
+    "question": "Make a ring like a doughnut.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 10,
+    "question": "Draw half a ball.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 11,
+    "question": "Make an egg-shaped solid.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 12,
+    "question": "Can you draw a capsule shape?",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 13,
+    "question": "Draw a hollow tube.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 14,
+    "question": "Make a cone with its top cut off.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 15,
+    "question": "Draw a cube with sides of 4 units.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 16,
+    "question": "Make a sphere with radius 3.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 17,
+    "question": "Draw a cylinder with radius 2 and height 5.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 18,
+    "question": "Make a cone with radius 3 and height 6.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 19,
+    "question": "Draw a box that is 6 long, 4 wide, and 2 high.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 20,
+    "question": "Make a square pyramid with base side 4 and height 7.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 21,
+    "question": "Draw a triangular prism that is 5 units long.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 22,
+    "question": "Make a sphere with diameter 10.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 23,
+    "question": "Draw a cube with side length 2.5.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 24,
+    "question": "Make a cylinder that is 8 units tall.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 25,
+    "question": "Draw a point at (1, 2, 3).",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 26,
+    "question": "Put a point at the origin.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 27,
+    "question": "Add a point called A at (2, 0, 0).",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 28,
+    "question": "Add a point called B at (0, 3, 0).",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 29,
+    "question": "Add a point called C at (0, 0, 4).",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 30,
+    "question": "Draw a line from A to B.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 31,
+    "question": "Join B and C with a segment.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 32,
+    "question": "Draw a ray starting at A and going through C.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 33,
+    "question": "Make an arrow from the origin to (2, 3, 4).",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 34,
+    "question": "Draw a plane through A, B, and C.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 35,
+    "question": "Show me the xy-plane.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 36,
+    "question": "Draw a plane parallel to the floor at z = 3.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 37,
+    "question": "Draw a triangle using A, B, and C.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 38,
+    "question": "Make a tetrahedron using four points.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 39,
+    "question": "Draw two cubes next to each other.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 40,
+    "question": "Make three spheres with different sizes.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 41,
+    "question": "How many solids are on my screen?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 42,
+    "question": "How many cubes did I draw?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 43,
+    "question": "How many spheres are there?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 44,
+    "question": "What is this shape called?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 45,
+    "question": "Which shape looks like a ball?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 46,
+    "question": "Which solid has a pointy top?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 47,
+    "question": "Which solid has two circular ends?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 48,
+    "question": "Which objects have only flat faces?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 49,
+    "question": "Which objects have curved surfaces?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 50,
+    "question": "Which objects have both flat and curved surfaces?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 51,
+    "question": "How many faces does this cube have?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 52,
+    "question": "How many edges does this cube have?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 53,
+    "question": "How many corners does this cube have?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 54,
+    "question": "How many faces does this box have?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 55,
+    "question": "How many edges does this triangular prism have?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 56,
+    "question": "How many corners does this square pyramid have?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 57,
+    "question": "How many faces does this tetrahedron have?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 58,
+    "question": "Does a sphere have any corners?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 59,
+    "question": "Does a cylinder have any vertices?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 60,
+    "question": "Is this object a cube or a cuboid?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 61,
+    "question": "Are all the faces of this cube squares?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 62,
+    "question": "Are these two solids the same kind of shape?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 63,
+    "question": "Which object has the most vertices?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 64,
+    "question": "Which objects have a circular base?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 65,
+    "question": "What is the name of the selected object?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 66,
+    "question": "What are A’s coordinates?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 67,
+    "question": "Where is point B?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 68,
+    "question": "Which point is at (1, 2, 3)?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 69,
+    "question": "Which point is closest to (2, 3, 4)?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 70,
+    "question": "Is any point exactly at the origin?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 71,
+    "question": "What is the distance from A to B?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 72,
+    "question": "How far is C from the origin?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 73,
+    "question": "How far apart are these two points?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 74,
+    "question": "What is the midpoint of AB?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 75,
+    "question": "Mark the halfway point between A and C.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 76,
+    "question": "Which point is highest?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 77,
+    "question": "Which point has the smallest x-coordinate?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 78,
+    "question": "Which point is closest to the xy-plane?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 79,
+    "question": "Is A above the xy-plane?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 80,
+    "question": "Is B on the z-axis?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 81,
+    "question": "Do A and B have the same height?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 82,
+    "question": "Which points have z equal to zero?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 83,
+    "question": "How far is A from the x-axis?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 84,
+    "question": "How far is B from the yz-plane?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 85,
+    "question": "Are A, B, and C on one straight line?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 86,
+    "question": "Are these four points on the same plane?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 87,
+    "question": "Is A inside this sphere?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 88,
+    "question": "Is B on the surface of this sphere?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 89,
+    "question": "Is C inside this box?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 90,
+    "question": "Which points are outside the selected solid?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 91,
+    "question": "What is the volume of this cube?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 92,
+    "question": "How much space is inside this box?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 93,
+    "question": "What is the volume of the sphere?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 94,
+    "question": "Find the volume of this cylinder.",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 95,
+    "question": "How much space does this cone take up?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 96,
+    "question": "What is the volume of this square pyramid?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 97,
+    "question": "Find the volume of this triangular prism.",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 98,
+    "question": "What is the total surface area of this cube?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 99,
+    "question": "How much wrapping paper would cover this box?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 100,
+    "question": "What is the surface area of the sphere?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 101,
+    "question": "Find the total surface area of this cylinder.",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 102,
+    "question": "What is the curved surface area of this cylinder?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 103,
+    "question": "Find the curved surface area of this cone.",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 104,
+    "question": "What is the total surface area of this cone?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 105,
+    "question": "What is the area of the pyramid’s base?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 106,
+    "question": "How big is one face of this cube?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 107,
+    "question": "What is the area of the cylinder’s circular base?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 108,
+    "question": "How long is the edge of this cube?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 109,
+    "question": "What is the height of this cone?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 110,
+    "question": "What is the radius of this sphere?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 111,
+    "question": "What is the diameter of this cylinder?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 112,
+    "question": "What are this box’s length, width, and height?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 113,
+    "question": "How long is the diagonal across this box?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 114,
+    "question": "What is the diagonal across one cube face?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 115,
+    "question": "How long is the sloping side of this cone?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 116,
+    "question": "Where is the center of this sphere?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 117,
+    "question": "Where is the center of this box?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 118,
+    "question": "What is the distance between the centers of these spheres?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 119,
+    "question": "Which solid has the biggest volume?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 120,
+    "question": "Which solid has the smallest surface area?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 121,
+    "question": "Is this cube bigger than that sphere by volume?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 122,
+    "question": "Do these two boxes have the same volume?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 123,
+    "question": "How much bigger is this cylinder than that cone?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 124,
+    "question": "If their bases and heights match, is the cone one-third of the cylinder?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 125,
+    "question": "Can you show the volume formula using this solid’s numbers?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 126,
+    "question": "Move the cube 2 units to the right.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 127,
+    "question": "Move the sphere 3 units up the z-axis.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 128,
+    "question": "Push the cone 4 units along the y-axis.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 129,
+    "question": "Move the cylinder 2 units in the negative x direction.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 130,
+    "question": "Put the sphere’s center at (3, 2, 1).",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 131,
+    "question": "Move point A to (4, 5, 6).",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 132,
+    "question": "Move B one unit closer to the xy-plane.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 133,
+    "question": "Put the cube’s center at the origin.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 134,
+    "question": "Move all spheres 2 units along the x-axis.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 135,
+    "question": "Move both cubes up by 3 units.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 136,
+    "question": "Move only the selected solid.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 137,
+    "question": "Move the box by (1, 2, 3).",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 138,
+    "question": "Bring the cone back to where it was.",
+    "mutates": true,
+    "status": "unsupported"
+  },
+  {
+    "id": 139,
+    "question": "Put the two spheres next to each other without overlap.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 140,
+    "question": "Move this sphere until it just touches that sphere.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 141,
+    "question": "Put the cube on the xy-plane.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 142,
+    "question": "Put the cone on top of the box.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 143,
+    "question": "Line up the centers of these three spheres.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 144,
+    "question": "Leave an equal gap between these cubes.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 145,
+    "question": "Move everything 5 units along the z-axis.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 146,
+    "question": "Rotate the cube 90 degrees around the z-axis.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 147,
+    "question": "Turn the box 45 degrees around the x-axis.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 148,
+    "question": "Spin the cone 180 degrees around the y-axis.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 149,
+    "question": "Rotate the selected solid by 30 degrees.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 150,
+    "question": "Turn the cube around its own center.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 151,
+    "question": "Rotate the triangle around line AB.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 152,
+    "question": "Rotate point A 90 degrees around the z-axis.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 153,
+    "question": "Rotate both cubes together around the origin.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 154,
+    "question": "Turn the cylinder so it lies along the x-axis.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 155,
+    "question": "Make the cone point downward.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 156,
+    "question": "Flip the pyramid upside down.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 157,
+    "question": "Rotate the box one full turn.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 158,
+    "question": "Turn it another 15 degrees.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 159,
+    "question": "Turn it back by 15 degrees.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 160,
+    "question": "Does rotating this solid change its volume?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 161,
+    "question": "Reflect A across the xy-plane.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 162,
+    "question": "Flip the cube across the yz-plane.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 163,
+    "question": "Reflect the triangle across the xz-plane.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 164,
+    "question": "Make a mirror copy of this cone across the xy-plane.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 165,
+    "question": "Reflect the sphere’s center through the origin.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 166,
+    "question": "Make this cube twice as big in every direction.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 167,
+    "question": "Shrink the sphere to half its size.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 168,
+    "question": "Make the cylinder twice as tall.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 169,
+    "question": "Make the box wider without changing its height.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 170,
+    "question": "Change the cube’s side length to 5.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 171,
+    "question": "Change the sphere’s radius to 4.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 172,
+    "question": "Set the cylinder’s diameter to 6.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 173,
+    "question": "Make the cone’s height 10.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 174,
+    "question": "Set the box dimensions to 8 by 5 by 3.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 175,
+    "question": "Enlarge the selected solid by a factor of 1.5.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 176,
+    "question": "Make every sphere twice its current radius.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 177,
+    "question": "Give all cubes a side length of 3.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 178,
+    "question": "Keep the cylinder’s radius the same and halve its height.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 179,
+    "question": "If I double this cube’s sides, what happens to its volume?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 180,
+    "question": "If I double this sphere’s radius, what happens to its surface area?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 181,
+    "question": "Color the cube red.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 182,
+    "question": "Make the sphere blue.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 183,
+    "question": "Change all spheres to green.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 184,
+    "question": "Paint every cube orange.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 185,
+    "question": "Make only the selected cone purple.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 186,
+    "question": "Change all blue solids to yellow.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 187,
+    "question": "Give the box a pink outline.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 188,
+    "question": "Make the cylinder partly transparent.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 189,
+    "question": "Make the sphere completely see-through.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 190,
+    "question": "Show only the edges of the cube.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 191,
+    "question": "Show the cube’s faces again.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 192,
+    "question": "Make the selected object’s edges thicker.",
+    "mutates": true,
+    "status": "unsupported"
+  },
+  {
+    "id": 193,
+    "question": "Change all solid outlines to black.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 194,
+    "question": "Hide the cone.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 195,
+    "question": "Show the cone again.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 196,
+    "question": "Hide every sphere.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 197,
+    "question": "Show all hidden solids.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 198,
+    "question": "Hide everything except the selected cube.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 199,
+    "question": "Lock the box so I cannot move it.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 200,
+    "question": "Unlock every cube.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 201,
+    "question": "Rename this sphere Ball.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 202,
+    "question": "Call this cube MyCube.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 203,
+    "question": "Show the names of all points.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 204,
+    "question": "Hide the object labels.",
+    "mutates": true,
+    "status": "unsupported"
+  },
+  {
+    "id": 205,
+    "question": "Select all spheres.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 206,
+    "question": "Select the smallest cube.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 207,
+    "question": "Select the red cone.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 208,
+    "question": "Select both boxes.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 209,
+    "question": "Clear my selection.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 210,
+    "question": "Make a copy of the selected pyramid.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 211,
+    "question": "How long is segment AB?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 212,
+    "question": "Which way does vector AB point?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 213,
+    "question": "What are the three components of this vector?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 214,
+    "question": "How long is this arrow?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 215,
+    "question": "Make a unit vector pointing the same way.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 216,
+    "question": "Add these two vectors.",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 217,
+    "question": "Subtract vector AC from vector AB.",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 218,
+    "question": "What is the angle between these two arrows?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 219,
+    "question": "Are these vectors perpendicular?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 220,
+    "question": "Are these vectors parallel?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 221,
+    "question": "Find the dot product of these vectors.",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 222,
+    "question": "Find a vector perpendicular to both arrows.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 223,
+    "question": "Does point C lie on line AB?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 224,
+    "question": "Are these two 3D lines parallel?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 225,
+    "question": "Do these two lines meet?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 226,
+    "question": "Where do these lines cross?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 227,
+    "question": "Are these lines skew?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 228,
+    "question": "What is the shortest distance between these lines?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 229,
+    "question": "How far is point A from this line?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 230,
+    "question": "Mark the closest point on the line to A.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 231,
+    "question": "Draw a line through A parallel to BC.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 232,
+    "question": "Draw a line through A perpendicular to this plane.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 233,
+    "question": "Draw a plane through A parallel to the xy-plane.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 234,
+    "question": "Draw a plane through A, B, and C.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 235,
+    "question": "What is the equation of this plane?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 236,
+    "question": "Is point D on this plane?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 237,
+    "question": "Is this line parallel to the plane?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 238,
+    "question": "Where does this line go through the plane?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 239,
+    "question": "How far is A from this plane?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 240,
+    "question": "Drop a perpendicular from A to the plane.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 241,
+    "question": "Are these two planes perpendicular?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 242,
+    "question": "Are these two planes parallel?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 243,
+    "question": "What is the angle between these planes?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 244,
+    "question": "Draw the line where these planes meet.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 245,
+    "question": "Which direction is straight out from this plane?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 246,
+    "question": "Slice the cube with a horizontal plane.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 247,
+    "question": "What shape is this cube’s cross-section?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 248,
+    "question": "Slice the sphere through its center.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 249,
+    "question": "What is the radius of that circular slice?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 250,
+    "question": "Move the slicing plane upward by one unit.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 251,
+    "question": "Can a tilted slice through this cylinder make an ellipse?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 252,
+    "question": "Cut the cone with a plane parallel to its base.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 253,
+    "question": "Show the sphere and plane’s intersection.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 254,
+    "question": "Does this plane touch the sphere at just one point?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 255,
+    "question": "Draw a tangent plane at this point on the sphere.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 256,
+    "question": "Are these two spheres touching?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 257,
+    "question": "Are these spheres overlapping?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 258,
+    "question": "Is the small sphere completely inside the big sphere?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 259,
+    "question": "Where do these two spheres intersect?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 260,
+    "question": "Does this line pass through the sphere?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 261,
+    "question": "Mark where the line enters and leaves the sphere.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 262,
+    "question": "Is this line tangent to the sphere?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 263,
+    "question": "Is the cube completely inside the sphere?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 264,
+    "question": "Are the box and the plane intersecting?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 265,
+    "question": "Show me a net of this cube.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 266,
+    "question": "Draw another one like that.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 267,
+    "question": "Make the new one smaller.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 268,
+    "question": "No, I meant the first sphere.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 269,
+    "question": "Change that one to red too.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 270,
+    "question": "Move them together.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 271,
+    "question": "Keep the other objects where they are.",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 272,
+    "question": "Do the same thing to the second cube.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 273,
+    "question": "What about the blue sphere?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 274,
+    "question": "Tell me its volume now.",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 275,
+    "question": "Why did that answer change?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 276,
+    "question": "Show me the steps for that answer.",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 277,
+    "question": "Can you explain that more simply?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 278,
+    "question": "Which object did you just change?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 279,
+    "question": "Did you change both cubes or only one?",
+    "mutates": false,
+    "status": "success"
+  },
+  {
+    "id": 280,
+    "question": "Keep A fixed while moving B.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 281,
+    "question": "Draw a sphere with radius minus 3.",
+    "mutates": true,
+    "status": "invalid"
+  },
+  {
+    "id": 282,
+    "question": "Make a cube with side length zero.",
+    "mutates": true,
+    "status": "invalid"
+  },
+  {
+    "id": 283,
+    "question": "Draw a plane through these three points on one straight line.",
+    "mutates": true,
+    "status": "invalid"
+  },
+  {
+    "id": 284,
+    "question": "Draw a line using the same point twice.",
+    "mutates": true,
+    "status": "invalid"
+  },
+  {
+    "id": 285,
+    "question": "Find the distance from A to Z when Z is not on the board.",
+    "mutates": true,
+    "status": "invalid"
+  },
+  {
+    "id": 286,
+    "question": "Change all cones to red when there are no cones.",
+    "mutates": true,
+    "status": "invalid"
+  },
+  {
+    "id": 287,
+    "question": "Color the selected solid blue when I have selected nothing.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 288,
+    "question": "Move the locked cube 2 units right.",
+    "mutates": true,
+    "status": "invalid"
+  },
+  {
+    "id": 289,
+    "question": "Give this box a height of 1000000000.",
+    "mutates": true,
+    "status": "invalid"
+  },
+  {
+    "id": 290,
+    "question": "Put a 3D point at (2, 3).",
+    "mutates": true,
+    "status": "invalid"
+  },
+  {
+    "id": 291,
+    "question": "Make it bigger, but ask me how much first.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 292,
+    "question": "Rotate it, but ask me which axis first.",
+    "mutates": true,
+    "status": "ambiguous"
+  },
+  {
+    "id": 293,
+    "question": "Undo the last thing you did.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 294,
+    "question": "Redo that change.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 295,
+    "question": "Undo only the last color change.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 296,
+    "question": "Delete the selected sphere.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 297,
+    "question": "Clear all solids but keep my points and lines.",
+    "mutates": true,
+    "status": "success"
+  },
+  {
+    "id": 298,
+    "question": "Save this 3D scene.",
+    "mutates": true,
+    "status": "unsupported"
+  },
+  {
+    "id": 299,
+    "question": "Load my saved scene and keep the colors and sizes.",
+    "mutates": true,
+    "status": "unsupported"
+  },
+  {
+    "id": 300,
+    "question": "Reset the camera so I can see all my objects.",
+    "mutates": true,
+    "status": "unsupported"
+  }
+]

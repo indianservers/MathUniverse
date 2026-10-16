@@ -4,7 +4,7 @@ import {resolveTarget,targetFromPhrase,ResolutionError} from './targetResolver';
 import {parseSemanticPlan} from './semanticParser';
 import {center,vertices} from './geometryQueries';
 import {FollowUpEngine} from './followUpEngine';
-import {COLORS} from '../../offline-intelligence/shapeCatalog';
+import {COLORS,SOLID_SHAPES} from '../../offline-intelligence/shapeCatalog';
 import {geometryState} from './resultVerifier';
 import {distanceConversation} from './distanceConversation';
 export type PendingCommand={plan:MathRoboPlan;index:number;slot:string;question:string;options:string[];choices?:MathRoboPlan[];references?:string[];referenceVersions?:Record<string,string>};
@@ -31,6 +31,7 @@ export class ConversationEngine extends FollowUpEngine {
   prepare(text:string,plan:MathRoboPlan,scene:RoboSceneContext):{plan:MathRoboPlan;message?:string} {
     this.text=text;this.before=[...(scene.activeObjectIds??[])];
     if(plan.commands.some(c=>c.parameters.bulkEdit&&c.parameters.parseError)){this.pending=undefined;return {plan};}
+    if(plan.commands.some(c=>c.subAction==='KID_3D')){const c=plan.commands[0];this.pending=undefined;if((c.parameters.kid3d as {id:number}).id===151&&c.parameters.angle===undefined)return this.ask(plan,0,'angle','How many degrees should I rotate the triangle around AB?');return {plan};}
     const distance=distanceConversation(text,plan,scene,this.pending,this.lastDistance);
     if(distance){this.pending=distance.pending;this.invalidated=undefined;if(distance.plan.commands.every(c=>c.action==='FIND'))this.lastMutation=undefined;return {plan:distance.plan,message:distance.message};}
     let normalized=normalizeLanguage(text).replace(/[.!?]+$/,'');
@@ -112,7 +113,7 @@ export class ConversationEngine extends FollowUpEngine {
       const pending=this.pending,command=pending.plan.commands[pending.index];
       let missingTarget=false;if(typeof command.target==='string'&&!command.target.startsWith('last')&&!command.target.startsWith('$'))try{resolveTarget(command.target,scene);}catch{missingTarget=true;}
       if(missingTarget){this.pending=undefined;return {plan,message:'That object was removed. Please choose an existing object.'};}
-      if(normalized==='no'){this.pending=undefined;return {plan,message:'Cancelled the pending command.'};}
+      if(/^(?:no|cancel|stop|never mind)$/.test(normalized)){this.pending=undefined;return {plan,message:'Cancelled the pending command.'};}
       if(pending.slot==='points'&&/^(?:rotate (?:it|that)|draw a circle centered there|make its radius|color only the circle)/.test(normalized))return {plan:pending.plan,message:pending.question};
       if(['points','triangleLength','trianglePolicy','angle'].includes(pending.slot)&&/^(?:find|what|where|does|explain)\b/.test(normalized))return {plan:pending.plan,message:pending.question};
       let accepted=false;
@@ -129,6 +130,19 @@ export class ConversationEngine extends FollowUpEngine {
           accepted=true;
         }else return this.ask(pending.plan,pending.index,'distance','How many units should I move it?');
       }
+      else if(pending.slot==='kidTargets'){
+        const count=Number(command.parameters.kidTargetCount),chosen=(command.parameters.kidChosenTargets as string[]??[]).slice();
+        const tokens=text.trim().replace(/^(?:choose|use|select)\s+/i,'').split(/\s*(?:,|\band\b|&)\s*/i).filter(Boolean),added:string[]=[];
+        for(const token of tokens){const index=/^\d+$/.test(token)?Number(token)-1:-1,ids=pending.options[index]?[pending.options[index]]:pending.options.filter(id=>{const o=scene.objects.find(o=>o.id===id);return id===token||o?.label?.toLowerCase()===token.toLowerCase();});if(ids.length!==1)return {plan:pending.plan,message:'Choose object names from the list. '+pending.question};if(!chosen.includes(ids[0])&&!added.includes(ids[0]))added.push(ids[0]);}
+        if(chosen.length+added.length>count)return {plan:pending.plan,message:`Choose exactly ${count} objects.`};
+        chosen.push(...added);command.parameters.kidChosenTargets=chosen;
+        if(chosen.length<count){pending.options=pending.options.filter(id=>!chosen.includes(id));pending.question=`Chosen ${chosen.map(id=>scene.objects.find(o=>o.id===id)?.label??id).join(', ')}. Choose ${count-chosen.length} more objects.`;return {plan:pending.plan,message:pending.question};}
+        if(command.subAction!=='KID_3D'){command.targets=chosen;command.parameters.multiple=true;}
+        accepted=true;
+      }
+      else if(pending.slot==='kidAxis'&&/^(?:the )?[xyz](?:[ -]axis)?$/.test(normalized)){command.parameters.axis=normalized.match(/[xyz]/)![0];delete command.parameters.kidRequireAxis;accepted=true;}
+      else if(pending.slot==='kidWidth'&&numeric){const width=Number(numeric[1]);if(width>0&&width<=10000){command.parameters.width=width;accepted=true;}}
+      else if(pending.slot==='kidOpacity'&&/^\d+(?:\.\d+)?%?$/.test(normalized)){const opacity=Number(normalized.replace('%',''))/(normalized.endsWith('%')?100:1);if(opacity>=0&&opacity<=1){command.parameters.opacity=opacity;accepted=true;}}
       else if(pending.slot==='trianglePolicy'&&(command.parameters.side as string[]).join('')==='AB'&&(/keep a and c fixed.*b on (?:the )?ray ab/.test(normalized)||/preserve ac and bc/.test(normalized)&&/fix a|keep a fixed/.test(normalized)&&/ab direction|direction of ab/.test(normalized)&&/same side/.test(normalized))){command.parameters.sidePolicy=/preserve/.test(normalized)?'preserve_other_sides':'fixed_third_vertex';accepted=true;}
       else if(pending.slot==='radius'&&plan.commands.length===1&&plan.commands[0].action==='CHANGE'&&plan.commands[0].subAction==='RADIUS'&&typeof plan.commands[0].parameters.radius==='number'){command.parameters.radius=plan.commands[0].parameters.radius;command.parameters.conversationRadiusProvided=true;if(command.parameters.legacy)command.parameters.legacy.radius=command.parameters.radius;accepted=true;}
       else if(pending.slot==='triangleLength'&&numeric){const length=parseNumber(numeric[1]);if(length>0&&length<=10000){command.parameters.length=length;accepted=true;}}
@@ -281,7 +295,10 @@ export class ConversationEngine extends FollowUpEngine {
       if(command.action==='CREATE'&&['LINE','RAY','VECTOR'].includes(command.subAction)&&!(p.points as number[][]|undefined)?.length&&!p.legacy?.points?.length)return this.ask(plan,index,'points',p.count===2?'Give four endpoints: two for each intersecting line.':'What are the two endpoints? Give coordinates such as (0,0) and (4,2).');
       if(command.action==='CREATE'&&command.subAction==='POINT'&&!p.position&&!p.legacy?.points?.length)return this.ask(plan,index,'position','Where should I place the point? Give its coordinates.');
       if(command.action==='CREATE'&&command.subAction==='CIRCLE'&&(Number(p.count)>1||/centered there|centred there/.test(command.normalizedPhrase))&&!/radius|diameter/.test(command.normalizedPhrase)&&!p.conversationRadiusProvided)return this.ask(plan,index,'radius','What radius should the circles have?');
-      if(plan.commands.length===1&&!(command.action==='DELETE'&&command.subAction==='ALL')&&!['BOARD_GEOMETRY','BOARD_ADVANCED'].includes(command.subAction)&&!(command.action==='FIND'&&command.subAction==='NEAREST_POINT')&&!['CREATE','UNHANDLED','UNSUPPORTED','UNDO','REDO','EXPLAIN','COUNT'].includes(command.action)&&!p.multiple&&!command.targets&&command.target!=='$previousResult'){
+      const kidId=(p.kid3d as {id:number}|undefined)?.id;
+      if([136,149].includes(kidId??0)&&command.target==='selected'&&!scene.selectedIds.some(id=>scene.objects.some(o=>o.id===id&&(SOLID_SHAPES as readonly string[]).includes(o.type))))return this.ask(plan,index,'target','Choose one solid first.',scene.objects.filter(o=>(SOLID_SHAPES as readonly string[]).includes(o.type)).map(o=>o.id));
+      if(kidId===153&&!command.targets){const cubes=scene.objects.filter(o=>o.type==='cube'),selected=cubes.filter(o=>scene.selectedIds.includes(o.id)),pair=selected.length===2?selected:cubes.length===2?cubes:undefined;if(pair)command.targets=pair.map(o=>o.id);else{p.kidTargetCount=2;p.kidChosenTargets=[];return this.ask(plan,index,'kidTargets','Choose two cubes to rotate together.',cubes.map(o=>o.id));}}
+      if(plan.commands.length===1&&!(command.action==='DELETE'&&command.subAction==='ALL')&&!['BOARD_GEOMETRY','BOARD_ADVANCED','KID_3D'].includes(command.subAction)&&!(command.action==='FIND'&&command.subAction==='NEAREST_POINT')&&!['CREATE','UNHANDLED','UNSUPPORTED','UNDO','REDO','EXPLAIN','COUNT'].includes(command.action)&&!p.multiple&&!command.targets&&command.target!=='$previousResult'){
         try{const target=resolveTarget(command.target??'lastReferenced',scene);if(scene.objects.some(o=>o.id===target.id))command.target=target.id;}
         catch(error){if(error instanceof ResolutionError&&error.candidates.length)return this.ask(plan,index,'target',`Several objects match. Which object? ${error.candidates.map((id,i)=>`${i+1}: ${scene.objects.find(o=>o.id===id)?.label??id}`).join('; ')}`,error.candidates);}
       }
@@ -296,6 +313,9 @@ export class ConversationEngine extends FollowUpEngine {
         }
       }
       if(command.action==='CHANGE'&&command.subAction==='SIDE'){if(p.length===undefined)return this.ask(plan,index,'triangleLength','What should the side length be?');if(p.sidePolicy===undefined)return this.ask(plan,index,'trianglePolicy','Which constraints should I preserve? Say “keep A and C fixed and B on ray AB” or “preserve AC and BC, fix A and the AB direction, keep C on the same side”.');}
+      if(command.action==='CHANGE'&&p.kidRequireWidth&&p.width===undefined)return this.ask(plan,index,'kidWidth','How wide should the box be, in units?');
+      if(command.action==='CHANGE'&&command.subAction==='OPACITY'&&p.opacity===undefined)return this.ask(plan,index,'kidOpacity','How opaque should it be? Choose 0 for clear, 0.5 for half transparent, or 1 for solid.',['0','0.5','1']);
+      if(command.action==='ROTATE'&&p.kidRequireAxis&&!p.axis)return this.ask(plan,index,'kidAxis','Which axis should I rotate around: x, y, or z?',['x','y','z']);
       if(command.action==='ROTATE'&&p.angle===undefined)return this.ask(plan,index,'angle','By how many degrees should I rotate it?');
       if(command.action==='SCALE'&&p.factor===undefined)return this.ask(plan,index,'factor','What scale factor should I use?');
       if(command.action==='REFLECT'&&command.subAction==='LINE'&&!p.axis&&!p.plane&&!/y\s*=/.test(command.normalizedPhrase))return scene.activeMode.endsWith('3d')?this.ask(plan,index,'plane','Across which plane: xy, xz, or yz?'):this.ask(plan,index,'axis','Across which axis: x or y?');

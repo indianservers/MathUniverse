@@ -3,7 +3,7 @@ import type { MathRoboCommand } from './types';
 import {RoboExecutionError} from './executionErrors';
 import {EPSILON} from './tolerances';
 import {cross3,vector3} from '../../workspace/geometry3dKernel';
-export function validateCommand(command:MathRoboCommand) {
+export function validateCommand(command:MathRoboCommand,options:{allowMissingParameters?:boolean}={}) {
   if(command.action==='DELETE'&&command.subAction==='ALL'&&/\b(?:except|excluding|apart from|other than|but)\b/i.test(command.rawPhrase)&&!command.parameters.preserveTargets&&!(command.parameters.preserveSystemAxes&&/^clear (?:the )?graph but keep (?:the )?(?:coordinate )?axes[.!]?$/i.test(command.rawPhrase)))throw new Error('Specify which objects to keep. Nothing was cleared.');
   const op=operationFor(command.action,command.subAction);
   if(command.confidence.overall<.75)throw new RoboExecutionError('LOW_CONFIDENCE','Please clarify the request before I change any objects.');
@@ -11,7 +11,7 @@ export function validateCommand(command:MathRoboCommand) {
   if(!op?.implemented)throw new Error(`UNSUPPORTED: ${command.action}:${command.subAction} is not available.`);
   if(!op.modes.includes(command.mode))throw new Error(`UNSUPPORTED: ${command.action}:${command.subAction} is unavailable in ${command.mode}.`);
   if(command.parameters.parseError)throw new Error(String(command.parameters.parseError));
-  for(const field of op.required)if(command.parameters[field]===undefined)throw new Error(`Provide ${field} for ${command.action.toLowerCase()}.`);
+  for(const field of op.required)if(!options.allowMissingParameters&&command.parameters[field]===undefined)throw new Error(`Provide ${field} for ${command.action.toLowerCase()}.`);
   const check=(value:unknown):void=>{if(typeof value==='number'&&(!Number.isFinite(value)||Math.abs(value)>1e6))throw new Error('Use finite values within 1,000,000.');if(Array.isArray(value))value.forEach(check);};
   Object.values(command.parameters).forEach(check);
   const dimension=command.mode.endsWith('3d')?3:2;
