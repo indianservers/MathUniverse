@@ -1,0 +1,4782 @@
+{
+  "mockupDirectory": "D:/Math App Screenshots for UI Update/Updated UI",
+  "order": "descending; one lesson at a time",
+  "leftMenu": "preserve unchanged",
+  "current": 911,
+  "completed": [],
+  "queue": [
+    {
+      "index": 919,
+      "filename": "0919-advanced-advanced-special-functions-bessel-function-redesigned.png",
+      "status": "reviewed-with-math-corrections"
+    },
+    {
+      "index": 918,
+      "filename": "0918-advanced-advanced-special-functions-zeta-function-redesigned.png",
+      "status": "reviewed-with-math-corrections"
+    },
+    {
+      "index": 917,
+      "filename": "0917-advanced-advanced-special-functions-error-function-redesigned.png",
+      "status": "reviewed-with-math-corrections"
+    },
+    {
+      "index": 916,
+      "filename": "0916-advanced-advanced-special-functions-beta-function-redesigned.png",
+      "status": "reviewed-with-math-corrections"
+    },
+    {
+      "index": 915,
+      "filename": "0915-advanced-advanced-special-functions-gamma-function-redesigned.png",
+      "status": "reviewed-with-math-corrections"
+    },
+    {
+      "index": 914,
+      "filename": "0914-advanced-advanced-differential-equations-second-order-oscillator-redesigned.png",
+      "status": "reviewed-with-math-corrections"
+    },
+    {
+      "index": 913,
+      "filename": "0913-advanced-advanced-differential-equations-logistic-differential-equation-redesigned.png",
+      "status": "reviewed-with-math-corrections"
+    },
+    {
+      "index": 912,
+      "filename": "0912-advanced-advanced-differential-equations-growth-and-decay-ivps-redesigned.png",
+      "status": "reviewed-with-math-corrections"
+    },
+    {
+      "index": 911,
+      "filename": "0911-advanced-advanced-differential-equations-euler-method-redesigned.png",
+      "status": "in-progress"
+    },
+    {
+      "index": 910,
+      "filename": "0910-advanced-advanced-differential-equations-slope-fields-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 909,
+      "filename": "0909-advanced-advanced-statistical-inference-type-i-and-type-ii-error-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 908,
+      "filename": "0908-advanced-advanced-statistical-inference-p-values-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 907,
+      "filename": "0907-advanced-advanced-statistical-inference-hypothesis-tests-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 906,
+      "filename": "0906-advanced-advanced-statistical-inference-margin-of-error-and-sample-size-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 905,
+      "filename": "0905-advanced-advanced-statistical-inference-confidence-intervals-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 904,
+      "filename": "0904-advanced-advanced-famous-problems-four-color-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 903,
+      "filename": "0903-advanced-advanced-famous-problems-fermat-s-last-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 902,
+      "filename": "0902-advanced-advanced-famous-problems-riemann-hypothesis-and-primes-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 901,
+      "filename": "0901-advanced-advanced-famous-problems-goldbach-conjecture-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 900,
+      "filename": "0900-advanced-advanced-famous-problems-collatz-conjecture-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 899,
+      "filename": "0899-advanced-advanced-continued-fractions-periodic-square-roots-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 898,
+      "filename": "0898-advanced-advanced-continued-fractions-best-rational-approximations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 897,
+      "filename": "0897-advanced-advanced-continued-fractions-euclidean-algorithm-link-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 896,
+      "filename": "0896-advanced-advanced-continued-fractions-convergents-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 895,
+      "filename": "0895-advanced-advanced-continued-fractions-partial-quotients-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 894,
+      "filename": "0894-school-class-12-probability-binomial-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 893,
+      "filename": "0893-school-class-12-probability-bernoulli-trials-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 892,
+      "filename": "0892-school-class-12-probability-variance-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 891,
+      "filename": "0891-school-class-12-probability-expected-value-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 890,
+      "filename": "0890-school-class-12-probability-probability-distribution-of-a-random-variable-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 889,
+      "filename": "0889-school-class-12-probability-random-variables-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 888,
+      "filename": "0888-school-class-12-probability-bayes-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 887,
+      "filename": "0887-school-class-12-probability-total-probability-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 886,
+      "filename": "0886-school-class-12-probability-independent-events-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 885,
+      "filename": "0885-school-class-12-probability-multiplication-rule-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 884,
+      "filename": "0884-school-class-12-probability-conditional-probability-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 883,
+      "filename": "0883-school-class-12-linear-programming-transportation-style-lpp-introduction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 882,
+      "filename": "0882-school-class-12-linear-programming-production-planning-problem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 881,
+      "filename": "0881-school-class-12-linear-programming-diet-problem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 880,
+      "filename": "0880-school-class-12-linear-programming-infeasible-problems-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 879,
+      "filename": "0879-school-class-12-linear-programming-multiple-optimal-solutions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 878,
+      "filename": "0878-school-class-12-linear-programming-unbounded-feasible-region-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 877,
+      "filename": "0877-school-class-12-linear-programming-bounded-feasible-region-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 876,
+      "filename": "0876-school-class-12-linear-programming-corner-point-method-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 875,
+      "filename": "0875-school-class-12-linear-programming-feasible-region-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 874,
+      "filename": "0874-school-class-12-linear-programming-formulating-linear-programming-problems-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 873,
+      "filename": "0873-school-class-12-matrices-and-determinants-consistency-of-linear-systems-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 872,
+      "filename": "0872-school-class-12-matrices-and-determinants-cramer-s-rule-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 871,
+      "filename": "0871-school-class-12-matrices-and-determinants-solving-linear-equations-by-matrices-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 870,
+      "filename": "0870-school-class-12-matrices-and-determinants-determinants-and-geometric-area-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 869,
+      "filename": "0869-school-class-12-matrices-and-determinants-inverse-by-adjoint-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 868,
+      "filename": "0868-school-class-12-matrices-and-determinants-adjoint-of-a-matrix-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 867,
+      "filename": "0867-school-class-12-matrices-and-determinants-minors-and-cofactors-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 866,
+      "filename": "0866-school-class-12-differential-equations-direction-fields-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 865,
+      "filename": "0865-school-class-12-differential-equations-general-and-particular-solutions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 864,
+      "filename": "0864-school-class-12-differential-equations-linear-first-order-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 863,
+      "filename": "0863-school-class-12-differential-equations-homogeneous-first-order-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 862,
+      "filename": "0862-school-class-12-differential-equations-variable-separable-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 861,
+      "filename": "0861-school-class-12-differential-equations-order-and-degree-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 860,
+      "filename": "0860-school-class-12-differential-equations-formation-of-differential-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 859,
+      "filename": "0859-school-class-12-formal-calculus-area-between-curves-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 858,
+      "filename": "0858-school-class-12-formal-calculus-area-under-a-curve-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 857,
+      "filename": "0857-school-class-12-formal-calculus-definite-integral-properties-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 856,
+      "filename": "0856-school-class-12-formal-calculus-integration-by-partial-fractions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 855,
+      "filename": "0855-school-class-12-formal-calculus-integration-by-parts-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 854,
+      "filename": "0854-school-class-12-formal-calculus-integration-by-substitution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 853,
+      "filename": "0853-school-class-12-formal-calculus-approximation-using-differentials-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 852,
+      "filename": "0852-school-class-12-formal-calculus-absolute-maxima-and-minima-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 851,
+      "filename": "0851-school-class-12-formal-calculus-local-maxima-and-minima-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 850,
+      "filename": "0850-school-class-12-formal-calculus-increasing-and-decreasing-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 849,
+      "filename": "0849-school-class-12-formal-calculus-tangents-and-normals-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 848,
+      "filename": "0848-school-class-12-formal-calculus-rate-of-change-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 847,
+      "filename": "0847-school-class-12-formal-calculus-lagrange-mean-value-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 846,
+      "filename": "0846-school-class-12-formal-calculus-rolle-s-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 845,
+      "filename": "0845-school-class-12-formal-calculus-differentiability-versus-continuity-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 844,
+      "filename": "0844-school-class-12-formal-calculus-infinite-discontinuity-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 843,
+      "filename": "0843-school-class-12-formal-calculus-jump-discontinuity-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 842,
+      "filename": "0842-school-class-12-formal-calculus-removable-discontinuity-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 841,
+      "filename": "0841-school-class-12-formal-calculus-continuity-on-an-interval-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 840,
+      "filename": "0840-school-class-12-formal-calculus-continuity-at-a-point-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 839,
+      "filename": "0839-school-class-12-formal-calculus-left-hand-and-right-hand-limits-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 838,
+      "filename": "0838-school-class-12-three-dimensional-geometry-angle-between-line-and-plane-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 837,
+      "filename": "0837-school-class-12-three-dimensional-geometry-angle-between-two-planes-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 836,
+      "filename": "0836-school-class-12-three-dimensional-geometry-distance-from-point-to-plane-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 835,
+      "filename": "0835-school-class-12-three-dimensional-geometry-intercept-form-of-a-plane-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 834,
+      "filename": "0834-school-class-12-three-dimensional-geometry-point-normal-form-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 833,
+      "filename": "0833-school-class-12-three-dimensional-geometry-plane-equation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 832,
+      "filename": "0832-school-class-12-three-dimensional-geometry-shortest-distance-between-lines-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 831,
+      "filename": "0831-school-class-12-three-dimensional-geometry-skew-lines-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 830,
+      "filename": "0830-school-class-12-three-dimensional-geometry-cartesian-equation-of-a-line-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 829,
+      "filename": "0829-school-class-12-three-dimensional-geometry-vector-equation-of-a-line-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 828,
+      "filename": "0828-school-class-12-three-dimensional-geometry-line-through-two-points-in-3d-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 827,
+      "filename": "0827-school-class-12-three-dimensional-geometry-direction-cosines-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 826,
+      "filename": "0826-school-class-12-three-dimensional-geometry-direction-ratios-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 825,
+      "filename": "0825-school-class-11-conic-sections-conic-identification-from-general-equation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 824,
+      "filename": "0824-school-class-11-conic-sections-tangent-to-a-hyperbola-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 823,
+      "filename": "0823-school-class-11-conic-sections-tangent-to-an-ellipse-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 822,
+      "filename": "0822-school-class-11-conic-sections-normal-to-a-parabola-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 821,
+      "filename": "0821-school-class-11-conic-sections-tangent-to-a-parabola-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 820,
+      "filename": "0820-school-class-11-conic-sections-parametric-coordinates-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 819,
+      "filename": "0819-school-class-11-conic-sections-eccentricity-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 818,
+      "filename": "0818-school-class-11-conic-sections-hyperbola-standard-forms-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 817,
+      "filename": "0817-school-class-11-conic-sections-ellipse-standard-forms-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 816,
+      "filename": "0816-school-class-11-conic-sections-focus-directrix-definition-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 815,
+      "filename": "0815-school-class-11-conic-sections-parabola-standard-forms-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 814,
+      "filename": "0814-school-class-11-binomial-theorem-combinatorial-interpretation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 813,
+      "filename": "0813-school-class-11-binomial-theorem-pascal-identity-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 812,
+      "filename": "0812-school-class-11-binomial-theorem-binomial-approximation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 811,
+      "filename": "0811-school-class-11-binomial-theorem-independent-term-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 810,
+      "filename": "0810-school-class-11-binomial-theorem-middle-term-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 809,
+      "filename": "0809-school-class-11-binomial-theorem-general-term-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 808,
+      "filename": "0808-school-class-11-binomial-theorem-binomial-expansion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 807,
+      "filename": "0807-school-class-11-mathematical-induction-strong-induction-introduction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 806,
+      "filename": "0806-school-class-11-mathematical-induction-inequality-by-induction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 805,
+      "filename": "0805-school-class-11-mathematical-induction-divisibility-by-induction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 804,
+      "filename": "0804-school-class-11-mathematical-induction-sum-formula-by-induction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 803,
+      "filename": "0803-school-class-11-mathematical-induction-base-case-and-inductive-step-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 802,
+      "filename": "0802-school-class-11-mathematical-induction-logic-of-mathematical-induction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 801,
+      "filename": "0801-school-class-11-trigonometry-principal-solutions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 800,
+      "filename": "0800-school-class-11-trigonometry-general-solutions-of-trigonometric-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 799,
+      "filename": "0799-school-class-11-trigonometry-transformation-of-trigonometric-graphs-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 798,
+      "filename": "0798-school-class-11-trigonometry-domain-and-range-of-trigonometric-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 797,
+      "filename": "0797-school-class-11-relations-and-functions-binary-operations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 796,
+      "filename": "0796-school-class-11-relations-and-functions-invertible-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 795,
+      "filename": "0795-school-class-11-relations-and-functions-composition-of-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 794,
+      "filename": "0794-school-class-11-relations-and-functions-onto-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 793,
+      "filename": "0793-school-class-11-relations-and-functions-into-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 792,
+      "filename": "0792-school-class-11-relations-and-functions-many-one-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 791,
+      "filename": "0791-school-class-11-relations-and-functions-one-one-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 790,
+      "filename": "0790-school-class-11-relations-and-functions-equivalence-relations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 789,
+      "filename": "0789-school-class-11-relations-and-functions-transitive-relations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 788,
+      "filename": "0788-school-class-11-relations-and-functions-symmetric-relations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 787,
+      "filename": "0787-school-class-11-relations-and-functions-reflexive-relations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 786,
+      "filename": "0786-school-class-11-relations-and-functions-types-of-relations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 785,
+      "filename": "0785-school-class-10-mensuration-combined-solids-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 784,
+      "filename": "0784-school-class-10-mensuration-frustum-of-a-cone-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 783,
+      "filename": "0783-school-class-10-statistics-median-from-an-ogive-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 782,
+      "filename": "0782-school-class-10-statistics-more-than-ogive-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 781,
+      "filename": "0781-school-class-10-statistics-less-than-ogive-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 780,
+      "filename": "0780-school-class-10-statistics-more-than-cumulative-frequency-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 779,
+      "filename": "0779-school-class-10-statistics-less-than-cumulative-frequency-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 778,
+      "filename": "0778-school-class-10-statistics-grouped-mean-by-step-deviation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 777,
+      "filename": "0777-school-class-10-statistics-grouped-mean-by-assumed-mean-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 776,
+      "filename": "0776-school-class-10-statistics-grouped-mean-by-direct-method-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 775,
+      "filename": "0775-school-class-10-trigonometry-applications-two-observer-height-problems-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 774,
+      "filename": "0774-school-class-10-trigonometry-applications-shadow-length-modelling-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 773,
+      "filename": "0773-school-class-10-trigonometry-applications-angle-of-depression-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 772,
+      "filename": "0772-school-class-10-trigonometry-applications-angle-of-elevation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 771,
+      "filename": "0771-school-class-10-circle-proofs-tangent-lengths-from-an-external-point-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 770,
+      "filename": "0770-school-class-10-circle-proofs-tangent-perpendicular-to-radius-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 769,
+      "filename": "0769-school-class-10-circle-proofs-opposite-angles-of-a-cyclic-quadrilateral-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 768,
+      "filename": "0768-school-class-10-circle-proofs-cyclic-quadrilateral-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 767,
+      "filename": "0767-school-class-10-circle-proofs-angles-in-the-same-segment-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 766,
+      "filename": "0766-school-class-10-circle-proofs-angle-in-a-semicircle-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 765,
+      "filename": "0765-school-class-10-circle-proofs-angle-subtended-by-an-arc-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 764,
+      "filename": "0764-school-class-10-circle-proofs-perpendicular-from-centre-to-chord-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 763,
+      "filename": "0763-school-class-10-circle-proofs-equal-chords-and-equal-angles-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 762,
+      "filename": "0762-school-class-10-coordinate-geometry-collinearity-using-coordinate-area-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 761,
+      "filename": "0761-school-class-10-coordinate-geometry-area-of-triangle-using-coordinates-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 760,
+      "filename": "0760-school-class-10-coordinate-geometry-external-section-formula-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 759,
+      "filename": "0759-school-class-10-coordinate-geometry-internal-section-formula-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 758,
+      "filename": "0758-school-class-10-coordinate-geometry-midpoint-formula-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 757,
+      "filename": "0757-school-class-10-coordinate-geometry-distance-formula-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 756,
+      "filename": "0756-school-class-9-mensuration-combined-solids-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 755,
+      "filename": "0755-school-class-9-mensuration-coordinate-area-versus-heron-s-formula-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 754,
+      "filename": "0754-school-class-9-mensuration-semi-perimeter-lab-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 753,
+      "filename": "0753-school-class-9-mensuration-heron-s-formula-derivation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 752,
+      "filename": "0752-school-class-9-quadrilateral-proofs-converse-of-midpoint-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 751,
+      "filename": "0751-school-class-9-quadrilateral-proofs-midpoint-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 750,
+      "filename": "0750-school-class-9-quadrilateral-proofs-conditions-for-a-quadrilateral-to-be-a-parallelogram-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 749,
+      "filename": "0749-school-class-9-quadrilateral-proofs-parallelogram-diagonals-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 748,
+      "filename": "0748-school-class-9-quadrilateral-proofs-parallelogram-opposite-angles-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 747,
+      "filename": "0747-school-class-9-quadrilateral-proofs-parallelogram-opposite-sides-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 746,
+      "filename": "0746-school-class-9-triangle-proofs-triangle-inequality-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 745,
+      "filename": "0745-school-class-9-triangle-proofs-equal-sides-and-equal-angles-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 744,
+      "filename": "0744-school-class-9-triangle-proofs-rhs-congruence-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 743,
+      "filename": "0743-school-class-9-triangle-proofs-sss-congruence-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 742,
+      "filename": "0742-school-class-9-triangle-proofs-aas-congruence-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 741,
+      "filename": "0741-school-class-9-triangle-proofs-asa-congruence-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 740,
+      "filename": "0740-school-class-9-triangle-proofs-sas-congruence-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 739,
+      "filename": "0739-school-class-9-euclidean-geometry-exterior-angle-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 738,
+      "filename": "0738-school-class-9-euclidean-geometry-triangle-angle-sum-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 737,
+      "filename": "0737-school-class-9-euclidean-geometry-parallel-line-converse-theorems-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 736,
+      "filename": "0736-school-class-9-euclidean-geometry-interior-angles-on-the-same-side-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 735,
+      "filename": "0735-school-class-9-euclidean-geometry-alternate-interior-angles-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 734,
+      "filename": "0734-school-class-9-euclidean-geometry-corresponding-angles-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 733,
+      "filename": "0733-school-class-9-euclidean-geometry-linear-pair-axiom-and-converse-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 732,
+      "filename": "0732-school-class-9-euclidean-geometry-vertically-opposite-angles-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 731,
+      "filename": "0731-school-class-9-euclidean-geometry-proof-structure-and-logical-statements-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 730,
+      "filename": "0730-school-class-9-euclidean-geometry-axiom-versus-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 729,
+      "filename": "0729-school-class-9-euclidean-geometry-equivalent-forms-of-the-fifth-postulate-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 728,
+      "filename": "0728-school-class-9-euclidean-geometry-euclid-s-five-postulates-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 727,
+      "filename": "0727-school-class-9-euclidean-geometry-definitions-axioms-and-postulates-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 726,
+      "filename": "0726-school-class-9-polynomials-polynomial-factorisation-practice-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 725,
+      "filename": "0725-school-class-9-polynomials-cubic-algebraic-identities-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 724,
+      "filename": "0724-school-class-9-polynomials-relationship-between-zeros-and-coefficients-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 723,
+      "filename": "0723-school-class-9-polynomials-factor-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 722,
+      "filename": "0722-school-class-9-polynomials-remainder-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 721,
+      "filename": "0721-school-class-9-polynomials-polynomial-division-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 720,
+      "filename": "0720-school-class-9-polynomials-graphical-zeros-of-polynomials-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 719,
+      "filename": "0719-school-class-9-real-numbers-nth-roots-and-radical-meaning-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 718,
+      "filename": "0718-school-class-9-real-numbers-rationalisation-of-denominators-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 717,
+      "filename": "0717-school-class-9-real-numbers-successive-magnification-on-the-number-line-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 716,
+      "filename": "0716-school-class-9-real-numbers-rational-and-irrational-classification-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 715,
+      "filename": "0715-school-class-9-real-numbers-terminating-and-non-terminating-decimals-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 714,
+      "filename": "0714-school-class-9-real-numbers-decimal-expansion-of-rational-numbers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 713,
+      "filename": "0713-school-class-8-information-processing-tabular-pattern-completion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 712,
+      "filename": "0712-school-class-8-information-processing-route-map-reasoning-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 711,
+      "filename": "0711-school-class-8-information-processing-magic-squares-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 710,
+      "filename": "0710-school-class-8-information-processing-pattern-encoding-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 709,
+      "filename": "0709-school-class-8-information-processing-flowchart-logic-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 708,
+      "filename": "0708-school-class-8-data-handling-range-and-spread-explorer-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 707,
+      "filename": "0707-school-class-8-data-handling-mean-median-and-mode-practice-path-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 706,
+      "filename": "0706-school-class-8-data-handling-double-bar-graph-comparison-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 705,
+      "filename": "0705-school-class-8-practical-geometry-right-triangle-construction-by-rhs-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 704,
+      "filename": "0704-school-class-8-practical-geometry-triangle-construction-by-asa-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 703,
+      "filename": "0703-school-class-8-practical-geometry-triangle-construction-by-sas-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 702,
+      "filename": "0702-school-class-8-practical-geometry-triangle-construction-by-sss-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 701,
+      "filename": "0701-school-class-7-practical-geometry-parallel-line-construction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 700,
+      "filename": "0700-school-class-7-practical-geometry-perpendicular-through-a-point-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 699,
+      "filename": "0699-school-class-7-practical-geometry-angle-bisector-construction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 698,
+      "filename": "0698-school-class-7-practical-geometry-perpendicular-bisector-construction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 697,
+      "filename": "0697-school-class-7-practical-geometry-copying-an-angle-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 696,
+      "filename": "0696-school-class-7-practical-geometry-copying-a-line-segment-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 695,
+      "filename": "0695-school-class-7-applied-arithmetic-scale-factor-in-maps-and-recipes-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 694,
+      "filename": "0694-school-class-7-applied-arithmetic-household-budget-arithmetic-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 693,
+      "filename": "0693-school-class-7-applied-arithmetic-profit-loss-and-marked-price-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 692,
+      "filename": "0692-school-class-7-applied-arithmetic-bills-discounts-and-tax-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 691,
+      "filename": "0691-school-class-7-numbers-and-arithmetic-ratio-tables-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 690,
+      "filename": "0690-school-class-7-numbers-and-arithmetic-unit-rate-table-lab-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 689,
+      "filename": "0689-school-class-7-numbers-and-arithmetic-remainder-reasoning-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 688,
+      "filename": "0688-school-class-7-numbers-and-arithmetic-digital-root-and-divisibility-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 687,
+      "filename": "0687-school-class-7-numbers-and-arithmetic-divisibility-tests-for-2-4-5-6-8-10-and-11-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 686,
+      "filename": "0686-school-class-6-patterns-input-output-rule-machines-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 685,
+      "filename": "0685-school-class-6-patterns-shape-pattern-completion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 684,
+      "filename": "0684-school-class-6-patterns-number-pattern-completion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 683,
+      "filename": "0683-school-class-6-data-handling-misleading-graph-detection-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 682,
+      "filename": "0682-school-class-6-data-handling-survey-to-frequency-table-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 681,
+      "filename": "0681-school-class-6-data-handling-bar-graph-builder-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 680,
+      "filename": "0680-school-class-6-data-handling-pictograph-builder-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 679,
+      "filename": "0679-school-class-6-numbers-and-arithmetic-mixed-units-and-unit-conversion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 678,
+      "filename": "0678-school-class-6-numbers-and-arithmetic-approximation-and-error-bounds-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 677,
+      "filename": "0677-school-class-6-numbers-and-arithmetic-estimation-and-rounding-lab-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 676,
+      "filename": "0676-school-class-6-numbers-and-arithmetic-indian-and-international-number-naming-systems-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 675,
+      "filename": "0675-school-class-6-numbers-and-arithmetic-place-value-explorer-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 674,
+      "filename": "0674-interactive-intermediate-advanced-financial-mathematics-and-modelling-linear-programming-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 673,
+      "filename": "0673-interactive-intermediate-advanced-financial-mathematics-and-modelling-scenario-comparison-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 672,
+      "filename": "0672-interactive-intermediate-advanced-financial-mathematics-and-modelling-residual-and-error-analysis-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 671,
+      "filename": "0671-interactive-intermediate-advanced-financial-mathematics-and-modelling-sensitivity-analysis-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 670,
+      "filename": "0670-interactive-intermediate-advanced-financial-mathematics-and-modelling-dimensional-analysis-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 669,
+      "filename": "0669-interactive-intermediate-advanced-financial-mathematics-and-modelling-parameter-estimation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 668,
+      "filename": "0668-interactive-intermediate-advanced-financial-mathematics-and-modelling-piecewise-models-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 667,
+      "filename": "0667-interactive-intermediate-advanced-financial-mathematics-and-modelling-periodic-models-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 666,
+      "filename": "0666-interactive-intermediate-advanced-financial-mathematics-and-modelling-exponential-and-logistic-models-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 665,
+      "filename": "0665-interactive-intermediate-advanced-financial-mathematics-and-modelling-quadratic-models-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 664,
+      "filename": "0664-interactive-intermediate-advanced-financial-mathematics-and-modelling-linear-models-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 663,
+      "filename": "0663-interactive-intermediate-advanced-financial-mathematics-and-modelling-model-builder-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 662,
+      "filename": "0662-interactive-intermediate-advanced-financial-mathematics-and-modelling-investment-comparison-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 661,
+      "filename": "0661-interactive-intermediate-advanced-financial-mathematics-and-modelling-tax-and-discounts-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 660,
+      "filename": "0660-interactive-intermediate-advanced-financial-mathematics-and-modelling-break-even-analysis-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 659,
+      "filename": "0659-interactive-intermediate-advanced-financial-mathematics-and-modelling-profit-loss-markup-and-margin-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 658,
+      "filename": "0658-interactive-intermediate-advanced-financial-mathematics-and-modelling-currency-conversion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 657,
+      "filename": "0657-interactive-intermediate-advanced-financial-mathematics-and-modelling-inflation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 656,
+      "filename": "0656-interactive-intermediate-advanced-financial-mathematics-and-modelling-depreciation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 655,
+      "filename": "0655-interactive-intermediate-advanced-financial-mathematics-and-modelling-amortisation-table-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 654,
+      "filename": "0654-interactive-intermediate-advanced-financial-mathematics-and-modelling-loans-and-emis-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 653,
+      "filename": "0653-interactive-intermediate-advanced-financial-mathematics-and-modelling-annuities-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 652,
+      "filename": "0652-interactive-intermediate-advanced-financial-mathematics-and-modelling-future-value-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 651,
+      "filename": "0651-interactive-intermediate-advanced-financial-mathematics-and-modelling-present-value-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 650,
+      "filename": "0650-interactive-intermediate-advanced-financial-mathematics-and-modelling-effective-interest-rate-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 649,
+      "filename": "0649-interactive-intermediate-advanced-financial-mathematics-and-modelling-compound-interest-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 648,
+      "filename": "0648-interactive-intermediate-advanced-financial-mathematics-and-modelling-simple-interest-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 647,
+      "filename": "0647-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-proof-methods-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 646,
+      "filename": "0646-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-quantifiers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 645,
+      "filename": "0645-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-logical-connectives-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 644,
+      "filename": "0644-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-truth-tables-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 643,
+      "filename": "0643-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-subsets-and-power-sets-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 642,
+      "filename": "0642-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-cartesian-product-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 641,
+      "filename": "0641-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-complement-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 640,
+      "filename": "0640-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-union-intersection-and-difference-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 639,
+      "filename": "0639-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-set-builder-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 638,
+      "filename": "0638-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-adjacency-matrix-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 637,
+      "filename": "0637-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-travelling-salesperson-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 636,
+      "filename": "0636-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-network-flow-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 635,
+      "filename": "0635-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-planar-graphs-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 634,
+      "filename": "0634-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-bipartite-graphs-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 633,
+      "filename": "0633-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-graph-colouring-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 632,
+      "filename": "0632-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-shortest-path-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 631,
+      "filename": "0631-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-minimum-spanning-tree-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 630,
+      "filename": "0630-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-trees-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 629,
+      "filename": "0629-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-hamiltonian-paths-and-cycles-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 628,
+      "filename": "0628-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-euler-paths-and-circuits-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 627,
+      "filename": "0627-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-connected-components-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 626,
+      "filename": "0626-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-paths-and-cycles-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 625,
+      "filename": "0625-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-degree-of-a-vertex-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 624,
+      "filename": "0624-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-weighted-graphs-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 623,
+      "filename": "0623-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-directed-graphs-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 622,
+      "filename": "0622-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-vertex-and-edge-builder-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 621,
+      "filename": "0621-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-pigeonhole-principle-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 620,
+      "filename": "0620-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-inclusion-exclusion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 619,
+      "filename": "0619-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-pascal-s-triangle-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 618,
+      "filename": "0618-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-combinations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 617,
+      "filename": "0617-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-circular-permutations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 616,
+      "filename": "0616-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-permutations-with-repetition-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 615,
+      "filename": "0615-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-permutations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 614,
+      "filename": "0614-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-factorials-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 613,
+      "filename": "0613-interactive-intermediate-advanced-combinatorics-graph-theory-and-logic-fundamental-counting-principle-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 612,
+      "filename": "0612-interactive-advanced-3d-functions-and-surfaces-multivariable-optimisation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 611,
+      "filename": "0611-interactive-advanced-3d-functions-and-surfaces-double-integrals-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 610,
+      "filename": "0610-interactive-advanced-3d-functions-and-surfaces-normal-vector-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 609,
+      "filename": "0609-interactive-advanced-3d-functions-and-surfaces-tangent-plane-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 608,
+      "filename": "0608-interactive-advanced-3d-functions-and-surfaces-gradient-vector-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 607,
+      "filename": "0607-interactive-advanced-3d-functions-and-surfaces-partial-derivatives-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 606,
+      "filename": "0606-interactive-advanced-3d-functions-and-surfaces-level-surfaces-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 605,
+      "filename": "0605-interactive-advanced-3d-functions-and-surfaces-contour-curves-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 604,
+      "filename": "0604-interactive-advanced-3d-functions-and-surfaces-spherical-coordinates-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 603,
+      "filename": "0603-interactive-advanced-3d-functions-and-surfaces-cylindrical-coordinates-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 602,
+      "filename": "0602-interactive-advanced-3d-functions-and-surfaces-quadric-surfaces-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 601,
+      "filename": "0601-interactive-advanced-3d-functions-and-surfaces-space-curves-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 600,
+      "filename": "0600-interactive-advanced-3d-functions-and-surfaces-parametric-surfaces-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 599,
+      "filename": "0599-interactive-advanced-3d-functions-and-surfaces-implicit-surfaces-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 598,
+      "filename": "0598-interactive-advanced-3d-functions-and-surfaces-surface-z-f-x-y-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 597,
+      "filename": "0597-interactive-intermediate-advanced-3d-geometry-and-solids-ar-placement-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 596,
+      "filename": "0596-interactive-intermediate-advanced-3d-geometry-and-solids-orthographic-views-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 595,
+      "filename": "0595-interactive-intermediate-advanced-3d-geometry-and-solids-camera-controls-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 594,
+      "filename": "0594-interactive-intermediate-advanced-3d-geometry-and-solids-transparent-x-ray-mode-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 593,
+      "filename": "0593-interactive-intermediate-advanced-3d-geometry-and-solids-euler-s-polyhedron-formula-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 592,
+      "filename": "0592-interactive-intermediate-advanced-3d-geometry-and-solids-surface-area-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 591,
+      "filename": "0591-interactive-intermediate-advanced-3d-geometry-and-solids-volume-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 590,
+      "filename": "0590-interactive-intermediate-advanced-3d-geometry-and-solids-cross-sections-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 589,
+      "filename": "0589-interactive-intermediate-advanced-3d-geometry-and-solids-nets-of-solids-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 588,
+      "filename": "0588-interactive-intermediate-advanced-3d-geometry-and-solids-extrusion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 587,
+      "filename": "0587-interactive-intermediate-advanced-3d-geometry-and-solids-surface-of-revolution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 586,
+      "filename": "0586-interactive-intermediate-advanced-3d-geometry-and-solids-frustum-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 585,
+      "filename": "0585-interactive-intermediate-advanced-3d-geometry-and-solids-hemisphere-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 584,
+      "filename": "0584-interactive-intermediate-advanced-3d-geometry-and-solids-sphere-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 583,
+      "filename": "0583-interactive-intermediate-advanced-3d-geometry-and-solids-cone-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 582,
+      "filename": "0582-interactive-intermediate-advanced-3d-geometry-and-solids-cylinder-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 581,
+      "filename": "0581-interactive-intermediate-advanced-3d-geometry-and-solids-regular-polyhedra-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 580,
+      "filename": "0580-interactive-intermediate-advanced-3d-geometry-and-solids-tetrahedron-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 579,
+      "filename": "0579-interactive-intermediate-advanced-3d-geometry-and-solids-pyramid-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 578,
+      "filename": "0578-interactive-intermediate-advanced-3d-geometry-and-solids-prism-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 577,
+      "filename": "0577-interactive-intermediate-advanced-3d-geometry-and-solids-cuboid-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 576,
+      "filename": "0576-interactive-intermediate-advanced-3d-geometry-and-solids-cube-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 575,
+      "filename": "0575-interactive-intermediate-advanced-3d-geometry-and-solids-3d-vectors-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 574,
+      "filename": "0574-interactive-intermediate-advanced-3d-geometry-and-solids-point-to-plane-distance-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 573,
+      "filename": "0573-interactive-intermediate-advanced-3d-geometry-and-solids-angle-between-line-and-plane-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 572,
+      "filename": "0572-interactive-intermediate-advanced-3d-geometry-and-solids-angle-between-planes-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 571,
+      "filename": "0571-interactive-intermediate-advanced-3d-geometry-and-solids-angle-between-lines-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 570,
+      "filename": "0570-interactive-intermediate-advanced-3d-geometry-and-solids-plane-plane-intersection-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 569,
+      "filename": "0569-interactive-intermediate-advanced-3d-geometry-and-solids-line-plane-intersection-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 568,
+      "filename": "0568-interactive-intermediate-advanced-3d-geometry-and-solids-parallel-and-perpendicular-planes-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 567,
+      "filename": "0567-interactive-intermediate-advanced-3d-geometry-and-solids-planes-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 566,
+      "filename": "0566-interactive-intermediate-advanced-3d-geometry-and-solids-lines-in-3d-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 565,
+      "filename": "0565-interactive-intermediate-advanced-3d-geometry-and-solids-distance-in-3d-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 564,
+      "filename": "0564-interactive-intermediate-advanced-3d-geometry-and-solids-3d-points-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 563,
+      "filename": "0563-interactive-intermediate-advanced-3d-geometry-and-solids-3d-coordinate-system-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 562,
+      "filename": "0562-interactive-advanced-complex-numbers-complex-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 561,
+      "filename": "0561-interactive-advanced-complex-numbers-mobius-transformations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 560,
+      "filename": "0560-interactive-advanced-complex-numbers-polynomial-roots-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 559,
+      "filename": "0559-interactive-advanced-complex-numbers-roots-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 558,
+      "filename": "0558-interactive-advanced-complex-numbers-powers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 557,
+      "filename": "0557-interactive-advanced-complex-numbers-euler-form-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 556,
+      "filename": "0556-interactive-advanced-complex-numbers-polar-form-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 555,
+      "filename": "0555-interactive-advanced-complex-numbers-modulus-and-argument-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 554,
+      "filename": "0554-interactive-advanced-complex-numbers-complex-conjugate-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 553,
+      "filename": "0553-interactive-advanced-complex-numbers-complex-multiplication-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 552,
+      "filename": "0552-interactive-advanced-complex-numbers-complex-addition-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 551,
+      "filename": "0551-interactive-advanced-complex-numbers-real-and-imaginary-parts-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 550,
+      "filename": "0550-interactive-advanced-complex-numbers-complex-plane-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 549,
+      "filename": "0549-interactive-advanced-matrices-and-linear-algebra-least-squares-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 548,
+      "filename": "0548-interactive-advanced-matrices-and-linear-algebra-gram-schmidt-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 547,
+      "filename": "0547-interactive-advanced-matrices-and-linear-algebra-vector-spaces-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 546,
+      "filename": "0546-interactive-advanced-matrices-and-linear-algebra-linear-independence-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 545,
+      "filename": "0545-interactive-advanced-matrices-and-linear-algebra-basis-and-dimension-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 544,
+      "filename": "0544-interactive-advanced-matrices-and-linear-algebra-eigenvalues-and-eigenvectors-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 543,
+      "filename": "0543-interactive-advanced-matrices-and-linear-algebra-linear-transformations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 542,
+      "filename": "0542-interactive-advanced-matrices-and-linear-algebra-augmented-matrices-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 541,
+      "filename": "0541-interactive-advanced-matrices-and-linear-algebra-rref-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 540,
+      "filename": "0540-interactive-advanced-matrices-and-linear-algebra-row-operations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 539,
+      "filename": "0539-interactive-advanced-matrices-and-linear-algebra-matrix-inverse-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 538,
+      "filename": "0538-interactive-advanced-matrices-and-linear-algebra-determinant-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 537,
+      "filename": "0537-interactive-advanced-matrices-and-linear-algebra-transpose-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 536,
+      "filename": "0536-interactive-advanced-matrices-and-linear-algebra-identity-matrix-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 535,
+      "filename": "0535-interactive-advanced-matrices-and-linear-algebra-matrix-multiplication-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 534,
+      "filename": "0534-interactive-advanced-matrices-and-linear-algebra-scalar-multiplication-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 533,
+      "filename": "0533-interactive-advanced-matrices-and-linear-algebra-matrix-addition-and-subtraction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 532,
+      "filename": "0532-interactive-advanced-matrices-and-linear-algebra-matrix-builder-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 531,
+      "filename": "0531-interactive-intermediate-advanced-sequences-and-series-recurrence-modelling-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 530,
+      "filename": "0530-interactive-intermediate-advanced-sequences-and-series-binomial-series-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 529,
+      "filename": "0529-interactive-intermediate-advanced-sequences-and-series-taylor-and-maclaurin-series-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 528,
+      "filename": "0528-interactive-intermediate-advanced-sequences-and-series-power-series-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 527,
+      "filename": "0527-interactive-intermediate-advanced-sequences-and-series-convergence-and-divergence-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 526,
+      "filename": "0526-interactive-intermediate-advanced-sequences-and-series-geometric-series-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 525,
+      "filename": "0525-interactive-intermediate-advanced-sequences-and-series-arithmetic-series-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 524,
+      "filename": "0524-interactive-intermediate-advanced-sequences-and-series-sigma-notation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 523,
+      "filename": "0523-interactive-intermediate-advanced-sequences-and-series-fibonacci-sequence-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 522,
+      "filename": "0522-interactive-intermediate-advanced-sequences-and-series-recursive-sequences-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 521,
+      "filename": "0521-interactive-intermediate-advanced-sequences-and-series-geometric-sequences-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 520,
+      "filename": "0520-interactive-intermediate-advanced-sequences-and-series-arithmetic-sequences-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 519,
+      "filename": "0519-interactive-intermediate-advanced-sequences-and-series-sequence-generator-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 518,
+      "filename": "0518-interactive-advanced-inferential-statistics-power-of-a-test-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 517,
+      "filename": "0517-interactive-advanced-inferential-statistics-type-i-and-type-ii-errors-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 516,
+      "filename": "0516-interactive-advanced-inferential-statistics-p-value-visualiser-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 515,
+      "filename": "0515-interactive-advanced-inferential-statistics-anova-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 514,
+      "filename": "0514-interactive-advanced-inferential-statistics-variance-tests-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 513,
+      "filename": "0513-interactive-advanced-inferential-statistics-chi-square-independence-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 512,
+      "filename": "0512-interactive-advanced-inferential-statistics-chi-square-goodness-of-fit-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 511,
+      "filename": "0511-interactive-advanced-inferential-statistics-two-proportion-test-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 510,
+      "filename": "0510-interactive-advanced-inferential-statistics-one-proportion-test-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 509,
+      "filename": "0509-interactive-advanced-inferential-statistics-paired-t-test-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 508,
+      "filename": "0508-interactive-advanced-inferential-statistics-two-sample-t-test-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 507,
+      "filename": "0507-interactive-advanced-inferential-statistics-one-sample-t-test-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 506,
+      "filename": "0506-interactive-advanced-inferential-statistics-one-sample-z-test-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 505,
+      "filename": "0505-interactive-advanced-inferential-statistics-difference-of-proportions-interval-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 504,
+      "filename": "0504-interactive-advanced-inferential-statistics-difference-of-means-interval-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 503,
+      "filename": "0503-interactive-advanced-inferential-statistics-confidence-interval-for-proportion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 502,
+      "filename": "0502-interactive-advanced-inferential-statistics-confidence-interval-for-mean-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 501,
+      "filename": "0501-interactive-advanced-inferential-statistics-central-limit-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 500,
+      "filename": "0500-interactive-advanced-inferential-statistics-sampling-distributions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 499,
+      "filename": "0499-interactive-intermediate-advanced-probability-and-distributions-distribution-simulation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 498,
+      "filename": "0498-interactive-intermediate-advanced-probability-and-distributions-standardisation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 497,
+      "filename": "0497-interactive-intermediate-advanced-probability-and-distributions-weibull-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 496,
+      "filename": "0496-interactive-intermediate-advanced-probability-and-distributions-gamma-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 495,
+      "filename": "0495-interactive-intermediate-advanced-probability-and-distributions-exponential-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 494,
+      "filename": "0494-interactive-intermediate-advanced-probability-and-distributions-f-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 493,
+      "filename": "0493-interactive-intermediate-advanced-probability-and-distributions-chi-square-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 492,
+      "filename": "0492-interactive-intermediate-advanced-probability-and-distributions-student-t-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 491,
+      "filename": "0491-interactive-intermediate-advanced-probability-and-distributions-normal-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 490,
+      "filename": "0490-interactive-intermediate-advanced-probability-and-distributions-uniform-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 489,
+      "filename": "0489-interactive-intermediate-advanced-probability-and-distributions-negative-binomial-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 488,
+      "filename": "0488-interactive-intermediate-advanced-probability-and-distributions-geometric-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 487,
+      "filename": "0487-interactive-intermediate-advanced-probability-and-distributions-poisson-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 486,
+      "filename": "0486-interactive-intermediate-advanced-probability-and-distributions-hypergeometric-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 485,
+      "filename": "0485-interactive-intermediate-advanced-probability-and-distributions-binomial-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 484,
+      "filename": "0484-interactive-intermediate-advanced-probability-and-distributions-bernoulli-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 483,
+      "filename": "0483-interactive-intermediate-advanced-probability-and-distributions-inverse-probability-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 482,
+      "filename": "0482-interactive-intermediate-advanced-probability-and-distributions-interval-tail-probability-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 481,
+      "filename": "0481-interactive-intermediate-advanced-probability-and-distributions-cumulative-distribution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 480,
+      "filename": "0480-interactive-intermediate-advanced-probability-and-distributions-probability-plot-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 479,
+      "filename": "0479-interactive-intermediate-advanced-probability-and-distributions-distribution-calculator-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 478,
+      "filename": "0478-interactive-intermediate-advanced-probability-and-distributions-law-of-large-numbers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 477,
+      "filename": "0477-interactive-intermediate-advanced-probability-and-distributions-simulation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 476,
+      "filename": "0476-interactive-intermediate-advanced-probability-and-distributions-expected-value-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 475,
+      "filename": "0475-interactive-intermediate-advanced-probability-and-distributions-bayes-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 474,
+      "filename": "0474-interactive-intermediate-advanced-probability-and-distributions-two-way-tables-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 473,
+      "filename": "0473-interactive-intermediate-advanced-probability-and-distributions-venn-diagrams-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 472,
+      "filename": "0472-interactive-intermediate-advanced-probability-and-distributions-tree-diagrams-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 471,
+      "filename": "0471-interactive-intermediate-advanced-probability-and-distributions-conditional-probability-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 470,
+      "filename": "0470-interactive-intermediate-advanced-probability-and-distributions-mutually-exclusive-events-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 469,
+      "filename": "0469-interactive-intermediate-advanced-probability-and-distributions-independent-events-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 468,
+      "filename": "0468-interactive-intermediate-advanced-probability-and-distributions-multiplication-rule-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 467,
+      "filename": "0467-interactive-intermediate-advanced-probability-and-distributions-addition-rule-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 466,
+      "filename": "0466-interactive-intermediate-advanced-probability-and-distributions-complement-rule-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 465,
+      "filename": "0465-interactive-intermediate-advanced-probability-and-distributions-probability-scale-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 464,
+      "filename": "0464-interactive-intermediate-advanced-probability-and-distributions-events-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 463,
+      "filename": "0463-interactive-intermediate-advanced-probability-and-distributions-sample-spaces-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 462,
+      "filename": "0462-interactive-intermediate-advanced-statistics-and-regression-interpolation-and-extrapolation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 461,
+      "filename": "0461-interactive-intermediate-advanced-statistics-and-regression-model-comparison-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 460,
+      "filename": "0460-interactive-intermediate-advanced-statistics-and-regression-residual-plot-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 459,
+      "filename": "0459-interactive-intermediate-advanced-statistics-and-regression-sinusoidal-regression-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 458,
+      "filename": "0458-interactive-intermediate-advanced-statistics-and-regression-logistic-regression-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 457,
+      "filename": "0457-interactive-intermediate-advanced-statistics-and-regression-power-regression-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 456,
+      "filename": "0456-interactive-intermediate-advanced-statistics-and-regression-logarithmic-regression-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 455,
+      "filename": "0455-interactive-intermediate-advanced-statistics-and-regression-exponential-regression-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 454,
+      "filename": "0454-interactive-intermediate-advanced-statistics-and-regression-polynomial-regression-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 453,
+      "filename": "0453-interactive-intermediate-advanced-statistics-and-regression-linear-regression-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 452,
+      "filename": "0452-interactive-intermediate-advanced-statistics-and-regression-correlation-coefficient-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 451,
+      "filename": "0451-interactive-intermediate-advanced-statistics-and-regression-time-series-plot-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 450,
+      "filename": "0450-interactive-intermediate-advanced-statistics-and-regression-scatter-plot-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 449,
+      "filename": "0449-interactive-intermediate-advanced-statistics-and-regression-bar-and-pie-charts-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 448,
+      "filename": "0448-interactive-intermediate-advanced-statistics-and-regression-cumulative-frequency-curve-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 447,
+      "filename": "0447-interactive-intermediate-advanced-statistics-and-regression-frequency-polygon-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 446,
+      "filename": "0446-interactive-intermediate-advanced-statistics-and-regression-histogram-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 445,
+      "filename": "0445-interactive-intermediate-advanced-statistics-and-regression-stem-and-leaf-plot-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 444,
+      "filename": "0444-interactive-intermediate-advanced-statistics-and-regression-dot-plot-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 443,
+      "filename": "0443-interactive-intermediate-advanced-statistics-and-regression-box-plot-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 442,
+      "filename": "0442-interactive-intermediate-advanced-statistics-and-regression-outliers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 441,
+      "filename": "0441-interactive-intermediate-advanced-statistics-and-regression-z-scores-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 440,
+      "filename": "0440-interactive-intermediate-advanced-statistics-and-regression-percentiles-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 439,
+      "filename": "0439-interactive-intermediate-advanced-statistics-and-regression-variance-and-standard-deviation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 438,
+      "filename": "0438-interactive-intermediate-advanced-statistics-and-regression-quartiles-and-iqr-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 437,
+      "filename": "0437-interactive-intermediate-advanced-statistics-and-regression-range-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 436,
+      "filename": "0436-interactive-intermediate-advanced-statistics-and-regression-weighted-mean-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 435,
+      "filename": "0435-interactive-intermediate-advanced-statistics-and-regression-mode-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 434,
+      "filename": "0434-interactive-intermediate-advanced-statistics-and-regression-median-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 433,
+      "filename": "0433-interactive-intermediate-advanced-statistics-and-regression-mean-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 432,
+      "filename": "0432-interactive-intermediate-advanced-statistics-and-regression-grouped-frequency-tables-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 431,
+      "filename": "0431-interactive-intermediate-advanced-statistics-and-regression-frequency-tables-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 430,
+      "filename": "0430-interactive-intermediate-advanced-statistics-and-regression-data-types-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 429,
+      "filename": "0429-interactive-foundational-advanced-spreadsheet-export-data-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 428,
+      "filename": "0428-interactive-foundational-advanced-spreadsheet-import-csv-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 427,
+      "filename": "0427-interactive-foundational-advanced-spreadsheet-dynamic-cell-links-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 426,
+      "filename": "0426-interactive-foundational-advanced-spreadsheet-regression-from-data-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 425,
+      "filename": "0425-interactive-foundational-advanced-spreadsheet-spreadsheet-charts-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 424,
+      "filename": "0424-interactive-foundational-advanced-spreadsheet-summary-statistics-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 423,
+      "filename": "0423-interactive-foundational-advanced-spreadsheet-frequency-tables-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 422,
+      "filename": "0422-interactive-foundational-advanced-spreadsheet-matrices-from-cells-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 421,
+      "filename": "0421-interactive-foundational-advanced-spreadsheet-points-from-columns-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 420,
+      "filename": "0420-interactive-foundational-advanced-spreadsheet-lists-from-cells-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 419,
+      "filename": "0419-interactive-foundational-advanced-spreadsheet-filtering-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 418,
+      "filename": "0418-interactive-foundational-advanced-spreadsheet-sorting-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 417,
+      "filename": "0417-interactive-foundational-advanced-spreadsheet-absolute-references-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 416,
+      "filename": "0416-interactive-foundational-advanced-spreadsheet-relative-references-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 415,
+      "filename": "0415-interactive-foundational-advanced-spreadsheet-fill-and-copy-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 414,
+      "filename": "0414-interactive-foundational-advanced-spreadsheet-cell-formulas-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 413,
+      "filename": "0413-interactive-foundational-advanced-spreadsheet-data-entry-grid-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 412,
+      "filename": "0412-interactive-advanced-integral-calculus-and-differential-equations-chaos-and-bifurcation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 411,
+      "filename": "0411-interactive-advanced-integral-calculus-and-differential-equations-cobweb-diagrams-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 410,
+      "filename": "0410-interactive-advanced-integral-calculus-and-differential-equations-discrete-dynamical-systems-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 409,
+      "filename": "0409-interactive-advanced-integral-calculus-and-differential-equations-equilibrium-and-stability-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 408,
+      "filename": "0408-interactive-advanced-integral-calculus-and-differential-equations-phase-plane-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 407,
+      "filename": "0407-interactive-advanced-integral-calculus-and-differential-equations-second-order-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 406,
+      "filename": "0406-interactive-advanced-integral-calculus-and-differential-equations-logistic-growth-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 405,
+      "filename": "0405-interactive-advanced-integral-calculus-and-differential-equations-first-order-linear-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 404,
+      "filename": "0404-interactive-advanced-integral-calculus-and-differential-equations-separable-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 403,
+      "filename": "0403-interactive-advanced-integral-calculus-and-differential-equations-euler-s-method-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 402,
+      "filename": "0402-interactive-advanced-integral-calculus-and-differential-equations-direction-fields-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 401,
+      "filename": "0401-interactive-advanced-integral-calculus-and-differential-equations-accumulation-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 400,
+      "filename": "0400-interactive-advanced-integral-calculus-and-differential-equations-surface-area-of-revolution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 399,
+      "filename": "0399-interactive-advanced-integral-calculus-and-differential-equations-arc-length-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 398,
+      "filename": "0398-interactive-advanced-integral-calculus-and-differential-equations-shell-method-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 397,
+      "filename": "0397-interactive-advanced-integral-calculus-and-differential-equations-disc-and-washer-methods-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 396,
+      "filename": "0396-interactive-advanced-integral-calculus-and-differential-equations-volume-by-slicing-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 395,
+      "filename": "0395-interactive-advanced-integral-calculus-and-differential-equations-numerical-integration-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 394,
+      "filename": "0394-interactive-advanced-integral-calculus-and-differential-equations-improper-integrals-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 393,
+      "filename": "0393-interactive-advanced-integral-calculus-and-differential-equations-partial-fractions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 392,
+      "filename": "0392-interactive-advanced-integral-calculus-and-differential-equations-integration-by-parts-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 391,
+      "filename": "0391-interactive-advanced-integral-calculus-and-differential-equations-substitution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 390,
+      "filename": "0390-interactive-advanced-integral-calculus-and-differential-equations-area-between-curves-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 389,
+      "filename": "0389-interactive-advanced-integral-calculus-and-differential-equations-fundamental-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 388,
+      "filename": "0388-interactive-advanced-integral-calculus-and-differential-equations-indefinite-integral-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 387,
+      "filename": "0387-interactive-advanced-integral-calculus-and-differential-equations-definite-integral-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 386,
+      "filename": "0386-interactive-advanced-integral-calculus-and-differential-equations-riemann-sums-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 385,
+      "filename": "0385-interactive-advanced-integral-calculus-and-differential-equations-area-by-rectangles-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 384,
+      "filename": "0384-interactive-advanced-limits-and-differential-calculus-taylor-polynomial-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 383,
+      "filename": "0383-interactive-advanced-limits-and-differential-calculus-newton-s-method-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 382,
+      "filename": "0382-interactive-advanced-limits-and-differential-calculus-motion-analysis-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 381,
+      "filename": "0381-interactive-advanced-limits-and-differential-calculus-related-rates-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 380,
+      "filename": "0380-interactive-advanced-limits-and-differential-calculus-optimisation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 379,
+      "filename": "0379-interactive-advanced-limits-and-differential-calculus-inflection-points-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 378,
+      "filename": "0378-interactive-advanced-limits-and-differential-calculus-concavity-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 377,
+      "filename": "0377-interactive-advanced-limits-and-differential-calculus-local-and-global-extrema-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 376,
+      "filename": "0376-interactive-advanced-limits-and-differential-calculus-increasing-decreasing-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 375,
+      "filename": "0375-interactive-advanced-limits-and-differential-calculus-critical-points-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 374,
+      "filename": "0374-interactive-advanced-limits-and-differential-calculus-parametric-differentiation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 373,
+      "filename": "0373-interactive-advanced-limits-and-differential-calculus-implicit-differentiation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 372,
+      "filename": "0372-interactive-advanced-limits-and-differential-calculus-chain-rule-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 371,
+      "filename": "0371-interactive-advanced-limits-and-differential-calculus-quotient-rule-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 370,
+      "filename": "0370-interactive-advanced-limits-and-differential-calculus-product-rule-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 369,
+      "filename": "0369-interactive-advanced-limits-and-differential-calculus-higher-derivatives-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 368,
+      "filename": "0368-interactive-advanced-limits-and-differential-calculus-derivative-graph-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 367,
+      "filename": "0367-interactive-advanced-limits-and-differential-calculus-normal-line-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 366,
+      "filename": "0366-interactive-advanced-limits-and-differential-calculus-tangent-line-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 365,
+      "filename": "0365-interactive-advanced-limits-and-differential-calculus-derivative-from-first-principles-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 364,
+      "filename": "0364-interactive-advanced-limits-and-differential-calculus-instantaneous-rate-of-change-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 363,
+      "filename": "0363-interactive-advanced-limits-and-differential-calculus-average-rate-of-change-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 362,
+      "filename": "0362-interactive-advanced-limits-and-differential-calculus-epsilon-delta-visualiser-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 361,
+      "filename": "0361-interactive-advanced-limits-and-differential-calculus-types-of-discontinuity-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 360,
+      "filename": "0360-interactive-advanced-limits-and-differential-calculus-continuity-at-a-point-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 359,
+      "filename": "0359-interactive-advanced-limits-and-differential-calculus-limits-at-infinity-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 358,
+      "filename": "0358-interactive-advanced-limits-and-differential-calculus-infinite-limits-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 357,
+      "filename": "0357-interactive-advanced-limits-and-differential-calculus-one-sided-limits-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 356,
+      "filename": "0356-interactive-advanced-limits-and-differential-calculus-informal-limits-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 355,
+      "filename": "0355-interactive-intermediate-advanced-cas-workspace-cas-to-graph-link-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 354,
+      "filename": "0354-interactive-intermediate-advanced-cas-workspace-step-by-step-algebra-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 353,
+      "filename": "0353-interactive-intermediate-advanced-cas-workspace-exact-numeric-toggle-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 352,
+      "filename": "0352-interactive-intermediate-advanced-cas-workspace-assumptions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 351,
+      "filename": "0351-interactive-intermediate-advanced-cas-workspace-complex-calculations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 350,
+      "filename": "0350-interactive-intermediate-advanced-cas-workspace-matrix-operations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 349,
+      "filename": "0349-interactive-intermediate-advanced-cas-workspace-differential-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 348,
+      "filename": "0348-interactive-intermediate-advanced-cas-workspace-series-expansions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 347,
+      "filename": "0347-interactive-intermediate-advanced-cas-workspace-limits-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 346,
+      "filename": "0346-interactive-intermediate-advanced-cas-workspace-integrals-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 345,
+      "filename": "0345-interactive-intermediate-advanced-cas-workspace-derivatives-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 344,
+      "filename": "0344-interactive-intermediate-advanced-cas-workspace-polynomial-division-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 343,
+      "filename": "0343-interactive-intermediate-advanced-cas-workspace-partial-fractions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 342,
+      "filename": "0342-interactive-intermediate-advanced-cas-workspace-eliminate-variables-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 341,
+      "filename": "0341-interactive-intermediate-advanced-cas-workspace-solve-systems-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 340,
+      "filename": "0340-interactive-intermediate-advanced-cas-workspace-numerical-solve-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 339,
+      "filename": "0339-interactive-intermediate-advanced-cas-workspace-solve-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 338,
+      "filename": "0338-interactive-intermediate-advanced-cas-workspace-substitute-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 337,
+      "filename": "0337-interactive-intermediate-advanced-cas-workspace-factor-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 336,
+      "filename": "0336-interactive-intermediate-advanced-cas-workspace-expand-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 335,
+      "filename": "0335-interactive-intermediate-advanced-cas-workspace-simplify-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 334,
+      "filename": "0334-interactive-intermediate-advanced-cas-workspace-symbolic-evaluation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 333,
+      "filename": "0333-interactive-intermediate-advanced-trigonometry-polar-trigonometry-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 332,
+      "filename": "0332-interactive-intermediate-advanced-trigonometry-harmonic-motion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 331,
+      "filename": "0331-interactive-intermediate-advanced-trigonometry-elevation-and-depression-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 330,
+      "filename": "0330-interactive-intermediate-advanced-trigonometry-bearings-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 329,
+      "filename": "0329-interactive-intermediate-advanced-trigonometry-triangle-area-formula-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 328,
+      "filename": "0328-interactive-intermediate-advanced-trigonometry-cosine-rule-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 327,
+      "filename": "0327-interactive-intermediate-advanced-trigonometry-sine-rule-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 326,
+      "filename": "0326-interactive-intermediate-advanced-trigonometry-trig-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 325,
+      "filename": "0325-interactive-intermediate-advanced-trigonometry-double-and-half-angle-formulae-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 324,
+      "filename": "0324-interactive-intermediate-advanced-trigonometry-compound-angle-formulae-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 323,
+      "filename": "0323-interactive-intermediate-advanced-trigonometry-trig-identities-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 322,
+      "filename": "0322-interactive-intermediate-advanced-trigonometry-inverse-trig-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 321,
+      "filename": "0321-interactive-intermediate-advanced-trigonometry-reciprocal-trig-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 320,
+      "filename": "0320-interactive-intermediate-advanced-trigonometry-tangent-graph-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 319,
+      "filename": "0319-interactive-intermediate-advanced-trigonometry-cosine-graph-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 318,
+      "filename": "0318-interactive-intermediate-advanced-trigonometry-sine-graph-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 317,
+      "filename": "0317-interactive-intermediate-advanced-trigonometry-exact-trig-values-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 316,
+      "filename": "0316-interactive-intermediate-advanced-trigonometry-right-triangle-ratios-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 315,
+      "filename": "0315-interactive-intermediate-advanced-trigonometry-unit-circle-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 314,
+      "filename": "0314-interactive-intermediate-advanced-trigonometry-angle-measurement-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 313,
+      "filename": "0313-interactive-intermediate-advanced-transformations-and-loci-concyclicity-test-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 312,
+      "filename": "0312-interactive-intermediate-advanced-transformations-and-loci-concurrency-test-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 311,
+      "filename": "0311-interactive-intermediate-advanced-transformations-and-loci-collinearity-test-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 310,
+      "filename": "0310-interactive-intermediate-advanced-transformations-and-loci-exact-proof-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 309,
+      "filename": "0309-interactive-intermediate-advanced-transformations-and-loci-conjecture-testing-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 308,
+      "filename": "0308-interactive-intermediate-advanced-transformations-and-loci-dynamic-trace-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 307,
+      "filename": "0307-interactive-intermediate-advanced-transformations-and-loci-envelope-of-lines-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 306,
+      "filename": "0306-interactive-intermediate-advanced-transformations-and-loci-moving-linkage-loci-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 305,
+      "filename": "0305-interactive-intermediate-advanced-transformations-and-loci-equidistant-loci-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 304,
+      "filename": "0304-interactive-intermediate-advanced-transformations-and-loci-locus-generator-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 303,
+      "filename": "0303-interactive-intermediate-advanced-transformations-and-loci-symmetry-explorer-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 302,
+      "filename": "0302-interactive-intermediate-advanced-transformations-and-loci-invariants-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 301,
+      "filename": "0301-interactive-intermediate-advanced-transformations-and-loci-transformation-mapping-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 300,
+      "filename": "0300-interactive-intermediate-advanced-transformations-and-loci-composite-transformations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 299,
+      "filename": "0299-interactive-intermediate-advanced-transformations-and-loci-matrix-transformation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 298,
+      "filename": "0298-interactive-intermediate-advanced-transformations-and-loci-dilation-from-point-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 297,
+      "filename": "0297-interactive-intermediate-advanced-transformations-and-loci-rotation-around-point-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 296,
+      "filename": "0296-interactive-intermediate-advanced-transformations-and-loci-reflection-in-circle-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 295,
+      "filename": "0295-interactive-intermediate-advanced-transformations-and-loci-reflection-in-point-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 294,
+      "filename": "0294-interactive-intermediate-advanced-transformations-and-loci-reflection-in-line-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 293,
+      "filename": "0293-interactive-intermediate-advanced-transformations-and-loci-translation-by-vector-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 292,
+      "filename": "0292-interactive-foundational-advanced-dynamic-geometry-constructions-construction-steps-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 291,
+      "filename": "0291-interactive-foundational-advanced-dynamic-geometry-constructions-relation-checker-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 290,
+      "filename": "0290-interactive-foundational-advanced-dynamic-geometry-constructions-fixed-angle-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 289,
+      "filename": "0289-interactive-foundational-advanced-dynamic-geometry-constructions-angle-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 288,
+      "filename": "0288-interactive-foundational-advanced-dynamic-geometry-constructions-area-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 287,
+      "filename": "0287-interactive-foundational-advanced-dynamic-geometry-constructions-distance-length-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 286,
+      "filename": "0286-interactive-foundational-advanced-dynamic-geometry-constructions-parabola-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 285,
+      "filename": "0285-interactive-foundational-advanced-dynamic-geometry-constructions-hyperbola-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 284,
+      "filename": "0284-interactive-foundational-advanced-dynamic-geometry-constructions-ellipse-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 283,
+      "filename": "0283-interactive-foundational-advanced-dynamic-geometry-constructions-conic-through-five-points-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 282,
+      "filename": "0282-interactive-foundational-advanced-dynamic-geometry-constructions-circular-sector-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 281,
+      "filename": "0281-interactive-foundational-advanced-dynamic-geometry-constructions-circumcircular-arc-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 280,
+      "filename": "0280-interactive-foundational-advanced-dynamic-geometry-constructions-circular-arc-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 279,
+      "filename": "0279-interactive-foundational-advanced-dynamic-geometry-constructions-semicircle-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 278,
+      "filename": "0278-interactive-foundational-advanced-dynamic-geometry-constructions-compass-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 277,
+      "filename": "0277-interactive-foundational-advanced-dynamic-geometry-constructions-circle-through-three-points-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 276,
+      "filename": "0276-interactive-foundational-advanced-dynamic-geometry-constructions-circle-centre-and-radius-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 275,
+      "filename": "0275-interactive-foundational-advanced-dynamic-geometry-constructions-circle-centre-and-point-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 274,
+      "filename": "0274-interactive-foundational-advanced-dynamic-geometry-constructions-general-polygon-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 273,
+      "filename": "0273-interactive-foundational-advanced-dynamic-geometry-constructions-rigid-polygon-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 272,
+      "filename": "0272-interactive-foundational-advanced-dynamic-geometry-constructions-regular-polygon-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 271,
+      "filename": "0271-interactive-foundational-advanced-dynamic-geometry-constructions-triangle-constructor-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 270,
+      "filename": "0270-interactive-foundational-advanced-dynamic-geometry-constructions-best-fit-line-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 269,
+      "filename": "0269-interactive-foundational-advanced-dynamic-geometry-constructions-tangent-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 268,
+      "filename": "0268-interactive-foundational-advanced-dynamic-geometry-constructions-angle-bisector-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 267,
+      "filename": "0267-interactive-foundational-advanced-dynamic-geometry-constructions-perpendicular-bisector-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 266,
+      "filename": "0266-interactive-foundational-advanced-dynamic-geometry-constructions-parallel-line-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 265,
+      "filename": "0265-interactive-foundational-advanced-dynamic-geometry-constructions-perpendicular-line-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 264,
+      "filename": "0264-interactive-foundational-advanced-dynamic-geometry-constructions-polyline-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 263,
+      "filename": "0263-interactive-foundational-advanced-dynamic-geometry-constructions-ray-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 262,
+      "filename": "0262-interactive-foundational-advanced-dynamic-geometry-constructions-segment-with-given-length-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 261,
+      "filename": "0261-interactive-foundational-advanced-dynamic-geometry-constructions-segment-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 260,
+      "filename": "0260-interactive-foundational-advanced-dynamic-geometry-constructions-line-through-two-points-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 259,
+      "filename": "0259-interactive-foundational-advanced-dynamic-geometry-constructions-attach-detach-point-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 258,
+      "filename": "0258-interactive-foundational-advanced-dynamic-geometry-constructions-midpoint-or-centre-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 257,
+      "filename": "0257-interactive-foundational-advanced-dynamic-geometry-constructions-intersection-point-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 256,
+      "filename": "0256-interactive-foundational-advanced-dynamic-geometry-constructions-point-on-object-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 255,
+      "filename": "0255-interactive-foundational-advanced-dynamic-geometry-constructions-free-point-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 254,
+      "filename": "0254-interactive-intermediate-advanced-vectors-force-vectors-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 253,
+      "filename": "0253-interactive-intermediate-advanced-vectors-relative-motion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 252,
+      "filename": "0252-interactive-intermediate-advanced-vectors-vector-equation-of-a-plane-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 251,
+      "filename": "0251-interactive-intermediate-advanced-vectors-vector-equation-of-a-line-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 250,
+      "filename": "0250-interactive-intermediate-advanced-vectors-linear-combinations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 249,
+      "filename": "0249-interactive-intermediate-advanced-vectors-vector-projection-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 248,
+      "filename": "0248-interactive-intermediate-advanced-vectors-cross-product-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 247,
+      "filename": "0247-interactive-intermediate-advanced-vectors-dot-product-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 246,
+      "filename": "0246-interactive-intermediate-advanced-vectors-magnitude-and-unit-vectors-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 245,
+      "filename": "0245-interactive-intermediate-advanced-vectors-scalar-multiplication-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 244,
+      "filename": "0244-interactive-intermediate-advanced-vectors-vector-subtraction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 243,
+      "filename": "0243-interactive-intermediate-advanced-vectors-vector-addition-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 242,
+      "filename": "0242-interactive-intermediate-advanced-vectors-position-vectors-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 241,
+      "filename": "0241-interactive-intermediate-advanced-vectors-component-form-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 240,
+      "filename": "0240-interactive-intermediate-advanced-vectors-vector-introduction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 239,
+      "filename": "0239-interactive-intermediate-coordinate-geometry-barycentric-coordinates-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 238,
+      "filename": "0238-interactive-intermediate-coordinate-geometry-parametric-coordinates-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 237,
+      "filename": "0237-interactive-intermediate-coordinate-geometry-polar-coordinates-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 236,
+      "filename": "0236-interactive-intermediate-coordinate-geometry-coordinate-transformations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 235,
+      "filename": "0235-interactive-intermediate-coordinate-geometry-coordinate-loci-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 234,
+      "filename": "0234-interactive-intermediate-coordinate-geometry-point-to-line-distance-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 233,
+      "filename": "0233-interactive-intermediate-coordinate-geometry-angle-between-lines-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 232,
+      "filename": "0232-interactive-intermediate-coordinate-geometry-perpendicular-lines-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 231,
+      "filename": "0231-interactive-intermediate-coordinate-geometry-parallel-lines-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 230,
+      "filename": "0230-interactive-intermediate-coordinate-geometry-equation-of-a-line-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 229,
+      "filename": "0229-interactive-intermediate-coordinate-geometry-gradient-slope-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 228,
+      "filename": "0228-interactive-intermediate-coordinate-geometry-section-formula-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 227,
+      "filename": "0227-interactive-intermediate-coordinate-geometry-midpoint-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 226,
+      "filename": "0226-interactive-intermediate-coordinate-geometry-distance-between-points-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 225,
+      "filename": "0225-interactive-intermediate-coordinate-geometry-plotting-points-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 224,
+      "filename": "0224-interactive-intermediate-coordinate-geometry-cartesian-plane-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 223,
+      "filename": "0223-interactive-intermediate-function-transformations-graph-matching-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 222,
+      "filename": "0222-interactive-intermediate-function-transformations-parent-function-library-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 221,
+      "filename": "0221-interactive-intermediate-function-transformations-parameter-explorer-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 220,
+      "filename": "0220-interactive-intermediate-function-transformations-transformation-order-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 219,
+      "filename": "0219-interactive-intermediate-function-transformations-combined-transformations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 218,
+      "filename": "0218-interactive-intermediate-function-transformations-reflection-in-y-axis-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 217,
+      "filename": "0217-interactive-intermediate-function-transformations-reflection-in-x-axis-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 216,
+      "filename": "0216-interactive-intermediate-function-transformations-horizontal-stretch-and-compression-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 215,
+      "filename": "0215-interactive-intermediate-function-transformations-vertical-stretch-and-compression-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 214,
+      "filename": "0214-interactive-intermediate-function-transformations-horizontal-translation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 213,
+      "filename": "0213-interactive-intermediate-function-transformations-vertical-translation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 212,
+      "filename": "0212-interactive-intermediate-advanced-functions-recursive-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 211,
+      "filename": "0211-interactive-intermediate-advanced-functions-periodic-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 210,
+      "filename": "0210-interactive-intermediate-advanced-functions-increasing-and-decreasing-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 209,
+      "filename": "0209-interactive-intermediate-advanced-functions-even-and-odd-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 208,
+      "filename": "0208-interactive-intermediate-advanced-functions-inverse-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 207,
+      "filename": "0207-interactive-intermediate-advanced-functions-composite-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 206,
+      "filename": "0206-interactive-intermediate-advanced-functions-piecewise-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 205,
+      "filename": "0205-interactive-intermediate-advanced-functions-sign-function-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 204,
+      "filename": "0204-interactive-intermediate-advanced-functions-ceiling-function-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 203,
+      "filename": "0203-interactive-intermediate-advanced-functions-floor-function-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 202,
+      "filename": "0202-interactive-intermediate-advanced-functions-hyperbolic-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 201,
+      "filename": "0201-interactive-intermediate-advanced-functions-trigonometric-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 200,
+      "filename": "0200-interactive-intermediate-advanced-functions-logarithmic-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 199,
+      "filename": "0199-interactive-intermediate-advanced-functions-exponential-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 198,
+      "filename": "0198-interactive-intermediate-advanced-functions-absolute-value-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 197,
+      "filename": "0197-interactive-intermediate-advanced-functions-cube-root-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 196,
+      "filename": "0196-interactive-intermediate-advanced-functions-square-root-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 195,
+      "filename": "0195-interactive-intermediate-advanced-functions-rational-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 194,
+      "filename": "0194-interactive-intermediate-advanced-functions-reciprocal-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 193,
+      "filename": "0193-interactive-intermediate-advanced-functions-higher-degree-polynomials-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 192,
+      "filename": "0192-interactive-intermediate-advanced-functions-cubic-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 191,
+      "filename": "0191-interactive-intermediate-advanced-functions-quadratic-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 190,
+      "filename": "0190-interactive-intermediate-advanced-functions-linear-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 189,
+      "filename": "0189-interactive-intermediate-advanced-functions-vertical-line-test-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 188,
+      "filename": "0188-interactive-intermediate-advanced-functions-function-notation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 187,
+      "filename": "0187-interactive-intermediate-advanced-functions-domain-and-range-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 186,
+      "filename": "0186-interactive-intermediate-advanced-functions-function-concept-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 185,
+      "filename": "0185-interactive-intermediate-advanced-equations-and-inequalities-numerical-solver-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 184,
+      "filename": "0184-interactive-intermediate-advanced-equations-and-inequalities-systems-of-inequalities-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 183,
+      "filename": "0183-interactive-intermediate-advanced-equations-and-inequalities-two-variable-inequalities-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 182,
+      "filename": "0182-interactive-intermediate-advanced-equations-and-inequalities-polynomial-inequalities-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 181,
+      "filename": "0181-interactive-intermediate-advanced-equations-and-inequalities-quadratic-inequalities-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 180,
+      "filename": "0180-interactive-intermediate-advanced-equations-and-inequalities-compound-inequalities-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 179,
+      "filename": "0179-interactive-intermediate-advanced-equations-and-inequalities-linear-inequalities-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 178,
+      "filename": "0178-interactive-intermediate-advanced-equations-and-inequalities-absolute-value-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 177,
+      "filename": "0177-interactive-intermediate-advanced-equations-and-inequalities-trigonometric-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 176,
+      "filename": "0176-interactive-intermediate-advanced-equations-and-inequalities-logarithmic-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 175,
+      "filename": "0175-interactive-intermediate-advanced-equations-and-inequalities-exponential-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 174,
+      "filename": "0174-interactive-intermediate-advanced-equations-and-inequalities-radical-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 173,
+      "filename": "0173-interactive-intermediate-advanced-equations-and-inequalities-rational-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 172,
+      "filename": "0172-interactive-intermediate-advanced-equations-and-inequalities-polynomial-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 171,
+      "filename": "0171-interactive-intermediate-advanced-equations-and-inequalities-quadratic-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 170,
+      "filename": "0170-interactive-intermediate-advanced-equations-and-inequalities-three-variable-systems-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 169,
+      "filename": "0169-interactive-intermediate-advanced-equations-and-inequalities-simultaneous-linear-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 168,
+      "filename": "0168-interactive-intermediate-advanced-equations-and-inequalities-linear-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 167,
+      "filename": "0167-interactive-intermediate-advanced-equations-and-inequalities-literal-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 166,
+      "filename": "0166-interactive-intermediate-advanced-equations-and-inequalities-equations-with-fractions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 165,
+      "filename": "0165-interactive-intermediate-advanced-equations-and-inequalities-multi-step-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 164,
+      "filename": "0164-interactive-intermediate-advanced-equations-and-inequalities-one-step-equations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 163,
+      "filename": "0163-interactive-intermediate-expressions-and-manipulation-identities-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 162,
+      "filename": "0162-interactive-intermediate-expressions-and-manipulation-factor-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 161,
+      "filename": "0161-interactive-intermediate-expressions-and-manipulation-remainder-theorem-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 160,
+      "filename": "0160-interactive-intermediate-expressions-and-manipulation-synthetic-division-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 159,
+      "filename": "0159-interactive-intermediate-expressions-and-manipulation-polynomial-operations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 158,
+      "filename": "0158-interactive-intermediate-expressions-and-manipulation-rationalisation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 157,
+      "filename": "0157-interactive-intermediate-expressions-and-manipulation-surds-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 156,
+      "filename": "0156-interactive-intermediate-expressions-and-manipulation-indices-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 155,
+      "filename": "0155-interactive-intermediate-expressions-and-manipulation-algebraic-fractions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 154,
+      "filename": "0154-interactive-intermediate-expressions-and-manipulation-factorisation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 153,
+      "filename": "0153-interactive-intermediate-expressions-and-manipulation-double-brackets-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 152,
+      "filename": "0152-interactive-intermediate-expressions-and-manipulation-expanding-brackets-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 151,
+      "filename": "0151-interactive-intermediate-expressions-and-manipulation-substitution-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 150,
+      "filename": "0150-interactive-intermediate-expressions-and-manipulation-like-terms-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 149,
+      "filename": "0149-interactive-intermediate-expressions-and-manipulation-algebra-tiles-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 148,
+      "filename": "0148-interactive-foundational-advanced-2d-graphing-calculator-export-graph-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 147,
+      "filename": "0147-interactive-foundational-advanced-2d-graphing-calculator-dynamic-parameters-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 146,
+      "filename": "0146-interactive-foundational-advanced-2d-graphing-calculator-graph-inspector-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 145,
+      "filename": "0145-interactive-foundational-advanced-2d-graphing-calculator-special-points-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 144,
+      "filename": "0144-interactive-foundational-advanced-2d-graphing-calculator-multiple-graphics-views-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 143,
+      "filename": "0143-interactive-foundational-advanced-2d-graphing-calculator-grid-controls-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 142,
+      "filename": "0142-interactive-foundational-advanced-2d-graphing-calculator-axis-controls-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 141,
+      "filename": "0141-interactive-foundational-advanced-2d-graphing-calculator-zoom-and-pan-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 140,
+      "filename": "0140-interactive-foundational-advanced-2d-graphing-calculator-trace-mode-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 139,
+      "filename": "0139-interactive-foundational-advanced-2d-graphing-calculator-table-of-values-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 138,
+      "filename": "0138-interactive-foundational-advanced-2d-graphing-calculator-data-plotter-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 137,
+      "filename": "0137-interactive-foundational-advanced-2d-graphing-calculator-point-plotter-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 136,
+      "filename": "0136-interactive-foundational-advanced-2d-graphing-calculator-polar-graphs-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 135,
+      "filename": "0135-interactive-foundational-advanced-2d-graphing-calculator-parametric-curves-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 134,
+      "filename": "0134-interactive-foundational-advanced-2d-graphing-calculator-inequality-grapher-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 133,
+      "filename": "0133-interactive-foundational-advanced-2d-graphing-calculator-equation-grapher-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 132,
+      "filename": "0132-interactive-foundational-advanced-2d-graphing-calculator-function-plotter-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 131,
+      "filename": "0131-interactive-foundational-advanced-2d-graphing-calculator-cartesian-graphing-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 130,
+      "filename": "0130-interactive-all-levels-common-tools-and-accessibility-multi-language-terminology-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 129,
+      "filename": "0129-interactive-all-levels-common-tools-and-accessibility-high-contrast-and-large-text-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 128,
+      "filename": "0128-interactive-all-levels-common-tools-and-accessibility-screen-reader-support-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 127,
+      "filename": "0127-interactive-all-levels-common-tools-and-accessibility-keyboard-navigation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 126,
+      "filename": "0126-interactive-all-levels-common-tools-and-accessibility-exam-mode-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 125,
+      "filename": "0125-interactive-all-levels-common-tools-and-accessibility-learner-practice-mode-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 124,
+      "filename": "0124-interactive-all-levels-common-tools-and-accessibility-teacher-presentation-mode-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 123,
+      "filename": "0123-interactive-all-levels-common-tools-and-accessibility-export-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 122,
+      "filename": "0122-interactive-all-levels-common-tools-and-accessibility-save-duplicate-and-share-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 121,
+      "filename": "0121-interactive-all-levels-common-tools-and-accessibility-linked-views-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 120,
+      "filename": "0120-interactive-all-levels-common-tools-and-accessibility-exact-and-decimal-output-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 119,
+      "filename": "0119-interactive-all-levels-common-tools-and-accessibility-trace-and-locus-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 118,
+      "filename": "0118-interactive-all-levels-common-tools-and-accessibility-snap-controls-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 117,
+      "filename": "0117-interactive-all-levels-common-tools-and-accessibility-animation-player-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 116,
+      "filename": "0116-interactive-all-levels-common-tools-and-accessibility-undo-and-redo-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 115,
+      "filename": "0115-interactive-all-levels-common-tools-and-accessibility-reset-view-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 114,
+      "filename": "0114-interactive-all-levels-common-tools-and-accessibility-zoom-and-pan-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 113,
+      "filename": "0113-interactive-all-levels-common-tools-and-accessibility-drag-and-manipulate-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 112,
+      "filename": "0112-interactive-all-levels-lesson-and-assessment-pages-revision-summary-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 111,
+      "filename": "0111-interactive-all-levels-lesson-and-assessment-pages-exit-ticket-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 110,
+      "filename": "0110-interactive-all-levels-lesson-and-assessment-pages-mastery-challenge-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 109,
+      "filename": "0109-interactive-all-levels-lesson-and-assessment-pages-dynamic-question-generator-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 108,
+      "filename": "0108-interactive-all-levels-lesson-and-assessment-pages-open-investigation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 107,
+      "filename": "0107-interactive-all-levels-lesson-and-assessment-pages-real-world-application-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 106,
+      "filename": "0106-interactive-all-levels-lesson-and-assessment-pages-multiple-representations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 105,
+      "filename": "0105-interactive-all-levels-lesson-and-assessment-pages-error-diagnosis-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 104,
+      "filename": "0104-interactive-all-levels-lesson-and-assessment-pages-graph-matching-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 103,
+      "filename": "0103-interactive-all-levels-lesson-and-assessment-pages-construction-challenge-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 102,
+      "filename": "0102-interactive-all-levels-lesson-and-assessment-pages-step-by-step-practice-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 101,
+      "filename": "0101-interactive-all-levels-lesson-and-assessment-pages-worked-example-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 100,
+      "filename": "0100-interactive-all-levels-lesson-and-assessment-pages-predict-test-explain-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 99,
+      "filename": "0099-interactive-all-levels-lesson-and-assessment-pages-guided-exploration-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 98,
+      "filename": "0098-interactive-all-levels-lesson-and-assessment-pages-manipulative-laboratory-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 97,
+      "filename": "0097-interactive-all-levels-lesson-and-assessment-pages-visualise-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 96,
+      "filename": "0096-interactive-all-levels-lesson-and-assessment-pages-concept-introduction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 95,
+      "filename": "0095-interactive-all-levels-interactive-authoring-import-and-export-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 94,
+      "filename": "0094-interactive-all-levels-interactive-authoring-automatic-checking-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 93,
+      "filename": "0093-interactive-all-levels-interactive-authoring-randomisation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 92,
+      "filename": "0092-interactive-all-levels-interactive-authoring-object-scripting-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 91,
+      "filename": "0091-interactive-all-levels-interactive-authoring-command-library-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 90,
+      "filename": "0090-interactive-all-levels-interactive-authoring-custom-tool-builder-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 89,
+      "filename": "0089-interactive-all-levels-interactive-authoring-conditional-feedback-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 88,
+      "filename": "0088-interactive-all-levels-interactive-authoring-object-locking-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 87,
+      "filename": "0087-interactive-all-levels-interactive-authoring-undo-and-redo-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 86,
+      "filename": "0086-interactive-all-levels-interactive-authoring-reset-construction-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 85,
+      "filename": "0085-interactive-all-levels-interactive-authoring-multiple-pages-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 84,
+      "filename": "0084-interactive-all-levels-interactive-authoring-tables-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 83,
+      "filename": "0083-interactive-all-levels-interactive-authoring-pen-and-highlighter-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 82,
+      "filename": "0082-interactive-all-levels-interactive-authoring-audio-and-video-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 81,
+      "filename": "0081-interactive-all-levels-interactive-authoring-image-object-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 80,
+      "filename": "0080-interactive-all-levels-interactive-authoring-formula-display-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 79,
+      "filename": "0079-interactive-all-levels-interactive-authoring-dynamic-text-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 78,
+      "filename": "0078-interactive-all-levels-interactive-authoring-drop-down-list-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 77,
+      "filename": "0077-interactive-all-levels-interactive-authoring-input-box-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 76,
+      "filename": "0076-interactive-all-levels-interactive-authoring-button-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 75,
+      "filename": "0075-interactive-all-levels-interactive-authoring-checkbox-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 74,
+      "filename": "0074-interactive-all-levels-interactive-authoring-slider-component-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 73,
+      "filename": "0073-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-scale-drawings-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 72,
+      "filename": "0072-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-compound-change-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 71,
+      "filename": "0071-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-percentage-change-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 70,
+      "filename": "0070-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-percentages-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 69,
+      "filename": "0069-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-unit-rates-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 68,
+      "filename": "0068-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-inverse-proportion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 67,
+      "filename": "0067-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-direct-proportion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 66,
+      "filename": "0066-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-proportion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 65,
+      "filename": "0065-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-ratio-models-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 64,
+      "filename": "0064-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-recurring-decimals-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 63,
+      "filename": "0063-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-fraction-decimal-conversion-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 62,
+      "filename": "0062-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-decimal-operations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 61,
+      "filename": "0061-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-decimal-place-value-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 60,
+      "filename": "0060-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-fraction-operations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 59,
+      "filename": "0059-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-comparing-fractions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 58,
+      "filename": "0058-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-equivalent-fractions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 57,
+      "filename": "0057-interactive-foundational-intermediate-fractions-decimals-ratios-and-percentages-fraction-models-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 56,
+      "filename": "0056-interactive-foundational-intermediate-numbers-and-number-theory-continued-fractions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 55,
+      "filename": "0055-interactive-foundational-intermediate-numbers-and-number-theory-base-systems-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 54,
+      "filename": "0054-interactive-foundational-intermediate-numbers-and-number-theory-modular-arithmetic-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 53,
+      "filename": "0053-interactive-foundational-intermediate-numbers-and-number-theory-divisibility-rules-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 52,
+      "filename": "0052-interactive-foundational-intermediate-numbers-and-number-theory-lcm-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 51,
+      "filename": "0051-interactive-foundational-intermediate-numbers-and-number-theory-hcf-gcd-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 50,
+      "filename": "0050-interactive-foundational-intermediate-numbers-and-number-theory-prime-factorisation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 49,
+      "filename": "0049-interactive-foundational-intermediate-numbers-and-number-theory-prime-numbers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 48,
+      "filename": "0048-interactive-foundational-intermediate-numbers-and-number-theory-multiples-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 47,
+      "filename": "0047-interactive-foundational-intermediate-numbers-and-number-theory-factors-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 46,
+      "filename": "0046-interactive-foundational-intermediate-numbers-and-number-theory-place-value-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 45,
+      "filename": "0045-interactive-foundational-intermediate-numbers-and-number-theory-complex-numbers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 44,
+      "filename": "0044-interactive-foundational-intermediate-numbers-and-number-theory-real-numbers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 43,
+      "filename": "0043-interactive-foundational-intermediate-numbers-and-number-theory-irrational-numbers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 42,
+      "filename": "0042-interactive-foundational-intermediate-numbers-and-number-theory-rational-numbers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 41,
+      "filename": "0041-interactive-foundational-intermediate-numbers-and-number-theory-integers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 40,
+      "filename": "0040-interactive-foundational-intermediate-numbers-and-number-theory-whole-numbers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 39,
+      "filename": "0039-interactive-foundational-intermediate-numbers-and-number-theory-natural-numbers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 38,
+      "filename": "0038-interactive-foundational-advanced-algebra-and-dynamic-variables-latex-formula-display-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 37,
+      "filename": "0037-interactive-foundational-advanced-algebra-and-dynamic-variables-dynamic-text-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 36,
+      "filename": "0036-interactive-foundational-advanced-algebra-and-dynamic-variables-boolean-variables-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 35,
+      "filename": "0035-interactive-foundational-advanced-algebra-and-dynamic-variables-piecewise-definitions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 34,
+      "filename": "0034-interactive-foundational-advanced-algebra-and-dynamic-variables-sequences-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 33,
+      "filename": "0033-interactive-foundational-advanced-algebra-and-dynamic-variables-matrices-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 32,
+      "filename": "0032-interactive-foundational-advanced-algebra-and-dynamic-variables-lists-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 31,
+      "filename": "0031-interactive-foundational-advanced-algebra-and-dynamic-variables-inequality-input-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 30,
+      "filename": "0030-interactive-foundational-advanced-algebra-and-dynamic-variables-equation-input-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 29,
+      "filename": "0029-interactive-foundational-advanced-algebra-and-dynamic-variables-object-redefinition-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 28,
+      "filename": "0028-interactive-foundational-advanced-algebra-and-dynamic-variables-algebraic-input-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 27,
+      "filename": "0027-interactive-foundational-advanced-algebra-and-dynamic-variables-dynamic-labels-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 26,
+      "filename": "0026-interactive-foundational-advanced-algebra-and-dynamic-variables-conditional-visibility-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 25,
+      "filename": "0025-interactive-foundational-advanced-algebra-and-dynamic-variables-dependent-and-independent-objects-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 24,
+      "filename": "0024-interactive-foundational-advanced-algebra-and-dynamic-variables-animation-controls-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 23,
+      "filename": "0023-interactive-foundational-advanced-algebra-and-dynamic-variables-angle-sliders-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 22,
+      "filename": "0022-interactive-foundational-advanced-algebra-and-dynamic-variables-integer-sliders-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 21,
+      "filename": "0021-interactive-foundational-advanced-algebra-and-dynamic-variables-numeric-sliders-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 20,
+      "filename": "0020-interactive-foundational-advanced-algebra-and-dynamic-variables-variable-explorer-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 19,
+      "filename": "0019-interactive-foundational-advanced-algebra-and-dynamic-variables-algebra-workspace-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 18,
+      "filename": "0018-interactive-foundational-advanced-scientific-calculator-exact-and-decimal-modes-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 17,
+      "filename": "0017-interactive-foundational-advanced-scientific-calculator-calculation-history-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 16,
+      "filename": "0016-interactive-foundational-advanced-scientific-calculator-constants-library-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 15,
+      "filename": "0015-interactive-foundational-advanced-scientific-calculator-rounding-and-precision-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 14,
+      "filename": "0014-interactive-foundational-advanced-scientific-calculator-absolute-value-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 13,
+      "filename": "0013-interactive-foundational-advanced-scientific-calculator-factorial-permutation-and-combination-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 12,
+      "filename": "0012-interactive-foundational-advanced-scientific-calculator-hyperbolic-functions-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 11,
+      "filename": "0011-interactive-foundational-advanced-scientific-calculator-inverse-trigonometry-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 10,
+      "filename": "0010-interactive-foundational-advanced-scientific-calculator-trigonometric-calculator-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 9,
+      "filename": "0009-interactive-foundational-advanced-scientific-calculator-exponential-calculations-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 8,
+      "filename": "0008-interactive-foundational-advanced-scientific-calculator-logarithms-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 7,
+      "filename": "0007-interactive-foundational-advanced-scientific-calculator-scientific-notation-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 6,
+      "filename": "0006-interactive-foundational-advanced-scientific-calculator-powers-and-roots-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 5,
+      "filename": "0005-interactive-foundational-advanced-scientific-calculator-ratio-calculator-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 4,
+      "filename": "0004-interactive-foundational-advanced-scientific-calculator-percentage-calculator-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 3,
+      "filename": "0003-interactive-foundational-advanced-scientific-calculator-mixed-numbers-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 2,
+      "filename": "0002-interactive-foundational-advanced-scientific-calculator-fraction-calculator-redesigned.png",
+      "status": "pending"
+    },
+    {
+      "index": 1,
+      "filename": "0001-interactive-foundational-advanced-scientific-calculator-basic-calculator-redesigned.png",
+      "status": "pending"
+    }
+  ],
+  "currentAudit": {
+    "status": "audit next",
+    "filename": "0911-advanced-advanced-differential-equations-euler-method-redesigned.png"
+  },
+  "reviewed": [
+    919,
+    918,
+    917,
+    916,
+    915,
+    914,
+    913,
+    912
+  ],
+  "lesson0919": {
+    "title": "Bessel Function",
+    "route": "/lessons/advanced-concepts/2025-bessel-function",
+    "changes": [
+      "Reference badges and numbered panels",
+      "Zero explanation and sine comparison panels",
+      "Membrane palette and rim details",
+      "Learning pathway and next-up components",
+      "Removed off-mockup generic study panel"
+    ],
+    "verification": "7 tests pass; scoped ESLint passes; browser controls pass; no browser errors or overflow at 390/768/1440; visual reviewed. Full-project typecheck fails in other existing modules.",
+    "referenceMathExceptions": [
+      "Fundamental (0,1) has no interior radial node; first positive radial zero is R.",
+      "Bessel amplitudes use calculated values; decorative concentric bands must not introduce false nodes."
+    ],
+    "remaining": [
+      "Exact reference reproduction intentionally differs where reference mathematics contradicts calculated Bessel profiles; see referenceMathExceptions."
+    ]
+  },
+  "lesson0918": {
+    "title": "Zeta Function",
+    "route": "/lessons/advanced-concepts/2024-zeta-function",
+    "status": "reviewed-with-math-corrections",
+    "changes": [
+      "Title badge header",
+      "Cyan and violet panels with equality badge",
+      "Term preview with omission marker",
+      "Convergence cards with values, points and axis labels",
+      "Prime bridge legend and clickable factorizations",
+      "Expandable factor inspector",
+      "Practice steps and continuation values",
+      "Complex-plane legend and purple cards",
+      "Reference footer"
+    ],
+    "verification": "7 focused tests pass; scoped lint passes; preset/custom exponents, counts, factorization, practice, heat map and pole controls pass. No browser errors or lesson overflow at 390/768/1440.",
+    "referenceMathExceptions": [
+      "Convergence curves show actual finite sums/products rather than the contradictory mockup sample curves.",
+      "Critical line uses Re(s)=1/2 and zero heights have their correct coordinates.",
+      "Prime matrix uses actual divisibility and table uses calculated factors."
+    ],
+    "remaining": [
+      "Exact visual identity differs where reference data contradicts mathematical calculations; exceptions documented."
+    ]
+  },
+  "lesson0917": {
+    "title": "Error Function",
+    "route": "/lessons/advanced-concepts/2023-error-function",
+    "status": "reviewed-with-math-corrections",
+    "changes": [
+      "Header badges and mint interactive banner",
+      "Linked Gaussian and taller erf plots",
+      "Compact limit control and signed area readout",
+      "Properties and normal CDF panels",
+      "Three application cards",
+      "Numbered practice questions and reference formulas",
+      "Objectives icons and reference footer"
+    ],
+    "verification": "8 focused tests and scoped ESLint pass. Browser signed values, reset, expansion, CSV, diffusion time, study tabs, reflect, practice and reference toggle pass; no page errors or overflow at 390/768/1440.",
+    "referenceMathExceptions": [
+      "Gaussian uses its labelled e^(-t^2) rather than the wider curve in the reference.",
+      "erfc runs from 2 to 0 on the full real line, rather than the reference curve from 1 to 0.",
+      "Practice fields start unanswered and validate actual input rather than pre-awarding checks."
+    ]
+  },
+  "lesson0916": {
+    "title": "Beta Function",
+    "route": "/lessons/advanced-concepts/2022-beta-function",
+    "status": "reviewed-with-math-corrections",
+    "changes": [
+      "Header badges and formula/parameter toolbar",
+      "Paired integrand and density cards with mode",
+      "Blue/purple preset thumbnails",
+      "Symmetry, beta-gamma, and special-value cards",
+      "Numbered learn and explore panels",
+      "Practice fractions, shape rules, objectives and mastery progress",
+      "Expandable assessment inputs and reflection",
+      "Pathway navigation and reference footer"
+    ],
+    "verification": "8 focused tests and scoped ESLint pass; browser editing, swap, reset, expanded presets, singular/normalized cases, self-assessment/reset, all four answers, reflection, and pathway visibility pass. No page errors or overflow at 390/768/1440.",
+    "referenceMathExceptions": [
+      "Raw beta integrand peak and normalized-density peak use correct scales; the mockup curves use incompatible ordinate scales.",
+      "Beta(2,5) is right-skewed, not left-skewed as labelled in the mockup.",
+      "Pathway continues to Error Function, consistent with actual lesson order."
+    ]
+  },
+  "lesson0915": {
+    "title": "Gamma Function",
+    "route": "/lessons/advanced-concepts/2021-gamma-function",
+    "status": "reviewed-with-math-corrections",
+    "changes": [
+      "Header badges and mint studio banner",
+      "Floating explorer card, plot legend, selected-value callout and checkpoint labels",
+      "Integral lens, recurrence chain and checkpoint cards",
+      "Factorial-comparison legend and takeaway",
+      "Misconception and practice card layout",
+      "Reference footer"
+    ],
+    "verification": "8 focused tests and scoped lint pass; browser five views, positive input, checkpoints, half-integers, negative poles, both practice modes, solutions, challenge and quiz pass. No errors or overflow at 390/768/1440. Screenshot reviewed after callout repair.",
+    "referenceMathExceptions": [
+      "Gamma plot uses an explicit log scale and actual Gamma values, including the minimum on the positive axis.",
+      "Finite 0..12 integral and its tail are distinguished from the full improper integral.",
+      "Factorial plot distinguishes integer factorial values from a chosen staircase extension."
+    ]
+  },
+  "lesson0914": {
+    "title": "Second-Order Oscillator",
+    "route": "/lessons/advanced-concepts/2020-second-order-oscillator",
+    "status": "reviewed-with-math-corrections",
+    "changes": [
+      "Badge header and mint studio banner",
+      "Coiled spring, purple gradient mass, time label and value cards",
+      "Colored graph metadata with synchronized traces",
+      "Phase ellipse and velocity ticks",
+      "Energy bars, restoring insight strip and turning-point diagram",
+      "Controls panel, numbered learning list, objectives, tags and footer",
+      "Removed three duplicated generic study boards"
+    ],
+    "verification": "8 focused tests and scoped lint pass. Browser default values, KE/PE, keyboard scrub, play/pause, damping, frequency/period, zero-energy state, reset and practice answers pass. No errors or overflow at 390/768/1440. Screenshot reviewed after time-label repair.",
+    "referenceMathExceptions": [
+      "Time graphs use their actual 0..2T coordinates and synchronized cursor instead of the inconsistent reference time ticks.",
+      "Phase point uses the actual signed velocity, matching the instantaneous-value display.",
+      "Practice inputs are interactive and ungraded until checked."
+    ]
+  },
+  "lesson0913": {
+    "title": "Logistic Differential Equation",
+    "route": "/lessons/advanced-concepts/2019-logistic-differential-equation",
+    "status": "reviewed-with-math-corrections",
+    "changes": [
+      "Header badges, mint studio banner and boxed toolbar",
+      "Population initial-value and inflection callouts",
+      "Growth-rate maximum card and adaptive plot extent",
+      "Phase-line markers and exact solution display",
+      "Lettered prediction options and application icons",
+      "Reference-style misconception sketch, numerical table and capstone panel",
+      "Removed off-mockup generic study board"
+    ],
+    "verification": "8 focused tests, scoped lint and diff checks pass. Browser comparison toggle, parameter increments, zero population, capacity equilibrium, above-capacity case, extreme plot extent, reset, prediction and reflection pass. No errors or overflow at 390/768/1440. Final screenshot reviewed.",
+    "referenceMathExceptions": [
+      "Population and snapshot use calculated logistic values; the mockup table contains different numerical values.",
+      "Growth stays positive throughout 0<P<K; the mockup wording incorrectly makes it negative above K/2.",
+      "The exponential curve appears only when comparison is enabled, rather than remaining visible with the switch off."
+    ]
+  },
+  "lesson0912": {
+    "title": "Growth and Decay IVPs",
+    "route": "/lessons/advanced-concepts/2018-growth-decay-ivps",
+    "status": "reviewed-with-math-corrections",
+    "changes": [
+      "Reference header and 20-minute catalog metadata",
+      "Parameter sliders and colored state cards",
+      "Formula card and visible doubling/half-life annotations",
+      "Context cards and current worked example",
+      "Expandable numbered challenge and feedback",
+      "Takeaways, presets and reference footer",
+      "Introduced opt-in reusable reference chrome without changing other lessons"
+    ],
+    "verification": "8 focused tests, scoped lint, and diff checks pass. Browser markers, zero rate, context/units, physical context caveat, reset, presets, randomizer, extreme parameters, challenge and solution reveal pass. No errors or overflow at 390/768/1440. Final screenshot reviewed.",
+    "referenceMathExceptions": [
+      "The graph uses labelled linear axes with the actual exponential values, rather than the inconsistent ordinate spacing and curve in the mockup.",
+      "Doubling/half-life markers use unrounded times and match calculated amounts.",
+      "Challenge feedback remains ungraded until answers are submitted."
+    ]
+  }
+}

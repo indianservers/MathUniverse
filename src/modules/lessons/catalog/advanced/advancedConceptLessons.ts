@@ -265,7 +265,7 @@ const seeds: LessonSeed[] = [
     strand: "Differential Equations",
     title: "Growth and Decay IVPs",
     summary: "Model proportional change with initial value problems and exponential solutions.",
-    estimatedMinutes: 15,
+    estimatedMinutes: 20,
     toolRoute: "/math-lab/differential-equations",
     objectives: ["Recognize y' = ky as proportional growth or decay.", "Use an initial condition to determine a solution.", "Interpret k in context."],
     learn: ["When rate of change is proportional to current amount, the model is y' = ky.", "Positive k gives growth and negative k gives decay.", "The initial condition sets the starting amount and determines the specific exponential curve."],

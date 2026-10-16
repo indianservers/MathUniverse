@@ -1,0 +1,33 @@
+{
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "status": "passed",
+  "checks": [
+    "three graph rows without duplicate boards",
+    "synchronized default values",
+    "energy values",
+    "keyboard time scrub",
+    "play/pause",
+    "damping switch and regimes",
+    "frequency/period",
+    "zero energy",
+    "reset",
+    "practice answers"
+  ]
+}

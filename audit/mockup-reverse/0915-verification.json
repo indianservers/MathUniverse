@@ -1,0 +1,34 @@
+{
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "status": "passed",
+  "checks": [
+    "positive input",
+    "checkpoint",
+    "half-integers",
+    "factorial view",
+    "definition view",
+    "negative branch and poles",
+    "basic practice",
+    "recurrence practice",
+    "solutions",
+    "half-integer challenge",
+    "quiz"
+  ]
+}
