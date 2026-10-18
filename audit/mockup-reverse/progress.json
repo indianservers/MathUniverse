@@ -8163,7 +8163,8 @@
       "Validated live table drafts retain last valid data on invalid frequency/boundary input.",
       "Rebuilt dark responsive header/table/chart layout and terminal row; custom data editor collapsed into table; removed generic study board.",
       "Added working chart toolbar: point selection, SVG text annotation, clear frequencies, expanded view with Escape, and locally scrollable zoom.",
-      "After initial screenshot review, enlarged the plot and refined median readout and three-line legend to follow reference proportions."
+      "After initial screenshot review, enlarged the plot and refined median readout and three-line legend to follow reference proportions.",
+      "Separated background touch panning from point touch dragging so a wide mobile plot can scroll without disabling data manipulation."
     ],
     "verification": {
       "model": "3 passed: default exact median/cumulative points including nonsequential IDs; empty/plateau cases;216 distributions and all interior point moves preserve monotonic cumulative frequencies and total",
@@ -8171,7 +8172,7 @@
       "pageRegression": "1 passed,235 skipped: exact target for lesson10108"
     },
     "pending": [
-      "Browser80319 running after toolbar and plot/legend changes; inspect updated screenshots and mobile scrolling."
+      "Final browser91733 includes native mobile horizontal panning; inspect final default/empty/plateau/mobile captures."
     ]
   }
 }
