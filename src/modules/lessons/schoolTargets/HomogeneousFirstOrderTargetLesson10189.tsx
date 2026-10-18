@@ -1,382 +1,53 @@
-import { Eye, EyeOff, RotateCcw } from "lucide-react";
-import { useMemo, useState } from "react";
-import type { PointerEvent as ReactPointerEvent } from "react";
-import { Link } from "react-router-dom";
-import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
-import "./HomogeneousFirstOrderTargetLesson10189.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-
-const fmt = (n: number, d = 4) => Number(n.toFixed(d));
-export default function HomogeneousFirstOrderTargetLesson10189({
-  lesson: _lesson,
-}: {
-  lesson: SchoolSyllabusLesson;
-}) {
-  const [scale, setScale] = useState(1),
-    [showSlope, setShowSlope] = useState(true),
-    [solution, setSolution] = useState(true),
-    [work, setWork] = useState(""),
-    [feedback, setFeedback] = useState("");
-  const x = 4 * scale,
-    y = 2 * scale,
-    v = y / x,
-    slope = 1 + v;
-  const families = useMemo(
-    () =>
-      [-2, -1, 0, 1, 2].map((c) => ({
-        c,
-        points: Array.from({ length: 181 }, (_, i) => {
-          const px = -4 + (i * 8) / 180;
-          if (Math.abs(px) < 0.05) return null;
-          const py = px * Math.log(Math.abs(px)) + c * px;
-          return `${190 + px * 40},${145 - py * 22}`;
-        })
-          .filter(Boolean)
-          .join(" "),
-      })),
-    [],
-  );
-  const change = (n: number) =>
-    setScale(Math.max(0.25, Math.min(1.45, Math.round(n * 20) / 20)));
-  const drag = (e: ReactPointerEvent<SVGCircleElement>) => {
-    e.currentTarget.setPointerCapture(e.pointerId);
-    const svg = e.currentTarget.ownerSVGElement!;
-    const move = (p: PointerEvent) => {
-      const r = svg.getBoundingClientRect();
-      change((((p.clientX - r.left) / r.width) * 12 - 6) / 4);
-    };
-    const stop = () => {
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerup", stop);
-    };
-    window.addEventListener("pointermove", move);
-    window.addEventListener("pointerup", stop);
-  };
-  const reset = () => {
-    setScale(1);
-    setShowSlope(true);
-    setSolution(true);
-    setWork("");
-    setFeedback("");
-  };
-  const check = () => {
-    const s = work.toLowerCase().replace(/\s/g, "");
-    setFeedback(
-      (s.includes("v=y/x") || s.includes("y=vx")) &&
-        s.includes("ln|x|") &&
-        s.includes("cx")
-        ? "Correct: ratio substitution gives y = x ln|x| + Cx, x ≠ 0."
-        : "Show v=y/x, use y=vx and y′=v+xv′, integrate dv=dx/x, then back-substitute.",
-    );
-  };
-  return (
-    <main
-      className="hfo10189-page"
-      data-testid="school-mockup-0863"
-      data-object-model="dedicated-homogeneous-ratio-substitution-engine"
-      data-x={fmt(x, 2)}
-      data-y={fmt(y, 2)}
-      data-ratio={fmt(v)}
-      data-slope={fmt(slope)}
-    >
-      <header className="hfo-hero">
-        <small>CLASS 12 · DIFFERENTIAL EQUATIONS</small>
-        <h1>Homogeneous First-Order Equations</h1>
-        <p>Ratio-substitution lab for dy/dx = (x+y)/x = 1 + y/x.</p>
-        <div>
-          <span>18 min</span>
-          <span>ADVANCED</span>
-          <span>CONCEPT</span>
-          <span>calculus</span>
-        </div>
-      </header>
-      <section className="hfo-lab">
-        <h3>♙ &nbsp; RATIO-SUBSTITUTION LAB</h3>
-        <div className="hfo-grid">
-          <article className="hfo-geometry">
-            <h3>❶ &nbsp; Geometry: slope depends only on v = y/x</h3>
-            <p className="formula">
-              dy/dx = 1 + y/x = 1 + v is constant along each ray from the
-              origin.
-            </p>
-            <div className="hfo-graph-row">
-              <aside>
-                <b>Drag point P</b>
-                <strong>
-                  P({fmt(x, 2)}, {fmt(y, 2)})
-                </strong>
-                <hr />
-                <b>v = y/x</b>
-                <strong>{fmt(v)}</strong>
-                <hr />
-                <b>Slope</b>
-                <strong>{fmt(slope)}</strong>
-                <p>Move P along the same ray. Slope stays the same.</p>
-                <button onClick={reset}>
-                  <RotateCcw /> Reset point
-                </button>
-              </aside>
-              <div>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={showSlope}
-                    onChange={(e) => setShowSlope(e.target.checked)}
-                  />{" "}
-                  Show slope value
-                </label>
-                <svg
-                  viewBox="0 0 390 340"
-                  aria-label="Ratio invariant ray graph"
-                >
-                  {Array.from({ length: 13 }, (_, i) => (
-                    <g key={i}>
-                      <line
-                        x1={30 + i * 27}
-                        y1="20"
-                        x2={30 + i * 27}
-                        y2="320"
-                        className="gridline"
-                      />
-                      <line
-                        x1="30"
-                        y1={20 + i * 25}
-                        x2="360"
-                        y2={20 + i * 25}
-                        className="gridline"
-                      />
-                    </g>
-                  ))}
-                  {[-1.5, -1, -0.5, 0.5, 1, 1.5].map((m) => (
-                    <line
-                      key={m}
-                      x1="195"
-                      y1="170"
-                      x2={195 + 150 * Math.sign(m)}
-                      y2={170 - 150 * Math.abs(m)}
-                      className="ray muted"
-                    />
-                  ))}
-                  <line x1="30" y1="170" x2="365" y2="170" className="axis" />
-                  <line x1="195" y1="15" x2="195" y2="325" className="axis" />
-                  <line
-                    x1="195"
-                    y1="170"
-                    x2={195 + x * 32}
-                    y2={170 - y * 32}
-                    className="ray active"
-                  />
-                  <circle
-                    cx={195 + x * 32}
-                    cy={170 - y * 32}
-                    r="7"
-                    tabIndex={0}
-                    onPointerDown={drag}
-                    onKeyDown={(e) => {
-                      if (e.key === "ArrowLeft") change(scale - 0.05);
-                      if (e.key === "ArrowRight") change(scale + 0.05);
-                    }}
-                  />
-                  <text x={205 + x * 32} y={165 - y * 32}>
-                    P ({fmt(x, 1)}, {fmt(y, 1)})
-                  </text>
-                  {showSlope && (
-                    <g>
-                      <rect x="210" y="205" width="145" height="58" rx="7" />
-                      <text x="220" y="225">
-                        v = tan θ = y/x = {fmt(v)}
-                      </text>
-                      <text x="220" y="247">
-                        Slope = 1 + v = {fmt(slope)}
-                      </text>
-                    </g>
-                  )}
-                </svg>
-                <input
-                  aria-label="Point along ray"
-                  type="range"
-                  min=".25"
-                  max="1.45"
-                  step=".05"
-                  value={scale}
-                  onChange={(e) => change(Number(e.target.value))}
-                />
-              </div>
-            </div>
-            <p className="hfo-key">
-              <b>Key fact:</b> All points on the same ray (same v) give the same
-              slope 1+v.
-            </p>
-          </article>
-          <article className="hfo-derive">
-            <h3>❷ &nbsp; Ratio substitution &amp; solve</h3>
-            {[
-              ["Substitute", "y = vx", "Let v=y/x. Then y=vx."],
-              ["Differentiate (product rule)", "dy/dx = v + x dv/dx", ""],
-              ["Substitute into the equation", "v + x dv/dx = 1 + v", ""],
-              ["Simplify", "dv/dx = 1/x", ""],
-              ["Integrate", "v = ln|x| + C", ""],
-              ["Back-substitute v=y/x", "y = x ln|x| + Cx", ""],
-            ].map(([a, b, c], i) => (
-              <div key={a}>
-                <i>{i + 1}</i>
-                <b>{a}</b>
-                <p className="formula">{b}</p>
-                {c && <small>{c}</small>}
-              </div>
-            ))}
-            <strong className="hfo-answer">
-              General solution: y = x ln|x| + Cx, &nbsp; x ≠ 0
-            </strong>
-          </article>
-        </div>
-      </section>
-      <section className="hfo-middle">
-        <article>
-          <h3>❸ &nbsp; Scale test (homogeneity test)</h3>
-          <p className="formula">F(x,y) = (x+y)/x</p>
-          <table>
-            <thead>
-              <tr>
-                <th>(x,y)</th>
-                <th>F(x,y)</th>
-                <th>(tx,ty)</th>
-                <th>F(tx,ty)</th>
-                <th>Equal?</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ["(3,1)", "4/3", "(6,2)", "4/3"],
-                ["(2,−1)", "1/2", "(6,−3)", "1/2"],
-                ["(−4,2)", "1/2", "(−8,4)", "1/2"],
-              ].map((r) => (
-                <tr key={r[0]}>
-                  {r.map((c) => (
-                    <td key={c}>{c}</td>
-                  ))}
-                  <td>✓</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p>
-            Since F(tx,ty)=F(x,y) for all t≠0, the equation is homogeneous of
-            degree 0.
-          </p>
-        </article>
-        <article>
-          <h3>❹ &nbsp; Slope field &amp; solution family</h3>
-          <svg viewBox="0 0 380 290">
-            {Array.from({ length: 13 * 11 }, (_, i) => {
-              const col = i % 13,
-                row = Math.floor(i / 13),
-                px = -3 + col * 0.5,
-                py = -2.5 + row * 0.5,
-                m = Math.abs(px) < 0.1 ? 8 : 1 + py / px,
-                a = Math.atan(m),
-                cx = 35 + col * 25,
-                cy = 150 - row * 20,
-                dx = Math.cos(a) * 6,
-                dy = -Math.sin(a) * 6;
-              return (
-                <line
-                  key={i}
-                  x1={cx - dx}
-                  y1={cy - dy}
-                  x2={cx + dx}
-                  y2={cy + dy}
-                  className="slope"
-                />
-              );
-            })}
-            {families.map((f, i) => (
-              <polyline
-                key={f.c}
-                points={f.points}
-                className={`family c${i}`}
-              />
-            ))}
-          </svg>
-          <div className="hfo-legend">
-            {families.map((f) => (
-              <span key={f.c}>C = {f.c}</span>
-            ))}
-          </div>
-          <p>
-            <b>Domain:</b> x ≠ 0. Solutions exist on each interval (−∞,0) and
-            (0,∞).
-          </p>
-        </article>
-        <article>
-          <h3>❺ &nbsp; Domain &amp; caution</h3>
-          <div className="hfo-domain">Domain: x ≠ 0</div>
-          <div className="hfo-warn">
-            <b>⚠ Do not confuse!</b>
-            <p>
-              This is NOT a homogeneous linear equation of the form
-              dy/dx+P(x)y=Q(x).
-            </p>
-            <p>
-              It is homogeneous first-order because F(x,y) depends only on y/x
-              and satisfies F(tx,ty)=F(x,y).
-            </p>
-          </div>
-        </article>
-      </section>
-      <section className="hfo-practice">
-        <div className="hfo-practice-title">
-          <h3>❻ &nbsp; Targeted Practice</h3>
-          <button onClick={() => setSolution((x) => !x)}>
-            {solution ? <EyeOff /> : <Eye />}
-            {solution ? "Hide solution" : "Show solution"}
-          </button>
-        </div>
-        <div>
-          <aside>
-            <b>Problem</b>
-            <p className="formula">dy/dx = (x+y)/x</p>
-          </aside>
-          <label>
-            Your work (sketch steps)
-            <textarea
-              value={work}
-              onChange={(e) => setWork(e.target.value)}
-              placeholder="Write your steps here..."
-            />
-            <button onClick={check}>◎ Check answer</button>
-            {feedback && (
-              <p
-                className={
-                  feedback.startsWith("Correct") ? "correct" : "incorrect"
-                }
-              >
-                {feedback}
-              </p>
-            )}
-          </label>
-        </div>
-        {solution && (
-          <p>
-            <b>Full solution</b>
-            <br />
-            Using v=y/x, the solution is y=x ln|x|+Cx, x≠0.
-          </p>
-        )}
-      </section>
-      <nav className="hfo-nav">
-        <Link to="/lessons/school/class-12/class-12-differential-equations-variable-separable-equations">
-          ← Variable-Separable Equations
-        </Link>
-        <Link to="/lessons/school/class-12/class-12-differential-equations-linear-first-order-equations">
-          Linear First-Order Equations →
-        </Link>
-      </nav>
-      <div className="hfo-complete">
-        Ratio preserved · homogeneous equation solved · domain checked
-      </div>
-      <LessonTopicStudyBoard lessonId={10189} alwaysVisible />
-
-    </main>
-  );
+import {CheckCircle2, Eye, EyeOff, FlaskConical, RotateCcw, Star, TriangleAlert} from 'lucide-react';
+import {useId, useRef, useState} from 'react';
+import type {PointerEvent as ReactPointerEvent} from 'react';
+import {Link} from 'react-router-dom';
+import MathExpression from '../../../components/ui/MathExpression';
+import type {SchoolSyllabusLesson} from '../syllabus/lessonSyllabusTypes';
+import LessonMockupFooter from '../components/LessonMockupFooter';
+import {checkHomogeneousWork,homogeneousSlope,rayScale,scaleExamples,solutionBranch} from './homogeneousFirstOrderModel';
+import './HomogeneousFirstOrderTargetLesson10189.css';
+import '../components/LessonMockupReference.css';
+const M=({value}:{value:string})=><MathExpression value={value}/>;
+const values=[2,1,0,-1,-2],colors=['#4c9bd5','#f48ba2','#f34d68','#277bff','#20b34f'];
+const X=(x:number)=>200+28*x,Y=(y:number)=>230-28*y;
+function fraction(a:number,b:number){let x=Math.abs(a),y=Math.abs(b);while(y){const r=x%y;x=y;y=r;}return String.raw`\dfrac{${a/(x||1)*(b<0?-1:1)}}{${Math.abs(b)/(x||1)}}`;}
+function FamilyPlot({visible}:{visible:number[]}){
+ const clip=useId().replace(/:/g,''),px=(x:number)=>130+26*x,py=(y:number)=>130-26*y;
+ return <svg viewBox="0 0 260 260" role="img" aria-label="Homogeneous slope field and solution family"><defs><clipPath id={clip}><rect x="22" y="22" width="216" height="216"/></clipPath></defs><g clipPath={`url(#${clip})`}>
+ {Array.from({length:17*17},(_,i)=>{const x=-4+(i%17)*.5,y=-4+Math.floor(i/17)*.5,m=homogeneousSlope(x,y);if(m===null)return null;const a=Math.atan(m),dx=Math.cos(a)*3.8,dy=-Math.sin(a)*3.8;return <line data-field-x={x} data-slope={m} key={i} x1={px(x)-dx} x2={px(x)+dx} y1={py(y)-dy} y2={py(y)+dy} className="hfo-field-mark"/>;})}
+ {values.filter(c=>visible.includes(c)).flatMap(c=>([-1,1] as const).map(side=><polyline data-constant={c} data-side={side} key={`${c}:${side}`} points={solutionBranch(c,side).map(p=>`${px(p.x)},${py(p.y)}`).join(' ')} stroke={colors[values.indexOf(c)]} className="hfo-family-curve"/>))}
+ </g><path d="M20 130H242l-5 -3m5 3l-5 3M130 241V18l-3 5m3 -5l3 5" className="hfo-axis" fill="none"/>
+ {[-4,-3,-2,-1,1,2,3,4].map(n=><g key={n} className="hfo-mini-ticks"><path d={`M${px(n)} 127v6M127 ${py(n)}h6`}/><text x={px(n)} y="143" textAnchor="middle">{n}</text><text x="120" y={py(n)+3} textAnchor="end">{n}</text></g>)}<path d="M130 22V238" className="hfo-excluded-axis"/><circle cx="130" cy="130" r="2.5" fill="white" stroke="#8d9aac"/><text x="244" y="142">x</text><text x="137" y="17">y</text></svg>;
+}
+export default function HomogeneousFirstOrderTargetLesson10189({lesson}:{lesson:SchoolSyllabusLesson}){
+ const [scale,setScale]=useState(1),[showSlope,setShowSlope]=useState(true),[solution,setSolution]=useState(true),[work,setWork]=useState(''),[feedback,setFeedback]=useState<{correct:boolean;message:string}|null>(null),[visible,setVisible]=useState(values),[bookmarked,setBookmarked]=useState(()=>{try{return localStorage.getItem('lesson-10189-bookmarked')==='true';}catch{return false;}});
+ const clip=useId().replace(/:/g,''),dragging=useRef(false),x=4*scale,y=2*scale,v=y/x,slope=homogeneousSlope(x,y)!;
+ const move=(e:ReactPointerEvent<SVGSVGElement>)=>{if(!dragging.current)return;const matrix=e.currentTarget.getScreenCTM();if(!matrix)return;const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(matrix.inverse());setScale(rayScale((p.x-200)/28,(230-p.y)/28));};
+ const stop=(e:ReactPointerEvent<SVGSVGElement>)=>{dragging.current=false;if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);};
+ const bookmark=()=>{const next=!bookmarked;setBookmarked(next);try{localStorage.setItem('lesson-10189-bookmarked',String(next));}catch{/* Keep the local control usable when storage is unavailable. */}};
+ const derive=[
+  ['Substitute',<><M value="y=vx"/><p>Let <M value={String.raw`v=\dfrac yx`}/>. Then <M value="y=vx"/>.</p></>],
+  ['Differentiate (product rule)',<M value={String.raw`\dfrac{dy}{dx}=v+x\dfrac{dv}{dx}`}/>],
+  ['Substitute into the equation',<M value={String.raw`v+x\dfrac{dv}{dx}=1+v`}/>],
+  ['Simplify',<M value={String.raw`x\dfrac{dv}{dx}=1\quad\Rightarrow\quad\dfrac{dv}{dx}=\dfrac1x`}/>],
+  ['Integrate',<M value={String.raw`v=\int\dfrac1x\,dx=\ln|x|+C`}/>],
+  ['Back-substitute',<><M value={String.raw`\dfrac yx=\ln|x|+C`}/><span>⇒</span><M value={String.raw`\boxed{y=x\ln|x|+Cx}`}/></>]
+ ] as const;
+ return <main className="hfo10189-page lesson-reference" data-testid="school-mockup-0863" data-object-model="dedicated-homogeneous-ratio-substitution-engine" data-x={Number(x.toFixed(2))} data-y={Number(y.toFixed(2))} data-scale={scale} data-ratio={Number(v.toFixed(4))} data-slope={Number(slope.toFixed(4))}>
+  <section className="hfo-hero"><Link className="hfo-school" to="/school">← School lessons</Link><small>CLASS 12 · DIFFERENTIAL EQUATIONS</small><div className="hfo-title-line"><h1>{lesson.title}</h1><button className="hfo-bookmark" aria-label={bookmarked?'Remove bookmark':'Bookmark lesson'} aria-pressed={bookmarked} onClick={bookmark}><Star fill={bookmarked?'currentColor':'none'}/></button></div><p>Ratio-substitution lab for <M value={String.raw`\dfrac{dy}{dx}=\dfrac{x+y}{x}=1+\dfrac yx`}/></p><div className="hfo-badges">{['18 min','ADVANCED','CONCEPT','calculus'].map(a=><span key={a}>{a}</span>)}</div></section>
+  <section className="hfo-lab"><h2><FlaskConical/> RATIO-SUBSTITUTION LAB</h2><div className="hfo-grid"><article className="hfo-geometry"><h3><span className="hfo-number">1</span> Geometry: slope depends only on <M value={String.raw`v=\dfrac yx`}/></h3><p className="hfo-intro"><M value={String.raw`\dfrac{dy}{dx}=1+\dfrac yx=1+v`}/> is constant along each ray from the origin.</p><div className="hfo-graph-row"><aside className="hfo-readouts"><div><b>Drag point P</b><strong className="hfo-point-value">P({x.toFixed(2)}, {y.toFixed(2)})</strong><hr/><b><M value={String.raw`v=\dfrac yx`}/></b><strong>{v.toFixed(4)}</strong><hr/><b>Slope</b><strong>{slope.toFixed(4)}</strong></div><div><p>Move <em>P</em> along the same ray (line OP). Slope stays the same.</p></div><button onClick={()=>setScale(1)}><RotateCcw/> Reset point</button></aside><div className="hfo-ray-wrap"><label><input type="checkbox" checked={showSlope} onChange={e=>setShowSlope(e.target.checked)}/> Show slope value</label><svg viewBox="0 0 400 460" role="img" aria-label="Ratio invariant ray graph" onPointerMove={move} onPointerUp={stop} onPointerCancel={stop} onLostPointerCapture={()=>{dragging.current=false;}}><defs><clipPath id={clip}><rect x="18" y="18" width="364" height="424" rx="8"/></clipPath></defs><rect className="hfo-plot-bg" x="18" y="18" width="364" height="424" rx="8"/><g clipPath={`url(#${clip})`}>
+  {Array.from({length:31},(_,i)=>i-15).map(n=><g key={n} className={n%2===0?'hfo-grid-major':'hfo-grid-minor'}><path d={`M${X(n/2)} 18V442M18 ${Y(n/2)}H382`}/></g>)}
+  {[-3,-2,-1.5,-1,-.5,0,.5,1,1.5,2,3].map(m=><line key={m} x1={X(-9)} y1={Y(-9*m)} x2={X(9)} y2={Y(9*m)} className="hfo-muted-ray"/>)}
+  <path d={`M${X(0)} ${Y(0)}L${X(6.4)} ${Y(3.2)}`} className="hfo-active-ray"/>
+  </g><path d="M18 230H388l-6 -3m6 3l-6 3M200 442V12l-3 6m3 -6l3 6" className="hfo-axis" fill="none"/>
+  {[-6,-5,-4,-3,-2,-1,1,2,3,4,5,6].map(n=><g key={n} className="hfo-ray-ticks"><path d={`M${X(n)} 227v6M197 ${Y(n)}h6`}/><text x={X(n)} y="246" textAnchor="middle">{n}</text><text x="190" y={Y(n)+4} textAnchor="end">{n}</text></g>)}<text x="190" y="246">0</text><text x="390" y="246">x</text><text x="207" y="14">y</text><path d="M235 230 A35 35 0 0 0 231.305 214.348" className="hfo-angle"/><text x="239" y="218" className="hfo-theta">θ</text><circle cx="200" cy="230" r="2.5" className="hfo-origin"/>
+  <circle className="hfo-point" cx={X(x)} cy={Y(y)} r="6" role="slider" aria-label="Point along ray" aria-valuemin={.25} aria-valuemax={1.45} aria-valuenow={scale} aria-valuetext={`P(${x.toFixed(2)}, ${y.toFixed(2)}), slope ${slope.toFixed(4)}`} tabIndex={0} onPointerDown={e=>{e.preventDefault();dragging.current=true;e.currentTarget.ownerSVGElement!.setPointerCapture(e.pointerId);}} onKeyDown={e=>{if(['ArrowLeft','ArrowDown','ArrowRight','ArrowUp','Home','End'].includes(e.key)){e.preventDefault();setScale(e.key==='Home'?.25:e.key==='End'?1.45:Math.max(.25,Math.min(1.45,Math.round((scale+(['ArrowRight','ArrowUp'].includes(e.key)?.05:-.05))*20)/20)));}}}/><text className="hfo-point-label" textAnchor={x>4.5?'end':'start'} x={X(x)-12} y={Y(y)-14}>P ({Number(x.toFixed(2))}, {Number(y.toFixed(2))})</text>
+  {showSlope&&<g className="hfo-slope-callout"><rect x="215" y="305" width="165" height="66" rx="7"/><foreignObject x="225" y="308" width="145" height="34"><div className="hfo-callout-text"><M value={String.raw`v=\tan\theta=\dfrac yx=0.5`}/></div></foreignObject><text x="225" y="356" textLength="145" lengthAdjust="spacingAndGlyphs">Slope on this ray = 1 + v = 1.5</text></g>}
+  </svg></div></div><p className="hfo-key"><b>Key fact:</b> All points on the same ray (same <M value="v"/>) give the same slope <M value="1+v"/>.</p></article>
+  <article className="hfo-derive"><h3><span className="hfo-number">2</span> Ratio substitution &amp; solve</h3>{derive.map(([title,math],i)=><div className="hfo-step" key={title}><i>{i+1}</i><h4>{title} {i===0&&<M value="y=vx"/>}{i===5&&<M value={String.raw`v=\dfrac yx`}/>}</h4><div className="hfo-step-math">{i===0?<p>Let <M value={String.raw`v=\dfrac yx`}/>. Then <M value="y=vx"/>.</p>:math}</div></div>)}<div className="hfo-answer"><b>General solution:</b><M value={String.raw`y=x\ln|x|+Cx,\quad x\ne0`}/></div></article></div></section>
+  <section className="hfo-middle"><article className="hfo-scale-test"><h3><span className="hfo-number">3</span> Scale test (homogeneity test)</h3><p className="hfo-scale-equation"><M value={String.raw`F(x,y)=\dfrac{x+y}{x}`}/></p><table><thead><tr><th>(x, y)</th><th><M value="F(x,y)"/></th><th>(tx, ty)</th><th><M value="F(tx,ty)"/></th><th>Equal?</th></tr></thead><tbody>{scaleExamples.map(p=><tr key={p.x} data-factor={p.t}><td>({p.x}, {p.y})</td><td><M value={fraction(p.x+p.y,p.x)}/></td><td>({p.scaledX}, {p.scaledY})</td><td><M value={fraction(p.scaledX+p.scaledY,p.scaledX)}/></td><td><CheckCircle2 aria-label="Equal"/></td></tr>)}</tbody></table><p>Since <M value="F(tx,ty)=F(x,y)"/> for all <M value={String.raw`t\ne0`}/>, the equation is <b>homogeneous of degree 0</b>.</p></article><article className="hfo-family"><h3><span className="hfo-number">4</span> Slope field &amp; solution family</h3><p><M value={String.raw`\dfrac{dy}{dx}=1+\dfrac yx`}/></p><div className="hfo-family-layout"><FamilyPlot visible={visible}/><div className="hfo-legend"><M value={String.raw`y=x\ln|x|+Cx`}/>{values.map((c,i)=><button key={c} aria-label={`Show C=${c}`} aria-pressed={visible.includes(c)} style={{color:colors[i]}} onClick={()=>setVisible(old=>old.includes(c)?old.filter(n=>n!==c):[...old,c])}><i/> C = {c}</button>)}</div></div><div className="hfo-family-domain"><b>Domain:</b> <M value={String.raw`x\ne0`}/> (equation undefined at <M value="x=0"/>).<br/>Solutions exist on each interval <M value={String.raw`(-\infty,0)`}/> and <M value={String.raw`(0,\infty)`}/>.</div></article><article className="hfo-caution"><h3><span className="hfo-number">5</span> Domain &amp; caution</h3><div className="hfo-domain">Domain: <M value={String.raw`x\ne0`}/></div><div className="hfo-warn"><b><TriangleAlert/> Do not confuse!</b><p>“Homogeneous” here describes the ratio form, not a homogeneous linear equation <M value="y'+P(x)y=0"/>.</p><p>This equation is also linear: <M value={String.raw`y'-\dfrac yx=1`}/> with a nonzero right side.</p><p>It is ratio-homogeneous because <M value="F(x,y)"/> depends only on <M value={String.raw`\dfrac yx`}/> and satisfies <M value="F(tx,ty)=F(x,y)"/>.</p></div></article></section>
+  <section className="hfo-practice"><div className="hfo-practice-title"><div><h3><span className="hfo-number">6</span> Targeted Practice</h3><p>Solve using ratio substitution.</p></div><button onClick={()=>setSolution(s=>!s)} aria-expanded={solution}>{solution?<EyeOff/>:<Eye/>}{solution?'Hide solution':'Show solution'}</button></div><div className="hfo-practice-work"><aside><b>Problem</b><p><M value={String.raw`\dfrac{dy}{dx}=\dfrac{x+y}{x}`}/></p></aside><div><label htmlFor="hfo-work-10189">Your work (sketch steps)</label><textarea id="hfo-work-10189" value={work} onChange={e=>{setWork(e.target.value);setFeedback(null);}} placeholder="Write your steps here..."/><button onClick={()=>setFeedback(checkHomogeneousWork(work))}><CheckCircle2/> Check answer</button>{feedback&&<p role="status" className={feedback.correct?'correct':'incorrect'}>{feedback.message}</p>}</div></div>{solution&&<div className="hfo-full-solution"><b>Full solution</b><p>Using <M value={String.raw`v=\dfrac yx`}/>, the solution is <M value={String.raw`y=x\ln|x|+Cx,\quad x\ne0`}/>.</p></div>}</section>
+  <nav className="hfo-nav"><Link to="/lessons/school/class-12/class-12-differential-equations-variable-separable-equations">← Variable-Separable Equations</Link><Link to="/lessons/school/class-12/class-12-differential-equations-linear-first-order-equations">Linear First-Order Equations →</Link></nav><LessonMockupFooter/>
+ </main>;
 }

@@ -303,7 +303,9 @@ export default function AttachDetachTargetLesson202({
             and move freely.
           </p>
         </section>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content ad202-header"><aside>
           <article>
             <Focus />
             <span>
@@ -327,8 +329,7 @@ export default function AttachDetachTargetLesson202({
               Level<strong>Middle School</strong>
             </span>
           </article>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="ad202-tabs">
         {[
           "Interaction + visualization",

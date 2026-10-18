@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "default result, chips and contribution labels",
+    "complementary sliders and numeric controls",
+    "equal likelihoods and changed bar scale",
+    "zero-total undefined shares",
+    "0/1 prior and likelihood boundaries",
+    "all practice reveals and reset",
+    "all section tabs and theorem rendering"
+  ]
+}

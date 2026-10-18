@@ -1,366 +1,51 @@
-import { CheckCircle2, Copy, Lightbulb, RotateCcw } from "lucide-react";
-import { useMemo, useState } from "react";
+import { CheckCircle2, CircleAlert, Copy, Lightbulb, RotateCcw, ShieldCheck } from "lucide-react";
+import { useId, useState } from "react";
 import { Link } from "react-router-dom";
+import MathExpression from "../../../components/ui/MathExpression";
+import LessonMockupFooter from "../components/LessonMockupFooter";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
+import { coefficientState, parseFraction, rationalBranches, rationalFunction, solveLinearFractions, stepFraction } from "./partialFractionsModel";
 import "./PartialFractionsTargetLesson10182.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-
-const fmt = (value: number) => Number(value.toFixed(2));
-
-export default function PartialFractionsTargetLesson10182({
-  lesson: _lesson,
-}: {
-  lesson: SchoolSyllabusLesson;
-}) {
-  const [a, setA] = useState(2);
-  const [b, setB] = useState(1);
-  const [practiceA, setPracticeA] = useState(0);
-  const [practiceB, setPracticeB] = useState(0);
-  const [practiceFeedback, setPracticeFeedback] = useState("");
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [showProper, setShowProper] = useState(false);
-  const coefficientX = a + b;
-  const constant = 2 * a + b;
-  const solved =
-    Math.abs(coefficientX - 3) < 0.001 && Math.abs(constant - 5) < 0.001;
-  const graphPaths = useMemo(() => {
-    const segments: string[][] = [[], [], []];
-    for (let i = 0; i <= 480; i += 1) {
-      const x = -7 + (14 * i) / 480;
-      if (Math.abs(x + 2) < 0.03 || Math.abs(x + 1) < 0.03) continue;
-      const y = (3 * x + 5) / (x * x + 3 * x + 2);
-      if (Math.abs(y) > 8) continue;
-      const segment = x < -2 ? 0 : x < -1 ? 1 : 2;
-      segments[segment].push(`${170 + x * 21},${118 - y * 13}`);
-    }
-    return segments.map((points) => points.join(" "));
-  }, []);
-  const reset = () => {
-    setA(2);
-    setB(1);
-    setPracticeA(0);
-    setPracticeB(0);
-    setPracticeFeedback("");
-    setShowAnswer(false);
-    setShowProper(false);
-  };
-  const solve = () => {
-    setA(2);
-    setB(1);
-  };
-  const checkPractice = () => {
-    const correct =
-      Math.abs(practiceA - 13 / 5) < 0.01 && Math.abs(practiceB + 3 / 5) < 0.01;
-    setPracticeFeedback(
-      correct
-        ? "Correct: recombination gives 2x+7."
-        : "Recheck A+B=2 and −2A−3B=7.",
-    );
-  };
-
-  return (
-    <main
-      className="pf10182-page"
-      data-testid="school-mockup-0856"
-      data-object-model="dedicated-partial-fraction-coefficient-engine"
-      data-a={fmt(a)}
-      data-b={fmt(b)}
-      data-x-coefficient={fmt(coefficientX)}
-      data-constant={fmt(constant)}
-      data-solved={String(solved)}
-    >
-      <header>
-        <small>CLASS 12 · FORMAL CALCULUS</small>
-        <h1>Integration by Partial Fractions</h1>
-        <p>
-          Decompose and integrate the rational expression{" "}
-          <b>(3x+5)/(x²+3x+2)</b>.
-        </p>
-        <div>
-          <span>18 min</span>
-          <span>ADVANCED</span>
-          <span>CONCEPT</span>
-          <span>lab</span>
-        </div>
-      </header>
-
-      <section className="pf-prereq">
-        <article>
-          <h3>Prerequisite: Proper Fraction</h3>
-          <p>
-            For partial fractions, the numerator degree must be strictly less
-            than the denominator degree.
-          </p>
-          <b>
-            Here: deg(3x+5)=1 &lt; deg(x²+3x+2)=2 <CheckCircle2 />
-          </b>
-        </article>
-        <article>
-          <h3>Warning: Not a Proper Fraction?</h3>
-          <p>
-            If the numerator degree is greater than or equal to the
-            denominator's, divide first.
-          </p>
-          <button onClick={() => setShowProper((value) => !value)}>
-            {showProper ? "Hide explanation" : "Learn more"}
-          </button>
-          {showProper && (
-            <p>
-              Polynomial division writes it as Polynomial + Proper Fraction.
-            </p>
-          )}
-        </article>
-      </section>
-
-      <section className="pf-body">
-        <section className="pf-lab">
-          <div className="pf-title">
-            <h3>RATIONAL-EXPRESSION DECOMPOSITION LAB</h3>
-            <button onClick={reset}>
-              <RotateCcw /> Reset lab
-            </button>
-          </div>
-          <article>
-            <h4>
-              <i>1</i> Factor the denominator
-            </h4>
-            <p>x²+3x+2=(x+1)(x+2)</p>
-            <b className="ok">Correct ✓</b>
-          </article>
-          <article>
-            <h4>
-              <i>2</i> Set up the partial fraction form
-            </h4>
-            <p>(3x+5)/((x+1)(x+2)) = A/(x+1) + B/(x+2)</p>
-            <div className="pf-steppers">
-              <label>
-                A (coefficient)
-                <span>
-                  <button onClick={() => setA((v) => fmt(v - 1))}>−</button>
-                  <input
-                    aria-label="Coefficient A"
-                    type="number"
-                    value={a}
-                    onChange={(e) => setA(Number(e.target.value))}
-                  />
-                  <button onClick={() => setA((v) => fmt(v + 1))}>+</button>
-                </span>
-              </label>
-              <label>
-                B (coefficient)
-                <span>
-                  <button onClick={() => setB((v) => fmt(v - 1))}>−</button>
-                  <input
-                    aria-label="Coefficient B"
-                    type="number"
-                    value={b}
-                    onChange={(e) => setB(Number(e.target.value))}
-                  />
-                  <button onClick={() => setB((v) => fmt(v + 1))}>+</button>
-                </span>
-              </label>
-            </div>
-            <button onClick={solve}>Solve automatically</button>
-          </article>
-          <article>
-            <h4>
-              <i>3</i> Clear denominators and expand
-            </h4>
-            <p>3x+5=A(x+2)+B(x+1)</p>
-            <p>3x+5=(A+B)x+(2A+B)</p>
-          </article>
-          <article>
-            <h4>
-              <i>4</i> Match coefficients
-            </h4>
-            <div className="pf-match">
-              <span>
-                A+B={fmt(coefficientX)}
-                <b>
-                  {Math.abs(coefficientX - 3) < 0.001
-                    ? "✓ Satisfied"
-                    : "Needs 3"}
-                </b>
-              </span>
-              <span>
-                2A+B={fmt(constant)}
-                <b>
-                  {Math.abs(constant - 5) < 0.001 ? "✓ Satisfied" : "Needs 5"}
-                </b>
-              </span>
-            </div>
-            <div className={solved ? "pf-solved on" : "pf-solved"}>
-              <Lightbulb />{" "}
-              {solved
-                ? `Solved coefficients: A=${a}, B=${b}`
-                : "Adjust A and B until both equations are satisfied."}
-            </div>
-          </article>
-          <article>
-            <h4>
-              <i>5</i> Write the decomposition
-            </h4>
-            <h2>
-              (3x+5)/(x²+3x+2) = {a}/(x+1) + {b}/(x+2)
-            </h2>
-          </article>
-          <article>
-            <h4>
-              <i>6</i> Integrate both sides
-            </h4>
-            <h2>
-              ∫(3x+5)/(x²+3x+2)dx = {a}ln|x+1| + {b}ln|x+2| + C
-            </h2>
-            <div className={solved ? "pf-final on" : "pf-final"}>
-              Final answer:{" "}
-              {solved
-                ? "2ln|x+1| + ln|x+2| + C"
-                : "Solve the coefficient equations first."}
-              <button
-                aria-label="Copy final answer"
-                onClick={() =>
-                  navigator.clipboard?.writeText("2ln|x+1| + ln|x+2| + C")
-                }
-              >
-                <Copy />
-              </button>
-            </div>
-          </article>
-        </section>
-
-        <aside className="pf-side">
-          <section>
-            <h3>GRAPH OF THE FUNCTION</h3>
-            <p>f(x)=(3x+5)/(x²+3x+2)</p>
-            <svg viewBox="0 0 340 236" aria-label="Rational function graph">
-              <path d="M15 118H325M170 10V225" stroke="#65758a" />
-              <path
-                d="M128 12V225M149 12V225"
-                stroke="#ff4b64"
-                strokeDasharray="5 4"
-              />
-              {graphPaths.map((points, index) => (
-                <polyline
-                  key={index}
-                  points={points}
-                  fill="none"
-                  stroke="#1475ef"
-                  strokeWidth="2.2"
-                />
-              ))}
-            </svg>
-            <p>
-              <b>Vertical asymptotes:</b> x=−2, x=−1
-            </p>
-            <p>
-              <b>Horizontal asymptote:</b> y=0
-            </p>
-            <div>Domain: ℝ \ {"{−2, −1}"}</div>
-          </section>
-          <section>
-            <h3>METHODS TO FIND COEFFICIENTS</h3>
-            <div className="pf-methods">
-              <article>
-                <b>1 Cover-Up Method</b>
-                <p>A=lim(x→−1)(x+1)f(x)=2</p>
-                <p>B=lim(x→−2)(x+2)f(x)=1</p>
-              </article>
-              <article>
-                <b>2 Coefficient Comparison</b>
-                <p>A+B=3</p>
-                <p>2A+B=5</p>
-                <p>A=2, B=1</p>
-              </article>
-            </div>
-          </section>
-          <div className="pf-checks">
-            <article>
-              <h3>VERIFY BY RECOMBINING</h3>
-              <p>
-                {a}/(x+1)+{b}/(x+2)
-              </p>
-              <p>
-                =[{fmt(coefficientX)}x+{fmt(constant)}]/[(x+1)(x+2)]
-              </p>
-              <b>
-                {solved
-                  ? "Verification: matches the original expression."
-                  : "Coefficients do not yet recombine correctly."}
-              </b>
-            </article>
-            <article>
-              <h3>KEY TAKEAWAYS</h3>
-              <p>✓ Factor the denominator.</p>
-              <p>✓ Set up the partial fraction form.</p>
-              <p>✓ Find coefficients and recombine.</p>
-            </article>
-          </div>
-        </aside>
-      </section>
-
-      <section className="pf-practice">
-        <div>
-          <h3>TRY ANOTHER (PRACTICE)</h3>
-          <p>Decompose and integrate (2x+7)/(x²−x−6).</p>
-          <small>Hint: x²−x−6=(x−3)(x+2)</small>
-        </div>
-        <label>
-          A
-          <input
-            aria-label="Practice coefficient A"
-            type="number"
-            step="0.2"
-            value={practiceA}
-            onChange={(e) => setPracticeA(Number(e.target.value))}
-          />
-        </label>
-        <label>
-          B
-          <input
-            aria-label="Practice coefficient B"
-            type="number"
-            step="0.2"
-            value={practiceB}
-            onChange={(e) => setPracticeB(Number(e.target.value))}
-          />
-        </label>
-        <button onClick={checkPractice}>Check</button>
-        <aside>
-          <button onClick={() => setShowAnswer((value) => !value)}>
-            {showAnswer ? "Hide answer" : "Show answer"}
-          </button>
-          {showAnswer && (
-            <p>
-              13/[5(x−3)] − 3/[5(x+2)]
-              <br />
-              Integral = 13/5 ln|x−3| − 3/5 ln|x+2| + C
-            </p>
-          )}
-        </aside>
-        {practiceFeedback && <output>{practiceFeedback}</output>}
-      </section>
-      <nav className="pf-adjacent">
-        <Link to="/lessons/school/class-12/class-12-formal-calculus-integration-by-parts">
-          ← Integration by Parts
-        </Link>
-        <Link to="/lessons/school/class-12/class-12-formal-calculus-definite-integral-properties">
-          Definite Integral Properties →
-        </Link>
-      </nav>
-      <footer>
-        <b>⌁ Math Universe</b>
-        <p>
-          Interactive math labs, visual proofs, NCERT explorations, graphing,
-          CAS-style tools, and classroom-ready activities.
-        </p>
-        <div>
-          <Link to="/sitemap">Sitemap</Link>
-          <Link to="/documentation">Docs</Link>
-          <Link to="/about">About</Link>
-        </div>
-      </footer>
-      <LessonTopicStudyBoard lessonId={10182} alwaysVisible />
-
-    </main>
-  );
+import "../components/LessonMockupReference.css";
+const M=({value}:{value:string})=><MathExpression value={value}/>;
+const number=(v:number)=>String(Number(v.toFixed(10)));
+const xTerm=(v:number)=>v===1?"x":v===-1?"-x":`${number(v)}x`;
+const addTerms=(terms:string[])=>terms.map((t,i)=>i&&t[0]!=="-"?`+${t}`:t).join("");
+const logs=(a:number,b:number)=>addTerms([`${a===1?"":a===-1?"-":number(a)}\\ln|x+1|`,`${b===1?"":b===-1?"-":number(b)}\\ln|x+2|`])+"+C";
+const fraction=(v:string)=>{const s=v.replace(/−/g,"-").trim(),parts=s.split("/");return parts.length===2&&parseFraction(s)!==null?`\\dfrac{${parts[0]}}{${parts[1]}}`:s;};
+const original=String.raw`\dfrac{3x+5}{x^2+3x+2}`;
+const answer=String.raw`2\ln|x+1|+\ln|x+2|+C`;
+function Coefficient({label,value,onChange,practice=false}:{label:string;value:string;onChange:(v:string)=>void;practice?:boolean}){
+ const[focused,setFocused]=useState(false),preview=!focused&&value.includes("/")&&parseFraction(value)!==null;
+ return <label className="pf-coefficient"><span>{label}{!practice&&" (coefficient)"}</span><div><button aria-label={`Decrease ${practice?"practice ":""}coefficient ${label}`} onClick={()=>onChange(stepFraction(value,practice?-.2:-1))}>−</button><div className="pf-coefficient-input"><input aria-label={`${practice?"Practice coefficient":"Coefficient"} ${label}`} value={value} aria-invalid={parseFraction(value)===null} className={preview?"pf-preview-active":""} onChange={e=>onChange(e.target.value)} onFocus={()=>setFocused(true)} onBlur={()=>setFocused(false)}/>{preview&&<span className="pf-fraction-preview" aria-hidden="true"><M value={fraction(value)}/></span>}</div><button aria-label={`Increase ${practice?"practice ":""}coefficient ${label}`} onClick={()=>onChange(stepFraction(value,practice?.2:1))}>+</button></div></label>;
+}
+const gx=(x:number)=>35+(x+7)*460/14,gy=(y:number)=>365-(y+6)*330/12;
+const branches=rationalBranches();
+function RationalGraph({resetId}:{resetId:number}){
+ const id=`pf-clip-${useId().replace(/:/g,"")}`,[vertical,setVertical]=useState(true),[horizontal,setHorizontal]=useState(true),[probe,setProbe]=useState<number|null>(null);
+ const value=probe===null?null:rationalFunction(probe);
+ return <section className="pf-card pf-graph-card" data-reset={resetId}><h2>♧ GRAPH OF THE FUNCTION</h2><div className="pf-graph-formula"><M value={`f(x)=${original}`}/></div><svg viewBox="0 0 530 400" role="img" aria-label="Rational function graph"><defs><clipPath id={id}><rect x="35" y="35" width="460" height="330"/></clipPath></defs><g stroke="#edf1f7">{Array.from({length:15},(_,i)=><line key={`x${i}`} x1={gx(i-7)} x2={gx(i-7)} y1="35" y2="365"/>)}{Array.from({length:13},(_,i)=><line key={`y${i}`} x1="35" x2="495" y1={gy(i-6)} y2={gy(i-6)}/>)}</g><path d={`M25 ${gy(0)}H510M${gx(0)} 375V18`} fill="none" stroke="#66768a"/>{horizontal&&<line data-asymptote="horizontal" x1="35" x2="495" y1={gy(0)} y2={gy(0)} stroke="#f4ad32" strokeDasharray="6 5"/>}{vertical&&[-2,-1].map(x=><line data-asymptote="vertical" key={x} x1={gx(x)} x2={gx(x)} y1="35" y2="365" stroke="#ff5368" strokeDasharray="6 4"/>)}<g clipPath={`url(#${id})`}>{branches.map((points,i)=><polyline data-branch={i} key={i} points={points.map(p=>`${gx(p.x)},${gy(p.y)}`).join(" ")} fill="none" stroke="#0782ff" strokeWidth="2.6"/>)}</g>{[-6,-4,-2,-1,2,4,6].map(x=><text key={x} x={gx(x)-6} y={gy(0)+19}>{x}</text>)}{[-6,-4,-2,2,4,6].map(y=><text key={y} x={gx(0)-21} y={gy(y)+4}>{y}</text>)}<text x="511" y={gy(0)-7}>x</text><text x={gx(0)-3} y="15">y</text>{probe!==null&&<><line x1={gx(probe)} x2={gx(probe)} y1="35" y2="365" stroke="#8e79ca" strokeDasharray="3 4"/>{value!==null&&Math.abs(value)<=6&&<circle cx={gx(probe)} cy={gy(value)} r="4" fill="#7145cb"/>}</>}<rect x="35" y="35" width="460" height="330" fill="transparent" role="slider" tabIndex={0} aria-label="Function probe x" aria-valuemin={-7} aria-valuemax={7} aria-valuenow={probe??0} style={{touchAction:"none",cursor:"crosshair"}} onPointerDown={e=>{e.currentTarget.setPointerCapture(e.pointerId);const matrix=e.currentTarget.ownerSVGElement?.getScreenCTM();if(matrix){const point=new DOMPoint(e.clientX,e.clientY).matrixTransform(matrix.inverse());setProbe(Math.round(Math.max(-7,Math.min(7,(point.x-35)*14/460-7))*100)/100);}}} onPointerMove={e=>{if(!e.currentTarget.hasPointerCapture(e.pointerId))return;const matrix=e.currentTarget.ownerSVGElement?.getScreenCTM();if(matrix){const point=new DOMPoint(e.clientX,e.clientY).matrixTransform(matrix.inverse());setProbe(Math.round(Math.max(-7,Math.min(7,(point.x-35)*14/460-7))*100)/100);}}} onPointerUp={e=>{if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);}} onKeyDown={e=>{if(["ArrowLeft","ArrowRight","Home","End"].includes(e.key)){e.preventDefault();setProbe(e.key==="Home"?-7:e.key==="End"?7:Math.round(Math.max(-7,Math.min(7,(probe??0)+(e.key==="ArrowLeft"?-.1:.1)))*100)/100);}}}/></svg>{probe!==null&&<div className="pf-probe-readout" role="status" data-probe={probe} data-value={value??"undefined"}>x = {number(probe)}; {value===null?"undefined: this x is excluded from the domain.":`f(x) = ${number(value)}`}</div>}<div className="pf-asymptotes"><label><input aria-label="Vertical asymptotes" type="checkbox" checked={vertical} onChange={e=>setVertical(e.target.checked)}/>Vertical asymptotes: <M value="x=-2,\quad x=-1"/></label><label><input aria-label="Horizontal asymptote" type="checkbox" checked={horizontal} onChange={e=>setHorizontal(e.target.checked)}/>Horizontal asymptote: <M value="y=0"/></label></div><div className="pf-domain"><h3><Lightbulb/>Domain Warning</h3><p>The function is undefined at x = −2 and x = −1.</p><M value="\text{Domain: }\mathbb R\setminus\{-2,-1\}"/></div></section>;
+}
+export default function PartialFractionsTargetLesson10182({lesson:_lesson}:{lesson:SchoolSyllabusLesson}){
+ const[aText,setA]=useState("2"),[bText,setB]=useState("1"),[practiceA,setPracticeA]=useState("13/5"),[practiceB,setPracticeB]=useState("-3/5"),[practiceFeedback,setPracticeFeedback]=useState(""),[practiceEdited,setPracticeEdited]=useState(false),[showAnswer,setShowAnswer]=useState(true),[showProper,setShowProper]=useState(false),[copyFeedback,setCopyFeedback]=useState(""),[resetId,setResetId]=useState(0);
+ const a=parseFraction(aText),b=parseFraction(bText),state=coefficientState(a,b),ps=coefficientState(parseFraction(practiceA),parseFraction(practiceB),true);
+ const changeA=(v:string)=>{setA(v);setCopyFeedback("");},changeB=(v:string)=>{setB(v);setCopyFeedback("");};
+ const solve=()=>{const solved=solveLinearFractions(3,5,1,2);changeA(String(solved.a));changeB(String(solved.b));};
+ const reset=()=>{solve();setCopyFeedback("");setResetId(v=>v+1);};
+ const term=(n:number|null,denominator:string)=>`\\dfrac{${n===null?"?":number(n)}}{${denominator}}`,candidate=`${term(a,"x+1")}+${term(b,"x+2")}`;
+ const copy=async()=>{try{if(!navigator.clipboard)throw new Error("Clipboard unavailable");await navigator.clipboard.writeText("2ln|x+1| + ln|x+2| + C");setCopyFeedback("Copied final answer.");}catch{setCopyFeedback("Copy unavailable. You can select the displayed formula.");}};
+ return <main className="pf10182-page lesson-reference" data-testid="school-mockup-0856" data-object-model="dedicated-partial-fraction-coefficient-engine" data-a={a===null?"":number(a)} data-b={b===null?"":number(b)} data-x-coefficient={state.coefficient===null?"":number(state.coefficient)} data-constant={state.constant===null?"":number(state.constant)} data-solved={String(state.solved)}>
+  <section className="pf-hero"><small>CLASS 12 · FORMAL CALCULUS</small><Link to="/lessons/school">← School lessons</Link><h1>Integration by Partial Fractions</h1><p>Decompose and integrate the rational expression <M value={original}/>.</p><div>{["18 min","ADVANCED","CONCEPT","lab"].map(v=><span key={v}>{v}</span>)}</div></section>
+  <section className="pf-prereq"><article><h3><ShieldCheck/>Prerequisite: Proper Fraction</h3><p>For partial fractions, the degree of the numerator must be strictly less than the degree of the denominator.</p><div>Here: <M value="\deg(3x+5)=1<\deg(x^2+3x+2)=2"/><CheckCircle2/></div></article><article><h3><CircleAlert/>Warning: Not a Proper Fraction?</h3><p>If the numerator’s degree is greater than or equal to the denominator’s, divide first to write it as: <b>Polynomial + Proper Fraction.</b></p><button aria-expanded={showProper} onClick={()=>setShowProper(v=>!v)}>{showProper?"Hide explanation":"Learn more"}</button>{showProper&&<div className="pf-division"><p>Divide until the remainder has lower degree than the denominator:</p><M value="\frac{x^2+3x+3}{x^2+3x+2}=1+\frac1{x^2+3x+2}"/></div>}</article></section>
+  <section className="pf-body"><section className="pf-card pf-lab"><div className="pf-title"><h2>▦ RATIONAL-EXPRESSION DECOMPOSITION LAB</h2><button onClick={reset}><RotateCcw/>Reset lab</button></div>
+   <article className="pf-step"><h3><i>1</i>Factor the denominator</h3><p>Factor <M value="x^2+3x+2"/>.</p><div className="pf-factored"><M value="x^2+3x+2=(x+1)(x+2)"/><span>Correct ✓</span></div></article>
+   <article className="pf-step"><h3><i>2</i>Set up the partial fraction form</h3><p>Decompose into constants A and B.</p><M value="\dfrac{3x+5}{(x+1)(x+2)}=\dfrac A{x+1}+\dfrac B{x+2}"/><div className="pf-steppers"><Coefficient label="A" value={aText} onChange={changeA}/><Coefficient label="B" value={bText} onChange={changeB}/></div><div className="pf-solve-action"><button onClick={solve}>Solve automatically</button></div></article>
+   <article className="pf-step"><h3><i>3</i>Clear denominators and expand</h3><p>Multiply both sides by (x + 1)(x + 2).</p><M value="3x+5=A(x+2)+B(x+1)"/><p>Expand the right side.</p><M value="3x+5=(A+B)x+(2A+B)"/></article>
+   <article className="pf-step"><h3><i>4</i>Match coefficients</h3><p>Equate coefficients of x and the constant term.</p><div className="pf-match"><div><h4>Coefficient of x:</h4><M value={`A+B=${state.coefficient===null?"?":number(state.coefficient)}`}/><span className={state.xMatches?"pf-equation-good":"pf-equation-pending"}>{state.xMatches?"✓ Satisfied":"Target: 3"}</span></div><div><h4>Constant term:</h4><M value={`2A+B=${state.constant===null?"?":number(state.constant)}`}/><span className={state.constantMatches?"pf-equation-good":"pf-equation-pending"}>{state.constantMatches?"✓ Satisfied":"Target: 5"}</span></div></div><div className={`pf-solved ${state.solved?"pf-verified":""}`}><Lightbulb/>{state.solved?<><b>Solved coefficients:</b><M value="A=2,\quad B=1"/></>:state.valid?"Adjust A and B until both equations are satisfied.":"Enter finite numbers or fractions for both coefficients."}</div></article>
+   <article className="pf-step"><h3><i>5</i>{state.solved?"Write the decomposition":"Inspect the candidate decomposition"}</h3>{state.valid?<M value={state.solved?`${original}=\\textcolor{#25864c}{${candidate}}`:`g(x)=${candidate}`}/>:<p>Enter both coefficients to form a candidate.</p>}{!state.solved&&<p className="pf-unverified">This candidate has not yet matched the original expression.</p>}</article>
+   <article className="pf-step pf-integrate"><h3><i>6</i>Integrate both sides</h3>{state.valid&&<><M value={`\\int ${state.solved?original:"g(x)"}\\,dx=\\int\\left(${candidate}\\right)\\,dx`}/><div className="pf-integrated"><M value={`=${logs(a!,b!)}`}/></div></>}<div className={`pf-final ${state.solved?"pf-verified":""}`}><h4>Final Answer:</h4>{state.solved?<div><M value={`\\int ${original}\\,dx=${answer}`}/><button aria-label="Copy final answer" onClick={copy}><Copy/></button></div>:<p>Match both coefficient equations to verify the final antiderivative.</p>}{copyFeedback&&<p role="status">{copyFeedback}</p>}</div><p className="pf-domain-note">Valid on each interval that excludes −2 and −1; the integration constant may differ between intervals.</p></article>
+  </section><aside className="pf-side"><RationalGraph key={resetId} resetId={resetId}/><section className="pf-card pf-method-card"><h2>METHODS TO FIND COEFFICIENTS</h2><div className="pf-methods"><article><h3><span>1</span>Cover-Up Method</h3><p>Use when each linear factor appears once.</p><M value="A=\lim_{x\to-1}(x+1)\frac{3x+5}{(x+1)(x+2)}"/><M value="=\lim_{x\to-1}\frac{3x+5}{x+2}=2"/><M value="B=\lim_{x\to-2}(x+2)\frac{3x+5}{(x+1)(x+2)}"/><M value="=\lim_{x\to-2}\frac{3x+5}{x+1}=1"/></article><article><h3><span>2</span>Coefficient Comparison</h3><p>Expand <M value="A(x+2)+B(x+1)"/> and match coefficients.</p><h4>Equations:</h4><M value="A+B=3"/><M value="2A+B=5"/><h4>Solution:</h4><M value="A=2,\quad B=1"/></article></div></section><div className="pf-checks"><article className="pf-card"><h2>VERIFY BY RECOMBINING</h2><p>Start from the result and simplify.</p>{state.valid&&<><M value={candidate}/><M value={`=\\frac{${number(a!)}(x+2)+(${number(b!)})(x+1)}{(x+1)(x+2)}`}/><M value={`=\\frac{${addTerms([xTerm(a!),number(2*a!),xTerm(b!),number(b!)])}}{x^2+3x+2}`}/><M value={`=\\frac{${addTerms([xTerm(state.coefficient!),number(state.constant!)])}}{x^2+3x+2}`}/></>}<div className={state.solved?"pf-verification-good":"pf-verification-pending"}><b>Verification: {state.solved?"✓":"pending"}</b><p>{state.solved?"Matches the original expression.":"Match the numerator 3x + 5."}</p></div></article><article className="pf-card"><h2>KEY TAKEAWAYS</h2>{["Factor the denominator.","Set up the partial fraction form.","Find coefficients (cover-up or comparison).","Integrate term by term.","Always check your work by recombining."].map(t=><p key={t}><CheckCircle2/>{t}</p>)}</article></div></aside></section>
+  <section className="pf-practice"><div className="pf-practice-question"><h2>TRY ANOTHER (PRACTICE)</h2><span>Practice</span><p>Decompose and integrate.</p><M value="\dfrac{2x+7}{x^2-x-6}"/><p>Hint: <M value="x^2-x-6=(x-3)(x+2)"/></p></div><div className="pf-practice-controls"><div><Coefficient label="A" value={practiceA} practice onChange={v=>{setPracticeA(v);setPracticeEdited(true);setPracticeFeedback("");}}/><Coefficient label="B" value={practiceB} practice onChange={v=>{setPracticeB(v);setPracticeEdited(true);setPracticeFeedback("");}}/></div><p className="pf-practice-ansatz"><M value="\frac A{x-3}+\frac B{x+2}"/></p><button disabled={!practiceEdited} onClick={()=>setPracticeFeedback(ps.solved?"Correct: A + B = 2 and 2A − 3B = 7. Recombination gives 2x + 7.":"Recheck A + B = 2 and 2A − 3B = 7.")}>Check</button>{practiceFeedback&&<p role="status">{practiceFeedback}</p>}</div><aside><button aria-expanded={showAnswer} onClick={()=>setShowAnswer(v=>!v)}>{showAnswer?"Hide answer":"Show answer"}</button>{showAnswer&&<div className="pf-practice-solution"><M value="x^2-x-6=(x-3)(x+2)"/><M value="\frac{2x+7}{x^2-x-6}=\frac{13}{5(x-3)}-\frac3{5(x+2)}"/><M value="\int\frac{2x+7}{x^2-x-6}\,dx=\frac{13}{5}\ln|x-3|-\frac35\ln|x+2|+C"/><p>Domain: x ≠ 3, −2.</p></div>}</aside></section>
+  <div className="pf-lesson-links" role="navigation" aria-label="Adjacent lessons"><Link to="/lessons/school/class-12/class-12-formal-calculus-integration-by-parts">← Integration by Parts</Link><Link to="/lessons/school/class-12/class-12-formal-calculus-definite-integral-properties">Definite Integral Properties →</Link></div><LessonMockupFooter/>
+ </main>;
 }

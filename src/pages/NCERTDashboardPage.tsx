@@ -1,222 +1,137 @@
-import { BookOpen, CheckCircle2, ExternalLink, FlaskConical, Search, ShieldCheck, Sparkles } from "lucide-react";
-import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
-import SectionCard from "../components/ui/SectionCard";
-import { ncertConcepts, ncertRoute, type NCERTConcept } from "../data/ncertConcepts";
-import { ncertGapItems } from "../data/ncertGapAnalysis";
-import { getNCERTPracticeItems } from "../data/ncertPracticeBank";
-import { getNCERTConceptResourceLinks } from "../data/ncertResourceLinks";
-import { emptyMasteryRecord, masteryStatus, readNCERTMasteryStore } from "../hooks/useNCERTMastery";
+import GlobalCurriculumPathway from "./GlobalCurriculumPathway";
+import { studyStages, type StudyStage } from "../data/globalCurriculumPathways";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { ArrowRight, BookOpen, ChevronDown, ChevronRight, ChevronsDownUp, ChevronsUpDown, GraduationCap, Layers, Search, X } from "lucide-react";
+import { curriculumNames, curriculumTopics, groupCurriculumTopics, topicHasUpcomingLesson, type CurriculumChapter, type CurriculumName, type CurriculumTopic } from "../data/curriculumTopics";
+import { curriculumWorkbook, workbookLessonMappings } from "../data/curriculumWorkbookMappings";
+import "./CurriculumDashboard.css";
 
-const priorityClasses = ["Class 7", "Class 10", "Class 12"] as const;
+const boardLabels: Record<CurriculumName, string> = { NCERT: "NCERT", AP: "Andhra Pradesh", Telangana: "Telangana", CBSE: "CBSE", Cambridge: "Cambridge", IB: "IB", "Common Core": "Common Core" };
+const workbookCoverage = {mapped:workbookLessonMappings.filter((row) => row.state === "mapped").length,partial:workbookLessonMappings.filter((row) => row.state === "partial").length,upcoming:workbookLessonMappings.filter((row) => row.state === "upcoming").length};
+const sharedAcross = new Map<number, Set<string>>();
+for (const topic of curriculumTopics) for (const lesson of topic.lessons) {
+  const curricula = sharedAcross.get(lesson.id) ?? new Set<string>();
+  curricula.add(topic.curriculum); sharedAcross.set(lesson.id, curricula);
+}
 
-const classDescriptions: Record<(typeof priorityClasses)[number], string> = {
-  "Class 7": "Foundational number sense, operations, equations, lines, triangles, constructions, and tilings.",
-  "Class 10": "Board-exam algebra, geometry theorems, trigonometry, statistics, probability, and mensuration.",
-  "Class 12": "Relations, matrices, determinants, calculus, differential equations, vectors, 3D geometry, LPP, and probability.",
-};
-
-const realVisualTypes = new Set([
-  "grade7-large-numbers-lab",
-  "grade7-arithmetic-expressions-lab",
-  "grade7-decimal-operations-lab",
-  "grade7-fraction-operations-lab",
-  "grade7-constructions-tilings-lab",
-  "grade7-lines-triangles-lab",
-  "class12-relations-functions-lab",
-  "class12-determinants-lab",
-  "class12-continuity-differentiability-lab",
-  "class12-integration-methods-lab",
-  "class12-differential-equations-lab",
-  "class12-vectors-3d-geometry-lab",
-  "class12-bayes-theorem-lab",
-  "class12-linear-programming-lab",
-  "class12-inverse-trig-lab",
-  "root-coefficients",
-  "linear-method-stepper",
-  "triangle-similarity-lab",
-  "circle-tangent-lab",
-  "circle-area-lab",
-  "solids-lab",
-  "grouped-statistics-lab",
-  "special-trig-angles",
-]);
+const browserStateKey = "math-curriculum-browser-v1";
+type BrowserState = { curriculum?: string; query?: string; level?: string; status?: string; expanded?: string[] };
+function readBrowserState(): BrowserState {
+  try { const value: unknown = typeof window === "undefined" ? {} : JSON.parse(sessionStorage.getItem(browserStateKey) ?? "{}"); return value && typeof value === "object" && !Array.isArray(value) ? value as BrowserState : {}; } catch { return {}; }
+}
 
 export default function NCERTDashboardPage() {
-  const [query, setQuery] = useState("");
-  const [classFilter, setClassFilter] = useState<"All" | (typeof priorityClasses)[number]>("All");
+  const [stage, setStage] = useState<StudyStage>("School");
+  const [params, setParams] = useSearchParams();
+  const [saved] = useState(readBrowserState);
+  const lastFilters = useRef<string>();
+  const focusedTopic = params.get("topic");
+  const [curriculum, setCurriculum] = useState<CurriculumName | "All">(() => curriculumTopics.find((topic) => topic.id === focusedTopic)?.curriculum ?? (saved.curriculum === "All" ? "All" : curriculumNames.includes(saved.curriculum as CurriculumName) ? saved.curriculum as CurriculumName : "NCERT"));
+  const [query, setQuery] = useState(!focusedTopic && typeof saved.query === "string" ? saved.query : "");
+  const [level, setLevel] = useState(!focusedTopic && typeof saved.level === "string" ? saved.level : "All");
+  const [status, setStatus] = useState(params.get("status") ?? (!focusedTopic && typeof saved.status === "string" ? saved.status : "All"));
+  const [sourceScope, setSourceScope] = useState("All");
+  const [expanded, setExpanded] = useState<Set<string>>(() => focusedTopic
+    ? new Set(groupCurriculumTopics(curriculumTopics.filter((topic) => topic.id === focusedTopic)).flatMap((board) => board.classes.flatMap((entry) => [`${board.title}-${entry.title}`,...entry.chapters.map((chapter) => chapter.id)])))
+    : new Set(Array.isArray(saved.expanded) ? saved.expanded.filter((key) => typeof key === "string") : []));
+  const topics = useMemo(() => curriculumTopics.filter((topic) => {
+    const searchText = [topic.title, topic.unit, topic.level, topic.workbook?.programme ?? "", topic.workbook?.track ?? "", ...[...topic.lessons, ...topic.draftLessons ?? [], ...topic.relatedLessons ?? []].map((lesson) => lesson.title)].join(" ").toLowerCase();
+    return (curriculum === "All" || topic.curriculum === curriculum) && (level === "All" || topic.level === level) &&
+      (sourceScope === "All" || !!topic.workbook) &&
+      (status === "All" || (status === "upcoming" ? topicHasUpcomingLesson(topic) : status === "mapping" ? topic.mappingPending : !!(topic.lessons.length || topic.draftLessons?.length || topic.relatedLessons?.length))) &&
+      (!focusedTopic || topic.id === focusedTopic) && searchText.includes(query.trim().toLowerCase());
+  }), [curriculum, level, status, focusedTopic, query, sourceScope]);
+  const tree = useMemo(() => {
+    const matches = groupCurriculumTopics(topics);
+    return groupCurriculumTopics(curriculumTopics.filter((topic) => curriculum === "All" || topic.curriculum === curriculum)).map((board) => ({...board,
+      classes: board.classes.filter((entry) => level === "All" || entry.title === level).map((entry) => matches.find((match) => match.title === board.title)?.classes.find((match) => match.title === entry.title) ?? {...entry, chapters: [], lessons: [], upcomingCount: 0, mappingPendingCount: 0}),
+    }));
+  }, [topics, curriculum, level]);
+  const allKeys = useMemo(() => tree.flatMap((board) => board.classes.flatMap((entry) => [`${board.title}-${entry.title}`, ...entry.chapters.map((chapter) => chapter.id)])), [tree]);
+  useEffect(() => {
+    const signature = JSON.stringify([curriculum, query, level, status, focusedTopic, sourceScope]);
+    if (lastFilters.current === signature) return;
+    const initial = lastFilters.current === undefined;
+    lastFilters.current = signature;
+    if (initial && !focusedTopic) return;
+    setExpanded(query.trim() || focusedTopic || level !== "All" ? new Set(allKeys) : new Set());
+  }, [allKeys, query, focusedTopic, level, curriculum, status, sourceScope]);
+  useEffect(() => {
+    try { sessionStorage.setItem(browserStateKey, JSON.stringify({ curriculum, query, level, status, expanded: [...expanded] })); } catch { /* Browsing still works when session storage is unavailable. */ }
+  }, [curriculum, query, level, status, expanded]);
+  const levels = [...new Set(curriculumTopics.filter((topic) => curriculum === "All" || topic.curriculum === curriculum).map((topic) => topic.level))].sort((a, b) => Number(a.match(/\d+/)?.[0] ?? 99) - Number(b.match(/\d+/)?.[0] ?? 99));
+  const chapters = tree.flatMap((board) => board.classes.flatMap((entry) => entry.chapters));
+  const lessonCount = new Set(chapters.flatMap((chapter) => [...chapter.lessons, ...chapter.draftLessons, ...chapter.relatedLessons].map((lesson) => lesson.id))).size;
+  const upcomingCount = chapters.reduce((sum, chapter) => sum + chapter.upcoming.length, 0);
+  const mappingCount = chapters.reduce((sum, chapter) => sum + chapter.mappingPending.length, 0);
+  const toggle = (key: string) => setExpanded((previous) => {const next = new Set(previous); if (next.has(key)) next.delete(key); else next.add(key); return next;});
+  const chooseCurriculum = (name: CurriculumName | "All") => {setCurriculum(name);setLevel("All");setParams({});};
+  const reset = () => {setQuery("");setLevel("All");setStatus("All");setSourceScope("All");setParams({});};
 
-  const visibleConcepts = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return ncertConcepts.filter((concept) => {
-      const matchesClass = classFilter === "All" || concept.classLevel === classFilter;
-      const resources = getNCERTConceptResourceLinks(concept);
-      const searchable = [
-        concept.classLevel,
-        concept.title,
-        concept.unit,
-        concept.summary,
-        concept.formula,
-        concept.visual,
-        ...concept.outcomes,
-        ...concept.tasks,
-        ...resources.flatMap((resource) => [resource.label, resource.href, resource.type, resource.exactness, ...(resource.keywords ?? [])]),
-      ].join(" ").toLowerCase();
-      return matchesClass && (!q || searchable.includes(q));
-    });
-  }, [classFilter, query]);
+  return <div className="curriculum-dashboard">
+    <header className="curriculum-hero">
+      <div className="curriculum-hero-copy"><p className="curriculum-eyebrow"><Layers size={15} /> ONE MATHEMATICS LIBRARY</p><h1>Find your chapter.<br /><span>Learn the mathematics.</span></h1><p>Choose a curriculum, open your class, and explore its chapters. Common topics lead to the same lessons, wherever you study.</p><Link className="curriculum-library-link" to="/lessons"><BookOpen size={16} /> Browse every lesson <ArrowRight size={16} /></Link></div>
+      <div className="curriculum-path-preview" aria-label="Navigation guide"><span><GraduationCap size={22} /> Your class</span><ChevronRight size={18}/><span><BookOpen size={22} /> Math chapters</span><ChevronRight size={18}/><span><ArrowRight size={22} /> Shared lessons</span><small>One topic. One lesson page. Many curricula.</small></div>
+    </header>
 
-  return (
-    <div className="space-y-5">
-      <section className="rounded-3xl border border-cyan-200 bg-white/95 p-5 shadow-sm dark:border-cyan-300/20 dark:bg-slate-950/80">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">NCERT visual learning index</p>
-            <h1 className="mt-2 text-3xl font-black text-slate-950 dark:text-white">NCERT Dashboard</h1>
-            <p className="mt-2 max-w-4xl text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
-              Browse NCERT concepts by class, jump into real visual labs, and see whether each concept has formula, theorem/proof, visualization, practice, and QA coverage.
-            </p>
-          </div>
-          <Link to="/syllabus" className="action-secondary">
-            <BookOpen className="h-4 w-4" />
-            Syllabus map
-          </Link>
-        </div>
-      </section>
-
-      <div className="grid gap-3 lg:grid-cols-3">
-        {priorityClasses.map((classLevel) => {
-          const concepts = ncertConcepts.filter((concept) => concept.classLevel === classLevel);
-          const strong = concepts.filter((concept) => realVisualTypes.has(concept.visual)).length;
-          return (
-            <button
-              key={classLevel}
-              type="button"
-              onClick={() => setClassFilter(classLevel)}
-              className={`rounded-3xl border p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg ${classFilter === classLevel ? "border-cyan-400 bg-cyan-50 dark:border-cyan-300 dark:bg-cyan-300/10" : "border-slate-200 bg-white/90 dark:border-white/10 dark:bg-white/5"}`}
-            >
-              <div className="flex items-center justify-between gap-3">
-                <h2 className="text-xl font-black">{classLevel}</h2>
-                <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-black text-white dark:bg-white dark:text-slate-950">{concepts.length} routes</span>
-              </div>
-              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">{classDescriptions[classLevel]}</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                <Badge label={`${strong} real visuals`} tone="emerald" />
-                <Badge label={`${concepts.length - strong} needs polish`} tone="amber" />
-              </div>
-            </button>
-          );
-        })}
+    <nav className="curriculum-tabs curriculum-stages" aria-label="Study stage">{studyStages.map((value) => <button key={value} aria-pressed={stage === value} onClick={() => setStage(value)}>{value === "School" ? "Class 6 to 12" : value}</button>)}</nav>
+    {stage !== "School" ? <GlobalCurriculumPathway stage={stage}/> : <section className="curriculum-browser" aria-label="Curriculum Dashboard">
+      <div className="curriculum-browser-heading"><div><p className="curriculum-eyebrow">EXPLORE BY CURRICULUM</p><h2>Curriculum Dashboard</h2></div><span className="curriculum-shared-note"><Layers size={15} /> Shared lessons across curricula</span></div>
+      <div className="curriculum-tabs" aria-label="Curriculum">{[...curriculumNames, "All" as const].map((name) => <button key={name} type="button" aria-pressed={curriculum === name} onClick={() => chooseCurriculum(name)}>{name === "All" ? "All curricula" : name === "AP" ? "AP" : boardLabels[name]}</button>)}</div>
+      <div className="curriculum-workbook-note"><strong>Textbook working index: {curriculumWorkbook.rows.length.toLocaleString()} teaching topics imported</strong><p>{workbookCoverage.mapped.toLocaleString()} topics mapped to lesson skills · {workbookCoverage.partial} partly covered · {workbookCoverage.upcoming} Upcoming. Published and authored draft links are labeled separately.</p><p>Every supplied row is listed under its curriculum, class and chapter. The index includes editorial topics, provisional chapter lists and AP proxy chapters. Original verification notes are preserved; textbook completeness is not yet certified.</p></div>
+      <div className="curriculum-filters">
+        <label className="curriculum-search"><Search size={18} /><input aria-label="Search chapters or lessons" type="search" placeholder="Search chapters or lessons, e.g. fractions…" value={query} onChange={(event) => setQuery(event.target.value)} />{query && <button aria-label="Clear search" onClick={() => setQuery("")}><X size={16}/></button>}</label>
+        <label><span className="sr-only">Class</span><select aria-label="Class" value={level} onChange={(event) => setLevel(event.target.value)}><option value="All">All classes</option>{levels.map((value) => <option key={value}>{value}</option>)}</select></label>
+        <label><span className="sr-only">Availability</span><select aria-label="Availability" value={status} onChange={(event) => setStatus(event.target.value)}><option value="All">All coverage</option><option value="available">Available lessons</option><option value="upcoming">Upcoming lessons</option><option value="mapping">Mapping pending</option></select></label>
+        <label><span className="sr-only">Topic source</span><select aria-label="Topic source" value={sourceScope} onChange={(event) => setSourceScope(event.target.value)}><option value="All">All topic sources</option><option value="Workbook">Workbook topics only</option></select></label>
       </div>
+      <div className="curriculum-results-bar"><p aria-live="polite"><strong>{chapters.length}</strong> chapters <span>·</span> <strong>{topics.filter((topic) => topic.workbook).length}</strong> index topics <span>·</span> <strong>{lessonCount}</strong> unique lessons <span>·</span> <strong>{upcomingCount}</strong> upcoming lessons{mappingCount > 0 && <> <span>·</span> <strong>{mappingCount}</strong> mappings pending</>}</p><div><button onClick={() => setExpanded(new Set(allKeys))}><ChevronsUpDown size={15}/> Expand all</button><button onClick={() => setExpanded(new Set())}><ChevronsDownUp size={15}/> Collapse all</button>{(query || level !== "All" || status !== "All" || sourceScope !== "All" || focusedTopic) && <button onClick={reset}>Reset filters</button>}</div></div>
+      {focusedTopic && <div className="curriculum-focus-note">Showing the selected topic. <button onClick={reset}>Browse all chapters</button></div>}
+      <p className="curriculum-instruction">Open a class to see chapters, then open a chapter for lesson links. “Upcoming” means that specific topic has no mapped lesson. Draft links are available but await review.</p>
 
-      <SectionCard title="Search NCERT concepts" description="Search by class, chapter, formula, theorem word, common student term, visual type, or topic.">
-        <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_220px]">
-          <label className="flex items-center gap-2 rounded-2xl border border-cyan-200 bg-white px-3 py-2 dark:border-cyan-300/20 dark:bg-slate-950">
-            <Search className="h-4 w-4 text-cyan-600" />
-            <input
-              type="search"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              className="min-w-0 flex-1 bg-transparent py-2 text-sm font-semibold outline-none"
-              placeholder="Try tangent, determinant, fraction, BODMAS, Bayes..."
-            />
-          </label>
-          <select value={classFilter} onChange={(event) => setClassFilter(event.target.value as typeof classFilter)} className="rounded-2xl border border-cyan-200 bg-white px-3 py-3 text-sm font-bold dark:border-cyan-300/20 dark:bg-slate-950">
-            <option value="All">All priority classes</option>
-            {priorityClasses.map((classLevel) => <option key={classLevel} value={classLevel}>{classLevel}</option>)}
-          </select>
-        </div>
-      </SectionCard>
-
-      {priorityClasses.map((classLevel) => {
-        const concepts = visibleConcepts.filter((concept) => concept.classLevel === classLevel);
-        if (concepts.length === 0) return null;
-        return (
-          <section key={classLevel} className="space-y-3">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <h2 className="text-2xl font-black">{classLevel}</h2>
-                <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">{concepts.length} visible NCERT routes</p>
-              </div>
-              <Link to={`/syllabus/${classLevel.toLowerCase().replace(" ", "-")}`} className="text-sm font-black text-cyan-700 dark:text-cyan-200">
-                Open class syllabus
-              </Link>
-            </div>
-            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-              {concepts.map((concept) => <ConceptCard key={concept.id} concept={concept} />)}
-            </div>
-          </section>
-        );
-      })}
-
-      <SectionCard title="Gap dashboard bridge" description="These cards are also available in the syllabus dashboard, but surfaced here so NCERT does not hide behind a generic syllabus page.">
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {ncertGapItems.filter((item) => priorityClasses.includes(item.classLevel as (typeof priorityClasses)[number])).map((item) => (
-            <article key={`${item.classLevel}-${item.chapter}`} className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-white/5">
-              <div className="flex items-start justify-between gap-3">
-                <h3 className="font-black">{item.classLevel}: {item.chapter}</h3>
-                <Badge label={item.status === "strong" ? "Strong" : item.status === "partial" ? "Partial" : "Missing"} tone={item.status === "strong" ? "emerald" : item.status === "partial" ? "amber" : "rose"} />
-              </div>
-              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{item.currentCoverage}</p>
-              {item.route && <Link to={item.route} className="mt-3 inline-flex items-center gap-2 text-sm font-black text-cyan-700 dark:text-cyan-200">Open route <ExternalLink className="h-3.5 w-3.5" /></Link>}
-            </article>
-          ))}
-        </div>
-      </SectionCard>
-    </div>
-  );
+      <div className="curriculum-tree">{tree.map((board) => <section key={board.title} aria-label={`${boardLabels[board.title]} classes`}>
+        {curriculum === "All" && <h3 className="curriculum-board-title">{boardLabels[board.title]}</h3>}
+        {board.classes.map((entry) => {const key = `${board.title}-${entry.title}`;return <details className="curriculum-class" key={key} open={expanded.has(key)}>
+          <summary onClick={(event) => {event.preventDefault();toggle(key);}}><span className="curriculum-class-icon"><GraduationCap size={23}/></span><span className="curriculum-class-title"><strong>{entry.title}</strong><small>Mathematics · {boardLabels[board.title]}</small></span><span className="curriculum-class-stats"><span>{entry.chapters.length} chapters</span><span>{new Set(entry.chapters.flatMap((chapter) => [...chapter.lessons, ...chapter.draftLessons, ...chapter.relatedLessons].map((lesson) => lesson.id))).size} lessons</span>{entry.upcomingCount > 0 && <span className="curriculum-upcoming-text">{entry.upcomingCount} upcoming</span>}{entry.mappingPendingCount > 0 && <span>{entry.mappingPendingCount} mapping pending</span>}</span><ChevronDown className="curriculum-chevron" size={20}/></summary>
+          <div className="curriculum-chapters">{!entry.chapters.length && <p className="curriculum-focus-note">No topics match these filters in {entry.title}. <button onClick={reset}>Show all chapters</button></p>}{entry.chapters.map((chapter, index) => <details className="curriculum-chapter" key={chapter.id} open={expanded.has(chapter.id)}>
+            <summary onClick={(event) => {event.preventDefault();toggle(chapter.id);}}><span className="curriculum-chapter-number">{String(index + 1).padStart(2, "0")}</span><span className="curriculum-chapter-title"><strong>{chapter.title}</strong><small>{(chapter.lessons.length || chapter.draftLessons.length) ? `${chapter.lessons.length} published / ${chapter.draftLessons.length} draft lesson${chapter.lessons.length === 1 ? "" : "s"}${chapter.relatedLessons.length ? ` / ${chapter.relatedLessons.length} chapter resources` : ""}` : chapter.mappingPending.length ? "Chapter mapping in progress" : "Lesson coming soon"}{chapter.lessons.length > 0 && chapter.upcoming.length > 0 ? ` · ${chapter.upcoming.length} upcoming topics` : ""}</small></span>{!chapter.lessons.length && !chapter.draftLessons.length && <span className={chapter.mappingPending.length ? "curriculum-status-mapping" : "curriculum-status-upcoming"}>{chapter.mappingPending.length ? "Mapping pending" : "Upcoming"}</span>}<ChevronDown className="curriculum-chevron" size={18}/></summary>
+            {expanded.has(chapter.id) && <ChapterContent chapter={chapter} />}
+          </details>)}</div>
+        </details>;})}
+      </section>)}</div>
+      {!tree.length && <div className="curriculum-empty"><Search size={28}/><h3>No matching chapters or lessons</h3><p>Try another topic, class or curriculum.</p><button onClick={reset}>Clear filters</button></div>}
+    </section>}
+    <p className="curriculum-footer-note">Lesson availability describes the shared library. Textbook editions can differ in chapter names and sequence; source details appear inside each chapter.</p>
+  </div>;
 }
 
-function ConceptCard({ concept }: { concept: NCERTConcept }) {
-  const realVisual = realVisualTypes.has(concept.visual);
-  const practiceReady = concept.tasks.length >= 3;
-  const resources = getNCERTConceptResourceLinks(concept);
-  const hasFormula = resources.some((resource) => resource.type === "formula");
-  const hasTheorem = resources.some((resource) => resource.type === "theorem");
-  const hasProof = resources.some((resource) => resource.type === "visual-proof");
-  const hasTool = resources.some((resource) => ["math-lab", "workspace", "ar-xr"].includes(resource.type));
-  const practiceCount = getNCERTPracticeItems(concept.id).length;
-  const mastery = typeof window === "undefined" ? emptyMasteryRecord() : readNCERTMasteryStore()[concept.id] ?? emptyMasteryRecord();
-
-  return (
-    <article className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">{concept.unit}</p>
-          <h3 className="mt-1 text-lg font-black">{concept.title}</h3>
-        </div>
-        <Badge label={realVisual ? "Strong" : "Needs QA"} tone={realVisual ? "emerald" : "amber"} />
-      </div>
-      <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">{concept.summary}</p>
-      <div className="mt-3 flex flex-wrap gap-2">
-        {hasFormula && <Badge label="Formula" tone="cyan" icon={<BookOpen className="h-3 w-3" />} />}
-        {hasTheorem && <Badge label="Theorem" tone="violet" icon={<ShieldCheck className="h-3 w-3" />} />}
-        {hasProof && <Badge label="Proof" tone="violet" icon={<ShieldCheck className="h-3 w-3" />} />}
-        {hasTool && <Badge label="Tool" tone="cyan" icon={<FlaskConical className="h-3 w-3" />} />}
-        <Badge label={realVisual ? "Real Visualization" : "Visual Needs QA"} tone={realVisual ? "emerald" : "amber"} icon={<Sparkles className="h-3 w-3" />} />
-        {practiceReady && <Badge label="Practice" tone="cyan" icon={<FlaskConical className="h-3 w-3" />} />}
-        {practiceCount > 0 && <Badge label={`${practiceCount} checked Qs`} tone="emerald" icon={<FlaskConical className="h-3 w-3" />} />}
-        {practiceCount > 0 && <Badge label="Worksheet" tone="amber" icon={<BookOpen className="h-3 w-3" />} />}
-        {practiceCount > 0 && <Badge label={masteryStatus(mastery)} tone="slate" icon={<CheckCircle2 className="h-3 w-3" />} />}
-        <Badge label="Browser QA" tone="slate" icon={<CheckCircle2 className="h-3 w-3" />} />
-      </div>
-      <div className="mt-4 rounded-2xl bg-slate-100 p-3 text-xs font-mono font-black text-slate-700 dark:bg-slate-950 dark:text-slate-200">{concept.formula}</div>
-      <Link to={ncertRoute(concept.id)} className="action-primary mt-4 w-full justify-center">
-        Open visual lab
-        <ExternalLink className="h-4 w-4" />
-      </Link>
-    </article>
-  );
+function ChapterContent({ chapter }: { chapter: CurriculumChapter }) {
+  const workbookTopics = chapter.topics.filter((topic) => topic.workbook).sort((a,b) => a.workbook!.lessonNumber - b.workbook!.lessonNumber);
+  const source = chapter.topics.find((topic) => topic.sourceUrl);
+  const note = source?.sourceNote ?? chapter.topics.find((topic) => topic.sourceNote)?.sourceNote;
+  return <div className="curriculum-chapter-content">
+    {workbookTopics.length > 0 && <div className="curriculum-textbook-topics"><p className="curriculum-list-heading">TEXTBOOK INDEX · EVERY TEACHING TOPIC</p>{workbookTopics.map((topic) => <WorkbookTopic key={topic.id} topic={topic}/>)}</div>}
+    <details className="curriculum-alignment-note"><summary>All chapter topics ({chapter.topics.length})</summary><ul>{chapter.topics.map((topic) => <li key={topic.id}>{topic.title}</li>)}</ul></details>
+    {chapter.lessons.length > 0 && <><p className="curriculum-list-heading">LESSON LINKS</p><div className="curriculum-lesson-grid">{chapter.lessons.map((lesson) => <Link className="curriculum-lesson" key={lesson.id} to={lesson.route}><span className="curriculum-lesson-icon"><BookOpen size={17}/></span><span><strong>{lesson.title}</strong><small>{lesson.minutes} min{(sharedAcross.get(lesson.id)?.size ?? 0) > 1 ? ` · Shared across ${sharedAcross.get(lesson.id)?.size} curricula` : " · Interactive lesson"}</small></span><ArrowRight size={17}/></Link>)}</div></>}
+    {chapter.draftLessons.length > 0 && <><p className="curriculum-list-heading">DRAFT LESSON LINKS / AWAITING REVIEW</p><div className="curriculum-lesson-grid">{chapter.draftLessons.map((lesson) => <Link className="curriculum-lesson" key={lesson.id} to={lesson.route}><span><strong>{lesson.title}</strong><small>Draft available / awaiting review / {lesson.minutes} min</small></span><ArrowRight size={17}/></Link>)}</div></>}
+    {chapter.upcoming.length > 0 && <details className="curriculum-upcoming-list" open={!chapter.lessons.length}><summary><span className="curriculum-upcoming-dot" />{chapter.upcoming.length} upcoming topic{chapter.upcoming.length === 1 ? "" : "s"}<ChevronDown size={15}/></summary><ul>{chapter.upcoming.map((topic) => <li key={topic.id}><span><Link to={`/curriculum?topic=${topic.id.replace(/-missing-\d+$/, "")}`}>{topic.title}</Link>{topic.missingReason && <small className="curriculum-gap-reason">{topic.missingReason}</small>}</span><span className="curriculum-status-upcoming">Upcoming</span></li>)}</ul></details>}
+    {chapter.alignmentPending.length > 0 && <details className="curriculum-alignment-note"><summary>Shared practice available · {chapter.alignmentPending.length} textbook items awaiting alignment</summary><p>The lesson links above provide worked examples and practice for the chapter skills. Exact textbook exercise sets and board assessments are still awaiting alignment.</p><ul>{chapter.alignmentPending.map((topic) => <li key={topic.id}>{topic.title}</li>)}</ul></details>}
+    {chapter.mappingPending.length > 0 && <div className="curriculum-mapping-note"><p>Exact board chapter names and sequencing are being checked. Any shared reference links shown here are available for study; they do not certify textbook alignment.</p><Link to="/lessons">Browse existing lessons <ArrowRight size={14}/></Link></div>}
+    {(source || note) && <p className="curriculum-source">{note} {source && <a href={source.sourceUrl} target="_blank" rel="noreferrer">View textbook source ↗</a>}</p>}
+  </div>;
 }
 
-function Badge({ label, tone, icon }: { label: string; tone: "emerald" | "amber" | "rose" | "cyan" | "violet" | "slate"; icon?: JSX.Element }) {
-  const classes = {
-    emerald: "border-emerald-300 bg-emerald-50 text-emerald-800 dark:border-emerald-300/20 dark:bg-emerald-300/10 dark:text-emerald-100",
-    amber: "border-amber-300 bg-amber-50 text-amber-800 dark:border-amber-300/20 dark:bg-amber-300/10 dark:text-amber-100",
-    rose: "border-rose-300 bg-rose-50 text-rose-800 dark:border-rose-300/20 dark:bg-rose-300/10 dark:text-rose-100",
-    cyan: "border-cyan-300 bg-cyan-50 text-cyan-800 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-cyan-100",
-    violet: "border-violet-300 bg-violet-50 text-violet-800 dark:border-violet-300/20 dark:bg-violet-300/10 dark:text-violet-100",
-    slate: "border-slate-300 bg-slate-50 text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-100",
-  }[tone];
-  return <span className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-black ${classes}`}>{icon}{label}</span>;
+function WorkbookTopic({topic}: {topic: CurriculumTopic}) {
+  const row = topic.workbook!;
+  const direct = [...topic.lessons,...topic.draftLessons ?? []];
+  return <article className="curriculum-workbook-topic" data-workbook-row={row.row}>
+    <div className="curriculum-workbook-topic-heading"><h4><span>{row.lessonNumber}.</span> <Link to={`/curriculum?topic=${topic.id}`}>{topic.title}</Link></h4><span className={row.state === "upcoming" || row.state === "partial" ? "curriculum-status-upcoming" : "curriculum-status-mapping"}>{row.state === "mapped" ? "Lesson links" : row.state === "partial" ? "Partly covered · Upcoming" : row.state === "chapter-resources" ? "Chapter resources" : "Upcoming"}</span></div>
+    <p className="curriculum-topic-track">{row.programme} · {row.track}</p>
+    {row.sourceIssue && <p className="curriculum-gap-reason">Index placement note: {row.sourceIssue}</p>}
+    {row.state === "partial" && <p className="curriculum-gap-reason">{row.reason}</p>}
+    <div className="curriculum-topic-links">{direct.map((lesson) => <Link key={lesson.id} to={lesson.route}>{lesson.title}<small>{lesson.status === "Published" ? "Published" : "Draft available · awaiting review"}</small><ArrowRight size={14}/></Link>)}</div>
+    {!direct.length && <><p className="curriculum-gap-reason">{row.reason}</p><div className="curriculum-topic-links">{topic.relatedLessons?.map((lesson) => <Link key={lesson.id} to={lesson.route}>{lesson.title}<small>Related chapter resource · {lesson.status === "Published" ? "Published" : "Draft available"}</small><ArrowRight size={14}/></Link>)}</div></>}
+    <details className="curriculum-topic-source"><summary>Source and alignment · Workbook row {row.row}</summary><p>{row.reason}</p><p>{row.verification}</p><p>{topic.sourceNote}</p>{topic.sourceUrl && <a href={topic.sourceUrl} target="_blank" rel="noreferrer">View curriculum source ↗</a>}</details>
+  </article>;
 }

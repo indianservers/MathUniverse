@@ -2,3 +2,78 @@
 @container tp (max-width:790px){.tp-controls{grid-template-columns:1fr 1fr}.tp-controls article:last-child{grid-column:1/-1}.tp-visuals,.tp-contributions{grid-template-columns:1fr}.tp-notes{grid-template-columns:1fr}.tp-practice{grid-template-columns:1fr}.tp-tabs{flex-wrap:wrap;gap:8px}.tp-tabs button:last-child{margin-left:0}.tp-stream-row{min-height:190px}.tp-tree{max-width:500px;margin-inline:auto}}
 @container tp (max-width:460px){.tp-controls{grid-template-columns:1fr}.tp-controls article:last-child{grid-column:auto}.tp-questions{grid-template-columns:1fr}.tp-stream{padding-left:20px}.tp-factory{width:24px;left:-5px}.tp-stream-row{gap:5px;grid-template-columns:minmax(0,1fr) 14px 73px}.tp-stream-totals{flex-wrap:wrap}.tp-next{flex-wrap:wrap}.tp-control{grid-template-columns:62px 46px 34px minmax(30px,1fr);gap:6px}}
 .tp10213 button svg,.tp10213 h2 svg,.tp10213 h3 svg{width:16px;height:16px;flex:0 0 auto}
+
+/* Total Probability reference cards, independent of the lesson menu. */
+.tp10213.lesson-reference{max-width:1120px;padding:0;background:#f7faff;font:14px/1.6 Inter,Arial,sans-serif}
+.tp10213.lesson-reference>header{background:white;border:1px solid #dce6ef;border-radius:12px;padding:24px 26px;margin-bottom:20px}
+.tp10213.lesson-reference h1{font-size:30px;font-weight:800;line-height:1.25;margin:8px 0}
+.tp10213.lesson-reference header>p{font-size:14px;color:#526176}
+.tp10213.lesson-reference header>a{border:1px solid #dce6ef;border-radius:7px;padding:9px 14px;font-size:12px}
+.tp10213.lesson-reference .tp-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.tp10213.lesson-reference .tp-tags span{padding:4px 10px;background:#f0f4f8;border-radius:12px;color:#46566b;font-size:10px}
+.tp10213.lesson-reference h2{font-size:13px;font-weight:750}
+.tp10213.lesson-reference h2 small{font-size:11px}
+.tp10213.lesson-reference h3{font-size:12px;font-weight:700}
+.tp10213.lesson-reference nav.tp-tabs{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;background:white;border:1px solid #dce6ef;border-radius:10px;padding:0 12px;margin-bottom:18px;gap:12px}
+.tp10213.lesson-reference .tp-tabs button{padding:17px 12px;font-size:12px;font-weight:650;color:#344565}
+.tp10213.lesson-reference .tp-tabs button[aria-current]{color:#0086bf}
+.tp10213.lesson-reference .tp-controls{padding:0;gap:18px;margin-bottom:18px}
+.tp10213.lesson-reference .tp-controls article{background:white;border-radius:10px;padding:20px 16px}
+.tp10213.lesson-reference .tp-controls .tp-result{background:linear-gradient(#fcf9ff,#faf5ff)}
+.tp10213.lesson-reference .tp-control{grid-template-columns:68px 56px 40px minmax(35px,1fr);gap:8px;font-size:12px;margin:20px 0}
+.tp10213.lesson-reference .tp-control input[type=number]{font-weight:650;padding:7px 4px}
+.tp10213.lesson-reference .tp-control input[type=range]{accent-color:#008fd4}
+.tp10213.lesson-reference .tp-controls .tp-valid{margin:22px -16px -20px;font-size:11px;padding:16px}
+.tp10213.lesson-reference .tp-complements{font-size:12px}
+.tp10213.lesson-reference .tp-complements p{font-size:15px}
+.tp10213.lesson-reference .tp-result output{font-size:36px}
+.tp10213.lesson-reference .tp-result>strong{font-size:28px}
+.tp10213.lesson-reference .tp-result>p{font-size:11px;padding:11px}
+.tp10213.lesson-reference .tp-visuals{gap:18px;margin-bottom:18px;padding:0}
+.tp10213.lesson-reference .tp-visuals>article{background:white;border-radius:10px;padding:20px 16px}
+.tp10213.lesson-reference .tp-visuals>article>p{font-size:12px}
+.tp10213.lesson-reference .tp-stream{padding-left:42px}
+.tp10213.lesson-reference .tp-factory{width:42px;height:65px;left:-5px;fill:#a8b8d0;stroke:#7185a2}
+.tp10213.lesson-reference .tp-stream-row{grid-template-columns:minmax(0,1.65fr) 20px minmax(80px,.8fr);min-height:210px;gap:12px}
+.tp10213.lesson-reference .tp-source{padding:16px 10px;background:#fcfdff;position:relative}
+.tp10213.lesson-reference .tp-source h3{font-size:12px}
+.tp10213.lesson-reference .tp-dots{gap:4px;min-height:85px}
+.tp10213.lesson-reference .tp-dots i{max-width:12px;border-radius:50%!important;background:linear-gradient(135deg,#62b2ff,#1267f1)}
+.tp10213.lesson-reference .tp-source-1 .tp-dots i{background:linear-gradient(135deg,#b286ff,#7933e2)}
+.tp10213.lesson-reference .tp-outputs>div{padding:12px 6px;background:#fafcff}
+.tp10213.lesson-reference .tp-outputs strong,.tp10213.lesson-reference .tp-outputs small{font-size:11px}
+.tp10213.lesson-reference .tp-stream-totals{font-size:11px;flex-wrap:wrap}
+.tp10213.lesson-reference .tp-tree{margin-top:24px}
+.tp10213.lesson-reference .tp-contributions{padding:0;border:0;gap:18px;margin-bottom:18px}
+.tp10213.lesson-reference .tp-contributions article{background:white;border:1px solid #dce6ef;border-radius:10px;padding:20px;font-size:12px}
+.tp10213.lesson-reference table{font-size:12px}
+.tp10213.lesson-reference th{font-size:11px;background:#f9fbff}
+.tp10213.lesson-reference .tp-bar{height:40px}
+.tp10213.lesson-reference .tp-bar span{display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,#168cff,#2465fa);color:white;font-size:11px;font-weight:700;overflow:hidden;white-space:nowrap}
+.tp10213.lesson-reference .tp-bar span:last-child{background:linear-gradient(90deg,#9b62ef,#7839dc)}
+.tp10213.lesson-reference .tp-axis{font-size:11px}
+.tp10213.lesson-reference .tp-legend{font-size:11px}
+.tp10213.lesson-reference .tp-theorem>.tp-equation{font-style:normal;padding:18px}
+.tp10213.lesson-reference .tp-theorem small{font-size:11px}
+.tp10213.lesson-reference .tp-notes{padding:0;gap:18px;margin-bottom:18px}
+.tp10213.lesson-reference .tp-notes article{background:white;border:1px solid #dce6ef;border-radius:10px;padding:18px;font-size:12px}
+.tp10213.lesson-reference .tp-notes .tp-mistake{background:#fffbf1}
+.tp10213.lesson-reference .tp-notes ol{counter-reset:proof;list-style:none;padding:0}
+.tp10213.lesson-reference .tp-notes li{counter-increment:proof;position:relative;padding:0 0 18px 29px}
+.tp10213.lesson-reference .tp-notes li:before{content:counter(proof);position:absolute;left:0;top:0;background:#7339cc;color:white;font-size:11px;border-radius:50%;width:21px;height:21px;text-align:center;line-height:21px}
+.tp10213.lesson-reference #tp-Proof>.tp-equation{background:#faf6ff;border:1px solid #ddccf9;border-radius:7px;padding:12px;color:#6d30c4;font-style:normal}
+.tp10213.lesson-reference .tp-practice{padding:0;border:0;gap:18px;margin-bottom:18px;font-size:12px}
+.tp10213.lesson-reference .tp-practice>div{background:white;border:1px solid #dce6ef;border-radius:10px;padding:20px}
+.tp10213.lesson-reference .tp-practice aside{padding:20px;border-radius:10px}
+.tp10213.lesson-reference .tp-questions{gap:20px}
+.tp10213.lesson-reference .tp-practice button{font-size:11px;padding:9px 13px}
+.tp10213.lesson-reference .tp-next{padding:0 0 20px}
+.tp10213.lesson-reference .tp-next a{background:white;border:1px solid #dce6ef;border-radius:8px;padding:12px 16px;font-size:12px}
+.tp10213.lesson-reference footer a{display:inline-flex;align-items:center;gap:6px;border:1px solid #dce6ef;border-radius:6px;padding:7px 11px;text-decoration:none}
+@container tp (max-width:790px){.tp10213.lesson-reference .tp-control{grid-template-columns:62px 50px 36px minmax(30px,1fr);gap:6px;font-size:11px}.tp10213.lesson-reference .tp-controls{grid-template-columns:1fr 1fr}.tp10213.lesson-reference .tp-visuals,.tp10213.lesson-reference .tp-contributions,.tp10213.lesson-reference .tp-notes,.tp10213.lesson-reference .tp-practice{grid-template-columns:1fr}.tp10213.lesson-reference .tp-tabs{gap:4px}.tp10213.lesson-reference .tp-tabs button{font-size:11px;padding:14px 6px}}
+@container tp (max-width:460px){.tp10213.lesson-reference>header{padding:20px}.tp10213.lesson-reference .tp-controls{grid-template-columns:1fr}.tp10213.lesson-reference .tp-stream{padding-left:20px}.tp10213.lesson-reference .tp-factory{width:24px}.tp10213.lesson-reference .tp-stream-row{grid-template-columns:minmax(0,1fr) 14px 78px;gap:5px}.tp10213.lesson-reference .tp-visuals>article{padding:16px 12px}.tp10213.lesson-reference .tp-dots{gap:2px}.tp10213.lesson-reference .tp-source{padding:12px 6px}.tp10213.lesson-reference .tp-source h3{font-size:10px}.tp10213.lesson-reference .tp-bar span{font-size:9px}.tp10213.lesson-reference .tp-questions{grid-template-columns:1fr}.tp10213.lesson-reference .tp-tabs button{padding:12px 4px;gap:4px;font-size:10px}.tp10213.lesson-reference .tp-tabs button svg{width:12px}}
+
+.tp10213.lesson-reference .tp-outputs{position:relative}
+.tp10213.lesson-reference .tp-output-fork{position:absolute;left:-22px;top:0;width:22px;height:100%;pointer-events:none}
+.tp10213.lesson-reference .tp-stream-row>svg{visibility:hidden}
+@container tp (max-width:460px){.tp10213.lesson-reference .tp-output-fork{left:-15px;width:15px}}

@@ -143,7 +143,9 @@ export default function StepByStepAlgebraTargetLesson448({
             </a>
           </div>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content sa448-hero"><aside>
           <h3>How this works (CAS Workspace)</h3>
           {[
             ["1", "Observe", "Read the expression and the goal."],
@@ -159,8 +161,7 @@ export default function StepByStepAlgebraTargetLesson448({
               </span>
             </div>
           ))}
-        </aside>
-      </header>
+        </aside></div>
 
       <nav className="sa448-tabs">
         {[

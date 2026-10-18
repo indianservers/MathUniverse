@@ -278,7 +278,9 @@ export default function EquationLineTargetLesson173({
           <b>▣ Coordinate Geometry</b>
           <b>◷ 6-10 min</b>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content el173-header"><aside>
           <button onClick={reset}>
             <RotateCcw />
             Reset
@@ -299,8 +301,7 @@ export default function EquationLineTargetLesson173({
             {shared ? "Share link ready" : ""}
             {menu ? " More line options" : ""}
           </output>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="el173-stages">
         {[
           ["Observe", "See the line"],

@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "clipped": [],
+  "geometry": {
+    "hole": {
+      "x": 1,
+      "y": 1
+    },
+    "point": {
+      "x": 1,
+      "y": 5
+    },
+    "left": {
+      "x": 0.7999999999999998,
+      "y": 1
+    },
+    "right": {
+      "x": 1.2000000000000002,
+      "y": 1
+    },
+    "line": [
+      -4,
+      1,
+      4,
+      1
+    ],
+    "xSpan": 8,
+    "ySpan": 8
+  }
+}

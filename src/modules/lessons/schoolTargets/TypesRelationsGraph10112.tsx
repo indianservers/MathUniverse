@@ -1,0 +1,15 @@
+import {useRef,useState} from 'react';
+import type {PointerEvent} from 'react';
+import {A,key,positions,relationEdge,type Element,type Pair} from './typesRelationsModel';
+export default function TypesRelationsGraph10112({relation,toggle}:{relation:Set<Pair>;toggle:(a:Element,b:Element)=>void}){
+ const [source,setSource]=useState<Element|null>(null),[point,setPoint]=useState<[number,number]|null>(null);
+ const press=useRef<{id:number;source:Element;x:number;y:number;moved:boolean}|null>(null),skipClick=useRef(0);
+ const coords=(e:PointerEvent<SVGSVGElement>):[number,number]=>{const m=e.currentTarget.getScreenCTM();if(!m)return[0,0];const pt=new DOMPoint(e.clientX,e.clientY).matrixTransform(m.inverse());return[pt.x,pt.y];};
+ const choose=(a:Element)=>{if(source===null)setSource(a);else{toggle(source,a);setSource(null);}};
+ return <svg viewBox="0 0 460 345" className="rel10112-svg" aria-label="Directed relation graph" data-source={source??'none'} onPointerDown={e=>{const node=(e.target as SVGElement).closest('[data-node]');if(!node)return;const a=Number(node.getAttribute('data-node')) as Element;press.current={id:e.pointerId,source:a,x:e.clientX,y:e.clientY,moved:false};e.currentTarget.setPointerCapture(e.pointerId);}} onPointerMove={e=>{const v=press.current;if(!v||v.id!==e.pointerId)return;if(Math.hypot(e.clientX-v.x,e.clientY-v.y)>5)v.moved=true;if(v.moved){setSource(v.source);setPoint(coords(e));}}} onPointerUp={e=>{const v=press.current;if(!v||v.id!==e.pointerId)return;press.current=null;if(v.moved){const[x,y]=coords(e),hit=A.find(a=>Math.hypot(x-positions[a][0],y-positions[a][1])<=42);if(hit)toggle(v.source,hit);setSource(null);setPoint(null);skipClick.current=performance.now()+100;}else{choose(v.source);skipClick.current=performance.now()+100;}if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);}} onPointerCancel={()=>{press.current=null;setSource(null);setPoint(null);}}>
+ <defs><marker id="rel10112-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z"/></marker></defs>
+ {A.flatMap(a=>A.filter(b=>relation.has(key(a,b))).map(b=><g key={key(a,b)} role="button" tabIndex={0} aria-label={`Remove arrow ${a}, ${b}`} onClick={()=>toggle(a,b)} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(a,b);}}}><path className="rel10112-edge-hit" d={relationEdge(a,b)}/><path data-edge={key(a,b)} className="edge" d={relationEdge(a,b)} markerEnd="url(#rel10112-arrow)"/></g>))}
+ {source!==null&&point&&<line className="draft" x1={positions[source][0]} y1={positions[source][1]} x2={point[0]} y2={point[1]} markerEnd="url(#rel10112-arrow)"/>}
+ {A.map(a=><g key={a} data-node={a} role="button" tabIndex={0} aria-label={`Element ${a}`} aria-pressed={source===a} className={`node ${source===a?'rel10112-armed':''}`} onClick={()=>{if(performance.now()<skipClick.current)return;choose(a);}} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(a);}}}><circle cx={positions[a][0]} cy={positions[a][1]} r="34"/><text x={positions[a][0]} y={positions[a][1]+9}>{a}</text></g>)}
+ </svg>;
+}

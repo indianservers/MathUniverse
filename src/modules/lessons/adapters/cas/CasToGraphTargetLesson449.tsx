@@ -386,9 +386,9 @@ export default function CasToGraphTargetLesson449({
             <small>Previous</small>Step-by-Step Algebra
           </span>
         </a>
-        <a href="/lessons/symbolic-mathematics/450-next-symbolic-step">
+        <a href="/lessons/symbolic-mathematics">
           <span>
-            <small>Next</small>Next symbolic step
+            <small>Browse</small>Symbolic Mathematics Lessons
           </span>
           →
         </a>

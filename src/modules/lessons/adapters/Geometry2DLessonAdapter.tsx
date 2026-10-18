@@ -3196,7 +3196,9 @@ function PointOnObjectTargetLesson({
             Share
           </button>
         </div>
-        <div className="mt-3 grid gap-2 sm:grid-cols-5">
+
+      </header>
+      <div className="lesson-header-content"><div className="mt-3 grid gap-2 sm:grid-cols-5">
           {[
             [Eye, "Observe", "See a point constrained on a line or circle."],
             [Hand, "Manipulate", "Drag the point. It stays on the object."],
@@ -3225,8 +3227,7 @@ function PointOnObjectTargetLesson({
               </div>
             </div>
           ))}
-        </div>
-      </header>
+        </div></div>
 
       <nav
         className="grid rounded-xl border border-[#dbe6fb] bg-white p-1 shadow-sm sm:grid-cols-5"

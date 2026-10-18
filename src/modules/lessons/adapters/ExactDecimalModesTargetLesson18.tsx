@@ -491,10 +491,10 @@ export default function ExactDecimalModesTargetLesson18({
             <b>Calculation History</b>
           </span>
         </a>
-        <a href="/lessons/core-workspaces/19-perfect-squares-and-approximations">
+        <a href="/lessons/core-workspaces/6-powers-and-roots">
           <span>
             <small>NEXT</small>
-            <b>Perfect Squares and Approximations</b>
+            <b>Powers and Roots</b>
           </span>{" "}
           →
         </a>

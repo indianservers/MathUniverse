@@ -1,0 +1,1509 @@
+{
+  "status": "passed",
+  "errors": [],
+  "responsive": [
+    {
+      "state": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "sec-pole",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "sec-pole",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "sec-pole",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "sec-pole",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "numerical",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "numerical",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "numerical",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "numerical",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "practice",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "practice",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "practice",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "practice",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ],
+  "results": [
+    {
+      "k": "sin",
+      "d": -360,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "sin",
+      "d": -360,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": -360,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "sin",
+      "d": -270,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "sin",
+      "d": -270,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": -270,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "sin",
+      "d": -180,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": -180,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": -180,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "sin",
+      "d": -90,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": -90,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": -90,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "sin",
+      "d": -45,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": -45,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": -45,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "sin",
+      "d": 0,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 0,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 0,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 15,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 15,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 15,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 44,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 44,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 44,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 45,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 45,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 45,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 90,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 90,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 90,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 180,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 180,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 180,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 270,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "sin",
+      "d": 270,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 270,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 360,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "sin",
+      "d": 360,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sin",
+      "d": 360,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": -360,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "cos",
+      "d": -360,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": -360,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "cos",
+      "d": -270,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "cos",
+      "d": -270,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": -270,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "cos",
+      "d": -180,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": -180,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": -180,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "cos",
+      "d": -90,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": -90,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": -90,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "cos",
+      "d": -45,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": -45,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": -45,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "cos",
+      "d": 0,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 0,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 0,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 15,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 15,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 15,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 44,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 44,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 44,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 45,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 45,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 45,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 90,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 90,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 90,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 180,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 180,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 180,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 270,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "cos",
+      "d": 270,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 270,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 360,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "cos",
+      "d": 360,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cos",
+      "d": 360,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": -360,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": -360,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": -360,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": -270,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": -270,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": -270,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": -180,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": -180,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": -180,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": -90,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": -90,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": -90,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": -45,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": -45,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": -45,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": 0,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 0,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 0,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 15,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 15,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 15,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 44,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 44,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 44,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 45,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 45,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 45,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 90,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": 90,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": 90,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": 180,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 180,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 180,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 270,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": 270,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": 270,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": 360,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "tan",
+      "d": 360,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "tan",
+      "d": 360,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": -360,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": -360,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": -360,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": -270,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": -270,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": -270,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": -180,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": -180,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": -180,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": -90,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": -90,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": -90,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": -45,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": -45,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": -45,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": 0,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": 0,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": 0,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": 15,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": 15,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": 15,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": 44,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": 44,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": 44,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": 45,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": 45,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": 45,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": 90,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": 90,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": 90,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": 180,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": 180,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": 180,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": 270,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": 270,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": 270,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "csc",
+      "d": 360,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": 360,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "csc",
+      "d": 360,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": -360,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": -360,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": -360,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": -270,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": -270,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": -270,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": -180,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": -180,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": -180,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": -90,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": -90,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": -90,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": -45,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": -45,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": -45,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": 0,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 0,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 0,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 15,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 15,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 15,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 44,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 44,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 44,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 45,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 45,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 45,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 90,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": 90,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": 90,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": 180,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 180,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 180,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 270,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": 270,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": 270,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": 360,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "sec",
+      "d": 360,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "sec",
+      "d": 360,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": -360,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": -360,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": -360,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": -270,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": -270,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": -270,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": -180,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": -180,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": -180,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": -90,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": -90,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": -90,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": -45,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": -45,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": -45,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": 0,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": 0,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": 0,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": 15,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": 15,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": 15,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": 44,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": 44,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": 44,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": 45,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": 45,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": 45,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": 90,
+      "sk": "one",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": 90,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": 90,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": 180,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": 180,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": 180,
+      "sk": "positive",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": 270,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": 270,
+      "sk": "two",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": 270,
+      "sk": "positive",
+      "show": true
+    },
+    {
+      "k": "cot",
+      "d": 360,
+      "sk": "one",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": 360,
+      "sk": "two",
+      "show": false
+    },
+    {
+      "k": "cot",
+      "d": 360,
+      "sk": "positive",
+      "show": false
+    }
+  ],
+  "clipped": []
+}

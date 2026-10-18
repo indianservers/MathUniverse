@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "default gcd and canonical continued fraction",
+    "synchronized step/quotient/reciprocal selection",
+    "reverse wrap and autoplay/pause",
+    "remainder chain toggle",
+    "all presets and reduced fraction",
+    "proper fraction and invalid denominator",
+    "reverse build normalization, field add/remove and validation",
+    "practice feedback and reset",
+    "maximum quotient area grouping",
+    "all section navigation"
+  ]
+}

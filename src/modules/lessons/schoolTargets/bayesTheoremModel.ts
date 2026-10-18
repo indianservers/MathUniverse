@@ -4,6 +4,8 @@ export function bayesSources(weight: number, rate1: number, rate2: number) {
   return { ...model, posterior: model.contributions };
 }
 export function frequencyChips(expected: number) {
-  return Array.from({ length: Math.ceil(Math.max(0, expected)) }, (_, i) => Math.min(1, expected - i));
+  const nearest = Math.round(expected);
+  const amount = nearest > 0 && Math.abs(expected - nearest) <= Number.EPSILON * Math.max(1, expected) * 4 ? nearest : Math.max(0, expected);
+  return Array.from({ length: Math.ceil(amount) }, (_, i) => Math.min(1, amount - i));
 }
 export const BAYES_PRACTICE = bayesSources(.7, .01, .04);

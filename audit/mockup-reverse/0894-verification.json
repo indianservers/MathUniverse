@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "default probability and combination count",
+    "arrangement cycling, click/keyboard/pointer swaps",
+    "success slider synchronizes exact query",
+    "all query modes and invalid bounds",
+    "simulation runs and overlay toggles",
+    "p=0/1 and n=1/20 boundaries",
+    "shape control",
+    "solutions, quiz and reset",
+    "all section navigation"
+  ]
+}

@@ -1,0 +1,486 @@
+[
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\ChainRuleTargetLesson293.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\ChaosBifurcationTargetLesson333.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\CobwebDiagramsTargetLesson332.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\ConcavityTargetLesson299.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\InformalLimitsTargetLesson277.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\InstantaneousRateTargetLesson285.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\LimitsAtInfinityTargetLesson280.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\NewtonMethodTargetLesson304.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\QuotientRuleTargetLesson292.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\SeparableEquationsTargetLesson325.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\ShellMethodTargetLesson319.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\SubstitutionTargetLesson312.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\TaylorPolynomialTargetLesson305.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\cas\\AssumptionsTargetLesson446.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\cas\\StepByStepAlgebraTargetLesson448.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\complex\\EulerFormTargetLesson372.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\ComponentFormTargetLesson184.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\CompositeTransformationsTargetLesson243.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\ContinuedFractionsTargetLesson74.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\discrete\\CartesianProductTargetLesson585.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\discrete\\HamiltonianPathsTargetLesson572.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\DoubleBracketsTargetLesson96.tsx",
+    "notes": 2
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\EnvelopeLinesTargetLesson250.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\ExpandingBracketsTargetLesson95.tsx",
+    "notes": 2
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\FactorisationTargetLesson97.tsx",
+    "notes": 2
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\finance\\AnnuitiesTargetLesson596.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\finance\\BreakEvenTargetLesson603.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\finance\\DepreciationTargetLesson599.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\finance\\EffectiveInterestRateTargetLesson593.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\finance\\LinearProgrammingTargetLesson617.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\finance\\ModelBuilderTargetLesson606.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\ForceVectorsTargetLesson197.tsx",
+    "notes": 2
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\FractionCalculatorTargetLesson2.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\FractionEquationsTargetLesson109.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\geometry3d\\CameraControlsTargetLesson410.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\geometry3d\\ConeTargetLesson398.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\geometry3d\\CrossSectionsTargetLesson405.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\geometry3d\\FrustumTargetLesson401.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\geometry3d\\OrthographicViewsTargetLesson411.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\geometry3d\\ParametricSurfacesTargetLesson415.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\geometry3d\\PrismTargetLesson393.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\geometry3d\\SphericalCoordinatesTargetLesson419.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\geometry3d\\XRayModeTargetLesson409.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\IdentitiesTargetLesson106.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\matrix\\AugmentedMatricesTargetLesson357.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\matrix\\IdentityMatrixTargetLesson351.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\matrix\\LinearIndependenceTargetLesson361.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\matrix\\RrefTargetLesson356.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\matrix\\ScalarMultiplicationTargetLesson349.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\PointLineDistanceTargetLesson177.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\PolarCoordinatesTargetLesson180.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\PolynomialEquationsTargetLesson115.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\ReciprocalTrigTargetLesson264.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\RemainderTheoremTargetLesson104.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\sequence\\ArithmeticSequencesTargetLesson335.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\sequence\\PowerSeriesTargetLesson343.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\sequence\\TaylorMaclaurinTargetLesson344.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\SimultaneousLinearEquationsTargetLesson112.tsx",
+    "notes": 2
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\SyntheticDivisionTargetLesson103.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\BarGraphTargetLesson10007.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\BinomialDistributionTargetLesson10220.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\BinomialMiddleTermTargetLesson10136.tsx",
+    "notes": 2
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\BoundedRegionTargetLesson10203.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\DivisibilityInductionTargetLesson10131.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\EstimationRoundingTargetLesson10003.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\InductionBaseStepTargetLesson10129.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\MedianOgiveTargetLesson10109.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\NumberNamingTargetLesson10002.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\PeriodicSquareRootsTargetLesson2005.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\PrincipalSolutionsTargetLesson10127.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\ReflexiveRelationsTargetLesson10113.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\RemainderTargetLesson10015.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\ShapePatternTargetLesson10011.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\SssCongruenceTargetLesson10069.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\AngleTargetLesson232.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\AttachDetachTargetLesson202.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\BasicCalculatorTargetLesson1.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\calculus\\PartialFractionsTargetLesson314.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\CartesianPlaneTargetLesson167.tsx",
+    "notes": 2
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\CombinedTransformationsTargetLesson162.tsx",
+    "notes": 2
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\CubicFunctionsTargetLesson135.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\discrete\\InclusionExclusionTargetLesson563.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\discrete\\PathsCyclesTargetLesson569.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\discrete\\PigeonholeTargetLesson564.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\discrete\\ProofMethodsTargetLesson590.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\discrete\\RepeatedPermutationsTargetLesson559.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\DistanceLengthTargetLesson230.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\EquationLineTargetLesson173.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\EvenOddFunctionsTargetLesson152.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\finance\\CompoundInterestTargetLesson592.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\finance\\FutureValueTargetLesson595.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\finance\\LoansEmiTargetLesson597.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\FunctionConceptTargetLesson129.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\Geometry2DLessonAdapter.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\geometry3d\\MultivariableOptimisationTargetLesson427.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\GradientSlopeTargetLesson172.tsx",
+    "notes": 2
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\graph\\ZoomPanTargetLesson49.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\GraphMatchingTargetLesson166.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\HigherDegreePolynomialsTargetLesson136.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\HorizontalStretchCompressionTargetLesson159.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\HorizontalTranslationTargetLesson157.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\LikeTermsTargetLesson93.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\LinearEquationsTargetLesson111.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\LinearFunctionsTargetLesson133.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\MultiStepEquationsTargetLesson108.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\PerpendicularLinesTargetLesson175.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\PlottingPointsTargetLesson168.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\PositionVectorsTargetLesson185.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\RationalFunctionsTargetLesson138.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\RelationCheckerTargetLesson234.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\sequence\\SequenceGeneratorTargetLesson334.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\SubstitutionTargetLesson94.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\VectorAdditionTargetLesson186.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\VectorIntroductionTargetLesson183.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\VectorSubtractionTargetLesson187.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\CombinatorialInterpretationTargetLesson10140.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\CramersRuleTargetLesson10198.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\EquivalenceRelationsTargetLesson10116.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\LineThroughTwoPointsTargetLesson203.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\PointOnObjectTargetLesson199.tsx",
+    "notes": 1
+  },
+  {
+    "file": "src/modules/lessons/adapters/geometry3d/EulerFormulaTargetLesson408.tsx",
+    "notes": 1
+  }
+]

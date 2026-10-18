@@ -167,7 +167,9 @@ export default function CobwebDiagramsTargetLesson332({
           <br />
           The sequence xₙ₊₁=f(xₙ) follows the path.
         </article>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content cob332-hero"><aside>
           <h2>Fixed points</h2>
           <p>Fixed points satisfy f(x*)=x*, intersections of y=f(x) and y=x.</p>
           <p>
@@ -176,8 +178,7 @@ export default function CobwebDiagramsTargetLesson332({
           <p>
             <i /> Unstable: |f′(x*)| &gt; 1
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="cob332-tabs">
         {["Interact", "Learn", "Example", "Formula", "Practice"].map((name) => (
           <button

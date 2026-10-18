@@ -170,10 +170,7 @@ export default function ExpandingBracketsTargetLesson95({
         <b>Expanding Brackets</b>
       </nav>
       <header className="expand95-header">
-        <div className="expand95-eyebrows">
-          <b>ALGEBRA</b>
-          <strong>EXPRESSIONS AND MANIPULATION</strong>
-        </div>
+
         <h1>Expanding Brackets</h1>
         <p>
           Use the distributive law to multiply the outside factor by every term
@@ -185,7 +182,13 @@ export default function ExpandingBracketsTargetLesson95({
           <b>6-10 min</b>
           <b>Area model</b>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content expand95-header"><div className="expand95-eyebrows">
+          <b>ALGEBRA</b>
+          <strong>EXPRESSIONS AND MANIPULATION</strong>
+        </div></div>
+      <div className="lesson-header-content"><aside>
           <Target />
           <span>
             <b>Learning objective</b>
@@ -197,8 +200,7 @@ export default function ExpandingBracketsTargetLesson95({
               by substitution.
             </p>
           </span>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="expand95-tabs">
         {["Interact", "Learn", "Examples", "Formula", "Practice"].map(
           (name) => (

@@ -1,0 +1,1246 @@
+[
+  {
+    "id": 33,
+    "route": "/lessons/core-workspaces/33-matrices",
+    "title": "Matrices",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "matrices-header",
+            "text": "CORE WORKSPACESALGEBRA AND DYNAMIC VARIABLESMatricesSupport linear algebra calculations.♙ ",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "matrices-header",
+            "text": "CORE WORKSPACESALGEBRA AND DYNAMIC VARIABLESMatricesSupport linear algebra calculations.♙ ",
+            "height": 199,
+            "scrollHeight": 197,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "route": "/lessons/core-workspaces/34-sequences",
+    "title": "Sequences",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "sequences-header",
+            "text": "CORE WORKSPACESALGEBRA AND DYNAMIC VARIABLESSequencesGenerate ordered mathematical pattern",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "sequences-header",
+            "text": "CORE WORKSPACESALGEBRA AND DYNAMIC VARIABLESSequencesGenerate ordered mathematical pattern",
+            "height": 199,
+            "scrollHeight": 197,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "route": "/lessons/numbers-and-arithmetic/77-comparing-fractions",
+    "title": "Comparing Fractions",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "compare77-hero",
+            "text": "NUMBERS AND ARITHMETICFRACTIONS, DECIMALS, RATIOS AND PERCENTAGESComparing FractionsCompar",
+            "height": 98,
+            "scrollHeight": 96,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "compare77-hero",
+            "text": "NUMBERS AND ARITHMETICFRACTIONS, DECIMALS, RATIOS AND PERCENTAGESComparing FractionsCompar",
+            "height": 235,
+            "scrollHeight": 233,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "route": "/lessons/numbers-and-arithmetic/79-decimal-place-value",
+    "title": "Decimal Place Value",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "decimal79-hero",
+            "text": "NUMBERS AND ARITHMETICFRACTIONS, DECIMALS, RATIOS AND PERCENTAGESDecimal Place ValueUnders",
+            "height": 98,
+            "scrollHeight": 96,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "decimal79-hero",
+            "text": "NUMBERS AND ARITHMETICFRACTIONS, DECIMALS, RATIOS AND PERCENTAGESDecimal Place ValueUnders",
+            "height": 235,
+            "scrollHeight": 233,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "route": "/lessons/graphs-and-functions/53-special-points",
+    "title": "Special Points",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sp53-hero",
+            "text": "GRAPHS AND FUNCTIONS2D GRAPHING CALCULATORSpecial PointsFind important graph features.Foun",
+            "height": 100,
+            "scrollHeight": 98,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorSpecial PointsFind important graph features.Foun",
+            "height": 100,
+            "scrollHeight": 98,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorSpecial PointsFind important graph features.Foun",
+            "height": 100,
+            "scrollHeight": 98,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorSpecial PointsFind important graph features.Foun",
+            "height": 100,
+            "scrollHeight": 98,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorSpecial PointsFind important graph features.Foun",
+            "height": 100,
+            "scrollHeight": 98,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sp53-hero",
+            "text": "GRAPHS AND FUNCTIONS2D GRAPHING CALCULATORSpecial PointsFind important graph features.Foun",
+            "height": 213,
+            "scrollHeight": 211,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorSpecial PointsFind important graph features.Foun",
+            "height": 265,
+            "scrollHeight": 263,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorSpecial PointsFind important graph features.Foun",
+            "height": 265,
+            "scrollHeight": 263,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorSpecial PointsFind important graph features.Foun",
+            "height": 265,
+            "scrollHeight": 263,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorSpecial PointsFind important graph features.Foun",
+            "height": 265,
+            "scrollHeight": 263,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "route": "/lessons/algebra/111-linear-equations",
+    "title": "Linear Equations",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "linear111-intro",
+            "text": "ALGEBRAEQUATIONS & INEQUALITIESLinear EquationsSolve first-degree equations and connect al",
+            "height": 116,
+            "scrollHeight": 114,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "linear111-intro",
+            "text": "ALGEBRAEQUATIONS & INEQUALITIESLinear EquationsSolve first-degree equations and connect al",
+            "height": 291,
+            "scrollHeight": 289,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 143,
+    "route": "/lessons/graphs-and-functions/143-logarithmic-functions",
+    "title": "Logarithmic Functions",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "log143-titlebar",
+            "text": "Logarithmic Functionsy = a logb(x − h) + k Hide inverse exponentialy = 2log_2(x − 1) + 1",
+            "height": 56,
+            "scrollHeight": 56,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "log143-titlebar",
+            "text": "Logarithmic Functionsy = a logb(x − h) + k Hide inverse exponentialy = 2log_2(x − 1) + 1",
+            "height": 88,
+            "scrollHeight": 88,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 144,
+    "route": "/lessons/graphs-and-functions/144-trigonometric-functions",
+    "title": "Trigonometric Functions",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "trig144-hero",
+            "text": "Precalculus > Trigonometric Functions > Unit Circle & Trig GraphsTrigonometric FunctionsEx",
+            "height": 56,
+            "scrollHeight": 56,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "trig144-hero",
+            "text": "Precalculus > Trigonometric Functions > Unit Circle & Trig GraphsTrigonometric FunctionsEx",
+            "height": 96,
+            "scrollHeight": 96,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 145,
+    "route": "/lessons/graphs-and-functions/145-hyperbolic-functions",
+    "title": "Hyperbolic Functions",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "hyp145-header",
+            "text": "Calculus > Hyperbolic Functions > Hyperbolic Functions LabShareBookmarkFullscreenHyperboli",
+            "height": 97,
+            "scrollHeight": 96,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "hyp145-header",
+            "text": "Calculus > Hyperbolic Functions > Hyperbolic Functions LabShareBookmarkFullscreenHyperboli",
+            "height": 229,
+            "scrollHeight": 228,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 146,
+    "route": "/lessons/graphs-and-functions/146-floor-function",
+    "title": "Floor Function",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "floor146-header",
+            "text": "Functions › Piecewise Functions › Step Functions ›Floor Function Share⌟Floor FunctionGreat",
+            "height": 143,
+            "scrollHeight": 142,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "floor146-header",
+            "text": "Functions › Piecewise Functions › Step Functions ›Floor Function Share⌟Floor FunctionGreat",
+            "height": 358,
+            "scrollHeight": 357,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 147,
+    "route": "/lessons/graphs-and-functions/147-ceiling-function",
+    "title": "Ceiling Function",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ceil147-header",
+            "text": "← Home › Lessons › Graphs And Functions ›147 Ceiling FunctionCeiling FunctionUnderstand up",
+            "height": 56,
+            "scrollHeight": 56,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ceil147-header",
+            "text": "← Home › Lessons › Graphs And Functions ›147 Ceiling FunctionCeiling FunctionUnderstand up",
+            "height": 165,
+            "scrollHeight": 165,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 358,
+    "route": "/lessons/advanced-mathematics/358-linear-transformations",
+    "title": "Linear Transformations",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "mat358-hero",
+            "text": "ADVANCED MATHEMATICSMATRICES AND LINEAR ALGEBRALinear TransformationsVisualize how every p",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Advanced MathematicsMatrices and Linear AlgebraLinear TransformationsTransform geometric o",
+            "height": 100,
+            "scrollHeight": 98,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Advanced MathematicsMatrices and Linear AlgebraLinear TransformationsTransform geometric o",
+            "height": 100,
+            "scrollHeight": 98,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Advanced MathematicsMatrices and Linear AlgebraLinear TransformationsTransform geometric o",
+            "height": 100,
+            "scrollHeight": 98,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Advanced MathematicsMatrices and Linear AlgebraLinear TransformationsTransform geometric o",
+            "height": 100,
+            "scrollHeight": 98,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "mat358-hero",
+            "text": "ADVANCED MATHEMATICSMATRICES AND LINEAR ALGEBRALinear TransformationsVisualize how every p",
+            "height": 159,
+            "scrollHeight": 157,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Advanced MathematicsMatrices and Linear AlgebraLinear TransformationsTransform geometric o",
+            "height": 265,
+            "scrollHeight": 263,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Advanced MathematicsMatrices and Linear AlgebraLinear TransformationsTransform geometric o",
+            "height": 265,
+            "scrollHeight": 263,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Advanced MathematicsMatrices and Linear AlgebraLinear TransformationsTransform geometric o",
+            "height": 265,
+            "scrollHeight": 263,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Advanced MathematicsMatrices and Linear AlgebraLinear TransformationsTransform geometric o",
+            "height": 265,
+            "scrollHeight": 263,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  }
+]

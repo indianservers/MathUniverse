@@ -1,0 +1,2412 @@
+[
+  {
+    "id": 558,
+    "route": "/lessons/discrete-and-applied-mathematics/558-permutations",
+    "title": "Permutations",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "perm558-hero",
+            "text": "DISCRETE AND APPLIED MATHEMATICSPermutationsObjective: Count ordered selections.Use permut",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicPermutationsCount ord",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicPermutationsCount ord",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicPermutationsCount ord",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicPermutationsCount ord",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "perm558-hero",
+            "text": "DISCRETE AND APPLIED MATHEMATICSPermutationsObjective: Count ordered selections.Use permut",
+            "height": 223,
+            "scrollHeight": 221,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicPermutationsCount ord",
+            "height": 160,
+            "scrollHeight": 158,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicPermutationsCount ord",
+            "height": 160,
+            "scrollHeight": 158,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicPermutationsCount ord",
+            "height": 160,
+            "scrollHeight": 158,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicPermutationsCount ord",
+            "height": 160,
+            "scrollHeight": 158,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 191,
+    "route": "/lessons/geometry/191-cross-product",
+    "title": "Cross Product",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "cp191-header",
+            "text": "VECTORSGEOMETRYCross Product ☆Find perpendicular direction and oriented area.♙ Level: Inte",
+            "height": 98,
+            "scrollHeight": 96,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "cp191-header",
+            "text": "VECTORSGEOMETRYCross Product ☆Find perpendicular direction and oriented area.♙ Level: Inte",
+            "height": 197,
+            "scrollHeight": 195,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 567,
+    "route": "/lessons/discrete-and-applied-mathematics/567-weighted-graphs",
+    "title": "Weighted Graphs",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicWeighted GraphsRepres",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          },
+          {
+            "tag": "HEADER",
+            "className": "wg567-hero",
+            "text": "ShareSave ProgressDISCRETE AND APPLIED MATHEMATICSWeighted GraphsObjective: Represent cost",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicWeighted GraphsRepres",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicWeighted GraphsRepres",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicWeighted GraphsRepres",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicWeighted GraphsRepres",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicWeighted GraphsRepres",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          },
+          {
+            "tag": "HEADER",
+            "className": "wg567-hero",
+            "text": "ShareSave ProgressDISCRETE AND APPLIED MATHEMATICSWeighted GraphsObjective: Represent cost",
+            "height": 273,
+            "scrollHeight": 271,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicWeighted GraphsRepres",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicWeighted GraphsRepres",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicWeighted GraphsRepres",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicWeighted GraphsRepres",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 573,
+    "route": "/lessons/discrete-and-applied-mathematics/573-trees",
+    "title": "Trees",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "tr573-hero",
+            "text": "DISCRETE AND APPLIED MATHEMATICSCOMBINATORICS, GRAPH THEORY AND LOGICTrees – discrete labE",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTreesExplore acyclic ",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTreesExplore acyclic ",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTreesExplore acyclic ",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTreesExplore acyclic ",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "tr573-hero",
+            "text": "DISCRETE AND APPLIED MATHEMATICSCOMBINATORICS, GRAPH THEORY AND LOGICTrees – discrete labE",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTreesExplore acyclic ",
+            "height": 160,
+            "scrollHeight": 158,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTreesExplore acyclic ",
+            "height": 160,
+            "scrollHeight": 158,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTreesExplore acyclic ",
+            "height": 160,
+            "scrollHeight": 158,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTreesExplore acyclic ",
+            "height": 160,
+            "scrollHeight": 158,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 580,
+    "route": "/lessons/discrete-and-applied-mathematics/580-travelling-salesperson",
+    "title": "Travelling Salesperson",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "tsp580-hero",
+            "text": "DISCRETE AND APPLIED MATHEMATICSCOMBINATORICS, GRAPH THEORY AND LOGIC580. Travelling Sales",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTravelling Salesperso",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTravelling Salesperso",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTravelling Salesperso",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTravelling Salesperso",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "tsp580-hero",
+            "text": "DISCRETE AND APPLIED MATHEMATICSCOMBINATORICS, GRAPH THEORY AND LOGIC580. Travelling Sales",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTravelling Salesperso",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTravelling Salesperso",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTravelling Salesperso",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicTravelling Salesperso",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 408,
+    "route": "/lessons/3d-mathematics/408-euler-s-polyhedron-formula",
+    "title": "Euler's Polyhedron Formula",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "eu408-hero",
+            "text": "3D MATHEMATICS3D GEOMETRY AND SOLIDSEuler's Polyhedron FormulaEuler's polyhedron formulaRe",
+            "height": 208,
+            "scrollHeight": 208,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "eu408-hero",
+            "text": "3D MATHEMATICS3D GEOMETRY AND SOLIDSEuler's Polyhedron FormulaEuler's polyhedron formulaRe",
+            "height": 363,
+            "scrollHeight": 363,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 584,
+    "route": "/lessons/discrete-and-applied-mathematics/584-complement",
+    "title": "Complement",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "co584-hero",
+            "text": "DISCRETE AND APPLIED MATHEMATICSCOMBINATORICS, GRAPH THEORY AND LOGICComplementUnderstand ",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicComplementUnderstand ",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicComplementUnderstand ",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicComplementUnderstand ",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicComplementUnderstand ",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "co584-hero",
+            "text": "DISCRETE AND APPLIED MATHEMATICSCOMBINATORICS, GRAPH THEORY AND LOGICComplementUnderstand ",
+            "height": 169,
+            "scrollHeight": 167,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicComplementUnderstand ",
+            "height": 160,
+            "scrollHeight": 158,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicComplementUnderstand ",
+            "height": 160,
+            "scrollHeight": 158,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicComplementUnderstand ",
+            "height": 160,
+            "scrollHeight": 158,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsCombinatorics, Graph Theory and LogicComplementUnderstand ",
+            "height": 160,
+            "scrollHeight": 158,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 598,
+    "route": "/lessons/discrete-and-applied-mathematics/598-amortisation-table",
+    "title": "Amortisation Table",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "am598-hero",
+            "text": "DISCRETE AND APPLIED MATHEMATICSFINANCIAL MATHEMATICS AND MODELLING598 Amortisation TableO",
+            "height": 79,
+            "scrollHeight": 77,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingAmortisation TableTrack",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingAmortisation TableTrack",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingAmortisation TableTrack",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingAmortisation TableTrack",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "am598-hero",
+            "text": "DISCRETE AND APPLIED MATHEMATICSFINANCIAL MATHEMATICS AND MODELLING598 Amortisation TableO",
+            "height": 199,
+            "scrollHeight": 197,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingAmortisation TableTrack",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingAmortisation TableTrack",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingAmortisation TableTrack",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingAmortisation TableTrack",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 610,
+    "route": "/lessons/discrete-and-applied-mathematics/610-periodic-models",
+    "title": "Periodic Models",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "pm610-hero",
+            "text": "DISCRETE AND APPLIED MATHEMATICSFINANCIAL MATHEMATICS & MODELLINGPeriodic ModelsModel and ",
+            "height": 77,
+            "scrollHeight": 75,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingPeriodic ModelsRepresen",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingPeriodic ModelsRepresen",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingPeriodic ModelsRepresen",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingPeriodic ModelsRepresen",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "pm610-hero",
+            "text": "DISCRETE AND APPLIED MATHEMATICSFINANCIAL MATHEMATICS & MODELLINGPeriodic ModelsModel and ",
+            "height": 178,
+            "scrollHeight": 176,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingPeriodic ModelsRepresen",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingPeriodic ModelsRepresen",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingPeriodic ModelsRepresen",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Discrete and Applied MathematicsFinancial Mathematics and ModellingPeriodic ModelsRepresen",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10008,
+    "route": "/lessons/school/class-6/class-6-data-handling-survey-to-frequency-table",
+    "title": "Survey to Frequency Table",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 112,
+            "scrollHeight": 110,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 112,
+            "scrollHeight": 110,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 112,
+            "scrollHeight": 110,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 112,
+            "scrollHeight": 110,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 112,
+            "scrollHeight": 110,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 233,
+            "scrollHeight": 231,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 233,
+            "scrollHeight": 231,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 233,
+            "scrollHeight": 231,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 233,
+            "scrollHeight": 231,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 233,
+            "scrollHeight": 231,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10021,
+    "route": "/lessons/school/class-7/class-7-applied-arithmetic-scale-factor-in-maps-and-recipes",
+    "title": "Scale Factor in Maps and Recipes",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10021-hero",
+            "text": "Scale Factor in Maps and Recipes → Class 7 · Applied ArithmeticClass 7 · Applied Arithmeti",
+            "height": 90,
+            "scrollHeight": 90,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10021-hero",
+            "text": "Scale Factor in Maps and Recipes → Class 7 · Applied ArithmeticClass 7 · Applied Arithmeti",
+            "height": 90,
+            "scrollHeight": 90,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10021-hero",
+            "text": "Scale Factor in Maps and Recipes → Class 7 · Applied ArithmeticClass 7 · Applied Arithmeti",
+            "height": 90,
+            "scrollHeight": 90,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10021-hero",
+            "text": "Scale Factor in Maps and Recipes → Class 7 · Applied ArithmeticClass 7 · Applied Arithmeti",
+            "height": 90,
+            "scrollHeight": 90,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10021-hero",
+            "text": "Scale Factor in Maps and Recipes → Class 7 · Applied ArithmeticClass 7 · Applied Arithmeti",
+            "height": 90,
+            "scrollHeight": 90,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10021-hero",
+            "text": "Scale Factor in Maps and Recipes → Class 7 · Applied ArithmeticClass 7 · Applied Arithmeti",
+            "height": 260,
+            "scrollHeight": 260,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10021-hero",
+            "text": "Scale Factor in Maps and Recipes → Class 7 · Applied ArithmeticClass 7 · Applied Arithmeti",
+            "height": 260,
+            "scrollHeight": 260,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10021-hero",
+            "text": "Scale Factor in Maps and Recipes → Class 7 · Applied ArithmeticClass 7 · Applied Arithmeti",
+            "height": 260,
+            "scrollHeight": 260,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10021-hero",
+            "text": "Scale Factor in Maps and Recipes → Class 7 · Applied ArithmeticClass 7 · Applied Arithmeti",
+            "height": 260,
+            "scrollHeight": 260,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10021-hero",
+            "text": "Scale Factor in Maps and Recipes → Class 7 · Applied ArithmeticClass 7 · Applied Arithmeti",
+            "height": 260,
+            "scrollHeight": 260,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10197,
+    "route": "/lessons/school/class-12/class-12-matrices-and-determinants-solving-linear-equations-by-matrices",
+    "title": "Solving Linear Equations by Matrices",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 118,
+            "scrollHeight": 116,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 118,
+            "scrollHeight": 116,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 118,
+            "scrollHeight": 116,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 118,
+            "scrollHeight": 116,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 118,
+            "scrollHeight": 116,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10189,
+    "route": "/lessons/school/class-12/class-12-differential-equations-homogeneous-first-order-equations",
+    "title": "Homogeneous First-Order Equations",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "hfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSHomogeneous First-Order EquationsRatio-su",
+            "height": 84,
+            "scrollHeight": 82,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "hfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSHomogeneous First-Order EquationsRatio-su",
+            "height": 84,
+            "scrollHeight": 82,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "hfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSHomogeneous First-Order EquationsRatio-su",
+            "height": 84,
+            "scrollHeight": 82,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "hfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSHomogeneous First-Order EquationsRatio-su",
+            "height": 84,
+            "scrollHeight": 82,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "hfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSHomogeneous First-Order EquationsRatio-su",
+            "height": 84,
+            "scrollHeight": 82,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "hfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSHomogeneous First-Order EquationsRatio-su",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "hfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSHomogeneous First-Order EquationsRatio-su",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "hfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSHomogeneous First-Order EquationsRatio-su",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "hfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSHomogeneous First-Order EquationsRatio-su",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "hfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSHomogeneous First-Order EquationsRatio-su",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10190,
+    "route": "/lessons/school/class-12/class-12-differential-equations-linear-first-order-equations",
+    "title": "Linear First-Order Equations",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "lfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSLinear First-Order Equations: Integrating",
+            "height": 84,
+            "scrollHeight": 82,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "lfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSLinear First-Order Equations: Integrating",
+            "height": 84,
+            "scrollHeight": 82,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "lfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSLinear First-Order Equations: Integrating",
+            "height": 84,
+            "scrollHeight": 82,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "lfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSLinear First-Order Equations: Integrating",
+            "height": 84,
+            "scrollHeight": 82,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "lfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSLinear First-Order Equations: Integrating",
+            "height": 84,
+            "scrollHeight": 82,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "lfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSLinear First-Order Equations: Integrating",
+            "height": 234,
+            "scrollHeight": 232,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "lfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSLinear First-Order Equations: Integrating",
+            "height": 234,
+            "scrollHeight": 232,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "lfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSLinear First-Order Equations: Integrating",
+            "height": 234,
+            "scrollHeight": 232,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "lfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSLinear First-Order Equations: Integrating",
+            "height": 234,
+            "scrollHeight": 232,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "SECTION",
+            "className": "lfo-hero",
+            "text": "← School lessonsCLASS 12 · DIFFERENTIAL EQUATIONSLinear First-Order Equations: Integrating",
+            "height": 234,
+            "scrollHeight": 232,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  }
+]

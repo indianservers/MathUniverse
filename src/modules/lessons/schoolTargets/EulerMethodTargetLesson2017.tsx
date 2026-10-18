@@ -10,15 +10,15 @@ import "../components/LessonMockupReference.css";
 
 function EulerPlot({ h, step, small = false }: { h: EulerStepSize; step: number; small?: boolean }) {
   const rows = eulerWalk(h), marker = useId();
-  const x = (v: number) => 42 + v * (small?416:360), y = (v: number) => small?175-v*50:455-v*125;
+  const x = (v: number) => 42 + v * (small?416:360), y = (v: number) => small?270-v*95:455-v*125;
   const exact = Array.from({ length: 121 }, (_, i) => `${i ? "L" : "M"}${x(small?i/120:i/100)},${y(Math.exp(small?i/120:i/100))}`).join(" ");
   return <svg viewBox={small?"0 0 500 190":"0 0 500 490"} role="img" aria-label={`Euler approximation with step size ${h}, ${step} steps`}>
     <defs><marker id={marker} markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="#8533d7"/></marker></defs>
-    {!small && <><path d="M42 18V455H486" fill="none" stroke="#263244"/>{[0,.25,.5,.75,1].map(t => <g key={t}><path d={`M${x(t)} 452v6`} stroke="#263244"/><text x={x(t)} y="474" textAnchor="middle">{t}</text></g>)}{[.5,1,1.5,2,2.5,3,3.5].map(t => <text key={t} x="33" y={y(t)+4} textAnchor="end">{t}</text>)}<text x="485" y="448">x</text><text x="28" y="17">y</text></>}
+    {!small && <><path d="M42 18V455H486" fill="none" stroke="#263244"/>{[0,.25,.5,.75,1].map(t => <g key={t}><path d={`M${x(t)} 452v6`} stroke="#263244"/><text x={x(t)} y="474" textAnchor="middle">{t}</text></g>)}{[.5,1,1.5,2,2.5,3,3.5].map(t => <text key={t} x="33" y={y(t)+4} textAnchor="end">{t}</text>)}<text x="485" y="448">x</text><text x="44" y="12">y</text></>}
     <path d={exact} fill="none" stroke="#00a5a8" strokeWidth={small ? 5 : 2}/>
     {rows.slice(0,step+1).map((r,i) => <g key={r.n}>{i>0 && <><path d={`M${x(rows[i-1].x)} ${y(rows[i-1].y)}L${x(r.x)} ${y(r.y)}`} stroke="#8533d7" strokeWidth={small ? 5 : 2} markerEnd={small ? undefined : `url(#${marker})`}/>{!small && <path d={`M${x(r.x)} ${y(r.y)}V${y(r.exact)}`} stroke="#8894a3" strokeDasharray="3 3"/>}</>}<circle cx={x(r.x)} cy={y(r.y)} r={small ? 6 : 4} fill="#8533d7"/>{!small && (rows.length<6 || r.n%2===0 || r.n===step) && <text x={x(r.x)+(i===rows.length-1 ? -8 : 7)} y={y(r.y)+20} textAnchor={i===rows.length-1 ? "end" : "start"} fill="#8533d7">{`(${r.x.toFixed(2)}, ${r.y.toFixed(4)})`}</text>}</g>)}
     {!small&&<path className="ew-tangent" d={`M${x(rows[step].x)} ${y(rows[step].y)}L${x(Math.min(1.2,rows[step].x+.2))} ${y(rows[step].y+rows[step].slope*(Math.min(1.2,rows[step].x+.2)-rows[step].x))}`} stroke="#9b50e9" strokeDasharray="5 4" strokeWidth="2" fill="none" markerEnd={`url(#${marker})`}/>}
-    {!small && <><circle cx={x(rows[step].x)} cy={y(rows[step].exact)} r="4" fill="#00a5a8"/><text x={x(rows[step].x)-8} y={y(rows[step].exact)-12} textAnchor="end" fill="#008c91">{`(${rows[step].x.toFixed(2)}, ${rows[step].exact.toFixed(4)})`}</text></>}
+    {!small && <><circle cx={x(rows[step].x)} cy={y(rows[step].exact)} r="4" fill="#00a5a8"/><text x={x(rows[step].x)-8} y={y(rows[step].exact)-12} textAnchor="end" fill="#008c91">{rows[step].x===1?"(1, e)":`(${rows[step].x.toFixed(2)}, ${rows[step].exact.toFixed(4)})`}</text></>}
   </svg>;
 }
 

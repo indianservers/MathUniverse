@@ -223,8 +223,9 @@ export default function LineThroughTwoPointsTargetLesson203({ lesson, resetToken
     <section className="lt203-page" data-testid="dynamic-geometry-mockup-0260" data-model="two-distinct-points-unique-infinite-line" data-a={`${points.A.x}:${points.A.y}`} data-b={`${points.B.x}:${points.B.y}`} data-slope={model.slope ?? "undefined"} data-equation={equation} data-zoom={zoom} data-pan={`${round(pan.x)}:${round(pan.y)}`} data-tab={tab} data-steps={stepsVisible.filter(Boolean).length}>
       <header className="lt203-header">
         <div><small>COORDINATE GEOMETRY</small><h1>{lesson.title}</h1><p>Construct and explore the line passing through any two points.</p><aside><b>Grade 9-12</b><b>Beginner</b><b>5-10 min</b></aside></div>
-        <ol>{["Observe", "Manipulate", "Notice", "Understand", "Try"].map((name, i) => <li className={i === 1 ? "active" : ""} key={name}><i>{i + 1}</i><span>{i + 1} {name}</span></li>)}</ol>
+
       </header>
+      <div className="lesson-header-content lt203-header"><ol>{["Observe", "Manipulate", "Notice", "Understand", "Try"].map((name, i) => <li className={i === 1 ? "active" : ""} key={name}><i>{i + 1}</i><span>{i + 1} {name}</span></li>)}</ol></div>
       <nav className="lt203-tabs" aria-label="Lesson sections">{tabs.map((name) => <button type="button" key={name} className={tab === name ? "active" : ""} onClick={() => { setTab(name); onInteraction(); }}>{name}</button>)}</nav>
       <div className="lt203-main">
         <aside className="lt203-controls">

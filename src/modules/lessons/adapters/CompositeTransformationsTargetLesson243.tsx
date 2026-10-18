@@ -124,15 +124,16 @@ export default function CompositeTransformationsTargetLesson243({
             <b>⚑ English (English)⌄</b>
           </footer>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content target-composite-header"><aside>
           <Lightbulb />
           <b>Key Insight</b>
           <p>
             Composition is applied <strong>right-to-left.</strong>
           </p>
           <i>T₂ ∘ T₁ (P) = T₂(T₁(P))</i>
-        </aside>
-      </header>
+        </aside></div>
       <section className="target-composite-toolbar">
         <div>
           <h2>Transformation Composer</h2>

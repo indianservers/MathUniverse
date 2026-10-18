@@ -72,7 +72,9 @@ export default function ShapePatternTargetLesson10011({
           <span>CONCEPT</span>
           <span>learning</span>
         </dl>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content sp10011-hero"><aside>
           <h2>Lesson overview</h2>
           <p>
             Class: 6
@@ -83,8 +85,7 @@ export default function ShapePatternTargetLesson10011({
             <br />
             Concept: Number relationship
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="sp10011-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (x) => (

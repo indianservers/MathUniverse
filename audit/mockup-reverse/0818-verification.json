@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "orientation": "horizontal",
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "orientation": "horizontal",
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "orientation": "horizontal",
+      "width": 1280,
+      "client": 1225,
+      "scroll": 1225
+    },
+    {
+      "orientation": "horizontal",
+      "width": 1440,
+      "client": 1385,
+      "scroll": 1385
+    },
+    {
+      "orientation": "vertical",
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "orientation": "vertical",
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "orientation": "vertical",
+      "width": 1280,
+      "client": 1225,
+      "scroll": 1225
+    },
+    {
+      "orientation": "vertical",
+      "width": 1440,
+      "client": 1385,
+      "scroll": 1385
+    }
+  ],
+  "clipped": []
+}

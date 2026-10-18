@@ -3,7 +3,9 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./MinorsCofactorsTargetLesson10193.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import MathExpression from "../../../components/ui/MathExpression";
+import {minorDet as det2,determinant3 as det3} from "./inverseAdjointModel";
+import "../components/LessonMockupReference.css";
 
 type Matrix = [
   [number, number, number],
@@ -25,29 +27,27 @@ const sub = (m: Matrix, row: number, col: number) =>
     [number, number],
     [number, number],
   ];
-const det2 = (m: [[number, number], [number, number]]) =>
-  m[0][0] * m[1][1] - m[0][1] * m[1][0];
 const minor = (m: Matrix, r: number, c: number) => det2(sub(m, r, c));
 const sign = (r: number, c: number) => ((r + c) % 2 === 0 ? 1 : -1);
 const cofactor = (m: Matrix, r: number, c: number) =>
   sign(r, c) * minor(m, r, c);
-const det3 = (m: Matrix) =>
-  m[0].reduce((sum, value, c) => sum + value * cofactor(m, 0, c), 0);
 function MatrixGrid({
   matrix,
   row,
   col,
   onSelect,
   cross = false,
+  label="Matrix entries",
 }: {
   matrix: Matrix;
   row: number;
   col: number;
   onSelect?: (r: number, c: number) => void;
   cross?: boolean;
+  label?:string;
 }) {
   return (
-    <div className={`mc-matrix ${cross ? "cross" : ""}`}>
+    <div className={`mc-matrix ${cross ? "cross" : ""}`} aria-label={label}>
       {matrix.map((values, r) =>
         values.map((value, c) => {
           const className = `cell ${r === row && c === col ? "selected" : ""} ${cross && (r === row || c === col) ? "removed" : ""}`;
@@ -56,7 +56,8 @@ function MatrixGrid({
               type="button"
               key={`${r}-${c}`}
               className={className}
-              onClick={() => onSelect(r, c)}
+              onClickCapture={event=>{event.stopPropagation();onSelect(r,c);}}
+              aria-pressed={r===row&&c===col}
               aria-label={`entry row ${r + 1} column ${c + 1} value ${value}`}
             >
               {value}
@@ -81,7 +82,7 @@ function MatrixGrid({
   );
 }
 export default function MinorsCofactorsTargetLesson10193({
-  lesson: _lesson,
+  lesson,
 }: {
   lesson: SchoolSyllabusLesson;
 }) {
@@ -114,7 +115,7 @@ export default function MinorsCofactorsTargetLesson10193({
   ).filter(({ r, c }) => !(r === 2 && c === 1));
   return (
     <main
-      className="mc10193-page"
+      className="mc10193-page lesson-reference"
       data-testid="school-mockup-0867"
       data-object-model="dedicated-minor-cofactor-matrix-engine"
       data-source={source}
@@ -128,16 +129,17 @@ export default function MinorsCofactorsTargetLesson10193({
     >
       <header className="mc-hero">
         <small>CLASS 12 · MATRICES AND DETERMINANTS</small>
-        <h1>Minors and Cofactors</h1>
+        <h1>{lesson.title}</h1>
         <p>
           Explore minors and cofactors with an interactive 3×3 matrix. Click any
           entry to see the row and column removed, the minor, the sign (−1)ⁱ⁺ʲ,
           and the cofactor.
         </p>
-        <Link to="/lessons/school">
+        <Link to="/lessons/school/class-12">
           <ArrowLeft />
           School lessons
         </Link>
+        {source==="B"&&<button className="mc-return" onClick={()=>choose("A",1,2)}>Return to matrix A</button>}
       </header>
       <section className="mc-board">
         <article>
@@ -156,7 +158,7 @@ export default function MinorsCofactorsTargetLesson10193({
               matrix={matrix}
               row={row}
               col={col}
-              onSelect={(r, c) => choose(source, r, c)}
+              label="Active matrix selector" onSelect={(r, c) => choose(source, r, c)}
             />
           </div>
           <strong>
@@ -182,7 +184,7 @@ export default function MinorsCofactorsTargetLesson10193({
             <b>i=1</b>
             <b>i=2</b>
             <b>i=3</b>
-            <MatrixGrid matrix={matrix} row={row} col={col} cross />
+            <MatrixGrid matrix={matrix} row={row} col={col} cross label="Crossed-out matrix"/>
           </div>
         </article>
         <article>
@@ -217,14 +219,7 @@ export default function MinorsCofactorsTargetLesson10193({
             </sub>
           </h3>
           <p>Determinant of the 2×2 submatrix.</p>
-          <div className="mc-calc">
-            M
-            <sub>
-              {row + 1}
-              {col + 1}
-            </sub>{" "}
-            = ({sm[0][0]}·{sm[1][1]}) − ({sm[0][1]}·{sm[1][0]}) = {m}
-          </div>
+          <div className="mc-calc"><MathExpression value={String.raw`M_{${row+1}${col+1}}=\begin{vmatrix}${sm[0][0]}&${sm[0][1]}\\${sm[1][0]}&${sm[1][1]}\end{vmatrix}=(${sm[0][0]}\cdot${sm[1][1]})-(${sm[0][1]}\cdot${sm[1][0]})=${m}`}/></div>
           <strong className="answer">
             M
             <sub>
@@ -252,7 +247,7 @@ export default function MinorsCofactorsTargetLesson10193({
                 </span>
               ))}
             </div>
-            <p>
+            <div className="mc-sign-work"><p>
               For (i,j)=({row + 1},{col + 1}):
               <br />
               (−1)
@@ -260,9 +255,8 @@ export default function MinorsCofactorsTargetLesson10193({
                 {row + 1}+{col + 1}
               </sup>{" "}
               = {sgn}
-            </p>
+            </p><strong className="sign-answer">Sign = {sgn}</strong></div>
           </div>
-          <strong className="sign-answer">Sign = {sgn}</strong>
         </article>
         <article>
           <h3>
@@ -273,14 +267,7 @@ export default function MinorsCofactorsTargetLesson10193({
             </sub>
           </h3>
           <p>Multiply the minor by the sign.</p>
-          <div className="mc-calc">
-            C
-            <sub>
-              {row + 1}
-              {col + 1}
-            </sub>{" "}
-            = ({sgn}) · ({m}) = {cf}
-          </div>
+          <div className="mc-calc"><MathExpression value={String.raw`C_{${row+1}${col+1}}=(-1)^{${row+1}+${col+1}}M_{${row+1}${col+1}}=(${sgn})\cdot(${m})=${cf}`}/></div>
           <strong className="answer">
             C
             <sub>
@@ -299,23 +286,23 @@ export default function MinorsCofactorsTargetLesson10193({
             </p>
           </div>
         </aside>
-        <article className="mc-expansion">
+        <div className="mc-expand-row"><article className="mc-expansion">
           <h3>
             <i>7</i> Determinant expansion preview (along row {row + 1})
           </h3>
           <p>
-            Using cofactors from row {row + 1}: det({source}) = Σ a
+            Using cofactors from row {row + 1}: det({source}) = ∑ {source.toLowerCase()}
             <sub>{row + 1}j</sub>C<sub>{row + 1}j</sub>
           </p>
-          <table>
+          <table><thead><tr><th></th>{[1,2,3].map(j=><th key={j}>j = {j}</th>)}</tr></thead>
             <tbody>
               <tr>
                 <th>
-                  Entry a<sub>{row + 1}j</sub>
+                  Entry {source.toLowerCase()}<sub>{row + 1}j</sub>
                 </th>
                 {rowTerms.map((t, i) => (
                   <td className={i === col ? "active" : ""} key={i}>
-                    a
+                    {source.toLowerCase()}
                     <sub>
                       {row + 1}
                       {i + 1}
@@ -343,7 +330,7 @@ export default function MinorsCofactorsTargetLesson10193({
                 <th>Product</th>
                 {rowTerms.map((t, i) => (
                   <td className={i === col ? "active" : ""} key={i}>
-                    {t.value}·{t.cofactor}={t.product}
+                    {t.value<0?`(${t.value})`:t.value}·{t.cofactor<0?`(${t.cofactor})`:t.cofactor}={t.product}
                   </td>
                 ))}
               </tr>
@@ -368,13 +355,13 @@ export default function MinorsCofactorsTargetLesson10193({
             </li>
             <li>Matrix entry: {entry}</li>
             <li>
-              Minor matrix: [{sm[0].join(", ")}; {sm[1].join(", ")}]
+              Minor matrix: <MathExpression value={String.raw`\begin{pmatrix}${sm[0][0]}&${sm[0][1]}\\${sm[1][0]}&${sm[1][1]}\end{pmatrix}`}/>
             </li>
             <li>Minor: M={m}</li>
             <li>Sign: {sgn}</li>
             <li>Cofactor: C={cf}</li>
           </ul>
-        </article>
+        </article></div>
         <article className="mc-practice">
           <h3>
             <i>9</i> Your turn – Practice
@@ -385,7 +372,7 @@ export default function MinorsCofactorsTargetLesson10193({
               <b>Matrix B =</b>
               <MatrixGrid
                 matrix={B}
-                row={source === "B" ? row : -1}
+                label="Practice matrix B" row={source === "B" ? row : -1}
                 col={source === "B" ? col : -1}
                 onSelect={(r, c) => choose("B", r, c)}
               />
@@ -395,7 +382,7 @@ export default function MinorsCofactorsTargetLesson10193({
               <p>Click each entry to verify your understanding.</p>
               <div>
                 {practicePrompts.map(({ value, r, c }) => (
-                  <button key={`${r}-${c}`} onClick={() => choose("B", r, c)}>
+                  <button key={`${r}-${c}`} aria-label={`Try B row ${r+1} column ${c+1}`} onClickCapture={event=>{event.stopPropagation();choose("B",r,c);}}>
                     b
                     <sub>
                       {r + 1}
@@ -413,7 +400,7 @@ export default function MinorsCofactorsTargetLesson10193({
           cofactors instantly.
         </footer>
       </section>
-      <LessonTopicStudyBoard lessonId={10193} alwaysVisible />
+      
 
     </main>
   );

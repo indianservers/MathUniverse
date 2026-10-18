@@ -455,7 +455,9 @@ export default function VectorSubtractionTargetLesson187({
           </h1>
           <h2>Subtract one vector from another: a - b = a + (-b)</h2>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content vs187-header"><aside>
           <section>
             <b>◷ 10-12 min</b>
             <b>ϟ Applied Lab</b>
@@ -478,8 +480,7 @@ export default function VectorSubtractionTargetLesson187({
             <a href="/workspace/geometry">↗ Workspace</a>
           </nav>
           <output>{shared ? "Copied" : ""}</output>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="vs187-tabs">
         {[
           "Observe",

@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "default feasible allocation and cost",
+    "balanced supplies with infeasible column totals",
+    "family endpoints/interior and allocation reapply",
+    "table steppers and 0/50 clamping",
+    "keyboard and pointer shipment changes",
+    "drag/stepper modes",
+    "practice empty/wrong/correct and cost explanation",
+    "reset, tabs and previous link"
+  ]
+}

@@ -8,6 +8,10 @@ import { theoremCategories } from "./theoremLibrary";
 import { getNCERTConceptResourceLinks } from "./ncertResourceLinks";
 
 const knownDynamicRoutes = new Set([
+  "/curriculum",
+  "/number-systems/rational",
+  "/number-systems/irrational",
+  "/number-systems/real-line",
   "/concept-map",
   "/linear-algebra",
   "/math/derivatives",

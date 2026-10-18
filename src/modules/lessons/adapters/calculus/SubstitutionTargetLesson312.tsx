@@ -141,12 +141,13 @@ export default function SubstitutionTargetLesson312({
           </button>
           <a href="/graphing-calculator">▣ Workspace</a>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content sub312-hero"><aside>
           <b>Core rule</b>
           <strong>∫f(g(x))g′(x)dx = ∫f(u)du</strong>
           <p>Let u=g(x) ⇒ du=g′(x)dx</p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="sub312-tabs">
         {[
           "Interaction + visualization",

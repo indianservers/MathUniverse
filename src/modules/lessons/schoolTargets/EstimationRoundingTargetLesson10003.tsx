@@ -109,14 +109,15 @@ export default function EstimationRoundingTargetLesson10003({
             using a number line.
           </p>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content er10003-hero"><aside>
           <strong>Mission: Estimate Smart</strong>
           <p>
             Place the number, round it, and estimate totals with the least
             error!
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="er10003-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (n) => (

@@ -80,7 +80,9 @@ export default function FutureValueTargetLesson595({
             growth factor to find the future value.
           </p>
         </main>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content fv595-hero"><aside>
           <b>Goal target</b>
           <small>Target FV</small>
           <strong>₹30,000</strong>
@@ -88,8 +90,7 @@ export default function FutureValueTargetLesson595({
           <small>You are here</small>
           <b>₹{cash(future)}</b>
           <progress value={Math.min(future, target)} max={target} />
-        </aside>
-      </header>
+        </aside></div>
       <nav className="fv595-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "default partitions and computed density",
+    "help expansion",
+    "ordered/unique and repeated-prime counting",
+    "prime inspection and pair highlighting",
+    "stepper/keyboard boundaries and n=2 scope",
+    "all density dots at 200",
+    "ribbon scroll controls",
+    "nearby carousel and selection",
+    "practice reveal, correct/reversed/duplicate pairs and reset",
+    "all section navigation"
+  ]
+}

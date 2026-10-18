@@ -1,0 +1,116 @@
+[
+  {
+    "level": "Class 6",
+    "sourceUrl": "https://scert.telangana.gov.in/PDF/publication/ebooks/6EM_MAT.pdf",
+    "sourceNote": "SCERT online textbook; 2018\u201319 imprint. Check your textbook edition for chapter changes.",
+    "checkedOn": "2026-10-17",
+    "chapters": [
+      "Knowing Our Numbers",
+      "Whole Numbers",
+      "Playing with Numbers",
+      "Basic Geometrical Ideas",
+      "Measures of Lines and Angles",
+      "Integers",
+      "Fractions and Decimals",
+      "Data Handling",
+      "Introduction to Algebra",
+      "Perimeter and Area",
+      "Ratio and Proportion",
+      "Symmetry",
+      "Practical Geometry",
+      "Understanding 3D and 2D Shapes"
+    ]
+  },
+  {
+    "level": "Class 7",
+    "sourceUrl": "https://scert.telangana.gov.in/PDF/publication/ebooks/7EM_MAT.pdf",
+    "sourceNote": "SCERT online textbook; 2018\u201319 imprint. Check your textbook edition for chapter changes.",
+    "checkedOn": "2026-10-17",
+    "chapters": [
+      "Integers",
+      "Fractions, Decimals and Rational Numbers",
+      "Simple Equations",
+      "Lines and Angles",
+      "Triangle and Its Properties",
+      "Ratio - Applications",
+      "Data Handling",
+      "Congruency of Triangles",
+      "Construction of Triangles",
+      "Algebraic Expressions",
+      "Powers and Exponents",
+      "Quadrilaterals",
+      "Area and Perimeter",
+      "Understanding 3D and 2D Shapes",
+      "Symmetry"
+    ]
+  },
+  {
+    "level": "Class 8",
+    "sourceUrl": "https://scert.telangana.gov.in/PDF/publication/ebooks/8EM_MAT.pdf",
+    "sourceNote": "SCERT online textbook; 2018\u201319 imprint. Check your textbook edition for chapter changes.",
+    "checkedOn": "2026-10-17",
+    "chapters": [
+      "Rational Numbers",
+      "Linear Equations in One Variable",
+      "Construction of Quadrilaterals",
+      "Exponents and Powers",
+      "Comparing Quantities using Proportion",
+      "Square Roots and Cube Roots",
+      "Frequency Distribution Tables and Graphs",
+      "Exploring Geometrical Figures",
+      "Area of Plane Figures",
+      "Direct and Inverse Proportions",
+      "Algebraic Expressions",
+      "Factorisation",
+      "Visualizing 3-D in 2-D",
+      "Surface Area and Volume (Cube-Cuboid)",
+      "Playing with Numbers"
+    ]
+  },
+  {
+    "level": "Class 9",
+    "sourceUrl": "https://scert.telangana.gov.in/PDF/publication/ebooks/9EM_MAT.pdf",
+    "sourceNote": "SCERT online textbook; 2018\u201319 imprint. Check your textbook edition for chapter changes.",
+    "checkedOn": "2026-10-17",
+    "chapters": [
+      "Real Numbers",
+      "Polynomials and Factorisation",
+      "The Elements of Geometry",
+      "Lines and Angles",
+      "Co-Ordinate Geometry",
+      "Linear Equation in Two variables",
+      "Triangles",
+      "Quadrilaterals",
+      "Statistics",
+      "Surface Areas and Volumes",
+      "Areas",
+      "Circles",
+      "Geometrical Constructions",
+      "Probability",
+      "Proofs in Mathematics"
+    ]
+  },
+  {
+    "level": "Class 10",
+    "sourceUrl": "https://scert.telangana.gov.in/PDF/publication/ebooks/10EM_MAT.pdf",
+    "sourceNote": "SCERT online textbook; 2018\u201319 imprint. Check your textbook edition for chapter changes.",
+    "checkedOn": "2026-10-17",
+    "chapters": [
+      "Real Numbers",
+      "Sets",
+      "Polynomials",
+      "Pair of Linear Equations in Two Variables",
+      "Quadratic Equations",
+      "Progressions",
+      "Coordinate Geometry",
+      "Similar Triangles",
+      "Tangents and Secants to a Circle",
+      "Mensuration",
+      "Trigonometry",
+      "Applications of Trigonometry",
+      "Probability",
+      "Statistics",
+      "Mathematical Modelling"
+    ]
+  }
+]

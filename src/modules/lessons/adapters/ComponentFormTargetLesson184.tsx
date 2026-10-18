@@ -301,13 +301,14 @@ export default function ComponentFormTargetLesson184({
             <b>◇ Applied Lab</b>
           </section>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content cf184-header"><aside>
           <h2>You will learn to</h2>
           <p>✓ Find horizontal and vertical components</p>
           <p>✓ Write vectors in component (ordered-pair) form</p>
           <p>✓ Reconstruct a vector from its components</p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="cf184-stages">
         {[
           ["Observe", "See the model"],

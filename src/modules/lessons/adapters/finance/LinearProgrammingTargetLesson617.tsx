@@ -170,7 +170,9 @@ export default function LinearProgrammingTargetLesson617({
           <span>Duration: 10–15 min</span>
           <span>Skills: Graphing, Optimisation, Modelling</span>
         </dl>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content lp617-hero"><aside>
           <b>OBJECTIVE</b>
           <p>
             Maximise{" "}
@@ -179,8 +181,7 @@ export default function LinearProgrammingTargetLesson617({
             </i>{" "}
             subject to x/{x1} + y/{y1} ≤ 1, x/{x2} + y/{y2} ≤ 1, x ≥ 0, y ≥ 0.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="lp617-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (
@@ -544,12 +545,12 @@ export default function LinearProgrammingTargetLesson617({
         <span>
           Lesson Progress <b>3 / 7</b>
         </span>
-        <a href="/lessons/discrete-and-applied-mathematics/618-integer-linear-programming">
+        <span className="lp617-upcoming" aria-label="Integer Linear Programming: upcoming">
           <span>
-            Next Lesson<b>618 Integer Linear Programming</b>
+            Upcoming<b>Integer Linear Programming</b>
           </span>
           <ChevronRight />
-        </a>
+        </span>
       </nav>
       <LessonTopicStudyBoard lessonId={617} view={tab} onInteraction={onInteraction} />
 

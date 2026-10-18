@@ -1,0 +1,259 @@
+{
+  "status": "passed",
+  "errors": [],
+  "responsive": [
+    {
+      "state": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "size6",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "size6",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "size6",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "size6",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "nonclosed",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "nonclosed",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "nonclosed",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "nonclosed",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "nonassoc",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "nonassoc",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "nonassoc",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "nonassoc",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ],
+  "results": [
+    {
+      "n": 3,
+      "closed": true,
+      "identity": 0,
+      "comm": true,
+      "assoc": true
+    },
+    {
+      "n": 3,
+      "closed": true,
+      "identity": 1,
+      "comm": true,
+      "assoc": true
+    },
+    {
+      "n": 3,
+      "closed": true,
+      "identity": null,
+      "comm": false,
+      "assoc": false
+    },
+    {
+      "n": 4,
+      "closed": true,
+      "identity": 0,
+      "comm": true,
+      "assoc": true
+    },
+    {
+      "n": 4,
+      "closed": true,
+      "identity": 1,
+      "comm": true,
+      "assoc": true
+    },
+    {
+      "n": 4,
+      "closed": true,
+      "identity": null,
+      "comm": false,
+      "assoc": false
+    },
+    {
+      "n": 5,
+      "closed": true,
+      "identity": 0,
+      "comm": true,
+      "assoc": true
+    },
+    {
+      "n": 5,
+      "closed": true,
+      "identity": 1,
+      "comm": true,
+      "assoc": true
+    },
+    {
+      "n": 5,
+      "closed": true,
+      "identity": null,
+      "comm": false,
+      "assoc": false
+    },
+    {
+      "n": 6,
+      "closed": true,
+      "identity": 0,
+      "comm": true,
+      "assoc": true
+    },
+    {
+      "n": 6,
+      "closed": true,
+      "identity": 1,
+      "comm": true,
+      "assoc": true
+    },
+    {
+      "n": 6,
+      "closed": true,
+      "identity": null,
+      "comm": false,
+      "assoc": false
+    },
+    {
+      "n": 4,
+      "closed": true,
+      "identity": 3,
+      "comm": true,
+      "assoc": true
+    },
+    {
+      "n": 4,
+      "closed": false,
+      "identity": null,
+      "comm": null,
+      "assoc": null
+    },
+    {
+      "n": 4,
+      "closed": true,
+      "identity": null,
+      "comm": false,
+      "assoc": true
+    },
+    {
+      "n": 4,
+      "closed": true,
+      "identity": null,
+      "comm": false,
+      "assoc": true
+    },
+    {
+      "n": 4,
+      "closed": true,
+      "identity": null,
+      "comm": true,
+      "assoc": true
+    },
+    {
+      "n": 4,
+      "closed": true,
+      "identity": null,
+      "comm": true,
+      "assoc": true
+    },
+    {
+      "n": 4,
+      "closed": true,
+      "identity": null,
+      "comm": false,
+      "assoc": false
+    },
+    {
+      "n": 4,
+      "closed": false,
+      "identity": null,
+      "comm": null,
+      "assoc": null
+    },
+    {
+      "n": 4,
+      "closed": true,
+      "identity": null,
+      "comm": false,
+      "assoc": false
+    },
+    {
+      "n": 4,
+      "closed": false,
+      "identity": null,
+      "comm": null,
+      "assoc": null
+    }
+  ],
+  "clipped": []
+}

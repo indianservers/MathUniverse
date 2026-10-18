@@ -104,15 +104,7 @@ export default function EnvelopeLinesTargetLesson250({
             <b>◷ 6–10 min</b>
           </section>
         </div>
-        <aside>
-          <h2>Rule (Envelope condition)</h2>
-          <p>
-            For a family of lines F(x,y,m)=0,
-            <br />
-            the envelope satisfies
-          </p>
-          <b>F(x,y,m)=0 &nbsp; and &nbsp; ∂F/∂m(x,y,m)=0</b>
-        </aside>
+
         <footer>
           <button type="button">⚑ English (English)⌄</button>
           <button type="button" onClick={reset}>
@@ -132,6 +124,15 @@ export default function EnvelopeLinesTargetLesson250({
           <button type="button">↗ Workspace</button>
         </footer>
       </header>
+      <div className="lesson-header-content target-envelope-header"><aside>
+          <h2>Rule (Envelope condition)</h2>
+          <p>
+            For a family of lines F(x,y,m)=0,
+            <br />
+            the envelope satisfies
+          </p>
+          <b>F(x,y,m)=0 &nbsp; and &nbsp; ∂F/∂m(x,y,m)=0</b>
+        </aside></div>
       <nav className="target-envelope-tabs">
         {[
           "Interaction + Visualization",

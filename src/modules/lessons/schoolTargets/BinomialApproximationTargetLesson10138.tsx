@@ -1,334 +1,36 @@
-import { Info, Lightbulb, RotateCcw } from "lucide-react";
-import { useMemo, useState } from "react";
-import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
-import "./BinomialApproximationTargetLesson10138.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-
-const fixed = (value: number, digits = 5) => value.toFixed(digits);
-
-export default function BinomialApproximationTargetLesson10138({
-  lesson: _lesson,
-}: {
-  lesson: SchoolSyllabusLesson;
-}) {
-  const [x, setX] = useState(0.02),
-    [n, setN] = useState(5),
-    [zoom, setZoom] = useState(0.2);
-  const [axes, setAxes] = useState(true),
-    [grid, setGrid] = useState(true),
-    [actions, setActions] = useState(0);
-  const exact = (1 + x) ** n,
-    approximate = 1 + n * x,
-    error = Math.abs(exact - approximate),
-    percent = exact ? (error / Math.abs(exact)) * 100 : 0;
-  const percentText = (Math.floor(percent * 1000) / 1000).toFixed(3);
-  const reliable = Math.abs(x) <= 0.1;
-  const act = () => setActions((value) => value + 1);
-  const updateX = (value: number) => {
-    setX(Math.max(-zoom, Math.min(zoom, value)));
-    act();
-  };
-  const updateN = (value: number) => {
-    setN(Math.max(-10, Math.min(10, value)));
-    act();
-  };
-  const changeZoom = (value: number) => {
-    setZoom(value);
-    setX((current) => Math.max(-value, Math.min(value, current)));
-    act();
-  };
-  const reset = () => {
-    setX(0.02);
-    setN(5);
-    setZoom(0.2);
-    setAxes(true);
-    setGrid(true);
-    act();
-  };
-  const graph = useMemo(() => {
-    const points = Array.from(
-      { length: 101 },
-      (_, i) => -zoom + (2 * zoom * i) / 100,
-    ).map((gx) => ({ x: gx, curve: (1 + gx) ** n, line: 1 + n * gx }));
-    const values = points.flatMap((point) => [point.curve, point.line]),
-      low = Math.min(...values),
-      high = Math.max(...values),
-      pad = Math.max((high - low) * 0.12, 0.03);
-    const yMin = low - pad,
-      yMax = high + pad,
-      mapX = (value: number) => 40 + ((value + zoom) / (2 * zoom)) * 620,
-      mapY = (value: number) => 250 - ((value - yMin) / (yMax - yMin)) * 215;
-    const path = (key: "curve" | "line") =>
-      points
-        .map(
-          (point, i) =>
-            `${i ? "L" : "M"}${mapX(point.x).toFixed(1)},${mapY(point[key]).toFixed(1)}`,
-        )
-        .join(" ");
-    return { mapX, mapY, curve: path("curve"), line: path("line") };
-  }, [n, zoom]);
-  return (
-    <section
-      className="ba10138-page"
-      data-testid="school-mockup-0812"
-      data-object-model="dedicated-binomial-tangent-approximation-engine"
-      data-x={x}
-      data-n={n}
-      data-exact={fixed(exact)}
-      data-approximation={fixed(approximate)}
-      data-absolute-error={fixed(error)}
-      data-percent-error={percentText}
-      data-zoom={zoom}
-      data-axes={String(axes)}
-      data-grid={String(grid)}
-      data-reliable={String(reliable)}
-      data-actions={actions}
-    >
-      <header>
-        <small>CLASS 11 · BINOMIAL THEOREM</small>
-        <h1>Binomial Approximation</h1>
-        <p>For |x| small and any real n, (1+x)ⁿ ≈ 1+nx.</p>
-        <p>
-          Use the lab to explore accuracy, errors, and the tangent-line view at
-          x=0.
-        </p>
-        <div>
-          <span>18 min</span>
-          <span>ADVANCED</span>
-          <span>CONCEPT</span>
-          <span>Learning</span>
-        </div>
-      </header>
-      <main>
-        <section className="ba10138-inputs">
-          <h2>APPROXIMATION LAB</h2>
-          <p>
-            Adjust x and n to see how well the first-order approximation works.
-          </p>
-          <label>
-            x (input)<small>|x| small</small>
-            <input
-              aria-label="Approximation x slider"
-              type="range"
-              min={-zoom}
-              max={zoom}
-              step="0.01"
-              value={x}
-              onChange={(e) => updateX(Number(e.target.value))}
-            />
-            <input
-              aria-label="Approximation x number"
-              type="number"
-              min={-zoom}
-              max={zoom}
-              step="0.01"
-              value={x}
-              onChange={(e) => updateX(Number(e.target.value))}
-            />
-          </label>
-          <label>
-            n (power)<small>any real n</small>
-            <input
-              aria-label="Approximation n slider"
-              type="range"
-              min="-10"
-              max="10"
-              step="0.5"
-              value={n}
-              onChange={(e) => updateN(Number(e.target.value))}
-            />
-            <input
-              aria-label="Approximation n number"
-              type="number"
-              min="-10"
-              max="10"
-              step="0.5"
-              value={n}
-              onChange={(e) => updateN(Number(e.target.value))}
-            />
-          </label>
-          <article>
-            Current expression{" "}
-            <strong>
-              (1+{x.toFixed(2)})^{n}
-            </strong>
-          </article>
-          <article className="example">
-            <b>Example from lesson</b>
-            <p>1.02⁵ ≈ 1+5(0.02) = 1.10</p>
-            <span>Exact: 1.02⁵ = 1.10408</span>
-          </article>
-          <aside className={reliable ? "valid" : "warning"}>
-            <b>{reliable ? "Validity check" : "Accuracy warning"}</b>
-            <p>
-              As |x| grows, the approximation gets less reliable. Keep |x| small
-              for good accuracy.
-            </p>
-          </aside>
-        </section>
-        <section className="ba10138-results">
-          <h2>RESULTS (Live)</h2>
-          <p>Exact vs first-order approximation near x=0.</p>
-          <dl>
-            <div>
-              <dt>
-                Exact value <small>(1+x)ⁿ</small>
-              </dt>
-              <dd>{fixed(exact)}</dd>
-            </div>
-            <div>
-              <dt>
-                First-order approximation <small>1+nx</small>
-              </dt>
-              <dd>{fixed(approximate)}</dd>
-            </div>
-            <div>
-              <dt>Absolute error</dt>
-              <dd>{fixed(error)}</dd>
-            </div>
-            <div>
-              <dt>Percent error</dt>
-              <dd>{percentText}%</dd>
-            </div>
-          </dl>
-          <aside>
-            <Info />
-            <p>At x=0, the tangent line y=1+nx matches y=(1+x)ⁿ.</p>
-          </aside>
-        </section>
-        <section className="ba10138-graph">
-          <h2>TANGENT vs CURVE (zoomed near x=0)</h2>
-          <div className="legend">
-            <span>— y=(1+x)ⁿ</span>
-            <span>-- y=1+nx</span>
-            <span>● Point at x</span>
-          </div>
-          <svg
-            viewBox="0 0 700 280"
-            aria-label="Exact binomial curve and tangent approximation graph"
-          >
-            {grid &&
-              Array.from({ length: 11 }, (_, i) => (
-                <line
-                  className="grid"
-                  key={`v${i}`}
-                  x1={40 + i * 62}
-                  x2={40 + i * 62}
-                  y1="35"
-                  y2="250"
-                />
-              ))}
-            {grid &&
-              Array.from({ length: 7 }, (_, i) => (
-                <line
-                  className="grid"
-                  key={`h${i}`}
-                  x1="40"
-                  x2="660"
-                  y1={35 + i * 35.8}
-                  y2={35 + i * 35.8}
-                />
-              ))}
-            {axes && (
-              <>
-                <line
-                  className="axis"
-                  x1="40"
-                  x2="660"
-                  y1={graph.mapY(1)}
-                  y2={graph.mapY(1)}
-                />
-                <line
-                  className="axis"
-                  x1={graph.mapX(0)}
-                  x2={graph.mapX(0)}
-                  y1="35"
-                  y2="250"
-                />
-              </>
-            )}
-            <path className="curve" d={graph.curve} />
-            <path className="line" d={graph.line} />
-            <line
-              className="guide"
-              x1={graph.mapX(x)}
-              x2={graph.mapX(x)}
-              y1={graph.mapY(exact)}
-              y2="250"
-            />
-            <circle cx={graph.mapX(x)} cy={graph.mapY(exact)} r="7" />
-            <text
-              x={Math.min(570, graph.mapX(x) + 10)}
-              y={graph.mapY(exact) - 8}
-            >
-              ({x.toFixed(2)}, {fixed(exact)})
-            </text>
-          </svg>
-          <footer>
-            <span>Zoom</span>
-            {[0.2, 0.1, 0.05, 0.02].map((value) => (
-              <button
-                className={zoom === value ? "active" : ""}
-                key={value}
-                onClick={() => changeZoom(value)}
-              >
-                ±{value}
-              </button>
-            ))}
-            <label>
-              <input
-                type="checkbox"
-                checked={axes}
-                onChange={() => {
-                  setAxes((value) => !value);
-                  act();
-                }}
-              />{" "}
-              Show axes
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                checked={grid}
-                onChange={() => {
-                  setGrid((value) => !value);
-                  act();
-                }}
-              />{" "}
-              Show grid
-            </label>
-          </footer>
-        </section>
-      </main>
-      <section className="ba10138-takeaways">
-        <h2>KEY TAKEAWAYS</h2>
-        <article>
-          <b>First-order approximation</b>
-          <p>(1+x)ⁿ≈1+nx for |x| small.</p>
-        </article>
-        <article>
-          <b>Why it works</b>
-          <p>The line is tangent to the curve at x=0.</p>
-        </article>
-        <article>
-          <b>Rule of thumb</b>
-          <p>For |x|≤0.05, error is usually small.</p>
-        </article>
-        <article>
-          <Lightbulb />
-          <b>Try it!</b>
-          <p>Increase |x| and watch the error rise.</p>
-        </article>
-      </section>
-      <footer>
-        <button onClick={reset}>
-          <RotateCcw /> Reset lab
-        </button>
-        <span>← Independent Term</span>
-        <span>Pascal Identity →</span>
-      </footer>
-      <LessonTopicStudyBoard lessonId={10138} alwaysVisible />
-
-    </section>
-  );
+import{useMemo,useRef,useState}from'react';
+import{ArrowLeft,ArrowRight,Info,Lightbulb,RotateCcw}from'lucide-react';
+import{Link}from'react-router-dom';
+import type{SchoolSyllabusLesson}from'../syllabus/lessonSyllabusTypes';
+import MathExpression from'../../../components/ui/MathExpression';
+import LessonMockupFooter from'../components/LessonMockupFooter';
+import{baGraph,baValues}from'./binomialApproximationModel';
+import'./BinomialApproximationTargetLesson10138.css';
+const tex=String.raw,M=({v}:{v:string})=><MathExpression value={v}/>;
+const number=(v:number,d=5)=>v!==0&&Math.abs(v)<.000005?v.toExponential(3):v.toFixed(d);
+export default function BinomialApproximationTargetLesson10138({lesson:_lesson}:{lesson:SchoolSyllabusLesson}){
+ const[x,setX]=useState(.02),[n,setN]=useState(5),[xd,setXd]=useState('0.02'),[nd,setNd]=useState('5'),[zoom,setZoom]=useState(.2),[axes,setAxes]=useState(true),[grid,setGrid]=useState(true),[actions,setActions]=useState(0),drag=useRef<number|null>(null);
+ const m=baValues(x,n),g=useMemo(()=>baGraph(n,zoom),[n,zoom]),act=()=>setActions(v=>v+1);
+ const updateX=(v:number)=>{const next=Math.max(-zoom,Math.min(zoom,v));setX(next);setXd(String(Number(next.toFixed(8))));act();};
+ const updateN=(v:number)=>{setN(v);setNd(String(v));act();};
+ const valid=(s:string,min:number,max:number)=>s.trim()!==''&&Number.isFinite(Number(s))&&Number(s)>=min&&Number(s)<=max;
+ const xv=valid(xd,-zoom,zoom),nv=valid(nd,-10,10),reset=()=>{setX(.02);setN(5);setXd('0.02');setNd('5');setZoom(.2);setAxes(true);setGrid(true);act();};
+ const changeZoom=(z:number)=>{setZoom(z);const next=Math.max(-z,Math.min(z,x));setX(next);setXd(String(next));act();};
+ const move=(e:React.PointerEvent<SVGSVGElement>)=>{const svg=e.currentTarget,ctm=svg.getScreenCTM();if(!ctm)return;const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(ctm.inverse());updateX(-zoom+(p.x-54)/576*2*zoom);};
+ return <section className="ba10138-page lesson-reference" data-testid="school-mockup-0812" data-object-model="dedicated-binomial-tangent-approximation-engine" data-x={x} data-n={n} data-exact={m.exact.toFixed(5)} data-approximation={m.linear.toFixed(5)} data-absolute-error={m.error.toFixed(5)} data-percent-error={m.percent.toFixed(3)} data-zoom={zoom} data-axes={String(axes)} data-grid={String(grid)} data-reliable={String(m.percent<1)} data-actions={actions}>
+ <div className="ba38-hero"><small>CLASS 11 · BINOMIAL THEOREM</small><h1>Binomial Approximation</h1><p>For <M v="|x|"/> small and any real <M v="n"/>, <M v={tex`(1+x)^n\approx1+nx`}/>.</p><p>Use the lab to explore accuracy, errors, and the tangent-line view at <M v="x=0"/>.</p><div className="ba38-meta"><span>18 min</span><span>ADVANCED</span><span>CONCEPT</span><span>Learning</span></div><Link className="ba38-school" to="/lessons/school"><ArrowLeft/>School lessons</Link></div>
+ <main><section className="ba38-inputs"><h2>APPROXIMATION LAB</h2><p>Adjust x and n to see how well the first-order approximation works.</p>
+ <div className="ba38-control"><label htmlFor="ba38-x">x (input) <small>|x| small</small></label><input id="ba38-x" aria-label="Approximation x number" type="number" min={-zoom} max={zoom} step="any" value={xd} aria-invalid={!xv} onChange={e=>{const s=e.target.value;setXd(s);if(valid(s,-zoom,zoom)){setX(Number(s));act();}}}/><input aria-label="Approximation x slider" type="range" min={-zoom} max={zoom} step={zoom/200} value={x} onChange={e=>updateX(Number(e.target.value))}/><div className="ba38-ticks">{[-1,-.5,0,.5,1].map(v=><span key={v}>{number(v*zoom,2)}</span>)}</div>{!xv&&<p role="alert">Enter x between {-zoom} and {zoom}. The last valid value is shown.</p>}</div>
+ <div className="ba38-control"><label htmlFor="ba38-n">n (power) <small>any real n</small></label><input id="ba38-n" aria-label="Approximation n number" type="number" min="-10" max="10" step="any" value={nd} aria-invalid={!nv} onChange={e=>{const s=e.target.value;setNd(s);if(valid(s,-10,10)){setN(Number(s));act();}}}/><input aria-label="Approximation n slider" type="range" min="-10" max="10" step="0.1" value={n} onChange={e=>updateN(Number(e.target.value))}/><div className="ba38-ticks">{[-10,-5,0,5,10].map(v=><span key={v}>{v}</span>)}</div>{!nv&&<p role="alert">Enter a real power from −10 to 10. The last valid value is shown.</p>}</div>
+ <div className="ba38-expression">Current expression <M v={tex`(1+x)^{${n}}\quad x=${x}`}/></div><article className="ba38-example"><b>Example from lesson</b><p><M v={tex`1.02^5\approx1+5(0.02)=1.10`}/></p><span>Exact: <M v="1.02^5=1.10408"/></span></article><aside className="ba38-valid"><b>ⓘ Accuracy check</b><p>{m.percent<1?'Current relative error is below 1%.':'Current relative error is at least 1%; the linear approximation is less accurate.'} Accuracy depends on both x and n; inspect the measured error.</p></aside></section>
+ <section className="ba38-results"><h2>RESULTS (Live)</h2><p>Exact vs first-order approximation near x = 0.</p><dl>{[['Exact value','(1+x)^n',number(m.exact)],['First-order approximation','1+nx',number(m.linear)],['Absolute error',tex`|(1+x)^n-(1+nx)|`,number(m.error)],['Percent error',tex`\frac{|(1+x)^n-(1+nx)|}{(1+x)^n}\times100\%`,number(m.percent,3)+'%']].map(([label,formula,value])=><div key={label}><dt>{label}<M v={formula}/></dt><dd>{value}</dd></div>)}</dl><aside><Info/><p>At <M v="x=0"/>, the tangent line <M v="y=1+nx"/> matches the curve at (0, 1), with the same slope n.</p></aside></section>
+ <section className="ba38-graph"><h2>TANGENT vs CURVE (zoomed near x = 0)</h2><div className="ba38-legend"><span>━ <M v="y=(1+x)^n"/></span><span>┄ <M v="y=1+nx"/></span><span>● Point at x</span></div><svg viewBox="0 0 660 315" aria-label="Exact binomial curve and tangent approximation graph" data-view={JSON.stringify({zoom,ymin:g.ymin,ymax:g.ymax})} onPointerMove={e=>{if(drag.current===e.pointerId)move(e);}} onPointerUp={e=>{if(drag.current===e.pointerId){drag.current=null;e.currentTarget.releasePointerCapture(e.pointerId);}}} onPointerCancel={()=>{drag.current=null;}} onLostPointerCapture={()=>{drag.current=null;}}>
+ {Array.from({length:9},(_,i)=>{const v=-zoom+i*zoom/4,px=g.mx(v);return <g key={'x'+i}>{grid&&<line className="ba38-grid" x1={px} x2={px} y1="32" y2="270"/>}<text x={px} y="292" textAnchor="middle">{number(v,Math.abs(v)<.01&&v!==0?3:2)}</text></g>;})}
+ {Array.from({length:7},(_,i)=>{const v=g.ymin+(g.ymax-g.ymin)*i/6,py=g.my(v);return <g key={'y'+i}>{grid&&<line className="ba38-grid" x1="54" x2="630" y1={py} y2={py}/>}<text x="45" y={py+4} textAnchor="end">{v.toFixed(Math.abs(v)<10?2:1)}</text></g>;})}
+ {axes&&<g className="ba38-axes"><line x1={g.mx(0)} x2={g.mx(0)} y1="32" y2="270"/>{g.ymin<=0&&<line x1="54" x2="630" y1={g.my(0)} y2={g.my(0)}/>}<text x="646" y="309">x</text><text x={g.mx(0)+8} y="22">y</text></g>}
+ <line className="ba38-reference" x1="54" x2="630" y1={g.my(1)} y2={g.my(1)}/><path className="ba38-curve" d={g.curve}/><path className="ba38-line" d={g.line}/><line className="ba38-guide" x1={g.mx(x)} x2={g.mx(x)} y1={g.my(m.exact)} y2="270"/><circle className="ba38-contact" cx={g.mx(0)} cy={g.my(1)} r="3"/>
+ <circle className="ba38-point" role="slider" tabIndex={0} aria-label="Drag binomial point" aria-valuemin={-zoom} aria-valuemax={zoom} aria-valuenow={x} aria-valuetext={`x ${x}, exact value ${m.exact}`} cx={g.mx(x)} cy={g.my(m.exact)} r="7" onPointerDown={e=>{e.preventDefault();drag.current=e.pointerId;e.currentTarget.ownerSVGElement?.setPointerCapture(e.pointerId);}} onKeyDown={e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();updateX(e.key==='Home'?0:e.key==='End'?zoom:x+(e.key==='ArrowLeft'?-1:1)*zoom/100);}}}/><g className="ba38-point-label" transform={`translate(${Math.max(60,Math.min(430,g.mx(x)+13))},${Math.max(38,g.my(m.exact)-34)})`}><rect width="192" height="26" rx="5"/><text x="8" y="18">({number(x,3)}, {number(m.exact)})</text></g></svg>
+ <p className="ba38-chart-note">Drag the green point or use its arrow keys. Gray line: y = 1. Curve and tangent touch at (0, 1).</p><div className="ba38-graph-tools"><span>Zoom</span>{[.2,.1,.05,.02].map(z=><button key={z} aria-pressed={zoom===z} onClick={()=>changeZoom(z)}>±{z}</button>)}<label><input type="checkbox" checked={axes} onChange={()=>{setAxes(v=>!v);act();}}/>Show axes</label><label><input type="checkbox" checked={grid} onChange={()=>{setGrid(v=>!v);act();}}/>Show grid</label></div></section></main>
+ <section className="ba38-takeaways"><h2>KEY TAKEAWAYS</h2><div><article><Info/><b>First-order approximation</b><p><M v={tex`(1+x)^n\approx1+nx`}/> for small |x|.</p></article><article><Info/><b>Why it works</b><p>The line is tangent to the curve at x = 0.</p></article><article><Info/><b>Rule of thumb</b><p>The leading error is <M v={tex`\frac{n(n-1)}2x^2`}/>. Check the actual error for your n.</p></article><article><Lightbulb/><b>Try it!</b><p>Increase |x| and watch the error. At n = 0 or 1, the approximation is exact.</p></article></div></section>
+ <div className="ba38-bottom"><Link to="/lessons/school/class-11/class-11-binomial-theorem-independent-term"><ArrowLeft/>Independent Term</Link><button onClick={reset}><RotateCcw/>Reset lab</button><Link to="/lessons/school/class-11/class-11-binomial-theorem-pascal-identity">Pascal Identity<ArrowRight/></Link></div><LessonMockupFooter/></section>;
 }

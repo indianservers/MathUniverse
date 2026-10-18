@@ -205,9 +205,9 @@ function StudioHome({ progress }: { progress: number }) {
           </section>
           <section className="ns-panel">
             <h2>Connected labs</h2>
-            <Link to="/ncert/class-7-rational-numbers">Class 7 rational</Link>
-            <Link to="/ncert/class-9-number-systems">Class 9 number systems</Link>
-            <Link to="/ncert/class-10-real-numbers">Class 10 real numbers</Link>
+            <Link to="/lessons/numbers-and-arithmetic/60-rational-numbers">Class 7 rational</Link>
+            <Link to="/lessons/numbers-and-arithmetic/60-rational-numbers">Class 9 number systems</Link>
+            <Link to="/lessons/numbers-and-arithmetic/62-real-numbers">Class 10 real numbers</Link>
             <Link to="/number-systems/formula-visualizer">Formula visualizer</Link>
           </section>
         </aside>

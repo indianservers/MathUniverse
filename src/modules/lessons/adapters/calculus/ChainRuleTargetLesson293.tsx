@@ -125,7 +125,9 @@ export default function ChainRuleTargetLesson293({
             <a href="/workspace/calculus">▣ Workspace</a>
           </div>
         </main>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content chr293-hero"><aside>
           <h3>The Chain Rule</h3>
           <p>For a composition y=f(g(x)):</p>
           <output>
@@ -139,8 +141,7 @@ export default function ChainRuleTargetLesson293({
             </span>
             <span>inner rate</span>
           </div>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="chr293-tabs">
         {[
           "Interaction + visualization",

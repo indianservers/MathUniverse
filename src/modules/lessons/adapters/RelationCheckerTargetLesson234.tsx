@@ -154,14 +154,15 @@ export default function RelationCheckerTargetLesson234({ resetToken, onInteracti
             <b><CrosshairIcon /> 6–10 min</b>
           </section>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content target-relation-header"><aside>
           <h2>Learning goals</h2>
           <p><Check /> Identify relationships between geometric objects.</p>
           <p><Check /> Test and justify results visually.</p>
           <p><Check /> Build geometric reasoning.</p>
           <label><Globe2 /><select aria-label="Lesson language" value={language} onChange={(event) => { setLanguage(event.target.value); onInteraction(); }}><option>English (English)</option><option>Hindi (हिन्दी)</option></select><ChevronDown /></label>
-        </aside>
-      </header>
+        </aside></div>
 
       <nav className="target-relation-tabs" aria-label="Relation Checker lesson sections">
         {[

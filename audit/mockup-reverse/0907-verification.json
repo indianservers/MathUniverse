@@ -1,0 +1,32 @@
+{
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "status": "passed",
+  "checks": [
+    "default z and p",
+    "all alternatives",
+    "shading modes",
+    "keyboard boundaries and pointer drag",
+    "significance and sigma controls",
+    "expand and workflow",
+    "coin feedback and unsuitable approximation",
+    "new example",
+    "all resources and preset"
+  ]
+}

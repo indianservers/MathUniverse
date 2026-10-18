@@ -139,15 +139,16 @@ export default function FrustumTargetLesson401({
             </button>
           </nav>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content fru401-hero"><aside>
           <h2>Key idea</h2>
           <p>
             A frustum is formed by cutting a cone with a plane parallel to its
             base. Move the handles to explore how measurements and formulas
             change.
           </p>
-        </aside>
-      </header>
+        </aside></div>
 
       <section className="fru401-lab">
         <article className="fru401-interactive">
@@ -451,11 +452,11 @@ export default function FrustumTargetLesson401({
             <b>Hemisphere</b>
           </span>
         </a>
-        <a href="/lessons/3d-mathematics/402-cone-slices-cross-sections">
+        <a href="/lessons/3d-mathematics/405-cross-sections">
           <span>
             Next
             <br />
-            <b>Cone Slices &amp; Cross-sections</b>
+            <b>Cross-Sections</b>
           </span>{" "}
           →
         </a>

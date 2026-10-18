@@ -31,51 +31,51 @@ display:none;}
   font: inherit;
   color: inherit;
 }
-.rfx10113-page > header {
+.rfx10113-page > .rfx10113-hero {
   display: grid;
   grid-template-columns: 45% 55%;
   gap: 18px;
   min-height: 172px;
   padding: 18px 5px;
 }
-.rfx10113-page > header small,
+.rfx10113-page > .rfx10113-hero small,
 .rfx10113-page h2 {
   color: var(--lesson-accent,#45dfdd);
   font-weight: 900;
   letter-spacing: 1px;
 }
-.rfx10113-page > header h1 {
+.rfx10113-page > .rfx10113-hero h1 {
   margin: 7px 0;
   font-size: 26px;
 }
-.rfx10113-page > header nav {
+.rfx10113-page > .rfx10113-hero nav {
   display: flex;
   gap: 7px;
   margin-top: 24px;
 }
-.rfx10113-page > header nav span {
+.rfx10113-page > .rfx10113-hero nav span {
   padding: 4px 12px;
   border: 1px solid var(--lesson-border,#30445d);
   border-radius: 14px;
   background: var(--lesson-surface,#10213a);
   font-weight: 700;
 }
-.rfx10113-page > header aside {
+.rfx10113-page > .rfx10113-hero aside {
   padding: 17px;
   border: 1px solid var(--lesson-border,#29445d);
   border-radius: 8px;
   background: var(--lesson-surface,#06152b);
 }
-.rfx10113-page > header aside b {
+.rfx10113-page > .rfx10113-hero aside b {
   color: var(--lesson-accent,#64bff3);
 }
-.rfx10113-page > header aside p {
+.rfx10113-page > .rfx10113-hero aside p {
   margin: 14px 0;
   font:
     italic 15px Georgia,
     serif;
 }
-.rfx10113-page > header aside strong {
+.rfx10113-page > .rfx10113-hero aside strong {
   display: block;
   color: var(--lesson-accent,#39dfe0);
   text-align: center;
@@ -236,7 +236,7 @@ display:none;}
 .rfx10113-editor > footer small {
   color: var(--lesson-ink,#c8d2e2);
 }
-.rfx10113-checker > header {
+.rfx10113-checker > .rfx10113-result {
   display: flex;
   gap: 12px;
   margin: 13px 0;
@@ -244,16 +244,16 @@ display:none;}
   border: 1px solid var(--lesson-border,#30445d);
   border-radius: 7px;
 }
-.rfx10113-checker > header > svg {
+.rfx10113-checker > .rfx10113-result > svg {
   width: 27px;
 }
-.rfx10113-checker > header.no {
+.rfx10113-checker > .rfx10113-result.no {
   color: #ff6462;
 }
-.rfx10113-checker > header.yes {
+.rfx10113-checker > .rfx10113-result.yes {
   color: var(--lesson-accent,#44e58a);
 }
-.rfx10113-checker > header strong {
+.rfx10113-checker > .rfx10113-result strong {
   font-size: 16px;
 }
 .rfx10113-checker table {
@@ -331,12 +331,12 @@ display:none;}
   .rfx10113-page:before {
     inset: 0;
   }
-  .rfx10113-page > header,
+  .rfx10113-page > .rfx10113-hero,
   .rfx10113-page > main,
   .rfx10113-notes {
     display: block;
   }
-  .rfx10113-page > header aside {
+  .rfx10113-page > .rfx10113-hero aside {
     margin-top: 12px;
   }
   .rfx10113-work {
@@ -368,3 +368,46 @@ display:none;}
     border-top: 1px solid var(--lesson-border,#29445d);
   }
 }
+
+.rfx10113-page{top:0;left:0;width:100%;padding:8px;font-size:14px;--lesson-ink:#e7eefb!important;--lesson-surface:#06162b!important;--lesson-border:#29455e!important;--lesson-accent:#35e0e4!important;--lesson-muted:#74839a!important;color:#e7eefb!important;background:#031328!important}
+.rfx10113-page>.rfx10113-hero{grid-template-columns:.9fr 1.1fr;gap:18px}
+.rfx10113-page>.rfx10113-hero h1{font-size:28px!important;font-weight:800!important;color:#f0f2fc!important}
+.rfx10113-page>.rfx10113-hero nav{flex-wrap:wrap}
+.rfx10113-page>main{grid-template-columns:1.5fr 1fr;gap:14px}
+.rfx10113-page h2{font-size:12px;font-weight:800}
+.rfx10113-page button{background:#0b1b32;color:#e7eefb!important;cursor:pointer}
+.rfx10113-page button:focus-visible{outline:2px solid #35e0e4;outline-offset:3px}
+.rfx10113-set-editor{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px;margin-top:10px;border:1px solid #29455e;border-radius:8px}
+.rfx10113-set-editor select{background:#071a31;color:#e7eefb;border:1px solid #47617a;padding:7px;border-radius:5px}
+.rfx10113-set-editor small{width:100%;color:#a9b8cc}
+.rfx10113-set-editor button{padding:7px 12px;border-radius:5px}
+.rfx10113-work{grid-template-columns:1.08fr 1fr}
+.rfx10113-work>article>svg{height:245px}
+.rfx10113-work svg text{font-size:18px}
+.rfx10113-work svg .off{fill:none}
+.rfx10113-work svg #rfx-off-arrow path{fill:#74839a}
+.rfx10113-work svg .rfx10113-edge-hit{stroke:transparent;stroke-width:11;fill:none;pointer-events:stroke}
+.rfx10113-work svg g:focus-visible .on,.rfx10113-work svg g:focus-visible .off{stroke-width:4}
+.rfx10113-work svg g:focus-visible circle{stroke-width:4;stroke:#ffbc38}
+.rfx10113-work svg .rfx10113-first-missing circle{stroke:#ff697c}
+.rfx10113-matrix{gap:3px}
+.rfx10113-matrix button{min-width:0!important;min-height:0!important;padding:0!important;border-radius:4px;font-size:17px!important}
+.rfx10113-matrix button.one{background:#092d3c;box-shadow:none}
+.rfx10113-matrix button.rfx10113-missing-cell{border-color:#cc566d;background:#2a1b2a}
+.rfx10113-checker>.rfx10113-result{background:#101f35}
+.rfx10113-checker>.rfx10113-result.no{color:#ff697c}
+.rfx10113-checker>.rfx10113-result.yes{color:#35e4bd}
+.rfx10113-checker .present{background:#113d37;color:#6ce1b4}
+.rfx10113-checker .missing{background:#432438;color:#ff7589}
+.rfx10113-checker th,.rfx10113-checker td{padding:12px 10px}
+.rfx10113-checker .rfx10113-first-row{color:#ff7589}
+.rfx10113-work article>small{font-size:11px}
+.rfx10113-editor>footer{flex-wrap:wrap;gap:14px}
+.rfx10113-editor>footer button{width:235px}
+.rfx10113-notes{grid-template-columns:1.6fr 1fr}
+.rfx10113-notes section{padding:13px 22px}
+@media(max-width:1100px){.rfx10113-page>main{grid-template-columns:1fr}.rfx10113-page>.rfx10113-hero{grid-template-columns:1fr 1fr}.rfx10113-work{grid-template-columns:1fr 1fr}.rfx10113-work>article{display:block}.rfx10113-work>article>svg{height:270px}}
+@media(max-width:700px){.rfx10113-page>.rfx10113-hero,.rfx10113-notes{display:block}.rfx10113-work{display:block}.rfx10113-work>article{display:none}.rfx10113-work>article.shown{display:block}.rfx10113-work>article+article{border-left:0}.rfx10113-checker th,.rfx10113-checker td{padding:10px 5px}.rfx10113-editor>footer button{width:100%}.rfx10113-page{font-size:13px}}
+
+.rfx10113-checker>article p{font:14px/1.6 Inter,Arial,sans-serif}
+@media(min-width:1101px){.rfx10113-editor>.setline{width:calc(52% - 14px)}.rfx10113-editor>p{max-width:50%}.rfx10113-work>article+article{margin-top:-110px;padding-top:0}.rfx10113-work>article>svg{height:250px}}

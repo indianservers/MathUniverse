@@ -373,9 +373,9 @@ export default function GraphInspectorTargetLesson54({
             PREVIOUS<b>Special Points</b>
           </span>
         </a>
-        <a href="/lessons/graphs-and-functions/55-family-parameters">
+        <a href="/lessons/graphs-and-functions/55-dynamic-parameters">
           <span>
-            NEXT<b>Graph Families</b>
+            NEXT<b>Dynamic Parameters</b>
           </span>{" "}
           →
         </a>

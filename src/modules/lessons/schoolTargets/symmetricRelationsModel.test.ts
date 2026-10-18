@@ -1,0 +1,7 @@
+import{describe,it,expect}from'vitest';import{A,p,initial,analyze,symmetricClosure,edgeGeometry,type Pair}from'./symmetricRelationsModel';
+const pairs=A.flatMap(a=>A.map(b=>p(a,b)));
+describe('symmetric relation engine',()=>{
+it('matches the reference matrix with its missing reverse',()=>{const r=new Set(initial);expect(r.size).toBe(15);expect(analyze(r)).toEqual({unmatched:[[1,3]],symmetric:false,reflexive:true});expect(symmetricClosure(r).size).toBe(16);});
+it('checks all 65536 relations and their minimal symmetric closures',()=>{let count=0;for(let mask=0;mask<65536;mask++){const r=new Set<Pair>(pairs.filter((_,i)=>mask&(1<<i))),f=analyze(r),cl=symmetricClosure(r);const expected=pairs.filter(k=>{const[a,b]=k.split(',').map(Number);return r.has(k)&&!r.has(`${b},${a}` as Pair)});expect(f.unmatched.map(([a,b])=>p(a,b))).toEqual(expected);expect(f.symmetric).toBe(!expected.length);if(f.symmetric)count++;expect(f.reflexive).toBe(A.every(a=>r.has(p(a,a))));expect(analyze(cl).symmetric).toBe(true);expect(cl.size).toBe(r.size+expected.length);for(const k of pairs){const[a,b]=k.split(',').map(Number);expect(cl.has(k)).toBe(r.has(k)||r.has(`${b},${a}` as Pair));}expect([...symmetricClosure(cl)].sort()).toEqual([...cl].sort());}expect(count).toBe(1024);},60000);
+it('renders every loop and both orientations separately',()=>{for(const a of A)expect(edgeGeometry(a,a)).toContain('C');for(const a of A)for(const b of A)if(a!==b)expect(edgeGeometry(a,b)).not.toBe(edgeGeometry(b,a));});
+});

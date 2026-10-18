@@ -354,8 +354,9 @@ export default function HigherDegreePolynomialsTargetLesson136({
             </button>
           </section>
         </div>
-        <HeroPolynomial />
+
       </header>
+      <div className="lesson-header-content poly136-intro"><HeroPolynomial /></div>
       <nav className="poly136-tabs">
         {[
           "Interaction + visualization",

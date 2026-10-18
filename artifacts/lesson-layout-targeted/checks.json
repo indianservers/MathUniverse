@@ -1,0 +1,1356 @@
+[
+  {
+    "id": 4,
+    "route": "/lessons/core-workspaces/4-percentage-calculator",
+    "title": "Percentage Calculator",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-percent-header",
+            "text": "CORE WORKSPACESPercentage CalculatorApply percentages to practical problems.◉ Foundation⌘ ",
+            "height": 66,
+            "scrollHeight": 64,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-percent-header",
+            "text": "CORE WORKSPACESPercentage CalculatorApply percentages to practical problems.◉ Foundation⌘ ",
+            "height": 275,
+            "scrollHeight": 273,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "route": "/lessons/numbers-and-arithmetic/61-irrational-numbers",
+    "title": "Irrational Numbers",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "irrational-hero",
+            "text": "NUMBERS AND ARITHMETICNUMBERS AND NUMBER THEORYIrrational NumbersVisualise non-terminating",
+            "height": 96,
+            "scrollHeight": 96,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "irrational-hero",
+            "text": "NUMBERS AND ARITHMETICNUMBERS AND NUMBER THEORYIrrational NumbersVisualise non-terminating",
+            "height": 284,
+            "scrollHeight": 284,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "route": "/lessons/numbers-and-arithmetic/76-equivalent-fractions",
+    "title": "Equivalent Fractions",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "equivalent76-hero",
+            "text": "NUMBERS AND ARITHMETICFRACTIONS, DECIMALS, RATIOS AND PERCENTAGESEquivalent FractionsUnder",
+            "height": 88,
+            "scrollHeight": 86,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "equivalent76-hero",
+            "text": "NUMBERS AND ARITHMETICFRACTIONS, DECIMALS, RATIOS AND PERCENTAGESEquivalent FractionsUnder",
+            "height": 285,
+            "scrollHeight": 283,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "route": "/lessons/numbers-and-arithmetic/77-comparing-fractions",
+    "title": "Comparing Fractions",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "compare77-hero",
+            "text": "NUMBERS AND ARITHMETICFRACTIONS, DECIMALS, RATIOS AND PERCENTAGESComparing FractionsCompar",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "compare77-hero",
+            "text": "NUMBERS AND ARITHMETICFRACTIONS, DECIMALS, RATIOS AND PERCENTAGESComparing FractionsCompar",
+            "height": 251,
+            "scrollHeight": 249,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "route": "/lessons/numbers-and-arithmetic/85-direct-proportion",
+    "title": "Direct Proportion",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "direct85-header",
+            "text": "NUMBERS AND ARITHMETICFRACTIONS, DECIMALS, RATIOS AND PERCENTAGESDirect ProportionUndersta",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "direct85-header",
+            "text": "NUMBERS AND ARITHMETICFRACTIONS, DECIMALS, RATIOS AND PERCENTAGESDirect ProportionUndersta",
+            "height": 261,
+            "scrollHeight": 259,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "route": "/lessons/graphs-and-functions/46-data-plotter",
+    "title": "Data Plotter",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorData PlotterConnect datasets to graphs.Foundatio",
+            "height": 94,
+            "scrollHeight": 92,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          },
+          {
+            "tag": "HEADER",
+            "className": "dp46-hero",
+            "text": "INTERACTION + VISUALIZATIONData PlotterConnect datasets to graphs.↗ WorkspaceResetShare◷ 6",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorData PlotterConnect datasets to graphs.Foundatio",
+            "height": 94,
+            "scrollHeight": 92,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorData PlotterConnect datasets to graphs.Foundatio",
+            "height": 94,
+            "scrollHeight": 92,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorData PlotterConnect datasets to graphs.Foundatio",
+            "height": 94,
+            "scrollHeight": 92,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorData PlotterConnect datasets to graphs.Foundatio",
+            "height": 94,
+            "scrollHeight": 92,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorData PlotterConnect datasets to graphs.Foundatio",
+            "height": 240,
+            "scrollHeight": 238,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          },
+          {
+            "tag": "HEADER",
+            "className": "dp46-hero",
+            "text": "INTERACTION + VISUALIZATIONData PlotterConnect datasets to graphs.↗ WorkspaceResetShare◷ 6",
+            "height": 81,
+            "scrollHeight": 79,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorData PlotterConnect datasets to graphs.Foundatio",
+            "height": 240,
+            "scrollHeight": 238,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorData PlotterConnect datasets to graphs.Foundatio",
+            "height": 240,
+            "scrollHeight": 238,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorData PlotterConnect datasets to graphs.Foundatio",
+            "height": 240,
+            "scrollHeight": 238,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "Graphs and Functions2D Graphing CalculatorData PlotterConnect datasets to graphs.Foundatio",
+            "height": 240,
+            "scrollHeight": 238,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "route": "/lessons/algebra/103-synthetic-division",
+    "title": "Synthetic Division",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "synthetic103-intro",
+            "text": "ALGEBRAEXPRESSIONS AND MANIPULATIONSynthetic DivisionDivide polynomials of the form P(x) b",
+            "height": 68,
+            "scrollHeight": 66,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "synthetic103-intro",
+            "text": "ALGEBRAEXPRESSIONS AND MANIPULATIONSynthetic DivisionDivide polynomials of the form P(x) b",
+            "height": 219,
+            "scrollHeight": 217,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 112,
+    "route": "/lessons/algebra/112-simultaneous-linear-equations",
+    "title": "Simultaneous Linear Equations",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sim112-intro",
+            "text": "ALGEBRAEQUATIONS AND INEQUALITIESSimultaneous Linear EquationsSolve two linear equations t",
+            "height": 205,
+            "scrollHeight": 203,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sim112-intro",
+            "text": "ALGEBRAEQUATIONS AND INEQUALITIESSimultaneous Linear EquationsSolve two linear equations t",
+            "height": 453,
+            "scrollHeight": 451,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "route": "/lessons/algebra/106-identities",
+    "title": "Identities",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "identity106-intro",
+            "text": "ALGEBRAEXPRESSIONS AND MANIPULATIONIdentitiesAn identity is true for every allowed value, ",
+            "height": 108,
+            "scrollHeight": 106,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "identity106-intro",
+            "text": "ALGEBRAEXPRESSIONS AND MANIPULATIONIdentitiesAn identity is true for every allowed value, ",
+            "height": 312,
+            "scrollHeight": 310,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 148,
+    "route": "/lessons/graphs-and-functions/148-sign-function",
+    "title": "Sign Function",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sign148-header",
+            "text": "GRAPHS AND FUNCTIONSINTERACTIONSign FunctionClassify positive, zero and negative inputs.En",
+            "height": 56,
+            "scrollHeight": 56,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sign148-header",
+            "text": "GRAPHS AND FUNCTIONSINTERACTIONSign FunctionClassify positive, zero and negative inputs.En",
+            "height": 170,
+            "scrollHeight": 170,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 147,
+    "route": "/lessons/graphs-and-functions/147-ceiling-function",
+    "title": "Ceiling Function",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ceil147-header",
+            "text": "← Home › Lessons › Graphs And Functions ›147 Ceiling FunctionCeiling FunctionUnderstand up",
+            "height": 88,
+            "scrollHeight": 88,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ceil147-header",
+            "text": "← Home › Lessons › Graphs And Functions ›147 Ceiling FunctionCeiling FunctionUnderstand up",
+            "height": 212,
+            "scrollHeight": 212,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 150,
+    "route": "/lessons/graphs-and-functions/150-composite-functions",
+    "title": "Composite Functions",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "comp150-header",
+            "text": "Composite FunctionsFollow chained mappings.ResetShareWorkspacex → g(x) → f(g(x))Inputx2−55",
+            "height": 233,
+            "scrollHeight": 233,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "comp150-header",
+            "text": "Composite FunctionsFollow chained mappings.ResetShareWorkspacex → g(x) → f(g(x))Inputx2−55",
+            "height": 569,
+            "scrollHeight": 569,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 179,
+    "route": "/lessons/geometry/179-coordinate-transformations",
+    "title": "Coordinate Transformations",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ct179-header",
+            "text": "COORDINATE GEOMETRYCoordinate TransformationsMap points algebraically. Observe → Manipulat",
+            "height": 56,
+            "scrollHeight": 111,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ct179-header",
+            "text": "COORDINATE GEOMETRYCoordinate TransformationsMap points algebraically. Observe → Manipulat",
+            "height": 167,
+            "scrollHeight": 165,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 182,
+    "route": "/lessons/geometry/182-barycentric-coordinates",
+    "title": "Barycentric Coordinates",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "bc182-header",
+            "text": "COORDINATE GEOMETRYBarycentric CoordinatesRepresent points relative to a triangle.♙ Interm",
+            "height": 56,
+            "scrollHeight": 126,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "bc182-header",
+            "text": "COORDINATE GEOMETRYBarycentric CoordinatesRepresent points relative to a triangle.♙ Interm",
+            "height": 215,
+            "scrollHeight": 213,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  }
+]

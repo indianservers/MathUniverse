@@ -282,7 +282,9 @@ export default function HamiltonianPathsTargetLesson572({
             </span>
           </dl>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content ha572-hero"><aside>
           <b>Quick idea</b>
           <Lightbulb />
           <p>
@@ -290,8 +292,7 @@ export default function HamiltonianPathsTargetLesson572({
             <br />
             Each vertex appears exactly once.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="ha572-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

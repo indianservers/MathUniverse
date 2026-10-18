@@ -1,0 +1,382 @@
+{
+  "fileHeader": {
+    "magic": "MATHAPP_PORTABLE_FILE",
+    "fileKind": "lesson",
+    "fileExtension": ".mathlesson",
+    "mimeType": "application/vnd.mathapp.lesson",
+    "schemaVersion": 1,
+    "minimumReaderVersion": "1.0.0",
+    "createdByApp": "Math Universe",
+    "createdByAppVersion": "1.0.1"
+  },
+  "workspace": {
+    "type": "2d-graph",
+    "typeLabel": "2D Graph",
+    "engine": "math-universe-graph-workspace",
+    "engineVersion": "1.0.1"
+  },
+  "document": {
+    "id": "ca0478f9-c492-4915-b8ba-92898a10ff0c",
+    "title": "Explore Parabolas with a, b and c",
+    "description": "Use sliders to connect quadratic coefficients to shape, axis and intercepts.",
+    "author": {
+      "name": "Math Universe",
+      "organization": "Sample Lesson Library"
+    },
+    "createdAt": "2026-08-20T10:30:00.000Z",
+    "updatedAt": "2026-08-20T10:30:00.000Z",
+    "language": "en",
+    "tags": [
+      "quadratic",
+      "parabola",
+      "sliders",
+      "vertex"
+    ],
+    "difficulty": "intermediate",
+    "gradeLevel": [
+      "8",
+      "9",
+      "10"
+    ],
+    "subject": "Mathematics",
+    "topic": "Algebra",
+    "estimatedDurationMinutes": 20
+  },
+  "preview": {
+    "thumbnailIncluded": true,
+    "thumbnailDataUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIj48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgcng9IjI4IiBmaWxsPSIjMDcxMTFmIi8+PHBhdGggZD0iTTAgMjgwIFExNjAgODAgMzIwIDIxMCBUNjQwIDkwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyMmQzZWUiIHN0cm9rZS13aWR0aD0iMTAiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSIyMTAiIHI9IjEzIiBmaWxsPSIjZmJiZjI0Ii8+PHRleHQgeD0iMzIiIHk9IjU4IiBmaWxsPSIjZTZmYmZmIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPkV4cGxvcmUgUGFyYWJvbGFzIHdpdGggYSwgYiBhbmQgYzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMzMwIiBmaWxsPSIjOTNjNWZkIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPk1hdGggVW5pdmVyc2Ugc2FtcGxlIGxlc3NvbjwvdGV4dD48L3N2Zz4=",
+    "objectCount": 3,
+    "expressionCount": 4,
+    "hasSolution": true
+  },
+  "scene": {
+    "workspaceSnapshot": {
+      "input": "",
+      "results": [],
+      "plots": [
+        {
+          "id": "quadratic",
+          "name": "f(x)=ax²+bx+c",
+          "expression": "a*x^2+b*x+c",
+          "color": "#22d3ee",
+          "kind": "function",
+          "visible": true
+        }
+      ],
+      "construction": {
+        "points": [],
+        "lines": [],
+        "circles": [],
+        "polygons": [],
+        "arcs": [],
+        "loci": [],
+        "constraints": []
+      },
+      "geometryGraphSettings": {
+        "showGrid": true,
+        "showAxes": true,
+        "showUnitLabels": true,
+        "showPointLabels": true,
+        "showMeasurements": true,
+        "highContrastGrid": false,
+        "snapToGrid": true,
+        "snapToObjects": true
+      },
+      "lockedGeometryIds": [],
+      "surface": "paraboloid",
+      "surfaceExpression": "x^2+y^2",
+      "cameraPreset3d": "isometric",
+      "sceneAnimationSpeed": 0,
+      "solid": "cube",
+      "surfaceScale": 1,
+      "height3d": 2.5,
+      "crossSection": 0,
+      "showSurface": false,
+      "showSolid": true,
+      "autoRotate3d": false,
+      "zoom3d": 1,
+      "transforms3d": {},
+      "added3dObjects": [],
+      "deletedBase3dIds": [],
+      "images": [],
+      "protocol": []
+    },
+    "linkedParameters": {
+      "a": {
+        "name": "a",
+        "value": 1,
+        "min": -4,
+        "max": 4,
+        "step": 0.25,
+        "integer": false,
+        "updatedAt": 0
+      },
+      "b": {
+        "name": "b",
+        "value": 0,
+        "min": -8,
+        "max": 8,
+        "step": 0.5,
+        "integer": false,
+        "updatedAt": 0
+      },
+      "c": {
+        "name": "c",
+        "value": 0,
+        "min": -8,
+        "max": 8,
+        "step": 0.5,
+        "integer": false,
+        "updatedAt": 0
+      }
+    },
+    "workspaceType": "2d-graph"
+  },
+  "lesson": {
+    "lessonId": "afd1906c-12c5-4341-9953-8fa6fcf8d392",
+    "title": "Explore Parabolas with a, b and c",
+    "shortDescription": "Use sliders to connect quadratic coefficients to shape, axis and intercepts.",
+    "subject": "Mathematics",
+    "workspaceType": "2d-graph",
+    "topic": "Algebra",
+    "subtopic": "Quadratic functions",
+    "difficulty": "intermediate",
+    "gradeLevel": [
+      "8",
+      "9",
+      "10"
+    ],
+    "learningObjectives": [
+      "Students explain a controls opening/width, b shifts the axis, and c is the y-intercept; the sample solution has vertex (2,−1)."
+    ],
+    "prerequisites": [
+      "Basic coordinate and algebra fluency"
+    ],
+    "instructions": [
+      "Vary a and record the opening and width.",
+      "Vary b and observe the axis of symmetry.",
+      "Vary c and identify the y-intercept."
+    ],
+    "hints": [
+      "The sign of a determines whether the parabola opens up or down.",
+      "The axis is x = −b/(2a).",
+      "At x=0, the function value is c."
+    ],
+    "checkpoints": [],
+    "solutionSteps": [
+      "Set a=1, b=−4 and c=3.",
+      "Compute the axis x=2.",
+      "Evaluate f(2)=−1 to locate the vertex.",
+      "Confirm the y-intercept is (0,3)."
+    ],
+    "expectedResult": "Students explain a controls opening/width, b shifts the axis, and c is the y-intercept; the sample solution has vertex (2,−1).",
+    "teacherNotes": "Invite students to explain why the visual and symbolic results agree.",
+    "estimatedDurationMinutes": 20,
+    "maximumScore": 100,
+    "attemptLimit": null,
+    "allowSolutionView": true,
+    "tags": [
+      "quadratic",
+      "parabola",
+      "sliders",
+      "vertex"
+    ],
+    "initialScene": {
+      "workspaceSnapshot": {
+        "input": "",
+        "results": [],
+        "plots": [
+          {
+            "id": "quadratic",
+            "name": "f(x)=ax²+bx+c",
+            "expression": "a*x^2+b*x+c",
+            "color": "#22d3ee",
+            "kind": "function",
+            "visible": true
+          }
+        ],
+        "construction": {
+          "points": [],
+          "lines": [],
+          "circles": [],
+          "polygons": [],
+          "arcs": [],
+          "loci": [],
+          "constraints": []
+        },
+        "geometryGraphSettings": {
+          "showGrid": true,
+          "showAxes": true,
+          "showUnitLabels": true,
+          "showPointLabels": true,
+          "showMeasurements": true,
+          "highContrastGrid": false,
+          "snapToGrid": true,
+          "snapToObjects": true
+        },
+        "lockedGeometryIds": [],
+        "surface": "paraboloid",
+        "surfaceExpression": "x^2+y^2",
+        "cameraPreset3d": "isometric",
+        "sceneAnimationSpeed": 0,
+        "solid": "cube",
+        "surfaceScale": 1,
+        "height3d": 2.5,
+        "crossSection": 0,
+        "showSurface": false,
+        "showSolid": true,
+        "autoRotate3d": false,
+        "zoom3d": 1,
+        "transforms3d": {},
+        "added3dObjects": [],
+        "deletedBase3dIds": [],
+        "images": [],
+        "protocol": []
+      },
+      "linkedParameters": {
+        "a": {
+          "name": "a",
+          "value": 1,
+          "min": -4,
+          "max": 4,
+          "step": 0.25,
+          "integer": false,
+          "updatedAt": 0
+        },
+        "b": {
+          "name": "b",
+          "value": 0,
+          "min": -8,
+          "max": 8,
+          "step": 0.5,
+          "integer": false,
+          "updatedAt": 0
+        },
+        "c": {
+          "name": "c",
+          "value": 0,
+          "min": -8,
+          "max": 8,
+          "step": 0.5,
+          "integer": false,
+          "updatedAt": 0
+        }
+      },
+      "workspaceType": "2d-graph"
+    },
+    "solutionScene": {
+      "workspaceSnapshot": {
+        "input": "",
+        "results": [],
+        "plots": [
+          {
+            "id": "quadratic",
+            "name": "f(x)=ax²+bx+c",
+            "expression": "a*x^2+b*x+c",
+            "color": "#22d3ee",
+            "kind": "function",
+            "visible": true
+          },
+          {
+            "id": "axis",
+            "name": "Axis of symmetry",
+            "expression": "x=2",
+            "color": "#fbbf24",
+            "kind": "implicit",
+            "visible": true
+          },
+          {
+            "id": "vertex",
+            "name": "Vertex",
+            "expression": "(2,-1)",
+            "color": "#34d399",
+            "kind": "points",
+            "points": [
+              {
+                "x": 2,
+                "y": -1
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "construction": {
+          "points": [],
+          "lines": [],
+          "circles": [],
+          "polygons": [],
+          "arcs": [],
+          "loci": [],
+          "constraints": []
+        },
+        "geometryGraphSettings": {
+          "showGrid": true,
+          "showAxes": true,
+          "showUnitLabels": true,
+          "showPointLabels": true,
+          "showMeasurements": true,
+          "highContrastGrid": false,
+          "snapToGrid": true,
+          "snapToObjects": true
+        },
+        "lockedGeometryIds": [],
+        "surface": "paraboloid",
+        "surfaceExpression": "x^2+y^2",
+        "cameraPreset3d": "isometric",
+        "sceneAnimationSpeed": 0,
+        "solid": "cube",
+        "surfaceScale": 1,
+        "height3d": 2.5,
+        "crossSection": 0,
+        "showSurface": false,
+        "showSolid": true,
+        "autoRotate3d": false,
+        "zoom3d": 1,
+        "transforms3d": {},
+        "added3dObjects": [],
+        "deletedBase3dIds": [],
+        "images": [],
+        "protocol": []
+      },
+      "linkedParameters": {
+        "a": {
+          "name": "a",
+          "value": 1,
+          "min": -4,
+          "max": 4,
+          "step": 0.25,
+          "integer": false,
+          "updatedAt": 0
+        },
+        "b": {
+          "name": "b",
+          "value": -4,
+          "min": -8,
+          "max": 8,
+          "step": 0.5,
+          "integer": false,
+          "updatedAt": 0
+        },
+        "c": {
+          "name": "c",
+          "value": 3,
+          "min": -8,
+          "max": 8,
+          "step": 0.5,
+          "integer": false,
+          "updatedAt": 0
+        }
+      },
+      "workspaceType": "2d-graph"
+    },
+    "openMode": "practice"
+  },
+  "metadata": {
+    "sample": true,
+    "license": "CC BY 4.0"
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "contentHash": "5d221330672b439dcf746d9a18d1b5eae0fa349b05b5ebde02e7786433992450"
+  }
+}

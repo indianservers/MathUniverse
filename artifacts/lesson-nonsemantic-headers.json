@@ -1,0 +1,110 @@
+[
+  {
+    "file": "src\\modules\\lessons\\adapters\\MatricesTargetLesson33.tsx",
+    "parent": "<section className=\"matrices-header\">\r\n        <div className=\"matrix-tags\">\r\n          <b>CORE WORKSPACES</b>\r\n          <b>ALGEBRA AND DYN"
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\SequencesTargetLesson34.tsx",
+    "parent": "<section className=\"sequences-header\">\r\n        <div className=\"sequence-tags\">\r\n          <b>CORE WORKSPACES</b>\r\n          <b>ALGEBRA AND "
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\AdvancedConceptLessonPage.tsx",
+    "parent": "<div className=\"rounded-2xl border border-amber-200 bg-amber-50 p-6 text-amber-950\"><h1 className=\"text-2xl font-black\">Advanced lesson not "
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\AuthoredCurriculumLessonPage.tsx",
+    "parent": "<main className=\"p-8\"><h1 className=\"text-2xl font-black\">Lesson not found</h1><Link to=\"/lessons\">Browse lessons</Link></main>"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\AuthoredCurriculumLessonPage.tsx",
+    "parent": "<main className=\"p-8\"><h1 className=\"text-2xl font-black\">{title}</h1><p role=\"alert\">{error}</p><Link to=\"/lessons\">Browse lessons</Link></"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LearnDiscoveryPage.tsx",
+    "parent": "<div className=\"learn-master-copy\">\n          <p className=\"learn-kicker\">Main topic</p>\n          <h1 id=\"topic-title\">{topic.title}</h1>\n "
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LearnDiscoveryPage.tsx",
+    "parent": "<div className=\"numbers-hero-copy\">\n          <p className=\"learn-kicker\">Numbers & arithmetic</p>\n          <h1 id=\"numbers-title\">Build nu"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LearnDiscoveryPage.tsx",
+    "parent": "<div className=\"functions-hero-copy\">\n          <p className=\"learn-kicker\">Functions & graphs</p>\n          <h1 id=\"functions-title\">Turn p"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LearnDiscoveryPage.tsx",
+    "parent": "<div className=\"geometry-master-copy\">\n          <p className=\"learn-kicker\">Geometry</p>\n          <h1 id=\"geometry-title\">Draw it. Move it"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LearnDiscoveryPage.tsx",
+    "parent": "<div className=\"trig-hero-copy\">\n          <p className=\"learn-kicker\">Trigonometry</p>\n          <h1 id=\"trig-title\">Measure angles. Reveal"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LearnDiscoveryPage.tsx",
+    "parent": "<div className=\"statistics-hero-copy\">\n          <p className=\"learn-kicker\">Statistics & Probability</p>\n          <h1 id=\"statistics-title"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LearnDiscoveryPage.tsx",
+    "parent": "<div className=\"vectors3d-hero-copy\">\n          <p className=\"learn-kicker\">Vectors &amp; 3D Mathematics</p>\n          <h1 id=\"vectors3d-tit"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LearnDiscoveryPage.tsx",
+    "parent": "<div className=\"discrete-hero-copy\">\n          <p className=\"learn-kicker\">Discrete &amp; Applied Mathematics</p>\n          <h1 id=\"discrete"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LearnDiscoveryPage.tsx",
+    "parent": "<div className=\"advanced-hero-copy\">\n          <p className=\"learn-kicker\">Advanced Mathematics</p>\n          <h1 id=\"advanced-title\">Follow"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LearnDiscoveryPage.tsx",
+    "parent": "<div>\n          <p className=\"learn-kicker\">Subtopic</p>\n          <h1 id=\"subtopic-title\">{subtopic.title}</h1>\n          <p>{subtopic.desc"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LearnDiscoveryPage.tsx",
+    "parent": "<section className=\"learn-pathway-panel\">\n        <p className=\"learn-kicker\">Topic not found</p>\n        <h1>Choose one of the curated lear"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LessonPage.tsx",
+    "parent": "<div className=\"rounded-2xl border border-amber-200 bg-amber-50 p-6 text-amber-950\"><h1 className=\"text-2xl font-black\">Lesson not found</h1"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LessonsCategoryPage.tsx",
+    "parent": "<div className=\"rounded-2xl border border-amber-200 bg-amber-50 p-6 text-amber-950\"><h1 className=\"text-2xl font-black\">Lesson category not "
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\LessonsHomePage.tsx",
+    "parent": "<div className=\"learn-hero-copy\">\r\n          <p className=\"learn-kicker\">Interactive mathematics</p>\r\n          <h1 id=\"lessons-hero-title\">"
+  },
+  {
+    "file": "src\\modules\\lessons\\pages\\SchoolLessonPage.tsx",
+    "parent": "<div className=\"rounded-2xl border border-amber-200 bg-amber-50 p-6 text-amber-950\">\n      <h1 className=\"text-2xl font-black\">School lesson"
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\DirectionFieldsTargetLesson10192.tsx",
+    "parent": "<section className=\"df-hero\" aria-label=\"Lesson introduction\">\r\n        <small>CLASS 12 · DIFFERENTIAL EQUATIONS</small>\r\n        <h1>{lesso"
+  },
+  {
+    "file": "src\\modules\\lessons\\schoolTargets\\GeneralParticularSolutionsTargetLesson10191.tsx",
+    "parent": "<section className=\"gps-hero\">\r\n        <Link className=\"gps-school\" to=\"/school\">← School lessons</Link>\r\n        <small>CLASS 12 · DIFFERE"
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\graph\\FunctionMockupLesson.tsx",
+    "parent": "<div>\n            <h1 className=\"text-2xl font-bold leading-tight text-white lg:text-3xl\">Logarithmic Functions</h1>\n            <p classNam"
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\graph\\FunctionMockupLesson.tsx",
+    "parent": "<div>\n            <p className=\"text-xs font-bold uppercase text-violet-300\">Precalculus / Unit Circle & Trig Graphs</p>\n            <h1 cla"
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\graph\\FunctionMockupLesson.tsx",
+    "parent": "<div><p className=\"text-xs font-bold uppercase text-blue-300\">Calculus / Hyperbolic Functions Lab</p><h1 className=\"text-3xl font-black\">Hyp"
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\graph\\FunctionMockupLesson.tsx",
+    "parent": "<div><p className={dark ? \"text-xs font-bold uppercase text-violet-300\" : \"text-xs font-bold uppercase text-cyan-700\"}>Functions / Step Func"
+  },
+  {
+    "file": "src\\modules\\lessons\\adapters\\matrix\\TransposeTargetLesson352.tsx",
+    "parent": "<section className=\"mat352-page\" data-testid=\"matrix-mockup-0537\" data-object-model=\"symbolic-numeric-two-by-three-matrix-derived-transpose-"
+  }
+]

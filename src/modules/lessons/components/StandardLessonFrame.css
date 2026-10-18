@@ -20,3 +20,442 @@ html body #main-content:has(.standard-lesson-frame){
 .standard-lesson-frame :is(.mto10108-page,.med10109-page,.lto10107-page,.ltc10105-page,.mtc10106-page){height:auto!important;max-height:none!important;overflow:visible!important}
 
 .standard-lesson-frame :is(.mto10108-page,.med10109-page,.lto10107-page,.ltc10105-page,.mtc10106-page)>main{height:auto!important;min-height:0;max-height:none!important}
+
+/* Every lesson title header follows the same compact, content-sized layout.
+   Legacy artboards used fixed heights and positioned action rows. */
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) {
+  display: flex !important;
+  flex-direction: row !important;
+  position: relative !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 56px !important;
+  max-height: none !important;
+  padding: 8px 12px !important;
+  overflow: visible !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) :is(div,aside,nav,section,menu,article,label,footer,main) {
+  position: static !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  flex: 0 1 auto !important;
+  gap: 6px !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  overflow: visible !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) :is(div,section,main):has(h1) {
+  display: contents !important;
+}
+/* Category and summary are already available in the frame and lesson guide. */
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) > :is(p,span),
+html body #main-content .standard-lesson-frame .standard-lesson-content header :is(div,section,main):has(> h1) > :is(p,span,small) {
+  display: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content .lesson-shell-header :is(.lesson-topic-pills,.lesson-shell-purpose) {
+  display: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) > aside:has(> small + small):not(:has(button,a,input,select)) {
+  display: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) > nav:first-child:not(:has(button,a,input,select)) {
+  display: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  .lesson-page-shell:has([data-dedicated-lesson], [class$="-page"]) > .lesson-shell-header {
+  display: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) h1 {
+  order: -1;
+  flex: 0 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  font-size: 22px !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) :is(p,h2,span,b,strong,small) {
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) article {
+  padding: 8px !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) h3 {
+  margin: 0 !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) :is(b,strong,small) {
+  padding: 4px 7px !important;
+  max-width: 100% !important;
+  font-size: 12px !important;
+  white-space: normal !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) aside > span {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  width: auto !important;
+  padding: 4px 7px !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) :is(button,select,a) {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+  gap: 5px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  min-height: 34px !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 6px 9px !important;
+  font-size: 13px !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) img {
+  width: 36px !important;
+  height: 36px !important;
+  object-fit: contain;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) svg {
+  flex: 0 0 auto;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+html body #main-content .standard-lesson-frame .standard-lesson-content .algebra-flow {
+  height: auto !important;
+  max-height: none !important;
+  overflow-y: hidden !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content .algebra-flow > article {
+  height: auto !important;
+  min-height: 164px;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content textarea {
+  field-sizing: content;
+  height: auto !important;
+  max-height: none !important;
+  overflow-y: hidden !important;
+}
+
+/* Learning notes and models belong to document flow, below the title row. */
+.standard-lesson-content .lesson-header-content {
+  display: grid;
+  gap: 12px;
+  margin-block: 12px;
+  padding: 12px;
+  border: 1px solid var(--lesson-border);
+  border-radius: 12px;
+  background: var(--lesson-surface);
+  color: var(--lesson-ink);
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content .lesson-header-content {
+  position: relative !important;
+  inset: auto !important;
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr) !important;
+  gap: 12px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 12px 0 !important;
+  padding: 12px !important;
+  overflow: visible !important;
+  background: var(--lesson-surface) !important;
+  color: var(--lesson-ink) !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content .lesson-header-content > * {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  overflow: visible !important;
+}
+.lesson-header-content :is(h2,h3) { margin: 0 0 6px; font-size: 16px; line-height: 1.4; }
+.lesson-header-content p { margin: 6px 0; font-size: 14px; line-height: 1.5; }
+.lesson-header-content .sim112-methods { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.lesson-header-content .sim112-methods :is(button,select) { min-height: 36px; max-width: 100%; }
+
+/* The composition machine is lesson content, below the title toolbar. */
+html body #main-content .standard-lesson-frame .standard-lesson-content .comp150-machine {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 275px;
+  margin-block: 12px;
+  overflow: visible !important;
+  grid-template-columns: repeat(7,minmax(0,1fr));
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content .comp150-machine > div {
+  height: auto !important;
+  min-height: 163px;
+}
+@media (max-width: 799px) {
+  html body #main-content .standard-lesson-frame .standard-lesson-content .comp150-machine {
+    grid-template-columns: minmax(0,1fr);
+  }
+  html body #main-content .standard-lesson-frame .standard-lesson-content .comp150-machine h2,
+  html body #main-content .standard-lesson-frame .standard-lesson-content .comp150-machine > strong {
+    position: static !important;
+  }
+}
+
+html body #main-content .standard-lesson-frame .standard-lesson-content :is(.compare77-understand,.compare77-compare,.dp46-table,.quad124-table,.poly125-grid,.machine-grid) {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Let individual chips and actions share a row across their legacy wrappers. */
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1)
+  :is(div,aside,nav,section,menu,footer,label) {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1)
+  > :is(div,nav,section,menu,footer):not(:has(h1,h2,h3,p,input[type="range"],canvas)),
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero)
+  :is(div,section,main):has(> h1)
+  > :is(div,nav,section,menu,footer,aside):not(:has(h1,h2,h3,p,input[type="range"],canvas)) {
+  display: contents !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1)
+  > :is(div,section,aside,nav,small):first-child:not(:has(h1,h2,h3,p,button,a,input,select,svg,img)) {
+  display: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content .mat352-page > h1 {
+  margin: 0 !important;
+  font-size: 22px !important;
+  line-height: 1.2 !important;
+}
+/* The canonical frame already shows the lesson ID and topic context. */
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  .lesson-shell-meta > :nth-child(2),
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  .lesson-shell-meta > :nth-child(4) {
+  display: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1)
+  > aside:not(:has(button,a,input,select,h1,h2,h3,p)):has(strong,output) {
+  display: contents !important;
+}
+/* The frame supplies canonical navigation; retain the local Reset and Help. */
+html body #main-content .standard-lesson-frame .standard-lesson-content .floor146-header > nav > small,
+html body #main-content .standard-lesson-frame .standard-lesson-content .floor146-icon,
+html body #main-content .standard-lesson-frame .standard-lesson-content .floor146-tabs > button:nth-child(-n+6) {
+  display: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(.target-reciprocal-stages,.seq338-page ol,.seq346-visual article:nth-child(2),.pw611-sequence,.pe612-sequence,.pe612-chart,.sa614-sequence,.sc616-sequence) {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+html body:has(.standard-lesson-frame) footer[aria-label="Site footer"],
+html body:has(.standard-lesson-frame) footer[aria-label="Site footer"] > div {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  flex-wrap: wrap !important;
+  white-space: normal !important;
+}
+/* Keep the app viewport bounded; the main lesson area owns document scrolling. */
+html:has(#main-content .standard-lesson-frame),
+html body:has(#main-content .standard-lesson-frame),
+html body:has(#main-content .standard-lesson-frame) > #root {
+  height: 100dvh !important;
+  max-height: 100dvh !important;
+  overflow: hidden !important;
+  scrollbar-gutter: auto !important;
+}
+html body #main-content:has(.standard-lesson-frame) {
+  flex: 1 1 0% !important;
+  min-height: 0 !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(.hemi400-controls,.ps586-list ol,.an596-timeline,.am598-chart,.dep599-page main,.inf600-page main,.lm607-page main,.pm610-page main,.pl10019-store,.zb-table) {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content .pe612-chart {
+  min-height: 520px !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1)
+  :is([class*="-meta"],[class*="-chips"]) > span {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  padding: 2px 6px !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  .lesson-header-content > * > svg:not(.lucide) {
+  position: relative !important;
+  inset: auto !important;
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 320px;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  .lesson-header-content .lucide {
+  position: relative !important;
+  inset: auto !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  .lesson-header-content > .poly136-hero-visual {
+  display: block !important;
+}
+/* Wide tables/timelines may pan sideways without becoming vertical pages. */
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(.target-reciprocal-stages,.seq338-page ol,.seq346-visual article:nth-child(2),.ps586-list ol,.an596-timeline,.am598-chart,.dep599-page main,.inf600-page main,.lm607-page main,.pm610-page main,.pl10019-store,.zb-table,.pw611-sequence,.pe612-sequence,.pe612-chart,.sa614-sequence,.sc616-sequence) {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(.pw611-sequence,.pe612-sequence,.sa614-sequence,.sc616-sequence,.seq338-page ol) > li {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(.seq338-workspace,.seq346-visual,.pe612-lab,.lm607-lab,.pm610-lab),
+html body #main-content .standard-lesson-frame .standard-lesson-content :has(> .hemi400-controls),
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(.dep599-page,.inf600-page,.lm607-page,.pm610-page) :has(> main) {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero)
+  :is(div,section,main):has(> h1) > :is(div,section,aside,nav,small):first-child:not(:has(h1,h2,h3,p,button,a,input,select,svg,img)) {
+  display: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  .lesson-header-content > nav:has(article) {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  .lesson-header-content > nav > article {
+  flex: 1 1 150px !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  .lesson-header-content > :is(nav,ol,ul) {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  .lesson-header-content > :is(nav,ol,ul) :is(li,article,div,span):not(:where(.math-expression,.math-expression *,.katex,.katex *,.sr-only)) {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  white-space: normal !important;
+}
+/* Flattening action groups must not restore the duplicate category pills. */
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  .lesson-page-shell > .lesson-shell-header .lesson-topic-pills {
+  display: none !important;
+}
+/* Title columns use several semantic tags across older lesson families. */
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero) :has(h1) {
+  display: contents !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero) :has(h1)
+  > p:not([role="status"],[role="alert"]),
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero) :has(> h1)
+  > :is(span,small) {
+  display: none !important;
+}
+/* Legacy definition lists and preview figures must size to their content. */
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(header,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero):has(h1) :is(dl,dt,dd,figure) {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  header:has(h1) dl :is(span,b) {
+  display: inline-flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 4px !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 3px 6px !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  header:has(h1) dl br,
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  .cp191-header > nav button :is(small,i) {
+  display: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(.lesson-reference .ls-hero > .ls-copy,.sf10008-hero > h2,.sf10008-page .sf10008-hero > .survey-art) {
+  display: none !important;
+}
+html body #main-content .standard-lesson-frame .standard-lesson-content
+  :is(header,.matrices-header,.sequences-header,.df-hero,.gps-hero,.hfo-hero,.lfo-hero,.ode-hero,.vse-hero) :has(> h1)
+  > :is(div,section,aside,nav,small):first-child:not(:has(h1,h2,h3,p,button,a,input,select,svg,img)) {
+  display: none !important;
+}

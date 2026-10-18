@@ -106,7 +106,9 @@ export default function RemainderTargetLesson10015({
           <span>number</span>
           <span>arithmetic</span>
         </dl>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content rr10015-hero"><aside>
           <Link to="/lessons/school">← School lessons</Link>
           <p>
             <b>Grade:</b> Class 7<br />
@@ -114,8 +116,7 @@ export default function RemainderTargetLesson10015({
             <br />
             <b>Concept:</b> Remainder Reasoning
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="rr10015-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (item) => (

@@ -102,14 +102,15 @@ export default function InstantaneousRateTargetLesson285({
             <a href="/workspace/calculus">↗ Workspace</a>
           </div>
         </main>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content irc285-hero"><aside>
           <h3>What you'll learn</h3>
           <p>▣ How a secant line's slope approaches the tangent slope</p>
           <p>▣ The limit that defines the derivative at a point</p>
           <p>◉ Interpreting instantaneous rate of change</p>
           <p>▣ Connecting graph, table, and limit</p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="irc285-tabs">
         {[
           "Interaction + Visualization",

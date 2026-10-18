@@ -19,8 +19,9 @@ export function consistencyGeometryMessage(system: LinearSystem) {
 }
 
 export function analyzeConsistency([a, b, c, d, e, f]: LinearSystem) {
-  const determinant = a * e - b * d;
-  const minors = [determinant, a * f - c * d, b * f - c * e];
+  const minor=(p:number,q:number)=>{const difference=p-q;return Math.abs(difference)<=32*Number.EPSILON*(Math.abs(p)+Math.abs(q))?0:difference;};
+  const determinant = minor(a * e, b * d);
+  const minors = [determinant, minor(a * f, c * d), minor(b * f, c * e)];
   const rankA = a || b || d || e ? (determinant ? 2 : 1) : 0;
   const rankAugmented =
     a || b || c || d || e || f ? (minors.some(Boolean) ? 2 : 1) : 0;
@@ -51,7 +52,7 @@ export function reduceConsistency(system: LinearSystem) {
     const scale = rows[0][column];
     const factor = rows[1][column];
     rows[1] = rows[1].map((value, index) =>
-      index === column ? 0 : scale * value - factor * rows[0][index],
+      index === column ? 0 : Math.abs(scale*value-factor*rows[0][index])<=32*Number.EPSILON*(Math.abs(scale*value)+Math.abs(factor*rows[0][index]))?0:scale * value - factor * rows[0][index],
     );
     operations.push(`R2 <- (${scale})R2 - (${factor})R1`);
   }

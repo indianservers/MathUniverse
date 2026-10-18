@@ -2,16 +2,9 @@ import { Check, Info, RotateCcw, Star, Trash2, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./EquivalenceRelationsTargetLesson10116.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { Link } from "react-router-dom";
 
-type Node = "a" | "b" | "c" | "d" | "e" | "f";
-type Pair = `${Node},${Node}`;
-const nodes: Node[] = ["a", "b", "c", "d", "e", "f"];
-const k = (a: Node, b: Node): Pair => `${a},${b}`;
-const groups: Node[][] = [["a", "b", "c"], ["d", "e"], ["f"]];
-const initial = groups.flatMap((group) =>
-  group.flatMap((a) => group.map((b) => k(a, b))),
-);
+import { nodes, k, groups, initial, diagnose, partition, type Node, type Pair } from "./equivalenceRelationsModel";
 const pos: Record<Node, [number, number]> = {
   a: [65, 85],
   b: [175, 85],
@@ -20,38 +13,6 @@ const pos: Record<Node, [number, number]> = {
   e: [230, 205],
   f: [340, 250],
 };
-
-function diagnose(relation: Set<Pair>) {
-  const reflexive = nodes.find((a) => !relation.has(k(a, a)));
-  const symmetric = nodes
-    .flatMap((a) => nodes.map((b) => [a, b] as const))
-    .find(([a, b]) => relation.has(k(a, b)) && !relation.has(k(b, a)));
-  const transitive = nodes
-    .flatMap((a) => nodes.flatMap((b) => nodes.map((c) => [a, b, c] as const)))
-    .find(
-      ([a, b, c]) =>
-        relation.has(k(a, b)) &&
-        relation.has(k(b, c)) &&
-        !relation.has(k(a, c)),
-    );
-  return {
-    reflexive,
-    symmetric,
-    transitive,
-    valid: !reflexive && !symmetric && !transitive,
-  };
-}
-function partition(relation: Set<Pair>) {
-  const unseen = new Set(nodes),
-    result: Node[][] = [];
-  while (unseen.size) {
-    const seed = unseen.values().next().value as Node;
-    const group = nodes.filter((n) => relation.has(k(seed, n)));
-    group.forEach((n) => unseen.delete(n));
-    result.push(group);
-  }
-  return result;
-}
 
 export default function EquivalenceRelationsTargetLesson10116({
   lesson: _lesson,
@@ -63,6 +24,7 @@ export default function EquivalenceRelationsTargetLesson10116({
   const [actions, setActions] = useState(0);
   const facts = useMemo(() => diagnose(relation), [relation]);
   const classes = facts.valid ? partition(relation) : [];
+  const color = (a: Node) => facts.valid ? ["#26cfca", "#b47ae9", "#ffbf38", "#74a9ff", "#ed8dbc", "#a3d36d"][classes.findIndex(c => c.includes(a))] : "#9baac1";
   const update = (next: Set<Pair>) => {
     setRelation(next);
     setSource(null);
@@ -113,7 +75,7 @@ export default function EquivalenceRelationsTargetLesson10116({
       data-source={source ?? "none"}
       data-actions={actions}
     >
-      <header>
+      <div className="eqv10116-hero">
         <section>
           <small>CLASS 11 · RELATIONS AND FUNCTIONS</small>
           <h1>Equivalence Relations</h1>
@@ -132,7 +94,8 @@ export default function EquivalenceRelationsTargetLesson10116({
             <i>interactive lab</i>
           </nav>
         </section>
-        <aside>
+
+      <aside>
           <Info />
           <p>
             Equivalence classes are disjoint and cover the set.
@@ -149,7 +112,7 @@ export default function EquivalenceRelationsTargetLesson10116({
             <RotateCcw /> Reset lab
           </button>
         </aside>
-      </header>
+      </div>
       <main>
         <article className="eqv10116-graph">
           <h2>
@@ -160,6 +123,7 @@ export default function EquivalenceRelationsTargetLesson10116({
             <span>◯ Self-loop (a,a)</span>
             <span>⟶ Pair (a,b)</span>
           </div>
+          <p className="eqv10116-selection" aria-live="polite">{source ? `Source ${source} selected. Choose target (same node toggles its loop).` : "Choose source, then target. Arrows show ordered pairs."}</p>
           <svg viewBox="0 0 405 315" aria-label="Equivalence relation graph">
             <defs>
               <marker
@@ -173,29 +137,11 @@ export default function EquivalenceRelationsTargetLesson10116({
                 <path d="M0 0L7 3.5L0 7Z" />
               </marker>
             </defs>
-            {nodes
-              .flatMap((a, i) => nodes.slice(i + 1).map((b) => [a, b] as const))
-              .filter(
-                ([a, b]) => relation.has(k(a, b)) || relation.has(k(b, a)),
-              )
-              .map(([a, b]) => {
-                const [x1, y1] = pos[a],
-                  [x2, y2] = pos[b],
-                  dx = x2 - x1,
-                  dy = y2 - y1,
-                  l = Math.hypot(dx, dy);
-                return (
-                  <line
-                    key={`${a}${b}`}
-                    x1={x1 + (dx / l) * 20}
-                    y1={y1 + (dy / l) * 20}
-                    x2={x2 - (dx / l) * 20}
-                    y2={y2 - (dy / l) * 20}
-                    className="edge"
-                    markerEnd="url(#eqv-arrow)"
-                  />
-                );
-              })}
+            {nodes.flatMap(a => nodes.filter(b => b !== a && relation.has(k(a,b))).map(b => {
+              const [x1,y1]=pos[a], [x2,y2]=pos[b], dx=x2-x1, dy=y2-y1, l=Math.hypot(dx,dy);
+              const bend=relation.has(k(b,a)) ? (l>180 ? 75 : 12) : 0;
+              return <path key={k(a,b)} data-edge={k(a,b)} d={`M${x1+dx/l*21} ${y1+dy/l*21} Q${(x1+x2)/2-dy/l*bend} ${(y1+y2)/2+dx/l*bend} ${x2-dx/l*24} ${y2-dy/l*24}`} className="edge" style={{stroke:color(a)}} markerEnd="url(#eqv-arrow)"/>;
+            }))}
             {nodes
               .filter((a) => relation.has(k(a, a)))
               .map((a) => {
@@ -205,19 +151,23 @@ export default function EquivalenceRelationsTargetLesson10116({
                     key={`l${a}`}
                     d={`M${x - 10} ${y - 18}C${x - 38} ${y - 47},${x + 38} ${y - 47},${x + 10} ${y - 18}`}
                     className="loop"
+                    data-loop={a}
+                    style={{stroke:color(a)}}
+                    markerEnd="url(#eqv-arrow)"
                   />
                 );
               })}
             {nodes.map((a) => (
               <g
                 key={a}
+                style={{"--eq-node":color(a)} as React.CSSProperties}
                 role="button"
                 tabIndex={0}
                 aria-label={`Choose element ${a}`}
                 className={`${groups.findIndex((g) => g.includes(a)) === 0 ? "g1" : groups.findIndex((g) => g.includes(a)) === 1 ? "g2" : "g3"} ${source === a ? "selected" : ""}`}
                 onClick={() => choose(a)}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") choose(a);
+                  if (e.key === "Enter" || e.key === " ") { e.preventDefault(); choose(a); }
                 }}
               >
                 <circle cx={pos[a][0]} cy={pos[a][1]} r="20" />
@@ -254,6 +204,7 @@ export default function EquivalenceRelationsTargetLesson10116({
                 <button
                   key={k(a, b)}
                   aria-label={`Toggle pair ${a}, ${b}`}
+                  aria-pressed={relation.has(k(a,b))}
                   className={relation.has(k(a, b)) ? "one" : ""}
                   onClick={() => toggle(a, b)}
                 >
@@ -316,10 +267,10 @@ export default function EquivalenceRelationsTargetLesson10116({
               partition.
             </aside>
           )}
-          <div>
+          <div className="eqv10116-partition" data-valid={String(facts.valid)}>
             <h3>PARTITION CHECK</h3>
-            <p>✓ Classes are pairwise disjoint.</p>
-            <p>✓ Classes cover the entire set S.</p>
+            <p>{facts.valid ? "✓ Classes are pairwise disjoint." : "Classes unavailable: relation is not an equivalence relation."}</p>
+            <p>{facts.valid ? "✓ Classes cover the entire set S." : "Repair the failed gates to obtain a partition."}</p>
             <strong>
               {facts.valid ? "✓ VALID PARTITION" : "× NOT A PARTITION"}
             </strong>
@@ -344,7 +295,7 @@ export default function EquivalenceRelationsTargetLesson10116({
           <p>× FAIL &nbsp; Property fails</p>
         </section>
       </footer>
-      <LessonTopicStudyBoard lessonId={10116} alwaysVisible />
+      <div className="eqv10116-neighbors"><Link to="/lessons/school/class-11/class-11-relations-and-functions-transitive-relations">← Transitive Relations</Link><Link to="/lessons/school/class-11/class-11-relations-and-functions-one-one-functions">One-One Functions →</Link></div>
 
     </section>
   );

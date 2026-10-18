@@ -510,14 +510,14 @@ export default function CalculationHistoryTargetLesson17({
         </div>
       </section>
 <nav className="history-neighbors">
-        <a href="/lessons/foundational-advanced/16-constants-library">
+        <a href="/lessons/core-workspaces/16-constants-library">
           ←{" "}
           <span>
             <small>PREVIOUS</small>
             <b>Constants Library</b>
           </span>
         </a>
-        <a href="/lessons/foundational-advanced/18-exact-and-decimal-modes">
+        <a href="/lessons/core-workspaces/18-exact-and-decimal-modes">
           <span>
             <small>NEXT</small>
             <b>Exact and Decimal Modes</b>

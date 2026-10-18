@@ -344,11 +344,12 @@ export default function HorizontalTranslationTargetLesson157({
             <b>◷ 6-10 min</b>
           </nav>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content ht157-header"><aside>
           <strong>g(x) = f({inside(h)})</strong>
           <span>{moveText(h)}</span>
-        </aside>
-      </header>
+        </aside></div>
 
       <section className="ht157-workspace">
         <article className="ht157-graph-card">

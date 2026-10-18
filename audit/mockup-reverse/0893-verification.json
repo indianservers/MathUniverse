@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "unrun initial state and real sequence run",
+    "fatigue probabilities",
+    "three-outcome tree and probability sum",
+    "depletion mode and incompatible mode exclusion",
+    "p=0/1 and n=1/12 boundaries",
+    "seven quiz answers and reset",
+    "all section navigation"
+  ]
+}

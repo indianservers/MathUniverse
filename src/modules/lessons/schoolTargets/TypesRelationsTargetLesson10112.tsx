@@ -1,103 +1,20 @@
 import { Check, Info, RotateCcw, X } from "lucide-react";
 import { useMemo, useState } from "react";
-import type { PointerEvent as ReactPointerEvent } from "react";
+
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TypesRelationsTargetLesson10112.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
-type Element = 1 | 2 | 3 | 4;
-type Pair = `${Element},${Element}`;
-const A: Element[] = [1, 2, 3, 4];
-const key = (a: Element, b: Element): Pair => `${a},${b}`;
-const DEFAULT: Pair[] = [
-  "1,1",
-  "1,2",
-  "1,3",
-  "2,2",
-  "2,4",
-  "3,2",
-  "3,3",
-  "3,4",
-  "4,4",
-];
-const positions: Record<Element, [number, number]> = {
-  1: [105, 75],
-  2: [355, 75],
-  3: [105, 270],
-  4: [355, 270],
-};
 
-const presets = [
-  { name: "Identity", symbol: "Iₐ", pairs: A.map((a) => key(a, a)) },
-  {
-    name: "Universal",
-    symbol: "Uₐ",
-    pairs: A.flatMap((a) => A.map((b) => key(a, b))),
-  },
-  {
-    name: "Less-than",
-    symbol: "<",
-    pairs: A.flatMap((a) => A.filter((b) => a < b).map((b) => key(a, b))),
-  },
-  {
-    name: "Less-than-or-equal",
-    symbol: "≤",
-    pairs: A.flatMap((a) => A.filter((b) => a <= b).map((b) => key(a, b))),
-  },
-  {
-    name: "Cyclic",
-    symbol: "C₄",
-    pairs: ["1,2", "2,3", "3,4", "4,1"] as Pair[],
-  },
-  { name: "Empty", symbol: "∅", pairs: [] as Pair[] },
-];
-
-function relationFacts(relation: Set<Pair>) {
-  const reflexiveMissing = A.find((a) => !relation.has(key(a, a)));
-  const symmetricMissing = Array.from(relation)
-    .map((pair) => pair.split(",").map(Number) as [Element, Element])
-    .find(([a, b]) => !relation.has(key(b, a)));
-  const antisymmetricWitness = A.flatMap((a) =>
-    A.map((b) => [a, b] as const),
-  ).find(
-    ([a, b]) => a !== b && relation.has(key(a, b)) && relation.has(key(b, a)),
-  );
-  const transitiveWitness = A.flatMap((a) =>
-    A.flatMap((b) => A.map((c) => [a, b, c] as const)),
-  ).find(
-    ([a, b, c]) =>
-      relation.has(key(a, b)) &&
-      relation.has(key(b, c)) &&
-      !relation.has(key(a, c)),
-  );
-  return {
-    reflexive: !reflexiveMissing,
-    symmetric: !symmetricMissing,
-    antisymmetric: !antisymmetricWitness,
-    transitive: !transitiveWitness,
-    reflexiveNote: reflexiveMissing
-      ? `Missing (${reflexiveMissing}, ${reflexiveMissing}).`
-      : "All diagonal pairs are in R.",
-    symmetricNote: symmetricMissing
-      ? `(${symmetricMissing[0]}, ${symmetricMissing[1]}) is present, but (${symmetricMissing[1]}, ${symmetricMissing[0]}) is missing.`
-      : "Every pair has its reverse in R.",
-    antisymmetricNote: antisymmetricWitness
-      ? `Counterexample: (${antisymmetricWitness[0]}, ${antisymmetricWitness[1]}) and (${antisymmetricWitness[1]}, ${antisymmetricWitness[0]}).`
-      : "No distinct elements are related both ways.",
-    transitiveNote: transitiveWitness
-      ? `(${transitiveWitness[0]}, ${transitiveWitness[1]}) and (${transitiveWitness[1]}, ${transitiveWitness[2]}) need (${transitiveWitness[0]}, ${transitiveWitness[2]}).`
-      : "Every composable pair has its required shortcut.",
-  };
-}
-
+import {A,key,DEFAULT,presets,relationFacts,type Element,type Pair} from "./typesRelationsModel";
+import TypesRelationsGraph10112 from "./TypesRelationsGraph10112";
 export default function TypesRelationsTargetLesson10112({
   lesson: _lesson,
 }: {
   lesson: SchoolSyllabusLesson;
 }) {
   const [relation, setRelation] = useState(() => new Set<Pair>(DEFAULT));
-  const [dragSource, setDragSource] = useState<Element | null>(null);
-  const [pointer, setPointer] = useState<[number, number] | null>(null);
+  const [rules,setRules]=useState(false);
+  const [graphVersion,setGraphVersion]=useState(0);
   const [actions, setActions] = useState(0);
   const facts = useMemo(() => relationFacts(relation), [relation]);
   const ordered = A.flatMap((a) =>
@@ -105,6 +22,7 @@ export default function TypesRelationsTargetLesson10112({
   );
   const change = (next: Set<Pair>) => {
     setRelation(next);
+    setGraphVersion(n=>n+1);
     setActions((value) => value + 1);
   };
   const toggle = (a: Element, b: Element) => {
@@ -114,27 +32,13 @@ export default function TypesRelationsTargetLesson10112({
     else next.add(pair);
     change(next);
   };
-  const graphPoint = (
-    event: ReactPointerEvent<SVGSVGElement>,
-  ): [number, number] => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    return [
-      ((event.clientX - rect.left) / rect.width) * 460,
-      ((event.clientY - rect.top) / rect.height) * 345,
-    ];
-  };
-  const endDrag = (target: Element) => {
-    if (dragSource !== null) toggle(dragSource, target);
-    setDragSource(null);
-    setPointer(null);
-  };
   const diagnostic = (
     label: string,
     formula: string,
     ok: boolean,
     note: string,
   ) => (
-    <article className={ok ? "ok" : "bad"}>
+    <article data-property={label.toLowerCase()} data-holds={String(ok)} className={ok ? "ok" : "bad"}>
       <span>{ok ? <Check /> : <X />}</span>
       <div>
         <h3>{label}</h3>
@@ -157,7 +61,7 @@ export default function TypesRelationsTargetLesson10112({
       data-transitive={String(facts.transitive)}
       data-actions={actions}
     >
-      <header>
+      <div className="rel10112-hero">
         <small>CLASS 11 · RELATIONS AND FUNCTIONS</small>
         <h1>Types of Relations</h1>
         <p>
@@ -166,8 +70,8 @@ export default function TypesRelationsTargetLesson10112({
           <br />
           The relation matrix and properties update instantly.
         </p>
-        <button>← &nbsp; Back to School lessons</button>
-      </header>
+
+      </div>
       <main>
         <section className="rel10112-graph">
           <h2>
@@ -179,107 +83,7 @@ export default function TypesRelationsTargetLesson10112({
               Drag to draw arrows <Info />
             </span>
           </h2>
-          <svg
-            viewBox="0 0 460 345"
-            onPointerMove={(event) =>
-              dragSource && setPointer(graphPoint(event))
-            }
-            onPointerUp={(event) => {
-              if (dragSource === null) return;
-              const [x, y] = graphPoint(event);
-              const nearest = A.find((element) => {
-                const [nx, ny] = positions[element];
-                return Math.hypot(x - nx, y - ny) <= 46;
-              });
-              if (nearest) endDrag(nearest);
-              else {
-                setDragSource(null);
-                setPointer(null);
-              }
-            }}
-            onPointerLeave={() => {
-              setDragSource(null);
-              setPointer(null);
-            }}
-            aria-label="Directed relation graph"
-          >
-            <defs>
-              <marker
-                id="rel10112-arrow"
-                markerWidth="8"
-                markerHeight="8"
-                refX="7"
-                refY="4"
-                orient="auto"
-              >
-                <path d="M0,0 L8,4 L0,8 Z" />
-              </marker>
-            </defs>
-            {A.flatMap((a) => A.map((b) => [a, b] as const))
-              .filter(([a, b]) => a !== b && relation.has(key(a, b)))
-              .map(([a, b]) => {
-                const [x1, y1] = positions[a],
-                  [x2, y2] = positions[b],
-                  dx = x2 - x1,
-                  dy = y2 - y1,
-                  length = Math.hypot(dx, dy),
-                  ox = (dx / length) * 35,
-                  oy = (dy / length) * 35;
-                return (
-                  <line
-                    key={key(a, b)}
-                    x1={x1 + ox}
-                    y1={y1 + oy}
-                    x2={x2 - ox}
-                    y2={y2 - oy}
-                    className="edge"
-                    markerEnd="url(#rel10112-arrow)"
-                  />
-                );
-              })}
-            {A.filter((a) => relation.has(key(a, a))).map((a) => {
-              const [x, y] = positions[a];
-              return (
-                <path
-                  key={`loop-${a}`}
-                  className="edge"
-                  d={`M ${x - 18} ${y - 27} C ${x - 55} ${y - 65}, ${x + 55} ${y - 65}, ${x + 18} ${y - 27}`}
-                  markerEnd="url(#rel10112-arrow)"
-                />
-              );
-            })}
-            {dragSource && pointer && (
-              <line
-                className="draft"
-                x1={positions[dragSource][0]}
-                y1={positions[dragSource][1]}
-                x2={pointer[0]}
-                y2={pointer[1]}
-                markerEnd="url(#rel10112-arrow)"
-              />
-            )}
-            {A.map((a) => (
-              <g
-                key={a}
-                className="node"
-                role="button"
-                tabIndex={0}
-                aria-label={`Element ${a}`}
-                onPointerDown={() => {
-                  setDragSource(a);
-                  setPointer(positions[a]);
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") toggle(a, a);
-                }}
-              >
-                <circle cx={positions[a][0]} cy={positions[a][1]} r="34" />
-                <text x={positions[a][0]} y={positions[a][1] + 9}>
-                  {a}
-                </text>
-              </g>
-            ))}
-          </svg>
+          <TypesRelationsGraph10112 key={graphVersion} relation={relation} toggle={toggle}/>
           <label>Ordered pairs in R:</label>
           <output>{`{${ordered.join(", ") || " "}}`}</output>
         </section>
@@ -299,6 +103,7 @@ export default function TypesRelationsTargetLesson10112({
                 <button
                   key={key(a, b)}
                   aria-label={`Toggle pair ${a}, ${b}`}
+                  aria-pressed={relation.has(key(a,b))}
                   className={relation.has(key(a, b)) ? "selected" : ""}
                   onClick={() => toggle(a, b)}
                 >
@@ -314,8 +119,9 @@ export default function TypesRelationsTargetLesson10112({
         </section>
         <section className="rel10112-diagnostics">
           <h2>
-            RELATION PROPERTY DIAGNOSTICS <Info />
+            RELATION PROPERTY DIAGNOSTICS <Info /><button aria-expanded={rules} onClick={()=>setRules(v=>!v)}>Rules</button>
           </h2>
+          {rules&&<div className="rel10112-rules">Each property is checked independently on all four elements. A self-loop is its own reverse. Antisymmetry permits self-loops but forbids two distinct elements related in both directions. The empty relation is symmetric, antisymmetric and transitive, but not reflexive on this nonempty set.</div>}
           {diagnostic(
             "Reflexive",
             "(a, a) ∈ R for all a ∈ A",
@@ -361,7 +167,7 @@ export default function TypesRelationsTargetLesson10112({
                 </b>
                 <span>
                   {preset.pairs.length
-                    ? `{${preset.pairs.map((pair) => `(${pair.replace(",", ", ")})`).join(", ")}}`
+                    ? preset.name==="Universal" ? "All 16 ordered pairs" : preset.name==="Less-than" ? "{(i,j) | i < j}" : preset.name==="Less-than-or-equal" ? "{(i,j) | i ≤ j}" : `{${preset.pairs.map((pair) => `(${pair.replace(",", ", ")})`).join(", ")}}`
                     : "No ordered pairs"}
                 </span>
               </button>
@@ -377,7 +183,7 @@ export default function TypesRelationsTargetLesson10112({
           <p>Clears all arrows and resets to ∅.</p>
         </aside>
       </footer>
-      <LessonTopicStudyBoard lessonId={10112} alwaysVisible />
+
 
     </section>
   );

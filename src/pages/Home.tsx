@@ -29,7 +29,7 @@ const learnerPaths = [
     label: "Student",
     title: "Build intuition",
     description: "Start with visual labs, then test yourself with guided practice.",
-    route: "/ncert",
+    route: "/curriculum",
     icon: GraduationCap,
     color: "from-cyan-500 to-emerald-500",
   },
@@ -57,7 +57,7 @@ const launchShortcuts = [
   { label: "Solve a problem", route: "/problem-solver", icon: Wand2, hint: "steps + checks" },
   { label: "Graph workspace", route: "/workspace/graph", icon: Calculator, hint: "plot + table" },
   { label: "Visual formulas", route: "/visual-formulas", icon: Sparkles, hint: "formula atlas" },
-  { label: "NCERT path", route: "/ncert", icon: BookOpen, hint: "class labs" },
+  { label: "NCERT path", route: "/curriculum", icon: BookOpen, hint: "class labs" },
   { label: "AR Math Lab", route: "/modules/ar-math-lab", icon: MonitorSmartphone, hint: "XR preview" },
   { label: "Graph Theory", route: "/graph-theory", icon: Layers3, hint: "algorithms" },
 ] as const;
@@ -148,7 +148,7 @@ export default function Home() {
       description: "Class 7, Class 10, and Class 12 NCERT visual labs with formula, theorem, visual proof, practice, and QA badges.",
       concepts: ["Class 7", "Class 10", "Class 12", "Board exams"],
       icon: BookOpen,
-      route: "/ncert",
+      route: "/curriculum",
       colorGradient: "from-cyan-600 to-emerald-500",
     },
     {

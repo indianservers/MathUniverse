@@ -1,0 +1,1791 @@
+[
+  {
+    "id": 1,
+    "route": "/lessons/core-workspaces/1-basic-calculator",
+    "title": "Basic Calculator",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-basic-header",
+            "text": "CORE WORKSPACESBasic CalculatorBuild fluency with foundational arithmetic.♙ Foundational–A",
+            "height": 165,
+            "scrollHeight": 163,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-basic-header",
+            "text": "CORE WORKSPACESBasic CalculatorBuild fluency with foundational arithmetic.♙ Foundational–A",
+            "height": 541,
+            "scrollHeight": 574,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "route": "/lessons/core-workspaces/3-mixed-numbers",
+    "title": "Mixed Numbers",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-mixed-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORMixed NumbersConnect mixed and improper fraction forms",
+            "height": 94,
+            "scrollHeight": 92,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-mixed-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORMixed NumbersConnect mixed and improper fraction forms",
+            "height": 94,
+            "scrollHeight": 174,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "route": "/lessons/core-workspaces/2-fraction-calculator",
+    "title": "Fraction Calculator",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-fraction-header",
+            "text": "Fraction CalculatorCalculate accurately with fractions⌘ Calculator Lab◷ 6–10 minObjectiveA",
+            "height": 119,
+            "scrollHeight": 141,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-fraction-header",
+            "text": "Fraction CalculatorCalculate accurately with fractions⌘ Calculator Lab◷ 6–10 minObjectiveA",
+            "height": 119,
+            "scrollHeight": 319,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "route": "/lessons/core-workspaces/5-ratio-calculator",
+    "title": "Ratio Calculator",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-ratio-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORRatio CalculatorDevelop proportional reasoning.⚲ Found",
+            "height": 186,
+            "scrollHeight": 211,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-ratio-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORRatio CalculatorDevelop proportional reasoning.⚲ Found",
+            "height": 186,
+            "scrollHeight": 382,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "route": "/lessons/core-workspaces/4-percentage-calculator",
+    "title": "Percentage Calculator",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-percent-header",
+            "text": "CORE WORKSPACESPercentage CalculatorApply percentages to practical problems.◉ Foundation⌘ ",
+            "height": 166,
+            "scrollHeight": 170,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-percent-header",
+            "text": "CORE WORKSPACESPercentage CalculatorApply percentages to practical problems.◉ Foundation⌘ ",
+            "height": 166,
+            "scrollHeight": 350,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "route": "/lessons/core-workspaces/6-powers-and-roots",
+    "title": "Powers and Roots",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-powers-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORPowers and RootsUnderstand exponents and radicals thro",
+            "height": 236,
+            "scrollHeight": 234,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-powers-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORPowers and RootsUnderstand exponents and radicals thro",
+            "height": 482,
+            "scrollHeight": 480,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "route": "/lessons/core-workspaces/7-scientific-notation",
+    "title": "Scientific Notation",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-notation-header",
+            "text": "Scientific NotationUnderstanding large numbers using coefficient × power of ten.⚲ Foundati",
+            "height": 192,
+            "scrollHeight": 205,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-notation-header",
+            "text": "Scientific NotationUnderstanding large numbers using coefficient × power of ten.⚲ Foundati",
+            "height": 192,
+            "scrollHeight": 434,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "route": "/lessons/core-workspaces/8-logarithms",
+    "title": "Logarithms",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-log-header",
+            "text": "LogarithmsUnderstand inverse exponential operations.⚲ Foundational-Advanced⌁ Calculator La",
+            "height": 207,
+            "scrollHeight": 220,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-log-header",
+            "text": "LogarithmsUnderstand inverse exponential operations.⚲ Foundational-Advanced⌁ Calculator La",
+            "height": 207,
+            "scrollHeight": 319,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "route": "/lessons/core-workspaces/9-exponential-calculations",
+    "title": "Exponential Calculations",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-exponential-header",
+            "text": "Exponential CalculationsExplore exponential growth and repeated multiplication.⚲ Foundatio",
+            "height": 120,
+            "scrollHeight": 124,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "target-exponential-header",
+            "text": "Exponential CalculationsExplore exponential growth and repeated multiplication.⚲ Foundatio",
+            "height": 388,
+            "scrollHeight": 386,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "route": "/lessons/core-workspaces/10-trigonometric-calculator",
+    "title": "Trigonometric Calculator",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "trigcalc-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORTrigonometric CalculatorLearn special-angle values and",
+            "height": 235,
+            "scrollHeight": 269,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "trigcalc-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORTrigonometric CalculatorLearn special-angle values and",
+            "height": 524,
+            "scrollHeight": 522,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "route": "/lessons/core-workspaces/11-inverse-trigonometry",
+    "title": "Inverse Trigonometry",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "inverse-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORInverse TrigonometryFind angles from ratios.⚲ Foundati",
+            "height": 232,
+            "scrollHeight": 266,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "inverse-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORInverse TrigonometryFind angles from ratios.⚲ Foundati",
+            "height": 496,
+            "scrollHeight": 494,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "route": "/lessons/core-workspaces/12-hyperbolic-functions",
+    "title": "Hyperbolic Functions",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "hyper-header",
+            "text": "Hyperbolic FunctionsIntroduce advanced function families.⚲ Foundational-Advanced⌁ Calculat",
+            "height": 226,
+            "scrollHeight": 231,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "hyper-header",
+            "text": "Hyperbolic FunctionsIntroduce advanced function families.⚲ Foundational-Advanced⌁ Calculat",
+            "height": 430,
+            "scrollHeight": 428,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "route": "/lessons/core-workspaces/13-factorial-permutation-and-combination",
+    "title": "Factorial, Permutation and Combination",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "counting-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORFactorial, Permutation and CombinationSupport counting",
+            "height": 228,
+            "scrollHeight": 264,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "counting-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORFactorial, Permutation and CombinationSupport counting",
+            "height": 519,
+            "scrollHeight": 517,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "route": "/lessons/core-workspaces/14-absolute-value",
+    "title": "Absolute Value",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "absolute-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORAbsolute ValueAbsolute value is the distance from zero",
+            "height": 237,
+            "scrollHeight": 268,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "absolute-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORAbsolute ValueAbsolute value is the distance from zero",
+            "height": 489,
+            "scrollHeight": 487,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "route": "/lessons/core-workspaces/15-rounding-and-precision",
+    "title": "Rounding and Precision",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "rounding-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORRounding and PrecisionUnderstand exact values, display",
+            "height": 233,
+            "scrollHeight": 268,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "rounding-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORRounding and PrecisionUnderstand exact values, display",
+            "height": 523,
+            "scrollHeight": 521,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "route": "/lessons/core-workspaces/16-constants-library",
+    "title": "Constants Library",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "constants-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORConstants LibraryProvide reliable mathematical constan",
+            "height": 238,
+            "scrollHeight": 268,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "constants-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORConstants LibraryProvide reliable mathematical constan",
+            "height": 464,
+            "scrollHeight": 462,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "route": "/lessons/core-workspaces/17-calculation-history",
+    "title": "Calculation History",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "history-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORCalculation HistoryA reliable record of expressions an",
+            "height": 202,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "history-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORCalculation HistoryA reliable record of expressions an",
+            "height": 202,
+            "scrollHeight": 500,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "route": "/lessons/core-workspaces/18-exact-and-decimal-modes",
+    "title": "Exact and Decimal Modes",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "exact-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORExact and Decimal ModesConnect symbolic and approximat",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "exact-header",
+            "text": "CORE WORKSPACESSCIENTIFIC CALCULATORExact and Decimal ModesConnect symbolic and approximat",
+            "height": 519,
+            "scrollHeight": 517,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "route": "/lessons/core-workspaces/19-algebra-workspace",
+    "title": "Algebra Workspace",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "algebra-header",
+            "text": "CORE WORKSPACESALGEBRA AND DYNAMIC VARIABLESAlgebra WorkspaceCreate and manage mathematica",
+            "height": 248,
+            "scrollHeight": 246,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [
+          {
+            "tag": "DIV",
+            "className": "algebra-flow",
+            "text": "1VARIABLEx= 5Input feedsthe rule→2RULEf(x)= 2x + 3Edit ruleRule applies tothe input→3SUBST",
+            "height": 273,
+            "scrollHeight": 305,
+            "overflowY": "auto"
+          }
+        ],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "algebra-header",
+            "text": "CORE WORKSPACESALGEBRA AND DYNAMIC VARIABLESAlgebra WorkspaceCreate and manage mathematica",
+            "height": 524,
+            "scrollHeight": 522,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "route": "/lessons/core-workspaces/20-variable-explorer",
+    "title": "Variable Explorer",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "variable-header",
+            "text": "CORE WORKSPACESALGEBRA AND DYNAMIC VARIABLESVariable ExplorerUnderstand variable dependenc",
+            "height": 196,
+            "scrollHeight": 194,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "variable-header",
+            "text": "CORE WORKSPACESALGEBRA AND DYNAMIC VARIABLESVariable ExplorerUnderstand variable dependenc",
+            "height": 591,
+            "scrollHeight": 589,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": true
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": []
+      }
+    ]
+  }
+]

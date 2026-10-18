@@ -184,14 +184,15 @@ export default function ModelBuilderTargetLesson606({
             <b>Focus: Linear models</b>
           </dl>
         </main>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content mb606-hero"><aside>
           <b>Objective</b>
           <p>
             Build a linear model for a real scenario, interpret its components,
             and use it to make and validate predictions.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="mb606-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

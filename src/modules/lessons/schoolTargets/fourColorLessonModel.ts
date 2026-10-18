@@ -1,18 +1,18 @@
 import { greedyColoring } from "../../../studios/discrete/discreteEnhancementEngine";
 export type MapRegion={id:number;vertices:string[];label:[number,number]};
 export type RegionMap={points:Record<string,[number,number]>;regions:MapRegion[]};
-export const fourColorMap:RegionMap={points:{A:[20,20],B:[105,30],C:[200,36],D:[280,20],E:[20,125],F:[105,115],G:[190,125],H:[280,125],I:[16,225],J:[105,250],K:[193,240],L:[280,240],M:[40,335],N:[100,318],O:[148,330],P:[190,322],Q:[264,350],R:[95,425],S:[148,418],T:[225,430]},regions:[
-  {id:1,vertices:["A","B","F","E"],label:[62,75]},
+export const fourColorMap:RegionMap={points:{A:[24,20],A1:[54,13],A2:[74,17],A3:[17,55],A4:[23,84],B:[105,30],C:[200,36],D:[255,30],D1:[273,65],D2:[282,91],E:[20,125],F:[105,115],G:[190,125],H:[280,125],I:[16,225],J:[105,250],K:[193,240],L:[280,240],M:[36,335],M1:[47,376],N:[100,318],O:[148,330],P:[190,322],Q:[264,350],Q1:[251,395],R:[95,425],S:[148,418],T:[225,430]},regions:[
+  {id:1,vertices:["A","A1","A2","B","F","E","A4","A3"],label:[62,75]},
   {id:2,vertices:["B","C","G","F"],label:[151,81]},
-  {id:3,vertices:["C","D","H","G"],label:[238,85]},
+  {id:3,vertices:["C","D","D1","D2","H","G"],label:[238,85]},
   {id:4,vertices:["E","F","J","I"],label:[58,183]},
   {id:5,vertices:["F","G","K","J"],label:[149,186]},
   {id:6,vertices:["G","H","L","K"],label:[236,191]},
   {id:7,vertices:["I","J","N","M"],label:[58,283]},
   {id:8,vertices:["J","K","P","O","N"],label:[147,286]},
   {id:9,vertices:["K","L","Q","P"],label:[233,287]},
-  {id:10,vertices:["M","N","O","S","R"],label:[103,374]},
-  {id:11,vertices:["O","P","Q","T","S"],label:[199,379]},
+  {id:10,vertices:["M","N","O","S","R","M1"],label:[103,374]},
+  {id:11,vertices:["O","P","Q","Q1","T","S"],label:[199,379]},
 ]};
 export const practiceColorMap:RegionMap={points:{A:[60,20],B:[155,20],C:[195,70],D:[195,150],E:[155,195],F:[60,195],G:[20,150],H:[20,70],I:[78,65],J:[135,65],K:[135,147],L:[78,147]},regions:[
   {id:1,vertices:["A","B","C","J","I","H"],label:[107,43]},

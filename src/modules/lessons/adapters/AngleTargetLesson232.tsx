@@ -162,7 +162,9 @@ export default function AngleTargetLesson232({
             </b>
           </section>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content target-angle-header"><aside>
           <header>
             <Sparkles /> Lesson progress
           </header>
@@ -183,8 +185,7 @@ export default function AngleTargetLesson232({
               <Bookmark fill={bookmarked ? "currentColor" : "none"} />
             </button>
           </div>
-        </aside>
-      </header>
+        </aside></div>
 
       <nav className="target-angle-stages" aria-label="Angle lesson stages">
         {[

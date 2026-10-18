@@ -1,0 +1,1 @@
+import{eP as d}from"./vendor-icons-CfSYENUm.js";function o(){const[n,r]=d.useState(()=>typeof window<"u"&&window.matchMedia("(prefers-reduced-motion: reduce)").matches);return d.useEffect(()=>{const e=window.matchMedia("(prefers-reduced-motion: reduce)"),t=()=>r(e.matches);return t(),e.addEventListener("change",t),()=>e.removeEventListener("change",t)},[]),n}export{o as u};

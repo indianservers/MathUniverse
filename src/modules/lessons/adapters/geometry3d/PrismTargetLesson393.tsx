@@ -131,7 +131,9 @@ export default function PrismTargetLesson393({
             Workspace
           </button>
         </div>
-        <aside className="prism393-hero-note">
+
+      </header>
+      <div className="lesson-header-content cs378-hero"><aside className="prism393-hero-note">
           <h2>💡 Key idea</h2>
           <p>A prism keeps the same cross-section all along its length.</p>
           <h2>✎ Practice</h2>
@@ -139,8 +141,7 @@ export default function PrismTargetLesson393({
             If Aᵦ = 9 and L = 7,
             <br />V = 63.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="cs378-tabs">
         {[
           "Interaction + visualization",

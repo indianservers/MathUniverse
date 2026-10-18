@@ -121,15 +121,16 @@ export default function EulerFormTargetLesson372({
             </button>
           </div>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content ef372-hero"><aside>
           <h2>At a glance</h2>
           <p>
             ● Bridge trig form r(cos theta + i sin theta) to Euler form re^(i
             theta).
           </p>
           <p>● General complex numbers keep the scale factor r.</p>
-        </aside>
-      </header>
+        </aside></div>
 
       <nav className="ef372-tabs">
         {[

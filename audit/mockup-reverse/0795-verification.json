@@ -1,0 +1,268 @@
+{
+  "status": "passed",
+  "errors": [],
+  "responsive": [
+    {
+      "state": "maxrows",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "maxrows",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "maxrows",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "maxrows",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "missing",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "missing",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "missing",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "missing",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "conflict",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "conflict",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "conflict",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "conflict",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "empty",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "empty",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "empty",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "empty",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ],
+  "results": [
+    {
+      "x": -2,
+      "fx": "-3",
+      "gx": "-1",
+      "vf": true,
+      "vg": true,
+      "compat": true,
+      "same": false
+    },
+    {
+      "x": -1,
+      "fx": "-1",
+      "gx": "0",
+      "vf": true,
+      "vg": true,
+      "compat": true,
+      "same": false
+    },
+    {
+      "x": 0,
+      "fx": "1",
+      "gx": "2",
+      "vf": true,
+      "vg": true,
+      "compat": true,
+      "same": false
+    },
+    {
+      "x": 1,
+      "fx": "3",
+      "gx": "5",
+      "vf": true,
+      "vg": true,
+      "compat": true,
+      "same": false
+    },
+    {
+      "x": 2,
+      "fx": "5",
+      "gx": "8",
+      "vf": true,
+      "vg": true,
+      "compat": true,
+      "same": false
+    },
+    {
+      "x": 98,
+      "fx": "undefined",
+      "gx": "undefined",
+      "vf": true,
+      "vg": true,
+      "compat": true,
+      "same": false
+    },
+    {
+      "x": 0,
+      "fx": "99",
+      "gx": "undefined",
+      "vf": true,
+      "vg": true,
+      "compat": false,
+      "same": false
+    },
+    {
+      "x": 1,
+      "fx": "3",
+      "gx": "5",
+      "vf": true,
+      "vg": true,
+      "compat": false,
+      "same": false
+    },
+    {
+      "x": 1,
+      "fx": "3",
+      "gx": "5",
+      "vf": true,
+      "vg": true,
+      "compat": true,
+      "same": false
+    },
+    {
+      "x": 0,
+      "fx": "undefined",
+      "gx": "undefined",
+      "vf": false,
+      "vg": true,
+      "compat": false,
+      "same": false
+    },
+    {
+      "x": 0,
+      "fx": "1",
+      "gx": "2",
+      "vf": true,
+      "vg": true,
+      "compat": true,
+      "same": false
+    },
+    {
+      "x": 0,
+      "fx": "undefined",
+      "gx": "undefined",
+      "vf": true,
+      "vg": true,
+      "compat": false,
+      "same": false
+    },
+    {
+      "x": 0,
+      "fx": "undefined",
+      "gx": "undefined",
+      "vf": true,
+      "vg": true,
+      "compat": true,
+      "same": true
+    },
+    {
+      "x": 0,
+      "fx": "0",
+      "gx": "0",
+      "vf": true,
+      "vg": true,
+      "compat": true,
+      "same": true
+    },
+    {
+      "x": 0,
+      "fx": "0",
+      "gx": "0",
+      "vf": true,
+      "vg": true,
+      "compat": true,
+      "same": false
+    }
+  ],
+  "clipped": [],
+  "links": [
+    "/lessons/school/class-11/class-11-relations-and-functions-onto-functions",
+    "/lessons/school/class-11/class-11-relations-and-functions-invertible-functions"
+  ]
+}

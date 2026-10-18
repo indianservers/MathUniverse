@@ -152,7 +152,9 @@ export default function RrefTargetLesson356({
             <button>Workspace</button>
           </nav>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content mat356-hero"><aside>
           {[
             "Leading 1s",
             "Zeros above pivots",
@@ -163,8 +165,7 @@ export default function RrefTargetLesson356({
             <p key={v}>✓ {v}</p>
           ))}
           <strong>RREF check: All conditions met ✓</strong>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="mat356-tabs">
         {tabs.map((name) => (
           <button

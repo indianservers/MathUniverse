@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "pouch asset and actual no-replacement draws",
+    "draw count, removal and two-draw limit",
+    "all four paths in both modes",
+    "keyboard path selection",
+    "same-ball repeat with replacement",
+    "comparison shortcuts",
+    "conditional-rule feedback and fraction/decimal practice",
+    "generalization reveal, reset and all tabs"
+  ]
+}

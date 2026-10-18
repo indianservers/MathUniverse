@@ -2,3 +2,64 @@
 @container ev (max-width:780px){.ev-middle,.ev-game>div{grid-template-columns:1fr}.ev-notes{grid-template-columns:1fr}.ev-practice>div{grid-template-columns:1fr 1fr}.ev-heading{flex-wrap:wrap}.ev-tabs{flex-wrap:wrap}.ev-products{gap:20px}.ev-products i{right:-16px;font-size:16px}.ev-probability-inputs{gap:10px}.ev-next{flex-wrap:wrap}}
 @container ev (max-width:440px){.ev-products{grid-template-columns:1fr 1fr;gap:12px}.ev-products i{display:none}.ev-moments>div{flex-direction:column;gap:10px}.ev-probability-inputs{grid-template-columns:1fr}.ev-practice>div{grid-template-columns:1fr}.ev-game-inputs{grid-template-columns:repeat(3,minmax(0,1fr))}.ev-game-inputs>button{grid-column:1/-1;flex-direction:row}.ev-modes{flex-wrap:wrap}}
 .ev10217 button svg,.ev10217 h2 svg,.ev10217 h3 svg{width:16px;height:16px;flex:0 0 auto}
+
+/* Expected Value reference panels, without changing shared navigation. */
+.ev10217.lesson-reference{max-width:1120px;padding:0;background:#f7faff;font:14px/1.6 Inter,Arial,sans-serif}
+.ev10217.lesson-reference>header{background:white;border:1px solid #dce6ef;border-radius:12px;padding:24px 26px;margin-bottom:20px}
+.ev10217.lesson-reference h1{font-size:30px;font-weight:800;line-height:1.25;margin:8px 0}
+.ev10217.lesson-reference header>p{font-size:14px;color:#526176}
+.ev10217.lesson-reference header>a{padding:9px 14px;border:1px solid #dce6ef;border-radius:7px;font-size:12px}
+.ev10217.lesson-reference .ev-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.ev10217.lesson-reference .ev-tags span{padding:4px 10px;background:#f0f4f8;border-radius:5px;font-size:10px;color:#46566b}
+.ev10217.lesson-reference .ev-tags span:nth-child(2){background:#fff2d9;color:#9a6207}
+.ev10217.lesson-reference h2{font-size:13px;font-weight:750}
+.ev10217.lesson-reference h3{font-size:11px;font-weight:750}
+.ev10217.lesson-reference nav.ev-tabs{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;background:linear-gradient(90deg,#fbfaff,#f3f0ff);border-radius:10px 10px 0 0;padding:0;border-bottom:1px solid #dce6ef}
+.ev10217.lesson-reference .ev-tabs button{padding:17px 12px;flex:1;color:#344565;font-weight:650}
+.ev10217.lesson-reference .ev-tabs button[aria-current]{border:1px solid #d9d3ee;border-top:3px solid #7542e3;border-bottom:0;border-radius:10px 10px 0 0;background:white;color:#7140dd}
+.ev10217.lesson-reference .ev-tabs button:last-child{flex:0;padding:12px}
+.ev10217.lesson-reference .ev-balance{background:white;border:1px solid #dce6ef;border-radius:10px;padding:20px;margin-bottom:18px}
+.ev10217.lesson-reference .ev-modes button{padding:10px 15px;font-size:12px}
+.ev10217.lesson-reference .ev-heading p{font-size:12px}
+.ev10217.lesson-reference .ev-beam text{font-weight:650}
+.ev10217.lesson-reference .ev-weight rect{stroke-width:2;filter:drop-shadow(0 3px 2px #1d50652b)}
+.ev10217.lesson-reference .ev-products{gap:30px;margin:16px 0 20px}
+.ev10217.lesson-reference .ev-products>span{padding:17px 8px;font-weight:650;font-size:14px}
+.ev10217.lesson-reference .ev-products>strong{font-size:18px}
+.ev10217.lesson-reference .ev-moments>div{padding:10px 0}
+.ev10217.lesson-reference .ev-moments span{background:linear-gradient(90deg,#e2effc,#f5faff);padding:14px;font-size:13px;color:#075a96;font-weight:650}
+.ev10217.lesson-reference .ev-moments strong{font-size:12px}
+.ev10217.lesson-reference .ev-middle{padding:0;gap:18px;margin-bottom:18px}
+.ev10217.lesson-reference .ev-middle article{background:white;border-radius:10px;padding:20px}
+.ev10217.lesson-reference table{font-size:12px}
+.ev10217.lesson-reference th{font-size:11px}
+.ev10217.lesson-reference .ev-equation{font-style:normal;text-align:center;padding:16px}
+.ev10217.lesson-reference .ev-sim-controls button{font-size:12px;padding:7px 10px}
+.ev10217.lesson-reference .ev-samples{margin:12px 0}
+.ev10217.lesson-reference .ev-samples span{height:23px;min-width:23px}
+.ev10217.lesson-reference .ev-note{font-size:11px}
+.ev10217.lesson-reference .ev-game{background:white;border:1px solid #dce6ef;border-radius:10px;padding:20px;margin-bottom:18px}
+.ev10217.lesson-reference .ev-game-products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) 1.1fr;align-items:center;gap:16px;margin-bottom:14px}
+.ev10217.lesson-reference .ev-game-products>span{position:relative;text-align:center;padding:12px 6px;border:1px solid #d9e4f0;border-radius:6px;color:#275580;font-size:12px}
+.ev10217.lesson-reference .ev-game-products>span:nth-child(2){color:#00899a}
+.ev10217.lesson-reference .ev-game-products>span:nth-child(3){color:#7739cd}
+.ev10217.lesson-reference .ev-game-products i{position:absolute;right:-13px;top:15px;font-style:normal}
+.ev10217.lesson-reference .ev-game-products>strong{background:#f0fbf7;border:1px solid #bfe9d9;border-radius:6px;color:#008569;padding:14px 6px;text-align:center;font-size:15px}
+.ev10217.lesson-reference .ev-game-note{font-size:12px}
+.ev10217.lesson-reference .ev-notes{padding:0;gap:18px;margin-bottom:18px}
+.ev10217.lesson-reference .ev-notes article{background:white;border:1px solid #dce6ef;border-radius:10px;padding:18px;font-size:12px}
+.ev10217.lesson-reference .ev-notes article:first-child{background:#fff8f7;border-color:#f4d9d5}
+.ev10217.lesson-reference .ev-notes article:last-child{background:#f8faff}
+.ev10217.lesson-reference .ev-practice{background:white;border:1px solid #dce6ef;border-radius:10px;padding:20px;margin-bottom:18px}
+.ev10217.lesson-reference .ev-practice article{font-size:12px;display:flex;flex-direction:column;align-items:flex-start}
+.ev10217.lesson-reference .ev-practice button{margin-top:auto;font-size:11px}
+.ev10217.lesson-reference .ev-next{padding:0 0 20px}
+.ev10217.lesson-reference .ev-next a{background:white;border:1px solid #dce6ef;border-radius:8px;padding:12px 16px;font-size:12px}
+.ev10217.lesson-reference footer a{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border:1px solid #dce6ef;border-radius:6px;text-decoration:none}
+@container ev (max-width:780px){.ev10217.lesson-reference .ev-game-products{gap:12px}.ev10217.lesson-reference .ev-middle,.ev10217.lesson-reference .ev-game>div{grid-template-columns:1fr}.ev10217.lesson-reference .ev-notes{grid-template-columns:1fr}.ev10217.lesson-reference .ev-tabs button{padding:13px 5px;font-size:11px}}
+@container ev (max-width:440px){.ev10217.lesson-reference>header{padding:20px}.ev10217.lesson-reference .ev-balance{padding:14px}.ev10217.lesson-reference .ev-tabs button{font-size:10px;gap:3px}.ev10217.lesson-reference .ev-tabs button svg{width:12px}.ev10217.lesson-reference .ev-modes button{padding:8px;font-size:11px}.ev10217.lesson-reference .ev-products{gap:12px}.ev10217.lesson-reference .ev-products>span{font-size:12px;padding:12px 5px}.ev10217.lesson-reference .ev-game-products{grid-template-columns:1fr 1fr}.ev10217.lesson-reference .ev-game-products i{display:none}.ev10217.lesson-reference .ev-practice article{padding:12px 8px}}
+
+.ev10217.lesson-reference .ev-moments span small{display:block;font-size:11px;font-weight:400;margin-top:6px;color:#536780}
+.ev10217.lesson-reference .ev-products>strong{position:relative}
+.ev10217.lesson-reference .ev-products>strong:before{content:'=';position:absolute;left:-23px;top:20px;font:700 20px Arial;color:#009ca6}
+@container ev (max-width:440px){.ev10217.lesson-reference .ev-products>strong:before{display:none}}

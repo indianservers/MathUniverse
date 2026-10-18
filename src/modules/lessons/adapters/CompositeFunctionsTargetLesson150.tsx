@@ -267,6 +267,7 @@ export default function CompositeFunctionsTargetLesson150({
             Workspace
           </button>
         </aside>
+      </header>
         <section className="comp150-machine">
           <h2>
             x → {innerName}(x) → {outerName}({innerName}(x))
@@ -323,7 +324,6 @@ export default function CompositeFunctionsTargetLesson150({
             {outerName}({innerName}(x)) = {compositeFormula}
           </strong>
         </section>
-      </header>
       <section className="comp150-body">
         <main>
           <h2>

@@ -213,15 +213,16 @@ export default function TaylorMaclaurinTargetLesson344({
             </button>
           </nav>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content seq344-hero"><aside>
           <b>Learning Objective</b>
           <p>
             Understand and visualize how Taylor and Maclaurin series approximate
             functions using derivatives at a chosen center, and how accuracy
             improves with higher order.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="seq344-tabs">
         {tabs.map((x) => (
           <button

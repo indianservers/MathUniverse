@@ -325,7 +325,10 @@ export default function GradientSlopeTargetLesson172({
         <span>COORDINATE GEOMETRY</span>
         <h1>Gradient Slope</h1>
         <p>Understand rise over run and the slope of a line.</p>
-        <div>
+
+
+      </header>
+      <div className="lesson-header-content gs172-header"><div>
           <b>
             ▥ Level: <strong>Intermediate</strong>
           </b>
@@ -336,7 +339,7 @@ export default function GradientSlopeTargetLesson172({
             ◎ Focus: <strong>Gradient, slope, line behavior</strong>
           </b>
         </div>
-        <aside>
+<aside>
           <button
             onClick={() => {
               setShared(true);
@@ -351,8 +354,7 @@ export default function GradientSlopeTargetLesson172({
             Reset
           </button>
           <output>{shared ? "Share link ready" : ""}</output>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="gs172-stages">
         {[
           ["Observe", "See a line"],

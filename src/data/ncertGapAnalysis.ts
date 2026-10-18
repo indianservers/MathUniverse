@@ -16,7 +16,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     status: "strong",
     currentCoverage: "Interactive integer number-line lab.",
     recommendedBuild: "Add more word-problem practice sets.",
-    route: "/ncert/class-7-integers",
+    route: "/lessons/numbers-and-arithmetic/59-integers",
   },
   {
     classLevel: "Class 7",
@@ -25,7 +25,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "Fraction bar, decimal value and number-line conversion lab.",
     recommendedBuild: "Add operations drill mode.",
-    route: "/ncert/class-7-fractions-decimals",
+    route: "/lessons/numbers-and-arithmetic/78-fraction-operations",
   },
   {
     classLevel: "Class 7",
@@ -34,7 +34,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "Dedicated Indian/international place-value, number-name, expanded-form, rounding, comparison, and estimation lab.",
     recommendedBuild: "Add more real city/population datasets.",
-    route: "/ncert/class-7-large-numbers-around-us",
+    route: "/lessons/school/class-6/class-6-numbers-and-arithmetic-place-value-explorer",
   },
   {
     classLevel: "Class 7",
@@ -43,7 +43,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "Dedicated BODMAS expression visualizer with safe parser, step list, and common mistake warning.",
     recommendedBuild: "Add more student-created expression challenges.",
-    route: "/ncert/class-7-arithmetic-expressions",
+    route: "/lessons/core-workspaces/1-basic-calculator",
   },
   {
     classLevel: "Class 7",
@@ -52,7 +52,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "Dedicated decimal operation lab for place-value alignment, scaling, addition, subtraction, multiplication, and division.",
     recommendedBuild: "Add money and measurement word-problem decks.",
-    route: "/ncert/class-7-decimal-operations",
+    route: "/lessons/numbers-and-arithmetic/80-decimal-operations",
   },
   {
     classLevel: "Class 7",
@@ -61,7 +61,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "Dedicated fraction operation lab with LCM, simplification, comparison, area bars, and mixed-number output.",
     recommendedBuild: "Add more word-problem presets.",
-    route: "/ncert/class-7-fraction-operations",
+    route: "/lessons/numbers-and-arithmetic/78-fraction-operations",
   },
   {
     classLevel: "Class 7",
@@ -70,7 +70,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "Dedicated NCERT data handling lab with dataset, pictograph, bar graph, mean, median, mode, and interpretation practice.",
     recommendedBuild: "Add printable data cards and student survey import.",
-    route: "/ncert/class-7-data-handling",
+    route: "/lessons/school/class-8/class-8-data-handling-double-bar-graph-comparison",
   },
   {
     classLevel: "Class 7",
@@ -79,7 +79,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "Dedicated balance-scale equation solver with inverse operations and checking.",
     recommendedBuild: "Add multi-step word-problem deck.",
-    route: "/ncert/class-7-simple-equations",
+    route: "/lessons/algebra/111-linear-equations",
   },
   {
     classLevel: "Class 7",
@@ -106,7 +106,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "Dedicated parallel-line, transversal, triangle angle-sum, exterior-angle, and vertical-opposite-angle explorer.",
     recommendedBuild: "Add printable angle-pair worksheets.",
-    route: "/ncert/class-7-lines-and-triangles",
+    route: "/lessons/geometry/174-parallel-lines",
   },
   {
     classLevel: "Class 7",
@@ -115,7 +115,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "Percentage, percent-change and simple-interest visual lab.",
     recommendedBuild: "Add marketplace story problems.",
-    route: "/ncert/class-7-comparing-quantities",
+    route: "/lessons/numbers-and-arithmetic/88-percentages",
   },
   {
     classLevel: "Class 7",
@@ -123,7 +123,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     status: "strong",
     currentCoverage: "Rational number-line and decimal comparison lab.",
     recommendedBuild: "Add operation practice.",
-    route: "/ncert/class-7-rational-numbers",
+    route: "/lessons/numbers-and-arithmetic/60-rational-numbers",
   },
   {
     classLevel: "Class 7",
@@ -140,7 +140,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "Dedicated NCERT expression-tile lab with like terms, substitution, simplification, word expressions, and practice.",
     recommendedBuild: "Add expanded expression-builder challenge mode.",
-    route: "/ncert/class-7-algebraic-expressions",
+    route: "/lessons/algebra/92-algebra-tiles",
   },
   {
     classLevel: "Class 7",
@@ -148,7 +148,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     status: "strong",
     currentCoverage: "Exponent-law block visualizer.",
     recommendedBuild: "Add standard-form practice.",
-    route: "/ncert/class-7-exponents",
+    route: "/lessons/advanced-mathematics/373-powers",
   },
   {
     classLevel: "Class 7",
@@ -174,7 +174,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "Dedicated construction and tessellation lab with bisectors, triangle construction, and square/triangle/hexagon tilings.",
     recommendedBuild: "Add interactive compass dragging in a later phase.",
-    route: "/ncert/class-7-constructions-and-tilings",
+    route: "/lessons/school/class-7/class-7-practical-geometry-copying-a-line-segment",
   },
 
   {
@@ -183,7 +183,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     status: "strong",
     currentCoverage: "Rational number-line and property exploration lab.",
     recommendedBuild: "Add property sorting quiz.",
-    route: "/ncert/class-8-rational-numbers",
+    route: "/lessons/numbers-and-arithmetic/60-rational-numbers",
   },
   {
     classLevel: "Class 8",
@@ -226,7 +226,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     status: "strong",
     currentCoverage: "Square/cube root visual tile lab.",
     recommendedBuild: "Add estimation game.",
-    route: "/ncert/class-8-square-cube-roots",
+    route: "/lessons/advanced-mathematics/374-roots",
   },
   {
     classLevel: "Class 8",
@@ -234,7 +234,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     status: "strong",
     currentCoverage: "Square/cube root visual tile lab.",
     recommendedBuild: "Add 3D cube stacking challenge.",
-    route: "/ncert/class-8-square-cube-roots",
+    route: "/lessons/advanced-mathematics/374-roots",
   },
   {
     classLevel: "Class 8",
@@ -242,7 +242,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     status: "strong",
     currentCoverage: "Percent and compound comparison lab.",
     recommendedBuild: "Add tax/discount worksheet generator.",
-    route: "/ncert/class-8-comparing-quantities",
+    route: "/lessons/numbers-and-arithmetic/88-percentages",
   },
   {
     classLevel: "Class 8",
@@ -270,7 +270,7 @@ export const ncertGapItems: NCERTGapItem[] = [
       "Dedicated Grade 8 lab for equivalent ratios, cross multiplication, map scale, representative fraction, multi-term ratio sharing, pie sectors, direct/inverse proportion, exact formulas, visual formula route, proof routes, and solver support.",
     recommendedBuild:
       "Later phases can add printable map worksheets and larger word-problem banks.",
-    route: "/ncert/class-8-proportional-reasoning-2",
+    route: "/lessons/numbers-and-arithmetic/84-proportion",
   },
   {
     classLevel: "Class 8",
@@ -280,7 +280,7 @@ export const ncertGapItems: NCERTGapItem[] = [
       "Dedicated Sierpinski carpet explorer, exact formula library links, Sierpinski visual formula route, cube-stack solid views lab, projection proofs, and guided solver support.",
     recommendedBuild:
       "Later phases can add more fractal families and printable solid-view worksheets, but the Sierpinski carpet and orthographic-view core is now covered.",
-    route: "/ncert/class-8-fractals-and-solid-views",
+    route: "/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming",
   },
   {
     classLevel: "Class 8",
@@ -288,7 +288,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     status: "strong",
     currentCoverage: "Exponent laws including negative powers.",
     recommendedBuild: "Add scientific notation scale slider.",
-    route: "/ncert/class-8-exponents",
+    route: "/lessons/advanced-mathematics/373-powers",
   },
   {
     classLevel: "Class 8",
@@ -297,7 +297,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "The Proportional Reasoning-2 route includes direct/inverse tabs, constant-ratio and constant-product tables, graph models, formulas, proof routes, and solver examples.",
     recommendedBuild: "Add more contextual practice decks later.",
-    route: "/ncert/class-8-proportional-reasoning-2?tab=direct-inverse",
+    route: "/lessons/numbers-and-arithmetic/84-proportion",
   },
   {
     classLevel: "Class 8",
@@ -323,7 +323,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     status: "strong",
     currentCoverage: "Real-number hierarchy and root placement lab.",
     recommendedBuild: "Add decimal expansion classifier.",
-    route: "/ncert/class-9-number-systems",
+    route: "/lessons/numbers-and-arithmetic/60-rational-numbers",
   },
   {
     classLevel: "Class 9",
@@ -357,7 +357,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     status: "strong",
     currentCoverage: "Axiom/postulate and proof-flow card lab.",
     recommendedBuild: "Add proof sequencing quiz.",
-    route: "/ncert/class-9-euclid-geometry",
+    route: "/lessons/school/class-9/class-9-euclidean-geometry-definitions-axioms-and-postulates",
   },
   {
     classLevel: "Class 9",
@@ -399,7 +399,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "Full Heron workflow with side validity, semiperimeter and area.",
     recommendedBuild: "Add word-problem bank.",
-    route: "/ncert/class-9-heron",
+    route: "/lessons/school/class-9/class-9-mensuration-heron-s-formula-derivation",
   },
   {
     classLevel: "Class 9",
@@ -425,7 +425,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     status: "strong",
     currentCoverage: "Euclid algorithm, HCF and LCM visual lab.",
     recommendedBuild: "Add prime factor tree mode.",
-    route: "/ncert/class-10-real-numbers",
+    route: "/lessons/numbers-and-arithmetic/62-real-numbers",
   },
   {
     classLevel: "Class 10",
@@ -459,7 +459,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     status: "strong",
     currentCoverage: "Arithmetic progression term blocks and sum readout.",
     recommendedBuild: "Add derivation animation.",
-    route: "/ncert/class-10-arithmetic-progressions",
+    route: "/lessons/advanced-mathematics/335-arithmetic-sequences",
   },
   {
     classLevel: "Class 10",
@@ -476,7 +476,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     currentCoverage:
       "Section formula visualizer plus existing coordinate graph support.",
     recommendedBuild: "Add triangle-area formula lab.",
-    route: "/ncert/class-10-section-formula",
+    route: "/lessons/school/class-10/class-10-coordinate-geometry-internal-section-formula",
   },
   {
     classLevel: "Class 10",
@@ -492,7 +492,7 @@ export const ncertGapItems: NCERTGapItem[] = [
     status: "strong",
     currentCoverage: "Heights-and-distances tangent visual lab.",
     recommendedBuild: "Add two-angle problem mode.",
-    route: "/ncert/class-10-heights-distances",
+    route: "/lessons/school/class-10/class-10-trigonometry-applications-angle-of-elevation",
   },
   {
     classLevel: "Class 10",
@@ -545,7 +545,7 @@ export const ncertGapItems: NCERTGapItem[] = [
       "Deep tabbed lab with relation matrix, mapping graph, property verification, function classification, composition, inverse relation, and practice checker.",
     recommendedBuild:
       "Add drag-to-edit relation pairs and larger NCERT exercise banks.",
-    route: "/ncert/class-12-relations-functions",
+    route: "/lessons/school/class-11/class-11-relations-and-functions-reflexive-relations",
   },
   {
     classLevel: "Class 12",
@@ -555,7 +555,7 @@ export const ncertGapItems: NCERTGapItem[] = [
       "Deep tabbed lab with principal branch visual, domain/range workflow, identity cards, verification notes, and practice checker.",
     recommendedBuild:
       "Add more graph overlays for all six inverse trigonometric functions.",
-    route: "/ncert/class-12-inverse-trig",
+    route: "/lessons/trigonometry/265-inverse-trig-functions",
   },
   {
     classLevel: "Class 12",
@@ -565,7 +565,7 @@ export const ncertGapItems: NCERTGapItem[] = [
       "Deep tabbed lab with 2 by 2 and 3 by 3 determinant workflows, cofactors, inverse, Cramer's rule, verification, and practice checker.",
     recommendedBuild:
       "Add fully editable 3 by 3 matrix cells in the visual panel.",
-    route: "/ncert/class-12-determinants",
+    route: "/lessons/advanced-mathematics/353-determinant",
   },
   {
     classLevel: "Class 12",
@@ -575,7 +575,7 @@ export const ncertGapItems: NCERTGapItem[] = [
       "Deep tabbed lab with continuity cases, differentiability verdicts, derivative-rule steppers, concavity notes, verification, and practice checker.",
     recommendedBuild:
       "Add plotted left/right derivative probes for more piecewise cases.",
-    route: "/ncert/class-12-continuity-differentiability",
+    route: "/lessons/school/class-12/class-12-formal-calculus-left-hand-and-right-hand-limits",
   },
   {
     classLevel: "Class 12",
@@ -585,7 +585,7 @@ export const ncertGapItems: NCERTGapItem[] = [
       "Deep tabbed lab with supported substitution, by-parts, partial-fractions, definite-property, area, derivative-verification, and practice workflows.",
     recommendedBuild:
       "Add more NCERT exercise presets without overpromising full CAS.",
-    route: "/ncert/class-12-integration-methods",
+    route: "/lessons/school/class-12/class-12-formal-calculus-integration-by-substitution",
   },
   {
     classLevel: "Class 12",
@@ -595,7 +595,7 @@ export const ncertGapItems: NCERTGapItem[] = [
       "Deep tabbed lab with separable and linear first-order steppers, slope-field visual, initial-condition sample, verification, and practice checker.",
     recommendedBuild:
       "Add editable slope-field equations for a controlled preset list.",
-    route: "/ncert/class-12-differential-equations",
+    route: "/lessons/school/class-12/class-12-differential-equations-formation-of-differential-equations",
   },
   {
     classLevel: "Class 12",
@@ -605,7 +605,7 @@ export const ncertGapItems: NCERTGapItem[] = [
       "Deep tabbed lab with vector addition, dot/cross/projection, direction cosines, 3D line form, skew-distance verification, and practice checker.",
     recommendedBuild:
       "Upgrade the projected vector panel to a true interactive Three.js scene.",
-    route: "/ncert/class-12-vectors-3d-geometry",
+    route: "/lessons/3d-mathematics/390-3d-vectors",
   },
   {
     classLevel: "Class 12",
@@ -615,7 +615,7 @@ export const ncertGapItems: NCERTGapItem[] = [
       "Deep tabbed lab with constraints, feasible-region model, corner calculation, objective evaluation, max/min verification, and practice checker.",
     recommendedBuild:
       "Add editable constraint coefficients in a compact table.",
-    route: "/ncert/class-12-linear-programming",
+    route: "/lessons/school/class-12/class-12-linear-programming-formulating-linear-programming-problems",
   },
   {
     classLevel: "Class 12",
@@ -625,7 +625,7 @@ export const ncertGapItems: NCERTGapItem[] = [
       "Deep tabbed lab with probability tree, table/formula workflow, prior-likelihood-evidence-posterior update, presets, verification, and practice checker.",
     recommendedBuild:
       "Add animated branch-width transitions for the Bayes update.",
-    route: "/ncert/class-12-bayes-theorem",
+    route: "/lessons/school/class-12/class-12-probability-bayes-theorem",
   },
 ];
 

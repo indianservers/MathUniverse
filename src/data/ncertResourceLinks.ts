@@ -1,4 +1,4 @@
-import { getNCERTConcept, type NCERTConcept } from "./ncertConcepts";
+import { ncertRoute, getNCERTConcept, type NCERTConcept } from "./ncertConcepts";
 
 export type NCERTResourceLink = {
   label: string;
@@ -128,7 +128,7 @@ const byUnitFallback: Record<string, NCERTResourceLink[]> = {
       "fractions-decimals-percent",
       ["percent", "interest", "decimals"],
     ),
-    reference("Practice dashboard", "/ncert", "related", ["NCERT practice"]),
+    reference("Practice dashboard", "/curriculum", "related", ["NCERT practice"]),
   ],
   Algebra: [
     formula("Algebra formulas", "algebra"),
@@ -184,7 +184,7 @@ const byUnitFallback: Record<string, NCERTResourceLink[]> = {
     tool("Derivatives lab", "/math/derivatives"),
   ],
   Applications: [
-    reference("NCERT dashboard", "/ncert", "related"),
+    reference("NCERT dashboard", "/curriculum", "related"),
     tool("Math workspace", "/workspace", "related"),
   ],
   Reasoning: [
@@ -204,7 +204,7 @@ export const ncertConceptResourceLinks: NCERTConceptResourceLinks[] = [
         "even-odd-pairing",
         "exact",
       ),
-      reference("NCERT dashboard", "/ncert"),
+      reference("NCERT dashboard", "/curriculum"),
     ],
   },
   {
@@ -338,31 +338,31 @@ export const ncertConceptResourceLinks: NCERTConceptResourceLinks[] = [
       ),
       tool(
         "Equivalent ratios tab",
-        "/ncert/class-8-proportional-reasoning-2?tab=equivalent-ratios",
+        "/lessons/numbers-and-arithmetic/84-proportion",
         "exact",
         ["cross multiplication"],
       ),
       tool(
         "Map scale tab",
-        "/ncert/class-8-proportional-reasoning-2?tab=map-scale",
+        "/lessons/numbers-and-arithmetic/84-proportion",
         "exact",
         ["representative fraction"],
       ),
       tool(
         "Ratio splitter tab",
-        "/ncert/class-8-proportional-reasoning-2?tab=ratio-splitter",
+        "/lessons/numbers-and-arithmetic/84-proportion",
         "exact",
         ["multi-term ratio"],
       ),
       tool(
         "Pie ratio tab",
-        "/ncert/class-8-proportional-reasoning-2?tab=pie-ratio",
+        "/lessons/numbers-and-arithmetic/84-proportion",
         "exact",
         ["pie chart"],
       ),
       tool(
         "Direct/inverse tab",
-        "/ncert/class-8-proportional-reasoning-2?tab=direct-inverse",
+        "/lessons/numbers-and-arithmetic/84-proportion",
         "exact",
         ["constant ratio", "constant product"],
       ),
@@ -371,7 +371,7 @@ export const ncertConceptResourceLinks: NCERTConceptResourceLinks[] = [
         "map scale",
         "inverse proportion",
       ]),
-      reference("NCERT dashboard", "/ncert", "related"),
+      reference("NCERT dashboard", "/curriculum", "related"),
     ],
   },
   {
@@ -432,13 +432,13 @@ export const ncertConceptResourceLinks: NCERTConceptResourceLinks[] = [
       ),
       tool(
         "Fractal explorer tab",
-        "/ncert/class-8-fractals-and-solid-views?tab=fractal",
+        "/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming",
         "exact",
         ["sierpinski carpet", "self similarity"],
       ),
       tool(
         "Solid views tab",
-        "/ncert/class-8-fractals-and-solid-views?tab=solid",
+        "/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming",
         "exact",
         ["cube stacks", "orthographic projections"],
       ),
@@ -452,7 +452,7 @@ export const ncertConceptResourceLinks: NCERTConceptResourceLinks[] = [
         "cube stacks",
         "orthographic projections",
       ]),
-      reference("NCERT dashboard", "/ncert", "related"),
+      reference("NCERT dashboard", "/curriculum", "related"),
     ],
   },
   {
@@ -966,11 +966,11 @@ export function getNCERTConceptResourceLinks(
   const explicit = explicitResourceMap.get(
     typeof conceptOrId === "string" ? conceptOrId : conceptOrId.id,
   );
-  if (explicit) return explicit;
-  if (!concept) return [reference("NCERT dashboard", "/ncert")];
+  if (explicit) return [...new Map(explicit.map((resource) => [resource.href, resource])).values()];
+  if (!concept) return [reference("NCERT dashboard", "/curriculum")];
   return (
     byUnitFallback[concept.unit] ?? [
-      reference("NCERT dashboard", "/ncert"),
+      reference("NCERT dashboard", "/curriculum"),
       reference("Formula library", "/formulas", "category"),
       reference("Visual proofs hub", "/visual-proofs", "category"),
     ]
@@ -1000,7 +1000,7 @@ export function getNCERTResourceAuditRow(
   ).length;
 
   return {
-    ncertRoute: `/ncert/${concept.id}`,
+    ncertRoute: ncertRoute(concept.id),
     currentFormulaLink: formatAuditCell(formulaLink),
     currentTheoremLink: formatAuditCell(theoremLink),
     currentProofLink: formatAuditCell(proofLink),

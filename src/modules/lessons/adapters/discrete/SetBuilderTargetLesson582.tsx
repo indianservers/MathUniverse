@@ -430,7 +430,7 @@ export default function SetBuilderTargetLesson582({
             Previous Lesson<b>Adjacency Matrix</b>
           </span>
         </a>
-        <a href="/lessons/discrete-and-applied-mathematics/583-union-intersection-difference">
+        <a href="/lessons/discrete-and-applied-mathematics/583-union-intersection-and-difference">
           <span>
             Next Lesson<b>Union, Intersection and Difference</b>
           </span>{" "}

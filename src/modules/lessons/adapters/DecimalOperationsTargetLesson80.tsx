@@ -41,7 +41,8 @@ export default function DecimalOperationsTargetLesson80({
 }: LessonAdapterProps) {
   const [first, setFirst] = useState(340);
   const [second, setSecond] = useState(125);
-  const [operation, setOperation] = useState<Operation>("Add");
+  const preferredOperation: Operation = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("operation") === "subtract" ? "Subtract" : "Add";
+  const [operation, setOperation] = useState<Operation>(preferredOperation);
   const [practiceLoaded, setPracticeLoaded] = useState(false);
   const [dragging, setDragging] = useState("");
   const [actions, setActions] = useState(0);
@@ -64,7 +65,7 @@ export default function DecimalOperationsTargetLesson80({
   const reset = () => {
     setFirst(340);
     setSecond(125);
-    setOperation("Add");
+    setOperation(preferredOperation);
     setPracticeLoaded(false);
     setDragging("");
     setActions(0);
@@ -90,7 +91,7 @@ export default function DecimalOperationsTargetLesson80({
   const loadPractice = () => {
     setFirst(275);
     setSecond(60);
-    setOperation("Add");
+    setOperation(preferredOperation);
     setPracticeLoaded(true);
     act();
   };
@@ -298,9 +299,9 @@ export default function DecimalOperationsTargetLesson80({
             Previous<b>Decimal Place Value</b>
           </span>
         </a>
-        <a href="/lessons/numbers-and-arithmetic/81-subtract-decimals">
+        <a href="/lessons/numbers-and-arithmetic/81-fractiondecimal-conversion">
           <span>
-            Next<b>Subtract Decimals</b>
+            Next<b>Fraction–Decimal Conversion</b>
           </span>
           <ArrowRight />
         </a>

@@ -2,11 +2,18 @@ import { Check, CircleHelp, Play, RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./VectorEquationLineTargetLesson10155.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import MathExpression from "../../../components/ui/MathExpression";
+import {clParam,clSymmetric,clParse,clDraft,clVector,clExact} from "./cartesianLineModel";
+import "../components/LessonMockupReference.css";
+import VectorEquationLineScene,{VL_CAMERA} from "./VectorEquationLineScene10155";
+import {lpAdd,lpScale,lpDot,lpUnit} from "./linePlaneAngleModel";
+
+
 type V = { x: number; y: number; z: number };
 const A0 = { x: 1, y: -1, z: 2 },
   B0 = { x: 2, y: 1, z: 3 };
-const fmt = (n: number) => Number(n.toFixed(3));
+const fmt = (n: number) => n!==0&&Math.abs(n)<.001?n.toExponential(2):Number(n.toFixed(3));
+const M=({value}:{value:string})=><div className="ve-math"><MathExpression value={value}/></div>;
 export default function VectorEquationLineTargetLesson10155({
   lesson: _lesson,
 }: {
@@ -22,14 +29,18 @@ export default function VectorEquationLineTargetLesson10155({
       point: true,
       axes: true,
     }),
-    [angle, setAngle] = useState(-0.5),
+    [camera,setCamera]=useState(VL_CAMERA),
+    [draftA,setDraftA]=useState(clDraft(A0)),
+    [draftB,setDraftB]=useState(clDraft(B0)),
+    [help,setHelp]=useState(false),
+    [symmetric,setSymmetric]=useState(["","",""]),
     [auto, setAuto] = useState(false),
     [answers, setAnswers] = useState({
       p: ["", "", ""] as string[],
       lambda: "",
       onLine: "",
     }),
-    [feedback, setFeedback] = useState<Record<string, boolean>>({}),
+    [feedback, setFeedback] = useState<Record<string, boolean|undefined>>({}),
     [actions, setActions] = useState(0);
   const p = useMemo(
       () => ({
@@ -42,7 +53,7 @@ export default function VectorEquationLineTargetLesson10155({
     ma = Math.hypot(a.x, a.y, a.z),
     mb = Math.hypot(b.x, b.y, b.z),
     dot = a.x * b.x + a.y * b.y + a.z * b.z,
-    theta = (Math.acos(dot / (ma * mb)) * 180) / Math.PI;
+    theta = (Math.acos(Math.max(-1,Math.min(1,ma&&mb?(a.x/ma)*(b.x/mb)+(a.y/ma)*(b.y/mb)+(a.z/ma)*(b.z/mb):NaN))) * 180) / Math.PI;
   useEffect(() => {
     if (!auto) return;
     const id = window.setInterval(
@@ -55,29 +66,10 @@ export default function VectorEquationLineTargetLesson10155({
       fn();
       setActions((n) => n + 1);
     },
-    setComp = (kind: "a" | "b", axis: keyof V, n: number) =>
-      act(() =>
-        kind === "a"
-          ? setA((v) => ({ ...v, [axis]: n }))
-          : setB((v) => ({ ...v, [axis]: n })),
-      ),
-    project = (q: V) => {
-      const c = Math.cos(angle),
-        s = Math.sin(angle),
-        x = q.x * c - q.y * s,
-        y = q.x * s + q.y * c;
-      return { x: 315 + x * 26, y: 280 + y * 12 - q.z * 25 };
-    },
-    o = project({ x: 0, y: 0, z: 0 }),
-    pa = project(a),
-    pb = project(b),
-    pp = project(p),
-    lineStart = project({
-      x: a.x - 3 * b.x,
-      y: a.y - 3 * b.y,
-      z: a.z - 3 * b.z,
-    }),
-    lineEnd = project({ x: a.x + 4 * b.x, y: a.y + 4 * b.y, z: a.z + 4 * b.z });
+    setComp = (kind:"a"|"b",axis:keyof V,text:string)=>act(()=>{const i=["x","y","z"].indexOf(axis),draft=(kind==="a"?draftA:draftB).map((v,j)=>i===j?text:v),parsed=clParse(draft);if(kind==="a"){setDraftA(draft);if(parsed)setA(parsed);}else{setDraftB(draft);if(parsed)setB(parsed);}setAuto(false);});
+  const validInputs=!!clParse(draftA)&&!!clParse(draftB),validLine=validInputs&&mb>0;
+  // Linear coordinates in span(a,b), vertically stretched for a legible schematic.
+  const ub=lpUnit(b),ax=lpDot(a,ub),ay=-3*Math.hypot(a.x-ax*ub.x,a.y-ax*ub.y,a.z-ax*ub.z),bx=lambda*mb,minX=Math.min(0,ax,bx,ax+bx),maxX=Math.max(0,ax,bx,ax+bx),miniScale=Math.min(1e300,220/(maxX-minX||1),170/(-ay||1)),mo={x:30-minX*miniScale,y:225},maPoint={x:mo.x+ax*miniScale,y:mo.y+ay*miniScale},mbPoint={x:mo.x+bx*miniScale,y:mo.y},mp={x:maPoint.x+bx*miniScale,y:maPoint.y};
   const reset = () =>
     act(() => {
       setA(A0);
@@ -90,38 +82,40 @@ export default function VectorEquationLineTargetLesson10155({
         point: true,
         axes: true,
       });
-      setAngle(-0.5);
+      setCamera(VL_CAMERA);setDraftA(clDraft(A0));setDraftB(clDraft(B0));
       setAuto(false);
-      setAnswers({ p: ["", "", ""], lambda: "", onLine: "" });
-      setFeedback({});
+      setHelp(false);
     });
   return (
     <section
-      className="ve10155-page"
+      className="ve10155-page lesson-reference"
       data-testid="school-mockup-0829"
       data-object-model="dedicated-anchor-direction-vector-line-engine"
       data-anchor={`${a.x},${a.y},${a.z}`}
       data-direction={`${b.x},${b.y},${b.z}`}
       data-lambda={lambda}
-      data-point={`${p.x},${p.y},${p.z}`}
+      data-point={validLine?`${p.x},${p.y},${p.z}`:undefined}
+      data-valid={validLine}
+      data-inputs-valid={validInputs}
       data-dot={dot.toFixed(3)}
-      data-angle={theta.toFixed(3)}
+      data-angle={Number.isFinite(theta)?theta.toFixed(3):undefined}
       data-actions={actions}
     >
-      <header>
+      <section className="ve-hero"><a className="ve-school-link" href="/lessons/school">← School lessons</a>
         <small>CLASS 12 &bull; THREE-DIMENSIONAL GEOMETRY</small>
         <h1>Vector Equation of a Line</h1>
         <p>
           Explore the line determined by an anchor point a and direction vector
           b using r = a + λb.
         </p>
+        <p>Visualize the line in 3D, move the point P(λ), try negative λ, and see how vectors and coordinates update.</p>
         <div>
           <span>18 min</span>
           <span>ADVANCED</span>
           <span>CONCEPT</span>
-          <span>geometry2d</span>
+          <span>geometry3d</span>
         </div>
-      </header>
+      </section>
       <main className="ve-lab">
         <div className="ve-title">
           <div>
@@ -133,62 +127,60 @@ export default function VectorEquationLineTargetLesson10155({
               <RotateCcw />
               Reset
             </button>
-            <button onClick={() => act(() => setAuto((v) => !v))}>
+            <button disabled={!validLine} onClick={() => act(() => setAuto((v) => !v))}>
               <Play />
               {auto ? "Pause" : "Animate"}
             </button>
             <button
-              onClick={() =>
-                alert(
-                  "Edit a and b, then move lambda to trace every point on the line.",
-                )
-              }
+              aria-expanded={help} onClick={()=>setHelp(v=>!v)}
             >
               <CircleHelp />
               Help
             </button>
           </span>
         </div>
+        {help&&<p className="ve-help">Edit the anchor and a nonzero direction, then move λ to trace the line. Negative λ travels opposite b. Drag the scene to rotate it. A zero direction describes a point, not a line.</p>}
+        {!validLine&&<p role="alert" className="ve-invalid">{validInputs?"Zero direction describes a point, not a line. Enter a nonzero b.":"Enter three finite components between −10 and 10 for both vectors. Blank is not zero."}</p>}
         <section className="ve-top">
           <aside className="ve-controls">
-            <div className="lambda-badge">λ = {lambda}</div>
+            <div className="lambda-badge">λ = {lambda}</div><div className="ve-point-badge">{validLine?`P = (${fmt(p.x)}, ${fmt(p.y)}, ${fmt(p.z)})`:"Enter valid vectors"}</div>
             {(["a", "b"] as const).map((kind) => (
               <article key={kind}>
                 <h3>
                   {kind === "a" ? "Anchor vector a" : "Direction vector b"}
                 </h3>
-                <b>
-                  {kind} = ({Object.values(kind === "a" ? a : b).join(", ")})
-                </b>
+                <M value={`${kind}=${clVector(kind==="a"?a:b,true)}`}/>
                 <div>
                   {(["x", "y", "z"] as const).map((axis) => (
                     <label key={axis}>
                       {axis}
                       <input
                         aria-label={`${kind} ${axis}`}
-                        type="number"
-                        value={(kind === "a" ? a : b)[axis]}
-                        onChange={(e) => setComp(kind, axis, +e.target.value)}
+                        type="text" inputMode="decimal"
+                        value={(kind === "a" ? draftA : draftB)[["x","y","z"].indexOf(axis)]}
+                        aria-invalid={!clParse(kind==="a"?draftA:draftB)}
+                        onChange={(e) => setComp(kind, axis, e.target.value)}
                       />
                     </label>
                   ))}
                 </div>
+                <M value={`${kind}=\\begin{bmatrix}${clExact((kind==="a"?a:b).x)}\\\\${clExact((kind==="a"?a:b).y)}\\\\${clExact((kind==="a"?a:b).z)}\\end{bmatrix}`}/>
               </article>
             ))}
             <article>
               <h3>Parameter λ</h3>
               <label className="lambda">
                 <input
-                  aria-label="Line lambda"
+                  aria-label="Line lambda" disabled={!validLine}
                   type="range"
                   min="-4"
                   max="4"
                   step=".1"
                   value={lambda}
-                  onInput={(e) => setLambda(+e.currentTarget.value)}
+                  onInput={(e) => {setAuto(false);setLambda(+e.currentTarget.value);}}
                   onChange={(e) => act(() => setLambda(+e.target.value))}
                 />
-                <output>{lambda}</output>
+                <input aria-label="Lambda value" type="number" min="-4" max="4" step=".1" value={lambda} disabled={!validLine} onChange={e=>{const v=e.target.valueAsNumber;if(Number.isFinite(v)){setAuto(false);setLambda(Math.max(-4,Math.min(4,v)));}}}/>
               </label>
               <p>P(λ)=a+λb</p>
               <strong>
@@ -205,96 +197,24 @@ export default function VectorEquationLineTargetLesson10155({
                       act(() => setLayers((v) => ({ ...v, [key]: !on })))
                     }
                   />
-                  Show {key}
+                  {({anchor:"Show anchor vector a",direction:"Show direction vector b",line:"Show line (all λ)",point:"Show point P(λ)",axes:"Show axes & grid"} as const)[key as keyof typeof layers]}
                 </label>
               ))}
             </div>
           </aside>
           <article className="ve-scene">
-            <svg
-              viewBox="0 0 630 510"
-              aria-label="Interactive anchor direction vector line scene"
-            >
-              {layers.axes && (
-                <>
-                  <line className="axis x" x1="65" y1="280" x2="570" y2="280" />
-                  <line
-                    className="axis y"
-                    x1="100"
-                    y1="410"
-                    x2="545"
-                    y2="115"
-                  />
-                  <line className="axis z" x1={o.x} y1="475" x2={o.x} y2="45" />
-                  <text x="575" y="277">
-                    x
-                  </text>
-                  <text x="550" y="112">
-                    y
-                  </text>
-                  <text x={o.x + 5} y="40">
-                    z
-                  </text>
-                </>
-              )}
-              {layers.line && (
-                <line
-                  className="line"
-                  x1={lineStart.x}
-                  y1={lineStart.y}
-                  x2={lineEnd.x}
-                  y2={lineEnd.y}
-                />
-              )}{" "}
-              {layers.anchor && (
-                <>
-                  <line
-                    className="anchor"
-                    x1={o.x}
-                    y1={o.y}
-                    x2={pa.x}
-                    y2={pa.y}
-                  />
-                  <circle className="a" cx={pa.x} cy={pa.y} r="7" />
-                  <text x={pa.x + 10} y={pa.y}>
-                    A = a ({a.x}, {a.y}, {a.z})
-                  </text>
-                </>
-              )}
-              {layers.direction && (
-                <>
-                  <line
-                    className="direction"
-                    x1={o.x}
-                    y1={o.y}
-                    x2={pb.x}
-                    y2={pb.y}
-                  />
-                  <text x={pb.x + 7} y={pb.y}>
-                    b ({b.x}, {b.y}, {b.z})
-                  </text>
-                </>
-              )}
-              {layers.point && (
-                <>
-                  <circle className="p" cx={pp.x} cy={pp.y} r="8" />
-                  <text className="plabel" x={pp.x + 10} y={pp.y}>
-                    P({lambda}) = ({fmt(p.x)}, {fmt(p.y)}, {fmt(p.z)})
-                  </text>
-                </>
-              )}
-            </svg>
+            <VectorEquationLineScene p={validInputs?a:null} d={validLine?b:null} t={lambda} camera={camera} layers={layers} onCamera={setCamera} onT={t=>{setAuto(false);setLambda(Number(t.toFixed(2)));}}/>
             <div className="scene-legend">
-              <span>
+              <span className="ve-blue-key">
                 ━ a = ({a.x},{a.y},{a.z})
               </span>
-              <span>
+              <span className="ve-green-key">
                 ━ b = ({b.x},{b.y},{b.z})
               </span>
-              <span>┄ Line r=a+λb</span>
+              <span className="ve-purple-key">┄ Line: r = a + λb, λ ∈ ℝ</span>
             </div>
           </article>
-          <aside className="ve-results">
+          <aside className="ve-results" data-current-valid={validInputs}>
             <article>
               <h3>Current values</h3>
               <p>
@@ -306,7 +226,7 @@ export default function VectorEquationLineTargetLesson10155({
               </p>
               <p>|b| = {fmt(mb)}</p>
               <p>a · b = {fmt(dot)}</p>
-              <p>Angle(a,b) = {fmt(theta)}°</p>
+              <p>Angle(a,b) ≈ {ma&&mb?`${fmt(theta)}°`:"undefined (zero vector)"}</p>
               <p>λ = {lambda}</p>
               <p>
                 P({lambda}) = ({fmt(p.x)},{fmt(p.y)},{fmt(p.z)})
@@ -321,53 +241,39 @@ export default function VectorEquationLineTargetLesson10155({
             </article>
             <article className="blue">
               <h3>Coordinate (symmetric) form</h3>
-              <p>
-                (x−{a.x})/{b.x} = (y−({a.y}))/{b.y} = (z−{a.z})/{b.z}
-              </p>
+              <M value={clSymmetric(a,b)}/>
             </article>
             <article className="green">
               <h3>Parametric form</h3>
-              <p>
-                x = {a.x} + {b.x}λ<br />y = {a.y} + {b.y}λ<br />z = {a.z} +{" "}
-                {b.z}λ
-              </p>
+              {(["x","y","z"] as const).map(k=><M key={k} value={clParam(k,a[k],b[k]).replace(/t$/,"λ")}/>)}
             </article>
           </aside>
         </section>
         <section className="ve-second">
           <article>
             <h3>Vector addition (parallelogram rule)</h3>
-            <p>P = a + λb is the diagonal formed by a and λb.</p>
-            <svg viewBox="0 0 300 180">
-              <line className="a" x1="25" y1="155" x2="85" y2="55" />
-              <line className="b" x1="25" y1="155" x2="165" y2="150" />
-              <line className="dash" x1="85" y1="55" x2="225" y2="50" />
-              <line className="dash" x1="165" y1="150" x2="225" y2="50" />
-              <line className="sum" x1="25" y1="155" x2="225" y2="50" />
-              <text x="230" y="45">
-                P(λ)
-              </text>
-            </svg>
+            <p>P = a + λb is the diagonal formed by a and λb. Diagram is schematic; lengths and angles are not to scale.</p>
+            <div className="ve-addition"><svg className="ve-mini-svg" viewBox="0 0 300 260" aria-label="Current vector addition parallelogram"><defs><marker id="ve-mini-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10" fill="none" stroke="context-stroke"/></marker></defs>{[[mo,maPoint,"a"],[mo,mbPoint,"b"],[maPoint,mp,"dash"],[mbPoint,mp,"dash"],[mo,mp,"sum"]].map(([start,end,cls],i)=>{const q=start as typeof mo,r=end as typeof mo;return <line key={i} className={cls as string} x1={q.x} y1={q.y} x2={r.x} y2={r.y} markerEnd={i===2||i===3?undefined:"url(#ve-mini-arrow)"}/>;})}<text x={mo.x-15} y={mo.y+15}>O</text><text x={maPoint.x+5} y={maPoint.y-8} fill="#009dff">a</text><text x={mbPoint.x+5} y={mbPoint.y+15} fill="#159e46">λb</text><text x={mp.x+5} y={mp.y-10} fill="#7833cf">P(λ)</text></svg><div><p>At λ = {lambda}</p><M value={`a=${clVector(a)}`}/><M value={`λb=${clVector(lpScale(b,lambda))}`}/><M value={`P(${lambda})=a+λb`}/><M value={`=${clVector(p)}`}/></div></div>
           </article>
           <article>
             <h3>Positive and negative λ</h3>
             <p>The line extends infinitely in both directions.</p>
             <div className="numberline">
-              <i />
-              <button onClick={() => act(() => setLambda(-2))}>λ=-2</button>
-              <button onClick={() => act(() => setLambda(0))}>λ=0</button>
-              <button onClick={() => act(() => setLambda(2))}>λ=2</button>
+              {[-3,-2,-1,0,1,2,3].map(n=><span className="ve-tick" key={n} style={{left:`${(n+3)/6*100}%`}}>{n}</span>)}
+              <button style={{left:"16.667%"}} data-label="λ = −2" aria-label="Set lambda to -2" onClick={() => act(() => {setAuto(false);setLambda(-2);})}>λ=-2</button>
+              <button style={{left:"50%"}} data-label="λ = 0" aria-label="Set lambda to 0" onClick={() => act(() => {setAuto(false);setLambda(0);})}>λ=0</button>
+              <button style={{left:"83.333%"}} data-label="λ = 2" aria-label="Set lambda to 2" onClick={() => act(() => {setAuto(false);setLambda(2);})}>λ=2</button>
             </div>
             <div className="lambda-cards">
               <p>
                 λ=-2
                 <br />
-                P=(-3,-3,-4)
+                <M value={`P(-2)=a-2b=${clVector(lpAdd(a,lpScale(b,-2)))}`}/>
               </p>
               <p>
                 λ=2
                 <br />
-                P=(5,1,8)
+                <M value={`P(2)=a+2b=${clVector(lpAdd(a,lpScale(b,2)))}`}/>
               </p>
             </div>
           </article>
@@ -379,19 +285,20 @@ export default function VectorEquationLineTargetLesson10155({
               <p>
                 <b>Position vector</b>
                 <br />
-                Gives location of a point and starts at the origin.
+                Gives location of a point and starts at the origin. Example: a = (1, −1, 2) locates A.
               </p>
               <p>
                 <b>Direction vector</b>
                 <br />
-                Gives direction, not position. Parallel multiples define the
+                Gives direction, not position. Its tail can be anywhere. Nonzero parallel multiples through the same anchor define the
                 same line.
               </p>
             </div>
+            <div className="ve-vector-examples"><svg className="ve-mini-svg" viewBox="0 0 240 110" aria-label="Position vector from origin to A"><line x1="30" y1="95" x2="165" y2="20" stroke="#009dff" strokeWidth="3"/><circle cx="30" cy="95" r="3"/><circle cx="165" cy="20" r="3"/><text x="15" y="107">O</text><text x="170" y="20">A(1,−1,2)</text></svg><svg className="ve-mini-svg" viewBox="0 0 240 110" aria-label="Parallel direction vectors can start anywhere"><path d="M35 95L170 20M55 105L190 30" stroke="#159e46" strokeWidth="3"/><text x="175" y="18">b</text></svg></div>
           </article>
           <article>
             <h3>Point-on-line test</h3>
-            <p>Q=(5,1,8): Q−a=(4,2,6)=2b, so λ=2.</p>
+            <p>For the fixed given line, Q lies on the line iff Q − a = λb for some real λ.</p><M value="Q=(5,1,8)"/><M value="Q-a=(4,2,6)=2(2,1,3)"/><p>All three coordinates give λ = 2.</p>
             <strong>
               <Check /> Yes, Q lies on the line at λ=2.
             </strong>
@@ -401,8 +308,8 @@ export default function VectorEquationLineTargetLesson10155({
           <h3>Worked example</h3>
           <div>
             <article>
-              <p>For A(1,-1,2), b=(2,1,3):</p>
-              <b>r=(1,-1,2)+λ(2,1,3)</b>
+              <p>Find the vector and parametric equations of the line through A(1,−1,2) with direction b = (2,1,3).</p><b>Solution</b><M value="a=(1,-1,2), b=(2,1,3)"/><b>Vector equation:</b>
+              <M value="r=(1,-1,2)+λ(2,1,3), λ∈ℝ"/>
             </article>
             <article>
               <b>Parametric equations</b>
@@ -412,36 +319,30 @@ export default function VectorEquationLineTargetLesson10155({
                 y=-1+λ
                 <br />
                 z=2+3λ
-              </p>
+              </p><b>Coordinate (symmetric) form:</b><M value={clSymmetric(A0,B0)}/>
             </article>
             <article>
               <b>Find points on the line</b>
-              <p>
-                P(0)=(1,-1,2)
-                <br />
-                P(1)=(3,0,5)
-                <br />
-                P(2)=(5,1,8)
-              </p>
+              <p>P(0) = (1,−1,2)</p><p>P(1) = (3,0,5)</p><p>P(−1) = (−1,−2,−1)</p><p className="ve-purple">P(2) = (5,1,8)</p>
             </article>
           </div>
         </section>
         <section className="ve-practice">
-          <h3>Practice</h3>
+          <h3>Practice</h3><p>Solve and check your answers using a = (1, −1, 2), b = (2, 1, 3) for questions 1–3.</p>
           <div>
             <article>
-              <b>1 Find P(3)</b>
+              <b>1 Find P(3) on r = a + λb with a = (1,−1,2), b = (2,1,3).</b>
               <div>
                 {answers.p.map((v, i) => (
                   <input
                     key={i}
                     aria-label={`Practice P coordinate ${i + 1}`}
                     value={v}
-                    onChange={(e) =>
+                    onChange={(e) => {setFeedback(f=>({...f,p:undefined}));
                       setAnswers((s) => ({
                         ...s,
                         p: s.p.map((x, j) => (j === i ? e.target.value : x)),
-                      }))
+                      }));}
                     }
                   />
                 ))}
@@ -451,7 +352,7 @@ export default function VectorEquationLineTargetLesson10155({
                   act(() =>
                     setFeedback((f) => ({
                       ...f,
-                      p: answers.p.join(",") === "7,2,11",
+                      p: answers.p.every((v,i)=>v.trim()!==""&&Number(v)===[7,2,11][i]),
                     })),
                   )
                 }
@@ -459,7 +360,7 @@ export default function VectorEquationLineTargetLesson10155({
                 Check
               </button>
               {feedback.p !== undefined && (
-                <strong>{feedback.p ? "Correct" : "Try again"}</strong>
+                <strong role="status" data-correct={feedback.p}>{feedback.p ? "Correct: P(3) = (7, 2, 11)" : "Try again: substitute λ = 3 in every coordinate"}</strong>
               )}
             </article>
             <article>
@@ -468,7 +369,7 @@ export default function VectorEquationLineTargetLesson10155({
                 aria-label="Practice lambda"
                 value={answers.lambda}
                 onChange={(e) =>
-                  setAnswers((s) => ({ ...s, lambda: e.target.value }))
+                  {setFeedback(f=>({...f,lambda:undefined}));setAnswers((s) => ({ ...s, lambda: e.target.value }));}
                 }
               />
               <button
@@ -476,7 +377,7 @@ export default function VectorEquationLineTargetLesson10155({
                   act(() =>
                     setFeedback((f) => ({
                       ...f,
-                      lambda: answers.lambda === "-2",
+                      lambda: answers.lambda.trim()!==""&&Number(answers.lambda) === -2,
                     })),
                   )
                 }
@@ -484,22 +385,12 @@ export default function VectorEquationLineTargetLesson10155({
                 Check
               </button>
               {feedback.lambda !== undefined && (
-                <strong>{feedback.lambda ? "Correct" : "Try again"}</strong>
+                <strong role="status" data-correct={feedback.lambda}>{feedback.lambda ? "Correct: λ = −2" : "Try again: use −3 = 1 + 2λ"}</strong>
               )}
             </article>
             <article>
               <b>3 Does Q=(9,3,14) lie on the line?</b>
-              <select
-                aria-label="Point on line answer"
-                value={answers.onLine}
-                onChange={(e) =>
-                  setAnswers((s) => ({ ...s, onLine: e.target.value }))
-                }
-              >
-                <option value="">Choose</option>
-                <option>Yes</option>
-                <option>No</option>
-              </select>
+              <div className="ve-radio">{["Yes","No"].map(value=><label key={value}><input type="radio" name="ve10155-on-line" aria-label={`Point on line: ${value}`} checked={answers.onLine===value} onChange={()=>{setFeedback(f=>({...f,onLine:undefined}));setAnswers(s=>({...s,onLine:value}));}}/>{value}</label>)}</div>
               <button
                 onClick={() =>
                   act(() =>
@@ -513,28 +404,31 @@ export default function VectorEquationLineTargetLesson10155({
                 Check
               </button>
               {feedback.onLine !== undefined && (
-                <strong>{feedback.onLine ? "Correct" : "Try again"}</strong>
+                <strong role="status" data-correct={feedback.onLine}>{feedback.onLine ? "Correct: Q − a = 4b" : "Try again: compare (8, 4, 12) with b"}</strong>
               )}
             </article>
+            <article><b>4 Write the symmetric form through a = (2,0,−1), b = (−1,2,2)</b><div className="ve-symmetric-input">{symmetric.map((v,i)=><label key={i}><span>{["x −","y −","z +"][i]}<input aria-label={`Symmetric numerator ${i+1}`} value={v} onChange={e=>{setSymmetric(s=>s.map((x,j)=>i===j?e.target.value:x));setFeedback(f=>({...f,symmetric:undefined}));}}/></span><span className="ve-denominator">{[-1,2,2][i]}</span></label>)}</div><button onClick={()=>setFeedback(f=>({...f,symmetric:symmetric.every((v,i)=>v.trim()!==""&&Number(v)===[2,0,1][i])}))}>Check</button>{feedback.symmetric!==undefined&&<strong role="status" data-correct={feedback.symmetric}>{feedback.symmetric?"Correct: (x−2)/(−1) = y/2 = (z+1)/2":"Try again: subtract each anchor coordinate"}</strong>}</article>
           </div>
+          <details className="ve-hints"><summary>Show hints</summary><p>1. Substitute λ = 3. 2. Solve −3 = 1 + 2λ and check every coordinate. 3. Compare Q − a with 4b. 4. Use (x − a₁)/b₁ = (y − a₂)/b₂ = (z − a₃)/b₃.</p></details>
         </section>
-        <nav className="ve-adjacent" aria-label="Adjacent vector line lessons">
+        <div className="ve-lesson-links" role="navigation" aria-label="Adjacent vector line lessons">
           <a href="/lessons/school/class-12/class-12-three-dimensional-geometry-line-through-two-points-in-3d">
             ← Line Through Two Points in 3D
           </a>
           <a href="/lessons/school/class-12/class-12-three-dimensional-geometry-cartesian-equation-of-a-line">
             Cartesian Equation of a Line →
           </a>
-        </nav>
-        <nav className="ve-quick" aria-label="Vector line quick links">
+        </div>
+        <div className="ve-quick" role="navigation" aria-label="Vector line quick links">
           <b>Quick links:</b>
           <a href="/formulas">Formula Sheet</a>
           <a href="/math-lab/3d-graphing">3D Vector Basics</a>
-          <a href="/lessons/vectors">Dot Product</a>
-          <a href="/lessons/vectors">Cross Product</a>
-        </nav>
+          <a href="/lessons/geometry/190-dot-product">Dot Product</a>
+          <a href="/lessons/geometry/191-cross-product">Cross Product</a>
+          <a href="/lessons/school/class-10/class-10-coordinate-geometry-distance-formula">Distance Formula</a>
+        </div>
       </main>
-      <LessonTopicStudyBoard lessonId={10155} alwaysVisible />
+
 
     </section>
   );

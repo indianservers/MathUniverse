@@ -243,7 +243,9 @@ export default function RemainderTheoremTargetLesson104({
             <b>Remainder Theorem</b>
           </nav>
         </section>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content remainder104-intro"><aside>
           <Lightbulb />
           <h3>Key Idea</h3>
           <p>
@@ -255,8 +257,7 @@ export default function RemainderTheoremTargetLesson104({
           <p>
             Use <i>a</i>, not <i>−a</i>.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="remainder104-tabs">
         {(
           [

@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "reference coverage counts from actual seeded samples",
+    "help expansions",
+    "keyboard and pointer sample selection",
+    "confidence levels retain means and change widths",
+    "20/100 interval controls and selection clamp",
+    "new cohort",
+    "numeric, button and range controls/bounds",
+    "all section tabs retain page content",
+    "unanswered and correct practice feedback"
+  ]
+}

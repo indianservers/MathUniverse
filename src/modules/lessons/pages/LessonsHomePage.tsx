@@ -235,7 +235,7 @@ export default function LessonsHomePage() {
               <small>{["Make your prediction", "Adjust the projection", "See what changes", "Justify your thinking"][index]}</small>
             </div>
           ))}
-          <Link className="learn-primary" to={featuredLesson?.route ?? "/lessons/graphs-and-functions/144-domain-and-range?v_x=-4&v_h=1"}>Launch immersive lesson <ArrowRight className="h-4 w-4" /></Link>
+          <Link className="learn-primary" to={featuredLesson?.route ?? "/lessons/graphs-and-functions/130-domain-and-range?v_x=-4&v_h=1"}>Launch immersive lesson <ArrowRight className="h-4 w-4" /></Link>
           <Link className="learn-secondary" to="/learn/functions-and-graphs/relations-and-functions">Preview in practice mode</Link>
         </aside>
       </section>

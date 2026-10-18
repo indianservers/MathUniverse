@@ -166,15 +166,16 @@ export default function NumberNamingTargetLesson10002({
             <span>Level: Foundation</span>
           </dl>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content nn10002-hero"><aside>
           <h2>OBJECTIVE</h2>
           <p>
             <CheckCircle2 />
             Convert numbers and their names between Indian (lakh-crore) and
             International (million-billion) systems.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="nn10002-tabs">
         {["INTERACT", "LEARN", "WORKED EXAMPLE", "FORMULA", "PRACTICE"].map(
           (n) => (

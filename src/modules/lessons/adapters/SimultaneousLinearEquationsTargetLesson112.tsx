@@ -221,7 +221,24 @@ export default function SimultaneousLinearEquationsTargetLesson112({
               {favorite ? "Added" : "Add to favorites"}
             </button>
           </nav>
-          <div className="sim112-methods">
+
+        </section>
+
+      </header>
+      <div className="lesson-header-content sim112-intro"><aside>
+          <b>Solution (ordered pair)</b>
+          <strong>
+            ({solution.x}, {solution.y})
+          </strong>
+          <p>
+            x = {solution.x}, y = {solution.y}
+          </p>
+          <span>
+            <Check />
+            Satisfies both equations
+          </span>
+        </aside>
+<div className="sim112-methods">
             <b>Method</b>
             {(["Elimination", "Substitution"] as const).map((item) => (
               <button
@@ -266,22 +283,7 @@ export default function SimultaneousLinearEquationsTargetLesson112({
               <RotateCcw />
               Reset
             </button>
-          </div>
-        </section>
-        <aside>
-          <b>Solution (ordered pair)</b>
-          <strong>
-            ({solution.x}, {solution.y})
-          </strong>
-          <p>
-            x = {solution.x}, y = {solution.y}
-          </p>
-          <span>
-            <Check />
-            Satisfies both equations
-          </span>
-        </aside>
-      </header>
+          </div></div>
 
       <nav className="sim112-tabs">
         {[

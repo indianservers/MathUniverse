@@ -1,0 +1,147 @@
+{
+  "status": "passed",
+  "errors": [],
+  "responsive": [
+    {
+      "n": 0,
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "centerOffset": 0
+    },
+    {
+      "n": 0,
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "centerOffset": 0
+    },
+    {
+      "n": 0,
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "centerOffset": 0
+    },
+    {
+      "n": 0,
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "centerOffset": 0
+    },
+    {
+      "n": 1,
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "centerOffset": 0
+    },
+    {
+      "n": 1,
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "centerOffset": 0
+    },
+    {
+      "n": 1,
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "centerOffset": 0
+    },
+    {
+      "n": 1,
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "centerOffset": 0
+    },
+    {
+      "n": 5,
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "centerOffset": 0.5
+    },
+    {
+      "n": 5,
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "centerOffset": 0.0078125
+    },
+    {
+      "n": 5,
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "centerOffset": 0
+    },
+    {
+      "n": 5,
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "centerOffset": 0.0078125
+    },
+    {
+      "n": 6,
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "centerOffset": 0.5
+    },
+    {
+      "n": 6,
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "centerOffset": 0.0078125
+    },
+    {
+      "n": 6,
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "centerOffset": 0.0078125
+    },
+    {
+      "n": 6,
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "centerOffset": 0.0078125
+    },
+    {
+      "n": 10,
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "centerOffset": 0.5
+    },
+    {
+      "n": 10,
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "centerOffset": 0.5
+    },
+    {
+      "n": 10,
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "centerOffset": 1
+    },
+    {
+      "n": 10,
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "centerOffset": 0.0078125
+    }
+  ],
+  "clipped": []
+}

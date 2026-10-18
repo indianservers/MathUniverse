@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "computed default orbit and reference input 47 at actual step 7",
+    "step buttons, slider, point, ribbon and parity selection",
+    "linear/log scale",
+    "play/pause/repeat/reset",
+    "n=1 stopping time and loop boundaries",
+    "linked/unlinked heatmap",
+    "leaderboard sort and parity",
+    "invalid/complete odd-only/cancelled and full 100000-start search",
+    "practice and challenge grading",
+    "all section navigation"
+  ]
+}

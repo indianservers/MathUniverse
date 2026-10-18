@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "exact initial square/cube comparison",
+    "rendered 3D unit cubes",
+    "computed initial search",
+    "numeric/stepper/range bounds",
+    "higher exponents and exact inequalities",
+    "candidate constraints",
+    "search and load a Pythagorean triple",
+    "all proof stages",
+    "all section navigation",
+    "practice unanswered/correct feedback and collapse"
+  ]
+}

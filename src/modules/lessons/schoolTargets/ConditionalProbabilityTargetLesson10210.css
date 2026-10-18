@@ -525,3 +525,60 @@ div:has(> #lesson-section-interaction .cp10210)
     grid-template-columns: 1fr;
   }
 }
+
+/* Conditional Probability reference cards; scoped to lesson content. */
+.cp10210.lesson-reference{max-width:1120px;padding:0;background:#f7faff;font:14px/1.6 Inter,Arial,sans-serif}
+.cp10210.lesson-reference>header{background:white;border:1px solid #dce6ef;border-radius:12px;padding:24px 26px;margin-bottom:18px}
+.cp10210.lesson-reference h1{font-size:30px;font-weight:800;line-height:1.25;margin:8px 0}
+.cp10210.lesson-reference header>p{font-size:14px;color:#526176}
+.cp10210.lesson-reference header>button{font-size:12px;padding:9px 14px}
+.cp10210.lesson-reference .cp-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.cp10210.lesson-reference .cp-tags span{padding:4px 10px;background:#f0f4f8;border-radius:12px;color:#46566b;font-size:10px}
+.cp10210.lesson-reference h2{font-size:13px;font-weight:750}
+.cp10210.lesson-reference h3{font-size:12px;font-weight:700}
+.cp10210.lesson-reference .cp-tabs{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;background:white;border:1px solid #dce6ef;border-radius:10px;padding:0 12px;gap:15px;margin-bottom:18px}
+.cp10210.lesson-reference .cp-tabs button{font-size:12px;font-weight:700;padding:17px 12px;color:#526583}
+.cp10210.lesson-reference .cp-tabs button[aria-current]{color:#0084c9}
+.cp10210.lesson-reference .cp-scenario{background:white;border:1px solid #dce6ef;border-radius:9px;padding:20px;margin-bottom:18px;font-size:14px}
+.cp10210.lesson-reference .cp-diagrams{padding:0;gap:24px;margin-bottom:18px}
+.cp10210.lesson-reference .cp-diagrams article{background:white;border-radius:10px;padding:18px;display:flex;flex-direction:column}
+.cp10210.lesson-reference .cp-diagrams h2{font-size:13px}
+.cp10210.lesson-reference .cp-diagrams article>p{font-size:12px}
+.cp10210.lesson-reference .cp-venn{margin-top:auto}
+.cp10210.lesson-reference .cp-condition button{font-size:12px;padding:10px 7px}
+.cp10210.lesson-reference .cp-tally{font-size:10px;margin-top:14px}
+.cp10210.lesson-reference .cp-tally b{font-size:14px}
+.cp10210.lesson-reference .cp-tally>div:nth-child(2) b{color:#008f9c}
+.cp10210.lesson-reference .cp-tally>div:last-child b{color:#7536d8}
+.cp10210.lesson-reference .cp-note{font-size:11px!important;padding:12px}
+.cp10210.lesson-reference .cp-calculation{padding:0;border:0;gap:18px;margin-bottom:18px}
+.cp10210.lesson-reference .cp-calculation article{background:white;border:1px solid #dce6ef;border-radius:10px;padding:20px}
+.cp10210.lesson-reference .cp-calculation article>p{font-size:12px}
+.cp10210.lesson-reference .cp-builder{gap:12px;flex-wrap:wrap;margin:24px 0}
+.cp10210.lesson-reference .cp-builder label{font-size:12px}
+.cp10210.lesson-reference .cp-builder small{font-size:10px}
+.cp10210.lesson-reference .cp-builder select{font-size:16px;padding:10px 6px}
+.cp10210.lesson-reference .cp-selected-fraction{font-size:20px}
+.cp10210.lesson-reference .cp-builder output{background:linear-gradient(#fff,#f2faf8);font-size:27px}
+.cp10210.lesson-reference .cp-equation{border:1px solid #dce6ef;border-radius:7px;font-style:normal!important;padding:14px;text-align:center}
+.cp10210.lesson-reference th{font-size:11px}
+.cp10210.lesson-reference .cp-reverse{padding:0;gap:18px;margin-bottom:18px}
+.cp10210.lesson-reference .cp-reverse article{border:1px solid #ddcffb;border-radius:10px;padding:20px;font-size:12px}
+.cp10210.lesson-reference .cp-reverse article:last-child{border-color:#f4d88f}
+.cp10210.lesson-reference .cp-reverse label{font-size:11px}
+.cp10210.lesson-reference .cp-learn{padding:0;border:0;gap:18px;margin-bottom:18px}
+.cp10210.lesson-reference .cp-learn article{background:white;border:1px solid #dce6ef;border-radius:10px;padding:20px;font-size:12px;min-width:0}
+.cp10210.lesson-reference .cp-practice{background:white;border:1px solid #dce6ef;border-radius:10px;padding:20px;margin-bottom:18px;font-size:12px}
+.cp10210.lesson-reference .cp-practice label{font-size:11px;padding:12px 8px}
+.cp10210.lesson-reference .cp-practice label:has(input:checked){background:#edfbf4;border-color:#29ad80}
+.cp10210.lesson-reference .cp-practice button{font-size:12px;padding:12px 16px;flex-shrink:0}
+.cp10210.lesson-reference .cp-next{padding:0 0 20px}
+.cp10210.lesson-reference .cp-next a{background:white;border:1px solid #dce6ef;border-radius:8px;padding:12px 16px;font-size:12px}
+.cp10210.lesson-reference footer a{display:inline-flex;align-items:center;gap:6px;border:1px solid #dce6ef;border-radius:6px;padding:7px 11px;text-decoration:none}
+@container cp (max-width:730px){.cp10210.lesson-reference .cp-diagrams,.cp10210.lesson-reference .cp-calculation,.cp10210.lesson-reference .cp-reverse,.cp10210.lesson-reference .cp-learn{grid-template-columns:1fr}.cp10210.lesson-reference .cp-tabs{gap:4px}.cp10210.lesson-reference .cp-tabs button{font-size:11px;padding:14px 7px}.cp10210.lesson-reference .cp-scenario{justify-content:start}}
+@container cp (max-width:410px){.cp10210.lesson-reference>header{padding:20px}.cp10210.lesson-reference .cp-diagrams article{padding:14px}.cp10210.lesson-reference .cp-builder{gap:6px}.cp10210.lesson-reference .cp-tabs button{font-size:10px;padding:12px 5px}.cp10210.lesson-reference .cp-selected-fraction{font-size:17px}.cp10210.lesson-reference .cp-builder output{font-size:22px}.cp10210.lesson-reference .cp-tally{font-size:9px}}
+
+.cp10210.lesson-reference .cp-practice{display:block!important}
+.cp10210.lesson-reference .cp-practice>p{margin:12px 0 18px}
+.cp10210.lesson-reference .cp-practice>div{width:100%;display:flex!important}
+.cp10210.lesson-reference .cp-tally [data-excluded=true]{opacity:.35}

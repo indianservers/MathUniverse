@@ -81,3 +81,9 @@ describe("lesson 10199 consistency engine", () => {
     expect(reduceConsistency([1, 1, 2, 2, 2, 5]).values).toEqual([1, 1, 2, 0, 0, 1]);
   });
 });
+
+it("classifies proportional decimal equations without spurious determinant roundoff",()=>{
+ expect(analyzeConsistency([.1,.3,.4,.3,.9,1.2])).toMatchObject({type:"infinite",rankA:1,rankAugmented:1});
+ expect(reduceConsistency([.1,.3,.4,.3,.9,1.2]).values.slice(3)).toEqual([0,0,0]);
+ expect(analyzeConsistency([.1,.3,.4,.3,.9,1.3]).type).toBe("none");
+});

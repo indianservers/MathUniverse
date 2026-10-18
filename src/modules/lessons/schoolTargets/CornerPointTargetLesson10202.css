@@ -325,3 +325,34 @@ div:has(> #lesson-section-interaction .cp10202)
     overflow: auto;
   }
 }
+.cp10202.lesson-reference{max-width:1120px;padding:0;background:#f7faff;font:14px/1.6 Inter,Arial,sans-serif}
+.cp10202.lesson-reference>header{padding:24px 26px;border:1px solid #dce7f0;border-radius:13px;background:white;margin-bottom:18px}
+.cp10202.lesson-reference h1{font-size:30px}.cp10202.lesson-reference h2{font-size:13px}
+.cp10202.lesson-reference header>a,.cp-next a{border:1px solid #d6e4f0;border-radius:8px;padding:8px 12px;background:white}
+.cp-tags{display:flex;gap:8px}.cp-tags span{background:#f0f4f8;padding:3px 10px;border-radius:20px;font-size:11px}
+.cp10202.lesson-reference .cp-tabs{background:white;border:1px solid #dce7f0;border-radius:10px;padding:0;min-height:54px;margin-bottom:18px}
+.cp10202.lesson-reference .cp-tabs button{padding:14px 10px}.cp10202.lesson-reference .cp-tabs button[aria-current]{color:#0879dc;border-bottom:2px solid #0879dc}
+.cp10202.lesson-reference .cp-workspace{grid-template-columns:minmax(0,2.75fr) minmax(220px,1fr);gap:16px}
+.cp10202.lesson-reference .cp-canvas,.cp10202.lesson-reference .cp-workspace aside section,.cp10202.lesson-reference .cp-evaluation>div,.cp10202.lesson-reference .cp-learning article,.cp10202.lesson-reference .cp-practice{background:white;border:1px solid #dce7f0;border-radius:10px;padding:18px}
+.cp10202.lesson-reference .cp-graph-heading h2{font-size:12px}.cp10202.lesson-reference .cp-graph-heading{align-items:flex-start}
+.cp10202.lesson-reference .cp-legend{top:85px;right:28px;font-size:12px;padding:14px;gap:10px}
+.cp-drag-help{font-size:12px;color:#40516a;padding:6px 0}.cp10202.lesson-reference .cp-line-label{margin-top:10px}
+.cp10202.lesson-reference .cp-workspace aside section{padding:18px 16px}.cp10202.lesson-reference .cp-workspace aside p{font-size:13px}
+.cp10202.lesson-reference .cp-workspace label{margin-bottom:18px}.cp10202.lesson-reference input[type=number]{width:76px;padding:7px}
+.cp10202.lesson-reference .cp-evaluation{border:0;padding:18px 0 0;grid-template-columns:1.6fr 1fr}
+.cp10202.lesson-reference table{font-size:15px}.cp10202.lesson-reference td,.cp10202.lesson-reference th{padding:12px 8px}
+.cp10202.lesson-reference .cp-result h2{text-align:left}.cp10202.lesson-reference .cp-result h3{font-size:21px;margin-top:14px}
+.cp-trophy{display:grid;place-items:center;width:76px;height:76px;border:1px solid #c2ecd6;border-radius:50%!important;background:#e4f8ee;margin:28px auto 12px}.cp-trophy svg{width:36px;height:36px}
+.cp-optimal{padding:14px;background:#f0fbf6;border:1px solid #c8eadb;border-radius:9px}.cp-optimal p{margin:6px 0!important;color:#162b22;font-weight:700}
+.cp10202.lesson-reference .cp-learning{grid-template-columns:1fr 1.25fr 1.3fr}.cp10202.lesson-reference .cp-learning article{padding:18px}
+.cp10202.lesson-reference .cp-learning h2 svg{width:27px;height:27px;padding:4px;background:#f3f1ff;border-radius:7px}
+.cp10202.lesson-reference .cp-practice{margin-top:16px}.cp10202.lesson-reference .cp-practice label{flex:1;font-size:12px;padding:10px;white-space:nowrap}.cp10202.lesson-reference .cp-practice input{accent-color:#0073ce}
+.cp10202.lesson-reference .cp-next{gap:12px}.cp10202.lesson-reference .cp-next a{flex:1;justify-content:center;font-size:12px}
+.cp10202.lesson-reference .lesson-mockup-footer{margin-top:16px}
+@container cp (max-width:650px){.cp10202.lesson-reference .cp-workspace,.cp10202.lesson-reference .cp-evaluation,.cp10202.lesson-reference .cp-learning{grid-template-columns:1fr}.cp10202.lesson-reference>header{padding:18px}.cp10202.lesson-reference h1{font-size:26px}.cp10202.lesson-reference .cp-legend{top:78px;right:20px;font-size:10px;padding:8px}.cp10202.lesson-reference .cp-canvas{padding:10px}.cp10202.lesson-reference .cp-tabs{flex-wrap:wrap;gap:0}.cp10202.lesson-reference .cp-tabs button{padding:10px 8px}.cp10202.lesson-reference .cp-next{flex-wrap:wrap}.cp10202.lesson-reference table{font-size:12px}}
+.cp10202.lesson-reference .cp-workspace.expanded{inset:80px 12px 12px;z-index:100;padding:20px;overflow:auto;border:1px solid #dce7f0;border-radius:12px;box-shadow:0 10px 60px #17314a40}
+.cp10202.lesson-reference svg.cp-graph{width:100%!important;max-width:none!important;height:auto!important;max-height:none!important;aspect-ratio:520/500;margin:0;display:block}
+.cp10202.lesson-reference .cp-tabs{display:flex!important;justify-content:space-around!important}.cp10202.lesson-reference .cp-tabs button{margin:0!important;flex:1}
+.cp10202.lesson-reference .cp-practice{display:block!important}.cp10202.lesson-reference .cp-practice>p{display:block;text-align:left;margin:8px 0 12px}.cp10202.lesson-reference .cp-practice>div{display:flex;flex-wrap:wrap;gap:10px}.cp10202.lesson-reference .cp-practice button{background:white;color:#0071d7;border:1px solid #b9d6f2;margin:0;align-self:center}
+.cp10202.lesson-reference .cp-learning ol{list-style:decimal;padding-left:22px}.cp10202.lesson-reference .cp-learning li{padding-left:3px;margin-bottom:7px}
+.cp10202.lesson-reference .lesson-mockup-footer a{display:inline-flex;align-items:center;gap:6px;border:1px solid #dbe5f0;border-radius:6px;padding:7px 10px}

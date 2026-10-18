@@ -178,15 +178,16 @@ export default function ContinuedFractionsTargetLesson74({
             <b>◷ 6-10 min</b>
           </aside>
         </div>
-        <section>
+
+      </header>
+      <div className="lesson-header-content continued74-hero"><section>
           <h2>
             [{terms[0]}; &nbsp;{terms[1]}, &nbsp;{terms[2]}]
           </h2>
           <p>
             {terms[0]} + 1/({terms[1]} + 1/{terms[2]})
           </p>
-        </section>
-      </header>
+        </section></div>
       <nav
         className="continued74-tabs"
         aria-label="Continued fractions lesson sections"

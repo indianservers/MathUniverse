@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "default probabilities and outcome grid",
+    "flip and roll output",
+    "all 18 event combinations",
+    "1/100/1000 simulations and auto/pause",
+    "event change stops auto and clears samples",
+    "independent/dependent comparison",
+    "quiz including equivalent 1/2 and 3/6 answers",
+    "reset and all section tabs"
+  ]
+}

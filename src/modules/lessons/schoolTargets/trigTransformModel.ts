@@ -1,0 +1,9 @@
+const t=String.raw;
+export type TFParams={a:number;b:number;c:number;d:number};
+export const tfDefault:TFParams={a:1.5,b:2,c:3,d:.75};
+export function tfPi(n:number,d=1){if(n===0)return'0';const gcd=(a:number,b:number):number=>b?gcd(b,a%b):Math.abs(a),g=gcd(n,d);n/=g;d/=g;const sign=n<0?'-':'',top=Math.abs(n)===1?t`\pi`:t`${Math.abs(n)}\pi`;return sign+(d===1?top:t`\frac{${top}}{${d}}`);}
+export function tfValid(k:keyof TFParams,s:string){if(!/^-?(?:\d+(?:\.\d*)?|\.\d+)$/.test(s))return false;const n=Number(s),limits={a:[-3,3],b:[.5,4],c:[-12,12],d:[-2,2]}[k];return Number.isFinite(n)&&n>=limits[0]&&n<=limits[1]&&Math.abs(n*(k==='c'?1:4)-Math.round(n*(k==='c'?1:4)))<1e-10;}
+export function tfStage(p:TFParams,step:number):TFParams{return{a:step<4?1:p.a,b:step<2?1:p.b,c:step<3?0:p.c,d:step<4?0:p.d};}
+export function tfModel(p:TFParams,step=4,zoom=1){const q=tfStage(p,step),c=q.c*Math.PI/12,period=q.a===0?null:2*Math.PI/q.b,fn=(x:number)=>q.a*Math.sin(q.b*(x-c))+q.d,bq=Math.round(q.b*4),pointTex=(j:number)=>tfPi(q.c*bq+24*j,12*bq),points=q.a===0?[]:Array.from({length:5},(_,j)=>({x:c+j*Math.PI/(2*q.b),y:q.d+(j%4===1?q.a:j%4===3?-q.a:0),j,tex:pointTex(j),kind:j%2===0?'Midline':(j%4===1)===(q.a>0)?'Maximum':'Minimum'})),max=q.d+Math.abs(q.a),min=q.d-Math.abs(q.a),range=Math.max(3.3,Math.abs(max)+.65,Math.abs(min)+.65),xmin=-2.5*Math.PI/zoom,xmax=2.5*Math.PI/zoom,ymin=-range/zoom,ymax=range/zoom,sx=(x:number)=>40+(x-xmin)/(xmax-xmin)*690,sy=(y:number)=>24+(ymax-y)/(ymax-ymin)*346;
+const path=(f:(x:number)=>number)=>Array.from({length:641},(_,i)=>{const x=xmin+(xmax-xmin)*i/640;return`${i?'L':'M'}${sx(x).toFixed(4)} ${sy(f(x)).toFixed(4)}`;}).join(' ');
+return{q,c,period,periodTex:tfPi(8,bq),fn,points,pointTex,max,min,xmin,xmax,ymin,ymax,sx,sy,parentPath:path(Math.sin),path:path(fn),formula:t`y=${q.a}\sin\!\left(${q.b}\left(x-\left(${tfPi(q.c,12)}\right)\right)\right)+(${q.d})`,maxTex:pointTex(q.a>0?1:3),minTex:pointTex(q.a>0?3:1)};}

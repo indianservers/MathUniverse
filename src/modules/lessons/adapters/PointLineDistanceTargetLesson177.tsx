@@ -250,15 +250,16 @@ export default function PointLineDistanceTargetLesson177({
             Share
           </button>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content pld177-header"><aside>
           <h3>Learning flow</h3>
           <p>1 Observe & manipulate</p>
           <p>2 Notice the pattern</p>
           <p>3 Understand the rule</p>
           <p>4 Try independently</p>
           <output>{shared ? "Share link ready" : ""}</output>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="pld177-tabs">
         {["Explore", "Construct", "Formula", "Compare Paths", "Practice"].map(
           (x, i) => (

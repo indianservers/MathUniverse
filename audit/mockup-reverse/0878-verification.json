@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "finite minimum and unbounded maximum",
+    "constraint disabling including whole plane",
+    "paired boundary offsets and reset",
+    "arrows hidden outside changed region",
+    "direction keyboard/pointer/reset",
+    "objective-line limits independent of optimum",
+    "practice constraints, hints and results",
+    "all tabs"
+  ]
+}

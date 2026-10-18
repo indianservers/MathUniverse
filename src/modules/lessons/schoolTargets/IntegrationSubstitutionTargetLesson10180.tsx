@@ -1,326 +1,40 @@
 import { CheckCircle2, Lightbulb, RotateCcw } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useId, useState } from "react";
+import type { PointerEvent as ReactPointerEvent } from "react";
 import { Link } from "react-router-dom";
+import MathExpression from "../../../components/ui/MathExpression";
+import LessonMockupFooter from "../components/LessonMockupFooter";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
+import { accumulation, gradeSubstitutionAnswer, substitutionChoices, substitutionCurve, substitutionIntegrand, substitutionPrimitive, substitutionState, type SubstitutionChoice } from "./integrationSubstitutionModel";
 import "./IntegrationSubstitutionTargetLesson10180.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-const norm = (value: string) =>
-  value
-    .toLowerCase()
-    .replace(/\s|\*|\^/g, "")
-    .replace(/²/g, "2")
-    .replace(/⁴/g, "4")
-    .replace(/⁵/g, "5");
-const accepted = [
-  ["-2cos(x2)+c", "c-2cos(x2)"],
-  ["3/10(x2+5)5+c", "0.3(x2+5)5+c"],
-  ["1/10sin(5x2+1)+c", "0.1sin(5x2+1)+c"],
-];
-export default function IntegrationSubstitutionTargetLesson10180({
-  lesson: _lesson,
-}: {
-  lesson: SchoolSyllabusLesson;
-}) {
-  const [choice, setChoice] = useState("x²"),
-    [answers, setAnswers] = useState(["", "", ""]),
-    [feedback, setFeedback] = useState(["", "", ""]),
-    [hints, setHints] = useState(false);
-  const correct = choice === "x²";
-  const integrand = useMemo(
-    () =>
-      Array.from({ length: 121 }, (_, i) => {
-        const x = -1.5 + i * 0.025,
-          y = 2 * x * Math.cos(x * x);
-        return `${20 + i * 2.5},${105 - y * 34}`;
-      }).join(" "),
-    [],
-  );
-  const anti = useMemo(
-    () =>
-      Array.from({ length: 121 }, (_, i) => {
-        const x = -1.5 + i * 0.025,
-          y = Math.sin(x * x);
-        return `${20 + i * 2.5},${105 - y * 34}`;
-      }).join(" "),
-    [],
-  );
-  const reset = () => {
-    setChoice("x²");
-    setAnswers(["", "", ""]);
-    setFeedback(["", "", ""]);
-    setHints(false);
-  };
-  const check = (index: number) =>
-    setFeedback((v) =>
-      v.map((text, i) =>
-        i === index
-          ? accepted[index].includes(norm(answers[index]))
-            ? "Correct substitution and antiderivative."
-            : "Differentiate your answer and recheck u and du."
-          : text,
-      ),
-    );
-  return (
-    <main
-      className="is10180-page"
-      data-testid="school-mockup-0854"
-      data-object-model="dedicated-u-substitution-transformation-engine"
-      data-choice={choice}
-      data-match={String(correct)}
-      data-transformed={correct ? "integral-cos-u-du" : "unmatched"}
-    >
-      <header>
-        <small>CLASS 12 · FORMAL CALCULUS</small>
-        <h1>Integration by Substitution</h1>
-        <h4>Substitution Transformation Lab</h4>
-        <p>Transform ∫2x cos(x²) dx step-by-step using u=x².</p>
-        <div>
-          <span>16 min</span>
-          <span>ADVANCED</span>
-          <span>CONCEPT</span>
-          <span>graph</span>
-          <span>substitution</span>
-        </div>
-      </header>
-      <section className="is-lab">
-        <div className="is-lab-title">
-          <div>
-            <h3>SUBSTITUTION TRANSFORMATION LAB</h3>
-            <p>Watch how the integral transforms from x-space to u-space.</p>
-          </div>
-          <button onClick={reset}>
-            <RotateCcw /> Reset lab
-          </button>
-        </div>
-        <h2>Target Integral: ∫ 2x cos(x²) dx</h2>
-        <div className="is-map">
-          <article>
-            <h3>x-SPACE (original variable)</h3>
-            <h4>Integrand</h4>
-            <p>
-              <b>2x</b>
-              <strong>cos(x²)</strong>
-              <i>dx</i>
-            </p>
-            <h4>Identify parts</h4>
-            <ul>
-              <li>Outer function: cos( )</li>
-              <li>Inner expression: x²</li>
-              <li>Derivative of inner: 2x</li>
-              <li>dx</li>
-            </ul>
-          </article>
-          <div>
-            <h3>MAPPING: x→u</h3>
-            <b>x² → u</b>
-            <b>2x dx → du</b>
-          </div>
-          <article>
-            <h3>u-SPACE (new variable)</h3>
-            <h4>Transformed Integrand</h4>
-            <p>
-              <strong>cos(u)</strong>
-              <b>du</b>
-            </p>
-            <h4>After substitution</h4>
-            <p>u=x²</p>
-            <p>du=2x dx</p>
-          </article>
-        </div>
-        <div className="is-choose">
-          <article>
-            <h3>STEP 1: CHOOSE THE INNER EXPRESSION u</h3>
-            <p>Pick the expression that simplifies the integrand.</p>
-            <div>
-              {["x", "x²", "sin x", "2x", "x²+1"].map((v) => (
-                <button
-                  className={choice === v ? "active" : ""}
-                  onClick={() => setChoice(v)}
-                  key={v}
-                >
-                  {v}
-                  {choice === v && " ✓"}
-                </button>
-              ))}
-            </div>
-          </article>
-          <article className={correct ? "matched" : "unmatched"}>
-            <h3>du MATCH CHECK</h3>
-            <p>Differentiate your chosen u and match a factor.</p>
-            {correct ? (
-              <>
-                <h2>u=x²</h2>
-                <p>du/dx=2x ⇒ du=2x dx</p>
-                <b>
-                  <CheckCircle2 /> Match found! 2x dx is present.
-                </b>
-              </>
-            ) : (
-              <>
-                <h2>u={choice}</h2>
-                <p>
-                  Its differential does not replace the visible 2x dx factor
-                  cleanly.
-                </p>
-                <b>Choose the inner expression inside cos( ).</b>
-              </>
-            )}
-          </article>
-        </div>
-        <div className="is-steps">
-          <article>
-            <h3>STEP 2</h3>
-            <b>Transform</b>
-            <p>Replace x² with u and 2x dx with du.</p>
-            <h2>∫cos(u)du</h2>
-          </article>
-          <article>
-            <h3>STEP 3</h3>
-            <b>Integrate in u</b>
-            <h2>
-              ∫cos(u)du
-              <br />
-              =sin(u)+C
-            </h2>
-          </article>
-          <article>
-            <h3>STEP 4</h3>
-            <b>Back-substitute</b>
-            <p>Replace u with x².</p>
-            <h2>sin(x²)+C</h2>
-          </article>
-          <article>
-            <h3>FINAL ANSWER</h3>
-            <h2>
-              ∫2x cos(x²)dx
-              <br />
-              =sin(x²)+C
-            </h2>
-          </article>
-        </div>
-        <section className="is-verify">
-          <h3>VERIFY: EQUIVALENT ACCUMULATION OF AREA</h3>
-          <p>The antiderivative sin(x²)+C must have derivative 2x cos(x²).</p>
-          <div>
-            <article>
-              <b>Integrand: y=2x cos(x²)</b>
-              <svg viewBox="0 0 340 210">
-                <path d="M15 105H325M170 10V200" stroke="#34445a" />
-                <polyline
-                  points={integrand}
-                  fill="none"
-                  stroke="#ef3c62"
-                  strokeWidth="2.5"
-                />
-              </svg>
-              <p>Interval: [−1.5,1.5] · Net area=0</p>
-            </article>
-            <strong>=</strong>
-            <article>
-              <b>Antiderivative F(x)=sin(x²)+C</b>
-              <svg viewBox="0 0 340 210">
-                <path d="M15 105H325M170 10V200" stroke="#34445a" />
-                <polyline
-                  points={anti}
-                  fill="none"
-                  stroke="#159953"
-                  strokeWidth="2.5"
-                />
-              </svg>
-              <p>Net change F(b)−F(a)=0</p>
-            </article>
-            <article>
-              <b>Fundamental Theorem of Calculus</b>
-              <p>∫[-1.5,1.5] 2x cos(x²)dx=F(1.5)−F(−1.5)=0</p>
-              <strong>
-                <CheckCircle2 /> Signed area and net change agree.
-              </strong>
-            </article>
-          </div>
-        </section>
-      </section>
-      <section className="is-rules">
-        <article>
-          <h3>SUBSTITUTION RULE</h3>
-          <p>If u=g(x) and du=g'(x)dx, then</p>
-          <h2>∫f(g(x))g'(x)dx = ∫f(u)du</h2>
-        </article>
-        <article>
-          <h3>COMMON MISTAKES</h3>
-          <p>1. Forgetting du: writing ∫cos(u) instead of ∫cos(u)du.</p>
-          <p>2. Forgetting to back-substitute.</p>
-        </article>
-      </section>
-      <section className="is-bottom">
-        <article>
-          <h3>MORE EXAMPLES (WORKED)</h3>
-          <p>Example: ∫ x/(x²+1) dx</p>
-          <ol>
-            <li>Let u=x²+1, so du=2x dx.</li>
-            <li>x dx=du/2.</li>
-            <li>1/2 ∫du/u = 1/2 ln|u|+C.</li>
-            <li>Answer: 1/2 ln(x²+1)+C.</li>
-          </ol>
-        </article>
-        <article>
-          <h3>PRACTICE THIS LESSON</h3>
-          {["∫4x sin(x²) dx", "∫3x(x²+5)⁴ dx", "∫x cos(5x²+1) dx"].map(
-            (q, i) => (
-              <section key={q}>
-                <b>
-                  {i + 1}. {q}
-                </b>
-                <input
-                  aria-label={`Substitution answer ${i + 1}`}
-                  value={answers[i]}
-                  onChange={(e) =>
-                    setAnswers((v) =>
-                      v.map((x, j) => (j === i ? e.target.value : x)),
-                    )
-                  }
-                />
-                <button onClick={() => check(i)}>Check</button>
-                {feedback[i] && <output>{feedback[i]}</output>}
-              </section>
-            ),
-          )}
-          <button onClick={() => setHints((v) => !v)}>Show hints</button>
-        </article>
-        <article>
-          <h3>HINTS</h3>
-          {hints ? (
-            <ol>
-              <li>For 4x sin(x²), use u=x².</li>
-              <li>For 3x(x²+5)⁴, use u=x²+5.</li>
-              <li>For x cos(5x²+1), use u=5x²+1.</li>
-            </ol>
-          ) : (
-            <p>
-              <Lightbulb /> Reveal hints after attempting the integrals.
-            </p>
-          )}
-        </article>
-      </section>
-      <nav className="is-adjacent">
-        <Link to="/lessons/school/class-12/class-12-formal-calculus-approximation-using-differentials">
-          ← Approximation Using Differentials
-        </Link>
-        <Link to="/lessons/school/class-12/class-12-formal-calculus-integration-by-parts">
-          Integration by Parts →
-        </Link>
-      </nav>
-      <footer>
-        <b>⌁ Math Universe</b>
-        <p>
-          Interactive math labs, visual proofs, NCERT explorations, graphing,
-          CAS-style tools, and classroom-ready activities.
-        </p>
-        <small>
-          © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
-        </small>
-      </footer>
-      <LessonTopicStudyBoard lessonId={10180} alwaysVisible />
-
-    </main>
-  );
+import "../components/LessonMockupReference.css";
+const M=({value}:{value:string})=><MathExpression value={value}/>;
+const target=String.raw`\int2x\cos(x^2)\,dx`;
+const curves=[substitutionCurve(),substitutionCurve(true)];
+const plotX=(x:number)=>35+(x+3)*55,plotY=(y:number)=>125-y*25;
+const fmt=(v:number)=>Math.abs(v)<1e-8?"0":String(Number(v.toFixed(4)));
+function AccumulationGraph({primitive=false,a,b,onChange}:{primitive?:boolean;a:number;b:number;onChange:(key:"a"|"b",value:number)=>void}){
+ const clip=`is-clip-${useId().replace(/:/g,"")}`,value=primitive?substitutionPrimitive:substitutionIntegrand,points=curves[primitive?1:0],lo=Math.min(a,b),hi=Math.max(a,b),shade=Array.from({length:301},(_,i)=>{const x=lo+(hi-lo)*i/300;return `${plotX(x)},${plotY(value(x))}`;}).join(" ");
+ const pointer=(e:ReactPointerEvent<SVGCircleElement>,key:"a"|"b")=>{const matrix=e.currentTarget.ownerSVGElement?.getScreenCTM();if(!matrix)return;const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(matrix.inverse());onChange(key,(p.x-35)/55-3);};
+ return <svg viewBox="0 0 400 260" role="img" aria-label={primitive?"Antiderivative graph":"Integrand signed area graph"}><defs><clipPath id={clip}><rect x="35" y="25" width="330" height="200"/></clipPath></defs><g stroke="#edf2f6">{[-3,-2,-1,0,1,2,3].map(x=><line key={`x${x}`} x1={plotX(x)} x2={plotX(x)} y1="25" y2="225"/>)}{[-4,-2,0,2,4].map(y=><line key={`y${y}`} x1="35" x2="365" y1={plotY(y)} y2={plotY(y)}/>)}</g>{!primitive&&<path clipPath={`url(#${clip})`} d={`M${plotX(lo)} 125 L${shade.replace(/ /g," L")} L${plotX(hi)} 125 Z`} fill="#ffc5d4" fillOpacity=".7"/>}<path d="M25 125H380M200 238V13" stroke="#6b7485" fill="none"/><polyline data-curve={primitive?"primitive":"integrand"} clipPath={`url(#${clip})`} points={points.map(p=>`${plotX(p.x)},${plotY(p.y)}`).join(" ")} fill="none" stroke={primitive?"#2da75d":"#ee3767"} strokeWidth="2"/>{[-3,-2,-1,0,1,2,3].map(x=><text key={x} x={plotX(x)-4} y="143">{x}</text>)}{[-4,-2,2,4].map(y=><text key={y} x="179" y={plotY(y)+4}>{y}</text>)}<text x="379" y="120">x</text><text x="204" y="14">y</text>{(["a","b"]as const).map(key=>{const x=key==="a"?a:b;return <g key={key}><line x1={plotX(x)} x2={plotX(x)} y1="25" y2="225" stroke={primitive?"#6fc58f":"#ed8da8"} strokeDasharray="4 4"/>{Math.abs(value(x))<=4&&<circle cx={plotX(x)} cy={plotY(value(x))} r="3.5" fill={primitive?"#289553":"#e72f61"}/>}<circle className="is-endpoint-handle" cx={plotX(x)} cy="125" r="6" fill={primitive?"#5cba80":"#e97c9c"} stroke="white" role="slider" aria-label={`${primitive?"Antiderivative":"Integrand"} endpoint ${key}`} aria-valuemin={-3} aria-valuemax={3} aria-valuenow={x} tabIndex={0} style={{touchAction:"none",cursor:"ew-resize"}} onPointerDown={e=>{e.currentTarget.setPointerCapture(e.pointerId);pointer(e,key);}} onPointerMove={e=>{if(e.currentTarget.hasPointerCapture(e.pointerId))pointer(e,key);}} onPointerUp={e=>{if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);}} onKeyDown={e=>{if(["ArrowLeft","ArrowRight","Home","End"].includes(e.key)){e.preventDefault();onChange(key,e.key==="Home"?-3:e.key==="End"?3:x+(e.key==="ArrowLeft"?-.1:.1));}}}/></g>;})}</svg>;
+}
+export default function IntegrationSubstitutionTargetLesson10180({lesson:_lesson}:{lesson:SchoolSyllabusLesson}){
+ const[choice,setChoice]=useState<SubstitutionChoice>("x²"),[a,setA]=useState(-1.5),[b,setB]=useState(1.5),[answers,setAnswers]=useState(["","",""]),[feedback,setFeedback]=useState<(ReturnType<typeof gradeSubstitutionAnswer>|null)[]>([null,null,null]),[hints,setHints]=useState(false);
+ const state=substitutionState(choice),area=accumulation(a,b),marker=useId().replace(/:/g,"");
+ const endpoint=(key:"a"|"b",value:number)=>{if(!Number.isFinite(value))return;const rounded=Math.round(Math.max(-3,Math.min(3,value))*20)/20;if(key==="a")setA(rounded);else setB(rounded);};
+ const reset=()=>{setChoice("x²");setA(-1.5);setB(1.5);};
+ const check=(index:number)=>setFeedback(old=>old.map((v,i)=>i===index?gradeSubstitutionAnswer(i,answers[i]):v));
+ const back=choice==="x"?String.raw`\sin(x^2)+C`:choice==="2x"?String.raw`\sin((2x)^2/4)+C`:choice==="x²+1"?String.raw`\sin((x^2+1)-1)+C`:String.raw`\sin(x^2)+C`;
+ const questions=[String.raw`\int4x\sin(x^2)\,dx`,String.raw`\int3x(x^2+5)^4\,dx`,String.raw`\int x\cos(5x^2+1)\,dx`];
+ return <main className="is10180-page lesson-reference" data-testid="school-mockup-0854" data-object-model="dedicated-u-substitution-transformation-engine" data-choice={choice} data-match={String(state.match)} data-transformed={state.code} data-a={a} data-b={b} data-area={fmt(area.area)} data-net-change={fmt(area.netChange)}>
+  <section className="is-hero"><small>CLASS 12 · FORMAL CALCULUS</small><Link to="/lessons/school">← School lessons</Link><h1>Integration by Substitution</h1><h4>Substitution Transformation Lab</h4><p>Transform <M value={target}/> step-by-step using u = x².</p><div>{["16 min","ADVANCED","CONCEPT","graph","substitution"].map(v=><span key={v}>{v}</span>)}</div></section>
+  <section className="is-card is-lab"><div className="is-lab-title"><div><h2>▦ SUBSTITUTION TRANSFORMATION LAB</h2><p>Watch how the integral transforms from x-space to u-space.</p></div><button onClick={reset}><RotateCcw/>Reset lab</button></div><div className="is-map-frame"><div className="is-target"><b>Target Integral:</b><M value={target}/></div><div className="is-map"><article className="is-x-space"><h3>x-SPACE (original variable)</h3><div><h4>Integrand</h4><div className="is-integrand-chips"><span className="is-factor"><M value="2x"/></span><span className="is-outer"><M value="\cos(x^2)"/></span><span className="is-differential"><M value="dx"/></span></div><h4>Identify parts</h4><ul><li><i className="is-dot-blue"/>Outer function: <M value="\cos(\ )"/></li><li><i className="is-dot-green"/>Inner expression: <M value="x^2"/></li><li><i className="is-dot-pink"/>Derivative of inner: <M value="2x"/></li><li><i className="is-dot-deepgreen"/><M value="dx"/></li></ul></div></article><div className="is-mapping"><h3>MAPPING: x → u</h3><svg viewBox="0 0 240 260" aria-hidden="true"><defs><marker id={`green-${marker}`} markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#4bbf72"/></marker><marker id={`pink-${marker}`} markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#f3548b"/></marker></defs><path d="M0 100Q120 48 235 90" fill="none" stroke="#4bbf72" strokeWidth="1.6" markerEnd={`url(#green-${marker})`}/><path d="M0 188Q120 160 235 188" fill="none" stroke="#f3548b" strokeWidth="1.6" markerEnd={`url(#pink-${marker})`}/></svg><span className="is-inner-map"><M value={`x^2\\to ${state.inner}`}/></span><span className="is-differential-map"><M value={state.supported?`2x\\,dx\\to ${state.factor}`:state.du}/></span></div><article className="is-u-space"><h3>u-SPACE (new variable)</h3><div><h4>Transformed integrand</h4>{state.supported?<div className="is-integrand-chips"><span className="is-outer"><M value={choice==="x"?String.raw`2u\cos(u^2)`:choice==="2x"?String.raw`\frac u2\cos(u^2/4)`:choice==="x²+1"?String.raw`\cos(u-1)`:String.raw`\cos(u)`}/></span><span className="is-factor"><M value="du"/></span></div>:<p className="is-branch-note">A local inverse branch is needed; this is not a direct simplification.</p>}<h4>After substitution</h4><p><span className="is-u-value"><M value={`u=${state.u}`}/></span></p><p><span className="is-du-value"><M value={`du=${state.du}`}/></span></p></div></article></div></div>
+   <div className="is-choose"><article><h2>STEP 1: CHOOSE THE INNER EXPRESSION u</h2><p>Pick the expression that simplifies the integrand.</p><div>{substitutionChoices.map(value=><button key={value} aria-label={`Choose u = ${value}`} aria-pressed={choice===value} className={choice===value?(state.match?"is-choice-match":"is-choice-other"):""} onClick={()=>setChoice(value)}><M value={substitutionState(value).u}/>{choice===value&&<CheckCircle2/>}</button>)}</div></article><article className={`is-match-check ${state.match?"is-matched":"is-alternative"}`}><h2>du MATCH CHECK</h2><p>Differentiate your chosen u and match a factor in the integrand.</p><M value={`u=${state.u}`}/><M value={`\\frac{du}{dx}=${state.derivative}\\quad\\Rightarrow\\quad du=${state.du}`}/><p className="is-match-message">{state.match&&<CheckCircle2/>}{state.message}</p></article></div>
+   <div className="is-steps"><article><h3>STEP 2</h3><h4>Transform</h4><p>{state.supported?<>Replace <M value="x^2"/> with <M value={state.inner}/> and rewrite <M value="2x\,dx"/>.</>:"A local inverse is needed for sin x; prefer the inner expression x²."}</p>{state.supported?<><M value={target}/><M value={`=${state.transformed}`}/></>:<p>No direct matched transformation.</p>}</article><article><h3>STEP 3</h3><h4>Integrate in u</h4>{state.supported?<><M value={state.transformed}/><M value={`=${state.primitive}`}/></>:<p>Choose a direct inner expression to integrate simply.</p>}</article><article><h3>STEP 4</h3><h4>Back-substitute</h4><p>Replace u with <M value={state.u}/>.</p>{state.supported?<><M value={state.primitive}/><M value={`=${back}`}/></>:<p>Return to a direct choice to complete these steps.</p>}</article><article className={state.supported?"is-final-answer":"is-final-pending"}><h3>{state.supported?"FINAL ANSWER":"TRANSFORMATION PENDING"}{state.supported&&<CheckCircle2/>}</h3>{state.supported?<><M value={target}/><M value="=\sin(x^2)+C"/></>:<p>A sine substitution requires an inverse branch. Try u = x².</p>}</article></div>
+   <section className="is-verify"><h2>VERIFY: EQUIVALENT ACCUMULATION OF AREA</h2><p>The reference antiderivative <M value="\sin(x^2)+C"/> has derivative <M value="2x\cos(x^2)"/>. Signed area equals endpoint change; the curves themselves are different.</p><div className="is-verify-grid"><article><h4>Integrand: <M value="y=2x\cos(x^2)"/></h4><AccumulationGraph a={a} b={b} onChange={endpoint}/><b>Interval: [{fmt(a)}, {fmt(b)}]</b><p className="is-area-value">Net area (a to b): {fmt(area.area)}</p><div className="is-endpoint-inputs"><label>a = <input aria-label="Interval endpoint a" type="number" min="-3" max="3" step=".05" value={a} onChange={e=>endpoint("a",e.target.valueAsNumber)}/></label><label>b = <input aria-label="Interval endpoint b" type="number" min="-3" max="3" step=".05" value={b} onChange={e=>endpoint("b",e.target.valueAsNumber)}/></label></div></article><div className="is-equivalent"><b>Equivalent</b><strong>=</strong><small>signed totals</small></div><article><h4>Antiderivative: <M value="F(x)=\sin(x^2)+C"/></h4><AccumulationGraph primitive a={a} b={b} onChange={endpoint}/><b>Interval: [{fmt(a)}, {fmt(b)}]</b><p className="is-change-value">Net change F(b) − F(a): {fmt(area.netChange)}</p><small>C = 0 plotted; vertical shifts do not change this difference.</small></article><aside data-residual={area.residual}><p>By the Fundamental Theorem of Calculus,</p><M value={`\\int_{${a}}^{${b}}2x\\cos(x^2)\\,dx`}/><M value="=F(b)-F(a)"/><M value="=\sin(b^2)-\sin(a^2)"/><M value={`=\\sin(${fmt(b*b)})-\\sin(${fmt(a*a)})`}/><M value={`=${fmt(area.netChange)}`}/><p className="is-ftc-check"><CheckCircle2/>{Math.abs(area.netChange)<1e-8?"The signed net change is zero for these endpoints.":"Signed area and endpoint change agree."}</p></aside></div><p className="is-signed-note">On a symmetric interval, x² retraces its values and the signed contributions cancel. This does not mean the geometric area is zero.</p></section>
+   <div className="is-rules"><article><h2>SUBSTITUTION RULE</h2><p>If <M value="u=g(x)"/> and <M value="du=g'(x)\,dx"/>, then</p><M value="\int f(g(x))g'(x)\,dx=\int f(u)\,du"/></article><article><h2><Lightbulb/>COMMON MISTAKES</h2><p><b>1</b><strong>Forgetting du:</strong> writing <M value="\int\cos(u)"/> instead of <M value="\int\cos(u)\,du"/>.</p><p><b>2</b><strong>Forgetting to back-substitute:</strong> leaving the answer in u.</p></article></div>
+  </section>
+  <section className="is-bottom"><article className="is-card"><h2>MORE EXAMPLES (WORKED)</h2><p><b>Example 2:</b> <M value="\int\frac{x}{x^2+1}\,dx"/></p><ol><li>Let <M value="u=x^2+1\Rightarrow du=2x\,dx"/>.</li><li><M value="\int\frac{x}{x^2+1}\,dx=\frac12\int\frac{2x}{x^2+1}\,dx"/><M value="=\frac12\int\frac1u\,du"/></li><li><M value="\frac12\ln|u|+C"/></li><li><M value="\frac12\ln(x^2+1)+C"/></li></ol><div className="is-worked-answer">Answer: <M value="\int\frac{x}{x^2+1}\,dx=\frac12\ln(x^2+1)+C"/></div><small>Here u = x² + 1 &gt; 0 for all real x.</small></article><article className="is-card is-practice"><h2>PRACTICE THIS LESSON</h2><p>Evaluate using substitution.</p><small>Use sin(...), cos(...), powers and + C.</small>{questions.map((q,index)=><div className="is-practice-row" key={q}><b>{index+1}</b><M value={q}/><input aria-label={`Substitution answer ${index+1}`} value={answers[index]} placeholder="Your answer" aria-invalid={feedback[index]?!feedback[index]?.correct:undefined} onChange={e=>{setAnswers(v=>v.map((old,i)=>i===index?e.target.value:old));setFeedback(v=>v.map((old,i)=>i===index?null:old));}} onKeyDown={e=>{if(e.key==="Enter")check(index);}}/><button aria-label={`Check substitution answer ${index+1}`} onClick={()=>check(index)}>Check</button>{feedback[index]&&<p role="status">{feedback[index]?.message}</p>}</div>)}<button className="is-hints-toggle" aria-expanded={hints} onClick={()=>setHints(v=>!v)}><Lightbulb/>{hints?"Hide hints":"Show hints"}</button></article><article className="is-card is-hints"><h2>HINTS</h2><ol><li>For <M value="4x\sin(x^2)"/>, use <M value="u=x^2"/>.</li><li>For <M value="3x(x^2+5)^4"/>, use <M value="u=x^2+5"/>.</li><li>For <M value="x\cos(5x^2+1)"/>, use <M value="u=5x^2+1"/>.</li></ol>{hints&&<div className="is-extra-hints"><M value="du=2x\,dx\Rightarrow4x\,dx=2\,du"/><M value="du=2x\,dx\Rightarrow3x\,dx=\frac32\,du"/><M value="du=10x\,dx\Rightarrow x\,dx=\frac1{10}\,du"/></div>}</article></section>
+  <div className="is-lesson-links" role="navigation" aria-label="Adjacent lessons"><Link to="/lessons/school/class-12/class-12-formal-calculus-approximation-using-differentials">← Approximation Using Differentials</Link><Link to="/lessons/school/class-12/class-12-formal-calculus-integration-by-parts">Integration by Parts →</Link></div><LessonMockupFooter/>
+ </main>;
 }

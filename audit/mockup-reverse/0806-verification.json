@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "errors": [],
+  "responsive": [
+    {
+      "state": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "selectedVisible": true
+    },
+    {
+      "state": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "selectedVisible": true
+    },
+    {
+      "state": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "selectedVisible": true
+    },
+    {
+      "state": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "selectedVisible": true
+    },
+    {
+      "state": "linear",
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "selectedVisible": true
+    },
+    {
+      "state": "linear",
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "selectedVisible": true
+    },
+    {
+      "state": "linear",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "selectedVisible": true
+    },
+    {
+      "state": "linear",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "selectedVisible": true
+    },
+    {
+      "state": "wrong",
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "selectedVisible": true
+    },
+    {
+      "state": "wrong",
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "selectedVisible": true
+    },
+    {
+      "state": "wrong",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "selectedVisible": true
+    },
+    {
+      "state": "wrong",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "selectedVisible": true
+    }
+  ],
+  "clipped": []
+}

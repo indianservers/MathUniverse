@@ -152,14 +152,15 @@ export default function ConcavityTargetLesson299({
             <a href="/workspace/calculus">↗ Workspace</a>
           </div>
         </main>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content con299-hero"><aside>
           <h3>In this lesson you will</h3>
           <p>● Observe how slopes change.</p>
           <p>● Manipulate h and see instant feedback.</p>
           <p>● Notice concavity from f″(x).</p>
           <p>● Understand the rule and apply it.</p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="con299-tabs">
         {[
           "Interaction + visualization",

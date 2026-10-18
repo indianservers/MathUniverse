@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "clipped": []
+}

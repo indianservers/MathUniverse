@@ -130,13 +130,14 @@ export default function RepeatedPermutationsTargetLesson559({
           <span>Multiset Counting</span>
           <span>6-10 min</span>
         </aside>
-        <section>
+
+      </header>
+      <div className="lesson-header-content perm558-hero rep559-hero"><section>
           <b>Formula</b>
           <output>n! / (n₁! n₂! ··· nₖ!)</output>
           <b>Topics</b>
           <span>Permutations, Factorials</span>
-        </section>
-      </header>
+        </section></div>
       <nav className="perm558-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

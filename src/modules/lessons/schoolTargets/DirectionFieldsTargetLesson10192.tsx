@@ -1,4 +1,5 @@
 import {
+  BookOpen, Compass, ClipboardCheck, ListTree,
   Eye,
   EyeOff,
   Maximize2,
@@ -7,41 +8,20 @@ import {
   RotateCcw,
   Trash2,
 } from "lucide-react";
-import { useMemo, useState } from "react";
-import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { KeyboardEvent } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./DirectionFieldsTargetLesson10192.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import MathExpression from "../../../components/ui/MathExpression";
+import {directionExact as exact,traceDirection as solve,directionErrors,type DirectionMethod as Method} from "./directionFieldsModel";
+import "../components/LessonMockupReference.css";
 
-type Method = "Euler" | "RK4";
-const fmt = (n: number, d = 4) => Number(n.toFixed(d));
-const exact = (x: number, x0: number, y0: number) =>
-  x - 1 + (y0 - x0 + 1) * Math.exp(-(x - x0));
-function solve(x0: number, y0: number, h: number, method: Method) {
-  const out = [{ x: x0, y: y0 }];
-  let x = x0,
-    y = y0;
-  while (x < 4 - 1e-8) {
-    const step = Math.min(h, 4 - x);
-    if (method === "Euler") y += step * (x - y);
-    else {
-      const f = (a: number, b: number) => a - b,
-        k1 = f(x, y),
-        k2 = f(x + step / 2, y + (step * k1) / 2),
-        k3 = f(x + step / 2, y + (step * k2) / 2),
-        k4 = f(x + step, y + step * k3);
-      y += (step * (k1 + 2 * k2 + 2 * k3 + k4)) / 6;
-    }
-    x += step;
-    out.push({ x, y });
-  }
-  return out;
-}
-const mapX = (x: number, z: number) => 45 + (x + 1) * 78 * z,
-  mapY = (y: number, z: number) => 285 - (y + 3) * 52 * z;
+const fmt=(n:number,d=4)=>Number(n.toFixed(d));
+const show=(n:number,d=4)=>Number.isFinite(n)?n.toFixed(d):"—";
+const mapX=(x:number,z:number)=>60+x*112*z,mapY=(y:number,z:number)=>350-y*62*z;
 export default function DirectionFieldsTargetLesson10192({
-  lesson: _lesson,
+  lesson,
 }: {
   lesson: SchoolSyllabusLesson;
 }) {
@@ -51,6 +31,8 @@ export default function DirectionFieldsTargetLesson10192({
     [h, setH] = useState(0.05),
     [traced, setTraced] = useState(true),
     [running, setRunning] = useState(false),
+    [progress,setProgress]=useState(1),
+    [traceRun,setTraceRun]=useState(0),
     [iso, setIso] = useState(true),
     [levels, setLevels] = useState([-2, -1, 0, 1, 2]),
     [axes, setAxes] = useState(true),
@@ -61,6 +43,8 @@ export default function DirectionFieldsTargetLesson10192({
     [tips, setTips] = useState(true),
     [prediction, setPrediction] = useState(""),
     [feedback, setFeedback] = useState("");
+  const dragging=useRef(false);
+  useEffect(()=>{if(!running)return;const started=performance.now();const id=window.setInterval(()=>{const value=Math.min(1,(performance.now()-started)/2000);setProgress(value);if(value>=1)setRunning(false);},40);return()=>window.clearInterval(id);},[running,traceRun]);
   const slope = probe.x - probe.y,
     numerical = useMemo(
       () => solve(initial.x, initial.y, h, method),
@@ -69,80 +53,27 @@ export default function DirectionFieldsTargetLesson10192({
     exactPoints = useMemo(
       () =>
         Array.from({ length: 151 }, (_, i) => {
-          const x = initial.x + (i * (4 - initial.x)) / 150;
+          const x = initial.x + (i * (4.5 - initial.x)) / 150;
           return { x, y: exact(x, initial.x, initial.y) };
         }),
       [initial],
     );
-  const errors = [0, 1, 2, 3, 4].map((x) => {
-      const near = numerical.reduce((a, b) =>
-        Math.abs(b.x - x) < Math.abs(a.x - x) ? b : a,
-      );
-      const ex = exact(x, initial.x, initial.y);
-      return { x, euler: near.y, exact: ex, error: Math.abs(near.y - ex) };
-    }),
-    maxError = Math.max(...errors.map((r) => r.error)),
-    meanError = errors.reduce((a, r) => a + r.error, 0) / errors.length;
-  const field = useMemo(() => {
-    const cols = density === "Dense" ? 19 : 11,
-      rows = density === "Dense" ? 15 : 9;
-    return Array.from({ length: cols * rows }, (_, i) => {
-      const col = i % cols,
-        row = Math.floor(i / cols),
-        x = -1 + (col * 5) / (cols - 1),
-        y = -3 + (row * 7) / (rows - 1),
-        m = x - y,
-        a = Math.atan(m),
-        cx = mapX(x, zoom),
-        cy = mapY(y, zoom),
-        dx = Math.cos(a) * 7,
-        dy = -Math.sin(a) * 7;
-      return { x1: cx - dx, y1: cy - dy, x2: cx + dx, y2: cy + dy, m };
-    });
-  }, [density, zoom]);
+  const comparison=useMemo(()=>directionErrors(initial.x,initial.y,h,method),[initial,h,method]),errors=comparison.samples,maxError=comparison.max,meanError=comparison.mean;
+  const field=useMemo(()=>{const cols=density==="Dense"?36:18,rows=density==="Dense"?27:14;return Array.from({length:cols*rows},(_,i)=>{const cx=20+(i%cols)*565/(cols-1),cy=15+Math.floor(i/cols)*530/(rows-1),x=(cx-60)/(112*zoom),y=(350-cy)/(62*zoom),m=x-y,angle=Math.atan(m*62/112),dx=Math.cos(angle)*5.2,dy=-Math.sin(angle)*5.2;return {x1:cx-dx,y1:cy-dy,x2:cx+dx,y2:cy+dy,m};});},[density,zoom]);
+  const coefficient=Number((initial.y-initial.x+1).toPrecision(12)),exactFormula=`y=x-1${coefficient===0?"":`${coefficient<0?"-":"+"}${Math.abs(coefficient)===1?"":Math.abs(coefficient)}e^{${initial.x===0?"-x":`-(x-(${initial.x}))`}}`}`;
   const path = (pts: { x: number; y: number }[]) =>
     pts.map((p) => `${mapX(p.x, zoom)},${mapY(p.y, zoom)}`).join(" ");
-  const changeProbe = (x: number, y: number) =>
-    setProbe({
-      x: Math.max(-1, Math.min(4, fmt(x, 2))),
-      y: Math.max(-3, Math.min(4, fmt(y, 2))),
-    });
-  const drag = (e: ReactPointerEvent<SVGCircleElement>) => {
-    e.currentTarget.setPointerCapture(e.pointerId);
-    const svg = e.currentTarget.ownerSVGElement!;
-    const move = (p: PointerEvent) => {
-      const r = svg.getBoundingClientRect();
-      changeProbe(
-        (((p.clientX - r.left) / r.width) * 520 - 45) / (78 * zoom) - 1,
-        (285 - ((p.clientY - r.top) / r.height) * 410) / (52 * zoom) - 3,
-      );
-    };
-    const stop = () => {
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerup", stop);
-    };
-    window.addEventListener("pointermove", move);
-    window.addEventListener("pointerup", stop);
-  };
-  const key = (e: KeyboardEvent<SVGCircleElement>) => {
-    if (e.key === "ArrowLeft") changeProbe(probe.x - 0.05, probe.y);
-    if (e.key === "ArrowRight") changeProbe(probe.x + 0.05, probe.y);
-    if (e.key === "ArrowUp") changeProbe(probe.x, probe.y + 0.05);
-    if (e.key === "ArrowDown") changeProbe(probe.x, probe.y - 0.05);
-  };
-  const trace = () => {
-    setInitial(probe);
-    setRunning(true);
-    setTraced(true);
-    window.setTimeout(() => setRunning(false), 500);
-  };
+  const changeProbe=(x:number,y:number)=>{if(!Number.isFinite(x)||!Number.isFinite(y))return;const p={x:Number(x.toPrecision(12)),y:Number(y.toPrecision(12))};setProbe(p);setInitial(p);};
+  const key=(event:KeyboardEvent<SVGCircleElement>)=>{const delta:Record<string,number[]>={ArrowLeft:[-.05,0],ArrowRight:[.05,0],ArrowUp:[0,.05],ArrowDown:[0,-.05]};if(delta[event.key]){event.preventDefault();changeProbe(probe.x+delta[event.key][0],probe.y+delta[event.key][1]);}};
+  const trace=()=>{setProgress(0);setTraced(true);setRunning(true);setTraceRun(v=>v+1);};
+  const graphPoint=(event:React.PointerEvent<SVGSVGElement>)=>{const ctm=event.currentTarget.getScreenCTM();if(!ctm)return;const p=new DOMPoint(event.clientX,event.clientY).matrixTransform(ctm.inverse());changeProbe(fmt(Math.max((20-60)/(112*zoom),Math.min((585-60)/(112*zoom),(p.x-60)/(112*zoom))),2),fmt(Math.max((350-545)/(62*zoom),Math.min((350-15)/(62*zoom),(350-p.y)/(62*zoom))),2));};
   const reset = () => {
     setProbe({ x: 0, y: 1 });
     setInitial({ x: 0, y: 1 });
     setMethod("Euler");
     setH(0.05);
     setTraced(true);
-    setRunning(false);
+    setRunning(false);setProgress(1);
     setIso(true);
     setLevels([-2, -1, 0, 1, 2]);
     setAxes(true);
@@ -156,7 +87,7 @@ export default function DirectionFieldsTargetLesson10192({
   };
   return (
     <main
-      className="df10192-page"
+      className="df10192-page lesson-reference"
       data-testid="school-mockup-0866"
       data-object-model="dedicated-direction-field-numerical-solver"
       data-probe-x={fmt(probe.x, 2)}
@@ -164,24 +95,25 @@ export default function DirectionFieldsTargetLesson10192({
       data-slope={fmt(slope)}
       data-method={method}
       data-step={h}
-      data-traced={traced}
+      data-traced={traced} data-running={running} data-progress={progress} data-zoom={zoom}
       data-max-error={fmt(maxError)}
     >
-      <header className="df-hero">
+      <section className="df-hero" aria-label="Lesson introduction">
         <small>CLASS 12 · DIFFERENTIAL EQUATIONS</small>
-        <h1>Direction Fields</h1>
+        <h1>{lesson.title}</h1>
         <p>
           Dense slope field for y′=x−y. Explore local slope, isoclines, and
           solution curves. Click an initial point to trace Euler or RK4.
         </p>
-        <div>
+        <p className="df-default">Default (0, 1) shows the exact solution <MathExpression value="y=x-1+2e^{-x}"/>.</p><div>
           <span>25 min</span>
           <span>ADVANCED</span>
           <span>CONCEPT</span>
           <span>visual</span>
           <span>interactive</span>
         </div>
-      </header>
+        <Link className="df-school" to="/lessons/school/class-12">← School lessons</Link>
+      </section>
       <section className="df-lab">
         <div className="df-title">
           <div>
@@ -194,7 +126,7 @@ export default function DirectionFieldsTargetLesson10192({
               <RotateCcw />
               Reset
             </button>
-            <button onClick={() => setTraced(false)}>
+            <button onClick={()=>{setTraced(false);setRunning(false);setProgress(0);}}>
               <Trash2 />
               Clear solution
             </button>
@@ -209,13 +141,13 @@ export default function DirectionFieldsTargetLesson10192({
             <article>
               <h3>PROBE (DRAG IN THE FIELD)</h3>
               <p>
-                x = <b>{fmt(probe.x, 3)}</b>
+                x = <b>{show(probe.x,3)}</b>
               </p>
               <p>
-                y = <b>{fmt(probe.y, 3)}</b>
+                y = <b>{show(probe.y,3)}</b>
               </p>
               <p>
-                m = x−y = <b>{fmt(slope, 3)}</b>
+                m = x−y = <b>{show(slope,3)}</b>
               </p>
               <span className="probe-line" />
             </article>
@@ -230,7 +162,7 @@ export default function DirectionFieldsTargetLesson10192({
                     step=".1"
                     value={initial.x}
                     onChange={(e) =>
-                      setInitial((v) => ({ ...v, x: Number(e.target.value) }))
+                      changeProbe(Number(e.target.value),initial.y)
                     }
                   />
                   <input
@@ -239,14 +171,14 @@ export default function DirectionFieldsTargetLesson10192({
                     step=".1"
                     value={initial.y}
                     onChange={(e) =>
-                      setInitial((v) => ({ ...v, y: Number(e.target.value) }))
+                      changeProbe(initial.x,Number(e.target.value))
                     }
                   />
                 </div>
               </label>
               <button onClick={trace}>
                 {running ? "Tracing..." : "◉ Trace solution"}
-              </button>
+              </button><button className="df-stop" disabled={!running} onClick={()=>setRunning(false)}>Stop</button>
               <label>
                 Method:
                 <select
@@ -259,17 +191,17 @@ export default function DirectionFieldsTargetLesson10192({
                 </select>
               </label>
               <label>
-                Step size h
+                <span className="df-step-label">Step size h</span>
                 <input
                   aria-label="Step size"
                   type="range"
-                  min=".01"
+                  min=".001"
                   max=".5"
-                  step=".01"
+                  step=".001"
                   value={h}
                   onChange={(e) => setH(Number(e.target.value))}
                 />
-                <b>{h}</b>
+                <input aria-label="Step size value" type="number" min=".001" max=".5" step=".001" value={h} onChange={e=>{const value=Number(e.target.value);if(Number.isFinite(value))setH(Math.max(.001,Math.min(.5,value)));}}/><div className="df-step-ticks"><span>0.001</span><span>0.05</span><span>0.5</span></div>
               </label>
             </article>
             <article>
@@ -295,7 +227,7 @@ export default function DirectionFieldsTargetLesson10192({
                       )
                     }
                   />
-                  <span style={{ color: colors[i] }}>m={m}</span>
+                  <span style={{ color: colors[i] }}>m={m}</span><i style={{borderColor:colors[i]}}/>
                 </label>
               ))}
             </article>
@@ -328,7 +260,7 @@ export default function DirectionFieldsTargetLesson10192({
               <label>
                 Field density
                 <select
-                  value={density}
+                  aria-label="Field density" value={density}
                   onChange={(e) =>
                     setDensity(e.target.value as "Sparse" | "Dense")
                   }
@@ -340,63 +272,26 @@ export default function DirectionFieldsTargetLesson10192({
             </article>
           </aside>
           <div className="df-visual">
-            <svg viewBox="0 0 520 410" aria-label="Interactive direction field">
-              {grid &&
-                Array.from({ length: 12 }, (_, i) => (
-                  <g key={i}>
-                    <line
-                      x1={45 + i * 39}
-                      y1="20"
-                      x2={45 + i * 39}
-                      y2="390"
-                      className="grid"
-                    />
-                    <line
-                      x1="35"
-                      y1={25 + i * 32}
-                      x2="505"
-                      y2={25 + i * 32}
-                      className="grid"
-                    />
-                  </g>
-                ))}
-              {field.map((l, i) => (
-                <line key={i} {...l} className="slope" />
+            <svg viewBox="0 0 600 560" role="img" aria-label="Interactive direction field" onPointerDown={event=>{if(event.target instanceof SVGCircleElement)return;graphPoint(event);trace();}} onPointerMove={event=>{if(dragging.current)graphPoint(event);}} onPointerUp={event=>{if(dragging.current){dragging.current=false;if(event.currentTarget.hasPointerCapture(event.pointerId))event.currentTarget.releasePointerCapture(event.pointerId);trace();}}} onPointerCancel={()=>{dragging.current=false;}} onLostPointerCapture={()=>{dragging.current=false;}}>
+              {grid&&<g className="df-grid">{Array.from({length:25},(_,i)=>i-10).map(n=><g key={n}><line x1={mapX(n,zoom)} y1="15" x2={mapX(n,zoom)} y2="545" className="grid"/><line x1="20" y1={mapY(n,zoom)} x2="585" y2={mapY(n,zoom)} className="grid"/></g>)}</g>}
+              {field.map(({m,...l}, i) => (
+                <line key={i} data-slope={m} {...l} className="slope" />
               ))}
               {iso &&
-                levels.map((m, i) => (
+                levels.map((m) => (
                   <line
-                    key={m}
-                    x1={mapX(-1, zoom)}
-                    y1={mapY(-1 - m, zoom)}
-                    x2={mapX(4, zoom)}
-                    y2={mapY(4 - m, zoom)}
-                    style={{ stroke: colors[i] }}
+                    key={m} data-level={m}
+                    x1="20" y1={mapY((20-60)/(112*zoom)-m,zoom)}
+                    x2="585" y2={mapY((585-60)/(112*zoom)-m,zoom)}
+                    style={{ stroke: colors[m+2] }}
                     className="isocline"
                   />
                 ))}
-              {axes && (
-                <>
-                  <line
-                    x1={mapX(-1, zoom)}
-                    y1={mapY(0, zoom)}
-                    x2={mapX(4.2, zoom)}
-                    y2={mapY(0, zoom)}
-                    className="axis"
-                  />
-                  <line
-                    x1={mapX(0, zoom)}
-                    y1={mapY(-3, zoom)}
-                    x2={mapX(0, zoom)}
-                    y2={mapY(4.2, zoom)}
-                    className="axis"
-                  />
-                </>
-              )}
+              {axes&&<g className="df-axes"><path d="M20 350H590 M60 545V10"/><path d="M590 350L584 347V353Z M60 10L57 16H63Z"/>{[-2,-1,0,1,2,3,4,5,6,7,8].map(n=><text key={`x${n}`} x={mapX(n,zoom)-3} y="367">{n}</text>)}{[-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9].map(n=><text key={`y${n}`} x="48" y={mapY(n,zoom)+4} textAnchor="end">{n}</text>)}<text x="587" y="342">x</text><text x="66" y="16">y</text></g>}
               {traced && (
                 <>
-                  <polyline points={path(exactPoints)} className="exact" />
-                  <polyline points={path(numerical)} className="numerical" />
+                  <polyline points={path(exactPoints.slice(0,Math.max(1,Math.ceil(exactPoints.length*progress))))} className="exact" />
+                  <polyline points={path(numerical.slice(0,Math.max(1,Math.ceil(numerical.length*progress))))} className="numerical" />
                 </>
               )}
               <circle
@@ -404,7 +299,7 @@ export default function DirectionFieldsTargetLesson10192({
                 cy={mapY(probe.y, zoom)}
                 r="7"
                 tabIndex={0}
-                onPointerDown={drag}
+                role="slider" aria-label="Direction field probe" aria-valuetext={`${probe.x}, ${probe.y}`} onPointerDown={event=>{event.stopPropagation();dragging.current=true;event.currentTarget.ownerSVGElement?.setPointerCapture(event.pointerId);event.preventDefault();}}
                 onKeyDown={key}
               />
               {values && (
@@ -434,11 +329,11 @@ export default function DirectionFieldsTargetLesson10192({
               <article>
                 <h3>Current probe</h3>
                 <p>
-                  (x,y)=({fmt(probe.x, 3)}, {fmt(probe.y, 3)})
+                  (x,y)=({show(probe.x,3)}, {show(probe.y,3)})
                 </p>
-                <p>Slope m=x−y={fmt(slope, 3)}</p>
+                <p>Slope m=x−y={show(slope,3)}</p>
                 <p>
-                  Tangent: y={fmt(slope, 3)}(x−{fmt(probe.x, 2)})+
+                  Tangent: y={show(slope,3)}(x−{fmt(probe.x, 2)})+
                   {fmt(probe.y, 2)}
                 </p>
               </article>
@@ -447,7 +342,7 @@ export default function DirectionFieldsTargetLesson10192({
                   Exact solution (through ({initial.x},{initial.y}))
                 </h3>
                 <p className="formula">
-                  y=x−1+{fmt(initial.y - initial.x + 1, 2)}e⁻⁽ˣ⁻ˣ⁰⁾
+                  <MathExpression value={exactFormula}/>
                 </p>
                 <table>
                   <tbody>
@@ -460,7 +355,7 @@ export default function DirectionFieldsTargetLesson10192({
                     <tr>
                       <th>y exact</th>
                       {errors.map((r) => (
-                        <td key={r.x}>{fmt(r.exact)}</td>
+                        <td key={r.x}>{show(r.exact)}</td>
                       ))}
                     </tr>
                   </tbody>
@@ -484,19 +379,19 @@ export default function DirectionFieldsTargetLesson10192({
                 <tr>
                   <th>y ({method})</th>
                   {errors.map((r) => (
-                    <td key={r.x}>{fmt(r.euler)}</td>
+                    <td key={r.x}>{show(r.euler)}</td>
                   ))}
                 </tr>
                 <tr>
                   <th>y (Exact)</th>
                   {errors.map((r) => (
-                    <td key={r.x}>{fmt(r.exact)}</td>
+                    <td key={r.x}>{show(r.exact)}</td>
                   ))}
                 </tr>
                 <tr>
                   <th>Error</th>
                   {errors.map((r) => (
-                    <td key={r.x}>{fmt(r.error)}</td>
+                    <td key={r.x}>{show(r.error)}</td>
                   ))}
                 </tr>
               </tbody>
@@ -526,7 +421,7 @@ export default function DirectionFieldsTargetLesson10192({
           </p>
           <p>
             A solution curve is a smooth path tangent to the field everywhere.
-          </p>
+          </p><MisconceptionSketch/>
         </article>
       </section>
       <section className="df-challenge">
@@ -541,13 +436,13 @@ export default function DirectionFieldsTargetLesson10192({
             "Upward and flattening",
             "Downward and getting steeper",
             "Downward and flattening",
-          ].map((v) => (
+          ].map((v,index) => (
             <label key={v}>
               <input
                 type="radio"
-                name="df10192"
+                name="df10192" aria-label={v} data-letter={String.fromCharCode(65+index)}
                 checked={prediction === v}
-                onChange={() => setPrediction(v)}
+                onChange={()=>{setPrediction(v);setFeedback("");}}
               />
               {v}
             </label>
@@ -566,7 +461,7 @@ export default function DirectionFieldsTargetLesson10192({
         </button>
         {tips && <p>Hint: compare x and y at points to the right of (2,2).</p>}
         {feedback && (
-          <strong
+          <strong role="status"
             className={feedback.startsWith("Correct") ? "correct" : "incorrect"}
           >
             {feedback}
@@ -580,6 +475,7 @@ export default function DirectionFieldsTargetLesson10192({
             "What is a direction field?",
             "How to read slope at a point",
             "What are isoclines?",
+            "How to trace solutions",
             "Exact vs numerical solutions",
           ],
           [
@@ -587,7 +483,8 @@ export default function DirectionFieldsTargetLesson10192({
             "Change initial point and trace",
             "Adjust step size h",
             "Toggle isoclines",
-            "Compare Euler with RK4",
+            "Zoom and inspect slopes",
+            "Compare Euler with exact",
           ],
           [
             "PRACTICE",
@@ -595,17 +492,19 @@ export default function DirectionFieldsTargetLesson10192({
             "Predict curve behavior",
             "Estimate slopes",
             "Improve accuracy",
+            "Interpret results",
           ],
           [
             "EXTEND",
             "Try other equations",
             "Observe equilibrium",
+            "Find where slope = 0",
             "Investigate stability",
             "Verify exact forms",
           ],
-        ].map((a) => (
+        ].map((a,index) => (
           <article key={a[0]}>
-            <h3>{a[0]}</h3>
+            <h3>{index===0?<BookOpen/>:index===1?<Compass/>:index===2?<ClipboardCheck/>:<ListTree/>}{a[0]}</h3>
             <ol>
               {a.slice(1).map((x) => (
                 <li key={x}>{x}</li>
@@ -620,12 +519,11 @@ export default function DirectionFieldsTargetLesson10192({
       >
         ← General and Particular Solutions
       </Link>
-      <div className="df-complete">
-        Field sampled · trajectory traced · numerical error measured
-      </div>
-      <LessonTopicStudyBoard lessonId={10192} alwaysVisible />
+
+      
 
     </main>
   );
 }
+function MisconceptionSketch(){return <svg className="df-misconception-sketch" viewBox="0 0 270 110" role="img" aria-label="Separate slope marks are not connected trajectories; a solution is tangent to the field">{Array.from({length:120},(_,i)=>{const x=8+(i%20)*13,y=9+Math.floor(i/20)*16,dy=-.008*(x-130)*3;return <path key={i} d={`M${x-3} ${y-dy}l6 ${2*dy}`} stroke="#bfcde0" strokeWidth=".8"/>;})}<path d="M5 85L35 92L67 83L92 91L120 77" stroke="#c74758" fill="none" strokeDasharray="4 3"/><path d="M140 99.6Q202.5 94.6 265 27.1" stroke="#1682de" strokeWidth="2" fill="none"/><path d="M56 38L72 58M72 38L56 58" stroke="#e03648" strokeWidth="2.5"/><path d="M211 90L219 98L239 79" stroke="#129b61" strokeWidth="2.5" fill="none"/></svg>;}
 const colors = ["#ff416c", "#2997e8", "#12a36d", "#ff9a24", "#8538ef"];

@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "default sample size and intervals",
+    "assumptions and formula toggle",
+    "sigma increment and boundaries",
+    "all confidence levels",
+    "margin keyboard and numeric controls",
+    "extreme settings",
+    "inspect required and common sample sizes",
+    "cost meter selection",
+    "challenge grading",
+    "tab and next-action navigation"
+  ]
+}

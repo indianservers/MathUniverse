@@ -89,14 +89,15 @@ export default function SeparableEquationsTargetLesson325({
           </button>
           <button>↗ Workspace</button>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content sep325-hero"><aside>
           <h2>Key idea</h2>
           <p>
             Rewrite dy/dx as a product f(x)g(y). Move all x-terms to one side
             and y-terms to the other, integrate, and solve for y.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="sep325-tabs">
         {["Interact", "Learn", "Example", "Formula", "Practice"].map((name) => (
           <button

@@ -166,7 +166,9 @@ export default function AugmentedMatricesTargetLesson357({
             <span>~10 min</span>
           </nav>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content mat357-hero"><aside>
           <strong>
             <Grid2X2 /> Key rule
           </strong>
@@ -175,8 +177,7 @@ export default function AugmentedMatricesTargetLesson357({
             - the coefficient matrix <i>A</i> with constants <i>b</i> as the
             last column.
           </p>
-        </aside>
-      </header>
+        </aside></div>
 
       <nav className="mat357-tabs" aria-label="Lesson views">
         {tabs.map((tab) => (

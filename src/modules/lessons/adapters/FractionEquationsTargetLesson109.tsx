@@ -208,7 +208,9 @@ export default function FractionEquationsTargetLesson109({
             </b>
           </nav>
         </section>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content fraction109-intro"><aside>
           <Lightbulb />
           <small>KEY RULE</small>
           <strong>Multiply both sides by the LCD.</strong>
@@ -216,8 +218,7 @@ export default function FractionEquationsTargetLesson109({
             Every term on both sides must be multiplied, not just the fraction
             term.
           </p>
-        </aside>
-      </header>
+        </aside></div>
 
       <nav className="fraction109-tabs">
         {(

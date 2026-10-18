@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "errors": [],
+  "responsive": [
+    {
+      "state": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "axis",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "axis",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "axis",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "axis",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "empty",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "empty",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "empty",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "empty",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "outside",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "outside",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "outside",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "outside",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ],
+  "clipped": []
+}

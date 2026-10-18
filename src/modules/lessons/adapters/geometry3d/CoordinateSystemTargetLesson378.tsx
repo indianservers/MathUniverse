@@ -337,10 +337,10 @@ export default function CoordinateSystemTargetLesson378({
         <strong>(3,2,4) ≠ (2,3,4)</strong>
       </section>
       <nav className="cs378-nav">
-        <a href="/lessons/graphs-and-functions/364-2d-graph-review">
+        <a href="/lessons/geometry/167-cartesian-plane">
           ←{" "}
           <span>
-            <small>PREVIOUS</small>2D Graph Review
+            <small>PREVIOUS</small>Cartesian Plane
           </span>
         </a>
         <a href="/lessons/3d-mathematics/379-3d-points">

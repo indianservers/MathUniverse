@@ -386,8 +386,9 @@ export default function CubicFunctionsTargetLesson135({
             </button>
           </div>
         </div>
-        <HeroCubic />
+
       </header>
+      <div className="lesson-header-content cubic135-intro"><HeroCubic /></div>
       <nav className="cubic135-tabs">
         {[
           "Interaction + visualization",

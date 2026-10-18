@@ -1,10 +1,14 @@
-import { Link, useParams } from "react-router-dom";
+import { legacyLessonRedirects } from "../catalog/legacyLessonRoutes";
+import { Link, Navigate, useLocation, useParams } from "react-router-dom";
 import { findLesson } from "../catalog/lessonCatalog";
 import LessonShell from "../components/LessonShell";
 import AuthoredCurriculumLessonPage,{getAuthoredCurriculumLesson} from './AuthoredCurriculumLessonPage';
 
 export default function LessonPage() {
   const { categorySlug, lessonSlug } = useParams();
+  const { pathname } = useLocation();
+  const redirect = legacyLessonRedirects[pathname];
+  if (redirect) return <Navigate to={redirect} replace />;
   const authored=getAuthoredCurriculumLesson(Number(lessonSlug?.split('-')[0]));
   if(authored)return <AuthoredCurriculumLessonPage lessonId={authored.lessonId}/>;
   const lesson = findLesson(categorySlug, lessonSlug);

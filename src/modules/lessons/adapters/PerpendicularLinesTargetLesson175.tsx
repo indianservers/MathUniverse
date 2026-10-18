@@ -226,7 +226,9 @@ export default function PerpendicularLinesTargetLesson175({
           <b>▣ Geometry / Graphing View</b>
           <b>◷ 6-10 min</b>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content perp175-header"><aside>
           <label>
             <Globe2 />
             <select
@@ -255,8 +257,7 @@ export default function PerpendicularLinesTargetLesson175({
             Reset
           </button>
           <output>{shared ? "Share link ready" : ""}</output>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="perp175-tabs">
         {[
           ["Explore", "Observe & manipulate"],

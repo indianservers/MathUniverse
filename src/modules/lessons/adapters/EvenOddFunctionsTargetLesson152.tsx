@@ -366,7 +366,9 @@ export default function EvenOddFunctionsTargetLesson152({
         <header className="eo152-header">
           <h1>Even and Odd Functions</h1>
           <p>Recognise symmetry.</p>
-          <div className="eo152-summary">
+
+        </header>
+      <div className="lesson-header-content eo152-header"><div className="eo152-summary">
             <button
               type="button"
               className="even"
@@ -398,8 +400,7 @@ export default function EvenOddFunctionsTargetLesson152({
                 <small>Compare f(x) and f(-x)</small>
               </span>
             </button>
-          </div>
-        </header>
+          </div></div>
 
         <section className="eo152-layout">
           <section className="eo152-left">

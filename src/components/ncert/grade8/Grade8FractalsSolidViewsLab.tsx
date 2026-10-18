@@ -673,7 +673,7 @@ function PracticeAndResources() {
             <ResourceLink to="/shapes" label="2D/3D Shapes" />
             <ResourceLink to="/workspace/3d" label="3D Workspace" />
             <ResourceLink to="/math-lab/3d-graphing" label="3D Graphing Lab" />
-            <ResourceLink to="/ncert" label="NCERT Dashboard" />
+            <ResourceLink to="/curriculum" label="NCERT Dashboard" />
           </div>
         </div>
       </aside>

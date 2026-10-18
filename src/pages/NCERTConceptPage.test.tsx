@@ -1,52 +1,58 @@
 import { renderToStaticMarkup } from "react-dom/server";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
-import NCERTConceptPage from "./NCERTConceptPage";
-
-function renderConcept(path: string) {
-  return renderToStaticMarkup(
-    <MemoryRouter initialEntries={[path]}>
-      <Routes>
-        <Route path="/ncert/:conceptId" element={<NCERTConceptPage />} />
-      </Routes>
-    </MemoryRouter>,
-  );
+import NCERTDashboardPage from "./NCERTDashboardPage";
+function renderDashboard(path: string) {
+ return renderToStaticMarkup(<MemoryRouter initialEntries={[path]}><NCERTDashboardPage /></MemoryRouter>);
 }
-
-describe("NCERT quantitative bar visuals", () => {
-  it("shows one-unit sections for countable exponent results", () => {
-    const html = renderConcept("/ncert/class-7-exponents");
-
-    expect(html).toContain("8 units");
-    expect(html).toContain("4 units");
-    expect(html).toContain("32 units");
-    expect(html).toContain("each section = 1 unit");
-  });
-
-  it("groups large exponent results into clean unit scales", () => {
-    const html = renderConcept("/ncert/class-8-exponents");
-
-    expect(html).toContain("1000 units");
-    expect(html).toContain("each section = 100 units");
-    expect(html).toContain("1.00e+5 units");
-    expect(html).toContain("each section = 5000 units");
-  });
-
-  it("adds values and units to comparison and progression bars", () => {
-    const comparisonHtml = renderConcept("/ncert/class-7-comparing-quantities");
-    const progressionHtml = renderConcept("/ncert/class-10-arithmetic-progressions");
-
-    expect(comparisonHtml).toContain("120.00 units");
-    expect(comparisonHtml).toContain("whole bar = 1000 units | each section = 100.00 units");
-    expect(progressionHtml).toContain("bar height = term value (units)");
-    expect(progressionHtml).toContain("a_n=17 units, S_n=80 units");
-  });
-
-  it("labels Grade 7 data bars with their measured units", () => {
-    const html = renderConcept("/ncert/class-7-data-handling");
-
-    expect(html).toContain("Data bar chart. Values in units");
-    expect(html).toContain("value (units)");
-    expect(html).toContain("mean 8.0 units");
-  });
+describe("shared curriculum dashboard", () => {
+ it("links decimal operations to the published global lesson", () => {
+  const html = renderDashboard("/curriculum?topic=class-7-decimal-operations");
+  expect(html).toContain("Curriculum Dashboard");
+  expect(html).toContain("80-decimal-operations");
+  expect(html).not.toContain('href="/ncert');
+ });
+ it("exposes available solid-view lessons while keeping only fractals Upcoming", () => {
+  const html = renderDashboard("/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming");
+  expect(html).toContain("Fractals and Solid Views");
+  expect(html).toContain("1</strong> chapters");
+  expect(html).toContain("2</strong> unique lessons");
+  expect(html).toContain("Fractals and Sierpinski carpet");
+  expect(html).toContain("411-orthographic-views");
+ });
+ it("renders class and chapter disclosure cards with expansion controls", () => {
+  const html = renderDashboard("/curriculum");
+  expect(html).toContain('class="curriculum-class"');
+  expect(html).toContain('class="curriculum-chapter"');
+  expect(html).toContain("Expand all");
+  expect(html).toContain("Collapse all");
+  expect(html).toContain("Class 6");
+  expect(html).toContain("Class 12");
+ });
+ it("separates paper mapping from missing lessons", () => {
+  const html = renderDashboard("/curriculum?topic=paper-map-Class%2011");
+  expect(html).toContain("Mapping pending");
+  expect(html).toContain("0</strong> upcoming lessons");
+  expect(html).not.toContain('class="curriculum-status-upcoming"');
+ });
+ it("links shared AP practice without claiming exact textbook assessment alignment", () => {
+  const html = renderDashboard("/curriculum?topic=30271");
+  expect(html).toContain("Shared practice available");
+  expect(html).toContain("Exact textbook exercise sets and board assessments");
+  expect(html).not.toContain('class="curriculum-status-upcoming"');
+ });
+ it("shows direct work coverage alongside the missing energy and power topics", () => {
+  const html = renderDashboard("/curriculum?topic=workbook-row-1316");
+  expect(html).toContain("Partly covered");
+  expect(html).toContain("190-dot-product");
+  expect(html).toContain("Energy conservation and power");
+  expect(html).toContain("Kinetic/potential energy");
+ });
+ it("keeps physical momentum Upcoming while linking its mathematical prerequisites", () => {
+  const html = renderDashboard("/curriculum?topic=workbook-row-1310");
+  expect(html).toContain("Mechanics: Momentum");
+  expect(html).toContain("physical momentum p = mv");
+  expect(html).toContain("183-vector-introduction");
+  expect(html).not.toContain("32023-sgd-momentum");
+ });
 });

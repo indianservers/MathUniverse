@@ -165,7 +165,9 @@ export default function OrthographicViewsTargetLesson411({
             </a>
           </nav>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content ortho411-hero"><aside>
           <h3>What you’ll learn</h3>
           {[
             "Project 3D solids to orthographic views",
@@ -179,8 +181,7 @@ export default function OrthographicViewsTargetLesson411({
               {item}
             </p>
           ))}
-        </aside>
-      </header>
+        </aside></div>
       <nav className="ortho411-tabs">
         {tabs.map((item) => (
           <button

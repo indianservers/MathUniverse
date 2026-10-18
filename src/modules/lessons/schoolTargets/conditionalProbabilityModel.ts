@@ -21,8 +21,8 @@ export function studentPositions(students: StudentRegion[]) {
     if (Math.abs(Math.hypot(x - 130, y - 140) - 90) < 6 || Math.abs(Math.hypot(x - 220, y - 140) - 90) < 6) continue;
     slots[studentRegionAt(x, y)].push({ x, y });
   }
-  const used = { a: 0, both: 0, b: 0, neither: 0 };
-  return students.map((region, id) => ({ id, region, ...slots[region][used[region]++] }));
+  const totals = conditionalCounts(students), used = { a: 0, both: 0, b: 0, neither: 0 };
+  return students.map((region, id) => ({ id, region, ...slots[region][Math.floor((used[region]++ + .5) * slots[region].length / totals[region])] }));
 }
 export function probabilityFraction(numerator: number, denominator: number) {
   if (!denominator) return "Undefined";

@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "preview": "full app :5190",
+  "errors": [],
+  "geometry": {
+    "error": 5.329070518200751e-15,
+    "xUnit": 99.16666666666667,
+    "yUnit": 99.16666666666666
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "clipped": []
+}

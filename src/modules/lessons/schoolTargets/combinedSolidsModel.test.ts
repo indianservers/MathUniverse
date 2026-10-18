@@ -1,0 +1,7 @@
+import{describe,it,expect}from'vitest';import{csModel,csGeometry,csSlantMin}from'./combinedSolidsModel';
+describe('combined solids model',()=>{
+it('uses the cone vertical height rather than its slant for volume',()=>{const m=csModel(3,12,6);expect(m.coneHeight).toBeCloseTo(Math.sqrt(27),12);expect(m.coneV).toBeCloseTo(48.9725828343,8);expect(m.totalV).toBeCloseTo(444.81325718663777,8);expect(m.totalArea).toBeCloseTo(108*Math.PI,12);});
+it('preserves exact formulas and valid fitted geometry across slider combinations',()=>{let count=0;for(let r=1;r<=5;r+=.5)for(let h=4;h<=18;h+=.5)for(let l=csSlantMin(r);l<=12;l+=.5){const m=csModel(r,h,l);expect(m.coneHeight**2+r*r).toBeCloseTo(l*l,10);expect(m.totalV/Math.PI).toBeCloseTo(r*r*h+2*r**3/3+r*r*Math.sqrt(l*l-r*r)/3,10);expect(m.totalArea).toBeCloseTo(2*Math.PI*r*r+Math.PI*r*l+2*Math.PI*r*h,10);for(const ex of[false,true])for(const aspect of[1,2]){const g=csGeometry(r,h,l,ex,aspect);expect(g.extent[1]-g.extent[0]).toBeCloseTo(g.span*g.scale,10);expect(g.extent[0]+g.extent[1]).toBeCloseTo(0,10);expect(g.span*g.scale).toBeLessThanOrEqual(aspect*5.3+1e-8);expect(2*r*g.scale).toBeLessThanOrEqual(4+1e-8);}count++;}expect(count).toBeGreaterThan(4000);});
+it('rejects impossible and degenerate dimensions',()=>{for(const a of[[3,12,3],[5,12,4],[0,12,6],[3,0,6],[NaN,12,6]])expect(()=>csModel(...a as [number,number,number])).toThrow();});
+});
+

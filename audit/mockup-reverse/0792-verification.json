@@ -1,0 +1,889 @@
+{
+  "status": "passed",
+  "errors": [],
+  "responsive": [
+    {
+      "state": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "absolute",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "absolute",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "absolute",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "absolute",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "double",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "double",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "double",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "double",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "partial",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "partial",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "partial",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "partial",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "empty",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "empty",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "empty",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "empty",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ],
+  "results": [
+    {
+      "map": [
+        4,
+        1,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        2,
+        1,
+        0,
+        1,
+        2
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 5,
+      "valid": true,
+      "many": false,
+      "one": true
+    },
+    {
+      "map": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "cod": [
+        -4,
+        -2,
+        0,
+        2,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 5,
+      "valid": true,
+      "many": false,
+      "one": true
+    },
+    {
+      "map": [
+        0,
+        1,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        1,
+        1,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        2,
+        1,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 4,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        3,
+        1,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 4,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        1,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        0,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        1,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        2,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 4,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        3,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 4,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        1,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 2,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        2,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        3,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        4,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 2,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        4,
+        0,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 2,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        4,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 2,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        4,
+        2,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 2,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        4,
+        3,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 2,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 1,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        4,
+        4,
+        0
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 2,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        4,
+        4,
+        1
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 2,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        4,
+        4,
+        2
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 2,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        4,
+        4,
+        3
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 2,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 1,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 0,
+      "distinct": 0,
+      "valid": false,
+      "many": false,
+      "one": false
+    },
+    {
+      "map": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "cod": [
+        -4,
+        -2,
+        0,
+        2,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 5,
+      "valid": true,
+      "many": false,
+      "one": true
+    },
+    {
+      "map": [
+        1,
+        1,
+        2,
+        3,
+        4
+      ],
+      "cod": [
+        -4,
+        -2,
+        0,
+        2,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 4,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        0,
+        1,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        1,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        0,
+        1,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    },
+    {
+      "map": [
+        4,
+        1,
+        0,
+        1,
+        4
+      ],
+      "cod": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "mapped": 5,
+      "distinct": 3,
+      "valid": true,
+      "many": true,
+      "one": false
+    }
+  ],
+  "clipped": [],
+  "links": [
+    "/lessons/school/class-11/class-11-relations-and-functions-one-one-functions",
+    "/lessons/school/class-11/class-11-relations-and-functions-into-functions"
+  ]
+}

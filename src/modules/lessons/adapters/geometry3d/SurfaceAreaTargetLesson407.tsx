@@ -599,7 +599,7 @@ export default function SurfaceAreaTargetLesson407({
         <button onClick={() => act(() => setShared((v) => !v))}>
           Bookmark
         </button>
-        <a href="/lessons/3d-mathematics/408-eulers-polyhedron-formula">
+        <a href="/lessons/3d-mathematics/408-euler-s-polyhedron-formula">
           <span>
             Next<small>Euler's Polyhedron Formula</small>
           </span>{" "}

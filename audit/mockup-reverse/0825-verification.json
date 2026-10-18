@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "clipped": [],
+  "geometry": {
+    "max": 0,
+    "residual": 3.463985845157837e-16,
+    "transform": {
+      "angle": 0,
+      "scale": 29.166666666666668,
+      "ox": 390,
+      "oy": 200
+    },
+    "center": {
+      "x": -0.25,
+      "y": -0.75
+    }
+  }
+}

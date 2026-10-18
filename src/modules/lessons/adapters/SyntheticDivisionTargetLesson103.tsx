@@ -262,7 +262,9 @@ export default function SyntheticDivisionTargetLesson103({
             <b>6-10 min</b>
           </nav>
         </section>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content synthetic103-intro"><aside>
           <Lightbulb />
           <h3>Key Idea</h3>
           <p>
@@ -271,8 +273,7 @@ export default function SyntheticDivisionTargetLesson103({
           <p>
             For <i>x + 2</i>, use −2 (not 2).
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="synthetic103-tabs">
         {[
           "Interaction + Visualization",

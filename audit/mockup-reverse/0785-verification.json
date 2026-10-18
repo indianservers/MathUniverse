@@ -1,0 +1,137 @@
+{
+  "status": "passed",
+  "errors": [],
+  "results": [
+    {
+      "radius": 3,
+      "height": 12,
+      "slant": 6,
+      "total": 444.81325718663777,
+      "area": 339.29
+    },
+    {
+      "radius": 1,
+      "height": 4,
+      "slant": 4,
+      "total": 18.71654439272598,
+      "area": 43.98
+    },
+    {
+      "radius": 5,
+      "height": 18,
+      "slant": 12,
+      "total": 1961.1054972434358,
+      "area": 911.06
+    },
+    {
+      "radius": 4,
+      "height": 8,
+      "slant": 4.5,
+      "total": 570.7067951284318,
+      "area": 358.14
+    },
+    {
+      "radius": 2.5,
+      "height": 10,
+      "slant": 6,
+      "total": 264.7731412403657,
+      "area": 243.47
+    },
+    {
+      "radius": 3,
+      "height": 12,
+      "slant": 6,
+      "total": 444.81325718663777,
+      "area": 339.29
+    },
+    {
+      "radius": 5,
+      "height": 12,
+      "slant": 5.5,
+      "total": 1264.2629594502223,
+      "area": 620.46
+    },
+    {
+      "radius": 3,
+      "height": 12,
+      "slant": 6,
+      "total": 444.81325718663777,
+      "area": 339.29
+    }
+  ],
+  "responsive": [
+    {
+      "state": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "surface",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "surface",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "surface",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "surface",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "exploded",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "exploded",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "exploded",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "exploded",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ],
+  "rotationChangesCanvas": true
+}

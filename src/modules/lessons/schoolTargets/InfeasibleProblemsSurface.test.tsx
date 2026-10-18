@@ -17,5 +17,6 @@ it("renders the dedicated bound lab, comparison and unanswered practice", () => 
   expect(html).toContain("PARALLEL, NON-OVERLAPPING HALF-PLANES");
   expect(html).toContain("Check answer");
   expect(html).not.toContain("Correct. Option C");
-  expect(html).toContain("Next: Diet Problem");
+  expect(html).toContain('href="/lessons/school/class-12/class-12-linear-programming-diet-problem"');
+  expect(html).toContain("Diet Problem");
 });

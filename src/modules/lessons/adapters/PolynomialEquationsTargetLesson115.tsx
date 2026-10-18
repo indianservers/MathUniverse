@@ -343,7 +343,9 @@ export default function PolynomialEquationsTargetLesson115({
             </button>
           </div>
         </section>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content poly115-intro"><aside>
           <b>Key idea</b>
           {[
             "Move everything to one side: set equal to 0.",
@@ -356,8 +358,7 @@ export default function PolynomialEquationsTargetLesson115({
               {line}
             </p>
           ))}
-        </aside>
-      </header>
+        </aside></div>
       <nav className="poly115-tabs">
         {[
           "Interaction + visualization",

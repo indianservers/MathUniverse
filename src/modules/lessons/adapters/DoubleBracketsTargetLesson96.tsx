@@ -178,10 +178,7 @@ export default function DoubleBracketsTargetLesson96({
         <b>96 Double Brackets</b>
       </nav>
       <header className="double96-header">
-        <div>
-          <b>ALGEBRA</b>
-          <strong>EXPRESSIONS AND MANIPULATION</strong>
-        </div>
+
         <h1>Double Brackets</h1>
         <p>Expand binomial products using area tiles.</p>
         <nav>
@@ -190,7 +187,13 @@ export default function DoubleBracketsTargetLesson96({
           <b>6-10 min</b>
           <b>Area tiles</b>
         </nav>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content double96-header"><div>
+          <b>ALGEBRA</b>
+          <strong>EXPRESSIONS AND MANIPULATION</strong>
+        </div></div>
+      <div className="lesson-header-content"><aside>
           <h2>In this lesson</h2>
           <p>✓ Use area tiles to expand {expression}</p>
           <p>
@@ -202,8 +205,7 @@ export default function DoubleBracketsTargetLesson96({
           <p>
             ✓ Verify by substitution ({variable} = {checkValue})
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="double96-tabs">
         {["Interact", "Learn", "Examples", "Formula", "Practice"].map(
           (name) => (

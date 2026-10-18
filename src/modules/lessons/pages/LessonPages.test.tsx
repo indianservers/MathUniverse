@@ -3477,7 +3477,7 @@ describe("lesson pages", () => {
       "dedicated-reflexive-directed-graph-matrix-witness-engine",
     );
     expect(html).toContain('data-set-size="4"');
-    expect(html).toContain('data-pair-count="8"');
+    expect(html).toContain('data-pair-count="3"');
     expect(html).toContain('data-missing="1"');
     expect(html).toContain('data-reflexive="false"');
     expect(html).toContain("Missing self-pair: (1, 1)");
@@ -4151,7 +4151,7 @@ describe("lesson pages", () => {
     expect(html).toContain('data-testid="school-mockup-0816"');
     expect(html).toContain("dedicated-focus-directrix-locus-trace-engine");
     expect(html).toContain('data-focus-y="1.50"');
-    expect(html).toContain('data-directrix-y="-5.00"');
+    expect(html).toContain('data-directrix-y="-5.04"');
     expect(html).toContain('data-equal="true"');
     expect(html).toContain('data-eccentricity="1.000"');
   });

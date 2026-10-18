@@ -1,0 +1,119 @@
+{
+  "status": "passed",
+  "errors": [],
+  "responsive": [
+    {
+      "state": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "cardWidth": 138.359375
+    },
+    {
+      "state": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "cardWidth": 138.359375
+    },
+    {
+      "state": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "cardWidth": 138.359375
+    },
+    {
+      "state": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "cardWidth": 157.984375
+    },
+    {
+      "state": "broken",
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "cardWidth": 138.359375
+    },
+    {
+      "state": "broken",
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "cardWidth": 138.359375
+    },
+    {
+      "state": "broken",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "cardWidth": 138.359375
+    },
+    {
+      "state": "broken",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "cardWidth": 157.984375
+    },
+    {
+      "state": "base-missing",
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "cardWidth": 138.359375
+    },
+    {
+      "state": "base-missing",
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "cardWidth": 138.359375
+    },
+    {
+      "state": "base-missing",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "cardWidth": 138.359375
+    },
+    {
+      "state": "base-missing",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "cardWidth": 157.984375
+    },
+    {
+      "state": "formal",
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "cardWidth": 138.359375
+    },
+    {
+      "state": "formal",
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "cardWidth": 138.359375
+    },
+    {
+      "state": "formal",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "cardWidth": 138.359375
+    },
+    {
+      "state": "formal",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "cardWidth": 157.984375
+    }
+  ],
+  "clipped": []
+}

@@ -542,9 +542,9 @@ export default function IndicesTargetLesson99({
             Previous<b>Algebraic Fractions</b>
           </span>
         </a>
-        <a href="/lessons/algebra/100-negative-indices">
+        <a href="/lessons/algebra/100-surds">
           <span>
-            Next<b>Negative indices</b>
+            Next<b>Surds</b>
           </span>
           <ArrowRight />
         </a>

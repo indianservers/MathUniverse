@@ -180,11 +180,12 @@ export default function ZoomPanTargetLesson49({
         </small>
         <h1>Zoom and Pan</h1>
         <p>Inspect graphs at different scales.</p>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content zp49-hero"><aside>
           <strong>f(x) = 0.25x³ − x</strong>
           <span>Same equation, different view</span>
-        </aside>
-      </header>
+        </aside></div>
       <section className="zp49-workspace">
         <main className="zp49-main">
           <header>

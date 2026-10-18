@@ -1,0 +1,7 @@
+import{describe,it,expect}from'vitest';import{moreThanModel,moveMorePoint,moreThanYMax,type MoreRow}from'./moreThanOgiveModel';
+const rows=(f:number[]):MoreRow[]=>f.map((frequency,i)=>({id:i*3+5,boundary:i*10,frequency}));
+describe('more-than ogive model',()=>{
+it('uses cumulative subtraction by index and exact median interpolation',()=>{const m=moreThanModel(rows([4,6,8,7,5]),50);expect(m.points.map(p=>p.cf)).toEqual([30,26,20,12,5,0]);expect(m.median).toBe(26.25);expect(m.points.at(-1)?.frequency).toBe(0);});
+it('handles empty distributions and zero-frequency median intervals',()=>{expect(moreThanModel(rows([0,0,0]),30).median).toBeNull();expect(moreThanModel(rows([1,0,1]),30).medianRange).toEqual([10,20]);expect(moreThanYMax(30)).toBe(35);expect(moreThanYMax(0)).toBe(1);});
+it('preserves monotonic cumulative frequencies and total during point drags',()=>{for(let a=0;a<=5;a++)for(let b=0;b<=5;b++)for(let c=0;c<=5;c++){const r=rows([a,b,c]),m=moreThanModel(r,30);expect(m.points.every((p,i)=>i===0||p.cf<=m.points[i-1].cf)).toBe(true);for(let i=1;i<3;i++)for(let desired=-2;desired<=m.total+2;desired++){const next=moveMorePoint(r,i,desired),facts=moreThanModel(next,30);expect(facts.total).toBe(m.total);expect(next.every(r=>Number.isInteger(r.frequency)&&r.frequency>=0)).toBe(true);expect(next.map(r=>r.id)).toEqual(r.map(r=>r.id));expect(facts.points[i].cf).toBe(Math.max(m.points[i+1].cf,Math.min(m.points[i-1].cf,Math.round(desired))));}}});
+});

@@ -125,10 +125,10 @@ const baseLinks: SiteLink[] = [
     changeFrequency: "weekly",
   },
   {
-    title: "NCERT Dashboard",
-    path: "/ncert",
+    title: "Curriculum Dashboard",
+    path: "/curriculum",
     description:
-      "Class 7, Class 10, and Class 12 NCERT visual labs with formula, theorem, visual proof, practice, and QA badges.",
+      "NCERT, AP, and Telangana topics mapped to shared mathematics lessons, with missing lessons marked Upcoming.",
     category: "NCERT",
     keywords: [
       "NCERT",

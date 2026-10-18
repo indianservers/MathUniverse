@@ -1,531 +1,62 @@
 import { CheckCircle2, Lightbulb, RotateCcw, XCircle } from "lucide-react";
-import { useState } from "react";
+import { useId, useState } from "react";
 import type { DragEvent } from "react";
 import { Link } from "react-router-dom";
+import MathExpression from "../../../components/ui/MathExpression";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
+import { blankPartsChallenge, gradePartsChallenge, partsAssignment, partsExamples, samplePartsVerification, type ChallengeKey, type PartsExampleId, type PartsFactor } from "./integrationByPartsModel";
 import "./IntegrationByPartsTargetLesson10181.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-
-type Example = {
-  integral: string;
-  u: string;
-  dv: string;
-  du: string;
-  v: string;
-  remaining: string;
-  answer: string;
-};
-
-const examples: Example[] = [
-  {
-    integral: "∫ x eˣ dx",
-    u: "x",
-    dv: "eˣ dx",
-    du: "dx",
-    v: "eˣ",
-    remaining: "∫ eˣ dx",
-    answer: "eˣ(x − 1) + C",
-  },
-  {
-    integral: "∫ x sin(x) dx",
-    u: "x",
-    dv: "sin(x) dx",
-    du: "dx",
-    v: "−cos(x)",
-    remaining: "∫ −cos(x) dx",
-    answer: "−x cos(x) + sin(x) + C",
-  },
+import "../components/LessonMockupReference.css";
+const M=({value}:{value:string})=><MathExpression value={value}/>;
+const rule=String.raw`\int u\,dv=uv-\int v\,du`;
+const liateRows=[
+ {letter:"L",name:"Logarithmic",tip:"Choose u as ln x (so du = dx/x is simpler).",why:"Logarithms often become simpler rational functions after differentiation."},
+ {letter:"I",name:"Inverse trig",tip:"Use u = arctan x, arccos x, etc.",why:"Differentiating an inverse trigonometric function removes the inverse function."},
+ {letter:"A",name:"Algebraic",tip:"Pick u as a polynomial or simple power.",why:"Differentiating a polynomial reduces its degree; repeated parts eventually terminates."},
+ {letter:"T",name:"Trig",tip:"If trig × trig, choose the one that simplifies when differentiated.",why:"Trigonometric functions stay tractable under differentiation and integration."},
+ {letter:"E",name:"Exponential",tip:"If eˣ is present, usually choose dv = eˣ dx.",why:"The exponential eˣ is especially convenient to integrate for v."},
 ];
-
-const clean = (value: string) =>
-  value
-    .toLowerCase()
-    .replace(/\s|\*|\^|−|∫/g, "")
-    .replace(/²/g, "2")
-    .replace(/ˣ/g, "x");
-
-export default function IntegrationByPartsTargetLesson10181({
-  lesson: _lesson,
-}: {
-  lesson: SchoolSyllabusLesson;
-}) {
-  const [exampleIndex, setExampleIndex] = useState(0);
-  const [u, setU] = useState("");
-  const [dv, setDv] = useState("");
-  const [liate, setLiate] = useState("L");
-  const [quick, setQuick] = useState("");
-  const [quickFeedback, setQuickFeedback] = useState("");
-  const [challenge, setChallenge] = useState({
-    u: "",
-    dv: "",
-    du: "",
-    v: "",
-    uv: "",
-    rest: "",
-    answer: "",
-  });
-  const [challengeFeedback, setChallengeFeedback] = useState("");
-  const [revealSteps, setRevealSteps] = useState(false);
-  const [showSolution, setShowSolution] = useState(false);
-  const example = examples[exampleIndex];
-  const assignmentCorrect = u === example.u && dv === example.dv;
-  const showWorked = (!u && !dv) || assignmentCorrect;
-
-  const reset = () => {
-    setU("");
-    setDv("");
-    setLiate("L");
-    setQuick("");
-    setQuickFeedback("");
-    setChallenge({
-      u: "",
-      dv: "",
-      du: "",
-      v: "",
-      uv: "",
-      rest: "",
-      answer: "",
-    });
-    setChallengeFeedback("");
-    setRevealSteps(false);
-    setShowSolution(false);
-  };
-  const changeExample = () => {
-    setExampleIndex((value) => (value + 1) % examples.length);
-    reset();
-  };
-  const assign = (value: string, slot?: "u" | "dv") => {
-    if (slot === "u" || (!slot && value === example.u)) setU(value);
-    else if (slot === "dv" || !slot) setDv(value);
-  };
-  const drop = (event: DragEvent<HTMLButtonElement>, slot: "u" | "dv") => {
-    event.preventDefault();
-    assign(event.dataTransfer.getData("text/plain"), slot);
-  };
-  const updateChallenge = (key: keyof typeof challenge, value: string) =>
-    setChallenge((current) => ({ ...current, [key]: value }));
-  const checkChallenge = () => {
-    const accepted =
-      clean(challenge.u) === "x2" &&
-      clean(challenge.dv) === "exdx" &&
-      clean(challenge.du) === "2xdx" &&
-      clean(challenge.v) === "ex" &&
-      ["x2ex", "exx2"].includes(clean(challenge.uv)) &&
-      ["2xexdx", "2exxdx"].includes(clean(challenge.rest)) &&
-      ["ex(x2-2x+2)+c", "x2ex-2xex+2ex+c"].includes(clean(challenge.answer));
-    setChallengeFeedback(
-      accepted
-        ? "Correct: repeated integration by parts gives eˣ(x²−2x+2)+C."
-        : "Recheck LIATE, then apply integration by parts twice.",
-    );
-  };
-
-  return (
-    <main
-      className="ib10181-page"
-      data-testid="school-mockup-0855"
-      data-object-model="dedicated-integration-by-parts-product-rule-engine"
-      data-example={exampleIndex + 1}
-      data-u={u || "unassigned"}
-      data-dv={dv || "unassigned"}
-      data-assignment-correct={String(assignmentCorrect)}
-      data-result={assignmentCorrect ? example.answer : "pending"}
-    >
-      <header>
-        <small>CLASS 12 · FORMAL CALCULUS</small>
-        <h1>Integration by Parts</h1>
-        <p>
-          Use the product rule d(uv)=u(dv)+v(du) to evaluate integrals of
-          products.
-        </p>
-        <div>
-          <span>Class 12</span>
-          <span>Advanced</span>
-          <span>Concept</span>
-          <span>Worked Examples</span>
-          <span>Practice</span>
-        </div>
-      </header>
-
-      <section className="ib-rule-strip">
-        <h3>FROM PRODUCT RULE TO INTEGRATION BY PARTS</h3>
-        <div>
-          <article>
-            <b>Product rule</b>
-            <h2>d(uv) = u dv + v du</h2>
-          </article>
-          <strong>→</strong>
-          <article>
-            <b>Rearrange and integrate</b>
-            <h2>∫u dv = uv − ∫v du</h2>
-          </article>
-          <aside>
-            <b>Remember</b>
-            <ol>
-              <li>Choose u and dv</li>
-              <li>Find du and v</li>
-              <li>Apply formula</li>
-              <li>Simplify</li>
-            </ol>
-          </aside>
-        </div>
-      </section>
-
-      <section className="ib-workspace">
-        <div className="ib-workspace-title">
-          <div>
-            <h3>EXPLORE: DECISION WORKSPACE</h3>
-            <p>
-              Evaluate <b>{example.integral}</b> using integration by parts.
-            </p>
-          </div>
-          <div>
-            <button onClick={reset}>
-              <RotateCcw /> Reset
-            </button>
-            <button onClick={changeExample}>New example</button>
-          </div>
-        </div>
-        <div className="ib-main-grid">
-          <article className="ib-builder">
-            <h4>
-              <i>1</i> Assign u and dv (drag or click)
-            </h4>
-            <p>Drag the expression chips to a slot, or click to assign.</p>
-            <div className="ib-chips">
-              {[example.u, example.dv].map((value) => (
-                <button
-                  draggable
-                  onDragStart={(event) =>
-                    event.dataTransfer.setData("text/plain", value)
-                  }
-                  onClick={() => assign(value)}
-                  key={value}
-                >
-                  {value}
-                </button>
-              ))}
-            </div>
-            <div className="ib-slots">
-              <span>u =</span>
-              <button
-                onDragOver={(event) => event.preventDefault()}
-                onDrop={(event) => drop(event, "u")}
-                onClick={() => setU(example.u)}
-              >
-                {u || "drop here"}
-              </button>
-              <span>dv =</span>
-              <button
-                onDragOver={(event) => event.preventDefault()}
-                onDrop={(event) => drop(event, "dv")}
-                onClick={() => setDv(example.dv)}
-              >
-                {dv || "drop here"}
-              </button>
-            </div>
-            <hr />
-            <h4>
-              <i>2</i> Compute du and v
-            </h4>
-            <div className="ib-compute">
-              <span>du =</span>
-              <output>{showWorked || u ? example.du : "—"}</output>
-              <span>v =</span>
-              <output>{showWorked || dv ? example.v : "—"}</output>
-            </div>
-            <hr />
-            <h4>
-              <i>3</i> Apply integration by parts
-            </h4>
-            <h2>∫u dv = uv − ∫v du</h2>
-            <h2>
-              {showWorked
-                ? `${example.integral} = ${example.u}(${example.v}) − ${example.remaining}`
-                : "Assign both expressions to build the transformed integral."}
-            </h2>
-            <hr />
-            <h4>
-              <i>4</i> Evaluate the remaining integral
-            </h4>
-            <p>
-              {showWorked
-                ? `${example.remaining} is evaluated directly.`
-                : "The remaining integral appears after a valid assignment."}
-            </p>
-            <div className={showWorked ? "ib-answer correct" : "ib-answer"}>
-              {showWorked
-                ? `${example.integral} = ${example.answer}`
-                : "Final answer pending"}
-              {showWorked && <CheckCircle2 />}
-            </div>
-          </article>
-
-          <aside className="ib-guidance">
-            <section>
-              <h3>LIATE: How to choose</h3>
-              <div className="ib-liate">
-                {["L", "I", "A", "T", "E"].map((letter) => (
-                  <button
-                    className={liate === letter ? "active" : ""}
-                    onClick={() => setLiate(letter)}
-                    key={letter}
-                  >
-                    {letter}
-                  </button>
-                ))}
-              </div>
-              <p>
-                <b>{liate}</b>:{" "}
-                {
-                  {
-                    L: "Logarithmic expressions usually become simpler when differentiated.",
-                    I: "Inverse trigonometric expressions are strong u choices.",
-                    A: "Algebraic powers reduce degree when differentiated.",
-                    T: "Trigonometric factors are often selected as dv.",
-                    E: "Exponential factors are convenient to integrate.",
-                  }[liate]
-                }
-              </p>
-              <small>
-                Goal: Differentiate u to make it simpler; integrate dv to get v.
-              </small>
-            </section>
-            <section>
-              <h3>COMMON DERIVATIVES AND INTEGRALS</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Expression</th>
-                    <th>du</th>
-                    <th>∫ dv</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>xⁿ</td>
-                    <td>nxⁿ⁻¹ dx</td>
-                    <td>xⁿ⁺¹/(n+1)</td>
-                  </tr>
-                  <tr>
-                    <td>ln x</td>
-                    <td>dx/x</td>
-                    <td>x ln x−x</td>
-                  </tr>
-                  <tr>
-                    <td>eˣ</td>
-                    <td>eˣ dx</td>
-                    <td>eˣ+C</td>
-                  </tr>
-                  <tr>
-                    <td>sin x</td>
-                    <td>cos x dx</td>
-                    <td>−cos x+C</td>
-                  </tr>
-                  <tr>
-                    <td>cos x</td>
-                    <td>−sin x dx</td>
-                    <td>sin x+C</td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
-          </aside>
-        </div>
-
-        <section className="ib-verify">
-          <div>
-            <h3>VERIFY YOUR ANSWER</h3>
-            <p>Differentiate the result to check.</p>
-            <h2>F(x) = eˣ(x−1)+C</h2>
-            <article>
-              F′(x)=eˣ(x−1)+eˣ = xeˣ{" "}
-              <b>
-                <CheckCircle2 /> Matches the integrand.
-              </b>
-            </article>
-          </div>
-          <article>
-            <b>Visual check: F′(x) and xeˣ</b>
-            <svg
-              viewBox="0 0 340 180"
-              aria-label="Derivative verification graph"
-            >
-              <path d="M20 145H325M130 15V165" stroke="#65758a" />
-              <path
-                d="M30 145 C95 145 128 142 160 125 C205 100 245 54 300 18"
-                fill="none"
-                stroke="#285df4"
-                strokeWidth="2.5"
-              />
-              <path
-                d="M30 145 C95 145 128 142 160 125 C205 100 245 54 300 18"
-                fill="none"
-                stroke="#8b45ed"
-                strokeDasharray="6 4"
-                strokeWidth="2"
-              />
-            </svg>
-          </article>
-        </section>
-      </section>
-
-      <section className="ib-lessons-row">
-        <article>
-          <h3>WORKED EXAMPLE</h3>
-          <p>Evaluate ∫x ln x dx.</p>
-          <ol>
-            <li>Choose u=ln x and dv=x dx.</li>
-            <li>Then du=dx/x and v=x²/2.</li>
-            <li>Apply ∫u dv=uv−∫v du.</li>
-            <li>Simplify to x²ln(x)/2−x²/4+C.</li>
-          </ol>
-          <div>
-            ∫x ln x dx = x²ln(x)/2 − x²/4 + C <CheckCircle2 />
-          </div>
-        </article>
-        <aside>
-          <section>
-            <h3>COMMON MISTAKES</h3>
-            <p>
-              <XCircle /> Do not differentiate dv; integrate it to find v.
-            </p>
-            <p>
-              <XCircle /> Keep the minus sign in uv−∫v du.
-            </p>
-          </section>
-          <section>
-            <h3>QUICK CHECK</h3>
-            <p>Which step is correct for ∫xeˣ dx?</p>
-            {["u=eˣ, dv=x dx", "u=x, dv=eˣ dx", "u=eˣ dx, dv=x"].map(
-              (value, index) => (
-                <label key={value}>
-                  <input
-                    type="radio"
-                    name="ib-quick"
-                    checked={quick === String(index)}
-                    onChange={() => setQuick(String(index))}
-                  />
-                  {value}
-                </label>
-              ),
-            )}
-            <button
-              onClick={() =>
-                setQuickFeedback(
-                  quick === "1"
-                    ? "Correct: algebraic x is u and eˣ dx is dv."
-                    : "Use LIATE: choose the algebraic factor as u.",
-                )
-              }
-            >
-              Check
-            </button>
-            {quickFeedback && <output>{quickFeedback}</output>}
-          </section>
-        </aside>
-      </section>
-
-      <section className="ib-challenge">
-        <div>
-          <h3>PRACTICE CHALLENGE</h3>
-          <p>Evaluate ∫x²eˣ dx using integration by parts.</p>
-          <div className="ib-challenge-grid">
-            <label>
-              u =
-              <input
-                value={challenge.u}
-                onChange={(e) => updateChallenge("u", e.target.value)}
-                placeholder="drop u"
-              />
-            </label>
-            <label>
-              dv =
-              <input
-                value={challenge.dv}
-                onChange={(e) => updateChallenge("dv", e.target.value)}
-                placeholder="drop dv"
-              />
-            </label>
-            <label>
-              du =
-              <input
-                value={challenge.du}
-                onChange={(e) => updateChallenge("du", e.target.value)}
-                placeholder="typed answer"
-              />
-            </label>
-            <label>
-              v =
-              <input
-                value={challenge.v}
-                onChange={(e) => updateChallenge("v", e.target.value)}
-                placeholder="typed answer"
-              />
-            </label>
-            <label>
-              uv =
-              <input
-                value={challenge.uv}
-                onChange={(e) => updateChallenge("uv", e.target.value)}
-                placeholder="first term"
-              />
-            </label>
-            <label>
-              ∫v du =
-              <input
-                value={challenge.rest}
-                onChange={(e) => updateChallenge("rest", e.target.value)}
-                placeholder="remaining integral"
-              />
-            </label>
-            <label className="wide">
-              Final answer
-              <input
-                aria-label="Challenge final answer"
-                value={challenge.answer}
-                onChange={(e) => updateChallenge("answer", e.target.value)}
-                placeholder="your final answer"
-              />
-            </label>
-          </div>
-          <button onClick={checkChallenge}>Check challenge</button>
-          {challengeFeedback && <output>{challengeFeedback}</output>}
-        </div>
-        <aside>
-          <section>
-            <h3>
-              <Lightbulb /> HINT
-            </h3>
-            <p>Use LIATE: choose u=x² and dv=eˣ dx.</p>
-            <button onClick={() => setRevealSteps((value) => !value)}>
-              {revealSteps ? "Hide steps" : "Reveal steps"}
-            </button>
-            {revealSteps && (
-              <p>du=2x dx, v=eˣ. Apply parts again to ∫2xeˣ dx.</p>
-            )}
-          </section>
-          <section>
-            <h3>TIP</h3>
-            <p>Each repeated application reduces the polynomial degree by 1.</p>
-            <button onClick={() => setShowSolution((value) => !value)}>
-              {showSolution ? "Hide full solution" : "Show full solution"}
-            </button>
-            {showSolution && <p>∫x²eˣdx=eˣ(x²−2x+2)+C.</p>}
-          </section>
-        </aside>
-      </section>
-
-      <nav className="ib-adjacent">
-        <Link to="/lessons/school/class-12/class-12-formal-calculus-integration-by-substitution">
-          ← Previous: Integration by Substitution
-        </Link>
-        <Link to="/lessons/school/class-12/class-12-formal-calculus-integration-by-partial-fractions">
-          Next: Integration by Partial Fractions →
-        </Link>
-      </nav>
-      <LessonTopicStudyBoard lessonId={10181} alwaysVisible />
-
-    </main>
-  );
+const formulaRows=[
+ [String.raw`x^n`,String.raw`nx^{n-1}\,dx`,String.raw`\dfrac{x^{n+1}}{n+1}+C\ (n\ne-1)`],
+ [String.raw`\ln x`,String.raw`\dfrac1x\,dx`,String.raw`x\ln x-x+C`],
+ [String.raw`e^x`,String.raw`e^x\,dx`,String.raw`e^x+C`],
+ [String.raw`\sin x`,String.raw`\cos x\,dx`,String.raw`-\cos x+C`],
+ [String.raw`\cos x`,String.raw`-\sin x\,dx`,String.raw`\sin x+C`],
+ [String.raw`\tan x`,String.raw`\sec^2 x\,dx`,String.raw`-\ln|\cos x|+C`],
+ [String.raw`1/x`,String.raw`-\dfrac1{x^2}\,dx`,String.raw`\ln|x|+C`],
+ [String.raw`\sec^2 x`,String.raw`2\sec^2 x\tan x\,dx`,String.raw`\tan x+C`],
+];
+function Heading({n,children}:{n:number;children:React.ReactNode}){return <h4 className="ib-step-heading"><span>{n}</span>{children}</h4>;}
+function VerificationGraph({id}:{id:PartsExampleId}){
+ const[visible,setVisible]=useState({derivative:true,integrand:true}),clip=`ib-${useId().replace(/:/g,"")}`,example=partsExamples[id],points=samplePartsVerification(id),x=(v:number)=>40+(v+2.2)/4.4*240,y=(v:number)=>140-(v-example.min)/(example.max-example.min)*115;
+ const residual=Math.max(...points.map(p=>Math.abs(p.derivative-p.integrand)));
+ return <article className="ib-visual" data-max-residual={residual}><h4>Visual check</h4><p>Compare <M value="F'(x)"/> and <M value={id==="exponential"?String.raw`xe^x`:String.raw`x\sin x`}/>.</p><div><svg viewBox="0 0 300 170" role="img" aria-label="Derivative verification graph"><defs><clipPath id={clip}><rect x="25" y="10" width="265" height="145"/></clipPath></defs><path d={`M25 ${y(0)}H292M${x(0)} 150V16`} stroke="#68788e" fill="none"/>{[-2,-1,0,1,2].map(v=><text key={v} x={x(v)-5} y={y(0)+18}>{v}</text>)}{example.ticks.filter(v=>v!==0).map(v=><text key={v} x={x(0)-24} y={y(v)+4}>{v}</text>)}<text x="292" y={y(0)-4}>x</text><text x={x(0)+3} y="15">y</text><g clipPath={`url(#${clip})`}>{visible.derivative&&<polyline data-verification-curve="derivative" points={points.map(p=>`${x(p.x)},${y(p.derivative)}`).join(" ")} fill="none" stroke="#2686ff" strokeWidth="2"/>}{visible.integrand&&<polyline data-verification-curve="integrand" points={points.map(p=>`${x(p.x)},${y(p.integrand)}`).join(" ")} fill="none" stroke="#9448ff" strokeWidth="2" strokeDasharray="5 4"/>}</g></svg><aside><button aria-label="Numerical derivative curve" aria-pressed={visible.derivative} onClick={()=>setVisible(v=>({...v,derivative:!v.derivative}))}><i className="ib-curve-blue"/><M value="F'(x)"/></button><button aria-label="Integrand curve" aria-pressed={visible.integrand} onClick={()=>setVisible(v=>({...v,integrand:!v.integrand}))}><i className="ib-curve-purple"/><M value={id==="exponential"?String.raw`xe^x`:String.raw`x\sin x`}/></button></aside></div></article>;
+}
+export default function IntegrationByPartsTargetLesson10181({lesson:_lesson}:{lesson:SchoolSyllabusLesson}){
+ const[id,setId]=useState<PartsExampleId>("exponential"),[u,setU]=useState<PartsFactor|null>(null),[dv,setDv]=useState<PartsFactor|null>(null),[selected,setSelected]=useState<PartsFactor|null>(null),[liate,setLiate]=useState("L"),[liateMode,setLiateMode]=useState("guide"),[moreFormulas,setMoreFormulas]=useState(false),[resetId,setResetId]=useState(0);
+ const[quick,setQuick]=useState("1"),[quickFeedback,setQuickFeedback]=useState(""),[challenge,setChallenge]=useState(blankPartsChallenge),[challengeGrade,setChallengeGrade]=useState<ReturnType<typeof gradePartsChallenge>|null>(null),[challengeSelected,setChallengeSelected]=useState<PartsFactor|null>(null),[revealSteps,setRevealSteps]=useState(false),[showSolution,setShowSolution]=useState(false);
+ const example=partsExamples[id],assignment=partsAssignment(id,u,dv),worked=assignment.preview||assignment.efficient,shown=assignment.preview?partsAssignment(id,"algebraic","transcendent"):assignment;
+ const reset=()=>{setU(null);setDv(null);setSelected(null);setLiate("L");setLiateMode("guide");setMoreFormulas(false);setResetId(v=>v+1);};
+ const assign=(slot:"u"|"dv",factor:PartsFactor|null)=>{if(slot==="u")setU(factor);else setDv(factor);setSelected(null);};
+ const drop=(e:DragEvent<HTMLButtonElement>,slot:"u"|"dv")=>{e.preventDefault();const data=e.dataTransfer.getData("text/plain");if(data==="factor:algebraic"||data==="factor:transcendent")assign(slot,data.slice(7)as PartsFactor);};
+ const challengeValue=(factor:PartsFactor,key:ChallengeKey)=>factor==="algebraic"?(key==="dv"?"x^2 dx":"x^2"):(key==="dv"?"e^x dx":"e^x");
+ const update=(key:ChallengeKey,value:string)=>{setChallenge(v=>({...v,[key]:value}));setChallengeGrade(null);};
+ const checkChallenge=()=>setChallengeGrade(gradePartsChallenge(challenge));
+ const field=(key:ChallengeKey,placeholder:string)=><input aria-label={`Challenge ${key==="answer"?"final answer":key==="rest"?"remaining integrand":key}`} value={challenge[key]} placeholder={placeholder} aria-invalid={challengeGrade?!challengeGrade.valid[key]:undefined} onChange={e=>update(key,e.target.value)} onDragOver={e=>{if(key==="u"||key==="dv")e.preventDefault();}} onDrop={e=>{if(key!=="u"&&key!=="dv")return;e.preventDefault();const data=e.dataTransfer.getData("text/plain");if(data==="challenge:algebraic"||data==="challenge:transcendent"){update(key,challengeValue(data.slice(10)as PartsFactor,key));setChallengeSelected(null);}}} onClick={()=>{if(challengeSelected&&(key==="u"||key==="dv")){update(key,challengeValue(challengeSelected,key));setChallengeSelected(null);}}} onKeyDown={e=>{if(e.key==="Enter"){e.preventDefault();if(challengeSelected&&(key==="u"||key==="dv")){update(key,challengeValue(challengeSelected,key));setChallengeSelected(null);}else checkChallenge();}}}/>;
+ const changeExample=()=>{setId(v=>v==="exponential"?"sine":"exponential");reset();};
+ return <main className="ib10181-page lesson-reference" data-testid="school-mockup-0855" data-object-model="dedicated-integration-by-parts-product-rule-engine" data-example={id==="exponential"?1:2} data-u={u===null?"unassigned":u==="algebraic"?"x":id==="exponential"?"eˣ":"sin(x)"} data-dv={dv===null?"unassigned":dv==="algebraic"?"x dx":id==="exponential"?"eˣ dx":"sin(x) dx"} data-assignment-correct={String(assignment.efficient)} data-assignment-valid={String(assignment.valid)} data-result={assignment.efficient?(id==="exponential"?"eˣ(x − 1) + C":"−x cos(x) + sin(x) + C"):"pending"}>
+  <section className="ib-hero"><small>CLASS 12 · FORMAL CALCULUS</small><Link to="/lessons/school">← School lessons</Link><h1>Integration by Parts</h1><p>Use the product rule <M value="d(uv)=u\,dv+v\,du"/> to evaluate integrals of products.</p><div>{["Class 12","Advanced","Concept","Worked Examples","Practice"].map(v=><span key={v}>{v}</span>)}</div></section>
+  <section className="ib-card ib-rule-strip"><h2>▧ FROM PRODUCT RULE TO INTEGRATION BY PARTS</h2><div><article><p>Product rule</p><M value="d(uv)=u\,dv+v\,du"/></article><strong>⟶</strong><article><p>Rearrange and integrate</p><div><M value={rule}/></div></article><aside><h4>Remember</h4><ol><li>Choose u and dv</li><li>Find du and v</li><li>Apply formula</li><li>Simplify</li></ol></aside></div></section>
+  <section className="ib-card ib-workspace"><div className="ib-workspace-title"><div><h2>♧ EXPLORE: DECISION WORKSPACE</h2><p>Evaluate <M value={example.integral}/> using integration by parts.</p></div><div><button onClick={reset}><RotateCcw/>Reset</button><button onClick={changeExample}>▧ New example</button></div></div><div className="ib-main-grid"><article className="ib-builder"><section><Heading n={1}>Assign u and dv (drag or click)</Heading><p>Choose an expression chip, then a slot, or drag it into a slot.</p><small>Expression chips</small><div className="ib-chips">{(["algebraic","transcendent"] as const).map(factor=><button aria-label={`Select ${factor} factor`} aria-pressed={selected===factor} draggable key={factor} onClick={()=>setSelected(v=>v===factor?null:factor)} onDragStart={e=>{e.dataTransfer.setData("text/plain",`factor:${factor}`);setSelected(factor);}} onDragEnd={()=>setSelected(null)}><M value={factor==="algebraic"?"x":example.dv}/></button>)}</div><div className="ib-slots">{(["u","dv"]as const).map(slot=><label key={slot}><M value={`${slot}=`}/><button className={slot==="u"?"ib-u-slot":"ib-dv-slot"} aria-label={`Assign ${slot}`} onDragOver={e=>e.preventDefault()} onDrop={e=>drop(e,slot)} onClick={()=>assign(slot,selected)} onKeyDown={e=>{if(e.key==="Delete"||e.key==="Backspace"){e.preventDefault();assign(slot,null);}}}>{(slot==="u"?assignment.u:assignment.dv)?<M value={(slot==="u"?assignment.u:assignment.dv)!}/>:"drop here"}</button></label>)}</div>{assignment.preview?<p className="ib-preview-note">Worked preview: choose u = x and the other factor as dv.</p>:u&&dv?<p role="status" className={assignment.valid?"ib-choice-note":"ib-choice-warning"}>{assignment.efficient?"Good choice: differentiating x simplifies the remaining integral.":assignment.valid?"Valid, but less efficient: this creates a higher-degree remaining integral.":"Use each factor once so u·dv reproduces the original integrand."}</p>:<p className="ib-preview-note">Assign the other factor to continue.</p>}</section>
+   <section><Heading n={2}>Compute du and v</Heading><p>Calculated from your choices.</p><div className="ib-compute"><label><M value="du="/><span>{shown.du?<M value={shown.du}/>:"—"}</span></label><label><M value="v="/><span>{shown.v?<M value={shown.v}/>:"—"}</span></label></div></section>
+   <section><Heading n={3}>Apply integration by parts</Heading><M value={rule}/>{worked?<M value={id==="exponential"?String.raw`=xe^x-\int e^x\,dx`:String.raw`=-x\cos x-\int(-\cos x)\,dx`}/>:assignment.valid?<M value={id==="exponential"?String.raw`=\frac{x^2e^x}{2}-\int\frac{x^2e^x}{2}\,dx`:String.raw`=\frac{x^2\sin x}{2}-\int\frac{x^2\cos x}{2}\,dx`}/>:<p>The transformed integral appears after a valid assignment.</p>}</section>
+   <section><Heading n={4}>Evaluate the remaining integral</Heading>{worked?<M value={id==="exponential"?String.raw`\int e^x\,dx=e^x+C`:String.raw`\int(-\cos x)\,dx=-\sin x+C`}/>:<p>{assignment.valid?"This choice needs more work. Try the algebraic factor as u to finish directly.":"Complete the factor assignment first."}</p>}</section>
+   <section><Heading n={5}>Final answer</Heading>{worked?<div className="ib-answer"><M value={id==="exponential"?`${example.integral}=${example.expanded}=${example.answer}`:`${example.integral}=${example.answer}`}/><span><CheckCircle2/>{assignment.preview?"Verified":"Correct"}</span></div>:<p>Choose the simpler assignment to complete this direct solution.</p>}</section></article>
+   <aside className="ib-guidance"><section className="ib-liate-card"><h3><Lightbulb/>LIATE: How to choose</h3><div className="ib-liate-tabs" role="navigation" aria-label="LIATE guidance"><button aria-pressed={liateMode==="guide"} onClick={()=>setLiateMode("guide")}>LIATE</button><button aria-pressed={liateMode==="why"} onClick={()=>setLiateMode("why")}>Why it works</button></div>{liateMode==="guide"?<div className="ib-liate-list">{liateRows.map(row=><div key={row.letter}><button aria-label={`LIATE ${row.name}`} aria-pressed={liate===row.letter} onClick={()=>setLiate(row.letter)}>{row.letter}</button><b>{row.name}</b><span>{row.tip}</span></div>)}</div>:<div className="ib-why"><p>Choose u so that du becomes simpler, and choose dv so its antiderivative v is easy to find.</p><p>{liateRows.find(row=>row.letter===liate)?.why}</p><p>LIATE is a useful heuristic, rather than a rule that guarantees the best choice for every integral.</p></div>}<small>{liateMode==="guide"?liateRows.find(row=>row.letter===liate)?.why:"Goal: differentiate u to simplify; integrate dv to obtain v."}</small></section><section className="ib-formula-card"><h3>COMMON DERIVATIVES AND INTEGRALS</h3><table><thead><tr><th colSpan={2}>Derivative d(u)</th><th>Integral <M value="\int dv"/></th></tr></thead><tbody>{formulaRows.slice(0,moreFormulas?8:6).map(([expression,derivative,integral])=><tr key={expression}><td><M value={expression}/></td><td><M value={derivative}/></td><td><M value={integral}/></td></tr>)}</tbody></table><p>For n = 0, the derivative of x⁰ is 0. Use these formulas where the functions are defined.</p><button aria-expanded={moreFormulas} onClick={()=>setMoreFormulas(v=>!v)}>{moreFormulas?"View fewer formulas":"View more formulas"}</button></section></aside></div>
+   <section className="ib-verify"><div><h2>VERIFY YOUR ANSWER</h2><p>Differentiate the reference result to check.</p><M value={`F(x)=${example.answer}`}/><article>{id==="exponential"?<><M value="F'(x)=(e^x)'(x-1)+e^x(1)+0"/><M value="=e^x(x-1)+e^x"/><M value="=xe^x"/></>:<><M value="F'(x)=-\cos x+x\sin x+\cos x"/><M value="=x\sin x"/></>}<b><CheckCircle2/>Matches the integrand.</b></article></div><VerificationGraph key={`${id}-${resetId}`} id={id}/></section>
+  </section>
+  <section className="ib-lessons-row"><article className="ib-card ib-worked"><h2>♧ WORKED EXAMPLE</h2><p>Evaluate <M value="\int x\ln x\,dx"/> (x &gt; 0).</p><Heading n={1}>Choose u and dv</Heading><M value="u=\ln x,\qquad dv=x\,dx"/><Heading n={2}>Compute du and v</Heading><M value="du=\dfrac1x\,dx,\qquad v=\dfrac{x^2}{2}"/><Heading n={3}>Apply integration by parts</Heading><M value="\int x\ln x\,dx=\frac{x^2}{2}\ln x-\int\frac{x^2}{2}\frac1x\,dx"/><Heading n={4}>Simplify</Heading><M value="=\frac{x^2}{2}\ln x-\frac12\int x\,dx=\frac{x^2}{2}\ln x-\frac{x^2}{4}+C"/><div className="ib-worked-result"><M value="\int x\ln x\,dx=\frac{x^2}{2}\ln x-\frac{x^2}{4}+C"/><CheckCircle2/></div></article><aside><section className="ib-mistakes"><h2>COMMON MISTAKES</h2><article><XCircle/><div><h4>Mistake: Differentiating dv</h4><p>Wrong: <M value="v=d(e^x)=e^x\,dx"/></p><p>You do not differentiate dv. Find v by integrating dv.</p></div></article><article><XCircle/><div><h4>Mistake: Losing the minus sign</h4><p>Wrong: <M value="\int u\,dv=uv+\int v\,du"/></p><p>The correct formula has a minus: <M value={rule}/>.</p></div></article></section><section className="ib-quick"><h2><Lightbulb/>QUICK CHECK</h2><p>Which choice most directly simplifies <M value="\int xe^x\,dx"/>?</p>{[String.raw`u=e^x,\ dv=x\,dx`,String.raw`u=x,\ dv=e^x\,dx`,String.raw`u=e^x\,dx,\ dv=x`,String.raw`u=e^x,\ dv=dx`].map((value,index)=><label key={value}><input type="radio" name="ib-quick" aria-label={`Quick option ${String.fromCharCode(65+index)}`} checked={quick===String(index)} onChange={()=>{setQuick(String(index));setQuickFeedback("");}}/><span>{String.fromCharCode(65+index)}.</span><M value={value}/>{quick===String(index)&&index===1&&<CheckCircle2/>}</label>)}<button onClick={()=>setQuickFeedback(quick==="1"?"Correct: u = x simplifies on differentiation, and eˣ dx is easy to integrate.":quick==="0"?"That is valid, but less efficient. Choose u = x to simplify directly.":"Keep dv as a differential and make sure u·dv equals x eˣ dx.")}>Check</button>{quickFeedback&&<p role="status">{quickFeedback}</p>}</section></aside></section>
+  <section className="ib-card ib-challenge"><div><h2>PRACTICE CHALLENGE</h2><div className="ib-challenge-intro"><p>Evaluate the integral using integration by parts.</p><div><M value="\int"/>{(["algebraic","transcendent"]as const).map(factor=><button draggable key={factor} aria-label={`Challenge ${factor} chip`} aria-pressed={challengeSelected===factor} onClick={()=>setChallengeSelected(v=>v===factor?null:factor)} onDragStart={e=>{e.dataTransfer.setData("text/plain",`challenge:${factor}`);setChallengeSelected(factor);}} onDragEnd={()=>setChallengeSelected(null)}><M value={factor==="algebraic"?"x^2":"e^x"}/></button>)}<M value="dx"/></div></div><div className="ib-challenge-worksheet"><section><h4>Step 1: Choose u and dv</h4><div><label><M value="u="/>{field("u","drop u")}</label><label><M value="dv="/>{field("dv","drop dv")}</label></div></section><section><h4>Step 2: Compute du and v</h4><div><label><M value="du="/>{field("du","typed answer")}</label><label><M value="v="/>{field("v","typed answer")}</label></div></section><section><h4>Step 3: Apply formula</h4><div className="ib-challenge-formula"><M value="\int u\,dv="/>{field("uv","uv")}<M value="-\int"/>{field("rest","remaining integrand")}<M value="dx"/></div></section><section><h4>Step 4: Final answer</h4><div className="ib-challenge-final"><M value="\int x^2e^x\,dx="/>{field("answer","your final answer")}{!/\b[Cc]\b/.test(challenge.answer)&&<M value="+C"/>}</div></section></div><button className="ib-check-challenge" onClick={checkChallenge}>Check challenge</button>{challengeGrade&&<p className="ib-challenge-feedback" role="status">{challengeGrade.correct?"Correct: repeated integration by parts gives eˣ(x² − 2x + 2) + C.":`${challengeGrade.score} of 7 steps correct. Recheck the highlighted fields; include dx in du and dv.`}</p>}</div><aside><section className="ib-hint"><h3><Lightbulb/>HINT</h3><p>Use LIATE: choose <M value="u=x^2"/> (algebraic) and <M value="dv=e^x\,dx"/> (exponential).</p><button onClick={()=>setRevealSteps(v=>!v)}>{revealSteps?"Hide steps":"Reveal steps"}</button>{revealSteps&&<div><M value="du=2x\,dx,\quad v=e^x"/><M value="\int x^2e^x\,dx=x^2e^x-\int2xe^x\,dx"/></div>}</section><section className="ib-tip"><h3>♧ TIP</h3><p>For a polynomial times eˣ, each repeated application reduces the polynomial’s degree by 1.</p><button onClick={()=>setShowSolution(v=>!v)}>{showSolution?"Hide full solution":"Show full solution"}</button>{showSolution&&<div className="ib-full-solution"><M value="I=x^2e^x-2\int xe^x\,dx"/><M value="=x^2e^x-2(xe^x-e^x)+C"/><M value="=e^x(x^2-2x+2)+C"/></div>}</section></aside></section>
+  <div className="ib-lesson-links" role="navigation" aria-label="Adjacent lessons"><Link to="/lessons/school/class-12/class-12-formal-calculus-integration-by-substitution">← Integration by Substitution</Link><Link to="/lessons/school/class-12/class-12-formal-calculus-integration-by-partial-fractions">Integration by Partial Fractions →</Link></div>
+ </main>;
 }

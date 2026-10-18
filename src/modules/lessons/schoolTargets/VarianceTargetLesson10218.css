@@ -2,3 +2,56 @@
 @container vr (max-width:760px){.vr-controls{grid-template-columns:1fr 1fr}.vr-calculations,.vr-practice{grid-template-columns:1fr}.vr-result{flex-wrap:wrap}.vr-tabs{flex-wrap:wrap}.vr-compare>div{grid-template-columns:1fr}}
 @container vr (max-width:430px){.vr-controls{grid-template-columns:1fr}.vr-next{flex-wrap:wrap}.vr10218 :is(td,th){padding:8px 3px;font-size:10px}.vr-square{max-width:100%}.vr-workflow{font-size:10px!important}}
 .vr10218 button svg,.vr10218 h2 svg,.vr10218 h3 svg{width:16px;height:16px;flex:0 0 auto}
+
+/* Mockup card system, local to Variance. */
+.lesson-page-target .vr10218.lesson-reference{background:#edf7fa;padding:0 0 12px}
+.vr10218.lesson-reference>header{background:#fff;border:1px solid #dce6ef;border-radius:12px;padding:24px 26px;margin-bottom:20px}
+.vr10218.lesson-reference h1{font-size:30px;margin:8px 0;line-height:1.25}
+.vr10218.lesson-reference header>p{color:#526176;font-size:14px}
+.vr10218.lesson-reference header>a{border:1px solid #dce6ef;border-radius:7px;padding:9px 14px;font-size:12px}
+.vr10218.lesson-reference .vr-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.vr10218.lesson-reference .vr-tags span{background:#f0f4f8;padding:4px 10px;border-radius:5px;color:#46566b;font-size:10px}
+.vr10218.lesson-reference .vr-tags span:nth-child(2){background:#fff2d9;color:#9a6207}
+.lesson-page-target .vr10218 nav.vr-tabs{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;background:white;border:1px solid #dce6ef;border-radius:12px 12px 0 0;padding:0 12px}
+.vr10218.lesson-reference .vr-tabs button{flex:1;padding:17px 10px;color:#43516a}
+.vr10218.lesson-reference .vr-tabs button[aria-current]{color:#007ddd}
+.vr10218.lesson-reference .vr-lab{background:white;border:1px solid #dce6ef;border-top:0;border-radius:0 0 12px 12px;padding:18px 20px 22px;margin-bottom:18px}
+.vr10218.lesson-reference .vr-controls{padding:16px;grid-template-columns:1.1fr 1.35fr 1fr auto;gap:18px;background:#fcfdff}
+.vr10218.lesson-reference .vr-controls>label{font-size:12px}
+.vr10218.lesson-reference .vr-controls h3{font-size:12px;margin-bottom:8px}
+.vr10218.lesson-reference .vr-controls select{font-size:11px}
+.vr10218.lesson-reference .vr-workflow{font-size:16px;margin:22px 0 8px!important}
+.vr10218.lesson-reference .vr-plot{border:1px solid #e0e8f1;border-bottom:0;border-radius:7px 7px 0 0;padding:8px 0 0}
+.vr10218.lesson-reference .vr-process{border-inline:1px solid #e0e8f1}
+.vr10218.lesson-reference .vr-process td+td{border-left:1px solid #edf1f6}
+.vr10218.lesson-reference .vr-process tr:nth-child(2) td{color:#24395d;font-weight:600}
+.vr10218.lesson-reference .vr-square-space{height:80px}
+.vr10218.lesson-reference .vr-square{background:linear-gradient(135deg,#d5eaff,#b6d7ff);box-shadow:inset 0 0 0 3px #e8f4ff}
+.vr10218.lesson-reference .vr-result{background:#fafcff;font-size:14px;margin-top:0;border-top:0;border-radius:0 0 7px 7px}
+.vr10218.lesson-reference .vr-calculations{gap:18px;padding:0;margin-bottom:18px}
+.vr10218.lesson-reference .vr-calculations article{background:#fff;border-radius:9px;padding:18px;font-size:13px}
+.vr10218.lesson-reference .vr-calculations .vr-mistake{background:#fff6f6}
+.vr10218.lesson-reference .vr-calculations h2{font-size:14px}
+.vr10218.lesson-reference .vr-compare{background:white;border:1px solid #dce6ef;border-radius:9px;padding:20px;margin-bottom:18px}
+.vr10218.lesson-reference .vr-compare>div{gap:30px;position:relative}
+.vr10218.lesson-reference .vr-compare>div:after{content:'VS';position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);background:white;border:1px solid #d8e3f0;border-radius:50%;padding:9px;font-size:11px;font-weight:700}
+.vr10218.lesson-reference .vr-compare h2{font-size:14px}
+.vr10218.lesson-reference .vr-compare button{color:#065eeb;font-size:14px}
+.vr10218.lesson-reference .vr-note{font-size:12px;text-align:center}
+.vr10218.lesson-reference .vr-practice{padding:0;gap:18px;margin-bottom:18px}
+.vr10218.lesson-reference .vr-practice article{background:white;border:1px solid #dce6ef;border-radius:9px;padding:18px;font-size:12px}
+.vr10218.lesson-reference .vr-practice h2{font-size:14px}
+.vr10218.lesson-reference .vr-practice label{font-size:12px}
+.vr10218.lesson-reference .vr-practice button{background:#0089ba;color:white;padding:9px 12px}
+.vr10218.lesson-reference .vr-next{padding:12px 16px;background:white;border:1px solid #dce6ef;border-radius:8px;margin-bottom:20px}
+.vr10218.lesson-reference .vr-next a{font-size:12px}
+@container vr (max-width:760px){.vr10218.lesson-reference .vr-controls{grid-template-columns:1fr 1fr}.vr10218.lesson-reference .vr-calculations,.vr10218.lesson-reference .vr-practice{grid-template-columns:1fr}.vr10218.lesson-reference .vr-compare>div:after{display:none}}
+@container vr (max-width:430px){.vr10218.lesson-reference .vr-controls{grid-template-columns:1fr}.vr10218.lesson-reference .vr-tabs button{font-size:10px;padding:12px 4px;gap:3px}.vr10218.lesson-reference .vr-tabs button svg{width:12px}.vr10218.lesson-reference>header{padding:20px}.vr10218.lesson-reference .vr-lab{padding:12px}.vr10218.lesson-reference .vr-result{font-size:11px;overflow-wrap:anywhere}.vr10218.lesson-reference .vr-result strong{min-width:0;max-width:100%}}
+
+.vr10218.lesson-reference{max-width:1120px;padding:0;background:#edf7fa;font:14px/1.6 Inter,Arial,sans-serif}
+.vr10218.lesson-reference h2,.vr10218.lesson-reference h3{font-weight:750}
+.vr10218.lesson-reference .vr-tabs{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;background:white;border:1px solid #dce6ef;border-radius:12px 12px 0 0;padding:0 12px}
+.vr10218.lesson-reference .vr-square-space{height:110px}
+.vr10218.lesson-reference .vr-compare article>p{justify-content:center;font-size:13px;gap:8px}
+.vr10218.lesson-reference .vr-compare article>p b{margin-right:22px}
+.vr10218.lesson-reference footer a{display:inline-flex;align-items:center;gap:6px;border:1px solid #dce6ef;border-radius:6px;padding:7px 11px;text-decoration:none}

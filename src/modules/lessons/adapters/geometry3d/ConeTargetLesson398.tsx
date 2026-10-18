@@ -102,15 +102,16 @@ export default function ConeTargetLesson398({
             </button>
           </div>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content cone398-hero"><aside>
           <h2>What you’ll learn</h2>
           <p>✓ Understand parts and measures of a cone</p>
           <p>✓ Derive formulas for area and volume</p>
           <p>✓ Visualize unfolding net and arc length</p>
           <p>✓ Compare cone with a cylinder</p>
           <p>✓ Solve real problems and challenges</p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="cone398-tabs">
         {["Interaction", "Explore", "Formulas", "Examples", "Challenge"].map(
           (item) => (

@@ -387,11 +387,12 @@ export default function LinearFunctionsTargetLesson133({
             </button>
           </section>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content lin133-intro"><aside>
           <MiniLine m={m} b={b} />
           <strong>{formula(m, b)}</strong>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="lin133-tabs">
         {[
           "Interaction + visualization",

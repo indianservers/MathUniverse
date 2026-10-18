@@ -248,15 +248,16 @@ export default function BasicCalculatorTargetLesson1({
             <b>◷ 6–10 min</b>
           </div>
         </div>
-        <div className="target-basic-unlocked">
+
+      </header>
+      <div className="lesson-header-content target-basic-header"><div className="target-basic-unlocked">
           <Check />
           <div>
             <b>Concept unlocked</b>
             <strong>Operation order</strong>
             <p>Evaluate expressions step by step.</p>
           </div>
-        </div>
-      </header>
+        </div></div>
       <div className="target-basic-body">
         <main>
           <nav

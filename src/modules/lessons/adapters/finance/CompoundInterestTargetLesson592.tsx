@@ -146,7 +146,9 @@ export default function CompoundInterestTargetLesson592({
             <b>Language: English</b>
           </span>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content ci592-hero"><aside>
           <b>Key formula</b>
           <strong>
             A = P(1 + r/n)<sup>nt</sup>
@@ -157,8 +159,7 @@ export default function CompoundInterestTargetLesson592({
             <br />n = compounding times per year
             <br />t = time in years
           </small>
-        </aside>
-      </header>
+        </aside></div>
 
       <nav className="ci592-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(

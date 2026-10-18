@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "default moments and game mean",
+    "probability boundaries and normalization",
+    "10/100/1000 real simulations and clear",
+    "keyboard and pointer weight adjustment",
+    "game/distribution modes and sample invalidation",
+    "all practice reveals and section navigation",
+    "typeset rendering"
+  ]
+}

@@ -110,7 +110,9 @@ export default function LimitsAtInfinityTargetLesson280({
             <a href="/workspace/calculus">⌘ Workspace</a>
           </div>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content lai280-hero"><aside>
           <h3>How this works</h3>
           {([
             [Eye, "Observe", "Explore the graph’s end behaviour."],
@@ -124,8 +126,7 @@ export default function LimitsAtInfinityTargetLesson280({
               <span>{copy}</span>
             </p>
           ))}
-        </aside>
-      </header>
+        </aside></div>
       <nav className="lai280-tabs">
         {[
           "Interaction + visualization",

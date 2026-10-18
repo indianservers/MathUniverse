@@ -1,0 +1,336 @@
+{
+  "status": "passed",
+  "errors": [],
+  "results": [
+    {
+      "count": 14,
+      "ref": true,
+      "sym": true,
+      "trans": true,
+      "valid": true
+    },
+    {
+      "count": 13,
+      "ref": false,
+      "sym": true,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 12,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 11,
+      "ref": false,
+      "sym": false,
+      "trans": true,
+      "valid": false
+    },
+    {
+      "count": 12,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 13,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 14,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 13,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 12,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 11,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 12,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 13,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 14,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 13,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 12,
+      "ref": false,
+      "sym": false,
+      "trans": true,
+      "valid": false
+    },
+    {
+      "count": 11,
+      "ref": false,
+      "sym": false,
+      "trans": true,
+      "valid": false
+    },
+    {
+      "count": 12,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 13,
+      "ref": false,
+      "sym": false,
+      "trans": true,
+      "valid": false
+    },
+    {
+      "count": 14,
+      "ref": false,
+      "sym": false,
+      "trans": true,
+      "valid": false
+    },
+    {
+      "count": 15,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 16,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 17,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 16,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 15,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 16,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 17,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 18,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 19,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 18,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 17,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 18,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 19,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 20,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 21,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 22,
+      "ref": false,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 23,
+      "ref": false,
+      "sym": true,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 22,
+      "ref": false,
+      "sym": true,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 14,
+      "ref": true,
+      "sym": true,
+      "trans": true,
+      "valid": true
+    },
+    {
+      "count": 15,
+      "ref": true,
+      "sym": false,
+      "trans": false,
+      "valid": false
+    },
+    {
+      "count": 0,
+      "ref": false,
+      "sym": true,
+      "trans": true,
+      "valid": false
+    }
+  ],
+  "responsive": [
+    {
+      "state": "empty",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "empty",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "empty",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "empty",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ]
+}

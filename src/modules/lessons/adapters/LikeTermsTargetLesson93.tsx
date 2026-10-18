@@ -135,10 +135,7 @@ export default function LikeTermsTargetLesson93({
         <b>Like Terms</b>
       </nav>
       <header className="like93-header">
-        <div className="like93-eyebrows">
-          <b>ALGEBRA</b>
-          <strong>EXPRESSIONS AND MANIPULATION</strong>
-        </div>
+
         <h1>Like Terms</h1>
         <p>
           Like terms have the same variable part with the same powers. We can
@@ -170,6 +167,10 @@ export default function LikeTermsTargetLesson93({
           )}
         </nav>
       </header>
+      <div className="lesson-header-content like93-header"><div className="like93-eyebrows">
+          <b>ALGEBRA</b>
+          <strong>EXPRESSIONS AND MANIPULATION</strong>
+        </div></div>
       {tab !== "Interact" && <LikeTermsTab93 tab={tab} problem={problem} />}
       <main className={`like93-layout ${tab === "Interact" ? "" : "hidden"}`}>
         <section className="like93-lab">

@@ -1,0 +1,27 @@
+// Explicit repairs for previously published links. IDs alone never select a different lesson.
+export const legacyLessonRedirects: Record<string, string> = {
+  "/lessons/foundational-advanced/16-constants-library": "/lessons/core-workspaces/16-constants-library",
+  "/lessons/foundational-advanced/18-exact-and-decimal-modes": "/lessons/core-workspaces/18-exact-and-decimal-modes",
+  "/lessons/numbers-and-arithmetic/81-subtract-decimals": "/lessons/numbers-and-arithmetic/80-decimal-operations?operation=subtract",
+  "/lessons/core-workspaces/19-perfect-squares-and-approximations": "/lessons/core-workspaces/6-powers-and-roots",
+  "/lessons/geometry/617-vector-addition-polygon-method": "/lessons/geometry/186-vector-addition",
+  "/lessons/graphs-and-functions/167-cartesian-plane": "/lessons/geometry/167-cartesian-plane",
+  "/lessons/algebra/100-negative-indices": "/lessons/algebra/100-surds",
+  "/lessons/symbolic-mathematics/428-symbol-substitution": "/lessons/symbolic-mathematics/428-symbolic-evaluation",
+  "/lessons/trigonometry/277-trigonometric-identities": "/lessons/trigonometry/266-trig-identities",
+  "/lessons/algebra/101-order-of-operations": "/lessons/core-workspaces/1-basic-calculator",
+  "/lessons/graphs-and-functions/144-domain-and-range": "/lessons/graphs-and-functions/130-domain-and-range",
+  "/lessons/calculus/297-increasing-and-decreasing": "/lessons/calculus/297-increasing-decreasing",
+  "/lessons/calculus/276-two-sided-limits": "/lessons/calculus",
+  "/lessons/calculus/306-maclaurin-series": "/lessons/advanced-mathematics/344-taylor-and-maclaurin-series",
+  "/lessons/symbolic-mathematics/450-next-symbolic-step": "/lessons/symbolic-mathematics",
+  "/lessons/discrete-and-applied-mathematics/586-subsets-power-sets": "/lessons/discrete-and-applied-mathematics/586-subsets-and-power-sets",
+  "/lessons/discrete-and-applied-mathematics/583-union-intersection-difference": "/lessons/discrete-and-applied-mathematics/583-union-intersection-and-difference",
+  "/lessons/discrete-and-applied-mathematics/618-integer-linear-programming": "/lessons?q=integer%20linear%20programming",
+  "/lessons/graphs-and-functions/364-2d-graph-review": "/lessons/geometry/167-cartesian-plane",
+  "/lessons/3d-mathematics/402-cone-slices-cross-sections": "/lessons/3d-mathematics/405-cross-sections",
+  "/lessons/3d-mathematics/408-eulers-polyhedron-formula": "/lessons/3d-mathematics/408-euler-s-polyhedron-formula",
+  "/lessons/3d-mathematics/399-octahedron": "/lessons/3d-mathematics/396-regular-polyhedra",
+  "/lessons/graphs-and-functions/57-examples": "/lessons/graphs-and-functions",
+  "/lessons/graphs-and-functions/55-family-parameters": "/lessons/graphs-and-functions/55-dynamic-parameters"
+};

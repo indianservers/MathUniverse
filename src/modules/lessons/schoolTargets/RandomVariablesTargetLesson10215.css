@@ -2,3 +2,74 @@
 @container rv (max-width:760px){.rv-map{grid-template-columns:1fr 1fr;gap:20px}.rv-range{grid-column:1/-1}.rv-groups{grid-template-columns:repeat(2,minmax(0,1fr))}.rv-experiment{grid-template-columns:1fr 1fr}.rv-experiment>div:last-child{grid-column:1/-1}.rv-how,.rv-definition,.rv-editor{grid-template-columns:1fr}.rv-tabs{gap:8px;flex-wrap:wrap}.rv-tabs button:last-child{margin-left:0}.rv-machine-image>svg{display:none}.rv-next{flex-wrap:wrap}}
 @container rv (max-width:440px){.rv-map,.rv-domain,.rv-practice{grid-template-columns:1fr}.rv-range{grid-column:auto}.rv-groups{grid-template-columns:1fr}.rv-outcomes>button{height:62px}.rv-machine-image{max-width:170px}.rv-heading{flex-wrap:wrap}.rv-how article>div{grid-template-columns:1fr}.rv-how article>div>svg{margin:auto;transform:rotate(90deg)}.rv-practice>div:last-of-type{align-items:start}.rv-trace{grid-template-columns:repeat(5,minmax(0,1fr))}.rv-scores{gap:6px}}
 .rv10215 button svg,.rv10215 h2 svg,.rv10215 h3 svg{width:16px;height:16px;flex:0 0 auto}
+
+/* Reference mapping lab and surrounding cards; menu remains untouched. */
+.rv10215.lesson-reference{max-width:1120px;padding:0;background:#f5faff;font:14px/1.6 Inter,Arial,sans-serif}
+.rv10215.lesson-reference>header{background:white;border:1px solid #dce6ef;border-radius:12px;padding:24px 26px;margin-bottom:20px}
+.rv10215.lesson-reference h1{font-size:30px;line-height:1.25;font-weight:800;margin:8px 0}
+.rv10215.lesson-reference header>p{color:#526176;font-size:14px}
+.rv10215.lesson-reference header>a{border:1px solid #dce6ef;border-radius:7px;padding:9px 14px;font-size:12px}
+.rv10215.lesson-reference .rv-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.rv10215.lesson-reference .rv-tags span{padding:4px 10px;background:#f0f4f8;border-radius:10px;color:#46566b;font-size:10px}
+.rv10215.lesson-reference .rv-tags span:nth-child(2){background:#fff2d9;color:#9a6207}
+.rv10215.lesson-reference h2{font-weight:750;font-size:14px}
+.rv10215.lesson-reference h3{font-weight:700;font-size:13px}
+.rv10215.lesson-reference nav.rv-tabs{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;gap:15px;background:white;border:1px solid #dce6ef;border-radius:12px 12px 0 0;padding:0 12px}
+.rv10215.lesson-reference .rv-tabs button{padding:17px 12px;font-weight:700;color:#344565}
+.rv10215.lesson-reference .rv-tabs button[aria-current]{color:#007ddd}
+.rv10215.lesson-reference .rv-lab{background:white;border:1px solid #dce6ef;border-top:0;border-radius:0 0 12px 12px;padding:20px;margin-bottom:16px}
+.rv10215.lesson-reference .rv-heading p{font-size:12px}
+.rv10215.lesson-reference .rv-heading button{font-size:11px;background:#f3f9ff;color:#0576dd}
+.rv10215.lesson-reference .rv-map{position:relative;gap:50px;grid-template-columns:1fr 1.15fr 1fr}
+.rv10215.lesson-reference .rv-map>article,.rv10215.lesson-reference .rv-machine{position:relative;z-index:1}
+.rv10215.lesson-reference .rv-connections{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:2}
+.rv10215.lesson-reference .rv-outcomes,.rv10215.lesson-reference .rv-range{padding:14px;background:linear-gradient(#f8fbfe,#fff);border-radius:10px}
+.rv10215.lesson-reference .rv-map p{font-size:11px}
+.rv10215.lesson-reference .rv-outcomes>button{height:88px;margin:14px 0;gap:10px;padding:12px}
+.rv10215.lesson-reference .rv-coin-pair i{border-radius:50%!important;background:radial-gradient(circle at 30% 25%,#ffe9ac,#eab953 60%,#bf8730);width:37px;height:37px;box-shadow:inset 1px 1px 3px #fff9,1px 2px 3px #0002}
+.rv10215.lesson-reference .rv-coin-pair .rv-tail{background:radial-gradient(circle at 30% 25%,#eef2f8,#b1bbc9 60%,#77859b)}
+.rv10215.lesson-reference .rv-machine select{font-size:12px;padding:11px 8px}
+.rv10215.lesson-reference .rv-machine-image{max-width:230px;margin-top:16px}
+.rv10215.lesson-reference .rv-machine-image>svg{display:none}
+.rv10215.lesson-reference .rv-machine>button{font-size:11px}
+.rv10215.lesson-reference .rv-groups>div{min-height:112px;border-radius:9px;box-shadow:0 2px 4px #23384c09}
+.rv10215.lesson-reference .rv-groups h4{background:linear-gradient(90deg,#8b4aee,#e9dcff);color:white;padding:9px 10px;font-size:14px;font-weight:700}
+.rv10215.lesson-reference .rv-groups h4 small{background:#fff;color:#6b469d;border-radius:12px;padding:3px 7px;font-size:10px}
+.rv10215.lesson-reference .rv-groups button{font-size:13px;padding:7px 10px;font-weight:650}
+.rv10215.lesson-reference .rv-experiment{background:linear-gradient(100deg,#fff,#f6fbff);border:1px solid #dce6ef;border-radius:9px;padding:18px;margin-bottom:16px;grid-template-columns:1.05fr .85fr 1.3fr}
+.rv10215.lesson-reference .rv-experiment>div+div{border-left:1px solid #e0e8f1;padding-left:18px}
+.rv10215.lesson-reference .rv-experiment p{font-size:12px}
+.rv10215.lesson-reference .rv-experiment button{font-size:12px;padding:10px 14px}
+.rv10215.lesson-reference .rv-domain{background:white;border:1px solid #dce6ef;border-radius:9px;padding:18px;margin-bottom:16px}
+.rv10215.lesson-reference .rv-domain>div+div{border-left:1px solid #e0e8f1;padding-left:18px}
+.rv10215.lesson-reference .rv-editor{padding:0;border:0;gap:18px;margin-bottom:16px}
+.rv10215.lesson-reference .rv-editor article{background:white;border:1px solid #dce6ef;border-radius:9px;padding:18px}
+.rv10215.lesson-reference .rv-editor>article>label{font-size:12px}
+.rv10215.lesson-reference .rv-editor>article>p{font-size:12px}
+.rv10215.lesson-reference .rv-scores label{font-size:12px}
+.rv10215.lesson-reference .rv-how{padding:0;gap:18px;margin-bottom:16px;grid-template-columns:2fr 1fr}
+.rv10215.lesson-reference .rv-how article{background:white;border:1px solid #dce6ef;border-radius:9px;padding:18px}
+.rv10215.lesson-reference .rv-how .rv-mistake{background:#fff9f0;border-color:#f2ddbc}
+.rv10215.lesson-reference .rv-how section{padding:12px 9px}
+.rv10215.lesson-reference .rv-how section:nth-of-type(2){background:#faf7ff;border-color:#e1d8f4}
+.rv10215.lesson-reference .rv-how section:nth-of-type(3){background:#f8f7ff;border-color:#dedcf5}
+.rv10215.lesson-reference .rv-how p{font-size:12px}
+.rv10215.lesson-reference .rv-how .rv-coin-pair i{width:29px;height:29px;font-size:17px}
+.rv10215.lesson-reference .rv-definition{padding:0;border:0;gap:18px;margin-bottom:16px;font-size:12px}
+.rv10215.lesson-reference .rv-definition article{background:white;border:1px solid #dce6ef;border-radius:9px;padding:18px}
+.rv10215.lesson-reference .rv-practice{background:white;border:1px solid #dce6ef;border-radius:9px;padding:20px;margin-bottom:16px;font-size:12px}
+.rv10215.lesson-reference .rv-practice label{font-size:12px}
+.rv10215.lesson-reference .rv-practice button{font-size:11px;padding:9px 12px}
+.rv10215.lesson-reference .rv-next{padding:0 0 20px}
+.rv10215.lesson-reference .rv-next a{background:white;border:1px solid #dce6ef;border-radius:8px;padding:12px 16px;font-size:12px}
+.rv10215.lesson-reference footer a{display:inline-flex;align-items:center;gap:6px;border:1px solid #dce6ef;border-radius:6px;padding:7px 11px;text-decoration:none}
+@container rv (max-width:760px){.rv10215.lesson-reference .rv-map{grid-template-columns:1fr 1fr;gap:20px}.rv10215.lesson-reference .rv-connections{display:none}.rv10215.lesson-reference .rv-how{grid-template-columns:1fr}.rv10215.lesson-reference .rv-experiment{grid-template-columns:1fr 1fr}.rv10215.lesson-reference .rv-experiment>div:last-child{border-left:0;padding-left:0}.rv10215.lesson-reference .rv-tabs{gap:4px}.rv10215.lesson-reference .rv-tabs button{font-size:10px;padding:14px 8px}}
+@container rv (max-width:440px){.rv10215.lesson-reference>header{padding:20px}.rv10215.lesson-reference .rv-lab{padding:14px}.rv10215.lesson-reference .rv-map{grid-template-columns:1fr}.rv10215.lesson-reference .rv-outcomes>button{height:68px}.rv10215.lesson-reference .rv-machine-image{max-width:170px}.rv10215.lesson-reference .rv-domain>div+div{border-left:0;padding-left:0}.rv10215.lesson-reference .rv-experiment{grid-template-columns:1fr}.rv10215.lesson-reference .rv-experiment>div+div{border-left:0;padding-left:0}.rv10215.lesson-reference .rv-tabs button{padding:12px 5px;font-size:9px}}
+
+.rv10215.lesson-reference .rv-how section h3{display:flex;align-items:center;gap:8px}
+.rv10215.lesson-reference .rv-how section h3 b{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex:none;border-radius:50%;background:#008fc1;color:white;font-size:12px}
+.rv10215.lesson-reference .rv-how section:nth-of-type(2) h3 b{background:#7b43ce}
+.rv10215.lesson-reference .rv-how section:nth-of-type(3) h3 b{background:#5255d4}
+.rv10215.lesson-reference .rv-practice fieldset{gap:12px}
+.rv10215.lesson-reference .rv-practice label{flex:1;min-width:70px;max-width:130px}
+.rv10215.lesson-reference .rv-practice label:has(input:checked){background:#edfbf5;border-color:#049c77}

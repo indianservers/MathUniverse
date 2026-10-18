@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "errors": [],
+  "responsive": [
+    {
+      "state": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "max",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "max",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "max",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "max",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "ordinary",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "ordinary",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "ordinary",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "ordinary",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "unchecked",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "unchecked",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "unchecked",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "unchecked",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ],
+  "clipped": []
+}

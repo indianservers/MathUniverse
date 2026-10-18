@@ -106,7 +106,9 @@ export default function ProofMethodsTargetLesson590({
           <strong>Tool: Proof Strategy Studio</strong>
           <strong>Est. time: 6-10 min</strong>
         </dl>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content pm590-hero"><aside>
           <button onClick={() => act(reset)}>
             <RotateCcw /> Reset
           </button>
@@ -129,8 +131,7 @@ export default function ProofMethodsTargetLesson590({
             </p>
             <p>Approach {strategies[strategy][0]}</p>
           </article>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="pm590-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

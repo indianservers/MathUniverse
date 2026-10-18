@@ -87,15 +87,16 @@ export default function SssCongruenceTargetLesson10069({
           <span>Theorem</span>
           <span>SSS</span>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content sss10069-hero"><aside>
           <h2>Theorem (SSS)</h2>
           <p>
             If three sides of one triangle are equal to three sides of another
             triangle, then the triangles are congruent.
           </p>
           <p>In symbols: SSS ⇒ △ABC ≅ △DEF</p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="sss10069-tabs">
         {["Interact", "Learn", "Example", "Formula", "Practice"].map((x, i) => (
           <button

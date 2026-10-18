@@ -1,10 +1,14 @@
 import { CheckCircle2, Lightbulb } from "lucide-react";
-import { Fragment, useState } from "react";
+import { Fragment, useState, type ReactNode } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
-import { LessonStudioFrame, LessonStudioGrid, LessonStudioPanel } from "../components/LessonStudio";
+import MathExpression from "../../../components/ui/MathExpression";
+import { analyzeCramers as calc, cramerAnswer } from "./cramersRuleModel";
+import { equationGeometry, consistencyGeometryMessage } from "./linearSystemConsistencyModel";
 import "./CramersRuleTargetLesson10198.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import "../components/LessonMockupReference.css";
 
+function LocalGrid({children,className=""}:{children:ReactNode;className?:string}){return <div className={`cr-grid ${className}`}>{children}</div>;}
+function LocalPanel({children,className="",as}:{children:ReactNode;className?:string;as?:"article"}){return as==="article"?<article className={`cr-panel ${className}`}>{children}</article>:<section className={`cr-panel ${className}`}>{children}</section>;}
 type Sys = [number, number, number, number, number, number];
 const DEFAULT: Sys = [2, 1, 5, 1, -1, 1],
   tasks: Sys[] = [
@@ -13,51 +17,41 @@ const DEFAULT: Sys = [2, 1, 5, 1, -1, 1],
     [4, -1, 7, 1, 1, 5],
     [2, 3, 12, 1, -2, 1],
   ];
-const calc = (s: Sys) => {
-  const [a, b, c, d, e, f] = s,
-    D = a * e - b * d,
-    Dx = c * e - b * f,
-    Dy = a * f - c * d;
-  return {
-    D,
-    Dx,
-    Dy,
-    x: D ? Dx / D : null,
-    y: D ? Dy / D : null,
-    type: D !== 0 ? "unique" : Dx === 0 && Dy === 0 ? "infinite" : "none",
-  };
-};
 const fmt = (n: number | null) =>
   n === null ? "—" : Number.isInteger(n) ? String(n) : n.toFixed(2);
+const equation=(a:number,b:number,c:number)=>`${a===1?"":a===-1?"−":a}x ${b<0?"−":"+"} ${Math.abs(b)===1?"":Math.abs(b)}y = ${c}`;
 function Matrix({ m, replacedColumn }: { m: number[][]; replacedColumn?: number }) {
   return (
     <div className="cr-matrix" data-replaced-column={replacedColumn}>
       {m.flat().map((v, i) => (
         <span key={i}>{v}</span>
       ))}
-      <LessonTopicStudyBoard lessonId={10198} alwaysVisible />
+
 
     </div>
   );
+}
+function AreaSketch({m}:{m:number[][]}){
+ const [a,b]=m[0],[d,e]=m[1];const pts=[[0,0],[a,d],[a+b,d+e],[b,e]];
+ const minX=Math.min(...pts.map(p=>p[0])),maxX=Math.max(...pts.map(p=>p[0])),minY=Math.min(...pts.map(p=>p[1])),maxY=Math.max(...pts.map(p=>p[1]));const scale=65/Math.max(1,maxX-minX,maxY-minY);const map=(p:number[])=>[15+(p[0]-minX)*scale,80-(p[1]-minY)*scale];
+ return <svg className="cr-area-sketch" viewBox="0 0 110 100" role="img" aria-label={`Column-vector parallelogram, area ${fmt(Math.abs(a*e-b*d))}`}>{[20,40,60,80].map(n=><path key={n} d={`M${n} 5V95 M5 ${n}H105`} stroke="#e5edf6" strokeWidth=".6"/>)}<polygon points={pts.map(p=>map(p).join(",")).join(" ")} fill="#bce9e7" fillOpacity=".14" stroke="#ef6fb0" strokeWidth="1"/><path d={`M${map([0,0])}L${map([a,d])}`} stroke="#2e9fee" strokeWidth="2"/><path d={`M${map([0,0])}L${map([b,e])}`} stroke="#ed65a4" strokeWidth="2"/><circle cx={map([0,0])[0]} cy={map([0,0])[1]} r="2.5" fill="#124c88"/><text x={map([a,d])[0]+3} y={Math.max(10,map([a,d])[1]-5)} fill="#237ab8">u</text><text x={map([b,e])[0]+3} y={Math.min(95,map([b,e])[1]+10)} fill="#c8468a">v</text></svg>;
 }
 function MiniGraph({ s }: { s: Sys }) {
   const [a, b, c, d, e, f] = s,
     r = calc(s),
     o = { x: 150, y: 145 },
     sc = 28,
-    line = (aa: number, bb: number, cc: number) =>
-      bb
-        ? [-5, (cc + 5 * aa) / bb, 5, (cc - 5 * aa) / bb]
-        : [cc / aa, -5, cc / aa, 5],
+    line = (aa:number,bb:number,cc:number)=>equationGeometry(aa,bb,cc,6),
     map = (x: number, y: number) => [o.x + x * sc, o.y - y * sc],
-    l = line(a, b, c),
-    q = line(d, e, f),
+    first = line(a,b,c), second=line(d,e,f),
+    l = first.endpoints || [0,0,0,0],
+    q = second.endpoints || [0,0,0,0],
     p1 = map(l[0], l[1]),
     p2 = map(l[2], l[3]),
     q1 = map(q[0], q[1]),
     q2 = map(q[2], q[3]);
   return (
-    <svg viewBox="0 0 300 290" role="img" aria-label={`Graph of the two equations. ${r.type === "unique" ? `Intersection (${fmt(r.x)}, ${fmt(r.y)}).` : r.type === "none" ? "Parallel lines, no solution." : "Coincident lines, infinitely many solutions."}`}>
+    <svg viewBox="0 0 300 290" role="img" aria-label={`Graph of the two equations. ${consistencyGeometryMessage(s)}`}>
       {[-4, -3, -2, -1, 0, 1, 2, 3, 4].map((v) => (
         <g key={v}>
           <line x1={o.x + v * sc} y1="10" x2={o.x + v * sc} y2="280" />
@@ -68,10 +62,10 @@ function MiniGraph({ s }: { s: Sys }) {
           </>}
         </g>
       ))}
-      <line className="axis" x1="10" y1={o.y} x2="290" y2={o.y} />
+      <text x="287" y="138">x</text><text x="157" y="15">y</text><line className="axis" x1="10" y1={o.y} x2="290" y2={o.y} />
       <line className="axis" x1={o.x} y1="10" x2={o.x} y2="280" />
-      <line className="l1" x1={p1[0]} y1={p1[1]} x2={p2[0]} y2={p2[1]} />
-      <line className="l2" x1={q1[0]} y1={q1[1]} x2={q2[0]} y2={q2[1]} />
+      {first.endpoints&&<line className="l1" x1={p1[0]} y1={p1[1]} x2={p2[0]} y2={p2[1]} />}
+      {second.endpoints&&<line className="l2" x1={q1[0]} y1={q1[1]} x2={q2[0]} y2={q2[1]} />}
       {r.type === "unique" && (
         <>
           <circle cx={o.x + r.x! * sc} cy={o.y - r.y! * sc} r="5" />
@@ -84,28 +78,25 @@ function MiniGraph({ s }: { s: Sys }) {
   );
 }
 export default function CramersRuleTargetLesson10198({
-  lesson: _lesson,
+  lesson,
 }: {
   lesson: SchoolSyllabusLesson;
 }) {
   const [sys, setSys] = useState<Sys>(DEFAULT),
-    [seed, setSeed] = useState(0),
     [hints, setHints] = useState(false),
     [answers, setAnswers] = useState(() => tasks.map(() => ["", ""])),
-    [graded, setGraded] = useState<boolean[]>(tasks.map(() => false)),
+    [graded, setGraded] = useState<(boolean|null)[]>(tasks.map(() => null)),
     [learn, setLearn] = useState(false);
   const r = calc(sys),
     [a, b, c, d, e, f] = sys,
     set = (i: number, v: number) =>
-      setSys((old) => old.map((x, j) => (j === i ? v : x)) as Sys),
+      {if(Number.isFinite(v))setSys((old) => old.map((x, j) => (j === i ? v : x)) as Sys);},
     reset = () => {
       setSys(DEFAULT);
-      setSeed(0);
     },
     random = () => {
-      const n = seed + 1;
-      setSeed(n);
-      setSys([2 + (n % 3), 1, 4 + n, 1, -1 - (n % 2), 1 + (n % 2)]);
+      const aa=1+Math.floor(Math.random()*5),bb=1+Math.floor(Math.random()*3),dd=1+Math.floor(Math.random()*3),ee=-1-Math.floor(Math.random()*4),xx=Math.floor(Math.random()*7)-2,yy=Math.floor(Math.random()*7)-2;
+      setSys([aa,bb,aa*xx+bb*yy,dd,ee,dd*xx+ee*yy]);
     },
     swap = () => setSys([d, e, f, a, b, c]),
     grade = (i: number) => {
@@ -113,17 +104,16 @@ export default function CramersRuleTargetLesson10198({
       setGraded((v) =>
         v.map((x, j) =>
           j === i
-            ? Math.abs(Number(answers[i][0]) - (q.x ?? Infinity)) < 1e-6 &&
-              Math.abs(Number(answers[i][1]) - (q.y ?? Infinity)) < 1e-6
+            ? cramerAnswer(answers[i][0])!==null && cramerAnswer(answers[i][1])!==null && Math.abs(cramerAnswer(answers[i][0])! - (q.x ?? Infinity)) < 1e-6 &&
+              Math.abs(cramerAnswer(answers[i][1])! - (q.y ?? Infinity)) < 1e-6
             : x,
         ),
       );
     },
     gradeAll = () => tasks.forEach((_, i) => grade(i));
   return (
-    <LessonStudioFrame>
     <main
-      className="cr10198-page lesson-studio"
+      className="cr10198-page lesson-reference"
       data-testid="school-mockup-0872"
       data-object-model="dedicated-cramer-column-replacement-engine"
       data-delta={r.D}
@@ -137,11 +127,13 @@ export default function CramersRuleTargetLesson10198({
       <header className="cr-hero">
         <div>
           <h1>
-            Cramer&apos;s Rule <span>DETERMINANT COLUMN-REPLACEMENT LAB</span>
+            {lesson.title} <span>DETERMINANT COLUMN-REPLACEMENT LAB</span>
           </h1>
           <p>Solve a 2×2 linear system using determinants.</p>
         </div>
-        <div className="cr-hero-summary">
+
+      </header>
+      <div className="lesson-header-content cr-hero"><div className="cr-hero-summary">
           <b>
             ◷ System Size<strong>2 × 2</strong>
           </b>
@@ -158,10 +150,9 @@ export default function CramersRuleTargetLesson10198({
             <strong>Δ {r.D !== 0 ? "≠" : "="} 0</strong>
             {r.type === "unique" && <strong>x = {fmt(r.x)}, y = {fmt(r.y)}</strong>}
           </b>
-        </div>
-      </header>
-      <LessonStudioGrid className="cr-system">
-        <LessonStudioPanel as="article">
+        </div></div>
+      <LocalGrid className="cr-system">
+        <LocalPanel as="article">
           <h2>
             <i>1</i> Enter / Edit the System
           </h2>
@@ -181,7 +172,7 @@ export default function CramersRuleTargetLesson10198({
                       />
                       {offset < 2 && (
                         <span>
-                          {offset === 0 ? (sys[i + 1] < 0 ? "−" : "+") : "="}
+                          {offset === 0 ? "+" : "="}
                         </span>
                       )}
                     </Fragment>
@@ -195,36 +186,36 @@ export default function CramersRuleTargetLesson10198({
             <button onClick={reset}>Reset</button>
             <button onClick={swap}>Swap equations</button>
           </footer>
-        </LessonStudioPanel>
-        <LessonStudioPanel as="article">
+        </LocalPanel>
+        <LocalPanel as="article">
           <p>System in Standard Form</p>
           <strong>
-            {a}x {b < 0 ? "−" : "+"} {Math.abs(b)}y = {c}
+            {equation(a,b,c)}
           </strong>
           <strong>
-            {d}x {e < 0 ? "−" : "+"} {Math.abs(e)}y = {f}
+            {equation(d,e,f)}
           </strong>
           <p>Matrix form: AX=b</p>
           <div className="cr-formula">
-            A=[{a} {b}; {d} {e}], X=[x;y], b=[{c};{f}]
+            <MathExpression value={String.raw`A = \begin{bmatrix}${a}&${b}\\${d}&${e}\end{bmatrix},\quad X=\begin{bmatrix}x\\y\end{bmatrix},\quad b=\begin{bmatrix}${c}\\${f}\end{bmatrix}`} />
           </div>
-        </LessonStudioPanel>
-        <LessonStudioPanel as="article">
+        </LocalPanel>
+        <LocalPanel as="article">
           <h2>Determinant Area Insight</h2>
           <p>
             For a 2×2 matrix det=ad−bc. Geometric meaning: signed area of the
             parallelogram formed by column vectors.
           </p>
-          <div className="cr-parallelogram">u ▱ v</div>
+          <AreaSketch m={[[a,b],[d,e]]}/>
           <b>Area = |det(A)| = {Math.abs(r.D)}</b>
-        </LessonStudioPanel>
-      </LessonStudioGrid>
-      <LessonStudioPanel className="cr-build">
+        </LocalPanel>
+      </LocalGrid>
+      <LocalPanel className="cr-build">
         <h2>
           <i>2</i> Build Determinants by Column Replacement
         </h2>
         <p>Watch each determinant form step-by-step.</p>
-        <LessonStudioGrid>
+        <LocalGrid>
           {[
             {
               title: "Step 1: Coefficient Determinant Δ",
@@ -263,7 +254,7 @@ export default function CramersRuleTargetLesson10198({
                     ? "Replace first column with constants b."
                     : "Replace second column with constants b."}
               </p>
-              <div className="cr-det">
+              <div className="cr-coefficient-display"><span>{i===0?"A":i===1?"Aₓ":"Aᵧ"} =</span><Matrix m={x.m} replacedColumn={i===0?undefined:i-1}/></div><div className="cr-det">
                 <span>{i === 0 ? "Δ" : i === 1 ? "Δx" : "Δy"} = det =</span>
                 <div className="cr-cross-matrix">
                   <Matrix m={x.m} replacedColumn={i === 0 ? undefined : i - 1} />
@@ -279,8 +270,8 @@ export default function CramersRuleTargetLesson10198({
               <strong className="lesson-studio-result">
                 {i === 0 ? "Δ" : i === 1 ? "Δx" : "Δy"} = {x.value}
               </strong>
-              <footer>
-                ▱ Area = {Math.abs(x.value)} square units
+              <footer><AreaSketch m={x.m}/><div>
+                Area = {Math.abs(x.value)} square units
                 <br />
                 Orientation:{" "}
                 {x.value < 0
@@ -288,21 +279,18 @@ export default function CramersRuleTargetLesson10198({
                   : x.value > 0
                     ? "positive"
                     : "collapsed"}
-              </footer>
+              </div></footer>
             </article>
           ))}
-        </LessonStudioGrid>
-      </LessonStudioPanel>
-      <LessonStudioPanel className="cr-solve">
+        </LocalGrid>
+      </LocalPanel>
+      <LocalPanel className="cr-solve">
         <h2>
           <i>3</i> Solve Using Cramer&apos;s Rule
         </h2>
         {r.type === "unique" ? (
           <>
-            <div>
-              x = Δx/Δ = {r.Dx}/{r.D} = <b>{fmt(r.x)}</b> y = Δy/Δ = {r.Dy}/
-              {r.D} = <b>{fmt(r.y)}</b>
-            </div>
+            <div className="cr-solve-formula"><MathExpression display value={String.raw`x = \frac{Δ_x}{Δ}=\frac{${r.Dx}}{${r.D}}=${fmt(r.x)} \qquad y=\frac{Δ_y}{Δ}=\frac{${r.Dy}}{${r.D}}=${fmt(r.y)}`} /></div>
             <strong className="lesson-studio-result" aria-live="polite">
               Solution x={fmt(r.x)}
               <br />
@@ -317,24 +305,20 @@ export default function CramersRuleTargetLesson10198({
             </strong>
           </>
         )}
-      </LessonStudioPanel>
-      <LessonStudioGrid className="cr-verify">
-        <LessonStudioPanel as="article">
+      </LocalPanel>
+      <LocalGrid className="cr-verify">
+        <LocalPanel as="article">
           <h2>
             <i>4</i> Verify Graphically
           </h2>
           <p>
-            {r.type === "unique"
-              ? `The two lines intersect at (${fmt(r.x)}, ${fmt(r.y)}).`
-              : r.type === "none"
-                ? "The two lines are parallel."
-                : "The two equations draw the same line."}
+            {consistencyGeometryMessage(sys)}
           </p>
           <MiniGraph s={sys} />
-          <footer><span className="cr-legend-first">■ First equation</span><span className="cr-legend-second">■ Second equation</span><span>● {r.type}</span></footer>
-        </LessonStudioPanel>
+          <footer><span className="cr-legend-first">■ {equation(a,b,c)}</span><span className="cr-legend-second">■ {equation(d,e,f)}</span><span>● {r.type}</span></footer>
+        </LocalPanel>
         <div>
-          <LessonStudioPanel as="article">
+          <LocalPanel as="article">
             <h2>
               <i>5</i> Verify by Substitution
             </h2>
@@ -351,29 +335,28 @@ export default function CramersRuleTargetLesson10198({
                 </strong>
               </>
             ) : (
-              <p>No single ordered pair can be verified for this case.</p>
+              <p>{r.type==="none"?"No ordered pair satisfies both equations.":"There is a family of solutions; Cramer’s ratios are undefined."}</p>
             )}
-          </LessonStudioPanel>
-          <LessonStudioPanel as="article" className="cr-zero">
+          </LocalPanel>
+          <LocalPanel as="article" className="cr-zero">
             <h2>
               <i>!</i> What if Δ = 0?
             </h2>
             <p>If Δ=0, the system does not have a unique solution.</p>
-            <p>• Δx=Δy=0 → infinitely many solutions.</p>
+            <p>• When Δ=Δx=Δy=0, compare ranks to distinguish infinitely many solutions from a degenerate contradiction.</p>
             <p>• At least one nonzero → no solution.</p>
             <button onClick={() => setLearn((v) => !v)}>
               {learn ? "Hide" : "Learn more"}
             </button>
             {learn && (
               <p>
-                Cramer&apos;s Rule applies uniquely only when the coefficient
-                matrix is invertible.
+                Cramer&apos;s Rule applies uniquely only when the coefficient matrix is invertible. If every coefficient is zero, an equation 0 = nonzero still makes the system inconsistent, even when all three determinants vanish.
               </p>
             )}
-          </LessonStudioPanel>
+          </LocalPanel>
         </div>
-      </LessonStudioGrid>
-      <LessonStudioPanel className="cr-practice">
+      </LocalGrid>
+      <LocalPanel className="cr-practice">
         <header>
           <div>
             <h2>
@@ -389,16 +372,16 @@ export default function CramersRuleTargetLesson10198({
             <button onClick={gradeAll}>Check all</button>
           </aside>
         </header>
-        <LessonStudioGrid>
+        <LocalGrid>
           {tasks.map((s, i) => {
             const q = calc(s);
             return (
               <article key={i}>
                 <i>{i + 1}</i>
                 <strong>
-                  {s[0]}x {s[1] < 0 ? "−" : "+"} {Math.abs(s[1])}y = {s[2]}
+                  {equation(s[0],s[1],s[2])}
                   <br />
-                  {s[3]}x {s[4] < 0 ? "−" : "+"} {Math.abs(s[4])}y = {s[5]}
+                  {equation(s[3],s[4],s[5])}
                 </strong>
                 {hints && <p>Hint: Δ={q.D}</p>}
                 <label>
@@ -410,7 +393,7 @@ export default function CramersRuleTargetLesson10198({
                       setAnswers((v) =>
                         v.map((x, j) => (j === i ? [e.target.value, x[1]] : x)),
                       );
-                      setGraded((v) => v.map((x, j) => (j === i ? false : x)));
+                      setGraded((v) => v.map((x, j) => (j === i ? null : x)));
                     }}
                   />
                 </label>
@@ -423,31 +406,30 @@ export default function CramersRuleTargetLesson10198({
                       setAnswers((v) =>
                         v.map((x, j) => (j === i ? [x[0], e.target.value] : x)),
                       );
-                      setGraded((v) => v.map((x, j) => (j === i ? false : x)));
+                      setGraded((v) => v.map((x, j) => (j === i ? null : x)));
                     }}
                   />
                 </label>
                 <button onClick={() => grade(i)}>Check</button>
-                {graded[i] && (
-                  <span>
-                    <CheckCircle2 />
-                    Correct
+                {graded[i] !== null && (
+                  <span role="status" className={graded[i]?"cr-correct":"cr-incorrect"}>
+                    {graded[i]&&<CheckCircle2 />}
+                    {graded[i]?"Correct":"Try again — check both determinants."}
                   </span>
                 )}
               </article>
             );
           })}
-        </LessonStudioGrid>
-      </LessonStudioPanel>
+        </LocalGrid>
+      </LocalPanel>
       <nav className="cr-next">
-        <a href="/lessons/school/class-12/class-12-matrices-and-determinants-determinant-properties">
-          ← Previous: Determinants Basics
+        <a href="/lessons/school/class-12/class-12-matrices-and-determinants-solving-linear-equations-by-matrices">
+          ← Solving Linear Equations by Matrices
         </a>
-        <a href="/lessons/school/class-12/class-12-matrices-and-determinants-cramers-rule-3x3">
-          Next: 3×3 Systems with Cramer&apos;s Rule →
+        <a href="/lessons/school/class-12/class-12-matrices-and-determinants-consistency-of-linear-systems">
+          Consistency of Linear Systems →
         </a>
       </nav>
     </main>
-    </LessonStudioFrame>
   );
 }

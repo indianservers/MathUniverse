@@ -32,7 +32,7 @@ display:none;}
   font: inherit;
   color: inherit;
 }
-.eqv10116-page > header {
+.eqv10116-page > .eqv10116-hero {
   display: grid;
   grid-template-columns: 58% 42%;
   min-height: 180px;
@@ -41,35 +41,35 @@ display:none;}
   border-radius: 10px;
   background: linear-gradient(110deg, var(--lesson-surface,#071e37), var(--lesson-surface,#04142a));
 }
-.eqv10116-page > header small {
+.eqv10116-page > .eqv10116-hero small {
   font-weight: 900;
   letter-spacing: 1px;
 }
-.eqv10116-page > header h1 {
+.eqv10116-page > .eqv10116-hero h1 {
   margin: 5px 0;
   font-size: 27px;
 }
-.eqv10116-page > header section > strong {
+.eqv10116-page > .eqv10116-hero section > strong {
   display: block;
   margin-top: 6px;
 }
-.eqv10116-page > header section > strong span,
+.eqv10116-page > .eqv10116-hero section > strong span,
 .eqv10116-page h2 em {
   color: var(--lesson-accent,#3ddfdb);
 }
-.eqv10116-page > header nav {
+.eqv10116-page > .eqv10116-hero nav {
   display: flex;
   gap: 7px;
   margin-top: 9px;
 }
-.eqv10116-page > header nav i {
+.eqv10116-page > .eqv10116-hero nav i {
   padding: 4px 11px;
   border: 1px solid var(--lesson-border,#304860);
   border-radius: 14px;
   font-style: normal;
   font-weight: 800;
 }
-.eqv10116-page > header aside {
+.eqv10116-page > .eqv10116-hero aside {
   display: grid;
   grid-template-columns: 22px 1fr 120px;
   gap: 9px;
@@ -77,10 +77,10 @@ display:none;}
   padding: 24px 15px;
   border-left: 1px solid var(--lesson-border,#29455e);
 }
-.eqv10116-page > header aside svg {
+.eqv10116-page > .eqv10116-hero aside svg {
   width: 18px;
 }
-.eqv10116-page > header aside button {
+.eqv10116-page > .eqv10116-hero aside button {
   display: flex;
   gap: 6px;
   padding: 9px;
@@ -341,12 +341,12 @@ display:none;}
   .eqv10116-page:before {
     inset: 0;
   }
-  .eqv10116-page > header,
+  .eqv10116-page > .eqv10116-hero,
   .eqv10116-page > main,
   .eqv10116-help {
     display: block;
   }
-  .eqv10116-page > header aside {
+  .eqv10116-page > .eqv10116-hero aside {
     margin-top: 12px;
     border: 0;
     border-top: 1px solid var(--lesson-border,#29455e);
@@ -360,3 +360,52 @@ display:none;}
     border-top: 1px solid var(--lesson-border,#29455e);
   }
 }
+
+/* Fit the content frame while preserving the existing application menu. */
+.eqv10116-page{top:0;left:0;width:100%;font-size:12px}
+.eqv10116-page>.eqv10116-hero{grid-template-columns:56% 44%;gap:12px;min-height:180px}
+.eqv10116-page>.eqv10116-hero aside{grid-template-columns:18px 1fr;align-self:center;padding:10px;line-height:1.8}
+.eqv10116-page>.eqv10116-hero aside button{grid-column:2;justify-self:end}
+.eqv10116-page>main{grid-template-columns:1.17fr 1fr .91fr 1.12fr}
+.eqv10116-page>main>article{height:auto;min-height:450px;padding:12px}
+.eqv10116-graph>footer{display:block}
+.eqv10116-graph>footer button{margin-top:10px}
+.eqv10116-graph .eqv10116-selection{min-height:35px;margin-top:7px;color:#a8bad0;font-size:11px}
+.eqv10116-graph svg g circle{stroke:var(--eq-node)!important;fill:color-mix(in srgb,var(--eq-node) 20%,#07172c)!important}
+.eqv10116-graph svg g:focus-visible circle{stroke-width:5;outline:none}
+.eqv10116-graph svg .edge,.eqv10116-graph svg .loop{stroke-width:1.7}
+.eqv10116-graph svg marker path{fill:#9aaec5}
+.eqv10116-matrix>div{grid-template-columns:repeat(7,minmax(0,1fr))}
+.eqv10116-matrix>div button{padding:0!important;min-height:0!important;min-width:0!important}
+.eqv10116-gates>article{grid-template-columns:25px 1fr;position:relative;padding:12px 9px}
+.eqv10116-gates>article strong{grid-column:2;justify-self:start}
+.eqv10116-gates>article p{margin-top:7px}
+.eqv10116-classes>.eqv10116-partition{border-radius:9px}
+.eqv10116-partition[data-valid="false"] strong{border-color:#ee758b;color:#ee758b}
+.eqv10116-neighbors{display:flex;justify-content:space-between;gap:16px;margin-top:12px;padding:17px;border:1px solid #29455e;border-radius:9px}
+.eqv10116-neighbors a{color:#e7eefb;text-decoration:none}
+@media(max-width:1100px){.eqv10116-page>main{grid-template-columns:1fr 1fr}.eqv10116-page>.eqv10116-hero{grid-template-columns:1fr}.eqv10116-page>.eqv10116-hero aside{border-left:0}.eqv10116-help{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.eqv10116-page>main,.eqv10116-help{display:block}.eqv10116-page>.eqv10116-hero nav{flex-wrap:wrap}.eqv10116-page>main>article{min-height:0}.eqv10116-help section{padding:15px}.eqv10116-neighbors{flex-wrap:wrap}}
+
+.eqv10116-page{--lesson-surface:#06162b!important;--lesson-ink:#e7eefb!important;--lesson-border:#29455e!important;--lesson-accent:#35e3d2!important;background:#031328!important;color:#e7eefb!important;padding:8px;font-family:Inter,Arial,sans-serif}
+.eqv10116-page>.eqv10116-hero{background:linear-gradient(110deg,#071a33,#041025)}
+.eqv10116-page>.eqv10116-hero h1{font-weight:800!important;font-size:28px!important;color:#f0f2fc!important}
+.eqv10116-page h2,.eqv10116-page h3{font-weight:750!important}
+.eqv10116-page button{color:#e7eefb!important;background:#09182d}
+.eqv10116-page button:focus-visible,.eqv10116-neighbors a:focus-visible{outline:2px solid #35e3d2;outline-offset:3px}
+.eqv10116-matrix button.one{color:#74eee4!important;background:#092333;box-shadow:inset 0 0 13px #0c414b}
+.eqv10116-gates>article{border-color:#218d7c;background:#06222c}
+.eqv10116-gates>article.fail{border-color:#bf526b;background:#281b2a}
+.eqv10116-gates>article strong{background:#10453e;color:#61e5a3}
+.eqv10116-gates>article.fail strong{background:#47252b;color:#ff8595}
+.eqv10116-classes>section{background:#061b30}
+.eqv10116-classes>section strong:before{content:'';display:inline-block;width:14px;height:14px;background:#26cfca;border-radius:50%;margin-right:8px;vertical-align:middle}
+.eqv10116-classes>section.c1 strong:before{background:#b47ae9}.eqv10116-classes>section.c2 strong:before{background:#ffbf38}
+.eqv10116-help,.eqv10116-neighbors{background:#06162b}
+.eqv10116-neighbors a{color:#e7eefb!important}
+
+.eqv10116-graph>.legend span{color:#b8c8dd!important}
+.eqv10116-gates>article strong{position:absolute;right:10px;top:12px}
+.eqv10116-gates>article b{display:block;padding-right:48px}
+.eqv10116-gates>article{min-height:88px}
+.eqv10116-help section:nth-child(2){margin:12px;border:1px solid #29455e;border-radius:8px;padding:12px 18px}

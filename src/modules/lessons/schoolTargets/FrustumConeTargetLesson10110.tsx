@@ -1,5 +1,5 @@
-import { OrbitControls } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+
+
 import {
   Box,
   CircleDot,
@@ -9,86 +9,23 @@ import {
   Triangle,
   View,
 } from "lucide-react";
-import { useRef, useState } from "react";
-import { DoubleSide, type Group } from "three";
+import { useState } from "react";
+
 import ThreeSceneWrapper from "../../../components/three/ThreeSceneWrapper";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./FrustumConeTargetLesson10110.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import FrustumScene10110 from "./FrustumScene10110";
+import {frustumModel,frustumNet} from "./frustumConeModel";
+import MathExpression from "../../../components/ui/MathExpression";
 
 const f2 = (value: number) => Number(value.toFixed(2));
 type Preset = "perspective" | "front" | "top" | "side";
 const cameras: Record<Preset, [number, number, number]> = {
-  perspective: [9, 6, 10],
-  front: [0, 2, 12],
-  top: [0, 13, 0.1],
-  side: [12, 2, 0],
+  perspective: [6, 3, 7],
+  front: [0, 1.5, 9],
+  top: [0, 9, 0.1],
+  side: [9, 1.5, 0],
 };
-
-function FrustumScene({
-  R,
-  r,
-  h,
-  animate,
-  speed,
-}: {
-  R: number;
-  r: number;
-  h: number;
-  animate: boolean;
-  speed: number;
-}) {
-  const group = useRef<Group>(null);
-  useFrame((_, delta) => {
-    if (animate && group.current) group.current.rotation.y += delta * speed;
-  });
-  const scale = 0.6;
-  const fullHeight = (h * R) / (R - r);
-  return (
-    <group ref={group}>
-      <mesh position={[0, ((-h + fullHeight) * scale) / 2, 0]}>
-        <coneGeometry args={[R * scale, fullHeight * scale, 64, 1, true]} />
-        <meshStandardMaterial
-          color="#b8d8ee"
-          transparent
-          opacity={0.12}
-          roughness={0.15}
-          side={DoubleSide}
-        />
-      </mesh>
-      <mesh castShadow receiveShadow>
-        <cylinderGeometry
-          args={[r * scale, R * scale, h * scale, 64, 1, false]}
-        />
-        <meshStandardMaterial
-          color="#19b9c4"
-          transparent
-          opacity={0.48}
-          roughness={0.25}
-          metalness={0.2}
-        />
-      </mesh>
-      <mesh position={[0, (-h * scale) / 2, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[R * scale * 0.97, R * scale, 64]} />
-        <meshBasicMaterial color="#ffc02b" />
-      </mesh>
-      <mesh position={[0, (h * scale) / 2, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[r * scale * 0.94, r * scale, 64]} />
-        <meshBasicMaterial color="#32e0e3" />
-      </mesh>
-      <gridHelper
-        args={[10, 10, "#1a7180", "#173750"]}
-        position={[0, (-h * scale) / 2 - 0.05, 0]}
-      />
-      <OrbitControls
-        enablePan={false}
-        enableZoom
-        minDistance={6}
-        maxDistance={18}
-      />
-    </group>
-  );
-}
 
 export default function FrustumConeTargetLesson10110({
   lesson: _lesson,
@@ -104,20 +41,15 @@ export default function FrustumConeTargetLesson10110({
   const [preset, setPreset] = useState<Preset>("perspective");
   const [tab, setTab] = useState<"3d" | "net">("3d");
   const [actions, setActions] = useState(0);
-  const slant = Math.sqrt(h * h + (R - r) * (R - r));
-  const volume = (Math.PI * h * (R * R + R * r + r * r)) / 3;
-  const csa = Math.PI * (R + r) * slant;
-  const tsa = csa + Math.PI * R * R + Math.PI * r * r;
-  const theta = (2 * Math.PI * (R - r)) / slant;
-  const degrees = (theta * 180) / Math.PI;
-  const outerSlant = (slant * R) / (R - r);
-  const innerSlant = (slant * r) / (R - r);
+  const {slant,volume,csa,tsa,theta,degrees,outerSlant,innerSlant}=frustumModel(R,r,h);
+  const [viewKey,setViewKey]=useState(0);
   const act = (fn: () => void) => {
     fn();
     setActions((value) => value + 1);
   };
   const reset = () =>
     act(() => {
+      setViewKey(n=>n+1);
       setR(6);
       setSmallR(3);
       setH(8);
@@ -127,19 +59,8 @@ export default function FrustumConeTargetLesson10110({
       setPreset("perspective");
       setTab("3d");
     });
-  const polar = (radius: number, angle: number) => ({
-    x: 180 + radius * Math.cos(angle),
-    y: 180 + radius * Math.sin(angle),
-  });
-  const start = -Math.PI / 2 - theta / 2,
-    end = -Math.PI / 2 + theta / 2,
-    Ro = 135,
-    Ri = 135 * (innerSlant / outerSlant);
-  const a = polar(Ro, start),
-    b = polar(Ro, end),
-    c = polar(Ri, end),
-    d = polar(Ri, start);
-  const sector = `M${a.x},${a.y} A${Ro},${Ro} 0 ${theta > Math.PI ? 1 : 0} 1 ${b.x},${b.y} L${c.x},${c.y} A${Ri},${Ri} 0 ${theta > Math.PI ? 1 : 0} 0 ${d.x},${d.y} Z`;
+  const {a,b,path:sector,Ri}=frustumNet(R,r,h);
+  const foldScale=Math.min(100/R,190/h),baseX=R*foldScale,topX=r*foldScale,topY=300-h*foldScale;
   return (
     <section
       className="fru10110-page"
@@ -153,13 +74,14 @@ export default function FrustumConeTargetLesson10110({
       data-csa={f2(csa)}
       data-tsa={f2(tsa)}
       data-theta={f2(degrees)}
+      data-theta-radians={theta} data-outer-slant={outerSlant} data-inner-slant={innerSlant} data-speed={speed} data-view-key={viewKey}
       data-unfold={String(unfold)}
       data-animate={String(animate)}
       data-view={preset}
       data-tab={tab}
       data-actions={actions}
     >
-      <header className="fru10110-hero">
+      <div className="fru10110-hero">
         <small>CLASS 10 · MENSURATION</small>
         <h1>Frustum of a Cone</h1>
         <p>
@@ -168,14 +90,16 @@ export default function FrustumConeTargetLesson10110({
         </p>
         <nav>
           <button
+            aria-pressed={tab==="3d"}
             className={tab === "3d" ? "active" : ""}
             onClick={() => act(() => setTab("3d"))}
           >
             3D VIEW
           </button>
           <button
+            aria-pressed={tab==="net"}
             className={tab === "net" ? "active" : ""}
-            onClick={() => act(() => setTab("net"))}
+            onClick={() => act(() => {setTab("net");setUnfold(true);})}
           >
             UNFOLDED NET
           </button>
@@ -183,7 +107,7 @@ export default function FrustumConeTargetLesson10110({
         <button className="reset" onClick={reset}>
           <RotateCcw /> Reset lab
         </button>
-      </header>
+      </div>
       <main className="fru10110-lab">
         <section className="fru10110-dims">
           <h2>DIMENSIONS</h2>
@@ -238,7 +162,7 @@ export default function FrustumConeTargetLesson10110({
           ))}
           <aside>
             <h2>DERIVED VALUES</h2>
-            <strong>l = √(h² + (R − r)²)</strong>
+            <strong><MathExpression value={String.raw`l=\sqrt{h^2+(R-r)^2}`}/></strong>
             <p>
               l = √({h}² + ({R} − {r})²) ≈ <b>{f2(slant)}</b>
             </p>
@@ -248,18 +172,19 @@ export default function FrustumConeTargetLesson10110({
           <h2>3D EXPLORER</h2>
           <div className={tab === "net" ? "muted" : ""}>
             <ThreeSceneWrapper
-              key={preset}
+              key={`${preset}-${viewKey}`}
               height="390px"
               mobileHeight="340px"
               cameraPosition={cameras[preset]}
+              fov={36}
               showHint={false}
               sceneSummary="Interactive three-dimensional frustum; drag to rotate and scroll to zoom"
             >
-              <FrustumScene R={R} r={r} h={h} animate={animate} speed={speed} />
+              <FrustumScene10110 R={R} r={r} h={h} animate={animate} speed={speed} />
             </ThreeSceneWrapper>
           </div>
           <footer>
-            <button onClick={() => act(() => setAnimate(!animate))}>
+            <button aria-pressed={animate} onClick={() => act(() => setAnimate(!animate))}>
               <Play /> {animate ? "Pause" : "Animate"}
             </button>
             <input
@@ -280,6 +205,7 @@ export default function FrustumConeTargetLesson10110({
                   key={view}
                   className={preset === view ? "active" : ""}
                   aria-label={`${view} view`}
+                  aria-pressed={preset===view}
                   onClick={() => act(() => setPreset(view))}
                 >
                   {[<Box />, <View />, <CircleDot />, <Triangle />][index]}
@@ -289,7 +215,7 @@ export default function FrustumConeTargetLesson10110({
           </footer>
         </section>
         <section className={`fru10110-net ${tab === "net" ? "selected" : ""}`}>
-          <header>
+          <div className="fru10110-net-heading">
             <h2>NET (UNFOLDED LATERAL SURFACE)</h2>
             <label>
               Unfold{" "}
@@ -299,29 +225,19 @@ export default function FrustumConeTargetLesson10110({
                 onChange={(event) => act(() => setUnfold(event.target.checked))}
               />
             </label>
-          </header>
+          </div>
           <svg
-            viewBox="0 0 360 360"
+            viewBox={!unfold?"0 0 360 360":theta<.5?`${180-135*Math.sin(theta/2)-10} 25 ${270*Math.sin(theta/2)+20} 60`:"0 15 360 215"}
+            data-detail={String(unfold&&theta<.5)}
             aria-label="Annular sector net of the frustum"
           >
-            <path d={sector} className={unfold ? "open" : "closed"} />
-            <line x1="180" y1="180" x2={a.x} y2={a.y} />
-            <line x1="180" y1="180" x2={b.x} y2={b.y} />
-            <text x="145" y="36">
-              2πR
-            </text>
-            <text x="150" y="150">
-              2πr
-            </text>
-            <text x="174" y="203">
-              θ
-            </text>
+            {unfold?<><path data-net-sector="true" d={sector} className="open"/><line x1="180" y1="180" x2={a.x} y2={a.y}/><line x1="180" y1="180" x2={b.x} y2={b.y}/><text x="158" y="32" style={{fontSize:theta<.5?5:17}}>2πR</text><text x="158" y={180-Ri+18} style={{fontSize:theta<.5?5:17}}>2πr</text><text x="174" y="203">θ</text></>:<g data-folded="true"><path className="open" d={`M${180-topX} ${topY} L${180-baseX} 300 Q180 ${300+baseX*.4} ${180+baseX} 300 L${180+topX} ${topY} Q180 ${topY+topX*.4} ${180-topX} ${topY}Z`}/><ellipse cx="180" cy={topY} rx={topX} ry={topX*.2} fill="none" stroke="#35e0e4"/><text x="117" y="345">Folded lateral surface</text></g>}
           </svg>
           <aside>
             <strong>θ = 2π(R − r) / l = {f2(theta)} rad</strong>
             <p>θ ≈ {f2(degrees)}°</p>
             <small>
-              Outer radius {f2(outerSlant)}, inner radius {f2(innerSlant)}
+              {theta<.5?"Magnified sector detail. ":""}Outer radius {f2(outerSlant)}, inner radius {f2(innerSlant)}
             </small>
           </aside>
         </section>
@@ -330,17 +246,17 @@ export default function FrustumConeTargetLesson10110({
         <h2>RESULTS</h2>
         <article>
           <b>VOLUME</b>
-          <strong>V = πh(R² + Rr + r²) / 3</strong>
+          <strong><MathExpression value={String.raw`V=\frac{\pi h(R^2+Rr+r^2)}{3}`}/></strong>
           <p>≈ {f2(volume)} cubic units</p>
         </article>
         <article>
           <b>CURVED SURFACE AREA (LATERAL)</b>
-          <strong>CSA = π(R + r)l</strong>
+          <strong><MathExpression value={String.raw`CSA=\pi(R+r)l`}/></strong>
           <p>≈ {f2(csa)} square units</p>
         </article>
         <article>
           <b>TOTAL SURFACE AREA (INCLUDING BASES)</b>
-          <strong>TSA = CSA + πR² + πr²</strong>
+          <strong><MathExpression value={String.raw`TSA=CSA+\pi R^2+\pi r^2`}/></strong>
           <p>≈ {f2(tsa)} square units</p>
         </article>
         <aside>
@@ -353,7 +269,7 @@ export default function FrustumConeTargetLesson10110({
         <Info /> All values update live as you move the sliders. Formulas use
         exact π and precise calculations.
       </footer>
-      <LessonTopicStudyBoard lessonId={10110} view={tab} />
+
 
     </section>
   );

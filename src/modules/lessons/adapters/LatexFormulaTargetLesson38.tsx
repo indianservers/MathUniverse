@@ -380,9 +380,9 @@ export default function LatexFormulaTargetLesson38({
               <small>Previous</small>Dynamic Text
             </span>
           </a>
-          <a href="/lessons/symbolic-mathematics/428-symbol-substitution">
+          <a href="/lessons/symbolic-mathematics/428-symbolic-evaluation">
             <span>
-              <small>Next</small>Symbol Substitution
+              <small>Next</small>Symbolic Evaluation
             </span>
             &rarr;
           </a>

@@ -126,7 +126,9 @@ export default function PartialFractionsTargetLesson314({
             Share
           </button>
         </div>
-        <section>
+
+      </header>
+      <div className="lesson-header-content pf314-hero"><section>
           {[
             [Eye, "OBSERVE", "Inspect the graph and function behavior."],
             [Hand, "MANIPULATE", "Decompose into partial fractions and solve."],
@@ -143,8 +145,7 @@ export default function PartialFractionsTargetLesson314({
               <p>{String(text)}</p>
             </article>
           ))}
-        </section>
-      </header>
+        </section></div>
       <nav className="pf314-tabs">
         {[
           "Interaction + Visualization",

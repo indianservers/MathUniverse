@@ -1,5 +1,7 @@
 import { confidenceCoverage } from "../../../studios/statistics/statisticsEnhancementEngine";
 import { confidenceIntervalMean } from "../../../visual-proofs/utils/statisticsMath";
+// Reproducible cohort with 19/20 and 95/100 coverage at the reference settings.
+export const DEFAULT_CONFIDENCE_SEED=1966;
 export type ConfidenceLevel=90|95|99;
 export const criticalValues:Record<ConfidenceLevel,number>={90:1.6448536269514722,95:1.959963984540054,99:2.5758293035489004};
 export function intervalForMean(mean:number,n:number,sigma:number,level:ConfidenceLevel) {

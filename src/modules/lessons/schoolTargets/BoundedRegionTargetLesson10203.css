@@ -304,3 +304,49 @@ div:has(> #lesson-section-interaction .br10203)
     margin-top: 15px;
   }
 }
+
+/* Bounded-region reference panels; scoped to this lesson. */
+.br10203.lesson-reference{max-width:1120px;padding:0;background:#f7faff;font:14px/1.6 Inter,Arial,sans-serif}
+.br10203.lesson-reference>header{background:white;border:1px solid #dce6ef;border-radius:12px;padding:24px 26px;margin-bottom:18px;min-height:170px}
+.br10203.lesson-reference h1{font-size:30px;font-weight:800;line-height:1.25;margin:8px 0}
+.br10203.lesson-reference header>p{font-size:14px;color:#526176}
+.br10203.lesson-reference header>aside{width:180px;background:linear-gradient(#f7fcfb,#f1faf7);border-radius:11px;padding:16px;font-size:12px}
+.br10203.lesson-reference header>aside h3{font-size:22px;font-weight:750}
+.br10203.lesson-reference .br-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.br10203.lesson-reference .br-tags span{padding:4px 10px;background:#f0f4f8;border-radius:12px;color:#46566b;font-size:10px}
+.br10203.lesson-reference h2{font-size:13px;font-weight:750}
+.br10203.lesson-reference h3{font-size:14px;font-weight:700}
+.br10203.lesson-reference .br-tabs{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;background:white;border:1px solid #dce6ef;border-radius:10px;padding:0 12px;gap:12px;margin-bottom:18px}
+.br10203.lesson-reference .br-tabs button{font-size:12px;font-weight:650;padding:17px 14px;color:#344565}
+.br10203.lesson-reference .br-tabs button[aria-current]{color:#713ad1}
+.br10203.lesson-reference .br-tabs button:last-child{margin:8px 0 8px auto;padding:9px 14px}
+.br10203.lesson-reference .br-lab{gap:18px;grid-template-columns:1fr 2.65fr;padding:0;margin-bottom:18px}
+.br10203.lesson-reference .br-lab>aside{background:#fafcff;border-radius:11px;padding:18px}
+.br10203.lesson-reference .br-constraint{padding:16px 12px;margin:8px 0;border-radius:9px}
+.br10203.lesson-reference .br-constraint label{font-size:14px}
+.br10203.lesson-reference .br-constraint input[type=number]{padding:7px;font-size:14px}
+.br10203.lesson-reference .br-handle-key{border-top:1px solid #dce6ef;padding:16px 0 0;font-size:12px;margin-top:auto}
+.br10203.lesson-reference .br-handle-key h3{font-size:13px}
+.br10203.lesson-reference .br-graph{background:white;border-radius:11px}
+.br10203.lesson-reference .br-graph .br-line-label{fill:revert-layer;font-size:11px}
+.br10203.lesson-reference .br-analysis{padding:0;border:0;gap:18px;margin-bottom:18px}
+.br10203.lesson-reference .br-analysis>div:first-child{background:white;border-radius:11px;padding:20px}
+.br10203.lesson-reference .br-analysis>div>section{background:white;border-radius:11px;padding:20px;margin-bottom:16px}
+.br10203.lesson-reference .br-analysis label{font-size:12px}
+.br10203.lesson-reference select{font-size:12px;padding:8px}
+.br10203.lesson-reference .br-comparison-result{font-size:12px;padding:12px;border:1px solid #d4ece2;border-radius:7px}
+.br10203.lesson-reference .br-boundary-test{font-size:12px;grid-template-columns:85px 1fr 22px;gap:12px;padding:8px 0}
+.br10203.lesson-reference .br-boundary-test b{font-size:17px}
+.br10203.lesson-reference table{font-size:12px}
+.br10203.lesson-reference th,.br10203.lesson-reference td{padding:12px 8px}
+.br10203.lesson-reference .br-notes{padding:0;gap:18px;margin-bottom:18px}
+.br10203.lesson-reference .br-notes article{background:white;border-radius:11px;padding:20px;font-size:13px}
+.br10203.lesson-reference .br-notes article:last-child{background:#fffaf3}
+.br10203.lesson-reference .br-practice{display:block!important;background:white;border:1px solid #dce6ef;border-radius:11px;padding:20px;margin-bottom:18px}
+.br10203.lesson-reference .br-practice>button{font-size:12px;padding:11px 16px}
+.br10203.lesson-reference .br-practice [role=status]{font-size:13px;border:1px solid #c9e8d9;border-radius:7px}
+.br10203.lesson-reference .br-next{padding:0 0 20px}
+.br10203.lesson-reference .br-next a{background:white;border:1px solid #dce6ef;border-radius:8px;padding:12px 16px;font-size:12px}
+.br10203.lesson-reference footer a{display:inline-flex;align-items:center;gap:6px;border:1px solid #dce6ef;border-radius:6px;padding:7px 11px;text-decoration:none}
+@container br (max-width:650px){.br10203.lesson-reference .br-lab,.br10203.lesson-reference .br-analysis,.br10203.lesson-reference .br-notes{grid-template-columns:1fr}.br10203.lesson-reference header>aside{float:none;width:100%;margin:0 0 14px}.br10203.lesson-reference .br-handle-key{margin-top:18px}.br10203.lesson-reference .br-tabs{gap:4px}.br10203.lesson-reference .br-tabs button{font-size:11px;padding:14px 7px}.br10203.lesson-reference .br-next{flex-wrap:wrap}}
+@container br (max-width:390px){.br10203.lesson-reference>header{padding:20px}.br10203.lesson-reference .br-tabs button{font-size:10px;padding:12px 5px}.br10203.lesson-reference .br-boundary-test{grid-template-columns:65px 1fr 18px;font-size:11px;gap:8px}.br10203.lesson-reference .br-analysis>div>section{padding:16px}}

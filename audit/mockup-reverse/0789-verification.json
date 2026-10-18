@@ -1,0 +1,2196 @@
+{
+  "status": "passed",
+  "errors": [],
+  "results": [
+    {
+      "pairs": "a,b;b,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c;b,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,a;b,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;b,a;b,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;b,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c;b,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;b,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,b;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,b;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;b,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,b;b,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c;b,b;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;b,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;b,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;b,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,b;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,a;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c;b,a;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;b,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,c;c,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,c;c,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,b;b,c;c,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;b,c;c,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,b;c,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,b;c,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;c,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,b;c,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;c,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,a;c,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;c,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "c,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "c,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;c,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;c,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;c,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;c,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;c,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,b;c,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;c,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;c,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,b;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,b;c,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;c,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,b;c,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,b;c,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,a;b,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,a;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,c;c,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,a;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,a;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,b;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,b;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;b,b;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,b;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,a;b,b;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "c,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,a;b,b;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,b;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;b,b;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,b;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,b;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,b;b,c;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,b;b,c;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;b,c;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;b,c;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,a;b,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,a;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,c;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,a;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,a;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,b;b,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,b;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,b;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;b,b;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,b;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,b;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,a;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c;c,a;c,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,b;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,b;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,b;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,b;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,b;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;b,c;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;b,c;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,b;b,c;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,c;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,a;b,c;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,c;c,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c;b,a;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,c;c,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,c;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,c;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c;b,a;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,c;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,c;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,c;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,c;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,a;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,b;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;b,c;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;b,c;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;b,c;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c;b,b;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;b,b;b,c;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;b,c;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;b,b;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,b;b,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;b,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c;b,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;b,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c;b,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,c;b,a;b,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;b,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;b,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;b,b;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,a;b,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;b,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "b,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;a,c;b,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,c;b,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;b,a;c,c",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;a,c;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;b,a;b,b",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;b,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;b,b;b,c;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,a;a,b;a,c;b,a;b,b;b,c;c,a;c,b;c,c",
+      "transitive": "true"
+    },
+    {
+      "pairs": "a,b;b,c;c,a",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,b;b,c;c,b",
+      "transitive": "false"
+    },
+    {
+      "pairs": "a,a;a,b;b,c",
+      "transitive": "false"
+    }
+  ],
+  "responsive": [
+    {
+      "state": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "cycle",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "cycle",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "cycle",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "cycle",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "closure",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "closure",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "closure",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "closure",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "instructions",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "instructions",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "instructions",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "instructions",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ]
+}

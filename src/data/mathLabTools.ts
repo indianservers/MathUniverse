@@ -242,7 +242,7 @@ const toolCatalog: MathLabToolDefinition[] = [
   },
   {
     title: "Sierpinski Carpet Explorer",
-    route: "/ncert/class-8-fractals-and-solid-views?tab=fractal",
+    route: "/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming",
     icon: Sparkles,
     difficulty: "Foundation",
     description:
@@ -256,7 +256,7 @@ const toolCatalog: MathLabToolDefinition[] = [
   },
   {
     title: "Orthographic Solid Views Lab",
-    route: "/ncert/class-8-fractals-and-solid-views?tab=solid",
+    route: "/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming",
     icon: Cuboid,
     difficulty: "Foundation",
     description:
@@ -270,7 +270,7 @@ const toolCatalog: MathLabToolDefinition[] = [
   },
   {
     title: "Equivalent Ratios and Cross Multiplication",
-    route: "/ncert/class-8-proportional-reasoning-2?tab=equivalent-ratios",
+    route: "/lessons/numbers-and-arithmetic/84-proportion",
     icon: GitFork,
     difficulty: "Foundation",
     description:
@@ -279,7 +279,7 @@ const toolCatalog: MathLabToolDefinition[] = [
   },
   {
     title: "Map Scale and Representative Fraction",
-    route: "/ncert/class-8-proportional-reasoning-2?tab=map-scale",
+    route: "/lessons/numbers-and-arithmetic/84-proportion",
     icon: Ruler,
     difficulty: "Foundation",
     description:
@@ -288,7 +288,7 @@ const toolCatalog: MathLabToolDefinition[] = [
   },
   {
     title: "Ratio Splitter and Pie Sectors",
-    route: "/ncert/class-8-proportional-reasoning-2?tab=ratio-splitter",
+    route: "/lessons/numbers-and-arithmetic/84-proportion",
     icon: Network,
     difficulty: "Foundation",
     description:
@@ -297,7 +297,7 @@ const toolCatalog: MathLabToolDefinition[] = [
   },
   {
     title: "Direct and Inverse Proportion Lab",
-    route: "/ncert/class-8-proportional-reasoning-2?tab=direct-inverse",
+    route: "/lessons/numbers-and-arithmetic/84-proportion",
     icon: Workflow,
     difficulty: "Foundation",
     description:

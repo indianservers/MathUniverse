@@ -1,0 +1,533 @@
+[
+  {
+    "id": 408,
+    "route": "/lessons/3d-mathematics/408-euler-s-polyhedron-formula",
+    "title": "Euler's Polyhedron Formula",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "eu408-hero",
+            "text": "3D MATHEMATICS3D GEOMETRY AND SOLIDSEuler's Polyhedron FormulaEuler's polyhedron formulaRe",
+            "height": 208,
+            "scrollHeight": 208,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 56,
+            "scrollHeight": 54,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "eu408-hero",
+            "text": "3D MATHEMATICS3D GEOMETRY AND SOLIDSEuler's Polyhedron FormulaEuler's polyhedron formulaRe",
+            "height": 363,
+            "scrollHeight": 363,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "lesson-shell-header overflow-visible rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80",
+            "text": "3D Mathematics3D Geometry and SolidsEuler's Polyhedron FormulaRelate vertices, edges and f",
+            "height": 191,
+            "scrollHeight": 189,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10008,
+    "route": "/lessons/school/class-6/class-6-data-handling-survey-to-frequency-table",
+    "title": "Survey to Frequency Table",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 112,
+            "scrollHeight": 110,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 112,
+            "scrollHeight": 110,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 112,
+            "scrollHeight": 110,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 112,
+            "scrollHeight": 110,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 112,
+            "scrollHeight": 110,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 233,
+            "scrollHeight": 231,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 233,
+            "scrollHeight": 231,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 233,
+            "scrollHeight": 231,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 233,
+            "scrollHeight": 231,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "sf10008-hero",
+            "text": "CLASS 6 · DATA HANDLINGSurvey to Frequency TableOBJECTIVEConvert raw survey responses into",
+            "height": 233,
+            "scrollHeight": 231,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10197,
+    "route": "/lessons/school/class-12/class-12-matrices-and-determinants-solving-linear-equations-by-matrices",
+    "title": "Solving Linear Equations by Matrices",
+    "checks": [
+      {
+        "width": 1440,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 118,
+            "scrollHeight": 116,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 118,
+            "scrollHeight": 116,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 118,
+            "scrollHeight": 116,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 118,
+            "scrollHeight": 116,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 118,
+            "scrollHeight": 116,
+            "overflowY": "visible",
+            "oversized": true,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Interaction + visualization",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Learn",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Examples",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Formulas",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "tab": "Know more",
+        "scrollbars": [],
+        "headers": [
+          {
+            "tag": "HEADER",
+            "className": "ls-hero",
+            "text": "CLASS 12 · MATRICES AND DETERMINANTSSolving Linear Equations by MatricesSolve the system u",
+            "height": 218,
+            "scrollHeight": 216,
+            "overflowY": "visible",
+            "oversized": false,
+            "clipped": false
+          }
+        ]
+      }
+    ]
+  }
+]

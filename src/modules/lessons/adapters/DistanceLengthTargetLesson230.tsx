@@ -154,7 +154,9 @@ export default function DistanceLengthTargetLesson230({
             </b>
           </section>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content target-distance-header"><aside>
           <h2>Learning goals</h2>
           <p>
             <Check /> Measure and interpret distance in the coordinate plane.
@@ -178,8 +180,7 @@ export default function DistanceLengthTargetLesson230({
               root.
             </div>
           )}
-        </aside>
-      </header>
+        </aside></div>
 
       <nav
         className="target-distance-stages"

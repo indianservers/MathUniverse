@@ -134,7 +134,9 @@ export default function ShellMethodTargetLesson319({
             </button>
           </div>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content sh319-hero"><aside>
           <h3>The Rule (Shell Method)</h3>
           <p>
             A shell uses radius times height times thickness rather than washer
@@ -148,8 +150,7 @@ export default function ShellMethodTargetLesson319({
             V=∫<sub>a</sub>
             <sup>b</sup>2πr(x)h(x)dx
           </strong>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="sh319-tabs">
         {[
           ["Interact", "Build & visualize"],

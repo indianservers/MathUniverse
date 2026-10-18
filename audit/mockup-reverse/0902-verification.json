@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "exact initial prime count, Li, error and next prime",
+    "12 sourced zero markers and critical line toggle",
+    "zero pair selection",
+    "keyboard and pointer chart inspection",
+    "all ranges, clamping and logarithmic scrubber",
+    "signed-error and prime-count plots",
+    "reference links expansion",
+    "section navigation",
+    "practice feedback and all next actions"
+  ]
+}

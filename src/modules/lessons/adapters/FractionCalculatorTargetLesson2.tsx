@@ -168,15 +168,16 @@ export default function FractionCalculatorTargetLesson2({
           <span>⌘ Calculator Lab</span>
           <span>◷ 6–10 min</span>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content target-fraction-header"><aside>
           <Target />
           <div>
             <h2>Objective</h2>
             <p>Add fractions by matching denominators first.</p>
             <b>Never add denominators directly.</b>
           </div>
-        </aside>
-      </header>
+        </aside></div>
       <nav
         className="target-fraction-tabs"
         aria-label="Fraction calculator lesson views"

@@ -664,3 +664,66 @@ div:has(> #lesson-section-interaction .diet10207)
     font-size: 16px;
   }
 }
+
+/* Diet Problem reference panels, scoped to lesson content. */
+.diet10207.lesson-reference{max-width:1120px;padding:0;background:#f7faff;font:14px/1.6 Inter,Arial,sans-serif}
+.diet10207.lesson-reference>header{background:white;border:1px solid #dce6ef;border-radius:12px;padding:24px 26px;margin-bottom:18px}
+.diet10207.lesson-reference h1{font-size:30px;font-weight:800;line-height:1.25;margin:8px 0}
+.diet10207.lesson-reference header>p{font-size:14px;color:#526176}
+.diet10207.lesson-reference header>a{border:1px solid #dce6ef;border-radius:7px;padding:9px 14px;font-size:12px}
+.diet10207.lesson-reference .diet-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.diet10207.lesson-reference .diet-tags span{padding:4px 10px;background:#f0f4f8;border-radius:12px;color:#46566b;font-size:10px}
+.diet10207.lesson-reference h2{font-size:14px;font-weight:750}
+.diet10207.lesson-reference h3{font-size:13px;font-weight:700}
+.diet10207.lesson-reference .diet-tabs{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;background:white;border:1px solid #dce6ef;border-radius:10px;padding:0 12px;gap:12px;margin-bottom:18px}
+.diet10207.lesson-reference .diet-tabs button{padding:17px 10px;font-size:12px;font-weight:650;color:#52627c}
+.diet10207.lesson-reference .diet-tabs button[aria-current]{color:#7137de}
+.diet10207.lesson-reference .diet-workspace{padding:0;border:0;gap:18px;margin-bottom:18px}
+.diet10207.lesson-reference .diet-mix,.diet10207.lesson-reference .diet-graph-panel{background:white;border-radius:12px;padding:20px}
+.diet10207.lesson-reference .diet-mix>p{font-size:12px}
+.diet10207.lesson-reference .diet-food{border:1px solid #e3edf2;border-radius:8px;padding:14px 10px;margin:10px 0;gap:12px}
+.diet10207.lesson-reference .diet-food>.diet-food-plate{width:48px;height:48px;flex:none;filter:drop-shadow(0 2px 1px #33442226)}
+.diet10207.lesson-reference .diet-food label{font-size:12px;margin-bottom:7px}
+.diet10207.lesson-reference .diet-food small{font-size:10px}
+.diet10207.lesson-reference .diet-food>strong{font-size:23px}
+.diet10207.lesson-reference .diet-stepper{margin-top:5px}
+.diet10207.lesson-reference .diet-nutrients{border:1px solid #e2eaf2;border-radius:9px;padding:16px 12px;margin:16px 0}
+.diet10207.lesson-reference .diet-meter label{font-size:12px}
+.diet10207.lesson-reference .diet-meter progress{height:14px;border-radius:8px}
+.diet10207.lesson-reference .diet-total{padding:16px;border-radius:9px}
+.diet10207.lesson-reference .diet-total h3 strong{font-size:28px}
+.diet10207.lesson-reference .diet-legend{font-size:10px;gap:10px 14px;margin:12px 0}
+.diet10207.lesson-reference .diet-cost-slider{font-size:12px}
+.diet10207.lesson-reference .diet-cost-slider output{font-size:12px;min-width:110px;padding:8px;background:#f6f1ff;border-radius:16px;text-align:center}
+.diet10207.lesson-reference .diet-whole{padding:14px}
+.diet10207.lesson-reference .diet-whole strong{font-size:12px}
+.diet10207.lesson-reference .diet-whole small{font-size:11px}
+.diet10207.lesson-reference .diet-model{padding:0;border:0;gap:18px;margin-bottom:18px}
+.diet10207.lesson-reference .diet-model>div,.diet10207.lesson-reference .diet-model>aside{background:white;border:1px solid #dce6ef;border-radius:10px;padding:18px}
+.diet10207.lesson-reference table{font-size:12px}
+.diet10207.lesson-reference .diet-model td,.diet10207.lesson-reference .diet-model th{padding:15px 8px}
+.diet10207.lesson-reference th small{font-size:10px}
+.diet10207.lesson-reference .diet-variables{border:1px solid #d9edf2;border-radius:7px;padding:12px;font-size:11px;margin-top:16px}
+.diet10207.lesson-reference .diet-equations p{font-size:12px}
+.diet10207.lesson-reference .diet-equations p:nth-of-type(2),.diet10207.lesson-reference .diet-equations p:nth-of-type(n+4){font-size:16px;padding:14px 10px}
+.diet10207.lesson-reference .diet-equations small{font-size:10px}
+.diet10207.lesson-reference .diet-solution{font-size:12px}
+.diet10207.lesson-reference .diet-solution>strong{border:1px solid #bce9d8;border-radius:7px;padding:12px}
+.diet10207.lesson-reference .diet-solution>div{border:1px solid #e3d7fd;border-radius:7px;padding:12px 8px}
+.diet10207.lesson-reference .diet-solution button{font-size:11px}
+.diet10207.lesson-reference .diet-worked{padding:0;gap:18px;margin-bottom:18px}
+.diet10207.lesson-reference .diet-worked article{background:white;border:1px solid #dce6ef;border-radius:10px;padding:18px;font-size:12px}
+.diet10207.lesson-reference .diet-worked ol{counter-reset:step;list-style:none;padding:0}
+.diet10207.lesson-reference .diet-worked li{counter-increment:step;position:relative;padding:0 0 18px 30px}
+.diet10207.lesson-reference .diet-worked li:before{content:counter(step);position:absolute;left:0;top:0;width:23px;height:23px;line-height:22px;text-align:center;border:1px solid #bfe6f3;border-radius:50%;background:#f5fcff;color:#008a9b;font-size:11px}
+.diet10207.lesson-reference .diet-rule{font-size:11px;border:1px solid #d0eaf1;border-radius:7px}
+.diet10207.lesson-reference .diet-worked .diet-misconception{margin-top:16px;border-color:#f4d5cf;background:#fffafa}
+.diet10207.lesson-reference .diet-misconception p{font-size:12px}
+.diet10207.lesson-reference .diet-practice{padding:20px;border:1px solid #dfd0ff;border-radius:10px;margin-bottom:18px;font-size:12px}
+.diet10207.lesson-reference .diet-practice>div:last-child{background:white;border:1px solid #e0d5f4;border-radius:8px;padding:16px}
+.diet10207.lesson-reference .diet-practice button{font-size:12px;padding:10px 14px}
+.diet10207.lesson-reference .diet-next{padding:0 0 20px}
+.diet10207.lesson-reference .diet-next a{background:white;border:1px solid #dce6ef;border-radius:8px;padding:12px 16px;font-size:12px}
+.diet10207.lesson-reference footer a{display:inline-flex;align-items:center;gap:6px;border:1px solid #dce6ef;border-radius:6px;padding:7px 11px;text-decoration:none}
+@container diet (max-width:720px){.diet10207.lesson-reference .diet-workspace,.diet10207.lesson-reference .diet-worked,.diet10207.lesson-reference .diet-practice{grid-template-columns:1fr}.diet10207.lesson-reference .diet-model{grid-template-columns:1fr 1fr}.diet10207.lesson-reference .diet-tabs{gap:4px}.diet10207.lesson-reference .diet-tabs button{font-size:11px;padding:14px 6px}}
+@container diet (max-width:420px){.diet10207.lesson-reference>header{padding:20px}.diet10207.lesson-reference .diet-model{grid-template-columns:1fr}.diet10207.lesson-reference .diet-food{padding:12px 8px;gap:8px}.diet10207.lesson-reference .diet-food>.diet-food-plate{width:38px;height:38px}.diet10207.lesson-reference .diet-food>strong{font-size:19px}.diet10207.lesson-reference .diet-tabs button{font-size:10px;padding:12px 4px}.diet10207.lesson-reference .diet-mix,.diet10207.lesson-reference .diet-graph-panel{padding:16px}}

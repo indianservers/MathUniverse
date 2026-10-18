@@ -1,0 +1,127 @@
+{
+  "status": "passed",
+  "errors": [],
+  "responsive": [
+    {
+      "state": "studio4",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "studio4",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "studio4",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "studio4",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "studio8",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "studio8",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "studio8",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "studio8",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "area2",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "area2",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "area2",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "area2",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "triangle",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "triangle",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "triangle",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "triangle",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "table",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "table",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "table",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "table",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ],
+  "clipped": []
+}

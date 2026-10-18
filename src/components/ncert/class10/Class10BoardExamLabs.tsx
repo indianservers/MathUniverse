@@ -276,7 +276,7 @@ export default function Class10BoardExamLab({
           Open {link.label}
         </Link>
       ))}
-      <Link to="/ncert" className="action-secondary justify-center">
+      <Link to="/curriculum" className="action-secondary justify-center">
         Open NCERT dashboard
       </Link>
       <Link to="/formulas" className="action-secondary justify-center">

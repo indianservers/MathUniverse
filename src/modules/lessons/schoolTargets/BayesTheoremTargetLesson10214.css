@@ -2,3 +2,78 @@
 @container by (max-width:780px){.by-controls{grid-template-columns:1fr 1fr}.by-detail{grid-template-columns:1fr 1fr}.by-detail article:last-child{grid-column:1/-1}.by-reasoning,.by-practice{grid-template-columns:1fr}.by-tabs{flex-wrap:wrap}.by-stages{gap:14px}.by-stages article:not(:last-child)::after{display:none}.by-prior-chips{gap:2px}.by-evidence-chips{gap:8px}}
 @container by (max-width:500px){.by-controls,.by-detail,.by-stages{grid-template-columns:1fr}.by-detail article:last-child{grid-column:auto}.by-prior-chips{max-width:240px;margin:auto;width:100%}.by-stage-totals{margin-top:0}.by-stages h3{border-radius:6px}.by-next{flex-wrap:wrap}.by-evidence-chips{min-height:120px}.by-posterior{margin-block:35px}}
 .by10214 button svg,.by10214 h2 svg,.by10214 h3 svg{width:16px;height:16px;flex:0 0 auto}
+
+/* Reference page cards scoped to the Bayes lesson. */
+.by10214.lesson-reference{max-width:1120px;padding:0;background:#f7faff;font:14px/1.6 Inter,Arial,sans-serif}
+.by10214.lesson-reference>header{background:white;border:1px solid #dce6ef;border-radius:12px;padding:24px 26px;margin-bottom:20px}
+.by10214.lesson-reference h1{font-size:30px;line-height:1.25;font-weight:800;margin:8px 0}
+.by10214.lesson-reference header>p{font-size:14px;color:#526176}
+.by10214.lesson-reference header>a{border:1px solid #dce6ef;border-radius:7px;padding:9px 14px;font-size:12px}
+.by10214.lesson-reference .by-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.by10214.lesson-reference .by-tags span{padding:4px 10px;background:#f0f4f8;color:#46566b;border-radius:12px;font-size:10px}
+.by10214.lesson-reference h2{font-size:13px;font-weight:750}
+.by10214.lesson-reference h3{font-size:12px;font-weight:700}
+.by10214.lesson-reference nav.by-tabs{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;background:white;border:1px solid #dce6ef;border-radius:10px;padding:0 12px;margin-bottom:18px}
+.by10214.lesson-reference .by-tabs button{flex:1;padding:17px 10px;color:#344565;font-weight:650}
+.by10214.lesson-reference .by-tabs button[aria-current]{color:#0086bf}
+.by10214.lesson-reference .by-tabs button:last-child{flex:0}
+.by10214.lesson-reference .by-live{background:white;border:1px solid #dce6ef;border-radius:10px;padding:20px;margin-bottom:18px}
+.by10214.lesson-reference .by-live>p{font-size:12px}
+.by10214.lesson-reference .by-controls{gap:14px}
+.by10214.lesson-reference .by-controls article{padding:16px 12px;border-radius:9px}
+.by10214.lesson-reference .by-control{font-size:11px;grid-template-columns:minmax(25px,1fr) 35px}
+.by10214.lesson-reference .by-control output{font-size:12px;font-weight:650}
+.by10214.lesson-reference .by-denominator{font-size:24px}
+.by10214.lesson-reference .by-denominator small{font-size:12px}
+.by10214.lesson-reference .by-target button{padding:10px 12px;font-size:12px}
+.by10214.lesson-reference .by-stages{border:1px solid #e4ebf3;border-radius:10px;padding:16px 12px;gap:28px}
+.by10214.lesson-reference .by-stages h3{background:linear-gradient(100deg,#006fbe,#1a98ce);font-size:12px;padding:9px 10px}
+.by10214.lesson-reference .by-stages article:nth-child(2) h3{background:linear-gradient(100deg,#6527bc,#8b56d8)}
+.by10214.lesson-reference .by-stages article:last-child h3{background:linear-gradient(100deg,#008c5c,#05aa64)}
+.by10214.lesson-reference .by-stages article:after{right:-26px;font-weight:800}
+.by10214.lesson-reference .by-stages article:nth-child(2):after{color:#02a571}
+.by10214.lesson-reference .by-stages p{font-size:12px}
+.by10214.lesson-reference .by-prior-chips{grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;min-height:190px;max-width:250px;margin:auto;width:100%}
+.by10214.lesson-reference .by-prior-chips i{max-width:19px;border-radius:50%!important}
+.by10214.lesson-reference .by-m1{background:radial-gradient(circle at 30% 20%,#50b1f5,#0969bc 65%,#03488c)}
+.by10214.lesson-reference .by-m2{background:radial-gradient(circle at 30% 20%,#ffd181,#f88f14 65%,#cc6400)}
+.by10214.lesson-reference .by-evidence-chips{min-height:190px}
+.by10214.lesson-reference .by-evidence-chips i{width:23px;height:23px;border-radius:50%!important}
+.by10214.lesson-reference .by-posterior{height:48px;margin-block:71px;align-items:stretch;border:1px solid #dce6ef}
+.by10214.lesson-reference .by-posterior span{display:flex;align-items:center;justify-content:center;color:white;font-size:13px;font-weight:700;min-width:0;overflow:hidden}
+.by10214.lesson-reference .by-stage-totals>span{font-size:11px;background:#fbfdff;padding:10px 4px}
+.by10214.lesson-reference .by-stage-totals b,.by10214.lesson-reference .by-stage-totals small{font-size:11px}
+.by10214.lesson-reference .by-stages article>strong{font-size:11px;background:#fbfdff}
+.by10214.lesson-reference .by-interpretation{font-size:12px;padding:14px}
+.by10214.lesson-reference .by-detail{padding:0;gap:18px;margin-bottom:18px}
+.by10214.lesson-reference .by-detail article{background:white;border-radius:10px;padding:18px;font-size:12px}
+.by10214.lesson-reference .by-detail article:nth-child(2)>div{padding:13px 10px;margin:12px 0}
+.by10214.lesson-reference .by-detail .math-expression{display:block;text-align:center;font-size:12px}
+.by10214.lesson-reference .by-tree-head{font-size:10px}
+.by10214.lesson-reference .by-tree{margin:18px 0 24px}
+.by10214.lesson-reference #by-Tree>.by-equation{background:#fffaf0;border:1px solid #f1dcb9;border-radius:6px;padding:9px;font-size:13px}
+.by10214.lesson-reference .by-takeaway>div{text-align:center;font-size:12px;padding:16px 10px}
+.by10214.lesson-reference .by-takeaway>p{font-size:12px}
+.by10214.lesson-reference .by-reasoning{border:0;padding:0;gap:18px;margin-bottom:18px}
+.by10214.lesson-reference .by-reasoning article{background:white;border:1px solid #dce6ef;border-radius:10px;padding:18px;font-size:12px}
+.by10214.lesson-reference .by-reasoning .by-mistake{background:#fffcf1;border-color:#f1dbb4}
+.by10214.lesson-reference .by-reasoning ol{counter-reset:reason;list-style:none;padding:0}
+.by10214.lesson-reference .by-reasoning li{counter-increment:reason;position:relative;padding:0 0 18px 32px}
+.by10214.lesson-reference .by-reasoning li:before{content:counter(reason);position:absolute;left:0;top:0;width:23px;height:23px;border:1px solid #c7e6f6;background:#f3faff;border-radius:50%;text-align:center;color:#0078b7;line-height:22px;font-size:11px}
+.by10214.lesson-reference table{font-size:11px}
+.by10214.lesson-reference th{font-size:10px}
+.by10214.lesson-reference .by-practice{padding:0;gap:18px;margin-bottom:18px}
+.by10214.lesson-reference .by-practice article{background:white;border:1px solid #dce6ef;border-radius:10px;padding:20px;font-size:12px}
+.by10214.lesson-reference .by-practice .by-equation{font-style:normal;font-size:14px}
+.by10214.lesson-reference .by-practice button{font-size:12px;padding:9px 14px}
+.by10214.lesson-reference .by-practice label{border:1px solid #e1e9f1;border-radius:6px;padding:8px}
+.by10214.lesson-reference .by-practice label:has(input:checked){background:#eff9ff;border-color:#168ddd}
+.by10214.lesson-reference .by-next{padding:0 0 20px}
+.by10214.lesson-reference .by-next a{background:white;border:1px solid #dce6ef;border-radius:8px;padding:12px 16px;font-size:12px}
+.by10214.lesson-reference footer a{display:inline-flex;align-items:center;gap:6px;border:1px solid #dce6ef;border-radius:6px;padding:7px 11px;text-decoration:none}
+@container by (max-width:780px){.by10214.lesson-reference .by-controls{grid-template-columns:1fr 1fr}.by10214.lesson-reference .by-detail{grid-template-columns:1fr 1fr}.by10214.lesson-reference .by-reasoning,.by10214.lesson-reference .by-practice{grid-template-columns:1fr}.by10214.lesson-reference .by-stages{gap:12px;padding:12px 8px}.by10214.lesson-reference .by-stages h3{font-size:10px}.by10214.lesson-reference .by-stages p{font-size:11px}.by10214.lesson-reference .by-stage-totals{grid-template-columns:1fr}}
+@container by (max-width:500px){.by10214.lesson-reference>header{padding:20px}.by10214.lesson-reference .by-live{padding:14px}.by10214.lesson-reference .by-controls,.by10214.lesson-reference .by-detail,.by10214.lesson-reference .by-stages{grid-template-columns:1fr}.by10214.lesson-reference .by-stage-totals{grid-template-columns:1fr 1fr}.by10214.lesson-reference .by-posterior{margin-block:30px}.by10214.lesson-reference .by-tabs button{padding:13px 5px;gap:4px;font-size:10px}.by10214.lesson-reference .by-tabs button svg{width:12px}}
+
+.by10214.lesson-reference .by-detail .math-expression{font-size:14px;padding:2px 0}
+.by10214.lesson-reference .by-stages h3{display:flex;align-items:center;gap:8px}
+.by10214.lesson-reference .by-stages h3>b{display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;flex:none;border-radius:50%;background:#ffffff20;font-size:11px}

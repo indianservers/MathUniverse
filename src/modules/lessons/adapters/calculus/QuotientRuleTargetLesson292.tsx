@@ -161,12 +161,13 @@ export default function QuotientRuleTargetLesson292({
             <i>6–10 min</i>
           </div>
         </main>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content qtr292-hero"><aside>
           <h3>Quotient Rule</h3>
           <output>(u/v)′ = (vu′−uv′)/v², &nbsp; v≠0</output>
           <p>If y=f(x)/g(x), then y′=(gf′−fg′)/g², where g(x)≠0.</p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="qtr292-tabs">
         {[
           "Interaction + Visualization",

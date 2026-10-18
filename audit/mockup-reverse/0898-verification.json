@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "default winner and locked next-convergent inspection",
+    "candidate select, plot click and number-line marking",
+    "keyboard pan/zoom/home",
+    "actual wheel zoom and pointer pan/reset",
+    "metric-dependent winners and comparison",
+    "all targets",
+    "budget 1/100/110/200/10000 and sampled plot",
+    "share clipboard content",
+    "practice/challenge feedback and hint",
+    "all section navigation"
+  ]
+}

@@ -111,7 +111,9 @@ export default function PigeonholeTargetLesson564({
           <h1>Pigeonhole Principle</h1>
           <p>Understand guaranteed repetition.</p>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content pig564-hero"><aside>
           <span>6-10 min</span>
           <span>English (English)</span>
           <button>Share</button>
@@ -122,8 +124,7 @@ export default function PigeonholeTargetLesson564({
               least one box has ⌈n/k⌉ or more objects.
             </p>
           </section>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="pig564-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

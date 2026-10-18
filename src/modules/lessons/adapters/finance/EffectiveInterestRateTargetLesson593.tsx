@@ -97,14 +97,15 @@ export default function EffectiveInterestRateTargetLesson593({
             <b>Workspace</b>
           </span>
         </main>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content eir593-hero"><aside>
           <b>OBJECTIVE</b>
           <p>
             Understand how compounding frequency increases the effective annual
             rate (EAR), learn the rule, and apply it confidently.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="eir593-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

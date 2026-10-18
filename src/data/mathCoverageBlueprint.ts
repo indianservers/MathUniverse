@@ -55,7 +55,7 @@ export const coreMathLanes: CoreMathLane[] = [
     primaryRoute: "/syllabus/class-8",
     labRoutes: [
       "/number-systems",
-      "/ncert/class-7-simple-equations",
+      "/lessons/algebra/111-linear-equations",
       "/geometry",
       "/shapes",
       "/math-lab/probability",
@@ -84,9 +84,9 @@ export const coreMathLanes: CoreMathLane[] = [
     ],
     primaryRoute: "/syllabus/class-10",
     labRoutes: [
-      "/ncert/class-10-polynomials",
-      "/ncert/class-10-pair-linear",
-      "/ncert/class-10-quadratic",
+      "/lessons/algebra/102-polynomial-operations",
+      "/lessons/algebra/112-simultaneous-linear-equations",
+      "/lessons/algebra/114-quadratic-equations",
       "/trigonometry",
       "/geometry",
       "/probability-statistics",
@@ -175,7 +175,7 @@ export const interactiveMathTools: InteractiveMathTool[] = [
     title: "Fraction and Decimal Visualizer",
     purpose:
       "Show equivalence, place value, decimal expansion and fraction operations.",
-    route: "/ncert/class-7-fractions-decimals",
+    route: "/lessons/numbers-and-arithmetic/78-fraction-operations",
     gradeBand: "Class 6-8",
     dimensions: "2D",
     status: "Live",
@@ -184,7 +184,7 @@ export const interactiveMathTools: InteractiveMathTool[] = [
     id: "algebra-balance-scale",
     title: "Algebra Balance Scale",
     purpose: "Solve simple and linear equations with inverse operations.",
-    route: "/ncert/class-7-simple-equations",
+    route: "/lessons/algebra/111-linear-equations",
     gradeBand: "Class 7-9",
     dimensions: "2D",
     status: "Live",
@@ -194,7 +194,7 @@ export const interactiveMathTools: InteractiveMathTool[] = [
     title: "Polynomial Graph and Roots Lab",
     purpose:
       "Connect polynomial coefficients, graph crossings, roots and factor form.",
-    route: "/ncert/class-10-polynomials",
+    route: "/lessons/algebra/102-polynomial-operations",
     gradeBand: "Class 9-11",
     dimensions: "2D",
     status: "Live",
@@ -204,7 +204,7 @@ export const interactiveMathTools: InteractiveMathTool[] = [
     title: "Linear Equations Intersection Lab",
     purpose:
       "Classify unique, no-solution and infinitely-many solution systems.",
-    route: "/ncert/class-10-pair-linear",
+    route: "/lessons/algebra/112-simultaneous-linear-equations",
     gradeBand: "Class 9-10",
     dimensions: "2D",
     status: "Live",
@@ -214,7 +214,7 @@ export const interactiveMathTools: InteractiveMathTool[] = [
     title: "Quadratic Parabola Lab",
     purpose:
       "Explore discriminant, vertex, axis, roots and coefficient changes.",
-    route: "/ncert/class-10-quadratic",
+    route: "/lessons/algebra/114-quadratic-equations",
     gradeBand: "Class 10-11",
     dimensions: "2D",
     status: "Live",

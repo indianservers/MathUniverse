@@ -17,21 +17,21 @@ function linkFor(path: string) {
 describe("site links discoverability", () => {
   it("exposes NCERT dashboard and priority NCERT routes to search", () => {
     const routePaths = paths();
-    expect(routePaths.has("/ncert")).toBe(true);
-    expect(routePaths.has("/ncert/class-7-arithmetic-expressions")).toBe(true);
-    expect(routePaths.has("/ncert/class-7-algebraic-expressions")).toBe(true);
-    expect(routePaths.has("/ncert/class-7-data-handling")).toBe(true);
-    expect(routePaths.has("/ncert/class-10-two-tangents")).toBe(true);
+    expect(routePaths.has("/curriculum")).toBe(true);
+    expect(routePaths.has(ncertRoute("class-7-arithmetic-expressions"))).toBe(true);
+    expect(routePaths.has(ncertRoute("class-7-algebraic-expressions"))).toBe(true);
+    expect(routePaths.has(ncertRoute("class-7-data-handling"))).toBe(true);
+    expect(routePaths.has(ncertRoute("class-10-two-tangents"))).toBe(true);
     [
-      "/ncert/class-12-relations-functions",
-      "/ncert/class-12-determinants",
-      "/ncert/class-12-continuity-differentiability",
-      "/ncert/class-12-integration-methods",
-      "/ncert/class-12-differential-equations",
-      "/ncert/class-12-vectors-3d-geometry",
-      "/ncert/class-12-bayes-theorem",
-      "/ncert/class-12-linear-programming",
-      "/ncert/class-12-inverse-trig",
+      ncertRoute("class-12-relations-functions"),
+      ncertRoute("class-12-determinants"),
+      ncertRoute("class-12-continuity-differentiability"),
+      ncertRoute("class-12-integration-methods"),
+      ncertRoute("class-12-differential-equations"),
+      ncertRoute("class-12-vectors-3d-geometry"),
+      ncertRoute("class-12-bayes-theorem"),
+      ncertRoute("class-12-linear-programming"),
+      ncertRoute("class-12-inverse-trig"),
     ].forEach((path) => expect(routePaths.has(path)).toBe(true));
   });
 
@@ -81,8 +81,8 @@ describe("site links discoverability", () => {
   });
 
   it("includes student-friendly NCERT search keywords", () => {
-    const determinant = linkFor("/ncert/class-12-determinants");
-    const tangent = linkFor("/ncert/class-10-two-tangents");
+    const determinant = linkFor(ncertRoute("class-12-determinants"));
+    const tangent = linkFor(ncertRoute("class-10-two-tangents"));
     expect(determinant?.keywords.join(" ").toLowerCase()).toContain(
       "determinant",
     );

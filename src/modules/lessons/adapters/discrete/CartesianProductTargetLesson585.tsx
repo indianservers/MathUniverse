@@ -162,14 +162,15 @@ export default function CartesianProductTargetLesson585({
             <b>Prerequisite: Sets</b>
           </dl>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content cp585-hero"><aside>
           <b>Objective</b>
           <p>
             Generate all ordered pairs (a,b) for sets A and B, distinguish (a,b)
             from (b,a), and discover that |A x B|=|A||B|.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="cp585-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (
@@ -459,7 +460,7 @@ export default function CartesianProductTargetLesson585({
             Previous<b>Complement</b>
           </span>
         </a>
-        <a href="/lessons/discrete-and-applied-mathematics/586-subsets-power-sets">
+        <a href="/lessons/discrete-and-applied-mathematics/586-subsets-and-power-sets">
           <span>
             Next<b>Subsets and Power Sets</b>
           </span>{" "}

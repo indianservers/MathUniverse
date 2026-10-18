@@ -1,0 +1,9 @@
+export function quadraticMvt(a:number,b:number){if(!Number.isFinite(a)||!Number.isFinite(b)||a>=b)return null;const c=a+(b-a)/2,slope=a+b;if(![c,slope,a*a,b*b,c*c].every(Number.isFinite)||c<=a||c>=b)return null;return{a,b,c,slope,tangent:2*c,fa:a*a,fb:b*b,fc:c*c,rolle:Math.abs(a+b)<1e-10};}
+export function parseMvtInterval(a:string,b:string){if(a.trim()===''||b.trim()==='')return null;return quadraticMvt(Number(a),Number(b));}
+export function clampMvtEndpoint(side:"a"|"b",value:number,a:number,b:number){const v=Math.round(value*100)/100;return side==="a"?Math.max(0,Math.min(Math.round((b-.1)*100)/100,v)):Math.min(4,Math.max(Math.round((a+.1)*100)/100,v));}
+export function mvtFrame(a:number,b:number){return{xmin:-.35,xmax:Math.max(4.4,b+.4),ymin:-.7,ymax:Math.max(10.8,b*b*1.15)};}
+export const mvtCurve=(x:number)=>x*x;
+export const mvtTangent=(c:number,x:number)=>c*c+2*c*(x-c);
+export const mvtTicks=(min:number,max:number,step:number)=>Array.from({length:Math.ceil((max-min)/step)+1},(_,i)=>Math.ceil(min/step)*step+i*step).filter(v=>v<=max+1e-8);
+export const cubicMvtPoint=Math.sqrt(13/3);
+export const mvtPractice=[{question:'For f(x) = x² on [2, 5], find c guaranteed by LMVT.',options:['2','\\dfrac72','\\dfrac92','3'],correct:1,solution:'The secant slope is (25 − 4)/(5 − 2) = 7. Since f′(c) = 2c = 7, c = 7/2 = 3.5, inside (2, 5).'}, {question:'For f(x) = x² on [a, b], express c in terms of a and b (a < b).',options:['\\dfrac{a+b}{2}','\\dfrac{ab}{2}','\\dfrac{a^2+b^2}{2}','Cannot be expressed'],correct:0,solution:'(b² − a²)/(b − a) = a + b. Therefore 2c = a + b and c = (a + b)/2, strictly between a and b.'},{question:'For f(x) = x² on [−2, 2], what is c?',options:['0','1','\\dfrac12','2'],correct:0,solution:'Both endpoint values are 4, so the secant slope is 0. Thus 2c = 0 and c = 0. Rolle’s theorem applies too.'}];

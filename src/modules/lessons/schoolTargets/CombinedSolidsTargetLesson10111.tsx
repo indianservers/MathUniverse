@@ -1,4 +1,4 @@
-import { OrbitControls } from "@react-three/drei";
+
 import {
   CheckCircle2,
   Lightbulb,
@@ -8,87 +8,15 @@ import {
   Split,
 } from "lucide-react";
 import { useState } from "react";
-import { DoubleSide } from "three";
+
 import ThreeSceneWrapper from "../../../components/three/ThreeSceneWrapper";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CombinedSolidsTargetLesson10111.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import CombinedSolidScene10111 from "./CombinedSolidScene10111";
+import {csModel,csSlantMin} from "./combinedSolidsModel";
+import MathExpression from "../../../components/ui/MathExpression";
 
 const f2 = (value: number) => Number(value.toFixed(2));
-function SolidScene({
-  radius,
-  height,
-  slant,
-  explode,
-  grid,
-  axes,
-  tool,
-}: {
-  radius: number;
-  height: number;
-  slant: number;
-  explode: boolean;
-  grid: boolean;
-  axes: boolean;
-  tool: string;
-}) {
-  const coneHeight = Math.sqrt(Math.max(0.01, slant * slant - radius * radius));
-  const gap = explode ? 1.4 : 0;
-  const s = 0.6;
-  return (
-    <group>
-      <mesh rotation={[0, 0, -Math.PI / 2]}>
-        <cylinderGeometry args={[radius * s, radius * s, height * s, 64]} />
-        <meshStandardMaterial
-          color="#19c6cf"
-          metalness={0.15}
-          roughness={0.25}
-        />
-      </mesh>
-      <mesh
-        position={[(-height * s) / 2 - gap, 0, 0]}
-        rotation={[0, 0, Math.PI / 2]}
-      >
-        <sphereGeometry
-          args={[radius * s, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2]}
-        />
-        <meshStandardMaterial
-          color="#f5b72d"
-          metalness={0.2}
-          roughness={0.28}
-          side={DoubleSide}
-        />
-      </mesh>
-      <mesh
-        position={[(height * s) / 2 + (coneHeight * s) / 2 + gap, 0, 0]}
-        rotation={[0, 0, -Math.PI / 2]}
-      >
-        <coneGeometry args={[radius * s, coneHeight * s, 64]} />
-        <meshStandardMaterial
-          color="#8e52dc"
-          metalness={0.15}
-          roughness={0.28}
-        />
-      </mesh>
-      {grid && (
-        <gridHelper
-          args={[12, 12, "#23758a", "#163950"]}
-          position={[0, -radius * s - 0.15, 0]}
-        />
-      )}
-      {axes && <axesHelper args={[5]} />}
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[4, 7, 6]} intensity={1.1} />
-      <OrbitControls
-        enableRotate={tool === "rotate"}
-        enablePan={tool === "pan"}
-        enableZoom={tool === "zoom"}
-        minDistance={6}
-        maxDistance={18}
-      />
-    </group>
-  );
-}
 export default function CombinedSolidsTargetLesson10111({
   lesson: _lesson,
 }: {
@@ -104,19 +32,11 @@ export default function CombinedSolidsTargetLesson10111({
     [measures, setMeasures] = useState(true);
   const [mode, setMode] = useState<"volume" | "surface">("volume"),
     [tool, setTool] = useState("rotate"),
-    [answer, setAnswer] = useState<"a" | "b" | null>(null),
+    [answer, setAnswer] = useState<"a" | "b" | null>("b"),
     [viewKey, setViewKey] = useState(0),
     [actions, setActions] = useState(0);
-  const coneHeight = Math.sqrt(Math.max(0, slant * slant - radius * radius));
-  const cylinderV = Math.PI * radius * radius * height;
-  const hemisphereV = (2 * Math.PI * radius ** 3) / 3;
-  const coneV = (Math.PI * radius * radius * coneHeight) / 3;
-  const totalV = cylinderV + hemisphereV + coneV;
-  const hemiArea = 2 * Math.PI * radius * radius,
-    coneArea = Math.PI * radius * slant,
-    cylinderArea = 2 * Math.PI * radius * height,
-    totalArea = hemiArea + coneArea + cylinderArea,
-    faceArea = Math.PI * radius * radius;
+  const {coneHeight,cylinderV,hemisphereV,coneV,totalV,hemiArea,coneArea,cylinderArea,totalArea,faceArea}=csModel(radius,height,slant);
+  const M=({v}:{v:string})=><MathExpression value={v}/>;
   const act = (fn: () => void) => {
     fn();
     setActions((value) => value + 1);
@@ -133,7 +53,7 @@ export default function CombinedSolidsTargetLesson10111({
       setMeasures(true);
       setMode("volume");
       setTool("rotate");
-      setAnswer(null);
+      setAnswer("b");
       setViewKey((value) => value + 1);
     });
   const slider = (
@@ -184,11 +104,12 @@ export default function CombinedSolidsTargetLesson10111({
       data-total-volume={f2(totalV)}
       data-exposed-area={f2(totalArea)}
       data-explode={String(explode)}
+      data-dimensions={String(dimensions)} data-grid={String(grid)} data-axes={String(axes)} data-measures={String(measures)} data-tool={tool} data-view-key={viewKey}
       data-mode={mode}
       data-answer={answer ?? "unanswered"}
       data-actions={actions}
     >
-      <header className="cmb10111-hero">
+      <div className="cmb10111-hero">
         <small>CLASS 10 · MENSURATION</small>
         <h1>Combined Solids ☆</h1>
         <p>
@@ -204,7 +125,7 @@ export default function CombinedSolidsTargetLesson10111({
         <button onClick={reset}>
           <RotateCcw /> Reset lab
         </button>
-      </header>
+      </div>
       <main className="cmb10111-workspace">
         <section className="cmb10111-model">
           <h2>3D MODEL LAB</h2>
@@ -216,6 +137,7 @@ export default function CombinedSolidsTargetLesson10111({
             ].map(([id, icon]) => (
               <button
                 key={String(id)}
+                aria-pressed={tool===id}
                 className={tool === id ? "active" : ""}
                 onClick={() => act(() => setTool(String(id)))}
               >
@@ -224,6 +146,7 @@ export default function CombinedSolidsTargetLesson10111({
               </button>
             ))}
             <button
+              aria-pressed={explode}
               className={explode ? "active" : ""}
               onClick={() => act(() => setExplode(!explode))}
             >
@@ -236,13 +159,14 @@ export default function CombinedSolidsTargetLesson10111({
           <div className="cmb10111-scene">
             <ThreeSceneWrapper
               key={viewKey}
-              height="255px"
+              height="270px"
               mobileHeight="300px"
-              cameraPosition={[10, 4, 10]}
+              cameraPosition={[0, 1.3, 9]}
+              fov={40}
               showHint={false}
               sceneSummary="Interactive joined cylinder hemisphere and cone; drag to rotate, pan, and zoom"
             >
-              <SolidScene
+              <CombinedSolidScene10111
                 radius={radius}
                 height={height}
                 slant={slant}
@@ -250,15 +174,9 @@ export default function CombinedSolidsTargetLesson10111({
                 grid={grid}
                 axes={axes}
                 tool={tool}
+                dimensions={dimensions}
               />
             </ThreeSceneWrapper>
-            {dimensions && (
-              <div className="dims">
-                <b>r = {radius} cm</b>
-                <b>h = {height} cm</b>
-                <b>l = {slant} cm</b>
-              </div>
-            )}
           </div>
           <div className="cmb10111-show">
             <span>Show</span>
@@ -285,12 +203,14 @@ export default function CombinedSolidsTargetLesson10111({
           <div className="cmb10111-mode">
             <b>MEASURE</b>
             <button
+              aria-pressed={mode==="volume"}
               className={mode === "volume" ? "active" : ""}
               onClick={() => act(() => setMode("volume"))}
             >
               Volume
             </button>
             <button
+              aria-pressed={mode==="surface"}
               className={mode === "surface" ? "active" : ""}
               onClick={() => act(() => setMode("surface"))}
             >
@@ -305,7 +225,7 @@ export default function CombinedSolidsTargetLesson10111({
             </h3>
             {mode === "volume" ? (
               <>
-                <strong>Vtotal = Vcylinder + Vhemisphere + Vcone</strong>
+                <strong><M v={String.raw`V_{total}=V_{cylinder}+V_{hemisphere}+V_{cone}`}/></strong>
                 <p>
                   = {f2(cylinderV)} + {f2(hemisphereV)} + {f2(coneV)} cm³
                 </p>
@@ -313,7 +233,7 @@ export default function CombinedSolidsTargetLesson10111({
               </>
             ) : (
               <>
-                <strong>Atotal = 2πr² + πrl + 2πrh</strong>
+                <strong><M v={String.raw`A_{total}=2\pi r^2+\pi rl+2\pi rh`}/></strong>
                 <p>
                   = {f2(hemiArea)} + {f2(coneArea)} + {f2(cylinderArea)}
                 </p>
@@ -325,31 +245,10 @@ export default function CombinedSolidsTargetLesson10111({
         <section className="cmb10111-decomp">
           <h2>DECOMPOSITION (COLOR-CODED)</h2>
           {[
-            [
-              "Cylinder",
-              `r = ${radius}, h = ${height}`,
-              `V = πr²h = ${f2(cylinderV)} cm³`,
-            ],
-            [
-              "Hemisphere",
-              `r = ${radius}`,
-              `V = 2πr³/3 = ${f2(hemisphereV)} cm³`,
-            ],
-            [
-              "Cone",
-              `r = ${radius}, l = ${slant}`,
-              `h = √(l²-r²) = ${f2(coneHeight)}; V = ${f2(coneV)} cm³`,
-            ],
-          ].map((row, index) => (
-            <article key={String(row[0])} className={`c${index}`}>
-              <i />
-              <div>
-                <b>{row[0]}</b>
-                <span>{row[1]}</span>
-              </div>
-              <strong>{row[2]}</strong>
-            </article>
-          ))}
+            {name:'Cylinder',details:`r = ${radius} cm, h = ${height} cm`,formula:String.raw`V=\pi r^2h=\pi(${radius})^2(${height})`,value:cylinderV},
+            {name:'Hemisphere',details:`r = ${radius} cm`,formula:String.raw`V=\frac{2}{3}\pi r^3=\frac{2}{3}\pi(${radius})^3`,value:hemisphereV},
+            {name:'Cone',details:`r = ${radius} cm, l = ${slant} cm`,formula:String.raw`h_c=\sqrt{l^2-r^2}=\sqrt{${slant}^2-${radius}^2}`,value:coneV}
+          ].map((row,index)=><article key={row.name} className={`c${index}`}><svg className="cmb10111-part-icon" viewBox="0 0 60 70" aria-hidden="true">{index===0?<><ellipse cx="30" cy="15" rx="20" ry="7"/><path d="M10 15V55M50 15V55"/><ellipse cx="30" cy="55" rx="20" ry="7"/></>:index===1?<><path d="M5 50A25 25 0 0 1 55 50Z"/><ellipse cx="30" cy="50" rx="25" ry="7"/></>:<><path d="M6 58L30 6L54 58"/><ellipse cx="30" cy="58" rx="24" ry="7"/></>}</svg><div><b>{row.name}</b><span>{row.details}</span></div><strong><M v={row.formula}/>{index===2&&<M v={String.raw`V=\frac13\pi r^2h_c`}/>}<span>= {row.value.toFixed(2)} cm³</span></strong></article>)}
           <aside>
             <h3>
               SHARED INTERNAL FACES <span>(NOT COUNTED IN EXPOSED AREA)</span>
@@ -368,13 +267,12 @@ export default function CombinedSolidsTargetLesson10111({
           <article>
             <h2>EXPOSED SURFACE AREA</h2>
             <p>(Shared circular faces excluded)</p>
-            <strong>
-              Atotal = Ahemi(curved) + Acone(lateral) + Acyl(lateral)
-            </strong>
-            <p>= 2πr² + πrl + 2πrh</p>
+            <strong><M v={String.raw`A_{total}=A_{hemi}+A_{cone}+A_{cyl}`}/></strong>
+            <p><M v={String.raw`=2\pi r^2+\pi rl+2\pi rh`}/></p>
+            <p>= {hemiArea.toFixed(2)} + {coneArea.toFixed(2)} + {cylinderArea.toFixed(2)}</p>
             <mark>= {f2(totalArea)} cm²</mark>
-            <button onClick={() => act(() => setMode("volume"))}>Volume</button>
-            <button onClick={() => act(() => setMode("surface"))}>
+            <button aria-pressed={mode==="volume"} onClick={() => act(() => setMode("volume"))}>Volume</button>
+            <button aria-pressed={mode==="surface"} onClick={() => act(() => setMode("surface"))}>
               Exposed Surface Area
             </button>
           </article>
@@ -407,12 +305,12 @@ export default function CombinedSolidsTargetLesson10111({
           </article>
           <article className="quick">
             <h2>QUICK CONTROLS</h2>
-            {slider("Radius, r", radius, 1, 5, setRadius)}
+            {slider("Radius, r", radius, 1, 5, v=>{setRadius(v);setSlant(l=>Math.max(l,csSlantMin(v)));})}
             {slider("Cylinder height, h", height, 4, 18, setHeight)}
             {slider(
               "Cone slant height, l",
               slant,
-              Math.max(radius + 0.5, 4),
+              csSlantMin(radius),
               12,
               setSlant,
             )}
@@ -424,7 +322,7 @@ export default function CombinedSolidsTargetLesson10111({
         <b>Best classroom move:</b> Ask learners to change a dimension and
         predict how volume and exposed surface area change.
       </footer>
-      <LessonTopicStudyBoard lessonId={10111} alwaysVisible />
+
 
     </section>
   );

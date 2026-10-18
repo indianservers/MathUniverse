@@ -299,15 +299,10 @@ export default function ForceVectorsTargetLesson197({
             <b>◷ 6-10 min</b>
           </aside>
         </section>
-        <article>
-          <h3>Free-body diagram</h3>
-          <svg viewBox="0 0 160 130">
-            <line x1="75" y1="70" x2="130" y2="70" />
-            <line x1="75" y1="70" x2="75" y2="15" />
-            <line x1="75" y1="70" x2="38" y2="118" />
-          </svg>
-        </article>
-        <article>
+
+
+      </header>
+      <div className="lesson-header-content fv197-header"><article>
           <p>F1 = {fmt(f1.m)} N east</p>
           <p>F2 = {fmt(f2.m)} N north</p>
           <hr />
@@ -321,8 +316,15 @@ export default function ForceVectorsTargetLesson197({
             Equilibrant E = ({fmt(e.x)}, {fmt(e.y)}) N
           </p>
           <strong>Forces balance only when the net vector is zero.</strong>
-        </article>
-      </header>
+        </article></div>
+      <div className="lesson-header-content"><article>
+          <h3>Free-body diagram</h3>
+          <svg viewBox="0 0 160 130">
+            <line x1="75" y1="70" x2="130" y2="70" />
+            <line x1="75" y1="70" x2="75" y2="15" />
+            <line x1="75" y1="70" x2="38" y2="118" />
+          </svg>
+        </article></div>
       <section className="fv197-mode">
         <nav>
           {[
@@ -515,9 +517,9 @@ export default function ForceVectorsTargetLesson197({
             Previous<b>Relative Motion</b>
           </span>
         </a>
-        <a href="/lessons/geometry/617-vector-addition-polygon-method">
+        <a href="/lessons/geometry/186-vector-addition">
           <span>
-            Next<b>Vector Addition (Polygon Method)</b>
+            Next<b>Vector Addition</b>
           </span>
           <ArrowRight />
         </a>

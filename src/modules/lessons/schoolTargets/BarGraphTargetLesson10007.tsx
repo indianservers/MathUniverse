@@ -145,7 +145,9 @@ export default function BarGraphTargetLesson10007({
           <span>CONCEPT</span>
           <span>graph</span>
         </dl>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content bg10007-hero"><aside>
           <div>
             <b>You are learning</b>
             <p>Create bar graphs and choose suitable scales.</p>
@@ -158,8 +160,7 @@ export default function BarGraphTargetLesson10007({
               <br />✓ Read and compare values
             </p>
           </div>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="bg10007-tabs">
         {["INTERACT", "LEARN", "WORKED EXAMPLE", "FORMULA", "PRACTICE"].map(
           (t) => (

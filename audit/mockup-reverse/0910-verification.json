@@ -1,0 +1,34 @@
+{
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "status": "passed",
+  "checks": [
+    "trace and grid toggles",
+    "probe callout",
+    "keyboard movement",
+    "pointer drag",
+    "all three equations",
+    "constant logistic equilibrium",
+    "zoom bounds and reset",
+    "practice feedback",
+    "assessment probe",
+    "reflection",
+    "pathway link"
+  ]
+}

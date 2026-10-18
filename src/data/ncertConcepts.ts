@@ -1,3 +1,4 @@
+import { curriculumTopicRoute } from "./curriculumLessonMappings";
 export type NCERTVisualType =
   | "integer-line"
   | "fraction-decimal"
@@ -2220,5 +2221,5 @@ export function getNCERTConcept(id?: string) {
 }
 
 export function ncertRoute(id: string) {
-  return `/ncert/${id}`;
+  return curriculumTopicRoute(id);
 }

@@ -1,0 +1,32 @@
+{
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "status": "passed",
+  "checks": [
+    "default computed metrics",
+    "reading help",
+    "one/two sided cutoffs",
+    "table controls",
+    "sample-size standard error",
+    "null comparison handling",
+    "decision matrix",
+    "practice grading",
+    "capstone planner and rationale"
+  ]
+}

@@ -394,7 +394,7 @@ export default function CriticalPointsTargetLesson296({
             <small>Previous</small>Parametric Differentiation
           </span>
         </a>
-        <a href="/lessons/calculus/297-increasing-and-decreasing">
+        <a href="/lessons/calculus/297-increasing-decreasing">
           <span>
             <small>Next</small>Increasing / Decreasing
           </span>{" "}

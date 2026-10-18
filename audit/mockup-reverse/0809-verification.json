@@ -1,0 +1,115 @@
+{
+  "status": "passed",
+  "errors": [],
+  "responsive": [
+    {
+      "n": 0,
+      "k": 1,
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "selectedVisible": true,
+      "centerError": 0
+    },
+    {
+      "n": 0,
+      "k": 1,
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "selectedVisible": true,
+      "centerError": 0
+    },
+    {
+      "n": 0,
+      "k": 1,
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "selectedVisible": true,
+      "centerError": 0
+    },
+    {
+      "n": 0,
+      "k": 1,
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "selectedVisible": true,
+      "centerError": 0
+    },
+    {
+      "n": 7,
+      "k": 4,
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "selectedVisible": true,
+      "centerError": 0
+    },
+    {
+      "n": 7,
+      "k": 4,
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "selectedVisible": true,
+      "centerError": 0
+    },
+    {
+      "n": 7,
+      "k": 4,
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "selectedVisible": true,
+      "centerError": 0
+    },
+    {
+      "n": 7,
+      "k": 4,
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "selectedVisible": true,
+      "centerError": 0
+    },
+    {
+      "n": 10,
+      "k": 11,
+      "width": 390,
+      "scroll": 390,
+      "client": 390,
+      "selectedVisible": true,
+      "centerError": 0
+    },
+    {
+      "n": 10,
+      "k": 11,
+      "width": 768,
+      "scroll": 768,
+      "client": 768,
+      "selectedVisible": true,
+      "centerError": 0
+    },
+    {
+      "n": 10,
+      "k": 11,
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280,
+      "selectedVisible": true,
+      "centerError": 0
+    },
+    {
+      "n": 10,
+      "k": 11,
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680,
+      "selectedVisible": true,
+      "centerError": 0
+    }
+  ],
+  "clipped": []
+}

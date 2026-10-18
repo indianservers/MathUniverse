@@ -2,61 +2,9 @@ import { CheckCircle2, Info, Lightbulb, RotateCcw, Zap } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TransitiveRelationsTargetLesson10115.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
 
-type Node = "a" | "b" | "c";
-type Pair = `${Node},${Node}`;
-const nodes: Node[] = ["a", "b", "c"];
-const key = (a: Node, b: Node): Pair => `${a},${b}`;
-const initial: Pair[] = ["a,b", "b,c"];
-const pos: Record<Node, [number, number]> = {
-  a: [70, 115],
-  b: [230, 115],
-  c: [390, 115],
-};
-type Witness = { a: Node; b: Node; c: Node; missing: Pair };
 
-function findWitnesses(relation: Set<Pair>): Witness[] {
-  const seen = new Set<Pair>();
-  return nodes
-    .flatMap((a) =>
-      nodes.flatMap((b) => nodes.map((c) => ({ a, b, c, missing: key(a, c) }))),
-    )
-    .filter(
-      (w) =>
-        relation.has(key(w.a, w.b)) &&
-        relation.has(key(w.b, w.c)) &&
-        !relation.has(w.missing),
-    )
-    .filter((w) => {
-      if (seen.has(w.missing)) return false;
-      seen.add(w.missing);
-      return true;
-    });
-}
-function closureOf(relation: Set<Pair>) {
-  const result = new Set(relation);
-  let changed = true;
-  while (changed) {
-    changed = false;
-    nodes.forEach((a) =>
-      nodes.forEach((b) =>
-        nodes.forEach((c) => {
-          if (
-            result.has(key(a, b)) &&
-            result.has(key(b, c)) &&
-            !result.has(key(a, c))
-          ) {
-            result.add(key(a, c));
-            changed = true;
-          }
-        }),
-      ),
-    );
-  }
-  return result;
-}
-
+import {nodes,key,initial,positions as pos,findWitnesses,closureOf,edgePath,type Node,type Pair,type Witness} from "./transitiveRelationsModel";
 export default function TransitiveRelationsTargetLesson10115({
   lesson: _lesson,
 }: {
@@ -64,6 +12,7 @@ export default function TransitiveRelationsTargetLesson10115({
 }) {
   const [relation, setRelation] = useState(() => new Set<Pair>(initial));
   const [source, setSource] = useState<Node | null>(null);
+  const [activeWitness,setActiveWitness] = useState<Witness|null>(null);
   const [checked, setChecked] = useState(false);
   const [instructions, setInstructions] = useState(false);
   const [actions, setActions] = useState(0);
@@ -71,6 +20,7 @@ export default function TransitiveRelationsTargetLesson10115({
   const transitive = witnesses.length === 0;
   const update = (next: Set<Pair>) => {
     setRelation(next);
+    setActiveWitness(null);
     setChecked(false);
     setSource(null);
     setActions((n) => n + 1);
@@ -107,7 +57,7 @@ export default function TransitiveRelationsTargetLesson10115({
       data-checked={String(checked)}
       data-actions={actions}
     >
-      <header>
+      <div className="trn10115-hero">
         <small>CLASS 11 · RELATIONS AND FUNCTIONS</small>
         <h1>Transitive Relations</h1>
         <p>
@@ -122,8 +72,8 @@ export default function TransitiveRelationsTargetLesson10115({
           <span>CONCEPT</span>
           <span>interactive lab</span>
         </nav>
-        <button>← &nbsp; School lessons</button>
-      </header>
+
+      </div>
       <main>
         <div className="trn10115-title">
           <h2>PATH-CLOSURE LAB</h2>
@@ -132,12 +82,14 @@ export default function TransitiveRelationsTargetLesson10115({
               setRelation(new Set(initial));
               setSource(null);
               setChecked(false);
+              setInstructions(false);
+              setActiveWitness(null);
               setActions((n) => n + 1);
             }}
           >
             <RotateCcw /> Reset lab
           </button>
-          <button onClick={() => setInstructions((v) => !v)}>
+          <button aria-expanded={instructions} onClick={() => setInstructions((v) => !v)}>
             <Info /> Instructions
           </button>
         </div>
@@ -152,7 +104,8 @@ export default function TransitiveRelationsTargetLesson10115({
           <article className="trn10115-graph">
             <h3>GRAPH (DIRECTED)</h3>
             <p>Add arrows by clicking a source node, then a target node.</p>
-            <svg viewBox="0 0 460 260" aria-label="Transitive directed graph">
+            <p className="trn10115-selection" aria-live="polite">{source ? `Source ${source} selected. Choose target; same node toggles its self-loop.` : "Choose source then target, or use the matrix."}</p>
+            <svg viewBox="0 0 460 220" aria-label="Transitive directed graph">
               <defs>
                 <marker
                   id="trn-arrow"
@@ -164,51 +117,10 @@ export default function TransitiveRelationsTargetLesson10115({
                 >
                   <path d="M0 0L8 4L0 8Z" />
                 </marker>
+                <marker id="trn-implied-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z"/></marker>
               </defs>
-              {Array.from(relation).map((item) => {
-                const [a, b] = item.split(",") as [Node, Node];
-                if (a === b) {
-                  const [x, y] = pos[a];
-                  return (
-                    <path
-                      key={item}
-                      className="edge"
-                      d={`M${x - 12} ${y - 22}C${x - 40} ${y - 55},${x + 40} ${y - 55},${x + 12} ${y - 22}`}
-                      markerEnd="url(#trn-arrow)"
-                      onClick={() => toggle(a, b)}
-                    />
-                  );
-                }
-                const [x1, y1] = pos[a],
-                  [x2, y2] = pos[b],
-                  dx = x2 - x1,
-                  dy = y2 - y1,
-                  l = Math.hypot(dx, dy);
-                return (
-                  <line
-                    key={item}
-                    className="edge"
-                    x1={x1 + (dx / l) * 25}
-                    y1={y1 + (dy / l) * 25}
-                    x2={x2 - (dx / l) * 25}
-                    y2={y2 - (dy / l) * 25}
-                    markerEnd="url(#trn-arrow)"
-                    onClick={() => toggle(a, b)}
-                  />
-                );
-              })}
-              {witnesses.map((w) => {
-                const [x1, y1] = pos[w.a],
-                  [x2, y2] = pos[w.c];
-                return (
-                  <path
-                    key={`w${w.missing}`}
-                    className="implied"
-                    d={`M${x1 + 15} ${y1 + 28}Q${(x1 + x2) / 2} 235 ${x2 - 15} ${y2 + 28}`}
-                    markerEnd="url(#trn-arrow)"
-                  />
-                );
-              })}
+              {Array.from(relation).map(item=>{const [a,b]=item.split(',') as [Node,Node]; const highlighted=activeWitness && (key(activeWitness.a,activeWitness.b)===item || key(activeWitness.b,activeWitness.c)===item);return <path key={item} data-edge={item} className={`edge ${highlighted?'trn10115-path-highlight':''}`} d={edgePath(a,b,relation)} markerEnd="url(#trn-arrow)" onClick={()=>toggle(a,b)}/>;})}
+              {witnesses.map(w=><path key={w.missing} data-implied={w.missing} className="implied" d={edgePath(w.a,w.c,relation,true)} markerEnd="url(#trn-implied-arrow)"/>)}
               {nodes.map((n) => (
                 <g
                   key={n}
@@ -218,7 +130,7 @@ export default function TransitiveRelationsTargetLesson10115({
                   className={source === n ? "selected" : ""}
                   onClick={() => choose(n)}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") choose(n);
+                    if (e.key === "Enter" || e.key === " ") {e.preventDefault();choose(n);}
                   }}
                 >
                   <circle cx={pos[n][0]} cy={pos[n][1]} r="23" />
@@ -259,6 +171,7 @@ export default function TransitiveRelationsTargetLesson10115({
                   <button
                     key={key(a, b)}
                     aria-label={`Toggle relation ${a}, ${b}`}
+                    aria-pressed={relation.has(key(a,b))}
                     className={
                       relation.has(key(a, b))
                         ? "one"
@@ -291,8 +204,8 @@ export default function TransitiveRelationsTargetLesson10115({
             <p>Missing pairs that must be added (with witness paths).</p>
             {witnesses.length ? (
               witnesses.map((w, i) => (
-                <section key={`${w.missing}-${w.b}`}>
-                  <header>
+                <section data-witness={w.missing} key={`${w.missing}-${w.b}`} onMouseEnter={()=>setActiveWitness(w)} onMouseLeave={()=>setActiveWitness(null)} onFocus={()=>setActiveWitness(w)} onBlur={()=>setActiveWitness(null)}>
+                  <div className="trn10115-witness-heading">
                     <b>{i + 1}</b>
                     <p>
                       Missing pair: &nbsp; ({w.a}, {w.c})<br />
@@ -300,7 +213,7 @@ export default function TransitiveRelationsTargetLesson10115({
                         Witness path: &nbsp; {w.a} → {w.b} → {w.c}
                       </span>
                     </p>
-                  </header>
+                  </div>
                   <footer>
                     ⚠ &nbsp; Add the shortcut {w.a} → {w.c}
                     <button onClick={() => addWitness(w)}>
@@ -311,7 +224,7 @@ export default function TransitiveRelationsTargetLesson10115({
               ))
             ) : (
               <aside>
-                <CheckCircle2 /> All required shortcuts added!
+                <CheckCircle2 /> No missing shortcuts: the relation is transitive.
               </aside>
             )}
           </article>
@@ -331,7 +244,7 @@ export default function TransitiveRelationsTargetLesson10115({
             <b>Check</b>
             <small>Check if the relation is transitive.</small>
           </button>
-          <section>
+          <section aria-live="polite">
             <b>Status</b>
             <strong
               className={checked ? (transitive ? "ok" : "bad") : "pending"}
@@ -350,7 +263,7 @@ export default function TransitiveRelationsTargetLesson10115({
         transitivity.
         <span>⟳ &nbsp; All changes sync across the graph and matrix.</span>
       </aside>
-      <LessonTopicStudyBoard lessonId={10115} alwaysVisible />
+
 
     </section>
   );

@@ -237,7 +237,9 @@ export default function IdentitiesTargetLesson106({
             </a>
           </aside>
         </section>
-        <article>
+
+      </header>
+      <div className="lesson-header-content identity106-intro"><article>
           <h3>Key idea</h3>
           <p>We use an area model to show</p>
           <strong>(x + 2)² = x² + 4x + 4</strong>
@@ -249,8 +251,7 @@ export default function IdentitiesTargetLesson106({
             <Grid3X3 />
             Proof diagram
           </b>
-        </article>
-      </header>
+        </article></div>
       <nav className="identity106-tabs">
         {(
           [

@@ -271,7 +271,9 @@ export default function PathsCyclesTargetLesson569({
             Time: <b>6–10 min</b>
           </span>
         </dl>
-        <section>
+
+      </header>
+      <div className="lesson-header-content pc569-hero"><section>
           <article>
             <b>Objective</b>
             <p>
@@ -284,8 +286,7 @@ export default function PathsCyclesTargetLesson569({
             <progress value="20" max="100" />
             <strong>20%</strong>
           </article>
-        </section>
-      </header>
+        </section></div>
       <nav className="pc569-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

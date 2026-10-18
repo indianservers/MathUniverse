@@ -92,15 +92,16 @@ export default function MultivariableOptimisationTargetLesson427({
             <span>Skills: Partial derivatives, Hessian, Stationary points</span>
           </div>
         </section>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content mo427-hero"><aside>
           <b>Lesson Progress</b>
           <progress max="100" value={complete ? 100 : 0} />
           <output>{complete ? 100 : 0}%</output>
           <button onClick={() => act(() => setComplete((v) => !v))}>
             {complete ? "Completed" : "Mark as Complete"}
           </button>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="mo427-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

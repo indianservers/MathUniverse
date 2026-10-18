@@ -384,8 +384,9 @@ export default function RationalFunctionsTargetLesson138({
             </button>
           </section>
         </div>
-        <HeroRational />
+
       </header>
+      <div className="lesson-header-content rational138-intro"><HeroRational /></div>
       <nav className="rational138-tabs">
         {[
           "Interaction + visualization",

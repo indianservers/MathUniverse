@@ -278,14 +278,15 @@ export default function LinearEquationsTargetLesson111({
             {workspaceOpen ? "Close workspace" : "Workspace"}
           </button>
         </section>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content linear111-intro"><aside>
           <small>LINEAR EQUATION RULE</small>
           <b>General form</b>
           <strong>ax + b = c</strong>
           <b>Solution (a ≠ 0)</b>
           <FormulaFraction />
-        </aside>
-      </header>
+        </aside></div>
 
       <nav className="linear111-tabs">
         {[

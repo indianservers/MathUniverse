@@ -130,7 +130,9 @@ export default function LoansEmiTargetLesson597({
           explore how principal, rate and term affect the payment and the split
           between interest and principal.
         </p>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content loan597-hero"><aside>
           <b>
             Level
             <br />
@@ -146,8 +148,7 @@ export default function LoansEmiTargetLesson597({
             <br />
             <strong>Financial Modelling</strong>
           </b>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="loan597-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

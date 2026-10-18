@@ -178,13 +178,7 @@ export default function ArithmeticSequencesTargetLesson335({
             <b>6-10 min</b>
           </div>
         </div>
-        <article>
-          <h3>LEARNING OBJECTIVE</h3>
-          <p>
-            Understand, model, and solve arithmetic sequences using tables,
-            graphs, explicit and recursive formulas, and problem solving.
-          </p>
-        </article>
+
         <div className="seq335-actions">
           <select
             aria-label="Lesson language"
@@ -218,6 +212,13 @@ export default function ArithmeticSequencesTargetLesson335({
           </button>
         </div>
       </header>
+      <div className="lesson-header-content seq335-hero"><article>
+          <h3>LEARNING OBJECTIVE</h3>
+          <p>
+            Understand, model, and solve arithmetic sequences using tables,
+            graphs, explicit and recursive formulas, and problem solving.
+          </p>
+        </article></div>
       <nav className="seq335-tabs">
         {tabs.map((name) => (
           <button

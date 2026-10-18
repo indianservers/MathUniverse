@@ -1,0 +1,7 @@
+import{describe,it,expect}from'vitest';
+import{pointContinuity,pointNearby,pointFrame,parsePointValue,gradePointPractice}from'./continuityPointModel';
+describe('continuity at one point',()=>{
+ it('separates an undefined value, a wrong value, and exact equality from the existing limit',()=>{expect(pointContinuity(null,'linear')).toMatchObject({exists:false,limit:2,equal:false,conditions:[false,true,false]});expect(pointContinuity(0,'linear').continuous).toBe(false);expect(pointContinuity(2,'linear').continuous).toBe(true);expect(pointContinuity(2.0000000001,'linear').continuous).toBe(false);});
+ it('loads the actual constant counterexample without changing its limit to the defined point',()=>{expect(pointContinuity(5,'constant')).toMatchObject({exists:true,limit:1,continuous:false});expect(pointContinuity(1,'constant').continuous).toBe(true);expect(pointNearby(-2,'constant')).toBe(1);expect(pointNearby(.9999,'linear')).toBeCloseTo(1.9999,12);expect(pointNearby(1.0001,'linear')).toBeCloseTo(2.0001,12);});
+ it('uses true equal-unit world zoom, preserves undefined input and all four practice cases',()=>{expect(parsePointValue('')).toBeNull();expect(parsePointValue('2.0000000001')).toBe(2.0000000001);expect(parsePointValue('Infinity')).toBeNull();expect(parsePointValue('9')).toBe(5);for(const zoom of[.8,1,1.2]){const f=pointFrame(zoom);expect(f.xmax-f.xmin).toBeCloseTo(f.ymax-f.ymin,12);expect(f.ymax).toBeGreaterThan(4.8);expect(f.ymin).toBeLessThan(-1.8);}expect(gradePointPractice(['No','Yes','No','No'])).toEqual([true,true,true,true]);});
+});

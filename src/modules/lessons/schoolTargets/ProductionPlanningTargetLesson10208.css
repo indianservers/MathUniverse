@@ -680,3 +680,72 @@ div:has(> #lesson-section-interaction .pp10208)
     width: 24px;
   }
 }
+
+/* Reference factory-planning panels, scoped to this lesson. */
+.pp10208.lesson-reference{max-width:1120px;padding:0;background:#f6faff;font:14px/1.6 Inter,Arial,sans-serif}
+.pp10208.lesson-reference>header{background:white;border:1px solid #dce6ef;border-radius:12px;padding:24px 26px;margin-bottom:18px}
+.pp10208.lesson-reference h1{font-size:30px;font-weight:800;line-height:1.25;margin:8px 0}
+.pp10208.lesson-reference header>p{font-size:14px;color:#526176}
+.pp10208.lesson-reference header>a{border:1px solid #dce6ef;border-radius:7px;padding:9px 14px;font-size:12px}
+.pp10208.lesson-reference .pp-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.pp10208.lesson-reference .pp-tags span{padding:4px 10px;background:#f0f4f8;border-radius:12px;color:#46566b;font-size:10px}
+.pp10208.lesson-reference h2{font-size:13px;font-weight:750}
+.pp10208.lesson-reference h3{font-size:12px;font-weight:700}
+.pp10208.lesson-reference nav.pp-tabs{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;background:white;border:1px solid #dce6ef;border-radius:10px;padding:0 12px;gap:15px;margin-bottom:18px}
+.pp10208.lesson-reference .pp-tabs button{font-size:12px;font-weight:650;padding:17px 12px;color:#344565}
+.pp10208.lesson-reference .pp-tabs button[aria-current]{color:#0086bf}
+.pp10208.lesson-reference .pp-problem{border:1px solid #f5dcba;border-radius:10px;padding:20px;gap:20px;margin:0 0 18px;font-size:12px;background:linear-gradient(#fffcf7,#fff)}
+.pp10208.lesson-reference .pp-problem h2{font-size:12px}
+.pp10208.lesson-reference .pp-workspace{gap:18px;margin-bottom:18px}
+.pp10208.lesson-reference .pp-board,.pp10208.lesson-reference .pp-graph-panel{background:white;border-radius:12px;padding:20px}
+.pp10208.lesson-reference .pp-board>p{font-size:12px}
+.pp10208.lesson-reference .pp-toggle{font-size:11px}
+.pp10208.lesson-reference .pp-products{gap:16px;margin:18px 0}
+.pp10208.lesson-reference .pp-products article{padding:18px 14px;border-radius:10px;background:linear-gradient(#f2f9ff,#fbfdff)}
+.pp10208.lesson-reference .pp-products article:last-child{background:linear-gradient(#faf7ff,#fdfbff)}
+.pp10208.lesson-reference .pp-products h3{font-size:12px;margin-bottom:14px}
+.pp10208.lesson-reference .pp-products>article>input{font-size:32px;height:50px}
+.pp10208.lesson-reference .pp-products>article>p{font-size:12px}
+.pp10208.lesson-reference .pp-stepper{grid-template-columns:32px minmax(0,1fr) 32px;gap:8px;margin:12px 0 4px}
+.pp10208.lesson-reference .pp-stepper button{width:32px;height:32px}
+.pp10208.lesson-reference .pp-products small,.pp10208.lesson-reference .pp-scale{font-size:11px}
+.pp10208.lesson-reference .pp-stats{gap:12px}
+.pp10208.lesson-reference .pp-stats article{padding:16px 10px;border-radius:10px}
+.pp10208.lesson-reference .pp-stats h3{font-size:10px}
+.pp10208.lesson-reference .pp-stats strong{font-size:23px}
+.pp10208.lesson-reference .pp-stats small{font-size:10px}
+.pp10208.lesson-reference .pp-resource{padding:14px 12px;font-size:11px;border-radius:9px;margin:16px 0}
+.pp10208.lesson-reference .pp-resource b{display:flex;align-items:center;gap:7px}
+.pp10208.lesson-reference .pp-resource progress{height:11px;margin:10px 0}
+.pp10208.lesson-reference .pp-graph{margin:16px 0}
+.pp10208.lesson-reference .pp-legend{font-size:12px}
+.pp10208.lesson-reference .pp-corners{font-size:12px}
+.pp10208.lesson-reference .pp-compare{padding:0;border:0;gap:18px;margin-bottom:18px}
+.pp10208.lesson-reference .pp-compare>div{background:white;border:1px solid #dce6ef;border-radius:10px;padding:20px}
+.pp10208.lesson-reference table{font-size:12px}
+.pp10208.lesson-reference th{font-size:11px}
+.pp10208.lesson-reference .pp-compare>div>p{font-size:11px;border:1px solid #e0e8f3;border-radius:6px}
+.pp10208.lesson-reference .pp-optima article{padding:16px;border-radius:10px}
+.pp10208.lesson-reference .pp-optima h3{font-size:10px}
+.pp10208.lesson-reference .pp-optima small{font-size:10px}
+.pp10208.lesson-reference .pp-optima p{font-size:12px}
+.pp10208.lesson-reference .pp-optima p b,.pp10208.lesson-reference .pp-optima p strong{font-size:18px}
+.pp10208.lesson-reference .pp-optima button{font-size:11px;padding:10px 5px}
+.pp10208.lesson-reference .pp-optima h3 svg{color:#e39b0c;fill:#ffe29a}
+.pp10208.lesson-reference .pp-notes{padding:0;gap:18px;margin-bottom:18px}
+.pp10208.lesson-reference .pp-notes article{border:1px solid #dce6ef;border-radius:10px;padding:18px;font-size:12px}
+.pp10208.lesson-reference .pp-notes h2{font-size:12px}
+.pp10208.lesson-reference .pp-notes ol{counter-reset:step;list-style:none;padding:0}
+.pp10208.lesson-reference .pp-notes li{counter-increment:step;position:relative;padding:0 0 16px 28px}
+.pp10208.lesson-reference .pp-notes li:before{content:counter(step);position:absolute;left:0;top:0;width:21px;height:21px;border-radius:50%;background:#e7f5ff;color:#007fb6;font-size:11px;text-align:center;line-height:21px}
+.pp10208.lesson-reference .pp-misconception>div{border:1px solid #facfd2;border-radius:7px;padding:12px;background:#fff8f8}
+.pp10208.lesson-reference .pp-misconception>.pp-feasible{border:1px solid #b8e8d4;border-radius:6px;padding:10px;background:#f3fcf7}
+.pp10208.lesson-reference .pp-practice{border:1px solid #deccff;border-radius:10px;padding:20px;margin-bottom:18px;font-size:12px}
+.pp10208.lesson-reference .pp-practice label{padding:10px 8px;gap:7px;font-size:11px}
+.pp10208.lesson-reference .pp-practice label:has(input:checked){border:2px solid #793dd1;background:#faf6ff;color:#7131de}
+.pp10208.lesson-reference .pp-practice button{font-size:12px;padding:14px}
+.pp10208.lesson-reference .pp-next{padding:0 0 20px}
+.pp10208.lesson-reference .pp-next a{background:white;border:1px solid #dce6ef;border-radius:8px;padding:12px 16px;font-size:12px}
+.pp10208.lesson-reference footer a{display:inline-flex;align-items:center;gap:6px;border:1px solid #dce6ef;border-radius:6px;padding:7px 11px;text-decoration:none}
+@container pp (max-width:740px){.pp10208.lesson-reference .pp-workspace,.pp10208.lesson-reference .pp-compare,.pp10208.lesson-reference .pp-notes,.pp10208.lesson-reference .pp-practice{grid-template-columns:1fr}.pp10208.lesson-reference .pp-problem{grid-template-columns:1fr 1fr}.pp10208.lesson-reference .pp-tabs{gap:5px}.pp10208.lesson-reference .pp-tabs button{font-size:11px;padding:14px 6px}}
+@container pp (max-width:390px){.pp10208.lesson-reference>header{padding:20px}.pp10208.lesson-reference .pp-board,.pp10208.lesson-reference .pp-graph-panel{padding:16px}.pp10208.lesson-reference .pp-products{gap:8px}.pp10208.lesson-reference .pp-products article{padding:14px 9px}.pp10208.lesson-reference .pp-stepper{grid-template-columns:24px minmax(0,1fr) 24px;gap:5px}.pp10208.lesson-reference .pp-stepper button{width:24px;height:28px}.pp10208.lesson-reference .pp-tabs button{font-size:10px;gap:4px;padding:12px 4px}.pp10208.lesson-reference .pp-tabs button svg{width:12px}}

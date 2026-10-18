@@ -1,0 +1,1 @@
+import{j as t}from"./vendor-react-3d-BSqcDyn3.js";import{RatioProofExperience as i}from"./RatioProofModels-CviPvqhp.js";import"./vendor-icons-Dd4Ay6ac.js";import"./vendor-three-Dchud7Ta.js";import"./proportionalReasoningMath-4ggWD4Ws.js";function f({category:r,proof:o}){return t.jsx(i,{category:r,proof:o,kind:"shares"})}export{f as default};

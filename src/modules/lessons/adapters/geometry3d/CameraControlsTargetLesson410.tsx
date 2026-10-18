@@ -210,7 +210,9 @@ export default function CameraControlsTargetLesson410({
             </button>
           </nav>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content cam410-hero"><aside>
           <h3>What you’ll learn</h3>
           <p>
             <Check />
@@ -224,8 +226,7 @@ export default function CameraControlsTargetLesson410({
             <Check />
             Use camera tools and shortcuts with confidence.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="cam410-tabs">
         {[
           "Interaction + visualization",

@@ -26,6 +26,8 @@ describe("Bayesian source update", () => {
     expect(chips.reduce((a, b) => a + b, 0)).toBeCloseTo(1.2);
     expect(frequencyChips(0)).toEqual([]);
     expect(frequencyChips(100)).toHaveLength(100);
+    expect(frequencyChips((1 - .6) * .05 * 100)).toEqual([1, 1]);
+    expect(frequencyChips(1e-12)).toEqual([1e-12]);
   });
   it("corrects the reference practice answer", () => {
     expect(BAYES_PRACTICE.total).toBeCloseTo(.019);

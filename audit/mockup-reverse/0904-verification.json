@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "11 linked regions and vertices with 17 derived shared-border edges",
+    "paint conflict and graph feedback",
+    "manual/automatic checking",
+    "undo/reset/clear",
+    "graph keyboard painting and movement",
+    "actual vertex drag does not recolor",
+    "graph reset",
+    "three/four-color mode and greedy solution",
+    "keyboard map painting",
+    "unanswered/correct/conflicting/cleared practice",
+    "all section tabs and proof expansion"
+  ]
+}

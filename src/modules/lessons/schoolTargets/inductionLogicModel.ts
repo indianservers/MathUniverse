@@ -1,0 +1,3 @@
+export const ilStatements=[0,1,2,4,5];
+export function ilRepairLinks(pieces:boolean[]){return pieces.map((v,i)=>i!==0&&ilStatements.includes(i)?true:v);}
+export function ilModel(pieces:boolean[],links:boolean[]){const base=!!pieces[0],allStatements=ilStatements.every(i=>pieces[i]),allLinks=links.length===6&&links.every(Boolean),ruleReady=ilStatements.filter(i=>i!==0).every(i=>pieces[i])&&allLinks,reachable:boolean[]=[];for(let i=0;i<7;i++)reachable[i]=(ilStatements.includes(i)?!!pieces[i]:true)&&(i===0?base:reachable[i-1]&&!!links[i-1]);return{base,allStatements,allLinks,ruleReady,conclusion:base&&ruleReady,reachable,missing:ilStatements.filter(i=>!pieces[i]).length,broken:Array.from({length:6},(_,i)=>!links[i]).filter(Boolean).length};}

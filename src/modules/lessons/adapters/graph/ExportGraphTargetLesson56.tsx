@@ -445,9 +445,9 @@ export default function ExportGraphTargetLesson56({
             PREVIOUS<b>Dynamic Parameters</b>
           </span>
         </a>
-        <a href="/lessons/graphs-and-functions/57-examples">
+        <a href="/lessons/graphs-and-functions">
           <span>
-            Continue lesson<b>Examples</b>
+            Browse<b>Graphs and Functions</b>
           </span>{" "}
           →
         </a>

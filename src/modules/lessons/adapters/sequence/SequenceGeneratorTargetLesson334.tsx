@@ -179,22 +179,7 @@ export default function SequenceGeneratorTargetLesson334({
         </span>
         <h1>Sequence Generator</h1>
         <p>Explore sequences using explicit and recursive definitions.</p>
-        <div>
-          <article>
-            <h3>Learning objective</h3>
-            <p>
-              Generate terms, identify patterns, and compare explicit and
-              recursive definitions of sequences.
-            </p>
-          </article>
-          <article>
-            <h3>You'll learn</h3>
-            <p>
-              ✓ Explicit vs Recursive | ✓ Term generation | ✓ Pattern detection
-              <br />✓ Graphing sequences | ✓ Common pitfalls
-            </p>
-          </article>
-        </div>
+
         <svg viewBox="0 0 170 110">
           <path d="M8 92L42 84 72 68 102 45 138 15" />
           <rect x="18" y="84" width="10" height="12" />
@@ -210,6 +195,22 @@ export default function SequenceGeneratorTargetLesson334({
           </text>
         </svg>
       </header>
+      <div className="lesson-header-content seq334-hero"><div>
+          <article>
+            <h3>Learning objective</h3>
+            <p>
+              Generate terms, identify patterns, and compare explicit and
+              recursive definitions of sequences.
+            </p>
+          </article>
+          <article>
+            <h3>You'll learn</h3>
+            <p>
+              ✓ Explicit vs Recursive | ✓ Term generation | ✓ Pattern detection
+              <br />✓ Graphing sequences | ✓ Common pitfalls
+            </p>
+          </article>
+        </div></div>
       <nav className="seq334-tabs">
         {[
           "Interaction + Visualisation",

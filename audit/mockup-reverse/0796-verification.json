@@ -1,0 +1,576 @@
+{
+  "status": "passed",
+  "errors": [],
+  "responsive": [
+    {
+      "state": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "collision",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "collision",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "collision",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "collision",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "incomplete",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "incomplete",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "incomplete",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "incomplete",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "size4",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "size4",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "size4",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "size4",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ],
+  "results": [
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        0,
+        0,
+        0
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        1,
+        0,
+        0
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        2,
+        0,
+        0
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        0,
+        1,
+        0
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        1,
+        1,
+        0
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        2,
+        1,
+        0
+      ],
+      "valid": true,
+      "inj": true,
+      "onto": true,
+      "bij": true
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        0,
+        2,
+        0
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        1,
+        2,
+        0
+      ],
+      "valid": true,
+      "inj": true,
+      "onto": true,
+      "bij": true
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        2,
+        2,
+        0
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        0,
+        0,
+        1
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        1,
+        0,
+        1
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        2,
+        0,
+        1
+      ],
+      "valid": true,
+      "inj": true,
+      "onto": true,
+      "bij": true
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        0,
+        1,
+        1
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        1,
+        1,
+        1
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        2,
+        1,
+        1
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        0,
+        2,
+        1
+      ],
+      "valid": true,
+      "inj": true,
+      "onto": true,
+      "bij": true
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        1,
+        2,
+        1
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        2,
+        2,
+        1
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        0,
+        0,
+        2
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        1,
+        0,
+        2
+      ],
+      "valid": true,
+      "inj": true,
+      "onto": true,
+      "bij": true
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        2,
+        0,
+        2
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        0,
+        1,
+        2
+      ],
+      "valid": true,
+      "inj": true,
+      "onto": true,
+      "bij": true
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        1,
+        1,
+        2
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        2,
+        1,
+        2
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        0,
+        2,
+        2
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        1,
+        2,
+        2
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        2,
+        2,
+        2
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        null,
+        2,
+        2
+      ],
+      "valid": false,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 2,
+      "m": 3,
+      "map": [
+        0,
+        1
+      ],
+      "valid": true,
+      "inj": true,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 2,
+      "m": 2,
+      "map": [
+        0,
+        1
+      ],
+      "valid": true,
+      "inj": true,
+      "onto": true,
+      "bij": true
+    },
+    {
+      "n": 3,
+      "m": 2,
+      "map": [
+        0,
+        1,
+        null
+      ],
+      "valid": false,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 2,
+      "map": [
+        0,
+        1,
+        0
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": true,
+      "bij": false
+    },
+    {
+      "n": 4,
+      "m": 4,
+      "map": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "valid": true,
+      "inj": true,
+      "onto": true,
+      "bij": true
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        1,
+        1,
+        2
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        1,
+        1,
+        2
+      ],
+      "valid": true,
+      "inj": false,
+      "onto": false,
+      "bij": false
+    },
+    {
+      "n": 3,
+      "m": 3,
+      "map": [
+        0,
+        1,
+        2
+      ],
+      "valid": true,
+      "inj": true,
+      "onto": true,
+      "bij": true
+    }
+  ],
+  "clipped": [],
+  "links": [
+    "/lessons/school/class-11/class-11-relations-and-functions-composition-of-functions",
+    "/lessons/school/class-11/class-11-relations-and-functions-binary-operations"
+  ]
+}

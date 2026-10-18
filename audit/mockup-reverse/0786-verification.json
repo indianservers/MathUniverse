@@ -1,0 +1,567 @@
+{
+  "status": "passed",
+  "errors": [],
+  "results": [
+    {
+      "pairs": [
+        "1,1",
+        "1,2",
+        "1,3",
+        "2,2",
+        "2,4",
+        "3,2",
+        "3,3",
+        "3,4",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": true,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,2",
+        "1,3",
+        "2,2",
+        "2,4",
+        "3,2",
+        "3,3",
+        "3,4",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,3",
+        "2,2",
+        "2,4",
+        "3,2",
+        "3,3",
+        "3,4",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "2,2",
+        "2,4",
+        "3,2",
+        "3,3",
+        "3,4",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": true
+      }
+    },
+    {
+      "pairs": [
+        "1,4",
+        "2,2",
+        "2,4",
+        "3,2",
+        "3,3",
+        "3,4",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": true
+      }
+    },
+    {
+      "pairs": [
+        "1,4",
+        "2,1",
+        "2,2",
+        "2,4",
+        "3,2",
+        "3,3",
+        "3,4",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,4",
+        "2,1",
+        "2,4",
+        "3,2",
+        "3,3",
+        "3,4",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,4",
+        "2,1",
+        "2,3",
+        "2,4",
+        "3,2",
+        "3,3",
+        "3,4",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": false,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,4",
+        "2,1",
+        "2,3",
+        "3,2",
+        "3,3",
+        "3,4",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": false,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,4",
+        "2,1",
+        "2,3",
+        "3,1",
+        "3,2",
+        "3,3",
+        "3,4",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": false,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,4",
+        "2,1",
+        "2,3",
+        "3,1",
+        "3,3",
+        "3,4",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,4",
+        "2,1",
+        "2,3",
+        "3,1",
+        "3,4",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,4",
+        "2,1",
+        "2,3",
+        "3,1",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,4",
+        "2,1",
+        "2,3",
+        "3,1",
+        "4,1",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": false,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,4",
+        "2,1",
+        "2,3",
+        "3,1",
+        "4,1",
+        "4,2",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": false,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,4",
+        "2,1",
+        "2,3",
+        "3,1",
+        "4,1",
+        "4,2",
+        "4,3",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": false,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,4",
+        "2,1",
+        "2,3",
+        "3,1",
+        "4,1",
+        "4,2",
+        "4,3"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": false,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,1",
+        "2,2",
+        "3,3",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": true,
+        "symmetric": true,
+        "antisymmetric": true,
+        "transitive": true
+      }
+    },
+    {
+      "pairs": [
+        "1,1",
+        "1,2",
+        "1,3",
+        "1,4",
+        "2,1",
+        "2,2",
+        "2,3",
+        "2,4",
+        "3,1",
+        "3,2",
+        "3,3",
+        "3,4",
+        "4,1",
+        "4,2",
+        "4,3",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": true,
+        "symmetric": true,
+        "antisymmetric": false,
+        "transitive": true
+      }
+    },
+    {
+      "pairs": [
+        "1,2",
+        "1,3",
+        "1,4",
+        "2,3",
+        "2,4",
+        "3,4"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": true
+      }
+    },
+    {
+      "pairs": [
+        "1,1",
+        "1,2",
+        "1,3",
+        "1,4",
+        "2,2",
+        "2,3",
+        "2,4",
+        "3,3",
+        "3,4",
+        "4,4"
+      ],
+      "facts": {
+        "reflexive": true,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": true
+      }
+    },
+    {
+      "pairs": [
+        "1,2",
+        "2,3",
+        "3,4",
+        "4,1"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [],
+      "facts": {
+        "reflexive": false,
+        "symmetric": true,
+        "antisymmetric": true,
+        "transitive": true
+      }
+    },
+    {
+      "pairs": [
+        "1,2"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": true
+      }
+    },
+    {
+      "pairs": [
+        "1,2",
+        "2,1"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": true,
+        "antisymmetric": false,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,2"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": true
+      }
+    },
+    {
+      "pairs": [
+        "1,2",
+        "3,2"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": true
+      }
+    },
+    {
+      "pairs": [
+        "1,2",
+        "3,2",
+        "4,1"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": false
+      }
+    },
+    {
+      "pairs": [
+        "1,2",
+        "1,3",
+        "3,2",
+        "4,1"
+      ],
+      "facts": {
+        "reflexive": false,
+        "symmetric": false,
+        "antisymmetric": true,
+        "transitive": false
+      }
+    }
+  ],
+  "responsive": [
+    {
+      "state": "custom",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "custom",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "custom",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "custom",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "universal",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "universal",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "universal",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "universal",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "empty",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "empty",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "empty",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "empty",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "rules",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "rules",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "rules",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "rules",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ]
+}

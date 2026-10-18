@@ -145,7 +145,9 @@ export default function TaylorPolynomialTargetLesson305({
             <a href="/workspace/calculus">↗ Workspace</a>
           </div>
         </section>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content tay305-hero"><aside>
           <h3>
             At a glance <Maximize2 />
           </h3>
@@ -161,8 +163,7 @@ export default function TaylorPolynomialTargetLesson305({
             <span>⊙ Center a</span>
           </div>
           <p>Best accuracy near a.</p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="tay305-tabs">
         {["Interact", "Explain", "Examples", "Formulas", "Know more"].map(
           (name) => (
@@ -413,9 +414,9 @@ export default function TaylorPolynomialTargetLesson305({
             <small>Previous</small>Newton's Method
           </span>
         </a>
-        <a href="/lessons/calculus/306-maclaurin-series">
+        <a href="/lessons/advanced-mathematics/344-taylor-and-maclaurin-series">
           <span>
-            <small>Next</small>Maclaurin Series
+            <small>Next</small>Taylor and Maclaurin Series
           </span>{" "}
           →
         </a>

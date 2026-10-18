@@ -83,14 +83,15 @@ export default function DepreciationTargetLesson599({
             <b>Applied Modelling</b> {" · "} Duration: <b>6-10 min</b>
           </small>
         </main>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content dep599-hero"><aside>
           <b>OBJECTIVE</b>
           <p>
             Compare straight-line and reducing-balance depreciation, analyse
             book values, and interpret how method and rate affect asset value.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="dep599-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

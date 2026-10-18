@@ -453,7 +453,9 @@ export default function HorizontalStretchCompressionTargetLesson159({
             <b>◷ 6-10 min</b>
           </nav>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content hs159-header"><aside>
           <button type="button" onClick={() => reset()}>
             <RefreshCcw />
             Reset
@@ -475,8 +477,7 @@ export default function HorizontalStretchCompressionTargetLesson159({
             Workspace
           </button>
           {status && <output>{status}</output>}
-        </aside>
-      </header>
+        </aside></div>
 
       <section className="hs159-workspace">
         <article className="hs159-main">

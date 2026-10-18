@@ -385,7 +385,10 @@ export default function CartesianPlaneTargetLesson167({
         <p>
           Understand axes, quadrants and coordinates on the Cartesian plane.
         </p>
-        <div>
+
+
+      </header>
+      <div className="lesson-header-content cp167-header"><div>
           <b>
             ♙ Level <strong>Intermediate</strong>
           </b>
@@ -407,7 +410,7 @@ export default function CartesianPlaneTargetLesson167({
             </select>
           </label>
         </div>
-        <aside>
+<aside>
           <button onClick={() => setShare("Lesson link copied")}>
             <Share2 />
             Share
@@ -416,8 +419,7 @@ export default function CartesianPlaneTargetLesson167({
             ↗ Workspace
           </button>
           <output>{share}</output>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="cp167-stages">
         {["Observe", "Manipulate", "Pattern", "Rule", "Try it"].map((x, i) => (
           <button

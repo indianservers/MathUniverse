@@ -186,10 +186,7 @@ export default function FactorisationTargetLesson97({
         <b>97 Factorisation</b>
       </nav>
       <header className="factor97-header">
-        <div>
-          <b>ALGEBRA</b>
-          <strong>EXPRESSIONS AND MANIPULATION</strong>
-        </div>
+
         <h1>Factorisation</h1>
         <p>Reverse expansion.</p>
         <nav>
@@ -198,7 +195,13 @@ export default function FactorisationTargetLesson97({
           <b>6-10 min</b>
           <b>Reverse area model</b>
         </nav>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content factor97-header"><div>
+          <b>ALGEBRA</b>
+          <strong>EXPRESSIONS AND MANIPULATION</strong>
+        </div></div>
+      <div className="lesson-header-content"><aside>
           <h2>
             <Lightbulb />
             Key idea
@@ -208,8 +211,7 @@ export default function FactorisationTargetLesson97({
             finding two numbers whose product is the constant term and whose sum
             is the coefficient of x.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="factor97-tabs">
         {["Interact", "Learn", "Examples", "Formula", "Practice"].map(
           (name) => (

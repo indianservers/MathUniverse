@@ -40774,3 +40774,12 @@ html body #main-content .lesson-simple-english h2 {
 .object-studio-shell[data-chrome-theme="light"] .os-left,
 .object-studio-shell[data-chrome-theme="light"] .os-right { background: #fff; }
 
+
+/* Lesson documents use the app's single vertical scroll surface. */
+html body #main-content :is(.lesson-page-shell, .lesson-school-shell,
+  [data-testid="advanced-concept-lesson-page"], [data-dedicated-lesson],
+  .lesson-page-target > [class$="-page"], .lesson-school-target > [class$="-page"]) {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}

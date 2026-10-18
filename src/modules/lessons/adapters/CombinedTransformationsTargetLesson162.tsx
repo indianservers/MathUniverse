@@ -416,13 +416,10 @@ export default function CombinedTransformationsTargetLesson162({
               act on x first, then outside changes act on y.
             </p>
           </section>
-          <aside>
-            <strong>
-              y = {tidy(effective.yScale)}(x - {h})²{signed(effective.yShift)}
-            </strong>
-            <b>Transform x first, then y.</b>
-          </aside>
-          <ul>
+
+
+        </header>
+      <div className="lesson-header-content ct162-header"><ul>
             <li>
               Inside (x): shift left/right by <i>h</i>
             </li>
@@ -431,8 +428,13 @@ export default function CombinedTransformationsTargetLesson162({
               <br />
               shift up/down by <i>k</i>.
             </li>
-          </ul>
-        </header>
+          </ul></div>
+      <div className="lesson-header-content ct162-header"><aside>
+            <strong>
+              y = {tidy(effective.yScale)}(x - {h})²{signed(effective.yShift)}
+            </strong>
+            <b>Transform x first, then y.</b>
+          </aside></div>
         <nav className="ct162-tabs">
           {(
             ["Explore", "Explain", "Examples", "Practice", "Summary"] as Tab[]

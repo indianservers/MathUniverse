@@ -103,15 +103,16 @@ export default function LinearIndependenceTargetLesson361({
             rank, and relation update in real time.
           </p>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content ind361-hero"><aside>
           <h3>Definition</h3>
           <p>
             Vectors v₁, v₂ ∈ R² are linearly independent if the only solution to
           </p>
           <code>c₁v₁ + c₂v₂ = 0 is c₁ = c₂ = 0.</code>
           <p>Otherwise, they are linearly dependent.</p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="ind361-tabs">
         {["Explore", "Worked Examples", "Concept", "Summary"].map((t) => (
           <button

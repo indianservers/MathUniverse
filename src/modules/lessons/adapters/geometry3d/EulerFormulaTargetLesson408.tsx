@@ -165,8 +165,10 @@ export default function EulerFormulaTargetLesson408({
             </a>
           </nav>
         </div>
-        <MiniCanvas solid="hero" />
       </header>
+      <div className="lesson-header-content eu408-preview">
+        <MiniCanvas solid="hero" />
+      </div>
       <section className="eu408-interact">
         <header>
           <small>INTERACTION</small>

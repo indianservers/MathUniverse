@@ -418,11 +418,11 @@ export default function TetrahedronTargetLesson395({
             <b>Regular Pyramid</b>
           </span>
         </a>
-        <a href="/lessons/3d-mathematics/399-octahedron">
+        <a href="/lessons/3d-mathematics/396-regular-polyhedra">
           <span>
             Next
             <br />
-            <b>Octahedron</b>
+            <b>Regular Polyhedra</b>
           </span>{" "}
           →
         </a>

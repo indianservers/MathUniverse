@@ -383,7 +383,9 @@ export default function PositionVectorsTargetLesson185({
             <b>Standards: NCERT | CBSE | IB</b>
           </section>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content pv185-header"><aside>
           <a href="/workspace/geometry">↗ Workspace</a>
           <button onClick={reset}>
             <RotateCcw />
@@ -402,8 +404,7 @@ export default function PositionVectorsTargetLesson185({
             Share
           </button>
           <output>{shared ? "Copied" : ""}</output>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="pv185-stages">
         {["Observe", "Manipulate", "Pattern", "Rule", "Practice"].map(
           (name, index) => (

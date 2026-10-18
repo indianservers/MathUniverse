@@ -284,14 +284,15 @@ export default function PolarCoordinatesTargetLesson180({
           <b>▣ View: Geometry / Graphing</b>
           <b>◷ Duration: 6-10 min</b>
         </section>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content pc180-header"><aside>
           <h3>Learning goals</h3>
           <p>✓ Plot points using (r, θ)</p>
           <p>✓ Convert between polar and Cartesian</p>
           <p>✓ Understand quadrant signs</p>
           <p>✓ Use the conversion formulas</p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="pc180-stages">
         {[
           ["Observe", "See the connection"],

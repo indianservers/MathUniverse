@@ -1,358 +1,84 @@
-import { RotateCcw } from "lucide-react";
-import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
-import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
-import "./LinearFirstOrderTargetLesson10190.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-
-const stages = [
-  [
-    "Identify P(x) and Q(x)",
-    "P(x)=2, Q(x)=eˣ",
-    "Original ODE direction field",
-    "Pending",
-  ],
-  [
-    "Compute integrating factor (IF)",
-    "μ(x)=e^(∫2dx)=e²ˣ",
-    "Integrating factor μ(x)=e²ˣ",
-    "Pending",
-  ],
-  [
-    "Multiply every term by μ(x)",
-    "e²ˣy′+2e²ˣy=e³ˣ",
-    "All terms multiplied",
-    "Will be 0 for solution",
-  ],
-  [
-    "Recognize exact derivative",
-    "d/dx(ye²ˣ)=e³ˣ",
-    "Derivative check",
-    "Identically true",
-  ],
-  [
-    "Integrate both sides",
-    "ye²ˣ=e³ˣ/3+C",
-    "Compare both sides",
-    "Derivative residual 0",
-  ],
-  [
-    "Solve for y(x)",
-    "y=eˣ/3+Ce⁻²ˣ",
-    "General solution family",
-    "ODE residual 0",
-  ],
-  [
-    "Apply initial condition y(0)=1",
-    "C=2/3; y=eˣ/3+(2/3)e⁻²ˣ",
-    "Particular solution (C=2/3)",
-    "Verified",
-  ],
-] as const;
-const colors = ["#2563eb", "#8b5cf6", "#16a34a", "#f97316", "#e11d48"];
-export default function LinearFirstOrderTargetLesson10190({
-  lesson: _lesson,
-}: {
-  lesson: SchoolSyllabusLesson;
-}) {
-  const [active, setActive] = useState(7),
-    [answer, setAnswer] = useState(""),
-    [feedback, setFeedback] = useState(""),
-    [solutions, setSolutions] = useState(false);
-  const curves = useMemo(
-    () =>
-      [-1, 0, 1, 2, 3].map((c, ci) => ({
-        c,
-        color: colors[ci],
-        points: Array.from({ length: 121 }, (_, i) => {
-          const x = -2 + i / 30,
-            y = Math.exp(x) / 3 + c * Math.exp(-2 * x);
-          return `${25 + (x + 2) * 54},${70 - Math.max(-3, Math.min(7, y)) * 9}`;
-        }).join(" "),
-      })),
-    [],
-  );
-  const reset = () => {
-    setActive(7);
-    setAnswer("");
-    setFeedback("");
-    setSolutions(false);
-  };
-  return (
-    <main
-      className="lfo10190-page"
-      data-testid="school-mockup-0864"
-      data-object-model="dedicated-integrating-factor-pipeline-engine"
-      data-active-stage={active}
-      data-p="2"
-      data-q="exp(x)"
-      data-mu="exp(2x)"
-      data-c="0.6667"
-      data-residual="0"
-    >
-      <header className="lfo-hero">
-        <small>CLASS 12 · DIFFERENTIAL EQUATIONS</small>
-        <h1>Linear First-Order Equations: Integrating Factor Pipeline</h1>
-        <p>
-          Solve y′+2y=eˣ using an integrating factor. Connect each symbolic step
-          to its graph and residual check.
-        </p>
-        <div>
-          <span>18 min</span>
-          <span>ADVANCED</span>
-          <span>CONCEPT</span>
-          <span>calculus</span>
-          <span>integrating factor</span>
-        </div>
-      </header>
-      <section className="lfo-pipeline">
-        <div className="lfo-title">
-          <div>
-            <h3>▦ &nbsp; INTEGRATING-FACTOR PIPELINE</h3>
-            <p>Solve y′+2y=eˣ with initial condition y(0)=1.</p>
-          </div>
-          <div className="lfo-summary">
-            <span>
-              Standard form
-              <br />
-              <b>y′+P(x)y=Q(x)</b>
-            </span>
-            <span>
-              P(x)
-              <br />
-              <b>2</b>
-            </span>
-            <span>
-              Q(x)
-              <br />
-              <b>eˣ</b>
-            </span>
-            <span>
-              Method
-              <br />
-              <b>Integrating Factor</b>
-            </span>
-            <button onClick={reset}>
-              <RotateCcw />
-              Reset lab
-            </button>
-          </div>
-        </div>
-        <div className="lfo-stage-list">
-          {stages.map((s, i) => (
-            <article key={s[0]} className={active === i + 1 ? "active" : ""}>
-              <button
-                aria-label={`Stage ${i + 1}`}
-                onClick={() => setActive(i + 1)}
-              >
-                {i + 1}
-              </button>
-              <div>
-                <h3>{s[0]}</h3>
-                <p className="formula">{s[1]}</p>
-              </div>
-              <div className="lfo-mini">
-                <b>{s[2]}</b>
-                {i === 0 && (
-                  <svg viewBox="0 0 220 85">
-                    {Array.from({ length: 11 * 5 }, (_, n) => {
-                      const col = n % 11,
-                        row = Math.floor(n / 11),
-                        x = -2 + col * 0.4,
-                        y = -1 + row * 0.5,
-                        m = Math.exp(x) - 2 * y,
-                        a = Math.atan(m),
-                        cx = 10 + col * 20,
-                        cy = 70 - row * 15,
-                        dx = Math.cos(a) * 6,
-                        dy = -Math.sin(a) * 6;
-                      return (
-                        <line
-                          key={n}
-                          x1={cx - dx}
-                          y1={cy - dy}
-                          x2={cx + dx}
-                          y2={cy + dy}
-                        />
-                      );
-                    })}
-                  </svg>
-                )}
-                {i === 1 && (
-                  <svg viewBox="0 0 220 85">
-                    <polyline
-                      points={Array.from({ length: 101 }, (_, n) => {
-                        const x = -2 + n * 0.04;
-                        return `${10 + n * 2},${78 - Math.min(8, Math.exp(2 * x)) * 9}`;
-                      }).join(" ")}
-                    />
-                  </svg>
-                )}
-                {i >= 2 && i < 5 && (
-                  <svg viewBox="0 0 220 85">
-                    <polyline
-                      points={Array.from({ length: 101 }, (_, n) => {
-                        const x = -2 + n * 0.04;
-                        return `${10 + n * 2},${72 - Math.min(7, Math.exp(3 * x)) * 8}`;
-                      }).join(" ")}
-                    />
-                  </svg>
-                )}
-                {i === 5 && (
-                  <svg viewBox="0 0 220 85">
-                    {curves.map((f) => (
-                      <polyline
-                        key={f.c}
-                        points={f.points}
-                        style={{ stroke: f.color }}
-                      />
-                    ))}
-                  </svg>
-                )}
-                {i === 6 && (
-                  <svg viewBox="0 0 220 85">
-                    <polyline points={curves[3].points} />
-                    <circle cx="133" cy="61" r="3" />
-                  </svg>
-                )}
-              </div>
-              <aside>
-                <b>Residual check</b>
-                <p>R(x,y)=y′+2y−eˣ</p>
-                <strong>{active >= i + 1 ? s[3] : "Not applicable yet"}</strong>
-              </aside>
-            </article>
-          ))}
-        </div>
-      </section>
-      <section className="lfo-info">
-        <article>
-          <h3>▧ &nbsp; Final Answers</h3>
-          <p>
-            General solution: <b>y=eˣ/3+Ce⁻²ˣ</b>
-          </p>
-          <p>
-            With y(0)=1: <b>y=eˣ/3+(2/3)e⁻²ˣ</b>
-          </p>
-          <p>Check at x=0: 1/3+2/3=1 ✓</p>
-          <p>ODE residual: y′+2y−eˣ=0 ✓</p>
-        </article>
-        <article>
-          <h3>▦ &nbsp; Standard Form</h3>
-          <p>A first-order linear ODE is y′+P(x)y=Q(x).</p>
-          <p>Our equation: y′+2y=eˣ</p>
-          <p>P(x)=2, Q(x)=eˣ</p>
-        </article>
-        <article className="lfo-errors">
-          <h3>⌘ &nbsp; Common Mistakes</h3>
-          <ol>
-            <li>Wrong sign in P(x).</li>
-            <li>Forgetting the constant.</li>
-            <li>Not multiplying every term by μ(x).</li>
-            <li>Incorrectly integrating e³ˣ.</li>
-            <li>Applying the initial condition incorrectly.</li>
-          </ol>
-        </article>
-      </section>
-      <section className="lfo-lower">
-        <article>
-          <h3>◇ &nbsp; Key Takeaways</h3>
-          <ul>
-            <li>Identify P(x) and Q(x).</li>
-            <li>Compute μ(x)=e^(∫Pdx).</li>
-            <li>Multiply every term by μ(x).</li>
-            <li>Recognize the exact derivative.</li>
-            <li>Integrate, solve, and apply the initial condition.</li>
-          </ul>
-        </article>
-        <article>
-          <h3>▧ &nbsp; Explore &amp; Visualize</h3>
-          <ul>
-            <li>Direction field and solution curves</li>
-            <li>Vary constant C</li>
-            <li>Residual surface R(x,y)</li>
-            <li>Compare with a numerical solution</li>
-          </ul>
-        </article>
-        <article>
-          <h3>⌁ &nbsp; Practice Check (Quick)</h3>
-          <p>What is the integrating factor for y′−5y=sin x?</p>
-          {["e⁵ˣ", "e⁻⁵ˣ", "e⁻⁵sin x", "eˣ"].map((v) => (
-            <label key={v}>
-              <input
-                type="radio"
-                name="if10190"
-                checked={answer === v}
-                onChange={() => setAnswer(v)}
-              />{" "}
-              {v}
-            </label>
-          ))}
-          <button
-            onClick={() =>
-              setFeedback(
-                answer === "e⁻⁵ˣ"
-                  ? "Correct: μ=e^(∫−5dx)=e⁻⁵ˣ."
-                  : "Integrate P(x)=−5 before exponentiating.",
-              )
-            }
-          >
-            Check
-          </button>
-          {feedback && (
-            <p
-              className={
-                feedback.startsWith("Correct") ? "correct" : "incorrect"
-              }
-            >
-              {feedback}
-            </p>
-          )}
-        </article>
-      </section>
-      <section className="lfo-footer-cards">
-        <article>
-          <h3>Practice Problems</h3>
-          <ol>
-            <li>Solve y′−y=cos x.</li>
-            <li>Solve y′+3y=xe²ˣ, y(0)=2.</li>
-            <li>Solve y′−y/x=x², x&gt;0.</li>
-          </ol>
-          <button onClick={() => setSolutions((x) => !x)}>
-            {solutions ? "Hide solutions" : "Show solutions"}
-          </button>
-          {solutions && <p>Use μ=e⁻ˣ, μ=e³ˣ, and μ=1/x respectively.</p>}
-        </article>
-        <article>
-          <h3>Reflect &amp; Apply</h3>
-          <ol>
-            <li>When is the integrating factor method best?</li>
-            <li>How does C affect long-term behavior?</li>
-            <li>Compare with the Bernoulli method.</li>
-          </ol>
-        </article>
-        <article>
-          <h3>Assessment Prompts</h3>
-          <ol>
-            <li>Derive the integrating factor formula.</li>
-            <li>Solve and verify y′+y=e⁻ˣ.</li>
-            <li>Model a real-life system with y′+ky=a.</li>
-          </ol>
-        </article>
-      </section>
-      <nav className="lfo-nav">
-        <Link to="/lessons/school/class-12/class-12-differential-equations-homogeneous-first-order-equations">
-          ← Homogeneous First-Order Equations
-        </Link>
-        <Link to="/lessons/school/class-12/class-12-differential-equations-general-and-particular-solutions">
-          General and Particular Solutions →
-        </Link>
-      </nav>
-      <div className="lfo-complete">
-        Pipeline complete · integrating factor applied · residual verified
-      </div>
-      <LessonTopicStudyBoard lessonId={10190} alwaysVisible />
-
-    </main>
-  );
+import {BookOpen, CheckCircle2, ClipboardCheck, Compass, GitBranch, Lightbulb, ListChecks, RotateCcw, Sparkles, X} from 'lucide-react';
+import {useId, useRef, useState} from 'react';
+import type {PointerEvent as ReactPointerEvent, ReactNode} from 'react';
+import {Link} from 'react-router-dom';
+import MathExpression from '../../../components/ui/MathExpression';
+import type {SchoolSyllabusLesson} from '../syllabus/lessonSyllabusTypes';
+import LessonMockupFooter from '../components/LessonMockupFooter';
+import {lfoSolution, lfoDerivative, lfoMu, lfoTerms, lfoResidual, lfoRK4} from './linearFirstOrderModel';
+import './LinearFirstOrderTargetLesson10190.css';
+import '../components/LessonMockupReference.css';
+const M=({value}:{value:string})=><MathExpression value={value}/>;
+const family=[-1,0,1,2,3],colors=['#4599e8','#949aa6','#e59b27','#45b06c','#a651c2'];
+const titles=['Identify P(x) and Q(x)','Compute integrating factor (IF)','Multiply every term by μ(x)','Recognize exact derivative','Integrate both sides','Solve for y(x)','Apply initial condition y(0)=1'];
+const chartTitles=['Original ODE (direction field)','Integrating factor μ(x) = e²ˣ','All terms multiplied','Derivative check','Compare both sides','General solution family','Particular solution (C = 2/3)'];
+const slopeColor=(m:number)=>{const a=Math.abs(m);return a<.3?'#39bf68':a<.7?'#c5cb40':a<1.3?'#f57c59':a<2?'#df62ac':a<3?'#9c6cec':'#6259ef';};
+const clean=(n:number)=>Math.abs(n)<1e-9?'0':n.toFixed(4);
+function PipelineGraph({stage,c,numerical,vary,probe,onProbe,onSelect}:{stage:number;c:number;numerical:boolean;vary:boolean;probe:number;onProbe:(x:number)=>void;onSelect:()=>void}){
+ const clip=useId().replace(/:/g,''),dragging=useRef(false),[touched,setTouched]=useState(false);
+ const bounds=[[-2,2],[0,8],[-2,8],[-.001,.001],[-2,6],[-3,3],[-2,4]][stage];
+ const [low,high]=bounds,px=(x:number)=>35+(x+2)*57.5,py=(y:number)=>128-(y-low)*100/(high-low);
+ const line=(f:(x:number)=>number)=>Array.from({length:201},(_,i)=>{const x=-2+i/50;return `${px(x)},${py(f(x))}`}).join(' ');
+ const curves:{key:string;label:string;color:string;f:(x:number)=>number;dash?:string}[]=stage===1?[{key:'mu',label:'μ(x)',color:'#148b2b',f:lfoMu}]:stage===2?[
+  {key:'term-derivative',label:'e²ˣy′',color:'#258eea',f:x=>lfoTerms(x,c)[0],dash:'4 3'},
+  {key:'term-y',label:'2e²ˣy',color:'#b626d5',f:x=>lfoTerms(x,c)[1],dash:'4 3'},
+  {key:'rhs',label:'e³ˣ',color:'#18923b',f:x=>Math.exp(3*x),dash:'4 3'}
+ ]:stage===3?[{key:'residual',label:'product derivative − e³ˣ',color:'#178632',f:()=>0}]:stage===4?[
+  {key:'integrated-left',label:'ye²ˣ',color:'#21a0f4',f:x=>lfoSolution(x,c)*lfoMu(x),dash:'5 3'},
+  {key:'integrated-right',label:'e³ˣ/3 + C',color:'#b324e1',f:x=>Math.exp(3*x)/3+c,dash:'2 3'}
+ ]:stage===5?[...family.map((k,i)=>({key:`family-${k}`,label:`C = ${k}`,color:colors[i],f:(x:number)=>lfoSolution(x,k)})),...(vary?[{key:'family-selected',label:`C = ${c.toFixed(2)}`,color:'#008f98',f:(x:number)=>lfoSolution(x,c)}]:[])]:stage===6?[
+  {key:'particular',label:'y = eˣ/3 + ⅔e⁻²ˣ',color:'#188bed',f:x=>lfoSolution(x)},
+  ...(numerical?[{key:'numerical',label:'RK4 (h = .02)',color:'#e28b22',f:lfoRK4,dash:'3 3'}]:[])
+ ]:[];
+ const updateProbe=(svg:SVGSVGElement,clientX:number,clientY:number)=>{const matrix=svg.getScreenCTM();if(!matrix)return;const p=new DOMPoint(clientX,clientY).matrixTransform(matrix.inverse());onProbe(Math.max(-2,Math.min(2,Math.round(((p.x-35)/57.5-2)*100)/100)));};
+ const move=(e:ReactPointerEvent<SVGSVGElement>)=>{if(dragging.current)updateProbe(e.currentTarget,e.clientX,e.clientY);};
+ const stop=(e:ReactPointerEvent<SVGSVGElement>)=>{dragging.current=false;if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);};
+ const ticks=stage===3?[-.001,0,.001]:stage===1?[0,2,4,6,8]:stage===2?[-2,0,2,4,6,8]:stage===4?[-2,0,2,4,6]:stage===5?[-2,0,2]:stage===6?[-2,-1,0,1,2,3,4]:[-2,-1,0,1,2];
+ return <svg viewBox="0 0 280 155" preserveAspectRatio="none" role="img" aria-label={chartTitles[stage]} onPointerMove={move} onPointerUp={stop} onPointerCancel={stop} onLostPointerCapture={()=>{dragging.current=false;}}>
+  <defs><clipPath id={clip}><rect x="35" y="26" width="230" height="102"/></clipPath></defs>
+  <text className="lfo-chart-title" x="150" y="12" textAnchor="middle" textLength={Math.min(235,chartTitles[stage].length*5.4)} lengthAdjust="spacingAndGlyphs">{chartTitles[stage]}</text>
+  <path d={stage===0?`M150 26V128M35 ${py(0)}H265`:`M35 26V128H265M35 ${py(0)}H265`} className="lfo-axis" fill="none"/>
+  {[-2,-1,0,1,2].map(x=><g className="lfo-tick" key={x}><path d={`M${px(x)} 128v4`}/><text x={px(x)} y="141" textAnchor="middle">{x}</text></g>)}
+  {ticks.map(y=><g className="lfo-tick" key={y}><path d={`M${stage===0?146:31} ${py(y)}h4`}/><text x={stage===0?143:27} y={py(y)+3} textAnchor="end">{y}</text></g>)}
+  {stage===0&&<text x="147" y="23" className="lfo-axis-letter">y</text>}{stage===1&&<text x="10" y="80" transform="rotate(-90 10 80)" textAnchor="middle" className="lfo-axis-letter">μ(x)</text>}
+  <text x="150" y="153" textAnchor="middle" className="lfo-axis-letter">x</text>
+  <g clipPath={`url(#${clip})`}>
+   {stage===0&&Array.from({length:17*11},(_,i)=>{const x=-2+(i%17)/4,y=-2+Math.floor(i/17)*.4,m=Math.exp(x)-2*y,a=Math.atan(m*25/57.5),dx=3.8*Math.cos(a),dy=-3.8*Math.sin(a);return <line data-slope={m} key={i} x1={px(x)-dx} x2={px(x)+dx} y1={py(y)-dy} y2={py(y)+dy} stroke={slopeColor(m)} strokeWidth="1.1"/>;})}
+   {curves.map(f=><polyline key={f.key} data-curve={f.key} data-constant={f.key.startsWith('family')?f.label.slice(4):undefined} points={line(f.f)} stroke={f.color} strokeDasharray={f.dash} className="lfo-curve"/>)}
+   {stage===3&&Array.from({length:9},(_,i)=><circle key={i} cx={px(-2+i*.5)} cy={py(0)} r="2.2" fill="#178632"/>)}
+   {(stage===5||stage===6)&&<circle data-initial-point="true" cx={px(0)} cy={py(stage===6?1:lfoSolution(0,c))} r="3.2" fill={stage===6?'#171d2a':'#1a9a42'}/>}
+   {touched&&<><path d={`M${px(probe)} 26V128`} stroke="#0d94b8" strokeDasharray="2 3"/>{curves.map(f=><circle key={f.key} cx={px(probe)} cy={py(f.f(probe))} r="3" fill={f.color}/>)}</>}
+  </g>
+  {(stage===2||stage===4||stage===5||stage===6)&&<g className="lfo-chart-legend"><rect x={stage===5?198:stage===6?135:39} y="25" width={stage===5?65:stage===6?128:92} height={curves.length*12+8} rx="3" fill="white" stroke="#dfe8f3" strokeWidth=".6"/>{curves.map((f,i)=><g key={f.key} transform={`translate(${stage===5?202:stage===6?139:43},${34+i*12})`}><path d="M0 0h16" stroke={f.color} strokeDasharray={f.dash}/><text x="20" y="3">{f.label}</text></g>)}</g>}
+  {stage===6&&<text x={px(0)-8} y={py(1)-13} textAnchor="end" className="lfo-point-label">(0, 1)</text>}
+  <rect x="35" y="26" width="230" height="102" fill="transparent" role="slider" aria-label={`Stage ${stage+1} graph probe`} aria-valuemin={-2} aria-valuemax={2} aria-valuenow={probe} tabIndex={0} onPointerDown={e=>{dragging.current=true;setTouched(true);onSelect();e.currentTarget.ownerSVGElement!.setPointerCapture(e.pointerId);updateProbe(e.currentTarget.ownerSVGElement!,e.clientX,e.clientY);}} onKeyDown={e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();setTouched(true);onSelect();onProbe(Math.max(-2,Math.min(2,Math.round((probe+(e.key==='ArrowRight'?.1:-.1))*100)/100)));}}}/>
+  {touched&&<text className="lfo-probe-label" x="263" y="23" textAnchor="end">x = {probe.toFixed(2)}</text>}
+ </svg>;
+}
+export default function LinearFirstOrderTargetLesson10190({lesson}:{lesson:SchoolSyllabusLesson}){
+ const [active,setActive]=useState(7),[answer,setAnswer]=useState(''),[feedback,setFeedback]=useState(''),[solutions,setSolutions]=useState(false),[mode,setMode]=useState(''),[c,setC]=useState(2/3),[probe,setProbe]=useState(0),[resetId,setResetId]=useState(0);
+ const numerical=mode==='numerical';
+ const reset=()=>{setActive(7);setAnswer('');setFeedback('');setSolutions(false);setMode('');setC(2/3);setProbe(0);setResetId(x=>x+1);};
+ const open=(value:string,stage:number)=>{setMode(value);setActive(stage);};
+ const formula:ReactNode[]=[
+  <><div><p>Write the equation in standard form</p><M value="y'+P(x)y=Q(x)"/></div><div className="lfo-equation-box"><M value="P(x)=2"/><M value="Q(x)=e^x"/></div></>,
+  <><div><M value={String.raw`μ(x)=e^{\int P(x)\,dx}`}/></div><div><M value={String.raw`μ(x)=e^{\int 2\,dx}`}/><M value="=e^{2x}"/></div></>,
+  <><div><M value="μ(x)y'+μ(x)P(x)y=μ(x)Q(x)"/></div><div><M value="e^{2x}y'+2e^{2x}y=e^{2x}e^x"/><M value="=e^{3x}"/></div></>,
+  <><div><p>Left side is <M value={String.raw`\dfrac{d}{dx}\left(ye^{2x}\right)`}/>.</p></div><div><M value={String.raw`\dfrac{d}{dx}\left(ye^{2x}\right)=e^{3x}`}/></div></>,
+  <div className="lfo-long-equation"><M value={String.raw`ye^{2x}=\int e^{3x}\,dx+C`}/><M value={String.raw`=\dfrac{e^{3x}}{3}+C`}/></div>,
+  <div className="lfo-long-equation"><M value={String.raw`y=\dfrac{e^{3x}}{3}e^{-2x}+Ce^{-2x}`}/><div className="lfo-equation-box"><M value={String.raw`y=\dfrac{e^x}{3}+Ce^{-2x}`}/></div></div>,
+  <div className="lfo-long-equation"><M value={String.raw`y(0)=\dfrac{e^0}{3}+Ce^0=\dfrac{1}{3}+C=1`}/><M value={String.raw`\Rightarrow C=\dfrac{2}{3}`}/></div>
+ ];
+ const residuals=[String.raw`R(x,y)=y'+2y-e^x`,String.raw`\text{(Not applicable yet)}`,String.raw`R(x,y)=e^{2x}y'+2e^{2x}y-e^{3x}`,String.raw`R(x,y)=0`,String.raw`\dfrac{d}{dx}(ye^{2x})-e^{3x}=0`,String.raw`R(x,y)=y'+2y-e^x=0`,String.raw`R(x,y)=y'+2y-e^x=0`];
+ return <main className="lfo10190-page lesson-reference" data-testid="school-mockup-0864" data-object-model="dedicated-integrating-factor-pipeline-engine" data-active-stage={active} data-p="2" data-q="exp(x)" data-mu="exp(2x)" data-c={c} data-probe={probe} data-residual={clean(lfoResidual(probe,c))}>
+  <section className="lfo-hero"><Link className="lfo-school" to="/school">← School lessons</Link><small>CLASS 12 · DIFFERENTIAL EQUATIONS</small><h1>{lesson.title}: Integrating Factor Pipeline</h1><p>Solve <M value="y'+2y=e^x"/> using an integrating factor. Connect each symbolic step to its graph and residual check.</p><div>{['18 min','ADVANCED','CONCEPT','calculus','integrating factor'].map(x=><span key={x}>{x}</span>)}</div></section>
+  <section className="lfo-pipeline"><div className="lfo-title"><div><h2><ListChecks/> INTEGRATING-FACTOR PIPELINE</h2><p>Solve <M value="y'+2y=e^x"/> with initial condition <M value="y(0)=1"/>.</p></div><div className="lfo-summary"><span>Standard form<b><M value="y'+P(x)y=Q(x)"/></b></span><span>P(x)<b><M value="2"/></b></span><span>Q(x)<b><M value="e^x"/></b></span></div><div className="lfo-method"><button onClick={reset}><RotateCcw/> Reset lab</button><span>Method<b>Integrating Factor <Sparkles/></b></span></div></div>
+   <div className="lfo-stage-list">{titles.map((title,i)=><article key={title} data-stage={i+1} className={active===i+1?'active':''}><button className="lfo-stage-number" aria-label={`Stage ${i+1}`} aria-pressed={active===i+1} onClick={()=>setActive(i+1)}>{i+1}</button><div className="lfo-symbolic"><h3>{title}</h3><div className="lfo-step-math">{formula[i]}</div></div><div className="lfo-mini"><PipelineGraph key={resetId} stage={i} c={c} numerical={numerical} vary={mode==='constant'} probe={probe} onProbe={setProbe} onSelect={()=>setActive(i+1)}/></div><aside className={i===6?'verified':''}><b>Residual check</b>{i!==1&&<M value={residuals[i]}/>}<p>{i<2?'(Not applicable yet)':i===2?'(Will be 0 for solution)':i===3?'(Identically true)':i===6?<><CheckCircle2/> Verified</>:null}</p></aside></article>)}</div>
+  </section>
+  <section className="lfo-info"><article><h3><ClipboardCheck/> Final Answers</h3><p>General solution: <M value={String.raw`y=\dfrac{e^x}{3}+Ce^{-2x}`}/></p><p>With <M value="y(0)=1"/>: <M value={String.raw`y=\dfrac{e^x}{3}+\dfrac{2}{3}e^{-2x}`}/></p><p>Check at <M value="x=0"/>:</p><p><M value={String.raw`y(0)=\dfrac13+\dfrac23=1`}/> <CheckCircle2/></p><p>ODE residual: <M value="y'+2y-e^x=0"/> <CheckCircle2/></p></article><article><h3><ListChecks/> Standard Form</h3><p>A first-order linear ODE is</p><p><M value="y'+P(x)y=Q(x)"/>.</p><p>Our equation:</p><p><M value="y'+2y=e^x"/></p><p><M value="P(x)=2,\quad Q(x)=e^x"/></p></article><article className="lfo-errors"><h3><GitBranch/> Common Mistakes</h3><ol><li>Wrong sign in <M value="P(x)"/>: using <M value="P(x)=-2"/> leads to <M value="μ=e^{-2x}"/>.</li><li>Forgetting the constant: missing the <M value="+C"/> in <M value={String.raw`ye^{2x}=\dfrac{e^{3x}}3+C`}/>.</li><li>Not multiplying every term by <M value="μ(x)"/>.</li><li>Incorrectly integrating <M value={String.raw`\int e^{3x}\,dx=\dfrac{e^{3x}}3+C`}/>.</li><li>Applying the initial condition incorrectly.</li></ol></article></section>
+  <section className="lfo-lower"><article><h3><CheckCircle2/> Key Takeaways</h3><ul><li>Identify <M value="P(x)"/> and <M value="Q(x)"/> in <M value="y'+P(x)y=Q(x)"/>.</li><li>Compute <M value={String.raw`μ(x)=e^{\int P(x)\,dx}`}/>.</li><li>Multiply every term by <M value="μ(x)"/>.</li><li>Recognize the exact derivative on the left.</li><li>Integrate, solve for <M value="y"/>, and apply initial condition.</li></ul></article><article><h3><Compass/> Explore &amp; Visualize</h3><div className="lfo-explore-actions"><button aria-label="Direction field &amp; solution curves" onClick={()=>open('field',1)}>Direction field &amp; solution curves</button><button aria-label="Vary constant C" onClick={()=>open('constant',6)}>Vary constant C</button><button aria-label="Residual check R(x,y)" onClick={()=>open('residual',4)}>Residual check R(x,y)</button><button aria-label="Compare with numerical solution" onClick={()=>open('numerical',7)}>Compare with numerical solution</button></div></article><article className="lfo-quick"><h3><Sparkles/> Practice Check (Quick)</h3><p>What is the integrating factor for <M value="y'-5y=\sin x"/>?</p>{[['e5','e^{5x}'],['en5','e^{-5x}'],['esin',String.raw`e^{-5\sin x}`],['ex','e^x']].map(([key,value],i)=><label key={key} className={answer===key?'chosen':''}><input type="radio" name="if10190" aria-label={`Answer ${String.fromCharCode(65+i)}`} checked={answer===key} onChange={()=>{setAnswer(key);setFeedback(key==='en5'?'Correct: P(x) = −5, so μ(x) = e⁻⁵ˣ.':'Integrate P(x) = −5 before exponentiating.');}}/><span>{String.fromCharCode(65+i)}</span><M value={value}/>{answer===key&&key==='en5'&&<CheckCircle2/>}</label>)}{feedback&&<p role="status" className={answer==='en5'?'correct':'incorrect'}>{feedback}</p>}</article></section>
+  {mode&&<section className="lfo-explore-panel" aria-label="Interactive exploration"><button aria-label="Close exploration" onClick={()=>setMode('')}><X/></button><h3>{mode==='field'?'Direction field':mode==='constant'?'Vary the integration constant':mode==='residual'?'Check the residual':'Numerical vs exact solution'}</h3>{mode==='constant'?<><label>Constant C <input aria-label="Family constant" type="range" min="-1" max="3" step="any" value={c} onChange={e=>setC(Number(e.target.value))}/><b>{c.toFixed(4)}</b></label><p>The family graph and multiplied terms update together. Every value of C satisfies the ODE; only C = 2/3 satisfies y(0) = 1.</p></>:mode==='numerical'?<p>Orange dashed RK4 curve (step 0.02) overlays the exact solution in stage 7. At x = {probe.toFixed(2)}: exact {lfoSolution(probe).toFixed(6)}, RK4 {lfoRK4(probe).toFixed(6)}, absolute error {Math.abs(lfoSolution(probe)-lfoRK4(probe)).toExponential(2)}.</p>:mode==='residual'?<p>At x = {probe.toFixed(2)}, y = {lfoSolution(probe,c).toFixed(4)}, y′ = {lfoDerivative(probe,c).toFixed(4)}. R = y′ + 2y − eˣ = <b data-residual-value="true">{clean(lfoResidual(probe,c))}</b>. The derivative-check graph is identically zero.</p>:<p>Each segment has slope eˣ − 2y. Drag across a graph, or focus its probe and press the arrow keys, to inspect x. The particular solution initially decreases because y′(0) = −1.</p>}<p className="lfo-probe-help">Graph probes: drag horizontally or use ← / →. Current x = {probe.toFixed(2)}.</p></section>}
+  <section className="lfo-footer-cards"><article><h3><ListChecks/> Practice Problems</h3><ol><li>Solve <M value="y'-y=\cos x"/>.</li><li>Solve <M value="y'+3y=xe^{2x}"/>, find <M value="y(0)=2"/>.</li><li>Solve <M value={String.raw`y'-\dfrac1x y=x^2`}/>, <M value="x>0"/>.</li></ol><button aria-expanded={solutions} onClick={()=>setSolutions(x=>!x)}>{solutions?'Hide solutions':'Show solutions'}</button>{solutions&&<div className="lfo-solutions"><p><M value={String.raw`y=Ce^x+\dfrac{\sin x-\cos x}{2}`}/></p><p><M value={String.raw`y=e^{2x}\left(\dfrac{x}{5}-\dfrac1{25}\right)+\dfrac{51}{25}e^{-3x}`}/></p><p><M value={String.raw`y=\dfrac{x^3}{2}+Cx,\quad x>0`}/></p></div>}</article><article><h3><BookOpen/> Reflect &amp; Apply</h3><ol><li>When is the integrating factor method the best choice?</li><li>How does the choice of C affect the long-term behavior?</li><li>Compare the integrating factor method with the Bernoulli equation.</li></ol></article><article><h3><Lightbulb/> Assessment Prompts</h3><ol><li>Derive the integrating factor formula.</li><li>Solve and verify: <M value="y'+y=e^{-x}"/>, <M value="y(0)=0"/>.</li><li>Model a real-life system with <M value="y'+ky=a"/>.</li></ol></article></section>
+  <nav className="lfo-nav"><Link to="/lessons/school/class-12/class-12-differential-equations-homogeneous-first-order-equations">← Homogeneous First-Order Equations</Link><Link to="/lessons/school/class-12/class-12-differential-equations-general-and-particular-solutions">General and Particular Solutions →</Link></nav><LessonMockupFooter/>
+ </main>;
 }

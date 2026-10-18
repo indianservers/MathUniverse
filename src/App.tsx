@@ -1055,7 +1055,8 @@ export default function App() {
               path="math/:visualizationId"
               element={<MathVisualizationPage />}
             />
-            <Route path="ncert" element={<NCERTDashboardPage />} />
+            <Route path="curriculum" element={<NCERTDashboardPage />} />
+            <Route path="ncert" element={<Navigate to="/curriculum" replace />} />
             <Route path="ncert/:conceptId" element={<NCERTConceptPage />} />
             <Route
               path="syllabus-visual/:topicId"

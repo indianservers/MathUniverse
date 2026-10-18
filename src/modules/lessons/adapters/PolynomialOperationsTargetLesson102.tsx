@@ -615,10 +615,10 @@ export default function PolynomialOperationsTargetLesson102({
         </article>
       </section>
       <nav className="poly102-navigation">
-        <a href="/lessons/algebra/101-order-of-operations">
+        <a href="/lessons/core-workspaces/1-basic-calculator">
           <ArrowLeft />
           <span>
-            Previous<b>Order of Operations</b>
+            Previous<b>Basic Calculator</b>
           </span>
         </a>
         <a href="/lessons/algebra/103-synthetic-division">

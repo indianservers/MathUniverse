@@ -127,7 +127,9 @@ export default function AssumptionsTargetLesson446({
             <a href="/workspace/data/cas">↗ Workspace</a>
           </div>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content as446-hero"><aside>
           <h3>How to learn in this lesson</h3>
           {[
             [Eye, "Observe", "See how assumptions change results."],
@@ -153,8 +155,7 @@ export default function AssumptionsTargetLesson446({
               <span>{String(text)}</span>
             </p>
           ))}
-        </aside>
-      </header>
+        </aside></div>
       <div className="as446-grid">
         <main className="as446-workspace">
           <header>

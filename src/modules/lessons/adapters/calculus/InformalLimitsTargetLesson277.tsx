@@ -114,7 +114,9 @@ export default function InformalLimitsTargetLesson277({
             <a href="/workspace/calculus">↗ Workspace</a>
           </div>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content il277-hero"><aside>
           <h3>What you’ll learn</h3>
           {[
             "Understand limits by observing approach behaviour.",
@@ -127,8 +129,7 @@ export default function InformalLimitsTargetLesson277({
               {text}
             </p>
           ))}
-        </aside>
-      </header>
+        </aside></div>
       <nav className="il277-tabs">
         {[
           "Interact",
@@ -415,10 +416,10 @@ export default function InformalLimitsTargetLesson277({
         </div>
       </section>
       <nav className="il277-nav">
-        <a href="/lessons/calculus/276-two-sided-limits">
+        <a href="/lessons/calculus">
           <ArrowLeft />
           <span>
-            <small>Previous</small>Two-Sided Limits
+            <small>Browse</small>Calculus Lessons
           </span>
         </a>
         <a href="/lessons/calculus/278-one-sided-limits">

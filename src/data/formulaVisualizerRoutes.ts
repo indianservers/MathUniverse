@@ -141,11 +141,11 @@ export const formulaVisualizerConfigs: FormulaVisualizerRouteConfig[] = [
     relatedRoutes: [
       {
         label: "Class 8 NCERT lab",
-        href: "/ncert/class-8-fractals-and-solid-views",
+        href: "/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming",
       },
       {
         label: "Solid views tab",
-        href: "/ncert/class-8-fractals-and-solid-views?tab=solid",
+        href: "/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming",
       },
       {
         label: "Sierpinski proof",
@@ -326,11 +326,11 @@ export const formulaVisualizerConfigs: FormulaVisualizerRouteConfig[] = [
     relatedRoutes: [
       {
         label: "Class 8 NCERT lab",
-        href: "/ncert/class-8-proportional-reasoning-2",
+        href: "/lessons/numbers-and-arithmetic/84-proportion",
       },
       {
-        label: "Map scale tab",
-        href: "/ncert/class-8-proportional-reasoning-2?tab=map-scale",
+        label: "Map scale lesson",
+        href: "/lessons/numbers-and-arithmetic/91-scale-drawings",
       },
       { label: "Ratio visual proofs", href: "/visual-proofs/ratios" },
     ],
@@ -3317,7 +3317,7 @@ function phase2Config(
     formulaLibraryRoute,
     relatedRoutes: [
       { label: "Formula library", href: formulaLibraryRoute },
-      { label: "NCERT dashboard", href: "/ncert" },
+      { label: "NCERT dashboard", href: "/curriculum" },
       { label: "Math workspace", href: "/workspace" },
     ],
     examples: [

@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "clipped": [],
+  "geometry": {
+    "left": [
+      0.6000000000000001,
+      1.6
+    ],
+    "right": [
+      1.4000000000000004,
+      2.6
+    ],
+    "defined": [
+      1,
+      3
+    ],
+    "leftEndpoint": [
+      1,
+      2.0000000000000004
+    ],
+    "rightEndpoint": null,
+    "leftLine": [
+      -2.5,
+      -1.5000000000000002,
+      1,
+      2.0000000000000004
+    ],
+    "rightLine": [
+      1,
+      3,
+      4.5,
+      -0.4999999999999999
+    ]
+  }
+}

@@ -131,14 +131,15 @@ export default function ChaosBifurcationTargetLesson333({
         </span>
         <h1>Chaos and Bifurcation</h1>
         <p>Explore parameter sensitivity in the logistic map.</p>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content chaos333-hero"><aside>
           <h3>OBJECTIVE</h3>
           <p>
             Understand how changing a parameter in the logistic map leads from
             fixed points to periodic cycles and chaos.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="chaos333-tabs">
         {["Interact", "Learn", "Example", "Formula", "Practice"].map((name) => (
           <button

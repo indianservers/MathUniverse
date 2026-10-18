@@ -3,7 +3,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./LinearSystemsMatricesTargetLesson10197.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import MathExpression from "../../../components/ui/MathExpression";
+import { analyzeCramers, cramerAnswer } from "./cramersRuleModel";
+import { equationGeometry, consistencyGeometryMessage } from "./linearSystemConsistencyModel";
+import "../components/LessonMockupReference.css";
 
 type System = [number, number, number, number, number, number];
 const DEFAULT: System = [2, 1, 5, 1, -1, 1],
@@ -13,25 +16,12 @@ const DEFAULT: System = [2, 1, 5, 1, -1, 1],
     infinite: [2, 1, 5, 4, 2, 10],
     random: [3, -2, 7, 1, 4, 5],
   };
-const solve = (s: System) => {
-  const [a, b, c, d, e, f] = s,
-    det = a * e - b * d,
-    dx = c * e - b * f,
-    dy = a * f - c * d,
-    type = det !== 0 ? "unique" : dx === 0 && dy === 0 ? "infinite" : "none";
-  return {
-    det,
-    dx,
-    dy,
-    type,
-    x: det ? dx / det : null,
-    y: det ? dy / det : null,
-  };
-};
+const solve=(s:System)=>{const r=analyzeCramers(s);return {...r,det:r.D,dx:r.Dx,dy:r.Dy};};
+function fraction(n:number,d=1){if(d===0)return "undefined";let a=Math.abs(n),b=Math.abs(d);if(Number.isInteger(n)&&Number.isInteger(d)){while(b){const t=a%b;a=b;b=t;}if(a){n/=a;d/=a;}}if(d<0){n=-n;d=-d;}return d===1?String(n):String.raw`\dfrac{${n}}{${d}}`;}
 const fmt = (n: number | null) =>
   n === null ? "—" : Number.isInteger(n) ? String(n) : n.toFixed(2);
 const equation = (a: number, b: number, c: number) =>
-  `${a}x ${b < 0 ? "−" : "+"} ${Math.abs(b)}y = ${c}`;
+  `${a===1?"":a===-1?"−":a}x ${b < 0 ? "−" : "+"} ${Math.abs(b)===1?"":Math.abs(b)}y = ${c}`;
 function Graph({ system, zoom }: { system: System; zoom: number }) {
   const [a, b, c, d, e, f] = system,
     res = solve(system),
@@ -39,42 +29,30 @@ function Graph({ system, zoom }: { system: System; zoom: number }) {
     h = 430,
     o = { x: 195, y: 215 },
     scale = 28 * zoom,
-    line = (aa: number, bb: number, cc: number) => {
-      if (bb !== 0)
-        return {
-          x1: -7,
-          y1: (cc - aa * -7) / bb,
-          x2: 7,
-          y2: (cc - aa * 7) / bb,
-        };
-      const x = cc / aa;
-      return { x1: x, y1: -7, x2: x, y2: 7 };
-    },
+    line=(aa:number,bb:number,cc:number)=>equationGeometry(aa,bb,cc,Math.ceil(8/zoom)),
     map = (x: number, y: number) => ({
       x: o.x + x * scale,
       y: o.y - y * scale,
     }),
-    l1 = line(a, b, c),
-    l2 = line(d, e, f),
-    p1 = map(l1.x1, l1.y1),
-    p2 = map(l1.x2, l1.y2),
-    q1 = map(l2.x1, l2.y1),
-    q2 = map(l2.x2, l2.y2);
+    l1 = line(a,b,c),l2=line(d,e,f),
+    first=l1.endpoints||[0,0,0,0],second=l2.endpoints||[0,0,0,0],
+    p1=map(first[0],first[1]),p2=map(first[2],first[3]),q1=map(second[0],second[1]),q2=map(second[2],second[3]);
   return (
-    <svg className="ls-graph" viewBox={`0 0 ${w} ${h}`}>
-      {[-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6].map((v) => (
+    <svg role="img" aria-label={consistencyGeometryMessage(system)} className="ls-graph" viewBox={`0 0 ${w} ${h}`}>
+      {Array.from({length:13},(_,i)=>(i-6)*Math.max(1,Math.ceil(1/zoom))).map((v) => (
         <g key={v}>
           <line x1={o.x + v * scale} y1="10" x2={o.x + v * scale} y2="420" />
           <line x1="10" y1={o.y - v * scale} x2="380" y2={o.y - v * scale} />
-          <text x={o.x + v * scale + 2} y={o.y + 10}>
+          {v!==0&&<text x={o.x-7} y={o.y-v*scale+4} textAnchor="end">{v}</text>}<text x={o.x + v * scale + 2} y={o.y + 13}>
             {v}
           </text>
         </g>
       ))}
-      <line className="axis" x1="10" y1={o.y} x2="380" y2={o.y} />
+      <text className="ls-axis-letter" x="375" y="207">x</text><text className="ls-axis-letter" x="201" y="15">y</text><line className="axis" x1="10" y1={o.y} x2="380" y2={o.y} />
       <line className="axis" x1={o.x} y1="10" x2={o.x} y2="420" />
-      <line className="line1" x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y} />
-      <line className="line2" x1={q1.x} y1={q1.y} x2={q2.x} y2={q2.y} />
+      {l1.endpoints&&<line className="line1" x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y} />}
+      {l2.endpoints&&<line className="line2" x1={q1.x} y1={q1.y} x2={q2.x} y2={q2.y} />}
+      <text className="ls-equation-label first" x="220" y="45" textLength="85" lengthAdjust="spacingAndGlyphs">{equation(a,b,c)}</text><text className="ls-equation-label second" x="220" y="75" textLength="85" lengthAdjust="spacingAndGlyphs">{equation(d,e,f)}</text>
       {res.type === "unique" && (
         <>
           <line
@@ -105,7 +83,7 @@ function Graph({ system, zoom }: { system: System; zoom: number }) {
   );
 }
 export default function LinearSystemsMatricesTargetLesson10197({
-  lesson: _lesson,
+  lesson,
 }: {
   lesson: SchoolSyllabusLesson;
 }) {
@@ -114,7 +92,8 @@ export default function LinearSystemsMatricesTargetLesson10197({
     [zoom, setZoom] = useState(1),
     [hints, setHints] = useState<boolean[]>([false, false, false]),
     [solutions, setSolutions] = useState<boolean[]>([false, false, false]),
-    [checked, setChecked] = useState(false);
+    [checked, setChecked] = useState(false),
+    [practiceAnswers,setPracticeAnswers]=useState(()=>Array.from({length:3},()=>({kind:"",x:"",y:""})));
   const r = solve(system),
     [a, b, c, d, e, f] = system,
     adj: [[number, number], [number, number]] = [
@@ -122,10 +101,10 @@ export default function LinearSystemsMatricesTargetLesson10197({
       [-d, a],
     ],
     set = (i: number, v: number) =>
-      setSystem((old) => old.map((x, j) => (j === i ? v : x)) as System),
+      {if(Number.isFinite(v)){setCaseName("custom");setSystem((old) => old.map((x, j) => (j === i ? v : x)) as System);}},
     choose = (name: string) => {
       setCaseName(name);
-      setSystem(PRESETS[name]);
+      if(name==="random"){const a=1+Math.floor(Math.random()*4),b=1+Math.floor(Math.random()*3),d=1+Math.floor(Math.random()*3),e=-1-Math.floor(Math.random()*3),x=Math.floor(Math.random()*7)-2,y=Math.floor(Math.random()*7)-2;setSystem([a,b,a*x+b*y,d,e,d*x+e*y]);}else setSystem([...PRESETS[name]]);
       setChecked(false);
     };
   const practices: System[] = [
@@ -135,7 +114,7 @@ export default function LinearSystemsMatricesTargetLesson10197({
   ];
   return (
     <main
-      className="ls10197-page"
+      className="ls10197-page lesson-reference"
       data-testid="school-mockup-0871"
       data-object-model="dedicated-linear-system-matrix-and-graph-engine"
       data-determinant={r.det}
@@ -146,19 +125,19 @@ export default function LinearSystemsMatricesTargetLesson10197({
     >
       <header className="ls-hero">
         <small>CLASS 12 · MATRICES AND DETERMINANTS</small>
-        <h1>Solving Linear Equations by Matrices</h1>
+        <h1>{lesson.title}</h1>
         <div className="ls-copy">
           Solve the system using matrices. Change constants to see unique, no,
           or infinite solution cases. Algebra steps and graph stay in sync.
         </div>
-        <span>16 min ADVANCED CONCEPT matrix systems</span>
-        <Link to="/lessons/school">← School lessons</Link>
+        <div className="ls-badges">{["16 min","ADVANCED","CONCEPT","matrix","systems"].map(badge=><span key={badge}>{badge}</span>)}</div>
+        <Link to="/lessons/school/class-12">← School lessons</Link>
       </header>
       <section className="ls-controls">
         <article>
           <b>System (edit constants)</b>
           <label>
-            <i className="blue" /> {a}x {b < 0 ? "−" : "+"} {Math.abs(b)}y ={" "}
+            <i className="blue" /> {equation(a,b,c).split(" = ")[0]} ={" "}
             <input
               aria-label="first equation constant"
               type="number"
@@ -167,7 +146,7 @@ export default function LinearSystemsMatricesTargetLesson10197({
             />
           </label>
           <label>
-            <i className="red" /> {d}x {e < 0 ? "−" : "+"} {Math.abs(e)}y ={" "}
+            <i className="red" /> {equation(d,e,f).split(" = ")[0]} ={" "}
             <input
               aria-label="second equation constant"
               type="number"
@@ -179,7 +158,7 @@ export default function LinearSystemsMatricesTargetLesson10197({
         <article>
           <b>Solution status</b>
           <strong className={r.type}>
-            ✓{" "}
+            {r.type==="none"?"×":"✓"}{" "}
             {r.type === "unique"
               ? "Unique solution"
               : r.type === "none"
@@ -198,7 +177,7 @@ export default function LinearSystemsMatricesTargetLesson10197({
             value={caseName}
             onChange={(e) => choose(e.target.value)}
           >
-            <option value="unique">Unique solution (det(A) ≠ 0)</option>
+            <option value="custom" disabled>Custom system</option><option value="unique">Unique solution (det(A) ≠ 0)</option>
             <option value="none">No solution (parallel)</option>
             <option value="infinite">Infinite solutions (same line)</option>
             <option value="random">Random values</option>
@@ -211,7 +190,7 @@ export default function LinearSystemsMatricesTargetLesson10197({
           <p>Synchronized matrix solution</p>
           <Step n={1} title="Matrix form AX = B">
             <div className="ls-formula">
-              A = [{a} {b}; {d} {e}] X=[x;y] B=[{c};{f}]
+              <MathExpression value={String.raw`A=\begin{bmatrix}${a}&${b}\\${d}&${e}\end{bmatrix}\quad X=\begin{bmatrix}x\\y\end{bmatrix}\quad B=\begin{bmatrix}${c}\\${f}\end{bmatrix}`} />
             </div>
             <aside>
               <span>🔵 Row 1 → {equation(a, b, c)}</span>
@@ -220,7 +199,7 @@ export default function LinearSystemsMatricesTargetLesson10197({
           </Step>
           <Step n={2} title="Determinant of A">
             <div className="ls-formula">
-              det(A) = ({a})({e}) − ({b})({d}) = {r.det}
+              <MathExpression value={String.raw`\det(A)=\begin{vmatrix}${a}&${b}\\${d}&${e}\end{vmatrix}=(${a})(${e})-(${b})(${d})=${fmt(r.det)}`} />
             </div>
             <footer>
               det(A){" "}
@@ -231,12 +210,12 @@ export default function LinearSystemsMatricesTargetLesson10197({
           </Step>
           <Step n={3} title="Inverse of A">
             <div className="ls-formula">
-              A⁻¹ = 1/{r.det} [{adj[0].join(" ")}; {adj[1].join(" ")}]
+              {r.det!==0?<><MathExpression value={String.raw`A^{-1}=\frac{1}{\det(A)}\operatorname{adj}(A),\quad \operatorname{adj}(A)=\begin{bmatrix}${adj[0][0]}&${adj[0][1]}\\${adj[1][0]}&${adj[1][1]}\end{bmatrix}`} /><MathExpression value={String.raw`A^{-1}=\frac{1}{${r.det}}\begin{bmatrix}${adj[0][0]}&${adj[0][1]}\\${adj[1][0]}&${adj[1][1]}\end{bmatrix}=\begin{bmatrix}${fraction(e,r.det)}&${fraction(-b,r.det)}\\${fraction(-d,r.det)}&${fraction(a,r.det)}\end{bmatrix}`} /></>:<p>A is singular: its inverse does not exist.</p>}
             </div>
           </Step>
           <Step n={4} title="Solve X = A⁻¹B">
             <div className="ls-formula">
-              X = [{fmt(r.x)}; {fmt(r.y)}]
+              {r.det!==0?<><MathExpression value={String.raw`X=A^{-1}B=\begin{bmatrix}${fraction(e,r.det)}&${fraction(-b,r.det)}\\${fraction(-d,r.det)}&${fraction(a,r.det)}\end{bmatrix}\begin{bmatrix}${c}\\${f}\end{bmatrix}`} /><MathExpression value={String.raw`=\begin{bmatrix}(${fraction(e,r.det)})(${c})+(${fraction(-b,r.det)})(${f})\\(${fraction(-d,r.det)})(${c})+(${fraction(a,r.det)})(${f})\end{bmatrix}=\begin{bmatrix}${fraction(r.dx,r.det)}\\${fraction(r.dy,r.det)}\end{bmatrix}`} /></>:<p>{consistencyGeometryMessage(system)}</p>}
             </div>
             {r.type === "unique" ? (
               <strong className="ls-answer">
@@ -262,7 +241,7 @@ export default function LinearSystemsMatricesTargetLesson10197({
               </aside>
             ) : (
               <p>
-                Determinant zero case confirmed by proportional coefficients.
+                {consistencyGeometryMessage(system)}
               </p>
             )}
             <footer>
@@ -275,7 +254,7 @@ export default function LinearSystemsMatricesTargetLesson10197({
             <p>
               Matrix multiplication is not commutative. A⁻¹B is correct. Always
               multiply in the order X=A⁻¹B.
-            </p>
+            </p><p>B has size 2×1 and A⁻¹ has size 2×2. The reversed product BA⁻¹ is undefined because its inner dimensions do not match.</p>
           </article>
         </section>
         <div className="ls-right">
@@ -286,7 +265,7 @@ export default function LinearSystemsMatricesTargetLesson10197({
                 <p>The lines correspond to matrix rows.</p>
               </div>
               <aside>
-                <button aria-label="Fit graph" onClick={() => setZoom(1)}>
+                <button aria-label="Fit graph" onClick={() => {const coordinates=[r.x??0,r.y??0,...[[a,b,c],[d,e,f]].flatMap(([aa,bb,cc])=>[aa?cc/aa:0,bb?cc/bb:0])];setZoom(Math.min(1,6/Math.max(6,...coordinates.map(Math.abs))));}}>
                   <Maximize2 />
                 </button>
                 <button aria-label="Reset graph" onClick={() => setZoom(1)}>
@@ -309,8 +288,8 @@ export default function LinearSystemsMatricesTargetLesson10197({
                 {r.type === "unique"
                   ? `Intersection = (${fmt(r.x)}, ${fmt(r.y)})`
                   : r.type === "none"
-                    ? "Parallel lines do not intersect"
-                    : "The lines coincide"}
+                    ? consistencyGeometryMessage(system)
+                    : consistencyGeometryMessage(system)}
               </p>
             </div>
             <footer>
@@ -319,8 +298,8 @@ export default function LinearSystemsMatricesTargetLesson10197({
                 {r.type === "unique"
                   ? `At (${fmt(r.x)},${fmt(r.y)}), both equations are true ✓`
                   : r.type === "none"
-                    ? "Equal slopes, different intercepts → no solution."
-                    : "Same line → infinitely many solutions."}
+                    ? consistencyGeometryMessage(system)
+                    : consistencyGeometryMessage(system)}
               </p>
             </footer>
           </section>
@@ -328,22 +307,7 @@ export default function LinearSystemsMatricesTargetLesson10197({
             <article>
               <h2>Dynamic system builder</h2>
               <p>Adjust coefficients to explore all cases.</p>
-              {[
-                [0, "first x coefficient"],
-                [1, "first y coefficient"],
-                [2, "first constant"],
-                [3, "second x coefficient"],
-                [4, "second y coefficient"],
-                [5, "second constant"],
-              ].map(([i, label]) => (
-                <input
-                  key={String(label)}
-                  aria-label={String(label)}
-                  type="number"
-                  value={system[Number(i)]}
-                  onChange={(e) => set(Number(i), Number(e.target.value))}
-                />
-              ))}
+              {[0,3].map(start=><div key={start} className="ls-builder-row">{[0,1,2].map(offset=><span key={offset}><input aria-label={`${start===0?"first":"second"} ${offset===0?"x coefficient":offset===1?"y coefficient":"constant"}`} type="number" value={system[start+offset]} onChange={event=>set(start+offset,Number(event.target.value))}/>{offset===0?"x +":offset===1?"y =":""}</span>)}</div>)}
             </article>
             <aside>
               <b>Quick presets</b>
@@ -380,7 +344,7 @@ export default function LinearSystemsMatricesTargetLesson10197({
               onClick={() => {
                 setHints([false, false, false]);
                 setSolutions([false, false, false]);
-                setChecked(false);
+                setChecked(false);setPracticeAnswers(Array.from({length:3},()=>({kind:"",x:"",y:""})));
               }}
             >
               <RotateCcw />
@@ -390,6 +354,7 @@ export default function LinearSystemsMatricesTargetLesson10197({
         <div>
           {practices.map((p, i) => {
             const q = solve(p);
+            const answer=practiceAnswers[i],correct=answer.kind===q.type&&(q.type!=="unique"||(cramerAnswer(answer.x)!==null&&cramerAnswer(answer.y)!==null&&Math.abs(cramerAnswer(answer.x)!-q.x!)<1e-6&&Math.abs(cramerAnswer(answer.y)!-q.y!)<1e-6));
             return (
               <article key={i}>
                 <i>{i + 1}</i>
@@ -398,14 +363,14 @@ export default function LinearSystemsMatricesTargetLesson10197({
                   <br />
                   {equation(p[3], p[4], p[5])}
                 </div>
-                <button
+                <div className="ls-practice-answer"><select aria-label={`Practice ${i+1} classification`} value={answer.kind} onChange={e=>{setPracticeAnswers(v=>v.map((a,j)=>j===i?{...a,kind:e.target.value}:a));setChecked(false);}}><option value="">Choose solution type</option><option value="unique">Unique solution</option><option value="none">No solution</option><option value="infinite">Infinitely many solutions</option></select>{answer.kind==="unique"&&<div>{(["x","y"] as const).map(key=><label key={key}>{key}=<input aria-label={`Practice ${i+1} ${key}`} value={answer[key]} onChange={e=>{setPracticeAnswers(v=>v.map((a,j)=>j===i?{...a,[key]:e.target.value}:a));setChecked(false);}}/></label>)}</div>}{checked&&<p role="status" className={correct?"correct":"incorrect"}>{correct?"Correct":"Try again — check the determinant and consistency."}</p>}</div><button
                   onClick={() =>
                     setHints((v) => v.map((x, j) => (j === i ? !x : x)))
                   }
                 >
                   {hints[i] ? "Hide hint" : "◉ Show hint"}
                 </button>
-                {hints[i] && <p>Compute det(A)={q.det} first.</p>}
+                {hints[i] && <p>Compute det(A)={q.det} first. {q.det===0?"Compare coefficients and constants; the inverse does not exist.":"Use X = A⁻¹B and verify both equations."}</p>}
                 <button
                   onClick={() =>
                     setSolutions((v) => v.map((x, j) => (j === i ? !x : x)))
@@ -416,8 +381,8 @@ export default function LinearSystemsMatricesTargetLesson10197({
                 {solutions[i] && (
                   <strong>
                     {q.type === "unique"
-                      ? `x=${fmt(q.x)}, y=${fmt(q.y)}`
-                      : q.type}
+                      ? <MathExpression value={String.raw`x=${fraction(q.dx,q.det)},\quad y=${fraction(q.dy,q.det)}`} />
+                      : "Infinitely many solutions"}
                   </strong>
                 )}
               </article>
@@ -426,20 +391,19 @@ export default function LinearSystemsMatricesTargetLesson10197({
         </div>
         {checked && (
           <footer>
-            <CheckCircle2 /> Work check active: compare each result with its
-            independently generated solution.
+            <CheckCircle2 /> Answers checked against each system. Use hints and solutions to review your work.
           </footer>
         )}
       </section>
       <nav className="ls-next">
-        <Link to="/lessons/school/class-12/class-12-matrices-and-determinants-cramers-rule">
-          ← Cramer’s Rule
+        <Link to="/lessons/school/class-12/class-12-matrices-and-determinants-determinants-and-geometric-area">
+          ← Determinants and Geometric Area
         </Link>
-        <Link to="/lessons/school/class-12/class-12-matrices-and-determinants-inverses-and-rank">
-          Inverses and Rank →
+        <Link to="/lessons/school/class-12/class-12-matrices-and-determinants-cramer-s-rule">
+          Cramer’s Rule →
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10197} alwaysVisible />
+      
 
     </main>
   );

@@ -87,15 +87,16 @@ export default function SphericalCoordinatesTargetLesson419({
             </b>
           </div>
         </section>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content sc419-hero"><aside>
           <h3>Objective</h3>
           <p>
             Understand and use spherical coordinates (ρ, θ, φ) to represent
             points in 3D, convert to Cartesian coordinates, and interpret θ
             (azimuth) and φ (polar angle).
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="sc419-tabs">
         {[
           ["Interact", "Observe & Manipulate"],

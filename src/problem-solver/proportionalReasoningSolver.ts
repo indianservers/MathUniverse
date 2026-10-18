@@ -97,7 +97,7 @@ export function solveProportionalReasoning(classification: ProblemClassification
   return result(classification, "Recognized proportional reasoning prompt", [
     "The prompt matches proportional reasoning vocabulary.",
     "Use the dedicated NCERT lab for interactive cross multiplication, map scale, ratio splitting, pie angles, and direct/inverse proportion.",
-  ], ["Open /ncert/class-8-proportional-reasoning-2 for the visual workflow."], ["The solver did not find enough numeric details for a single computed answer."]);
+  ], ["Open /lessons/numbers-and-arithmetic/84-proportion for the visual workflow."], ["The solver did not find enough numeric details for a single computed answer."]);
 }
 
 function result(classification: ProblemClassification, answer: string, steps: string[], verification: string[] = ["Computed using deterministic Grade 8 proportional reasoning formulas."], warnings: string[] = []): ProblemSolverResult {

@@ -2,22 +2,9 @@ import { Check, RotateCcw, Sparkles, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./SymmetricRelationsTargetLesson10114.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { Link } from "react-router-dom";
 
-type N = 1 | 2 | 3 | 4;
-type Pair = `${N},${N}`;
-const A: N[] = [1, 2, 3, 4];
-const p = (a: N, b: N): Pair => `${a},${b}`;
-const initial = A.flatMap((a) => A.map((b) => p(a, b))).filter(
-  (item) => item !== "3,1",
-);
-const pos: Record<N, [number, number]> = {
-  1: [90, 65],
-  2: [310, 65],
-  3: [310, 245],
-  4: [90, 245],
-};
-
+import {A,p,initial,analyze,symmetricClosure,edgeGeometry,positions as pos,type N,type Pair} from "./symmetricRelationsModel";
 export default function SymmetricRelationsTargetLesson10114({
   lesson: _lesson,
 }: {
@@ -25,14 +12,7 @@ export default function SymmetricRelationsTargetLesson10114({
 }) {
   const [relation, setRelation] = useState(() => new Set<Pair>(initial));
   const [actions, setActions] = useState(0);
-  const unmatched = useMemo(
-    () =>
-      A.flatMap((a) => A.map((b) => [a, b] as const)).filter(
-        ([a, b]) => relation.has(p(a, b)) && !relation.has(p(b, a)),
-      ),
-    [relation],
-  );
-  const symmetric = unmatched.length === 0;
+  const {unmatched,symmetric} = useMemo(()=>analyze(relation),[relation]);
   const update = (next: Set<Pair>) => {
     setRelation(next);
     setActions((n) => n + 1);
@@ -51,23 +31,20 @@ export default function SymmetricRelationsTargetLesson10114({
     next.add(p(b, a));
     update(next);
   };
-  const completeAll = () => {
-    const next = new Set(relation);
-    unmatched.forEach(([a, b]) => next.add(p(b, a)));
-    update(next);
-  };
+  const completeAll = () => update(symmetricClosure(relation));
   const witness = unmatched[0];
   return (
     <section
       className="sym10114-page"
       data-testid="school-mockup-0788"
       data-object-model="dedicated-symmetric-relation-mirror-witness-engine"
+      data-pairs={[...relation].sort().join(";")}
       data-pair-count={relation.size}
       data-unmatched={unmatched.map(([a, b]) => p(a, b)).join(";")}
       data-symmetric={String(symmetric)}
       data-actions={actions}
     >
-      <header>
+      <div className="sym10114-hero">
         <small>CLASS 11 · RELATIONS AND FUNCTIONS</small>
         <h1>Symmetric Relations</h1>
         <p>
@@ -81,8 +58,8 @@ export default function SymmetricRelationsTargetLesson10114({
           <span>graph</span>
           <span>matrix</span>
         </nav>
-        <button>← &nbsp; School lessons</button>
-      </header>
+
+      </div>
       <main>
         <div className="sym10114-title">
           <h2>☷ INTERACTIVE LAB &nbsp;·&nbsp; SYMMETRIC RELATIONS</h2>
@@ -104,6 +81,7 @@ export default function SymmetricRelationsTargetLesson10114({
             <svg
               viewBox="0 0 400 310"
               aria-label="Symmetric directed relation graph"
+              className="sym10114-svg"
             >
               <defs>
                 <marker
@@ -116,56 +94,15 @@ export default function SymmetricRelationsTargetLesson10114({
                 >
                   <path d="M0 0L8 4L0 8Z" />
                 </marker>
+                <marker id="sym-warn-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z"/></marker>
               </defs>
-              {A.flatMap((a, i) =>
-                A.slice(i + 1).map((b) => [a, b] as const),
-              ).map(([a, b]) => {
-                const ab = relation.has(p(a, b)),
-                  ba = relation.has(p(b, a)),
-                  [x1, y1] = pos[a],
-                  [x2, y2] = pos[b],
-                  dx = x2 - x1,
-                  dy = y2 - y1,
-                  l = Math.hypot(dx, dy),
-                  px = (-dy / l) * 5,
-                  py = (dx / l) * 5,
-                  one = ab !== ba;
-                return (
-                  <g
-                    key={`${a}-${b}`}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`Toggle edge ${a}, ${b}`}
-                    onClick={() => toggle(a, b)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") toggle(a, b);
-                    }}
-                  >
-                    {ab && (
-                      <line
-                        x1={x1 + (dx / l) * 26 + px}
-                        y1={y1 + (dy / l) * 26 + py}
-                        x2={x2 - (dx / l) * 26 + px}
-                        y2={y2 - (dy / l) * 26 + py}
-                        className={one ? "warn" : "edge"}
-                        markerEnd="url(#sym-arrow)"
-                      />
-                    )}
-                    {ba && (
-                      <line
-                        x1={x2 - (dx / l) * 26 - px}
-                        y1={y2 - (dy / l) * 26 - py}
-                        x2={x1 + (dx / l) * 26 - px}
-                        y2={y1 + (dy / l) * 26 - py}
-                        className={one ? "warn" : "edge"}
-                        markerEnd="url(#sym-arrow)"
-                      />
-                    )}
-                  </g>
-                );
-              })}
+              {A.flatMap(a=>A.filter(b=>relation.has(p(a,b))).map(b=>{
+                const warning=!relation.has(p(b,a));return <g key={p(a,b)} role="button" tabIndex={0} aria-label={`Remove edge ${a}, ${b}`} onClick={()=>toggle(a,b)} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(a,b);}}}>
+                 <path className="sym10114-edge-hit" d={edgeGeometry(a,b)}/><path data-edge={p(a,b)} data-unmatched={String(warning)} className={warning?'warn':'edge'} d={edgeGeometry(a,b)} markerEnd={warning?'url(#sym-warn-arrow)':'url(#sym-arrow)'}/>
+                </g>;
+              }))}
               {A.map((a) => (
-                <g key={a}>
+                <g key={a} role="button" tabIndex={0} aria-label={`Toggle self-loop ${a}`} aria-pressed={relation.has(p(a,a))} onClick={()=>toggle(a,a)} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(a,a);}}}>
                   <circle cx={pos[a][0]} cy={pos[a][1]} r="25" />
                   <text x={pos[a][0]} y={pos[a][1] + 6}>
                     {a}
@@ -174,8 +111,8 @@ export default function SymmetricRelationsTargetLesson10114({
               ))}
             </svg>
             <footer>
-              <span className="cyan">—</span> Symmetric pair present{" "}
-              <span className="amber">—</span> Unmatched pair
+              <p><span className="cyan">—</span> Symmetric pair (a,b) and (b,a) present</p>
+              <p><span className="amber">—</span> Unmatched pair: reverse arrow missing</p>
             </footer>
           </article>
           <article className="sym10114-matrix">
@@ -190,7 +127,9 @@ export default function SymmetricRelationsTargetLesson10114({
                 ...A.map((b) => (
                   <button
                     key={p(a, b)}
+                    data-column={b}
                     aria-label={`Toggle pair ${a}, ${b}`}
+                    aria-pressed={relation.has(p(a,b))}
                     className={
                       !relation.has(p(a, b)) && relation.has(p(b, a))
                         ? "missing"
@@ -254,7 +193,7 @@ export default function SymmetricRelationsTargetLesson10114({
             </button>
             <hr />
             <h4>{symmetric ? "Verification" : "Counterexample (witness)"}</h4>
-            <output>
+            <output aria-live="polite">
               {symmetric
                 ? "Every relation has its reverse. Hence, R is symmetric."
                 : `${witness?.[0]} R ${witness?.[1]} is true, but ${witness?.[1]} R ${witness?.[0]} is false. Hence, R is not symmetric.`}
@@ -267,6 +206,7 @@ export default function SymmetricRelationsTargetLesson10114({
             <div>
               <p>
                 <b>Symmetric</b> (may or may not be reflexive)
+                <br />A = {"{"}1, 2{"}"}
                 <br />R = {"{"}(1,2), (2,1){"}"}
                 <br />
                 <span>
@@ -275,13 +215,15 @@ export default function SymmetricRelationsTargetLesson10114({
               </p>
               <p>
                 <b>Reflexive</b> (may or may not be symmetric)
-                <br />R = {"{"}(1,1), (2,2){"}"}
+                <br />A = {"{"}1, 2{"}"}
+                <br />R = {"{"}(1,1), (2,2), (1,2){"}"}
                 <br />
                 <span>
                   ✓ Reflexive &nbsp; <i>× Not symmetric</i>
                 </span>
               </p>
             </div>
+            <small>Symmetry and reflexivity are independent properties.</small>
           </article>
           <article>
             <h3>Exact Definition</h3>
@@ -300,7 +242,7 @@ export default function SymmetricRelationsTargetLesson10114({
           </article>
         </section>
       </main>
-      <LessonTopicStudyBoard lessonId={10114} alwaysVisible />
+      <div className="sym10114-neighbors"><Link to="/lessons/school/class-11/class-11-relations-and-functions-reflexive-relations">← Reflexive Relations</Link><Link to="/lessons/school/class-11/class-11-relations-and-functions-transitive-relations">Transitive Relations →</Link></div>
 
     </section>
   );

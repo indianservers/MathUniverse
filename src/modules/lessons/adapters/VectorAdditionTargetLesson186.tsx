@@ -471,7 +471,9 @@ export default function VectorAdditionTargetLesson186({
             <b>◷ 6-10 min</b>
           </section>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content va186-header"><aside>
           <nav>
             <select
               aria-label="Lesson language"
@@ -520,8 +522,7 @@ export default function VectorAdditionTargetLesson186({
             </div>
           </section>
           <output>{shared ? "Copied" : ""}</output>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="va186-tabs">
         {["Model", "Components", "Steps", "Rule", "Practice"].map((name) => (
           <button

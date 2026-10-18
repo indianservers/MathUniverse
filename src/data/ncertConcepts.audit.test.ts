@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { supportedNCERTVisualTypes } from "../pages/NCERTConceptPage";
+import { curriculumLessonIds } from "./curriculumLessonMappings";
 import { ncertConcepts } from "./ncertConcepts";
 
 describe("NCERT concept audit", () => {
@@ -8,9 +8,9 @@ describe("NCERT concept audit", () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it("has a supported visualization and complete learning copy for every concept", () => {
+  it("has a shared lesson mapping or upcoming entry and complete learning copy for every concept", () => {
     for (const concept of ncertConcepts) {
-      expect(supportedNCERTVisualTypes.has(concept.visual), concept.id).toBe(
+      expect(Object.hasOwn(curriculumLessonIds, concept.id), concept.id).toBe(
         true,
       );
       expect(concept.title.trim(), concept.id).not.toBe("");

@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 360,
+      "scroll": 360
+    },
+    {
+      "width": 768,
+      "client": 738,
+      "scroll": 738
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ]
+}

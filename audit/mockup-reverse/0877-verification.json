@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "bounded default and all boundary-removal comparisons",
+    "constraint toggles and unbounded transitions",
+    "numeric k bounds and comparison auto-fit",
+    "keyboard and pointer handles",
+    "practice vertices and reveal/reset",
+    "all section tabs"
+  ]
+}

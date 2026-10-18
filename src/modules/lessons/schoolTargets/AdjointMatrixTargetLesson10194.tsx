@@ -3,7 +3,10 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AdjointMatrixTargetLesson10194.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import LessonMockupFooter from "../components/LessonMockupFooter";
+import MathExpression from "../../../components/ui/MathExpression";
+import {minorDet as det2,cofactorMatrix,transposeMatrix,matrixProduct} from "./inverseAdjointModel";
+import "../components/LessonMockupReference.css";
 
 type Matrix3 = [
   [number, number, number],
@@ -24,23 +27,10 @@ const D: Matrix2 = [
   [4, -1],
   [2, 3],
 ];
-const det2 = (m: Matrix2) => m[0][0] * m[1][1] - m[0][1] * m[1][0];
-const minor = (m: Matrix3, r: number, c: number) => {
-  const v = m
-    .filter((_, i) => i !== r)
-    .map((row) => row.filter((_, j) => j !== c));
-  return v[0][0] * v[1][1] - v[0][1] * v[1][0];
-};
-const cofactors = (m: Matrix3): Matrix3 =>
-  m.map((row, r) =>
-    row.map((_, c) => ((r + c) % 2 ? -1 : 1) * minor(m, r, c)),
-  ) as Matrix3;
-const transpose = (m: Matrix3): Matrix3 =>
-  m.map((row, r) => row.map((_, c) => m[c][r])) as Matrix3;
-const multiply = (a: Matrix3, b: Matrix3): Matrix3 =>
-  a.map((row) =>
-    b[0].map((_, c) => row.reduce((sum, value, k) => sum + value * b[k][c], 0)),
-  ) as Matrix3;
+const minor=(m:Matrix3,r:number,c:number)=>det2(m.filter((_,i)=>i!==r).map(row=>row.filter((_,j)=>j!==c)));
+const cofactors=(m:Matrix3)=>cofactorMatrix(m) as Matrix3;
+const transpose=(m:Matrix3)=>transposeMatrix(m) as Matrix3;
+const multiply=(a:Matrix3,b:Matrix3)=>matrixProduct(a,b) as Matrix3;
 const adjoint2 = (m: Matrix2): Matrix2 => [
   [m[1][1], -m[0][1]],
   [-m[1][0], m[0][0]],
@@ -72,7 +62,8 @@ function Matrix({
               className={
                 selected?.[0] === r && selected[1] === c ? "selected" : ""
               }
-              onClick={() => onSelect(r, c)}
+              onClickCapture={event=>{event.stopPropagation();onSelect(r,c);}}
+              aria-pressed={selected?.[0]===r&&selected[1]===c}
               aria-label={`${label} row ${r + 1} column ${c + 1} value ${value}`}
             >
               {value}
@@ -87,7 +78,7 @@ function Matrix({
 }
 
 export default function AdjointMatrixTargetLesson10194({
-  lesson: _lesson,
+  lesson,
 }: {
   lesson: SchoolSyllabusLesson;
 }) {
@@ -112,7 +103,7 @@ export default function AdjointMatrixTargetLesson10194({
     );
   return (
     <main
-      className="am10194-page"
+      className="am10194-page lesson-reference"
       data-testid="school-mockup-0868"
       data-object-model="dedicated-adjoint-transpose-verification-engine"
       data-row={row + 1}
@@ -127,7 +118,7 @@ export default function AdjointMatrixTargetLesson10194({
     >
       <header className="am-hero">
         <small>CLASS 12 · MATRICES AND DETERMINANTS</small>
-        <h1>Adjoint of a Matrix</h1>
+        <h1>{lesson.title}</h1>
         <div className="am-hero-copy">
           The adjoint of A, written <b>adj(A)</b>, is the transpose of its
           cofactor matrix C.
@@ -140,9 +131,9 @@ export default function AdjointMatrixTargetLesson10194({
           </span>
         </div>
         <div className="am-meta">
-          ◷ 18 min <b>ADVANCED</b> <b>CONCEPT</b> matrix
+          {["18 min","ADVANCED","CONCEPT","matrix"].map(tag=><span key={tag}>{tag}</span>)}
         </div>
-        <Link to="/lessons/school">
+        <Link to="/lessons/school/class-12">
           <ArrowLeft />
           School lessons
         </Link>
@@ -158,9 +149,7 @@ export default function AdjointMatrixTargetLesson10194({
         <article>
           <b>◇ DEFINITION</b>
           <p>The adjoint of a square matrix A is defined as</p>
-          <strong>
-            adj(A) = C<sup>T</sup>
-          </strong>
+          <strong><MathExpression value={String.raw`\operatorname{adj}(A)=C^T`}/></strong>
           <p>where C is the cofactor matrix of A.</p>
         </article>
         <article className="important">
@@ -199,16 +188,10 @@ export default function AdjointMatrixTargetLesson10194({
           </div>
           <div className={`am-flip ${flipped ? "flipped" : ""}`}>
             <span>Reflect across main diagonal</span>
-            <button type="button" onClick={() => setFlipped((v) => !v)}>
+            <button type="button" aria-pressed={flipped} onClick={() => setFlipped((v) => !v)}>
               <RotateCw /> FLIP
             </button>
-            <div className="am-mirror">
-              ↘<br />
-              • •
-              <br />
-              • •
-              <br />• •
-            </div>
+            <svg className="am-mirror" viewBox="0 0 150 150" role="img" aria-label="Cofactor positions reflected across the main diagonal"><path d="M5 5L145 145" className="diagonal"/>{[50,100].map(n=><path key={n} d={`M${n} 5V145 M5 ${n}H145`} className="grid"/>)}{C.flatMap((values,r)=>values.map((value,c)=><g key={`${r}-${c}`} className={row===r&&col===c?"selected":""} data-source={`${r+1},${c+1}`} data-destination={flipped?`${c+1},${r+1}`:`${r+1},${c+1}`} style={{transform:`translate(${25+(flipped?r:c)*50}px,${25+(flipped?c:r)*50}px)`}}><circle r={row===r&&col===c?13:4}/>{row===r&&col===c&&<text textAnchor="middle" y="4">{value}</text>}</g>))}</svg>
             <small>Main diagonal mirror</small>
           </div>
           <div>
@@ -220,7 +203,7 @@ export default function AdjointMatrixTargetLesson10194({
               <Matrix
                 values={ADJ}
                 selected={[col, row]}
-                label="adjoint matrix"
+                onSelect={(r,c)=>{setRow(c);setCol(r);}} label="adjoint matrix"
               />
             </div>
             <small>(j,i) Value Cᵢⱼ</small>
@@ -267,10 +250,7 @@ export default function AdjointMatrixTargetLesson10194({
               <strong>
                 (−1)<sup>{row + col + 2}</sup> = {sign}
               </strong>
-              <div className="am-signs">
-                + −
-                <br />− +
-              </div>
+              <div className="am-signs" aria-label="Cofactor sign checkerboard">{[0,1,2].flatMap(r=>[0,1,2].map(c=><span key={`${r}-${c}`} className={row===r&&col===c?"selected":""}>{(r+c)%2?"−":"+"}</span>))}</div>
             </section>
             <section>
               <b>Cofactor</b>
@@ -391,7 +371,7 @@ export default function AdjointMatrixTargetLesson10194({
               <section>
                 <b>Check</b>
                 <p>det(B) = {det2(B)}</p>
-                <p>B · adj(B) = 5 I</p>
+                <p>B · adj(B) = {det2(B)} I</p><Matrix values={matrixProduct(B,bAdj)} label="B verification product"/>
                 <span>
                   <CheckCircle2 /> Verified
                 </span>
@@ -427,11 +407,11 @@ export default function AdjointMatrixTargetLesson10194({
           <ArrowLeft />
           Minors and Cofactors
         </Link>
-        <Link to="/lessons/school/class-12/class-12-matrices-and-determinants-inverse-of-a-matrix">
+        <Link to="/lessons/school/class-12/class-12-matrices-and-determinants-inverse-by-adjoint">
           Inverse by Adjoint →
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10194} alwaysVisible />
+      <LessonMockupFooter />
 
     </main>
   );

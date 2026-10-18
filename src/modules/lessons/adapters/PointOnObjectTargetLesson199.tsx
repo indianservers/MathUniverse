@@ -278,7 +278,9 @@ export default function PointOnObjectTargetLesson199({
           <Share2 />
           Share
         </button>
-        <nav>
+
+      </header>
+      <div className="lesson-header-content po199-header"><nav>
           {[
             ["◯", "Observe", "See a point constrained on a line or circle."],
             ["☝", "Manipulate", "Drag the point. It stays on the object."],
@@ -299,8 +301,7 @@ export default function PointOnObjectTargetLesson199({
               {i < 4 && <em>→</em>}
             </article>
           ))}
-        </nav>
-      </header>
+        </nav></div>
       <nav className="po199-tabs">
         {["Explore", "Construct", "Formula", "Example", "Practice"].map(
           (name, i) => (

@@ -383,7 +383,9 @@ export default function VectorIntroductionTargetLesson183({
             <b>◷ 6-10 min</b>
           </section>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content vi183-header"><aside>
           <select
             aria-label="Lesson language"
             value={language}
@@ -410,8 +412,7 @@ export default function VectorIntroductionTargetLesson183({
             Reset
           </button>
           <output>{shared ? "Copied" : ""}</output>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="vi183-stages">
         {[
           ["Observe", "What is a vector?"],

@@ -88,7 +88,9 @@ export default function BreakEvenTargetLesson603({
             <b>Time: 6-10 min</b>
           </dl>
         </main>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content be603-hero"><aside>
           <b>Lesson code</b>
           <br />
           603-BEA
@@ -103,8 +105,7 @@ export default function BreakEvenTargetLesson603({
             <line className="revenue" x1="8" y1="44" x2="65" y2="7" />
             <line className="cost" x1="8" y1="30" x2="65" y2="12" />
           </svg>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="be603-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

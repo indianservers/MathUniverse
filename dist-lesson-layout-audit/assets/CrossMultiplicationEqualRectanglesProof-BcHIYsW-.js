@@ -1,0 +1,1 @@
+import{j as t}from"./vendor-react-3d-BSqcDyn3.js";import{RatioProofExperience as i}from"./RatioProofModels-CviPvqhp.js";import"./vendor-icons-Dd4Ay6ac.js";import"./vendor-three-Dchud7Ta.js";import"./proportionalReasoningMath-4ggWD4Ws.js";function a({category:o,proof:r}){return t.jsx(i,{category:o,proof:r,kind:"cross"})}export{a as default};

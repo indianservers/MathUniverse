@@ -122,10 +122,7 @@ export default function SubstitutionTargetLesson94({
         <b>94 Substitution</b>
       </nav>
       <header className="sub94-header">
-        <div className="sub94-eyebrows">
-          <b>ALGEBRA</b>
-          <strong>EXPRESSIONS AND MANIPULATION</strong>
-        </div>
+
         <h1>Substitution</h1>
         <p>Evaluate expressions for chosen values.</p>
         <div className="sub94-badges">
@@ -152,6 +149,10 @@ export default function SubstitutionTargetLesson94({
           )}
         </nav>
       </header>
+      <div className="lesson-header-content sub94-header"><div className="sub94-eyebrows">
+          <b>ALGEBRA</b>
+          <strong>EXPRESSIONS AND MANIPULATION</strong>
+        </div></div>
       {tab !== "Interact" && (
         <SubstitutionTab94 tab={tab} model={model} value={value} />
       )}

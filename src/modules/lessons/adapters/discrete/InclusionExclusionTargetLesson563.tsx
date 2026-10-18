@@ -126,7 +126,9 @@ export default function InclusionExclusionTargetLesson563({
             <span>Time: 6-10 min</span>
           </aside>
         </div>
-        <section>
+
+      </header>
+      <div className="lesson-header-content ie563-hero"><section>
           <p>
             <b>Objective:</b> Use counters in two overlapping sets and verify
           </p>
@@ -146,8 +148,7 @@ export default function InclusionExclusionTargetLesson563({
               ),
             )}
           </div>
-        </section>
-      </header>
+        </section></div>
       <nav className="ie563-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

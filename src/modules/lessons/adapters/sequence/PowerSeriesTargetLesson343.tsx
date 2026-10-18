@@ -233,15 +233,16 @@ export default function PowerSeriesTargetLesson343({
             </button>
           </nav>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content seq343-hero"><aside>
           <b>Learning Objective</b>
           <p>
             Explore power series of the form Σ aₙ(x-c)ⁿ, estimate the radius of
             convergence, test endpoints, and see how partial sums approximate a
             target function.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="seq343-tabs">
         {tabs.map((item) => (
           <button

@@ -1,1 +1,69 @@
 .mo10205{max-width:960px;margin:auto;padding:14px;color:#263751;background:white;font:12px/1.6 Inter,Arial,sans-serif;container:mo / inline-size}.mo10205 *{box-sizing:border-box;letter-spacing:0}.mo10205 :is(h1,h2,h3,p){margin:0 0 12px}.mo10205 h1{font-size:25px;color:#131c2c}.mo10205 h2{display:flex;align-items:center;gap:7px;font-size:11px;color:#0657c3}.mo10205 h3{font-size:12px}.mo10205 header{padding:16px 5px 22px;border-bottom:1px solid #e1edf5}.mo10205 header>small{color:#008caa;font-weight:800}.mo10205 header>a{float:right;display:flex;align-items:center;gap:7px;color:inherit;text-decoration:none}.mo-tags{font-size:10px}.mo10205 button{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid #d7e3ef;border-radius:6px;background:white;color:#265b98;padding:7px 11px;font:inherit;cursor:pointer}.mo10205 :is(button,input,select):focus-visible{outline:2px solid #2a78d4;outline-offset:2px}.mo-tabs{display:flex;justify-content:space-around;gap:8px;padding:14px 0;border-bottom:1px solid #dce7f0;margin-bottom:14px}.mo-tabs button{border:0;border-radius:0}.mo-tabs button[aria-current]{border-bottom:2px solid #186bd4}.mo-workspace{display:grid;grid-template-columns:60fr 38fr;gap:14px}.mo-graph-panel{padding:14px;border:1px solid #dce7f0;border-radius:8px;min-width:0;align-self:start}.mo-graph-panel>label{display:flex;align-items:center;gap:10px}.mo10205 select{font:inherit;color:inherit;border:1px solid #dce7f0;border-radius:5px;padding:4px;background:white}.mo-graph{display:block;width:100%;aspect-ratio:1;touch-action:none;overflow:hidden}.mo-graph text{font:12px Georgia,serif;fill:#23334c}.mo-tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.mo-tools button{font-size:10px}.mo-tools label{font-size:11px}.mo-workspace aside>section{padding:14px;border:1px solid #dce7f0;border-radius:8px;margin-bottom:12px}.mo-slider{margin-bottom:20px}.mo-slider label{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;font-weight:700}.mo-slider input[type=number]{width:55px;min-width:0;border:1px solid #dbe5ef;border-radius:5px;padding:5px;color:inherit;font:inherit}.mo-slider>div{display:flex;align-items:center;gap:8px;margin-top:7px;font-size:10px}.mo10205 input[type=range]{width:100%;min-width:0;accent-color:#0976ce}.mo10205 input[type=checkbox],.mo10205 input[type=radio]{accent-color:#315fce}.mo-status>svg{color:#079c67;vertical-align:middle;margin-right:8px}.mo-status>strong{font-size:13px}.mo-status p{margin-top:12px;color:#087e57}.mo-samples{padding:16px 0}.mo-samples>div{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.mo-samples article{padding:12px;border:1px solid #d5e4f5;border-radius:8px}.mo-samples article:nth-child(2){color:#048ca3}.mo-samples article:nth-child(3){color:#7540d2}.mo-samples p{font-size:10px}.mo-comparison{padding:16px 10px;border-block:1px solid #dbe8f1}.mo-comparison>div{display:grid;grid-template-columns:1fr 1fr;gap:18px}.mo-comparison article{padding:10px}.mo-comparison article:first-child{background:#f2fcf6}.mo-comparison article:last-child{background:#fff6f5}.mo-notes{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px 0}.mo-notes article{padding:14px;border:1px solid #dfebf2;border-radius:8px}.mo-notes article:last-child h2{color:#b56013}.mo-practice{padding:16px 10px;border-block:1px solid #dce8f1}.mo-practice fieldset{display:flex;align-items:center;gap:16px;flex-wrap:wrap;border:0;padding:8px 0;margin:0}.mo-practice legend{float:left;width:100px;font:13px Georgia,serif}.mo-practice label{display:flex;align-items:center;gap:6px;font-size:11px}.mo-practice strong{color:#128560}.mo-practice>button{margin-top:10px}.mo-next{display:flex;justify-content:space-between;padding:18px 0;gap:14px}.mo-next a{display:flex;align-items:center;gap:7px;text-decoration:none;color:inherit;font-size:11px}.mo10205 section[id],.mo10205 article[id]{scroll-margin-top:70px}div:has(>#lesson-section-interaction .mo10205)>.lesson-section-nav,div:has(>#lesson-section-interaction .mo10205)>section:not(#lesson-section-interaction){display:none!important}@container mo (max-width:600px){.mo-workspace,.mo-notes,.mo-comparison>div{grid-template-columns:1fr}.mo-samples>div{grid-template-columns:1fr 1fr}.mo-tabs{flex-wrap:wrap}.mo-next{flex-wrap:wrap}}
+
+/* Multiple-optimum reference cards; local lesson styling only. */
+.mo10205.lesson-reference{max-width:1120px;padding:0;background:#f7faff;font:14px/1.6 Inter,Arial,sans-serif}
+.mo10205.lesson-reference>header{background:white;border:1px solid #dce6ef;border-radius:12px;padding:24px 26px;margin-bottom:18px}
+.mo10205.lesson-reference h1{font-size:30px;font-weight:800;line-height:1.25;margin:8px 0}
+.mo10205.lesson-reference header>p{font-size:14px;color:#526176}
+.mo10205.lesson-reference header>a{border:1px solid #dce6ef;border-radius:7px;padding:9px 14px;font-size:12px}
+.mo10205.lesson-reference .mo-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.mo10205.lesson-reference .mo-tags span{padding:4px 10px;background:#f0f4f8;border-radius:12px;color:#46566b;font-size:10px}
+.mo10205.lesson-reference h2{font-size:13px;font-weight:750}
+.mo10205.lesson-reference h3{font-size:13px;font-weight:700}
+.mo10205.lesson-reference .mo-tabs{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;background:white;border:1px solid #dce6ef;border-radius:10px;padding:0 12px;margin-bottom:18px;gap:12px}
+.mo10205.lesson-reference .mo-tabs button{font-size:12px;font-weight:700;padding:17px 14px;color:#344565}
+.mo10205.lesson-reference .mo-tabs button[aria-current]{color:#1663db}
+.mo10205.lesson-reference .mo-workspace{grid-template-columns:1.5fr 1fr;gap:18px}
+.mo10205.lesson-reference .mo-graph-panel{background:white;border-radius:12px;padding:20px}
+.mo10205.lesson-reference .mo-graph-panel>label{font-size:14px}
+.mo10205.lesson-reference .mo-graph{margin:14px 0 18px}
+.mo10205.lesson-reference .mo-graph .mo-point-value{font-size:10px;fill:#385074}
+.mo10205.lesson-reference .mo-tools button{font-size:12px;padding:10px 12px}
+.mo10205.lesson-reference .mo-tools label{font-size:12px}
+.mo10205.lesson-reference .mo-workspace aside>section{background:white;border-radius:11px;padding:20px;margin-bottom:16px}
+.mo10205.lesson-reference .mo-slider{padding:8px 0 14px;margin-bottom:12px;border-bottom:1px solid #e3ebf3}
+.mo10205.lesson-reference .mo-slider:last-child{border-bottom:0;margin-bottom:0}
+.mo10205.lesson-reference .mo-slider label{font-size:12px}
+.mo10205.lesson-reference .mo-slider input[type=number]{font-size:14px;padding:7px;width:60px}
+.mo10205.lesson-reference .mo-slider>div{font-size:11px;margin-top:12px}
+.mo10205.lesson-reference .mo-status>svg{width:36px;height:36px;padding:5px;border-radius:50%;background:#0aa272;color:white}
+.mo10205.lesson-reference .mo-status>strong{font-size:15px}
+.mo10205.lesson-reference .mo-key p{display:flex;align-items:center;gap:10px;font-size:12px}
+.mo10205.lesson-reference .mo-key p:last-child{margin:0}
+.mo10205.lesson-reference .mo-key i{width:28px;flex:none;border-top:3px solid #efa51b}
+.mo10205.lesson-reference .mo-key p:last-child i{border-color:#1684ef;border-top-style:dashed}
+.mo10205.lesson-reference .mo-samples{background:white;border:1px solid #dce6ef;border-radius:11px;padding:20px;margin:2px 0 18px}
+.mo10205.lesson-reference .mo-samples article{background:#fafcff;border-radius:10px;padding:15px}
+.mo10205.lesson-reference .mo-samples article:nth-child(2){background:#f7fdff;border-color:#c5eaf1}
+.mo10205.lesson-reference .mo-samples article:nth-child(3){background:#fcf9ff;border-color:#e0d1fc}
+.mo10205.lesson-reference .mo-samples p{font-size:12px}
+.mo10205.lesson-reference .mo-comparison{background:white;border:1px solid #dce6ef;border-radius:11px;padding:20px;margin-bottom:18px}
+.mo10205.lesson-reference .mo-comparison>div{grid-template-columns:1fr 1fr .9fr;gap:18px;align-items:center}
+.mo10205.lesson-reference .mo-comparison article{padding:18px;border:1px solid #dce6ef;border-radius:9px;font-size:12px}
+.mo10205.lesson-reference .mo-mini{margin:0;min-width:0;text-align:center}
+.mo10205.lesson-reference .mo-mini svg{display:block;width:100%;height:auto}
+.mo10205.lesson-reference .mo-mini svg text{font-size:10px}
+.mo10205.lesson-reference .mo-notes{padding:0;gap:18px;margin-bottom:18px}
+.mo10205.lesson-reference .mo-notes article{background:white;border-radius:11px;padding:20px;font-size:13px}
+.mo10205.lesson-reference .mo-notes article:last-child{border-color:#f3d9bf;background:#fffdfa}
+.mo10205.lesson-reference .mo-practice{display:block!important;background:white;border:1px solid #dce6ef;border-radius:11px;padding:20px;margin-bottom:18px}
+.mo10205.lesson-reference .mo-practice fieldset{padding:10px 0;gap:14px}
+.mo10205.lesson-reference .mo-practice legend{width:130px;font-size:15px}
+.mo10205.lesson-reference .mo-practice label{font-size:12px;padding:8px 12px;border:1px solid #dce6ef;border-radius:7px;min-width:160px}
+.mo10205.lesson-reference .mo-practice label:has(input:checked){background:#f3f7ff;border-color:#7c9de1}
+.mo10205.lesson-reference .mo-practice>button{font-size:12px;padding:10px 14px}
+.mo10205.lesson-reference .mo-practice p[role=status]{padding:12px;border:1px solid #dbe9f5;border-radius:7px;background:#f5fbff;margin-top:14px}
+.mo10205.lesson-reference .mo-next{padding:0 0 20px}
+.mo10205.lesson-reference .mo-next a{background:white;border:1px solid #dce6ef;border-radius:8px;padding:12px 16px;font-size:12px}
+.mo10205.lesson-reference footer a{display:inline-flex;align-items:center;gap:6px;border:1px solid #dce6ef;border-radius:6px;padding:7px 11px;text-decoration:none}
+@container mo (max-width:700px){.mo10205.lesson-reference .mo-workspace,.mo10205.lesson-reference .mo-notes,.mo10205.lesson-reference .mo-comparison>div{grid-template-columns:1fr}.mo10205.lesson-reference .mo-samples>div{grid-template-columns:1fr 1fr}.mo10205.lesson-reference .mo-mini{max-width:300px;margin:auto}.mo10205.lesson-reference .mo-tabs{gap:4px}.mo10205.lesson-reference .mo-tabs button{font-size:11px;padding:14px 7px}}
+@container mo (max-width:390px){.mo10205.lesson-reference>header{padding:20px}.mo10205.lesson-reference .mo-graph-panel{padding:14px}.mo10205.lesson-reference .mo-practice legend{float:none;width:auto;margin-bottom:8px}.mo10205.lesson-reference .mo-practice label{min-width:0}.mo10205.lesson-reference .mo-tabs button{font-size:10px;padding:12px 5px}}
+
+.mo10205.lesson-reference .mo-left-column{min-width:0}
+.mo10205.lesson-reference .mo-left-column .mo-samples{margin:18px 0 0;padding:18px}
+.mo10205.lesson-reference .mo-left-column .mo-samples article{padding:12px 9px}
+.mo10205.lesson-reference .mo-left-column .mo-samples h3{font-size:12px}
+.mo10205.lesson-reference .mo-left-column .mo-samples p{font-size:11px}
+.mo10205.lesson-reference .mo-tabs button{text-transform:uppercase}
+.mo10205.lesson-reference .mo-status>svg{display:inline-block;vertical-align:middle}
+.mo10205.lesson-reference .mo-workspace aside section:nth-child(2) .math-expression{font-size:16px}

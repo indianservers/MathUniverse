@@ -1,0 +1,582 @@
+{
+  "fileHeader": {
+    "magic": "MATHAPP_PORTABLE_FILE",
+    "fileKind": "lesson",
+    "fileExtension": ".mathlesson",
+    "mimeType": "application/vnd.mathapp.lesson",
+    "schemaVersion": 1,
+    "minimumReaderVersion": "1.0.0",
+    "createdByApp": "Math Universe",
+    "createdByAppVersion": "1.0.1"
+  },
+  "workspace": {
+    "type": "2d-geometry",
+    "typeLabel": "2D Geometry",
+    "engine": "math-universe-geometry-workspace",
+    "engineVersion": "1.0.1"
+  },
+  "document": {
+    "id": "6245cfeb-7515-4109-acfd-f7f409883bd8",
+    "title": "Construct a Triangle Circumcenter",
+    "description": "Build perpendicular bisectors and locate the unique point equidistant from all vertices.",
+    "author": {
+      "name": "Math Universe",
+      "organization": "Sample Lesson Library"
+    },
+    "createdAt": "2026-08-20T10:30:00.000Z",
+    "updatedAt": "2026-08-20T10:30:00.000Z",
+    "language": "en",
+    "tags": [
+      "triangle",
+      "circumcenter",
+      "perpendicular-bisector"
+    ],
+    "difficulty": "intermediate",
+    "gradeLevel": [
+      "8",
+      "9"
+    ],
+    "subject": "Mathematics",
+    "topic": "Geometry",
+    "estimatedDurationMinutes": 20
+  },
+  "preview": {
+    "thumbnailIncluded": true,
+    "thumbnailDataUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIj48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgcng9IjI4IiBmaWxsPSIjMDcxMTFmIi8+PHBhdGggZD0iTTAgMjgwIFExNjAgODAgMzIwIDIxMCBUNjQwIDkwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyMmQzZWUiIHN0cm9rZS13aWR0aD0iMTAiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSIyMTAiIHI9IjEzIiBmaWxsPSIjZmJiZjI0Ii8+PHRleHQgeD0iMzIiIHk9IjU4IiBmaWxsPSIjZTZmYmZmIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPkNvbnN0cnVjdCBhIFRyaWFuZ2xlIENpcmN1bWNlbnRlcjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMzMwIiBmaWxsPSIjOTNjNWZkIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPk1hdGggVW5pdmVyc2Ugc2FtcGxlIGxlc3NvbjwvdGV4dD48L3N2Zz4=",
+    "objectCount": 20,
+    "expressionCount": 1,
+    "hasSolution": true
+  },
+  "scene": {
+    "workspaceSnapshot": {
+      "input": "",
+      "results": [],
+      "plots": [],
+      "construction": {
+        "points": [
+          {
+            "id": "A",
+            "x": -3,
+            "y": -2,
+            "label": "A"
+          },
+          {
+            "id": "B",
+            "x": 3,
+            "y": -2,
+            "label": "B"
+          },
+          {
+            "id": "C",
+            "x": 0.8,
+            "y": 3,
+            "label": "C"
+          }
+        ],
+        "lines": [
+          {
+            "id": "AB",
+            "a": "A",
+            "b": "B"
+          },
+          {
+            "id": "BC",
+            "a": "B",
+            "b": "C"
+          },
+          {
+            "id": "CA",
+            "a": "C",
+            "b": "A"
+          }
+        ],
+        "circles": [],
+        "polygons": [
+          {
+            "id": "triangle-ABC",
+            "points": [
+              "A",
+              "B",
+              "C"
+            ],
+            "style": {
+              "fill": "#22d3ee",
+              "opacity": 0.16
+            }
+          }
+        ],
+        "arcs": [],
+        "loci": [],
+        "constraints": []
+      },
+      "geometryGraphSettings": {
+        "showGrid": true,
+        "showAxes": true,
+        "showUnitLabels": true,
+        "showPointLabels": true,
+        "showMeasurements": true,
+        "highContrastGrid": false,
+        "snapToGrid": true,
+        "snapToObjects": true
+      },
+      "lockedGeometryIds": [],
+      "surface": "paraboloid",
+      "surfaceExpression": "x^2+y^2",
+      "cameraPreset3d": "isometric",
+      "sceneAnimationSpeed": 0,
+      "solid": "cube",
+      "surfaceScale": 1,
+      "height3d": 2.5,
+      "crossSection": 0,
+      "showSurface": false,
+      "showSolid": true,
+      "autoRotate3d": false,
+      "zoom3d": 1,
+      "transforms3d": {},
+      "added3dObjects": [],
+      "deletedBase3dIds": [],
+      "images": [],
+      "protocol": []
+    },
+    "workspaceType": "2d-geometry"
+  },
+  "lesson": {
+    "lessonId": "32139765-07e5-4b12-a448-4b6996b2ccaa",
+    "title": "Construct a Triangle Circumcenter",
+    "shortDescription": "Build perpendicular bisectors and locate the unique point equidistant from all vertices.",
+    "subject": "Mathematics",
+    "workspaceType": "2d-geometry",
+    "topic": "Geometry",
+    "subtopic": "Triangle centers",
+    "difficulty": "intermediate",
+    "gradeLevel": [
+      "8",
+      "9"
+    ],
+    "learningObjectives": [
+      "The perpendicular bisectors meet at circumcenter O, which is equidistant from A, B and C."
+    ],
+    "prerequisites": [
+      "Basic coordinate and algebra fluency"
+    ],
+    "instructions": [
+      "Construct the midpoint of at least two sides.",
+      "Draw perpendicular bisectors through those midpoints.",
+      "Mark their intersection as O and explain why OA = OB = OC."
+    ],
+    "hints": [
+      "A perpendicular bisector passes through a side's midpoint.",
+      "Two nonparallel perpendicular bisectors are enough to locate O.",
+      "Every point on a perpendicular bisector is equidistant from that side's endpoints."
+    ],
+    "checkpoints": [
+      {
+        "id": "geo-cp-1",
+        "title": "Two midpoints",
+        "instructions": "Create midpoints on two sides.",
+        "scene": {
+          "workspaceSnapshot": {
+            "input": "",
+            "results": [],
+            "plots": [],
+            "construction": {
+              "points": [
+                {
+                  "id": "A",
+                  "x": -3,
+                  "y": -2,
+                  "label": "A"
+                },
+                {
+                  "id": "B",
+                  "x": 3,
+                  "y": -2,
+                  "label": "B"
+                },
+                {
+                  "id": "C",
+                  "x": 0.8,
+                  "y": 3,
+                  "label": "C"
+                }
+              ],
+              "lines": [
+                {
+                  "id": "AB",
+                  "a": "A",
+                  "b": "B"
+                },
+                {
+                  "id": "BC",
+                  "a": "B",
+                  "b": "C"
+                },
+                {
+                  "id": "CA",
+                  "a": "C",
+                  "b": "A"
+                }
+              ],
+              "circles": [],
+              "polygons": [
+                {
+                  "id": "triangle-ABC",
+                  "points": [
+                    "A",
+                    "B",
+                    "C"
+                  ],
+                  "style": {
+                    "fill": "#22d3ee",
+                    "opacity": 0.16
+                  }
+                }
+              ],
+              "arcs": [],
+              "loci": [],
+              "constraints": []
+            },
+            "geometryGraphSettings": {
+              "showGrid": true,
+              "showAxes": true,
+              "showUnitLabels": true,
+              "showPointLabels": true,
+              "showMeasurements": true,
+              "highContrastGrid": false,
+              "snapToGrid": true,
+              "snapToObjects": true
+            },
+            "lockedGeometryIds": [],
+            "surface": "paraboloid",
+            "surfaceExpression": "x^2+y^2",
+            "cameraPreset3d": "isometric",
+            "sceneAnimationSpeed": 0,
+            "solid": "cube",
+            "surfaceScale": 1,
+            "height3d": 2.5,
+            "crossSection": 0,
+            "showSurface": false,
+            "showSolid": true,
+            "autoRotate3d": false,
+            "zoom3d": 1,
+            "transforms3d": {},
+            "added3dObjects": [],
+            "deletedBase3dIds": [],
+            "images": [],
+            "protocol": []
+          }
+        },
+        "validationRules": [
+          "at least two midpoint constraints"
+        ]
+      }
+    ],
+    "solutionSteps": [
+      "Mark midpoints M₁, M₂ and M₃.",
+      "Construct perpendiculars to AB and BC through M₁ and M₂.",
+      "Label their intersection O.",
+      "Use the perpendicular-bisector theorem to conclude OA = OB = OC."
+    ],
+    "expectedResult": "The perpendicular bisectors meet at circumcenter O, which is equidistant from A, B and C.",
+    "teacherNotes": "Invite students to explain why the visual and symbolic results agree.",
+    "estimatedDurationMinutes": 20,
+    "maximumScore": 100,
+    "attemptLimit": null,
+    "allowSolutionView": true,
+    "tags": [
+      "triangle",
+      "circumcenter",
+      "perpendicular-bisector"
+    ],
+    "initialScene": {
+      "workspaceSnapshot": {
+        "input": "",
+        "results": [],
+        "plots": [],
+        "construction": {
+          "points": [
+            {
+              "id": "A",
+              "x": -3,
+              "y": -2,
+              "label": "A"
+            },
+            {
+              "id": "B",
+              "x": 3,
+              "y": -2,
+              "label": "B"
+            },
+            {
+              "id": "C",
+              "x": 0.8,
+              "y": 3,
+              "label": "C"
+            }
+          ],
+          "lines": [
+            {
+              "id": "AB",
+              "a": "A",
+              "b": "B"
+            },
+            {
+              "id": "BC",
+              "a": "B",
+              "b": "C"
+            },
+            {
+              "id": "CA",
+              "a": "C",
+              "b": "A"
+            }
+          ],
+          "circles": [],
+          "polygons": [
+            {
+              "id": "triangle-ABC",
+              "points": [
+                "A",
+                "B",
+                "C"
+              ],
+              "style": {
+                "fill": "#22d3ee",
+                "opacity": 0.16
+              }
+            }
+          ],
+          "arcs": [],
+          "loci": [],
+          "constraints": []
+        },
+        "geometryGraphSettings": {
+          "showGrid": true,
+          "showAxes": true,
+          "showUnitLabels": true,
+          "showPointLabels": true,
+          "showMeasurements": true,
+          "highContrastGrid": false,
+          "snapToGrid": true,
+          "snapToObjects": true
+        },
+        "lockedGeometryIds": [],
+        "surface": "paraboloid",
+        "surfaceExpression": "x^2+y^2",
+        "cameraPreset3d": "isometric",
+        "sceneAnimationSpeed": 0,
+        "solid": "cube",
+        "surfaceScale": 1,
+        "height3d": 2.5,
+        "crossSection": 0,
+        "showSurface": false,
+        "showSolid": true,
+        "autoRotate3d": false,
+        "zoom3d": 1,
+        "transforms3d": {},
+        "added3dObjects": [],
+        "deletedBase3dIds": [],
+        "images": [],
+        "protocol": []
+      },
+      "workspaceType": "2d-geometry"
+    },
+    "solutionScene": {
+      "workspaceSnapshot": {
+        "input": "",
+        "results": [],
+        "plots": [],
+        "construction": {
+          "points": [
+            {
+              "id": "A",
+              "x": -3,
+              "y": -2,
+              "label": "A"
+            },
+            {
+              "id": "B",
+              "x": 3,
+              "y": -2,
+              "label": "B"
+            },
+            {
+              "id": "C",
+              "x": 0.8,
+              "y": 3,
+              "label": "C"
+            },
+            {
+              "id": "MAB",
+              "x": 0,
+              "y": -2,
+              "label": "M₁"
+            },
+            {
+              "id": "MBC",
+              "x": 1.9,
+              "y": 0.5,
+              "label": "M₂"
+            },
+            {
+              "id": "MCA",
+              "x": -1.1,
+              "y": 0.5,
+              "label": "M₃"
+            },
+            {
+              "id": "O",
+              "x": 0,
+              "y": -0.09,
+              "label": "O",
+              "style": {
+                "color": "#fbbf24",
+                "size": 7
+              }
+            },
+            {
+              "id": "P1",
+              "x": 0,
+              "y": 4,
+              "label": ""
+            },
+            {
+              "id": "P2",
+              "x": -4,
+              "y": -3.02,
+              "label": ""
+            }
+          ],
+          "lines": [
+            {
+              "id": "AB",
+              "a": "A",
+              "b": "B"
+            },
+            {
+              "id": "BC",
+              "a": "B",
+              "b": "C"
+            },
+            {
+              "id": "CA",
+              "a": "C",
+              "b": "A"
+            },
+            {
+              "id": "bisector-AB",
+              "a": "MAB",
+              "b": "P1",
+              "style": {
+                "color": "#f59e0b"
+              }
+            },
+            {
+              "id": "bisector-BC",
+              "a": "MBC",
+              "b": "P2",
+              "style": {
+                "color": "#f59e0b"
+              }
+            }
+          ],
+          "circles": [],
+          "polygons": [
+            {
+              "id": "triangle-ABC",
+              "points": [
+                "A",
+                "B",
+                "C"
+              ],
+              "style": {
+                "fill": "#22d3ee",
+                "opacity": 0.16
+              }
+            }
+          ],
+          "arcs": [],
+          "loci": [],
+          "constraints": [
+            {
+              "id": "mid-AB",
+              "type": "midpoint",
+              "a": "A",
+              "b": "B",
+              "point": "MAB"
+            },
+            {
+              "id": "mid-BC",
+              "type": "midpoint",
+              "a": "B",
+              "b": "C",
+              "point": "MBC"
+            },
+            {
+              "id": "perp-AB",
+              "type": "perpendicular",
+              "sourceLine": "AB",
+              "throughPoint": "MAB",
+              "line": "bisector-AB"
+            },
+            {
+              "id": "perp-BC",
+              "type": "perpendicular",
+              "sourceLine": "BC",
+              "throughPoint": "MBC",
+              "line": "bisector-BC"
+            },
+            {
+              "id": "circumcenter",
+              "type": "intersection",
+              "first": "bisector-AB",
+              "second": "bisector-BC",
+              "point": "O",
+              "firstType": "line",
+              "secondType": "line",
+              "index": 0
+            }
+          ]
+        },
+        "geometryGraphSettings": {
+          "showGrid": true,
+          "showAxes": true,
+          "showUnitLabels": true,
+          "showPointLabels": true,
+          "showMeasurements": true,
+          "highContrastGrid": false,
+          "snapToGrid": true,
+          "snapToObjects": true
+        },
+        "lockedGeometryIds": [],
+        "surface": "paraboloid",
+        "surfaceExpression": "x^2+y^2",
+        "cameraPreset3d": "isometric",
+        "sceneAnimationSpeed": 0,
+        "solid": "cube",
+        "surfaceScale": 1,
+        "height3d": 2.5,
+        "crossSection": 0,
+        "showSurface": false,
+        "showSolid": true,
+        "autoRotate3d": false,
+        "zoom3d": 1,
+        "transforms3d": {},
+        "added3dObjects": [],
+        "deletedBase3dIds": [],
+        "images": [],
+        "protocol": []
+      },
+      "workspaceType": "2d-geometry"
+    },
+    "openMode": "practice"
+  },
+  "metadata": {
+    "sample": true,
+    "license": "CC BY 4.0"
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "contentHash": "1f5d0cc3d93d554f6be0f870756cc40cfec0febba1f1507c02b7953c78148f66"
+  }
+}

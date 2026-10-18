@@ -1136,8 +1136,8 @@ export const navSections: NavSection[] = [
         searchTerms: ["syllabus", "curriculum", "planner", "coverage"],
       },
       {
-        title: "NCERT Dashboard",
-        route: "/ncert",
+        title: "Curriculum Dashboard",
+        route: "/curriculum",
         icon: "BookOpen",
         description: "Class-wise textbook labs and board-exam visual practice.",
         searchTerms: [
@@ -1152,10 +1152,10 @@ export const navSections: NavSection[] = [
           "formula theorem",
         ],
         children: [
-          { title: "All NCERT Labs", route: "/ncert", icon: "BookOpen" },
+          { title: "All curriculum topics", route: "/curriculum", icon: "BookOpen" },
           {
             title: "Class 8 Proportional Reasoning-2",
-            route: "/ncert/class-8-proportional-reasoning-2",
+            route: "/lessons/numbers-and-arithmetic/84-proportion",
             icon: "GitFork",
             searchTerms: [
               "class 8",
@@ -1170,24 +1170,24 @@ export const navSections: NavSection[] = [
               {
                 title: "Equivalent Ratios",
                 route:
-                  "/ncert/class-8-proportional-reasoning-2?tab=equivalent-ratios",
+                  "/lessons/numbers-and-arithmetic/84-proportion",
                 icon: "GitFork",
               },
               {
                 title: "Map Scale",
-                route: "/ncert/class-8-proportional-reasoning-2?tab=map-scale",
+                route: "/lessons/numbers-and-arithmetic/91-scale-drawings",
                 icon: "Ruler",
               },
               {
                 title: "Ratio Splitter",
                 route:
-                  "/ncert/class-8-proportional-reasoning-2?tab=ratio-splitter",
+                  "/lessons/numbers-and-arithmetic/83-ratio-models",
                 icon: "Network",
               },
               {
                 title: "Direct and Inverse",
                 route:
-                  "/ncert/class-8-proportional-reasoning-2?tab=direct-inverse",
+                  "/lessons/numbers-and-arithmetic/85-direct-proportion",
                 icon: "Workflow",
               },
               {
@@ -1199,7 +1199,7 @@ export const navSections: NavSection[] = [
           },
           {
             title: "Class 8 Fractals and Solid Views",
-            route: "/ncert/class-8-fractals-and-solid-views",
+            route: "/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming",
             icon: "Cuboid",
             searchTerms: [
               "class 8",
@@ -1212,12 +1212,12 @@ export const navSections: NavSection[] = [
             children: [
               {
                 title: "Fractal Explorer",
-                route: "/ncert/class-8-fractals-and-solid-views?tab=fractal",
+                route: "/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming",
                 icon: "Sparkles",
               },
               {
                 title: "Solid Views Lab",
-                route: "/ncert/class-8-fractals-and-solid-views?tab=solid",
+                route: "/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming",
                 icon: "Cuboid",
               },
               {
@@ -1483,7 +1483,7 @@ export const navSections: NavSection[] = [
               },
               {
                 title: "Identities",
-                route: "/ncert/class-8-algebraic-identities",
+                route: "/lessons/algebra/106-identities",
                 icon: "Calculator",
               },
               {
@@ -1586,7 +1586,7 @@ export const navSections: NavSection[] = [
               { title: "Practice", route: "/number-systems/practice", icon: "Hash" },
               {
                 title: "Class 7 Rational Lab",
-                route: "/ncert/class-7-rational-numbers",
+                route: "/lessons/numbers-and-arithmetic/60-rational-numbers",
                 icon: "Hash",
                 searchTerms: [
                   "fractions",
@@ -1597,7 +1597,7 @@ export const navSections: NavSection[] = [
               },
               {
                 title: "Class 8 Rational Properties",
-                route: "/ncert/class-8-rational-numbers",
+                route: "/lessons/numbers-and-arithmetic/60-rational-numbers",
                 icon: "Hash",
                 searchTerms: [
                   "rational properties",
@@ -1631,7 +1631,7 @@ export const navSections: NavSection[] = [
             children: [
               {
                 title: "Class 9 Number Systems",
-                route: "/ncert/class-9-number-systems",
+                route: "/lessons/numbers-and-arithmetic/60-rational-numbers",
                 icon: "Hash",
                 searchTerms: [
                   "irrational numbers",
@@ -1642,7 +1642,7 @@ export const navSections: NavSection[] = [
               },
               {
                 title: "Class 10 Real Numbers",
-                route: "/ncert/class-10-real-numbers",
+                route: "/lessons/numbers-and-arithmetic/62-real-numbers",
                 icon: "Hash",
                 searchTerms: [
                   "class 10",
@@ -1699,7 +1699,7 @@ export const navSections: NavSection[] = [
           { title: "2D/3D Shapes", route: "/shapes", icon: "Cuboid" },
           {
             title: "Class 8 Fractals and Solid Views",
-            route: "/ncert/class-8-fractals-and-solid-views",
+            route: "/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming",
             icon: "Cuboid",
             searchTerms: [
               "sierpinski carpet",
@@ -1711,12 +1711,12 @@ export const navSections: NavSection[] = [
             children: [
               {
                 title: "Fractal Explorer",
-                route: "/ncert/class-8-fractals-and-solid-views?tab=fractal",
+                route: "/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming",
                 icon: "Sparkles",
               },
               {
                 title: "Solid Views Lab",
-                route: "/ncert/class-8-fractals-and-solid-views?tab=solid",
+                route: "/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming",
                 icon: "Cuboid",
               },
               {
@@ -3082,7 +3082,7 @@ export const legacyNavItems = [
   { title: "Concept Graph", route: "/concept-graph", icon: Grid3X3 },
   { title: "Daily Challenge", route: "/daily-challenge", icon: CircleHelp },
   { title: "Worked Examples", route: "/worked-examples", icon: BookOpen },
-  { title: "NCERT Dashboard", route: "/ncert", icon: BookOpen },
+  { title: "Curriculum Dashboard", route: "/curriculum", icon: BookOpen },
   { title: "Syllabus", route: "/syllabus", icon: BookOpen },
   { title: "Formulas", route: "/formulas", icon: Sigma },
   { title: "Visual Formulas", route: "/visual-formulas", icon: Sparkles },

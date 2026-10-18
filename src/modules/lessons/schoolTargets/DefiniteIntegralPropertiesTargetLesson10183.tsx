@@ -1,277 +1,72 @@
-import { CheckCircle2, RotateCcw } from "lucide-react";
-import { useState } from "react";
+import { CheckCircle2, CircleAlert, Pencil, RotateCcw } from "lucide-react";
+import { useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import { Link } from "react-router-dom";
+import MathExpression from "../../../components/ui/MathExpression";
+import LessonMockupFooter from "../components/LessonMockupFooter";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
+import { gradePropertyMatches, integralFunctions, propertyChoices, splitIntegral, type IntegralFunctionId } from "./definiteIntegralPropertiesModel";
 import "./DefiniteIntegralPropertiesTargetLesson10183.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-
-const names = [
-  "Zero-width interval",
-  "Additivity",
-  "Reversal of limits",
-  "Constant multiple",
-  "Even function symmetry",
-  "Odd function symmetry",
+import "../components/LessonMockupReference.css";
+const M=({value}:{value:string})=><MathExpression value={value}/>;
+const fmt=(value:number)=>Math.abs(value)<.000001?"0.00":value.toFixed(2);
+const formulas=[
+ String.raw`\int_a^b f(x)\,dx=-\int_b^a f(x)\,dx`,
+ String.raw`\int_a^a f(x)\,dx=0`,
+ String.raw`\int_a^b f(x)\,dx=\int_a^c f(x)\,dx+\int_c^b f(x)\,dx`,
+ String.raw`\int_a^b kf(x)\,dx=k\int_a^b f(x)\,dx`,
+ String.raw`\int_{-a}^a f(x)\,dx=2\int_0^a f(x)\,dx`,
+ String.raw`\int_{-a}^a f(x)\,dx=0`,
 ];
-const correct = [2, 0, 1, 3, 4, 5];
-const fmt = (n: number) => n.toFixed(2);
-export default function DefiniteIntegralPropertiesTargetLesson10183({
-  lesson: _lesson,
-}: {
-  lesson: SchoolSyllabusLesson;
-}) {
-  const [c, setC] = useState(2),
-    [answers, setAnswers] = useState(Array(6).fill("")),
-    [feedback, setFeedback] = useState("");
-  const left = (c * c) / 2,
-    right = 8 - left,
-    total = left + right;
-  const change = (v: number) =>
-    setC(Math.max(0, Math.min(4, Math.round(v * 20) / 20)));
-  const key = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "ArrowLeft" || e.key === "ArrowDown") change(c - 0.05);
-    if (e.key === "ArrowRight" || e.key === "ArrowUp") change(c + 0.05);
-  };
-  const drag = (e: ReactPointerEvent<SVGCircleElement>) => {
-    e.currentTarget.setPointerCapture(e.pointerId);
-    const svg = e.currentTarget.ownerSVGElement!;
-    const move = (p: PointerEvent) => {
-      const r = svg.getBoundingClientRect();
-      change(((p.clientX - r.left) / r.width) * 4);
-    };
-    const stop = () => {
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerup", stop);
-    };
-    window.addEventListener("pointermove", move);
-    window.addEventListener("pointerup", stop);
-  };
-  const reset = () => {
-    setC(2);
-    setAnswers(Array(6).fill(""));
-    setFeedback("");
-  };
-  const check = () =>
-    setFeedback(
-      answers.every((v, i) => Number(v) === correct[i])
-        ? "All six properties matched correctly."
-        : `${answers.filter((v, i) => Number(v) === correct[i]).length} of 6 correct. Recheck the property statements.`,
-    );
-  const cx = 80 + c * 140;
-  return (
-    <main
-      className="di10183-page"
-      data-testid="school-mockup-0857"
-      data-object-model="dedicated-signed-area-additivity-engine"
-      data-c={c}
-      data-left={fmt(left)}
-      data-right={fmt(right)}
-      data-total={fmt(total)}
-    >
-      <header>
-        <small>CLASS 12 · FORMAL CALCULUS</small>
-        <h1>Definite Integral Properties</h1>
-        <p>
-          Definite integrals represent signed area. Explore interval changes,
-          reversal, and symmetry.
-        </p>
-        <nav>
-          {["Composer", "Properties", "Worked Example", "Practice"].map(
-            (x, i) => (
-              <label key={x}>
-                <input type="radio" name="di-tab" defaultChecked={!i} />
-                {x}
-              </label>
-            ),
-          )}
-        </nav>
-      </header>
-      <section className="di-composer">
-        <h3>SIGNED-AREA INTERVAL COMPOSER</h3>
-        <div className="di-controls">
-          <span>
-            <b>Function</b>
-            <i>f(x)=x</i>
-          </span>
-          <span>
-            <b>Interval</b>
-            <i>[0,4]</i>
-          </span>
-          <label>
-            <b>Split point c</b>
-            <output>{c.toFixed(2)}</output>
-            <input
-              aria-label="Split point c"
-              type="range"
-              min="0"
-              max="4"
-              step=".05"
-              value={c}
-              onChange={(e) => change(Number(e.target.value))}
-              onKeyDown={key}
-            />
-          </label>
-        </div>
-        <svg viewBox="0 0 640 300" aria-label="Signed area interval graph">
-          <path d="M50 250H620M80 20V270" stroke="#556579" />
-          <polygon
-            points={`80,250 ${cx},${250 - c * 48} ${cx},250`}
-            fill="#8eb6ef"
-          />
-          <polygon
-            points={`${cx},250 ${cx},${250 - c * 48} 640,58 640,250`}
-            fill="#9bd49c"
-          />
-          <path d="M80 250L640 58" stroke="#1968d8" strokeWidth="2" />
-          <path d={`M${cx} 35V250`} stroke="#65758a" strokeDasharray="5 4" />
-          <circle
-            tabIndex={0}
-            aria-label="Draggable split point"
-            cx={cx}
-            cy={250 - c * 48}
-            r="7"
-            fill="#175eb9"
-            onPointerDown={drag}
-          />
-          <text x={cx + 8} y="55">
-            c={c}
-          </text>
-          <text x="585" y="76">
-            y=x
-          </text>
-        </svg>
-        <div className="di-values">
-          <article>
-            <b>Left interval [0,c]</b>
-            <h2>∫₀ᶜ x dx = {fmt(left)}</h2>
-          </article>
-          <article>
-            <b>Right interval [c,4]</b>
-            <h2>∫ᶜ⁴ x dx = {fmt(right)}</h2>
-          </article>
-          <article>
-            <b>Total interval [0,4]</b>
-            <h2>∫₀⁴ x dx = {fmt(total)}</h2>
-          </article>
-        </div>
-        <h2 className="di-equation">
-          ∫₀⁴x dx = ∫₀ᶜx dx + ∫ᶜ⁴x dx = {fmt(left)} + {fmt(right)} ={" "}
-          {fmt(total)}
-        </h2>
-      </section>
-      <aside className="di-warning">
-        <b>Definite integrals measure signed area, not total geometric area.</b>
-        <p>
-          Areas below the x-axis count as negative. For total area, use
-          ∫|f(x)|dx.
-        </p>
-      </aside>
-      <section className="di-properties">
-        <h3>DEFINITE INTEGRAL PROPERTIES</h3>
-        <div>
-          {names.map((n, i) => (
-            <article key={n}>
-              <b>
-                {i + 1} {n}
-              </b>
-              <h2>
-                {
-                  [
-                    "∫ₐᵃf(x)dx=0",
-                    "∫ₐᵇf=∫ₐᶜf+∫ᶜᵇf",
-                    "∫ₐᵇf=−∫ᵦᵃf",
-                    "∫ₐᵇkf=k∫ₐᵇf",
-                    "∫₋ₐᵃf=2∫₀ᵃf",
-                    "∫₋ₐᵃf=0",
-                  ][i]
-                }
-              </h2>
-              <p>
-                {
-                  [
-                    "An interval with no width has no area.",
-                    "Split an interval without changing the total.",
-                    "Reverse bounds and reverse the sign.",
-                    "Constants factor outside an integral.",
-                    "Even functions mirror equal areas.",
-                    "Odd functions cancel symmetric signed areas.",
-                  ][i]
-                }
-              </p>
-            </article>
-          ))}
-        </div>
-        <article className="di-worked">
-          <h3>
-            <CheckCircle2 /> WORKED EXAMPLE
-          </h3>
-          <p>Using additivity with c=2:</p>
-          <h2>∫₁⁴x dx = ∫₁²x dx + ∫₂⁴x dx = 3/2 + 6 = 15/2 = 7.5</h2>
-        </article>
-      </section>
-      <section className="di-practice">
-        <h3>PRACTICE: MATCH THE PROPERTY</h3>
-        {[
-          "∫ᵦᵃf=−∫ₐᵦf",
-          "∫ₐᵃf=0",
-          "∫ₐᵇf=∫ₐᶜf+∫ᶜᵇf",
-          "∫ₐᵇkf=k∫ₐᵇf",
-          "f even: ∫₋ₐᵃf=2∫₀ᵃf",
-          "f odd: ∫₋ₐᵃf=0",
-        ].map((q, i) => (
-          <label key={q}>
-            <span>
-              {i + 1}. {q}
-            </span>
-            <select
-              aria-label={`Property match ${i + 1}`}
-              value={answers[i]}
-              onChange={(e) =>
-                setAnswers((v) =>
-                  v.map((x, j) => (j === i ? e.target.value : x)),
-                )
-              }
-            >
-              <option value="">Choose</option>
-              {names.map((n, j) => (
-                <option value={j} key={n}>
-                  {n}
-                </option>
-              ))}
-            </select>
-          </label>
-        ))}
-        <div>
-          <button onClick={check}>Check answers</button>
-          <button onClick={reset}>
-            <RotateCcw /> Reset
-          </button>
-        </div>
-        {feedback && <output>{feedback}</output>}
-      </section>
-      <nav className="di-adjacent">
-        <Link to="/lessons/school/class-12/class-12-formal-calculus-integration-by-partial-fractions">
-          ← Previous lesson
-        </Link>
-        <Link to="/lessons/school/class-12/class-12-formal-calculus-area-under-curves">
-          Next lesson →
-        </Link>
-      </nav>
-      <footer>
-        <b>⌁ Math Universe</b>
-        <p>
-          Interactive math labs, visual proofs, NCERT explorations, graphing,
-          CAS-style tools, and classroom-ready activities.
-        </p>
-        <div>
-          <Link to="/sitemap">Sitemap</Link>
-          <Link to="/documentation">Docs</Link>
-          <Link to="/about">About</Link>
-        </div>
-      </footer>
-      <LessonTopicStudyBoard lessonId={10183} alwaysVisible />
-
-    </main>
-  );
+const titles=["Reversal of limits","Zero-width interval","Additivity","Constant multiple","Symmetry for even functions","Symmetry for odd functions"];
+function PropertySketch({kind}:{kind:number}){
+ const odd=kind===5,even=kind===4,symmetric=odd||even,origin=symmetric?120:30,base=odd?78:120;
+ const fn=(x:number)=>odd?.45*x+.35*Math.sin(x*1.4):even?.9+.35*Math.cos(1.8*x):1+.23*Math.sin(2*x);
+ const px=(x:number)=>origin+x*45,py=(y:number)=>base-y*(odd?35:45);
+ const points=(a:number,b:number)=>Array.from({length:81},(_,i)=>{const x=a+(b-a)*i/80;return `${px(x)},${py(fn(x))}`;}).join(" ");
+ const shade=(a:number,b:number)=>`M${px(a)} ${base} L${points(a,b).replace(/ /g," L")} L${px(b)} ${base} Z`;
+ const start=symmetric?-2:0,end=symmetric?2:4;
+ return <svg viewBox="0 0 240 160" role="img" aria-label={`${titles[kind]} illustration`}>
+  {kind===0&&<path d={shade(0,4)} fill="#a9c9ed"/>}
+  {kind===2&&<><path d={shade(0,2)} fill="#a8c9ed"/><path d={shade(2,4)} fill="#b7dfb4"/></>}
+  {symmetric&&<><path d={shade(-2,0)} fill={odd?"#f7b5ad":"#a8c9ed"}/><path d={shade(0,2)} fill="#b9dfb4"/></>}
+  <path d={`M12 ${base}H230M${origin} 145V10`} stroke="#354752" fill="none"/>
+  {kind===3?<><path d="M30 88Q75 28 120 67T210 67" stroke="#5087f9" fill="none" strokeWidth="2"/><path d="M30 100Q75 54 120 85T210 85" stroke="#5087f9" fill="none" strokeWidth="2"/><text x="174" y="44" fill="#3c72dd">k f(x)</text><text x="179" y="104" fill="#3c72dd">f(x)</text></>:<polyline points={points(start,end)} fill="none" stroke="#34434d" strokeWidth="1.8"/>}
+  {kind===1&&<path d={`M${px(1.3)} ${py(fn(1.3))}V${base}`} stroke="#6b6de0" strokeDasharray="3 3"/>}
+  <text x="228" y={base-5}>x</text><text x={origin+4} y="13">y</text>
+  {kind!==1&&<><text x={px(start)-7} y={base+17}>{symmetric?"−a":"a"}</text><text x={px(end)-3} y={base+17}>{symmetric?"a":"b"}</text></>}
+  {symmetric&&<text x={origin+3} y={base+16}>0</text>}{kind===2&&<text x={px(2)-4} y={base+17}>c</text>}{kind===1&&<text x={px(1.3)-3} y={base+17}>a</text>}
+ </svg>;
+}
+function PropertyCard({index}:{index:number}){
+ const descriptions=["Example (f(x) = x)","Example (f(x) = x)","Example (f(x) = x, a = 0, b = 4, c = 2)","Example (f(x) = x, k = 3)","Example (f(x) = x², a = 2)","Example (f(x) = x, a = 2)"];
+ const examples=[String.raw`\int_3^1 x\,dx=-\int_1^3 x\,dx=-4`,String.raw`\int_2^2 x\,dx=0`,String.raw`\int_0^4 x\,dx=\int_0^2 x\,dx+\int_2^4 x\,dx`,String.raw`\int_0^4 3x\,dx=3\int_0^4 x\,dx`,String.raw`\int_{-2}^2 x^2\,dx=2\int_0^2 x^2\,dx`,String.raw`\int_{-2}^2 x\,dx=0`];
+ const conclusions=["","","=2+6=8","=3\\times8=24","=2\\times\\dfrac83=\\dfrac{16}{3}",""];
+ return <article className="di-property"><h3><span>{index+1}</span>{titles[index]}</h3>{index>=4&&<p>{index===4?<M value="f(-x)=f(x)\quad\text{(even)}"/>:<M value="f(-x)=-f(x)\quad\text{(odd)}"/>}, a ≥ 0</p>}<div className="di-property-rule"><M value={formulas[index]}/></div><PropertySketch kind={index}/><div className="di-property-example"><p>{descriptions[index]}</p><M value={examples[index]}/>{conclusions[index]&&<M value={conclusions[index]}/>}</div></article>;
+}
+function SignedWarning(){return <aside className="di-warning"><div><h3><CircleAlert fill="#d58c13" color="white"/>Definite integrals measure signed area, not total geometric area.</h3><p>Areas below the x-axis count as negative. For total area, use <M value="\int_a^b|f(x)|\,dx"/>.</p></div><svg viewBox="0 0 280 100" role="img" aria-label="Areas above positive and below negative"><path d="M25 65Q60-5 105 65Z" fill="#b6dfb6"/><path d="M105 65Q140 115 175 65Z" fill="#ffc2c2"/><path d="M175 65Q198 30 215 65Z" fill="#b6dfb6"/><path d="M25 65Q60-5 105 65Q140 115 175 65Q198 30 215 65" stroke="#398d49" fill="none" strokeWidth="2"/><path d="M10 65H265M25 90V10" stroke="#293d4b"/><text x="23" y="80">a</text><text x="212" y="80">b</text><text x="259" y="60">x</text><text x="27" y="13">y</text></svg></aside>;}
+export default function DefiniteIntegralPropertiesTargetLesson10183({lesson:_lesson}:{lesson:SchoolSyllabusLesson}){
+ const[c,setC]=useState(2),[functionId,setFunctionId]=useState<IntegralFunctionId>("linear"),[editing,setEditing]=useState(false),[active,setActive]=useState("Composer");
+ const[answers,setAnswers]=useState<string[]>(Array(6).fill("")),[selected,setSelected]=useState<string|null>(null),[checked,setChecked]=useState(false);
+ const sections=useRef<Record<string,HTMLElement|null>>({}),fn=integralFunctions[functionId],result=splitIntegral(functionId,c),grade=gradePropertyMatches(answers);
+ const px=(x:number)=>130+x*170,py=(y:number)=>30+(fn.max-y)/(fn.max-fn.min)*380,baseline=py(0);
+ const points=(a:number,b:number)=>Array.from({length:161},(_,i)=>{const x=a+(b-a)*i/160;return `${px(x)},${py(fn.value(x))}`;}).join(" ");
+ const shade=(a:number,b:number)=>`M${px(a)} ${baseline} L${points(a,b).replace(/ /g," L")} L${px(b)} ${baseline} Z`;
+ const change=(value:number)=>{if(Number.isFinite(value))setC(Math.round(Math.max(0,Math.min(4,value))*20)/20);};
+ const pointer=(event:ReactPointerEvent<SVGRectElement>)=>{const matrix=event.currentTarget.ownerSVGElement?.getScreenCTM();if(!matrix)return;const point=new DOMPoint(event.clientX,event.clientY).matrixTransform(matrix.inverse());change((point.x-130)/170);};
+ const key=(event:KeyboardEvent<SVGRectElement>)=>{if(["Home","End","ArrowLeft","ArrowRight","ArrowUp","ArrowDown"].includes(event.key)){event.preventDefault();change(event.key==="Home"?0:event.key==="End"?4:c+(["ArrowLeft","ArrowDown"].includes(event.key)?-.05:.05));}};
+ const assign=(row:number,value:string)=>{if(value&&!propertyChoices.some(choice=>choice.id===value))return;setAnswers(a=>a.map((old,i)=>i===row?value:old));setSelected(null);setChecked(false);};
+ const navigate=(name:string)=>{setActive(name);const target=sections.current[name];target?.scrollIntoView({behavior:"smooth",block:"start"});target?.focus({preventScroll:true});};
+ const integral=(a:string,b:string)=>`\\int_{${a}}^{${b}} ${fn.latex}\\,dx`;
+ return <main className="di10183-page lesson-reference" data-testid="school-mockup-0857" data-object-model="dedicated-signed-area-additivity-engine" data-function={functionId} data-c={c} data-left={fmt(result.left)} data-right={fmt(result.right)} data-total={fmt(result.total)}>
+  <section className="di-hero"><small>CLASS 12 · FORMAL CALCULUS</small><Link to="/lessons/school">← School lessons</Link><h1>Definite Integral Properties</h1><p>Definite integrals represent signed area. Explore how they behave under interval changes, reversal, and symmetry using an interactive composer.</p><div className="di-jump-controls" role="navigation" aria-label="Lesson sections">{["Composer","Properties","Worked Example","Practice"].map(name=><button key={name} aria-pressed={active===name} onClick={()=>navigate(name)}>{name}</button>)}</div></section>
+  <section className="di-card di-composer" ref={el=>{sections.current.Composer=el;}} tabIndex={-1}><h2>SIGNED-AREA INTERVAL COMPOSER</h2><div className="di-controls"><div><h3>Function</h3><div className="di-function"><M value={`f(x)=${fn.latex}`}/><button aria-label="Edit function" aria-expanded={editing} onClick={()=>setEditing(v=>!v)}><Pencil/></button></div>{editing&&<select aria-label="Composer function" value={functionId} onChange={e=>setFunctionId(e.target.value as IntegralFunctionId)}>{Object.entries(integralFunctions).map(([id,f])=><option key={id} value={id}>{f.label}</option>)}</select>}</div><div><h3>Interval</h3><M value="[0,4]"/></div><label><h3>Split point c</h3><input aria-label="Split point value" type="number" min="0" max="4" step=".05" value={c.toFixed(2)} onChange={e=>change(e.target.valueAsNumber)}/><div className="di-range"><span>0</span><input aria-label="Split point c" type="range" min="0" max="4" step=".05" value={c} onChange={e=>change(Number(e.target.value))}/><span>4</span><button aria-label="Reset composer" onClick={()=>{setC(2);setFunctionId("linear");setEditing(false);}}><RotateCcw/></button></div></label></div><p className="di-tip">Drag the split point c to change the decomposition.</p>
+   <svg viewBox="0 0 1000 440" role="img" aria-label="Signed area interval graph"><g stroke="#dfe7ef" strokeDasharray="5 5">{[-.5,0,1,2,3,4,5].map(x=><line key={`x${x}`} x1={px(x)} x2={px(x)} y1="30" y2="410"/>)}{fn.ticks.map(y=><line key={`y${y}`} x1="20" x2="990" y1={py(y)} y2={py(y)}/>)}</g><path data-region="left" d={shade(0,c)} fill="#a4c1ef"/><path data-region="right" d={shade(c,4)} fill="#b8dcb7"/><path d={`M20 ${baseline}H990M130 420V15`} fill="none" stroke="#455363"/><polyline data-curve="function" points={points(0,4)} fill="none" stroke="#2568dc" strokeWidth="2"/><line x1={px(c)} x2={px(c)} y1="58" y2={baseline} stroke="#687a88" strokeDasharray="5 5"/><circle cx={px(c)} cy={py(fn.value(c))} r="6" fill="#3767ab" stroke="#234a80"/><circle cx={px(c)} cy="58" r="4" fill="#1463d2"/><text x={Math.min(px(c)+10,880)} y="61" fill="#1261cf">c = {Number(c.toFixed(2))}</text><text x="830" y={Math.max(30,py(fn.value(4))-10)} fill="#2568dc">y = {functionId==="linear"?"x":functionId==="square"?"x²":functionId==="shifted"?"x − 2":"sin x"}</text>{[-.5,0,1,2,3,4,5].map(x=><text key={x} x={px(x)-5} y={baseline+19}>{x}</text>)}{fn.ticks.filter(y=>y!==0).map(y=><text key={y} x="108" y={py(y)+4}>{y}</text>)}<text x="971" y={baseline-10}>x</text><text x="143" y="21">y</text><rect x="20" y="15" width="970" height="410" fill="transparent" role="slider" aria-label="Graph split point" aria-valuemin={0} aria-valuemax={4} aria-valuenow={c} tabIndex={0} style={{touchAction:"none",cursor:"ew-resize"}} onPointerDown={e=>{e.currentTarget.setPointerCapture(e.pointerId);pointer(e);}} onPointerMove={e=>{if(e.currentTarget.hasPointerCapture(e.pointerId))pointer(e);}} onPointerUp={e=>{if(e.currentTarget.hasPointerCapture(e.pointerId))e.currentTarget.releasePointerCapture(e.pointerId);}} onKeyDown={key}/></svg>
+   <div className="di-values"><article><h3>● Left interval [0, c] = [0, {Number(c.toFixed(2))}]</h3><M value={`${integral("0",String(c))}=${fmt(result.left)}`}/></article><article><h3>● Right interval [c, 4] = [{Number(c.toFixed(2))}, 4]</h3><M value={`${integral(String(c),"4")}=${fmt(result.right)}`}/></article><article><h3>Total interval [0, 4]</h3><M value={`${integral("0","4")}=${fmt(result.total)}`}/></article></div><div className="di-equation"><M value={`${integral("0","4")}=${integral("0",String(c))}+${integral(String(c),"4")}=\\textcolor{#1b59bb}{${fmt(result.left)}}+\\textcolor{#228a35}{${result.right<0?`(${fmt(result.right)})`:fmt(result.right)}}=\\textcolor{#7d39f1}{${fmt(result.total)}}`}/></div><p className="di-tip">Move c to see the signed areas update in real time.</p>
+  </section>
+  <SignedWarning/>
+  <section className="di-card di-properties" ref={el=>{sections.current.Properties=el;}} tabIndex={-1}><h2>DEFINITE INTEGRAL PROPERTIES</h2><p className="di-assumption">Assume f is integrable on the intervals shown, c lies between a and b, and k is constant.</p><div className="di-property-grid">{titles.map((title,index)=><PropertyCard key={title} index={index}/>)}<article className="di-worked" ref={el=>{sections.current["Worked Example"]=el;}} tabIndex={-1}><h3><CheckCircle2/> WORKED EXAMPLE (Correct)</h3><p>Evaluate <M value="\int_1^4 x\,dx"/> using properties.</p><p>Using additivity with c = 2:</p><M value="\int_1^4 x\,dx=\int_1^2 x\,dx+\int_2^4 x\,dx"/><p><b>Compute each part</b></p><M value="\int_1^2 x\,dx=\left[\frac{x^2}{2}\right]_1^2=\frac42-\frac12=\frac32"/><M value="\int_2^4 x\,dx=\left[\frac{x^2}{2}\right]_2^4=\frac{16}{2}-\frac42=6"/><div><span>Therefore,</span><M value="\int_1^4 x\,dx=\frac32+6=\frac{15}{2}=7.5"/></div></article></div></section>
+  <section className="di-card di-practice" ref={el=>{sections.current.Practice=el;}} tabIndex={-1}><h2>PRACTICE: MATCH THE PROPERTY</h2><p>Match each statement to the correct property. Drag a card, or select a card and then a blank.</p><div className="di-match-layout"><div className="di-statements">{formulas.map((formula,index)=><div className="di-match-row" key={formula}><b>{index+1}</b><div>{index>=4&&<p>If <M value={index===4?String.raw`f(-x)=f(x)` : String.raw`f(-x)=-f(x)`}/>, then</p>}<M value={formula}/></div><button className={`di-drop ${checked?(grade.rows[index]?"di-match-correct":"di-match-wrong"):""}`} aria-label={`Property match ${index+1}`} aria-invalid={checked?!grade.rows[index]:undefined} data-answer={answers[index]} onClick={()=>assign(index,selected??"")} onKeyDown={e=>{if(e.key==="Delete"||e.key==="Backspace"){e.preventDefault();assign(index,"");}}} onDragOver={e=>e.preventDefault()} onDrop={e=>{e.preventDefault();assign(index,e.dataTransfer.getData("text/plain"));}}>{answers[index]?`${answers[index]} · ${propertyChoices.find(choice=>choice.id===answers[index])?.label}`:<span className="di-empty-slot">Choose a property</span>}</button></div>)}</div><div className="di-choice-cards" aria-label="Property choices">{propertyChoices.map(choice=><button key={choice.id} className={`di-choice di-choice-${choice.id}`} draggable aria-pressed={selected===choice.id} onClick={()=>setSelected(v=>v===choice.id?null:choice.id)} onDragStart={e=>{e.dataTransfer.setData("text/plain",choice.id);e.dataTransfer.effectAllowed="copy";setSelected(choice.id);}} onDragEnd={()=>setSelected(null)}><b>{choice.id}</b>{choice.label}</button>)}</div></div><div className="di-practice-actions"><button className="di-primary" onClick={()=>setChecked(true)}><CheckCircle2/>Check answers</button><span role="status">{checked?(grade.complete?"All six properties matched correctly.":`${grade.score} of 6 correct. Recheck the highlighted statements.`):selected?`${selected} selected. Choose a numbered blank.`:""}</span><button onClick={()=>{setAnswers(Array(6).fill(""));setChecked(false);setSelected(null);}}><RotateCcw/>Reset</button></div></section>
+  <div className="di-lesson-links" role="navigation" aria-label="Adjacent lessons"><Link to="/lessons/school/class-12/class-12-formal-calculus-integration-by-partial-fractions">← Integration by Partial Fractions</Link><Link to="/lessons/school/class-12/class-12-formal-calculus-area-under-a-curve">Area Under a Curve →</Link></div><LessonMockupFooter/>
+ </main>;
 }

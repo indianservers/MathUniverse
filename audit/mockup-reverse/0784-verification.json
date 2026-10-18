@@ -1,0 +1,151 @@
+{
+  "status": "passed",
+  "errors": [],
+  "results": [
+    {
+      "R": 6,
+      "r": 3,
+      "h": 8,
+      "theta": 2.2061736491945125,
+      "volume": 527.79
+    },
+    {
+      "R": 1,
+      "r": 0.5,
+      "h": 1,
+      "theta": 2.8099258924162904,
+      "volume": 1.83
+    },
+    {
+      "R": 10,
+      "r": 9.5,
+      "h": 15,
+      "theta": 0.20932325182889636,
+      "volume": 4480.7
+    },
+    {
+      "R": 8,
+      "r": 0.5,
+      "h": 1,
+      "theta": 6.228068581635596,
+      "volume": 71.47
+    },
+    {
+      "R": 4,
+      "r": 1.5,
+      "h": 12,
+      "theta": 1.2814823727732967,
+      "volume": 304.73
+    },
+    {
+      "R": 6,
+      "r": 3,
+      "h": 8,
+      "theta": 2.2061736491945125,
+      "volume": 527.79
+    },
+    {
+      "R": 1,
+      "r": 0.5,
+      "h": 8,
+      "theta": 0.3919343310572741,
+      "volume": 14.66
+    },
+    {
+      "R": 6,
+      "r": 3,
+      "h": 8,
+      "theta": 2.2061736491945125,
+      "volume": 527.79
+    },
+    {
+      "R": 6,
+      "r": 3,
+      "h": 8,
+      "theta": 2.2061736491945125,
+      "volume": 527.79
+    },
+    {
+      "R": 10,
+      "r": 9.5,
+      "h": 15,
+      "theta": 0.20932325182889636,
+      "volume": 4480.7
+    }
+  ],
+  "responsive": [
+    {
+      "state": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "folded",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "folded",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "folded",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "folded",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "state": "net-tab",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "state": "net-tab",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "state": "net-tab",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "state": "net-tab",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ],
+  "rotationAndAnimationChangeCanvas": true
+}

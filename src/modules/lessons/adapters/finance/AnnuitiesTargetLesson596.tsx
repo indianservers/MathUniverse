@@ -98,7 +98,9 @@ export default function AnnuitiesTargetLesson596({
           <h1>Annuities: Cash-Flow Timeline</h1>
           <p>Equal payments at regular intervals build future value.</p>
         </main>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content an596-hero"><aside>
           <p>
             • Level <b>Intermediate-Advanced</b>
           </p>
@@ -111,8 +113,7 @@ export default function AnnuitiesTargetLesson596({
           <p>
             • Prerequisite <b>Percent, powers, geometric series</b>
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="an596-tabs">
         {["Interact", "Learn", "Worked Example", "Formula", "Practice"].map(
           (name) => (

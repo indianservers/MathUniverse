@@ -127,7 +127,9 @@ export default function XRayModeTargetLesson409({
             </a>
           </nav>
         </div>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content xr409-hero"><aside>
           <Lightbulb />
           <h3>Learning goal</h3>
           <p>
@@ -135,8 +137,7 @@ export default function XRayModeTargetLesson409({
             spheres, cross-sections and occluded measurements using various
             rendering modes.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="xr409-tabs">
         {[
           "Explore",

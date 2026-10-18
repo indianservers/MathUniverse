@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "default optimum and nutrient progress",
+    "stepper bounds and zero-serving infeasibility",
+    "integer rounding, optimum and full visible grid",
+    "cost slider independent of selected mix",
+    "pointer cost-line and mix movement, keyboard mix movement",
+    "12/12 practice infeasible/nonoptimal/optimal feedback",
+    "reset and all tabs"
+  ]
+}

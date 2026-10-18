@@ -1,0 +1,79 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "curve": "parabola",
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "curve": "parabola",
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "curve": "parabola",
+      "width": 1280,
+      "client": 1225,
+      "scroll": 1225
+    },
+    {
+      "curve": "parabola",
+      "width": 1440,
+      "client": 1385,
+      "scroll": 1385
+    },
+    {
+      "curve": "ellipse",
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "curve": "ellipse",
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "curve": "ellipse",
+      "width": 1280,
+      "client": 1225,
+      "scroll": 1225
+    },
+    {
+      "curve": "ellipse",
+      "width": 1440,
+      "client": 1385,
+      "scroll": 1385
+    },
+    {
+      "curve": "hyperbola",
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "curve": "hyperbola",
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "curve": "hyperbola",
+      "width": 1280,
+      "client": 1225,
+      "scroll": 1225
+    },
+    {
+      "curve": "hyperbola",
+      "width": 1440,
+      "client": 1385,
+      "scroll": 1385
+    }
+  ],
+  "clipped": []
+}

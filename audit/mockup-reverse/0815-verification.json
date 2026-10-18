@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "form": "right",
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "form": "right",
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "form": "right",
+      "width": 1280,
+      "client": 1225,
+      "scroll": 1225
+    },
+    {
+      "form": "right",
+      "width": 1440,
+      "client": 1385,
+      "scroll": 1385
+    },
+    {
+      "form": "left",
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "form": "left",
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "form": "left",
+      "width": 1280,
+      "client": 1225,
+      "scroll": 1225
+    },
+    {
+      "form": "left",
+      "width": 1440,
+      "client": 1385,
+      "scroll": 1385
+    },
+    {
+      "form": "up",
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "form": "up",
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "form": "up",
+      "width": 1280,
+      "client": 1225,
+      "scroll": 1225
+    },
+    {
+      "form": "up",
+      "width": 1440,
+      "client": 1385,
+      "scroll": 1385
+    },
+    {
+      "form": "down",
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "form": "down",
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "form": "down",
+      "width": 1280,
+      "client": 1225,
+      "scroll": 1225
+    },
+    {
+      "form": "down",
+      "width": 1440,
+      "client": 1385,
+      "scroll": 1385
+    }
+  ],
+  "clipped": []
+}

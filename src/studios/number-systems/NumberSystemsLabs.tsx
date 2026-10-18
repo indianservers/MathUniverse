@@ -30,10 +30,10 @@ const LESSONS = {
 };
 
 const NCERT = {
-  c7: { label: "Class 7 rational lab", to: "/ncert/class-7-rational-numbers" },
-  c8: { label: "Class 8 rational properties", to: "/ncert/class-8-rational-numbers" },
-  c9: { label: "Class 9 number systems", to: "/ncert/class-9-number-systems" },
-  c10: { label: "Class 10 real numbers", to: "/ncert/class-10-real-numbers" },
+  c7: { label: "Class 7 rational lab", to: "/lessons/numbers-and-arithmetic/60-rational-numbers" },
+  c8: { label: "Class 8 rational properties", to: "/lessons/numbers-and-arithmetic/60-rational-numbers" },
+  c9: { label: "Class 9 number systems", to: "/lessons/numbers-and-arithmetic/60-rational-numbers" },
+  c10: { label: "Class 10 real numbers", to: "/lessons/numbers-and-arithmetic/62-real-numbers" },
 };
 
 export const NUMBER_LABS: Array<{

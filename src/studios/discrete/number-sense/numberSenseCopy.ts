@@ -188,12 +188,12 @@ export const CHALLENGES: Record<NumberSenseMode, SenseChallenge> = {
 };
 
 export const TEACH: Record<NumberSenseMode, { label: string; href: string }> = {
-  Integers: { label: "NCERT Class 7 Integers", href: "/ncert/class-7-integers" },
+  Integers: { label: "NCERT Class 7 Integers", href: "/lessons/numbers-and-arithmetic/59-integers" },
   Fractions: { label: "Fractions, decimals, and percent", href: "/formulas/fractions-decimals-percent" },
   Decimals: { label: "Fractions, decimals, and percent", href: "/formulas/fractions-decimals-percent" },
-  Ratios: { label: "NCERT proportional reasoning", href: "/ncert/class-8-proportional-reasoning-2?tab=equivalent-ratios" },
-  Powers: { label: "NCERT Class 7 Exponents", href: "/ncert/class-7-exponents" },
-  Scales: { label: "Map scale and representative fraction", href: "/ncert/class-8-proportional-reasoning-2?tab=equivalent-ratios" },
+  Ratios: { label: "NCERT proportional reasoning", href: "/lessons/numbers-and-arithmetic/84-proportion" },
+  Powers: { label: "NCERT Class 7 Exponents", href: "/lessons/advanced-mathematics/373-powers" },
+  Scales: { label: "Map scale and representative fraction", href: "/lessons/numbers-and-arithmetic/84-proportion" },
 };
 
 export const SHORTCUTS = [

@@ -1,0 +1,3 @@
+import { analyzeConsistency, type LinearSystem } from "./linearSystemConsistencyModel";
+export function analyzeCramers(s:LinearSystem){const [a,b,c,d,e,f]=s;const minor=(p:number,q:number)=>Math.abs(p-q)<=32*Number.EPSILON*(Math.abs(p)+Math.abs(q))?0:p-q;const result=analyzeConsistency(s);return {D:minor(a*e,b*d),Dx:minor(c*e,b*f),Dy:minor(a*f,c*d),x:result.x,y:result.y,type:result.type};}
+export function cramerAnswer(value:string){const parts=value.trim().split("/");if(parts.length>2||parts.some(p=>!p.trim()||!Number.isFinite(Number(p))))return null;const n=Number(parts[0])/(parts.length===2?Number(parts[1]):1);return Number.isFinite(n)?n:null;}

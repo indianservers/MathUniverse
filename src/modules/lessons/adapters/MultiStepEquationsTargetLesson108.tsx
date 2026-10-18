@@ -192,7 +192,9 @@ export default function MultiStepEquationsTargetLesson108({
             <b>Balance sequence</b>
           </nav>
         </section>
-        <article>
+
+      </header>
+      <div className="lesson-header-content multi108-intro"><article>
           <Lightbulb />
           <small>Rule</small>
           <strong>
@@ -202,8 +204,7 @@ export default function MultiStepEquationsTargetLesson108({
             </span>
           </strong>
           <p>Undo + or − before × or ÷.</p>
-        </article>
-      </header>
+        </article></div>
 
       <main className="multi108-workspace">
         <header>

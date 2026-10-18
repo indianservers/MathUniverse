@@ -129,15 +129,16 @@ export default function NewtonMethodTargetLesson304({
             <a href="/workspace/calculus">↗ Workspace</a>
           </div>
         </section>
-        <aside>
+
+      </header>
+      <div className="lesson-header-content new304-hero"><aside>
           <h3>The Newton update (tangent method)</h3>
           <strong>xₙ₊₁ = xₙ - f(xₙ)/f'(xₙ)</strong>
           <p>
             From the tangent at (xₙ,f(xₙ)), find where it meets the x-axis. That
             x-intercept is the next iterate xₙ₊₁.
           </p>
-        </aside>
-      </header>
+        </aside></div>
       <nav className="new304-tabs">
         {[
           "Interaction + visualization",

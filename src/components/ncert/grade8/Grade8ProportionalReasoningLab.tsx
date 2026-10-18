@@ -71,7 +71,7 @@ export default function Grade8ProportionalReasoningLab() {
           />
           <ResourceLink to="/problem-solver" label="Solver" />
           <ResourceLink
-            to="/ncert/class-8-fractals-and-solid-views"
+            to="/curriculum?topic=class-8-fractals-and-solid-views&status=upcoming"
             label="Next: Fractals and Solid Views"
           />
         </div>

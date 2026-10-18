@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "default period and exact convergents",
+    "step/previous/first and range boundaries",
+    "keyboard cycle and table selection",
+    "actual repeated-state highlight",
+    "autoplay/pause and terminal stop",
+    "one/five/sixteen-state periods",
+    "perfect squares terminate before reciprocal step",
+    "all section navigation",
+    "unanswered/incorrect/correct quiz feedback and reset"
+  ]
+}

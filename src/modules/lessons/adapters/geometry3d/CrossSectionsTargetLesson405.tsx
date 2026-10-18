@@ -160,7 +160,9 @@ export default function CrossSectionsTargetLesson405({
             </button>
           </aside>
         </div>
-        <article>
+
+      </header>
+      <div className="lesson-header-content cross405-hero"><article>
           <h2>Challenge</h2>
           <p>Create a hexagonal section.</p>
           <div>
@@ -178,8 +180,7 @@ export default function CrossSectionsTargetLesson405({
           >
             Hint
           </button>
-        </article>
-      </header>
+        </article></div>
       <nav className="cross405-tabs">
         {["Explore", "Learn", "Examples", "Formulas", "Know more"].map(
           (item) => (

@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "whole optimal edge and unique vertex examples",
+    "max/min and negative coefficients",
+    "zero and vertical objectives",
+    "numeric coefficient bounds",
+    "grid and zoom/reset",
+    "pointer objective-line drag and independent optimum",
+    "quiz correct/wrong and solution toggle",
+    "all section tabs"
+  ]
+}

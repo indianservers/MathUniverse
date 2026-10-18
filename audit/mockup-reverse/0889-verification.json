@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "errors": [],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 344,
+      "scroll": 344
+    },
+    {
+      "width": 768,
+      "client": 698,
+      "scroll": 698
+    },
+    {
+      "width": 1440,
+      "client": 1120,
+      "scroll": 1120
+    }
+  ],
+  "checks": [
+    "mapping arrows and machine asset",
+    "help and selected outcome",
+    "single and 20 tosses",
+    "all predefined rules and editor synchronization",
+    "fractional/negative and constant custom scores",
+    "practice empty/wrong/correct and explanation",
+    "reset and all section tabs"
+  ]
+}

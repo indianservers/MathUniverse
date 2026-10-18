@@ -24,7 +24,12 @@ export function dietProblem(protein = 9, calcium = 9, whole = false) {
   integers.sort((a, b) => a.cost - b.cost || a.x - b.x);
   const optimum = whole ? integers[0] : continuous;
   const extent = Math.max(14, Math.ceil(Math.max(protein, calcium) / 2) * 2);
-  return { constraints, vertices, continuous, optimum, integers, extent,
+  const visibleIntegers = [];
+  for (let x = 0; x <= extent; x++) for (let y = 0; y <= extent; y++) {
+    const point = dietMix(x, y, protein, calcium, true);
+    if (point.feasible) visibleIntegers.push(point);
+  }
+  return { constraints, vertices, continuous, optimum, integers, visibleIntegers, extent,
     polygon: visibleRegion(constraints, { left: 0, right: extent, bottom: 0, top: extent }) };
 }
 

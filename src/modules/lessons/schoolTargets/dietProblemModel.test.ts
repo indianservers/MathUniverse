@@ -39,3 +39,11 @@ describe("diet linear programming", () => {
     expect(() => dietProblem(9, NaN)).toThrow(RangeError);
   });
 });
+
+it("includes all feasible integer points in the visible graph beyond the optimizer bound", () => {
+  const result = dietProblem();
+  expect(result.visibleIntegers).toEqual(expect.arrayContaining([expect.objectContaining({x:14,y:14,feasible:true})]));
+  for(let x=0;x<=result.extent;x++) for(let y=0;y<=result.extent;y++) {
+    expect(result.visibleIntegers.some(point=>point.x===x&&point.y===y)).toBe(dietMix(x,y,9,9,true).feasible);
+  }
+});

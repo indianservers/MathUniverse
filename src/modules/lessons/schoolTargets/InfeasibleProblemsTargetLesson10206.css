@@ -493,3 +493,68 @@ div:has(> #lesson-section-interaction .ip10206)
     max-width: 200px;
   }
 }
+
+/* Infeasible Problems reference card layout; left navigation is untouched. */
+.ip10206.lesson-reference{max-width:1120px;padding:0;background:#f7faff;font:14px/1.6 Inter,Arial,sans-serif}
+.ip10206.lesson-reference>header{background:white;border:1px solid #dce6ef;border-radius:12px;padding:24px 26px;margin-bottom:18px}
+.ip10206.lesson-reference h1{font-size:30px;font-weight:800;line-height:1.25;margin:8px 0}
+.ip10206.lesson-reference header>p{font-size:14px;color:#526176}
+.ip10206.lesson-reference header>a{border:1px solid #dce6ef;border-radius:7px;padding:9px 14px;font-size:12px}
+.ip10206.lesson-reference .ip-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.ip10206.lesson-reference .ip-tags span{padding:4px 10px;background:#f0f4f8;border-radius:12px;color:#46566b;font-size:10px}
+.ip10206.lesson-reference h2{font-size:13px;font-weight:750}
+.ip10206.lesson-reference h3{font-size:14px;font-weight:700}
+.ip10206.lesson-reference .ip-tabs{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;justify-content:start;background:white;border:1px solid #dce6ef;border-radius:10px 10px 0 0;padding:0 12px;gap:10px}
+.ip10206.lesson-reference .ip-tabs button{font-size:12px;font-weight:650;padding:17px 14px;color:#52627c}
+.ip10206.lesson-reference .ip-tabs button[aria-current]{color:#0086bf}
+.ip10206.lesson-reference .ip-lab{background:white;border:1px solid #dce6ef;border-top:0;border-radius:0 0 12px 12px;padding:20px;margin-bottom:18px}
+.ip10206.lesson-reference .ip-toolbar p{font-size:12px}
+.ip10206.lesson-reference .ip-toolbar button{font-size:12px;padding:9px 13px}
+.ip10206.lesson-reference .ip-bounds{gap:22px;margin:14px 0 22px}
+.ip10206.lesson-reference .ip-bound{padding:20px;border-radius:11px;background:linear-gradient(#f4f9ff,#fafcff)}
+.ip10206.lesson-reference .ip-upper{background:linear-gradient(#fff7ed,#fffcf8)}
+.ip10206.lesson-reference .ip-bound>label{font-size:13px}
+.ip10206.lesson-reference .ip-bound strong{font-size:22px}
+.ip10206.lesson-reference .ip-bound input[type=number]{width:55px;padding:7px;font-weight:700}
+.ip10206.lesson-reference .ip-scale{font-size:11px}
+.ip10206.lesson-reference .ip-number-line{margin:12px 0 16px}
+.ip10206.lesson-reference .ip-results{gap:22px}
+.ip10206.lesson-reference .ip-results article{padding:20px;border-radius:11px}
+.ip10206.lesson-reference .ip-results p{font-size:12px}
+.ip10206.lesson-reference .ip-transitions{border:1px solid #ddd7f3;border-radius:11px;padding:20px;margin:0 0 18px;background:linear-gradient(#fcfaff,#f8faff)}
+.ip10206.lesson-reference .ip-example-grid{gap:36px;margin:18px 0}
+.ip10206.lesson-reference button.ip-example{border-radius:11px;padding:18px 12px;gap:10px;background:white}
+.ip10206.lesson-reference .ip-example strong,.ip10206.lesson-reference .ip-example b{font-size:13px}
+.ip10206.lesson-reference .ip-example>span{font-size:12px}
+.ip10206.lesson-reference .ip-example>b{padding:10px;width:100%;border:1px solid #e0e8f1;border-radius:7px;background:#fbfcff}
+.ip10206.lesson-reference .ip-example:after{right:-31px;font-size:31px}
+.ip10206.lesson-reference .ip-transitions>p{font-size:12px}
+.ip10206.lesson-reference .ip-comparison{border:1px solid #dce6ef;border-radius:11px;padding:20px;margin:0 0 18px}
+.ip10206.lesson-reference .ip-comparison>p{font-size:12px}
+.ip10206.lesson-reference .ip-comparison>div{grid-template-columns:1fr 2.3fr 1fr;gap:18px}
+.ip10206.lesson-reference .ip-comparison article{font-size:12px;padding:18px 14px;border-radius:10px}
+.ip10206.lesson-reference .ip-comparison article:last-child>strong{display:block;border:1px solid #f2b7bf;border-radius:7px;padding:12px;background:#fff5f6}
+.ip10206.lesson-reference .ip-rule{border:1px solid #d9cef4;border-radius:11px;padding:20px;margin:0 0 18px}
+.ip10206.lesson-reference .ip-rule ol{gap:24px}
+.ip10206.lesson-reference .ip-rule li{font-size:12px;padding-left:34px}
+.ip10206.lesson-reference .ip-rule li:before{width:27px;height:27px;line-height:27px;font-size:12px}
+.ip10206.lesson-reference .ip-rule li:not(:last-child):after{content:'→';position:absolute;right:-16px;top:0;color:#6c5b96;font-size:20px}
+.ip10206.lesson-reference .ip-rule li span{font-size:11px;margin-top:4px}
+.ip10206.lesson-reference .ip-notes{padding:0;gap:18px;margin-bottom:18px}
+.ip10206.lesson-reference .ip-notes article{background:white;border-radius:11px;padding:20px;font-size:12px}
+.ip10206.lesson-reference .ip-notes article:first-child{background:#fcfaff}
+.ip10206.lesson-reference .ip-notes article:last-child{background:#fffdfa}
+.ip10206.lesson-reference .ip-practice{display:block!important;background:white;border:1px solid #dce6ef;border-radius:11px;padding:20px;margin:0 0 18px}
+.ip10206.lesson-reference .ip-practice legend{font-size:12px}
+.ip10206.lesson-reference .ip-practice label{padding:16px 12px;gap:10px}
+.ip10206.lesson-reference .ip-practice label b{display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;border-radius:50%;background:#21a1d1;color:white;font-size:12px;flex:none}
+.ip10206.lesson-reference .ip-practice label span{font-size:16px}
+.ip10206.lesson-reference .ip-practice>button{font-size:12px;padding:11px 18px;margin-top:18px}
+.ip10206.lesson-reference .ip-practice p[role=status]{padding:12px;background:#f5fbff;border:1px solid #dfebf6;border-radius:7px;font-size:12px}
+.ip10206.lesson-reference .ip-next{padding:0 0 20px}
+.ip10206.lesson-reference .ip-next a{background:white;border:1px solid #dce6ef;border-radius:8px;padding:12px 16px;font-size:12px}
+.ip10206.lesson-reference footer a{display:inline-flex;align-items:center;gap:6px;border:1px solid #dce6ef;border-radius:6px;padding:7px 11px;text-decoration:none}
+@container ip (max-width:600px){.ip10206.lesson-reference .ip-bounds,.ip10206.lesson-reference .ip-results,.ip10206.lesson-reference .ip-notes{grid-template-columns:1fr}.ip10206.lesson-reference .ip-comparison>div{grid-template-columns:1fr}.ip10206.lesson-reference .ip-example-grid{gap:12px}.ip10206.lesson-reference .ip-tabs{gap:4px}.ip10206.lesson-reference .ip-tabs button{font-size:11px;padding:14px 8px}.ip10206.lesson-reference .ip-rule li:after{display:none}}
+@container ip (max-width:370px){.ip10206.lesson-reference>header{padding:20px}.ip10206.lesson-reference .ip-lab{padding:14px}.ip10206.lesson-reference .ip-example-grid{grid-template-columns:1fr}.ip10206.lesson-reference .ip-tabs button{font-size:10px;padding:12px 5px}}
+
+.ip10206.lesson-reference button.ip-example>svg{width:100%!important;height:auto!important;max-height:110px;flex:none;aspect-ratio:160/54}

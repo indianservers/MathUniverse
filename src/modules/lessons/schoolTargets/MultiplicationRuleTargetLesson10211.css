@@ -2,3 +2,69 @@
 @container mr (max-width:780px){.mr-workspace{grid-template-columns:1fr}.mr-notes{grid-template-columns:1fr 1fr}.mr-tabs{gap:8px;flex-wrap:wrap}.mr-tabs button:last-child{margin-left:0}.mr-tree{max-width:430px;margin:auto}.mr-compare>div{grid-template-columns:1fr 1fr}.mr-compare article:last-child{grid-column:1/-1}.mr-practice{grid-template-columns:1fr}}
 @container mr (max-width:430px){.mr-experiment{grid-template-columns:1fr}.mr-bag{max-width:240px;margin-inline:auto}.mr-draws{max-width:230px;margin:auto}.mr-notes,.mr-compare>div{grid-template-columns:1fr}.mr-product>div{gap:6px;flex-wrap:wrap}.mr-next{flex-wrap:wrap}}
 .mr10211 button svg,.mr10211 h2 svg,.mr10211 h3 svg{width:16px;height:16px;flex:0 0 auto}
+
+/* Multiplication Rule mockup cards; all changes are local to lesson content. */
+.mr10211.lesson-reference{max-width:1120px;padding:0;background:#f5faff;font:14px/1.6 Inter,Arial,sans-serif}
+.mr10211.lesson-reference>header{background:white;border:1px solid #dce6ef;border-radius:12px;padding:24px 26px;margin-bottom:20px}
+.mr10211.lesson-reference h1{font-size:30px;font-weight:800;line-height:1.25;margin:8px 0}
+.mr10211.lesson-reference header>p{font-size:14px;color:#526176}
+.mr10211.lesson-reference header>a{border:1px solid #dce6ef;border-radius:7px;padding:9px 14px;font-size:12px}
+.mr10211.lesson-reference .mr-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.mr10211.lesson-reference .mr-tags span{padding:4px 10px;background:#f0f4f8;border-radius:12px;color:#46566b;font-size:10px}
+.mr10211.lesson-reference .mr-tags span:nth-child(2){background:#fff2d9;color:#9a6207}
+.mr10211.lesson-reference h2{font-size:13px;font-weight:750}
+.mr10211.lesson-reference h3{font-size:13px;font-weight:700}
+.mr10211.lesson-reference nav.mr-tabs{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;background:white;border:1px solid #dce6ef;border-radius:12px 12px 0 0;padding:0 12px;gap:12px}
+.mr10211.lesson-reference .mr-tabs button{padding:17px 10px;font-size:12px;color:#344565;font-weight:650}
+.mr10211.lesson-reference .mr-tabs button[aria-current]{color:#0086bf}
+.mr10211.lesson-reference .mr-workspace{padding:18px;background:white;border:1px solid #dce6ef;border-top:0;border-radius:0 0 12px 12px;margin-bottom:18px;gap:14px;grid-template-columns:1.55fr 1fr}
+.mr10211.lesson-reference .mr-experiment{gap:14px}
+.mr10211.lesson-reference .mr-setup,.mr10211.lesson-reference .mr-draw-panel,.mr10211.lesson-reference .mr-tree-panel{padding:18px 14px;border-radius:10px}
+.mr10211.lesson-reference .mr-setup h3{font-size:15px}
+.mr10211.lesson-reference .mr-setup p{font-size:12px}
+.mr10211.lesson-reference .mr-ball{border-radius:50%!important}
+.mr10211.lesson-reference .mr-red,.mr10211.lesson-reference .mr-red:hover{background:radial-gradient(circle at 30% 20%,#e57e7e,#c23842 65%,#932534)}
+.mr10211.lesson-reference .mr-blue,.mr10211.lesson-reference .mr-blue:hover{background:radial-gradient(circle at 30% 20%,#69b8e8,#227bb4 65%,#135482)}
+.mr10211.lesson-reference .mr-draw-slot{border-radius:50%!important;min-width:0;background:#fcfdff}
+.mr10211.lesson-reference .mr-draws{position:relative}
+.mr10211.lesson-reference .mr-draws:after{content:'→';position:absolute;left:50%;top:64px;transform:translateX(-50%);font-size:22px;color:#a1afc0}
+.mr10211.lesson-reference .mr-switch{font-size:12px}
+.mr10211.lesson-reference .mr-switch input{flex:none}
+.mr10211.lesson-reference .mr-outcome{font-size:15px;padding:24px 0}
+.mr10211.lesson-reference .mr-product{border:1px solid #dce6ef;border-radius:10px;padding:18px 14px}
+.mr10211.lesson-reference .mr-product label{font-size:12px}
+.mr10211.lesson-reference .mr-product>p{font-size:12px}
+.mr10211.lesson-reference .mr-fraction{font-size:22px;min-width:40px;padding:7px 10px;border-radius:7px}
+.mr10211.lesson-reference .mr-product output{font-size:22px;padding:12px}
+.mr10211.lesson-reference .mr-product output small{font-size:12px}
+.mr10211.lesson-reference .mr-tree{margin:14px 0}
+.mr10211.lesson-reference .mr-tree-panel h2{font-size:13px}
+.mr10211.lesson-reference .mr-tree-panel table{font-size:11px}
+.mr10211.lesson-reference .mr-tree-panel th{font-size:10px}
+.mr10211.lesson-reference .mr-tree-panel .math-expression{font-size:12px}
+.mr10211.lesson-reference .mr-compare{background:white;border:1px solid #dce6ef;border-radius:10px;padding:20px;margin-bottom:18px}
+.mr10211.lesson-reference .mr-compare article{padding:18px 14px;font-size:12px}
+.mr10211.lesson-reference .mr-compare h3{font-size:13px}
+.mr10211.lesson-reference .mr-compare button{font-size:11px;padding:9px 11px}
+.mr10211.lesson-reference .mr-comparison-product strong{font-size:21px}
+.mr10211.lesson-reference .mr-comparison-product small{font-size:12px}
+.mr10211.lesson-reference .mr-notes{padding:0;gap:14px;margin-bottom:18px}
+.mr10211.lesson-reference .mr-notes article{background:#fbfcff;border:1px solid #dce6ef;border-radius:10px;padding:18px 14px;font-size:12px}
+.mr10211.lesson-reference .mr-notes article:first-child{background:#faf8ff}
+.mr10211.lesson-reference .mr-notes .mr-mistake{background:#fff7f5;border-color:#f2dcd4}
+.mr10211.lesson-reference .mr-notes h2{font-size:12px}
+.mr10211.lesson-reference .mr-notes h3{font-size:12px}
+.mr10211.lesson-reference .mr-notes label,.mr10211.lesson-reference .mr-notes legend{font-size:11px}
+.mr10211.lesson-reference .mr-notes label:has(input:checked){color:#07875f;font-weight:650}
+.mr10211.lesson-reference .mr-notes button{font-size:11px;padding:8px}
+.mr10211.lesson-reference .mr-practice{padding:0;border:0;gap:18px;margin-bottom:18px}
+.mr10211.lesson-reference .mr-practice article{background:white;border:1px solid #dce6ef;border-radius:10px;padding:20px;font-size:12px}
+.mr10211.lesson-reference .mr-practice article:last-child{background:#fbf8ff}
+.mr10211.lesson-reference .mr-practice label{font-size:11px}
+.mr10211.lesson-reference .mr-practice button{font-size:11px;padding:9px 13px}
+.mr10211.lesson-reference .mr-general-solution{padding:16px;margin-top:16px;border:1px solid #dfd0f5;border-radius:7px;background:#faf6ff}
+.mr10211.lesson-reference .mr-next{padding:0 0 20px}
+.mr10211.lesson-reference .mr-next a{background:white;border:1px solid #dce6ef;border-radius:8px;padding:12px 16px;font-size:12px}
+.mr10211.lesson-reference footer a{display:inline-flex;align-items:center;gap:6px;border:1px solid #dce6ef;border-radius:6px;padding:7px 11px;text-decoration:none}
+@container mr (max-width:780px){.mr10211.lesson-reference .mr-workspace{grid-template-columns:1fr}.mr10211.lesson-reference .mr-notes{grid-template-columns:1fr 1fr}.mr10211.lesson-reference .mr-tabs{gap:4px}.mr10211.lesson-reference .mr-tabs button{font-size:11px;padding:14px 5px}}
+@container mr (max-width:430px){.mr10211.lesson-reference>header{padding:20px}.mr10211.lesson-reference .mr-workspace{padding:12px}.mr10211.lesson-reference .mr-notes{grid-template-columns:1fr}.mr10211.lesson-reference .mr-tabs button{font-size:10px;gap:4px;padding:12px 4px}.mr10211.lesson-reference .mr-tabs button svg{width:12px}.mr10211.lesson-reference .mr-product>div{gap:7px}.mr10211.lesson-reference .mr-fraction{font-size:19px;min-width:34px}}

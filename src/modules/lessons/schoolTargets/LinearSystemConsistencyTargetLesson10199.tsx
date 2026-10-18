@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import { analyzeConsistency as analyze, reduceConsistency, equationGeometry, consistencyGeometryMessage } from "./linearSystemConsistencyModel";
 import "./LinearSystemConsistencyTargetLesson10199.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import MathExpression from "../../../components/ui/MathExpression";
+import LessonMockupFooter from "../components/LessonMockupFooter";
+import "../components/LessonMockupReference.css";
 
 type LinearSystem = [number, number, number, number, number, number];
 type SolutionCase = "unique" | "none" | "infinite";
 const PRESETS: Record<SolutionCase, LinearSystem> = {
-  unique: [15, 1, 2, 2, 2, 4],
+  unique: [2, 1, 5, 1, -1, 1],
   none: [1, 1, 2, 2, 2, 5],
   infinite: [1, 1, 2, 2, 2, 4],
 };
@@ -69,7 +71,7 @@ function Matrix({
       aria-label={echelon ? "row echelon matrix" : "augmented matrix"}
     >
       {values.map((value, index) => (
-        <span key={index}>{value}</span>
+        <span key={index} className={echelon&&index>=3&&values.slice(3).every(v=>v===0)?"lsc-zero-row":echelon&&index===5&&values[3]===0&&values[4]===0&&value!==0?"lsc-contradiction":""}>{formatNumber(value)}</span>
       ))}
     </div>
   );
@@ -85,7 +87,7 @@ function SystemGraph({
   const result = analyze(system);
   const [zoom, setZoom] = useState(1);
   const [a, b, c, d, e, f] = system;
-  const scale = 20 * zoom;
+  const scale = 28 * zoom;
   const map = (x: number, y: number) => [150 + x * scale, 117 - y * scale];
   const extent = Math.ceil(150 / scale) + 1;
   const ticks = Array.from({ length: extent * 2 + 1 }, (_, index) => index - extent);
@@ -196,11 +198,11 @@ function SystemGraph({
         <div className="lsc-legend" aria-label="Equation legend">
           <span title={equationLabel(a, b, c)}>
             <i />
-            Equation 1
+            {equationLabel(a,b,c)}
           </span>
           <span title={equationLabel(d, e, f)}>
             <i />
-            Equation 2
+            {equationLabel(d,e,f)}
           </span>
           <span className="lsc-legend-kind">{first.kind === "line" && second.kind === "line" ? result.type === "unique" ? "Intersection" : result.type === "none" ? "Parallel lines" : "Coincident lines" : "Degenerate equation"}</span>
         </div>
@@ -253,7 +255,7 @@ function ResultCard({ result }: { result: ReturnType<typeof analyze> }) {
       <span>{result.type === "none" ? <Ban /> : <Check />}</span>
       <h3>{result.type === "unique" ? "Unique solution" : result.type === "none" ? "No solution" : "Infinitely many solutions"}</h3>
     </div>
-    <p>rank(A) {result.rankA === result.rankAugmented ? "=" : "≠"} rank([A|B]) = {result.rankAugmented}</p>
+    <p>Comparison: rank(A) = {result.rankA} {result.rankA === result.rankAugmented ? "=" : "≠"} rank([A|B]) = {result.rankAugmented}</p>
     <p>{result.type === "unique" ? "The common rank equals the number of unknowns." : result.type === "none" ? "The ranks differ, so the system is inconsistent." : "The common rank is below the number of unknowns."}</p>
     {result.type === "unique" && <div className="lsc-solution-values">
       <span><i>x</i> = {formatNumber(result.x)}</span>
@@ -262,86 +264,22 @@ function ResultCard({ result }: { result: ReturnType<typeof analyze> }) {
   </section>;
 }
 
-export default function LinearSystemConsistencyTargetLesson10199({ lesson }: { lesson: SchoolSyllabusLesson }) {
-  const [system, setSystem] = useState<LinearSystem>(PRESETS.unique);
-  const [showHow, setShowHow] = useState(false);
-  const result = analyze(system);
-  const setValue = (index: number, value: number) => {
-    if (!Number.isFinite(value)) return;
-    setSystem(previous => previous.map((entry, position) => position === index ? value : entry) as LinearSystem);
-  };
-  const applyPreset = (type: SolutionCase) => setSystem([...PRESETS[type]]);
-  const randomize = () => setSystem(Array.from({length: 6}, () => Math.floor(Math.random() * 11) - 5) as LinearSystem);
-  const presets = (className: string) => <div className={className} aria-label="Solution presets">
-    {(["unique", "none", "infinite"] as SolutionCase[]).map(type => <button type="button" key={type}
-      className={`${type} ${result.type === type ? "active" : ""}`}
-      aria-pressed={result.type === type} onClick={() => applyPreset(type)}>{CASE_LABELS[type]}</button>)}
-      <LessonTopicStudyBoard lessonId={10199} alwaysVisible />
-
-  </div>;
-  const fallback = PRESETS.none;
-  const fallbackResult = analyze(fallback);
-  return <main className="lsc10199-page" data-testid="school-mockup-0873"
-    data-object-model="dedicated-rouche-capelli-rank-engine" data-case={result.type}
-    data-rank-a={result.rankA} data-rank-augmented={result.rankAugmented}>
-    <header className="lsc-topbar">
-      <Link to="/lessons/school/class-12" aria-label="Back to Class 12 lessons"><ArrowLeft /></Link>
-      <div className="lsc-title"><h1>{lesson.title}</h1>
-        <p>See how equations, ranks, and geometry reveal whether a system has one, none, or infinitely many solutions.</p>
-      </div>
-      <div className="lsc-top-actions">
-        <div className="lsc-how-wrap"><button type="button" className="lsc-how-button" aria-expanded={showHow} onClick={() => setShowHow(value => !value)}><CircleHelp />How it works</button>
-          {showHow && <aside>Equal ranks mean the system is consistent. A common rank of two gives a unique solution; a smaller common rank gives infinitely many solutions. Different ranks mean no solution.</aside>}
-        </div>
-        {presets("lsc-case-switch")}
-      </div>
-    </header>
-    <section className="lsc-workspace">
-      <article className="lsc-panel lsc-build-panel">
-        <StepTitle number={1} title="Build the system" copy="Choose a preset or edit the equations." />
-        <div className="lsc-field-label">Presets</div>
-        {presets("lsc-preset-row")}
-        <EquationRow system={system} start={0} onChange={setValue} />
-        <EquationRow system={system} start={3} onChange={setValue} />
-        <div className="lsc-unknowns">Unknowns <output aria-label="Number of unknowns">2</output></div>
-        <div className="lsc-slider-block">
-          <div><strong>Explore b<sub>2</sub></strong><span>Current value: {system[5]}</span></div>
-          <div className="lsc-range-row"><span>{Math.min(2, system[5])}</span>
-            <div className="lsc-range-track">
-            <output style={{ left: `${100 * (system[5] - Math.min(2, system[5])) / (Math.max(6, system[5]) - Math.min(2, system[5]))}%` }}>{formatNumber(system[5])}</output>
-            <input type="range" min={Math.min(2, system[5])} max={Math.max(6, system[5])} step="0.1"
-              value={system[5]} aria-label="Explore second equation constant" onChange={event => setValue(5, Number(event.target.value))} />
-            </div>
-            <span>{Math.max(6, system[5])}</span>
-          </div>
-        </div>
-        <footer className="lsc-build-actions">
-          <button type="button" onClick={() => applyPreset("unique")}><RotateCcw />Reset</button>
-          <button type="button" className="primary" onClick={randomize}><Dice5 />Try random system</button>
-        </footer>
-      </article>
-      <article className="lsc-panel lsc-geometry-panel">
-        <StepTitle number={2} title="Watch the geometry" copy="See the system as lines in the plane." />
-        <SystemGraph system={system} />
-        <div className={`lsc-geometry-message ${result.type}`}>{result.type === "none" ? <Ban /> : <Check />}{consistencyGeometryMessage(system)}</div>
-      </article>
-      <article className="lsc-panel lsc-reduction-panel">
-        <StepTitle number={3} title="Row reduction" copy="Row-reduce the augmented matrix." />
-        <div className="lsc-row-reduction">
-          <div><b>Augmented matrix [A|b]</b><Matrix system={system} /></div>
-          <div className="lsc-operation"><b>Row operation</b><span>{reduceConsistency(system).operation}</span><strong>→</strong></div>
-          <div><b>Row-echelon form</b><Matrix system={system} echelon /></div>
-        </div>
-        <div className="lsc-rank-badges"><span>rank(A) = {result.rankA}</span><span>rank([A|B]) = {result.rankAugmented}</span></div>
-        <ResultCard result={result} />
-      </article>
-    </section>
-    <section className="lsc-change-strip" aria-label="Inconsistent system worked example">
-      <div className="lsc-change-intro"><h2>What changes when b<sub>2</sub> = 5?</h2></div>
-      <div className="lsc-mini-system"><b>System</b><span>1x + 1y = 2</span><span>2x + 2y = 5 (b<sub>2</sub> = 5)</span></div>
-      <SystemGraph system={fallback} compact />
-      <div className="lsc-mini-ranks"><span>rank(A) = {fallbackResult.rankA}</span><span>rank([A|B]) = {fallbackResult.rankAugmented}</span></div>
-      <div className="lsc-none-badge"><strong><Ban />No solution</strong><span>Parallel lines never meet.</span></div>
-    </section>
-  </main>;
+function Reduction({system}:{system:LinearSystem}) {
+ const result=analyze(system);
+ return <><div className="lsc-row-reduction"><div><b>Augmented matrix [A | b]</b><Matrix system={system}/></div><div className="lsc-operation"><b>Row operations</b><span>{reduceConsistency(system).operation}</span></div><div><b>Row-echelon form</b><Matrix system={system} echelon/></div><div><b>Coefficient matrix A</b><div className="lsc-coefficient-matrix">{[system[0],system[1],system[3],system[4]].map((v,i)=><span key={i}>{formatNumber(v)}</span>)}</div></div><div className="lsc-rank-cell">rank(A) = {result.rankA}</div><div className="lsc-rank-cell">rank([A | b]) = {result.rankAugmented}</div></div><ResultCard result={result}/></>;
+}
+function WorkedCase({system,title}:{system:LinearSystem;title:string}) {const result=analyze(system);return <section className={`lsc-worked-case ${result.type}`} aria-label={result.type==="none"?"Inconsistent system worked example":"Unique system worked example"}><div><h2>{title}</h2><div className="lsc-worked-system"><strong>System</strong><MathExpression value={equationLabel(...system.slice(0,3) as [number,number,number])}/><MathExpression value={equationLabel(...system.slice(3,6) as [number,number,number])}/></div><Reduction system={system}/></div><div><h3>Lines in the plane</h3><SystemGraph system={system} compact/><p>{consistencyGeometryMessage(system)}</p></div></section>;}
+const PRACTICE:LinearSystem[]=[[1,1,3,2,2,6],[1,2,1,2,4,2],[3,-1,7,1,1,1]];
+function ConsistencyPractice(){const [answers,setAnswers]=useState(["","",""]),[checked,setChecked]=useState(false),[reveal,setReveal]=useState(false);return <section className="lsc-practice" aria-label="Consistency practice"><div><h2>PRACTICE</h2><p>Classify each system.</p><div className="lsc-practice-systems">{PRACTICE.map((system,i)=><article key={i}><b>{i+1}</b><MathExpression value={equationLabel(...system.slice(0,3) as [number,number,number])}/><MathExpression value={equationLabel(...system.slice(3,6) as [number,number,number])}/><select aria-label={`Practice system ${i+1} classification`} value={answers[i]} onChange={e=>{setAnswers(a=>a.map((v,j)=>i===j?e.target.value:v));setChecked(false);}}><option value="">Choose classification</option><option value="infinite">Infinitely many solutions</option><option value="none">No solution</option><option value="unique">Unique solution</option></select>{checked&&<p className={answers[i]===analyze(system).type?"correct":"incorrect"}>{answers[i]===analyze(system).type?"Correct":"Try again"}</p>}</article>)}</div><button onClick={()=>setChecked(true)}>Check answers</button></div><aside><button aria-expanded={reveal} onClick={()=>setReveal(v=>!v)}>Answers (click to {reveal?"hide":"reveal"})</button>{reveal&&<ol><li>Infinitely many solutions</li><li>Infinitely many solutions</li><li>Unique solution: x = 2, y = −1</li></ol>}</aside><aside><h3>Try it</h3><p>Edit the system above, row-reduce, and observe how ranks and geometry change!</p></aside></section>;}
+export default function LinearSystemConsistencyTargetLesson10199({lesson}:{lesson:SchoolSyllabusLesson}) {
+ const [system,setSystem]=useState<LinearSystem>([...PRESETS.infinite]),[showHow,setShowHow]=useState(false);
+ const result=analyze(system);
+ const setValue=(index:number,value:number)=>{if(Number.isFinite(value))setSystem(previous=>previous.map((v,i)=>i===index?value:v) as LinearSystem);};
+ const applyPreset=(type:SolutionCase)=>setSystem([...PRESETS[type]]);
+ return <main className="lsc10199-page lesson-reference" data-testid="school-mockup-0873" data-object-model="dedicated-rouche-capelli-rank-engine" data-case={result.type} data-rank-a={result.rankA} data-rank-augmented={result.rankAugmented}>
+ <header className="lsc-topbar"><div className="lsc-title"><h1>{lesson.title}</h1><p>Explore consistency using ranks (Rouché–Capelli Theorem): compare rank(A) and rank([A|b]).<br/>Edit any system, row-reduce, and see geometry and solution classification in real time.</p></div><div className="lsc-how-wrap"><button className="lsc-how-button" aria-expanded={showHow} onClick={()=>setShowHow(v=>!v)}><CircleHelp/>How it works</button>{showHow&&<aside>Equal ranks mean the system is consistent. Rank two gives a unique solution; a smaller common rank gives infinitely many solutions. Different ranks mean no solution.</aside>}</div></header>
+ <section className="lsc-editor"><StepTitle number={1} title="EDIT THE SYSTEM" copy=""/><div className="lsc-editor-grid"><div><h3>Presets</h3><div className="lsc-preset-row">{(["infinite","none","unique"] as SolutionCase[]).map(type=><button key={type} className={type} aria-pressed={system.every((v,i)=>v===PRESETS[type][i])} onClick={()=>applyPreset(type)}><strong>{CASE_LABELS[type]}</strong><span>{equationLabel(...PRESETS[type].slice(0,3) as [number,number,number])}, {equationLabel(...PRESETS[type].slice(3,6) as [number,number,number])}</span></button>)}</div></div><div className="lsc-equations"><h3>System Ax = b</h3><EquationRow system={system} start={0} onChange={setValue}/><EquationRow system={system} start={3} onChange={setValue}/><div className="lsc-editor-actions"><span>Unknowns: <output aria-label="Number of unknowns">2</output></span><button onClick={()=>applyPreset("infinite")}><RotateCcw/>Reset system</button><button onClick={()=>setSystem(Array.from({length:6},()=>Math.floor(Math.random()*11)-5) as LinearSystem)}><Dice5/>Random</button><Link to="/lessons/school/class-12" aria-label="Back to Class 12 lessons"><ArrowLeft/>School lessons</Link></div></div><aside className="lsc-constant-card"><h3>Change constant (b₂)</h3><p>Current b₂ = {formatNumber(system[5])}</p><div>{[4,5].map(n=><button key={n} aria-label={`Set second constant to ${n}`} aria-pressed={system[5]===n} onClick={()=>setValue(5,n)}>{n}</button>)}</div><input type="range" aria-label="Explore second equation constant" min={Math.min(2,system[5])} max={Math.max(6,system[5])} step=".1" value={system[5]} onChange={e=>setValue(5,Number(e.target.value))}/><p>For the infinite preset, 4 gives infinitely many solutions and 5 gives none.</p></aside></div></section>
+ <section className="lsc-analysis"><article className="lsc-reduction-panel"><h2>2. ROW-REDUCE AND ANALYZE.</h2><Reduction system={system}/></article><article className="lsc-geometry-panel"><h2>3. GEOMETRIC VIEW (IN ℝ²)</h2><h3>Lines in the plane</h3><SystemGraph system={system}/><p className="lsc-current-geometry">{consistencyGeometryMessage(system)}</p>{result.type==="infinite"&&system.every((v,i)=>v===PRESETS.infinite[i])&&<p>Example points: (0, 2), (2, 0), (1, 1), (−1, 3) …</p>}</article><article className="lsc-theorem" aria-label="Rouche-Capelli theorem"><h2>ROUCHÉ–CAPELLI THEOREM</h2><p>A linear system Ax = b is:</p><ul><li><strong>Consistent</strong> (at least one solution)<p>if rank(A) = rank([A | b])</p></li><li><strong>Inconsistent</strong> (no solution)<p>if rank(A) &lt; rank([A | b])</p></li><li><strong>Consistent with infinitely many solutions</strong><p>if rank(A) = rank([A | b]) &lt; n</p></li></ul><p>where n = number of unknowns.</p></article></section>
+ <WorkedCase system={PRESETS.none} title="WHAT IF b₂ = 5?"/><WorkedCase system={PRESETS.unique} title="UNIQUE SOLUTION CASE (Preset)"/><ConsistencyPractice/><LessonMockupFooter/>
+ </main>;
 }
