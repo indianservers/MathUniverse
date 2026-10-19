@@ -1,0 +1,26 @@
+{
+  "scope": "Existing 919-lesson visual queue, descending from Bessel Function",
+  "statuses": {
+    "browser-verified": 237,
+    "interaction-verified": 682
+  },
+  "responsiveWidths": [
+    390,
+    768,
+    1440
+  ],
+  "coverage": "Meaningful mathematical response and layout per lesson; deeper custom checks where warranted. Not exhaustive coverage of every control.",
+  "reviewedReleaseFiles": 617,
+  "sourceParity": "All mapped components match reviewed preview after normalizing line endings and trailing whitespace",
+  "tests": {
+    "distinctTests": 2281,
+    "fullRunPassed": 2280,
+    "isolatedGraphInkRecheck": "3 of 3 passed"
+  },
+  "checks": {
+    "typecheck": "passed: npm run typecheck (8 GB Node heap)",
+    "productionBuild": "passed: npm run build",
+    "liveVerification": "pending deployment",
+    "productionBrowser": "passed: logic plus 11 representative lessons against built release; no browser errors or overflow at checked widths"
+  }
+}

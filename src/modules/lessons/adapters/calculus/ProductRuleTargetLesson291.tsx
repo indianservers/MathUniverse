@@ -341,7 +341,7 @@ export default function ProductRuleTargetLesson291({
           <p className="domain-note">
             x ∈ [−{domain}, {domain}]
           </p>
-          <table>
+          <div className="prd291-table-scroll"><table>
             <thead>
               <tr>
                 <th>x</th>
@@ -364,7 +364,7 @@ export default function ProductRuleTargetLesson291({
                 <td>{values.error.toFixed(4)}</td>
               </tr>
             </tbody>
-          </table>
+          </table></div>
           <footer>
             <Check /> Correct! The sampled derivative approaches (uv)′=u′v+uv′
             as step shrinks.

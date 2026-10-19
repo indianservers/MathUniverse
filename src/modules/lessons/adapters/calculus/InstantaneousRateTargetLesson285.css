@@ -639,3 +639,7 @@ body:has(.irc285-page) {
     min-width: 760px;
   }
 }
+
+@media(max-width:900px){.irc285-page .irc285-hero,.irc285-page .irc285-flow,.irc285-page .irc285-model .workspace,.irc285-page .irc285-model .workspace>aside,.irc285-page .irc285-learning,.irc285-page .irc285-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.irc285-page .irc285-hero>*,.irc285-page .irc285-flow>*,.irc285-page .irc285-model .workspace>*,.irc285-page .irc285-model .workspace>aside>*,.irc285-page .irc285-learning>*,.irc285-page .irc285-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.irc285-page .irc285-flow article>svg:last-child{position:static}.irc285-page .irc285-model{height:auto}.irc285-page .irc285-model .workspace>main{height:auto}.irc285-page .irc285-model .legend,.irc285-page .irc285-model .graph>output{position:static;display:block}.irc285-page .irc285-practice{padding:12px}.irc285-page .irc285-practice>header{position:static}.irc285-page .irc285-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

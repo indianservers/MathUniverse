@@ -1096,3 +1096,5 @@ body:has(.remainder104-page) footer[aria-label="Site footer"] {
     min-height: 44px;
   }
 }
+
+@media(max-width:900px){.remainder104-page .remainder104-workspace>header,.remainder104-page .remainder104-workspace>header>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.remainder104-page .remainder104-workspace>header>*,.remainder104-page .remainder104-workspace>header>div>*{min-width:0;grid-column:auto;grid-row:auto}}

@@ -607,3 +607,5 @@ body:has(.log327-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:900px){.log327-page .log327-lab,.log327-page .log327-theory,.log327-page .log327-worked,.log327-page .log327-practice{grid-template-columns:minmax(0,1fr);height:auto}.log327-page .log327-lab>main>footer{height:auto;grid-template-columns:minmax(0,1fr)}.log327-page .log327-lab .phases{height:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.log327-page .log327-practice{padding:12px}.log327-page .log327-practice>header,.log327-page .log327-practice>aside{position:static;width:auto;height:auto}.log327-page .log327-practice>label>span{flex-wrap:wrap}.log327-page .log327-theory article,.log327-page .log327-worked>*{min-width:0;padding-block:12px}.log327-page .log327-hero>aside{position:static;display:flex;flex-wrap:wrap}.log327-page .log327-hero{height:auto}}

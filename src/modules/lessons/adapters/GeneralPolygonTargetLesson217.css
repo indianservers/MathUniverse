@@ -1,4 +1,3 @@
-.general217-page,
 .general217-page * {
   letter-spacing: 0;
 }
@@ -74,3 +73,5 @@
     transform: translateY(-2px);
   }
 }
+
+@media(max-width:900px){[data-testid="dynamic-geometry-mockup-0274"] .flex.justify-between.gap-3,[data-testid="dynamic-geometry-mockup-0274"] .flex.gap-2{flex-wrap:wrap;gap:8px}}

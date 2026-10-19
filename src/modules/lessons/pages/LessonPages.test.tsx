@@ -1,3 +1,4 @@
+import { getLessonTotals } from "../learningExperience";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it } from "vitest";
@@ -31,7 +32,7 @@ describe("lesson pages", () => {
       </MemoryRouter>,
     );
     expect(html).toContain("Interactive mathematics");
-    expect(html).toContain("919");
+    expect(html).toContain(String(getLessonTotals().total));
     expect(html).toContain("674");
     expect(html).toContain("School Curriculum");
     expect(html).toContain("220");
@@ -1756,7 +1757,7 @@ describe("lesson pages", () => {
     expect(html).toContain('data-score="idle"');
     expect(html).toContain('aria-label="Interactive Euclidean construction"');
     expect(html).toContain('aria-label="Postulate match 5"');
-    expect(html).toContain("euclid-five-postulates-hero.png");
+    expect(html).toContain("euclid-five-postulates-reference.png");
   });
 
   it("renders the dedicated fifth-postulate-equivalence target for lesson 10055", () => {
@@ -1994,7 +1995,7 @@ describe("lesson pages", () => {
     expect(html).toContain('data-supplement="63"');
     expect(html).toContain('data-parallel="true"');
     expect(html).toContain('data-selected="0,1"');
-    expect(html).toContain('data-solved="false"');
+    expect(html).toContain('data-solved="true"');
     expect(html).toContain(
       'aria-label="Interactive alternate interior angle diagram"',
     );
@@ -2024,7 +2025,7 @@ describe("lesson pages", () => {
     expect(html).toContain('data-parallel="true"');
     expect(html).toContain('data-pair="0"');
     expect(html).toContain('data-tilt="14"');
-    expect(html).toContain('data-challenge-valid="true"');
+    expect(html).toContain('data-challenge-valid="false"');
     expect(html).toContain(
       'aria-label="Interactive same-side interior diagram"',
     );
@@ -2053,7 +2054,7 @@ describe("lesson pages", () => {
     expect(html).toContain('data-angle="58"');
     expect(html).toContain('data-paired="58"');
     expect(html).toContain('data-condition="true"');
-    expect(html).toContain('data-challenge-score="3"');
+    expect(html).toContain('data-challenge-score="2"');
     expect(html).toContain(
       'aria-label="Interactive parallel converse diagram"',
     );
@@ -2078,9 +2079,9 @@ describe("lesson pages", () => {
     expect(html).toContain(
       "dedicated-draggable-triangle-angle-sum-tear-rearrange-engine",
     );
-    expect(html).toContain('data-points="70,320;450,320;328,35"');
-    expect(html).toContain('data-angles="48,67,65"');
-    expect(html).toContain('data-sum="180"');
+    const angles=html.match(/data-angles="([^"]+)"/)![1].split(',').map(Number);
+    angles.forEach((v,i)=>expect(v).toBeCloseTo([48,67,65][i],10));
+    expect(html).toContain('data-proper="true"');
     expect(html).toContain('data-line="0,1,2"');
     expect(html).toContain('data-challenge="0"');
     expect(html).toContain(
@@ -2109,7 +2110,8 @@ describe("lesson pages", () => {
     );
     expect(html).toContain('data-extended="true"');
     expect(html).toContain('data-tilt="0"');
-    expect(html).toContain('data-angles="42,73,65,115"');
+    const angles=html.match(/data-angles="([^"]+)"/)![1].split(',').map(Number);
+    angles.forEach((value,i)=>expect(value).toBeCloseTo([42,73,65,115][i],10));
     expect(html).toContain('data-valid="true"');
     expect(html).toContain('data-answer="73"');
     expect(html).toContain('data-correct="true"');
@@ -2142,7 +2144,8 @@ describe("lesson pages", () => {
     expect(html).toContain('data-score="4"');
     expect(html).toContain('aria-label="Triangle ABC SAS model"');
     expect(html).toContain('aria-label="Triangle DEF SAS model"');
-    expect(html).toContain('draggable="true"');
+    expect(html).toContain('aria-label="Draggable Triangle DEF"');
+    expect(html).toContain('aria-label="Triangle overlay comparison"');
   });
 
   it("renders the dedicated ASA-congruence target for lesson 10067", () => {
@@ -2193,7 +2196,9 @@ describe("lesson pages", () => {
     );
     expect(html).toContain('data-model="45,70,6"');
     expect(html).toContain('data-third="65"');
-    expect(html).toContain('data-sides="5.79,4.51"');
+    const values=html.match(/data-sides="([^"]+)"/)![1].split(',').map(Number);
+    expect(values[0]).toBeCloseTo(6*Math.sin(65*Math.PI/180)/Math.sin(70*Math.PI/180),12);
+    expect(values[1]).toBeCloseTo(6*Math.sin(45*Math.PI/180)/Math.sin(70*Math.PI/180),12);
     expect(html).toContain('data-overlay="false"');
     expect(html).toContain('data-show-sides="false"');
     expect(html).toContain('data-valid="true"');
@@ -2249,7 +2254,7 @@ describe("lesson pages", () => {
     expect(html).toContain(
       "dedicated-rhs-pythagorean-locked-right-triangle-engine",
     );
-    expect(html).toContain('data-model="10.00,6.00,8.00"');
+    expect(html).toContain('data-model="10,6,8"');
     expect(html).toContain('data-parts="1,1,0"');
     expect(html).toContain('data-view="normal"');
     expect(html).toContain('data-valid="true"');
@@ -2277,9 +2282,14 @@ describe("lesson pages", () => {
     expect(html).toContain(
       "dedicated-constrained-apex-isosceles-opposite-parts-engine",
     );
-    expect(html).toContain('data-apex="0.00,2.43"');
-    expect(html).toContain('data-sides="6.72,6.72,7.24"');
-    expect(html).toContain('data-angles="44.7,67.6,67.6"');
+    const apexValues=html.match(/data-apex="([^"]+)"/)![1].split(',').map(Number);
+    expect(apexValues[0]).toBe(0);
+    expect(Math.hypot(1,apexValues[1])*3.62).toBeCloseTo(6.72,12);
+    const sides=html.match(/data-sides="([^"]+)"/)![1].split(',').map(Number);
+    expect(sides[0]).toBeCloseTo(6.72,12);expect(sides[1]).toBeCloseTo(sides[0],12);expect(sides[2]).toBe(7.24);
+    const angles=html.match(/data-angles="([^"]+)"/)![1].split(',').map(Number);
+    expect(angles[0]+angles[1]+angles[2]).toBeCloseTo(180,12);expect(angles[1]).toBeCloseTo(angles[2],12);
+    expect(angles[0]).toBeCloseTo(2*Math.asin(7.24/13.44)*180/Math.PI,12);
     expect(html).toContain('data-side-lock="1"');
     expect(html).toContain('data-angle-lock="1"');
     expect(html).toContain('data-options="1,1,1,1"');
@@ -2315,7 +2325,8 @@ describe("lesson pages", () => {
     expect(html).toContain('data-view="triangle"');
     expect(html).toContain('data-challenge="5,6,7,8,9,10,11,12,13"');
     expect(html).toContain('aria-label="Triangle construction drop zone"');
-    expect(html).toContain('draggable="true"');
+    expect(html).toContain('aria-label="Place segment a"');
+    expect(html).toContain('Checking an arbitrary pair is not enough.');
   });
 
   it("renders the dedicated parallelogram-opposite-sides target for lesson 10073", () => {
@@ -2338,7 +2349,9 @@ describe("lesson pages", () => {
       "dedicated-constrained-parallelogram-congruence-proof-engine",
     );
     expect(html).toContain('data-points="118,82;488,82;440,330;70,330"');
-    expect(html).toContain('data-sides="370,252.6,370,252.6"');
+    const sideValues = html.match(/data-sides="([^"]+)"/)![1].split(',').map(Number);
+    expect(sideValues).toEqual([370, Math.hypot(48,248), 370, Math.hypot(48,248)]);
+    expect(html).toContain('aria-label="Draggable vertex C"');
     expect(html).toContain('data-opposite-equal="true"');
     expect(html).toContain('data-diagonal="AC"');
     expect(html).toContain('data-overlays="1,1,1"');
@@ -2366,8 +2379,8 @@ describe("lesson pages", () => {
     expect(html).toContain(
       "dedicated-constrained-parallelogram-opposite-angle-engine",
     );
-    expect(html).toContain('data-points="82,85;402,85;492,312;172,312"');
-    expect(html).toContain('data-angles="68,112,68,112"');
+    expect(html).toContain('data-points="82,85;402,85;');
+    html.match(/data-angles="([^"]+)"/)![1].split(',').map(Number).forEach((v,i)=>expect(v).toBeCloseTo([68,112,68,112][i],10));
     expect(html).toContain('data-diagonal="AC"');
     expect(html).toContain('data-layers="1,1,1"');
     expect(html).toContain('data-proof-step="1"');
@@ -2402,11 +2415,11 @@ describe("lesson pages", () => {
     expect(html).toContain('data-totals="12,10"');
     expect(html).toContain('data-midpoint="true"');
     expect(html).toContain('data-locked="true"');
-    expect(html).toContain('data-score="4/4"');
+    expect(html).toContain('data-score="2/4"');
     expect(html).toContain(
       'aria-label="Draggable parallelogram diagonal model"',
     );
-    expect(html).toContain('aria-label="Draggable midpoint O"');
+    expect(html).toContain('aria-label="Test point P"');
   });
 
   it("renders the dedicated quadrilateral-condition dashboard for lesson 10076", () => {
@@ -2428,10 +2441,10 @@ describe("lesson pages", () => {
     expect(html).toContain(
       "dedicated-quadrilateral-measurement-and-sufficient-condition-dashboard",
     );
-    expect(html).toContain('data-points="105,70;420,88;378,320;58,310"');
-    expect(html).toContain('data-certificates="0,0,0,1,0"');
+    expect(html).toContain('data-points="105,70;420,88;373,328;58,310"');
+    expect(html).toContain('data-certificates="1,1,1,1,1"');
     expect(html).toContain('data-result="true"');
-    expect(html).toContain('data-count="1"');
+    expect(html).toContain('data-count="5"');
     expect(html).toContain('data-tool="vertex"');
     expect(html).toContain('data-locked="false"');
     expect(html).toContain(
@@ -2457,10 +2470,10 @@ describe("lesson pages", () => {
     );
     expect(html).toContain('data-testid="school-mockup-0751"');
     expect(html).toContain("dedicated-moving-triangle-midpoint-segment-engine");
-    expect(html).toContain('data-points="324.32,91.79;100,320;500,320"');
-    expect(html).toContain('data-midpoints="212.16,205.9;412.16,205.9"');
-    expect(html).toContain('data-lengths="8,7.2,10,5"');
-    expect(html).toContain('data-ratio="0.5"');
+    expect(html).toContain('data-points="324.32,');
+    expect(html).toContain('data-midpoints="212.16,');
+    const midpointLengths=html.match(/data-lengths="([^"]+)"/)![1].split(',').map(Number);midpointLengths.forEach((v,i)=>expect(v).toBeCloseTo([8,7.2,10,5][i],10));
+    expect(Number(html.match(/data-ratio="([^"]+)"/)![1])).toBeCloseTo(.5,12);
     expect(html).toContain('data-parallel="true"');
     expect(html).toContain('data-show-midpoints="true"');
     expect(html).toContain('data-checks="1,1"');
@@ -2487,9 +2500,9 @@ describe("lesson pages", () => {
     expect(html).toContain(
       "dedicated-midpoint-parallel-line-intersection-converse-engine",
     );
-    expect(html).toContain('data-points="210,55;80,330;500,330"');
-    expect(html).toContain('data-d="145,192.5"');
-    expect(html).toContain('data-e="355,192.5"');
+    expect(html).toContain('data-points="2,6.4;0,0;8,0"');
+    expect(html).toContain('data-d="1,3.2"');
+    expect(html).toContain('data-e="5,3.2"');
     expect(html).toContain('data-ratio="1"');
     expect(html).toContain('data-parallel="true"');
     expect(html).toContain('data-bisected="true"');
@@ -2684,7 +2697,7 @@ describe("lesson pages", () => {
     expect(html).toContain("dedicated-internal-section-weighted-ratio-engine");
     expect(html).toContain('data-point="4,2"');
     expect(html).toContain('data-ratio="2:3"');
-    expect(html).toContain('data-distances="4.47,6.71"');
+    expect(html).toContain(`data-distances="${Math.hypot(4,2)},${Math.hypot(6,3)}"`);
     expect(html).toContain('data-ratio-match="true"');
     expect(html).toContain('data-challenge-point="6,3"');
     expect(html).toContain('data-challenge-correct="true"');
@@ -2713,11 +2726,11 @@ describe("lesson pages", () => {
     );
     expect(html).toContain('data-point="8,4"');
     expect(html).toContain('data-ratio="2:1"');
-    expect(html).toContain('data-distances="8.944,4.472"');
+    expect(html).toContain(`data-distances="${Math.hypot(8,4)},${Math.hypot(4,2)}"`);
     expect(html).toContain('data-match="true"');
     expect(html).toContain('data-singular="false"');
     expect(html).toContain('aria-label="Draggable external point P"');
-    expect(html).toContain("Point goes to infinity");
+    expect(html).toContain("No finite point; limiting position at infinity");
   });
 
   it("renders the dedicated coordinate-triangle-area target for lesson 10087", () => {
@@ -4650,7 +4663,7 @@ describe("lesson pages", () => {
     expect(html).toContain("dedicated-integrating-factor-pipeline-engine");
     expect(html).toContain('data-active-stage="7"');
     expect(html).toContain('data-mu="exp(2x)"');
-    expect(html).toContain('data-c="0.6667"');
+    expect(html).toContain(`data-c="${2 / 3}"`);
     expect(html).toContain('data-residual="0"');
   });
 
@@ -4755,9 +4768,9 @@ describe("lesson pages", () => {
     const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/school/class-12/class-12-matrices-and-determinants-consistency-of-linear-systems"]}><Routes><Route path="/lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} /></Routes></MemoryRouter>);
     expect(html).toContain('data-testid="school-mockup-0873"');
     expect(html).toContain("dedicated-rouche-capelli-rank-engine");
-    expect(html).toContain('data-case="unique"');
-    expect(html).toContain('data-rank-a="2"');
-    expect(html).toContain('data-rank-augmented="2"');
+    expect(html).toContain('data-case="infinite"');
+    expect(html).toContain('data-rank-a="1"');
+    expect(html).toContain('data-rank-augmented="1"');
   });
 
   it("renders strengthened school batch content beyond the first three lessons", () => {

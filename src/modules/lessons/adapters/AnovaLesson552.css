@@ -387,3 +387,7 @@
     width: 100%;
   }
 }
+
+.anova552-page .anova552-detail > article { min-width:0; overflow-x:auto; }
+
+.anova552-detail > article {min-width:0;overflow-x:auto;}

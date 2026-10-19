@@ -713,3 +713,7 @@ body:has(.dw318-page) {
     min-width: 763px;
   }
 }
+
+@media(max-width:900px){.dw318-page .dw318-flow,.dw318-page .dw318-lab>main,.dw318-page .dw318-accum>div,.dw318-page .dw318-cards,.dw318-page .dw318-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.dw318-page .dw318-flow>*,.dw318-page .dw318-lab>main>*,.dw318-page .dw318-accum>div>*,.dw318-page .dw318-cards>*,.dw318-page .dw318-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.dw318-page .dw318-lab,.dw318-page .dw318-accum{height:auto}.dw318-page .dw318-flow article>b{position:static}.dw318-page .dw318-lab>main>section,.dw318-page .dw318-lab>main>aside{height:auto}.dw318-page .dw318-region>footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.dw318-page .dw318-accum>div>article{height:auto}.dw318-page .dw318-hero .actions button:last-child{position:static}}

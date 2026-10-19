@@ -796,3 +796,5 @@ body:has(.po199-page) footer[aria-label="Site footer"] {
     margin-left: 0;
   }
 }
+
+@media(max-width:900px){.po199-page .po199-practice>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.po199-page .po199-practice>div>*{min-width:0;grid-column:auto;grid-row:auto}}

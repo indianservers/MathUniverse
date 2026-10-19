@@ -1,3 +1,4 @@
+import {SpreadsheetLessonTools} from "./SpreadsheetLessonTools";
 import { useEffect, useMemo, useState } from "react";
 import { evaluateSpreadsheetGrid, fillDownFormula, type SpreadsheetGrid } from "../../../workspace/spreadsheetKernel";
 import { createSpreadsheetWorkspaceObjects } from "../../../workspace/dataWorkspaceIntegration";
@@ -37,30 +38,29 @@ function spreadsheetGuidanceFor(title: string) {
 
 export default function SpreadsheetLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   const [grid, setGrid] = useState<SpreadsheetGrid>(() => initialGrid.map((row) => [...row]));
-  useEffect(() => setGrid(initialGrid.map((row) => [...row])), [resetToken]);
+  useEffect(() => setGrid(initialGrid.map((row) => [...row])), [resetToken, lesson.id]);
   const evaluated = useMemo(() => evaluateSpreadsheetGrid(grid), [grid]);
   const linked = useMemo(() => createSpreadsheetWorkspaceObjects(grid, { id: `lesson-sheet-${lesson.id}`, range: "A2:C5" }), [grid, lesson.id]);
-  const numericY = evaluated.values.slice(1).map((row) => Number(row[1])).filter(Number.isFinite);
-  const max = Math.max(...numericY, 1);
+  const columnCount=Math.max(3,...grid.map(row=>row.length));
   const guidance = spreadsheetGuidanceFor(lesson.title);
   const edit = (row: number, column: number, value: string) => {
     setGrid((current) => current.map((items, r) => items.map((cell, c) => r === row && c === column ? value : cell)));
     onInteraction();
   };
   const fill = () => {
-    setGrid((current) => fillDownFormula(current, "C2", "C2:C5"));
+    setGrid((current) => fillDownFormula(current, "C2", `C2:C${grid.length}`));
     onInteraction();
   };
 
   return (
-    <AdapterFrame title={`${lesson.title} - linked sheet`} value={linked.objects[1]?.value} footer="Editable cells are evaluated by the spreadsheet kernel and published to the shared data workspace object model.">
+    <div className="sheet-lesson-page" data-testid="spreadsheet-lesson" data-lesson-id={lesson.id}><AdapterFrame title={`${lesson.title} - linked sheet`} value={linked.objects[1]?.value} footer="Editable cells are evaluated by the spreadsheet kernel and published to the shared data workspace object model.">
       <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_280px]">
-        <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-white/10">
+        <div className="sheet-grid-wrap overflow-x-auto rounded-xl border border-slate-200 dark:border-white/10">
           <table className="w-full min-w-[520px] border-collapse text-sm">
             <thead>
               <tr>
                 <th className="w-12 bg-slate-100 p-2 dark:bg-white/10" />
-                {["A", "B", "C"].map((name) => <th key={name} className="bg-slate-100 p-2 font-black dark:bg-white/10">{name}</th>)}
+                {Array.from({length:columnCount},(_,index)=>String.fromCharCode(65+index)).map((name) => <th key={name} className="bg-slate-100 p-2 font-black dark:bg-white/10">{name}</th>)}
               </tr>
             </thead>
             <tbody>
@@ -68,14 +68,14 @@ export default function SpreadsheetLessonAdapter({ lesson, resetToken, onInterac
                 <tr key={rowIndex}>
                   <th className="bg-slate-100 p-2 dark:bg-white/10">{rowIndex + 1}</th>
                   {row.map((cell, columnIndex) => (
-                    <td key={columnIndex} className="border border-slate-200 p-1 dark:border-white/10">
+                    <td key={columnIndex} data-testid={`sheet-cell-${String.fromCharCode(65+columnIndex)}${rowIndex+1}`} className="border border-slate-200 p-1 dark:border-white/10">
                       <input
                         value={cell}
                         onChange={(event) => edit(rowIndex, columnIndex, event.target.value)}
                         className="min-h-10 w-full min-w-28 rounded-md bg-transparent px-2 font-mono outline-none focus:bg-cyan-50 dark:focus:bg-cyan-400/10"
                         aria-label={`Cell ${String.fromCharCode(65 + columnIndex)}${rowIndex + 1}`}
                       />
-                      {cell.startsWith("=") ? <span className="block px-2 text-[10px] font-bold text-emerald-600">= {evaluated.values[rowIndex]?.[columnIndex]}</span> : null}
+                      {cell.startsWith("=") ? <span data-testid={`sheet-computed-${String.fromCharCode(65+columnIndex)}${rowIndex+1}`} className="block px-2 text-[10px] font-bold text-emerald-600">= {evaluated.values[rowIndex]?.[columnIndex]}</span> : null}
                     </td>
                   ))}
                 </tr>
@@ -89,14 +89,6 @@ export default function SpreadsheetLessonAdapter({ lesson, resetToken, onInterac
             <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">{guidance[1]}</p>
             <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">{guidance[2]}</p>
           </div>
-          <div className="flex h-40 items-end gap-3 rounded-xl bg-slate-50 p-3 dark:bg-slate-900" aria-label="Chart linked to column B">
-            {numericY.map((value, index) => (
-              <div key={index} className="flex flex-1 flex-col items-center justify-end gap-1">
-                <span className="text-[10px] font-bold">{value}</span>
-                <div className="w-full rounded-t bg-cyan-500" style={{ height: `${Math.max(5, value / max * 105)}px` }} />
-              </div>
-            ))}
-          </div>
           <button type="button" className="action-secondary w-full justify-center" onClick={fill}>Fill formula down</button>
           <div className="rounded-xl bg-slate-100 p-3 text-xs dark:bg-white/10">
             <strong>{linked.objects.length} linked objects</strong>
@@ -104,7 +96,8 @@ export default function SpreadsheetLessonAdapter({ lesson, resetToken, onInterac
           </div>
         </div>
       </div>
+      <SpreadsheetLessonTools key={`${lesson.id}-${resetToken}`} lessonId={lesson.id} grid={grid} onGridChange={setGrid} onInteraction={onInteraction} />
       <LessonTopicStudyBoard lessonId={lesson.id} alwaysVisible onInteraction={onInteraction} />
-    </AdapterFrame>
+    </AdapterFrame></div>
   );
 }

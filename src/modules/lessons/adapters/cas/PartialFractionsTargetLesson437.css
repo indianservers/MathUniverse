@@ -663,3 +663,10 @@ body:has(.pf437-page) .lesson-adjacent-nav {
     overflow: hidden !important;
   }
 }
+
+@media(max-width:900px){.pf437-page .pf437-work .guide,.pf437-page .pf437-build,.pf437-page .pf437-challenge,.pf437-page .pf437-takeaways{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.pf437-page .pf437-work .guide>*,.pf437-page .pf437-build>*,.pf437-page .pf437-challenge>*,.pf437-page .pf437-takeaways>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.pf437-page .pf437-work{height:auto}.pf437-page .pf437-work .guide article>svg:last-child{position:static}.pf437-page .pf437-build>*{height:auto}.pf437-page .pf437-build .formula,.pf437-page .pf437-build .slots{flex-wrap:wrap;gap:8px;height:auto}.pf437-page .pf437-challenge article+article>div{max-width:100%;overflow-x:auto}.pf437-page .pf437-challenge .hint,.pf437-page .pf437-challenge em{position:static;display:block;margin-top:10px}.pf437-page .pf437-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+@media(max-width:900px){.pf437-page .pf437-build .coefficients>div{display:flex;flex-wrap:wrap;gap:8px}}

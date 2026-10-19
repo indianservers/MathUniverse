@@ -605,3 +605,7 @@ body:has(.con299-page) {
     min-width: 724px;
   }
 }
+
+@media(max-width:900px){.con299-page .con299-hero,.con299-page .con299-main .workspace,.con299-page .con299-flow,.con299-page .con299-info,.con299-page .con299-practice fieldset{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.con299-page .con299-hero>*,.con299-page .con299-main .workspace>*,.con299-page .con299-flow>*,.con299-page .con299-info>*,.con299-page .con299-practice fieldset>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.con299-page .con299-main,.con299-page .con299-practice{height:auto}.con299-page .con299-main>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.con299-page .con299-main .workspace>aside,.con299-page .con299-main .workspace>main{height:auto}.con299-page .con299-practice fieldset label{height:auto}.con299-page .con299-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

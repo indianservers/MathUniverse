@@ -570,3 +570,9 @@ body:has(.en447-page) {
     min-width: 760px;
   }
 }
+
+@media(max-width:900px){.en447-page .en447-flow,.en447-page .en447-controls,.en447-page .en447-controls .modes,.en447-page .en447-results,.en447-page .en447-worked>div,.en447-page .en447-practice>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.en447-page .en447-flow>*,.en447-page .en447-controls>*,.en447-page .en447-controls .modes>*,.en447-page .en447-results>*,.en447-page .en447-worked>div>*,.en447-page .en447-practice>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+.lesson-table-scroll-353{max-width:100%;width:100%;overflow-x:auto}
+
+@media(max-width:900px){.en447-page .en447-workspace,.en447-page .en447-worked,.en447-page .en447-practice{height:auto}.en447-page .en447-flow article:not(:last-child)::after{position:static}.en447-page .en447-controls .examples{display:flex;flex-wrap:wrap;gap:8px}.en447-page .en447-controls .precision{height:auto;display:flex;flex-wrap:wrap;gap:8px}.en447-page .en447-practice input,.en447-page .en447-controls input{max-width:100%;min-width:0}}

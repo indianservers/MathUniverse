@@ -277,9 +277,9 @@ export const batch6NumericalExamples: Readonly<Record<number, readonly Numerical
     calculation("Compute this Distance Formula case with input 2: Can you skip the Distance Formula restriction and still trust the chart? Labelled result 2 → no.", "The restriction is part of the definition.", "no.", "no"),
   ],
   10084: [
-    calculation("In Midpoint Formula, evaluate the labelled model at input 7.", "Substitute 7 into the Midpoint Formula rule.", "42.", "42"),
-    calculation("Compare the Midpoint Formula outputs at 7 and 13. What is the difference?", "Second input 13.", "6.", "6"),
-    calculation("Compute this Midpoint Formula case with input 2: Can you skip the Midpoint Formula restriction and still trust the chart? Labelled result 2 → no.", "The restriction is part of the definition.", "no.", "no"),
+    ["Find the midpoint of A(2, 4) and B(6, 8).", [String.raw`\displaystyle x_M = \frac{2 + 6}{2} = 4`, String.raw`\displaystyle y_M = \frac{4 + 8}{2} = 6`], "M(4, 6)"],
+    ["Find the midpoint of P(-3, 5) and Q(7, -1).", [String.raw`\displaystyle x_M = \frac{-3 + 7}{2} = 2`, String.raw`\displaystyle y_M = \frac{5 + (-1)}{2} = 2`], "M(2, 2)"],
+    ["The midpoint of A(1, 2) and B(x, y) is M(3, 4). Find B.", [String.raw`\displaystyle \frac{1+x}{2}=3\Rightarrow x=5`, String.raw`\displaystyle \frac{2+y}{2}=4\Rightarrow y=6`], "B(5, 6)"],
   ],
   10085: [
     calculation("In Internal Section Formula, evaluate the labelled model at input 8.", "Substitute 8 into the Internal Section Formula rule.", "56.", "56"),

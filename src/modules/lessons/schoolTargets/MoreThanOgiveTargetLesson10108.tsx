@@ -32,7 +32,7 @@ export default function MoreThanOgiveTargetLesson10108({
   const facts=moreThanModel(rows,upperBoundary);
   const {total,half,points,valid}=facts;
   const exactMedian=facts.median,median=exactMedian===null?'—':round(exactMedian);
-  const maxBoundary = points.at(-1)?.boundary ?? 50;
+  const maxBoundary = upperBoundary+(upperBoundary-rows[rows.length-1].boundary);
   const minBoundary=rows[0].boundary;
   const sx = (x: number) => 55 + ((x-minBoundary) / (maxBoundary-minBoundary)) * 560;
   const sy = (cf: number) => 275 - (cf / moreThanYMax(total)) * 220;
@@ -78,7 +78,7 @@ export default function MoreThanOgiveTargetLesson10108({
       data-total={total}
       data-half={half}
       data-median={median}
-      data-exact-median={exactMedian??"none"} data-valid={String(valid)} data-y-max={moreThanYMax(total)} data-median-range={facts.medianRange?.join(",")??"none"}
+      data-axis-max={maxBoundary} data-exact-median={exactMedian??"none"} data-valid={String(valid)} data-y-max={moreThanYMax(total)} data-median-range={facts.medianRange?.join(",")??"none"}
       data-guide={String(guide)}
       data-mode={mode}
       data-chart-tool={chartTool} data-expanded={String(expanded)} data-zoomed={String(zoomed)} data-note={note}
@@ -216,9 +216,11 @@ export default function MoreThanOgiveTargetLesson10108({
                       y2={sy(value)}
                     /></g>
                   ))}
+                {points.map(point=><line key={`xgrid-${point.id}`} x1={sx(point.boundary)} x2={sx(point.boundary)} y1="45" y2="275"/>)}<line x1={sx(maxBoundary)} x2={sx(maxBoundary)} y1="45" y2="275"/>
                 </g>
                 <line x1="55" y1="275" x2="630" y2="275" />
                 <line x1="55" y1="280" x2="55" y2="45" />
+                <text x={sx(maxBoundary)-5} y="300">{maxBoundary}</text>
                 <path d={path} />
                 {guide && valid && (
                   <g className="guide">

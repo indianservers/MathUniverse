@@ -668,3 +668,5 @@
     margin-bottom: 20px;
   }
 }
+
+@media(max-width:900px){.percent-quick{position:static;width:auto;max-width:100%;height:auto;margin-top:12px}.percent-quick>h3{width:auto}.percent-quick>div{height:auto;display:flex;flex-wrap:wrap;gap:8px}}

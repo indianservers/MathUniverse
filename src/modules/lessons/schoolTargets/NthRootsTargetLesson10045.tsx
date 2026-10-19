@@ -170,7 +170,7 @@ export default function NthRootsTargetLesson10045({
               <h3>2. POWER (aⁿ)</h3>
               <p>The result of the multiplication.</p>
               <Formula>
-                ({base})<sup>{index}</sup> = {power}
+                <output aria-label="Power result" aria-live="polite">({base})<sup>{index}</sup> = {power}</output>
               </Formula>
             </article>
             <i>→</i>
@@ -178,12 +178,12 @@ export default function NthRootsTargetLesson10045({
               <h3>3. REAL ROOT (ⁿ√a)</h3>
               <p>The principal real root b such that bⁿ = a.</p>
               <Formula>
-                <sup>{index}</sup>√{base} = {exactRoot}
+                <output aria-label="Root result" aria-live="polite"><sup>{index}</sup>√{base} = {exactRoot}</output>
               </Formula>
               <b>
                 {root === null
                   ? "Even roots of negative numbers are not real."
-                  : `Check: (${exactRoot})${index} = ${base} ✓`}
+                  : `Check: (${exactRoot})^${index} ${Number.isInteger(root) ? "=" : "≈"} ${base} ✓`}
               </b>
             </article>
           </section>
@@ -354,9 +354,9 @@ function Stepper({
     <div>
       <b>{label}</b>
       <div className="roots-stepper">
-        <button onClick={onDown}>−</button>
+        <button type="button" aria-label={`Decrease ${label.split(" ")[0].toLowerCase()}`} onClick={onDown}>−</button>
         <strong>{value}</strong>
-        <button onClick={onUp}>+</button>
+        <button type="button" aria-label={`Increase ${label.split(" ")[0].toLowerCase()}`} onClick={onUp}>+</button>
       </div>
     </div>
   );

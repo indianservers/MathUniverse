@@ -397,3 +397,7 @@ body:has(.sp10011-page) footer[aria-label="Site footer"] > div {
     height: auto;
   }
 }
+
+@media (min-width: 701px) and (max-width: 1000px) {
+  .sp10011-page .figures { overflow-x: auto; grid-template-columns: 70px 105px 145px 180px 234px; }
+}

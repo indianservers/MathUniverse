@@ -1,0 +1,7 @@
+.target-parabola-page{min-width:0}
+
+@media(max-width:900px){.target-parabola-page .target-parabola-workspace{width:auto!important;margin:12px 0!important}.target-parabola-page .target-parabola-plot{height:450px}.target-parabola-page .target-parabola-practice{height:auto}}
+
+@media(max-width:900px){.target-parabola-page .target-parabola-header,.target-parabola-page .target-parabola-workspace,.target-parabola-page .target-parabola-learning,.target-parabola-page .target-parabola-practice>div,.target-parabola-page .target-parabola-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-parabola-page .target-parabola-header>*,.target-parabola-page .target-parabola-workspace>*,.target-parabola-page .target-parabola-learning>*,.target-parabola-page .target-parabola-practice>div>*,.target-parabola-page .target-parabola-nav>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+.target-parabola-page .target-parabola-workspace{width:auto!important;max-width:100%!important;margin-left:0!important;margin-right:0!important}

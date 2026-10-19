@@ -868,3 +868,7 @@ body:has(.quad114-page) footer[aria-label="Site footer"] {
     padding: 0 10px;
   }
 }
+
+@media(max-width:900px){.quad114-page .quad114-controls,.quad114-page .quad114-flow{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.quad114-page .quad114-controls>*,.quad114-page .quad114-flow>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.quad114-controls>footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.quad114-controls>*{min-width:0;max-width:100%}}

@@ -1,0 +1,1 @@
+import {pathToFileURL} from 'node:url';import {resolve} from 'node:path';const {verify}=await import(pathToFileURL(resolve('scripts/verify-rechecked-lessons.mjs')));await verify(714);

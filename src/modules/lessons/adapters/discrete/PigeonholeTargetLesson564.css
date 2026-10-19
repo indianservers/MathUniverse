@@ -428,3 +428,7 @@ body:has(.pig564-page) footer[aria-label="Site footer"] > div {
     height: auto;
   }
 }
+
+.pig564-page .pig564-theory > article { min-width:0; overflow-x:auto; }
+
+.pig564-page .pig564-table-scroll { min-width:0; max-width:100%; overflow-x:auto; }

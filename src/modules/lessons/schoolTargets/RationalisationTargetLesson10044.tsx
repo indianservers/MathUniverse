@@ -30,7 +30,7 @@ export default function RationalisationTargetLesson10044({
     [challenge, setChallenge] = useState("3(√5 − 2)"),
     [challengeChecked, setChallengeChecked] = useState(true),
     [actions, setActions] = useState(0);
-  const validFactor = numerator === denominator && numerator === conjugate;
+  const validFactor = numerator === denominator && numerator === conjugate && conjugate === "√3 − 1";
   const challengeNormalised = challenge
     .replaceAll(" ", "")
     .replaceAll("-", "−");

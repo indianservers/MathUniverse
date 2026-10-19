@@ -1,3 +1,4 @@
+import "./SemicircleTargetLesson222.css";
 import {
   ArrowLeft,
   ArrowRight,

@@ -494,3 +494,5 @@ body:has(.mat348-page) footer[aria-label="Site footer"] > div {
     font-size: 6px !important;
   }
 }
+
+@media(max-width:799px){.mat348-page :is(.mat348-overview,.mat348-compute,.mat348-analysis,.mat348-notes,.mat348-check){grid-template-columns:minmax(0,1fr);height:auto}.mat348-page :is(.mat348-builder,.mat348-lab){height:auto}.mat348-page .mat348-tabs{overflow-x:auto}.mat348-page :is(article,aside){min-width:0;overflow-wrap:anywhere}}

@@ -530,3 +530,7 @@ body:has(.cf184-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:900px){.cf184-page .cf184-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.cf184-page .cf184-nav>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.cf184-nav>section,.cf184-nav>div{height:auto;max-width:100%;display:flex;flex-wrap:wrap;gap:8px}}

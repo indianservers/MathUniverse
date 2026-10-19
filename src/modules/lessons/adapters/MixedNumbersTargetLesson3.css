@@ -646,3 +646,5 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media(max-width:900px){[data-testid="calculator-mockup-0003"] .target-mixed-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}[data-testid="calculator-mockup-0003"] .target-mixed-practice>*{min-width:0;grid-column:auto;grid-row:auto}}

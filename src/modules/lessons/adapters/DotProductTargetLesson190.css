@@ -534,3 +534,5 @@ body:has(.dp190-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:900px){.dp190-work>header,.dp190-work>header>nav{height:auto;display:flex;flex-wrap:wrap;gap:8px}}

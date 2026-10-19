@@ -736,3 +736,7 @@ body:has(.vs317-page) {
     min-width: 779px;
   }
 }
+
+@media(max-width:900px){.vs317-page .vs317-lab>main,.vs317-page .vs317-flow,.vs317-page .vs317-cards,.vs317-page .vs317-practice,.vs317-page .vs317-practice>div>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.vs317-page .vs317-lab>main>*,.vs317-page .vs317-flow>*,.vs317-page .vs317-cards>*,.vs317-page .vs317-practice>*,.vs317-page .vs317-practice>div>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.vs317-page .vs317-lab{height:auto}.vs317-page .vs317-flow article>b{position:static}.vs317-page .vs317-lab>main>*{height:auto}.vs317-page .vs317-practice>div{height:auto}.vs317-page .vs317-footer{height:auto;padding:12px}.vs317-page .vs317-footer nav,.vs317-page .vs317-footer small,.vs317-page .vs317-footer>span{position:static;display:flex;flex-wrap:wrap;gap:8px}}

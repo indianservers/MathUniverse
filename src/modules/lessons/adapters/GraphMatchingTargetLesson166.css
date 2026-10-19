@@ -16,3 +16,7 @@
 .lesson-page-shell:has(.gm166-page) .lesson-adjacent-nav{display:none}body:has(.gm166-page) footer[aria-label="Site footer"]{display:none}
 @media(min-width:901px){body:has(.gm166-page) [data-testid="desktop-sidebar"]{width:240px;flex-basis:240px}}
 @media(max-width:900px){.gm166-page{width:100%;min-height:0;margin:0;padding:8px}.gm166-header,.gm166-lab{height:auto}.gm166-header>aside{display:none}.gm166-work,.gm166-actions{width:100%;height:auto;grid-template-columns:1fr}.gm166-worked{height:auto;grid-template-columns:1fr}.gm166-hints{height:auto}.gm166-nav{height:auto;grid-template-columns:1fr}}
+
+@media(max-width:900px){.gm166-page .gm166-rule{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.gm166-page .gm166-rule>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+.gm166-page .gm166-actions{width:auto!important;max-width:100%!important}@media(max-width:900px){.gm166-lab>div{display:flex;flex-wrap:wrap;gap:8px;height:auto}}

@@ -270,8 +270,8 @@ export default function SimplifyTargetLesson429({
         <article>
           <h2>WORKED EXAMPLE</h2>
           <p>Simplify completely.</p>
-          <strong>3x^2-12x / (x^2-4)</strong>
-          <p>= 3x(x-4) / ((x-2)(x+2))</p>
+          <strong>3x^2-6x / (x^2-4)</strong>
+          <p>= 3x(x-2) / ((x-2)(x+2))</p>
           <p>= 3x / (x+2)</p>
           <p>Domain: x != +/-2</p>
           <CheckCircle2 />
@@ -364,7 +364,7 @@ export default function SimplifyTargetLesson429({
   );
 }
 
-function simplifyRational(expression: string): RationalModel {
+export function simplifyRational(expression: string): RationalModel {
   const cleaned = expression.replaceAll(" ", "");
   const slash = cleaned.indexOf("/");
   if (slash < 0)
@@ -410,26 +410,28 @@ function simplifyRational(expression: string): RationalModel {
   };
 }
 function parseProduct(value: string) {
-  let source = value.replace(/^\((.*)\)$/, "$1"),
-    coefficient = 1,
-    valid = true;
+  let source = value, coefficient = 1;
+  while (source.startsWith("(") && !/^\(x[+-]\d+\)$/.test(source)) {
+    let depth = 0, end = -1;
+    for (let i = 0; i < source.length; i++) {
+      if (source[i] === "(") depth++;
+      if (source[i] === ")" && --depth === 0) { end = i; break; }
+    }
+    if (end !== source.length - 1) break;
+    source = source.slice(1, -1);
+  }
   const factors: Factor[] = [];
   const number = source.match(/^-?\d+(?:\.\d+)?/);
-  if (number) {
-    coefficient = Number(number[0]);
-    source = source.slice(number[0].length).replace(/^\*/, "");
+  if (number) { coefficient = Number(number[0]); source = source.slice(number[0].length); }
+  while (source.length) {
+    if (source.startsWith("*")) source = source.slice(1);
+    const match = source.match(/^\(x([+-]\d+)\)|^x/);
+    if (!match) return {coefficient, factors, valid:false};
+    const root = match[0] === "x" ? 0 : -Number(match[1]);
+    factors.push({root, label:root === 0 ? "x" : root < 0 ? `(x+${-root})` : `(x-${root})`});
+    source = source.slice(match[0].length);
   }
-  const regex = /\*?\(x([+-]\d+)\)|\*?x/g;
-  let match;
-  while ((match = regex.exec(source))) {
-    const root = match[0].replace("*", "") === "x" ? 0 : -Number(match[1]);
-    factors.push({
-      root,
-      label: root === 0 ? "x" : root < 0 ? `(x+${-root})` : `(x-${root})`,
-    });
-  }
-  if (!factors.length) valid = false;
-  return { coefficient, factors, valid };
+  return {coefficient, factors, valid: Boolean(number || factors.length)};
 }
 function factorText(coefficient: number, factors: Factor[]) {
   return `${coefficient === 1 ? "" : coefficient}${factors.map((f) => f.label).join("") || "1"}`;

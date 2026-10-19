@@ -906,3 +906,7 @@ body:has(.log119-page) footer[aria-label="Site footer"] {
   border-radius: 6px;
   background: #fff;
 }
+
+@media(max-width:900px){.log119-step .gate{height:auto;display:flex;flex-wrap:wrap;gap:8px}.log119-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.log119-footer>span{width:auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}.log119-footer>nav{position:static;flex-wrap:wrap}}
+
+@media(max-width:900px){.log119-page .log119-step.domain .gate{display:flex;height:auto;flex-wrap:wrap;gap:8px;padding:8px}.log119-page .log119-step.domain .gate>span{height:auto;max-width:100%;padding:8px;display:flex;flex-wrap:wrap;gap:8px}.log119-page .log119-step.domain .gate>strong{max-width:100%;flex-wrap:wrap}}

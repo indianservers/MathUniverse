@@ -527,3 +527,5 @@ body:has(.pm181-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:900px){.pm181-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.pm181-footer:after{position:static}}

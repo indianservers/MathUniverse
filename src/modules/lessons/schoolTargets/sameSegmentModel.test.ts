@@ -1,0 +1,7 @@
+import{describe,it,expect}from'vitest';
+import{sameSegmentModel as model,safeSegmentPosition as safe,segmentAngleLabel}from'./sameSegmentModel';
+describe('same-segment angles',()=>{
+ it('independently derives52/128 relationships and a real58degree example',()=>{expect(model(125,55).angleC).toBeCloseTo(52,10);expect(model(125,55).relation).toBe('equal');expect(model(125,270).angleD).toBeCloseTo(128,10);expect(model(125,270).sum).toBeCloseTo(180,10);expect(model(250,270).relation).toBe('equal');expect(model(250,270).angleC).toBeCloseTo(128,10);expect(model(125,55,212,328).angleC).toBeCloseTo(58,10);});
+ it('checks32400 independent point pairs with chord-side and inscribed arc identities',()=>{for(let c=0;c<360;c+=2)for(let d=0;d<360;d+=2){const m=model(safe(c,125),safe(d,55));expect(m.valid).toBe(true);if(m.sameSegment)expect(m.difference).toBeCloseTo(0,8);else expect(m.sum).toBeCloseTo(180,8);expect(m.angleC).toBeGreaterThan(0);expect(m.angleC).toBeLessThan(180);expect(m.interceptedC).toBeCloseTo(m.angleC!*2,10);}});
+ it('guards both chord endpoints and positions labels on the angle bisector',()=>{for(const endpoint of[218,322]){expect(model(endpoint,55).valid).toBe(false);expect(Math.abs(safe(endpoint,endpoint-10)-endpoint)).toBe(2);const m=model(safe(endpoint,endpoint-10),55),p=m.c,a=m.a,b=m.b,label=segmentAngleLabel(p,a,b,.1);expect(Math.hypot(label.x-p.x,label.y-p.y)).toBeCloseTo(.1,10);}expect(safe(NaN,125)).toBe(125);});
+});

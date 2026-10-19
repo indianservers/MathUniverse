@@ -1,0 +1,7 @@
+export type DistancePoint={x:number;y:number};
+export type DistancePair={a:DistancePoint;b:DistancePoint};
+function decimal(v:number){if(!Number.isFinite(v))throw new Error('Finite coordinates required');const[m,e='0']=String(v).split('e'),scale=(m.split('.')[1]?.length??0)-Number(e),n=BigInt(m.replace('.',''));return scale<0?{n:n*10n**BigInt(-scale),scale:0}:{n,scale};}
+function difference(a:number,b:number){const x=decimal(a),y=decimal(b),scale=Math.max(x.scale,y.scale);return{n:y.n*10n**BigInt(scale-y.scale)-x.n*10n**BigInt(scale-x.scale),scale};}
+export function distanceModel(p:DistancePair){const x=difference(p.a.x,p.b.x),y=difference(p.a.y,p.b.y),scale=Math.max(x.scale,y.scale),xn=x.n*10n**BigInt(scale-x.scale),yn=y.n*10n**BigInt(scale-y.scale),sq=xn*xn+yn*yn,signedX=Number(`${x.n}e-${x.scale}`),signedY=Number(`${y.n}e-${y.scale}`),dx=Math.abs(signedX),dy=Math.abs(signedY),square=Number(`${sq}e-${2*scale}`);return {dx,dy,signedX,signedY,square,distance:Math.hypot(dx,dy),ten:sq===100n*10n**BigInt(2*scale),coincident:x.n===0n&&y.n===0n};}
+export function distanceSnap(p:DistancePoint,step:number){return{x:Math.round(Math.round(p.x/step)*step*1e6)/1e6,y:Math.round(Math.round(p.y/step)*step*1e6)/1e6};}
+export function distanceRightAngle(p:DistancePair,scale:number){const dx=p.a.x-p.b.x,dy=p.b.y-p.a.y;if(dx===0||dy===0)return null;const size=Math.min(14,Math.abs(dx)*scale/4,Math.abs(dy)*scale/4),ux=Math.sign(dx),uy=-Math.sign(dy);return{size,ux,uy};}

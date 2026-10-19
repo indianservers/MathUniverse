@@ -683,3 +683,5 @@ body:has(.vd568-page) footer[aria-label="Site footer"] {
     margin-bottom: 12px;
   }
 }
+
+@media(max-width:1000px){.vd568-page .vd568-example-body{grid-template-columns:minmax(0,1fr);height:auto;overflow-x:auto}}

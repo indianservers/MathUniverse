@@ -582,3 +582,7 @@ body:has(.cf377-page) button[aria-label="Open navigation"] {
     display: none !important;
   }
 }
+
+@media(max-width:799px){.cf377-page .cf377-main{grid-template-columns:minmax(0,1fr);height:auto}.cf377-page .cf377-lab{height:auto}.cf377-page .cf377-plane{width:100%;min-width:0}.cf377-page .cf377-controls{width:100%;min-width:0}}
+
+@media(max-width:799px){.cf377-page :is(.cf377-learning,.cf377-insights,.cf377-next,.cf377-nav){height:auto;grid-template-columns:minmax(0,1fr)}.cf377-page .cf377-learning article,.cf377-page .cf377-insights article{min-width:0;overflow-wrap:anywhere}.cf377-page .cf377-insights article{padding-block:12px}}

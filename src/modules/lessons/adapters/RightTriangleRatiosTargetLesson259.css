@@ -60,3 +60,13 @@
   body:has(.target-right-triangle-page) footer[aria-label="Site footer"] > div { height:88px; }
 }
 @media (max-width:759px) { .target-right-triangle-page,.target-right-triangle-header,.target-right-triangle-steps,.target-right-triangle-workspace,.target-right-triangle-workspace > div,.target-right-rules,.target-right-examples,.target-right-practice,.target-right-triangle-nav { height:auto; }.target-right-triangle-steps,.target-right-triangle-workspace > div,.target-right-rules,.target-right-examples,.target-right-practice,.target-right-triangle-nav { grid-template-columns:1fr; }.target-right-triangle-header > footer,.target-right-workspace-button { position:static; margin-top:10px; }.target-right-practice > article { padding:12px; } }
+
+@media(max-width:900px){.target-right-triangle-workspace,.target-right-triangle-steps,.target-right-rules,.target-right-examples,.target-right-practice,.target-right-triangle-nav{margin-left:0;width:auto;max-width:100%}.target-right-practice>article{padding:12px}.target-right-practice article>div{grid-template-columns:1fr}.target-right-practice article>button,.target-right-practice article>p[role=status],.target-right-drag-note{position:static;width:auto;height:auto;margin-top:8px}}
+
+@media(max-width:900px){.target-right-triangle-page .target-right-triangle-workspace>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-right-triangle-page .target-right-triangle-workspace>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.target-right-ratios>article{height:auto;min-height:62px}.target-right-ratios>article>span{min-width:0;display:flex;flex-wrap:wrap;gap:6px}.target-right-practice label{grid-template-columns:minmax(100px,1fr) 65px 45px}}
+
+.target-right-triangle-workspace{width:auto;max-width:calc(100% - 14px)}.target-right-ratios>article{height:auto;min-height:62px}.target-right-ratios>article>span{min-width:0;display:flex;flex-wrap:wrap;gap:6px}@media(max-width:900px){.target-right-triangle-workspace{max-width:100%}}
+
+.target-right-triangle-workspace{margin-left:0!important;width:auto!important;max-width:100%!important}

@@ -510,3 +510,5 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media(max-width:900px){.target-envelope-work>header,.target-envelope-work>header>aside{height:auto;display:flex;flex-wrap:wrap;gap:8px}}

@@ -690,3 +690,5 @@ body:has(.seq343-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:799px){.seq343-page :is(.seq343-main,.seq343-analysis,.seq343-notes,.seq343-check,.seq343-learning){grid-template-columns:minmax(0,1fr);height:auto}.seq343-page .seq343-lab{height:auto}.seq343-page .seq343-graph > header,.seq343-page footer{display:flex;flex-wrap:wrap;height:auto;gap:8px}.seq343-page .seq343-tabs{overflow-x:auto}.seq343-page :is(article,aside){min-width:0;overflow-wrap:anywhere}}

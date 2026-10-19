@@ -1,3 +1,4 @@
+import "./CircleThreePointsTargetLesson220.css";
 import {
   ArrowLeft,
   ArrowRight,

@@ -771,3 +771,11 @@ body:has(.ed283-page) {
     min-width: 700px;
   }
 }
+
+@media(max-width:900px){.ed283-page .ed283-work,.ed283-page .ed283-work>aside,.ed283-page .ed283-model .results,.ed283-page .ed283-how,.ed283-page .ed283-learning{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.ed283-page .ed283-work>*,.ed283-page .ed283-work>aside>*,.ed283-page .ed283-model .results>*,.ed283-page .ed283-how>*,.ed283-page .ed283-learning>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.ed283-page .ed283-model{height:auto}.ed283-page .ed283-work>main{height:auto}.ed283-page .ed283-model>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.ed283-page .ed283-model input{max-width:100%;min-width:0}.ed283-page .ed283-how article{padding-block:12px}.ed283-page .ed283-how article>svg:last-child{position:static}.ed283-page .ed283-learning .mistake>svg{position:static;width:100%;height:auto}.ed283-page .ed283-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+@media(max-width:900px){.ed283-page .ed283-nav{width:100%;max-width:100%;margin-inline:0;grid-template-columns:minmax(0,1fr);height:auto}.ed283-page .ed283-nav a{min-width:0;padding:12px;overflow-wrap:anywhere}}
+
+.ed283-page nav.ed283-nav{width:100%;max-width:100%;margin-inline:0;grid-template-columns:repeat(2,minmax(0,1fr));height:auto}.ed283-page .ed283-nav a{min-width:0;padding:12px;overflow-wrap:anywhere}@media(max-width:900px){.ed283-page nav.ed283-nav{grid-template-columns:minmax(0,1fr)}}

@@ -889,3 +889,5 @@ body:has(.exp118-page) footer[aria-label="Site footer"] {
     grid-row: auto;
   }
 }
+
+@media(max-width:900px){.exp118-lab>header,.exp118-lab>header>nav,.exp118-controls{height:auto;display:flex;flex-wrap:wrap;gap:8px}}

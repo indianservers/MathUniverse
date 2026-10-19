@@ -537,3 +537,5 @@ body:has(.muv189-page) footer[aria-label="Site footer"] {
     grid-template-columns: 1fr;
   }
 }
+
+@media(max-width:900px){.muv189-lower>article>section{display:flex;flex-wrap:wrap;gap:10px;height:auto}.muv189-lower>article>section>*{min-width:0;max-width:100%}}

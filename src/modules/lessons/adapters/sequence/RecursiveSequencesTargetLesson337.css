@@ -554,3 +554,7 @@ body:has(.seq337-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:799px){.seq337-page :is(.seq337-config,.seq337-lab,.seq337-notes,.seq337-check,.seq337-worked,.seq337-analysis){grid-template-columns:minmax(0,1fr);height:auto}.seq337-page .settings > div{display:flex;flex-wrap:wrap;height:auto;gap:8px}.seq337-page .chain{display:flex;flex-wrap:wrap;height:auto}.seq337-page .seq337-tabs{overflow-x:auto}.seq337-page :is(article,aside){min-width:0;overflow-wrap:anywhere}}
+
+@media(max-width:799px){.seq337-page :is(.seq337-three,.seq337-data,.seq337-quick){grid-template-columns:minmax(0,1fr);height:auto}}

@@ -1,9 +1,10 @@
 import { ArrowLeft, ArrowRight, Check, RotateCcw, X } from "lucide-react";
-import { useState } from "react";
+import { useId, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ParallelConverseTargetLesson10063.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import {pcInitial10063,pcModel10063,pcClamp10063,pcLine10063,pcAdd10063,type PCState10063,type PCPoint10063} from './parallelConverseModel10063';
+import {paSector10074} from './parallelogramAnglesModel10074';
 
 const tests = [
   {
@@ -31,15 +32,16 @@ export default function ParallelConverseTargetLesson10063({
   lesson: SchoolSyllabusLesson;
 }) {
   const [test, setTest] = useState(0),
-    [angle, setAngle] = useState(58),
-    [offset, setOffset] = useState(0),
-    [lineSkew, setLineSkew] = useState(0),
+    [geometry,setGeometry]=useState(pcInitial10063),
+    [tool,setTool]=useState(0),[zoom,setZoom]=useState(1),[bad,setBad]=useState(false),[version,setVersion]=useState(0),
     [tab, setTab] = useState(0),
-    [challenge, setChallenge] = useState([...answers]),
+    [challenge, setChallenge] = useState(["alternate","same-side","corresponding"]),
     [graded, setGraded] = useState(true),
     [actions, setActions] = useState(0);
-  const paired = test === 2 ? 180 - angle : angle,
-    condition = lineSkew === 0;
+  const model=pcModel10063(geometry),[angle,paired]=model.pairs[test],condition=model.condition&&!bad;
+  const setG=(g:PCState10063,preserveDraft=false)=>{setGeometry(pcClamp10063(g));if(!preserveDraft){setVersion(v=>v+1);setBad(false);}};
+  const targets=['pc10063-interact','pc10063-learn','pc10063-example','pc10063-formula','pc10063-practice'];
+  const display=(n:number)=>Number(n.toFixed(2));
   const act = (fn: () => void) => {
     fn();
     setActions((n) => n + 1);
@@ -47,9 +49,7 @@ export default function ParallelConverseTargetLesson10063({
   const reset = () =>
     act(() => {
       setTest(0);
-      setAngle(58);
-      setOffset(0);
-      setLineSkew(0);
+      setGeometry(pcInitial10063);setTool(0);setZoom(1);setBad(false);setVersion(v=>v+1);
     });
   const score = challenge.filter((value, i) => value === answers[i]).length;
   return (
@@ -58,15 +58,21 @@ export default function ParallelConverseTargetLesson10063({
       data-testid="school-mockup-0737"
       data-object-model="dedicated-parallel-converse-evidence-inference-engine"
       data-test={test}
-      data-angle={angle}
-      data-paired={paired}
-      data-offset={offset}
-      data-line-skew={lineSkew}
+      data-angle={display(angle)}
+      data-geometry={JSON.stringify(geometry)}
+      data-pairs={JSON.stringify(model.pairs)}
+      data-intersections={JSON.stringify([model.upper,model.lower])}
+      data-tool={tool}
+      data-zoom={zoom}
+      data-invalid-draft={bad}
+      data-paired={display(paired)}
+      data-offset={geometry.offset}
+      data-line-skew={geometry.m-geometry.l}
       data-condition={String(condition)}
       data-challenge-score={graded ? score : "idle"}
       data-actions={actions}
     >
-      <header className="pc10063-hero">
+      <div role="banner" className="pc10063-hero">
         <small>CLASS 9 · EUCLIDEAN GEOMETRY</small>
         <h1>Parallel Line Converse Theorems</h1>
         <p>Use angle conditions to prove two lines are parallel.</p>
@@ -79,23 +85,23 @@ export default function ParallelConverseTargetLesson10063({
         <Link to="/lessons/school">
           <ArrowLeft /> School Lessons
         </Link>
-      </header>
-      <nav className="pc10063-tabs">
+      </div>
+      <div role="group" aria-label="Lesson sections" className="pc10063-tabs">
         {["☼ Interact", "▣ Learn", "◇ Example", "⌁ Formula", "⌕ Practice"].map(
           (x, i) => (
             <button
               key={x}
               className={tab === i ? "active" : ""}
-              aria-selected={tab === i}
-              onClick={() => act(() => setTab(i))}
+              aria-pressed={tab === i}
+              onClick={() => act(() => {setTab(i);document.getElementById(targets[i])?.scrollIntoView({behavior:"smooth",block:"start"});})}
             >
               {x}
             </button>
           ),
         )}
-      </nav>
+      </div>
       <main>
-        <section className="pc10063-lab">
+        <section id="pc10063-interact" className="pc10063-lab">
           <header>
             <h2>PROOF-TESTING LAB</h2>
             <p>
@@ -113,10 +119,12 @@ export default function ParallelConverseTargetLesson10063({
                 {tests.map((item, i) => (
                   <button
                     key={item.title}
+                    aria-label={item.title}
+                    aria-pressed={test===i}
                     className={`${item.color} ${test === i ? "active" : ""}`}
                     onClick={() => act(() => setTest(i))}
                   >
-                    <i>⌁</i>
+                    <MiniConverse mode={i} />
                     <span>
                       <b>{item.title}</b>
                       <small>{item.detail}</small>
@@ -132,12 +140,12 @@ export default function ParallelConverseTargetLesson10063({
                   <input
                     aria-label="Given angle"
                     type="range"
-                    min="10"
-                    max="170"
+                    min={35-geometry.l}
+                    max={145-geometry.l}
                     value={angle}
-                    onChange={(e) => act(() => setAngle(+e.target.value))}
+                    onChange={(e) => act(() => {setG({...geometry,angle:+e.target.value+geometry.l});})}
                   />
-                  <b>{angle}°</b>
+                  <GivenAngle key={version} value={angle} min={35-geometry.l} max={145-geometry.l} invalid={setBad} commit={a=>act(()=>setG({...geometry,angle:a+geometry.l},true))}/>
                 </label>
               </section>
               <section>
@@ -150,11 +158,9 @@ export default function ParallelConverseTargetLesson10063({
                       {i === 2 ? "supplementary" : "equal"}
                     </span>
                     <b>
-                      {test === i
-                        ? `${angle}° ${i === 2 ? "+" : "="} ${paired}°`
-                        : "—"}
+                      {`${display(model.pairs[i][0])}° ${i===2?'+':(model.condition?'=':display(model.pairs[i][0])===display(model.pairs[i][1])?'≈':'≠')} ${display(model.pairs[i][1])}°${i===2?` ${model.condition?'=':'≈'} ${display(model.pairs[i][0]+model.pairs[i][1])}°`:''}`}
                     </b>
-                    <i>{test === i && condition ? "✓" : ""}</i>
+                    <i>{model.condition && !bad ? "✓" : ""}</i>
                   </div>
                 ))}
               </section>
@@ -165,49 +171,26 @@ export default function ParallelConverseTargetLesson10063({
                     RESULT:{" "}
                     {condition
                       ? "Condition satisfied."
-                      : "Condition not satisfied."}
+                      : bad?"Enter a valid given angle.":"Condition not satisfied."}
                   </b>
-                  Therefore, ℓ {condition ? "∥" : "∦"} m
+                  {bad?"The draft is not a measured angle.":condition?"Therefore, ℓ ∥ m.":"ℓ and m have different directions; no converse condition holds."}
                 </span>
               </footer>
             </aside>
             <article>
-              <ConverseDiagram
-                angle={angle}
-                paired={paired}
-                offset={offset}
-                skew={lineSkew}
-                test={test}
-              />
-              <nav>
-                <button onClick={() => act(() => setOffset(offset + 8))}>
-                  ☝ Move t
-                </button>
-                <button
-                  onClick={() => act(() => setAngle(Math.min(170, angle + 1)))}
-                >
-                  ⟳ Rotate t
-                </button>
-                <button
-                  onClick={() =>
-                    act(() => setLineSkew(lineSkew === 0 ? 12 : 0))
-                  }
-                >
-                  ↔ Drag ℓ
-                </button>
-                <button
-                  onClick={() =>
-                    act(() => setLineSkew(lineSkew === 0 ? -12 : 0))
-                  }
-                >
-                  ↕ Drag m
-                </button>
-                <button onClick={() => act(() => setOffset(0))}>⌕ Zoom</button>
-              </nav>
+              <ConverseDiagram geometry={geometry} test={test} tool={tool} zoom={zoom} change={g=>act(()=>setG(g))} restore={setGeometry}/>
+              <div role="group" aria-label="Diagram tools" className="pc10063-tools">
+                {['Move t','Rotate t','Drag ℓ','Drag m','Zoom'].map((label,i)=><button key={label} aria-label={label} aria-pressed={tool===i} onClick={()=>act(()=>setTool(i))}>{['☝','⟳','↔','↕','⌕'][i]} {label}</button>)}
+              </div>
+              <div className="pc10063-tool-control">
+                <label>{['Transversal position','Transversal direction','Line ℓ tilt','Line m tilt','Diagram zoom'][tool]} <input aria-label={['Transversal position','Transversal direction','Line ℓ tilt','Line m tilt','Diagram zoom'][tool]} type="range" min={[-40,35,-8,-8,.8][tool]} max={[40,145,8,8,1.15][tool]} step={tool===4?.05:1} value={[geometry.offset,geometry.angle,geometry.l,geometry.m,zoom][tool]} onChange={e=>act(()=>{const v=+e.target.value;if(tool===4)setZoom(v);else setG({...geometry,[['offset','angle','l','m'][tool]]:v});})}/><b>{tool===4?`${Math.round(zoom*100)}%`:[geometry.offset,geometry.angle,geometry.l,geometry.m][tool]+(tool===0?'':'°')}</b></label>
+                <button onClick={()=>act(()=>setG({...geometry,m:geometry.l}))}>Make lines parallel</button>
+              </div>
+              <p className="pc10063-help">Drag the selected handle, or use its arrow keys (Shift for larger steps). Moving or rotating t preserves the line directions. Drag ℓ or m to test non-parallel lines.</p>
             </article>
           </div>
         </section>
-        <section className="pc10063-rule">
+        <section id="pc10063-formula" className="pc10063-rule">
           <i>☼</i>
           <div>
             <h2>THE RULE (THEOREM)</h2>
@@ -227,7 +210,7 @@ export default function ParallelConverseTargetLesson10063({
             to prove parallelism.
           </strong>
         </section>
-        <section className="pc10063-theory">
+        <section id="pc10063-learn" className="pc10063-theory">
           <article>
             <h2>WHY IT WORKS</h2>
             <p>
@@ -236,13 +219,11 @@ export default function ParallelConverseTargetLesson10063({
               relationships, the only way this can happen is when the lines are
               parallel.
             </p>
-            <MiniConverse mode={0} />
-            <MiniConverse mode={1} />
-            <MiniConverse mode={2} />
+            {tests.map((item,i)=><div className="pc10063-proof-row" key={item.title}><MiniConverse mode={i}/><b>{item.title}: {i===2?"supplementary":"equal"} ⇒ ℓ ∥ m</b></div>)}<p>Equal alternate interior angles give equal corresponding angles by vertical angles. Supplementary same-side interior angles give equal corresponding angles by a linear pair.</p>
           </article>
           <article>
-            <h2>WORKED EXAMPLE</h2>
-            <p>Given: ∠1 and ∠5 are corresponding angles with m∠1 = 58°.</p>
+            <h2 id="pc10063-example">WORKED EXAMPLE</h2>
+            <p>Given: ∠1 and ∠5 are corresponding angles and both measure 58°.</p>
             <MiniConverse mode={0} large />
             <b>Solution:</b>
             <ol>
@@ -256,18 +237,17 @@ export default function ParallelConverseTargetLesson10063({
           <article className="warning">
             <h2>COMMON MISCONCEPTION</h2>
             <p>
-              Measuring an unrelated pair of equal angles does not prove the
+              Measuring equal vertically opposite angles at just one intersection does not prove the
               lines are parallel.
             </p>
             <b>Not a valid converse condition.</b>
             <MiniConverse mode={3} large />
             <footer>
-              <X /> These angles are not corresponding, alternate interior, or
-              same-side interior. Equal measure here does not guarantee ℓ ∥ m.
+              <X /> These 58° angles are vertically opposite at the same intersection. They are equal for any second-line direction, so this does not prove ℓ ∥ m.
             </footer>
           </article>
         </section>
-        <section className="pc10063-challenge">
+        <section id="pc10063-practice" className="pc10063-challenge">
           <header>
             <h2>CHALLENGE: Choose the correct converse theorem</h2>
             <p>
@@ -286,7 +266,7 @@ export default function ParallelConverseTargetLesson10063({
             ].map((values, i) => (
               <article key={i}>
                 <i>{i + 1}</i>
-                <MiniConverse mode={i} large />
+                <MiniConverse mode={i===0?1:i===1?2:3} large angle={i===0?72:i===1?110:45} color={i===2?4:i} />
                 <select
                   aria-label={`Challenge theorem ${i + 1}`}
                   value={challenge[i]}
@@ -308,24 +288,20 @@ export default function ParallelConverseTargetLesson10063({
                 </select>
                 <footer
                   className={
-                    graded && challenge[i] === answers[i]
-                      ? "correct"
-                      : "incorrect"
+                    !graded?"ungraded":challenge[i] === answers[i]?"correct":"incorrect"
                   }
                 >
-                  {graded && challenge[i] === answers[i] ? <Check /> : <X />}
+                  {graded ? challenge[i] === answers[i] ? <Check /> : <X /> : null}
                   <span>
                     <b>
-                      {graded && challenge[i] === answers[i]
-                        ? "Correct!"
-                        : "Check this claim."}
+                      {!graded?"Check your answers.":challenge[i]===answers[i]?"Correct!":"Try again."}
                     </b>
                     {values[0]} and {values[1]}{" "}
                     {i === 1
                       ? "sum to 180°."
                       : i === 0
                         ? "are equal alternate angles."
-                        : "do not form a valid pair."}
+                        : "are vertical angles at one intersection; they give no relation to the second line."}
                   </span>
                 </footer>
               </article>
@@ -333,118 +309,25 @@ export default function ParallelConverseTargetLesson10063({
           </div>
         </section>
       </main>
-      <nav className="pc10063-adjacent">
+      <nav className="pc10063-nav">
         <Link to="/lessons/school/class-9/class-9-euclidean-geometry-interior-angles-on-the-same-side">
-          <ArrowLeft /> Previous: Interior Angles on the Same Side
+          <ArrowLeft /> Interior Angles on the Same Side
         </Link>
-        <Link to="/lessons/school">
-          Next: Triangle Angle Sum Theorem <ArrowRight />
+        <Link to="/lessons/school/class-9/class-9-euclidean-geometry-triangle-angle-sum-theorem">
+          Triangle Angle Sum Theorem <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10063} view={tab} />
+      <footer className="pc10063-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><div><Link to="/sitemap">Sitemap</Link><Link to="/docs">Docs</Link><Link to="/about">About</Link></div><small>©2026 INDIAN SERVERS PRIVATE LIMITED. RIGHT NOT TO REPRODUCE IT.</small></footer>
 
     </section>
   );
 }
-function ConverseDiagram({
-  angle,
-  paired,
-  offset,
-  skew,
-  test,
-}: {
-  angle: number;
-  paired: number;
-  offset: number;
-  skew: number;
-  test: number;
-}) {
-  return (
-    <svg
-      className="pc10063-diagram"
-      viewBox="0 0 600 570"
-      aria-label="Interactive parallel converse diagram"
-    >
-      <defs>
-        <pattern
-          id="pc-grid"
-          width="25"
-          height="25"
-          patternUnits="userSpaceOnUse"
-        >
-          <path d="M25 0H0V25" />
-        </pattern>
-      </defs>
-      <rect width="600" height="570" fill="url(#pc-grid)" />
-      <line className="base" x1="35" y1="165" x2="560" y2={165 + skew} />
-      <line className="base" x1="35" y1="420" x2="560" y2="420" />
-      <line
-        className="trans"
-        x1={190 + offset}
-        y1="45"
-        x2={400 + offset}
-        y2="530"
-      />
-      <path
-        className={`mark m${test}`}
-        d={`M${260 + offset} 165 h42 a42 42 0 0 1 -25 38Z`}
-      />
-      <path
-        className={`mark m${test}`}
-        d={`M${370 + offset} 420 h42 a42 42 0 0 0 -24 -38Z`}
-      />
-      <text x={305 + offset} y="210">
-        {angle}°
-      </text>
-      <text x={405 + offset} y="395">
-        {paired}°
-      </text>
-      <text className="name" x="565" y="152">
-        ℓ
-      </text>
-      <text className="name" x="565" y="407">
-        m
-      </text>
-      <text className="name" x={190 + offset} y="35">
-        t
-      </text>
-    </svg>
-  );
+function GivenAngle({value,min,max,commit,invalid}:{value:number;min:number;max:number;commit:(n:number)=>void;invalid:(b:boolean)=>void}){const[editing,setEditing]=useState(false),[raw,setRaw]=useState('');const good=raw.trim()!==''&&Number.isFinite(+raw)&&+raw>=min&&+raw<=max;return <span className="pc10063-number"><input aria-label="Given angle value" type="number" min={min} max={max} step="any" value={editing?raw:Number(value.toFixed(8))} aria-invalid={editing&&!good} onFocus={()=>{if(!editing){setEditing(true);setRaw(String(Number(value.toFixed(8))));}}} onChange={e=>{setRaw(e.target.value);setEditing(true);const n=Number(e.target.value),ok=e.target.value.trim()!==''&&Number.isFinite(n)&&n>=min&&n<=max;invalid(!ok);if(ok)commit(n);}}/>{editing&&!good&&<small role="alert">Enter {min}–{max}°.</small>}</span>;}
+function ConverseDiagram({geometry,test,tool,zoom,change,restore}:{geometry:PCState10063;test:number;tool:number;zoom:number;change:(g:PCState10063)=>void;restore:(g:PCState10063)=>void}){
+ const id=useId().replace(/:/g,''),group=useRef<SVGGElement>(null),gesture=useRef<{pid:number;before:PCState10063;x:number;y:number;moved:boolean}|null>(null),m=pcModel10063(geometry),t=pcLine10063(m.origin,m.t)!,l=pcLine10063({x:300,y:190},m.l)!,lower=pcLine10063({x:300,y:390},m.m)!;
+ const location=tool===0?m.origin:tool===1?pcAdd10063(m.origin,m.t,-110):tool===2?pcAdd10063({x:300,y:190},m.l,180):pcAdd10063({x:300,y:390},m.m,180);
+ const update=(e:React.PointerEvent<SVGCircleElement>,end=false)=>{const d=gesture.current;if(!d||d.pid!==e.pointerId)return;if(Math.hypot(e.clientX-d.x,e.clientY-d.y)>.5)d.moved=true;if(d.moved){const matrix=group.current?.getScreenCTM();if(matrix){const q=new DOMPoint(e.clientX,e.clientY).matrixTransform(matrix.inverse());const g={...d.before};if(tool===0)g.offset=q.x-300;else if(tool===1){let a=Math.atan2(m.origin.y-q.y,m.origin.x-q.x)*180/Math.PI;if(a<0)a+=360;g.angle=a;}else{const y=tool===2?190:390;g[tool===2?'l':'m']=Math.atan2(q.y-y,q.x-300)*180/Math.PI;}change(pcClamp10063(g));}}if(end)gesture.current=null;};
+ return <svg className="pc10063-diagram" viewBox="0 0 600 570" aria-label="Interactive parallel converse diagram"><defs><pattern id={`pc-grid-${id}`} width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25"/></pattern><marker id={`pc-arrow-${id}`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#18304c"/></marker></defs><rect width="600" height="570" style={{fill:`url(#pc-grid-${id})`}}/><g ref={group} transform={`translate(300 290) scale(${zoom}) translate(-300 -290)`}>{[l,lower,t].map((pair,i)=><line data-line={['l','m','t'][i]} key={i} className={i===2?'trans':'base'} x1={pair[0].x} y1={pair[0].y} x2={pair[1].x} y2={pair[1].y} markerStart={`url(#pc-arrow-${id})`} markerEnd={`url(#pc-arrow-${id})`}/>)}<AngleMark at={m.upper!} a={m.t} b={m.l} color={test} value={m.pairs[test][0]}/><AngleMark at={m.lower!} a={test===0?m.t:pcAdd10063({x:0,y:0},m.t,-1)} b={test===1?pcAdd10063({x:0,y:0},m.m,-1):m.m} color={test} value={m.pairs[test][1]}/><text className="name" x={l[1].x-4} y={l[1].y-14}>ℓ</text><text className="name" x={lower[1].x-4} y={lower[1].y-14}>m</text><text className="name" x={t[0].x+15} y={t[0].y+18}>t</text>{tool!==4&&<><circle className="tool-halo" cx={location.x} cy={location.y} r="10"/><circle role="slider" aria-label={`Drag ${['transversal position','transversal direction','line ℓ tilt','line m tilt'][tool]}`} aria-valuetext={String([geometry.offset,geometry.angle,geometry.l,geometry.m][tool])} className="tool-handle" cx={location.x} cy={location.y} r="20" tabIndex={0} onPointerDown={e=>{if(gesture.current)return;e.preventDefault();e.currentTarget.setPointerCapture(e.pointerId);gesture.current={pid:e.pointerId,before:geometry,x:e.clientX,y:e.clientY,moved:false};}} onPointerMove={e=>update(e)} onPointerUp={e=>update(e,true)} onPointerCancel={e=>{const d=gesture.current;if(d?.pid===e.pointerId){restore(d.before);gesture.current=null;}}} onKeyDown={e=>{if(!e.key.startsWith('Arrow'))return;e.preventDefault();const direction=e.key==='ArrowRight'||e.key==='ArrowUp'?1:-1,key=(['offset','angle','l','m']as const)[tool];change(pcClamp10063({...geometry,[key]:geometry[key]+direction*(e.shiftKey?5:1)}));}}/></>}</g></svg>;
 }
-function MiniConverse({
-  mode,
-  large = false,
-}: {
-  mode: number;
-  large?: boolean;
-}) {
-  return (
-    <svg
-      className={`pc10063-mini ${large ? "large" : ""}`}
-      viewBox="0 0 210 115"
-    >
-      <line x1="15" y1="32" x2="195" y2="32" />
-      <line x1="15" y1="88" x2="195" y2="88" />
-      <line x1="82" y1="5" x2="125" y2="110" />
-      <path className={`c${mode}`} d="M93 32H72A22 22 0 0 1 99 12Z" />
-      <path
-        className={`c${mode}`}
-        d={
-          mode === 3
-            ? "M115 88H95A22 22 0 0 0 121 107Z"
-            : "M115 88H95A22 22 0 0 1 109 67Z"
-        }
-      />
-      {large && (
-        <>
-          <text x="67" y="25">
-            1
-          </text>
-          <text x="92" y="82">
-            5
-          </text>
-        </>
-      )}
-    </svg>
-  );
-}
+function AngleMark({at,a,b,color,value,label}:{at:PCPoint10063;a:PCPoint10063;b:PCPoint10063;color:number;value:number;label?:string}){const s=paSector10074(at,pcAdd10063(at,a,200),pcAdd10063(at,b,200),36);if(!s)return null;return <g className={`pc10063-angle c${color}`} data-measure={value}><path d={s.path}/><text x={s.label.x} y={s.label.y} textAnchor="middle" dominantBaseline="middle">{label??`${Number(value.toFixed(2))}°`}</text></g>;}
+function MiniConverse({mode,large=false,angle=58,color=mode}:{mode:number;large?:boolean;angle?:number;color?:number}){const m=pcModel10063({...pcInitial10063,angle,m:mode===3?8:0}),negative=(u:PCPoint10063)=>({x:-u.x,y:-u.y}),lines=[pcLine10063({x:300,y:190},m.l)!,pcLine10063({x:300,y:390},m.m)!,pcLine10063(m.origin,m.t)!];return <svg className={`pc10063-mini ${large?'large':''}`} viewBox="0 20 600 530" aria-label={mode===3?'Equal vertical angles do not prove parallelism':`${tests[mode].title} example`} data-mini-mode={mode} data-mini-angle={angle}>{lines.map((pair,i)=><line key={i} x1={pair[0].x} y1={pair[0].y} x2={pair[1].x} y2={pair[1].y}/>)}<AngleMark at={m.upper!} a={m.t} b={m.l} color={color} value={angle} label={large&&mode===0?"1":undefined}/>{mode===3?<AngleMark at={m.upper!} a={negative(m.t)} b={negative(m.l)} color={color} value={angle}/>:<AngleMark at={m.lower!} a={mode===0?m.t:negative(m.t)} b={mode===1?negative(m.m):m.m} color={color} value={m.pairs[mode][1]} label={large&&mode===0?"5":undefined}/>}<text className="mini-name" x="570" y="175">ℓ</text><text className="mini-name" x="570" y="375">m</text><text className="mini-name" x={lines[2][0].x+15} y={lines[2][0].y+20}>t</text></svg>;}

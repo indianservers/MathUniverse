@@ -718,3 +718,7 @@ body:has(.new304-page) footer[aria-label="Site footer"] > div > p:last-child {
     min-width: 774px;
   }
 }
+
+@media(max-width:900px){.new304-page .new304-hero,.new304-page .new304-lab>main,.new304-page .new304-lab .facts,.new304-page .new304-flow,.new304-page .new304-info{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.new304-page .new304-hero>*,.new304-page .new304-lab>main>*,.new304-page .new304-lab .facts>*,.new304-page .new304-flow>*,.new304-page .new304-info>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.new304-page .new304-lab{height:auto}.new304-page .new304-lab>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.new304-page .new304-lab>header>b,.new304-page .new304-lab>header output,.new304-page .new304-lab>header button{position:static}.new304-page .new304-lab .graph-panel{height:auto}.new304-page .new304-lab .feedback,.new304-page .new304-lab .meter{position:static;width:auto;height:auto;margin-top:8px}.new304-page .new304-lab .legend{position:static;width:auto}.new304-page .new304-info article:last-child output{position:static;display:block;margin-top:10px}.new304-page .new304-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

@@ -573,3 +573,5 @@
     height: auto;
   }
 }
+
+@media(max-width:900px){.target-proof-work>header,.target-proof-work>header>aside{height:auto;display:flex;flex-wrap:wrap;gap:8px}.target-proof-stages article>svg:last-child{position:static}.target-proof-canvas>section>div{grid-template-columns:repeat(2,minmax(0,1fr))}.target-proof-canvas>section>div>*{min-width:0}}

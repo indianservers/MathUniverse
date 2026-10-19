@@ -568,3 +568,5 @@ body:has(.cp191-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:900px){.cp191-footer,.cp191-footer>nav,.cp191-explorer>header,.cp191-explorer>header>nav{height:auto;display:flex;flex-wrap:wrap;gap:8px}}

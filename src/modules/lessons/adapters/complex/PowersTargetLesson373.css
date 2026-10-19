@@ -567,3 +567,11 @@ body:has(.pw373-page) button[aria-label="Open navigation"] {
     display: none !important;
   }
 }
+
+/* Stack the linked model and learning panels on narrow screens. */
+@media(max-width:799px){
+.pw373-page :is(.pw373-main,.pw373-learning,.pw373-nav){grid-template-columns:minmax(0,1fr);height:auto}
+.pw373-page :is(.pw373-lab,.pw373-explorer){height:auto}
+.pw373-page .pw373-tabs{overflow-x:auto}
+.pw373-page :is(article,aside){min-width:0;overflow-wrap:anywhere}
+}

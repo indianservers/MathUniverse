@@ -38,7 +38,9 @@ display:none;}
 .lto10107-page button {
   cursor: pointer;
 }
-.lto10107-page svg {
+.lto10107-page button svg,
+.lto10107-table td svg,
+.lto10107-read svg {
   width: 18px;
   height: 18px;
 }
@@ -50,7 +52,7 @@ display:none;}
   background: linear-gradient(115deg, var(--lesson-surface,#061f39), var(--lesson-surface,#031328));
 }
 .lto10107-hero > small,
-.lto10107-lab > header small {
+.lto10107-lab > .lto10107-lab-heading small {
   color: var(--lesson-accent,#31dfe5);
   font-weight: 900;
   letter-spacing: 1.5px;
@@ -85,15 +87,15 @@ display:none;}
   border-radius: 10px;
   background: var(--lesson-surface,#05182f);
 }
-.lto10107-lab > header {
+.lto10107-lab > .lto10107-lab-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.lto10107-lab > header h2 {
+.lto10107-lab > .lto10107-lab-heading h2 {
   font-size: 23px;
 }
-.lto10107-lab > header button {
+.lto10107-lab > .lto10107-lab-heading button {
   display: flex;
   align-items: center;
   gap: 7px;
@@ -204,13 +206,13 @@ display:none;}
   height: 490px;
   padding: 12px;
 }
-.lto10107-chart > header {
+.lto10107-chart > .lto10107-chart-heading {
   display: flex;
   align-items: center;
   gap: 22px;
   height: 28px;
 }
-.lto10107-chart > header h3 {
+.lto10107-chart > .lto10107-chart-heading h3 {
   margin-right: auto;
 }
 .lto10107-chart label {
@@ -345,7 +347,7 @@ display:none;}
     height: auto;
     padding: 10px;
   }
-  .lto10107-lab > header {
+  .lto10107-lab > .lto10107-lab-heading {
     align-items: flex-end;
   }
   .lto10107-grid {
@@ -364,12 +366,12 @@ display:none;}
   .lto10107-chart {
     height: auto;
   }
-  .lto10107-chart > header {
+  .lto10107-chart > .lto10107-chart-heading {
     flex-wrap: wrap;
     height: auto;
     gap: 8px;
   }
-  .lto10107-chart > header h3 {
+  .lto10107-chart > .lto10107-chart-heading h3 {
     width: 100%;
   }
   .lto10107-chart > svg {
@@ -385,3 +387,16 @@ display:none;}
     min-height: 88px;
   }
 }
+.lto10107-page{top:0;left:0;width:100%;padding:8px;min-height:0;font-size:13px;--lesson-ink:#e7eefb!important;--lesson-surface:#06162b!important;--lesson-border:#29455e!important;--lesson-accent:#40ddef!important;color:#e7eefb!important;background:#031328!important}
+.lto10107-hero{height:auto;min-height:160px;background:linear-gradient(110deg,#071b32,#041025)}.lto10107-hero h1{font-size:28px!important;font-weight:800!important;color:#f0f2fc!important}.lto10107-hero nav{flex-wrap:wrap}
+.lto10107-lab{height:auto}.lto10107-grid{height:auto;grid-template-columns:1fr 2.4fr;gap:14px}.lto10107-left{grid-template-rows:auto auto;align-content:start;min-width:0}.lto10107-right{min-width:0}
+.lto10107-lab-heading{display:flex;justify-content:space-between;gap:15px;margin-bottom:12px}.lto10107-lab-heading small{color:#40ddef;font-weight:800;letter-spacing:1px}.lto10107-lab-heading h2{font-size:24px}.lto10107-lab-heading button{align-self:start;border:1px solid #344d68;background:#0a1d34;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:6px}
+.lto10107-chart{height:auto;overflow-x:auto}.lto10107-chart-heading{height:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.lto10107-chart-heading h3{margin-right:auto}.lto10107-chart-heading button{display:flex;align-items:center;gap:6px;background:#0b223c;border:1px solid #344d68;border-radius:6px;padding:8px 12px}
+.lto10107-chart>svg{height:440px;width:100%;max-width:none!important;touch-action:none}.lto10107-chart circle[role=slider]{touch-action:none}.lto10107-chart .guide{pointer-events:none}
+.lto10107-read{grid-template-columns:1fr 1.45fr}.lto10107-read>section,.lto10107-read>aside{height:auto;min-height:95px}
+.lto10107-custom{border:1px solid #29455e;border-radius:7px;padding:8px;margin:10px 0}.lto10107-custom summary{cursor:pointer}.lto10107-custom>section{background:#06162b!important;color:#e7eefb!important}
+.lto10107-page button{color:#e7eefb!important;cursor:pointer}.lto10107-page button:focus-visible{outline:2px solid #40ddef;outline-offset:3px}.lto10107-table input{max-width:100%;min-width:0!important}
+@media(max-width:1100px){.lto10107-grid{grid-template-columns:1fr 1.8fr}.lto10107-chart-heading{flex-wrap:wrap}.lto10107-read{grid-template-columns:1fr}.lto10107-chart>svg{height:390px}}
+@media(max-width:700px){.lto10107-page{width:100%;top:0;font-size:13px}.lto10107-grid{display:block}.lto10107-right{margin-top:12px}.lto10107-lab-heading{flex-wrap:wrap}.lto10107-chart>svg{width:max(100%,740px);height:345px}.lto10107-read{display:block}.lto10107-read>aside{margin-top:10px}}
+.lto10107-chart .guide text{font-size:12px}.lto10107-chart .guide text:last-child{font-size:21px}.lto10107-median-marker{pointer-events:none}.lto10107-chart .lto10107-median-marker circle:first-child{fill:transparent;stroke:#ffab31;stroke-width:2}.lto10107-chart .lto10107-median-marker circle:last-child{fill:#ffab31;stroke:none}
+.lto10107-formula .math-expression{font-size:23px}

@@ -370,3 +370,5 @@
     text-align: right;
   }
 }
+
+.cs530-fit article{min-width:0;overflow-x:auto}

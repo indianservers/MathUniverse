@@ -502,3 +502,5 @@ body:has(.pm590-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:700px){.pm590-page .pm590-hero{width:calc(100% - 8px)}.pm590-page .placed > button{height:auto;min-height:38px;grid-template-columns:28px minmax(0,1fr) minmax(0,1fr) 14px;gap:4px}.pm590-page .placed > button b{overflow-wrap:anywhere}}

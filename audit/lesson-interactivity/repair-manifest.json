@@ -1,0 +1,1612 @@
+{
+  "note": "Release the frozen, browser-verified lesson implementations and their dependency closure. Preserve newer or unrelated workspace edits.",
+  "css": [
+    {
+      "index": 727,
+      "file": "src/modules/lessons/schoolTargets/EuclideanFoundationsTargetLesson10053.css"
+    },
+    {
+      "index": 685,
+      "file": "src/modules/lessons/schoolTargets/ShapePatternTargetLesson10011.css"
+    },
+    {
+      "index": 679,
+      "file": "src/modules/lessons/schoolTargets/MixedUnitsTargetLesson10005.css"
+    },
+    {
+      "index": 666,
+      "file": "src/modules/lessons/adapters/finance/ExponentialLogisticTargetLesson609.css"
+    },
+    {
+      "index": 661,
+      "file": "src/modules/lessons/adapters/finance/TaxDiscountTargetLesson604.css"
+    },
+    {
+      "index": 656,
+      "file": "src/modules/lessons/adapters/finance/DepreciationTargetLesson599.css"
+    },
+    {
+      "index": 654,
+      "file": "src/modules/lessons/adapters/finance/LoansEmiTargetLesson597.css"
+    },
+    {
+      "index": 648,
+      "file": "src/modules/lessons/adapters/finance/SimpleInterestTargetLesson591.css"
+    },
+    {
+      "index": 647,
+      "file": "src/modules/lessons/adapters/discrete/ProofMethodsTargetLesson590.css"
+    },
+    {
+      "index": 641,
+      "file": "src/modules/lessons/adapters/discrete/ComplementTargetLesson584.css"
+    },
+    {
+      "index": 636,
+      "file": "src/modules/lessons/adapters/discrete/NetworkFlowTargetLesson579.css"
+    },
+    {
+      "index": 634,
+      "file": "src/modules/lessons/adapters/discrete/BipartiteGraphsTargetLesson577.css"
+    },
+    {
+      "index": 627,
+      "file": "src/modules/lessons/adapters/discrete/ConnectedComponentsTargetLesson570.css"
+    },
+    {
+      "index": 625,
+      "file": "src/modules/lessons/adapters/discrete/VertexDegreeTargetLesson568.css"
+    },
+    {
+      "index": 621,
+      "file": "src/modules/lessons/adapters/discrete/PigeonholeTargetLesson564.css"
+    },
+    {
+      "index": 620,
+      "file": "src/modules/lessons/adapters/discrete/InclusionExclusionTargetLesson563.css"
+    },
+    {
+      "index": 617,
+      "file": "src/modules/lessons/adapters/discrete/CircularPermutationsTargetLesson560.css"
+    },
+    {
+      "index": 609,
+      "file": "src/modules/lessons/adapters/geometry3d/TangentPlaneTargetLesson424.css"
+    },
+    {
+      "index": 601,
+      "file": "src/modules/lessons/adapters/geometry3d/SpaceCurvesTargetLesson416.css"
+    },
+    {
+      "index": 596,
+      "file": "src/modules/lessons/adapters/geometry3d/OrthographicViewsTargetLesson411.css"
+    },
+    {
+      "index": 592,
+      "file": "src/modules/lessons/adapters/geometry3d/SurfaceAreaTargetLesson407.css"
+    },
+    {
+      "index": 590,
+      "file": "src/modules/lessons/adapters/geometry3d/CrossSectionsTargetLesson405.css"
+    },
+    {
+      "index": 581,
+      "file": "src/modules/lessons/adapters/geometry3d/RegularPolyhedraTargetLesson396.css"
+    },
+    {
+      "index": 569,
+      "file": "src/modules/lessons/adapters/geometry3d/LinePlaneTargetLesson384.css"
+    },
+    {
+      "index": 566,
+      "file": "src/modules/lessons/adapters/geometry3d/LinesTargetLesson381.css"
+    },
+    {
+      "index": 565,
+      "file": "src/modules/lessons/adapters/geometry3d/DistanceTargetLesson380.css"
+    },
+    {
+      "index": 564,
+      "file": "src/modules/lessons/adapters/geometry3d/PointsTargetLesson379.css"
+    },
+    {
+      "index": 563,
+      "file": "src/modules/lessons/adapters/geometry3d/CoordinateSystemTargetLesson378.css"
+    },
+    {
+      "index": 562,
+      "file": "src/modules/lessons/adapters/complex/ComplexFunctionsTargetLesson377.css"
+    },
+    {
+      "index": 561,
+      "file": "src/modules/lessons/adapters/complex/MobiusTargetLesson376.css"
+    },
+    {
+      "index": 560,
+      "file": "src/modules/lessons/adapters/complex/PolynomialRootsTargetLesson375.css"
+    },
+    {
+      "index": 559,
+      "file": "src/modules/lessons/adapters/complex/RootsTargetLesson374.css"
+    },
+    {
+      "index": 558,
+      "file": "src/modules/lessons/adapters/complex/PowersTargetLesson373.css"
+    },
+    {
+      "index": 557,
+      "file": "src/modules/lessons/adapters/complex/EulerFormTargetLesson372.css"
+    },
+    {
+      "index": 556,
+      "file": "src/modules/lessons/adapters/complex/PolarFormTargetLesson371.css"
+    },
+    {
+      "index": 555,
+      "file": "src/modules/lessons/adapters/complex/ModulusArgumentTargetLesson370.css"
+    },
+    {
+      "index": 554,
+      "file": "src/modules/lessons/adapters/complex/ComplexConjugateTargetLesson369.css"
+    },
+    {
+      "index": 553,
+      "file": "src/modules/lessons/adapters/complex/ComplexMultiplicationTargetLesson368.css"
+    },
+    {
+      "index": 552,
+      "file": "src/modules/lessons/adapters/complex/ComplexAdditionTargetLesson367.css"
+    },
+    {
+      "index": 551,
+      "file": "src/modules/lessons/adapters/complex/RealImaginaryTargetLesson366.css"
+    },
+    {
+      "index": 550,
+      "file": "src/modules/lessons/adapters/complex/ComplexPlaneTargetLesson365.css"
+    },
+    {
+      "index": 549,
+      "file": "src/modules/lessons/adapters/matrix/LeastSquaresTargetLesson364.css"
+    },
+    {
+      "index": 548,
+      "file": "src/modules/lessons/adapters/matrix/GramSchmidtTargetLesson363.css"
+    },
+    {
+      "index": 547,
+      "file": "src/modules/lessons/adapters/matrix/VectorSpacesTargetLesson362.css"
+    },
+    {
+      "index": 546,
+      "file": "src/modules/lessons/adapters/matrix/LinearIndependenceTargetLesson361.css"
+    },
+    {
+      "index": 545,
+      "file": "src/modules/lessons/adapters/matrix/BasisDimensionTargetLesson360.css"
+    },
+    {
+      "index": 544,
+      "file": "src/modules/lessons/adapters/matrix/EigenTargetLesson359.css"
+    },
+    {
+      "index": 542,
+      "file": "src/modules/lessons/adapters/matrix/AugmentedMatricesTargetLesson357.css"
+    },
+    {
+      "index": 541,
+      "file": "src/modules/lessons/adapters/matrix/RrefTargetLesson356.css"
+    },
+    {
+      "index": 540,
+      "file": "src/modules/lessons/adapters/matrix/RowOperationsTargetLesson355.css"
+    },
+    {
+      "index": 539,
+      "file": "src/modules/lessons/adapters/matrix/MatrixInverseTargetLesson354.css"
+    },
+    {
+      "index": 538,
+      "file": "src/modules/lessons/adapters/matrix/DeterminantTargetLesson353.css"
+    },
+    {
+      "index": 537,
+      "file": "src/modules/lessons/adapters/matrix/TransposeTargetLesson352.css"
+    },
+    {
+      "index": 536,
+      "file": "src/modules/lessons/adapters/matrix/IdentityMatrixTargetLesson351.css"
+    },
+    {
+      "index": 535,
+      "file": "src/modules/lessons/adapters/matrix/MatrixMultiplicationTargetLesson350.css"
+    },
+    {
+      "index": 534,
+      "file": "src/modules/lessons/adapters/matrix/ScalarMultiplicationTargetLesson349.css"
+    },
+    {
+      "index": 533,
+      "file": "src/modules/lessons/adapters/matrix/MatrixAdditionTargetLesson348.css"
+    },
+    {
+      "index": 532,
+      "file": "src/modules/lessons/adapters/matrix/MatrixBuilderTargetLesson347.css"
+    },
+    {
+      "index": 531,
+      "file": "src/modules/lessons/adapters/sequence/RecurrenceModellingTargetLesson346.css"
+    },
+    {
+      "index": 529,
+      "file": "src/modules/lessons/adapters/sequence/TaylorMaclaurinTargetLesson344.css"
+    },
+    {
+      "index": 528,
+      "file": "src/modules/lessons/adapters/sequence/PowerSeriesTargetLesson343.css"
+    },
+    {
+      "index": 527,
+      "file": "src/modules/lessons/adapters/sequence/ConvergenceDivergenceTargetLesson342.css"
+    },
+    {
+      "index": 526,
+      "file": "src/modules/lessons/adapters/sequence/GeometricSeriesTargetLesson341.css"
+    },
+    {
+      "index": 525,
+      "file": "src/modules/lessons/adapters/sequence/ArithmeticSeriesTargetLesson340.css"
+    },
+    {
+      "index": 524,
+      "file": "src/modules/lessons/adapters/sequence/SigmaNotationTargetLesson339.css"
+    },
+    {
+      "index": 523,
+      "file": "src/modules/lessons/adapters/sequence/FibonacciSequenceTargetLesson338.css"
+    },
+    {
+      "index": 522,
+      "file": "src/modules/lessons/adapters/sequence/RecursiveSequencesTargetLesson337.css"
+    },
+    {
+      "index": 521,
+      "file": "src/modules/lessons/adapters/sequence/GeometricSequencesTargetLesson336.css"
+    },
+    {
+      "index": 520,
+      "file": "src/modules/lessons/adapters/sequence/ArithmeticSequencesTargetLesson335.css"
+    },
+    {
+      "index": 519,
+      "file": "src/modules/lessons/adapters/sequence/SequenceGeneratorTargetLesson334.css"
+    },
+    {
+      "index": 515,
+      "file": "src/modules/lessons/adapters/AnovaLesson552.css"
+    },
+    {
+      "index": 513,
+      "file": "src/modules/lessons/adapters/ChiSquareIndependenceLesson550.css"
+    },
+    {
+      "index": 512,
+      "file": "src/modules/lessons/adapters/ChiSquareGoodnessOfFitLesson549.css"
+    },
+    {
+      "index": 510,
+      "file": "src/modules/lessons/adapters/OneProportionTestLesson547.css"
+    },
+    {
+      "index": 508,
+      "file": "src/modules/lessons/adapters/TwoSampleTTestLesson545.css"
+    },
+    {
+      "index": 507,
+      "file": "src/modules/lessons/adapters/OneSampleTTestLesson544.css"
+    },
+    {
+      "index": 503,
+      "file": "src/modules/lessons/adapters/ConfidenceIntervalProportionLesson540.css"
+    },
+    {
+      "index": 501,
+      "file": "src/modules/lessons/adapters/CentralLimitTheoremLesson538.css"
+    },
+    {
+      "index": 500,
+      "file": "src/modules/lessons/adapters/SamplingDistributionsLesson537.css"
+    },
+    {
+      "index": 499,
+      "file": "src/modules/lessons/adapters/DistributionSimulationLesson536.css"
+    },
+    {
+      "index": 498,
+      "file": "src/modules/lessons/adapters/StandardisationLesson535.css"
+    },
+    {
+      "index": 496,
+      "file": "src/modules/lessons/adapters/GammaDistributionLesson533.css"
+    },
+    {
+      "index": 494,
+      "file": "src/modules/lessons/adapters/FDistributionLesson531.css"
+    },
+    {
+      "index": 493,
+      "file": "src/modules/lessons/adapters/ChiSquareDistributionLesson530.css"
+    },
+    {
+      "index": 491,
+      "file": "src/modules/lessons/adapters/NormalDistributionLesson528.css"
+    },
+    {
+      "index": 481,
+      "file": "src/modules/lessons/adapters/CumulativeDistributionLesson518.css"
+    },
+    {
+      "index": 478,
+      "file": "src/modules/lessons/adapters/LawLargeNumbersLesson515.css"
+    },
+    {
+      "index": 476,
+      "file": "src/modules/lessons/adapters/ExpectedValueLesson513.css"
+    },
+    {
+      "index": 475,
+      "file": "src/modules/lessons/adapters/BayesTheoremLesson512.css"
+    },
+    {
+      "index": 473,
+      "file": "src/modules/lessons/adapters/VennDiagramsLesson510.css"
+    },
+    {
+      "index": 470,
+      "file": "src/modules/lessons/adapters/MutuallyExclusiveEventsLesson507.css"
+    },
+    {
+      "index": 468,
+      "file": "src/modules/lessons/adapters/MultiplicationRuleLesson505.css"
+    },
+    {
+      "index": 465,
+      "file": "src/modules/lessons/adapters/ProbabilityScaleLesson502.css"
+    },
+    {
+      "index": 461,
+      "file": "src/modules/lessons/adapters/ModelComparisonLesson498.css"
+    },
+    {
+      "index": 460,
+      "file": "src/modules/lessons/adapters/ResidualPlotLesson497.css"
+    },
+    {
+      "index": 452,
+      "file": "src/modules/lessons/adapters/CorrelationLesson489.css"
+    },
+    {
+      "index": 449,
+      "file": "src/modules/lessons/adapters/BarPieLesson486.css"
+    },
+    {
+      "index": 448,
+      "file": "src/modules/lessons/adapters/CumulativeFrequencyLesson485.css"
+    },
+    {
+      "index": 447,
+      "file": "src/modules/lessons/adapters/FrequencyPolygonLesson484.css"
+    },
+    {
+      "index": 443,
+      "file": "src/modules/lessons/adapters/BoxPlotLesson480.css"
+    },
+    {
+      "index": 432,
+      "file": "src/modules/lessons/adapters/GroupedFrequencyTablesLesson469.css"
+    },
+    {
+      "index": 431,
+      "file": "src/modules/lessons/adapters/FrequencyTablesLesson468.css"
+    },
+    {
+      "index": 412,
+      "file": "src/modules/lessons/adapters/calculus/ChaosBifurcationTargetLesson333.css"
+    },
+    {
+      "index": 410,
+      "file": "src/modules/lessons/adapters/calculus/DiscreteDynamicalSystemsTargetLesson331.css"
+    },
+    {
+      "index": 408,
+      "file": "src/modules/lessons/adapters/calculus/PhasePlaneTargetLesson329.css"
+    },
+    {
+      "index": 407,
+      "file": "src/modules/lessons/adapters/calculus/SecondOrderEquationsTargetLesson328.css"
+    },
+    {
+      "index": 406,
+      "file": "src/modules/lessons/adapters/calculus/LogisticGrowthTargetLesson327.css"
+    },
+    {
+      "index": 405,
+      "file": "src/modules/lessons/adapters/calculus/FirstOrderLinearTargetLesson326.css"
+    },
+    {
+      "index": 404,
+      "file": "src/modules/lessons/adapters/calculus/SeparableEquationsTargetLesson325.css"
+    },
+    {
+      "index": 403,
+      "file": "src/modules/lessons/adapters/calculus/EulerMethodTargetLesson324.css"
+    },
+    {
+      "index": 402,
+      "file": "src/modules/lessons/adapters/calculus/DirectionFieldsTargetLesson323.css"
+    },
+    {
+      "index": 401,
+      "file": "src/modules/lessons/adapters/calculus/AccumulationFunctionsTargetLesson322.css"
+    },
+    {
+      "index": 400,
+      "file": "src/modules/lessons/adapters/calculus/SurfaceAreaRevolutionTargetLesson321.css"
+    },
+    {
+      "index": 399,
+      "file": "src/modules/lessons/adapters/calculus/ArcLengthTargetLesson320.css"
+    },
+    {
+      "index": 398,
+      "file": "src/modules/lessons/adapters/calculus/ShellMethodTargetLesson319.css"
+    },
+    {
+      "index": 397,
+      "file": "src/modules/lessons/adapters/calculus/DiscWasherTargetLesson318.css"
+    },
+    {
+      "index": 396,
+      "file": "src/modules/lessons/adapters/calculus/VolumeSlicingTargetLesson317.css"
+    },
+    {
+      "index": 395,
+      "file": "src/modules/lessons/adapters/calculus/NumericalIntegrationTargetLesson316.css"
+    },
+    {
+      "index": 394,
+      "file": "src/modules/lessons/adapters/calculus/ImproperIntegralsTargetLesson315.css"
+    },
+    {
+      "index": 393,
+      "file": "src/modules/lessons/adapters/calculus/PartialFractionsTargetLesson314.css"
+    },
+    {
+      "index": 392,
+      "file": "src/modules/lessons/adapters/calculus/IntegrationByPartsTargetLesson313.css"
+    },
+    {
+      "index": 391,
+      "file": "src/modules/lessons/adapters/calculus/SubstitutionTargetLesson312.css"
+    },
+    {
+      "index": 390,
+      "file": "src/modules/lessons/adapters/calculus/AreaBetweenCurvesTargetLesson311.css"
+    },
+    {
+      "index": 389,
+      "file": "src/modules/lessons/adapters/calculus/FundamentalTheoremTargetLesson310.css"
+    },
+    {
+      "index": 388,
+      "file": "src/modules/lessons/adapters/calculus/IndefiniteIntegralTargetLesson309.css"
+    },
+    {
+      "index": 387,
+      "file": "src/modules/lessons/adapters/calculus/DefiniteIntegralTargetLesson308.css"
+    },
+    {
+      "index": 386,
+      "file": "src/modules/lessons/adapters/calculus/RiemannSumsTargetLesson307.css"
+    },
+    {
+      "index": 384,
+      "file": "src/modules/lessons/adapters/calculus/TaylorPolynomialTargetLesson305.css"
+    },
+    {
+      "index": 383,
+      "file": "src/modules/lessons/adapters/calculus/NewtonMethodTargetLesson304.css"
+    },
+    {
+      "index": 381,
+      "file": "src/modules/lessons/adapters/calculus/RelatedRatesTargetLesson302.css"
+    },
+    {
+      "index": 380,
+      "file": "src/modules/lessons/adapters/calculus/OptimisationTargetLesson301.css"
+    },
+    {
+      "index": 378,
+      "file": "src/modules/lessons/adapters/calculus/ConcavityTargetLesson299.css"
+    },
+    {
+      "index": 377,
+      "file": "src/modules/lessons/adapters/calculus/LocalGlobalExtremaTargetLesson298.css"
+    },
+    {
+      "index": 376,
+      "file": "src/modules/lessons/adapters/calculus/IncreasingDecreasingTargetLesson297.css"
+    },
+    {
+      "index": 375,
+      "file": "src/modules/lessons/adapters/calculus/CriticalPointsTargetLesson296.css"
+    },
+    {
+      "index": 374,
+      "file": "src/modules/lessons/adapters/calculus/ParametricDifferentiationTargetLesson295.css"
+    },
+    {
+      "index": 373,
+      "file": "src/modules/lessons/adapters/calculus/ImplicitDifferentiationTargetLesson294.css"
+    },
+    {
+      "index": 372,
+      "file": "src/modules/lessons/adapters/calculus/ChainRuleTargetLesson293.css"
+    },
+    {
+      "index": 371,
+      "file": "src/modules/lessons/adapters/calculus/QuotientRuleTargetLesson292.css"
+    },
+    {
+      "index": 370,
+      "file": "src/modules/lessons/adapters/calculus/ProductRuleTargetLesson291.css"
+    },
+    {
+      "index": 369,
+      "file": "src/modules/lessons/adapters/calculus/HigherDerivativesTargetLesson290.css"
+    },
+    {
+      "index": 368,
+      "file": "src/modules/lessons/adapters/calculus/DerivativeGraphTargetLesson289.css"
+    },
+    {
+      "index": 367,
+      "file": "src/modules/lessons/adapters/calculus/NormalLineTargetLesson288.css"
+    },
+    {
+      "index": 366,
+      "file": "src/modules/lessons/adapters/calculus/TangentLineTargetLesson287.css"
+    },
+    {
+      "index": 365,
+      "file": "src/modules/lessons/adapters/calculus/DerivativeFirstPrinciplesTargetLesson286.css"
+    },
+    {
+      "index": 364,
+      "file": "src/modules/lessons/adapters/calculus/InstantaneousRateTargetLesson285.css"
+    },
+    {
+      "index": 363,
+      "file": "src/modules/lessons/adapters/calculus/AverageRateTargetLesson284.css"
+    },
+    {
+      "index": 362,
+      "file": "src/modules/lessons/adapters/calculus/EpsilonDeltaTargetLesson283.css"
+    },
+    {
+      "index": 361,
+      "file": "src/modules/lessons/adapters/calculus/TypesOfDiscontinuityTargetLesson282.css"
+    },
+    {
+      "index": 360,
+      "file": "src/modules/lessons/adapters/calculus/ContinuityAtPointTargetLesson281.css"
+    },
+    {
+      "index": 359,
+      "file": "src/modules/lessons/adapters/calculus/LimitsAtInfinityTargetLesson280.css"
+    },
+    {
+      "index": 358,
+      "file": "src/modules/lessons/adapters/calculus/InfiniteLimitsTargetLesson279.css"
+    },
+    {
+      "index": 357,
+      "file": "src/modules/lessons/adapters/calculus/OneSidedLimitsTargetLesson278.css"
+    },
+    {
+      "index": 356,
+      "file": "src/modules/lessons/adapters/calculus/InformalLimitsTargetLesson277.css"
+    },
+    {
+      "index": 355,
+      "file": "src/modules/lessons/adapters/cas/CasToGraphTargetLesson449.css"
+    },
+    {
+      "index": 354,
+      "file": "src/modules/lessons/adapters/cas/StepByStepAlgebraTargetLesson448.css"
+    },
+    {
+      "index": 353,
+      "file": "src/modules/lessons/adapters/cas/ExactNumericTargetLesson447.css"
+    },
+    {
+      "index": 352,
+      "file": "src/modules/lessons/adapters/cas/AssumptionsTargetLesson446.css"
+    },
+    {
+      "index": 351,
+      "file": "src/modules/lessons/adapters/cas/ComplexCalculationsTargetLesson445.css"
+    },
+    {
+      "index": 350,
+      "file": "src/modules/lessons/adapters/cas/MatrixOperationsTargetLesson444.css"
+    },
+    {
+      "index": 348,
+      "file": "src/modules/lessons/adapters/cas/SeriesExpansionsTargetLesson442.css"
+    },
+    {
+      "index": 347,
+      "file": "src/modules/lessons/adapters/cas/LimitsTargetLesson441.css"
+    },
+    {
+      "index": 346,
+      "file": "src/modules/lessons/adapters/cas/IntegralsTargetLesson440.css"
+    },
+    {
+      "index": 345,
+      "file": "src/modules/lessons/adapters/cas/DerivativesTargetLesson439.css"
+    },
+    {
+      "index": 344,
+      "file": "src/modules/lessons/adapters/cas/PolynomialDivisionTargetLesson438.css"
+    },
+    {
+      "index": 343,
+      "file": "src/modules/lessons/adapters/cas/PartialFractionsTargetLesson437.css"
+    },
+    {
+      "index": 342,
+      "file": "src/modules/lessons/adapters/cas/EliminateVariablesTargetLesson436.css"
+    },
+    {
+      "index": 341,
+      "file": "src/modules/lessons/adapters/cas/SolveSystemsTargetLesson435.css"
+    },
+    {
+      "index": 340,
+      "file": "src/modules/lessons/adapters/cas/NumericalSolveTargetLesson434.css"
+    },
+    {
+      "index": 339,
+      "file": "src/modules/lessons/adapters/cas/SolveTargetLesson433.css"
+    },
+    {
+      "index": 335,
+      "file": "src/modules/lessons/adapters/cas/SimplifyTargetLesson429.css"
+    },
+    {
+      "index": 331,
+      "file": "src/modules/lessons/adapters/ElevationDepressionTargetLesson274.css"
+    },
+    {
+      "index": 330,
+      "file": "src/modules/lessons/adapters/BearingsTargetLesson273.css"
+    },
+    {
+      "index": 328,
+      "file": "src/modules/lessons/adapters/CosineRuleTargetLesson271.css"
+    },
+    {
+      "index": 327,
+      "file": "src/modules/lessons/adapters/SineRuleTargetLesson270.css"
+    },
+    {
+      "index": 326,
+      "file": "src/modules/lessons/adapters/TrigEquationsTargetLesson269.css"
+    },
+    {
+      "index": 325,
+      "file": "src/modules/lessons/adapters/DoubleHalfAngleTargetLesson268.css"
+    },
+    {
+      "index": 324,
+      "file": "src/modules/lessons/adapters/CompoundAngleTargetLesson267.css"
+    },
+    {
+      "index": 321,
+      "file": "src/modules/lessons/adapters/ReciprocalTrigTargetLesson264.css"
+    },
+    {
+      "index": 318,
+      "file": "src/modules/lessons/adapters/SineGraphTargetLesson261.css"
+    },
+    {
+      "index": 316,
+      "file": "src/modules/lessons/adapters/RightTriangleRatiosTargetLesson259.css"
+    },
+    {
+      "index": 315,
+      "file": "src/modules/lessons/adapters/UnitCircleTargetLesson258.css"
+    },
+    {
+      "index": 313,
+      "file": "src/modules/lessons/adapters/ConcyclicityTestTargetLesson256.css"
+    },
+    {
+      "index": 310,
+      "file": "src/modules/lessons/adapters/ExactProofTargetLesson253.css"
+    },
+    {
+      "index": 308,
+      "file": "src/modules/lessons/adapters/DynamicTraceTargetLesson251.css"
+    },
+    {
+      "index": 307,
+      "file": "src/modules/lessons/adapters/EnvelopeLinesTargetLesson250.css"
+    },
+    {
+      "index": 306,
+      "file": "src/modules/lessons/adapters/MovingLinkageLociTargetLesson249.css"
+    },
+    {
+      "index": 305,
+      "file": "src/modules/lessons/adapters/EquidistantLociTargetLesson248.css"
+    },
+    {
+      "index": 303,
+      "file": "src/modules/lessons/adapters/SymmetryExplorerTargetLesson246.css"
+    },
+    {
+      "index": 302,
+      "file": "src/modules/lessons/adapters/InvariantsTargetLesson245.css"
+    },
+    {
+      "index": 299,
+      "file": "src/modules/lessons/adapters/MatrixTransformationTargetLesson242.css"
+    },
+    {
+      "index": 297,
+      "file": "src/modules/lessons/adapters/RotationPointTargetLesson240.css"
+    },
+    {
+      "index": 295,
+      "file": "src/modules/lessons/adapters/ReflectionPointTargetLesson238.css"
+    },
+    {
+      "index": 292,
+      "file": "src/modules/lessons/adapters/ConstructionStepsTargetLesson235.css"
+    },
+    {
+      "index": 291,
+      "file": "src/modules/lessons/adapters/RelationCheckerTargetLesson234.css"
+    },
+    {
+      "index": 290,
+      "file": "src/modules/lessons/adapters/FixedAngleTargetLesson233.css"
+    },
+    {
+      "index": 289,
+      "file": "src/modules/lessons/adapters/AngleTargetLesson232.css"
+    },
+    {
+      "index": 288,
+      "file": "src/modules/lessons/adapters/AreaTargetLesson231.css"
+    },
+    {
+      "index": 286,
+      "file": "src/modules/lessons/adapters/ParabolaTargetLesson229.css"
+    },
+    {
+      "index": 285,
+      "file": "src/modules/lessons/adapters/HyperbolaTargetLesson228.css"
+    },
+    {
+      "index": 284,
+      "file": "src/modules/lessons/adapters/EllipseTargetLesson227.css"
+    },
+    {
+      "index": 279,
+      "file": "src/modules/lessons/adapters/SemicircleTargetLesson222.css"
+    },
+    {
+      "index": 277,
+      "file": "src/modules/lessons/adapters/CircleThreePointsTargetLesson220.css"
+    },
+    {
+      "index": 276,
+      "file": "src/modules/lessons/adapters/CircleCentreRadiusTargetLesson219.css"
+    },
+    {
+      "index": 275,
+      "file": "src/modules/lessons/adapters/CircleCentrePointTargetLesson218.css"
+    },
+    {
+      "index": 274,
+      "file": "src/modules/lessons/adapters/GeneralPolygonTargetLesson217.css"
+    },
+    {
+      "index": 270,
+      "file": "src/modules/lessons/adapters/BestFitLineTargetLesson213.css"
+    },
+    {
+      "index": 262,
+      "file": "src/modules/lessons/adapters/SegmentGivenLengthTargetLesson205.css"
+    },
+    {
+      "index": 260,
+      "file": "src/modules/lessons/adapters/LineThroughTwoPointsTargetLesson203.css"
+    },
+    {
+      "index": 256,
+      "file": "src/modules/lessons/adapters/PointOnObjectTargetLesson199.css"
+    },
+    {
+      "index": 254,
+      "file": "src/modules/lessons/adapters/ForceVectorsTargetLesson197.css"
+    },
+    {
+      "index": 253,
+      "file": "src/modules/lessons/adapters/RelativeMotionTargetLesson196.css"
+    },
+    {
+      "index": 252,
+      "file": "src/modules/lessons/adapters/VectorPlaneTargetLesson195.css"
+    },
+    {
+      "index": 251,
+      "file": "src/modules/lessons/adapters/VectorLineTargetLesson194.css"
+    },
+    {
+      "index": 250,
+      "file": "src/modules/lessons/adapters/LinearCombinationsTargetLesson193.css"
+    },
+    {
+      "index": 249,
+      "file": "src/modules/lessons/adapters/VectorProjectionTargetLesson192.css"
+    },
+    {
+      "index": 248,
+      "file": "src/modules/lessons/adapters/CrossProductTargetLesson191.css"
+    },
+    {
+      "index": 247,
+      "file": "src/modules/lessons/adapters/DotProductTargetLesson190.css"
+    },
+    {
+      "index": 246,
+      "file": "src/modules/lessons/adapters/MagnitudeUnitVectorsTargetLesson189.css"
+    },
+    {
+      "index": 241,
+      "file": "src/modules/lessons/adapters/ComponentFormTargetLesson184.css"
+    },
+    {
+      "index": 240,
+      "file": "src/modules/lessons/adapters/VectorIntroductionTargetLesson183.css"
+    },
+    {
+      "index": 238,
+      "file": "src/modules/lessons/adapters/ParametricCoordinatesTargetLesson181.css"
+    },
+    {
+      "index": 237,
+      "file": "src/modules/lessons/adapters/PolarCoordinatesTargetLesson180.css"
+    },
+    {
+      "index": 236,
+      "file": "src/modules/lessons/adapters/CoordinateTransformationsTargetLesson179.css"
+    },
+    {
+      "index": 229,
+      "file": "src/modules/lessons/adapters/GradientSlopeTargetLesson172.css"
+    },
+    {
+      "index": 228,
+      "file": "src/modules/lessons/adapters/SectionFormulaTargetLesson171.css"
+    },
+    {
+      "index": 226,
+      "file": "src/modules/lessons/adapters/DistanceBetweenPointsTargetLesson169.css"
+    },
+    {
+      "index": 225,
+      "file": "src/modules/lessons/adapters/PlottingPointsTargetLesson168.css"
+    },
+    {
+      "index": 223,
+      "file": "src/modules/lessons/adapters/GraphMatchingTargetLesson166.css"
+    },
+    {
+      "index": 219,
+      "file": "src/modules/lessons/adapters/CombinedTransformationsTargetLesson162.css"
+    },
+    {
+      "index": 214,
+      "file": "src/modules/lessons/adapters/HorizontalTranslationTargetLesson157.css"
+    },
+    {
+      "index": 212,
+      "file": "src/modules/lessons/adapters/RecursiveFunctionsTargetLesson155.css"
+    },
+    {
+      "index": 208,
+      "file": "src/modules/lessons/adapters/InverseFunctionsTargetLesson151.css"
+    },
+    {
+      "index": 207,
+      "file": "src/modules/lessons/adapters/CompositeFunctionsTargetLesson150.css"
+    },
+    {
+      "index": 206,
+      "file": "src/modules/lessons/adapters/PiecewiseFunctionsTargetLesson149.css"
+    },
+    {
+      "index": 205,
+      "file": "src/modules/lessons/adapters/SignFunctionTargetLesson148.css"
+    },
+    {
+      "index": 203,
+      "file": "src/modules/lessons/adapters/FloorFunctionTargetLesson146.css"
+    },
+    {
+      "index": 202,
+      "file": "src/modules/lessons/adapters/HyperbolicFunctionsTargetLesson145.css"
+    },
+    {
+      "index": 201,
+      "file": "src/modules/lessons/adapters/TrigonometricFunctionsTargetLesson144.css"
+    },
+    {
+      "index": 199,
+      "file": "src/modules/lessons/adapters/ExponentialFunctionsTargetLesson142.css"
+    },
+    {
+      "index": 197,
+      "file": "src/modules/lessons/adapters/CubeRootFunctionsTargetLesson140.css"
+    },
+    {
+      "index": 196,
+      "file": "src/modules/lessons/adapters/SquareRootFunctionsTargetLesson139.css"
+    },
+    {
+      "index": 195,
+      "file": "src/modules/lessons/adapters/RationalFunctionsTargetLesson138.css"
+    },
+    {
+      "index": 194,
+      "file": "src/modules/lessons/adapters/ReciprocalFunctionsTargetLesson137.css"
+    },
+    {
+      "index": 193,
+      "file": "src/modules/lessons/adapters/HigherDegreePolynomialsTargetLesson136.css"
+    },
+    {
+      "index": 192,
+      "file": "src/modules/lessons/adapters/CubicFunctionsTargetLesson135.css"
+    },
+    {
+      "index": 191,
+      "file": "src/modules/lessons/adapters/QuadraticFunctionsTargetLesson134.css"
+    },
+    {
+      "index": 190,
+      "file": "src/modules/lessons/adapters/LinearFunctionsTargetLesson133.css"
+    },
+    {
+      "index": 189,
+      "file": "src/modules/lessons/adapters/VerticalLineTestTargetLesson132.css"
+    },
+    {
+      "index": 188,
+      "file": "src/modules/lessons/adapters/FunctionNotationTargetLesson131.css"
+    },
+    {
+      "index": 187,
+      "file": "src/modules/lessons/adapters/DomainRangeTargetLesson130.css"
+    },
+    {
+      "index": 186,
+      "file": "src/modules/lessons/adapters/FunctionConceptTargetLesson129.css"
+    },
+    {
+      "index": 185,
+      "file": "src/modules/lessons/adapters/NumericalSolverTargetLesson128.css"
+    },
+    {
+      "index": 184,
+      "file": "src/modules/lessons/adapters/SystemsInequalitiesTargetLesson127.css"
+    },
+    {
+      "index": 183,
+      "file": "src/modules/lessons/adapters/TwoVariableInequalitiesTargetLesson126.css"
+    },
+    {
+      "index": 182,
+      "file": "src/modules/lessons/adapters/PolynomialInequalitiesTargetLesson125.css"
+    },
+    {
+      "index": 181,
+      "file": "src/modules/lessons/adapters/QuadraticInequalitiesTargetLesson124.css"
+    },
+    {
+      "index": 180,
+      "file": "src/modules/lessons/adapters/CompoundInequalitiesTargetLesson123.css"
+    },
+    {
+      "index": 179,
+      "file": "src/modules/lessons/adapters/LinearInequalitiesTargetLesson122.css"
+    },
+    {
+      "index": 177,
+      "file": "src/modules/lessons/adapters/TrigonometricEquationsTargetLesson120.css"
+    },
+    {
+      "index": 176,
+      "file": "src/modules/lessons/adapters/LogarithmicEquationsTargetLesson119.css"
+    },
+    {
+      "index": 175,
+      "file": "src/modules/lessons/adapters/ExponentialEquationsTargetLesson118.css"
+    },
+    {
+      "index": 173,
+      "file": "src/modules/lessons/adapters/RationalEquationsTargetLesson116.css"
+    },
+    {
+      "index": 172,
+      "file": "src/modules/lessons/adapters/PolynomialEquationsTargetLesson115.css"
+    },
+    {
+      "index": 171,
+      "file": "src/modules/lessons/adapters/QuadraticEquationsTargetLesson114.css"
+    },
+    {
+      "index": 170,
+      "file": "src/modules/lessons/adapters/ThreeVariableSystemsTargetLesson113.css"
+    },
+    {
+      "index": 167,
+      "file": "src/modules/lessons/adapters/LiteralEquationsTargetLesson110.css"
+    },
+    {
+      "index": 166,
+      "file": "src/modules/lessons/adapters/FractionEquationsTargetLesson109.css"
+    },
+    {
+      "index": 164,
+      "file": "src/modules/lessons/adapters/OneStepEquationsTargetLesson107.css"
+    },
+    {
+      "index": 163,
+      "file": "src/modules/lessons/adapters/IdentitiesTargetLesson106.css"
+    },
+    {
+      "index": 162,
+      "file": "src/modules/lessons/adapters/FactorTheoremTargetLesson105.css"
+    },
+    {
+      "index": 161,
+      "file": "src/modules/lessons/adapters/RemainderTheoremTargetLesson104.css"
+    },
+    {
+      "index": 160,
+      "file": "src/modules/lessons/adapters/SyntheticDivisionTargetLesson103.css"
+    },
+    {
+      "index": 159,
+      "file": "src/modules/lessons/adapters/PolynomialOperationsTargetLesson102.css"
+    },
+    {
+      "index": 158,
+      "file": "src/modules/lessons/adapters/RationalisationTargetLesson101.css"
+    },
+    {
+      "index": 156,
+      "file": "src/modules/lessons/adapters/IndicesTargetLesson99.css"
+    },
+    {
+      "index": 155,
+      "file": "src/modules/lessons/adapters/AlgebraicFractionsTargetLesson98.css"
+    },
+    {
+      "index": 154,
+      "file": "src/modules/lessons/adapters/FactorisationTargetLesson97.css"
+    },
+    {
+      "index": 153,
+      "file": "src/modules/lessons/adapters/DoubleBracketsTargetLesson96.css"
+    },
+    {
+      "index": 152,
+      "file": "src/modules/lessons/adapters/ExpandingBracketsTargetLesson95.css"
+    },
+    {
+      "index": 150,
+      "file": "src/modules/lessons/adapters/LikeTermsTargetLesson93.css"
+    },
+    {
+      "index": 149,
+      "file": "src/modules/lessons/adapters/AlgebraTilesTargetLesson92.css"
+    },
+    {
+      "index": 140,
+      "file": "src/modules/lessons/adapters/graph/TraceModeTargetLesson48.css"
+    },
+    {
+      "index": 73,
+      "file": "src/modules/lessons/adapters/ScaleDrawingsTargetLesson91.css"
+    },
+    {
+      "index": 72,
+      "file": "src/modules/lessons/adapters/CompoundChangeTargetLesson90.css"
+    },
+    {
+      "index": 71,
+      "file": "src/modules/lessons/adapters/PercentageChangeTargetLesson89.css"
+    },
+    {
+      "index": 70,
+      "file": "src/modules/lessons/adapters/PercentagesTargetLesson88.css"
+    },
+    {
+      "index": 68,
+      "file": "src/modules/lessons/adapters/InverseProportionTargetLesson86.css"
+    },
+    {
+      "index": 67,
+      "file": "src/modules/lessons/adapters/DirectProportionTargetLesson85.css"
+    },
+    {
+      "index": 66,
+      "file": "src/modules/lessons/adapters/ProportionTargetLesson84.css"
+    },
+    {
+      "index": 64,
+      "file": "src/modules/lessons/adapters/RecurringDecimalsTargetLesson82.css"
+    },
+    {
+      "index": 62,
+      "file": "src/modules/lessons/adapters/DecimalOperationsTargetLesson80.css"
+    },
+    {
+      "index": 61,
+      "file": "src/modules/lessons/adapters/DecimalPlaceValueTargetLesson79.css"
+    },
+    {
+      "index": 60,
+      "file": "src/modules/lessons/adapters/FractionOperationsTargetLesson78.css"
+    },
+    {
+      "index": 59,
+      "file": "src/modules/lessons/adapters/ComparingFractionsTargetLesson77.css"
+    },
+    {
+      "index": 57,
+      "file": "src/modules/lessons/adapters/FractionModelsTargetLesson75.css"
+    },
+    {
+      "index": 56,
+      "file": "src/modules/lessons/adapters/ContinuedFractionsTargetLesson74.css"
+    },
+    {
+      "index": 54,
+      "file": "src/modules/lessons/adapters/ModularArithmeticTargetLesson72.css"
+    },
+    {
+      "index": 53,
+      "file": "src/modules/lessons/adapters/DivisibilityRulesTargetLesson71.css"
+    },
+    {
+      "index": 51,
+      "file": "src/modules/lessons/adapters/HcfGcdTargetLesson69.css"
+    },
+    {
+      "index": 49,
+      "file": "src/modules/lessons/adapters/PrimeNumbersTargetLesson67.css"
+    },
+    {
+      "index": 48,
+      "file": "src/modules/lessons/adapters/MultiplesTargetLesson66.css"
+    },
+    {
+      "index": 47,
+      "file": "src/modules/lessons/adapters/FactorsTargetLesson65.css"
+    },
+    {
+      "index": 44,
+      "file": "src/modules/lessons/adapters/RealNumbersTargetLesson62.css"
+    },
+    {
+      "index": 42,
+      "file": "src/modules/lessons/adapters/RationalNumbersTargetLesson60.css"
+    },
+    {
+      "index": 41,
+      "file": "src/modules/lessons/adapters/IntegersTargetLesson59.css"
+    },
+    {
+      "index": 38,
+      "file": "src/modules/lessons/adapters/LatexFormulaTargetLesson38.css"
+    },
+    {
+      "index": 36,
+      "file": "src/modules/lessons/adapters/BooleanVariablesTargetLesson36.css"
+    },
+    {
+      "index": 27,
+      "file": "src/modules/lessons/adapters/DynamicLabelsTargetLesson27.css"
+    },
+    {
+      "index": 23,
+      "file": "src/modules/lessons/adapters/AngleSlidersTargetLesson23.css"
+    },
+    {
+      "index": 22,
+      "file": "src/modules/lessons/adapters/IntegerSlidersTargetLesson22.css"
+    },
+    {
+      "index": 21,
+      "file": "src/modules/lessons/adapters/NumericSlidersTargetLesson21.css"
+    },
+    {
+      "index": 20,
+      "file": "src/modules/lessons/adapters/VariableExplorerTargetLesson20.css"
+    },
+    {
+      "index": 19,
+      "file": "src/modules/lessons/adapters/AlgebraWorkspaceTargetLesson19.css"
+    },
+    {
+      "index": 18,
+      "file": "src/modules/lessons/adapters/ExactDecimalModesTargetLesson18.css"
+    },
+    {
+      "index": 17,
+      "file": "src/modules/lessons/adapters/CalculationHistoryTargetLesson17.css"
+    },
+    {
+      "index": 14,
+      "file": "src/modules/lessons/adapters/AbsoluteValueTargetLesson14.css"
+    },
+    {
+      "index": 11,
+      "file": "src/modules/lessons/adapters/InverseTrigonometryTargetLesson11.css"
+    },
+    {
+      "index": 8,
+      "file": "src/modules/lessons/adapters/LogarithmsTargetLesson8.css"
+    },
+    {
+      "index": 7,
+      "file": "src/modules/lessons/adapters/ScientificNotationTargetLesson7.css"
+    },
+    {
+      "index": 5,
+      "file": "src/modules/lessons/adapters/RatioCalculatorTargetLesson5.css"
+    },
+    {
+      "index": 4,
+      "file": "src/modules/lessons/adapters/PercentageCalculatorTargetLesson4.css"
+    },
+    {
+      "index": 3,
+      "file": "src/modules/lessons/adapters/MixedNumbersTargetLesson3.css"
+    },
+    {
+      "index": 2,
+      "file": "src/modules/lessons/adapters/FractionCalculatorTargetLesson2.css"
+    }
+  ],
+  "source": [
+    "src/modules/lessons/adapters/AlgebraLessonAdapter.tsx",
+    "src/modules/lessons/adapters/AngleTargetLesson232.tsx",
+    "src/modules/lessons/adapters/AreaTargetLesson231.tsx",
+    "src/modules/lessons/adapters/BoxPlotLesson480.tsx",
+    "src/modules/lessons/adapters/CircleCentrePointTargetLesson218.tsx",
+    "src/modules/lessons/adapters/CircleCentreRadiusTargetLesson219.tsx",
+    "src/modules/lessons/adapters/CircleThreePointsTargetLesson220.tsx",
+    "src/modules/lessons/adapters/CorrelationLesson489.tsx",
+    "src/modules/lessons/adapters/EllipseTargetLesson227.tsx",
+    "src/modules/lessons/adapters/ExponentialRegressionLesson492.tsx",
+    "src/modules/lessons/adapters/FrequencyPolygonLesson484.tsx",
+    "src/modules/lessons/adapters/FrequencyTablesLesson468.tsx",
+    "src/modules/lessons/adapters/GeometricDistributionLesson525.tsx",
+    "src/modules/lessons/adapters/GroupedFrequencyTablesLesson469.tsx",
+    "src/modules/lessons/adapters/HyperbolaTargetLesson228.tsx",
+    "src/modules/lessons/adapters/LawLargeNumbersLesson515.tsx",
+    "src/modules/lessons/adapters/LinearRegressionLesson490.tsx",
+    "src/modules/lessons/adapters/ModelComparisonLesson498.tsx",
+    "src/modules/lessons/adapters/NegativeBinomialDistributionLesson526.tsx",
+    "src/modules/lessons/adapters/NormalDistributionLesson528.tsx",
+    "src/modules/lessons/adapters/ParabolaTargetLesson229.tsx",
+    "src/modules/lessons/adapters/PoissonDistributionLesson524.tsx",
+    "src/modules/lessons/adapters/ProbabilityPlotLesson517.tsx",
+    "src/modules/lessons/adapters/ProbabilitySimulationLesson514.tsx",
+    "src/modules/lessons/adapters/ReciprocalTrigTargetLesson264.tsx",
+    "src/modules/lessons/adapters/ResidualPlotLesson497.tsx",
+    "src/modules/lessons/adapters/ScatterPlotLesson487.tsx",
+    "src/modules/lessons/adapters/SemicircleTargetLesson222.tsx",
+    "src/modules/lessons/adapters/SpreadsheetLessonAdapter.css",
+    "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "src/modules/lessons/adapters/SpreadsheetLessonTools.tsx",
+    "src/modules/lessons/adapters/StemAndLeafLesson482.tsx",
+    "src/modules/lessons/adapters/additionRuleLessonModel.test.ts",
+    "src/modules/lessons/adapters/additionRuleLessonModel.ts",
+    "src/modules/lessons/adapters/calculus/HigherDerivativesTargetLesson290.tsx",
+    "src/modules/lessons/adapters/calculus/InfiniteLimitsTargetLesson279.tsx",
+    "src/modules/lessons/adapters/calculus/ProductRuleTargetLesson291.tsx",
+    "src/modules/lessons/adapters/calculus/TypesOfDiscontinuityTargetLesson282.tsx",
+    "src/modules/lessons/adapters/calculus/discontinuityModel.ts",
+    "src/modules/lessons/adapters/cas/ExactNumericTargetLesson447.tsx",
+    "src/modules/lessons/adapters/cas/LimitsTargetLesson441.tsx",
+    "src/modules/lessons/adapters/cas/SimplifyTargetLesson429.tsx",
+    "src/modules/lessons/adapters/correlationLessonModel.test.ts",
+    "src/modules/lessons/adapters/correlationLessonModel.ts",
+    "src/modules/lessons/adapters/discrete/PigeonholeTargetLesson564.tsx",
+    "src/modules/lessons/adapters/exponentialRegressionLessonModel.ts",
+    "src/modules/lessons/adapters/finance/DimensionalAnalysisTargetLesson613.tsx",
+    "src/modules/lessons/adapters/finance/ProfitLossTargetLesson602.tsx",
+    "src/modules/lessons/adapters/frequencyPolygonLessonModel.test.ts",
+    "src/modules/lessons/adapters/frequencyPolygonLessonModel.ts",
+    "src/modules/lessons/adapters/linearRegressionLessonModel.ts",
+    "src/modules/lessons/adapters/matrix/RrefTargetLesson356.tsx",
+    "src/modules/lessons/adapters/modelComparisonLessonModel.test.ts",
+    "src/modules/lessons/adapters/modelComparisonLessonModel.ts",
+    "src/modules/lessons/adapters/quartilesLessonModel.ts",
+    "src/modules/lessons/adapters/scatterPlotLessonModel.ts",
+    "src/modules/lessons/adapters/spreadsheetLessonModel.ts",
+    "src/modules/lessons/components/InteractiveScatterPlot.tsx",
+    "src/modules/lessons/components/StandardLessonFrame.css",
+    "src/modules/lessons/schoolTargets/MagicSquaresTargetLesson10037.tsx",
+    "src/modules/lessons/schoolTargets/NthRootsTargetLesson10045.tsx",
+    "src/modules/lessons/schoolTargets/ParabolaTangentTargetLesson10147.tsx",
+    "src/modules/lessons/schoolTargets/RationalIrrationalTargetLesson10042.tsx",
+    "src/modules/lessons/schoolTargets/RationalisationTargetLesson10044.tsx",
+    "src/modules/lessons/schoolTargets/SuccessiveMagnificationTargetLesson10043.tsx",
+    "src/modules/lessons/strengthening/catalogBatch4HandAuthoredOverlay.ts",
+    "src/modules/lessons/strengthening/catalogBatch6NumericalExamples.ts",
+    "src/workspace/spreadsheetKernel.ts",
+    "src/modules/lessons/adapters/HyperbolicFunctionsTargetLesson145.tsx",
+    "src/modules/lessons/adapters/IdentitiesTargetLesson106.tsx",
+    "src/modules/lessons/adapters/graph/TraceModeTargetLesson48.tsx"
+  ],
+  "studyBoardMoves": [
+    489,
+    488,
+    487,
+    480,
+    478,
+    477
+  ],
+  "previewReleaseSources": [
+    "src/modules/lessons/schoolTargets/EuclidPostulatesTargetLesson10054.tsx",
+    "src/modules/lessons/schoolTargets/EuclidPostulatesTargetLesson10054.css",
+    "src/modules/lessons/schoolTargets/euclidPostulatesModel10054.ts",
+    "src/modules/lessons/schoolTargets/fifthEquivalenceModel10055.ts"
+  ],
+  "tests": [
+    "src/modules/lessons/adapters/CalculusLessonAdapter.test.tsx",
+    "src/modules/lessons/adapters/DiscreteLessonAdapter.test.tsx",
+    "src/modules/lessons/adapters/Geometry2DLessonAdapter.test.tsx",
+    "src/modules/lessons/adapters/GraphLessonAdapter.test.tsx",
+    "src/modules/lessons/adapters/calculus/discontinuityModel.test.ts",
+    "src/modules/lessons/adapters/cas/SimplifyTargetLesson429.test.ts",
+    "src/modules/lessons/adapters/interactiveStatisticsBoundaries.test.ts",
+    "src/modules/lessons/adapters/spreadsheetLessonModel.test.ts",
+    "src/modules/lessons/components/LessonSectionJourney.test.tsx",
+    "src/modules/lessons/graphs/lessonGraphInk.test.tsx",
+    "src/modules/lessons/pages/LessonPages.test.tsx",
+    "src/modules/lessons/schoolTargets/aasCongruenceModel10068.test.ts",
+    "src/modules/lessons/schoolTargets/alternateInteriorModel10061.test.ts",
+    "src/modules/lessons/schoolTargets/angleDepressionModel.test.ts",
+    "src/modules/lessons/schoolTargets/angleElevationModel.test.ts",
+    "src/modules/lessons/schoolTargets/arcAngleModel.test.ts",
+    "src/modules/lessons/schoolTargets/asaCongruenceModel10067.test.ts",
+    "src/modules/lessons/schoolTargets/axiomTheoremModel10056.test.ts",
+    "src/modules/lessons/schoolTargets/combinedStackModel10082.test.ts",
+    "src/modules/lessons/schoolTargets/coordinateCollinearityModel.test.ts",
+    "src/modules/lessons/schoolTargets/coordinateHeronModel10081.test.ts",
+    "src/modules/lessons/schoolTargets/correspondingModel10060.test.ts",
+    "src/modules/lessons/schoolTargets/cyclicQuadrilateralModel.test.ts",
+    "src/modules/lessons/schoolTargets/distanceModel.test.ts",
+    "src/modules/lessons/schoolTargets/equalChordsModel.test.ts",
+    "src/modules/lessons/schoolTargets/equalSidesAnglesModel10071.test.ts",
+    "src/modules/lessons/schoolTargets/exteriorAngleModel10065.test.ts",
+    "src/modules/lessons/schoolTargets/externalSectionModel.test.ts",
+    "src/modules/lessons/schoolTargets/groupedMeanDirectModel.test.ts",
+    "src/modules/lessons/schoolTargets/groupedMeanStepModel.test.ts",
+    "src/modules/lessons/schoolTargets/heronDerivationModel10079.test.ts",
+    "src/modules/lessons/schoolTargets/internalSectionModel.test.ts",
+    "src/modules/lessons/schoolTargets/lessThanOgiveModel.test.ts",
+    "src/modules/lessons/schoolTargets/linearPairModel10059.test.ts",
+    "src/modules/lessons/schoolTargets/midpointConverseModel10078.test.ts",
+    "src/modules/lessons/schoolTargets/midpointModel.test.ts",
+    "src/modules/lessons/schoolTargets/midpointTheoremModel10077.test.ts",
+    "src/modules/lessons/schoolTargets/oppositeCyclicModel.test.ts",
+    "src/modules/lessons/schoolTargets/parallelConverseModel10063.test.ts",
+    "src/modules/lessons/schoolTargets/parallelogramAnglesModel10074.test.ts",
+    "src/modules/lessons/schoolTargets/parallelogramConditionsModel10076.test.ts",
+    "src/modules/lessons/schoolTargets/parallelogramDiagonalsModel10075.test.ts",
+    "src/modules/lessons/schoolTargets/parallelogramSidesModel10073.test.ts",
+    "src/modules/lessons/schoolTargets/perpendicularChordModel.test.ts",
+    "src/modules/lessons/schoolTargets/proofStructureModel10057.test.ts",
+    "src/modules/lessons/schoolTargets/rhsCongruenceModel10070.test.ts",
+    "src/modules/lessons/schoolTargets/sameSegmentModel.test.ts",
+    "src/modules/lessons/schoolTargets/sameSideModel10062.test.ts",
+    "src/modules/lessons/schoolTargets/sasCongruenceModel10066.test.ts",
+    "src/modules/lessons/schoolTargets/semiPerimeterModel10080.test.ts",
+    "src/modules/lessons/schoolTargets/semicircleModel.test.ts",
+    "src/modules/lessons/schoolTargets/shadowLengthModel.test.ts",
+    "src/modules/lessons/schoolTargets/sssCongruenceModel10069.test.ts",
+    "src/modules/lessons/schoolTargets/tangentLengthsModel.test.ts",
+    "src/modules/lessons/schoolTargets/tangentPerpendicularModel.test.ts",
+    "src/modules/lessons/schoolTargets/triangleAreaModel.test.ts",
+    "src/modules/lessons/schoolTargets/triangleInequalityModel10072.test.ts",
+    "src/modules/lessons/schoolTargets/triangleSumModel10064.test.ts",
+    "src/modules/lessons/schoolTargets/twoObserverHeightModel.test.ts",
+    "src/modules/lessons/schoolTargets/verticalAnglesModel10058.test.ts"
+  ],
+  "verifiedSnapshotSources": [
+    "src/modules/lessons/schoolTargets/aasCongruenceModel10068.ts",
+    "src/modules/lessons/schoolTargets/AasCongruenceTargetLesson10068.css",
+    "src/modules/lessons/schoolTargets/AasCongruenceTargetLesson10068.tsx",
+    "src/modules/lessons/schoolTargets/alternateInteriorModel10061.ts",
+    "src/modules/lessons/schoolTargets/AlternateInteriorTargetLesson10061.css",
+    "src/modules/lessons/schoolTargets/AlternateInteriorTargetLesson10061.tsx",
+    "src/modules/lessons/schoolTargets/angleDepressionModel.ts",
+    "src/modules/lessons/schoolTargets/AngleDepressionTargetLesson10099.css",
+    "src/modules/lessons/schoolTargets/AngleDepressionTargetLesson10099.tsx",
+    "src/modules/lessons/schoolTargets/angleElevationModel.ts",
+    "src/modules/lessons/schoolTargets/AngleElevationTargetLesson10098.css",
+    "src/modules/lessons/schoolTargets/AngleElevationTargetLesson10098.tsx",
+    "src/modules/lessons/schoolTargets/AngleSemicircleTargetLesson10092.css",
+    "src/modules/lessons/schoolTargets/AngleSemicircleTargetLesson10092.tsx",
+    "src/modules/lessons/schoolTargets/AnglesSameSegmentTargetLesson10093.css",
+    "src/modules/lessons/schoolTargets/AnglesSameSegmentTargetLesson10093.tsx",
+    "src/modules/lessons/schoolTargets/AngleSubtendedArcTargetLesson10091.css",
+    "src/modules/lessons/schoolTargets/AngleSubtendedArcTargetLesson10091.tsx",
+    "src/modules/lessons/schoolTargets/arcAngleModel.ts",
+    "src/modules/lessons/schoolTargets/asaCongruenceModel10067.ts",
+    "src/modules/lessons/schoolTargets/AsaCongruenceTargetLesson10067.css",
+    "src/modules/lessons/schoolTargets/AsaCongruenceTargetLesson10067.tsx",
+    "src/modules/lessons/schoolTargets/axiomTheoremModel10056.ts",
+    "src/modules/lessons/schoolTargets/AxiomTheoremTargetLesson10056.css",
+    "src/modules/lessons/schoolTargets/AxiomTheoremTargetLesson10056.tsx",
+    "src/modules/lessons/schoolTargets/CollinearityCoordinateAreaTargetLesson10088.css",
+    "src/modules/lessons/schoolTargets/CollinearityCoordinateAreaTargetLesson10088.tsx",
+    "src/modules/lessons/schoolTargets/CombinedSolidDiagram10082.tsx",
+    "src/modules/lessons/schoolTargets/CombinedSolidsTargetLesson10082.css",
+    "src/modules/lessons/schoolTargets/CombinedSolidsTargetLesson10082.tsx",
+    "src/modules/lessons/schoolTargets/combinedStackModel10082.ts",
+    "src/modules/lessons/schoolTargets/coordinateCollinearityModel.ts",
+    "src/modules/lessons/schoolTargets/coordinateHeronModel10081.ts",
+    "src/modules/lessons/schoolTargets/CoordinateHeronTargetLesson10081.css",
+    "src/modules/lessons/schoolTargets/CoordinateHeronTargetLesson10081.tsx",
+    "src/modules/lessons/schoolTargets/CoordinateTriangleAreaTargetLesson10087.css",
+    "src/modules/lessons/schoolTargets/CoordinateTriangleAreaTargetLesson10087.tsx",
+    "src/modules/lessons/schoolTargets/CorrespondingAnglesTargetLesson10060.css",
+    "src/modules/lessons/schoolTargets/CorrespondingAnglesTargetLesson10060.tsx",
+    "src/modules/lessons/schoolTargets/correspondingModel10060.ts",
+    "src/modules/lessons/schoolTargets/cyclicQuadrilateralModel.ts",
+    "src/modules/lessons/schoolTargets/CyclicQuadrilateralTargetLesson10094.css",
+    "src/modules/lessons/schoolTargets/CyclicQuadrilateralTargetLesson10094.tsx",
+    "src/modules/lessons/schoolTargets/DistanceFormulaTargetLesson10083.css",
+    "src/modules/lessons/schoolTargets/DistanceFormulaTargetLesson10083.tsx",
+    "src/modules/lessons/schoolTargets/distanceModel.ts",
+    "src/modules/lessons/schoolTargets/EqualChordsAnglesTargetLesson10089.css",
+    "src/modules/lessons/schoolTargets/EqualChordsAnglesTargetLesson10089.tsx",
+    "src/modules/lessons/schoolTargets/equalChordsModel.ts",
+    "src/modules/lessons/schoolTargets/equalSidesAnglesModel10071.ts",
+    "src/modules/lessons/schoolTargets/EqualSidesAnglesTargetLesson10071.css",
+    "src/modules/lessons/schoolTargets/EqualSidesAnglesTargetLesson10071.tsx",
+    "src/modules/lessons/schoolTargets/exteriorAngleModel10065.ts",
+    "src/modules/lessons/schoolTargets/ExteriorAngleTargetLesson10065.css",
+    "src/modules/lessons/schoolTargets/ExteriorAngleTargetLesson10065.tsx",
+    "src/modules/lessons/schoolTargets/ExternalSectionFormulaTargetLesson10086.css",
+    "src/modules/lessons/schoolTargets/ExternalSectionFormulaTargetLesson10086.tsx",
+    "src/modules/lessons/schoolTargets/externalSectionModel.ts",
+    "src/modules/lessons/schoolTargets/GroupedMeanAssumedTargetLesson10103.css",
+    "src/modules/lessons/schoolTargets/GroupedMeanAssumedTargetLesson10103.tsx",
+    "src/modules/lessons/schoolTargets/groupedMeanDirectModel.ts",
+    "src/modules/lessons/schoolTargets/GroupedMeanDirectTargetLesson10102.css",
+    "src/modules/lessons/schoolTargets/GroupedMeanDirectTargetLesson10102.tsx",
+    "src/modules/lessons/schoolTargets/groupedMeanStepModel.ts",
+    "src/modules/lessons/schoolTargets/GroupedMeanStepTargetLesson10104.css",
+    "src/modules/lessons/schoolTargets/GroupedMeanStepTargetLesson10104.tsx",
+    "src/modules/lessons/schoolTargets/heronDerivationModel10079.ts",
+    "src/modules/lessons/schoolTargets/HeronFormulaTargetLesson10079.css",
+    "src/modules/lessons/schoolTargets/HeronFormulaTargetLesson10079.tsx",
+    "src/modules/lessons/schoolTargets/InternalSectionFormulaTargetLesson10085.css",
+    "src/modules/lessons/schoolTargets/InternalSectionFormulaTargetLesson10085.tsx",
+    "src/modules/lessons/schoolTargets/internalSectionModel.ts",
+    "src/modules/lessons/schoolTargets/LessThanCumulativeTargetLesson10105.css",
+    "src/modules/lessons/schoolTargets/LessThanCumulativeTargetLesson10105.tsx",
+    "src/modules/lessons/schoolTargets/lessThanOgiveModel.ts",
+    "src/modules/lessons/schoolTargets/LessThanOgiveTargetLesson10107.css",
+    "src/modules/lessons/schoolTargets/LessThanOgiveTargetLesson10107.tsx",
+    "src/modules/lessons/schoolTargets/linearPairModel10059.ts",
+    "src/modules/lessons/schoolTargets/LinearPairTargetLesson10059.css",
+    "src/modules/lessons/schoolTargets/LinearPairTargetLesson10059.tsx",
+    "src/modules/lessons/schoolTargets/midpointConverseModel10078.ts",
+    "src/modules/lessons/schoolTargets/MidpointConverseTargetLesson10078.css",
+    "src/modules/lessons/schoolTargets/MidpointConverseTargetLesson10078.tsx",
+    "src/modules/lessons/schoolTargets/MidpointFormulaTargetLesson10084.css",
+    "src/modules/lessons/schoolTargets/MidpointFormulaTargetLesson10084.tsx",
+    "src/modules/lessons/schoolTargets/midpointModel.ts",
+    "src/modules/lessons/schoolTargets/midpointTheoremModel10077.ts",
+    "src/modules/lessons/schoolTargets/MidpointTheoremTargetLesson10077.css",
+    "src/modules/lessons/schoolTargets/MidpointTheoremTargetLesson10077.tsx",
+    "src/modules/lessons/schoolTargets/MoreThanCumulativeTargetLesson10106.css",
+    "src/modules/lessons/schoolTargets/MoreThanCumulativeTargetLesson10106.tsx",
+    "src/modules/lessons/schoolTargets/MoreThanOgiveTargetLesson10108.tsx",
+    "src/modules/lessons/schoolTargets/OppositeCyclicAnglesTargetLesson10095.css",
+    "src/modules/lessons/schoolTargets/OppositeCyclicAnglesTargetLesson10095.tsx",
+    "src/modules/lessons/schoolTargets/oppositeCyclicModel.ts",
+    "src/modules/lessons/schoolTargets/parallelConverseModel10063.ts",
+    "src/modules/lessons/schoolTargets/ParallelConverseTargetLesson10063.css",
+    "src/modules/lessons/schoolTargets/ParallelConverseTargetLesson10063.tsx",
+    "src/modules/lessons/schoolTargets/parallelogramAnglesModel10074.ts",
+    "src/modules/lessons/schoolTargets/ParallelogramAnglesTargetLesson10074.css",
+    "src/modules/lessons/schoolTargets/ParallelogramAnglesTargetLesson10074.tsx",
+    "src/modules/lessons/schoolTargets/parallelogramConditionsModel10076.ts",
+    "src/modules/lessons/schoolTargets/ParallelogramConditionsTargetLesson10076.css",
+    "src/modules/lessons/schoolTargets/ParallelogramConditionsTargetLesson10076.tsx",
+    "src/modules/lessons/schoolTargets/parallelogramDiagonalsModel10075.ts",
+    "src/modules/lessons/schoolTargets/ParallelogramDiagonalsTargetLesson10075.css",
+    "src/modules/lessons/schoolTargets/ParallelogramDiagonalsTargetLesson10075.tsx",
+    "src/modules/lessons/schoolTargets/parallelogramSidesModel10073.ts",
+    "src/modules/lessons/schoolTargets/ParallelogramSidesTargetLesson10073.css",
+    "src/modules/lessons/schoolTargets/ParallelogramSidesTargetLesson10073.tsx",
+    "src/modules/lessons/schoolTargets/PerpendicularCentreChordTargetLesson10090.css",
+    "src/modules/lessons/schoolTargets/PerpendicularCentreChordTargetLesson10090.tsx",
+    "src/modules/lessons/schoolTargets/perpendicularChordModel.ts",
+    "src/modules/lessons/schoolTargets/proofStructureModel10057.ts",
+    "src/modules/lessons/schoolTargets/ProofStructureTargetLesson10057.css",
+    "src/modules/lessons/schoolTargets/ProofStructureTargetLesson10057.tsx",
+    "src/modules/lessons/schoolTargets/rhsCongruenceModel10070.ts",
+    "src/modules/lessons/schoolTargets/RhsCongruenceTargetLesson10070.css",
+    "src/modules/lessons/schoolTargets/RhsCongruenceTargetLesson10070.tsx",
+    "src/modules/lessons/schoolTargets/sameSegmentModel.ts",
+    "src/modules/lessons/schoolTargets/SameSideInteriorTargetLesson10062.css",
+    "src/modules/lessons/schoolTargets/SameSideInteriorTargetLesson10062.tsx",
+    "src/modules/lessons/schoolTargets/sameSideModel10062.ts",
+    "src/modules/lessons/schoolTargets/sasCongruenceModel10066.ts",
+    "src/modules/lessons/schoolTargets/SasCongruenceTargetLesson10066.css",
+    "src/modules/lessons/schoolTargets/SasCongruenceTargetLesson10066.tsx",
+    "src/modules/lessons/schoolTargets/semicircleModel.ts",
+    "src/modules/lessons/schoolTargets/semiPerimeterModel10080.ts",
+    "src/modules/lessons/schoolTargets/SemiPerimeterTargetLesson10080.css",
+    "src/modules/lessons/schoolTargets/SemiPerimeterTargetLesson10080.tsx",
+    "src/modules/lessons/schoolTargets/shadowLengthModel.ts",
+    "src/modules/lessons/schoolTargets/ShadowLengthTargetLesson10100.css",
+    "src/modules/lessons/schoolTargets/ShadowLengthTargetLesson10100.tsx",
+    "src/modules/lessons/schoolTargets/sssCongruenceModel10069.ts",
+    "src/modules/lessons/schoolTargets/SssCongruenceTargetLesson10069.css",
+    "src/modules/lessons/schoolTargets/SssCongruenceTargetLesson10069.tsx",
+    "src/modules/lessons/schoolTargets/TangentLengthsExternalTargetLesson10097.css",
+    "src/modules/lessons/schoolTargets/TangentLengthsExternalTargetLesson10097.tsx",
+    "src/modules/lessons/schoolTargets/tangentLengthsModel.ts",
+    "src/modules/lessons/schoolTargets/tangentPerpendicularModel.ts",
+    "src/modules/lessons/schoolTargets/TangentPerpendicularTargetLesson10096.css",
+    "src/modules/lessons/schoolTargets/TangentPerpendicularTargetLesson10096.tsx",
+    "src/modules/lessons/schoolTargets/TriangleAngleSumTargetLesson10064.css",
+    "src/modules/lessons/schoolTargets/TriangleAngleSumTargetLesson10064.tsx",
+    "src/modules/lessons/schoolTargets/triangleAreaModel.ts",
+    "src/modules/lessons/schoolTargets/triangleInequalityModel10072.ts",
+    "src/modules/lessons/schoolTargets/TriangleInequalityTargetLesson10072.css",
+    "src/modules/lessons/schoolTargets/TriangleInequalityTargetLesson10072.tsx",
+    "src/modules/lessons/schoolTargets/triangleSumModel10064.ts",
+    "src/modules/lessons/schoolTargets/twoObserverHeightModel.ts",
+    "src/modules/lessons/schoolTargets/TwoObserverHeightTargetLesson10101.css",
+    "src/modules/lessons/schoolTargets/TwoObserverHeightTargetLesson10101.tsx",
+    "src/modules/lessons/schoolTargets/verticalAnglesModel10058.ts",
+    "src/modules/lessons/schoolTargets/VerticalAnglesTargetLesson10058.css",
+    "src/modules/lessons/schoolTargets/VerticalAnglesTargetLesson10058.tsx"
+  ],
+  "assets": [
+    "public/assets/lessons/564-pigeonhole-principle/hole.png",
+    "public/assets/lessons/564-pigeonhole-principle/pigeon.png",
+    "public/assets/lessons/euclid-five-postulates-reference.png"
+  ]
+}

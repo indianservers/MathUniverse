@@ -672,3 +672,5 @@ body:has(.continued74-page)
     grid-template-columns: repeat(4, minmax(120px, 1fr));
   }
 }
+
+@media(max-width:900px){html body #main-content .standard-lesson-frame .standard-lesson-content .continued74-page .continued74-proof{overflow-x:auto!important;max-width:100%}}

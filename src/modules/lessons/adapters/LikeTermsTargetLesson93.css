@@ -1260,3 +1260,5 @@ body:has(.like93-page)
 .like93-unit-row .negative-constant {
   background: linear-gradient(#fa6767, #dc3535) !important;
 }
+
+@media(max-width:900px){.like93-page .like93-stage-row,.like93-page .like93-cancel-row{display:flex;flex-wrap:wrap;gap:8px;height:auto}.like93-stage{height:auto}}

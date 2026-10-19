@@ -605,3 +605,7 @@ body:has(.hcf69-page)
     flex-wrap: wrap;
   }
 }
+
+@media(max-width:900px){[data-testid="number-mockup-0051"] .hcf69-group-proof{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}[data-testid="number-mockup-0051"] .hcf69-group-proof>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.hcf69-groups{height:auto}}

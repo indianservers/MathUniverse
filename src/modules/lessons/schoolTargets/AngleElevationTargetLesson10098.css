@@ -24,7 +24,7 @@
 .aoe10098-page input {
   font: inherit;
 }
-.aoe10098-page svg {
+.aoe10098-page button svg,.aoe10098-cards h2 svg,.aoe10098-lab .consistent>svg,.aoe10098-next svg {
   width: 14px;
   height: 14px;
 }
@@ -88,7 +88,7 @@
   background: #fff;
   overflow: hidden;
 }
-.aoe10098-lab article > header {
+.aoe10098-lab article > .aoe10098-heading {
   padding: 14px;
 }
 .aoe10098-lab .scene-image {
@@ -448,3 +448,15 @@
     border-bottom: 1px solid #e0d7eb;
   }
 }
+
+.aoe10098-page{width:100%;top:0;left:0;padding:8px;color:#263550;background:#f9fcff;font-size:14px}.aoe10098-hero{position:relative;height:auto;min-height:150px;padding:20px}.aoe10098-hero h1{font-size:28px;font-weight:800}.aoe10098-hero>div{flex-wrap:wrap}.aoe10098-school{position:absolute;right:16px;top:16px;border:1px solid #dce5ea;border-radius:8px;padding:8px 12px;background:#fff;color:#263550;text-decoration:none}.aoe10098-tabs{height:auto;min-height:48px}.aoe10098-tabs button{color:#263550;font-size:13px}.aoe10098-page h2{font-size:15px}
+.aoe10098-lab>article{min-width:0}.aoe10098-lab .scene-image{height:420px}.aoe10098-lab .scene-image>svg{max-width:none!important}.aoe10098-lab .scene-controls label:last-child{margin:8px 20px 0}.aoe10098-lab .model>svg{max-width:none!important;height:400px;aspect-ratio:auto}.aoe10098-lab .model .top-handle{cursor:move}.aoe10098-numeric{display:flex;gap:12px;padding:10px;flex-wrap:wrap}.aoe10098-numeric label{display:grid;gap:5px;flex:1;min-width:120px}.aoe10098-numeric input{padding:7px;border:1px solid #dce5ea;border-radius:5px;color:#263550;background:#fff}.aoe10098-lab .scene-image text{paint-order:stroke;stroke:#fff;stroke-width:2px}.aoe10098-lab .aoe10098-result strong,.aoe10098-lab .aoe10098-result b{font-size:28px}.aoe10098-lab .consistent{font-size:13px}
+.aoe10098-rule>*{min-width:0}.aoe10098-rule .math-expression{font-size:23px}.aoe10098-cards>article{min-height:0;min-width:0}.aoe10098-mini-diagram{display:block;width:100%;height:160px;max-width:none!important;margin:12px 0}.aoe10098-mini-diagram text{font:16px Georgia,serif;fill:#6830c0}.aoe10098-cards .math-expression{font-size:21px}.aoe10098-challenge>article{min-width:0}.aoe10098-challenge input{color:#263550;background:#fff}.aoe10098-footer{padding:15px;border:1px solid #dce5ea;border-radius:8px;background:#fff}.aoe10098-footer small{display:block;margin-top:15px;color:#59657b}
+@media(max-width:1100px){.aoe10098-hero{padding-top:55px}.aoe10098-lab{grid-template-columns:1fr}.aoe10098-rule{grid-template-columns:1fr 1fr}.aoe10098-rule>aside{grid-column:1/-1}.aoe10098-cards{grid-template-columns:1fr}.aoe10098-challenge{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.aoe10098-page{width:100%;font-size:14px}.aoe10098-hero h1{font-size:24px}.aoe10098-tabs button{font-size:11px}.aoe10098-lab .scene-image{height:auto;aspect-ratio:500/360}.aoe10098-lab .model>svg{height:auto;aspect-ratio:480/400}.aoe10098-rule,.aoe10098-challenge,.aoe10098-next{grid-template-columns:1fr}.aoe10098-rule>aside{grid-column:auto}}
+
+.aoe10098-reset{position:absolute;right:16px;top:62px;padding:7px 12px;border:1px solid #dce5ea;border-radius:6px;background:#fff;color:#263550}.aoe10098-angle-control{border:1px solid #dce5ea;padding:8px;min-width:0}.aoe10098-angle-control>.aoe10098-range{border:0;margin:0!important}.aoe10098-angle-gauge{width:100%;height:110px;max-width:none!important;display:block}.aoe10098-angle-gauge text{font:12px Arial;fill:#273750}.aoe10098-angle-gauge text:first-of-type{font-size:22px;font-weight:800;fill:#6730c1}.aoe10098-angle-buttons{display:flex;justify-content:space-between;gap:12px}.aoe10098-angle-buttons button{border:1px solid #b69ae2;border-radius:50%;background:#fff;color:#6730c1;width:26px;height:26px}.aoe10098-next a:first-child{justify-content:flex-start;gap:12px}.aoe10098-next a:last-child{justify-content:flex-end;gap:12px}
+@media(max-width:700px){.aoe10098-reset{position:static;margin-top:10px}}
+
+.aoe10098-range{align-content:start}.aoe10098-lab .scene-image{height:360px}.aoe10098-angle-gauge{height:85px}.aoe10098-numeric input[type=range]{padding:0;border:0;accent-color:#1b7ddd}.aoe10098-numeric label{align-content:start}
+@media(max-width:700px){.aoe10098-lab .scene-image{height:auto}}

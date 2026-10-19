@@ -19,7 +19,12 @@ function BoxPlotActivity({
   const [practice, setPractice] = useState(["", ""]);
   const [checked, setChecked] = useState<boolean[]>([]);
   const result = quartiles(values);
-  const ordered = [...values].sort((a, b) => a - b);
+  const practiceResult = quartiles([12,14,15,17,21,23,23,24,26,28,29,31,33,34,37,40,43,46,52])!;
+  const ordered = values.map((value, index) => ({value, index})).sort((a, b) => a.value - b.value);
+  const span = result ? result.max - result.min || 1 : 1;
+  const position = (value: number) => 45 + (value - (result?.min ?? 0)) / span * 510;
+  const inliers = result ? values.filter(value => value >= result.lowerFence && value <= result.upperFence) : [];
+  const low = Math.min(...inliers), high = Math.max(...inliers);
   function edit(index: number, raw: string) {
     const value = Number(raw);
     if (!Number.isFinite(value)) return;
@@ -80,13 +85,13 @@ function BoxPlotActivity({
             Ordered data <small>(n = {values.length})</small>
           </h3>
           <div>
-            {ordered.map((value, index) => (
+            {ordered.map(({value, index}, order) => (
               <input
-                key={`${index}-${value}`}
-                aria-label={`Box plot data value ${index + 1}`}
+                key={index}
+                aria-label={`Box plot data value ${order + 1}`}
                 value={value}
                 onChange={(event) =>
-                  edit(values.indexOf(value), event.target.value)
+                  edit(index, event.target.value)
                 }
               />
             ))}
@@ -97,33 +102,14 @@ function BoxPlotActivity({
         </div>
         <section className="box480-plot">
           <h3>2 &nbsp; Manipulate · Box plot (IQR = {result?.iqr ?? "-"})</h3>
-          <div className="box480-whisker">
-            <span className="bmin">
-              Min
-              <br />
-              <b>{result?.min ?? "-"}</b>
-            </span>
-            <span className="bq1">
-              Q1
-              <br />
-              <b>{result?.q1 ?? "-"}</b>
-            </span>
-            <span className="bmed">
-              Median
-              <br />
-              <b>{result?.median ?? "-"}</b>
-            </span>
-            <span className="bq3">
-              Q3
-              <br />
-              <b>{result?.q3 ?? "-"}</b>
-            </span>
-            <span className="bmax">
-              Max
-              <br />
-              <b>{result?.max ?? "-"}</b>
-            </span>
-          </div>
+          {result ? <svg viewBox="0 0 600 190" role="img" aria-label="Box plot scaled to data" data-summary={JSON.stringify(result)}>
+            <line x1={position(low)} x2={position(high)} y1="90" y2="90" stroke="#2472a4" strokeWidth="3" />
+            {[low, high].map((value, i) => <line key={i} x1={position(value)} x2={position(value)} y1="65" y2="115" stroke="#2472a4" strokeWidth="3" />)}
+            <rect x={position(result.q1)} y="55" width={Math.max(0, position(result.q3)-position(result.q1))} height="70" fill="#cae8f5" stroke="#277ccb" strokeWidth="2" />
+            <line x1={position(result.median)} x2={position(result.median)} y1="55" y2="125" stroke="#b45a12" strokeWidth="3" />
+            {values.filter(value => value < result.lowerFence || value > result.upperFence).map((value, i) => <circle key={i} cx={position(value)} cy="90" r="5" fill="#b33" data-outlier={value} />)}
+            {[{label:'Min',value:result.min},{label:'Q1',value:result.q1},{label:'Median',value:result.median},{label:'Q3',value:result.q3},{label:'Max',value:result.max}].map(({label,value},i) => <text key={label} x={45+i*127.5} y="165" textAnchor="middle" fontSize="13">{label}: {value}</text>)}
+          </svg> : <p>Add sample data to draw a box plot.</p>}
           <div className="box480-cards">
             <span>
               Center (Median)<b>{result?.median ?? "-"}</b>
@@ -139,7 +125,7 @@ function BoxPlotActivity({
               <b>
                 {result && result.max - result.q3 > result.q1 - result.min
                   ? "Right"
-                  : "Left"}
+                  : result && result.max - result.q3 < result.q1 - result.min ? "Left" : "Balanced"}
               </b>
             </span>
           </div>
@@ -194,13 +180,14 @@ function BoxPlotActivity({
               const next = [...practice];
               next[0] = event.target.value;
               setPractice(next);
+              setChecked([]);
             }}
           />
           <button
             type="button"
             onClick={() => {
               const next = [...checked];
-              next[0] = Number(practice[0]) === 17;
+              next[0] = practice[0].trim() !== "" && Number(practice[0]) === practiceResult.q1;
               setChecked(next);
               onInteraction();
             }}
@@ -217,13 +204,14 @@ function BoxPlotActivity({
               const next = [...practice];
               next[1] = event.target.value;
               setPractice(next);
+              setChecked([]);
             }}
           />
           <button
             type="button"
             onClick={() => {
               const next = [...checked];
-              next[1] = Number(practice[1]) === 20;
+              next[1] = practice[1].trim() !== "" && Number(practice[1]) === practiceResult.iqr;
               setChecked(next);
               onInteraction();
             }}
@@ -232,7 +220,7 @@ function BoxPlotActivity({
           </button>
         </label>
         {checked.map((ok, index) => (
-          <span key={index} className={ok ? "box480-ok" : "box480-bad"}>
+          <span role="status" key={index} className={ok ? "box480-ok" : "box480-bad"}>
             {ok ? "Correct" : "Review"}
           </span>
         ))}
@@ -255,7 +243,7 @@ function BoxPlotActivity({
         <button
           type="button"
           onClick={() => {
-            setValues([...values].sort(() => Math.random() - 0.5));
+            setValues(Array.from({length:20}, () => Math.floor(Math.random()*60)));
             onInteraction();
           }}
         >

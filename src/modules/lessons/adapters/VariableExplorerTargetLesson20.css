@@ -33,3 +33,5 @@
 @media(min-width:1100px) and (max-width:1279px){body:has(.target-variable-page) [data-testid="desktop-sidebar"]{width:242px}body:has(.target-variable-page) .app-layout-rail>div>header{height:59px}body:has(.target-variable-page) #main-content{padding:47px 14px 0;overflow:hidden;background:#fff}body:has(.target-variable-page) footer[aria-label="Site footer"]{display:none}}
 @media(max-width:1099px){.target-variable-page{top:0;width:100%;height:auto;margin:0}.variable-breadcrumb{display:none}.variable-header,.variable-main,.variable-side{height:auto}.variable-header,.variable-main{grid-template-columns:1fr}.variable-tabs{grid-template-columns:repeat(3,1fr)}.variable-actions{margin-top:15px;justify-content:start}.variable-side{margin-top:12px}}
 
+
+@media(max-width:900px){.variable-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.variable-footer>:is(p,small,span){width:auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}.variable-footer>nav{position:static;flex-wrap:wrap}.variable-footer:after{max-width:100%;white-space:normal;overflow-wrap:anywhere;flex-basis:100%}}

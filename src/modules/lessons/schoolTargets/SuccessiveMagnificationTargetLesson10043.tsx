@@ -103,6 +103,12 @@ export default function SuccessiveMagnificationTargetLesson10043({
       setDigits([]);
       setNextDigit(Math.floor(targetOptions[key].value * 10) % 10);
     });
+  const locate = () => act(() => {
+    const actualDigits = target.value.toFixed(8).split(".")[1];
+    setDigits(actualDigits.slice(0, digits.length).split("").map(Number));
+    setNextDigit(Number(actualDigits[digits.length]));
+    setShowTarget(true);
+  });
   const challengeCorrect = challengeDigits.join("") === "732";
   return (
     <section
@@ -158,6 +164,7 @@ export default function SuccessiveMagnificationTargetLesson10043({
             <label>
               Target number
               <select
+                aria-label="Target number"
                 value={targetKey}
                 onChange={(e) => changeTarget(e.target.value as TargetKey)}
               >
@@ -168,7 +175,7 @@ export default function SuccessiveMagnificationTargetLesson10043({
                 ))}
               </select>
             </label>
-            <button aria-label="Locate target">
+            <button aria-label="Locate target" onClick={locate}>
               <Target />
             </button>
           </header>

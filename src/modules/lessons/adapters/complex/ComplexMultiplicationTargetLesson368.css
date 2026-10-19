@@ -480,3 +480,11 @@ body:has(.cm368-page) footer[aria-label="Site footer"] > div {
     min-width: 762px;
   }
 }
+
+/* Stack the linked model and learning panels on narrow screens. */
+@media(max-width:799px){
+.cm368-page :is(.cm368-work,.cm368-learning,.cm368-nav){grid-template-columns:minmax(0,1fr);height:auto}
+.cm368-page :is(.cm368-lab,.cm368-explorer){height:auto}
+.cm368-page .cm368-tabs{overflow-x:auto}
+.cm368-page :is(article,aside){min-width:0;overflow-wrap:anywhere}
+}

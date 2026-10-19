@@ -731,3 +731,7 @@ body:has(.tay305-page) footer[aria-label="Site footer"] > div > p:last-child {
     min-width: 753px;
   }
 }
+
+@media(max-width:900px){.tay305-page .tay305-hero,.tay305-page .tay305-flow,.tay305-page .tay305-lab>main,.tay305-page .tay305-lab .remainder,.tay305-page .tay305-info,.tay305-page .tay305-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.tay305-page .tay305-hero>*,.tay305-page .tay305-flow>*,.tay305-page .tay305-lab>main>*,.tay305-page .tay305-lab .remainder>*,.tay305-page .tay305-info>*,.tay305-page .tay305-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.tay305-page .tay305-flow article:not(:last-child):after{position:static}.tay305-page .tay305-lab{height:auto}.tay305-page .tay305-lab>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.tay305-page .tay305-lab>header>b,.tay305-page .tay305-lab>header>output,.tay305-page .tay305-lab>header>button{position:static}.tay305-page .tay305-info article:nth-child(2)>output{position:static}.tay305-page .tay305-practice>*{height:auto}.tay305-page .tay305-lab .graph-panel{height:auto}.tay305-page .tay305-lab .graph-panel>.legend{position:static;width:auto}.tay305-page .tay305-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

@@ -692,3 +692,7 @@ body:has(.rel302-page) footer[aria-label="Site footer"] > div > p:last-child {
     min-width: 785px;
   }
 }
+
+@media(max-width:900px){.rel302-page .rel302-flow,.rel302-page .rel302-lab>main,.rel302-page .rel302-lab>main>aside,.rel302-page .rel302-info,.rel302-page .rel302-result{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.rel302-page .rel302-flow>*,.rel302-page .rel302-lab>main>*,.rel302-page .rel302-lab>main>aside>*,.rel302-page .rel302-info>*,.rel302-page .rel302-result>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.rel302-page .rel302-flow article:not(:last-child):after{position:static}.rel302-page .rel302-lab{height:auto}.rel302-page .rel302-lab .scene{height:auto}.rel302-page .rel302-lab .tooltip{position:static;width:auto}.rel302-page .rel302-info>*{height:auto}.rel302-page .rel302-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

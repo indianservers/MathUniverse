@@ -471,3 +471,5 @@ body:has(.mat353-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:799px){.mat353-page :is(.mat353-main,.mat353-lower,.mat353-bottom,.mat353-practice){grid-template-columns:minmax(0,1fr);height:auto}.mat353-page .mat353-tabs{overflow-x:auto}.mat353-page .mat353-graph footer{display:flex;flex-wrap:wrap;height:auto}.mat353-page :is(article,aside){min-width:0;overflow-wrap:anywhere}}

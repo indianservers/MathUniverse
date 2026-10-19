@@ -193,13 +193,13 @@ export default function RationalIrrationalTargetLesson10042({
                   </button>
                 ))}
             </div>
-            {selectedCard && !placements[selectedCard.id] ? (
+            {selectedCard ? (
               <aside>
                 <span>Place {selectedCard.label}:</span>
-                <button onClick={() => place(selectedCard.id, "rational")}>
+                <button aria-pressed={placements[selectedCard.id] === "rational"} onClick={() => place(selectedCard.id, "rational")}>
                   Rational
                 </button>
-                <button onClick={() => place(selectedCard.id, "irrational")}>
+                <button aria-pressed={placements[selectedCard.id] === "irrational"} onClick={() => place(selectedCard.id, "irrational")}>
                   Irrational
                 </button>
               </aside>

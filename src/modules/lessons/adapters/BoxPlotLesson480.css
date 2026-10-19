@@ -258,3 +258,5 @@
     justify-self: start;
   }
 }
+
+.box480-plot svg{display:block;width:100%;height:auto}.box480-work,.box480-ordered,.box480-plot,.box480-learn>section{min-width:0}@media(max-width:600px){.box480 footer{flex-wrap:wrap}.box480-practice label{display:flex;flex-wrap:wrap}.box480-tabs{gap:0;flex-wrap:wrap}.box480-tabs>*{padding:8px}.box480-fences{overflow-wrap:anywhere}}

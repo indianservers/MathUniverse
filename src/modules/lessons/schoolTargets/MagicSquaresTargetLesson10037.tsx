@@ -230,7 +230,7 @@ export default function MagicSquaresTargetLesson10037({
         <article>
           <h2>Why it works</h2>
           <p>All rows, columns, and diagonals total the same sum.</p>
-          <p>Opposite cells across the centre add to the magic sum (15).</p>
+          <p>Opposite cells across the centre add to 10, leaving 5 at the centre to make 15.</p>
           <p>
             For 1-9, the unique centre value is always <b>5</b>.
           </p>

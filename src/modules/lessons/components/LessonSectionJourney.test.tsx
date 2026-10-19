@@ -55,7 +55,7 @@ describe("lesson section journey", () => {
     expect(html).toContain("Conditions and edge cases");
     expect(html).toContain("Common mistake");
     expect(html).toContain("Exit check");
-    expect(html.match(/Example [123]/g)).toHaveLength(3);
+    expect(html.match(/Worked example [123]/g)).toHaveLength(3);
     expect(html).toContain('data-testid="step-by-step-examples"');
     expect(html).toContain('data-testid="try-these"');
     expect(html).toContain("Show answer");

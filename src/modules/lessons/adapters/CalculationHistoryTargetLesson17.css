@@ -590,3 +590,5 @@
     margin-top: 8px;
   }
 }
+
+@media(max-width:900px){.history-action-key{height:auto;display:flex;flex-wrap:wrap;gap:10px}}

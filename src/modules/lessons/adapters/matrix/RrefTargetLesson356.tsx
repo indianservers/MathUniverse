@@ -1,4 +1,4 @@
-import { Lightbulb, RotateCcw, Share2 } from "lucide-react";
+import { ClipboardCopy, Lightbulb, RotateCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LessonAdapterProps } from "../../types";
 import "./RrefTargetLesson356.css";
@@ -11,7 +11,7 @@ const initial: Matrix = [
     [-2, 3, 0, 0],
   ],
   tabs = [
-    "Learn & Explore",
+    "Interact",
     "Row Operations",
     "Examples",
     "Challenges",
@@ -75,6 +75,7 @@ export default function RrefTargetLesson356({
     [hint, setHint] = useState(false),
     [tab, setTab] = useState(tabs[0]),
     [actions, setActions] = useState(0),
+    [copyStatus, setCopyStatus] = useState(""),
     final = calculation.rref,
     pivots = calculation.pivots,
     rank = pivots.length,
@@ -99,6 +100,7 @@ export default function RrefTargetLesson356({
       setHint(false);
       setTab(tabs[0]);
       setActions(0);
+      setCopyStatus("");
     };
   useEffect(reset, [resetToken]);
   const solution = rank === 3 ? final.map((row) => row[3]) : [];
@@ -145,11 +147,11 @@ export default function RrefTargetLesson356({
               <RotateCcw />
               Reset
             </button>
-            <button onClick={() => act(() => {})}>
-              <Share2 />
-              Share
+            <button onClick={async () => { try { await navigator.clipboard.writeText(final.map(row => row.join("\t")).join("\n")); setCopyStatus("RREF copied"); } catch { setCopyStatus("Copy unavailable"); } }}>
+              <ClipboardCopy />
+              {copyStatus || "Copy RREF"}
             </button>
-            <button>Workspace</button>
+            <button onClick={() => document.querySelector(".mat356-steps")?.scrollIntoView({ behavior: "smooth" })}>Reduction steps</button>
           </nav>
         </div>
 
@@ -202,6 +204,8 @@ export default function RrefTargetLesson356({
           <h3>STEP-BY-STEP SOLUTION</h3>
           {calculation.steps.map((item, index) => (
             <button
+              aria-label={`Show row-reduction step ${index}`}
+              aria-pressed={activeStep === index}
               className={activeStep === index ? "active" : ""}
               key={`${item.label}-${index}`}
               onClick={() => act(() => setActiveStep(index))}
@@ -302,6 +306,8 @@ export default function RrefTargetLesson356({
                         ? "candidate"
                         : ""
                   }
+                  aria-label={`Pivot row ${r + 1} column ${c + 1}`}
+                  aria-pressed={pivotChoice?.[0] === r && pivotChoice[1] === c}
                   key={`${r}-${c}`}
                   onClick={() =>
                     act(() => {

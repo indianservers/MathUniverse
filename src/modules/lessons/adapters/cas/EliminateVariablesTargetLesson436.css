@@ -720,3 +720,7 @@ body:has(.elim436-page) .lesson-adjacent-nav {
     margin-top: 7px;
   }
 }
+
+@media(max-width:900px){.elim436-page .elim436-flow,.elim436-page .elim436-top,.elim436-page .elim436-bottom,.elim436-page .elim436-explain,.elim436-page .elim436-worked,.elim436-page .elim436-practice>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.elim436-page .elim436-flow>*,.elim436-page .elim436-top>*,.elim436-page .elim436-bottom>*,.elim436-page .elim436-explain>*,.elim436-page .elim436-worked>*,.elim436-page .elim436-practice>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.elim436-page .elim436-lab,.elim436-page .elim436-practice{height:auto}.elim436-page .elim436-flow article>svg:last-child{position:static}.elim436-page .elim436-top>.matrix{overflow-x:auto}.elim436-page .elim436-top .plus:after{position:static;margin:0}.elim436-page .elim436-explain article:first-child>div{max-width:100%;overflow-x:auto}.elim436-page .elim436-worked>h2{position:static}.elim436-page .elim436-practice>label,.elim436-page .elim436-practice>em{position:static;display:flex;flex-wrap:wrap;gap:8px;height:auto;margin-top:10px}.elim436-page .elim436-nav{gap:12px;grid-template-columns:minmax(0,1fr)}.elim436-page input{min-width:0;max-width:100%}}

@@ -1,0 +1,3707 @@
+{
+  "note": "Final reviewed release copy; source line endings and trailing whitespace normalized without changing code",
+  "files": [
+    {
+      "file": "public/assets/lessons/564-pigeonhole-principle/hole.png",
+      "changed": false,
+      "sha256": "395c9d3ce9e2755fa541d57de2028728cba9dc9ca6f998e11df7437fa1aef956",
+      "source": "audited preview"
+    },
+    {
+      "file": "public/assets/lessons/564-pigeonhole-principle/pigeon.png",
+      "changed": false,
+      "sha256": "ad20465d627570132b1c0d8a2587b34e9a139e9fb1b2616baf91a69bd828c801",
+      "source": "audited preview"
+    },
+    {
+      "file": "public/assets/lessons/euclid-five-postulates-reference.png",
+      "changed": false,
+      "sha256": "a5cb6ab12d0ca6b52bfb8ee34e3a40fba4a7842af48a6b123be23baee0283db9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/AbsoluteValueTargetLesson14.css",
+      "changed": false,
+      "sha256": "026dea56f8fc6a7d80ef7236faa7fd84344fa7f64e3867183191de58429bbcd4",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/AlgebraLessonAdapter.tsx",
+      "changed": false,
+      "sha256": "bee10824a6e5ad0c512363c5eac12c3193dc01e6534a8120e24fb81c3811ce93",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/AlgebraTilesTargetLesson92.css",
+      "changed": false,
+      "sha256": "77165c2e16bb8f4d34c9cf17484f42da2a89460ec85fee13c88148272ae93932",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/AlgebraWorkspaceTargetLesson19.css",
+      "changed": false,
+      "sha256": "da28f23885cc51915419b94f58a4de6031a5dd391b2c81d7a5bee2fe0a1bc7b5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/AlgebraicFractionsTargetLesson98.css",
+      "changed": false,
+      "sha256": "22c52db15d5efa87297d4db0828bd36817e8f0e25f9ef8575c58b0d2c2ae4d60",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/AngleSlidersTargetLesson23.css",
+      "changed": false,
+      "sha256": "4c8a4c543d13628ea030b36bf3605a499dfbb6d286a5075f25869701200b328d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/AngleTargetLesson232.css",
+      "changed": false,
+      "sha256": "9b423e858b70a974918dc4767158d600cf1b44c70a5327e86a499196bc063604",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/AngleTargetLesson232.tsx",
+      "changed": false,
+      "sha256": "e949236a04145a8182125e2c1169cc59787662c7d736e40cb16dfa39a78ac40f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/AnovaLesson552.css",
+      "changed": false,
+      "sha256": "21d1f5e7747794b8e78fce6aab262020ddb179fbf20f9880ea9568bf52dbb7b4",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/AreaTargetLesson231.css",
+      "changed": false,
+      "sha256": "a8f1e52b122299430f1eba6db226cb144ec705e9e75b52ff6641d4cd91ec167b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/AreaTargetLesson231.tsx",
+      "changed": false,
+      "sha256": "748aa023fccd17ba1b4aba6a4a4c6f3349782f96ec6fb058941ac7498abbdc01",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/BarPieLesson486.css",
+      "changed": false,
+      "sha256": "5d112b93cf85aade04f094a4d88ce7d6a518a0399cdf9a57073af91b9942f244",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/BayesTheoremLesson512.css",
+      "changed": false,
+      "sha256": "ff245dfea823b8b8b09a9006bc70eeeb4d6b2839b96e3af262d5241105acfa20",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/BearingsTargetLesson273.css",
+      "changed": false,
+      "sha256": "c034295d4500aeb654ab1280ee597f4447f99dfbe76dbe305795f598efca6493",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/BestFitLineTargetLesson213.css",
+      "changed": false,
+      "sha256": "13587776979d5706478db2bba1301773c2df3b5d5e116a0d8f9dac11ce332286",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/BooleanVariablesTargetLesson36.css",
+      "changed": false,
+      "sha256": "d578fcb20ca626433c6cd10a2eed8638b121bc38e4470ba81e1e1daf115e9320",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/BoxPlotLesson480.css",
+      "changed": false,
+      "sha256": "ac533d2b0ca6a6d60ba2e85c626c8e92a1f9fe9e51ebff19be4450fd9b489c19",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/BoxPlotLesson480.tsx",
+      "changed": false,
+      "sha256": "20e63d54e497b6f07202f2493f8265afb094bde1675b4170dff987540922b86f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CalculationHistoryTargetLesson17.css",
+      "changed": false,
+      "sha256": "15ee3c0283b25d10a2462930b8766b771c335c3f294d7225db16fd575ce06742",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CalculusLessonAdapter.test.tsx",
+      "changed": false,
+      "sha256": "35d2ad080bc183d3737f6778e8b64463efcac749cc83f5ff08dc639639f4942a",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CentralLimitTheoremLesson538.css",
+      "changed": false,
+      "sha256": "fb36d2f5e78430f3b61664a721f89aa692d0b901dfe1a2a5f5b201e8601ed21a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ChiSquareDistributionLesson530.css",
+      "changed": false,
+      "sha256": "71d50407ed1111fdc7640634160a8e47cd51822b45197a16e919ce25d2bebcf0",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ChiSquareGoodnessOfFitLesson549.css",
+      "changed": false,
+      "sha256": "74eb8d0acac657de8ab38f5ebb5fd6f9c6d9ff6f21292a71372d02402b38b57c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ChiSquareIndependenceLesson550.css",
+      "changed": false,
+      "sha256": "12548135c20772981133ab36574284bcc1e90227edb47da6893fedb4c38a6b58",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CircleCentrePointTargetLesson218.css",
+      "changed": false,
+      "sha256": "b2434c1e715f9c7343210f54fc03d21e216758ec3f131e168f070ff264d9401e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CircleCentrePointTargetLesson218.tsx",
+      "changed": false,
+      "sha256": "d821e34b4cad688864bc00c9bbf003700a85ddd759011c0231ca63984d85ca61",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CircleCentreRadiusTargetLesson219.css",
+      "changed": false,
+      "sha256": "53ea7826be59f38df275228bf166acd7dbf1325441458f568f1435b1c5a8d740",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CircleCentreRadiusTargetLesson219.tsx",
+      "changed": false,
+      "sha256": "7b4dc90c0411429f27704b17ac1212146ffc01eace83535f164689eed9d15f7e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CircleThreePointsTargetLesson220.css",
+      "changed": false,
+      "sha256": "51892b0707ceabd4e1868c66ad9444740eece866ef8e9a25c26a4dae88a3d71e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CircleThreePointsTargetLesson220.tsx",
+      "changed": false,
+      "sha256": "5773f7498b541fc6ba80cc9d7e0010c8a1cc036f2b5c7461d146cfc1034cbcb9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CombinedTransformationsTargetLesson162.css",
+      "changed": false,
+      "sha256": "9a2cf257527d2661d34c21d96dcfadf91875424e71fdf5aba3b5abc88efd63be",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ComparingFractionsTargetLesson77.css",
+      "changed": false,
+      "sha256": "cdea89ef661a516177ebbbb6a178350ee075ca36ab38b19577c0cecac647f221",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ComponentFormTargetLesson184.css",
+      "changed": false,
+      "sha256": "87983105d008a7cf1ef248ef7493cfb79f983ce8a6a6be019bbb4eaedc0247a3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CompositeFunctionsTargetLesson150.css",
+      "changed": false,
+      "sha256": "e6735a70a73fdbd10d99f8e4a67f0c60b205ca5a32901cb2d033c42b6f41b754",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CompoundAngleTargetLesson267.css",
+      "changed": false,
+      "sha256": "0a2e704e8a504938e58cb688b949bc9b8b3d45db7776e9c51404e2fc5c34c57a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CompoundChangeTargetLesson90.css",
+      "changed": false,
+      "sha256": "62b4ae383e83ae7ed6feb1c08f90b6c5c5c141f9af94c65704a821373f65bdf6",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CompoundInequalitiesTargetLesson123.css",
+      "changed": false,
+      "sha256": "c035adb53bffc121fa56e9753502d20bc3d43a1ccd01d2e4fd24061286dc7cb2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ConcyclicityTestTargetLesson256.css",
+      "changed": false,
+      "sha256": "2d04755866145b42613387a702989ee3835ecf67f6a78408145ad9e26064737a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ConfidenceIntervalProportionLesson540.css",
+      "changed": false,
+      "sha256": "8e2c4f4c8e30268570d7a819ad7f64f59d8af1e716502e7611bf1facbc3d0d4f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ConstructionStepsTargetLesson235.css",
+      "changed": false,
+      "sha256": "f243d1a222082d2ca6302934ae3fd7ffc6cdeab0e47d233bfec87bae4b388d55",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ContinuedFractionsTargetLesson74.css",
+      "changed": false,
+      "sha256": "6f37a929ed52bb9fc7ce7f5c2fe9c46099aecc66decf7f787a50111ac382ec9d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CoordinateTransformationsTargetLesson179.css",
+      "changed": false,
+      "sha256": "1e5572bce1d8c20e196e26e009e826508c8c3441be8092246207936a5d819ff6",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CorrelationLesson489.css",
+      "changed": false,
+      "sha256": "9951bab92c237efdf1ab5b010bfd0273d76854749c6d56b102b1c4a1521d3e78",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CorrelationLesson489.tsx",
+      "changed": false,
+      "sha256": "050c9f1cd1089edc14169e1e8359faf725bc124d8e050332faa5ee0395bd6c56",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CosineRuleTargetLesson271.css",
+      "changed": false,
+      "sha256": "8f4f413fac227f0798ffdce1cc4ad7104eecd4d8e36c939c363d262f8516c161",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CrossProductTargetLesson191.css",
+      "changed": false,
+      "sha256": "193b2a6f494521a4c99178e9defa502db94a4e5daba2cc85dc762d46aef16eb1",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CubeRootFunctionsTargetLesson140.css",
+      "changed": false,
+      "sha256": "1c7324238ce53e69a937dad201d21e15fbb0df34f3995ea32eed9702801a7e8b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CubicFunctionsTargetLesson135.css",
+      "changed": false,
+      "sha256": "a2f93a4619eb77ce6359b08f8ff073c99f0e3eb0883c1643afb2ebd75a4e1ea5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CumulativeDistributionLesson518.css",
+      "changed": false,
+      "sha256": "7a6c8d54bf8acb0f4bd607e75705ba141e3ac27835d7cd46cdfe745c997911db",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/CumulativeFrequencyLesson485.css",
+      "changed": false,
+      "sha256": "f38db9c0eb6c89ac1adeb31b550f77a8c21c11f3e835f8110cb03f70a92688fc",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/DecimalOperationsTargetLesson80.css",
+      "changed": false,
+      "sha256": "4ce13a2fb47e348f85bf07656102eacb3d0cc180c9f5000a4a5a384656fba48b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/DecimalPlaceValueTargetLesson79.css",
+      "changed": false,
+      "sha256": "642a50555db47fb61a28aba7a4dc92bebe868f82e96f0fc58f273f71f3ab830a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/DirectProportionTargetLesson85.css",
+      "changed": false,
+      "sha256": "0e6d2b6cc9dd10022fcfee80926f0e2ecd418d36043e7ebb1725a5070660fac7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/DiscreteLessonAdapter.test.tsx",
+      "changed": false,
+      "sha256": "21931d96e3cecb517becd8c450dea74bf018c82d1034c3f642272441f988733a",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/adapters/DistanceBetweenPointsTargetLesson169.css",
+      "changed": false,
+      "sha256": "cc4a48f516d598a37e27e4e606962d596ee31d4c01aaa212798ba4bf016a5816",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/DistributionSimulationLesson536.css",
+      "changed": false,
+      "sha256": "e21fa8daa1b6af657b2bc844e7b20a6ed64cbd9721ed44e15e48a3b6b75fbf15",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/DivisibilityRulesTargetLesson71.css",
+      "changed": false,
+      "sha256": "d6fe62bd5f89fd4102c812f58540f534037abc880b6d1fa6e1c21268b3fee760",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/DomainRangeTargetLesson130.css",
+      "changed": false,
+      "sha256": "6654acbd330cb749b76295495f470690913f02a99ef1086140ca284bbfe432db",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/DotProductTargetLesson190.css",
+      "changed": false,
+      "sha256": "104cd92ff71b62af2790a7b3c4885bd5e50a5a6c20d6d391f35b9152ddbdd080",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/DoubleBracketsTargetLesson96.css",
+      "changed": false,
+      "sha256": "d320880a5c04a950d43a17be0a0ad36c41d16d9676a3aba0a3e1e641718dc203",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/DoubleHalfAngleTargetLesson268.css",
+      "changed": false,
+      "sha256": "85f7a9054f9ce80671ca9976b0fd2b1bc31753ab65cb967060a09a31c5e685b1",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/DynamicLabelsTargetLesson27.css",
+      "changed": false,
+      "sha256": "ed9631aced79e106779e65bac339438a51fbbea5fad8be189d3719c664ca2c5d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/DynamicTraceTargetLesson251.css",
+      "changed": false,
+      "sha256": "5a0ea12a90f9aac0d0457b2613e803242a8bb54fbc4710ae778802043c6f284f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ElevationDepressionTargetLesson274.css",
+      "changed": false,
+      "sha256": "dc05d1d0b76fdf731be99a70309f3143f41f5dd606ada31b73cd97cd8f725f24",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/EllipseTargetLesson227.css",
+      "changed": false,
+      "sha256": "ba6ca6827149384666ad8d0c884c0fd2df682896e905538cbb546ba433218449",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/EllipseTargetLesson227.tsx",
+      "changed": false,
+      "sha256": "7de8f15a78dfed7517c8067fb046f12ddf9d602c7cf1b12a1d02ce034eb2259a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/EnvelopeLinesTargetLesson250.css",
+      "changed": false,
+      "sha256": "b3607753754d47bd645dd11d8c06b736916b0ad46578884627ba058080f46634",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/EquidistantLociTargetLesson248.css",
+      "changed": false,
+      "sha256": "e4aa96f24e80e5f513b62cb52a22566bf323ed94b595988213dbf48aac462cb5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ExactDecimalModesTargetLesson18.css",
+      "changed": false,
+      "sha256": "a4d5710df1435d05690a0f5197003a3c1ef9563ea4b107ba605f6b3059861cb0",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ExactProofTargetLesson253.css",
+      "changed": false,
+      "sha256": "1788a19ecd284e662af6df01ac769545fb8c9ba7bc4ee5505baf1521b799fa65",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ExpandingBracketsTargetLesson95.css",
+      "changed": false,
+      "sha256": "f207c0f2559dd80f8333b92f89409da37686f824907108e8214f3261bdd6a81b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ExpectedValueLesson513.css",
+      "changed": false,
+      "sha256": "92e06d10f3ff83ba061893c699a56204a717c28b10210d04146048335f174607",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ExponentialEquationsTargetLesson118.css",
+      "changed": false,
+      "sha256": "445cfe8f69ac618d36dd9e5b480750b774dde38f10b4809a645142644e7d4fc3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ExponentialFunctionsTargetLesson142.css",
+      "changed": false,
+      "sha256": "1959ae5eb88b4119e6fe3ef7cb4d3d1e9933e3fc7b3675b038f89f51026dcd4e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ExponentialRegressionLesson492.tsx",
+      "changed": false,
+      "sha256": "477f6c8cb954c0020ec76162483e62438c85046a4aaf9bb617e5df6c7e597616",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FDistributionLesson531.css",
+      "changed": false,
+      "sha256": "55abf73efcac41e13b4e6c6e43f9ad728eebf050560d67b18843874a56779064",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FactorTheoremTargetLesson105.css",
+      "changed": false,
+      "sha256": "2d50d9ac0a7c08e173ac19e233a83d3c71ff1d96a1fbe95106813d63f0622b0a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FactorisationTargetLesson97.css",
+      "changed": false,
+      "sha256": "74f366e0bf36dfc4dc3a724ce0a9e13b05d4bf677734f00d1ae4bbe05d15bc57",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FactorsTargetLesson65.css",
+      "changed": false,
+      "sha256": "95430f2aa7ae6be8f1b776f20819acecd08126b380ad047e39dc5e1a1b1f204a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FixedAngleTargetLesson233.css",
+      "changed": false,
+      "sha256": "d827049572903f8bfda7e44d74f15d7f2ae94260d951d91746cadc830c46308e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FloorFunctionTargetLesson146.css",
+      "changed": false,
+      "sha256": "59fd44807583290a3463232ea82b9d5b251aa0b543808f48d7c9e8a42b731fa9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ForceVectorsTargetLesson197.css",
+      "changed": false,
+      "sha256": "4d35f85c77af122081ca21b04fa0e25f64f01c756fb78e1fd5fe788801633571",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FractionCalculatorTargetLesson2.css",
+      "changed": true,
+      "sha256": "f3d5f3ba3c31124897d5102a258dfdd8136c708da24c2f7ece7930a4c0718ac4",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FractionEquationsTargetLesson109.css",
+      "changed": false,
+      "sha256": "0c1dc60353ed558f4981aba085982b225bbc6eb9c29333edf8fb67c85a907931",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FractionModelsTargetLesson75.css",
+      "changed": false,
+      "sha256": "edca21ed510290322adaa88fb92e3546e64621310c295eb1f148c7a9b8a31338",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FractionOperationsTargetLesson78.css",
+      "changed": false,
+      "sha256": "28cf9a5fe10ef1c64fd1596b8ab0f55b379290d46089200424e2db067f60b262",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FrequencyPolygonLesson484.css",
+      "changed": false,
+      "sha256": "d0b4a3114d3945a3fb6a05ddbef7e2cc20a5a254ed5549b17e0555f5151a1b06",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FrequencyPolygonLesson484.tsx",
+      "changed": false,
+      "sha256": "2c4438883ae13c1d9fdd3ddb3929714d0ffc77705e5b61b5a3a923acd76dbc06",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FrequencyTablesLesson468.css",
+      "changed": false,
+      "sha256": "8fe8f5bc706fa2ad40a47dd1893797181bd02f644d763c1791a5e1e01f87fe3c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FrequencyTablesLesson468.tsx",
+      "changed": false,
+      "sha256": "4eb9fb6767d868b2c3182b03b0c3a6eac309adfc7f45fe647e37bb5e89a59824",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FunctionConceptTargetLesson129.css",
+      "changed": false,
+      "sha256": "3bafa0efed7cb35101eec608a283ceecb542b73925cc594662d0d3a4008556a0",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/FunctionNotationTargetLesson131.css",
+      "changed": false,
+      "sha256": "9bb99a19c3b3865f4e064368974959cacc010a07c31a7041445dfda7dc2561b6",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/GammaDistributionLesson533.css",
+      "changed": false,
+      "sha256": "8f63967b18bcf4d9a52a139ca10d76a363f98836122014f6a015c1be8e75c23f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/GeneralPolygonTargetLesson217.css",
+      "changed": false,
+      "sha256": "58b824d7e44214577deac1736d503c5a2fa5dd0943dcd32a187e188c0aad31ec",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/GeometricDistributionLesson525.tsx",
+      "changed": false,
+      "sha256": "09426b888d19b1889adeb71a176ba798f70b353db6131b614b55464aed649e6a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/Geometry2DLessonAdapter.test.tsx",
+      "changed": false,
+      "sha256": "8c3d9f91f8309001beb4e632753eff586fba066197f01e2f5808b55c76f8dbd7",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/adapters/GradientSlopeTargetLesson172.css",
+      "changed": false,
+      "sha256": "b01a0d95ccf4d3cec2a03110c676125ebec74c5ec018e1cd1ddc3134f0204fb9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/GraphLessonAdapter.test.tsx",
+      "changed": false,
+      "sha256": "9e648503d0b970fb4dc7d049751cb19329e74bc58fd4727ff998124f19712999",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/adapters/GraphMatchingTargetLesson166.css",
+      "changed": false,
+      "sha256": "40eafca214d54d9884b89e29da2230ebd225d58b7e6081908208cb58c8286230",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/GroupedFrequencyTablesLesson469.css",
+      "changed": false,
+      "sha256": "02cb353db509ca749a64495720411123b75da1b143ab73186f4e5c4061d228fc",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/GroupedFrequencyTablesLesson469.tsx",
+      "changed": false,
+      "sha256": "e466f53c86d3460e7b34a0c71ece7aa1eb030805402e8a797181779993c189c3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/HcfGcdTargetLesson69.css",
+      "changed": false,
+      "sha256": "55fc6b75d4056c8c2a1942afb4fb18f1ce01f8d507e5132af1c76ce1d2c363f0",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/HigherDegreePolynomialsTargetLesson136.css",
+      "changed": false,
+      "sha256": "a5750d0870d62156abb5d34fb2c950a3e8020cf7672fe149ed1ba3f00faa9a34",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/HorizontalTranslationTargetLesson157.css",
+      "changed": false,
+      "sha256": "d67a177ed9a76444fd898080e0c5a0ca4b536c2bfa1440c4d035f222c368efa5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/HyperbolaTargetLesson228.css",
+      "changed": false,
+      "sha256": "7e1df305fe5434dc193863000a30236cb270863a485193e17995f8f50eac6fa9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/HyperbolaTargetLesson228.tsx",
+      "changed": false,
+      "sha256": "a276e6e6fa04659c31b07c057d2c0faacbc9fa013420c809d5a2a695834ba802",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/HyperbolicFunctionsTargetLesson145.css",
+      "changed": false,
+      "sha256": "b392be710cfd390c2007fc52545a652db2de21a3ccfabe3c4310b494b1cd4bee",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/HyperbolicFunctionsTargetLesson145.tsx",
+      "changed": false,
+      "sha256": "85284cf6ad5f82f387f84dadad5db9d922cdbeb015908441f9dec025af18549b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/IdentitiesTargetLesson106.css",
+      "changed": false,
+      "sha256": "b6723b3e35e3a7e97ce5ee23c98e79d5ef30006ef968f3bbfa97a9a3344a28bb",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/IdentitiesTargetLesson106.tsx",
+      "changed": false,
+      "sha256": "098617bcbbd5ebaa29fbe26e3a423e137020b912f38a90eca7e15f288aca7d03",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/IndicesTargetLesson99.css",
+      "changed": false,
+      "sha256": "1f2fbe32740eab973aa5df46abb5ebd805dc94f62a5e29a3a26375b3bb624198",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/IntegerSlidersTargetLesson22.css",
+      "changed": false,
+      "sha256": "4f8a5664bec8db8ee7acdf9de7f224edb70e05dc221f586b9e9c262186dd4ea5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/IntegersTargetLesson59.css",
+      "changed": false,
+      "sha256": "e5a9c78c27a8fccccc14daff99e09a13fcf5865afadea9923e2f5c6b16af63a3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/InvariantsTargetLesson245.css",
+      "changed": false,
+      "sha256": "1be43c87e0f659285de9188384aedcd7196aa5bbfae5354ccd8611badf383f5a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/InverseFunctionsTargetLesson151.css",
+      "changed": false,
+      "sha256": "26c1a20e2b8f13a4da6d21667629f33531efe4f58cac6006ae036f05ccd2158a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/InverseProportionTargetLesson86.css",
+      "changed": false,
+      "sha256": "2bd03a8540906f834ffb440edf29756eea6cac6846f8270db0a68df972eec16d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/InverseTrigonometryTargetLesson11.css",
+      "changed": false,
+      "sha256": "ec139cb9002ce7c8076f3b78b860e33610af50eec75e1972adffbd855df9b58a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/LatexFormulaTargetLesson38.css",
+      "changed": false,
+      "sha256": "3c8c5ab32fceed7ead589324cc0ec2c989e2b9b6a384c06dc45b19a3cb84a01c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/LawLargeNumbersLesson515.css",
+      "changed": false,
+      "sha256": "1f523faacd59d100e4c6a57adfbb3580babc6c52a7a4ffd4aea74b36b426da20",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/LawLargeNumbersLesson515.tsx",
+      "changed": false,
+      "sha256": "d7567174210621fca6c21e4fd8707f420f334f25902d21abbd847ca0cc434ac0",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/LikeTermsTargetLesson93.css",
+      "changed": false,
+      "sha256": "eb87fd28d3b9d4deb3f1bdbfe23701ee1ccf404fb87c238f0588210c0800f1c2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/LineThroughTwoPointsTargetLesson203.css",
+      "changed": false,
+      "sha256": "b0d993abd937d442136d6a7b17d3e8afba72e0329f9188929efbb6effce5d8be",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/LinearCombinationsTargetLesson193.css",
+      "changed": false,
+      "sha256": "5022d0342da26bb5c3365268194d3d19a5ba98349ca3f8ddde060935538df571",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/LinearFunctionsTargetLesson133.css",
+      "changed": false,
+      "sha256": "5ea07b2a9d9c956424e8240760ca3b6124b5620d243c62ca8693fc9e338c2318",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/LinearInequalitiesTargetLesson122.css",
+      "changed": false,
+      "sha256": "acba9e3e5e040031f53a201046bba661309f178fa0d3ada10aa8c945c79c57ef",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/LinearRegressionLesson490.tsx",
+      "changed": false,
+      "sha256": "cb12be1552646016e26f85276cff2861eb2e64f79f5bad85c01a239dd55f5913",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/LiteralEquationsTargetLesson110.css",
+      "changed": false,
+      "sha256": "d69bfd271a9ad3fea6981b3f36923048c7eacc3fb4abe1307b8982190ada300d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/LogarithmicEquationsTargetLesson119.css",
+      "changed": false,
+      "sha256": "6732f2c1b4111b982d62540d30e5aa36f7cafc8f369ccc9ea66749084428a4c5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/LogarithmsTargetLesson8.css",
+      "changed": false,
+      "sha256": "b27e113b4b3abdd9e06e58b2433bf8ff7ea5531af7fb99757ac562395c33e35b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/MagnitudeUnitVectorsTargetLesson189.css",
+      "changed": false,
+      "sha256": "774311bf0607c8d5020fbfcdd8079e5817638ee80f8176f4cd1609cd88bd7c3a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/MatrixTransformationTargetLesson242.css",
+      "changed": false,
+      "sha256": "24c55ae83271d49907bbfe4507151b91e3038850b990baff5cd333fe476c197d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/MixedNumbersTargetLesson3.css",
+      "changed": false,
+      "sha256": "8e5fd0fe5b2765f37fae8f8508ff0c7f8cfd6d5888db9acb911e109747f5dc12",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ModelComparisonLesson498.css",
+      "changed": false,
+      "sha256": "d2392cd1b4f1fee85664f9236d9ced6d38fd4f70399876a59fbf3b4b97fe96eb",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ModelComparisonLesson498.tsx",
+      "changed": false,
+      "sha256": "6df60080eccc4f7e19007845a3ed4650de2a0e47e9f8ca421d74241a705759ae",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ModularArithmeticTargetLesson72.css",
+      "changed": false,
+      "sha256": "b534645b0c31f1873d655e47522a0a2ab4ef5332b7b4ce5eed238276ed88ac6d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/MovingLinkageLociTargetLesson249.css",
+      "changed": false,
+      "sha256": "3cc0ca85979ef88e0b10cbfebb53bbf9805f6868c83fb0b8a9eb32fefa3c01ff",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/MultiplesTargetLesson66.css",
+      "changed": false,
+      "sha256": "81d4e53d5c6e245314e4c16b6fa97b6bfb51853a4d688af0216c5659a5175bf3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/MultiplicationRuleLesson505.css",
+      "changed": false,
+      "sha256": "47db9559b3ba6eb7215a237b7be4ac17ad1b06ab50c117e7106c9a6464a90101",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/MutuallyExclusiveEventsLesson507.css",
+      "changed": false,
+      "sha256": "89eb9a9ef41c9630d354f85a0c7f2ef6f5ab2cc78eff5b17f2768648b2f80ea4",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/NegativeBinomialDistributionLesson526.tsx",
+      "changed": false,
+      "sha256": "a62aa56994a884e604b85862f7c7b3840f690524a46f0bfdc56681c4eb71de7d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/NormalDistributionLesson528.css",
+      "changed": false,
+      "sha256": "8cbd971222e03adb5de4426a0372c67945b1912a0a399dfe86b5b7962b958782",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/NormalDistributionLesson528.tsx",
+      "changed": false,
+      "sha256": "4b7346897edcdbf6c65e858a0af283e732b38a6eb1a1dfd6fa2056988bb8e403",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/NumericSlidersTargetLesson21.css",
+      "changed": false,
+      "sha256": "abc52de5215fb221c4450708672474860e191718f3646f6666541579c3ef422f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/NumericalSolverTargetLesson128.css",
+      "changed": false,
+      "sha256": "a61674619f0a943b39eb7781c3d8c5a4563af8171850c0313c2823e0e3644721",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/OneProportionTestLesson547.css",
+      "changed": false,
+      "sha256": "10fa6ac49f0193078dcb3b4d0657b25c19615074a06c4f1a59401149702abf9b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/OneSampleTTestLesson544.css",
+      "changed": false,
+      "sha256": "2318ff47010220e21f480d05856cc14e4c377b689521dd73097494863d031260",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/OneStepEquationsTargetLesson107.css",
+      "changed": false,
+      "sha256": "6acb9d0c7368988ef5db790230a43ebec334cf9cdb231b078bff2d05c111f74a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ParabolaTargetLesson229.css",
+      "changed": false,
+      "sha256": "bf86d08a0b647df6cc6ebf6ceccb565722a89629459914a117c024d07df8b17b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ParabolaTargetLesson229.tsx",
+      "changed": false,
+      "sha256": "42d77a4bc23f02f5b739127d20439f88e6d311ad7f78f09eb52bc8335a154efe",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ParametricCoordinatesTargetLesson181.css",
+      "changed": false,
+      "sha256": "2d96b9254f58a9a083d6f71d23e7e0fb055c3126cec17550b58c136f4f6b1c29",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/PercentageCalculatorTargetLesson4.css",
+      "changed": false,
+      "sha256": "0d813f95d05145131e7c020920712ac11d2affb99ba74e49359f211a93552811",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/PercentageChangeTargetLesson89.css",
+      "changed": false,
+      "sha256": "3dca1454ba1e7d9158337061f4c52c6db43abbbc2ede66231895c72eea5a1e3f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/PercentagesTargetLesson88.css",
+      "changed": false,
+      "sha256": "09a9a429b0e954480f94bc6c0b46a151556a739fdc46789c86e4cf09eae1c114",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/PiecewiseFunctionsTargetLesson149.css",
+      "changed": false,
+      "sha256": "76d46b25f7b9f6b3cbc0800d6abaccb07d0f2d7c466e5e85223231834904f856",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/PlottingPointsTargetLesson168.css",
+      "changed": false,
+      "sha256": "63dc4a78387abc5db01c3270cbae87727439a9baa0b65de76c3a9f1466bbe6a6",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/PointOnObjectTargetLesson199.css",
+      "changed": false,
+      "sha256": "6d292adc014a5f5fd6a819c0ed3b9475b917a01fd8957e29123aad9ea71b05d9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/PoissonDistributionLesson524.tsx",
+      "changed": false,
+      "sha256": "50e2052f384af33ea1f71e2aff86cb980c4c028a868ad5b23aa3ab8c0ccee43d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/PolarCoordinatesTargetLesson180.css",
+      "changed": false,
+      "sha256": "47511efdf88a218b2fae91419aaed417bea753b69159ce664d0caf0b38812423",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/PolynomialEquationsTargetLesson115.css",
+      "changed": false,
+      "sha256": "f7c330bf42ea57c58e17810855ffef7cf74a74ef80546f522e370ed3481e693f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/PolynomialInequalitiesTargetLesson125.css",
+      "changed": false,
+      "sha256": "73ed5e1317c1c22cfdaded32d875426b7a1d1d64340051f1da0281e635d2074d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/PolynomialOperationsTargetLesson102.css",
+      "changed": false,
+      "sha256": "73a68ff330d9ef05f940033ce9222d6bec2f26b96fad1752dc1588df4de0d3e9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/PrimeNumbersTargetLesson67.css",
+      "changed": false,
+      "sha256": "d8a8dc96359dca37b1b6aeafbda5f94c0698020f5731f83b6c0c4fa8a09aa29d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ProbabilityPlotLesson517.tsx",
+      "changed": false,
+      "sha256": "25fd58e1a03c72e6ce55ef9d3353aaf780978369f34e6956d0a83b222acaef68",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ProbabilityScaleLesson502.css",
+      "changed": false,
+      "sha256": "f256d299b8eab09af46e3ad722172f77f077cc8961fdf67c8d2dd9bbab78dffe",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ProbabilitySimulationLesson514.tsx",
+      "changed": false,
+      "sha256": "4c55350f5dbb00385a638e01e119948f07a77e09b6ba13cdac6b4e2fb28bc468",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ProportionTargetLesson84.css",
+      "changed": false,
+      "sha256": "31a0e1162b51a0430bab2646f9476d965158761cb7f370993892ea97ef1093f5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/QuadraticEquationsTargetLesson114.css",
+      "changed": false,
+      "sha256": "25b7e846c2fec02c3278643ef8c4b13d2af40d3ece5f138c4bd18fd198ea7218",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/QuadraticFunctionsTargetLesson134.css",
+      "changed": false,
+      "sha256": "aa7f509c97a55bc12259e8d2dde18e36960e451c7d55df611d9e625f135ab46b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/QuadraticInequalitiesTargetLesson124.css",
+      "changed": false,
+      "sha256": "73da08a69efd9220e37c8d3322d6bfe0413ea0daa391e17b5fd2874a5dfa35f3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/RatioCalculatorTargetLesson5.css",
+      "changed": false,
+      "sha256": "c48ef6244bf37372a935c9dcdbaf716d4b5680645b8483aa954951e1e1b5a84d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/RationalEquationsTargetLesson116.css",
+      "changed": false,
+      "sha256": "dac1f537967ed812702b6a54bc3e17bdc21f6e6855bf413a721cfbf2dc1c9f8f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/RationalFunctionsTargetLesson138.css",
+      "changed": false,
+      "sha256": "dec9e0ac4314dcbb66a34d1a12f118ab4a5d302da78537f1af8ef702d0ee27b6",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/RationalNumbersTargetLesson60.css",
+      "changed": false,
+      "sha256": "15073a2b8ed74d9b3c34e8ae9cbee731b5a0173da33d8bd71b4d0dbad8260559",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/RationalisationTargetLesson101.css",
+      "changed": false,
+      "sha256": "e58e67556b4552922267f6e398e118d2a05d425060e198dec1b81465b8e13225",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/RealNumbersTargetLesson62.css",
+      "changed": false,
+      "sha256": "826e324a3518f4a9e3c7ccc6214efd4fe024c48e1e8f5822faec1415f1633a7a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ReciprocalFunctionsTargetLesson137.css",
+      "changed": false,
+      "sha256": "4300830b1c5de8e9979fe52afeec7c63fefc603d084c9f2fb243d028267d4a80",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ReciprocalTrigTargetLesson264.css",
+      "changed": false,
+      "sha256": "b96013dba43465baa28bff6b74ca0d52b32bcd10e612b1285a5db590705edfc3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ReciprocalTrigTargetLesson264.tsx",
+      "changed": false,
+      "sha256": "c46d77f08f152957ef27c6f9723ca73fee4d375e4b71d28a44110562ab7980fb",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/RecurringDecimalsTargetLesson82.css",
+      "changed": false,
+      "sha256": "d8d6d1a5b71552c1c82f8aff478b49bacc049c83d776420f9ad8c0397cbabea2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/RecursiveFunctionsTargetLesson155.css",
+      "changed": false,
+      "sha256": "46a6c14765ffcbdfcd47d8ac1919eed329d0e49b93625e39b69dee6c13306df2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ReflectionPointTargetLesson238.css",
+      "changed": false,
+      "sha256": "702e09f79240d3f07aad6a113f2544d4a9b09ff7af73da4350d21d07838f741d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/RelationCheckerTargetLesson234.css",
+      "changed": false,
+      "sha256": "a6caf32155eb6bd835e8c9a4de3d00b03840c521c71597bf59099facb8203628",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/RelativeMotionTargetLesson196.css",
+      "changed": false,
+      "sha256": "df7b9fe423b9463a93a1b5b4bea5b6b3efde316a4c68df5288ac41a7694e7408",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/RemainderTheoremTargetLesson104.css",
+      "changed": false,
+      "sha256": "1d15b4d8ed20da09d82e9c7fc55959787657cea6ecdf7a79c8f9337f53b8c31c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ResidualPlotLesson497.css",
+      "changed": false,
+      "sha256": "89a027494b9ea3b4f80c6a4eea4917de351bf001f629483d483ac2a52026e110",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ResidualPlotLesson497.tsx",
+      "changed": false,
+      "sha256": "fa0024541e1ff83cbaefc81a89e692b368eb070d42f5c44ff2beb871a2299aad",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/RightTriangleRatiosTargetLesson259.css",
+      "changed": false,
+      "sha256": "02b5d592677134440da8af23d7b5478a5b2a6d53c338b3efe69e98b1991e2038",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/RotationPointTargetLesson240.css",
+      "changed": false,
+      "sha256": "e2c620cd5d69c0c7af2237a5d5149a59660d0321bfa758eb105ec2bcb1b6ce8c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SamplingDistributionsLesson537.css",
+      "changed": false,
+      "sha256": "e5534abc3a40034a43d7e7baf68eb6fa5990fca4439712df3aeae59288f867c6",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ScaleDrawingsTargetLesson91.css",
+      "changed": false,
+      "sha256": "f66ee39e98008c19cc5478fb5539a336a45973ebaa6aba813274bab419f5e193",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ScatterPlotLesson487.tsx",
+      "changed": false,
+      "sha256": "a7a90b166049e89acb08f48d570123282e285b7bd863e77d4ee1096127324318",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ScientificNotationTargetLesson7.css",
+      "changed": false,
+      "sha256": "c485c9c54853e0ebb791696a1b158f9d695109e91fb044bff3b0ef0e294e8a79",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SectionFormulaTargetLesson171.css",
+      "changed": false,
+      "sha256": "af054bdaddbc2dd4e3d49f63d81a413c5c76a616513208c500bf17a870a8cd22",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SegmentGivenLengthTargetLesson205.css",
+      "changed": false,
+      "sha256": "44a22ff5d9ad11f2355419d442262abfff5a7cbf2d9e97d97581823c781a62f6",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SemicircleTargetLesson222.css",
+      "changed": false,
+      "sha256": "cf809da276483bbe5c862fa31b6e792ee7ce2b316e014abbe8938b5c4965c8e8",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SemicircleTargetLesson222.tsx",
+      "changed": false,
+      "sha256": "25d1caea8373f24660870ad8d70bbd62f30e1bc0118035065c3d6d7874539707",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SignFunctionTargetLesson148.css",
+      "changed": false,
+      "sha256": "87d2970f20b8f1b0c375815b13beda3a595d9d2d231671abe91acfc229f3e3a7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SineGraphTargetLesson261.css",
+      "changed": false,
+      "sha256": "33a7c46169644368fb0e05318aa75efb37bb0dafd0b2cc1951c7958aaeb0e2a2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SineRuleTargetLesson270.css",
+      "changed": false,
+      "sha256": "a849e6e7290c43acbb078ae40b2bd330901d8d912561b101e498e54b04a30a6a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.css",
+      "changed": false,
+      "sha256": "fda3cb810c4ba4a41f3c659ba81661eee5c64c4af919bfb5095f4a2996db85d0",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+      "changed": false,
+      "sha256": "b16dc88a73539976e67098ea03095422958015c1338b47389b7e1f2a6799c6fc",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SpreadsheetLessonTools.tsx",
+      "changed": false,
+      "sha256": "8fc95f876bfc4660ff9c44239c5036e3d837273cc3556406a039cc1fbad75c38",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SquareRootFunctionsTargetLesson139.css",
+      "changed": false,
+      "sha256": "548acca63a9b69d1eecfd71e6dcc3eb696c8460d00c0a76b4953ac528439ea53",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/StandardisationLesson535.css",
+      "changed": false,
+      "sha256": "ce195573ac37f71f6bfb98d67f033cb518604c40f0d65a74a94e7e7659552054",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/StemAndLeafLesson482.tsx",
+      "changed": false,
+      "sha256": "0309f4ba8a3c1fdaccc8c81104008aa2e6c3d5d9726710f1139ce7b4f436a401",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SymmetryExplorerTargetLesson246.css",
+      "changed": false,
+      "sha256": "4f73c485f31846b8444133ac6b741cbbdd011f01eae61fcb0cad266001b64d86",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SyntheticDivisionTargetLesson103.css",
+      "changed": false,
+      "sha256": "7eb1900142234b8f1ca16c0237d1c40d2cdab18e76a2694982114c03d9801248",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/SystemsInequalitiesTargetLesson127.css",
+      "changed": false,
+      "sha256": "e9a3ff8896e04e2b152d1d46b1b72b0632591d417c779e50bbbc3b8e5b0033b7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/ThreeVariableSystemsTargetLesson113.css",
+      "changed": false,
+      "sha256": "ee61878d551a5a2f14bb888ae88d27d264a22f9673d0646772c1723be44f655c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/TrigEquationsTargetLesson269.css",
+      "changed": false,
+      "sha256": "f1559a8418385ac1cd7504f9c4b272b8b92f7708ab7be125f119608e79f85843",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/TrigonometricEquationsTargetLesson120.css",
+      "changed": false,
+      "sha256": "a288c885e90e4726b882073d3021f7346d683986353de375ebdb7cb957f1ec78",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/TrigonometricFunctionsTargetLesson144.css",
+      "changed": false,
+      "sha256": "636f4740c12a8c544947c1e1b6dd99520f3c789c7fad6dd01d5db4646c0d68aa",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/TwoSampleTTestLesson545.css",
+      "changed": false,
+      "sha256": "4fa890c4bedba84fbb7cd99c28e52c9562137fdc0c06af3ce64345a3da5018d1",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/TwoVariableInequalitiesTargetLesson126.css",
+      "changed": false,
+      "sha256": "7e8cdb76f11819108abd600144ea36d9ecf86a51efe235bca04cb9604d59257d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/UnitCircleTargetLesson258.css",
+      "changed": false,
+      "sha256": "7e0d931d7f3889152ffff639200abe84ce18a43093b6a61632a6dc12582a9744",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/VariableExplorerTargetLesson20.css",
+      "changed": false,
+      "sha256": "6b632827b2ae33fbe687a7f23e2f31b08fc2f69da9b2cf4ceaad21e6c5c49043",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/VectorIntroductionTargetLesson183.css",
+      "changed": false,
+      "sha256": "0ad8c9c40b4d171585664e9e4233457095562657c6d69a50825784f80a5b3363",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/VectorLineTargetLesson194.css",
+      "changed": false,
+      "sha256": "a5b718e23eb61154d389af79a40d08b54516f2c40cdef2e8dee4beb9b7e357cb",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/VectorPlaneTargetLesson195.css",
+      "changed": false,
+      "sha256": "8941b76ea47e94d96816978cb3109483bf4b9b00b942454ee7682fdfc6d6897d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/VectorProjectionTargetLesson192.css",
+      "changed": false,
+      "sha256": "7337f45b2745feec07d09e02e1fa8c13e6b68bf1a691460449af6d3b67599a7d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/VennDiagramsLesson510.css",
+      "changed": false,
+      "sha256": "4ec0798af414405532872f3018aa618e91609f56112d75ca376c8eb1d07bbc01",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/VerticalLineTestTargetLesson132.css",
+      "changed": false,
+      "sha256": "c56b0bd15b7bc11b33d3aaaed5f0af74d5d858c14f075c5ccc01e6e48972aa78",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/additionRuleLessonModel.test.ts",
+      "changed": false,
+      "sha256": "d03a0014c9d546c410ed1f3aeb5511e6357ec3a01e59e12b2a28a699291bebef",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/adapters/additionRuleLessonModel.ts",
+      "changed": false,
+      "sha256": "de4be3efa0e465ba4afd79463da113e29fbaa71cc39de7514d9d3ec98b559577",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/AccumulationFunctionsTargetLesson322.css",
+      "changed": false,
+      "sha256": "f2311f888d9a4ba0714039fa708245e9f86e41edfd3e0f1522a03d21d5b6ecdb",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/ArcLengthTargetLesson320.css",
+      "changed": false,
+      "sha256": "c51e4d78dbbda23e913b5ec9743a2804568d71990a9f7984fffb9becdfa3350e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/AreaBetweenCurvesTargetLesson311.css",
+      "changed": false,
+      "sha256": "b36cd934a964285d5faa03a20892bf130481293490c597fc4faaa335766fc0f7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/AverageRateTargetLesson284.css",
+      "changed": false,
+      "sha256": "95f3a9456706b45f80116f01f0850dd8a5d9f62db112948a967af4f4c77e2235",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/ChainRuleTargetLesson293.css",
+      "changed": false,
+      "sha256": "b515dffb6d4f14ef5e08c81c0445833bfc69a76716a8a9148a78b06e0570090c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/ChaosBifurcationTargetLesson333.css",
+      "changed": false,
+      "sha256": "b3bc09500c4009ca16160c0137774d78233bed8079ae3f45cc45cf28c4cff2fc",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/ConcavityTargetLesson299.css",
+      "changed": false,
+      "sha256": "2bac395bb8917139563c7bfd3e0e58068e8273a71ad9df1b656486034b373c91",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/ContinuityAtPointTargetLesson281.css",
+      "changed": false,
+      "sha256": "4df718a03cf6955032a92c48f42ebc6077277aba51fa1be1a9f51c2128f17f02",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/CriticalPointsTargetLesson296.css",
+      "changed": false,
+      "sha256": "e6a391499a89424eac383cf1c79cdbf30a8125dc5e79d70acc0c967177796b20",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/DefiniteIntegralTargetLesson308.css",
+      "changed": false,
+      "sha256": "449eafb0d3ea2c7a2de992fc1d836aa98b06877e38f89868e9524568491893a3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/DerivativeFirstPrinciplesTargetLesson286.css",
+      "changed": false,
+      "sha256": "5c8cb47b8f0fbc973b6deabdbae79dd90bbd76243a1b126775f9890fc030d411",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/DerivativeGraphTargetLesson289.css",
+      "changed": false,
+      "sha256": "8c4d4f7644fd6f92696db66a88ba5969de251a76216eb8957e9154bb7c58ae39",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/DirectionFieldsTargetLesson323.css",
+      "changed": false,
+      "sha256": "91f4a8dfeba1f28d35b0445425da25e75e4ab7eb6f9a066b49d6af67ee561afc",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/DiscWasherTargetLesson318.css",
+      "changed": false,
+      "sha256": "1021265b97428670fa19e08efee155cfba4341a07ed92cfab447b6e3b1d8f5e6",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/DiscreteDynamicalSystemsTargetLesson331.css",
+      "changed": false,
+      "sha256": "4ba7c6a1490576f5ec22c090729b4746efbf6b82686cbff3174b344931e9a502",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/EpsilonDeltaTargetLesson283.css",
+      "changed": false,
+      "sha256": "d490b97363bc7bf3a89f45ba80bd82b7601060b34cec2c15d6662f85eb908344",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/EulerMethodTargetLesson324.css",
+      "changed": false,
+      "sha256": "8033d4ce1eece03d22930fec5175d1a166e5abbd002cbe36cb8a37f0fc2b4229",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/FirstOrderLinearTargetLesson326.css",
+      "changed": false,
+      "sha256": "75eaba7956fe52f7b2b494ec71c913878b9c32d58c8e1b5a3b1cf77b076daaaa",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/FundamentalTheoremTargetLesson310.css",
+      "changed": false,
+      "sha256": "9b9c008995380cc607c18115075ca2772517e59c5ff941109574c682b64b4501",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/HigherDerivativesTargetLesson290.css",
+      "changed": false,
+      "sha256": "22c8954ffa55f603c40a93b4f5fa75e1169beef98d6db7b4ad7eab3d67f1cb6e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/HigherDerivativesTargetLesson290.tsx",
+      "changed": false,
+      "sha256": "b4e9fb5a9f23ec660cec059d997d91d9d60b2ffe1e22c956a6da5367b08ed90c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/ImplicitDifferentiationTargetLesson294.css",
+      "changed": false,
+      "sha256": "e0d33684024072eb2920d740655ee6f4e67bd7e16583a0c9efa41b859db365df",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/ImproperIntegralsTargetLesson315.css",
+      "changed": false,
+      "sha256": "89cf2be2725a7595227f6fb17a2ccac678d13d1922220e73cb165a1cf97d50b6",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/IncreasingDecreasingTargetLesson297.css",
+      "changed": false,
+      "sha256": "70168f5bdd56ce6813177c3f3bb7609cfda2e0dd2f046ed06c08b63f32fcd72c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/IndefiniteIntegralTargetLesson309.css",
+      "changed": false,
+      "sha256": "4d542c4eeaa2edbc9bd36e54288d4621697d1c17759f2da20e40d09929ebc2bb",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/InfiniteLimitsTargetLesson279.css",
+      "changed": false,
+      "sha256": "6c9e22def31e6a1aec899b5a2d8ea73a90d9d8e0a8a533b66b26918e798a9c04",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/InfiniteLimitsTargetLesson279.tsx",
+      "changed": false,
+      "sha256": "ca52e6b2f9d9bafe062deca1df4ebb5c266dc31c1ca72265d0f9611862c59d90",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/InformalLimitsTargetLesson277.css",
+      "changed": false,
+      "sha256": "99754dbe0c69d34a292fc227193660879812a1abee641926a8edc261bc67e250",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/InstantaneousRateTargetLesson285.css",
+      "changed": false,
+      "sha256": "024d81133672802aabf67e167b8198fe0ded7afc286a149fedfd73c5f51d67f8",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/IntegrationByPartsTargetLesson313.css",
+      "changed": false,
+      "sha256": "201b1c1738aefb08008b54574d38a954aaa72a2eaa358967be5d09ee231b4c8a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/LimitsAtInfinityTargetLesson280.css",
+      "changed": false,
+      "sha256": "3e57e4e691cf496c0e4567c38cb90662e6ca73a1e423117c0e749c727b78edf5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/LocalGlobalExtremaTargetLesson298.css",
+      "changed": false,
+      "sha256": "6fcc9015c1863939411683c9c057ad125b8591e2183710582f07f80573a156ca",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/LogisticGrowthTargetLesson327.css",
+      "changed": false,
+      "sha256": "6b0210a3590ab54544a7cbed4215173fb5af89b8073980ca7ca8d2ec2e3fe730",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/NewtonMethodTargetLesson304.css",
+      "changed": false,
+      "sha256": "721b0ad8ca5b27bca6cf6544846769b511e77f396d3bc9119f0be5b015d35b4e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/NormalLineTargetLesson288.css",
+      "changed": false,
+      "sha256": "4f261af7972ed587aa746cdddadf1f067ce3be50504da62ea1725747dd4b7005",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/NumericalIntegrationTargetLesson316.css",
+      "changed": false,
+      "sha256": "7d3669393732a623d62509dc6d9bba142369a6e34e1c4f5888240d5a0ee7cbd5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/OneSidedLimitsTargetLesson278.css",
+      "changed": false,
+      "sha256": "3cd5f4046868fee6d6e9b650380501121061abb7f0abe3ec9a581ce8d6d33212",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/OptimisationTargetLesson301.css",
+      "changed": false,
+      "sha256": "7ff2905e9b890d57df3469fcb037390c1411a3425ab78cda09167923d9e70bad",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/ParametricDifferentiationTargetLesson295.css",
+      "changed": false,
+      "sha256": "420f9d017b3c87fcbb131a2cbb5ede1ba864f71d329bdbd9d2c876b04b2428d2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/PartialFractionsTargetLesson314.css",
+      "changed": false,
+      "sha256": "66eb07c09f48b1558463b684f0f2d1df835b3b388fd39bbf7f28e116fb4b7a7c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/PhasePlaneTargetLesson329.css",
+      "changed": false,
+      "sha256": "269865ccc26afdb6fbc2745db2fa759d0ac389bf4a90f2a9028364ba11639717",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/ProductRuleTargetLesson291.css",
+      "changed": false,
+      "sha256": "6fc01bdbbd8e5fb1514609644ffd3df22aa6f915d250fa6fb62baeb423b02321",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/ProductRuleTargetLesson291.tsx",
+      "changed": false,
+      "sha256": "5bb213c34430bde17162bd8e0a3ab35de300563f4812e2449bff18e2fc1353da",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/QuotientRuleTargetLesson292.css",
+      "changed": false,
+      "sha256": "e1c3a6474078e4eab95f9d655a733329bfdde708d808eb29e84b71f0933c6645",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/RelatedRatesTargetLesson302.css",
+      "changed": false,
+      "sha256": "dc90804bf31d4bd466a0c27d5068b94559bd38bdbd088696ac563828bfac210f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/RiemannSumsTargetLesson307.css",
+      "changed": false,
+      "sha256": "90700e3e15ae2176d69c746ab92484d445ae6e9e63cd21c7a7adb2016ad41344",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/SecondOrderEquationsTargetLesson328.css",
+      "changed": false,
+      "sha256": "12882b30ea3ebf709f53bb7e18729dfa4a1017ab992d792bb5d25bd2ef9e57b1",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/SeparableEquationsTargetLesson325.css",
+      "changed": false,
+      "sha256": "6570630aa040a79a85864a1ea9af5386a65c1ba97cdbe7c1401105ec2e0e0b21",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/ShellMethodTargetLesson319.css",
+      "changed": false,
+      "sha256": "1ff8f58021f294bf0b22a88e47fa40b58b8c0cc89a35335b82643f30441d6acb",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/SubstitutionTargetLesson312.css",
+      "changed": false,
+      "sha256": "87fb09f50d41592e43e1db1a11cdb4d00d5ff8ca4f3f11413df1a1485ea19100",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/SurfaceAreaRevolutionTargetLesson321.css",
+      "changed": false,
+      "sha256": "c1b6b178a36ebb08886fb9fd53d08859fb2f4e6bdc40532e668a2ea99203ee4d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/TangentLineTargetLesson287.css",
+      "changed": false,
+      "sha256": "bb3fe5e86d7907dba7378d528f266e82830e999ceccc629c0d4d04c7e1c025c2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/TaylorPolynomialTargetLesson305.css",
+      "changed": false,
+      "sha256": "134e9f8bed5f40c633a7324d965de1180a3e60450043960329950c16d6437786",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/TypesOfDiscontinuityTargetLesson282.css",
+      "changed": false,
+      "sha256": "ee9f6ae0a3abf6cf0ba06c60c41b541cb0405258fe55be7175323f3aa7646f49",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/TypesOfDiscontinuityTargetLesson282.tsx",
+      "changed": false,
+      "sha256": "109345f806a5baff81980b3df90ba6273f29b6ee22eab5c6f92409e8e2696092",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/VolumeSlicingTargetLesson317.css",
+      "changed": false,
+      "sha256": "af43934862273857ecc78c2b1d133954fb2da33b928436da8e6e70c11447ee78",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/discontinuityModel.test.ts",
+      "changed": false,
+      "sha256": "913c784f920521f4241cb0df4819dce7e463d2c2c73aa0b28a8214bfb183429e",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/adapters/calculus/discontinuityModel.ts",
+      "changed": false,
+      "sha256": "c3cf3a03ddfa63da9e67b9b631ab6cbaaddb87f40b0c104580040e4704067a54",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/AssumptionsTargetLesson446.css",
+      "changed": false,
+      "sha256": "867b999274070be3169468034871398b61ae82d6aa495bcf54d8188faf0db05c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/CasToGraphTargetLesson449.css",
+      "changed": false,
+      "sha256": "1065ecf4bdb96c163e4c6d24dd27c5ffb1250f8074b1cb1a0c513e3ed3c721c8",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/ComplexCalculationsTargetLesson445.css",
+      "changed": false,
+      "sha256": "93705d631240361cba95abf5188ede9509ccf0241a18cccf662ebaa1ceb4f70f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/DerivativesTargetLesson439.css",
+      "changed": false,
+      "sha256": "5719e0c960f09949aa8bb9e01837a861a62a5de9bf2eee729373fe32ab6eaedc",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/EliminateVariablesTargetLesson436.css",
+      "changed": false,
+      "sha256": "209ddf62e672d825ac590525613930e4cf09fee33db7c8912d4765152f414dde",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/ExactNumericTargetLesson447.css",
+      "changed": false,
+      "sha256": "e299d3732c246288b10e78454c44bdd1b21d507c4ebeb12417a47170731d66ff",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/ExactNumericTargetLesson447.tsx",
+      "changed": false,
+      "sha256": "6ad7d6dccfcf5447915ac78602ccf4d29eb59497dc622dd6b895d4d7c55b12bb",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/IntegralsTargetLesson440.css",
+      "changed": false,
+      "sha256": "6be1d7fe705bff7f079ca7473adc491c39d555458b0a3e1f2baeb19a474785a7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/LimitsTargetLesson441.css",
+      "changed": false,
+      "sha256": "cc0a28620f0c7d417e8690d87a76c6b0c0304ab89c36e08244852c3a66b865ab",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/LimitsTargetLesson441.tsx",
+      "changed": false,
+      "sha256": "d90e53b4f426d8a7cc3956d32911b4fd48d2a02d6fba926d33968724f2e59e19",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/MatrixOperationsTargetLesson444.css",
+      "changed": false,
+      "sha256": "1b221abfd5b6c7e50033a3e9189536b2d99d1b17ec175b32396393b0fc34ff41",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/NumericalSolveTargetLesson434.css",
+      "changed": false,
+      "sha256": "8a49384b74f3c74b3ee745ff789d33099fb63eb384012ab1e13825c9ed8ccb0b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/PartialFractionsTargetLesson437.css",
+      "changed": false,
+      "sha256": "f7b59bdeccfb9bb07f961725ba4e7fe1686b3c1960af1255749cacda0050d146",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/PolynomialDivisionTargetLesson438.css",
+      "changed": false,
+      "sha256": "b30ebd8c771321de2b35912d4a2dfc23c12616158f587a1c0581c707a3c88bb2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/SeriesExpansionsTargetLesson442.css",
+      "changed": false,
+      "sha256": "7cde2796d90111fd8198d3780fb2135c4403763f65ce2f1d78e84c442c3a952c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/SimplifyTargetLesson429.css",
+      "changed": false,
+      "sha256": "7b7855fc4d5d40bf9451ca37a33cdaf366f935368ac4bf311d6bda6d4dbb7151",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/SimplifyTargetLesson429.test.ts",
+      "changed": false,
+      "sha256": "1e1a1af68f3991851a6b4c7352dead0f420e8ab6ae5bce3efcd825f0a917c292",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/SimplifyTargetLesson429.tsx",
+      "changed": false,
+      "sha256": "f12f9aa1dbf5923b69ed82b2edf520075536e36d52b6d79323ab5517ad07e782",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/SolveSystemsTargetLesson435.css",
+      "changed": false,
+      "sha256": "a227ec8f99db875c0b1394f3a6be7c9babee6a8b196c929e0cc39f6499f09db3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/SolveTargetLesson433.css",
+      "changed": false,
+      "sha256": "392bf995a7e6e659e35c65db58aa43ab92c047186d7374b4582386cdacd7ee30",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/cas/StepByStepAlgebraTargetLesson448.css",
+      "changed": false,
+      "sha256": "7336eb3e4aa3c53f5f72f3bb4575ae1385e457695dcc86d22cf14a288fed7569",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/complex/ComplexAdditionTargetLesson367.css",
+      "changed": false,
+      "sha256": "447ed5d9e098bb79f2af36fb8be7364aa143399086ce12238db666a6219cc185",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/complex/ComplexConjugateTargetLesson369.css",
+      "changed": false,
+      "sha256": "98dd63c515abdfde1726088069e93a8d96ceb16cd357df40af9d8f17ebdf87e7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/complex/ComplexFunctionsTargetLesson377.css",
+      "changed": false,
+      "sha256": "eec9c87db60105ceb0e1bbc4396727c041ffdf1551d6099606f6ce0701de8ccf",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/complex/ComplexMultiplicationTargetLesson368.css",
+      "changed": false,
+      "sha256": "042871a522cbd95695bd3cc276d62fcf83245de98d50e7df6bf1db84dc4616b9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/complex/ComplexPlaneTargetLesson365.css",
+      "changed": false,
+      "sha256": "f272e22f8e888caea4289e6bd080181614aa1f996e431896ceb69b65af10a0a5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/complex/EulerFormTargetLesson372.css",
+      "changed": false,
+      "sha256": "e7958ac8112c7fefdacee4647806d7763276710ae450a788ad46b8b8b827d753",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/complex/MobiusTargetLesson376.css",
+      "changed": false,
+      "sha256": "553c1fd0d68147e68e36156d4d43397120414e92b3924f6c5dec594c1bda00c8",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/complex/ModulusArgumentTargetLesson370.css",
+      "changed": false,
+      "sha256": "56feae450f7b2f0b299f1c2ea9df73944e926a841283f1a6c008c7c90146f8a6",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/complex/PolarFormTargetLesson371.css",
+      "changed": false,
+      "sha256": "f0cc0769d7aef4b9b77b6f4b163b9bfc871ecdc2967dfb6f249c2f4260af0e41",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/complex/PolynomialRootsTargetLesson375.css",
+      "changed": false,
+      "sha256": "e56c8d75b03f89c8cbfc3fea85ebf0556f38f6836d313c5583d8140cfbf02452",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/complex/PowersTargetLesson373.css",
+      "changed": false,
+      "sha256": "6340da69812457e6816821ed5efd650fd95a54afd7f5fed8c43b28b3a9721026",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/complex/RealImaginaryTargetLesson366.css",
+      "changed": false,
+      "sha256": "1f18c45fd51062929c221923f8ab48aa1972b58f9924edfdd65c0158f79dab44",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/complex/RootsTargetLesson374.css",
+      "changed": false,
+      "sha256": "9d4b381721eb4ff71850ce511453b7a57c73755eee38dee65b0fd000eb45a160",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/correlationLessonModel.test.ts",
+      "changed": false,
+      "sha256": "306387729f6fc3b29fe0a2d903841f43e3dbbf78a6a5d3ebbf083cce5ac36d71",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/adapters/correlationLessonModel.ts",
+      "changed": false,
+      "sha256": "71d2faf2da74ea5d79bddd8fb1b059862c0520ea5eac7834ebc9799d0299227f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/discrete/BipartiteGraphsTargetLesson577.css",
+      "changed": false,
+      "sha256": "7f183df07955ee53ace81eb4b6e8bf880a34a646e2dd393c0db9b39bd37e77ca",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/discrete/CircularPermutationsTargetLesson560.css",
+      "changed": false,
+      "sha256": "6768735acdb4271829b041b521a7ed1f8022346820046d325ccf17e18f4b6dee",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/discrete/ComplementTargetLesson584.css",
+      "changed": false,
+      "sha256": "25737fb0efe5b78fa8ec5862c3a1ef7c550211605f963a35a4fcec3741d5c026",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/discrete/ConnectedComponentsTargetLesson570.css",
+      "changed": false,
+      "sha256": "6de19f182691cdda6086776a6f99375b9843470de8d3e0f155a536d2424da966",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/discrete/InclusionExclusionTargetLesson563.css",
+      "changed": false,
+      "sha256": "91c8b58cdb9696915a54e4b803b03450a9d3b7ecb8b90b946ee9d964145a709a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/discrete/NetworkFlowTargetLesson579.css",
+      "changed": false,
+      "sha256": "75a3775c4194637227ffcacd39667e649ee97491efdac5c2a89876ee1e278a00",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/discrete/PigeonholeTargetLesson564.css",
+      "changed": false,
+      "sha256": "44cce31116630dd62f3e921fb90efb91ee62696a0b302548b5747d5a6c16243c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/discrete/PigeonholeTargetLesson564.tsx",
+      "changed": false,
+      "sha256": "9ef1e4ef1a6658d0a1b5673de4f096385fc8e14b7daaf346fe17ee4798b88634",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/discrete/ProofMethodsTargetLesson590.css",
+      "changed": false,
+      "sha256": "06b41ff31d12b3393b22248649e62eed13773822a9281cd08d5bdfc55695725c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/discrete/VertexDegreeTargetLesson568.css",
+      "changed": false,
+      "sha256": "93af48a0a535526274e71f2afa4a800eed8afe4996dd5522b15d1df1e1d2c243",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/exponentialRegressionLessonModel.ts",
+      "changed": false,
+      "sha256": "d39fcc1f0c35362a7593fca1525fa5e8a6355e1bae0e88b5e1ab7b214fe5f5ea",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/finance/DepreciationTargetLesson599.css",
+      "changed": false,
+      "sha256": "599a616da1f9c7761d44f3839547aa59550d072ac500d5eb91a8ac7c1717f5f1",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/finance/DimensionalAnalysisTargetLesson613.tsx",
+      "changed": false,
+      "sha256": "331b90a31a1fc46511e04d41c3e0a8a27ab7a679a1dd7b79debbe3ea21de5b39",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/finance/ExponentialLogisticTargetLesson609.css",
+      "changed": false,
+      "sha256": "6085c43b6f07d4ba376d0756e4081d2928a2d30f9ac99bbad089e9226ab6a647",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/finance/LoansEmiTargetLesson597.css",
+      "changed": false,
+      "sha256": "d391c85f8d534b79a9a7990e67e0d44453cd79651ab02c88275672b13b60d06a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/finance/ProfitLossTargetLesson602.tsx",
+      "changed": false,
+      "sha256": "710eb86e763fe3d9c60379f8db0e6c00a7a3eaa4a258a65e13e5f84f821a80a9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/finance/SimpleInterestTargetLesson591.css",
+      "changed": false,
+      "sha256": "5fa12003b5c1a6db4f69af4872262c9bd1b2743d7afbb040e8d60d78b4bfe4cd",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/finance/TaxDiscountTargetLesson604.css",
+      "changed": false,
+      "sha256": "a8399ab8e30e771c81fa82ae9aca5362ead98ee62ed8781e6a2c0a92c67de331",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/frequencyPolygonLessonModel.test.ts",
+      "changed": false,
+      "sha256": "6f99e3527ca55345d5b36fc183e4dae4cadb4334e41c982310b872d034786c9b",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/adapters/frequencyPolygonLessonModel.ts",
+      "changed": false,
+      "sha256": "635f9f4626f94d6f4d558e2b5c36f36cea97350c8c8fec4f1663ff6f43fa22ad",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/geometry3d/CoordinateSystemTargetLesson378.css",
+      "changed": false,
+      "sha256": "b859c8fb9937682cf5f5a4ede5788fee317eb2767efaf172d8b2ae84b3c8b35e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/geometry3d/CrossSectionsTargetLesson405.css",
+      "changed": false,
+      "sha256": "d192aaf1f9d81e74121b10ccbc17f57605fea76197b5fa67583c0f81fa40c6ba",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/geometry3d/DistanceTargetLesson380.css",
+      "changed": false,
+      "sha256": "adef110c83e874de2dde34b11224549bee03448ffb002098bba340ab030590d7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/geometry3d/LinePlaneTargetLesson384.css",
+      "changed": false,
+      "sha256": "52ac9046f9ea2a1f7be1adff3017fde7bca5220e5bf8801ec6200626c6180c6f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/geometry3d/LinesTargetLesson381.css",
+      "changed": false,
+      "sha256": "2263a54211993d365199f1ed7335152256ff28b9d5be08c413b155e53d01f104",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/geometry3d/OrthographicViewsTargetLesson411.css",
+      "changed": false,
+      "sha256": "69d1a9c65acdcd5b46021a74be158db6cae7be7faa6c569c207a5f8f8eaec237",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/geometry3d/PointsTargetLesson379.css",
+      "changed": false,
+      "sha256": "439fb7b70352e1187b790d07f2ca1eb06e24ff24997e35cfeed1ebc15a5875d2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/geometry3d/RegularPolyhedraTargetLesson396.css",
+      "changed": false,
+      "sha256": "9d26af07fda609cf10cacff6ba47f9a7474de45bc58afe0c6fbd42053d7d48e5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/geometry3d/SpaceCurvesTargetLesson416.css",
+      "changed": false,
+      "sha256": "f7dfe537be1050f6acacf21403d4f4ec1f3abdbd4a8cf3855a2c8c2036dccb0b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/geometry3d/SurfaceAreaTargetLesson407.css",
+      "changed": false,
+      "sha256": "b5e9d99f410661d254b84189e76aba6c25e26dc190626e2aca50a38860ca34f8",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/geometry3d/TangentPlaneTargetLesson424.css",
+      "changed": false,
+      "sha256": "8c98a6eb9ff97b1b5033ba69d257a9995a9a5caaa103fbfaca86de50acc8abb2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/graph/TraceModeTargetLesson48.css",
+      "changed": false,
+      "sha256": "e024649b7ff56badb25c30cc4814d3ceabb2614e0930b75aea3fcfd149b92be3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/graph/TraceModeTargetLesson48.tsx",
+      "changed": false,
+      "sha256": "ef7bbe55dc83af54960e2ea8a01f555a98c82d61b1d464879ac3d856883668f1",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/interactiveStatisticsBoundaries.test.ts",
+      "changed": false,
+      "sha256": "593ba81ea6929a262cc3185a09bb496e236ba732858110b3dde5194398844363",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/adapters/linearRegressionLessonModel.ts",
+      "changed": false,
+      "sha256": "56cff0dbd64b28654cd840680e623f6e4911a3ad3c7f5cfa9481200929fefa77",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/AugmentedMatricesTargetLesson357.css",
+      "changed": false,
+      "sha256": "bb572ffa356e07cb2dbcbbd0889c910d371e2417738bb57e29cd85fcc21dc646",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/BasisDimensionTargetLesson360.css",
+      "changed": false,
+      "sha256": "c60f6640aaf3c20ce88e978eb1e69c0016b614527982c164247211ecea5648df",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/DeterminantTargetLesson353.css",
+      "changed": false,
+      "sha256": "06edfde14a8c987d265dc2d6fd7f0ac616d7cb0b401e8ca908db1164fbddbd28",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/EigenTargetLesson359.css",
+      "changed": false,
+      "sha256": "dcda3cea220b87a9668d380b3d4f805425e13a57821969b43bd075407e01ee60",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/GramSchmidtTargetLesson363.css",
+      "changed": false,
+      "sha256": "f54432572bfd643b1dd5b6af5ecd7b7ed42f4c8705e422e856349475e7f69e8e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/IdentityMatrixTargetLesson351.css",
+      "changed": false,
+      "sha256": "397b24c333f677af37cfe8b1611329267d28b4c7b7132a351e57b0d7b79585f7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/LeastSquaresTargetLesson364.css",
+      "changed": false,
+      "sha256": "f17908d0183fc8ee17f9093b185856a3792f0b5f7fbdae968e0918dea9f88b1a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/LinearIndependenceTargetLesson361.css",
+      "changed": false,
+      "sha256": "ebe46f567230b2cc66ff731249c3c5177eabd7cfb166d4dbe4c1f235be59ff83",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/MatrixAdditionTargetLesson348.css",
+      "changed": false,
+      "sha256": "2f82b50be672172a9e5d9bb0cae67e3b13616a518be3f6ebc2ae9bc3eb414933",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/MatrixBuilderTargetLesson347.css",
+      "changed": false,
+      "sha256": "8897fc8420472f4ad1060876791d02ca5f445d91e772445a46044c8d0e8d7c2a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/MatrixInverseTargetLesson354.css",
+      "changed": false,
+      "sha256": "491a8ad9e038f59286abbef9008cd484a2e36987eb9e97e9c400860c9fad1414",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/MatrixMultiplicationTargetLesson350.css",
+      "changed": false,
+      "sha256": "de875604392dd2670cc58a68bd3236fd07870cb999ee8351fc86482ee80070ff",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/RowOperationsTargetLesson355.css",
+      "changed": false,
+      "sha256": "1947a36af9ee0fc163d5aa015ce6bdc044cf2bba7ab51a374c37b6eb406fba11",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/RrefTargetLesson356.css",
+      "changed": false,
+      "sha256": "196c119eb9ced118814a326dc34beef8c61416a921ddaac0194e7fc41eb2954a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/RrefTargetLesson356.tsx",
+      "changed": false,
+      "sha256": "49cef76980d37fd28762f8f9b7eca5f1d4e44cf0010b5249a35e87e0a0022aff",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/ScalarMultiplicationTargetLesson349.css",
+      "changed": false,
+      "sha256": "0dc58fdad980dbc7ec95a239bb8ae99b34683bdb52a8d2eef1504d4026c1a33b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/TransposeTargetLesson352.css",
+      "changed": false,
+      "sha256": "c3f0d44a4f92be08e9994f2491bb5d5b4de46f0ad9d0ed8d2750a51f3eb92d79",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/matrix/VectorSpacesTargetLesson362.css",
+      "changed": false,
+      "sha256": "398e19a21e596708f4d73e5fbbf9fbd1a2349679927f1c821ce05325da9dfa36",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/modelComparisonLessonModel.test.ts",
+      "changed": false,
+      "sha256": "96d9d5c4600c4191a636240c49b7f0b0b8426e4c64534a1b5c98d80a33351cc8",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/adapters/modelComparisonLessonModel.ts",
+      "changed": false,
+      "sha256": "6a1d306c898f41aaafe645e95471fca99b474683ad5c60ee1264ffdcb99cf119",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/quartilesLessonModel.ts",
+      "changed": false,
+      "sha256": "f1d09c9dc754b82004bab1741f50d0e9b13399f3b6d99882efb62a228f39eac6",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/scatterPlotLessonModel.ts",
+      "changed": false,
+      "sha256": "6c69d2173d1080d4312156a35091ef87bd3785211479cda3acdec34e137bb9b3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/sequence/ArithmeticSequencesTargetLesson335.css",
+      "changed": false,
+      "sha256": "724985934339c23fb424db30596da27a8fdca48522c8a4604d97dedf11e2390f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/sequence/ArithmeticSeriesTargetLesson340.css",
+      "changed": false,
+      "sha256": "1d630300de7c2e82606bd61f13d54464220e5451c7736f06cd7d6812a688b411",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/sequence/ConvergenceDivergenceTargetLesson342.css",
+      "changed": false,
+      "sha256": "bdd058c7cf63fefb20bdbd5f108a7526c2d795fdcbb3cf9cce9b85f704558fcb",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/sequence/FibonacciSequenceTargetLesson338.css",
+      "changed": false,
+      "sha256": "cc8a2a0468399fd4a05ee3f2811ad121397b72e13ab31e3a67908a466ff562bd",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/sequence/GeometricSequencesTargetLesson336.css",
+      "changed": false,
+      "sha256": "0255e0819ee83d396509fbe736771bb448d01d8aa275c183cca3366d35b7d2ac",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/sequence/GeometricSeriesTargetLesson341.css",
+      "changed": false,
+      "sha256": "7487a7e740b1483da2b69fbc2acf7c2676508354b84906ab758f50ecdd56bd1d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/sequence/PowerSeriesTargetLesson343.css",
+      "changed": false,
+      "sha256": "42f22c273f1abec75550d4f5efe2c4c155afa4e38bdfe69326e3c7bb4e164147",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/sequence/RecurrenceModellingTargetLesson346.css",
+      "changed": false,
+      "sha256": "54ef27d84ec96300ad457588b6b33c8685ef9d1998657a402dbbc2aacaefa43b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/sequence/RecursiveSequencesTargetLesson337.css",
+      "changed": false,
+      "sha256": "4275d4d6f7043f01cdd0f837b2cd171d418cfa8f84c0563ac59e24c570bfbdfa",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/sequence/SequenceGeneratorTargetLesson334.css",
+      "changed": false,
+      "sha256": "22768eff63d5d533b0113823aaba745315328e126d5587208a0862b91ac09623",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/sequence/SigmaNotationTargetLesson339.css",
+      "changed": false,
+      "sha256": "500318a00c20f2fbedc73c8b41b40e17fd96e4aa2db3b2b81465c0721c043a4a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/sequence/TaylorMaclaurinTargetLesson344.css",
+      "changed": false,
+      "sha256": "d0acdd2124f365f943a97a9242c3400e76878d4a4d634fde7ed3f81001fde77f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/adapters/spreadsheetLessonModel.test.ts",
+      "changed": false,
+      "sha256": "3d13bd9667cde9e3fdf66913fe11ad13ca81fc95d537b39a0a0efe85a7f1a7e3",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/adapters/spreadsheetLessonModel.ts",
+      "changed": false,
+      "sha256": "602fd388d7d8b37aaf3480f313e5dd8bd75788f640c39ce5afd167e2f8a7c098",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/components/InteractiveScatterPlot.tsx",
+      "changed": false,
+      "sha256": "715fc6f2de12a3325e40741176b67a30e9d88ed057014a3ec0460c856eaefcda",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/components/LessonSectionJourney.test.tsx",
+      "changed": false,
+      "sha256": "5fd188989b469d52d1e2dd97b2bd81049803c1fff78b0fe2a2a36afeeab721a6",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/components/StandardLessonFrame.css",
+      "changed": false,
+      "sha256": "5459f000b269a0fb81d6681e4e0f028477973968647471b755aea28d43bf0c47",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/graphs/lessonGraphInk.test.tsx",
+      "changed": false,
+      "sha256": "d6ff5ae30d5a1b161001b81211de74121f68e409f5157b7656987f410a67addb",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/pages/LessonPages.test.tsx",
+      "changed": false,
+      "sha256": "fef962cb18e396429d50d813681ee4fb3183f28b95bbc852cf8f4be2bd813998",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AasCongruenceTargetLesson10068.css",
+      "changed": false,
+      "sha256": "6c76195472b66baca30568308aed83bf79567738a0eb9d3da27a17428c54dc0f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AasCongruenceTargetLesson10068.tsx",
+      "changed": false,
+      "sha256": "d8ac919dd41bb238b092a2b943e79c5a7d20bd2f11e8eb3b3ab421e128b1b658",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AlternateInteriorTargetLesson10061.css",
+      "changed": false,
+      "sha256": "857f3394e106c859e8a0d53a29e8527214c5659e39fcff688763882aa08e2f9b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AlternateInteriorTargetLesson10061.tsx",
+      "changed": false,
+      "sha256": "9223ce1770c15127b6133e02027d4c203df916d9d3aa8dc552f7decd5d00744f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleDepressionTargetLesson10099.css",
+      "changed": false,
+      "sha256": "95ef67988a615062729fc0286fbeb078f9aec2053b50b55d35eeaddfa268f1d3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleDepressionTargetLesson10099.tsx",
+      "changed": false,
+      "sha256": "84c72a6898c98c882061ad203d27ae158533f75aba762ec792a1837796c3753c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleElevationTargetLesson10098.css",
+      "changed": false,
+      "sha256": "6a26c0ebf7e34f5b2358081c8c3516f41f0bdf21683a14444f8136bfc8fdc8c7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleElevationTargetLesson10098.tsx",
+      "changed": false,
+      "sha256": "47f16fc91d2f4e5cee268616ab9dd33e38af3214f3fdedb65e16a8db3ad567dc",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleSemicircleTargetLesson10092.css",
+      "changed": false,
+      "sha256": "77419207402543aff58cd58cf1ccdc901073f04becc19f85dab8cd4b2ccbff82",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleSemicircleTargetLesson10092.tsx",
+      "changed": false,
+      "sha256": "c89f4f4d4f9710f4eeb4da0cc5c46d04b34f6eacb591ffb8bbcb5128d6549331",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleSubtendedArcTargetLesson10091.css",
+      "changed": false,
+      "sha256": "c162f5687978655449c65cf96381fe4ec67af48f5d9957e60390afdf21a60519",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleSubtendedArcTargetLesson10091.tsx",
+      "changed": false,
+      "sha256": "a0d50c50163d664dd62de6a1aaf606b3764b97041a868d08ad71d71124a83444",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AnglesSameSegmentTargetLesson10093.css",
+      "changed": false,
+      "sha256": "b83ec6464c379046c1efc0eef42b7e40600cdfbf0d8141f3a0bfb24f020fe6b0",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AnglesSameSegmentTargetLesson10093.tsx",
+      "changed": false,
+      "sha256": "0633866d66b68002727888a326da66c7d42b675a6d1e577b1ebd32da7d6ed286",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AsaCongruenceTargetLesson10067.css",
+      "changed": false,
+      "sha256": "745f57ee7a225388ddef1d33d5a76ad80d5b36c4c768d013a88a7750a5b0ce61",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AsaCongruenceTargetLesson10067.tsx",
+      "changed": false,
+      "sha256": "5d5ff62ec1a116ae30ebc4df442cdd4c5abb00f687135a97978b60c009676fab",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AxiomTheoremTargetLesson10056.css",
+      "changed": false,
+      "sha256": "66797127e24885f0824d14d89a6e36c341979c40c39b1db1b556eb75453de87a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AxiomTheoremTargetLesson10056.tsx",
+      "changed": false,
+      "sha256": "2c920d6157feccbe3965c5930c8b4cb7c26890898ac6d081a14bedb2a96a416e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CollinearityCoordinateAreaTargetLesson10088.css",
+      "changed": false,
+      "sha256": "8a6a24478b9b1f513d6b179ebb825eb4255a42d4d5596c0d0dac941050dff4c9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CollinearityCoordinateAreaTargetLesson10088.tsx",
+      "changed": false,
+      "sha256": "744182e4cf6fd77b6da920d59574217da7c8ccb750723ad19e2db6fff19c5259",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CombinedSolidDiagram10082.tsx",
+      "changed": false,
+      "sha256": "72ddbafe539fde711bebba21f9069187480e5d73e7751d17373d5084e7cab9a7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CombinedSolidsTargetLesson10082.css",
+      "changed": false,
+      "sha256": "32671cceaa961ba9e32776bcbd2c9bb830bef8c8f81c82da9a448e3d488f0d16",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CombinedSolidsTargetLesson10082.tsx",
+      "changed": false,
+      "sha256": "73bb91e9f9e88738813c3a174065e27aecb89d70cd5baea71a5c37b28ad6112d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CoordinateHeronTargetLesson10081.css",
+      "changed": false,
+      "sha256": "bf036f12cd6c02726d763d0a1423e7ad05191515c175c3aa9b10b2bc4a722d0c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CoordinateHeronTargetLesson10081.tsx",
+      "changed": false,
+      "sha256": "117d8880de34bec406478fb1f9ee6537069681017a1b83420e7161438744b1c5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CoordinateTriangleAreaTargetLesson10087.css",
+      "changed": false,
+      "sha256": "436ab4c60f7e8aa880ec70b478b86c9fab1793cfc3dcb85ac2a2c781eecb96f2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CoordinateTriangleAreaTargetLesson10087.tsx",
+      "changed": false,
+      "sha256": "5b6969c0d3ca54ce85e9d6f15902c5d65457e74d32ae6fcb1831687764d6892a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CorrespondingAnglesTargetLesson10060.css",
+      "changed": false,
+      "sha256": "68fffc01c78f1a4b5b0d8805ee0413b550876e9f932e57af14f68b4357e6781e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CorrespondingAnglesTargetLesson10060.tsx",
+      "changed": false,
+      "sha256": "583ab36afb6b67d09564f7103733cf6e45e38715d52d76d482658527daefcd7b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CyclicQuadrilateralTargetLesson10094.css",
+      "changed": false,
+      "sha256": "287d8daeca3c525abb90fba4052d80a8b479ddeeebb0ecddae29f924db0f2861",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CyclicQuadrilateralTargetLesson10094.tsx",
+      "changed": false,
+      "sha256": "cd955891c9bf65228af770fe1a4cfd7f8f13a1e21088baaa49499c9562df1e82",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/DistanceFormulaTargetLesson10083.css",
+      "changed": false,
+      "sha256": "4317f14a04713d904553092b6aa66b91fe76d5ab4ddfca21b77b47e70dc9cff2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/DistanceFormulaTargetLesson10083.tsx",
+      "changed": false,
+      "sha256": "d6a62030f130b3ee20065dcaf118da23ca44fe239354b8a0bc69262b5876b686",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/EqualChordsAnglesTargetLesson10089.css",
+      "changed": false,
+      "sha256": "3f950009e88879aa1f7fc45bceb3ac84e2a8816f24c717840bea0b4f4982b56a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/EqualChordsAnglesTargetLesson10089.tsx",
+      "changed": false,
+      "sha256": "2d3991b36cfe6886f227a31071539cc65a1a077aa9b463a0e8c08b6ef2a1d199",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/EqualSidesAnglesTargetLesson10071.css",
+      "changed": false,
+      "sha256": "1e73912c40988916ab5de02e319564b77d8231a08faf4cbb7b88317f3541b3b6",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/EqualSidesAnglesTargetLesson10071.tsx",
+      "changed": false,
+      "sha256": "f2ff78fefb6d6f875eaaa033c3d69a340b3e91f06ee49e1b3827538a2d4e4e9f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/EuclidPostulatesTargetLesson10054.css",
+      "changed": false,
+      "sha256": "c232a85b491b191958cb938de2f092222d779b7f8525b7eafbb89e8080608510",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/EuclidPostulatesTargetLesson10054.tsx",
+      "changed": false,
+      "sha256": "0ccbfd8e4ef64d2729e7c5597770940b8181ba678fecb9b1b79b773e3fc0754f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/EuclideanFoundationsTargetLesson10053.css",
+      "changed": false,
+      "sha256": "ba9f2251c67ead98d3056fe5b60131955efda1a8dd0fe7a0c4e2386770132533",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ExteriorAngleTargetLesson10065.css",
+      "changed": false,
+      "sha256": "5352269c913556d3a0d24c0e08f073be4f6a7a5977f8e4c2d59b90f045c0ce06",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ExteriorAngleTargetLesson10065.tsx",
+      "changed": false,
+      "sha256": "36ad18dd9e7c86f9ba783901f45c3d1a5211cfcd7d2a1b83047a3c90b05a21e7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ExternalSectionFormulaTargetLesson10086.css",
+      "changed": false,
+      "sha256": "c3bea2a1ddb8de8e29520b6c7e28450f688a2b061707142de5a799481206f8b3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ExternalSectionFormulaTargetLesson10086.tsx",
+      "changed": false,
+      "sha256": "58a524792fe06b505581c0c3a9a2125a50af0bdaaf889067c9cb527c062425a1",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/GroupedMeanAssumedTargetLesson10103.css",
+      "changed": false,
+      "sha256": "503da5e4b0a44dcd1282e5c4206d5f0b03bae5e55f84338279fddeed85d1cd65",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/GroupedMeanAssumedTargetLesson10103.tsx",
+      "changed": false,
+      "sha256": "97f67c8bed635c09875529d07e4e55ebc5307e08698ba1642bbbf720bf570b4a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/GroupedMeanDirectTargetLesson10102.css",
+      "changed": false,
+      "sha256": "23981e05d54c28f4c1f2452622d73b7a45e9c136a0d6165a05b1b8b22d1f7b7b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/GroupedMeanDirectTargetLesson10102.tsx",
+      "changed": false,
+      "sha256": "68f81ee77297cb3c51ce62c38bb3958eba906a0d6416da96e913947a98aed558",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/GroupedMeanStepTargetLesson10104.css",
+      "changed": false,
+      "sha256": "a5056f2facf534a893a36a65dcf635582a888f7d2f59ab08db24ad6d6d4ec0a3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/GroupedMeanStepTargetLesson10104.tsx",
+      "changed": false,
+      "sha256": "d5ac7b87818ae18f72fb3fa0a95b2577f8aeefba596055dff818f03f60c50016",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/HeronFormulaTargetLesson10079.css",
+      "changed": false,
+      "sha256": "9018175d979b906564e18f24f302923c7624f85c928643abf92eefeb69f919b1",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/HeronFormulaTargetLesson10079.tsx",
+      "changed": false,
+      "sha256": "2f875a6a085961b8369725703278a6d05959deb3c15fe66e1a77d8500b1559b0",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/InternalSectionFormulaTargetLesson10085.css",
+      "changed": false,
+      "sha256": "9cee1a7bf67896a7e580569198af159ab988e3ce7daa51b38e363571c6d48ee9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/InternalSectionFormulaTargetLesson10085.tsx",
+      "changed": false,
+      "sha256": "ca3253683ae89cc6020a7c7c8d6946947fac61033319e413ae632ae5063687e9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/LessThanCumulativeTargetLesson10105.css",
+      "changed": false,
+      "sha256": "15df5e6e682a258c40ae1716393e48a996254fe784d578ae27bcd1d2a46ea0e5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/LessThanCumulativeTargetLesson10105.tsx",
+      "changed": false,
+      "sha256": "e3970ed647e184db9fee569c0560ff0fc1754107331e61919ccac9a4f71fd99d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/LessThanOgiveTargetLesson10107.css",
+      "changed": false,
+      "sha256": "ea1029ac434b783663ab1b29db8a43a075e83664d599596268ac2b2c3848d30f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/LessThanOgiveTargetLesson10107.tsx",
+      "changed": false,
+      "sha256": "85b467ab394b3391dbaa88440f5271a61b2e93ff0f86d889d86c46a3a35c4ec3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/LinearPairTargetLesson10059.css",
+      "changed": false,
+      "sha256": "2621cc7c00c79bd743e1d3716ea12ab8b556e1b5963b38b671507c7e8c403b58",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/LinearPairTargetLesson10059.tsx",
+      "changed": false,
+      "sha256": "241e5449e733b92743a485c454e80b264410ca1f40d08d73effcb43097f05f0a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MagicSquaresTargetLesson10037.tsx",
+      "changed": false,
+      "sha256": "5b9277a5c371bf7467c69f1879fc313a54efdc41bc1285436b032c525064b207",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MidpointConverseTargetLesson10078.css",
+      "changed": false,
+      "sha256": "f7297e7c3ab7a88b4e6a29667e1fdcac764c1d0a39441ab6eadc3cc84bc276b9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MidpointConverseTargetLesson10078.tsx",
+      "changed": false,
+      "sha256": "7899293419a30cc4e03bd3bcb26e7e26ed973fd282e778fe071d92dcfc388ce8",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MidpointFormulaTargetLesson10084.css",
+      "changed": false,
+      "sha256": "aadad3a97ca630ff24a3e1ae32d6e6bb60ef92b91e3932102b044b556a12e3c7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MidpointFormulaTargetLesson10084.tsx",
+      "changed": false,
+      "sha256": "44e33c3d120f0aa7e44d477fdd81f700cc6b7138f08997654d2741bd38ed100a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MidpointTheoremTargetLesson10077.css",
+      "changed": false,
+      "sha256": "cccb6e7681648cbb8d5b249176ecd33f2bd9e3ed018222e5f9b9e8d1d690c95c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MidpointTheoremTargetLesson10077.tsx",
+      "changed": false,
+      "sha256": "daa0711a1bd8aa6c665c556eada58652cda62ee0bf7e987dc1b81181115be1e1",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MixedUnitsTargetLesson10005.css",
+      "changed": false,
+      "sha256": "1e9777cbf1a862758d5aac559bd9725cd6a2919c9183993b7ba391ae0e3a1fa7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MoreThanCumulativeTargetLesson10106.css",
+      "changed": false,
+      "sha256": "c59faec0c50794550b137a5361fcf5499506ef989a9fee30069f95a2add4783f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MoreThanCumulativeTargetLesson10106.tsx",
+      "changed": false,
+      "sha256": "d95f41dad6291ff203f68080f3e319afac9635740cf6d7599d61be3acb26bf6c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MoreThanOgiveTargetLesson10108.tsx",
+      "changed": false,
+      "sha256": "be751fba96758ea4f1ced85c77a1218abb6a43ff6b1b9b23ad96b7e0305f1f30",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/NthRootsTargetLesson10045.tsx",
+      "changed": false,
+      "sha256": "d71d7d4e95a0ad7233e0ef3785a3d5a35d240f3478da7533f8787a5cbace084c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/OppositeCyclicAnglesTargetLesson10095.css",
+      "changed": false,
+      "sha256": "32275d22ae2fd20de3b8f979f968c43a9fa44c8995b6d2ab4f2fe072aeaeef2f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/OppositeCyclicAnglesTargetLesson10095.tsx",
+      "changed": false,
+      "sha256": "9ce30924a3887c868391469b4205c26ea1606f7874076647d65dac20fbfdcf01",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParabolaTangentTargetLesson10147.tsx",
+      "changed": false,
+      "sha256": "9706e63f37fd9cc17e11756167130537f7a242068b22b6355186d4dbce2003d4",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelConverseTargetLesson10063.css",
+      "changed": false,
+      "sha256": "332bbb1c12324833fd935b3c876527f3e3b66ab7c14a488cd6312aad3c0aa45c",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelConverseTargetLesson10063.tsx",
+      "changed": false,
+      "sha256": "d635dd709f9fcf32b172f6c60f2be2cb892450540bb0e5e2897cc7d8ff11bf56",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramAnglesTargetLesson10074.css",
+      "changed": false,
+      "sha256": "0eb8167504d0f305897796d35150d87d79796207632ade307509528a33000cff",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramAnglesTargetLesson10074.tsx",
+      "changed": false,
+      "sha256": "7de1579745c4d1d6d3212052c3b8392d8b889fbd644dd65debf631e0bb2ea2e8",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramConditionsTargetLesson10076.css",
+      "changed": false,
+      "sha256": "9203438ef69613088587d1a12bc935257be68a9eef842d628385fc9ef0ab43d2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramConditionsTargetLesson10076.tsx",
+      "changed": false,
+      "sha256": "b7e486a28fdc161006288bcc9e15a859be8ce257c32be92836465eb1778e7037",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramDiagonalsTargetLesson10075.css",
+      "changed": false,
+      "sha256": "5629e2681a9c9a08660b0c501769d6f40043dab758f623c3301972c19eaa01f7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramDiagonalsTargetLesson10075.tsx",
+      "changed": false,
+      "sha256": "bfe94bcdc2768edd828dff46be18c93018fc8666d9c3be3228b36a5252a69ce4",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramSidesTargetLesson10073.css",
+      "changed": false,
+      "sha256": "02f094086848afe72b6580df49ef5a366bfc8724725720ba9dd0761f060fd440",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramSidesTargetLesson10073.tsx",
+      "changed": false,
+      "sha256": "712e1c8772337b71ca8503e70a056d278ce45e4c63bb0035224f9bc6f9759e5f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/PerpendicularCentreChordTargetLesson10090.css",
+      "changed": false,
+      "sha256": "83cfc046cb6c53cc664ea7e760bb357c82286fcea3c14f379f90f15ab894f08a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/PerpendicularCentreChordTargetLesson10090.tsx",
+      "changed": false,
+      "sha256": "8342afef48eb1bdac236c3db584c7a5d7c69d6312b33b4c23d08f61f61e0a136",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ProofStructureTargetLesson10057.css",
+      "changed": false,
+      "sha256": "3bcdd6a925bfae66912c7f2c546b12085ca2a2d5a9caf60bb54f60d196bbcc9b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ProofStructureTargetLesson10057.tsx",
+      "changed": false,
+      "sha256": "a14c92d23390e639588e7032c4c444867257430a3d7f85ab505d7067c53f7aaf",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/RationalIrrationalTargetLesson10042.tsx",
+      "changed": false,
+      "sha256": "e003ca74d601f05ce80c687a8d206a97bf17d9865460584917129816259faad5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/RationalisationTargetLesson10044.tsx",
+      "changed": false,
+      "sha256": "1b3d50f990ee00230b1d9e982870a634b2e364c8d1fedb4f7e55285d0efb326f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/RhsCongruenceTargetLesson10070.css",
+      "changed": false,
+      "sha256": "5eeb2e5fd6db8de6718ccae40c291c545c38d7d6d6b8cf2075e5aed2ef22a5bf",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/RhsCongruenceTargetLesson10070.tsx",
+      "changed": false,
+      "sha256": "f87874db99ccfefddbfc7c5dfc89a4a50d2d861ca1e0e3f62f849698adf3e595",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SameSideInteriorTargetLesson10062.css",
+      "changed": false,
+      "sha256": "199519099a84a46fc52e722b5132a3db9b1d019cc71065e90670cfa017f3dd13",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SameSideInteriorTargetLesson10062.tsx",
+      "changed": false,
+      "sha256": "338720e97788478972646a3b8fb9bff6bcd1f237507af5553181111facf389a7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SasCongruenceTargetLesson10066.css",
+      "changed": false,
+      "sha256": "74f1855bc140424c06d6812cf11a7ca2a734d92b10d3fcbbe6fd3411a8100488",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SasCongruenceTargetLesson10066.tsx",
+      "changed": false,
+      "sha256": "4f7b79bd79dd993252c936e82ae79f4605ffde41b5aa0c207999e86ba73145ed",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SemiPerimeterTargetLesson10080.css",
+      "changed": false,
+      "sha256": "02480d58308a65e03fec8f6b2ffc577858f1260617d63810c5c9b46183b91485",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SemiPerimeterTargetLesson10080.tsx",
+      "changed": false,
+      "sha256": "a557dd14ac0ca7226d4923dd64deee7a6d5f5313c7c1e093ce721d98b6714d68",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ShadowLengthTargetLesson10100.css",
+      "changed": false,
+      "sha256": "108a66fb8e5e78084815af57f74898df7f6f01190947df14f85db0996e94d983",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ShadowLengthTargetLesson10100.tsx",
+      "changed": false,
+      "sha256": "c1ea813e11cc09393004bac8329db0847e3c0d6c5efb8a209fff0d02efb47409",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ShapePatternTargetLesson10011.css",
+      "changed": false,
+      "sha256": "fa7a57fdc4211a9f76b7750b2d80a8d431c86015fe2a6dac339e673530fc0c19",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SssCongruenceTargetLesson10069.css",
+      "changed": false,
+      "sha256": "cdef4491ac6992cf04abf2f55c351fa739cd17101386ecda1297cba10cfb1ee7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SssCongruenceTargetLesson10069.tsx",
+      "changed": false,
+      "sha256": "2fadc5cf228f789d854be5d9a521e6249d492717ed8623e42397e53a9886fbcd",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SuccessiveMagnificationTargetLesson10043.tsx",
+      "changed": false,
+      "sha256": "6bca03e6ffcf9c726473fd85dc0995d5c4ba475c659781607abb48dc85f64f99",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TangentLengthsExternalTargetLesson10097.css",
+      "changed": false,
+      "sha256": "59e87ffe81942779581ca1c6f4c807e32140798379242c1a8742343291ee1a71",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TangentLengthsExternalTargetLesson10097.tsx",
+      "changed": false,
+      "sha256": "075029d77a7dcb0e591ddbef8c7343a34d8ed4ac89c8f62d8c09a5d55a7790b0",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TangentPerpendicularTargetLesson10096.css",
+      "changed": false,
+      "sha256": "75617f18b989700090045092396a6cc2864726d6b6dd2b3e458299a12f1d1e33",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TangentPerpendicularTargetLesson10096.tsx",
+      "changed": false,
+      "sha256": "cc1003d6e8ef6dcf3e3e68ca08d4952ad4350e827e5a4c09d0fb9ead9dad2210",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TriangleAngleSumTargetLesson10064.css",
+      "changed": false,
+      "sha256": "3fbec4a3330fb67ed464615bb51b06cd713130c79aae5e70ecbe3277fe761be5",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TriangleAngleSumTargetLesson10064.tsx",
+      "changed": false,
+      "sha256": "bc476ff8e3c16c2e6301b70000febb7975c90bc2cdd8705ccb79b846d370523a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TriangleInequalityTargetLesson10072.css",
+      "changed": false,
+      "sha256": "5f883ff81380bebcbef3654e7ac5fb62ec887df523360fc0500f04e4952528aa",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TriangleInequalityTargetLesson10072.tsx",
+      "changed": false,
+      "sha256": "e57bf4fae41630a967f768b024766f9a7d0f6a2ab6addbff2587bd13f64d4148",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TwoObserverHeightTargetLesson10101.css",
+      "changed": false,
+      "sha256": "1765a987c081bcb663234f674044f0a0a69f4422575d44bb4b2501479cfc857b",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TwoObserverHeightTargetLesson10101.tsx",
+      "changed": false,
+      "sha256": "d4becf763af513d5e78b93b0e9d89b101aa074edaf1d5bbed27eee5497c1a584",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/VerticalAnglesTargetLesson10058.css",
+      "changed": false,
+      "sha256": "ae5ab1cc0e49560e96b7225a4d4693f6a0c7c9650ce740e9abecf74b583763e8",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/VerticalAnglesTargetLesson10058.tsx",
+      "changed": false,
+      "sha256": "9c1e466d41940e8a385609799bba43fbf5edb6825a2649cb4bc8e7d09d581e63",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/aasCongruenceModel10068.test.ts",
+      "changed": false,
+      "sha256": "c4a96fbe3823258d2b4b45b6b312282f1ae650217b6bd7a7285c250362fa3fd6",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/aasCongruenceModel10068.ts",
+      "changed": false,
+      "sha256": "de8097bcc2a55d62ef59e2cde7a88c0437d3f69b04025860160c5a1c54492459",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/alternateInteriorModel10061.test.ts",
+      "changed": false,
+      "sha256": "d8e8370bbcdec8db568588b5c35cc14bf5736f569601a74299afb836a2c980b9",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/alternateInteriorModel10061.ts",
+      "changed": false,
+      "sha256": "e1576d4416e891d1fd0ac965bf15d1341f9066d5190f57ba3c5cf8ec1d7b00a9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/angleDepressionModel.test.ts",
+      "changed": false,
+      "sha256": "c005daf7f177e97b084cefccd9d4b4bccd3918e4998cea3a69b5867a98cfaecd",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/angleDepressionModel.ts",
+      "changed": false,
+      "sha256": "64c063b3336d3a44fac81ba4448fb6d42a0bcc54d43f7ad500af0de5dc59b402",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/angleElevationModel.test.ts",
+      "changed": false,
+      "sha256": "8142bfb9c90ff1746ba9da0c1fd05b7df7a32a4e37f2cffd6b17b81bd17467dd",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/angleElevationModel.ts",
+      "changed": false,
+      "sha256": "7ab5ca65de5e1c6c3108bca0d776c6e215dd889d374bfb1f62a82cf6bfc40a22",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/arcAngleModel.test.ts",
+      "changed": false,
+      "sha256": "69d823940b0b5bd36604e1b928817c0f06a78b86be546376b47f3ce202d850c1",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/arcAngleModel.ts",
+      "changed": false,
+      "sha256": "9132629ad2cf0f40caaafd1b785f70ec894318c44de68e322c6164795da2fe78",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/asaCongruenceModel10067.test.ts",
+      "changed": false,
+      "sha256": "ceb7ac520e349daec6073ccbc8b9a9e7a01a01f30078b91bca1a8aead27ba6dc",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/asaCongruenceModel10067.ts",
+      "changed": false,
+      "sha256": "42a6382b98b6ed8ec57bc79d9c64552c002448cd27d2cc8fe0952dccd175c14f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/axiomTheoremModel10056.test.ts",
+      "changed": false,
+      "sha256": "7dec52aaff4dddc27ffc9f8d1314edb2aa594c05c72d11e915bd31aa682effbe",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/axiomTheoremModel10056.ts",
+      "changed": false,
+      "sha256": "5235323bb173345198b21729f3ef6aa59ac046f973cd2c1c03a68ca09af7bc09",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/combinedStackModel10082.test.ts",
+      "changed": false,
+      "sha256": "569b950b511a14c5fa4503d593b2301305700339bffcd2b17280a5aef50fe722",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/combinedStackModel10082.ts",
+      "changed": false,
+      "sha256": "4549229f63ade6a75a5aa83840ec50699bd51cab604abffabfc1ec20b3fdb1fa",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/coordinateCollinearityModel.test.ts",
+      "changed": false,
+      "sha256": "60c8adf909032c7aa56224b8a0111d988fd76a6e77e358a6d45126b2dca66503",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/coordinateCollinearityModel.ts",
+      "changed": false,
+      "sha256": "8534dc75d117a97b40cd9ad4b0e8b604b943e135a1023e57e5006e2763dae37d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/coordinateHeronModel10081.test.ts",
+      "changed": false,
+      "sha256": "f5cb6086aae0aca819fe7c0606d5bf1b5066df2dee92375e0e2076117addc3bb",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/coordinateHeronModel10081.ts",
+      "changed": false,
+      "sha256": "25241bbcd38a9fc8f602f1138d7a2e2158f0b1e61995bdb6cadb498c74473093",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/correspondingModel10060.test.ts",
+      "changed": false,
+      "sha256": "5738d9fd1e3475751cb8223769d0fecfa497975b724431b2b045010e6f4abf4e",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/correspondingModel10060.ts",
+      "changed": false,
+      "sha256": "8abceadc3314b588f4e7eafab104a498b2cd9fb2012f50afa899b4bd107c11a4",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/cyclicQuadrilateralModel.test.ts",
+      "changed": false,
+      "sha256": "88eb9a7ea596ace1d94df3b41391050e1f36fc94d25ef4f64df1a4a65e43f168",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/cyclicQuadrilateralModel.ts",
+      "changed": false,
+      "sha256": "0723a4ce08757b2748d6141c0afb5019c4edae36cea882a17e2755d28ece965a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/distanceModel.test.ts",
+      "changed": false,
+      "sha256": "0cae402bac85633e4e4a21ec6627e06e96c4d19ea67b4258ad989dc4e4c66e6d",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/distanceModel.ts",
+      "changed": false,
+      "sha256": "7f3973fe8ba1fd06e1400b373877e2852a977674775f5fa458317fa62dd75b41",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/equalChordsModel.test.ts",
+      "changed": false,
+      "sha256": "c8dd7944f1df0dfc746e4b28a5dc471fa4f0c34c18e250fba6e1468831b22e19",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/equalChordsModel.ts",
+      "changed": false,
+      "sha256": "b1470abdd4196aada2cf4d6382506ec2f57c101029a8692b292e78dfc1135e14",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/equalSidesAnglesModel10071.test.ts",
+      "changed": false,
+      "sha256": "747636514b448a08545184e845ab070d7ac11b873194ac60fb21bcd2b23d6aab",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/equalSidesAnglesModel10071.ts",
+      "changed": false,
+      "sha256": "7f11af3b02b6c242e146987d96a7b494eb97feeeaa5718fe340a2ab6bc529fdb",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/euclidPostulatesModel10054.ts",
+      "changed": false,
+      "sha256": "cd0a0525616050c7bfcaf140aa60afecb1d96c2dc8ac28510ee42d6ce2195bbe",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/exteriorAngleModel10065.test.ts",
+      "changed": false,
+      "sha256": "eb76965f76c419d66a618e9d43231979de2f613844af90fdf1ec9dc0b0ffca10",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/exteriorAngleModel10065.ts",
+      "changed": false,
+      "sha256": "a97db243fcf2efa093c0f28416a6f9bb291d6cebe8aba8aeadde74f9d219a1ce",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/externalSectionModel.test.ts",
+      "changed": false,
+      "sha256": "682501608da0a539bf0ab8b9f4eada37df64214be054cb0b51000f1e09e3356a",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/externalSectionModel.ts",
+      "changed": false,
+      "sha256": "b0650a5195295666e72ab3894ca640cea8a0cb6f1433bc9115ad057e169fd1fa",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/fifthEquivalenceModel10055.ts",
+      "changed": false,
+      "sha256": "b19c12e63c05f7b558f59ee968e68efdbb2ff758df73cdfcb28328e6e0805f4f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/groupedMeanDirectModel.test.ts",
+      "changed": false,
+      "sha256": "d7bb16d86842b301ec277ecd266b6cfc099c57343f9877e57388587221ed92cd",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/groupedMeanDirectModel.ts",
+      "changed": false,
+      "sha256": "441db5d2e70c8c5992d887b249214c9beb5dbe095a965cdf5002625e12bf4056",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/groupedMeanStepModel.test.ts",
+      "changed": false,
+      "sha256": "ec7bd0385cdfb59daa9139e2a591fccd0bfc9dcdf8ae7dde7c5bae466e2c1857",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/groupedMeanStepModel.ts",
+      "changed": false,
+      "sha256": "2810265575b1dac3de8ce56946c38be80c2ac5db16030e066b619d9c58224719",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/heronDerivationModel10079.test.ts",
+      "changed": false,
+      "sha256": "de7a84273216714b94e6a8f1acf889b901f572b32032c852199daab0abf32e6f",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/heronDerivationModel10079.ts",
+      "changed": false,
+      "sha256": "e31733a0ed2cd97792c96a21c545354bf65a406d45e020f48d71cdfc57500677",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/internalSectionModel.test.ts",
+      "changed": false,
+      "sha256": "d53b969b4bdfa4f918ef4b9443011958707e48777e4db2beae14e2f7de3e66de",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/internalSectionModel.ts",
+      "changed": false,
+      "sha256": "b36eb28273beed4c329d3f70cfe3ab1554d70b9664b6503830fbcd3ec4f64e66",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/lessThanOgiveModel.test.ts",
+      "changed": false,
+      "sha256": "a4324dc0a5cc47c130ef6439c5c511a762b103402c893c1d24b5fb8b2ac12804",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/lessThanOgiveModel.ts",
+      "changed": false,
+      "sha256": "e78edf9b95367692bebcbca8fe447bdab77e61970f5ffe6f97603304b3d0f45e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/linearPairModel10059.test.ts",
+      "changed": false,
+      "sha256": "a6dd5f84668c68475b30dbbf40a71dc7e06c68fe3a854a1d0525843fed3ef25a",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/linearPairModel10059.ts",
+      "changed": false,
+      "sha256": "f187467e9023f6a054334b99f319cf5e9db5122cb9b16c0647e4603ec6a73459",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/midpointConverseModel10078.test.ts",
+      "changed": false,
+      "sha256": "058d7337c1b511e25c88f41191a00715ac5c32dfc29310460cff701bd74d09f7",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/midpointConverseModel10078.ts",
+      "changed": false,
+      "sha256": "9096de8b44f1340cbce04e0527ad0479e541fad51ded24b7986d784c1fea3e4a",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/midpointModel.test.ts",
+      "changed": false,
+      "sha256": "8109a631bee93544a6bf6cda69d56205a8289511bdc43a23007f505b7f8d9adf",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/midpointModel.ts",
+      "changed": false,
+      "sha256": "5cc577364fb5ac0f85e11c14630358f807ed0e125d9cda6268f82bf7d4c4f691",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/midpointTheoremModel10077.test.ts",
+      "changed": false,
+      "sha256": "197703f7b295871015505a125334d31802945fb03d84fd6abe4d576e75acd752",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/midpointTheoremModel10077.ts",
+      "changed": false,
+      "sha256": "979b0b60eed1939c4d9074b138936520d4664baec54910407b75f7519ff0ff88",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/oppositeCyclicModel.test.ts",
+      "changed": false,
+      "sha256": "5aee48f7c5a2a3115806ac42cef27688f9ce41738465bca9381e21345e1dbef6",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/oppositeCyclicModel.ts",
+      "changed": false,
+      "sha256": "3758a15fe8caea3e5e4efaa9f26d57445220323edf32df0edd1b06eb02325e85",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelConverseModel10063.test.ts",
+      "changed": false,
+      "sha256": "7d2840aa569b562213eaa0841d96837256cfb72663e1fb36df95cc85ae23edb3",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelConverseModel10063.ts",
+      "changed": false,
+      "sha256": "b0ba9317f6cea38b49667e2ca6b8acf9aa833eb0ff915811dff88b41e3973b4d",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelogramAnglesModel10074.test.ts",
+      "changed": false,
+      "sha256": "f3159b6d6fc4dab4a6a88d30f242534bd999eebb9b8198feb7793627bbdeb489",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelogramAnglesModel10074.ts",
+      "changed": false,
+      "sha256": "d2e7b4cb851c735e475dc37ebb2b11b4a79e4174e2383223abfe8ff5bbe85992",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelogramConditionsModel10076.test.ts",
+      "changed": false,
+      "sha256": "6ac8118bdc30fce53c7b9a7557596c8c6ca19ac745af1c656332ae379ba12006",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelogramConditionsModel10076.ts",
+      "changed": false,
+      "sha256": "e0bcd8cd0f8205210b023a8108405cbd1335ae55bc279235fddfa11c07f2b7a2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelogramDiagonalsModel10075.test.ts",
+      "changed": false,
+      "sha256": "3e5b59cdefd807d33d569b94a807b5af9b1b5c337e8f3b50dd66a043138b5809",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelogramDiagonalsModel10075.ts",
+      "changed": false,
+      "sha256": "9dee2f09fec3f11a0f1b8bb46068b157efff541c7e0b065ccf6e47acd0708430",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelogramSidesModel10073.test.ts",
+      "changed": false,
+      "sha256": "223cf83b37d0e19b2a7b383381015236a2ef927d6ec17d6f5cd7e44a267846ae",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelogramSidesModel10073.ts",
+      "changed": false,
+      "sha256": "e3887bb1cfcff141bc6a1f1ad7398a92ff1c07a3a6ab47b7edc83834834c8772",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/perpendicularChordModel.test.ts",
+      "changed": false,
+      "sha256": "24190c5d4d7e981e1d7945d605b6c0e94f6ef3a0a061893acc45965a01c2ef67",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/perpendicularChordModel.ts",
+      "changed": false,
+      "sha256": "b3724a9b286c4ee3f3f6a9b8dc955929839481852e19d4c37b5afaa827c31c97",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/proofStructureModel10057.test.ts",
+      "changed": false,
+      "sha256": "c4611a2058e48e8e8132bb218ad6fad615361f8d656024e59dcfafa2bcdcabbe",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/proofStructureModel10057.ts",
+      "changed": false,
+      "sha256": "c7031086c00de79fbe886fe3b66214ad5374778725a11b7ac5d01d03beccf9e7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/rhsCongruenceModel10070.test.ts",
+      "changed": false,
+      "sha256": "12236b56a8b37ebac30f60be6e6a69d37618fd17b87f013b5d24e6ec3429f640",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/rhsCongruenceModel10070.ts",
+      "changed": false,
+      "sha256": "f95e02f4c9f7f42a592b28943d643f778e82cc3da671184d150e7a89e317d2f3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/sameSegmentModel.test.ts",
+      "changed": false,
+      "sha256": "94eea52d5ca4f6cbf4852a24fdd24c78345596b60fc6a77edf2767272bf2f3c7",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/sameSegmentModel.ts",
+      "changed": false,
+      "sha256": "af09bd38b9f0ca71aacce9664f3441c1693c1cd3f6196b8efa631ab21ed83ba0",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/sameSideModel10062.test.ts",
+      "changed": false,
+      "sha256": "00c1d59ea342874b8c1c8378cc26a3a9d66c1468c49b4c17caea3d45c5ef9805",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/sameSideModel10062.ts",
+      "changed": false,
+      "sha256": "1d84cf4e6839cfa8444a9d2183e9690056c77135546aa946c0599c09eb7695a3",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/sasCongruenceModel10066.test.ts",
+      "changed": false,
+      "sha256": "0d392a1e839e913506484697fb103926933f0b6be7ab276b636a7fecb2a76b02",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/sasCongruenceModel10066.ts",
+      "changed": false,
+      "sha256": "7ee0ea3c554de2801dc36488b959189f787295c0ee2d58234ed3c603cd5b4f52",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/semiPerimeterModel10080.test.ts",
+      "changed": false,
+      "sha256": "d52605b6b8ca46b191a7a7ad35f4347f9617732d17064042a9d17f2689811962",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/semiPerimeterModel10080.ts",
+      "changed": false,
+      "sha256": "965841f3b66e04004f6a26fc4c81fa2d539bc5685ee7162c454c50a3175328a4",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/semicircleModel.test.ts",
+      "changed": false,
+      "sha256": "c34f955ca317930ea73cebf02e36d507cfbb1d14f5a0de87a4d684ad87820726",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/semicircleModel.ts",
+      "changed": false,
+      "sha256": "378dac740b404787d0b44c16b4a8acefb46a8e40e244450572a7e6c34201f8f2",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/shadowLengthModel.test.ts",
+      "changed": false,
+      "sha256": "0f117f231bd5eb9a7104173c3460f3d9390cd1e59a4c1937e20afa40ab8188d3",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/shadowLengthModel.ts",
+      "changed": false,
+      "sha256": "e8ffeb957d43266996d002125610de28e779681f8ef1a6f8fe7f0d9714b074f9",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/sssCongruenceModel10069.test.ts",
+      "changed": false,
+      "sha256": "7153af5b0065e7e7e7169576ff640892c7b1d64aa85bf1c79fd19c740b2e6e94",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/sssCongruenceModel10069.ts",
+      "changed": false,
+      "sha256": "c1e2e6274981b0dde171d281a21afcf2e52aa5fc61c956e3f37e6093ae3fb312",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/tangentLengthsModel.test.ts",
+      "changed": false,
+      "sha256": "82a3e1b497e66fff6fc8a23c1f26695b6b85298e0a15828f468aaddfb8a22b7e",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/tangentLengthsModel.ts",
+      "changed": false,
+      "sha256": "71a7f7cd5fa2d52743a4d237041962e288a00f36c5cc7e60b957cf08820d5b6e",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/tangentPerpendicularModel.test.ts",
+      "changed": false,
+      "sha256": "a7baa67c76e94b32ac50d68fe91c3cfda5f78c7d5261381df9ec44983e2e9d58",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/tangentPerpendicularModel.ts",
+      "changed": false,
+      "sha256": "cfbfa4abecbf10b0f39e7ad0b37a0a69728f073acf2a665fd077ad24cbe2f4ca",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/triangleAreaModel.test.ts",
+      "changed": false,
+      "sha256": "b315dd4abdde9300ea21c77b82800c1e5073fd74662ca2175f63971b015c1449",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/triangleAreaModel.ts",
+      "changed": false,
+      "sha256": "5323d3646fa3a1c00211fb3843e7454de15898cab74189bf8be440d147dec6f8",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/triangleInequalityModel10072.test.ts",
+      "changed": false,
+      "sha256": "7ae511a5aded6a64dc4c76adf22bc367f627fac38bfddf73739801e96aec334c",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/triangleInequalityModel10072.ts",
+      "changed": false,
+      "sha256": "8ab15e5b40cddb1a8bbb1f2167420516a10e2c4cd087abd8d152aee70d4e3e98",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/triangleSumModel10064.test.ts",
+      "changed": false,
+      "sha256": "48c05e75cf6a45df627605b5030a5e2c35dca205fd08ff1c48b3b5a930d4e9db",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/triangleSumModel10064.ts",
+      "changed": false,
+      "sha256": "a9b59583d540e49d0d2405807fc178f103589f1b7072aa53d3f28e54ca0bcb8f",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/twoObserverHeightModel.test.ts",
+      "changed": false,
+      "sha256": "655b5c7468edd63cd5a2c30130016f14c992b6a01495befcad8ecc0b2e596de4",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/twoObserverHeightModel.ts",
+      "changed": false,
+      "sha256": "aea2d9d40f5d9095ed42c6a5b41982d83a56bfcaf59a80d80e614c44539235d7",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/verticalAnglesModel10058.test.ts",
+      "changed": false,
+      "sha256": "143dfc25a26e257f8b231df969b651661b5eee637c7fbb20ba806a42adef2ba5",
+      "source": "workspace test"
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/verticalAnglesModel10058.ts",
+      "changed": false,
+      "sha256": "f25c8895cf553b57bc6aaa8559004ed4217924ebdf8ab7ece786b26d1e4638a0",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/strengthening/catalogBatch4HandAuthoredOverlay.ts",
+      "changed": false,
+      "sha256": "6999a0df156591a66b9269e427fe0f707c78bb75b3721501e858058498165403",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/modules/lessons/strengthening/catalogBatch6NumericalExamples.ts",
+      "changed": false,
+      "sha256": "4e152b991c0eb2f2a313c2e8a178eb4955014409f58e842a9bbed02b25b14151",
+      "source": "audited preview"
+    },
+    {
+      "file": "src/workspace/spreadsheetKernel.ts",
+      "changed": false,
+      "sha256": "1847045d037914bb22bc4ffab7b7480c543a8bae5a0b789f00e9e233018667e2",
+      "source": "audited preview"
+    }
+  ]
+}

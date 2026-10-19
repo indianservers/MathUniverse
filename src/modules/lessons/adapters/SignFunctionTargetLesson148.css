@@ -456,3 +456,5 @@
   right: 25px;
   top: 155px;
 }
+
+@media(max-width:900px){.sign148-page .sign148-header,.sign148-page .sign148-layout,.sign148-page .sign148-cases,.sign148-page .sign148-plot>footer,.sign148-page .sign148-insights{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.sign148-page .sign148-header>*,.sign148-page .sign148-layout>*,.sign148-page .sign148-cases>*,.sign148-page .sign148-plot>footer>*,.sign148-page .sign148-insights>*{min-width:0;grid-column:auto;grid-row:auto}}

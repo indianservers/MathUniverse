@@ -1102,3 +1102,9 @@ body:has(.double96-page)
   height: 27px;
   margin: 0;
 }
+
+@media(max-width:900px){.sticky .double96-steps>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.sticky .double96-steps>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){html body #main-content .standard-lesson-frame .standard-lesson-content .double96-page .double96-visual{overflow-x:auto!important;max-width:100%}.double96-visual{min-height:330px}}
+
+@media(max-width:900px){[data-testid="algebra-mockup-0153"] .double96-steps>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}[data-testid="algebra-mockup-0153"] .double96-steps>div>*{min-width:0;grid-column:auto;grid-row:auto}}

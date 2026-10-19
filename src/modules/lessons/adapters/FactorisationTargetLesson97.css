@@ -1127,3 +1127,5 @@ body:has(.factor97-page)
     display: none;
   }
 }
+
+@media(max-width:900px){.factor97-stages,.factor97-practice article>nav,.factor97-practice article>div{height:auto;display:flex;flex-wrap:wrap;gap:10px}.factor97-practice article{height:auto}}

@@ -452,3 +452,5 @@
     height: auto;
   }
 }
+
+@media(max-width:900px){.rec155-pipeline>div{height:auto;display:flex;flex-wrap:wrap;gap:12px}}

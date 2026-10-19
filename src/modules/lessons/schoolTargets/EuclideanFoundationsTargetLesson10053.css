@@ -565,3 +565,4 @@
     min-height: 50px;
   }
 }
+@media(min-width:701px){.ef10053-middle{grid-template-columns:minmax(0,2fr) minmax(0,3fr)}}

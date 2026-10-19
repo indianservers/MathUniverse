@@ -573,3 +573,5 @@
     height: auto;
   }
 }
+
+@media(max-width:900px){.ratio-equation{height:auto;display:flex;flex-wrap:wrap;gap:10px}.ratio-visuals{height:auto;grid-template-columns:minmax(0,1fr)}}
