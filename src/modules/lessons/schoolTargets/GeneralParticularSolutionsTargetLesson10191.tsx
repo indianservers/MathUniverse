@@ -82,11 +82,7 @@ export default function GeneralParticularSolutionsTargetLesson10191({
         <Link className="gps-school" to="/school">← School lessons</Link>
         <small>CLASS 12 · DIFFERENTIAL EQUATIONS</small>
         <h1>{lesson.title}</h1>
-        <p>
-          Compare the general solution (family) of y′=y with particular
-          solutions determined by initial conditions. Move, explore, and verify
-          in real time.
-        </p>
+
         <div>
           <span>18 min</span>
           <span>ADVANCED</span>
@@ -95,6 +91,13 @@ export default function GeneralParticularSolutionsTargetLesson10191({
         </div>
       </section>
       <section className="gps-explorer">
+        <div className="gps-intro-copy">
+        <p>
+          Compare the general solution (family) of y′=y with particular
+          solutions determined by initial conditions. Move, explore, and verify
+          in real time.
+        </p>
+        </div>
         <h3>SOLUTION FAMILY EXPLORER: &nbsp; <MathExpression value="y'=y" /></h3>
         <div className="gps-workspace">
           <aside>

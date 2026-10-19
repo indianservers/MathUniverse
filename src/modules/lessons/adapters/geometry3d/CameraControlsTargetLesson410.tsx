@@ -801,7 +801,7 @@ function scoreView(current: Telemetry, target: Pose) {
   };
 }
 function targetFor(seed: number): Pose {
-  const poses = [
+  const poses: Pose[] = [
     targetPose,
     { position: [-5.8, 4.8, 5.2], target: [0, 0.25, 0] },
     { position: [5.5, 2.8, -6.2], target: [0, 0.25, 0] },
@@ -809,12 +809,13 @@ function targetFor(seed: number): Pose {
   return poses[seed % poses.length];
 }
 function guidePose(index: number): Pose {
-  return [
+  const poses: Pose[] = [
     { position: [-5.8, 4.2, 5.4], target: [0, 0.25, 0] },
     { position: [5.4, 3.6, 5.5], target: [0.7, 0.35, 0] },
     { position: [3.8, 2.9, 4], target: [0, 0.25, 0] },
     { position: [6.2, 5.6, -4.7], target: [0, 0.25, 0] },
-  ][index];
+  ];
+  return poses[index];
 }
 function round(value: number) {
   return Number(value.toFixed(2));

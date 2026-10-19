@@ -103,7 +103,7 @@ export default function AngleBisectorTargetLesson211({
     onInteraction();
   };
   const pointerDown = (
-    event: ReactPointerEvent<SVGSVGElement>,
+    event: ReactPointerEvent<SVGSVGElement | SVGCircleElement>,
     point?: Exclude<DragPoint, null>,
   ) => {
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -183,7 +183,7 @@ export default function AngleBisectorTargetLesson211({
                 aria-label="Lesson standard"
                 className="target-geometry-chip"
                 defaultValue="Geometry"
-                onChange={onInteraction}
+                onChange={() => onInteraction()}
               >
                 <option>Geometry</option>
                 <option>Foundational-Advanced</option>

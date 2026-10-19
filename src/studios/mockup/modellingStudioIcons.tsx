@@ -190,7 +190,7 @@ export function ModellingLaunchArt({ id }: { id: string }) {
       ) : null}
       {id === "numerical" ? (
         <>
-          <path d="M40 78 C 60 18, 90 18, 110 78 C 130 18, 170 18, 190 78" fill="url(#msk-num-fill)" stroke="#8b45f4" {...common} />
+          <path d="M40 78 C 60 18, 90 18, 110 78 C 130 18, 170 18, 190 78" {...common} fill="url(#msk-num-fill)" stroke="#8b45f4" />
           <defs><linearGradient id="msk-num-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#8b45f4" stopOpacity=".35" /><stop offset="1" stopColor="#8b45f4" stopOpacity="0" /></linearGradient></defs>
         </>
       ) : null}

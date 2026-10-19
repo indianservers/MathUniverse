@@ -126,7 +126,7 @@ export default function InverseTrigTargetLesson265({
           <b>♙ Intermediate–Advanced</b><b>ϟ Visual Lab</b><b>▣ Trig Graphing / Geometry</b><b>◷ 6–10 min</b>
         </section>
         <footer>
-          <label><Languages /><select aria-label="Lesson language" defaultValue="en" onChange={onInteraction}><option value="en">English (English)</option><option value="hi">हिन्दी (Hindi)</option></select></label>
+          <label><Languages /><select aria-label="Lesson language" defaultValue="en" onChange={() => onInteraction()}><option value="en">English (English)</option><option value="hi">हिन्दी (Hindi)</option></select></label>
           <button type="button" onClick={() => reset()}><RotateCcw />Reset</button>
           <button type="button" onClick={() => { void navigator.clipboard?.writeText(`${model.label}(${format(model.input)}) = ${formatAngle(angle)}`); onInteraction(); }}><Share2 />Share</button>
           <button type="button" onClick={() => { document.querySelector(".target-inverse-workspace")?.scrollIntoView({ behavior: "smooth" }); onInteraction(); }}>↗ Workspace</button>

@@ -1,0 +1,587 @@
+[
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders /algebra",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders /algebra/expressions",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders /algebra/equations",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders /algebra/functions",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders /algebra/polynomials",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders /algebra/systems",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders /algebra/exponents-logs",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders /algebra/sequences",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders /algebra/proof",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders /algebra/cas",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders /algebra/advanced",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes keeps the algebra stage as a vertical scroll pane",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders the expressions tile dashboard and equations balance model",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes links the CAS explorer to the existing CAS workspace",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes links home topic studios to the existing algebra lab routes",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes lists the nine mockup topic studios on home",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders remaining algebra labs as unique dashboards, not generic three-column shells",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders the algebraic proof two-column builder and area model",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes exposes working lab chrome: modes, undo, help, and challenges",
+    "status": "passed"
+  },
+  {
+    "file": "pages/AlgebraStudio.test.tsx",
+    "test": "Algebra Studio reference routes renders all 25 functional Algebra enhancement tools",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/geometryCommandController.test.ts",
+    "test": "geometry command controller finds points and selected objects without mutating the construction",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/geometryCommandController.test.ts",
+    "test": "geometry command controller resolves point dependencies for every selectable geometry object type",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/geometryCommandController.test.ts",
+    "test": "geometry command controller patches geometry style immutably and supports explicit style reset",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/geometryCommandController.test.ts",
+    "test": "geometry command controller deletes a point and cascades dependent geometry safely",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/geometryCommandController.test.ts",
+    "test": "geometry command controller deletes selected non-point geometry without touching unrelated collections",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/geometryCommandController.test.ts",
+    "test": "geometry command controller returns shared unsupported-action contracts for no-selection delete",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/geometryCommandController.test.ts",
+    "test": "geometry command controller resolves a polygon from its vertex ids and created objects from construction deltas",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/geometryCommandController.test.ts",
+    "test": "geometry command controller creates transform requests from selected points or selected objects",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/geometryCommandController.test.ts",
+    "test": "geometry command controller blocks transform commands with no selected geometry while preserving state",
+    "status": "passed"
+  },
+  {
+    "file": "modules/board/strokeMathRecognizer.test.ts",
+    "test": "stroke digit intelligence classifies an open two-lobe glyph as 3, not 6",
+    "status": "passed"
+  },
+  {
+    "file": "modules/board/strokeMathRecognizer.test.ts",
+    "test": "stroke digit intelligence reads a standalone handwritten 3 as the digit 3",
+    "status": "passed"
+  },
+  {
+    "file": "modules/board/strokeMathRecognizer.test.ts",
+    "test": "stroke digit intelligence does not flip a true 6 into a 3",
+    "status": "passed"
+  },
+  {
+    "file": "modules/board/strokeMathRecognizer.test.ts",
+    "test": "stroke digit intelligence reads a closed oval as 0 even when the stroke starts at the top",
+    "status": "passed"
+  },
+  {
+    "file": "modules/board/strokeMathRecognizer.test.ts",
+    "test": "stroke digit intelligence reads SIN(30) instead of inventing sin 60",
+    "status": "passed"
+  },
+  {
+    "file": "modules/board/strokeMathRecognizer.test.ts",
+    "test": "stroke digit intelligence corrects a model that reports 60 when the ink is 30",
+    "status": "passed"
+  },
+  {
+    "file": "studios/algebra/algebraStudioMath.test.ts",
+    "test": "Algebra Studio shared math parses integers, decimals, negatives, fractions, pi, e, and square roots",
+    "status": "passed"
+  },
+  {
+    "file": "studios/algebra/algebraStudioMath.test.ts",
+    "test": "Algebra Studio shared math snaps near-zero values and formats display only",
+    "status": "passed"
+  },
+  {
+    "file": "studios/algebra/algebraStudioMath.test.ts",
+    "test": "Algebra Studio shared math checks challenge answers by mathematical equivalence, not string match",
+    "status": "passed"
+  },
+  {
+    "file": "studios/algebra/algebraStudioMath.test.ts",
+    "test": "Algebra Studio shared math treats 0x=0 as infinite and 0x=5 as none",
+    "status": "passed"
+  },
+  {
+    "file": "studios/algebra/algebraStudioMath.test.ts",
+    "test": "Algebra Studio shared math applies balance operations to both sides and flips inequalities when scaling by a negative",
+    "status": "passed"
+  },
+  {
+    "file": "studios/algebra/algebraStudioMath.test.ts",
+    "test": "Algebra Studio shared math auto-balances a linear equation to x = value, 0=0, or 0=1",
+    "status": "passed"
+  },
+  {
+    "file": "studios/algebra/algebraStudioMath.test.ts",
+    "test": "Algebra Studio shared math solves quadratic, absolute-value, exponential, and 2x2 systems",
+    "status": "passed"
+  },
+  {
+    "file": "studios/algebra/algebraStudioMath.test.ts",
+    "test": "Algebra Studio shared math adds and multiplies polynomials by coefficients",
+    "status": "passed"
+  },
+  {
+    "file": "studios/algebra/algebraStudioMath.test.ts",
+    "test": "Algebra Studio shared math computes factorial, combinations, and geometric series",
+    "status": "passed"
+  },
+  {
+    "file": "studios/algebra/algebraStudioMath.test.ts",
+    "test": "Algebra Studio shared math does not certify sample matches or rounded near-zero differences as identities",
+    "status": "passed"
+  },
+  {
+    "file": "studios/algebra/algebraStudioMath.test.ts",
+    "test": "Algebra Studio shared math treats expanded and factored forms as equivalent",
+    "status": "passed"
+  },
+  {
+    "file": "studios/algebra/algebraStudioMath.test.ts",
+    "test": "Algebra Studio shared math validates identity proof reasons against the algebra",
+    "status": "passed"
+  },
+  {
+    "file": "studios/algebra/algebraStudioMath.test.ts",
+    "test": "Algebra Studio shared math covers the studio acceptance identities",
+    "status": "passed"
+  },
+  {
+    "file": "studios/complex/LociReference.test.ts",
+    "test": "Loci transformation mathematics inversion preserves direction and is involutive",
+    "status": "passed"
+  },
+  {
+    "file": "studios/complex/LociReference.test.ts",
+    "test": "Loci transformation mathematics Mobius computes complex division and rejects its pole",
+    "status": "passed"
+  },
+  {
+    "file": "studios/mockup/remainingStudioVisualManifest.test.ts",
+    "test": "remaining studio visual manifest covers all 70 restored pages across the six target studios",
+    "status": "passed"
+  },
+  {
+    "file": "studios/mockup/remainingStudioVisualManifest.test.ts",
+    "test": "remaining studio visual manifest lists every lab mode so each tab is a restore target",
+    "status": "passed"
+  },
+  {
+    "file": "studios/mockup/remainingStudioVisualManifest.test.ts",
+    "test": "remaining studio visual manifest excludes advanced workbenches, AR, and statistics from the restore set",
+    "status": "passed"
+  },
+  {
+    "file": "studios/mockup/remainingStudioVisualManifest.test.ts",
+    "test": "remaining studio visual manifest records Geometry and Trigonometry as protected baselines",
+    "status": "passed"
+  },
+  {
+    "file": "studios/mockup/remainingStudioVisualManifest.test.ts",
+    "test": "remaining studio visual manifest keeps restore styles studio-scoped instead of rewriting shared chrome",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/mobile/useWorkspaceOverlay.test.tsx",
+    "test": "mobile workspace overlay toggles the same panel closed without reopening",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/mobile/useWorkspaceOverlay.test.tsx",
+    "test": "mobile workspace overlay keeps only one major panel open",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/mobile/useWorkspaceOverlay.test.tsx",
+    "test": "outside dismiss keeps the open panel when the tap is inside it",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/mobile/useWorkspaceOverlay.test.tsx",
+    "test": "outside dismiss dismisses when the tap is on the canvas",
+    "status": "passed"
+  },
+  {
+    "file": "workspace/mobile/useWorkspaceOverlay.test.tsx",
+    "test": "workspace toolbar marks the active tool with pressed state and mode data",
+    "status": "passed"
+  },
+  {
+    "file": "components/workspace/panels/GeometryWorkspacePanel.test.tsx",
+    "test": "GeometryWorkspacePanel renders the geometry board with stable test ids",
+    "status": "passed"
+  },
+  {
+    "file": "components/workspace/panels/GeometryWorkspacePanel.test.tsx",
+    "test": "GeometryWorkspacePanel renders supported geometry tools and active tool state",
+    "status": "passed"
+  },
+  {
+    "file": "components/workspace/panels/GeometryWorkspacePanel.test.tsx",
+    "test": "GeometryWorkspacePanel keeps tick labels readable at the maximum coordinate range",
+    "status": "passed"
+  },
+  {
+    "file": "components/workspace/panels/GeometryWorkspacePanel.test.tsx",
+    "test": "GeometryWorkspacePanel renders existing point line circle polygon locus and measurement marks",
+    "status": "passed"
+  },
+  {
+    "file": "components/workspace/panels/GeometryWorkspacePanel.test.tsx",
+    "test": "GeometryWorkspacePanel can hide point labels and measurement overlays through graph settings",
+    "status": "passed"
+  },
+  {
+    "file": "components/workspace/panels/GeometryWorkspacePanel.test.tsx",
+    "test": "GeometryWorkspacePanel indicates selected objects and pending construction picks",
+    "status": "passed"
+  },
+  {
+    "file": "components/workspace/panels/GeometryWorkspacePanel.test.tsx",
+    "test": "GeometryWorkspacePanel renders polygon draft angle preview and selected image state",
+    "status": "passed"
+  },
+  {
+    "file": "components/workspace/panels/GeometryWorkspacePanel.test.tsx",
+    "test": "GeometryWorkspacePanel handles empty construction state safely",
+    "status": "passed"
+  },
+  {
+    "file": "components/workspace/panels/GeometryWorkspacePanel.test.tsx",
+    "test": "GeometryWorkspacePanel keeps the objects pane on construction items and withholds the shared graph registry",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/AbsoluteValueEquationsTargetLesson121.test.tsx",
+    "test": "AbsoluteValueEquationsTargetLesson121 renders the target's calculated number line, branches, and graded practice",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/ChiSquareDistributionLesson530.test.tsx",
+    "test": "ChiSquareDistributionLesson530 renders the target distribution and goodness-of-fit values",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/ChiSquareGoodnessOfFitLesson549.test.tsx",
+    "test": "ChiSquareGoodnessOfFitLesson549 renders the target five-category test",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/CompoundInequalitiesTargetLesson123.test.tsx",
+    "test": "CompoundInequalitiesTargetLesson123 renders the target intersection, endpoints, interval, and evaluated tests",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/DistributionSimulationLesson536.test.tsx",
+    "test": "DistributionSimulationLesson536 renders a reproducible empirical comparison",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/ExponentialDistributionLesson532.test.tsx",
+    "test": "ExponentialDistributionLesson532 renders the target waiting-time calculations",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/ExponentialEquationsTargetLesson118.test.tsx",
+    "test": "ExponentialEquationsTargetLesson118 renders the target power ladder, calculated result, and draggable graph point",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/FactorTheoremTargetLesson105.test.tsx",
+    "test": "FactorTheoremTargetLesson105 renders the target factor test from its dedicated model",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/FDistributionLesson531.test.tsx",
+    "test": "FDistributionLesson531 renders the target F distribution workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/GammaDistributionLesson533.test.tsx",
+    "test": "GammaDistributionLesson533 renders target gamma calculations",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/LinearInequalitiesTargetLesson122.test.tsx",
+    "test": "LinearInequalitiesTargetLesson122 renders the target's calculated boundary, interval, test points, and graph",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/LogarithmicEquationsTargetLesson119.test.tsx",
+    "test": "LogarithmicEquationsTargetLesson119 renders the target domain gate, calculated ladder, and candidate controls",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/PolynomialInequalitiesTargetLesson125.test.tsx",
+    "test": "PolynomialInequalitiesTargetLesson125 renders the dedicated target model, numerical sign chart, and worked examples",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/PValueVisualiserLesson553.test.tsx",
+    "test": "PValueVisualiserLesson553 renders the target two-tail scenario",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/QuadraticInequalitiesTargetLesson124.test.tsx",
+    "test": "QuadraticInequalitiesTargetLesson124 renders the target factorization, roots, sign intervals, and solution",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/RemainderTheoremTargetLesson104.test.tsx",
+    "test": "RemainderTheoremTargetLesson104 renders the target theorem proof from its dedicated model",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/StandardisationLesson535.test.tsx",
+    "test": "StandardisationLesson535 renders the target reversible mapping",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometricEquationsTargetLesson120.test.tsx",
+    "test": "TrigonometricEquationsTargetLesson120 renders the target's linked unit-circle, wave, and periodic solutions",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders trigonometry lessons 257 through 276 with lesson-specific guidance",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 259 as its own right-triangle ratio surface",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 260 as a dedicated linked exact-value surface",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 261 as a dedicated linked sine-function workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 262 as a dedicated horizontal-projection cosine workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 263 as a dedicated asymptote-aware tangent workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 264 as a dedicated linked reciprocal-trig workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 265 as a dedicated restricted-branch inverse-trig workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 266 as a dedicated symbolic and numerical identity workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 267 as a dedicated dual-rotation compound-angle workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 268 as a dedicated linked double- and half-angle workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 269 as a dedicated periodic trig-equation solver",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 270 as a dedicated draggable Sine Rule and SSA workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 271 as a dedicated draggable Cosine Rule workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 272 as a dedicated equivalent-area triangle workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 273 as a dedicated draggable north-grid bearing workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 274 as a dedicated draggable sight-line workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 275 as a dedicated linked harmonic-motion workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 257 as a dedicated, shared-state angle measurement surface",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+    "test": "TrigonometryLessonAdapter renders lesson 258 as a dedicated linked unit-circle construction",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/WeibullDistributionLesson534.test.tsx",
+    "test": "WeibullDistributionLesson534 renders the target reliability workspace",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/schoolTargets/skewLineModel.test.ts",
+    "test": "skew-line classification and projections classifies every preset and gives a genuine coordinate contradiction for the default pair",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/schoolTargets/skewLineModel.test.ts",
+    "test": "skew-line classification and projections projects the true y-parallel line to a line in xy and a point in xz",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/schoolTargets/skewLineModel.test.ts",
+    "test": "skew-line classification and projections validates triples, scaled tiny directions and every fixed worked/practice answer",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/schoolTargets/skewLineModel.test.ts",
+    "test": "skew-line classification and projections keeps scene lines and reference-plane vertices in their actual spaces",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/schoolTargets/unboundedRegionModel.test.ts",
+    "test": "distinguishes unbounded geometry from finite minimization",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/schoolTargets/unboundedRegionModel.test.ts",
+    "test": "tests directions against all active constraints",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/schoolTargets/unboundedRegionModel.test.ts",
+    "test": "recomputes shifted boundaries and handles the unconstrained plane",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/sequence/ArithmeticSeriesTargetLesson340.test.tsx",
+    "test": "ArithmeticSeriesTargetLesson340 renders the target scenario from its dedicated model",
+    "status": "passed"
+  },
+  {
+    "file": "modules/lessons/adapters/sequence/GeometricSeriesTargetLesson341.test.tsx",
+    "test": "GeometricSeriesTargetLesson341 renders the convergent target scenario from its dedicated model",
+    "status": "passed"
+  }
+]

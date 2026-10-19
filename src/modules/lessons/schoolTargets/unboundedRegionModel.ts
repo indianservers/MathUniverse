@@ -12,7 +12,7 @@ export function unboundedObjective(constraints:RegionConstraint[],mode:"min"|"ma
   const active=constraints.filter(c=>c.enabled),region=analyzeRegion(constraints);
   const directions:RegionPoint[]=[[1,0],[-1,0],[0,1],[0,-1],...active.flatMap(c=>[[c.b,-c.a],[-c.b,c.a]] as RegionPoint[])];
   const unbounded=region.kind!=="EMPTY"&&directions.some(d=>isRecessionDirection(active,d)&&(mode==="max"?d[0]+d[1]>1e-8:d[0]+d[1]<-1e-8));
-  const candidates:RegionPoint[]=[...region.vertices,[0,0],...active.map(c=>{const norm=c.a*c.a+c.b*c.b;return [c.a*c.c/norm,c.b*c.c/norm] as RegionPoint;})].filter(p=>active.every(c=>satisfiesRegion(p,c)));
+  const candidates:RegionPoint[]=[...region.vertices,[0,0] as RegionPoint,...active.map(c=>{const norm=c.a*c.a+c.b*c.b;return [c.a*c.c/norm,c.b*c.c/norm] as RegionPoint;})].filter(p=>active.every(c=>satisfiesRegion(p,c)));
   const value=unbounded||region.kind==="EMPTY"?null:(mode==="min"?Math.min:Math.max)(...candidates.map(p=>p[0]+p[1]));
   const best=candidates.filter((p,i)=>value!==null&&Math.abs(p[0]+p[1]-value)<1e-8&&!candidates.slice(0,i).some(q=>Math.hypot(p[0]-q[0],p[1]-q[1])<1e-8));
   return {region,unbounded,value,best};

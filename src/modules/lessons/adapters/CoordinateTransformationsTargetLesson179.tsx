@@ -73,7 +73,7 @@ function Graph({
     sx = (x: number) => ox + x * u,
     sy = (y: number) => oy - y * u,
     poly = (ps: Point[]) => ps.map((p) => `${sx(p.x)},${sy(p.y)}`).join(" ");
-  const from = (e: PointerEvent<SVGSVGElement>) => {
+  const from = (e: Pick<PointerEvent<SVGElement>, "clientX" | "clientY">) => {
     const r = ref.current!.getBoundingClientRect();
     return {
       x: (((e.clientX - r.left) / r.width) * W - ox) / u,

@@ -91,7 +91,7 @@ export default function RouteMapTargetLesson10038({
       setChallenge(["", "", "", ""]);
       setChallengeResult("idle");
     });
-  const pointFrom = (event: PointerEvent<SVGSVGElement>) => {
+  const pointFrom = (event: Pick<PointerEvent<SVGSVGElement>, "clientX" | "clientY" | "currentTarget">) => {
     const r = svgRef.current!.getBoundingClientRect();
     const rawX = (((event.clientX - r.left) / r.width) * 520 - 55) / 86;
     const rawY = (390 - ((event.clientY - r.top) / r.height) * 430) / 73;

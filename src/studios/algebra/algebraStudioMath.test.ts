@@ -77,7 +77,7 @@ describe("Algebra Studio shared math", () => {
     const chip = applyBalanceOperation({ a: 3, b: 5, c: 2, d: -1 }, "Subtract", "-2x");
     expect(chip.ok).toBe(true);
     if (chip.ok) expect(chip.state).toEqual({ a: 1, b: 5, c: 0, d: -1 });
-    expect(parseBalanceOperand("2x").term).toEqual({ x: 2, n: 0 });
+    expect(parseBalanceOperand("2x")).toEqual({ ok: true, term: { x: 2, n: 0 } });
     expect(parseLinearEquation("3x+5=2x-1").ok).toBe(true);
     expect(solveLinearInequality(-2, 1, "<", 5)).toMatchObject({ relation: ">", reversed: true });
   });

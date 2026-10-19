@@ -71,8 +71,8 @@ export default function FactorisationPracticeTargetLesson10052({
   const [method, setMethod] = useState<Method>("Common Factor");
   const [placed, setPlaced] = useState(true);
   const [tab, setTab] = useState("INTERACT");
-  const [answers, setAnswers] = useState(questions.map((q) => q[1]));
-  const [expanded, setExpanded] = useState(questions.map((q) => q[2]));
+  const [answers, setAnswers] = useState<string[]>(questions.map((q) => q[1]));
+  const [expanded, setExpanded] = useState<string[]>(questions.map((q) => q[2]));
   const [actions, setActions] = useState(0);
   const model = models[method];
   const correct = questions.map(

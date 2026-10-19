@@ -89,7 +89,7 @@ export default function SineGraphTargetLesson261({ resetToken, onInteraction }: 
   >
     <header className="target-sine-header">
       <div><span>Trigonometry</span><span>Trigonometry</span><h1>Sine Graph</h1><p>Explore periodic shape.</p><section><b>♙ Intermediate-Advanced</b><b>ϟ Visual Lab</b><b>▣ Trig Graphing / Geometry</b><b>◷ 6-10 min</b></section></div>
-      <footer><label><select aria-label="Lesson language" defaultValue="en" onChange={onInteraction}><option value="en">English (English)</option><option value="hi">हिन्दी (Hindi)</option></select></label><button type="button" onClick={() => reset()}><RotateCcw />Reset</button><button type="button" onClick={() => { void navigator.clipboard?.writeText(model.equation); onInteraction(); }}><Share2 />Share</button><button type="button" onClick={() => { document.querySelector(".target-sine-sync")?.scrollIntoView({ behavior:"smooth" }); onInteraction(); }}><Expand />Workspace</button></footer>
+      <footer><label><select aria-label="Lesson language" defaultValue="en" onChange={() => onInteraction()}><option value="en">English (English)</option><option value="hi">हिन्दी (Hindi)</option></select></label><button type="button" onClick={() => reset()}><RotateCcw />Reset</button><button type="button" onClick={() => { void navigator.clipboard?.writeText(model.equation); onInteraction(); }}><Share2 />Share</button><button type="button" onClick={() => { document.querySelector(".target-sine-sync")?.scrollIntoView({ behavior:"smooth" }); onInteraction(); }}><Expand />Workspace</button></footer>
     </header>
 
     <section className="target-sine-sync">

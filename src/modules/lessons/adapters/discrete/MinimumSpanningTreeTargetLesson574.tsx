@@ -268,7 +268,7 @@ export default function MinimumSpanningTreeTargetLesson574({
       );
     });
   };
-  const move = (event: PointerEvent<SVGSVGElement>) => {
+  const move = (event: PointerEvent<HTMLDivElement>) => {
     if (!dragging) return;
     const box = event.currentTarget.getBoundingClientRect(),
       x = Math.max(

@@ -60,3 +60,9 @@
 
 .bj2025 .bj-three:nth-of-type(3)>article:nth-child(2) .bj-option{display:inline-flex;width:47%;vertical-align:top}.bj2025 .bj-boundary .math-expression:has(.katex-display){text-align:center;border:1px solid #91d7ef;border-radius:6px;background:#fff;padding:6px;width:max-content;max-width:100%;margin:12px auto}.bj2025 .bj-about>.math-expression:nth-of-type(2){border:0;background:transparent;padding:0}.bj2025 .bj-legend .math-expression{overflow:visible}
 .bj2025 .bj-probe-details{font-size:11px;color:#63738b}.bj2025 .bj-probe-details summary{cursor:pointer}.bj2025 .bj-radial-key{display:flex;justify-content:center;gap:24px;font-size:11px;margin-top:10px}.bj2025 .bj-radial-key span:first-child{color:#0097ad}
+
+.bj2025 .bj-drum canvas{touch-action:none;cursor:crosshair;position:relative;z-index:2}
+.bj2025 .bj-probe-readout{font-variant-numeric:tabular-nums;font-size:12px;min-height:38px}
+.bj2025 .bj-probe-angle{display:flex;align-items:center;gap:12px;font-size:12px}
+.bj2025 .bj-probe-angle input{flex:1}
+.bj2025 .bj-practice-profile{display:block;width:100%;height:auto;max-height:130px}

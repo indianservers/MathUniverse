@@ -1,3 +1,4 @@
+import { lessonCatalog } from "../catalog/lessonCatalog";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import ExponentialDistributionLesson532 from "./ExponentialDistributionLesson532";
@@ -5,7 +6,7 @@ import ExponentialDistributionLesson532 from "./ExponentialDistributionLesson532
 describe("ExponentialDistributionLesson532", () => {
   it("renders the target waiting-time calculations", () => {
     const html = renderToStaticMarkup(
-      <ExponentialDistributionLesson532
+      <ExponentialDistributionLesson532 lesson={lessonCatalog.find(item => item.id === 532)!}
         resetToken={0}
         onInteraction={vi.fn()}
       />,

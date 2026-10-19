@@ -155,7 +155,7 @@ export default function CompoundAngleTargetLesson267({
             <select
               aria-label="Lesson language"
               defaultValue="en"
-              onChange={onInteraction}
+              onChange={() => onInteraction()}
             >
               <option value="en">English (English)</option>
               <option value="hi">हिन्दी (Hindi)</option>
@@ -459,7 +459,7 @@ function CompoundCircle({
     a = point(cx, cy, r, alpha),
     b = point(cx, cy, r, beta);
   const move = (
-    event: ReactPointerEvent<SVGSVGElement>,
+    event: Pick<ReactPointerEvent<SVGElement>, "clientX" | "clientY">,
     kind: "alpha" | "beta",
   ) => {
     const matrix = svg.current?.getScreenCTM();

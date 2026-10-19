@@ -21,11 +21,11 @@ export default function ArithmeticSeriesTargetLesson340({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
-  const [first, setFirst] = useState(ARITHMETIC_SERIES_DEFAULTS.first),
-    [difference, setDifference] = useState(
+  const [first, setFirst] = useState<number>(ARITHMETIC_SERIES_DEFAULTS.first),
+    [difference, setDifference] = useState<number>(
       ARITHMETIC_SERIES_DEFAULTS.difference,
     ),
-    [count, setCount] = useState(ARITHMETIC_SERIES_DEFAULTS.count),
+    [count, setCount] = useState<number>(ARITHMETIC_SERIES_DEFAULTS.count),
     [tab, setTab] = useState(tabs[0]),
     [interactive, setInteractive] = useState(true),
     [language, setLanguage] = useState<"en" | "hi">("en"),

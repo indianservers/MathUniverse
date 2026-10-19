@@ -141,10 +141,10 @@ export default function PerpendicularCentreChordTargetLesson10090({
                 </>
               )}
               <line className="chord" x1={ax} y1={y} x2={bx} y2={y} />
-              {[
+              {([
                 [-1, "A"],
                 [1, "B"],
-              ].map(([side, label]) => (
+              ] as const).map(([side, label]) => (
                 <g key={label}>
                   <circle
                     className={`endpoint ${label.toLowerCase()}`}

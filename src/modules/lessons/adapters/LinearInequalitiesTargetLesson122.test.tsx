@@ -1,3 +1,4 @@
+import { lessonCatalog } from "../catalog/lessonCatalog";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import LinearInequalitiesTargetLesson122 from "./LinearInequalitiesTargetLesson122";
@@ -5,7 +6,7 @@ import LinearInequalitiesTargetLesson122 from "./LinearInequalitiesTargetLesson1
 describe("LinearInequalitiesTargetLesson122", () => {
   it("renders the target's calculated boundary, interval, test points, and graph", () => {
     const html = renderToStaticMarkup(
-      <LinearInequalitiesTargetLesson122
+      <LinearInequalitiesTargetLesson122 lesson={lessonCatalog.find(item => item.id === 122)!}
         resetToken={0}
         onInteraction={vi.fn()}
       />,

@@ -364,8 +364,8 @@ export default function GroupedMeanDirectTargetLesson10102({
                     role="slider"
                     tabIndex={0}
                     aria-label={`Midpoint row ${index + 1}`}
-                    aria-valuemin="0"
-                    aria-valuemax="50"
+                    aria-valuemin={0}
+                    aria-valuemax={50}
                     aria-valuenow={row.midpoint}
                     onPointerDown={(event) => {
                       event.currentTarget.setPointerCapture(event.pointerId);

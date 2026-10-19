@@ -318,8 +318,8 @@ export default function GroupedMeanAssumedTargetLesson10103({
                 role="slider"
                 tabIndex={0}
                 aria-label="Assumed mean marker"
-                aria-valuemin="0"
-                aria-valuemax="50"
+                aria-valuemin={0}
+                aria-valuemax={50}
                 aria-valuenow={assumed}
                 onPointerDown={(event) => {
                   event.currentTarget.setPointerCapture(event.pointerId);

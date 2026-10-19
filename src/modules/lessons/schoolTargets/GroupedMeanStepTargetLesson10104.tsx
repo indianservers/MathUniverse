@@ -299,8 +299,8 @@ export default function GroupedMeanStepTargetLesson10104({
                 role="slider"
                 tabIndex={0}
                 aria-label="Assumed mean step marker"
-                aria-valuemin="0"
-                aria-valuemax="50"
+                aria-valuemin={0}
+                aria-valuemax={50}
                 aria-valuenow={assumed}
                 onPointerDown={(event) => {
                   event.currentTarget.setPointerCapture(event.pointerId);
