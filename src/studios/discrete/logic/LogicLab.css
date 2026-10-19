@@ -1,0 +1,25 @@
+.logic-workspace { min-width:0; padding:24px; }
+.logic-workspace h3 { margin-top:0; }
+.logic-workspace p { overflow-wrap:anywhere; }
+.logic-assignments,.logic-terms { display:flex; flex-wrap:wrap; gap:10px; margin:16px 0; }
+.logic-workspace button,.logic-assignments button,.logic-action { border:1px solid #a6b8cc; border-radius:10px; padding:10px 14px; background:var(--msk-panel-bg,#f1f5f9); color:inherit; cursor:pointer; min-height:44px; }
+.logic-assignments button[aria-pressed=true],.logic-terms button[aria-pressed=true] { background:#185c9f; color:white; border-color:#185c9f; }
+.logic-action { display:block; margin:12px 0; width:100%; }
+.logic-circuit { display:grid; grid-template-columns:70px 1fr 100px 1fr 60px; align-items:center; margin:32px 0; }
+.logic-inputs { display:grid; gap:32px; }
+.logic-inputs button { display:grid; padding:8px; }
+.logic-inputs strong { font-size:24px; }
+.logic-inputs button[aria-pressed=true] { background:#166534; color:white; }
+.logic-circuit svg { width:100%; height:160px; }
+.logic-circuit path { fill:none; stroke:#94a3b8; stroke-width:5; }
+.logic-circuit path.on { stroke:#16a34a; stroke-dasharray:10 5; animation:logic-flow 1s linear infinite; }
+.logic-gate { background:#185c9f!important; color:white!important; font-weight:700; }
+.logic-gate small { display:block; margin-top:8px; font-size:10px; }
+.logic-lamp { border-radius:50%; width:56px; height:56px; display:grid; place-items:center; background:#475569; color:white; font-size:26px; }
+.logic-lamp.on { background:#15803d; box-shadow:0 0 22px #22c55e60; }
+.logic-clause { display:flex; align-items:center; flex-wrap:wrap; gap:10px; padding:12px 0; border-bottom:1px solid #cbd5e1; }
+.logic-true { color:#15803d; }.logic-false { color:#b91c1c; }
+.logic-workspace button:focus-visible,.logic-assignments button:focus-visible { outline:3px solid #f59e0b; outline-offset:3px; }
+@keyframes logic-flow { to { stroke-dashoffset:-30; } }
+@media(prefers-reduced-motion:reduce) { .logic-circuit path.on { animation:none; } }
+@media(max-width:600px) { .logic-workspace { padding:14px; }.logic-circuit { grid-template-columns:52px 1fr 80px 1fr 46px; }.logic-lamp { width:44px; height:44px; }.logic-gate { padding:8px!important; } }
