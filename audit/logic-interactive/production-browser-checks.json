@@ -1,0 +1,65 @@
+{
+  "base": "http://127.0.0.1:5193",
+  "results": [
+    {
+      "file": "scripts/verify-logic-interactive.mjs",
+      "exitCode": 0,
+      "output": "{\"status\":\"passed\",\"checks\":[\"all 20 gate/assignment combinations\",\"clickable gate, undo, redo, reset\",\"truth-table row selection and next assignment\",\"DNF grading covers correct and incorrect expressions\",\"equivalence and loaded counterexamples\",\"SAT edit, empty clause, contradiction, witness, remove clause\",\"shared figure reload preserves SAT clauses; keyboard input switch\"],\"layouts\":15,\"errors\":[]}\n"
+    },
+    {
+      "file": "scripts/verify-mockup-0919.mjs",
+      "exitCode": 0,
+      "output": "{\"errors\":[],\"overflow\":[{\"width\":390,\"client\":359,\"scroll\":359},{\"width\":768,\"client\":713,\"scroll\":713},{\"width\":1440,\"client\":1120,\"scroll\":1120}]}\n"
+    },
+    {
+      "file": "scripts/verify-mockup-0429-interactive.mjs",
+      "exitCode": 0,
+      "output": "429 spreadsheet checks passed\n"
+    },
+    {
+      "file": "scripts/verify-mockup-0428-interactive.mjs",
+      "exitCode": 0,
+      "output": "428 spreadsheet checks passed\n"
+    },
+    {
+      "file": "scripts/verify-mockup-0426-interactive.mjs",
+      "exitCode": 0,
+      "output": "426 spreadsheet checks passed\n"
+    },
+    {
+      "file": "scripts/verify-mockup-0418-interactive.mjs",
+      "exitCode": 0,
+      "output": "418 spreadsheet checks passed\n"
+    },
+    {
+      "file": "scripts/verify-mockup-0413-interactive.mjs",
+      "exitCode": 0,
+      "output": "413 spreadsheet checks passed\n"
+    },
+    {
+      "file": "scripts/verify-mockup-0361-interactive.mjs",
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "file": "scripts/verify-mockup-0335.mjs",
+      "exitCode": 0,
+      "output": "335 verified\n"
+    },
+    {
+      "file": "scripts/verify-mockup-0316.mjs",
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "file": "scripts/verify-mockup-0149.mjs",
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "file": "scripts/verify-mockup-0036.mjs",
+      "exitCode": 0,
+      "output": ""
+    }
+  ]
+}
