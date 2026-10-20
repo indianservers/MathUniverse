@@ -478,3 +478,5 @@ body:has(.mb376-page) button[aria-label="Open navigation"] {
     display: none !important;
   }
 }
+
+@media(max-width:799px){.mb376-page :is(.mb376-main,.mb376-learning,.mb376-nav){height:auto;grid-template-columns:minmax(0,1fr)}.mb376-page :is(.mb376-lab,.mb376-explorer){height:auto}.mb376-page .mb376-tabs{overflow-x:auto}.mb376-page :is(article,aside){min-width:0;overflow-wrap:anywhere}}

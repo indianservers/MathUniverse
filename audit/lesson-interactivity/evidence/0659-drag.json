@@ -1,0 +1,25 @@
+{
+  "checks": [
+    "keyboard selling-price change",
+    "pointer selling-price dragging",
+    "profit and markup update"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 375,
+      "scroll": 375
+    },
+    {
+      "width": 768,
+      "client": 723,
+      "scroll": 723
+    },
+    {
+      "width": 1440,
+      "client": 1395,
+      "scroll": 1395
+    }
+  ],
+  "errors": []
+}

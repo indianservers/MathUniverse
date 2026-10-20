@@ -263,8 +263,8 @@ function MonotonicGraph({
         role="slider"
         tabIndex={0}
         aria-label="Drag monotonicity x cursor"
-        aria-valuemin="-5"
-        aria-valuemax="5"
+        aria-valuemin={-5}
+        aria-valuemax={5}
         aria-valuenow={x}
         onPointerDown={(event) => {
           event.currentTarget.setPointerCapture(event.pointerId);

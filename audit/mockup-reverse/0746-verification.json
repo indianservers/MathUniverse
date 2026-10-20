@@ -1,0 +1,212 @@
+{
+  "status": "passed",
+  "errors": [],
+  "states": [
+    {
+      "sides": [
+        4,
+        5,
+        8
+      ],
+      "kind": "proper",
+      "placed": ""
+    },
+    {
+      "sides": [
+        4,
+        5,
+        8
+      ],
+      "kind": "proper",
+      "placed": "a,b,c"
+    },
+    {
+      "sides": [
+        4,
+        5,
+        8
+      ],
+      "kind": "proper",
+      "placed": "a,b,c"
+    },
+    {
+      "sides": [
+        20,
+        20,
+        20
+      ],
+      "kind": "proper",
+      "placed": "b,c"
+    },
+    {
+      "sides": [
+        1.1,
+        2.2,
+        3.3
+      ],
+      "kind": "flat",
+      "placed": "a,b,c"
+    },
+    {
+      "sides": [
+        4,
+        5,
+        8
+      ],
+      "kind": "proper",
+      "placed": ""
+    },
+    {
+      "sides": [
+        3,
+        4,
+        7
+      ],
+      "kind": "flat",
+      "placed": ""
+    },
+    {
+      "sides": [
+        6,
+        6,
+        6
+      ],
+      "kind": "proper",
+      "placed": ""
+    },
+    {
+      "sides": [
+        4,
+        5,
+        8
+      ],
+      "kind": "proper",
+      "placed": ""
+    },
+    {
+      "sides": [
+        20,
+        20,
+        20
+      ],
+      "kind": "proper",
+      "placed": "a,b,c"
+    },
+    {
+      "sides": [
+        4,
+        5,
+        20
+      ],
+      "kind": "impossible",
+      "placed": "a,b,c"
+    },
+    {
+      "sides": [
+        3,
+        4,
+        7
+      ],
+      "kind": "flat",
+      "placed": "a,b,c"
+    }
+  ],
+  "layouts": [
+    {
+      "variant": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "large",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "large",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "large",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "large",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "impossible",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "impossible",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "impossible",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "impossible",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "flat",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "flat",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "flat",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "flat",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ]
+}

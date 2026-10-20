@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "cycle"
+    },
+    {
+      "width": 1680,
+      "state": "partial"
+    },
+    {
+      "width": 1680,
+      "state": "terminating"
+    },
+    {
+      "width": 1680,
+      "state": "long"
+    },
+    {
+      "width": 1680,
+      "state": "invalid"
+    },
+    {
+      "width": 1280,
+      "state": "cycle"
+    },
+    {
+      "width": 1280,
+      "state": "partial"
+    },
+    {
+      "width": 1280,
+      "state": "terminating"
+    },
+    {
+      "width": 1280,
+      "state": "long"
+    },
+    {
+      "width": 1280,
+      "state": "invalid"
+    },
+    {
+      "width": 768,
+      "state": "cycle"
+    },
+    {
+      "width": 768,
+      "state": "partial"
+    },
+    {
+      "width": 768,
+      "state": "terminating"
+    },
+    {
+      "width": 768,
+      "state": "long"
+    },
+    {
+      "width": 768,
+      "state": "invalid"
+    },
+    {
+      "width": 390,
+      "state": "cycle"
+    },
+    {
+      "width": 390,
+      "state": "partial"
+    },
+    {
+      "width": 390,
+      "state": "terminating"
+    },
+    {
+      "width": 390,
+      "state": "long"
+    },
+    {
+      "width": 390,
+      "state": "invalid"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "observed step/reset/back/run and exact cycle closure",
+    "actual SVG subtraction values and alignment",
+    "terminating/zero/improper/negative/custom-invalid cases",
+    "capped prefix expansion and full96-digit cycle",
+    "try-another independence and main workspace transfer",
+    "challenge shortest period/remainder/evidence and solution independence",
+    "native touch/keyboard",
+    "local bookmark/self-completion persist through reload and undo",
+    "tabs/verified routes and20 responsive cases"
+  ]
+}

@@ -847,3 +847,7 @@ body:has(.ni316-page) {
     min-width: 783px;
   }
 }
+
+@media(max-width:900px){.ni316-page .ni316-idea,.ni316-page .ni316-idea .method-row,.ni316-page .ni316-controls,.ni316-page .ni316-lab>main,.ni316-page .ni316-flow,.ni316-page .ni316-formulas>div,.ni316-page .ni316-worked,.ni316-page .ni316-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.ni316-page .ni316-idea>*,.ni316-page .ni316-idea .method-row>*,.ni316-page .ni316-controls>*,.ni316-page .ni316-lab>main>*,.ni316-page .ni316-flow>*,.ni316-page .ni316-formulas>div>*,.ni316-page .ni316-worked>*,.ni316-page .ni316-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.ni316-page .ni316-lab{height:auto}.ni316-page .ni316-flow article>b{position:static}.ni316-page .ni316-idea .method-row>*{height:auto}.ni316-page .ni316-controls select,.ni316-page .ni316-controls input{min-width:0;max-width:100%;width:100%}.ni316-page .ni316-formulas article{overflow-wrap:anywhere}}

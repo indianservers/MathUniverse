@@ -24,7 +24,7 @@
 .aod10099-page input {
   font: inherit;
 }
-.aod10099-page svg {
+.aod10099-page button svg,.aod10099-cards h2 svg,.aod10099-challenge h2 svg,.aod10099-next svg,.aod10099-scene .measure>strong>svg,.aod10099-challenge .success>svg {
   width: 14px;
   height: 14px;
 }
@@ -83,7 +83,7 @@
   border-radius: 8px;
   background: #fff;
 }
-.aod10099-scene > header p {
+.aod10099-scene > .aod10099-heading p {
   margin: 8px 0;
 }
 .aod10099-scene .scene-grid {
@@ -432,3 +432,13 @@
     border-bottom: 1px solid #dfd4e8;
   }
 }
+
+.aod10099-page{width:100%;top:0;left:0;padding:8px;color:#263550;background:linear-gradient(130deg,#f0fbff,#f9f4ff);font-size:14px}.aod10099-hero{position:relative;height:auto;min-height:150px;padding:20px}.aod10099-hero h1{font-size:28px;font-weight:800}.aod10099-hero>div{flex-wrap:wrap}.aod10099-school{position:absolute;right:16px;top:16px;padding:8px 12px;border:1px solid #dce5ea;border-radius:8px;color:#263550;text-decoration:none;background:#fff}.aod10099-tabs{height:auto;min-height:48px}.aod10099-tabs button{font-size:13px;color:#263550}.aod10099-page h2{font-size:15px}
+.aod10099-scene .scene-grid{grid-template-columns:minmax(220px,1fr) minmax(0,3fr)}.aod10099-range{grid-template-columns:1fr}.aod10099-range strong{text-align:right}.aod10099-scene .measure p{gap:8px;flex-wrap:wrap}.aod10099-scene .scene-image{height:auto;aspect-ratio:700/430;min-height:380px}.aod10099-scene .scene-image>svg{max-width:none!important}.aod10099-distance-dimension{fill:none;stroke:#172743;stroke-width:1.4;stroke-dasharray:5 3}.aod10099-scene .scene-image .aod10099-boat{pointer-events:none}.aod10099-page .scene-image .height-label{paint-order:stroke;stroke:#fff;stroke-width:4px}.aod10099-page .scene-image .distance-label{paint-order:stroke;stroke:#fff;stroke-width:4px}
+.aod10099-mini{width:100%;height:180px;max-width:none!important;margin:15px 0}.aod10099-mini text{font:14px Georgia,serif;fill:#263550}.aod10099-cards>article{min-width:0;min-height:0}.aod10099-cards .math-expression{font-size:22px;line-height:1.8}.aod10099-challenge>article{min-width:0}.aod10099-challenge .math-expression{font-size:22px}.aod10099-challenge [role=status]{min-height:60px}.aod10099-next a:first-child{justify-content:flex-start;gap:12px}.aod10099-next a:last-child{justify-content:flex-end;gap:12px}.aod10099-footer{padding:15px;border:1px solid #dce5ea;border-radius:8px;background:#fff}.aod10099-footer small{display:block;margin-top:15px;color:#59657b}
+@media(max-width:1100px){.aod10099-hero{padding-top:55px}.aod10099-scene .scene-grid{grid-template-columns:1fr}.aod10099-scene aside{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:12px}.aod10099-range{margin-bottom:0}.aod10099-cards{grid-template-columns:1fr}.aod10099-challenge{grid-template-columns:1fr 1fr}.aod10099-challenge>article:last-child{grid-column:1/-1}}
+@media(max-width:700px){.aod10099-page{width:100%;font-size:14px}.aod10099-hero h1{font-size:24px}.aod10099-tabs button{font-size:11px}.aod10099-scene aside{grid-template-columns:1fr}.aod10099-scene .scene-image{min-height:0;aspect-ratio:700/430}.aod10099-challenge,.aod10099-next{grid-template-columns:1fr}.aod10099-challenge>article:last-child{grid-column:auto}.aod10099-challenge>article{border-right:0}}
+
+.aod10099-page .scene-image .boat-handle{stroke:transparent;stroke-width:18px;pointer-events:all}.aod10099-page .scene-image .boat-handle:focus{stroke:#f0a521;stroke-width:5px}.aod10099-page .scene-image .angle-text{paint-order:stroke;stroke:#fff;stroke-width:3px}
+
+.aod10099-page .scene-image .aod10099-view-note{font-size:13px;font-weight:400;fill:#5d7590}

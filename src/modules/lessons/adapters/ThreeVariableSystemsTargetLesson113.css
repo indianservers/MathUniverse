@@ -1015,3 +1015,7 @@ body:has(.three113-page) footer[aria-label="Site footer"] {
     transition: none !important;
   }
 }
+
+@media(max-width:900px){.three113-page .three113-canvas{width:100%;min-width:0;max-width:100%;box-sizing:border-box}}
+
+@media(max-width:900px){.three113-page .three113-canvas{width:calc(100% - 24px);max-width:calc(100% - 24px)}}

@@ -464,3 +464,5 @@ body:has(.cs378-page) button[aria-label="Open navigation"] {
     display: none !important;
   }
 }
+
+@media(max-width:799px){.cs378-page .cs378-main{grid-template-columns:minmax(0,1fr);height:auto}.cs378-page .cs378-scene{width:100%;min-width:0}.cs378-page .cs378-side{width:100%;min-width:0}.cs378-page .cs378-lab{height:auto}}

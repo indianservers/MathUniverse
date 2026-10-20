@@ -152,7 +152,7 @@
 .cross405-lab {
   display: grid;
   height: 617px;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
   gap: 10px;
 }
 .cross405-lab > article {

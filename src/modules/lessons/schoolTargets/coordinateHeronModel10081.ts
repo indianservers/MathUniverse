@@ -1,0 +1,10 @@
+export type CoordinateHeronPoint={x:number;y:number};
+function decimal(v:number){if(!Number.isFinite(v))throw new Error('Finite coordinates required');const[m,e='0']=String(v).split('e'),scale=(m.split('.')[1]?.length??0)-Number(e),n=BigInt(m.replace('.',''));return scale<0?{n:n*10n**BigInt(-scale),scale:0}:{n,scale};}
+function sqrtInteger(n:bigint){if(n<0n)throw new Error('Negative square root');if(n<2n)return n;let x=1n<<BigInt(Math.ceil(n.toString(2).length/2));for(;;){const next=(x+n/x)/2n;if(next>=x)return x;x=next;}}
+function naiveHeron(a:number,b:number,c:number){const s=(a+b+c)/2;return Math.sqrt(Math.max(0,s*(s-a)*(s-b)*(s-c)));}
+export function coordinateHeron10081(c:CoordinateHeronPoint){
+ const x=decimal(c.x),y=decimal(c.y),precision=Math.max(80,2*Math.max(x.scale,y.scale)+24),scale=10n**BigInt(precision),xs=x.n*10n**BigInt(precision-x.scale),ys=y.n*10n**BigInt(precision-y.scale),a=4n*scale,b=sqrtInteger((xs-a)*(xs-a)+ys*ys),d=sqrtInteger(xs*xs+ys*ys),sum=a+b+d,product=sum*(-a+b+d)*(a-b+d)*(a+b-d),root=sqrtInteger(product<0n?0n:product),heron=Number(`${root*25n}e-${2*precision+2}`),coordinate=Number(`${(y.n<0n?-y.n:y.n)*2n}e-${y.scale}`),ab=4,bc=Number(`${b}e-${precision}`),ca=Number(`${d}e-${precision}`),s=Number(`${sum*5n}e-${precision+1}`),displaySides=[ab,bc,ca].map(n=>Number(n.toFixed(4))),displayS=(displaySides[0]+displaySides[1]+displaySides[2])/2;
+ return{ab,bc,ca,s,coordinate,heron,precision,match:coordinate===0?heron===0:Math.abs(heron/coordinate-1)<1e-12,collinear:y.n===0n,height:Math.abs(c.y),displayCancellation:coordinate>0&&displayS<=Math.max(...displaySides),roundedArea:naiveHeron(...[ab,bc,ca].map(n=>Math.round(n*10)/10) as [number,number,number])};
+}
+export function coordinateHeronTarget10081(c:CoordinateHeronPoint,target:number){const y=decimal(c.y),t=decimal(target);return 2n*(y.n<0n?-y.n:y.n)*10n**BigInt(t.scale)===t.n*10n**BigInt(y.scale);}
+export function boundCoordinateHeron10081(c:CoordinateHeronPoint,snap=false){return{x:Math.max(-2,Math.min(6,snap?Math.round(c.x):c.x)),y:Math.max(-2,Math.min(5,snap?Math.round(c.y):c.y))};}

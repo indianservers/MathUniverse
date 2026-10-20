@@ -533,3 +533,7 @@
   right: 20px;
   top: 325px;
 }
+
+@media(max-width:900px){.piece149-page .piece149-lab,.piece149-page .piece149-insights{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.piece149-page .piece149-lab>*,.piece149-page .piece149-insights>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.piece149-lab>main{height:420px}.piece149-lab>main>footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}}

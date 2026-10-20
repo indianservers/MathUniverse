@@ -1,0 +1,16 @@
+import{gzRead10046}from'./graphicalZerosModel10046';
+import{ftQ10049 as q,ftAdd10049 as add,ftNum10049 as num,ftFormat10049 as fmt,type FTQ10049 as Q}from'./factorTheoremModel10049';
+export type NRQ10045=Q;
+export const nrRead10045=(raw:string)=>{const v=gzRead10046(raw,16);return v&&(v.n<0n?-v.n:v.n).toString().length<=30&&v.d.toString().length<=30?v:null;};
+export const nrIndex10045=(raw:string)=>/^\d+$/.test(raw.trim())&&Number(raw)>=2&&Number(raw)<=6?Number(raw):null;
+export const nrPower10045=(a:Q,n:number)=>q(a.n**BigInt(n),a.d**BigInt(n));
+function integerRoot(a:bigint,n:number){if(a<2n)return a;let lo=0n,hi=(1n<<BigInt(Math.ceil(a.toString(2).length/n)))+1n;while(lo+1n<hi){const m=(lo+hi)/2n;if(m**BigInt(n)<=a)lo=m;else hi=m;}return lo;}
+export function nrRoot10045(a:Q,n:number){if(a.n<0n&&n%2===0)return{real:false,value:null,exact:null as Q|null,display:'no real root'};const abs=a.n<0n?-a.n:a.n,r=integerRoot(abs,n),s=integerRoot(a.d,n),exact=r**BigInt(n)===abs&&s**BigInt(n)===a.d?q(a.n<0n?-r:r,s):null,value=exact?num(exact):Math.sign(num(a))*Math.abs(num(a))**(1/n);return{real:true,value,exact,display:exact?fmt(exact):'≈'+Number(value.toPrecision(8))};}
+export function nrModel10045(raw:string,indexRaw:string){const base=nrRead10045(raw),index=nrIndex10045(indexRaw);if(!base||index===null)return{valid:false,base,index,power:null as Q|null,root:null as ReturnType<typeof nrRoot10045>|null,inverse:null as Q|null,inverseCheck:false,error:!base?'Enter a number or fraction from −16 to 16, with at most 30 digits per numerator/denominator.':'Enter a whole index from 2 to 6.'};const power=nrPower10045(base,index),root=nrRoot10045(base,index),inverse=index%2?base:q(base.n<0n?-base.n:base.n,base.d),back=nrPower10045(inverse,index),inverseCheck=back.n===power.n&&back.d===power.d;return{valid:true,base,index,power,root,inverse,inverseCheck,error:''};}
+export function nrStep10045(raw:string,delta:number){const value=nrRead10045(raw);if(!value)return raw;const next=add(value,q(BigInt(delta))),bounded=next.n>16n*next.d?q(16n):next.n< -16n*next.d?q(-16n):next;return fmt(bounded).replace('−','-');}
+export function nrParity10045(n:number|null,kind:'odd'|'even'){if(n===null)return kind==='odd'?3:4;if((n%2===1)===(kind==='odd'))return n;return n===6?5:n+1;}
+export const nrRadical10045=(a:Q,n:number)=>n===2?`\\sqrt{${fmt(a)}}`:`\\sqrt[${n}]{${fmt(a)}}`;
+export const nrPowerCards10045=[{id:0,label:'(−27)³'},{id:1,label:'5⁴'},{id:2,label:'81²'},{id:3,label:'(−16)³'}]as const;
+export const nrRootCards10045=[{power:1,label:'⁴√(5⁴) = 5'},{power:3,label:'∛((−16)³) = −16'},{power:0,label:'∛((−27)³) = −27'},{power:2,label:'√(81²) = 81'}]as const;
+export function nrAssign10045(links:(number|null)[],left:number,right:number){if(!Number.isInteger(left)||!Number.isInteger(right)||left<0||left>3||right<0||right>3)return links;return links.map((v,i)=>i===left?right:v===right?null:v);}
+export function nrGrade10045(links:(number|null)[],reason:string){const rows=nrPowerCards10045.map((p,i)=>links[i]!==null&&nrRootCards10045[links[i]!]?.power===p.id),reasonCorrect=reason==='nonnegative-even';return{rows,reasonCorrect,correct:links.length===4&&rows.every(Boolean)&&reasonCorrect};}

@@ -9,15 +9,20 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TangentLengthsExternalTargetLesson10097.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
+import{externalTangents,tangentRightAngle,normalizeTangentAngle}from "./tangentLengthsModel";
+import MathExpression from "../../../components/ui/MathExpression";
+
 
 type Handle = "P" | "A" | "B" | null;
 type Point = { x: number; y: number };
 const RADIUS = 6;
 const round = (value: number, places = 2) =>
   Math.round(value * 10 ** places) / 10 ** places;
-const normalize = (degrees: number) => ((degrees % 360) + 360) % 360;
+const normalize=normalizeTangentAngle;
+const markPath=(t:Point,o:Point,p:Point,size=13)=>tangentRightAngle(t,o,p,size).map((v,i)=>`${i?'L':'M'}${v.x},${v.y}`).join(' ');
+
+function TangentExample(){const {points:q}=externalTangents(10,0),s=(p:Point)=>({x:200+p.x*20,y:165-p.y*20}),O=s(q.O),P=s(q.P),A=s(q.A),B=s(q.B);return <svg className="tle10097-example-diagram" viewBox="0 0 520 330" role="img" aria-label="Two eight centimetre tangent segments"><circle cx={O.x} cy={O.y} r="120" fill="#fff" stroke="#176fe0" strokeWidth="2"/><path d={`M${A.x} ${A.y}L${O.x} ${O.y}L${B.x} ${B.y}L${P.x} ${P.y}Z`} fill="#eee8ff"/><path d={`M${A.x} ${A.y}L${P.x} ${P.y}L${B.x} ${B.y}`} fill="none" stroke="#6c34ce" strokeWidth="2"/><path d={`M${A.x} ${A.y}L${O.x} ${O.y}L${B.x} ${B.y}`} fill="none" stroke="#18243a" strokeWidth="2"/><path d={`M${O.x} ${O.y}L${P.x} ${P.y}`} stroke="#7040d2" strokeDasharray="6 4"/>{[A,B].map((T,i)=><path key={i} d={markPath(T,O,P,12)} fill="none" stroke="#18243a"/>)}{Object.entries({O,A,B,P}).map(([n,T])=><g key={n}><circle cx={T.x} cy={T.y} r="4" fill={n==='A'?'#ef9915':n==='B'?'#1679d5':n==='P'?'#7137cb':'#151d2d'}/><text x={T.x+(n==='O'?-22:6)} y={T.y+(n==='A'?-12:18)}>{n}</text></g>)}<text x="340" y="108">PA = 8 cm</text><text x="340" y="240">PB = 8 cm</text></svg>;}
+function DifferentPoints(){const p=externalTangents(10,180).points,q=externalTangents(8,0).points,s=(v:Point)=>({x:200+v.x*15,y:125-v.y*15});return <svg className="tle10097-different-diagram" viewBox="0 0 430 250" role="img" aria-label="Unequal tangent lengths from different external points"><circle cx="200" cy="125" r="90" fill="#fff" stroke="#176fe0"/>{[[p,'#7137cb'],[q,'#159353']].map(([value,color],i)=>{const v=value as typeof p,P=s(v.P),A=s(v.A),B=s(v.B);return <g key={i}><path d={`M${A.x} ${A.y}L${P.x} ${P.y}L${B.x} ${B.y}`} fill="none" stroke={color as string} strokeWidth="2"/><circle cx={P.x} cy={P.y} r="5" fill={color as string}/><text x={P.x-5} y={P.y-15}>{i?'Q':'P'}</text></g>;})}<circle cx="200" cy="125" r="4"/><text x="194" y="145">O</text></svg>;}
 
 export default function TangentLengthsExternalTargetLesson10097({
   lesson: _lesson,
@@ -38,56 +43,29 @@ export default function TangentLengthsExternalTargetLesson10097({
     fn();
     setActions((value) => value + 1);
   };
-  const tangentLength = Math.sqrt(distance * distance - RADIUS * RADIUS);
-  const alpha = (Math.acos(RADIUS / distance) * 180) / Math.PI;
-  const unit = (degrees: number): Point => ({
-    x: Math.cos((degrees * Math.PI) / 180),
-    y: Math.sin((degrees * Math.PI) / 180),
-  });
-  const pUnit = unit(direction),
-    aUnit = unit(direction + alpha),
-    bUnit = unit(direction - alpha);
-  const points = {
-    O: { x: 0, y: 0 },
-    P: { x: distance * pUnit.x, y: distance * pUnit.y },
-    A: { x: RADIUS * aUnit.x, y: RADIUS * aUnit.y },
-    B: { x: RADIUS * bUnit.x, y: RADIUS * bUnit.y },
-  };
-  const difference = round(Math.abs(tangentLength - tangentLength));
-  const equal = difference < 0.001;
-  const cx = 300,
-    cy = 250,
-    scale = 27;
-  const screen = (point: Point) => ({
-    x: cx + point.x * scale,
-    y: cy - point.y * scale,
-  });
-  const s = {
-    O: screen(points.O),
-    P: screen(points.P),
-    A: screen(points.A),
-    B: screen(points.B),
-  };
+  const model=externalTangents(distance,direction),{alpha,points}=model;
+  const tangentLength=model.pa,tangentLengthB=model.pb,difference=model.difference,equal=difference<1e-9;
+  const [visited,setVisited]=useState({near:false,far:false});
+  const mainRef=useRef<HTMLElement>(null),dragScale=useRef<number|null>(null);
+  const cx=300,cy=250,scale=dragScale.current??model.scale;
+  const screen=(p:Point)=>({x:cx+p.x*scale,y:cy-p.y*scale});
+  const s={O:screen(points.O),P:screen(points.P),A:screen(points.A),B:screen(points.B)};
   const setP = (nextDistance: number, nextDirection = direction) => {
-    setDistance(Math.max(RADIUS + 0.5, Math.min(15, nextDistance)));
-    setDirection(normalize(nextDirection));
+    if(!Number.isFinite(nextDistance)||!Number.isFinite(nextDirection))return;
+    const d=Math.max(RADIUS+.5,Math.min(15,round(nextDistance,3)));setDistance(d);setVisited(v=>({near:v.near||d<=8,far:v.far||d>=12}));
+    setDirection(normalize(round(nextDirection,3)));
   };
   const pointerWorld = (event: PointerEvent<SVGSVGElement>) => {
-    const box = svgRef.current?.getBoundingClientRect();
-    if (!box) return { x: 0, y: 0 };
-    return {
-      x: (((event.clientX - box.left) / box.width) * 650 - cx) / scale,
-      y: (cy - ((event.clientY - box.top) / box.height) * 500) / scale,
-    };
+    const m=svgRef.current?.getScreenCTM();if(!m)return null;const p=new DOMPoint(event.clientX,event.clientY).matrixTransform(m.inverse());return{x:(p.x-cx)/scale,y:(cy-p.y)/scale};
   };
   const updatePointer = (event: PointerEvent<SVGSVGElement>) => {
     if (!dragging || !enabled[dragging]) return;
-    const world = pointerWorld(event);
+    const world = pointerWorld(event);if(!world)return;
     let degrees = (Math.atan2(world.y, world.x) * 180) / Math.PI;
     if (degrees < 0) degrees += 360;
     if (dragging === "P") setP(Math.hypot(world.x, world.y), degrees);
-    if (dragging === "A") setDirection(normalize(degrees - alpha));
-    if (dragging === "B") setDirection(normalize(degrees + alpha));
+    if (dragging === "A") setDirection(normalize(round(degrees-alpha,3)));
+    if (dragging === "B") setDirection(normalize(round(degrees+alpha,3)));
   };
   const reset = () =>
     act(() => {
@@ -96,7 +74,7 @@ export default function TangentLengthsExternalTargetLesson10097({
       setEnabled({ P: true, A: true, B: true });
       setShowRadii(true);
       setShowRight(true);
-      setShowCongruent(true);
+      setShowCongruent(true);setDragging(null);dragScale.current=null;setTab(0);setVisited({near:false,far:false});
     });
   const Switch = ({
     name,
@@ -139,6 +117,7 @@ export default function TangentLengthsExternalTargetLesson10097({
     </label>
   );
 
+  const navigateTab=(i:number)=>{act(()=>setTab(i));const selectors=['.tle10097-lab','.tle10097-proof','.tle10097-proof article:nth-child(2)','.tle10097-proof','.tle10097-bottom article:nth-child(2)'];mainRef.current?.querySelector(selectors[i])?.scrollIntoView({behavior:'smooth',block:'start'});};
   return (
     <section
       className="tle10097-page"
@@ -146,14 +125,15 @@ export default function TangentLengthsExternalTargetLesson10097({
       data-object-model="dedicated-external-point-two-tangent-congruence-engine"
       data-distance-op={round(distance)}
       data-direction={round(direction)}
-      data-pa={round(tangentLength)}
-      data-pb={round(tangentLength)}
+      data-pa={round(tangentLength)} data-exact-pa={tangentLength} data-exact-pb={tangentLengthB} data-challenge-complete={String(visited.near&&visited.far)}
+      data-pb={round(tangentLengthB)}
       data-difference={difference}
       data-equal={String(equal)}
       data-actions={actions}
     >
-      <header className="tle10097-hero">
+      <div className="tle10097-hero">
         <small>CLASS 10 · CIRCLE PROOFS</small>
+        <Link className="tle10097-school" to="/lessons/school">← School Lessons</Link>
         <h1>Tangent Lengths from an External Point</h1>
         <p>
           From an external point P, the lengths of the tangent segments PA and
@@ -165,21 +145,22 @@ export default function TangentLengthsExternalTargetLesson10097({
           <span>PROOF</span>
           <span>geometry2d</span>
         </div>
-      </header>
-      <nav className="tle10097-tabs">
+      </div>
+      <div className="tle10097-tabs" role="group" aria-label="Lesson sections">
         {["Interact", "Learn", "Example", "Formula", "Practice"].map(
           (label, index) => (
             <button
               key={label}
               className={tab === index ? "active" : ""}
-              onClick={() => act(() => setTab(index))}
+              aria-pressed={tab===index}
+              onClick={() => navigateTab(index)}
             >
               {label}
             </button>
           ),
         )}
-      </nav>
-      <main>
+      </div>
+      <main ref={mainRef}>
         <section className="tle10097-lab">
           <h2>Explore the Theorem</h2>
           <p>
@@ -190,25 +171,13 @@ export default function TangentLengthsExternalTargetLesson10097({
           <div className="lab-grid">
             <aside>
               <h3>Controls</h3>
-              <Switch name="P" label="Drag P (external point)" />
-              <Switch name="A" label="Drag A (tangent point)" />
-              <Switch name="B" label="Drag B (tangent point)" />
+              {Switch({name:"P",label:"Drag P (external point)"})}
+              {Switch({name:"A",label:"Drag A (tangent point)"})}
+              {Switch({name:"B",label:"Drag B (tangent point)"})}
               <h3>Show / Hide</h3>
-              <Check
-                label="Radii OA, OB"
-                checked={showRadii}
-                onChange={setShowRadii}
-              />
-              <Check
-                label="Right-angle marks"
-                checked={showRight}
-                onChange={setShowRight}
-              />
-              <Check
-                label="Congruent triangles ΔOAP & ΔOBP"
-                checked={showCongruent}
-                onChange={setShowCongruent}
-              />
+              {Check({label:'Radii OA, OB',checked:showRadii,onChange:setShowRadii})}
+              {Check({label:'Right-angle marks',checked:showRight,onChange:setShowRight})}
+              {Check({label:'Congruent triangles ΔOAP & ΔOBP',checked:showCongruent,onChange:setShowCongruent})}
               <button className="reset" onClick={reset}>
                 Reset construction
               </button>
@@ -218,12 +187,10 @@ export default function TangentLengthsExternalTargetLesson10097({
                 ref={svgRef}
                 viewBox="0 0 650 500"
                 aria-label="Two tangent segments from external point P"
-                {...lessonGraphInkProps}
                 onPointerMove={updatePointer}
-                onPointerUp={() => dragging && act(() => setDragging(null))}
-                onPointerLeave={() => dragging && act(() => setDragging(null))}
+                onPointerUp={event=>{if(dragging)updatePointer(event);dragScale.current=null;act(()=>setDragging(null));}}
+                onPointerCancel={()=>{dragScale.current=null;setDragging(null);}}
               >
-                <LessonGraphInkLegend />
                 <circle className="circle" cx={cx} cy={cy} r={RADIUS * scale} />
                 {showCongruent && (
                   <>
@@ -251,6 +218,13 @@ export default function TangentLengthsExternalTargetLesson10097({
                   x2={s.P.x}
                   y2={s.P.y}
                 />
+                    <line
+                      className="op"
+                      x1={s.O.x}
+                      y1={s.O.y}
+                      x2={s.P.x}
+                      y2={s.P.y}
+                    />
                 {showRadii && (
                   <>
                     <line
@@ -267,31 +241,13 @@ export default function TangentLengthsExternalTargetLesson10097({
                       x2={s.B.x}
                       y2={s.B.y}
                     />
-                    <line
-                      className="op"
-                      x1={s.O.x}
-                      y1={s.O.y}
-                      x2={s.P.x}
-                      y2={s.P.y}
-                    />
+
                   </>
                 )}
                 {showRight && (
                   <>
-                    <rect
-                      className="right"
-                      x={s.A.x - 8}
-                      y={s.A.y + 3}
-                      width="13"
-                      height="13"
-                    />
-                    <rect
-                      className="right"
-                      x={s.B.x - 8}
-                      y={s.B.y - 16}
-                      width="13"
-                      height="13"
-                    />
+                    <path className="right" data-right-mark="A" d={markPath(s.A,s.O,s.P)}/><path className="right" data-right-mark="B" d={markPath(s.B,s.O,s.P)}/>
+
                   </>
                 )}
                 <circle className="center" cx={s.O.x} cy={s.O.y} r="6" />
@@ -311,15 +267,15 @@ export default function TangentLengthsExternalTargetLesson10097({
                         tabIndex={0}
                         aria-disabled={!enabled[name]}
                         aria-label={`Point ${name}`}
-                        aria-valuemin={0}
-                        aria-valuemax={name === "P" ? 15 : 359}
+                        aria-valuemin={name==='P'?6.5:0}
+                        aria-valuemax={name === "P" ? 15 : 360}
                         aria-valuenow={
                           name === "P"
                             ? round(distance)
                             : round(
                                 name === "A"
-                                  ? direction + alpha
-                                  : direction - alpha,
+                                  ? normalize(direction + alpha)
+                                  : normalize(direction - alpha),
                               )
                         }
                         onPointerDown={(event) => {
@@ -327,9 +283,12 @@ export default function TangentLengthsExternalTargetLesson10097({
                           event.currentTarget.setPointerCapture(
                             event.pointerId,
                           );
-                          act(() => setDragging(name));
+                          dragScale.current=scale;act(() => setDragging(name));
                         }}
                         onKeyDown={(event) => {
+                          event.stopPropagation();
+                          if(name==='P'&&enabled.P&&(event.key==='ArrowUp'||event.key==='ArrowDown')){event.preventDefault();act(()=>setP(distance,direction+(event.key==='ArrowUp'?2:-2)));}
+                          if(name==='P'&&enabled.P&&event.key==='Home'){event.preventDefault();act(()=>setP(10,0));}
                           if (!enabled[name]) return;
                           if (name === "P" && event.key === "ArrowRight") {
                             event.preventDefault();
@@ -341,11 +300,11 @@ export default function TangentLengthsExternalTargetLesson10097({
                           }
                           if (name !== "P" && event.key === "ArrowRight") {
                             event.preventDefault();
-                            act(() => setDirection(direction - 2));
+                            act(() => setDirection(normalize(direction - 2)));
                           }
                           if (name !== "P" && event.key === "ArrowLeft") {
                             event.preventDefault();
-                            act(() => setDirection(direction + 2));
+                            act(() => setDirection(normalize(direction + 2)));
                           }
                         }}
                       />
@@ -371,7 +330,7 @@ export default function TangentLengthsExternalTargetLesson10097({
                   x={(s.B.x + s.P.x) / 2}
                   y={(s.B.y + s.P.y) / 2 + 25}
                 >
-                  PB = {tangentLength.toFixed(2)} cm
+                  PB = {tangentLengthB.toFixed(2)} cm
                 </text>
               </svg>
             </article>
@@ -388,7 +347,7 @@ export default function TangentLengthsExternalTargetLesson10097({
                 PA<b>{tangentLength.toFixed(2)} cm</b>
               </p>
               <p>
-                PB<b>{tangentLength.toFixed(2)} cm</b>
+                PB<b>{tangentLengthB.toFixed(2)} cm</b>
               </p>
               <p>
                 Difference<b>{difference.toFixed(2)} cm</b>
@@ -407,19 +366,14 @@ export default function TangentLengthsExternalTargetLesson10097({
                 <li>OP = OP (common side)</li>
               </ul>
               <p>By RHS (HL) congruence,</p>
-              <strong>ΔOAP ≅ ΔOBP</strong>
+              <strong><MathExpression value={String.raw`\triangle OAP\cong\triangle OBP`}/></strong>
               <p>Therefore, PA = PB.</p>
             </div>
           </article>
           <article>
             <h2>Worked Example</h2>
             <p>If PA = 8 cm, then PB = 8 cm.</p>
-            <div className="mini">
-              <i>O</i>
-              <b>A</b>
-              <b>B</b>
-              <strong>P</strong>
-            </div>
+            <TangentExample/>
             <p>
               PA = 8 cm
               <br />
@@ -440,12 +394,8 @@ export default function TangentLengthsExternalTargetLesson10097({
               The equality holds only for tangent segments from the same
               external point.
             </p>
-            <div className="two-points">
-              <b>P</b>
-              <b>Q</b>
-              <i>O</i>
-            </div>
-            <p>In general, PA ≠ QA.</p>
+            <DifferentPoints/>
+            <p>For example, tangents from P have length 8 cm; tangents from Q have length √28 ≈ 5.29 cm. Equal lengths are guaranteed within each pair.</p>
           </article>
           <article>
             <h2>
@@ -467,9 +417,10 @@ export default function TangentLengthsExternalTargetLesson10097({
               <CheckCircle2 />
               <b>Challenge Goal</b>
               <p>
-                Keep exploring until you see PA = PB at every position of P.
+                {visited.near&&visited.far?'Near and far positions explored: PA = PB in both cases.':'Explore a near position (OP ≤ 8 cm) and a far position (OP ≥ 12 cm). PA remains equal to PB.'}
               </p>
             </div>
+            <p role="status">Near: {visited.near?'explored':'pending'} · Far: {visited.far?'explored':'pending'}</p>
           </article>
         </section>
         <nav className="tle10097-next">
@@ -481,7 +432,7 @@ export default function TangentLengthsExternalTargetLesson10097({
           </Link>
         </nav>
       </main>
-      <LessonTopicStudyBoard lessonId={10097} view={tab} />
+      <footer className="tle10097-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, graphing, and classroom activities.</p><small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small></footer>
 
     </section>
   );

@@ -862,3 +862,5 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media(max-width:900px){.target-trig-equations-page .target-trig-equations-flow,.target-trig-equations-page .target-trig-equations-solver,.target-trig-equations-page .target-trig-equations-learning,.target-trig-equations-page .target-trig-equations-connect>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-trig-equations-page .target-trig-equations-flow>*,.target-trig-equations-page .target-trig-equations-solver>*,.target-trig-equations-page .target-trig-equations-learning>*,.target-trig-equations-page .target-trig-equations-connect>div>*{min-width:0;grid-column:auto;grid-row:auto}}

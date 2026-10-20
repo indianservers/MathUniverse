@@ -1,0 +1,28 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/school/class-6/class-6-data-handling-survey-to-frequency-table",
+  "action": {
+    "control": "🏏 Cricket",
+    "kind": "button-driven mathematical activity",
+    "evidence": "A mathematical graphic, formula, table or output changed; toolbar icons and input markup excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 355,
+      "scroll": 355
+    },
+    {
+      "width": 768,
+      "client": 733,
+      "scroll": 733
+    },
+    {
+      "width": 1440,
+      "client": 1405,
+      "scroll": 1405
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

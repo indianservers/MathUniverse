@@ -35,10 +35,10 @@ export default function FactorTheoremTargetLesson105({
   onInteraction,
 }: LessonAdapterProps) {
   const [problemIndex, setProblemIndex] = useState(0);
-  const [polynomialInput, setPolynomialInput] = useState(
+  const [polynomialInput, setPolynomialInput] = useState<string>(
     problems[0].polynomial,
   );
-  const [factorInput, setFactorInput] = useState(problems[0].factor);
+  const [factorInput, setFactorInput] = useState<string>(problems[0].factor);
   const [testValue, setTestValue] = useState(1);
   const [substitute, setSubstitute] = useState(true);
   const [checkZero, setCheckZero] = useState(true);

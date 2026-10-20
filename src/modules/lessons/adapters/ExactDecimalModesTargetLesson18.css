@@ -798,3 +798,9 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+@media(max-width:900px){.exact-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.exact-footer>:is(p,small,span){width:auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}.exact-footer>nav{position:static;flex-wrap:wrap}.exact-footer:after{max-width:100%;white-space:normal;overflow-wrap:anywhere;flex-basis:100%}}
+
+@media(max-width:900px){.exact-lab-title,.exact-status,.exact-practice nav{height:auto;display:flex;flex-wrap:wrap;gap:8px}html body #main-content .standard-lesson-frame .standard-lesson-content .exact-comparison{overflow-x:auto!important;max-width:100%}}
+
+@media(max-width:900px){.exact-practice nav{width:auto;max-width:100%}.exact-practice nav>button{min-width:0;max-width:100%}}

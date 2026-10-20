@@ -1,349 +1,337 @@
-import {
-  ArrowLeft,
-  ArrowRight,
-  CheckCircle2,
-  Eye,
-  RotateCcw,
-  Shuffle,
-} from "lucide-react";
-import { type PointerEvent, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
-import "./PerpendicularCentreChordTargetLesson10090.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
-
-const round = (n: number, p = 2) => Math.round(n * 10 ** p) / 10 ** p;
-export default function PerpendicularCentreChordTargetLesson10090({
-  lesson: _lesson,
-}: {
-  lesson: SchoolSyllabusLesson;
-}) {
-  const [radius, setRadius] = useState(6),
-    [chord, setChord] = useState(10),
-    [construction, setConstruction] = useState(true),
-    [dragging, setDragging] = useState(false),
-    [tab, setTab] = useState(0),
-    [actions, setActions] = useState(0);
-  const svgRef = useRef<SVGSVGElement>(null),
-    half = chord / 2,
-    om = round(Math.sqrt(Math.max(0, radius * radius - half * half))),
-    valid = chord > 0 && chord < 2 * radius;
-  const act = (fn: () => void) => {
-    fn();
-    setActions((n) => n + 1);
-  };
-  const setR = (value: number) => {
-    const next = Math.max(3, Math.min(10, round(value, 1)));
-    setRadius(next);
-    setChord((c) => Math.min(c, round(next * 1.9, 1)));
-  };
-  const setC = (value: number) =>
-    setChord(Math.max(0.5, Math.min(round(radius * 1.99, 1), round(value, 1))));
-  const reset = () =>
-    act(() => {
-      setRadius(6);
-      setChord(10);
-      setConstruction(true);
-    });
-  const random = () =>
-    act(() => {
-      const seed = (actions * 7 + 3) % 8,
-        nextR = 4 + seed * 0.5,
-        nextC = round(Math.max(2, nextR * (0.9 + ((seed * 3) % 7) / 10)), 1);
-      setRadius(nextR);
-      setChord(Math.min(nextC, round(nextR * 1.9, 1)));
-    });
-  const localX = (e: PointerEvent<SVGSVGElement>) => {
-    const r = svgRef.current?.getBoundingClientRect();
-    return r ? ((e.clientX - r.left) / r.width) * 14 - 7 : 0;
-  };
-  const keyboard = (direction: number) => act(() => setC(chord + direction));
-  const cx = 285,
-    cy = 196,
-    scale = 27,
-    rr = radius * scale,
-    y = cy + om * scale,
-    ax = cx - half * scale,
-    bx = cx + half * scale;
-  return (
-    <section
-      className="pcc10090-page"
-      data-testid="school-mockup-0764"
-      data-object-model="dedicated-centre-perpendicular-chord-bisection-engine"
-      data-radius={radius}
-      data-chord={chord}
-      data-half={half}
-      data-om={om}
-      data-am={half}
-      data-mb={half}
-      data-right-angles="90,90"
-      data-congruent={String(valid)}
-      data-construction={String(construction)}
-      data-actions={actions}
-    >
-      <header className="pcc10090-hero">
-        <small>CLASS 10 · CIRCLE PROOFS</small>
-        <h1>Perpendicular from Centre to Chord</h1>
-        <p>
-          Prove that a perpendicular from a circle&apos;s centre to a chord
-          bisects the chord.
-        </p>
-        <div>
-          <span>18 min</span>
-          <span>INTERMEDIATE</span>
-          <span>CONCEPT</span>
-          <span>geometry2d</span>
-        </div>
-      </header>
-      <nav className="pcc10090-tabs">
-        {["Interact", "Learn", "Example", "Formula", "Practice"].map((x, i) => (
-          <button
-            key={x}
-            className={tab === i ? "active" : ""}
-            onClick={() => act(() => setTab(i))}
-          >
-            {x}
-          </button>
-        ))}
-      </nav>
-      <main>
-        <section className="pcc10090-lab">
-          <article>
-            <header>
-              <div>
-                <h2>INTERACTIVE DIAGRAM</h2>
-                <p>Drag the endpoints A or B to change the chord.</p>
-              </div>
-              <button onClick={reset}>
-                <RotateCcw /> Reset
-              </button>
-            </header>
-            <svg
-              ref={svgRef}
-              {...lessonGraphInkProps}
-              viewBox="0 0 570 430"
-              aria-label="Draggable centre perpendicular chord construction"
-              onPointerMove={(e) => {
-                if (dragging) setC(Math.abs(localX(e)) * 2);
-              }}
-              onPointerUp={() => dragging && act(() => setDragging(false))}
-              onPointerLeave={() => dragging && act(() => setDragging(false))}
-            >
-              <LessonGraphInkLegend />
-              <circle className="circle" cx={cx} cy={cy} r={rr} />
-              {construction && (
-                <>
-                  <line className="radius a" x1={cx} y1={cy} x2={ax} y2={y} />
-                  <line className="radius b" x1={cx} y1={cy} x2={bx} y2={y} />
-                  <line className="perp" x1={cx} y1={cy} x2={cx} y2={y} />
-                  <path className="right" d={`M${cx} ${y - 18}h18v18`} />
-                </>
-              )}
-              <line className="chord" x1={ax} y1={y} x2={bx} y2={y} />
-              {[
-                [-1, "A"],
-                [1, "B"],
-              ].map(([side, label]) => (
-                <g key={label}>
-                  <circle
-                    className={`endpoint ${label.toLowerCase()}`}
-                    tabIndex={0}
-                    aria-label={`Draggable chord endpoint ${label}`}
-                    cx={side === -1 ? ax : bx}
-                    cy={y}
-                    r="8"
-                    onPointerDown={(e) => {
-                      e.currentTarget.setPointerCapture(e.pointerId);
-                      setDragging(true);
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "ArrowLeft")
-                        keyboard(label === "A" ? 1 : -1);
-                      if (e.key === "ArrowRight")
-                        keyboard(label === "A" ? -1 : 1);
-                    }}
-                  />
-                  <text
-                    x={(side === -1 ? ax : bx) + (side === -1 ? -25 : 14)}
-                    y={y + 8}
-                  >
-                    {label}
-                  </text>
-                </g>
-              ))}
-              <circle className="center" cx={cx} cy={cy} r="7" />
-              <circle className="mid" cx={cx} cy={y} r="6" />
-              <text x={cx - 7} y={cy - 16}>
-                O
-              </text>
-              <text x={cx - 8} y={y + 30}>
-                M
-              </text>
-              {construction && (
-                <>
-                  <text className="measure" x={ax + 30} y={y + 30}>
-                    AM = {half.toFixed(2)} cm
-                  </text>
-                  <text className="measure" x={cx + 30} y={y + 30}>
-                    MB = {half.toFixed(2)} cm
-                  </text>
-                  <path
-                    className="brace"
-                    d={`M${ax} ${y + 90}v12M${ax} ${y + 96}H${bx}M${bx} ${y + 90}v12`}
-                  />
-                  <text className="length" x={cx - 52} y={y + 103}>
-                    AB = {chord.toFixed(2)} cm
-                  </text>
-                </>
-              )}
-            </svg>
-            <footer>
-              <CheckCircle2 /> Great! AM = MB. The perpendicular from the centre
-              bisects the chord.
-            </footer>
-          </article>
-          <aside>
-            <section>
-              <h2>CONTROLS</h2>
-              <label>
-                Radius (r)
-                <input
-                  aria-label="Circle radius"
-                  type="range"
-                  min="3"
-                  max="10"
-                  step=".1"
-                  value={radius}
-                  onChange={(e) => act(() => setR(+e.target.value))}
-                />
-                <output>{radius} cm</output>
-              </label>
-              <label>
-                Chord length (AB)
-                <input
-                  aria-label="Chord length"
-                  type="range"
-                  min=".5"
-                  max={radius * 1.99}
-                  step=".1"
-                  value={chord}
-                  onChange={(e) => act(() => setC(+e.target.value))}
-                />
-                <output>{chord} cm</output>
-              </label>
-              <button onClick={random}>
-                <Shuffle /> Random chord
-              </button>
-              <button onClick={() => act(() => setConstruction((v) => !v))}>
-                <Eye />{" "}
-                {construction ? "Hide construction" : "Show construction"}
-              </button>
-            </section>
-            <section>
-              <h2>MEASUREMENTS</h2>
-              <p>OA = OB = {radius.toFixed(2)} cm (radii)</p>
-              <p>OM = {om.toFixed(2)} cm (perpendicular)</p>
-              <p>AM = {half.toFixed(2)} cm</p>
-              <p>MB = {half.toFixed(2)} cm</p>
-              <strong>∠OMA = 90°</strong>
-              <strong>∠OMB = 90°</strong>
-            </section>
-            <section>
-              <h2>TRIANGLE CHECK</h2>
-              <strong>△OMA ≅ △OMB (RHS)</strong>
-              <p>OA = OB (radii)</p>
-              <p>OM = OM (common)</p>
-              <p>∠OMA = ∠OMB = 90°</p>
-            </section>
-          </aside>
-        </section>
-        <section className="pcc10090-theorem">
-          <article>
-            <h2>THEOREM (RULE)</h2>
-            <p>
-              In a circle, the perpendicular from the centre to a chord bisects
-              the chord.
-            </p>
-          </article>
-          <article>
-            <h2>CONVERSE</h2>
-            <p>
-              In a circle, the line drawn through the centre and midpoint of a
-              chord is perpendicular to the chord.
-            </p>
-          </article>
-        </section>
-        <section className="pcc10090-cards">
-          <article>
-            <h2>WHY IT WORKS</h2>
-            <p>Consider △OMA and △OMB.</p>
-            <p>✓ OA = OB (radii)</p>
-            <p>✓ OM = OM (common side)</p>
-            <p>✓ ∠OMA = ∠OMB = 90°</p>
-            <p>By RHS congruence, △OMA ≅ △OMB. Therefore, AM = MB.</p>
-            <div className="mini">
-              ◯<br />A ─── M ─── B
-            </div>
-          </article>
-          <article>
-            <h2>WORKED EXAMPLE</h2>
-            <p>
-              In a circle of radius {radius} cm, chord AB = {chord} cm.
-            </p>
-            <p>OM ⟂ AB at M. Find AM and MB.</p>
-            <strong>
-              AM = MB = AB/2 = {chord}/2 = {half.toFixed(2)} cm.
-            </strong>
-            <em>Answer: AM = MB = {half.toFixed(2)} cm.</em>
-          </article>
-          <article className="warning">
-            <h2>COMMON MISCONCEPTION</h2>
-            <strong>
-              A radius to an arbitrary point on the chord does NOT necessarily
-              bisect the chord.
-            </strong>
-            <div className="mini wrong">
-              ◯<br />A ── P ───── B
-            </div>
-            <p>The centre line must be perpendicular to AB.</p>
-          </article>
-        </section>
-        <section className="pcc10090-challenge">
-          <article>
-            <h2>CHALLENGE: YOUR TURN</h2>
-            <p>
-              Move A or B to change the chord. Keep OM perpendicular to AB.
-              Verify that AM always equals MB. Try different chord lengths.
-            </p>
-          </article>
-          <article>
-            <h3>Goal</h3>
-            <p>Keep ∠OMA = 90°.</p>
-            <p>Verify AM = MB.</p>
-          </article>
-          <article>
-            <h3>Live check</h3>
-            <p>✓ ∠OMA = 90°</p>
-            <p>✓ AM = MB</p>
-            <strong>All good!</strong>
-          </article>
-        </section>
-      </main>
-      <nav className="pcc10090-nav">
-        <Link to="/lessons/school/class-10/class-10-circle-proofs-equal-chords-and-equal-angles">
-          <ArrowLeft /> Previous
-          <br />
-          Equal Chords and Equal Angles
-        </Link>
-        <Link to="/lessons/school/class-10/class-10-circle-proofs-angle-subtended-by-an-arc">
-          Next
-          <br />
-          Angle Subtended by an Arc <ArrowRight />
-        </Link>
-      </nav>
-      <LessonTopicStudyBoard lessonId={10090} view={tab} />
-
-    </section>
-  );
-}
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  Eye,
+  RotateCcw,
+  Shuffle,
+} from "lucide-react";
+import { type PointerEvent, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
+import "./PerpendicularCentreChordTargetLesson10090.css";
+import MathExpression from "../../../components/ui/MathExpression";
+import {perpendicularChordModel,chordMaximum} from "./perpendicularChordModel";
+import {cyclicSector} from "./oppositeCyclicModel";
+
+
+const round = (n: number, p = 2) => Math.round(n * 10 ** p) / 10 ** p;
+function NumberEntry({label,value,min,max,onValue}:{label:string;value:number;min:number;max:number;onValue:(v:number)=>void}){const[draft,setDraft]=useState(String(value)),[error,setError]=useState(false);useEffect(()=>{setDraft(String(value));setError(false);},[value]);const commit=()=>{const v=Number(draft);if(draft.trim()===''||!Number.isFinite(v)||v<min||v>max||Math.abs(v*10-Math.round(v*10))>1e-7){setError(true);return;}onValue(v);setDraft(String(v));setError(false);};return <div className="pcc10090-number"><input type="number" aria-label={label} aria-invalid={error} value={draft} min={min} max={max} step=".1" onChange={e=>{setDraft(e.target.value);setError(false);}} onBlur={commit} onKeyDown={e=>{if(e.key==='Enter'){e.preventDefault();commit();}if(e.key==='Escape'){setDraft(String(value));setError(false);}}}/><span>cm</span>{error&&<small role="alert">Enter {min}–{max} in 0.1 steps.</small>}</div>;}
+function ChordFigure({warning=false,labels=false}:{warning?:boolean;labels?:boolean}){const m=perpendicularChordModel(6,10),s=18,O={x:160,y:135},A={x:160+m.a.x*s,y:135-m.a.y*s},B={x:160+m.b.x*s,y:135-m.b.y*s},M={x:160,y:A.y},P={x:160-2*s,y:A.y};return <svg className="pcc10090-mini-svg" viewBox="0 0 320 300" role="img" aria-label={warning?'Oblique centre segmentOP splits a10cm chord into3cm and7cm':'Perpendicular centre segment bisects10cm chord into5cm and5cm'}><circle className="circle" cx={O.x} cy={O.y} r={6*s}/>{warning?<><path className="perp" d={`M${O.x} ${O.y}L${P.x} ${P.y}`}/><path className="wrong-angle" d={cyclicSector(P,O,B,18)}/><text className="wrong-label" x={P.x+18} y={P.y-20}>≠90°</text></>:<><path className="radius" d={`M${A.x} ${A.y}L${O.x} ${O.y}L${B.x} ${B.y}`}/><path className="perp" d={`M${O.x} ${O.y}L${M.x} ${M.y}`}/><path className="right" d={`M${M.x} ${M.y-10}h10v10`}/></>}<path className="chord" d={`M${A.x} ${A.y}L${B.x} ${B.y}`}/>{[['A',A],['B',B],['O',O],[warning?'P':'M',warning?P:M]].map(([n,p])=>{const q=p as {x:number;y:number};return <g key={n as string}><circle className={n==='O'?'center':n==='A'||n==='B'?'endpoint':'mid'} cx={q.x} cy={q.y} r="4"/><text x={q.x+(n==='A'?-15:n==='B'?8:-5)} y={q.y+(n==='O'?-12:22)}>{n as string}</text></g>;})}{(labels||warning)&&<><text className="measure" x={warning?95:112} y={A.y+40} textAnchor="middle">{warning?'3':'5'} cm</text><text className="measure" x={warning?205:208} y={A.y+40} textAnchor="middle">{warning?'7':'5'} cm</text><path className="brace" d={`M${A.x} ${A.y+55}v10M${A.x} ${A.y+60}H${B.x}M${B.x} ${A.y+55}v10`}/><text className="length" x="160" y={A.y+80} textAnchor="middle">AB=10 cm</text></>}</svg>;}
+
+export default function PerpendicularCentreChordTargetLesson10090({
+  lesson: _lesson,
+}: {
+  lesson: SchoolSyllabusLesson;
+}) {
+  const [radius, setRadius] = useState(6),
+    [chord, setChord] = useState(10),
+    [construction, setConstruction] = useState(true),
+    [dragging, setDragging] = useState(false),
+    [tab, setTab] = useState(0),
+    [actions, setActions] = useState(0),[randomStep,setRandomStep]=useState(0);
+  const svgRef = useRef<SVGSVGElement>(null),
+    model=perpendicularChordModel(radius,chord),half=model.half,om=model.om,valid=model.congruent;
+  const act = (fn: () => void) => {
+    fn();
+    setActions((n) => n + 1);
+  };
+  const setR = (value: number) => {
+    if(!Number.isFinite(value))return;const next = Math.max(3, Math.min(10, round(value, 1)));
+    setRadius(next);
+    setChord((c) => Math.min(c, chordMaximum(next)));
+  };
+  const setC=(value:number)=>{if(Number.isFinite(value))setChord(Math.max(.5,Math.min(chordMaximum(radius),round(value,1))));};
+  const reset = () =>
+    act(() => {
+      setRadius(6);
+      setChord(10);
+      setConstruction(true);setDragging(false);setTab(0);setRandomStep(0);
+    });
+  const random = () =>
+    act(() => {
+      const sets=[[6,10],[5,6],[7,9],[4,5],[8,12]],next=(randomStep+1)%sets.length;setRadius(sets[next][0]);setChord(sets[next][1]);setRandomStep(next);
+    });
+  const localX=(e:PointerEvent<SVGSVGElement>)=>{const matrix=svgRef.current?.getScreenCTM();if(!matrix)return 0;const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(matrix.inverse());return(p.x-cx)/scale;};
+  const finish=(e:PointerEvent<SVGSVGElement>)=>{if(dragging){setC(Math.abs(localX(e))*2);act(()=>setDragging(false));}};
+  const navigateTab=(i:number)=>{act(()=>setTab(i));const selectors=['.pcc10090-lab','.pcc10090-theorem','.pcc10090-cards article:nth-child(2)','.pcc10090-theorem','.pcc10090-challenge'];svgRef.current?.closest('main')?.querySelector(selectors[i])?.scrollIntoView({behavior:'smooth',block:'start'});};
+  const keyboard = (direction: number) => act(() => setC(chord + direction));
+  const cx = 285,
+    cy = 182,
+    scale = 150/radius,
+    rr = radius * scale,
+    y = cy + om * scale,
+    ax = cx - half * scale,
+    bx = cx + half * scale;
+  return (
+    <section
+      className="pcc10090-page"
+      data-testid="school-mockup-0764"
+      data-object-model="dedicated-centre-perpendicular-chord-bisection-engine"
+      data-radius={radius}
+      data-chord={chord}
+      data-half={half}
+      data-om={round(om)}
+      data-am={round(model.am)}
+      data-mb={round(model.mb)}
+      data-right-angles={`${round(model.angleA)},${round(model.angleB)}`}
+      data-congruent={String(valid)}
+      data-construction={String(construction)}
+      data-exact-model={JSON.stringify(model)} data-scale={scale}
+      data-actions={actions}
+    >
+      <div className="pcc10090-hero"><Link className="pcc10090-school" to="/lessons/school">← School lessons</Link>
+        <small>CLASS 10 · CIRCLE PROOFS</small>
+        <h1>Perpendicular from Centre to Chord</h1>
+        <p>
+          Prove that a perpendicular from a circle&apos;s centre to a chord
+          bisects the chord.
+        </p>
+        <div>
+          <span>18 min</span>
+          <span>INTERMEDIATE</span>
+          <span>CONCEPT</span>
+          <span>geometry2d</span>
+        </div>
+      </div>
+      <div className="pcc10090-tabs" role="group" aria-label="Lesson sections">
+        {["Interact", "Learn", "Example", "Formula", "Practice"].map((x, i) => (
+          <button
+            key={x}
+            className={tab === i ? "active" : ""}
+            aria-pressed={tab===i} onClick={() => navigateTab(i)}
+          >
+            {x}
+          </button>
+        ))}
+      </div>
+      <main>
+        <section className="pcc10090-lab">
+          <article>
+            <div className="pcc10090-diagram-heading">
+              <div>
+                <h2>INTERACTIVE DIAGRAM</h2>
+                <p>Drag the endpoints A or B to change the chord.</p>
+              </div>
+              <button onClick={reset}>
+                <RotateCcw /> Reset
+              </button>
+            </div>
+            <svg
+              ref={svgRef}
+              viewBox="0 0 570 430"
+              aria-label="Draggable centre perpendicular chord construction"
+              onPointerMove={(e) => {
+                if (dragging) setC(Math.abs(localX(e)) * 2);
+              }}
+              onPointerUp={finish}
+              onPointerCancel={()=>setDragging(false)}
+            >
+              <circle className="circle" cx={cx} cy={cy} r={rr} />
+              {construction && (
+                <>
+                  <line className="radius a" x1={cx} y1={cy} x2={ax} y2={y} />
+                  <line className="radius b" x1={cx} y1={cy} x2={bx} y2={y} />
+                  <line className="perp" x1={cx} y1={cy} x2={cx} y2={y} />
+                  <path className="right" d={`M${cx} ${y-Math.min(16,om*scale*.35,half*scale*.35)}h${Math.min(16,om*scale*.35,half*scale*.35)}v${Math.min(16,om*scale*.35,half*scale*.35)}`} />
+                </>
+              )}
+              <line className="chord" x1={ax} y1={y} x2={bx} y2={y} />
+              {([
+                [-1, "A"],
+                [1, "B"],
+              ] as const).map(([side, label]) => (
+                <g key={label}>
+                  <circle
+                    className={`endpoint ${String(label).toLowerCase()}`} role="slider" aria-valuemin={.5} aria-valuemax={chordMaximum(radius)} aria-valuenow={chord}
+                    tabIndex={0}
+                    aria-label={`Draggable chord endpoint ${label}`}
+                    cx={side === -1 ? ax : bx}
+                    cy={y}
+                    r={Math.min(8,half*scale*.55)}
+                    onPointerDown={(e) => {
+                      e.currentTarget.setPointerCapture(e.pointerId);
+                      setDragging(true);
+                    }}
+                    onKeyDown={(e) => {if(e.key.startsWith('Arrow')){e.preventDefault();e.stopPropagation();}
+                      if (e.key === "ArrowLeft")
+                        keyboard(label === "A" ? 1 : -1);
+                      if (e.key === "ArrowRight")
+                        keyboard(label === "A" ? -1 : 1);
+                    }}
+                  />
+                  <text
+                    x={(side === -1 ? ax : bx) + (side === -1 ? -25 : 14)}
+                    y={y + 8}
+                  >
+                    {label}
+                  </text>
+                </g>
+              ))}
+              <circle className="center" cx={cx} cy={cy} r="7" />
+              <circle className="mid" cx={cx} cy={y} r={Math.min(6,half*scale*.25)} />
+              <text x={cx - 7} y={cy - 16}>
+                O
+              </text>
+              <text x={cx - 8} y={y + 30}>
+                M
+              </text>
+              {construction && (
+                <>
+                  <text className="measure" x={cx-90} y={y+40} textAnchor="middle">
+                    AM = {half.toFixed(2)} cm
+                  </text>
+                  <text className="measure" x={cx+90} y={y+40} textAnchor="middle">
+                    MB = {half.toFixed(2)} cm
+                  </text>
+                  <path
+                    className="brace"
+                    d={`M${ax} ${y + 58}v12M${ax} ${y + 64}H${bx}M${bx} ${y + 58}v12`}
+                  />
+                  <text className="length" x={cx} y={y + 80} textAnchor="middle">
+                    AB = {chord.toFixed(2)} cm
+                  </text>
+                </>
+              )}
+            </svg>
+            <footer>
+              <CheckCircle2 /> Great! AM = MB. The perpendicular from the centre
+              bisects the chord.
+            </footer>
+          </article>
+          <aside>
+            <section>
+              <h2>CONTROLS</h2>
+              <div className="control-field">
+                Radius (r)
+                <input
+                  aria-label="Circle radius"
+                  type="range"
+                  min="3"
+                  max="10"
+                  step=".1"
+                  value={radius}
+                  onChange={(e) => act(() => setR(+e.target.value))}
+                />
+                <NumberEntry label="Radius value" value={radius} min={3} max={10} onValue={v=>act(()=>setR(v))}/>
+              </div>
+              <div className="control-field">
+                Chord length (AB)
+                <input
+                  aria-label="Chord length"
+                  type="range"
+                  min=".5"
+                  max={chordMaximum(radius)}
+                  step=".1"
+                  value={chord}
+                  onChange={(e) => act(() => setC(+e.target.value))}
+                />
+                <NumberEntry label="Chord length value" value={chord} min={.5} max={chordMaximum(radius)} onValue={v=>act(()=>setC(v))}/>
+              </div>
+              <button onClick={random}>
+                <Shuffle /> Random chord
+              </button>
+              <button aria-pressed={construction} onClick={() => act(() => setConstruction((v) => !v))}>
+                <Eye />{" "}
+                {construction ? "Hide construction" : "Show construction"}
+              </button>
+            </section>
+            <section>
+              <h2>MEASUREMENTS</h2>
+              <p>OA = OB = {radius.toFixed(2)} cm (radii)</p>
+              <p>OM = {om.toFixed(2)} cm (perpendicular)</p>
+              <p>AM = {half.toFixed(2)} cm</p>
+              <p>MB = {half.toFixed(2)} cm</p>
+              <strong>∠OMA = 90°</strong>
+              <strong>∠OMB = 90°</strong>
+            </section>
+            <section>
+              <h2>TRIANGLE CHECK</h2>
+              <strong>△OMA ≅ △OMB (RHS)</strong>
+              <p>OA = OB (radii)</p>
+              <p>OM = OM (common)</p>
+              <p>∠OMA = ∠OMB = 90°</p>
+            </section>
+          </aside>
+        </section>
+        <section className="pcc10090-theorem">
+          <article>
+            <h2>THEOREM (RULE)</h2>
+            <p>
+              In a circle, the perpendicular from the centre to a chord bisects
+              the chord.
+            </p>
+          </article>
+          <article>
+            <h2>CONVERSE</h2>
+            <p>
+              In a circle, the line drawn through the centre and midpoint of a
+              non-diameter chord is perpendicular to the chord.
+            </p>
+          </article>
+        </section>
+        <section className="pcc10090-cards">
+          <article>
+            <h2>WHY IT WORKS</h2>
+            <p>Consider △OMA and △OMB.</p>
+            <p>✓ OA = OB (radii)</p>
+            <p>✓ OM = OM (common side)</p>
+            <p>✓ ∠OMA = ∠OMB = 90°</p>
+            <p>By RHS congruence, △OMA ≅ △OMB. Therefore, AM = MB.</p>
+            <ChordFigure/>
+
+          </article>
+          <article>
+            <h2>WORKED EXAMPLE</h2>
+            <p>
+              In a circle of radius 6 cm, chord AB =10 cm.
+            </p>
+            <p>OM ⟂ AB at M. Find AM and MB.</p>
+            <strong><MathExpression value={String.raw`AM=MB=\frac{AB}{2}=\frac{10}{2}=5\text{ cm}`}/></strong><em>Answer: AM =MB =5 cm.</em><ChordFigure labels/>
+          </article>
+          <article className="warning">
+            <h2>COMMON MISCONCEPTION</h2>
+            <strong>
+              A segment from the centre to an arbitrary point on the chord does NOT necessarily
+              bisect the chord.
+            </strong>
+            <ChordFigure warning/>
+            <p>OP is not perpendicular to AB. Here AP =3 cm and PB =7 cm, so AP ≠PB.</p>
+          </article>
+        </section>
+        <section className="pcc10090-challenge">
+          <article>
+            <h2>CHALLENGE: YOUR TURN</h2>
+            <p>
+              Move A or B to change the chord. Keep OM perpendicular to AB.
+              Verify that AM always equals MB. Try different chord lengths.
+            </p>
+          </article>
+          <article>
+            <h3>Goal</h3>
+            <p>Keep ∠OMA = 90°.</p>
+            <p>Verify AM = MB.</p>
+          </article>
+          <article>
+            <h3>Live check</h3>
+            <p>{model.angleA.toFixed(1)}° at M — perpendicular</p>
+            <p>AM ={model.am.toFixed(2)} cm; MB ={model.mb.toFixed(2)} cm</p>
+            <strong>{valid?'All good!':'Check the construction.'}</strong>
+          </article>
+        </section>
+      </main>
+      <nav className="pcc10090-nav">
+        <Link to="/lessons/school/class-10/class-10-circle-proofs-equal-chords-and-equal-angles">
+          <ArrowLeft />
+          Equal Chords and Equal Angles
+        </Link>
+        <Link to="/lessons/school/class-10/class-10-circle-proofs-angle-subtended-by-an-arc">
+
+          Angle Subtended by an Arc <ArrowRight />
+        </Link>
+      </nav>
+      <footer className="pcc10090-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, graphing, and classroom activities.</p><small>©2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small></footer>
+
+    </section>
+  );
+}

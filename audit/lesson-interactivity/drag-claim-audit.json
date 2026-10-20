@@ -1,0 +1,122 @@
+[
+  {
+    "index": 833,
+    "source": "src/modules/lessons/schoolTargets/PlaneEquationTargetLesson10159.tsx",
+    "claims": [
+      "Drag the yellow point"
+    ]
+  },
+  {
+    "index": 832,
+    "source": "src/modules/lessons/schoolTargets/ShortestDistanceLinesTargetLesson10158.tsx",
+    "claims": [
+      "Drag the point"
+    ]
+  },
+  {
+    "index": 830,
+    "source": "src/modules/lessons/schoolTargets/CartesianLineTargetLesson10156.tsx",
+    "claims": [
+      "Drag the moving point"
+    ]
+  },
+  {
+    "index": 829,
+    "source": "src/modules/lessons/schoolTargets/VectorEquationLineTargetLesson10155.tsx",
+    "claims": [
+      "Drag the scene to rotate it. A zero direction describes a point"
+    ]
+  },
+  {
+    "index": 821,
+    "source": "src/modules/lessons/schoolTargets/ParabolaTangentTargetLesson10147.tsx",
+    "claims": [
+      "Drag P or Q vertically; arrow keys edit the focused point"
+    ]
+  },
+  {
+    "index": 820,
+    "source": "src/modules/lessons/schoolTargets/ParametricCoordinatesTargetLesson10146.tsx",
+    "claims": [
+      "Drag P; arrow keys edit the focused point"
+    ]
+  },
+  {
+    "index": 818,
+    "source": "src/modules/lessons/schoolTargets/HyperbolaStandardFormsTargetLesson10144.tsx",
+    "claims": [
+      "drag point"
+    ]
+  },
+  {
+    "index": 817,
+    "source": "src/modules/lessons/schoolTargets/EllipseStandardFormsTargetLesson10143.tsx",
+    "claims": [
+      "Drag point"
+    ]
+  },
+  {
+    "index": 816,
+    "source": "src/modules/lessons/schoolTargets/FocusDirectrixTargetLesson10142.tsx",
+    "claims": [
+      "Drag point"
+    ]
+  },
+  {
+    "index": 659,
+    "source": "src/modules/lessons/adapters/finance/ProfitLossTargetLesson602.tsx",
+    "claims": [
+      "Drag the orange point"
+    ]
+  },
+  {
+    "index": 593,
+    "source": "src/modules/lessons/adapters/geometry3d/EulerFormulaTargetLesson408.tsx",
+    "claims": [
+      "Drag to rotate · Click a vertex"
+    ]
+  },
+  {
+    "index": 455,
+    "source": "src/modules/lessons/adapters/ExponentialRegressionLesson492.tsx",
+    "claims": [
+      "Drag point"
+    ]
+  },
+  {
+    "index": 453,
+    "source": "src/modules/lessons/adapters/LinearRegressionLesson490.tsx",
+    "claims": [
+      "Drag point"
+    ]
+  },
+  {
+    "index": 450,
+    "source": "src/modules/lessons/adapters/ScatterPlotLesson487.tsx",
+    "claims": [
+      "Drag point"
+    ]
+  },
+  {
+    "index": 442,
+    "source": "src/modules/lessons/adapters/OutliersLesson479.tsx",
+    "claims": [
+      "Drag point"
+    ]
+  },
+  {
+    "index": 441,
+    "source": "src/modules/lessons/adapters/ZScoresLesson478.tsx",
+    "claims": [
+      "drag the point"
+    ]
+  },
+  {
+    "index": 437,
+    "source": "src/modules/lessons/adapters/RangeLesson474.tsx",
+    "claims": [
+      "Drag the dataset point",
+      "Drag point"
+    ]
+  }
+]

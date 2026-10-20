@@ -1,0 +1,30 @@
+{
+  "status": "browser-verified",
+  "checks": [
+    "independent initial total and grouped mean",
+    "closing switch changes polygon vertices",
+    "zero closing endpoint",
+    "editable class width and start",
+    "edited frequencies update total and mean",
+    "correct and incorrect modal-class feedback",
+    "all-zero boundary"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 325,
+      "scroll": 325
+    },
+    {
+      "width": 768,
+      "client": 703,
+      "scroll": 703
+    },
+    {
+      "width": 1440,
+      "client": 1351,
+      "scroll": 1351
+    }
+  ],
+  "errors": []
+}

@@ -17,7 +17,7 @@ import type { LessonAdapterProps } from "../../types";
 import "./TypesOfDiscontinuityTargetLesson282.css";
 import { LessonTopicStudyBoard } from "../../components/LessonTopicStudyBoard";
 
-type BreakType = "removable" | "jump" | "infinite";
+import {discontinuityValue,type BreakType} from "./discontinuityModel";
 type MarkerState = Record<BreakType, { left: number; right: number }>;
 
 const labels: Record<BreakType, string> = {
@@ -79,6 +79,8 @@ export default function TypesOfDiscontinuityTargetLesson282({
       data-classification-correct={classification === selected}
       data-left-marker={markers[selected].left}
       data-right-marker={markers[selected].right}
+      data-left-value={discontinuityValue(selected,markers[selected].left)!}
+      data-right-value={discontinuityValue(selected,markers[selected].right)!}
       data-actions={actions}
     >
       <span className="sr-only">Types of discontinuity</span>
@@ -240,10 +242,12 @@ function BreakCard({
         </div>
       </header>
       <BreakGraph type={type} markers={markers} onMove={onMove} />
+      <p>{type==='removable'?'f(x) = 2 + x²/4 for x ≠ 0; f(0) = 3':type==='jump'?'f(x) = 2 + x²/4 for x ≤ 0; −1 + x/4 for x > 0':'f(x) = 1/x²; f(0) is undefined'}</p><output aria-label={`${type} left value`}>Left: x = {markers.left}, f(x) = {discontinuityValue(type,markers.left)!.toFixed(3)}</output><output aria-label={`${type} right value`}>Right: x = {markers.right}, f(x) = {discontinuityValue(type,markers.right)!.toFixed(3)}</output>
+      {type==='infinite'&&<p>Markers at the top edge indicate values above the visible y-range.</p>}
       <div className="approach">
         <span>Drag to approach</span>
-        <button onClick={(event) => event.stopPropagation()}>x → a⁻</button>
-        <button onClick={(event) => event.stopPropagation()}>x → a⁺</button>
+        <button aria-label={`Approach ${type} from left`} onClick={event=>{event.stopPropagation();onSelect();onMove("left",Math.min(-.15,markers.left/2));}}>x → a⁻</button>
+        <button aria-label={`Approach ${type} from right`} onClick={event=>{event.stopPropagation();onSelect();onMove("right",Math.max(.15,markers.right/2));}}>x → a⁺</button>
       </div>
     </article>
   );
@@ -263,35 +267,24 @@ function BreakGraph({
     (side: "left" | "right") =>
     (event: ReactPointerEvent<SVGCircleElement>) => {
       if (event.buttons !== 1 && event.type === "pointermove") return;
-      const box = event.currentTarget.ownerSVGElement?.getBoundingClientRect();
-      if (!box) return;
-      const x = ((event.clientX - box.left) / box.width) * 290;
+      const matrix = event.currentTarget.ownerSVGElement?.getScreenCTM();
+      if (!matrix) return;
+      const x = new DOMPoint(event.clientX,event.clientY).matrixTransform(matrix.inverse()).x;
       const value = (x - 145) / 56;
       onMove(
         side,
-        side === "left" ? Math.min(-0.15, value) : Math.max(0.15, value),
+        side === "left" ? Math.max(-2.3,Math.min(-0.15, value)) : Math.min(2.3,Math.max(0.15, value)),
       );
     };
-  const leftT = Math.max(0, Math.min(1, (sx(markers.left) - 15) / 130));
-  const rightT = Math.max(0, Math.min(1, (sx(markers.right) - 145) / 130));
-  const leftY =
-    type === "removable"
-      ? 189 - 26.4 * markers.left * markers.left
-      : type === "jump"
-        ? 135 - 47 * leftT * leftT
-        : 145 - 45 / Math.abs(markers.left);
-  const rightY =
-    type === "removable"
-      ? 189 - 26.4 * markers.right * markers.right
-      : type === "jump"
-        ? 190 * (1 - rightT) * (1 - rightT) +
-          290 * rightT * (1 - rightT) +
-          140 * rightT * rightT
-        : 145 - 45 / Math.abs(markers.right);
+  const sy=(value:number)=>230-40*value;
+  const valueAt=(x:number)=>discontinuityValue(type,x)!;
+  const curve=(from:number,to:number)=>Array.from({length:81},(_,index)=>{const x=from+(to-from)*index/80;return `${sx(x)},${sy(valueAt(x))}`;}).join(' ');
+  const leftY=Math.max(15,Math.min(270,sy(valueAt(markers.left))));
+  const rightY=Math.max(15,Math.min(270,sy(valueAt(markers.right))));
   return (
     <svg
       viewBox="0 0 290 280"
-      role="img"
+      role="group"
       aria-label={`${labels[type]} graph with draggable approach markers`}
     >
       <defs>
@@ -308,55 +301,28 @@ function BreakGraph({
       <line className="axis" x1="10" y1="230" x2="280" y2="230" />
       <line className="axis" x1="145" y1="18" x2="145" y2="255" />
       <line className="guide" x1="145" y1="25" x2="145" y2="250" />
-      {type === "removable" && (
-        <>
-          <path className="blue" d="M20 58 Q145 320 270 58" />
-          <circle className="hole" cx="145" cy="189" r="7" />
-          <circle className="filled" cx="145" cy="85" r="6" />
-        </>
-      )}
-      {type === "jump" && (
-        <>
-          <path className="blue" d="M15 135 Q80 135 145 88" />
-          <path className="purple" d="M145 190 Q205 145 275 140" />
-          <circle className="filled" cx="145" cy="88" r="6" />
-          <circle className="hole purple-hole" cx="145" cy="190" r="7" />
-        </>
-      )}
-      {type === "infinite" && (
-        <>
-          <path className="blue" d="M18 145 C95 130 125 98 140 25" />
-          <path className="purple" d="M150 25 C160 105 190 132 272 145" />
-          <text className="infinity" x="108" y="40">
-            +∞
-          </text>
-          <text className="infinity purple-text" x="215" y="40">
-            +∞
-          </text>
-          <text className="infinity" x="108" y="250">
-            −∞
-          </text>
-          <text className="infinity purple-text" x="215" y="250">
-            −∞
-          </text>
-        </>
-      )}
+      <polyline points={curve(-2.3,-.05)} fill="none" stroke="#187ac5" strokeWidth="3"/>
+      <polyline points={curve(.05,2.3)} fill="none" stroke="#884ac9" strokeWidth="3"/>
+      {type==='removable'&&<><circle className="hole" cx="145" cy={sy(2)} r="7"/><circle className="filled" cx="145" cy={sy(3)} r="6"/></>}
+      {type==='jump'&&<><circle className="filled" cx="145" cy={sy(2)} r="6"/><circle className="hole purple-hole" cx="145" cy={sy(-1)} r="7"/></>}
+      {type==='infinite'&&<><text x="105" y="20">+∞</text><text x="175" y="20">+∞</text></>}
+      {[0,1,2,3,4].map(value=><text key={value} x="150" y={sy(value)-4} fontSize="10">{value}</text>)}
       <circle
-        data-drag={`${type}-left`}
+        data-drag={`${type}-left`} role="button" tabIndex={0} aria-label={`Move ${type} left approach marker. Use arrow keys.`} onKeyDown={event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();const next=markers.left+(event.key==='ArrowRight' ? .1 : -.1);onMove('left',Math.max(-2.3,Math.min(-.15,next)));}}}
         className="marker left"
         cx={sx(markers.left)}
         cy={leftY}
         r="7"
-        onPointerDown={drag("left")}
+        onPointerDown={event=>{event.preventDefault();event.currentTarget.focus();event.currentTarget.setPointerCapture(event.pointerId);drag("left")(event);}}
         onPointerMove={drag("left")}
       />
       <circle
-        data-drag={`${type}-right`}
+        data-drag={`${type}-right`} role="button" tabIndex={0} aria-label={`Move ${type} right approach marker. Use arrow keys.`} onKeyDown={event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();const next=markers.right+(event.key==='ArrowRight' ? .1 : -.1);onMove('right',Math.min(2.3,Math.max(.15,next)));}}}
         className="marker right"
         cx={sx(markers.right)}
         cy={rightY}
         r="7"
-        onPointerDown={drag("right")}
+        onPointerDown={event=>{event.preventDefault();event.currentTarget.focus();event.currentTarget.setPointerCapture(event.pointerId);drag("right")(event);}}
         onPointerMove={drag("right")}
       />
       <text x="276" y="222">
@@ -417,7 +383,7 @@ function AnalysisPanel({
         </p>
       </article>
       <section>
-        <h3>Classify this break</h3>
+        <h3>Classify this break</h3><p role="status">{classification===selected ? "Correct classification." : "Try again: compare the one-sided limits."}</p>
         <p>Choose the type that matches the graph.</p>
         {(["removable", "jump", "infinite"] as BreakType[]).map((type) => (
           <label key={type} className={classification === type ? "chosen" : ""}>

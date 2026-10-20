@@ -471,7 +471,7 @@ export default function IdentitiesTargetLesson106({
               Substitute different values to see both sides are always equal.
             </p>
             {testSamples ? (
-              <table>
+              <div className="lesson-table-scroll-163"><table>
                 <thead>
                   <tr>
                     <th>x value</th>
@@ -506,7 +506,7 @@ export default function IdentitiesTargetLesson106({
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </table></div>
             ) : (
               <div className="hidden-evidence">Sample testing hidden</div>
             )}

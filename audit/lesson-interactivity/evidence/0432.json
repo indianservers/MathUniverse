@@ -1,0 +1,26 @@
+{
+  "checks": [
+    "boundary edits update widths and counts",
+    "histogram widths are proportional to class widths",
+    "frequency density heights",
+    "wrong and correct grouped frequency answers"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 325,
+      "scroll": 325
+    },
+    {
+      "width": 768,
+      "client": 703,
+      "scroll": 703
+    },
+    {
+      "width": 1440,
+      "client": 1351,
+      "scroll": 1351
+    }
+  ],
+  "errors": []
+}

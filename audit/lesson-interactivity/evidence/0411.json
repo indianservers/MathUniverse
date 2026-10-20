@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/calculus/332-cobweb-diagrams",
+  "action": {
+    "control": "Cobweb iteration depth",
+    "before": "6",
+    "after": "5",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 346,
+      "scroll": 346
+    },
+    {
+      "width": 768,
+      "client": 724,
+      "scroll": 724
+    },
+    {
+      "width": 1440,
+      "client": 1396,
+      "scroll": 1396
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

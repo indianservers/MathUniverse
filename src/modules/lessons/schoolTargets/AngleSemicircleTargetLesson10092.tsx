@@ -11,22 +11,30 @@ import { type PointerEvent, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AngleSemicircleTargetLesson10092.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-import { LessonGraphInkLegend, lessonGraphInkProps } from "../graphs/LessonGraphInk";
+import MathExpression from "../../../components/ui/MathExpression";
+import {semicircleModel,clampSemicircle,advanceSemicircle} from "./semicircleModel";
+import {tangentRightAngle} from "./tangentLengthsModel";
+import {cyclicSector} from "./oppositeCyclicModel";
+import {sameSegmentModel} from "./sameSegmentModel";
+
 
 const RADIUS = 6.31;
 const round = (value: number, places = 2) =>
   Math.round(value * 10 ** places) / 10 ** places;
+
+const EXAMPLE=semicircleModel(Math.acos(2/7)*180/Math.PI,7);
+function SemicircleFigure({warning=false}:{warning?:boolean}){const w=sameSegmentModel(60,90,220,350),m=EXAMPLE,center={x:160,y:warning?140:170},scale=warning?90:15,project=(p:{x:number;y:number})=>({x:center.x+p.x*scale,y:center.y-p.y*scale}),a=project(warning?w.a:m.a),b=project(warning?w.b:m.b),c=project(warning?w.c:m.c);return <svg className="ais10092-mini-svg" viewBox="0 0 320 280" role="img" aria-label={warning?'Non-diameter chord with an inscribed angle65degrees':'Radius7 circle example with C at2 and square root45'}>{warning?<circle className="circle" cx="160" cy="140" r="90"/>:<path className="circle" d="M55 170A105 105 0 0 1 265 170"/>}<path className="triangle" d={`M${a.x} ${a.y}L${c.x} ${c.y}L${b.x} ${b.y}L${a.x} ${a.y}`} fill="none"/>{!warning&&<line className="radius" x1={center.x} y1={center.y} x2={c.x} y2={c.y}/>}<path className={`angle ${warning?'warning-angle':'angle-c'}`} d={cyclicSector(c,a,b,21)}/>{!warning&&<polyline className="right-mark" points={tangentRightAngle(c,a,b,10).map(p=>`${p.x},${p.y}`).join(' ')}/>}<circle className="center" cx={center.x} cy={center.y} r="3"/>{[['A',a],['B',b],['C',c]].map(([n,p])=>{const q=p as {x:number;y:number};return <g key={n as string}><circle className={n==='C'?'point draggable':'point'} cx={q.x} cy={q.y} r="4"/><text className={n==='C'?'label-c':''} x={q.x+(n==='C'?5:-10)} y={q.y+(n==='C'?-12:22)}>{n as string}</text></g>;})}<text x={center.x-20} y={center.y+22}>O</text><text className={warning?'warning-text':'angle-c-text'} x={c.x+22} y={c.y+35}>{warning?'65° ≠90°':'90°'}</text></svg>;}
 
 export default function AngleSemicircleTargetLesson10092({
   lesson: _lesson,
 }: {
   lesson: SchoolSyllabusLesson;
 }) {
-  const [theta, setTheta] = useState(68);
+  const [motion,setMotion]=useState({theta:68,direction:1});
+  const theta=motion.theta;
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(2);
-  const [direction, setDirection] = useState(1);
+
   const [dragging, setDragging] = useState(false);
   const [tab, setTab] = useState(0);
   const [actions, setActions] = useState(0);
@@ -35,67 +43,37 @@ export default function AngleSemicircleTargetLesson10092({
     fn();
     setActions((value) => value + 1);
   };
-  const setPoint = (value: number) =>
-    setTheta(Math.max(12, Math.min(168, value)));
+  const setPoint=(value:number)=>{if(!Number.isFinite(value))return;setPlaying(false);setMotion(v=>({...v,theta:clampSemicircle(value)}));};
 
   useEffect(() => {
     if (!playing) return;
     const timer = window.setInterval(() => {
-      setTheta((value) => {
-        const next = value + direction * speed;
-        if (next >= 168) {
-          setDirection(-1);
-          return 168;
-        }
-        if (next <= 12) {
-          setDirection(1);
-          return 12;
-        }
-        return next;
-      });
+      setMotion(value=>advanceSemicircle(value,speed));
     }, 55);
     return () => window.clearInterval(timer);
-  }, [direction, playing, speed]);
+  }, [playing, speed]);
 
-  const radians = (theta * Math.PI) / 180;
-  const point = {
-    x: round(RADIUS * Math.cos(radians)),
-    y: round(RADIUS * Math.sin(radians)),
-  };
-  const angleA = round(theta / 2);
-  const angleB = round(90 - theta / 2);
-  const angleC = 90;
-  const acExact = 2 * RADIUS * Math.sin(radians / 2);
-  const bcExact = 2 * RADIUS * Math.cos(radians / 2);
-  const ac = round(acExact);
-  const bc = round(bcExact);
-  const diameter = round(2 * RADIUS);
-  const lhs = round(acExact * acExact + bcExact * bcExact);
-  const rhs = round((2 * RADIUS) ** 2);
-  const verified = Math.abs(lhs - rhs) < 0.001;
+  const model=semicircleModel(theta),point=model.c,angleA=model.angleA,angleB=model.angleB,angleC=model.angleC,acExact=model.ac,bcExact=model.bc,ac=round(model.ac),bc=round(model.bc),diameter=model.diameter,lhs=round(model.lhs),rhs=round(model.rhs),verified=model.verified;
   const cx = 344,
-    cy = 256,
-    scale = 40,
+    cy = 295,
+    scale = 30,
     rr = RADIUS * scale;
   const a = { x: cx - rr, y: cy };
   const b = { x: cx + rr, y: cy };
   const c = { x: cx + point.x * scale, y: cy - point.y * scale };
 
+  const markSize=Math.min(14,acExact*scale/4,bcExact*scale/4),sectorA=Math.min(38,acExact*scale*.35),sectorB=Math.min(38,bcExact*scale*.35),sectorC=Math.min(29,acExact*scale*.35,bcExact*scale*.35);
   const updateFromPointer = (event: PointerEvent<SVGSVGElement>) => {
-    const box = svgRef.current?.getBoundingClientRect();
-    if (!box) return;
-    const x = ((event.clientX - box.left) / box.width) * 688 - cx;
-    const y = cy - ((event.clientY - box.top) / box.height) * 535;
-    let degrees = (Math.atan2(y, x) * 180) / Math.PI;
-    if (degrees < 0) degrees += 360;
-    if (degrees <= 180) setPoint(degrees);
+    const matrix=svgRef.current?.getScreenCTM();if(!matrix)return;const p=new DOMPoint(event.clientX,event.clientY).matrixTransform(matrix.inverse()),x=p.x-cx,y=cy-p.y;setPoint(Math.atan2(Math.max(0,y),x)*180/Math.PI);
   };
+  const finishPointer=(e:PointerEvent<SVGSVGElement>)=>{if(dragging){updateFromPointer(e);act(()=>setDragging(false));}};
+  const navigateTab=(i:number)=>{act(()=>setTab(i));const selectors=['.ais10092-lab','.ais10092-cards','.ais10092-cards article:nth-child(2)','.ais10092-cards','.ais10092-bottom'];svgRef.current?.closest('main')?.querySelector(selectors[i])?.scrollIntoView({behavior:'smooth',block:'start'});};
   const reset = () =>
     act(() => {
-      setTheta(68);
+      setMotion({theta:68,direction:1});setDragging(false);setTab(0);
       setPlaying(false);
       setSpeed(2);
-      setDirection(1);
+
     });
 
   return (
@@ -104,15 +82,16 @@ export default function AngleSemicircleTargetLesson10092({
       data-testid="school-mockup-0766"
       data-object-model="dedicated-diameter-semicircle-right-angle-engine"
       data-theta={round(theta)}
-      data-c={`${point.x},${point.y}`}
-      data-angle-a={angleA}
-      data-angle-b={angleB}
-      data-angle-c={angleC}
+      data-c={`${round(point.x)},${round(point.y)}`}
+      data-angle-a={round(angleA)}
+      data-angle-b={round(angleB)}
+      data-angle-c={round(angleC)}
       data-pythagorean={String(verified)}
       data-playing={String(playing)}
+      data-exact-theta={theta} data-exact-c={JSON.stringify(point)} data-exact-angles={JSON.stringify({A:angleA,B:angleB,C:angleC})} data-exact-lengths={JSON.stringify({AC:acExact,BC:bcExact,AB:diameter})} data-exact-pythagoras={JSON.stringify({lhs:model.lhs,rhs:model.rhs})} data-speed={speed}
       data-actions={actions}
     >
-      <header className="ais10092-hero">
+      <div className="ais10092-hero"><Link className="ais10092-school" to="/lessons/school">← School lessons</Link>
         <small>CLASS 10 · CIRCLE PROOFS</small>
         <h1>Angle in a Semicircle</h1>
         <p>
@@ -126,28 +105,28 @@ export default function AngleSemicircleTargetLesson10092({
           <span>NCERT 10.2</span>
           <span>Geometry</span>
         </div>
-      </header>
+      </div>
 
-      <nav className="ais10092-tabs">
+      <div className="ais10092-tabs" role="group" aria-label="Lesson sections">
         {["Interact", "Learn", "Example", "Formula", "Practice"].map(
           (label, index) => (
             <button
               key={label}
               className={tab === index ? "active" : ""}
-              onClick={() => act(() => setTab(index))}
+              aria-pressed={tab===index} onClick={() => navigateTab(index)}
             >
               {label}
             </button>
           ),
         )}
-      </nav>
+      </div>
 
       <main>
         <section className="ais10092-lab">
           <aside>
             <h2>DRAG &amp; EXPLORE</h2>
-            <p>Drag point C anywhere on the semicircle.</p>
-            <strong className="result">Result: ∠ACB is always 90°.</strong>
+            <p>Drag C along the semicircle, away from the diameter endpoints.</p>
+            <strong className="ais10092-result">Result: ∠ACB is always 90°.</strong>
             <h3>Measurements</h3>
             <dl>
               <div>
@@ -181,7 +160,7 @@ export default function AngleSemicircleTargetLesson10092({
             <div className="verified">
               <CheckCircle2 />
               <b>Right triangle verified!</b>
-              <span>AC² + BC² = AB²</span>
+              <span>AC² + BC² = AB² (before display rounding)</span>
             </div>
           </aside>
 
@@ -190,46 +169,35 @@ export default function AngleSemicircleTargetLesson10092({
               ref={svgRef}
               viewBox="0 0 688 535"
               aria-label="Angle in a semicircle interactive diagram"
-              {...lessonGraphInkProps}
               onPointerMove={(event) => dragging && updateFromPointer(event)}
-              onPointerUp={() => dragging && act(() => setDragging(false))}
-              onPointerLeave={() => dragging && act(() => setDragging(false))}
+              onPointerUp={finishPointer}
+              onPointerCancel={()=>setDragging(false)}
             >
               <defs>
                 <pattern
                   id="ais-grid"
-                  width="40"
-                  height="40"
+                  x="44" y="-5" width="60"
+                  height="60"
                   patternUnits="userSpaceOnUse"
                 >
-                  <path d="M40 0H0V40" />
+                  <path d="M60 0H0V60" />
                 </pattern>
               </defs>
               <rect
                 className="grid"
-                width="688"
-                height="535"
+                x="56" y="35" width="600"
+                height="470"
                 fill="url(#ais-grid)"
               />
-              <LessonGraphInkLegend />
-              <line className="axis" x1="35" y1={cy} x2="655" y2={cy} />
+              <line className="axis" x1="56" y1={cy} x2="656" y2={cy}/><line className="axis" x1="56" y1="35" x2="56" y2="505"/>
+              {[-8,-6,-4,-2,0,2,4,6,8].map(v=><text key={`x${v}`} className="tick" x={cx+v*scale} y="522" textAnchor="middle">{v}</text>)}
+              {[-6,-4,-2,0,2,4,6,8].map(v=><text key={`y${v}`} className="tick" x="47" y={cy-v*scale+4} textAnchor="end">{v}</text>)}
               <circle className="circle" cx={cx} cy={cy} r={rr} />
               <line className="triangle" x1={a.x} y1={a.y} x2={c.x} y2={c.y} />
               <line className="triangle" x1={c.x} y1={c.y} x2={b.x} y2={b.y} />
               <line className="diameter" x1={a.x} y1={a.y} x2={b.x} y2={b.y} />
               <line className="radius" x1={cx} y1={cy} x2={c.x} y2={c.y} />
-              <path
-                className="angle angle-a"
-                d={`M${a.x + 38} ${a.y} A38 38 0 0 0 ${a.x + 30} ${a.y - 24}`}
-              />
-              <path
-                className="angle angle-b"
-                d={`M${b.x - 38} ${b.y} A38 38 0 0 1 ${b.x - 24} ${b.y - 30}`}
-              />
-              <polyline
-                className="right-mark"
-                points={`${c.x - 16},${c.y + 20} ${c.x + 4},${c.y + 34} ${c.x + 19},${c.y + 15}`}
-              />
+              <path className="angle angle-a" d={cyclicSector(a,b,c,sectorA)}/><path className="angle angle-b" d={cyclicSector(b,c,a,sectorB)}/><path className="angle angle-c" d={cyclicSector(c,a,b,sectorC)}/><polyline className="right-mark" points={tangentRightAngle(c,a,b,markSize).map(p=>`${p.x},${p.y}`).join(' ')}/>
               <circle className="center" cx={cx} cy={cy} r="5" />
               <circle className="point" cx={a.x} cy={a.y} r="6" />
               <circle className="point" cx={b.x} cy={b.y} r="6" />
@@ -241,14 +209,14 @@ export default function AngleSemicircleTargetLesson10092({
                 role="slider"
                 tabIndex={0}
                 aria-label="Point C on semicircle"
-                aria-valuemin={12}
-                aria-valuemax={168}
+                aria-valuemin={2}
+                aria-valuemax={178}
                 aria-valuenow={round(theta)}
                 onPointerDown={(event) => {
-                  event.currentTarget.setPointerCapture(event.pointerId);
+                  setPlaying(false);event.currentTarget.setPointerCapture(event.pointerId);
                   act(() => setDragging(true));
                 }}
-                onKeyDown={(event) => {
+                onKeyDown={(event) => {event.stopPropagation();
                   if (event.key === "ArrowLeft") {
                     event.preventDefault();
                     act(() => setPoint(theta + 2));
@@ -259,14 +227,14 @@ export default function AngleSemicircleTargetLesson10092({
                   }
                 }}
               />
-              <text x={a.x} y={a.y + 30}>
+              <text className="coordinate-label" x={a.x} y={a.y + 30}>
                 A (−{RADIUS}, 0)
               </text>
-              <text x={b.x - 78} y={b.y + 30}>
+              <text className="coordinate-label" x={b.x - 78} y={b.y + 30}>
                 B ({RADIUS}, 0)
               </text>
               <text className="label-c" x={c.x + 8} y={c.y - 14}>
-                C ({point.x}, {point.y})
+                C ({round(point.x)}, {round(point.y)})
               </text>
               <text x={cx - 24} y={cy + 28}>
                 O (0, 0)
@@ -307,16 +275,16 @@ export default function AngleSemicircleTargetLesson10092({
           <input
             aria-label="Point C position"
             type="range"
-            min="12"
-            max="168"
-            value={theta}
+            min="2"
+            max="178"
+            step="0.001" value={theta}
             onChange={(event) => act(() => setPoint(+event.target.value))}
           />
           <div>
             {[1, 2, 4].map((value, index) => (
               <button
                 key={value}
-                className={speed === value ? "active" : ""}
+                aria-pressed={speed===value} className={speed === value ? "active" : ""}
                 onClick={() => act(() => setSpeed(value))}
               >
                 {["Slow", "Medium", "Fast"][index]}
@@ -337,9 +305,10 @@ export default function AngleSemicircleTargetLesson10092({
                 isosceles.
               </li>
               <li>Let ∠CAO = ∠ACO = α and ∠CBO = ∠OCB = β.</li>
-              <li>Angles around O give 2(α + β) = 180°.</li>
+              <li>Since A, O and B are collinear, ∠AOC + ∠COB =180°. This gives 2(α + β) =180°.</li>
               <li>Therefore α + β = 90°.</li>
             </ol>
+            <MathExpression value={String.raw`(180^\circ-2\alpha)+(180^\circ-2\beta)=180^\circ`}/><p>Thus α + β =90°, and ∠ACB = α + β.</p>
             <strong>
               <CheckCircle2 /> Therefore, ∠ACB = 90°.
             </strong>
@@ -351,19 +320,13 @@ export default function AngleSemicircleTargetLesson10092({
               <br />
               Diameter AB with A(−7,0), B(7,0).
             </p>
-            <div className="mini-circle">
-              <span>C</span>
-              <i />
-              <b>A</b>
-              <b>O</b>
-              <b>B</b>
-            </div>
+            <p><MathExpression value={String.raw`C=(2,\sqrt{7^2-2^2})=(2,\sqrt{45})\approx(2,6.708)`}/></p><SemicircleFigure/>
             <p className="answers">
               ∠ACB = 90.00°
               <br />
-              ∠CAB + ∠CBA = 90.00°
+              ∠CAB = {EXAMPLE.angleA.toFixed(2)}°<br/>∠CBA = {EXAMPLE.angleB.toFixed(2)}°
             </p>
-            <b>Check: AC² + BC² = AB² ✓</b>
+            <MathExpression value={String.raw`AC^2+BC^2=126+70=196=14^2=AB^2`}/>
           </article>
           <article className="warning">
             <h2>
@@ -372,11 +335,7 @@ export default function AngleSemicircleTargetLesson10092({
             <p>
               If AB is not a diameter (just a chord), ∠ACB is <b>not</b> 90°.
             </p>
-            <div className="wrong-circle">
-              <i />
-              <i />
-              <i />
-            </div>
+            <SemicircleFigure warning/>
             <p>The right angle happens only when AB is a diameter.</p>
             <strong>Rule: Must be a diameter.</strong>
           </article>
@@ -388,9 +347,9 @@ export default function AngleSemicircleTargetLesson10092({
             <p>
               Drag point C around the semicircle and try to keep ∠ACB = 90°.
             </p>
+            <ol className="challenge-instructions"><li>Keep dragging C to different positions.</li><li>Observe that the right angle never changes.</li><li>Try auto-drag and watch the angle.</li></ol>
             <div className="target">
-              <span>Target</span>
-              <b>90°</b>
+              <div className="target-goal"><span>Target</span><b>90°</b></div>
               <span>Current</span>
               <b>{angleC.toFixed(2)}°</b>
               <em>Great! You nailed it.</em>
@@ -420,7 +379,7 @@ export default function AngleSemicircleTargetLesson10092({
           </Link>
         </nav>
       </main>
-      <LessonTopicStudyBoard lessonId={10092} view={tab} />
+      <footer className="ais10092-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, graphing, and classroom activities.</p><small>©2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small></footer>
 
     </section>
   );

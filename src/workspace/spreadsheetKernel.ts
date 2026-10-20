@@ -9,7 +9,7 @@ export function cellName(row: number, column: number) {
 }
 
 export function parseCellName(name: string) {
-  const match = name.trim().toUpperCase().match(/^([A-Z]+)(\d+)$/);
+  const match = name.trim().toUpperCase().match(/^\$?([A-Z]+)\$?([1-9]\d*)$/);
   if (!match) return null;
   return { row: Number(match[2]) - 1, column: columnIndex(match[1]) };
 }
@@ -34,13 +34,14 @@ export function evaluateSpreadsheetGrid(grid: SpreadsheetGrid): SpreadsheetEvalR
     }
     resolving.add(key);
     try {
-      const expression = raw.slice(1).replace(/\b[A-Z]+\d+\b/gi, (token) => {
+      const expression = raw.slice(1).replace(/\$?[A-Z]+\$?[1-9]\d*\b/gi, (token) => {
         const ref = parseCellName(token);
         if (!ref) return "0";
         const value = Number(resolve(ref.row, ref.column));
         return Number.isFinite(value) ? String(value) : "0";
       });
       const value = safeEvaluate(expression);
+      if (!Number.isFinite(value)) throw new Error("Undefined spreadsheet result (division by zero or overflow)");
       const result = String(round(value));
       cache.set(key, result);
       values[row][column] = result;
@@ -71,7 +72,7 @@ export function fillDownFormula(grid: SpreadsheetGrid, sourceCell: string, targe
   for (let row = range.start.row; row <= range.end.row; row += 1) {
     for (let column = range.start.column; column <= range.end.column; column += 1) {
       ensureCell(next, row, column);
-      next[row][column] = shiftFormula(formula, row - source.row, column - source.column);
+      next[row][column] = shiftSpreadsheetFormula(formula, row - source.row, column - source.column);
     }
   }
   return next;
@@ -93,12 +94,12 @@ export function rangeToCsv(grid: SpreadsheetGrid, rangeText: string) {
   return grid.slice(range.start.row, range.end.row + 1).map((row) => row.slice(range.start.column, range.end.column + 1).map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n");
 }
 
-function shiftFormula(formula: string, rowOffset: number, columnOffset: number) {
+export function shiftSpreadsheetFormula(formula: string, rowOffset: number, columnOffset: number) {
   if (!formula.startsWith("=")) return formula;
-  return formula.replace(/\b([A-Z]+)(\d+)\b/gi, (token) => {
-    const ref = parseCellName(token);
-    if (!ref) return token;
-    return cellName(Math.max(0, ref.row + rowOffset), Math.max(0, ref.column + columnOffset));
+  return formula.replace(/(\$?)([A-Z]+)(\$?)([1-9]\d*)\b/gi, (_token, fixedColumn: string, column: string, fixedRow: string, row: string) => {
+    const nextRow = Math.max(0, Number(row) - 1 + (fixedRow ? 0 : rowOffset));
+    const nextColumn = Math.max(0, columnIndex(column.toUpperCase()) + (fixedColumn ? 0 : columnOffset));
+    return `${fixedColumn}${columnName(nextColumn)}${fixedRow}${nextRow + 1}`;
   });
 }
 

@@ -1095,3 +1095,7 @@ body:has(.algfrac98-page)
     font-size: 9px;
   }
 }
+
+@media(max-width:900px){html body #main-content .standard-lesson-frame .standard-lesson-content .algfrac98-expression{overflow-x:auto!important;max-width:100%}.algfrac98-cancel-target,.algfrac98-warning>div{height:auto;display:flex;flex-wrap:wrap;gap:8px}.algfrac98-step-two,.algfrac98-warning{height:auto}.algfrac98-line{max-width:100%;overflow-wrap:anywhere}}
+
+@media(max-width:900px){.algfrac98-page .algfrac98-step-two .algfrac98-cancel-target{display:flex;height:auto;flex-wrap:wrap;gap:10px}.algfrac98-cancel-target>strong{width:100%;min-width:0}}

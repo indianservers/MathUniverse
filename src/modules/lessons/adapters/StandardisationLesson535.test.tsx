@@ -1,10 +1,11 @@
+import { lessonCatalog } from "../catalog/lessonCatalog";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import StandardisationLesson535 from "./StandardisationLesson535";
 describe("StandardisationLesson535", () => {
   it("renders the target reversible mapping", () => {
     const html = renderToStaticMarkup(
-      <StandardisationLesson535 resetToken={0} onInteraction={vi.fn()} />,
+      <StandardisationLesson535 lesson={lessonCatalog.find(item => item.id === 535)!} resetToken={0} onInteraction={vi.fn()} />,
     );
     expect(html).toContain('data-testid="probability-mockup-0498"');
     expect(html).toContain("Map raw observations");

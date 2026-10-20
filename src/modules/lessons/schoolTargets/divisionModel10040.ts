@@ -1,0 +1,9 @@
+import{tdModel10041,tdRead10041}from'./terminatingModel10041';
+export type DEAnalysis10040=Extract<ReturnType<typeof tdModel10041>,{valid:true}>;
+export const deOptions10040=['1/7','3/11','1/8','5/12','7/20','22/7','-5/12','12/5','0/7','1/97']as const;
+export function deSnapshot10040(m:DEAnalysis10040,requested:number){const count=Math.max(0,Math.min(m.steps.length,Math.floor(Number.isFinite(requested)?requested:0))),steps=m.steps.slice(0,count),remainders=[Math.abs(m.n)%m.d,...steps.map(s=>s.next)],remainder=remainders.at(-1)!,repeatAt=remainder===0?-1:remainders.slice(0,-1).indexOf(remainder),status=remainder===0?'terminating':repeatAt>=0?'cycle':count===m.steps.length&&m.truncated?'capped':'active',digits=m.digits.slice(0,count),nonrepeat=repeatAt>=0?digits.slice(0,repeatAt):digits,period=repeatAt>=0?digits.slice(repeatAt):[],exact=status==='cycle'||status==='terminating',display=m.integer+(digits.length?'.'+nonrepeat.join('')+(period.length?'('+period.join('')+')':''):exact?'':'.')+(exact?(status==='cycle'?'…':''):'…');return{count,steps,remainders,remainder,repeatAt,status,digits,nonrepeat,period,exact,display};}
+export type DESnapshot10040=ReturnType<typeof deSnapshot10040>;
+export function deAnalyze10040(a:string,b:string,limit=60){return tdModel10041(a,b,limit);}
+export function deNextDigit10040(m:DEAnalysis10040,v:DESnapshot10040,row:number){if(row<v.steps.length)return v.steps[row].digit;if(v.status==='cycle')return m.steps[v.repeatAt].digit;return null;}
+export function deChallenge10040(raw:{nonrepeat:string;period:string;remainder:string}){const n=raw.nonrepeat.trim().replace(/^0\./,''),p=raw.period.trim(),r=tdRead10041(raw.remainder),rows=[n==='41',p==='6',r===8];return{rows,correct:rows.every(Boolean)};}
+export const dePersistKey10040='math-universe.lesson10040.';

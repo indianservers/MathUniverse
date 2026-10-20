@@ -602,7 +602,7 @@ export default function GeometryWorkspacePanel({
   const [exportOpen, setExportOpen] = useState(false);
   useEffect(() => {
     if (!settingsOpen && !exportOpen) return;
-    const onKey = (event: KeyboardEvent) => {
+    const onKey = (event: globalThis.KeyboardEvent) => {
       if (event.key !== "Escape") return;
       setSettingsOpen(false);
       setExportOpen(false);
@@ -2718,7 +2718,7 @@ function GeometryGraphSettingsBar({
             type="button"
             onClick={() => toggle(item.key)}
             className={`rounded-lg border px-2.5 py-1 text-xs font-black transition ${settings[item.key] ? "border-cyan-700 bg-cyan-700 text-white shadow-sm shadow-cyan-700/20" : "border-slate-200 bg-slate-50 text-slate-700 hover:border-cyan-200 hover:bg-cyan-50 dark:border-white/10 dark:bg-slate-950 dark:text-slate-200 dark:hover:bg-cyan-400/10"}`}
-            aria-pressed={settings[item.key]}
+            aria-pressed={Boolean(settings[item.key])}
             data-testid={`workspace-geometry-setting-${item.key}`}
           >
             {item.label}

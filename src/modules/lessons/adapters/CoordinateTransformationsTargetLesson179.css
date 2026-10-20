@@ -536,3 +536,7 @@ body:has(.ct179-page) footer[aria-label="Site footer"] {
     aspect-ratio: 1.35;
   }
 }
+
+@media(max-width:900px){.ct179-page .ct179-controls{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.ct179-page .ct179-controls>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.ct179-controls{margin-left:0;width:auto}.ct179-controls>div{width:auto;max-width:100%;height:auto;display:flex;flex-wrap:wrap;gap:8px}.ct179-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.ct179-footer:after{position:static}}

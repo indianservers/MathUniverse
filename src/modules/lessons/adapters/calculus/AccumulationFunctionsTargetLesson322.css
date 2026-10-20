@@ -579,3 +579,5 @@ body:has(.acc322-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:900px){.acc322-page .acc322-controls{height:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.acc322-page .acc322-controls input{width:100%;min-width:0}.acc322-page .acc322-controls>span,.acc322-page .acc322-controls>label{min-width:0}.acc322-page .acc322-controls>label{border:0;padding:0}.acc322-page .acc322-top{height:auto}.acc322-page .acc322-metrics,.acc322-page .acc322-learning{height:auto;grid-template-columns:minmax(0,1fr)}.acc322-page .acc322-learning article{min-width:0;padding-block:12px}}

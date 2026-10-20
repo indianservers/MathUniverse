@@ -1,0 +1,392 @@
+{
+  "status": "passed",
+  "errors": [],
+  "states": [
+    {
+      "g": {
+        "point": {
+          "x": 220,
+          "y": 92
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": -10,
+        "alpha": 75,
+        "beta": 65
+      },
+      "scenario": "Playfair's Axiom"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 269.99994451349437,
+          "y": 100.00000277432525
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": -10,
+        "alpha": 75,
+        "beta": 65
+      },
+      "scenario": "Playfair's Axiom"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 271.9999445134943,
+          "y": 100.00000277432525
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": -10,
+        "alpha": 75,
+        "beta": 65
+      },
+      "scenario": "Playfair's Axiom"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 271.9999445134943,
+          "y": 100.00000277432525
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": -9,
+        "alpha": 75,
+        "beta": 65
+      },
+      "scenario": "Playfair's Axiom"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 271.9999445134943,
+          "y": 100.00000277432525
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": -9,
+        "alpha": 75,
+        "beta": 65
+      },
+      "scenario": "Playfair's Axiom"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 271.9999445134943,
+          "y": 100.00000277432525
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": 0,
+        "alpha": 75,
+        "beta": 65
+      },
+      "scenario": "Playfair's Axiom"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 299.9999334161932,
+          "y": 135.00003051757812
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": 0,
+        "alpha": 75,
+        "beta": 65
+      },
+      "scenario": "Playfair's Axiom"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 299.9999334161932,
+          "y": 135.00003051757812
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": 0,
+        "alpha": 75,
+        "beta": 65
+      },
+      "scenario": "Interior-Angle Condition"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 299.9999334161932,
+          "y": 135.00003051757812
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": 0,
+        "alpha": 110,
+        "beta": 70
+      },
+      "scenario": "Interior-Angle Condition"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 299.9999334161932,
+          "y": 135.00003051757812
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": 0,
+        "alpha": 130,
+        "beta": 90
+      },
+      "scenario": "Interior-Angle Condition"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 299.9999334161932,
+          "y": 135.00003051757812
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": 0,
+        "alpha": 130,
+        "beta": 90
+      },
+      "scenario": "Triangle Angle Sum"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 299.9999334161932,
+          "y": 135.00003051757812
+        },
+        "apex": {
+          "x": 209.9999697343444,
+          "y": 119.99997733437937
+        },
+        "angle": 0,
+        "alpha": 130,
+        "beta": 90
+      },
+      "scenario": "Triangle Angle Sum"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 299.9999334161932,
+          "y": 135.00003051757812
+        },
+        "apex": {
+          "x": 209.9999697343444,
+          "y": 121.99997733437937
+        },
+        "angle": 0,
+        "alpha": 130,
+        "beta": 90
+      },
+      "scenario": "Triangle Angle Sum"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 220,
+          "y": 92
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": -7,
+        "alpha": 75,
+        "beta": 65
+      },
+      "scenario": "Playfair's Axiom"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 220,
+          "y": 92
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": -10,
+        "alpha": 75,
+        "beta": 65
+      },
+      "scenario": "Playfair's Axiom"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 220,
+          "y": 92
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": -10,
+        "alpha": 75,
+        "beta": 65
+      },
+      "scenario": "Interior-Angle Condition"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 220,
+          "y": 92
+        },
+        "apex": {
+          "x": 264.3663554543373,
+          "y": 37.19826945973449
+        },
+        "angle": -10,
+        "alpha": 110,
+        "beta": 70
+      },
+      "scenario": "Interior-Angle Condition"
+    },
+    {
+      "g": {
+        "point": {
+          "x": 220,
+          "y": 92
+        },
+        "apex": {
+          "x": 90,
+          "y": 189.9999495911265
+        },
+        "angle": -10,
+        "alpha": 75,
+        "beta": 65
+      },
+      "scenario": "Triangle Angle Sum"
+    }
+  ],
+  "layouts": [
+    {
+      "variant": "playfair",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "playfair",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "playfair",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "playfair",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "interior-left",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "interior-left",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "interior-left",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "interior-left",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "interior-parallel",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "interior-parallel",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "interior-parallel",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "interior-parallel",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "triangle",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "triangle",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "triangle",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "triangle",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ]
+}

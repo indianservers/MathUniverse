@@ -742,3 +742,7 @@ body:has(.pd438-page)
     overflow: auto;
   }
 }
+
+@media(max-width:900px){.pd438-page .pd438-flow,.pd438-page .pd438-main,.pd438-page .pd438-learning,.pd438-page .pd438-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.pd438-page .pd438-flow>*,.pd438-page .pd438-main>*,.pd438-page .pd438-learning>*,.pd438-page .pd438-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.pd438-page .pd438-workspace,.pd438-page .pd438-synthetic{height:auto}.pd438-page .pd438-flow article>svg:last-child{position:static}.pd438-page .pd438-main>*{height:auto;min-width:0}.pd438-page .pd438-synthetic{overflow-x:auto}.pd438-page .synthetic-row{margin-left:0;width:500px}.pd438-page .pd438-synthetic>b,.pd438-page .pd438-synthetic aside,.pd438-page .pd438-synthetic>footer{position:static;width:auto;display:block;margin-top:10px}.pd438-page .pd438-practice em,.pd438-page .pd438-practice>strong{position:static;display:block}.pd438-page .pd438-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

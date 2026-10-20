@@ -48,10 +48,10 @@ export default function RemainderTheoremTargetLesson104({
   const [valueDrops, setValueDrops] = useState(0);
   const [invalidDrop, setInvalidDrop] = useState(false);
   const [practiceIndex, setPracticeIndex] = useState(0);
-  const [practicePolynomial, setPracticePolynomial] = useState(
+  const [practicePolynomial, setPracticePolynomial] = useState<string>(
     REMAINDER_PRACTICES_104[0].polynomial,
   );
-  const [practiceDivisor, setPracticeDivisor] = useState(
+  const [practiceDivisor, setPracticeDivisor] = useState<string>(
     REMAINDER_PRACTICES_104[0].divisor,
   );
   const [practiceA, setPracticeA] = useState(2);

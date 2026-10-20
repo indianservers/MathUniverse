@@ -457,3 +457,5 @@ body:has(.tp424-page) footer[aria-label="Site footer"] {
     grid-template-columns: 1fr;
   }
 }
+
+@media(max-width:700px){.tp424-page .tp424-worked > div{grid-template-columns:minmax(0,1fr)}.tp424-page .tp424-worked article{overflow-wrap:anywhere}}

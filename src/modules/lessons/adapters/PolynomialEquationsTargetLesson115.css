@@ -985,3 +985,5 @@ body:has(.poly115-page) footer[aria-label="Site footer"] {
     height: auto;
   }
 }
+
+@media(max-width:900px){.poly115-lab>header,.poly115-lab>header>nav{height:auto;display:flex;flex-wrap:wrap;gap:8px}}

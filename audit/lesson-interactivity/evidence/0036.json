@@ -1,0 +1,24 @@
+{
+  "checks": [
+    "all four input pairs independently validate AND, OR, NOT and conditional visibility",
+    "operation focus displays the chosen gate result"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 737,
+      "scroll": 737
+    },
+    {
+      "width": 1440,
+      "client": 1385,
+      "scroll": 1385
+    }
+  ],
+  "errors": []
+}

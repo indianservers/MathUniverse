@@ -1,0 +1,5240 @@
+[
+  {
+    "index": 742,
+    "source": "src/modules/lessons/schoolTargets/AasCongruenceTargetLesson10068.tsx",
+    "testId": "school-mockup-0742",
+    "route": "/lessons/school/class-9/class-9-triangle-proofs-aas-congruence"
+  },
+  {
+    "index": 852,
+    "source": "src/modules/lessons/schoolTargets/AbsoluteExtremaTargetLesson10178.tsx",
+    "testId": "school-mockup-0852",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-absolute-maxima-and-minima"
+  },
+  {
+    "index": 868,
+    "source": "src/modules/lessons/schoolTargets/AdjointMatrixTargetLesson10194.tsx",
+    "testId": "school-mockup-0868",
+    "route": "/lessons/school/class-12/class-12-matrices-and-determinants-adjoint-of-a-matrix"
+  },
+  {
+    "index": 735,
+    "source": "src/modules/lessons/schoolTargets/AlternateInteriorTargetLesson10061.tsx",
+    "testId": "school-mockup-0735",
+    "route": "/lessons/school/class-9/class-9-euclidean-geometry-alternate-interior-angles"
+  },
+  {
+    "index": 699,
+    "source": "src/modules/lessons/schoolTargets/AngleBisectorTargetLesson10025.tsx",
+    "testId": "school-mockup-0699",
+    "route": "/lessons/school/class-7/class-7-practical-geometry-angle-bisector-construction"
+  },
+  {
+    "index": 773,
+    "source": "src/modules/lessons/schoolTargets/AngleDepressionTargetLesson10099.tsx",
+    "testId": "school-mockup-0773",
+    "route": "/lessons/school/class-10/class-10-trigonometry-applications-angle-of-depression"
+  },
+  {
+    "index": 772,
+    "source": "src/modules/lessons/schoolTargets/AngleElevationTargetLesson10098.tsx",
+    "testId": "school-mockup-0772",
+    "route": "/lessons/school/class-10/class-10-trigonometry-applications-angle-of-elevation"
+  },
+  {
+    "index": 766,
+    "source": "src/modules/lessons/schoolTargets/AngleSemicircleTargetLesson10092.tsx",
+    "testId": "school-mockup-0766",
+    "route": "/lessons/school/class-10/class-10-circle-proofs-angle-in-a-semicircle"
+  },
+  {
+    "index": 767,
+    "source": "src/modules/lessons/schoolTargets/AnglesSameSegmentTargetLesson10093.tsx",
+    "testId": "school-mockup-0767",
+    "route": "/lessons/school/class-10/class-10-circle-proofs-angles-in-the-same-segment"
+  },
+  {
+    "index": 765,
+    "source": "src/modules/lessons/schoolTargets/AngleSubtendedArcTargetLesson10091.tsx",
+    "testId": "school-mockup-0765",
+    "route": "/lessons/school/class-10/class-10-circle-proofs-angle-subtended-by-an-arc"
+  },
+  {
+    "index": 859,
+    "source": "src/modules/lessons/schoolTargets/AreaBetweenCurvesTargetLesson10185.tsx",
+    "testId": "school-mockup-0859",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-area-between-curves"
+  },
+  {
+    "index": 858,
+    "source": "src/modules/lessons/schoolTargets/AreaUnderCurveTargetLesson10184.tsx",
+    "testId": "school-mockup-0858",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-area-under-a-curve"
+  },
+  {
+    "index": 741,
+    "source": "src/modules/lessons/schoolTargets/AsaCongruenceTargetLesson10067.tsx",
+    "testId": "school-mockup-0741",
+    "route": "/lessons/school/class-9/class-9-triangle-proofs-asa-congruence"
+  },
+  {
+    "index": 730,
+    "source": "src/modules/lessons/schoolTargets/AxiomTheoremTargetLesson10056.tsx",
+    "testId": "school-mockup-0730",
+    "route": "/lessons/school/class-9/class-9-euclidean-geometry-axiom-versus-theorem"
+  },
+  {
+    "index": 681,
+    "source": "src/modules/lessons/schoolTargets/BarGraphTargetLesson10007.tsx",
+    "testId": "school-mockup-0681",
+    "route": "/lessons/school/class-6/class-6-data-handling-bar-graph-builder"
+  },
+  {
+    "index": 888,
+    "source": "src/modules/lessons/schoolTargets/BayesTheoremTargetLesson10214.tsx",
+    "testId": "school-mockup-0888",
+    "route": "/lessons/school/class-12/class-12-probability-bayes-theorem"
+  },
+  {
+    "index": 893,
+    "source": "src/modules/lessons/schoolTargets/BernoulliTrialsTargetLesson10219.tsx",
+    "testId": "school-mockup-0893",
+    "route": "/lessons/school/class-12/class-12-probability-bernoulli-trials"
+  },
+  {
+    "index": 919,
+    "source": "src/modules/lessons/schoolTargets/BesselTargetLesson2025.tsx",
+    "testId": "advanced-mockup-0919",
+    "route": "/lessons/advanced-concepts/2025-bessel-function"
+  },
+  {
+    "index": 898,
+    "source": "src/modules/lessons/schoolTargets/BestRationalApproximationsTargetLesson2004.tsx",
+    "testId": "advanced-mockup-0898",
+    "route": "/lessons/advanced-concepts/2004-best-rational-approximations"
+  },
+  {
+    "index": 916,
+    "source": "src/modules/lessons/schoolTargets/BetaTargetLesson2022.tsx",
+    "testId": "advanced-mockup-0916",
+    "route": "/lessons/advanced-concepts/2022-beta-function"
+  },
+  {
+    "index": 692,
+    "source": "src/modules/lessons/schoolTargets/BillsTaxTargetLesson10018.tsx",
+    "testId": "school-mockup-0692",
+    "route": "/lessons/school/class-7/class-7-applied-arithmetic-bills-discounts-and-tax"
+  },
+  {
+    "index": 797,
+    "source": "src/modules/lessons/schoolTargets/BinaryOperationsTargetLesson10123.tsx",
+    "testId": "school-mockup-0797",
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-binary-operations"
+  },
+  {
+    "index": 812,
+    "source": "src/modules/lessons/schoolTargets/BinomialApproximationTargetLesson10138.tsx",
+    "testId": "school-mockup-0812",
+    "route": "/lessons/school/class-11/class-11-binomial-theorem-binomial-approximation"
+  },
+  {
+    "index": 894,
+    "source": "src/modules/lessons/schoolTargets/BinomialDistributionTargetLesson10220.tsx",
+    "testId": "school-mockup-0894",
+    "route": "/lessons/school/class-12/class-12-probability-binomial-distribution"
+  },
+  {
+    "index": 808,
+    "source": "src/modules/lessons/schoolTargets/BinomialExpansionTargetLesson10134.tsx",
+    "testId": "school-mockup-0808",
+    "route": "/lessons/school/class-11/class-11-binomial-theorem-binomial-expansion"
+  },
+  {
+    "index": 809,
+    "source": "src/modules/lessons/schoolTargets/BinomialGeneralTermTargetLesson10135.tsx",
+    "testId": "school-mockup-0809",
+    "route": "/lessons/school/class-11/class-11-binomial-theorem-general-term"
+  },
+  {
+    "index": 811,
+    "source": "src/modules/lessons/schoolTargets/BinomialIndependentTermTargetLesson10137.tsx",
+    "testId": "school-mockup-0811",
+    "route": "/lessons/school/class-11/class-11-binomial-theorem-independent-term"
+  },
+  {
+    "index": 810,
+    "source": "src/modules/lessons/schoolTargets/BinomialMiddleTermTargetLesson10136.tsx",
+    "testId": "school-mockup-0810",
+    "route": "/lessons/school/class-11/class-11-binomial-theorem-middle-term"
+  },
+  {
+    "index": 877,
+    "source": "src/modules/lessons/schoolTargets/BoundedRegionTargetLesson10203.tsx",
+    "testId": "school-mockup-0877",
+    "route": "/lessons/school/class-12/class-12-linear-programming-bounded-feasible-region"
+  },
+  {
+    "index": 830,
+    "source": "src/modules/lessons/schoolTargets/CartesianLineTargetLesson10156.tsx",
+    "testId": "school-mockup-0830",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-cartesian-equation-of-a-line"
+  },
+  {
+    "index": 900,
+    "source": "src/modules/lessons/schoolTargets/CollatzConjectureTargetLesson2006.tsx",
+    "testId": "advanced-mockup-0900",
+    "route": "/lessons/advanced-concepts/2006-collatz-conjecture"
+  },
+  {
+    "index": 762,
+    "source": "src/modules/lessons/schoolTargets/CollinearityCoordinateAreaTargetLesson10088.tsx",
+    "testId": "school-mockup-0762",
+    "route": "/lessons/school/class-10/class-10-coordinate-geometry-collinearity-using-coordinate-area"
+  },
+  {
+    "index": 814,
+    "source": "src/modules/lessons/schoolTargets/CombinatorialInterpretationTargetLesson10140.tsx",
+    "testId": "school-mockup-0814",
+    "route": "/lessons/school/class-11/class-11-binomial-theorem-combinatorial-interpretation"
+  },
+  {
+    "index": 756,
+    "source": "src/modules/lessons/schoolTargets/CombinedSolidsTargetLesson10082.tsx",
+    "testId": "school-mockup-0756",
+    "route": "/lessons/school/class-9/class-9-mensuration-combined-solids"
+  },
+  {
+    "index": 785,
+    "source": "src/modules/lessons/schoolTargets/CombinedSolidsTargetLesson10111.tsx",
+    "testId": "school-mockup-0785",
+    "route": "/lessons/school/class-10/class-10-mensuration-combined-solids"
+  },
+  {
+    "index": 795,
+    "source": "src/modules/lessons/schoolTargets/CompositionFunctionsTargetLesson10121.tsx",
+    "testId": "school-mockup-0795",
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-composition-of-functions"
+  },
+  {
+    "index": 884,
+    "source": "src/modules/lessons/schoolTargets/ConditionalProbabilityTargetLesson10210.tsx",
+    "testId": "school-mockup-0884",
+    "route": "/lessons/school/class-12/class-12-probability-conditional-probability"
+  },
+  {
+    "index": 905,
+    "source": "src/modules/lessons/schoolTargets/ConfidenceIntervalsTargetLesson2011.tsx",
+    "testId": "advanced-mockup-0905",
+    "route": "/lessons/advanced-concepts/2011-confidence-intervals"
+  },
+  {
+    "index": 825,
+    "source": "src/modules/lessons/schoolTargets/ConicIdentificationTargetLesson10151.tsx",
+    "testId": "school-mockup-0825",
+    "route": "/lessons/school/class-11/class-11-conic-sections-conic-identification-from-general-equation"
+  },
+  {
+    "index": 841,
+    "source": "src/modules/lessons/schoolTargets/ContinuityIntervalTargetLesson10167.tsx",
+    "testId": "school-mockup-0841",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-continuity-on-an-interval"
+  },
+  {
+    "index": 840,
+    "source": "src/modules/lessons/schoolTargets/ContinuityPointTargetLesson10166.tsx",
+    "testId": "school-mockup-0840",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-continuity-at-a-point"
+  },
+  {
+    "index": 896,
+    "source": "src/modules/lessons/schoolTargets/ConvergentsTargetLesson2002.tsx",
+    "testId": "advanced-mockup-0896",
+    "route": "/lessons/advanced-concepts/2002-convergents"
+  },
+  {
+    "index": 755,
+    "source": "src/modules/lessons/schoolTargets/CoordinateHeronTargetLesson10081.tsx",
+    "testId": "school-mockup-0755",
+    "route": "/lessons/school/class-9/class-9-mensuration-coordinate-area-versus-heron-s-formula"
+  },
+  {
+    "index": 761,
+    "source": "src/modules/lessons/schoolTargets/CoordinateTriangleAreaTargetLesson10087.tsx",
+    "testId": "school-mockup-0761",
+    "route": "/lessons/school/class-10/class-10-coordinate-geometry-area-of-triangle-using-coordinates"
+  },
+  {
+    "index": 697,
+    "source": "src/modules/lessons/schoolTargets/CopyAngleTargetLesson10023.tsx",
+    "testId": "school-mockup-0697",
+    "route": "/lessons/school/class-7/class-7-practical-geometry-copying-an-angle"
+  },
+  {
+    "index": 696,
+    "source": "src/modules/lessons/schoolTargets/CopyLineSegmentTargetLesson10022.tsx",
+    "testId": "school-mockup-0696",
+    "route": "/lessons/school/class-7/class-7-practical-geometry-copying-a-line-segment"
+  },
+  {
+    "index": 876,
+    "source": "src/modules/lessons/schoolTargets/CornerPointTargetLesson10202.tsx",
+    "testId": "school-mockup-0876",
+    "route": "/lessons/school/class-12/class-12-linear-programming-corner-point-method"
+  },
+  {
+    "index": 734,
+    "source": "src/modules/lessons/schoolTargets/CorrespondingAnglesTargetLesson10060.tsx",
+    "testId": "school-mockup-0734",
+    "route": "/lessons/school/class-9/class-9-euclidean-geometry-corresponding-angles"
+  },
+  {
+    "index": 872,
+    "source": "src/modules/lessons/schoolTargets/CramersRuleTargetLesson10198.tsx",
+    "testId": "school-mockup-0872",
+    "route": "/lessons/school/class-12/class-12-matrices-and-determinants-cramer-s-rule"
+  },
+  {
+    "index": 725,
+    "source": "src/modules/lessons/schoolTargets/CubicIdentitiesTargetLesson10051.tsx",
+    "testId": "school-mockup-0725",
+    "route": "/lessons/school/class-9/class-9-polynomials-cubic-algebraic-identities"
+  },
+  {
+    "index": 768,
+    "source": "src/modules/lessons/schoolTargets/CyclicQuadrilateralTargetLesson10094.tsx",
+    "testId": "school-mockup-0768",
+    "route": "/lessons/school/class-10/class-10-circle-proofs-cyclic-quadrilateral"
+  },
+  {
+    "index": 714,
+    "source": "src/modules/lessons/schoolTargets/DecimalExpansionTargetLesson10040.tsx",
+    "testId": "school-mockup-0714",
+    "route": "/lessons/school/class-9/class-9-real-numbers-decimal-expansion-of-rational-numbers"
+  },
+  {
+    "index": 857,
+    "source": "src/modules/lessons/schoolTargets/DefiniteIntegralPropertiesTargetLesson10183.tsx",
+    "testId": "school-mockup-0857",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-definite-integral-properties"
+  },
+  {
+    "index": 870,
+    "source": "src/modules/lessons/schoolTargets/DeterminantAreaTargetLesson10196.tsx",
+    "testId": "school-mockup-0870",
+    "route": "/lessons/school/class-12/class-12-matrices-and-determinants-determinants-and-geometric-area"
+  },
+  {
+    "index": 881,
+    "source": "src/modules/lessons/schoolTargets/DietProblemTargetLesson10207.tsx",
+    "testId": "school-mockup-0881",
+    "route": "/lessons/school/class-12/class-12-linear-programming-diet-problem"
+  },
+  {
+    "index": 845,
+    "source": "src/modules/lessons/schoolTargets/DifferentiabilityContinuityTargetLesson10171.tsx",
+    "testId": "school-mockup-0845",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-differentiability-versus-continuity"
+  },
+  {
+    "index": 853,
+    "source": "src/modules/lessons/schoolTargets/DifferentialsApproximationTargetLesson10179.tsx",
+    "testId": "school-mockup-0853",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-approximation-using-differentials"
+  },
+  {
+    "index": 688,
+    "source": "src/modules/lessons/schoolTargets/DigitalRootTargetLesson10014.tsx",
+    "testId": "school-mockup-0688",
+    "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-digital-root-and-divisibility"
+  },
+  {
+    "index": 827,
+    "source": "src/modules/lessons/schoolTargets/DirectionCosinesTargetLesson10153.tsx",
+    "testId": "school-mockup-0827",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-direction-cosines"
+  },
+  {
+    "index": 866,
+    "source": "src/modules/lessons/schoolTargets/DirectionFieldsTargetLesson10192.tsx",
+    "testId": "school-mockup-0866",
+    "route": "/lessons/school/class-12/class-12-differential-equations-direction-fields"
+  },
+  {
+    "index": 826,
+    "source": "src/modules/lessons/schoolTargets/DirectionRatiosTargetLesson10152.tsx",
+    "testId": "school-mockup-0826",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-direction-ratios"
+  },
+  {
+    "index": 757,
+    "source": "src/modules/lessons/schoolTargets/DistanceFormulaTargetLesson10083.tsx",
+    "testId": "school-mockup-0757",
+    "route": "/lessons/school/class-10/class-10-coordinate-geometry-distance-formula"
+  },
+  {
+    "index": 805,
+    "source": "src/modules/lessons/schoolTargets/DivisibilityInductionTargetLesson10131.tsx",
+    "testId": "school-mockup-0805",
+    "route": "/lessons/school/class-11/class-11-mathematical-induction-divisibility-by-induction"
+  },
+  {
+    "index": 687,
+    "source": "src/modules/lessons/schoolTargets/DivisibilityTargetLesson10013.tsx",
+    "testId": "school-mockup-0687",
+    "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-divisibility-tests-for-2-4-5-6-8-10-and-11"
+  },
+  {
+    "index": 706,
+    "source": "src/modules/lessons/schoolTargets/DoubleBarGraphTargetLesson10032.tsx",
+    "testId": "school-mockup-0706",
+    "route": "/lessons/school/class-8/class-8-data-handling-double-bar-graph-comparison"
+  },
+  {
+    "index": 819,
+    "source": "src/modules/lessons/schoolTargets/EccentricityTargetLesson10145.tsx",
+    "testId": "school-mockup-0819",
+    "route": "/lessons/school/class-11/class-11-conic-sections-eccentricity"
+  },
+  {
+    "index": 817,
+    "source": "src/modules/lessons/schoolTargets/EllipseStandardFormsTargetLesson10143.tsx",
+    "testId": "school-mockup-0817",
+    "route": "/lessons/school/class-11/class-11-conic-sections-ellipse-standard-forms"
+  },
+  {
+    "index": 823,
+    "source": "src/modules/lessons/schoolTargets/EllipseTangentTargetLesson10149.tsx",
+    "testId": "school-mockup-0823",
+    "route": "/lessons/school/class-11/class-11-conic-sections-tangent-to-an-ellipse"
+  },
+  {
+    "index": 763,
+    "source": "src/modules/lessons/schoolTargets/EqualChordsAnglesTargetLesson10089.tsx",
+    "testId": "school-mockup-0763",
+    "route": "/lessons/school/class-10/class-10-circle-proofs-equal-chords-and-equal-angles"
+  },
+  {
+    "index": 745,
+    "source": "src/modules/lessons/schoolTargets/EqualSidesAnglesTargetLesson10071.tsx",
+    "testId": "school-mockup-0745",
+    "route": "/lessons/school/class-9/class-9-triangle-proofs-equal-sides-and-equal-angles"
+  },
+  {
+    "index": 790,
+    "source": "src/modules/lessons/schoolTargets/EquivalenceRelationsTargetLesson10116.tsx",
+    "testId": "school-mockup-0790",
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-equivalence-relations"
+  },
+  {
+    "index": 678,
+    "source": "src/modules/lessons/schoolTargets/ErrorBoundsTargetLesson10004.tsx",
+    "testId": "school-mockup-0678",
+    "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-approximation-and-error-bounds"
+  },
+  {
+    "index": 917,
+    "source": "src/modules/lessons/schoolTargets/ErrorFunctionTargetLesson2023.tsx",
+    "testId": "advanced-mockup-0917",
+    "route": "/lessons/advanced-concepts/2023-error-function"
+  },
+  {
+    "index": 677,
+    "source": "src/modules/lessons/schoolTargets/EstimationRoundingTargetLesson10003.tsx",
+    "testId": "school-mockup-0677",
+    "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-estimation-and-rounding-lab"
+  },
+  {
+    "index": 897,
+    "source": "src/modules/lessons/schoolTargets/EuclideanAlgorithmLinkTargetLesson2003.tsx",
+    "testId": "advanced-mockup-0897",
+    "route": "/lessons/advanced-concepts/2003-euclidean-algorithm-continued-fractions"
+  },
+  {
+    "index": 727,
+    "source": "src/modules/lessons/schoolTargets/EuclideanFoundationsTargetLesson10053.tsx",
+    "testId": "school-mockup-0727",
+    "route": "/lessons/school/class-9/class-9-euclidean-geometry-definitions-axioms-and-postulates"
+  },
+  {
+    "index": 728,
+    "source": "src/modules/lessons/schoolTargets/EuclidPostulatesTargetLesson10054.tsx",
+    "testId": "school-mockup-0728",
+    "route": "/lessons/school/class-9/class-9-euclidean-geometry-euclid-s-five-postulates"
+  },
+  {
+    "index": 911,
+    "source": "src/modules/lessons/schoolTargets/EulerMethodTargetLesson2017.tsx",
+    "testId": "advanced-mockup-0911",
+    "route": "/lessons/advanced-concepts/2017-euler-method"
+  },
+  {
+    "index": 891,
+    "source": "src/modules/lessons/schoolTargets/ExpectedValueTargetLesson10217.tsx",
+    "testId": "school-mockup-0891",
+    "route": "/lessons/school/class-12/class-12-probability-expected-value"
+  },
+  {
+    "index": 739,
+    "source": "src/modules/lessons/schoolTargets/ExteriorAngleTargetLesson10065.tsx",
+    "testId": "school-mockup-0739",
+    "route": "/lessons/school/class-9/class-9-euclidean-geometry-exterior-angle-theorem"
+  },
+  {
+    "index": 760,
+    "source": "src/modules/lessons/schoolTargets/ExternalSectionFormulaTargetLesson10086.tsx",
+    "testId": "school-mockup-0760",
+    "route": "/lessons/school/class-10/class-10-coordinate-geometry-external-section-formula"
+  },
+  {
+    "index": 726,
+    "source": "src/modules/lessons/schoolTargets/FactorisationPracticeTargetLesson10052.tsx",
+    "testId": "school-mockup-0726",
+    "route": "/lessons/school/class-9/class-9-polynomials-polynomial-factorisation-practice"
+  },
+  {
+    "index": 723,
+    "source": "src/modules/lessons/schoolTargets/FactorTheoremTargetLesson10049.tsx",
+    "testId": "school-mockup-0723",
+    "route": "/lessons/school/class-9/class-9-polynomials-factor-theorem"
+  },
+  {
+    "index": 875,
+    "source": "src/modules/lessons/schoolTargets/FeasibleRegionTargetLesson10201.tsx",
+    "testId": "school-mockup-0875",
+    "route": "/lessons/school/class-12/class-12-linear-programming-feasible-region"
+  },
+  {
+    "index": 903,
+    "source": "src/modules/lessons/schoolTargets/FermatLastTheoremTargetLesson2009.tsx",
+    "testId": "advanced-mockup-0903",
+    "route": "/lessons/advanced-concepts/2009-fermats-last-theorem"
+  },
+  {
+    "index": 729,
+    "source": "src/modules/lessons/schoolTargets/FifthPostulateEquivalenceTargetLesson10055.tsx",
+    "testId": "school-mockup-0729",
+    "route": "/lessons/school/class-9/class-9-euclidean-geometry-equivalent-forms-of-the-fifth-postulate"
+  },
+  {
+    "index": 709,
+    "source": "src/modules/lessons/schoolTargets/FlowchartLogicTargetLesson10035.tsx",
+    "testId": "school-mockup-0709",
+    "route": "/lessons/school/class-8/class-8-information-processing-flowchart-logic"
+  },
+  {
+    "index": 816,
+    "source": "src/modules/lessons/schoolTargets/FocusDirectrixTargetLesson10142.tsx",
+    "testId": "school-mockup-0816",
+    "route": "/lessons/school/class-11/class-11-conic-sections-focus-directrix-definition"
+  },
+  {
+    "index": 860,
+    "source": "src/modules/lessons/schoolTargets/FormationDifferentialEquationsTargetLesson10186.tsx",
+    "testId": "school-mockup-0860",
+    "route": "/lessons/school/class-12/class-12-differential-equations-formation-of-differential-equations"
+  },
+  {
+    "index": 874,
+    "source": "src/modules/lessons/schoolTargets/FormulatingLinearProgrammingTargetLesson10200.tsx",
+    "testId": "school-mockup-0874",
+    "route": "/lessons/school/class-12/class-12-linear-programming-formulating-linear-programming-problems"
+  },
+  {
+    "index": 904,
+    "source": "src/modules/lessons/schoolTargets/FourColorTheoremTargetLesson2010.tsx",
+    "testId": "advanced-mockup-0904",
+    "route": "/lessons/advanced-concepts/2010-four-color-theorem"
+  },
+  {
+    "index": 784,
+    "source": "src/modules/lessons/schoolTargets/FrustumConeTargetLesson10110.tsx",
+    "testId": "school-mockup-0784",
+    "route": "/lessons/school/class-10/class-10-mensuration-frustum-of-a-cone"
+  },
+  {
+    "index": 915,
+    "source": "src/modules/lessons/schoolTargets/GammaTargetLesson2021.tsx",
+    "testId": "advanced-mockup-0915",
+    "route": "/lessons/advanced-concepts/2021-gamma-function"
+  },
+  {
+    "index": 865,
+    "source": "src/modules/lessons/schoolTargets/GeneralParticularSolutionsTargetLesson10191.tsx",
+    "testId": "school-mockup-0865",
+    "route": "/lessons/school/class-12/class-12-differential-equations-general-and-particular-solutions"
+  },
+  {
+    "index": 901,
+    "source": "src/modules/lessons/schoolTargets/GoldbachConjectureTargetLesson2007.tsx",
+    "testId": "advanced-mockup-0901",
+    "route": "/lessons/advanced-concepts/2007-goldbach-conjecture"
+  },
+  {
+    "index": 720,
+    "source": "src/modules/lessons/schoolTargets/GraphicalZerosTargetLesson10046.tsx",
+    "testId": "school-mockup-0720",
+    "route": "/lessons/school/class-9/class-9-polynomials-graphical-zeros-of-polynomials"
+  },
+  {
+    "index": 777,
+    "source": "src/modules/lessons/schoolTargets/GroupedMeanAssumedTargetLesson10103.tsx",
+    "testId": "school-mockup-0777",
+    "route": "/lessons/school/class-10/class-10-statistics-grouped-mean-by-assumed-mean"
+  },
+  {
+    "index": 776,
+    "source": "src/modules/lessons/schoolTargets/GroupedMeanDirectTargetLesson10102.tsx",
+    "testId": "school-mockup-0776",
+    "route": "/lessons/school/class-10/class-10-statistics-grouped-mean-by-direct-method"
+  },
+  {
+    "index": 778,
+    "source": "src/modules/lessons/schoolTargets/GroupedMeanStepTargetLesson10104.tsx",
+    "testId": "school-mockup-0778",
+    "route": "/lessons/school/class-10/class-10-statistics-grouped-mean-by-step-deviation"
+  },
+  {
+    "index": 912,
+    "source": "src/modules/lessons/schoolTargets/GrowthDecayTargetLesson2018.tsx",
+    "testId": "advanced-mockup-0912",
+    "route": "/lessons/advanced-concepts/2018-growth-decay-ivps"
+  },
+  {
+    "index": 753,
+    "source": "src/modules/lessons/schoolTargets/HeronFormulaTargetLesson10079.tsx",
+    "testId": "school-mockup-0753",
+    "route": "/lessons/school/class-9/class-9-mensuration-heron-s-formula-derivation"
+  },
+  {
+    "index": 863,
+    "source": "src/modules/lessons/schoolTargets/HomogeneousFirstOrderTargetLesson10189.tsx",
+    "testId": "school-mockup-0863",
+    "route": "/lessons/school/class-12/class-12-differential-equations-homogeneous-first-order-equations"
+  },
+  {
+    "index": 694,
+    "source": "src/modules/lessons/schoolTargets/HouseholdBudgetTargetLesson10020.tsx",
+    "testId": "school-mockup-0694",
+    "route": "/lessons/school/class-7/class-7-applied-arithmetic-household-budget-arithmetic"
+  },
+  {
+    "index": 818,
+    "source": "src/modules/lessons/schoolTargets/HyperbolaStandardFormsTargetLesson10144.tsx",
+    "testId": "school-mockup-0818",
+    "route": "/lessons/school/class-11/class-11-conic-sections-hyperbola-standard-forms"
+  },
+  {
+    "index": 824,
+    "source": "src/modules/lessons/schoolTargets/HyperbolaTangentTargetLesson10150.tsx",
+    "testId": "school-mockup-0824",
+    "route": "/lessons/school/class-11/class-11-conic-sections-tangent-to-a-hyperbola"
+  },
+  {
+    "index": 907,
+    "source": "src/modules/lessons/schoolTargets/HypothesisTestsTargetLesson2013.tsx",
+    "testId": "advanced-mockup-0907",
+    "route": "/lessons/advanced-concepts/2013-hypothesis-tests"
+  },
+  {
+    "index": 850,
+    "source": "src/modules/lessons/schoolTargets/IncreasingDecreasingTargetLesson10176.tsx",
+    "testId": "school-mockup-0850",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-increasing-and-decreasing-functions"
+  },
+  {
+    "index": 886,
+    "source": "src/modules/lessons/schoolTargets/IndependentEventsTargetLesson10212.tsx",
+    "testId": "school-mockup-0886",
+    "route": "/lessons/school/class-12/class-12-probability-independent-events"
+  },
+  {
+    "index": 803,
+    "source": "src/modules/lessons/schoolTargets/InductionBaseStepTargetLesson10129.tsx",
+    "testId": "school-mockup-0803",
+    "route": "/lessons/school/class-11/class-11-mathematical-induction-base-case-and-inductive-step"
+  },
+  {
+    "index": 802,
+    "source": "src/modules/lessons/schoolTargets/InductionLogicTargetLesson10128.tsx",
+    "testId": "school-mockup-0802",
+    "route": "/lessons/school/class-11/class-11-mathematical-induction-logic-of-mathematical-induction"
+  },
+  {
+    "index": 806,
+    "source": "src/modules/lessons/schoolTargets/InequalityInductionTargetLesson10132.tsx",
+    "testId": "school-mockup-0806",
+    "route": "/lessons/school/class-11/class-11-mathematical-induction-inequality-by-induction"
+  },
+  {
+    "index": 880,
+    "source": "src/modules/lessons/schoolTargets/InfeasibleProblemsTargetLesson10206.tsx",
+    "testId": "school-mockup-0880",
+    "route": "/lessons/school/class-12/class-12-linear-programming-infeasible-problems"
+  },
+  {
+    "index": 844,
+    "source": "src/modules/lessons/schoolTargets/InfiniteDiscontinuityTargetLesson10170.tsx",
+    "testId": "school-mockup-0844",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-infinite-discontinuity"
+  },
+  {
+    "index": 855,
+    "source": "src/modules/lessons/schoolTargets/IntegrationByPartsTargetLesson10181.tsx",
+    "testId": "school-mockup-0855",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-integration-by-parts"
+  },
+  {
+    "index": 854,
+    "source": "src/modules/lessons/schoolTargets/IntegrationSubstitutionTargetLesson10180.tsx",
+    "testId": "school-mockup-0854",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-integration-by-substitution"
+  },
+  {
+    "index": 835,
+    "source": "src/modules/lessons/schoolTargets/InterceptPlaneTargetLesson10161.tsx",
+    "testId": "school-mockup-0835",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-intercept-form-of-a-plane"
+  },
+  {
+    "index": 759,
+    "source": "src/modules/lessons/schoolTargets/InternalSectionFormulaTargetLesson10085.tsx",
+    "testId": "school-mockup-0759",
+    "route": "/lessons/school/class-10/class-10-coordinate-geometry-internal-section-formula"
+  },
+  {
+    "index": 793,
+    "source": "src/modules/lessons/schoolTargets/IntoFunctionsTargetLesson10119.tsx",
+    "testId": "school-mockup-0793",
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-into-functions"
+  },
+  {
+    "index": 869,
+    "source": "src/modules/lessons/schoolTargets/InverseAdjointTargetLesson10195.tsx",
+    "testId": "school-mockup-0869",
+    "route": "/lessons/school/class-12/class-12-matrices-and-determinants-inverse-by-adjoint"
+  },
+  {
+    "index": 796,
+    "source": "src/modules/lessons/schoolTargets/InvertibleFunctionsTargetLesson10122.tsx",
+    "testId": "school-mockup-0796",
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-invertible-functions"
+  },
+  {
+    "index": 843,
+    "source": "src/modules/lessons/schoolTargets/JumpDiscontinuityTargetLesson10169.tsx",
+    "testId": "school-mockup-0843",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-jump-discontinuity"
+  },
+  {
+    "index": 847,
+    "source": "src/modules/lessons/schoolTargets/LagrangeMvtTargetLesson10173.tsx",
+    "testId": "school-mockup-0847",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-lagrange-mean-value-theorem"
+  },
+  {
+    "index": 779,
+    "source": "src/modules/lessons/schoolTargets/LessThanCumulativeTargetLesson10105.tsx",
+    "testId": "school-mockup-0779",
+    "route": "/lessons/school/class-10/class-10-statistics-less-than-cumulative-frequency"
+  },
+  {
+    "index": 781,
+    "source": "src/modules/lessons/schoolTargets/LessThanOgiveTargetLesson10107.tsx",
+    "testId": "school-mockup-0781",
+    "route": "/lessons/school/class-10/class-10-statistics-less-than-ogive"
+  },
+  {
+    "index": 864,
+    "source": "src/modules/lessons/schoolTargets/LinearFirstOrderTargetLesson10190.tsx",
+    "testId": "school-mockup-0864",
+    "route": "/lessons/school/class-12/class-12-differential-equations-linear-first-order-equations"
+  },
+  {
+    "index": 733,
+    "source": "src/modules/lessons/schoolTargets/LinearPairTargetLesson10059.tsx",
+    "testId": "school-mockup-0733",
+    "route": "/lessons/school/class-9/class-9-euclidean-geometry-linear-pair-axiom-and-converse"
+  },
+  {
+    "index": 873,
+    "source": "src/modules/lessons/schoolTargets/LinearSystemConsistencyTargetLesson10199.tsx",
+    "testId": "school-mockup-0873",
+    "route": "/lessons/school/class-12/class-12-matrices-and-determinants-consistency-of-linear-systems"
+  },
+  {
+    "index": 871,
+    "source": "src/modules/lessons/schoolTargets/LinearSystemsMatricesTargetLesson10197.tsx",
+    "testId": "school-mockup-0871",
+    "route": "/lessons/school/class-12/class-12-matrices-and-determinants-solving-linear-equations-by-matrices"
+  },
+  {
+    "index": 838,
+    "source": "src/modules/lessons/schoolTargets/LinePlaneAngleTargetLesson10164.tsx",
+    "testId": "school-mockup-0838",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-angle-between-line-and-plane"
+  },
+  {
+    "index": 828,
+    "source": "src/modules/lessons/schoolTargets/LineTwoPoints3DTargetLesson10154.tsx",
+    "testId": "school-mockup-0828",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-line-through-two-points-in-3d"
+  },
+  {
+    "index": 851,
+    "source": "src/modules/lessons/schoolTargets/LocalExtremaTargetLesson10177.tsx",
+    "testId": "school-mockup-0851",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-local-maxima-and-minima"
+  },
+  {
+    "index": 913,
+    "source": "src/modules/lessons/schoolTargets/LogisticTargetLesson2019.tsx",
+    "testId": "advanced-mockup-0913",
+    "route": "/lessons/advanced-concepts/2019-logistic-differential-equation"
+  },
+  {
+    "index": 711,
+    "source": "src/modules/lessons/schoolTargets/MagicSquaresTargetLesson10037.tsx",
+    "testId": "school-mockup-0711",
+    "route": "/lessons/school/class-8/class-8-information-processing-magic-squares"
+  },
+  {
+    "index": 792,
+    "source": "src/modules/lessons/schoolTargets/ManyOneFunctionsTargetLesson10118.tsx",
+    "testId": "school-mockup-0792",
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-many-one-functions"
+  },
+  {
+    "index": 906,
+    "source": "src/modules/lessons/schoolTargets/MarginSampleSizeTargetLesson2012.tsx",
+    "testId": "advanced-mockup-0906",
+    "route": "/lessons/advanced-concepts/2012-margin-of-error-sample-size"
+  },
+  {
+    "index": 707,
+    "source": "src/modules/lessons/schoolTargets/MeanMedianModePathTargetLesson10033.tsx",
+    "testId": "school-mockup-0707",
+    "route": "/lessons/school/class-8/class-8-data-handling-mean-median-and-mode-practice-path"
+  },
+  {
+    "index": 783,
+    "source": "src/modules/lessons/schoolTargets/MedianOgiveTargetLesson10109.tsx",
+    "testId": "school-mockup-0783",
+    "route": "/lessons/school/class-10/class-10-statistics-median-from-an-ogive"
+  },
+  {
+    "index": 752,
+    "source": "src/modules/lessons/schoolTargets/MidpointConverseTargetLesson10078.tsx",
+    "testId": "school-mockup-0752",
+    "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-converse-of-midpoint-theorem"
+  },
+  {
+    "index": 758,
+    "source": "src/modules/lessons/schoolTargets/MidpointFormulaTargetLesson10084.tsx",
+    "testId": "school-mockup-0758",
+    "route": "/lessons/school/class-10/class-10-coordinate-geometry-midpoint-formula"
+  },
+  {
+    "index": 751,
+    "source": "src/modules/lessons/schoolTargets/MidpointTheoremTargetLesson10077.tsx",
+    "testId": "school-mockup-0751",
+    "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-midpoint-theorem"
+  },
+  {
+    "index": 867,
+    "source": "src/modules/lessons/schoolTargets/MinorsCofactorsTargetLesson10193.tsx",
+    "testId": "school-mockup-0867",
+    "route": "/lessons/school/class-12/class-12-matrices-and-determinants-minors-and-cofactors"
+  },
+  {
+    "index": 683,
+    "source": "src/modules/lessons/schoolTargets/MisleadingGraphTargetLesson10009.tsx",
+    "testId": "school-mockup-0683",
+    "route": "/lessons/school/class-6/class-6-data-handling-misleading-graph-detection"
+  },
+  {
+    "index": 679,
+    "source": "src/modules/lessons/schoolTargets/MixedUnitsTargetLesson10005.tsx",
+    "testId": "school-mockup-0679",
+    "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-mixed-units-and-unit-conversion"
+  },
+  {
+    "index": 780,
+    "source": "src/modules/lessons/schoolTargets/MoreThanCumulativeTargetLesson10106.tsx",
+    "testId": "school-mockup-0780",
+    "route": "/lessons/school/class-10/class-10-statistics-more-than-cumulative-frequency"
+  },
+  {
+    "index": 782,
+    "source": "src/modules/lessons/schoolTargets/MoreThanOgiveTargetLesson10108.tsx",
+    "testId": "school-mockup-0782",
+    "route": "/lessons/school/class-10/class-10-statistics-more-than-ogive"
+  },
+  {
+    "index": 879,
+    "source": "src/modules/lessons/schoolTargets/MultipleOptimalTargetLesson10205.tsx",
+    "testId": "school-mockup-0879",
+    "route": "/lessons/school/class-12/class-12-linear-programming-multiple-optimal-solutions"
+  },
+  {
+    "index": 885,
+    "source": "src/modules/lessons/schoolTargets/MultiplicationRuleTargetLesson10211.tsx",
+    "testId": "school-mockup-0885",
+    "route": "/lessons/school/class-12/class-12-probability-multiplication-rule"
+  },
+  {
+    "index": 719,
+    "source": "src/modules/lessons/schoolTargets/NthRootsTargetLesson10045.tsx",
+    "testId": "school-mockup-0719",
+    "route": "/lessons/school/class-9/class-9-real-numbers-nth-roots-and-radical-meaning"
+  },
+  {
+    "index": 676,
+    "source": "src/modules/lessons/schoolTargets/NumberNamingTargetLesson10002.tsx",
+    "testId": "school-mockup-0676",
+    "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-indian-and-international-number-naming-systems"
+  },
+  {
+    "index": 684,
+    "source": "src/modules/lessons/schoolTargets/NumberPatternTargetLesson10010.tsx",
+    "testId": "school-mockup-0684",
+    "route": "/lessons/school/class-6/class-6-patterns-number-pattern-completion"
+  },
+  {
+    "index": 791,
+    "source": "src/modules/lessons/schoolTargets/OneOneFunctionsTargetLesson10117.tsx",
+    "testId": "school-mockup-0791",
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-one-one-functions"
+  },
+  {
+    "index": 839,
+    "source": "src/modules/lessons/schoolTargets/OneSidedLimitsTargetLesson10165.tsx",
+    "testId": "school-mockup-0839",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-left-hand-and-right-hand-limits"
+  },
+  {
+    "index": 794,
+    "source": "src/modules/lessons/schoolTargets/OntoFunctionsTargetLesson10120.tsx",
+    "testId": "school-mockup-0794",
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-onto-functions"
+  },
+  {
+    "index": 769,
+    "source": "src/modules/lessons/schoolTargets/OppositeCyclicAnglesTargetLesson10095.tsx",
+    "testId": "school-mockup-0769",
+    "route": "/lessons/school/class-10/class-10-circle-proofs-opposite-angles-of-a-cyclic-quadrilateral"
+  },
+  {
+    "index": 861,
+    "source": "src/modules/lessons/schoolTargets/OrderDegreeDifferentialEquationTargetLesson10187.tsx",
+    "testId": "school-mockup-0861",
+    "route": "/lessons/school/class-12/class-12-differential-equations-order-and-degree"
+  },
+  {
+    "index": 914,
+    "source": "src/modules/lessons/schoolTargets/OscillatorTargetLesson2020.tsx",
+    "testId": "advanced-mockup-0914",
+    "route": "/lessons/advanced-concepts/2020-second-order-oscillator"
+  },
+  {
+    "index": 822,
+    "source": "src/modules/lessons/schoolTargets/ParabolaNormalTargetLesson10148.tsx",
+    "testId": "school-mockup-0822",
+    "route": "/lessons/school/class-11/class-11-conic-sections-normal-to-a-parabola"
+  },
+  {
+    "index": 815,
+    "source": "src/modules/lessons/schoolTargets/ParabolaStandardFormsTargetLesson10141.tsx",
+    "testId": "school-mockup-0815",
+    "route": "/lessons/school/class-11/class-11-conic-sections-parabola-standard-forms"
+  },
+  {
+    "index": 821,
+    "source": "src/modules/lessons/schoolTargets/ParabolaTangentTargetLesson10147.tsx",
+    "testId": "school-mockup-0821",
+    "route": "/lessons/school/class-11/class-11-conic-sections-tangent-to-a-parabola"
+  },
+  {
+    "index": 737,
+    "source": "src/modules/lessons/schoolTargets/ParallelConverseTargetLesson10063.tsx",
+    "testId": "school-mockup-0737",
+    "route": "/lessons/school/class-9/class-9-euclidean-geometry-parallel-line-converse-theorems"
+  },
+  {
+    "index": 701,
+    "source": "src/modules/lessons/schoolTargets/ParallelLineTargetLesson10027.tsx",
+    "testId": "school-mockup-0701",
+    "route": "/lessons/school/class-7/class-7-practical-geometry-parallel-line-construction"
+  },
+  {
+    "index": 748,
+    "source": "src/modules/lessons/schoolTargets/ParallelogramAnglesTargetLesson10074.tsx",
+    "testId": "school-mockup-0748",
+    "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-parallelogram-opposite-angles"
+  },
+  {
+    "index": 750,
+    "source": "src/modules/lessons/schoolTargets/ParallelogramConditionsTargetLesson10076.tsx",
+    "testId": "school-mockup-0750",
+    "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-conditions-for-a-quadrilateral-to-be-a-parallelogram"
+  },
+  {
+    "index": 749,
+    "source": "src/modules/lessons/schoolTargets/ParallelogramDiagonalsTargetLesson10075.tsx",
+    "testId": "school-mockup-0749",
+    "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-parallelogram-diagonals"
+  },
+  {
+    "index": 747,
+    "source": "src/modules/lessons/schoolTargets/ParallelogramSidesTargetLesson10073.tsx",
+    "testId": "school-mockup-0747",
+    "route": "/lessons/school/class-9/class-9-quadrilateral-proofs-parallelogram-opposite-sides"
+  },
+  {
+    "index": 820,
+    "source": "src/modules/lessons/schoolTargets/ParametricCoordinatesTargetLesson10146.tsx",
+    "testId": "school-mockup-0820",
+    "route": "/lessons/school/class-11/class-11-conic-sections-parametric-coordinates"
+  },
+  {
+    "index": 856,
+    "source": "src/modules/lessons/schoolTargets/PartialFractionsTargetLesson10182.tsx",
+    "testId": "school-mockup-0856",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-integration-by-partial-fractions"
+  },
+  {
+    "index": 895,
+    "source": "src/modules/lessons/schoolTargets/PartialQuotientsTargetLesson2001.tsx",
+    "testId": "advanced-mockup-0895",
+    "route": "/lessons/advanced-concepts/2001-partial-quotients"
+  },
+  {
+    "index": 813,
+    "source": "src/modules/lessons/schoolTargets/PascalIdentityTargetLesson10139.tsx",
+    "testId": "school-mockup-0813",
+    "route": "/lessons/school/class-11/class-11-binomial-theorem-pascal-identity"
+  },
+  {
+    "index": 710,
+    "source": "src/modules/lessons/schoolTargets/PatternEncodingTargetLesson10036.tsx",
+    "testId": "school-mockup-0710",
+    "route": "/lessons/school/class-8/class-8-information-processing-pattern-encoding"
+  },
+  {
+    "index": 899,
+    "source": "src/modules/lessons/schoolTargets/PeriodicSquareRootsTargetLesson2005.tsx",
+    "testId": "advanced-mockup-0899",
+    "route": "/lessons/advanced-concepts/2005-periodic-square-root-continued-fractions"
+  },
+  {
+    "index": 698,
+    "source": "src/modules/lessons/schoolTargets/PerpendicularBisectorTargetLesson10024.tsx",
+    "testId": "school-mockup-0698",
+    "route": "/lessons/school/class-7/class-7-practical-geometry-perpendicular-bisector-construction"
+  },
+  {
+    "index": 764,
+    "source": "src/modules/lessons/schoolTargets/PerpendicularCentreChordTargetLesson10090.tsx",
+    "testId": "school-mockup-0764",
+    "route": "/lessons/school/class-10/class-10-circle-proofs-perpendicular-from-centre-to-chord"
+  },
+  {
+    "index": 700,
+    "source": "src/modules/lessons/schoolTargets/PerpendicularPointTargetLesson10026.tsx",
+    "testId": "school-mockup-0700",
+    "route": "/lessons/school/class-7/class-7-practical-geometry-perpendicular-through-a-point"
+  },
+  {
+    "index": 680,
+    "source": "src/modules/lessons/schoolTargets/PictographTargetLesson10006.tsx",
+    "testId": "school-mockup-0680",
+    "route": "/lessons/school/class-6/class-6-data-handling-pictograph-builder"
+  },
+  {
+    "index": 675,
+    "source": "src/modules/lessons/schoolTargets/PlaceValueTargetLesson10001.tsx",
+    "testId": "school-mockup-0675",
+    "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-place-value-explorer"
+  },
+  {
+    "index": 837,
+    "source": "src/modules/lessons/schoolTargets/PlaneAngleTargetLesson10163.tsx",
+    "testId": "school-mockup-0837",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-angle-between-two-planes"
+  },
+  {
+    "index": 833,
+    "source": "src/modules/lessons/schoolTargets/PlaneEquationTargetLesson10159.tsx",
+    "testId": "school-mockup-0833",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-plane-equation"
+  },
+  {
+    "index": 834,
+    "source": "src/modules/lessons/schoolTargets/PointNormalFormTargetLesson10160.tsx",
+    "testId": "school-mockup-0834",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-point-normal-form"
+  },
+  {
+    "index": 836,
+    "source": "src/modules/lessons/schoolTargets/PointPlaneDistanceTargetLesson10162.tsx",
+    "testId": "school-mockup-0836",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-distance-from-point-to-plane"
+  },
+  {
+    "index": 721,
+    "source": "src/modules/lessons/schoolTargets/PolynomialDivisionTargetLesson10047.tsx",
+    "testId": "school-mockup-0721",
+    "route": "/lessons/school/class-9/class-9-polynomials-polynomial-division"
+  },
+  {
+    "index": 801,
+    "source": "src/modules/lessons/schoolTargets/PrincipalSolutionsTargetLesson10127.tsx",
+    "testId": "school-mockup-0801",
+    "route": "/lessons/school/class-11/class-11-trigonometry-principal-solutions"
+  },
+  {
+    "index": 890,
+    "source": "src/modules/lessons/schoolTargets/ProbabilityDistributionTargetLesson10216.tsx",
+    "testId": "school-mockup-0890",
+    "route": "/lessons/school/class-12/class-12-probability-probability-distribution-of-a-random-variable"
+  },
+  {
+    "index": 882,
+    "source": "src/modules/lessons/schoolTargets/ProductionPlanningTargetLesson10208.tsx",
+    "testId": "school-mockup-0882",
+    "route": "/lessons/school/class-12/class-12-linear-programming-production-planning-problem"
+  },
+  {
+    "index": 693,
+    "source": "src/modules/lessons/schoolTargets/ProfitLossTargetLesson10019.tsx",
+    "testId": "school-mockup-0693",
+    "route": "/lessons/school/class-7/class-7-applied-arithmetic-profit-loss-and-marked-price"
+  },
+  {
+    "index": 731,
+    "source": "src/modules/lessons/schoolTargets/ProofStructureTargetLesson10057.tsx",
+    "testId": "school-mockup-0731",
+    "route": "/lessons/school/class-9/class-9-euclidean-geometry-proof-structure-and-logical-statements"
+  },
+  {
+    "index": 908,
+    "source": "src/modules/lessons/schoolTargets/PValuesTargetLesson2014.tsx",
+    "testId": "advanced-mockup-0908",
+    "route": "/lessons/advanced-concepts/2014-p-values"
+  },
+  {
+    "index": 889,
+    "source": "src/modules/lessons/schoolTargets/RandomVariablesTargetLesson10215.tsx",
+    "testId": "school-mockup-0889",
+    "route": "/lessons/school/class-12/class-12-probability-random-variables"
+  },
+  {
+    "index": 708,
+    "source": "src/modules/lessons/schoolTargets/RangeSpreadTargetLesson10034.tsx",
+    "testId": "school-mockup-0708",
+    "route": "/lessons/school/class-8/class-8-data-handling-range-and-spread-explorer"
+  },
+  {
+    "index": 848,
+    "source": "src/modules/lessons/schoolTargets/RateOfChangeTargetLesson10174.tsx",
+    "testId": "school-mockup-0848",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-rate-of-change"
+  },
+  {
+    "index": 716,
+    "source": "src/modules/lessons/schoolTargets/RationalIrrationalTargetLesson10042.tsx",
+    "testId": "school-mockup-0716",
+    "route": "/lessons/school/class-9/class-9-real-numbers-rational-and-irrational-classification"
+  },
+  {
+    "index": 718,
+    "source": "src/modules/lessons/schoolTargets/RationalisationTargetLesson10044.tsx",
+    "testId": "school-mockup-0718",
+    "route": "/lessons/school/class-9/class-9-real-numbers-rationalisation-of-denominators"
+  },
+  {
+    "index": 691,
+    "source": "src/modules/lessons/schoolTargets/RatioTableTargetLesson10017.tsx",
+    "testId": "school-mockup-0691",
+    "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-ratio-tables"
+  },
+  {
+    "index": 787,
+    "source": "src/modules/lessons/schoolTargets/ReflexiveRelationsTargetLesson10113.tsx",
+    "testId": "school-mockup-0787",
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-reflexive-relations"
+  },
+  {
+    "index": 689,
+    "source": "src/modules/lessons/schoolTargets/RemainderTargetLesson10015.tsx",
+    "testId": "school-mockup-0689",
+    "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-remainder-reasoning"
+  },
+  {
+    "index": 722,
+    "source": "src/modules/lessons/schoolTargets/RemainderTheoremTargetLesson10048.tsx",
+    "testId": "school-mockup-0722",
+    "route": "/lessons/school/class-9/class-9-polynomials-remainder-theorem"
+  },
+  {
+    "index": 842,
+    "source": "src/modules/lessons/schoolTargets/RemovableDiscontinuityTargetLesson10168.tsx",
+    "testId": "school-mockup-0842",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-removable-discontinuity"
+  },
+  {
+    "index": 744,
+    "source": "src/modules/lessons/schoolTargets/RhsCongruenceTargetLesson10070.tsx",
+    "testId": "school-mockup-0744",
+    "route": "/lessons/school/class-9/class-9-triangle-proofs-rhs-congruence"
+  },
+  {
+    "index": 902,
+    "source": "src/modules/lessons/schoolTargets/RiemannHypothesisTargetLesson2008.tsx",
+    "testId": "advanced-mockup-0902",
+    "route": "/lessons/advanced-concepts/2008-riemann-hypothesis-primes"
+  },
+  {
+    "index": 705,
+    "source": "src/modules/lessons/schoolTargets/RightTriangleRhsTargetLesson10031.tsx",
+    "testId": "school-mockup-0705",
+    "route": "/lessons/school/class-8/class-8-practical-geometry-right-triangle-construction-by-rhs"
+  },
+  {
+    "index": 846,
+    "source": "src/modules/lessons/schoolTargets/RollesTheoremTargetLesson10172.tsx",
+    "testId": "school-mockup-0846",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-rolle-s-theorem"
+  },
+  {
+    "index": 712,
+    "source": "src/modules/lessons/schoolTargets/RouteMapTargetLesson10038.tsx",
+    "testId": "school-mockup-0712",
+    "route": "/lessons/school/class-8/class-8-information-processing-route-map-reasoning"
+  },
+  {
+    "index": 686,
+    "source": "src/modules/lessons/schoolTargets/RuleMachineTargetLesson10012.tsx",
+    "testId": "school-mockup-0686",
+    "route": "/lessons/school/class-6/class-6-patterns-input-output-rule-machines"
+  },
+  {
+    "index": 736,
+    "source": "src/modules/lessons/schoolTargets/SameSideInteriorTargetLesson10062.tsx",
+    "testId": "school-mockup-0736",
+    "route": "/lessons/school/class-9/class-9-euclidean-geometry-interior-angles-on-the-same-side"
+  },
+  {
+    "index": 740,
+    "source": "src/modules/lessons/schoolTargets/SasCongruenceTargetLesson10066.tsx",
+    "testId": "school-mockup-0740",
+    "route": "/lessons/school/class-9/class-9-triangle-proofs-sas-congruence"
+  },
+  {
+    "index": 695,
+    "source": "src/modules/lessons/schoolTargets/ScaleFactorTargetLesson10021.tsx",
+    "testId": "school-mockup-0695",
+    "route": "/lessons/school/class-7/class-7-applied-arithmetic-scale-factor-in-maps-and-recipes"
+  },
+  {
+    "index": 754,
+    "source": "src/modules/lessons/schoolTargets/SemiPerimeterTargetLesson10080.tsx",
+    "testId": "school-mockup-0754",
+    "route": "/lessons/school/class-9/class-9-mensuration-semi-perimeter-lab"
+  },
+  {
+    "index": 774,
+    "source": "src/modules/lessons/schoolTargets/ShadowLengthTargetLesson10100.tsx",
+    "testId": "school-mockup-0774",
+    "route": "/lessons/school/class-10/class-10-trigonometry-applications-shadow-length-modelling"
+  },
+  {
+    "index": 685,
+    "source": "src/modules/lessons/schoolTargets/ShapePatternTargetLesson10011.tsx",
+    "testId": "school-mockup-0685",
+    "route": "/lessons/school/class-6/class-6-patterns-shape-pattern-completion"
+  },
+  {
+    "index": 832,
+    "source": "src/modules/lessons/schoolTargets/ShortestDistanceLinesTargetLesson10158.tsx",
+    "testId": "school-mockup-0832",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-shortest-distance-between-lines"
+  },
+  {
+    "index": 831,
+    "source": "src/modules/lessons/schoolTargets/SkewLinesTargetLesson10157.tsx",
+    "testId": "school-mockup-0831",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-skew-lines"
+  },
+  {
+    "index": 910,
+    "source": "src/modules/lessons/schoolTargets/SlopeFieldsTargetLesson2016.tsx",
+    "testId": "advanced-mockup-0910",
+    "route": "/lessons/advanced-concepts/2016-slope-fields"
+  },
+  {
+    "index": 743,
+    "source": "src/modules/lessons/schoolTargets/SssCongruenceTargetLesson10069.tsx",
+    "testId": "school-mockup-0743",
+    "route": "/lessons/school/class-9/class-9-triangle-proofs-sss-congruence"
+  },
+  {
+    "index": 807,
+    "source": "src/modules/lessons/schoolTargets/StrongInductionTargetLesson10133.tsx",
+    "testId": "school-mockup-0807",
+    "route": "/lessons/school/class-11/class-11-mathematical-induction-strong-induction-introduction"
+  },
+  {
+    "index": 717,
+    "source": "src/modules/lessons/schoolTargets/SuccessiveMagnificationTargetLesson10043.tsx",
+    "testId": "school-mockup-0717",
+    "route": "/lessons/school/class-9/class-9-real-numbers-successive-magnification-on-the-number-line"
+  },
+  {
+    "index": 804,
+    "source": "src/modules/lessons/schoolTargets/SumFormulaInductionTargetLesson10130.tsx",
+    "testId": "school-mockup-0804",
+    "route": "/lessons/school/class-11/class-11-mathematical-induction-sum-formula-by-induction"
+  },
+  {
+    "index": 682,
+    "source": "src/modules/lessons/schoolTargets/SurveyFrequencyTargetLesson10008.tsx",
+    "testId": "school-mockup-0682",
+    "route": "/lessons/school/class-6/class-6-data-handling-survey-to-frequency-table"
+  },
+  {
+    "index": 788,
+    "source": "src/modules/lessons/schoolTargets/SymmetricRelationsTargetLesson10114.tsx",
+    "testId": "school-mockup-0788",
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-symmetric-relations"
+  },
+  {
+    "index": 713,
+    "source": "src/modules/lessons/schoolTargets/TabularPatternTargetLesson10039.tsx",
+    "testId": "school-mockup-0713",
+    "route": "/lessons/school/class-8/class-8-information-processing-tabular-pattern-completion"
+  },
+  {
+    "index": 771,
+    "source": "src/modules/lessons/schoolTargets/TangentLengthsExternalTargetLesson10097.tsx",
+    "testId": "school-mockup-0771",
+    "route": "/lessons/school/class-10/class-10-circle-proofs-tangent-lengths-from-an-external-point"
+  },
+  {
+    "index": 770,
+    "source": "src/modules/lessons/schoolTargets/TangentPerpendicularTargetLesson10096.tsx",
+    "testId": "school-mockup-0770",
+    "route": "/lessons/school/class-10/class-10-circle-proofs-tangent-perpendicular-to-radius"
+  },
+  {
+    "index": 849,
+    "source": "src/modules/lessons/schoolTargets/TangentsNormalsTargetLesson10175.tsx",
+    "testId": "school-mockup-0849",
+    "route": "/lessons/school/class-12/class-12-formal-calculus-tangents-and-normals"
+  },
+  {
+    "index": 715,
+    "source": "src/modules/lessons/schoolTargets/TerminatingDecimalsTargetLesson10041.tsx",
+    "testId": "school-mockup-0715",
+    "route": "/lessons/school/class-9/class-9-real-numbers-terminating-and-non-terminating-decimals"
+  },
+  {
+    "index": 887,
+    "source": "src/modules/lessons/schoolTargets/TotalProbabilityTargetLesson10213.tsx",
+    "testId": "school-mockup-0887",
+    "route": "/lessons/school/class-12/class-12-probability-total-probability-theorem"
+  },
+  {
+    "index": 789,
+    "source": "src/modules/lessons/schoolTargets/TransitiveRelationsTargetLesson10115.tsx",
+    "testId": "school-mockup-0789",
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-transitive-relations"
+  },
+  {
+    "index": 883,
+    "source": "src/modules/lessons/schoolTargets/TransportationTargetLesson10209.tsx",
+    "testId": "school-mockup-0883",
+    "route": "/lessons/school/class-12/class-12-linear-programming-transportation-style-lpp-introduction"
+  },
+  {
+    "index": 738,
+    "source": "src/modules/lessons/schoolTargets/TriangleAngleSumTargetLesson10064.tsx",
+    "testId": "school-mockup-0738",
+    "route": "/lessons/school/class-9/class-9-euclidean-geometry-triangle-angle-sum-theorem"
+  },
+  {
+    "index": 704,
+    "source": "src/modules/lessons/schoolTargets/TriangleAsaTargetLesson10030.tsx",
+    "testId": "school-mockup-0704",
+    "route": "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-asa"
+  },
+  {
+    "index": 746,
+    "source": "src/modules/lessons/schoolTargets/TriangleInequalityTargetLesson10072.tsx",
+    "testId": "school-mockup-0746",
+    "route": "/lessons/school/class-9/class-9-triangle-proofs-triangle-inequality"
+  },
+  {
+    "index": 703,
+    "source": "src/modules/lessons/schoolTargets/TriangleSasTargetLesson10029.tsx",
+    "testId": "school-mockup-0703",
+    "route": "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-sas"
+  },
+  {
+    "index": 702,
+    "source": "src/modules/lessons/schoolTargets/TriangleSssTargetLesson10028.tsx",
+    "testId": "school-mockup-0702",
+    "route": "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-sss"
+  },
+  {
+    "index": 798,
+    "source": "src/modules/lessons/schoolTargets/TrigDomainRangeTargetLesson10124.tsx",
+    "testId": "school-mockup-0798",
+    "route": "/lessons/school/class-11/class-11-trigonometry-domain-and-range-of-trigonometric-functions"
+  },
+  {
+    "index": 800,
+    "source": "src/modules/lessons/schoolTargets/TrigGeneralSolutionsTargetLesson10126.tsx",
+    "testId": "school-mockup-0800",
+    "route": "/lessons/school/class-11/class-11-trigonometry-general-solutions-of-trigonometric-equations"
+  },
+  {
+    "index": 799,
+    "source": "src/modules/lessons/schoolTargets/TrigTransformTargetLesson10125.tsx",
+    "testId": "school-mockup-0799",
+    "route": "/lessons/school/class-11/class-11-trigonometry-transformation-of-trigonometric-graphs"
+  },
+  {
+    "index": 775,
+    "source": "src/modules/lessons/schoolTargets/TwoObserverHeightTargetLesson10101.tsx",
+    "testId": "school-mockup-0775",
+    "route": "/lessons/school/class-10/class-10-trigonometry-applications-two-observer-height-problems"
+  },
+  {
+    "index": 909,
+    "source": "src/modules/lessons/schoolTargets/TypeErrorsTargetLesson2015.tsx",
+    "testId": "advanced-mockup-0909",
+    "route": "/lessons/advanced-concepts/2015-type-i-type-ii-error"
+  },
+  {
+    "index": 786,
+    "source": "src/modules/lessons/schoolTargets/TypesRelationsTargetLesson10112.tsx",
+    "testId": "school-mockup-0786",
+    "route": "/lessons/school/class-11/class-11-relations-and-functions-types-of-relations"
+  },
+  {
+    "index": 878,
+    "source": "src/modules/lessons/schoolTargets/UnboundedRegionTargetLesson10204.tsx",
+    "testId": "school-mockup-0878",
+    "route": "/lessons/school/class-12/class-12-linear-programming-unbounded-feasible-region"
+  },
+  {
+    "index": 690,
+    "source": "src/modules/lessons/schoolTargets/UnitRateTargetLesson10016.tsx",
+    "testId": "school-mockup-0690",
+    "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-unit-rate-table-lab"
+  },
+  {
+    "index": 862,
+    "source": "src/modules/lessons/schoolTargets/VariableSeparableEquationsTargetLesson10188.tsx",
+    "testId": "school-mockup-0862",
+    "route": "/lessons/school/class-12/class-12-differential-equations-variable-separable-equations"
+  },
+  {
+    "index": 892,
+    "source": "src/modules/lessons/schoolTargets/VarianceTargetLesson10218.tsx",
+    "testId": "school-mockup-0892",
+    "route": "/lessons/school/class-12/class-12-probability-variance"
+  },
+  {
+    "index": 829,
+    "source": "src/modules/lessons/schoolTargets/VectorEquationLineTargetLesson10155.tsx",
+    "testId": "school-mockup-0829",
+    "route": "/lessons/school/class-12/class-12-three-dimensional-geometry-vector-equation-of-a-line"
+  },
+  {
+    "index": 732,
+    "source": "src/modules/lessons/schoolTargets/VerticalAnglesTargetLesson10058.tsx",
+    "testId": "school-mockup-0732",
+    "route": "/lessons/school/class-9/class-9-euclidean-geometry-vertically-opposite-angles"
+  },
+  {
+    "index": 724,
+    "source": "src/modules/lessons/schoolTargets/ZerosCoefficientsTargetLesson10050.tsx",
+    "testId": "school-mockup-0724",
+    "route": "/lessons/school/class-9/class-9-polynomials-relationship-between-zeros-and-coefficients"
+  },
+  {
+    "index": 918,
+    "source": "src/modules/lessons/schoolTargets/ZetaTargetLesson2024.tsx",
+    "testId": "advanced-mockup-0918",
+    "route": "/lessons/advanced-concepts/2024-zeta-function"
+  },
+  {
+    "index": 178,
+    "source": "src/modules/lessons/adapters/AbsoluteValueEquationsTargetLesson121.tsx",
+    "testId": "algebra-mockup-0178",
+    "route": "/lessons/algebra/121-absolute-value-equations"
+  },
+  {
+    "index": 198,
+    "source": "src/modules/lessons/adapters/AbsoluteValueFunctionsTargetLesson141.tsx",
+    "testId": "graph-mockup-0198",
+    "route": "/lessons/graphs-and-functions/141-absolute-value-functions"
+  },
+  {
+    "index": 14,
+    "source": "src/modules/lessons/adapters/AbsoluteValueTargetLesson14.tsx",
+    "testId": "calculator-mockup-0014",
+    "route": "/lessons/core-workspaces/14-absolute-value"
+  },
+  {
+    "index": 467,
+    "source": "src/modules/lessons/adapters/AdditionRuleLesson504.tsx",
+    "testId": "probability-mockup-0467",
+    "route": "/lessons/data-and-probability/504-addition-rule"
+  },
+  {
+    "index": 155,
+    "source": "src/modules/lessons/adapters/AlgebraicFractionsTargetLesson98.tsx",
+    "testId": "algebra-mockup-0155",
+    "route": "/lessons/algebra/98-algebraic-fractions"
+  },
+  {
+    "index": 28,
+    "source": "src/modules/lessons/adapters/AlgebraicInputTargetLesson28.tsx",
+    "testId": "algebra-mockup-0028",
+    "route": "/lessons/core-workspaces/28-algebraic-input"
+  },
+  {
+    "index": 149,
+    "source": "src/modules/lessons/adapters/AlgebraTilesTargetLesson92.tsx",
+    "testId": "algebra-mockup-0149",
+    "route": "/lessons/algebra/92-algebra-tiles"
+  },
+  {
+    "index": 19,
+    "source": "src/modules/lessons/adapters/AlgebraWorkspaceTargetLesson19.tsx",
+    "testId": "algebra-mockup-0019",
+    "route": "/lessons/core-workspaces/19-algebra-workspace"
+  },
+  {
+    "index": 233,
+    "source": "src/modules/lessons/adapters/AngleBetweenLinesTargetLesson176.tsx",
+    "testId": "geometry-mockup-0233",
+    "route": "/lessons/geometry/176-angle-between-lines"
+  },
+  {
+    "index": 268,
+    "source": "src/modules/lessons/adapters/AngleBisectorTargetLesson211.tsx",
+    "testId": "dynamic-geometry-mockup-0268",
+    "route": "/lessons/geometry/211-angle-bisector"
+  },
+  {
+    "index": 314,
+    "source": "src/modules/lessons/adapters/AngleMeasurementTargetLesson257.tsx",
+    "testId": "trigonometry-mockup-0314",
+    "route": "/lessons/trigonometry/257-angle-measurement"
+  },
+  {
+    "index": 23,
+    "source": "src/modules/lessons/adapters/AngleSlidersTargetLesson23.tsx",
+    "testId": "algebra-mockup-0023",
+    "route": "/lessons/core-workspaces/23-angle-sliders"
+  },
+  {
+    "index": 289,
+    "source": "src/modules/lessons/adapters/AngleTargetLesson232.tsx",
+    "testId": "dynamic-geometry-mockup-0289",
+    "route": "/lessons/geometry/232-angle"
+  },
+  {
+    "index": 24,
+    "source": "src/modules/lessons/adapters/AnimationControlsTargetLesson24.tsx",
+    "testId": "algebra-mockup-0024",
+    "route": "/lessons/core-workspaces/24-animation-controls"
+  },
+  {
+    "index": 515,
+    "source": "src/modules/lessons/adapters/AnovaLesson552.tsx",
+    "testId": "inference-mockup-0515",
+    "route": "/lessons/data-and-probability/552-anova"
+  },
+  {
+    "index": 288,
+    "source": "src/modules/lessons/adapters/AreaTargetLesson231.tsx",
+    "testId": "dynamic-geometry-mockup-0288",
+    "route": "/lessons/geometry/231-area"
+  },
+  {
+    "index": 259,
+    "source": "src/modules/lessons/adapters/AttachDetachTargetLesson202.tsx",
+    "testId": "dynamic-geometry-mockup-0259",
+    "route": "/lessons/geometry/202-attach-detach-point"
+  },
+  {
+    "index": 449,
+    "source": "src/modules/lessons/adapters/BarPieLesson486.tsx",
+    "testId": "statistics-mockup-0449",
+    "route": "/lessons/data-and-probability/486-bar-and-pie-charts"
+  },
+  {
+    "index": 239,
+    "source": "src/modules/lessons/adapters/BarycentricCoordinatesTargetLesson182.tsx",
+    "testId": "geometry-mockup-0239",
+    "route": "/lessons/geometry/182-barycentric-coordinates"
+  },
+  {
+    "index": 55,
+    "source": "src/modules/lessons/adapters/BaseSystemsTargetLesson73.tsx",
+    "testId": "number-mockup-0055",
+    "route": "/lessons/numbers-and-arithmetic/73-base-systems"
+  },
+  {
+    "index": 1,
+    "source": "src/modules/lessons/adapters/BasicCalculatorTargetLesson1.tsx",
+    "testId": "calculator-mockup-0001",
+    "route": "/lessons/core-workspaces/1-basic-calculator"
+  },
+  {
+    "index": 475,
+    "source": "src/modules/lessons/adapters/BayesTheoremLesson512.tsx",
+    "testId": "probability-mockup-0475",
+    "route": "/lessons/data-and-probability/512-bayes-theorem"
+  },
+  {
+    "index": 330,
+    "source": "src/modules/lessons/adapters/BearingsTargetLesson273.tsx",
+    "testId": "trigonometry-mockup-0330",
+    "route": "/lessons/trigonometry/273-bearings"
+  },
+  {
+    "index": 484,
+    "source": "src/modules/lessons/adapters/BernoulliDistributionLesson521.tsx",
+    "testId": "probability-mockup-0484",
+    "route": "/lessons/data-and-probability/521-bernoulli-distribution"
+  },
+  {
+    "index": 270,
+    "source": "src/modules/lessons/adapters/BestFitLineTargetLesson213.tsx",
+    "testId": "dynamic-geometry-mockup-0270",
+    "route": "/lessons/geometry/213-best-fit-line"
+  },
+  {
+    "index": 485,
+    "source": "src/modules/lessons/adapters/BinomialDistributionLesson522.tsx",
+    "testId": "probability-mockup-0485",
+    "route": "/lessons/data-and-probability/522-binomial-distribution"
+  },
+  {
+    "index": 36,
+    "source": "src/modules/lessons/adapters/BooleanVariablesTargetLesson36.tsx",
+    "testId": "algebra-mockup-0036",
+    "route": "/lessons/core-workspaces/36-boolean-variables"
+  },
+  {
+    "index": 443,
+    "source": "src/modules/lessons/adapters/BoxPlotLesson480.tsx",
+    "testId": "statistics-mockup-0443",
+    "route": "/lessons/data-and-probability/480-box-plot"
+  },
+  {
+    "index": 17,
+    "source": "src/modules/lessons/adapters/CalculationHistoryTargetLesson17.tsx",
+    "testId": "calculator-mockup-0017",
+    "route": "/lessons/core-workspaces/17-calculation-history"
+  },
+  {
+    "index": 224,
+    "source": "src/modules/lessons/adapters/CartesianPlaneTargetLesson167.tsx",
+    "testId": "geometry-mockup-0224",
+    "route": "/lessons/geometry/167-cartesian-plane"
+  },
+  {
+    "index": 204,
+    "source": "src/modules/lessons/adapters/CeilingFunctionTargetLesson147.tsx",
+    "testId": "graph-mockup-0204",
+    "route": "/lessons/graphs-and-functions/147-ceiling-function"
+  },
+  {
+    "index": 501,
+    "source": "src/modules/lessons/adapters/CentralLimitTheoremLesson538.tsx",
+    "testId": "inference-mockup-0501",
+    "route": "/lessons/data-and-probability/538-central-limit-theorem"
+  },
+  {
+    "index": 493,
+    "source": "src/modules/lessons/adapters/ChiSquareDistributionLesson530.tsx",
+    "testId": "probability-mockup-0493",
+    "route": "/lessons/data-and-probability/530-chi-square-distribution"
+  },
+  {
+    "index": 512,
+    "source": "src/modules/lessons/adapters/ChiSquareGoodnessOfFitLesson549.tsx",
+    "testId": "inference-mockup-0512",
+    "route": "/lessons/data-and-probability/549-chi-square-goodness-of-fit"
+  },
+  {
+    "index": 513,
+    "source": "src/modules/lessons/adapters/ChiSquareIndependenceLesson550.tsx",
+    "testId": "inference-mockup-0513",
+    "route": "/lessons/data-and-probability/550-chi-square-independence"
+  },
+  {
+    "index": 275,
+    "source": "src/modules/lessons/adapters/CircleCentrePointTargetLesson218.tsx",
+    "testId": "dynamic-geometry-mockup-0275",
+    "route": "/lessons/geometry/218-circle-centre-and-point"
+  },
+  {
+    "index": 276,
+    "source": "src/modules/lessons/adapters/CircleCentreRadiusTargetLesson219.tsx",
+    "testId": "dynamic-geometry-mockup-0276",
+    "route": "/lessons/geometry/219-circle-centre-and-radius"
+  },
+  {
+    "index": 277,
+    "source": "src/modules/lessons/adapters/CircleThreePointsTargetLesson220.tsx",
+    "testId": "dynamic-geometry-mockup-0277",
+    "route": "/lessons/geometry/220-circle-through-three-points"
+  },
+  {
+    "index": 280,
+    "source": "src/modules/lessons/adapters/CircularArcTargetLesson223.tsx",
+    "testId": "dynamic-geometry-mockup-0280",
+    "route": "/lessons/geometry/223-circular-arc"
+  },
+  {
+    "index": 282,
+    "source": "src/modules/lessons/adapters/CircularSectorTargetLesson225.tsx",
+    "testId": "dynamic-geometry-mockup-0282",
+    "route": "/lessons/geometry/225-circular-sector"
+  },
+  {
+    "index": 281,
+    "source": "src/modules/lessons/adapters/CircumcircularArcTargetLesson224.tsx",
+    "testId": "dynamic-geometry-mockup-0281",
+    "route": "/lessons/geometry/224-circumcircular-arc"
+  },
+  {
+    "index": 311,
+    "source": "src/modules/lessons/adapters/CollinearityTestTargetLesson254.tsx",
+    "testId": "dynamic-geometry-mockup-0311",
+    "route": "/lessons/geometry/254-collinearity-test"
+  },
+  {
+    "index": 219,
+    "source": "src/modules/lessons/adapters/CombinedTransformationsTargetLesson162.tsx",
+    "testId": "graph-mockup-0219",
+    "route": "/lessons/graphs-and-functions/162-combined-transformations"
+  },
+  {
+    "index": 59,
+    "source": "src/modules/lessons/adapters/ComparingFractionsTargetLesson77.tsx",
+    "testId": "number-mockup-0059",
+    "route": "/lessons/numbers-and-arithmetic/77-comparing-fractions"
+  },
+  {
+    "index": 278,
+    "source": "src/modules/lessons/adapters/CompassTargetLesson221.tsx",
+    "testId": "dynamic-geometry-mockup-0278",
+    "route": "/lessons/geometry/221-compass"
+  },
+  {
+    "index": 466,
+    "source": "src/modules/lessons/adapters/ComplementRuleLesson503.tsx",
+    "testId": "probability-mockup-0466",
+    "route": "/lessons/data-and-probability/503-complement-rule"
+  },
+  {
+    "index": 45,
+    "source": "src/modules/lessons/adapters/ComplexNumbersTargetLesson63.tsx",
+    "testId": "number-mockup-0045",
+    "route": "/lessons/numbers-and-arithmetic/63-complex-numbers"
+  },
+  {
+    "index": 241,
+    "source": "src/modules/lessons/adapters/ComponentFormTargetLesson184.tsx",
+    "testId": "vector-mockup-0241",
+    "route": "/lessons/geometry/184-component-form"
+  },
+  {
+    "index": 207,
+    "source": "src/modules/lessons/adapters/CompositeFunctionsTargetLesson150.tsx",
+    "testId": "graph-mockup-0207",
+    "route": "/lessons/graphs-and-functions/150-composite-functions"
+  },
+  {
+    "index": 300,
+    "source": "src/modules/lessons/adapters/CompositeTransformationsTargetLesson243.tsx",
+    "testId": "dynamic-geometry-mockup-0300",
+    "route": "/lessons/geometry/243-composite-transformations"
+  },
+  {
+    "index": 324,
+    "source": "src/modules/lessons/adapters/CompoundAngleTargetLesson267.tsx",
+    "testId": "trigonometry-mockup-0324",
+    "route": "/lessons/trigonometry/267-compound-angle-formulae"
+  },
+  {
+    "index": 72,
+    "source": "src/modules/lessons/adapters/CompoundChangeTargetLesson90.tsx",
+    "testId": "number-mockup-0072",
+    "route": "/lessons/numbers-and-arithmetic/90-compound-change"
+  },
+  {
+    "index": 180,
+    "source": "src/modules/lessons/adapters/CompoundInequalitiesTargetLesson123.tsx",
+    "testId": "algebra-mockup-0180",
+    "route": "/lessons/algebra/123-compound-inequalities"
+  },
+  {
+    "index": 312,
+    "source": "src/modules/lessons/adapters/ConcurrencyTestTargetLesson255.tsx",
+    "testId": "dynamic-geometry-mockup-0312",
+    "route": "/lessons/geometry/255-concurrency-test"
+  },
+  {
+    "index": 313,
+    "source": "src/modules/lessons/adapters/ConcyclicityTestTargetLesson256.tsx",
+    "testId": "dynamic-geometry-mockup-0313",
+    "route": "/lessons/geometry/256-concyclicity-test"
+  },
+  {
+    "index": 471,
+    "source": "src/modules/lessons/adapters/ConditionalProbabilityLesson508.tsx",
+    "testId": "probability-mockup-0471",
+    "route": "/lessons/data-and-probability/508-conditional-probability"
+  },
+  {
+    "index": 26,
+    "source": "src/modules/lessons/adapters/ConditionalVisibilityTargetLesson26.tsx",
+    "testId": "algebra-mockup-0026",
+    "route": "/lessons/core-workspaces/26-conditional-visibility"
+  },
+  {
+    "index": 502,
+    "source": "src/modules/lessons/adapters/ConfidenceIntervalMeanLesson539.tsx",
+    "testId": "inference-mockup-0502",
+    "route": "/lessons/data-and-probability/539-confidence-interval-for-mean"
+  },
+  {
+    "index": 503,
+    "source": "src/modules/lessons/adapters/ConfidenceIntervalProportionLesson540.tsx",
+    "testId": "inference-mockup-0503",
+    "route": "/lessons/data-and-probability/540-confidence-interval-for-proportion"
+  },
+  {
+    "index": 283,
+    "source": "src/modules/lessons/adapters/ConicFivePointsTargetLesson226.tsx",
+    "testId": "dynamic-geometry-mockup-0283",
+    "route": "/lessons/geometry/226-conic-through-five-points"
+  },
+  {
+    "index": 309,
+    "source": "src/modules/lessons/adapters/ConjectureTestingTargetLesson252.tsx",
+    "testId": "dynamic-geometry-mockup-0309",
+    "route": "/lessons/geometry/252-conjecture-testing"
+  },
+  {
+    "index": 16,
+    "source": "src/modules/lessons/adapters/ConstantsLibraryTargetLesson16.tsx",
+    "testId": "calculator-mockup-0016",
+    "route": "/lessons/core-workspaces/16-constants-library"
+  },
+  {
+    "index": 292,
+    "source": "src/modules/lessons/adapters/ConstructionStepsTargetLesson235.tsx",
+    "testId": "dynamic-geometry-mockup-0292",
+    "route": "/lessons/geometry/235-construction-steps"
+  },
+  {
+    "index": 56,
+    "source": "src/modules/lessons/adapters/ContinuedFractionsTargetLesson74.tsx",
+    "testId": "number-mockup-0056",
+    "route": "/lessons/numbers-and-arithmetic/74-continued-fractions"
+  },
+  {
+    "index": 235,
+    "source": "src/modules/lessons/adapters/CoordinateLociTargetLesson178.tsx",
+    "testId": "geometry-mockup-0235",
+    "route": "/lessons/geometry/178-coordinate-loci"
+  },
+  {
+    "index": 236,
+    "source": "src/modules/lessons/adapters/CoordinateTransformationsTargetLesson179.tsx",
+    "testId": "geometry-mockup-0236",
+    "route": "/lessons/geometry/179-coordinate-transformations"
+  },
+  {
+    "index": 452,
+    "source": "src/modules/lessons/adapters/CorrelationLesson489.tsx",
+    "testId": "statistics-mockup-0452",
+    "route": "/lessons/data-and-probability/489-correlation-coefficient"
+  },
+  {
+    "index": 319,
+    "source": "src/modules/lessons/adapters/CosineGraphTargetLesson262.tsx",
+    "testId": "trigonometry-mockup-0319",
+    "route": "/lessons/trigonometry/262-cosine-graph"
+  },
+  {
+    "index": 328,
+    "source": "src/modules/lessons/adapters/CosineRuleTargetLesson271.tsx",
+    "testId": "trigonometry-mockup-0328",
+    "route": "/lessons/trigonometry/271-cosine-rule"
+  },
+  {
+    "index": 13,
+    "source": "src/modules/lessons/adapters/CountingChoicesTargetLesson13.tsx",
+    "testId": "calculator-mockup-0013",
+    "route": "/lessons/core-workspaces/13-factorial-permutation-and-combination"
+  },
+  {
+    "index": 248,
+    "source": "src/modules/lessons/adapters/CrossProductTargetLesson191.tsx",
+    "testId": "vector-mockup-0248",
+    "route": "/lessons/geometry/191-cross-product"
+  },
+  {
+    "index": 197,
+    "source": "src/modules/lessons/adapters/CubeRootFunctionsTargetLesson140.tsx",
+    "testId": "graph-mockup-0197",
+    "route": "/lessons/graphs-and-functions/140-cube-root-functions"
+  },
+  {
+    "index": 192,
+    "source": "src/modules/lessons/adapters/CubicFunctionsTargetLesson135.tsx",
+    "testId": "graph-mockup-0192",
+    "route": "/lessons/graphs-and-functions/135-cubic-functions"
+  },
+  {
+    "index": 481,
+    "source": "src/modules/lessons/adapters/CumulativeDistributionLesson518.tsx",
+    "testId": "probability-mockup-0481",
+    "route": "/lessons/data-and-probability/518-cumulative-distribution"
+  },
+  {
+    "index": 448,
+    "source": "src/modules/lessons/adapters/CumulativeFrequencyLesson485.tsx",
+    "testId": "statistics-mockup-0448",
+    "route": "/lessons/data-and-probability/485-cumulative-frequency-curve"
+  },
+  {
+    "index": 430,
+    "source": "src/modules/lessons/adapters/DataTypesLesson467.tsx",
+    "testId": "statistics-mockup-0430",
+    "route": "/lessons/data-and-probability/467-data-types"
+  },
+  {
+    "index": 62,
+    "source": "src/modules/lessons/adapters/DecimalOperationsTargetLesson80.tsx",
+    "testId": "number-mockup-0062",
+    "route": "/lessons/numbers-and-arithmetic/80-decimal-operations"
+  },
+  {
+    "index": 61,
+    "source": "src/modules/lessons/adapters/DecimalPlaceValueTargetLesson79.tsx",
+    "testId": "number-mockup-0061",
+    "route": "/lessons/numbers-and-arithmetic/79-decimal-place-value"
+  },
+  {
+    "index": 25,
+    "source": "src/modules/lessons/adapters/DependentObjectsTargetLesson25.tsx",
+    "testId": "algebra-mockup-0025",
+    "route": "/lessons/core-workspaces/25-dependent-and-independent-objects"
+  },
+  {
+    "index": 504,
+    "source": "src/modules/lessons/adapters/DifferenceMeansIntervalLesson541.tsx",
+    "testId": "inference-mockup-0504",
+    "route": "/lessons/data-and-probability/541-difference-of-means-interval"
+  },
+  {
+    "index": 505,
+    "source": "src/modules/lessons/adapters/DifferenceProportionsIntervalLesson542.tsx",
+    "testId": "inference-mockup-0505",
+    "route": "/lessons/data-and-probability/542-difference-of-proportions-interval"
+  },
+  {
+    "index": 298,
+    "source": "src/modules/lessons/adapters/DilationPointTargetLesson241.tsx",
+    "testId": "dynamic-geometry-mockup-0298",
+    "route": "/lessons/geometry/241-dilation-from-point"
+  },
+  {
+    "index": 67,
+    "source": "src/modules/lessons/adapters/DirectProportionTargetLesson85.tsx",
+    "testId": "number-mockup-0067",
+    "route": "/lessons/numbers-and-arithmetic/85-direct-proportion"
+  },
+  {
+    "index": 226,
+    "source": "src/modules/lessons/adapters/DistanceBetweenPointsTargetLesson169.tsx",
+    "testId": "geometry-mockup-0226",
+    "route": "/lessons/geometry/169-distance-between-points"
+  },
+  {
+    "index": 287,
+    "source": "src/modules/lessons/adapters/DistanceLengthTargetLesson230.tsx",
+    "testId": "dynamic-geometry-mockup-0287",
+    "route": "/lessons/geometry/230-distance-length"
+  },
+  {
+    "index": 479,
+    "source": "src/modules/lessons/adapters/DistributionCalculatorLesson516.tsx",
+    "testId": "probability-mockup-0479",
+    "route": "/lessons/data-and-probability/516-distribution-calculator"
+  },
+  {
+    "index": 499,
+    "source": "src/modules/lessons/adapters/DistributionSimulationLesson536.tsx",
+    "testId": "probability-mockup-0499",
+    "route": "/lessons/data-and-probability/536-distribution-simulation"
+  },
+  {
+    "index": 53,
+    "source": "src/modules/lessons/adapters/DivisibilityRulesTargetLesson71.tsx",
+    "testId": "number-mockup-0053",
+    "route": "/lessons/numbers-and-arithmetic/71-divisibility-rules"
+  },
+  {
+    "index": 187,
+    "source": "src/modules/lessons/adapters/DomainRangeTargetLesson130.tsx",
+    "testId": "graph-mockup-0187",
+    "route": "/lessons/graphs-and-functions/130-domain-and-range"
+  },
+  {
+    "index": 444,
+    "source": "src/modules/lessons/adapters/DotPlotLesson481.tsx",
+    "testId": "statistics-mockup-0444",
+    "route": "/lessons/data-and-probability/481-dot-plot"
+  },
+  {
+    "index": 247,
+    "source": "src/modules/lessons/adapters/DotProductTargetLesson190.tsx",
+    "testId": "vector-mockup-0247",
+    "route": "/lessons/geometry/190-dot-product"
+  },
+  {
+    "index": 153,
+    "source": "src/modules/lessons/adapters/DoubleBracketsTargetLesson96.tsx",
+    "testId": "algebra-mockup-0153",
+    "route": "/lessons/algebra/96-double-brackets"
+  },
+  {
+    "index": 325,
+    "source": "src/modules/lessons/adapters/DoubleHalfAngleTargetLesson268.tsx",
+    "testId": "trigonometry-mockup-0325",
+    "route": "/lessons/trigonometry/268-double-and-half-angle-formulae"
+  },
+  {
+    "index": 27,
+    "source": "src/modules/lessons/adapters/DynamicLabelsTargetLesson27.tsx",
+    "testId": "algebra-mockup-0027",
+    "route": "/lessons/core-workspaces/27-dynamic-labels"
+  },
+  {
+    "index": 37,
+    "source": "src/modules/lessons/adapters/DynamicTextTargetLesson37.tsx",
+    "testId": "algebra-mockup-0037",
+    "route": "/lessons/core-workspaces/37-dynamic-text"
+  },
+  {
+    "index": 308,
+    "source": "src/modules/lessons/adapters/DynamicTraceTargetLesson251.tsx",
+    "testId": "dynamic-geometry-mockup-0308",
+    "route": "/lessons/geometry/251-dynamic-trace"
+  },
+  {
+    "index": 331,
+    "source": "src/modules/lessons/adapters/ElevationDepressionTargetLesson274.tsx",
+    "testId": "trigonometry-mockup-0331",
+    "route": "/lessons/trigonometry/274-elevation-and-depression"
+  },
+  {
+    "index": 284,
+    "source": "src/modules/lessons/adapters/EllipseTargetLesson227.tsx",
+    "testId": "dynamic-geometry-mockup-0284",
+    "route": "/lessons/geometry/227-ellipse"
+  },
+  {
+    "index": 307,
+    "source": "src/modules/lessons/adapters/EnvelopeLinesTargetLesson250.tsx",
+    "testId": "dynamic-geometry-mockup-0307",
+    "route": "/lessons/geometry/250-envelope-of-lines"
+  },
+  {
+    "index": 30,
+    "source": "src/modules/lessons/adapters/EquationInputTargetLesson30.tsx",
+    "testId": "algebra-mockup-0030",
+    "route": "/lessons/core-workspaces/30-equation-input"
+  },
+  {
+    "index": 230,
+    "source": "src/modules/lessons/adapters/EquationLineTargetLesson173.tsx",
+    "testId": "geometry-mockup-0230",
+    "route": "/lessons/geometry/173-equation-of-a-line"
+  },
+  {
+    "index": 305,
+    "source": "src/modules/lessons/adapters/EquidistantLociTargetLesson248.tsx",
+    "testId": "dynamic-geometry-mockup-0305",
+    "route": "/lessons/geometry/248-equidistant-loci"
+  },
+  {
+    "index": 58,
+    "source": "src/modules/lessons/adapters/EquivalentFractionsTargetLesson76.tsx",
+    "testId": "number-mockup-0058",
+    "route": "/lessons/numbers-and-arithmetic/76-equivalent-fractions"
+  },
+  {
+    "index": 209,
+    "source": "src/modules/lessons/adapters/EvenOddFunctionsTargetLesson152.tsx",
+    "testId": "graph-mockup-0209",
+    "route": "/lessons/graphs-and-functions/152-even-and-odd-functions"
+  },
+  {
+    "index": 464,
+    "source": "src/modules/lessons/adapters/EventsLesson501.tsx",
+    "testId": "probability-mockup-0464",
+    "route": "/lessons/data-and-probability/501-events"
+  },
+  {
+    "index": 18,
+    "source": "src/modules/lessons/adapters/ExactDecimalModesTargetLesson18.tsx",
+    "testId": "calculator-mockup-0018",
+    "route": "/lessons/core-workspaces/18-exact-and-decimal-modes"
+  },
+  {
+    "index": 310,
+    "source": "src/modules/lessons/adapters/ExactProofTargetLesson253.tsx",
+    "testId": "dynamic-geometry-mockup-0310",
+    "route": "/lessons/geometry/253-exact-proof"
+  },
+  {
+    "index": 317,
+    "source": "src/modules/lessons/adapters/ExactTrigValuesTargetLesson260.tsx",
+    "testId": "trigonometry-mockup-0317",
+    "route": "/lessons/trigonometry/260-exact-trig-values"
+  },
+  {
+    "index": 152,
+    "source": "src/modules/lessons/adapters/ExpandingBracketsTargetLesson95.tsx",
+    "testId": "algebra-mockup-0152",
+    "route": "/lessons/algebra/95-expanding-brackets"
+  },
+  {
+    "index": 476,
+    "source": "src/modules/lessons/adapters/ExpectedValueLesson513.tsx",
+    "testId": "probability-mockup-0476",
+    "route": "/lessons/data-and-probability/513-expected-value"
+  },
+  {
+    "index": 9,
+    "source": "src/modules/lessons/adapters/ExponentialCalculationsTargetLesson9.tsx",
+    "testId": "calculator-mockup-0009",
+    "route": "/lessons/core-workspaces/9-exponential-calculations"
+  },
+  {
+    "index": 495,
+    "source": "src/modules/lessons/adapters/ExponentialDistributionLesson532.tsx",
+    "testId": "probability-mockup-0495",
+    "route": "/lessons/data-and-probability/532-exponential-distribution"
+  },
+  {
+    "index": 175,
+    "source": "src/modules/lessons/adapters/ExponentialEquationsTargetLesson118.tsx",
+    "testId": "algebra-mockup-0175",
+    "route": "/lessons/algebra/118-exponential-equations"
+  },
+  {
+    "index": 199,
+    "source": "src/modules/lessons/adapters/ExponentialFunctionsTargetLesson142.tsx",
+    "testId": "graph-mockup-0199",
+    "route": "/lessons/graphs-and-functions/142-exponential-functions"
+  },
+  {
+    "index": 455,
+    "source": "src/modules/lessons/adapters/ExponentialRegressionLesson492.tsx",
+    "testId": "statistics-mockup-0455",
+    "route": "/lessons/data-and-probability/492-exponential-regression"
+  },
+  {
+    "index": 154,
+    "source": "src/modules/lessons/adapters/FactorisationTargetLesson97.tsx",
+    "testId": "algebra-mockup-0154",
+    "route": "/lessons/algebra/97-factorisation"
+  },
+  {
+    "index": 47,
+    "source": "src/modules/lessons/adapters/FactorsTargetLesson65.tsx",
+    "testId": "number-mockup-0047",
+    "route": "/lessons/numbers-and-arithmetic/65-factors"
+  },
+  {
+    "index": 162,
+    "source": "src/modules/lessons/adapters/FactorTheoremTargetLesson105.tsx",
+    "testId": "algebra-mockup-0162",
+    "route": "/lessons/algebra/105-factor-theorem"
+  },
+  {
+    "index": 494,
+    "source": "src/modules/lessons/adapters/FDistributionLesson531.tsx",
+    "testId": "probability-mockup-0494",
+    "route": "/lessons/data-and-probability/531-f-distribution"
+  },
+  {
+    "index": 290,
+    "source": "src/modules/lessons/adapters/FixedAngleTargetLesson233.tsx",
+    "testId": "dynamic-geometry-mockup-0290",
+    "route": "/lessons/geometry/233-fixed-angle"
+  },
+  {
+    "index": 203,
+    "source": "src/modules/lessons/adapters/FloorFunctionTargetLesson146.tsx",
+    "testId": "graph-mockup-0203",
+    "route": "/lessons/graphs-and-functions/146-floor-function"
+  },
+  {
+    "index": 254,
+    "source": "src/modules/lessons/adapters/ForceVectorsTargetLesson197.tsx",
+    "testId": "vector-mockup-0254",
+    "route": "/lessons/geometry/197-force-vectors"
+  },
+  {
+    "index": 2,
+    "source": "src/modules/lessons/adapters/FractionCalculatorTargetLesson2.tsx",
+    "testId": "calculator-mockup-0002",
+    "route": "/lessons/core-workspaces/2-fraction-calculator"
+  },
+  {
+    "index": 63,
+    "source": "src/modules/lessons/adapters/FractionDecimalConversionTargetLesson81.tsx",
+    "testId": "number-mockup-0063",
+    "route": "/lessons/numbers-and-arithmetic/81-fractiondecimal-conversion"
+  },
+  {
+    "index": 166,
+    "source": "src/modules/lessons/adapters/FractionEquationsTargetLesson109.tsx",
+    "testId": "algebra-mockup-0166",
+    "route": "/lessons/algebra/109-equations-with-fractions"
+  },
+  {
+    "index": 57,
+    "source": "src/modules/lessons/adapters/FractionModelsTargetLesson75.tsx",
+    "testId": "number-mockup-0057",
+    "route": "/lessons/numbers-and-arithmetic/75-fraction-models"
+  },
+  {
+    "index": 60,
+    "source": "src/modules/lessons/adapters/FractionOperationsTargetLesson78.tsx",
+    "testId": "number-mockup-0060",
+    "route": "/lessons/numbers-and-arithmetic/78-fraction-operations"
+  },
+  {
+    "index": 255,
+    "source": "src/modules/lessons/adapters/FreePointTargetLesson198.tsx",
+    "testId": "dynamic-geometry-mockup-0255",
+    "route": "/lessons/geometry/198-free-point"
+  },
+  {
+    "index": 447,
+    "source": "src/modules/lessons/adapters/FrequencyPolygonLesson484.tsx",
+    "testId": "statistics-mockup-0447",
+    "route": "/lessons/data-and-probability/484-frequency-polygon"
+  },
+  {
+    "index": 431,
+    "source": "src/modules/lessons/adapters/FrequencyTablesLesson468.tsx",
+    "testId": "statistics-mockup-0431",
+    "route": "/lessons/data-and-probability/468-frequency-tables"
+  },
+  {
+    "index": 186,
+    "source": "src/modules/lessons/adapters/FunctionConceptTargetLesson129.tsx",
+    "testId": "graph-mockup-0186",
+    "route": "/lessons/graphs-and-functions/129-function-concept"
+  },
+  {
+    "index": 188,
+    "source": "src/modules/lessons/adapters/FunctionNotationTargetLesson131.tsx",
+    "testId": "graph-mockup-0188",
+    "route": "/lessons/graphs-and-functions/131-function-notation"
+  },
+  {
+    "index": 496,
+    "source": "src/modules/lessons/adapters/GammaDistributionLesson533.tsx",
+    "testId": "probability-mockup-0496",
+    "route": "/lessons/data-and-probability/533-gamma-distribution"
+  },
+  {
+    "index": 274,
+    "source": "src/modules/lessons/adapters/GeneralPolygonTargetLesson217.tsx",
+    "testId": "dynamic-geometry-mockup-0274",
+    "route": "/lessons/geometry/217-general-polygon"
+  },
+  {
+    "index": 488,
+    "source": "src/modules/lessons/adapters/GeometricDistributionLesson525.tsx",
+    "testId": "probability-mockup-0488",
+    "route": "/lessons/data-and-probability/525-geometric-distribution"
+  },
+  {
+    "index": 260,
+    "source": "src/modules/lessons/adapters/LineThroughTwoPointsTargetLesson203.tsx",
+    "testId": "dynamic-geometry-mockup-0260",
+    "route": "/lessons/geometry/203-line-through-two-points"
+  },
+  {
+    "index": 261,
+    "source": "src/modules/lessons/adapters/Geometry2DLessonAdapter.tsx",
+    "testId": "dynamic-geometry-mockup-0261",
+    "route": "/lessons/geometry/204-segment"
+  },
+  {
+    "index": 262,
+    "source": "src/modules/lessons/adapters/SegmentGivenLengthTargetLesson205.tsx",
+    "testId": "dynamic-geometry-mockup-0262",
+    "route": "/lessons/geometry/205-segment-with-given-length"
+  },
+  {
+    "index": 255,
+    "source": "src/modules/lessons/adapters/Geometry2DLessonAdapter.tsx",
+    "testId": "dynamic-geometry-mockup-0255",
+    "route": "/lessons/geometry/198-free-point"
+  },
+  {
+    "index": 256,
+    "source": "src/modules/lessons/adapters/PointOnObjectTargetLesson199.tsx",
+    "testId": "dynamic-geometry-mockup-0256",
+    "route": "/lessons/geometry/199-point-on-object"
+  },
+  {
+    "index": 257,
+    "source": "src/modules/lessons/adapters/Geometry2DLessonAdapter.tsx",
+    "testId": "dynamic-geometry-mockup-0257",
+    "route": "/lessons/geometry/200-intersection-point"
+  },
+  {
+    "index": 258,
+    "source": "src/modules/lessons/adapters/Geometry2DLessonAdapter.tsx",
+    "testId": "dynamic-geometry-mockup-0258",
+    "route": "/lessons/geometry/201-midpoint-or-centre"
+  },
+  {
+    "index": 259,
+    "source": "src/modules/lessons/adapters/Geometry2DLessonAdapter.tsx",
+    "testId": "dynamic-geometry-mockup-0259",
+    "route": "/lessons/geometry/202-attach-detach-point"
+  },
+  {
+    "index": 229,
+    "source": "src/modules/lessons/adapters/GradientSlopeTargetLesson172.tsx",
+    "testId": "geometry-mockup-0229",
+    "route": "/lessons/geometry/172-gradient-slope"
+  },
+  {
+    "index": 223,
+    "source": "src/modules/lessons/adapters/GraphMatchingTargetLesson166.tsx",
+    "testId": "graph-mockup-0223",
+    "route": "/lessons/graphs-and-functions/166-graph-matching"
+  },
+  {
+    "index": 432,
+    "source": "src/modules/lessons/adapters/GroupedFrequencyTablesLesson469.tsx",
+    "testId": "statistics-mockup-0432",
+    "route": "/lessons/data-and-probability/469-grouped-frequency-tables"
+  },
+  {
+    "index": 332,
+    "source": "src/modules/lessons/adapters/HarmonicMotionTargetLesson275.tsx",
+    "testId": "trigonometry-mockup-0332",
+    "route": "/lessons/trigonometry/275-harmonic-motion"
+  },
+  {
+    "index": 51,
+    "source": "src/modules/lessons/adapters/HcfGcdTargetLesson69.tsx",
+    "testId": "number-mockup-0051",
+    "route": "/lessons/numbers-and-arithmetic/69-hcf-gcd"
+  },
+  {
+    "index": 193,
+    "source": "src/modules/lessons/adapters/HigherDegreePolynomialsTargetLesson136.tsx",
+    "testId": "graph-mockup-0193",
+    "route": "/lessons/graphs-and-functions/136-higher-degree-polynomials"
+  },
+  {
+    "index": 446,
+    "source": "src/modules/lessons/adapters/HistogramLesson483.tsx",
+    "testId": "statistics-mockup-0446",
+    "route": "/lessons/data-and-probability/483-histogram"
+  },
+  {
+    "index": 216,
+    "source": "src/modules/lessons/adapters/HorizontalStretchCompressionTargetLesson159.tsx",
+    "testId": "graph-mockup-0216",
+    "route": "/lessons/graphs-and-functions/159-horizontal-stretch-and-compression"
+  },
+  {
+    "index": 214,
+    "source": "src/modules/lessons/adapters/HorizontalTranslationTargetLesson157.tsx",
+    "testId": "graph-mockup-0214",
+    "route": "/lessons/graphs-and-functions/157-horizontal-translation"
+  },
+  {
+    "index": 285,
+    "source": "src/modules/lessons/adapters/HyperbolaTargetLesson228.tsx",
+    "testId": "dynamic-geometry-mockup-0285",
+    "route": "/lessons/geometry/228-hyperbola"
+  },
+  {
+    "index": 12,
+    "source": "src/modules/lessons/adapters/HyperbolicFunctionsTargetLesson12.tsx",
+    "testId": "calculator-mockup-0012",
+    "route": "/lessons/core-workspaces/12-hyperbolic-functions"
+  },
+  {
+    "index": 202,
+    "source": "src/modules/lessons/adapters/HyperbolicFunctionsTargetLesson145.tsx",
+    "testId": "graph-mockup-0202",
+    "route": "/lessons/graphs-and-functions/145-hyperbolic-functions"
+  },
+  {
+    "index": 486,
+    "source": "src/modules/lessons/adapters/HypergeometricDistributionLesson523.tsx",
+    "testId": "probability-mockup-0486",
+    "route": "/lessons/data-and-probability/523-hypergeometric-distribution"
+  },
+  {
+    "index": 163,
+    "source": "src/modules/lessons/adapters/IdentitiesTargetLesson106.tsx",
+    "testId": "algebra-mockup-0163",
+    "route": "/lessons/algebra/106-identities"
+  },
+  {
+    "index": 210,
+    "source": "src/modules/lessons/adapters/IncreasingDecreasingTargetLesson153.tsx",
+    "testId": "graph-mockup-0210",
+    "route": "/lessons/graphs-and-functions/153-increasing-and-decreasing"
+  },
+  {
+    "index": 469,
+    "source": "src/modules/lessons/adapters/IndependentEventsLesson506.tsx",
+    "testId": "probability-mockup-0469",
+    "route": "/lessons/data-and-probability/506-independent-events"
+  },
+  {
+    "index": 156,
+    "source": "src/modules/lessons/adapters/IndicesTargetLesson99.tsx",
+    "testId": "algebra-mockup-0156",
+    "route": "/lessons/algebra/99-indices"
+  },
+  {
+    "index": 31,
+    "source": "src/modules/lessons/adapters/InequalityInputTargetLesson31.tsx",
+    "testId": "algebra-mockup-0031",
+    "route": "/lessons/core-workspaces/31-inequality-input"
+  },
+  {
+    "index": 22,
+    "source": "src/modules/lessons/adapters/IntegerSlidersTargetLesson22.tsx",
+    "testId": "algebra-mockup-0022",
+    "route": "/lessons/core-workspaces/22-integer-sliders"
+  },
+  {
+    "index": 41,
+    "source": "src/modules/lessons/adapters/IntegersTargetLesson59.tsx",
+    "testId": "number-mockup-0041",
+    "route": "/lessons/numbers-and-arithmetic/59-integers"
+  },
+  {
+    "index": 462,
+    "source": "src/modules/lessons/adapters/InterpolationLesson499.tsx",
+    "testId": "statistics-mockup-0462",
+    "route": "/lessons/data-and-probability/499-interpolation-and-extrapolation"
+  },
+  {
+    "index": 482,
+    "source": "src/modules/lessons/adapters/IntervalTailProbabilityLesson519.tsx",
+    "testId": "probability-mockup-0482",
+    "route": "/lessons/data-and-probability/519-interval-tail-probability"
+  },
+  {
+    "index": 302,
+    "source": "src/modules/lessons/adapters/InvariantsTargetLesson245.tsx",
+    "testId": "dynamic-geometry-mockup-0302",
+    "route": "/lessons/geometry/245-invariants"
+  },
+  {
+    "index": 208,
+    "source": "src/modules/lessons/adapters/InverseFunctionsTargetLesson151.tsx",
+    "testId": "graph-mockup-0208",
+    "route": "/lessons/graphs-and-functions/151-inverse-functions"
+  },
+  {
+    "index": 483,
+    "source": "src/modules/lessons/adapters/InverseProbabilityLesson520.tsx",
+    "testId": "probability-mockup-0483",
+    "route": "/lessons/data-and-probability/520-inverse-probability"
+  },
+  {
+    "index": 68,
+    "source": "src/modules/lessons/adapters/InverseProportionTargetLesson86.tsx",
+    "testId": "number-mockup-0068",
+    "route": "/lessons/numbers-and-arithmetic/86-inverse-proportion"
+  },
+  {
+    "index": 11,
+    "source": "src/modules/lessons/adapters/InverseTrigonometryTargetLesson11.tsx",
+    "testId": "calculator-mockup-0011",
+    "route": "/lessons/core-workspaces/11-inverse-trigonometry"
+  },
+  {
+    "index": 322,
+    "source": "src/modules/lessons/adapters/InverseTrigTargetLesson265.tsx",
+    "testId": "trigonometry-mockup-0322",
+    "route": "/lessons/trigonometry/265-inverse-trig-functions"
+  },
+  {
+    "index": 43,
+    "source": "src/modules/lessons/adapters/IrrationalNumbersTargetLesson61.tsx",
+    "testId": "number-mockup-0043",
+    "route": "/lessons/numbers-and-arithmetic/61-irrational-numbers"
+  },
+  {
+    "index": 38,
+    "source": "src/modules/lessons/adapters/LatexFormulaTargetLesson38.tsx",
+    "testId": "algebra-mockup-0038",
+    "route": "/lessons/core-workspaces/38-latex-formula-display"
+  },
+  {
+    "index": 478,
+    "source": "src/modules/lessons/adapters/LawLargeNumbersLesson515.tsx",
+    "testId": "probability-mockup-0478",
+    "route": "/lessons/data-and-probability/515-law-of-large-numbers"
+  },
+  {
+    "index": 52,
+    "source": "src/modules/lessons/adapters/LcmTargetLesson70.tsx",
+    "testId": "number-mockup-0052",
+    "route": "/lessons/numbers-and-arithmetic/70-lcm"
+  },
+  {
+    "index": 150,
+    "source": "src/modules/lessons/adapters/LikeTermsTargetLesson93.tsx",
+    "testId": "algebra-mockup-0150",
+    "route": "/lessons/algebra/93-like-terms"
+  },
+  {
+    "index": 250,
+    "source": "src/modules/lessons/adapters/LinearCombinationsTargetLesson193.tsx",
+    "testId": "vector-mockup-0250",
+    "route": "/lessons/geometry/193-linear-combinations"
+  },
+  {
+    "index": 168,
+    "source": "src/modules/lessons/adapters/LinearEquationsTargetLesson111.tsx",
+    "testId": "algebra-mockup-0168",
+    "route": "/lessons/algebra/111-linear-equations"
+  },
+  {
+    "index": 190,
+    "source": "src/modules/lessons/adapters/LinearFunctionsTargetLesson133.tsx",
+    "testId": "graph-mockup-0190",
+    "route": "/lessons/graphs-and-functions/133-linear-functions"
+  },
+  {
+    "index": 179,
+    "source": "src/modules/lessons/adapters/LinearInequalitiesTargetLesson122.tsx",
+    "testId": "algebra-mockup-0179",
+    "route": "/lessons/algebra/122-linear-inequalities"
+  },
+  {
+    "index": 453,
+    "source": "src/modules/lessons/adapters/LinearRegressionLesson490.tsx",
+    "testId": "statistics-mockup-0453",
+    "route": "/lessons/data-and-probability/490-linear-regression"
+  },
+  {
+    "index": 260,
+    "source": "src/modules/lessons/adapters/LineThroughTwoPointsTargetLesson203.tsx",
+    "testId": "dynamic-geometry-mockup-0260",
+    "route": "/lessons/geometry/203-line-through-two-points"
+  },
+  {
+    "index": 32,
+    "source": "src/modules/lessons/adapters/ListsTargetLesson32.tsx",
+    "testId": "algebra-mockup-0032",
+    "route": "/lessons/core-workspaces/32-lists"
+  },
+  {
+    "index": 167,
+    "source": "src/modules/lessons/adapters/LiteralEquationsTargetLesson110.tsx",
+    "testId": "algebra-mockup-0167",
+    "route": "/lessons/algebra/110-literal-equations"
+  },
+  {
+    "index": 304,
+    "source": "src/modules/lessons/adapters/LocusGeneratorTargetLesson247.tsx",
+    "testId": "dynamic-geometry-mockup-0304",
+    "route": "/lessons/geometry/247-locus-generator"
+  },
+  {
+    "index": 176,
+    "source": "src/modules/lessons/adapters/LogarithmicEquationsTargetLesson119.tsx",
+    "testId": "algebra-mockup-0176",
+    "route": "/lessons/algebra/119-logarithmic-equations"
+  },
+  {
+    "index": 200,
+    "source": "src/modules/lessons/adapters/LogarithmicFunctionsTargetLesson143.tsx",
+    "testId": "graph-mockup-0200",
+    "route": "/lessons/graphs-and-functions/143-logarithmic-functions"
+  },
+  {
+    "index": 456,
+    "source": "src/modules/lessons/adapters/LogarithmicRegressionLesson493.tsx",
+    "testId": "statistics-mockup-0456",
+    "route": "/lessons/data-and-probability/493-logarithmic-regression"
+  },
+  {
+    "index": 8,
+    "source": "src/modules/lessons/adapters/LogarithmsTargetLesson8.tsx",
+    "testId": "calculator-mockup-0008",
+    "route": "/lessons/core-workspaces/8-logarithms"
+  },
+  {
+    "index": 458,
+    "source": "src/modules/lessons/adapters/LogisticRegressionLesson495.tsx",
+    "testId": "statistics-mockup-0458",
+    "route": "/lessons/data-and-probability/495-logistic-regression"
+  },
+  {
+    "index": 246,
+    "source": "src/modules/lessons/adapters/MagnitudeUnitVectorsTargetLesson189.tsx",
+    "testId": "vector-mockup-0246",
+    "route": "/lessons/geometry/189-magnitude-and-unit-vectors"
+  },
+  {
+    "index": 33,
+    "source": "src/modules/lessons/adapters/MatricesTargetLesson33.tsx",
+    "testId": "algebra-mockup-0033",
+    "route": "/lessons/core-workspaces/33-matrices"
+  },
+  {
+    "index": 299,
+    "source": "src/modules/lessons/adapters/MatrixTransformationTargetLesson242.tsx",
+    "testId": "dynamic-geometry-mockup-0299",
+    "route": "/lessons/geometry/242-matrix-transformation"
+  },
+  {
+    "index": 433,
+    "source": "src/modules/lessons/adapters/MeanLesson470.tsx",
+    "testId": "statistics-mockup-0433",
+    "route": "/lessons/data-and-probability/470-mean"
+  },
+  {
+    "index": 434,
+    "source": "src/modules/lessons/adapters/MedianLesson471.tsx",
+    "testId": "statistics-mockup-0434",
+    "route": "/lessons/data-and-probability/471-median"
+  },
+  {
+    "index": 227,
+    "source": "src/modules/lessons/adapters/MidpointTargetLesson170.tsx",
+    "testId": "geometry-mockup-0227",
+    "route": "/lessons/geometry/170-midpoint"
+  },
+  {
+    "index": 3,
+    "source": "src/modules/lessons/adapters/MixedNumbersTargetLesson3.tsx",
+    "testId": "calculator-mockup-0003",
+    "route": "/lessons/core-workspaces/3-mixed-numbers"
+  },
+  {
+    "index": 461,
+    "source": "src/modules/lessons/adapters/ModelComparisonLesson498.tsx",
+    "testId": "statistics-mockup-0461",
+    "route": "/lessons/data-and-probability/498-model-comparison"
+  },
+  {
+    "index": 435,
+    "source": "src/modules/lessons/adapters/ModeLesson472.tsx",
+    "testId": "statistics-mockup-0435",
+    "route": "/lessons/data-and-probability/472-mode"
+  },
+  {
+    "index": 54,
+    "source": "src/modules/lessons/adapters/ModularArithmeticTargetLesson72.tsx",
+    "testId": "number-mockup-0054",
+    "route": "/lessons/numbers-and-arithmetic/72-modular-arithmetic"
+  },
+  {
+    "index": 306,
+    "source": "src/modules/lessons/adapters/MovingLinkageLociTargetLesson249.tsx",
+    "testId": "dynamic-geometry-mockup-0306",
+    "route": "/lessons/geometry/249-moving-linkage-loci"
+  },
+  {
+    "index": 48,
+    "source": "src/modules/lessons/adapters/MultiplesTargetLesson66.tsx",
+    "testId": "number-mockup-0048",
+    "route": "/lessons/numbers-and-arithmetic/66-multiples"
+  },
+  {
+    "index": 468,
+    "source": "src/modules/lessons/adapters/MultiplicationRuleLesson505.tsx",
+    "testId": "probability-mockup-0468",
+    "route": "/lessons/data-and-probability/505-multiplication-rule"
+  },
+  {
+    "index": 165,
+    "source": "src/modules/lessons/adapters/MultiStepEquationsTargetLesson108.tsx",
+    "testId": "algebra-mockup-0165",
+    "route": "/lessons/algebra/108-multi-step-equations"
+  },
+  {
+    "index": 470,
+    "source": "src/modules/lessons/adapters/MutuallyExclusiveEventsLesson507.tsx",
+    "testId": "probability-mockup-0470",
+    "route": "/lessons/data-and-probability/507-mutually-exclusive-events"
+  },
+  {
+    "index": 39,
+    "source": "src/modules/lessons/adapters/NaturalNumbersTargetLesson57.tsx",
+    "testId": "number-mockup-0039",
+    "route": "/lessons/numbers-and-arithmetic/57-natural-numbers"
+  },
+  {
+    "index": 489,
+    "source": "src/modules/lessons/adapters/NegativeBinomialDistributionLesson526.tsx",
+    "testId": "probability-mockup-0489",
+    "route": "/lessons/data-and-probability/526-negative-binomial-distribution"
+  },
+  {
+    "index": 491,
+    "source": "src/modules/lessons/adapters/NormalDistributionLesson528.tsx",
+    "testId": "probability-mockup-0491",
+    "route": "/lessons/data-and-probability/528-normal-distribution"
+  },
+  {
+    "index": 185,
+    "source": "src/modules/lessons/adapters/NumericalSolverTargetLesson128.tsx",
+    "testId": "algebra-mockup-0185",
+    "route": "/lessons/algebra/128-numerical-solver"
+  },
+  {
+    "index": 21,
+    "source": "src/modules/lessons/adapters/NumericSlidersTargetLesson21.tsx",
+    "testId": "algebra-mockup-0021",
+    "route": "/lessons/core-workspaces/21-numeric-sliders"
+  },
+  {
+    "index": 29,
+    "source": "src/modules/lessons/adapters/ObjectRedefinitionTargetLesson29.tsx",
+    "testId": "algebra-mockup-0029",
+    "route": "/lessons/core-workspaces/29-object-redefinition"
+  },
+  {
+    "index": 510,
+    "source": "src/modules/lessons/adapters/OneProportionTestLesson547.tsx",
+    "testId": "inference-mockup-0510",
+    "route": "/lessons/data-and-probability/547-one-proportion-test"
+  },
+  {
+    "index": 507,
+    "source": "src/modules/lessons/adapters/OneSampleTTestLesson544.tsx",
+    "testId": "inference-mockup-0507",
+    "route": "/lessons/data-and-probability/544-one-sample-t-test"
+  },
+  {
+    "index": 506,
+    "source": "src/modules/lessons/adapters/OneSampleZTestLesson543.tsx",
+    "testId": "inference-mockup-0506",
+    "route": "/lessons/data-and-probability/543-one-sample-z-test"
+  },
+  {
+    "index": 164,
+    "source": "src/modules/lessons/adapters/OneStepEquationsTargetLesson107.tsx",
+    "testId": "algebra-mockup-0164",
+    "route": "/lessons/algebra/107-one-step-equations"
+  },
+  {
+    "index": 442,
+    "source": "src/modules/lessons/adapters/OutliersLesson479.tsx",
+    "testId": "statistics-mockup-0442",
+    "route": "/lessons/data-and-probability/479-outliers"
+  },
+  {
+    "index": 509,
+    "source": "src/modules/lessons/adapters/PairedTTestLesson546.tsx",
+    "testId": "inference-mockup-0509",
+    "route": "/lessons/data-and-probability/546-paired-t-test"
+  },
+  {
+    "index": 286,
+    "source": "src/modules/lessons/adapters/ParabolaTargetLesson229.tsx",
+    "testId": "dynamic-geometry-mockup-0286",
+    "route": "/lessons/geometry/229-parabola"
+  },
+  {
+    "index": 231,
+    "source": "src/modules/lessons/adapters/ParallelLinesTargetLesson174.tsx",
+    "testId": "geometry-mockup-0231",
+    "route": "/lessons/geometry/174-parallel-lines"
+  },
+  {
+    "index": 266,
+    "source": "src/modules/lessons/adapters/ParallelLineTargetLesson209.tsx",
+    "testId": "dynamic-geometry-mockup-0266",
+    "route": "/lessons/geometry/209-parallel-line"
+  },
+  {
+    "index": 221,
+    "source": "src/modules/lessons/adapters/ParameterExplorerTargetLesson164.tsx",
+    "testId": "graph-mockup-0221",
+    "route": "/lessons/graphs-and-functions/164-parameter-explorer"
+  },
+  {
+    "index": 238,
+    "source": "src/modules/lessons/adapters/ParametricCoordinatesTargetLesson181.tsx",
+    "testId": "geometry-mockup-0238",
+    "route": "/lessons/geometry/181-parametric-coordinates"
+  },
+  {
+    "index": 222,
+    "source": "src/modules/lessons/adapters/ParentFunctionLibraryTargetLesson165.tsx",
+    "testId": "graph-mockup-0222",
+    "route": "/lessons/graphs-and-functions/165-parent-function-library"
+  },
+  {
+    "index": 4,
+    "source": "src/modules/lessons/adapters/PercentageCalculatorTargetLesson4.tsx",
+    "testId": "calculator-mockup-0004",
+    "route": "/lessons/core-workspaces/4-percentage-calculator"
+  },
+  {
+    "index": 71,
+    "source": "src/modules/lessons/adapters/PercentageChangeTargetLesson89.tsx",
+    "testId": "number-mockup-0071",
+    "route": "/lessons/numbers-and-arithmetic/89-percentage-change"
+  },
+  {
+    "index": 70,
+    "source": "src/modules/lessons/adapters/PercentagesTargetLesson88.tsx",
+    "testId": "number-mockup-0070",
+    "route": "/lessons/numbers-and-arithmetic/88-percentages"
+  },
+  {
+    "index": 440,
+    "source": "src/modules/lessons/adapters/PercentilesLesson477.tsx",
+    "testId": "statistics-mockup-0440",
+    "route": "/lessons/data-and-probability/477-percentiles"
+  },
+  {
+    "index": 211,
+    "source": "src/modules/lessons/adapters/PeriodicFunctionsTargetLesson154.tsx",
+    "testId": "graph-mockup-0211",
+    "route": "/lessons/graphs-and-functions/154-periodic-functions"
+  },
+  {
+    "index": 267,
+    "source": "src/modules/lessons/adapters/PerpendicularBisectorTargetLesson210.tsx",
+    "testId": "dynamic-geometry-mockup-0267",
+    "route": "/lessons/geometry/210-perpendicular-bisector"
+  },
+  {
+    "index": 232,
+    "source": "src/modules/lessons/adapters/PerpendicularLinesTargetLesson175.tsx",
+    "testId": "geometry-mockup-0232",
+    "route": "/lessons/geometry/175-perpendicular-lines"
+  },
+  {
+    "index": 265,
+    "source": "src/modules/lessons/adapters/PerpendicularLineTargetLesson208.tsx",
+    "testId": "dynamic-geometry-mockup-0265",
+    "route": "/lessons/geometry/208-perpendicular-line"
+  },
+  {
+    "index": 35,
+    "source": "src/modules/lessons/adapters/PiecewiseDefinitionsTargetLesson35.tsx",
+    "testId": "algebra-mockup-0035",
+    "route": "/lessons/core-workspaces/35-piecewise-definitions"
+  },
+  {
+    "index": 206,
+    "source": "src/modules/lessons/adapters/PiecewiseFunctionsTargetLesson149.tsx",
+    "testId": "graph-mockup-0206",
+    "route": "/lessons/graphs-and-functions/149-piecewise-functions"
+  },
+  {
+    "index": 46,
+    "source": "src/modules/lessons/adapters/PlaceValueTargetLesson64.tsx",
+    "testId": "number-mockup-0046",
+    "route": "/lessons/numbers-and-arithmetic/64-place-value"
+  },
+  {
+    "index": 225,
+    "source": "src/modules/lessons/adapters/PlottingPointsTargetLesson168.tsx",
+    "testId": "geometry-mockup-0225",
+    "route": "/lessons/geometry/168-plotting-points"
+  },
+  {
+    "index": 234,
+    "source": "src/modules/lessons/adapters/PointLineDistanceTargetLesson177.tsx",
+    "testId": "geometry-mockup-0234",
+    "route": "/lessons/geometry/177-point-to-line-distance"
+  },
+  {
+    "index": 256,
+    "source": "src/modules/lessons/adapters/PointOnObjectTargetLesson199.tsx",
+    "testId": "dynamic-geometry-mockup-0256",
+    "route": "/lessons/geometry/199-point-on-object"
+  },
+  {
+    "index": 487,
+    "source": "src/modules/lessons/adapters/PoissonDistributionLesson524.tsx",
+    "testId": "probability-mockup-0487",
+    "route": "/lessons/data-and-probability/524-poisson-distribution"
+  },
+  {
+    "index": 237,
+    "source": "src/modules/lessons/adapters/PolarCoordinatesTargetLesson180.tsx",
+    "testId": "geometry-mockup-0237",
+    "route": "/lessons/geometry/180-polar-coordinates"
+  },
+  {
+    "index": 333,
+    "source": "src/modules/lessons/adapters/PolarTrigonometryTargetLesson276.tsx",
+    "testId": "trigonometry-mockup-0333",
+    "route": "/lessons/trigonometry/276-polar-trigonometry"
+  },
+  {
+    "index": 264,
+    "source": "src/modules/lessons/adapters/PolylineTargetLesson207.tsx",
+    "testId": "dynamic-geometry-mockup-0264",
+    "route": "/lessons/geometry/207-polyline"
+  },
+  {
+    "index": 172,
+    "source": "src/modules/lessons/adapters/PolynomialEquationsTargetLesson115.tsx",
+    "testId": "algebra-mockup-0172",
+    "route": "/lessons/algebra/115-polynomial-equations"
+  },
+  {
+    "index": 182,
+    "source": "src/modules/lessons/adapters/PolynomialInequalitiesTargetLesson125.tsx",
+    "testId": "algebra-mockup-0182",
+    "route": "/lessons/algebra/125-polynomial-inequalities"
+  },
+  {
+    "index": 159,
+    "source": "src/modules/lessons/adapters/PolynomialOperationsTargetLesson102.tsx",
+    "testId": "algebra-mockup-0159",
+    "route": "/lessons/algebra/102-polynomial-operations"
+  },
+  {
+    "index": 454,
+    "source": "src/modules/lessons/adapters/PolynomialRegressionLesson491.tsx",
+    "testId": "statistics-mockup-0454",
+    "route": "/lessons/data-and-probability/491-polynomial-regression"
+  },
+  {
+    "index": 242,
+    "source": "src/modules/lessons/adapters/PositionVectorsTargetLesson185.tsx",
+    "testId": "vector-mockup-0242",
+    "route": "/lessons/geometry/185-position-vectors"
+  },
+  {
+    "index": 457,
+    "source": "src/modules/lessons/adapters/PowerRegressionLesson494.tsx",
+    "testId": "statistics-mockup-0457",
+    "route": "/lessons/data-and-probability/494-power-regression"
+  },
+  {
+    "index": 6,
+    "source": "src/modules/lessons/adapters/PowersRootsTargetLesson6.tsx",
+    "testId": "calculator-mockup-0006",
+    "route": "/lessons/core-workspaces/6-powers-and-roots"
+  },
+  {
+    "index": 518,
+    "source": "src/modules/lessons/adapters/PowerTestLesson555.tsx",
+    "testId": "inference-mockup-0518",
+    "route": "/lessons/data-and-probability/555-power-of-a-test"
+  },
+  {
+    "index": 50,
+    "source": "src/modules/lessons/adapters/PrimeFactorisationTargetLesson68.tsx",
+    "testId": "number-mockup-0050",
+    "route": "/lessons/numbers-and-arithmetic/68-prime-factorisation"
+  },
+  {
+    "index": 49,
+    "source": "src/modules/lessons/adapters/PrimeNumbersTargetLesson67.tsx",
+    "testId": "number-mockup-0049",
+    "route": "/lessons/numbers-and-arithmetic/67-prime-numbers"
+  },
+  {
+    "index": 480,
+    "source": "src/modules/lessons/adapters/ProbabilityPlotLesson517.tsx",
+    "testId": "probability-mockup-0480",
+    "route": "/lessons/data-and-probability/517-probability-plot"
+  },
+  {
+    "index": 465,
+    "source": "src/modules/lessons/adapters/ProbabilityScaleLesson502.tsx",
+    "testId": "probability-mockup-0465",
+    "route": "/lessons/data-and-probability/502-probability-scale"
+  },
+  {
+    "index": 477,
+    "source": "src/modules/lessons/adapters/ProbabilitySimulationLesson514.tsx",
+    "testId": "probability-mockup-0477",
+    "route": "/lessons/data-and-probability/514-simulation"
+  },
+  {
+    "index": 66,
+    "source": "src/modules/lessons/adapters/ProportionTargetLesson84.tsx",
+    "testId": "number-mockup-0066",
+    "route": "/lessons/numbers-and-arithmetic/84-proportion"
+  },
+  {
+    "index": 516,
+    "source": "src/modules/lessons/adapters/PValueVisualiserLesson553.tsx",
+    "testId": "inference-mockup-0516",
+    "route": "/lessons/data-and-probability/553-p-value-visualiser"
+  },
+  {
+    "index": 171,
+    "source": "src/modules/lessons/adapters/QuadraticEquationsTargetLesson114.tsx",
+    "testId": "algebra-mockup-0171",
+    "route": "/lessons/algebra/114-quadratic-equations"
+  },
+  {
+    "index": 191,
+    "source": "src/modules/lessons/adapters/QuadraticFunctionsTargetLesson134.tsx",
+    "testId": "graph-mockup-0191",
+    "route": "/lessons/graphs-and-functions/134-quadratic-functions"
+  },
+  {
+    "index": 181,
+    "source": "src/modules/lessons/adapters/QuadraticInequalitiesTargetLesson124.tsx",
+    "testId": "algebra-mockup-0181",
+    "route": "/lessons/algebra/124-quadratic-inequalities"
+  },
+  {
+    "index": 438,
+    "source": "src/modules/lessons/adapters/QuartilesLesson475.tsx",
+    "testId": "statistics-mockup-0438",
+    "route": "/lessons/data-and-probability/475-quartiles-and-iqr"
+  },
+  {
+    "index": 174,
+    "source": "src/modules/lessons/adapters/RadicalEquationsTargetLesson117.tsx",
+    "testId": "algebra-mockup-0174",
+    "route": "/lessons/algebra/117-radical-equations"
+  },
+  {
+    "index": 437,
+    "source": "src/modules/lessons/adapters/RangeLesson474.tsx",
+    "testId": "statistics-mockup-0437",
+    "route": "/lessons/data-and-probability/474-range"
+  },
+  {
+    "index": 5,
+    "source": "src/modules/lessons/adapters/RatioCalculatorTargetLesson5.tsx",
+    "testId": "calculator-mockup-0005",
+    "route": "/lessons/core-workspaces/5-ratio-calculator"
+  },
+  {
+    "index": 65,
+    "source": "src/modules/lessons/adapters/RatioModelsTargetLesson83.tsx",
+    "testId": "number-mockup-0065",
+    "route": "/lessons/numbers-and-arithmetic/83-ratio-models"
+  },
+  {
+    "index": 173,
+    "source": "src/modules/lessons/adapters/RationalEquationsTargetLesson116.tsx",
+    "testId": "algebra-mockup-0173",
+    "route": "/lessons/algebra/116-rational-equations"
+  },
+  {
+    "index": 195,
+    "source": "src/modules/lessons/adapters/RationalFunctionsTargetLesson138.tsx",
+    "testId": "graph-mockup-0195",
+    "route": "/lessons/graphs-and-functions/138-rational-functions"
+  },
+  {
+    "index": 158,
+    "source": "src/modules/lessons/adapters/RationalisationTargetLesson101.tsx",
+    "testId": "algebra-mockup-0158",
+    "route": "/lessons/algebra/101-rationalisation"
+  },
+  {
+    "index": 42,
+    "source": "src/modules/lessons/adapters/RationalNumbersTargetLesson60.tsx",
+    "testId": "number-mockup-0042",
+    "route": "/lessons/numbers-and-arithmetic/60-rational-numbers"
+  },
+  {
+    "index": 263,
+    "source": "src/modules/lessons/adapters/RayTargetLesson206.tsx",
+    "testId": "dynamic-geometry-mockup-0263",
+    "route": "/lessons/geometry/206-ray"
+  },
+  {
+    "index": 44,
+    "source": "src/modules/lessons/adapters/RealNumbersTargetLesson62.tsx",
+    "testId": "number-mockup-0044",
+    "route": "/lessons/numbers-and-arithmetic/62-real-numbers"
+  },
+  {
+    "index": 194,
+    "source": "src/modules/lessons/adapters/ReciprocalFunctionsTargetLesson137.tsx",
+    "testId": "graph-mockup-0194",
+    "route": "/lessons/graphs-and-functions/137-reciprocal-functions"
+  },
+  {
+    "index": 321,
+    "source": "src/modules/lessons/adapters/ReciprocalTrigTargetLesson264.tsx",
+    "testId": "trigonometry-mockup-0321",
+    "route": "/lessons/trigonometry/264-reciprocal-trig-functions"
+  },
+  {
+    "index": 64,
+    "source": "src/modules/lessons/adapters/RecurringDecimalsTargetLesson82.tsx",
+    "testId": "number-mockup-0064",
+    "route": "/lessons/numbers-and-arithmetic/82-recurring-decimals"
+  },
+  {
+    "index": 212,
+    "source": "src/modules/lessons/adapters/RecursiveFunctionsTargetLesson155.tsx",
+    "testId": "graph-mockup-0212",
+    "route": "/lessons/graphs-and-functions/155-recursive-functions"
+  },
+  {
+    "index": 296,
+    "source": "src/modules/lessons/adapters/ReflectionCircleTargetLesson239.tsx",
+    "testId": "dynamic-geometry-mockup-0296",
+    "route": "/lessons/geometry/239-reflection-in-circle"
+  },
+  {
+    "index": 294,
+    "source": "src/modules/lessons/adapters/ReflectionLineTargetLesson237.tsx",
+    "testId": "dynamic-geometry-mockup-0294",
+    "route": "/lessons/geometry/237-reflection-in-line"
+  },
+  {
+    "index": 295,
+    "source": "src/modules/lessons/adapters/ReflectionPointTargetLesson238.tsx",
+    "testId": "dynamic-geometry-mockup-0295",
+    "route": "/lessons/geometry/238-reflection-in-point"
+  },
+  {
+    "index": 217,
+    "source": "src/modules/lessons/adapters/ReflectionXAxisTargetLesson160.tsx",
+    "testId": "graph-mockup-0217",
+    "route": "/lessons/graphs-and-functions/160-reflection-in-x-axis"
+  },
+  {
+    "index": 218,
+    "source": "src/modules/lessons/adapters/ReflectionYAxisTargetLesson161.tsx",
+    "testId": "graph-mockup-0218",
+    "route": "/lessons/graphs-and-functions/161-reflection-in-y-axis"
+  },
+  {
+    "index": 272,
+    "source": "src/modules/lessons/adapters/RegularPolygonTargetLesson215.tsx",
+    "testId": "dynamic-geometry-mockup-0272",
+    "route": "/lessons/geometry/215-regular-polygon"
+  },
+  {
+    "index": 291,
+    "source": "src/modules/lessons/adapters/RelationCheckerTargetLesson234.tsx",
+    "testId": "dynamic-geometry-mockup-0291",
+    "route": "/lessons/geometry/234-relation-checker"
+  },
+  {
+    "index": 253,
+    "source": "src/modules/lessons/adapters/RelativeMotionTargetLesson196.tsx",
+    "testId": "vector-mockup-0253",
+    "route": "/lessons/geometry/196-relative-motion"
+  },
+  {
+    "index": 161,
+    "source": "src/modules/lessons/adapters/RemainderTheoremTargetLesson104.tsx",
+    "testId": "algebra-mockup-0161",
+    "route": "/lessons/algebra/104-remainder-theorem"
+  },
+  {
+    "index": 460,
+    "source": "src/modules/lessons/adapters/ResidualPlotLesson497.tsx",
+    "testId": "statistics-mockup-0460",
+    "route": "/lessons/data-and-probability/497-residual-plot"
+  },
+  {
+    "index": 316,
+    "source": "src/modules/lessons/adapters/RightTriangleRatiosTargetLesson259.tsx",
+    "testId": "trigonometry-mockup-0316",
+    "route": "/lessons/trigonometry/259-right-triangle-ratios"
+  },
+  {
+    "index": 273,
+    "source": "src/modules/lessons/adapters/RigidPolygonTargetLesson216.tsx",
+    "testId": "dynamic-geometry-mockup-0273",
+    "route": "/lessons/geometry/216-rigid-polygon"
+  },
+  {
+    "index": 297,
+    "source": "src/modules/lessons/adapters/RotationPointTargetLesson240.tsx",
+    "testId": "dynamic-geometry-mockup-0297",
+    "route": "/lessons/geometry/240-rotation-around-point"
+  },
+  {
+    "index": 15,
+    "source": "src/modules/lessons/adapters/RoundingPrecisionTargetLesson15.tsx",
+    "testId": "calculator-mockup-0015",
+    "route": "/lessons/core-workspaces/15-rounding-and-precision"
+  },
+  {
+    "index": 463,
+    "source": "src/modules/lessons/adapters/SampleSpacesLesson500.tsx",
+    "testId": "probability-mockup-0463",
+    "route": "/lessons/data-and-probability/500-sample-spaces"
+  },
+  {
+    "index": 500,
+    "source": "src/modules/lessons/adapters/SamplingDistributionsLesson537.tsx",
+    "testId": "inference-mockup-0500",
+    "route": "/lessons/data-and-probability/537-sampling-distributions"
+  },
+  {
+    "index": 245,
+    "source": "src/modules/lessons/adapters/ScalarMultiplicationTargetLesson188.tsx",
+    "testId": "vector-mockup-0245",
+    "route": "/lessons/geometry/188-scalar-multiplication"
+  },
+  {
+    "index": 73,
+    "source": "src/modules/lessons/adapters/ScaleDrawingsTargetLesson91.tsx",
+    "testId": "number-mockup-0073",
+    "route": "/lessons/numbers-and-arithmetic/91-scale-drawings"
+  },
+  {
+    "index": 450,
+    "source": "src/modules/lessons/adapters/ScatterPlotLesson487.tsx",
+    "testId": "statistics-mockup-0450",
+    "route": "/lessons/data-and-probability/487-scatter-plot"
+  },
+  {
+    "index": 7,
+    "source": "src/modules/lessons/adapters/ScientificNotationTargetLesson7.tsx",
+    "testId": "calculator-mockup-0007",
+    "route": "/lessons/core-workspaces/7-scientific-notation"
+  },
+  {
+    "index": 228,
+    "source": "src/modules/lessons/adapters/SectionFormulaTargetLesson171.tsx",
+    "testId": "geometry-mockup-0228",
+    "route": "/lessons/geometry/171-section-formula"
+  },
+  {
+    "index": 262,
+    "source": "src/modules/lessons/adapters/SegmentGivenLengthTargetLesson205.tsx",
+    "testId": "dynamic-geometry-mockup-0262",
+    "route": "/lessons/geometry/205-segment-with-given-length"
+  },
+  {
+    "index": 261,
+    "source": "src/modules/lessons/adapters/SegmentTargetLesson204.tsx",
+    "testId": "dynamic-geometry-mockup-0261",
+    "route": "/lessons/geometry/204-segment"
+  },
+  {
+    "index": 279,
+    "source": "src/modules/lessons/adapters/SemicircleTargetLesson222.tsx",
+    "testId": "dynamic-geometry-mockup-0279",
+    "route": "/lessons/geometry/222-semicircle"
+  },
+  {
+    "index": 34,
+    "source": "src/modules/lessons/adapters/SequencesTargetLesson34.tsx",
+    "testId": "algebra-mockup-0034",
+    "route": "/lessons/core-workspaces/34-sequences"
+  },
+  {
+    "index": 205,
+    "source": "src/modules/lessons/adapters/SignFunctionTargetLesson148.tsx",
+    "testId": "graph-mockup-0205",
+    "route": "/lessons/graphs-and-functions/148-sign-function"
+  },
+  {
+    "index": 169,
+    "source": "src/modules/lessons/adapters/SimultaneousLinearEquationsTargetLesson112.tsx",
+    "testId": "algebra-mockup-0169",
+    "route": "/lessons/algebra/112-simultaneous-linear-equations"
+  },
+  {
+    "index": 318,
+    "source": "src/modules/lessons/adapters/SineGraphTargetLesson261.tsx",
+    "testId": "trigonometry-mockup-0318",
+    "route": "/lessons/trigonometry/261-sine-graph"
+  },
+  {
+    "index": 327,
+    "source": "src/modules/lessons/adapters/SineRuleTargetLesson270.tsx",
+    "testId": "trigonometry-mockup-0327",
+    "route": "/lessons/trigonometry/270-sine-rule"
+  },
+  {
+    "index": 459,
+    "source": "src/modules/lessons/adapters/SinusoidalRegressionLesson496.tsx",
+    "testId": "statistics-mockup-0459",
+    "route": "/lessons/data-and-probability/496-sinusoidal-regression"
+  },
+  {
+    "index": 74,
+    "source": "src/modules/lessons/adapters/SliderComponentTargetLesson618.tsx",
+    "testId": "authoring-mockup-0074",
+    "route": "/lessons/authoring-and-learning-system/618-slider-component"
+  },
+  {
+    "index": 196,
+    "source": "src/modules/lessons/adapters/SquareRootFunctionsTargetLesson139.tsx",
+    "testId": "graph-mockup-0196",
+    "route": "/lessons/graphs-and-functions/139-square-root-functions"
+  },
+  {
+    "index": 498,
+    "source": "src/modules/lessons/adapters/StandardisationLesson535.tsx",
+    "testId": "probability-mockup-0498",
+    "route": "/lessons/data-and-probability/535-standardisation"
+  },
+  {
+    "index": 445,
+    "source": "src/modules/lessons/adapters/StemAndLeafLesson482.tsx",
+    "testId": "statistics-mockup-0445",
+    "route": "/lessons/data-and-probability/482-stem-and-leaf-plot"
+  },
+  {
+    "index": 492,
+    "source": "src/modules/lessons/adapters/StudentTDistributionLesson529.tsx",
+    "testId": "probability-mockup-0492",
+    "route": "/lessons/data-and-probability/529-student-t-distribution"
+  },
+  {
+    "index": 151,
+    "source": "src/modules/lessons/adapters/SubstitutionTargetLesson94.tsx",
+    "testId": "algebra-mockup-0151",
+    "route": "/lessons/algebra/94-substitution"
+  },
+  {
+    "index": 157,
+    "source": "src/modules/lessons/adapters/SurdsTargetLesson100.tsx",
+    "testId": "algebra-mockup-0157",
+    "route": "/lessons/algebra/100-surds"
+  },
+  {
+    "index": 303,
+    "source": "src/modules/lessons/adapters/SymmetryExplorerTargetLesson246.tsx",
+    "testId": "dynamic-geometry-mockup-0303",
+    "route": "/lessons/geometry/246-symmetry-explorer"
+  },
+  {
+    "index": 160,
+    "source": "src/modules/lessons/adapters/SyntheticDivisionTargetLesson103.tsx",
+    "testId": "algebra-mockup-0160",
+    "route": "/lessons/algebra/103-synthetic-division"
+  },
+  {
+    "index": 184,
+    "source": "src/modules/lessons/adapters/SystemsInequalitiesTargetLesson127.tsx",
+    "testId": "algebra-mockup-0184",
+    "route": "/lessons/algebra/127-systems-of-inequalities"
+  },
+  {
+    "index": 320,
+    "source": "src/modules/lessons/adapters/TangentGraphTargetLesson263.tsx",
+    "testId": "trigonometry-mockup-0320",
+    "route": "/lessons/trigonometry/263-tangent-graph"
+  },
+  {
+    "index": 269,
+    "source": "src/modules/lessons/adapters/TangentTargetLesson212.tsx",
+    "testId": "dynamic-geometry-mockup-0269",
+    "route": "/lessons/geometry/212-tangent"
+  },
+  {
+    "index": 170,
+    "source": "src/modules/lessons/adapters/ThreeVariableSystemsTargetLesson113.tsx",
+    "testId": "algebra-mockup-0170",
+    "route": "/lessons/algebra/113-three-variable-systems"
+  },
+  {
+    "index": 451,
+    "source": "src/modules/lessons/adapters/TimeSeriesLesson488.tsx",
+    "testId": "statistics-mockup-0451",
+    "route": "/lessons/data-and-probability/488-time-series-plot"
+  },
+  {
+    "index": 301,
+    "source": "src/modules/lessons/adapters/TransformationMappingTargetLesson244.tsx",
+    "testId": "dynamic-geometry-mockup-0301",
+    "route": "/lessons/geometry/244-transformation-mapping"
+  },
+  {
+    "index": 220,
+    "source": "src/modules/lessons/adapters/TransformationOrderTargetLesson163.tsx",
+    "testId": "graph-mockup-0220",
+    "route": "/lessons/graphs-and-functions/163-transformation-order"
+  },
+  {
+    "index": 293,
+    "source": "src/modules/lessons/adapters/TranslationVectorTargetLesson236.tsx",
+    "testId": "dynamic-geometry-mockup-0293",
+    "route": "/lessons/geometry/236-translation-by-vector"
+  },
+  {
+    "index": 472,
+    "source": "src/modules/lessons/adapters/TreeDiagramsLesson509.tsx",
+    "testId": "probability-mockup-0472",
+    "route": "/lessons/data-and-probability/509-tree-diagrams"
+  },
+  {
+    "index": 329,
+    "source": "src/modules/lessons/adapters/TriangleAreaTargetLesson272.tsx",
+    "testId": "trigonometry-mockup-0329",
+    "route": "/lessons/trigonometry/272-triangle-area-formula"
+  },
+  {
+    "index": 271,
+    "source": "src/modules/lessons/adapters/TriangleConstructorTargetLesson214.tsx",
+    "testId": "dynamic-geometry-mockup-0271",
+    "route": "/lessons/geometry/214-triangle-constructor"
+  },
+  {
+    "index": 326,
+    "source": "src/modules/lessons/adapters/TrigEquationsTargetLesson269.tsx",
+    "testId": "trigonometry-mockup-0326",
+    "route": "/lessons/trigonometry/269-trig-equations"
+  },
+  {
+    "index": 323,
+    "source": "src/modules/lessons/adapters/TrigIdentitiesTargetLesson266.tsx",
+    "testId": "trigonometry-mockup-0323",
+    "route": "/lessons/trigonometry/266-trig-identities"
+  },
+  {
+    "index": 10,
+    "source": "src/modules/lessons/adapters/TrigonometricCalculatorTargetLesson10.tsx",
+    "testId": "calculator-mockup-0010",
+    "route": "/lessons/core-workspaces/10-trigonometric-calculator"
+  },
+  {
+    "index": 177,
+    "source": "src/modules/lessons/adapters/TrigonometricEquationsTargetLesson120.tsx",
+    "testId": "algebra-mockup-0177",
+    "route": "/lessons/algebra/120-trigonometric-equations"
+  },
+  {
+    "index": 201,
+    "source": "src/modules/lessons/adapters/TrigonometricFunctionsTargetLesson144.tsx",
+    "testId": "graph-mockup-0201",
+    "route": "/lessons/graphs-and-functions/144-trigonometric-functions"
+  },
+  {
+    "index": 316,
+    "source": "src/modules/lessons/adapters/TrigonometryLessonAdapter.tsx",
+    "testId": "trigonometry-mockup-0316",
+    "route": "/lessons/trigonometry/259-right-triangle-ratios"
+  },
+  {
+    "index": 511,
+    "source": "src/modules/lessons/adapters/TwoProportionTestLesson548.tsx",
+    "testId": "inference-mockup-0511",
+    "route": "/lessons/data-and-probability/548-two-proportion-test"
+  },
+  {
+    "index": 508,
+    "source": "src/modules/lessons/adapters/TwoSampleTTestLesson545.tsx",
+    "testId": "inference-mockup-0508",
+    "route": "/lessons/data-and-probability/545-two-sample-t-test"
+  },
+  {
+    "index": 183,
+    "source": "src/modules/lessons/adapters/TwoVariableInequalitiesTargetLesson126.tsx",
+    "testId": "algebra-mockup-0183",
+    "route": "/lessons/algebra/126-two-variable-inequalities"
+  },
+  {
+    "index": 474,
+    "source": "src/modules/lessons/adapters/TwoWayTablesLesson511.tsx",
+    "testId": "probability-mockup-0474",
+    "route": "/lessons/data-and-probability/511-two-way-tables"
+  },
+  {
+    "index": 517,
+    "source": "src/modules/lessons/adapters/TypeErrorsLesson554.tsx",
+    "testId": "inference-mockup-0517",
+    "route": "/lessons/data-and-probability/554-type-i-and-type-ii-errors"
+  },
+  {
+    "index": 490,
+    "source": "src/modules/lessons/adapters/UniformDistributionLesson527.tsx",
+    "testId": "probability-mockup-0490",
+    "route": "/lessons/data-and-probability/527-uniform-distribution"
+  },
+  {
+    "index": 315,
+    "source": "src/modules/lessons/adapters/UnitCircleTargetLesson258.tsx",
+    "testId": "trigonometry-mockup-0315",
+    "route": "/lessons/trigonometry/258-unit-circle"
+  },
+  {
+    "index": 69,
+    "source": "src/modules/lessons/adapters/UnitRatesTargetLesson87.tsx",
+    "testId": "number-mockup-0069",
+    "route": "/lessons/numbers-and-arithmetic/87-unit-rates"
+  },
+  {
+    "index": 20,
+    "source": "src/modules/lessons/adapters/VariableExplorerTargetLesson20.tsx",
+    "testId": "algebra-mockup-0020",
+    "route": "/lessons/core-workspaces/20-variable-explorer"
+  },
+  {
+    "index": 439,
+    "source": "src/modules/lessons/adapters/VarianceLesson476.tsx",
+    "testId": "statistics-mockup-0439",
+    "route": "/lessons/data-and-probability/476-variance-and-standard-deviation"
+  },
+  {
+    "index": 514,
+    "source": "src/modules/lessons/adapters/VarianceTestsLesson551.tsx",
+    "testId": "inference-mockup-0514",
+    "route": "/lessons/data-and-probability/551-variance-tests"
+  },
+  {
+    "index": 243,
+    "source": "src/modules/lessons/adapters/VectorAdditionTargetLesson186.tsx",
+    "testId": "vector-mockup-0243",
+    "route": "/lessons/geometry/186-vector-addition"
+  },
+  {
+    "index": 240,
+    "source": "src/modules/lessons/adapters/VectorIntroductionTargetLesson183.tsx",
+    "testId": "vector-mockup-0240",
+    "route": "/lessons/geometry/183-vector-introduction"
+  },
+  {
+    "index": 251,
+    "source": "src/modules/lessons/adapters/VectorLineTargetLesson194.tsx",
+    "testId": "vector-mockup-0251",
+    "route": "/lessons/geometry/194-vector-equation-of-a-line"
+  },
+  {
+    "index": 252,
+    "source": "src/modules/lessons/adapters/VectorPlaneTargetLesson195.tsx",
+    "testId": "vector-mockup-0252",
+    "route": "/lessons/geometry/195-vector-equation-of-a-plane"
+  },
+  {
+    "index": 249,
+    "source": "src/modules/lessons/adapters/VectorProjectionTargetLesson192.tsx",
+    "testId": "vector-mockup-0249",
+    "route": "/lessons/geometry/192-vector-projection"
+  },
+  {
+    "index": 244,
+    "source": "src/modules/lessons/adapters/VectorSubtractionTargetLesson187.tsx",
+    "testId": "vector-mockup-0244",
+    "route": "/lessons/geometry/187-vector-subtraction"
+  },
+  {
+    "index": 473,
+    "source": "src/modules/lessons/adapters/VennDiagramsLesson510.tsx",
+    "testId": "probability-mockup-0473",
+    "route": "/lessons/data-and-probability/510-venn-diagrams"
+  },
+  {
+    "index": 189,
+    "source": "src/modules/lessons/adapters/VerticalLineTestTargetLesson132.tsx",
+    "testId": "graph-mockup-0189",
+    "route": "/lessons/graphs-and-functions/132-vertical-line-test"
+  },
+  {
+    "index": 215,
+    "source": "src/modules/lessons/adapters/VerticalStretchCompressionTargetLesson158.tsx",
+    "testId": "graph-mockup-0215",
+    "route": "/lessons/graphs-and-functions/158-vertical-stretch-and-compression"
+  },
+  {
+    "index": 213,
+    "source": "src/modules/lessons/adapters/VerticalTranslationTargetLesson156.tsx",
+    "testId": "graph-mockup-0213",
+    "route": "/lessons/graphs-and-functions/156-vertical-translation"
+  },
+  {
+    "index": 497,
+    "source": "src/modules/lessons/adapters/WeibullDistributionLesson534.tsx",
+    "testId": "probability-mockup-0497",
+    "route": "/lessons/data-and-probability/534-weibull-distribution"
+  },
+  {
+    "index": 436,
+    "source": "src/modules/lessons/adapters/WeightedMeanLesson473.tsx",
+    "testId": "statistics-mockup-0436",
+    "route": "/lessons/data-and-probability/473-weighted-mean"
+  },
+  {
+    "index": 40,
+    "source": "src/modules/lessons/adapters/WholeNumbersTargetLesson58.tsx",
+    "testId": "number-mockup-0040",
+    "route": "/lessons/numbers-and-arithmetic/58-whole-numbers"
+  },
+  {
+    "index": 441,
+    "source": "src/modules/lessons/adapters/ZScoresLesson478.tsx",
+    "testId": "statistics-mockup-0441",
+    "route": "/lessons/data-and-probability/478-z-scores"
+  },
+  {
+    "index": 520,
+    "source": "src/modules/lessons/adapters/sequence/ArithmeticSequencesTargetLesson335.tsx",
+    "testId": "sequence-mockup-0520",
+    "route": "/lessons/advanced-mathematics/335-arithmetic-sequences"
+  },
+  {
+    "index": 525,
+    "source": "src/modules/lessons/adapters/sequence/ArithmeticSeriesTargetLesson340.tsx",
+    "testId": "sequence-mockup-0525",
+    "route": "/lessons/advanced-mathematics/340-arithmetic-series"
+  },
+  {
+    "index": 530,
+    "source": "src/modules/lessons/adapters/sequence/BinomialSeriesTargetLesson345.tsx",
+    "testId": "sequence-mockup-0530",
+    "route": "/lessons/advanced-mathematics/345-binomial-series"
+  },
+  {
+    "index": 527,
+    "source": "src/modules/lessons/adapters/sequence/ConvergenceDivergenceTargetLesson342.tsx",
+    "testId": "sequence-mockup-0527",
+    "route": "/lessons/advanced-mathematics/342-convergence-and-divergence"
+  },
+  {
+    "index": 523,
+    "source": "src/modules/lessons/adapters/sequence/FibonacciSequenceTargetLesson338.tsx",
+    "testId": "sequence-mockup-0523",
+    "route": "/lessons/advanced-mathematics/338-fibonacci-sequence"
+  },
+  {
+    "index": 521,
+    "source": "src/modules/lessons/adapters/sequence/GeometricSequencesTargetLesson336.tsx",
+    "testId": "sequence-mockup-0521",
+    "route": "/lessons/advanced-mathematics/336-geometric-sequences"
+  },
+  {
+    "index": 526,
+    "source": "src/modules/lessons/adapters/sequence/GeometricSeriesTargetLesson341.tsx",
+    "testId": "sequence-mockup-0526",
+    "route": "/lessons/advanced-mathematics/341-geometric-series"
+  },
+  {
+    "index": 528,
+    "source": "src/modules/lessons/adapters/sequence/PowerSeriesTargetLesson343.tsx",
+    "testId": "sequence-mockup-0528",
+    "route": "/lessons/advanced-mathematics/343-power-series"
+  },
+  {
+    "index": 531,
+    "source": "src/modules/lessons/adapters/sequence/RecurrenceModellingTargetLesson346.tsx",
+    "testId": "sequence-mockup-0531",
+    "route": "/lessons/advanced-mathematics/346-recurrence-modelling"
+  },
+  {
+    "index": 522,
+    "source": "src/modules/lessons/adapters/sequence/RecursiveSequencesTargetLesson337.tsx",
+    "testId": "sequence-mockup-0522",
+    "route": "/lessons/advanced-mathematics/337-recursive-sequences"
+  },
+  {
+    "index": 519,
+    "source": "src/modules/lessons/adapters/sequence/SequenceGeneratorTargetLesson334.tsx",
+    "testId": "sequence-mockup-0519",
+    "route": "/lessons/advanced-mathematics/334-sequence-generator"
+  },
+  {
+    "index": 524,
+    "source": "src/modules/lessons/adapters/sequence/SigmaNotationTargetLesson339.tsx",
+    "testId": "sequence-mockup-0524",
+    "route": "/lessons/advanced-mathematics/339-sigma-notation"
+  },
+  {
+    "index": 529,
+    "source": "src/modules/lessons/adapters/sequence/TaylorMaclaurinTargetLesson344.tsx",
+    "testId": "sequence-mockup-0529",
+    "route": "/lessons/advanced-mathematics/344-taylor-and-maclaurin-series"
+  },
+  {
+    "index": 542,
+    "source": "src/modules/lessons/adapters/matrix/AugmentedMatricesTargetLesson357.tsx",
+    "testId": "matrix-mockup-0542",
+    "route": "/lessons/advanced-mathematics/357-augmented-matrices"
+  },
+  {
+    "index": 545,
+    "source": "src/modules/lessons/adapters/matrix/BasisDimensionTargetLesson360.tsx",
+    "testId": "matrix-mockup-0545",
+    "route": "/lessons/advanced-mathematics/360-basis-and-dimension"
+  },
+  {
+    "index": 538,
+    "source": "src/modules/lessons/adapters/matrix/DeterminantTargetLesson353.tsx",
+    "testId": "matrix-mockup-0538",
+    "route": "/lessons/advanced-mathematics/353-determinant"
+  },
+  {
+    "index": 544,
+    "source": "src/modules/lessons/adapters/matrix/EigenTargetLesson359.tsx",
+    "testId": "matrix-mockup-0544",
+    "route": "/lessons/advanced-mathematics/359-eigenvalues-and-eigenvectors"
+  },
+  {
+    "index": 548,
+    "source": "src/modules/lessons/adapters/matrix/GramSchmidtTargetLesson363.tsx",
+    "testId": "matrix-mockup-0548",
+    "route": "/lessons/advanced-mathematics/363-gramschmidt"
+  },
+  {
+    "index": 536,
+    "source": "src/modules/lessons/adapters/matrix/IdentityMatrixTargetLesson351.tsx",
+    "testId": "matrix-mockup-0536",
+    "route": "/lessons/advanced-mathematics/351-identity-matrix"
+  },
+  {
+    "index": 549,
+    "source": "src/modules/lessons/adapters/matrix/LeastSquaresTargetLesson364.tsx",
+    "testId": "matrix-mockup-0549",
+    "route": "/lessons/advanced-mathematics/364-least-squares"
+  },
+  {
+    "index": 546,
+    "source": "src/modules/lessons/adapters/matrix/LinearIndependenceTargetLesson361.tsx",
+    "testId": "matrix-mockup-0546",
+    "route": "/lessons/advanced-mathematics/361-linear-independence"
+  },
+  {
+    "index": 543,
+    "source": "src/modules/lessons/adapters/matrix/LinearTransformationsTargetLesson358.tsx",
+    "testId": "matrix-mockup-0543",
+    "route": "/lessons/advanced-mathematics/358-linear-transformations"
+  },
+  {
+    "index": 533,
+    "source": "src/modules/lessons/adapters/matrix/MatrixAdditionTargetLesson348.tsx",
+    "testId": "matrix-mockup-0533",
+    "route": "/lessons/advanced-mathematics/348-matrix-addition-and-subtraction"
+  },
+  {
+    "index": 532,
+    "source": "src/modules/lessons/adapters/matrix/MatrixBuilderTargetLesson347.tsx",
+    "testId": "matrix-mockup-0532",
+    "route": "/lessons/advanced-mathematics/347-matrix-builder"
+  },
+  {
+    "index": 539,
+    "source": "src/modules/lessons/adapters/matrix/MatrixInverseTargetLesson354.tsx",
+    "testId": "matrix-mockup-0539",
+    "route": "/lessons/advanced-mathematics/354-matrix-inverse"
+  },
+  {
+    "index": 535,
+    "source": "src/modules/lessons/adapters/matrix/MatrixMultiplicationTargetLesson350.tsx",
+    "testId": "matrix-mockup-0535",
+    "route": "/lessons/advanced-mathematics/350-matrix-multiplication"
+  },
+  {
+    "index": 540,
+    "source": "src/modules/lessons/adapters/matrix/RowOperationsTargetLesson355.tsx",
+    "testId": "matrix-mockup-0540",
+    "route": "/lessons/advanced-mathematics/355-row-operations"
+  },
+  {
+    "index": 541,
+    "source": "src/modules/lessons/adapters/matrix/RrefTargetLesson356.tsx",
+    "testId": "matrix-mockup-0541",
+    "route": "/lessons/advanced-mathematics/356-rref"
+  },
+  {
+    "index": 534,
+    "source": "src/modules/lessons/adapters/matrix/ScalarMultiplicationTargetLesson349.tsx",
+    "testId": "matrix-mockup-0534",
+    "route": "/lessons/advanced-mathematics/349-scalar-multiplication"
+  },
+  {
+    "index": 537,
+    "source": "src/modules/lessons/adapters/matrix/TransposeTargetLesson352.tsx",
+    "testId": "matrix-mockup-0537",
+    "route": "/lessons/advanced-mathematics/352-transpose"
+  },
+  {
+    "index": 547,
+    "source": "src/modules/lessons/adapters/matrix/VectorSpacesTargetLesson362.tsx",
+    "testId": "matrix-mockup-0547",
+    "route": "/lessons/advanced-mathematics/362-vector-spaces"
+  },
+  {
+    "index": 142,
+    "source": "src/modules/lessons/adapters/graph/AxisControlsTargetLesson50.tsx",
+    "testId": "2d-graphing-mockup-0142",
+    "route": "/lessons/graphs-and-functions/50-axis-controls"
+  },
+  {
+    "index": 131,
+    "source": "src/modules/lessons/adapters/graph/CartesianGraphingTargetLesson39.tsx",
+    "testId": "2d-graphing-mockup-0131",
+    "route": "/lessons/graphs-and-functions/39-cartesian-graphing"
+  },
+  {
+    "index": 138,
+    "source": "src/modules/lessons/adapters/graph/DataPlotterTargetLesson46.tsx",
+    "testId": "2d-graphing-mockup-0138",
+    "route": "/lessons/graphs-and-functions/46-data-plotter"
+  },
+  {
+    "index": 147,
+    "source": "src/modules/lessons/adapters/graph/DynamicParametersTargetLesson55.tsx",
+    "testId": "2d-graphing-mockup-0147",
+    "route": "/lessons/graphs-and-functions/55-dynamic-parameters"
+  },
+  {
+    "index": 133,
+    "source": "src/modules/lessons/adapters/graph/EquationGrapherTargetLesson41.tsx",
+    "testId": "2d-graphing-mockup-0133",
+    "route": "/lessons/graphs-and-functions/41-equation-grapher"
+  },
+  {
+    "index": 148,
+    "source": "src/modules/lessons/adapters/graph/ExportGraphTargetLesson56.tsx",
+    "testId": "2d-graphing-mockup-0148",
+    "route": "/lessons/graphs-and-functions/56-export-graph"
+  },
+  {
+    "index": 200,
+    "source": "src/modules/lessons/adapters/graph/FunctionMockupLesson.tsx",
+    "testId": "function-mockup-0200",
+    "route": "/lessons/graphs-and-functions/143-logarithmic-functions"
+  },
+  {
+    "index": 201,
+    "source": "src/modules/lessons/adapters/TrigonometricFunctionsTargetLesson144.tsx",
+    "testId": "function-mockup-0201",
+    "route": "/lessons/graphs-and-functions/144-trigonometric-functions"
+  },
+  {
+    "index": 202,
+    "source": "src/modules/lessons/adapters/graph/FunctionMockupLesson.tsx",
+    "testId": "function-mockup-0202",
+    "route": null
+  },
+  {
+    "index": 132,
+    "source": "src/modules/lessons/adapters/graph/FunctionPlotterTargetLesson40.tsx",
+    "testId": "2d-graphing-mockup-0132",
+    "route": "/lessons/graphs-and-functions/40-function-plotter"
+  },
+  {
+    "index": 146,
+    "source": "src/modules/lessons/adapters/graph/GraphInspectorTargetLesson54.tsx",
+    "testId": "2d-graphing-mockup-0146",
+    "route": "/lessons/graphs-and-functions/54-graph-inspector"
+  },
+  {
+    "index": 143,
+    "source": "src/modules/lessons/adapters/graph/GridControlsTargetLesson51.tsx",
+    "testId": "2d-graphing-mockup-0143",
+    "route": "/lessons/graphs-and-functions/51-grid-controls"
+  },
+  {
+    "index": 134,
+    "source": "src/modules/lessons/adapters/graph/InequalityGrapherTargetLesson42.tsx",
+    "testId": "2d-graphing-mockup-0134",
+    "route": "/lessons/graphs-and-functions/42-inequality-grapher"
+  },
+  {
+    "index": 144,
+    "source": "src/modules/lessons/adapters/graph/MultipleGraphicsViewsTargetLesson52.tsx",
+    "testId": "2d-graphing-mockup-0144",
+    "route": "/lessons/graphs-and-functions/52-multiple-graphics-views"
+  },
+  {
+    "index": 135,
+    "source": "src/modules/lessons/adapters/graph/ParametricCurvesTargetLesson43.tsx",
+    "testId": "2d-graphing-mockup-0135",
+    "route": "/lessons/graphs-and-functions/43-parametric-curves"
+  },
+  {
+    "index": 137,
+    "source": "src/modules/lessons/adapters/graph/PointPlotterTargetLesson45.tsx",
+    "testId": "2d-graphing-mockup-0137",
+    "route": "/lessons/graphs-and-functions/45-point-plotter"
+  },
+  {
+    "index": 136,
+    "source": "src/modules/lessons/adapters/graph/PolarGraphsTargetLesson44.tsx",
+    "testId": "2d-graphing-mockup-0136",
+    "route": "/lessons/graphs-and-functions/44-polar-graphs"
+  },
+  {
+    "index": 145,
+    "source": "src/modules/lessons/adapters/graph/SpecialPointsTargetLesson53.tsx",
+    "testId": "2d-graphing-mockup-0145",
+    "route": "/lessons/graphs-and-functions/53-special-points"
+  },
+  {
+    "index": 139,
+    "source": "src/modules/lessons/adapters/graph/TableValuesTargetLesson47.tsx",
+    "testId": "2d-graphing-mockup-0139",
+    "route": "/lessons/graphs-and-functions/47-table-of-values"
+  },
+  {
+    "index": 140,
+    "source": "src/modules/lessons/adapters/graph/TraceModeTargetLesson48.tsx",
+    "testId": "2d-graphing-mockup-0140",
+    "route": "/lessons/graphs-and-functions/48-trace-mode"
+  },
+  {
+    "index": 141,
+    "source": "src/modules/lessons/adapters/graph/ZoomPanTargetLesson49.tsx",
+    "testId": "2d-graphing-mockup-0141",
+    "route": "/lessons/graphs-and-functions/49-zoom-and-pan"
+  },
+  {
+    "index": 573,
+    "source": "src/modules/lessons/adapters/geometry3d/AngleLinePlaneTargetLesson388.tsx",
+    "testId": "geometry3d-mockup-0573",
+    "route": "/lessons/3d-mathematics/388-angle-between-line-and-plane"
+  },
+  {
+    "index": 571,
+    "source": "src/modules/lessons/adapters/geometry3d/AngleLinesTargetLesson386.tsx",
+    "testId": "geometry3d-mockup-0571",
+    "route": "/lessons/3d-mathematics/386-angle-between-lines"
+  },
+  {
+    "index": 572,
+    "source": "src/modules/lessons/adapters/geometry3d/AnglePlanesTargetLesson387.tsx",
+    "testId": "geometry3d-mockup-0572",
+    "route": "/lessons/3d-mathematics/387-angle-between-planes"
+  },
+  {
+    "index": 597,
+    "source": "src/modules/lessons/adapters/geometry3d/ARPlacementTargetLesson412.tsx",
+    "testId": "geometry3d-mockup-0597",
+    "route": "/lessons/3d-mathematics/412-ar-placement"
+  },
+  {
+    "index": 595,
+    "source": "src/modules/lessons/adapters/geometry3d/CameraControlsTargetLesson410.tsx",
+    "testId": "geometry3d-mockup-0595",
+    "route": "/lessons/3d-mathematics/410-camera-controls"
+  },
+  {
+    "index": 583,
+    "source": "src/modules/lessons/adapters/geometry3d/ConeTargetLesson398.tsx",
+    "testId": "geometry3d-mockup-0583",
+    "route": "/lessons/3d-mathematics/398-cone"
+  },
+  {
+    "index": 605,
+    "source": "src/modules/lessons/adapters/geometry3d/ContourCurvesTargetLesson420.tsx",
+    "testId": "geometry3d-mockup-0605",
+    "route": "/lessons/3d-mathematics/420-contour-curves"
+  },
+  {
+    "index": 563,
+    "source": "src/modules/lessons/adapters/geometry3d/CoordinateSystemTargetLesson378.tsx",
+    "testId": "geometry3d-mockup-0563",
+    "route": "/lessons/3d-mathematics/378-3d-coordinate-system"
+  },
+  {
+    "index": 590,
+    "source": "src/modules/lessons/adapters/geometry3d/CrossSectionsTargetLesson405.tsx",
+    "testId": "geometry3d-mockup-0590",
+    "route": "/lessons/3d-mathematics/405-cross-sections"
+  },
+  {
+    "index": 576,
+    "source": "src/modules/lessons/adapters/geometry3d/CubeTargetLesson391.tsx",
+    "testId": "geometry3d-mockup-0576",
+    "route": "/lessons/3d-mathematics/391-cube"
+  },
+  {
+    "index": 577,
+    "source": "src/modules/lessons/adapters/geometry3d/CuboidTargetLesson392.tsx",
+    "testId": "geometry3d-mockup-0577",
+    "route": "/lessons/3d-mathematics/392-cuboid"
+  },
+  {
+    "index": 582,
+    "source": "src/modules/lessons/adapters/geometry3d/CylinderTargetLesson397.tsx",
+    "testId": "geometry3d-mockup-0582",
+    "route": "/lessons/3d-mathematics/397-cylinder"
+  },
+  {
+    "index": 603,
+    "source": "src/modules/lessons/adapters/geometry3d/CylindricalCoordinatesTargetLesson418.tsx",
+    "testId": "geometry3d-mockup-0603",
+    "route": "/lessons/3d-mathematics/418-cylindrical-coordinates"
+  },
+  {
+    "index": 565,
+    "source": "src/modules/lessons/adapters/geometry3d/DistanceTargetLesson380.tsx",
+    "testId": "geometry3d-mockup-0565",
+    "route": "/lessons/3d-mathematics/380-distance-in-3d"
+  },
+  {
+    "index": 611,
+    "source": "src/modules/lessons/adapters/geometry3d/DoubleIntegralsTargetLesson426.tsx",
+    "testId": "geometry3d-mockup-0611",
+    "route": "/lessons/3d-mathematics/426-double-integrals"
+  },
+  {
+    "index": 593,
+    "source": "src/modules/lessons/adapters/geometry3d/EulerFormulaTargetLesson408.tsx",
+    "testId": "geometry3d-mockup-0593",
+    "route": "/lessons/3d-mathematics/408-euler-s-polyhedron-formula"
+  },
+  {
+    "index": 588,
+    "source": "src/modules/lessons/adapters/geometry3d/ExtrusionTargetLesson403.tsx",
+    "testId": "geometry3d-mockup-0588",
+    "route": "/lessons/3d-mathematics/403-extrusion"
+  },
+  {
+    "index": 586,
+    "source": "src/modules/lessons/adapters/geometry3d/FrustumTargetLesson401.tsx",
+    "testId": "geometry3d-mockup-0586",
+    "route": "/lessons/3d-mathematics/401-frustum"
+  },
+  {
+    "index": 608,
+    "source": "src/modules/lessons/adapters/geometry3d/GradientVectorTargetLesson423.tsx",
+    "testId": "geometry3d-mockup-0608",
+    "route": "/lessons/3d-mathematics/423-gradient-vector"
+  },
+  {
+    "index": 585,
+    "source": "src/modules/lessons/adapters/geometry3d/HemisphereTargetLesson400.tsx",
+    "testId": "geometry3d-mockup-0585",
+    "route": "/lessons/3d-mathematics/400-hemisphere"
+  },
+  {
+    "index": 599,
+    "source": "src/modules/lessons/adapters/geometry3d/ImplicitSurfacesTargetLesson414.tsx",
+    "testId": "geometry3d-mockup-0599",
+    "route": "/lessons/3d-mathematics/414-implicit-surfaces"
+  },
+  {
+    "index": 606,
+    "source": "src/modules/lessons/adapters/geometry3d/LevelSurfacesTargetLesson421.tsx",
+    "testId": "geometry3d-mockup-0606",
+    "route": "/lessons/3d-mathematics/421-level-surfaces"
+  },
+  {
+    "index": 569,
+    "source": "src/modules/lessons/adapters/geometry3d/LinePlaneTargetLesson384.tsx",
+    "testId": "geometry3d-mockup-0569",
+    "route": "/lessons/3d-mathematics/384-lineplane-intersection"
+  },
+  {
+    "index": 566,
+    "source": "src/modules/lessons/adapters/geometry3d/LinesTargetLesson381.tsx",
+    "testId": "geometry3d-mockup-0566",
+    "route": "/lessons/3d-mathematics/381-lines-in-3d"
+  },
+  {
+    "index": 612,
+    "source": "src/modules/lessons/adapters/geometry3d/MultivariableOptimisationTargetLesson427.tsx",
+    "testId": "geometry3d-mockup-0612",
+    "route": "/lessons/3d-mathematics/427-multivariable-optimisation"
+  },
+  {
+    "index": 589,
+    "source": "src/modules/lessons/adapters/geometry3d/NetsSolidsTargetLesson404.tsx",
+    "testId": "geometry3d-mockup-0589",
+    "route": "/lessons/3d-mathematics/404-nets-of-solids"
+  },
+  {
+    "index": 610,
+    "source": "src/modules/lessons/adapters/geometry3d/NormalVectorTargetLesson425.tsx",
+    "testId": "geometry3d-mockup-0610",
+    "route": "/lessons/3d-mathematics/425-normal-vector"
+  },
+  {
+    "index": 596,
+    "source": "src/modules/lessons/adapters/geometry3d/OrthographicViewsTargetLesson411.tsx",
+    "testId": "geometry3d-mockup-0596",
+    "route": "/lessons/3d-mathematics/411-orthographic-views"
+  },
+  {
+    "index": 568,
+    "source": "src/modules/lessons/adapters/geometry3d/ParallelPlanesTargetLesson383.tsx",
+    "testId": "geometry3d-mockup-0568",
+    "route": "/lessons/3d-mathematics/383-parallel-and-perpendicular-planes"
+  },
+  {
+    "index": 600,
+    "source": "src/modules/lessons/adapters/geometry3d/ParametricSurfacesTargetLesson415.tsx",
+    "testId": "geometry3d-mockup-0600",
+    "route": "/lessons/3d-mathematics/415-parametric-surfaces"
+  },
+  {
+    "index": 607,
+    "source": "src/modules/lessons/adapters/geometry3d/PartialDerivativesTargetLesson422.tsx",
+    "testId": "geometry3d-mockup-0607",
+    "route": "/lessons/3d-mathematics/422-partial-derivatives"
+  },
+  {
+    "index": 570,
+    "source": "src/modules/lessons/adapters/geometry3d/PlanePlaneTargetLesson385.tsx",
+    "testId": "geometry3d-mockup-0570",
+    "route": "/lessons/3d-mathematics/385-planeplane-intersection"
+  },
+  {
+    "index": 567,
+    "source": "src/modules/lessons/adapters/geometry3d/PlanesTargetLesson382.tsx",
+    "testId": "geometry3d-mockup-0567",
+    "route": "/lessons/3d-mathematics/382-planes"
+  },
+  {
+    "index": 574,
+    "source": "src/modules/lessons/adapters/geometry3d/PointPlaneDistanceTargetLesson389.tsx",
+    "testId": "geometry3d-mockup-0574",
+    "route": "/lessons/3d-mathematics/389-point-to-plane-distance"
+  },
+  {
+    "index": 564,
+    "source": "src/modules/lessons/adapters/geometry3d/PointsTargetLesson379.tsx",
+    "testId": "geometry3d-mockup-0564",
+    "route": "/lessons/3d-mathematics/379-3d-points"
+  },
+  {
+    "index": 578,
+    "source": "src/modules/lessons/adapters/geometry3d/PrismTargetLesson393.tsx",
+    "testId": "geometry3d-mockup-0578",
+    "route": "/lessons/3d-mathematics/393-prism"
+  },
+  {
+    "index": 579,
+    "source": "src/modules/lessons/adapters/geometry3d/PyramidTargetLesson394.tsx",
+    "testId": "geometry3d-mockup-0579",
+    "route": "/lessons/3d-mathematics/394-pyramid"
+  },
+  {
+    "index": 602,
+    "source": "src/modules/lessons/adapters/geometry3d/QuadricSurfacesTargetLesson417.tsx",
+    "testId": "geometry3d-mockup-0602",
+    "route": "/lessons/3d-mathematics/417-quadric-surfaces"
+  },
+  {
+    "index": 581,
+    "source": "src/modules/lessons/adapters/geometry3d/RegularPolyhedraTargetLesson396.tsx",
+    "testId": "geometry3d-mockup-0581",
+    "route": "/lessons/3d-mathematics/396-regular-polyhedra"
+  },
+  {
+    "index": 601,
+    "source": "src/modules/lessons/adapters/geometry3d/SpaceCurvesTargetLesson416.tsx",
+    "testId": "geometry3d-mockup-0601",
+    "route": "/lessons/3d-mathematics/416-space-curves"
+  },
+  {
+    "index": 584,
+    "source": "src/modules/lessons/adapters/geometry3d/SphereTargetLesson399.tsx",
+    "testId": "geometry3d-mockup-0584",
+    "route": "/lessons/3d-mathematics/399-sphere"
+  },
+  {
+    "index": 604,
+    "source": "src/modules/lessons/adapters/geometry3d/SphericalCoordinatesTargetLesson419.tsx",
+    "testId": "geometry3d-mockup-0604",
+    "route": "/lessons/3d-mathematics/419-spherical-coordinates"
+  },
+  {
+    "index": 592,
+    "source": "src/modules/lessons/adapters/geometry3d/SurfaceAreaTargetLesson407.tsx",
+    "testId": "geometry3d-mockup-0592",
+    "route": "/lessons/3d-mathematics/407-surface-area"
+  },
+  {
+    "index": 598,
+    "source": "src/modules/lessons/adapters/geometry3d/SurfaceFunctionTargetLesson413.tsx",
+    "testId": "geometry3d-mockup-0598",
+    "route": "/lessons/3d-mathematics/413-surface-z-f-x-y"
+  },
+  {
+    "index": 587,
+    "source": "src/modules/lessons/adapters/geometry3d/SurfaceRevolutionTargetLesson402.tsx",
+    "testId": "geometry3d-mockup-0587",
+    "route": "/lessons/3d-mathematics/402-surface-of-revolution"
+  },
+  {
+    "index": 609,
+    "source": "src/modules/lessons/adapters/geometry3d/TangentPlaneTargetLesson424.tsx",
+    "testId": "geometry3d-mockup-0609",
+    "route": "/lessons/3d-mathematics/424-tangent-plane"
+  },
+  {
+    "index": 580,
+    "source": "src/modules/lessons/adapters/geometry3d/TetrahedronTargetLesson395.tsx",
+    "testId": "geometry3d-mockup-0580",
+    "route": "/lessons/3d-mathematics/395-tetrahedron"
+  },
+  {
+    "index": 575,
+    "source": "src/modules/lessons/adapters/geometry3d/VectorsTargetLesson390.tsx",
+    "testId": "geometry3d-mockup-0575",
+    "route": "/lessons/3d-mathematics/390-3d-vectors"
+  },
+  {
+    "index": 591,
+    "source": "src/modules/lessons/adapters/geometry3d/VolumeTargetLesson406.tsx",
+    "testId": "geometry3d-mockup-0591",
+    "route": "/lessons/3d-mathematics/406-volume"
+  },
+  {
+    "index": 594,
+    "source": "src/modules/lessons/adapters/geometry3d/XRayModeTargetLesson409.tsx",
+    "testId": "geometry3d-mockup-0594",
+    "route": "/lessons/3d-mathematics/409-transparent-x-ray-mode"
+  },
+  {
+    "index": 655,
+    "source": "src/modules/lessons/adapters/finance/AmortisationTableTargetLesson598.tsx",
+    "testId": "finance-mockup-0655",
+    "route": "/lessons/discrete-and-applied-mathematics/598-amortisation-table"
+  },
+  {
+    "index": 653,
+    "source": "src/modules/lessons/adapters/finance/AnnuitiesTargetLesson596.tsx",
+    "testId": "finance-mockup-0653",
+    "route": "/lessons/discrete-and-applied-mathematics/596-annuities"
+  },
+  {
+    "index": 660,
+    "source": "src/modules/lessons/adapters/finance/BreakEvenTargetLesson603.tsx",
+    "testId": "finance-mockup-0660",
+    "route": "/lessons/discrete-and-applied-mathematics/603-break-even-analysis"
+  },
+  {
+    "index": 649,
+    "source": "src/modules/lessons/adapters/finance/CompoundInterestTargetLesson592.tsx",
+    "testId": "finance-mockup-0649",
+    "route": "/lessons/discrete-and-applied-mathematics/592-compound-interest"
+  },
+  {
+    "index": 658,
+    "source": "src/modules/lessons/adapters/finance/CurrencyConversionTargetLesson601.tsx",
+    "testId": "finance-mockup-0658",
+    "route": "/lessons/discrete-and-applied-mathematics/601-currency-conversion"
+  },
+  {
+    "index": 656,
+    "source": "src/modules/lessons/adapters/finance/DepreciationTargetLesson599.tsx",
+    "testId": "finance-mockup-0656",
+    "route": "/lessons/discrete-and-applied-mathematics/599-depreciation"
+  },
+  {
+    "index": 670,
+    "source": "src/modules/lessons/adapters/finance/DimensionalAnalysisTargetLesson613.tsx",
+    "testId": "finance-mockup-0670",
+    "route": "/lessons/discrete-and-applied-mathematics/613-dimensional-analysis"
+  },
+  {
+    "index": 650,
+    "source": "src/modules/lessons/adapters/finance/EffectiveInterestRateTargetLesson593.tsx",
+    "testId": "finance-mockup-0650",
+    "route": "/lessons/discrete-and-applied-mathematics/593-effective-interest-rate"
+  },
+  {
+    "index": 666,
+    "source": "src/modules/lessons/adapters/finance/ExponentialLogisticTargetLesson609.tsx",
+    "testId": "finance-mockup-0666",
+    "route": "/lessons/discrete-and-applied-mathematics/609-exponential-and-logistic-models"
+  },
+  {
+    "index": 652,
+    "source": "src/modules/lessons/adapters/finance/FutureValueTargetLesson595.tsx",
+    "testId": "finance-mockup-0652",
+    "route": "/lessons/discrete-and-applied-mathematics/595-future-value"
+  },
+  {
+    "index": 657,
+    "source": "src/modules/lessons/adapters/finance/InflationTargetLesson600.tsx",
+    "testId": "finance-mockup-0657",
+    "route": "/lessons/discrete-and-applied-mathematics/600-inflation"
+  },
+  {
+    "index": 662,
+    "source": "src/modules/lessons/adapters/finance/InvestmentComparisonTargetLesson605.tsx",
+    "testId": "finance-mockup-0662",
+    "route": "/lessons/discrete-and-applied-mathematics/605-investment-comparison"
+  },
+  {
+    "index": 664,
+    "source": "src/modules/lessons/adapters/finance/LinearModelsTargetLesson607.tsx",
+    "testId": "finance-mockup-0664",
+    "route": "/lessons/discrete-and-applied-mathematics/607-linear-models"
+  },
+  {
+    "index": 674,
+    "source": "src/modules/lessons/adapters/finance/LinearProgrammingTargetLesson617.tsx",
+    "testId": "finance-mockup-0674",
+    "route": "/lessons/discrete-and-applied-mathematics/617-linear-programming"
+  },
+  {
+    "index": 654,
+    "source": "src/modules/lessons/adapters/finance/LoansEmiTargetLesson597.tsx",
+    "testId": "finance-mockup-0654",
+    "route": "/lessons/discrete-and-applied-mathematics/597-loans-and-emis"
+  },
+  {
+    "index": 663,
+    "source": "src/modules/lessons/adapters/finance/ModelBuilderTargetLesson606.tsx",
+    "testId": "finance-mockup-0663",
+    "route": "/lessons/discrete-and-applied-mathematics/606-model-builder"
+  },
+  {
+    "index": 669,
+    "source": "src/modules/lessons/adapters/finance/ParameterEstimationTargetLesson612.tsx",
+    "testId": "finance-mockup-0669",
+    "route": "/lessons/discrete-and-applied-mathematics/612-parameter-estimation"
+  },
+  {
+    "index": 667,
+    "source": "src/modules/lessons/adapters/finance/PeriodicModelsTargetLesson610.tsx",
+    "testId": "finance-mockup-0667",
+    "route": "/lessons/discrete-and-applied-mathematics/610-periodic-models"
+  },
+  {
+    "index": 668,
+    "source": "src/modules/lessons/adapters/finance/PiecewiseModelsTargetLesson611.tsx",
+    "testId": "finance-mockup-0668",
+    "route": "/lessons/discrete-and-applied-mathematics/611-piecewise-models"
+  },
+  {
+    "index": 651,
+    "source": "src/modules/lessons/adapters/finance/PresentValueTargetLesson594.tsx",
+    "testId": "finance-mockup-0651",
+    "route": "/lessons/discrete-and-applied-mathematics/594-present-value"
+  },
+  {
+    "index": 659,
+    "source": "src/modules/lessons/adapters/finance/ProfitLossTargetLesson602.tsx",
+    "testId": "finance-mockup-0659",
+    "route": "/lessons/discrete-and-applied-mathematics/602-profit-loss-markup-and-margin"
+  },
+  {
+    "index": 665,
+    "source": "src/modules/lessons/adapters/finance/QuadraticModelsTargetLesson608.tsx",
+    "testId": "finance-mockup-0665",
+    "route": "/lessons/discrete-and-applied-mathematics/608-quadratic-models"
+  },
+  {
+    "index": 672,
+    "source": "src/modules/lessons/adapters/finance/ResidualErrorTargetLesson615.tsx",
+    "testId": "finance-mockup-0672",
+    "route": "/lessons/discrete-and-applied-mathematics/615-residual-and-error-analysis"
+  },
+  {
+    "index": 673,
+    "source": "src/modules/lessons/adapters/finance/ScenarioComparisonTargetLesson616.tsx",
+    "testId": "finance-mockup-0673",
+    "route": "/lessons/discrete-and-applied-mathematics/616-scenario-comparison"
+  },
+  {
+    "index": 671,
+    "source": "src/modules/lessons/adapters/finance/SensitivityAnalysisTargetLesson614.tsx",
+    "testId": "finance-mockup-0671",
+    "route": "/lessons/discrete-and-applied-mathematics/614-sensitivity-analysis"
+  },
+  {
+    "index": 648,
+    "source": "src/modules/lessons/adapters/finance/SimpleInterestTargetLesson591.tsx",
+    "testId": "finance-mockup-0648",
+    "route": "/lessons/discrete-and-applied-mathematics/591-simple-interest"
+  },
+  {
+    "index": 661,
+    "source": "src/modules/lessons/adapters/finance/TaxDiscountTargetLesson604.tsx",
+    "testId": "finance-mockup-0661",
+    "route": "/lessons/discrete-and-applied-mathematics/604-tax-and-discounts"
+  },
+  {
+    "index": 638,
+    "source": "src/modules/lessons/adapters/discrete/AdjacencyMatrixTargetLesson581.tsx",
+    "testId": "discrete-mockup-0638",
+    "route": "/lessons/discrete-and-applied-mathematics/581-adjacency-matrix"
+  },
+  {
+    "index": 634,
+    "source": "src/modules/lessons/adapters/discrete/BipartiteGraphsTargetLesson577.tsx",
+    "testId": "discrete-mockup-0634",
+    "route": "/lessons/discrete-and-applied-mathematics/577-bipartite-graphs"
+  },
+  {
+    "index": 642,
+    "source": "src/modules/lessons/adapters/discrete/CartesianProductTargetLesson585.tsx",
+    "testId": "discrete-mockup-0642",
+    "route": "/lessons/discrete-and-applied-mathematics/585-cartesian-product"
+  },
+  {
+    "index": 617,
+    "source": "src/modules/lessons/adapters/discrete/CircularPermutationsTargetLesson560.tsx",
+    "testId": "discrete-mockup-0617",
+    "route": "/lessons/discrete-and-applied-mathematics/560-circular-permutations"
+  },
+  {
+    "index": 618,
+    "source": "src/modules/lessons/adapters/discrete/CombinationsTargetLesson561.tsx",
+    "testId": "discrete-mockup-0618",
+    "route": "/lessons/discrete-and-applied-mathematics/561-combinations"
+  },
+  {
+    "index": 641,
+    "source": "src/modules/lessons/adapters/discrete/ComplementTargetLesson584.tsx",
+    "testId": "discrete-mockup-0641",
+    "route": "/lessons/discrete-and-applied-mathematics/584-complement"
+  },
+  {
+    "index": 627,
+    "source": "src/modules/lessons/adapters/discrete/ConnectedComponentsTargetLesson570.tsx",
+    "testId": "discrete-mockup-0627",
+    "route": "/lessons/discrete-and-applied-mathematics/570-connected-components"
+  },
+  {
+    "index": 623,
+    "source": "src/modules/lessons/adapters/discrete/DirectedGraphsTargetLesson566.tsx",
+    "testId": "discrete-mockup-0623",
+    "route": "/lessons/discrete-and-applied-mathematics/566-directed-graphs"
+  },
+  {
+    "index": 628,
+    "source": "src/modules/lessons/adapters/discrete/EulerPathsTargetLesson571.tsx",
+    "testId": "discrete-mockup-0628",
+    "route": "/lessons/discrete-and-applied-mathematics/571-euler-paths-and-circuits"
+  },
+  {
+    "index": 614,
+    "source": "src/modules/lessons/adapters/discrete/FactorialsTargetLesson557.tsx",
+    "testId": "discrete-mockup-0614",
+    "route": "/lessons/discrete-and-applied-mathematics/557-factorials"
+  },
+  {
+    "index": 613,
+    "source": "src/modules/lessons/adapters/discrete/FundamentalCountingTargetLesson556.tsx",
+    "testId": "discrete-mockup-0613",
+    "route": "/lessons/discrete-and-applied-mathematics/556-fundamental-counting-principle"
+  },
+  {
+    "index": 633,
+    "source": "src/modules/lessons/adapters/discrete/GraphColouringTargetLesson576.tsx",
+    "testId": "discrete-mockup-0633",
+    "route": "/lessons/discrete-and-applied-mathematics/576-graph-colouring"
+  },
+  {
+    "index": 629,
+    "source": "src/modules/lessons/adapters/discrete/HamiltonianPathsTargetLesson572.tsx",
+    "testId": "discrete-mockup-0629",
+    "route": "/lessons/discrete-and-applied-mathematics/572-hamiltonian-paths-and-cycles"
+  },
+  {
+    "index": 620,
+    "source": "src/modules/lessons/adapters/discrete/InclusionExclusionTargetLesson563.tsx",
+    "testId": "discrete-mockup-0620",
+    "route": "/lessons/discrete-and-applied-mathematics/563-inclusionexclusion"
+  },
+  {
+    "index": 645,
+    "source": "src/modules/lessons/adapters/discrete/LogicalConnectivesTargetLesson588.tsx",
+    "testId": "discrete-mockup-0645",
+    "route": "/lessons/discrete-and-applied-mathematics/588-logical-connectives"
+  },
+  {
+    "index": 631,
+    "source": "src/modules/lessons/adapters/discrete/MinimumSpanningTreeTargetLesson574.tsx",
+    "testId": "discrete-mockup-0631",
+    "route": "/lessons/discrete-and-applied-mathematics/574-minimum-spanning-tree"
+  },
+  {
+    "index": 636,
+    "source": "src/modules/lessons/adapters/discrete/NetworkFlowTargetLesson579.tsx",
+    "testId": "discrete-mockup-0636",
+    "route": "/lessons/discrete-and-applied-mathematics/579-network-flow"
+  },
+  {
+    "index": 619,
+    "source": "src/modules/lessons/adapters/discrete/PascalTriangleTargetLesson562.tsx",
+    "testId": "discrete-mockup-0619",
+    "route": "/lessons/discrete-and-applied-mathematics/562-pascal-s-triangle"
+  },
+  {
+    "index": 626,
+    "source": "src/modules/lessons/adapters/discrete/PathsCyclesTargetLesson569.tsx",
+    "testId": "discrete-mockup-0626",
+    "route": "/lessons/discrete-and-applied-mathematics/569-paths-and-cycles"
+  },
+  {
+    "index": 615,
+    "source": "src/modules/lessons/adapters/discrete/PermutationsTargetLesson558.tsx",
+    "testId": "discrete-mockup-0615",
+    "route": "/lessons/discrete-and-applied-mathematics/558-permutations"
+  },
+  {
+    "index": 621,
+    "source": "src/modules/lessons/adapters/discrete/PigeonholeTargetLesson564.tsx",
+    "testId": "discrete-mockup-0621",
+    "route": "/lessons/discrete-and-applied-mathematics/564-pigeonhole-principle"
+  },
+  {
+    "index": 635,
+    "source": "src/modules/lessons/adapters/discrete/PlanarGraphsTargetLesson578.tsx",
+    "testId": "discrete-mockup-0635",
+    "route": "/lessons/discrete-and-applied-mathematics/578-planar-graphs"
+  },
+  {
+    "index": 643,
+    "source": "src/modules/lessons/adapters/discrete/PowerSetsTargetLesson586.tsx",
+    "testId": "discrete-mockup-0643",
+    "route": "/lessons/discrete-and-applied-mathematics/586-subsets-and-power-sets"
+  },
+  {
+    "index": 647,
+    "source": "src/modules/lessons/adapters/discrete/ProofMethodsTargetLesson590.tsx",
+    "testId": "discrete-mockup-0647",
+    "route": "/lessons/discrete-and-applied-mathematics/590-proof-methods"
+  },
+  {
+    "index": 646,
+    "source": "src/modules/lessons/adapters/discrete/QuantifiersTargetLesson589.tsx",
+    "testId": "discrete-mockup-0646",
+    "route": "/lessons/discrete-and-applied-mathematics/589-quantifiers"
+  },
+  {
+    "index": 616,
+    "source": "src/modules/lessons/adapters/discrete/RepeatedPermutationsTargetLesson559.tsx",
+    "testId": "discrete-mockup-0616",
+    "route": "/lessons/discrete-and-applied-mathematics/559-permutations-with-repetition"
+  },
+  {
+    "index": 639,
+    "source": "src/modules/lessons/adapters/discrete/SetBuilderTargetLesson582.tsx",
+    "testId": "discrete-mockup-0639",
+    "route": "/lessons/discrete-and-applied-mathematics/582-set-builder"
+  },
+  {
+    "index": 640,
+    "source": "src/modules/lessons/adapters/discrete/SetOperationsTargetLesson583.tsx",
+    "testId": "discrete-mockup-0640",
+    "route": "/lessons/discrete-and-applied-mathematics/583-union-intersection-and-difference"
+  },
+  {
+    "index": 632,
+    "source": "src/modules/lessons/adapters/discrete/ShortestPathTargetLesson575.tsx",
+    "testId": "discrete-mockup-0632",
+    "route": "/lessons/discrete-and-applied-mathematics/575-shortest-path"
+  },
+  {
+    "index": 637,
+    "source": "src/modules/lessons/adapters/discrete/TravellingSalespersonTargetLesson580.tsx",
+    "testId": "discrete-mockup-0637",
+    "route": "/lessons/discrete-and-applied-mathematics/580-travelling-salesperson"
+  },
+  {
+    "index": 630,
+    "source": "src/modules/lessons/adapters/discrete/TreesTargetLesson573.tsx",
+    "testId": "discrete-mockup-0630",
+    "route": "/lessons/discrete-and-applied-mathematics/573-trees"
+  },
+  {
+    "index": 644,
+    "source": "src/modules/lessons/adapters/discrete/TruthTablesTargetLesson587.tsx",
+    "testId": "discrete-mockup-0644",
+    "route": "/lessons/discrete-and-applied-mathematics/587-truth-tables"
+  },
+  {
+    "index": 625,
+    "source": "src/modules/lessons/adapters/discrete/VertexDegreeTargetLesson568.tsx",
+    "testId": "discrete-mockup-0625",
+    "route": "/lessons/discrete-and-applied-mathematics/568-degree-of-a-vertex"
+  },
+  {
+    "index": 622,
+    "source": "src/modules/lessons/adapters/discrete/VertexEdgeBuilderTargetLesson565.tsx",
+    "testId": "discrete-mockup-0622",
+    "route": "/lessons/discrete-and-applied-mathematics/565-vertex-and-edge-builder"
+  },
+  {
+    "index": 624,
+    "source": "src/modules/lessons/adapters/discrete/WeightedGraphsTargetLesson567.tsx",
+    "testId": "discrete-mockup-0624",
+    "route": "/lessons/discrete-and-applied-mathematics/567-weighted-graphs"
+  },
+  {
+    "index": 552,
+    "source": "src/modules/lessons/adapters/complex/ComplexAdditionTargetLesson367.tsx",
+    "testId": "complex-mockup-0552",
+    "route": "/lessons/advanced-mathematics/367-complex-addition"
+  },
+  {
+    "index": 554,
+    "source": "src/modules/lessons/adapters/complex/ComplexConjugateTargetLesson369.tsx",
+    "testId": "complex-mockup-0554",
+    "route": "/lessons/advanced-mathematics/369-complex-conjugate"
+  },
+  {
+    "index": 562,
+    "source": "src/modules/lessons/adapters/complex/ComplexFunctionsTargetLesson377.tsx",
+    "testId": "complex-mockup-0562",
+    "route": "/lessons/advanced-mathematics/377-complex-functions"
+  },
+  {
+    "index": 553,
+    "source": "src/modules/lessons/adapters/complex/ComplexMultiplicationTargetLesson368.tsx",
+    "testId": "complex-mockup-0553",
+    "route": "/lessons/advanced-mathematics/368-complex-multiplication"
+  },
+  {
+    "index": 550,
+    "source": "src/modules/lessons/adapters/complex/ComplexPlaneTargetLesson365.tsx",
+    "testId": "complex-mockup-0550",
+    "route": "/lessons/advanced-mathematics/365-complex-plane"
+  },
+  {
+    "index": 557,
+    "source": "src/modules/lessons/adapters/complex/EulerFormTargetLesson372.tsx",
+    "testId": "complex-mockup-0557",
+    "route": "/lessons/advanced-mathematics/372-euler-form"
+  },
+  {
+    "index": 561,
+    "source": "src/modules/lessons/adapters/complex/MobiusTargetLesson376.tsx",
+    "testId": "complex-mockup-0561",
+    "route": "/lessons/advanced-mathematics/376-mobius-transformations"
+  },
+  {
+    "index": 555,
+    "source": "src/modules/lessons/adapters/complex/ModulusArgumentTargetLesson370.tsx",
+    "testId": "complex-mockup-0555",
+    "route": "/lessons/advanced-mathematics/370-modulus-and-argument"
+  },
+  {
+    "index": 556,
+    "source": "src/modules/lessons/adapters/complex/PolarFormTargetLesson371.tsx",
+    "testId": "complex-mockup-0556",
+    "route": "/lessons/advanced-mathematics/371-polar-form"
+  },
+  {
+    "index": 560,
+    "source": "src/modules/lessons/adapters/complex/PolynomialRootsTargetLesson375.tsx",
+    "testId": "complex-mockup-0560",
+    "route": "/lessons/advanced-mathematics/375-polynomial-roots"
+  },
+  {
+    "index": 558,
+    "source": "src/modules/lessons/adapters/complex/PowersTargetLesson373.tsx",
+    "testId": "complex-mockup-0558",
+    "route": "/lessons/advanced-mathematics/373-powers"
+  },
+  {
+    "index": 551,
+    "source": "src/modules/lessons/adapters/complex/RealImaginaryTargetLesson366.tsx",
+    "testId": "complex-mockup-0551",
+    "route": "/lessons/advanced-mathematics/366-real-and-imaginary-parts"
+  },
+  {
+    "index": 559,
+    "source": "src/modules/lessons/adapters/complex/RootsTargetLesson374.tsx",
+    "testId": "complex-mockup-0559",
+    "route": "/lessons/advanced-mathematics/374-roots"
+  },
+  {
+    "index": 352,
+    "source": "src/modules/lessons/adapters/cas/AssumptionsTargetLesson446.tsx",
+    "testId": "symbolic-cas-mockup-0352",
+    "route": "/lessons/symbolic-mathematics/446-assumptions"
+  },
+  {
+    "index": 355,
+    "source": "src/modules/lessons/adapters/cas/CasToGraphTargetLesson449.tsx",
+    "testId": "symbolic-cas-mockup-0355",
+    "route": "/lessons/symbolic-mathematics/449-cas-to-graph-link"
+  },
+  {
+    "index": 351,
+    "source": "src/modules/lessons/adapters/cas/ComplexCalculationsTargetLesson445.tsx",
+    "testId": "symbolic-cas-mockup-0351",
+    "route": "/lessons/symbolic-mathematics/445-complex-calculations"
+  },
+  {
+    "index": 345,
+    "source": "src/modules/lessons/adapters/cas/DerivativesTargetLesson439.tsx",
+    "testId": "symbolic-cas-mockup-0345",
+    "route": "/lessons/symbolic-mathematics/439-derivatives"
+  },
+  {
+    "index": 349,
+    "source": "src/modules/lessons/adapters/cas/DifferentialEquationsTargetLesson443.tsx",
+    "testId": "symbolic-cas-mockup-0349",
+    "route": "/lessons/symbolic-mathematics/443-differential-equations"
+  },
+  {
+    "index": 342,
+    "source": "src/modules/lessons/adapters/cas/EliminateVariablesTargetLesson436.tsx",
+    "testId": "symbolic-cas-mockup-0342",
+    "route": "/lessons/symbolic-mathematics/436-eliminate-variables"
+  },
+  {
+    "index": 353,
+    "source": "src/modules/lessons/adapters/cas/ExactNumericTargetLesson447.tsx",
+    "testId": "symbolic-cas-mockup-0353",
+    "route": "/lessons/symbolic-mathematics/447-exact-numeric-toggle"
+  },
+  {
+    "index": 336,
+    "source": "src/modules/lessons/adapters/cas/ExpandTargetLesson430.tsx",
+    "testId": "symbolic-cas-mockup-0336",
+    "route": "/lessons/symbolic-mathematics/430-expand"
+  },
+  {
+    "index": 337,
+    "source": "src/modules/lessons/adapters/cas/FactorTargetLesson431.tsx",
+    "testId": "symbolic-cas-mockup-0337",
+    "route": "/lessons/symbolic-mathematics/431-factor"
+  },
+  {
+    "index": 346,
+    "source": "src/modules/lessons/adapters/cas/IntegralsTargetLesson440.tsx",
+    "testId": "symbolic-cas-mockup-0346",
+    "route": "/lessons/symbolic-mathematics/440-integrals"
+  },
+  {
+    "index": 347,
+    "source": "src/modules/lessons/adapters/cas/LimitsTargetLesson441.tsx",
+    "testId": "symbolic-cas-mockup-0347",
+    "route": "/lessons/symbolic-mathematics/441-limits"
+  },
+  {
+    "index": 350,
+    "source": "src/modules/lessons/adapters/cas/MatrixOperationsTargetLesson444.tsx",
+    "testId": "symbolic-cas-mockup-0350",
+    "route": "/lessons/symbolic-mathematics/444-matrix-operations"
+  },
+  {
+    "index": 340,
+    "source": "src/modules/lessons/adapters/cas/NumericalSolveTargetLesson434.tsx",
+    "testId": "symbolic-cas-mockup-0340",
+    "route": "/lessons/symbolic-mathematics/434-numerical-solve"
+  },
+  {
+    "index": 343,
+    "source": "src/modules/lessons/adapters/cas/PartialFractionsTargetLesson437.tsx",
+    "testId": "symbolic-cas-mockup-0343",
+    "route": "/lessons/symbolic-mathematics/437-partial-fractions"
+  },
+  {
+    "index": 344,
+    "source": "src/modules/lessons/adapters/cas/PolynomialDivisionTargetLesson438.tsx",
+    "testId": "symbolic-cas-mockup-0344",
+    "route": "/lessons/symbolic-mathematics/438-polynomial-division"
+  },
+  {
+    "index": 348,
+    "source": "src/modules/lessons/adapters/cas/SeriesExpansionsTargetLesson442.tsx",
+    "testId": "symbolic-cas-mockup-0348",
+    "route": "/lessons/symbolic-mathematics/442-series-expansions"
+  },
+  {
+    "index": 335,
+    "source": "src/modules/lessons/adapters/cas/SimplifyTargetLesson429.tsx",
+    "testId": "symbolic-cas-mockup-0335",
+    "route": "/lessons/symbolic-mathematics/429-simplify"
+  },
+  {
+    "index": 341,
+    "source": "src/modules/lessons/adapters/cas/SolveSystemsTargetLesson435.tsx",
+    "testId": "symbolic-cas-mockup-0341",
+    "route": "/lessons/symbolic-mathematics/435-solve-systems"
+  },
+  {
+    "index": 339,
+    "source": "src/modules/lessons/adapters/cas/SolveTargetLesson433.tsx",
+    "testId": "symbolic-cas-mockup-0339",
+    "route": "/lessons/symbolic-mathematics/433-solve"
+  },
+  {
+    "index": 354,
+    "source": "src/modules/lessons/adapters/cas/StepByStepAlgebraTargetLesson448.tsx",
+    "testId": "symbolic-cas-mockup-0354",
+    "route": "/lessons/symbolic-mathematics/448-step-by-step-algebra"
+  },
+  {
+    "index": 338,
+    "source": "src/modules/lessons/adapters/cas/SubstituteTargetLesson432.tsx",
+    "testId": "symbolic-cas-mockup-0338",
+    "route": "/lessons/symbolic-mathematics/432-substitute"
+  },
+  {
+    "index": 334,
+    "source": "src/modules/lessons/adapters/cas/SymbolicEvaluationTargetLesson428.tsx",
+    "testId": "symbolic-cas-mockup-0334",
+    "route": "/lessons/symbolic-mathematics/428-symbolic-evaluation"
+  },
+  {
+    "index": 401,
+    "source": "src/modules/lessons/adapters/calculus/AccumulationFunctionsTargetLesson322.tsx",
+    "testId": "calculus-mockup-0401",
+    "route": "/lessons/calculus/322-accumulation-functions"
+  },
+  {
+    "index": 399,
+    "source": "src/modules/lessons/adapters/calculus/ArcLengthTargetLesson320.tsx",
+    "testId": "calculus-mockup-0399",
+    "route": "/lessons/calculus/320-arc-length"
+  },
+  {
+    "index": 390,
+    "source": "src/modules/lessons/adapters/calculus/AreaBetweenCurvesTargetLesson311.tsx",
+    "testId": "calculus-mockup-0390",
+    "route": "/lessons/calculus/311-area-between-curves"
+  },
+  {
+    "index": 385,
+    "source": "src/modules/lessons/adapters/calculus/AreaRectanglesTargetLesson306.tsx",
+    "testId": "calculus-mockup-0385",
+    "route": "/lessons/calculus/306-area-by-rectangles"
+  },
+  {
+    "index": 363,
+    "source": "src/modules/lessons/adapters/calculus/AverageRateTargetLesson284.tsx",
+    "testId": "calculus-mockup-0363",
+    "route": "/lessons/calculus/284-average-rate-of-change"
+  },
+  {
+    "index": 372,
+    "source": "src/modules/lessons/adapters/calculus/ChainRuleTargetLesson293.tsx",
+    "testId": "calculus-mockup-0372",
+    "route": "/lessons/calculus/293-chain-rule"
+  },
+  {
+    "index": 412,
+    "source": "src/modules/lessons/adapters/calculus/ChaosBifurcationTargetLesson333.tsx",
+    "testId": "calculus-mockup-0412",
+    "route": "/lessons/calculus/333-chaos-and-bifurcation"
+  },
+  {
+    "index": 411,
+    "source": "src/modules/lessons/adapters/calculus/CobwebDiagramsTargetLesson332.tsx",
+    "testId": "calculus-mockup-0411",
+    "route": "/lessons/calculus/332-cobweb-diagrams"
+  },
+  {
+    "index": 378,
+    "source": "src/modules/lessons/adapters/calculus/ConcavityTargetLesson299.tsx",
+    "testId": "calculus-mockup-0378",
+    "route": "/lessons/calculus/299-concavity"
+  },
+  {
+    "index": 360,
+    "source": "src/modules/lessons/adapters/calculus/ContinuityAtPointTargetLesson281.tsx",
+    "testId": "calculus-mockup-0360",
+    "route": "/lessons/calculus/281-continuity-at-a-point"
+  },
+  {
+    "index": 375,
+    "source": "src/modules/lessons/adapters/calculus/CriticalPointsTargetLesson296.tsx",
+    "testId": "calculus-mockup-0375",
+    "route": "/lessons/calculus/296-critical-points"
+  },
+  {
+    "index": 387,
+    "source": "src/modules/lessons/adapters/calculus/DefiniteIntegralTargetLesson308.tsx",
+    "testId": "calculus-mockup-0387",
+    "route": "/lessons/calculus/308-definite-integral"
+  },
+  {
+    "index": 365,
+    "source": "src/modules/lessons/adapters/calculus/DerivativeFirstPrinciplesTargetLesson286.tsx",
+    "testId": "calculus-mockup-0365",
+    "route": "/lessons/calculus/286-derivative-from-first-principles"
+  },
+  {
+    "index": 368,
+    "source": "src/modules/lessons/adapters/calculus/DerivativeGraphTargetLesson289.tsx",
+    "testId": "calculus-mockup-0368",
+    "route": "/lessons/calculus/289-derivative-graph"
+  },
+  {
+    "index": 402,
+    "source": "src/modules/lessons/adapters/calculus/DirectionFieldsTargetLesson323.tsx",
+    "testId": "calculus-mockup-0402",
+    "route": "/lessons/calculus/323-direction-fields"
+  },
+  {
+    "index": 410,
+    "source": "src/modules/lessons/adapters/calculus/DiscreteDynamicalSystemsTargetLesson331.tsx",
+    "testId": "calculus-mockup-0410",
+    "route": "/lessons/calculus/331-discrete-dynamical-systems"
+  },
+  {
+    "index": 397,
+    "source": "src/modules/lessons/adapters/calculus/DiscWasherTargetLesson318.tsx",
+    "testId": "calculus-mockup-0397",
+    "route": "/lessons/calculus/318-disc-and-washer-methods"
+  },
+  {
+    "index": 362,
+    "source": "src/modules/lessons/adapters/calculus/EpsilonDeltaTargetLesson283.tsx",
+    "testId": "calculus-mockup-0362",
+    "route": "/lessons/calculus/283-epsilondelta-visualiser"
+  },
+  {
+    "index": 409,
+    "source": "src/modules/lessons/adapters/calculus/EquilibriumStabilityTargetLesson330.tsx",
+    "testId": "calculus-mockup-0409",
+    "route": "/lessons/calculus/330-equilibrium-and-stability"
+  },
+  {
+    "index": 403,
+    "source": "src/modules/lessons/adapters/calculus/EulerMethodTargetLesson324.tsx",
+    "testId": "calculus-mockup-0403",
+    "route": "/lessons/calculus/324-euler-s-method"
+  },
+  {
+    "index": 405,
+    "source": "src/modules/lessons/adapters/calculus/FirstOrderLinearTargetLesson326.tsx",
+    "testId": "calculus-mockup-0405",
+    "route": "/lessons/calculus/326-first-order-linear-equations"
+  },
+  {
+    "index": 389,
+    "source": "src/modules/lessons/adapters/calculus/FundamentalTheoremTargetLesson310.tsx",
+    "testId": "calculus-mockup-0389",
+    "route": "/lessons/calculus/310-fundamental-theorem"
+  },
+  {
+    "index": 369,
+    "source": "src/modules/lessons/adapters/calculus/HigherDerivativesTargetLesson290.tsx",
+    "testId": "calculus-mockup-0369",
+    "route": "/lessons/calculus/290-higher-derivatives"
+  },
+  {
+    "index": 373,
+    "source": "src/modules/lessons/adapters/calculus/ImplicitDifferentiationTargetLesson294.tsx",
+    "testId": "calculus-mockup-0373",
+    "route": "/lessons/calculus/294-implicit-differentiation"
+  },
+  {
+    "index": 394,
+    "source": "src/modules/lessons/adapters/calculus/ImproperIntegralsTargetLesson315.tsx",
+    "testId": "calculus-mockup-0394",
+    "route": "/lessons/calculus/315-improper-integrals"
+  },
+  {
+    "index": 376,
+    "source": "src/modules/lessons/adapters/calculus/IncreasingDecreasingTargetLesson297.tsx",
+    "testId": "calculus-mockup-0376",
+    "route": "/lessons/calculus/297-increasing-decreasing"
+  },
+  {
+    "index": 388,
+    "source": "src/modules/lessons/adapters/calculus/IndefiniteIntegralTargetLesson309.tsx",
+    "testId": "calculus-mockup-0388",
+    "route": "/lessons/calculus/309-indefinite-integral"
+  },
+  {
+    "index": 358,
+    "source": "src/modules/lessons/adapters/calculus/InfiniteLimitsTargetLesson279.tsx",
+    "testId": "calculus-mockup-0358",
+    "route": "/lessons/calculus/279-infinite-limits"
+  },
+  {
+    "index": 379,
+    "source": "src/modules/lessons/adapters/calculus/InflectionPointsTargetLesson300.tsx",
+    "testId": "calculus-mockup-0379",
+    "route": "/lessons/calculus/300-inflection-points"
+  },
+  {
+    "index": 356,
+    "source": "src/modules/lessons/adapters/calculus/InformalLimitsTargetLesson277.tsx",
+    "testId": "calculus-mockup-0356",
+    "route": "/lessons/calculus/277-informal-limits"
+  },
+  {
+    "index": 364,
+    "source": "src/modules/lessons/adapters/calculus/InstantaneousRateTargetLesson285.tsx",
+    "testId": "calculus-mockup-0364",
+    "route": "/lessons/calculus/285-instantaneous-rate-of-change"
+  },
+  {
+    "index": 392,
+    "source": "src/modules/lessons/adapters/calculus/IntegrationByPartsTargetLesson313.tsx",
+    "testId": "calculus-mockup-0392",
+    "route": "/lessons/calculus/313-integration-by-parts"
+  },
+  {
+    "index": 359,
+    "source": "src/modules/lessons/adapters/calculus/LimitsAtInfinityTargetLesson280.tsx",
+    "testId": "calculus-mockup-0359",
+    "route": "/lessons/calculus/280-limits-at-infinity"
+  },
+  {
+    "index": 377,
+    "source": "src/modules/lessons/adapters/calculus/LocalGlobalExtremaTargetLesson298.tsx",
+    "testId": "calculus-mockup-0377",
+    "route": "/lessons/calculus/298-local-and-global-extrema"
+  },
+  {
+    "index": 406,
+    "source": "src/modules/lessons/adapters/calculus/LogisticGrowthTargetLesson327.tsx",
+    "testId": "calculus-mockup-0406",
+    "route": "/lessons/calculus/327-logistic-growth"
+  },
+  {
+    "index": 382,
+    "source": "src/modules/lessons/adapters/calculus/MotionAnalysisTargetLesson303.tsx",
+    "testId": "calculus-mockup-0382",
+    "route": "/lessons/calculus/303-motion-analysis"
+  },
+  {
+    "index": 383,
+    "source": "src/modules/lessons/adapters/calculus/NewtonMethodTargetLesson304.tsx",
+    "testId": "calculus-mockup-0383",
+    "route": "/lessons/calculus/304-newton-s-method"
+  },
+  {
+    "index": 367,
+    "source": "src/modules/lessons/adapters/calculus/NormalLineTargetLesson288.tsx",
+    "testId": "calculus-mockup-0367",
+    "route": "/lessons/calculus/288-normal-line"
+  },
+  {
+    "index": 395,
+    "source": "src/modules/lessons/adapters/calculus/NumericalIntegrationTargetLesson316.tsx",
+    "testId": "calculus-mockup-0395",
+    "route": "/lessons/calculus/316-numerical-integration"
+  },
+  {
+    "index": 357,
+    "source": "src/modules/lessons/adapters/calculus/OneSidedLimitsTargetLesson278.tsx",
+    "testId": "calculus-mockup-0357",
+    "route": "/lessons/calculus/278-one-sided-limits"
+  },
+  {
+    "index": 380,
+    "source": "src/modules/lessons/adapters/calculus/OptimisationTargetLesson301.tsx",
+    "testId": "calculus-mockup-0380",
+    "route": "/lessons/calculus/301-optimisation"
+  },
+  {
+    "index": 374,
+    "source": "src/modules/lessons/adapters/calculus/ParametricDifferentiationTargetLesson295.tsx",
+    "testId": "calculus-mockup-0374",
+    "route": "/lessons/calculus/295-parametric-differentiation"
+  },
+  {
+    "index": 393,
+    "source": "src/modules/lessons/adapters/calculus/PartialFractionsTargetLesson314.tsx",
+    "testId": "calculus-mockup-0393",
+    "route": "/lessons/calculus/314-partial-fractions"
+  },
+  {
+    "index": 408,
+    "source": "src/modules/lessons/adapters/calculus/PhasePlaneTargetLesson329.tsx",
+    "testId": "calculus-mockup-0408",
+    "route": "/lessons/calculus/329-phase-plane"
+  },
+  {
+    "index": 370,
+    "source": "src/modules/lessons/adapters/calculus/ProductRuleTargetLesson291.tsx",
+    "testId": "calculus-mockup-0370",
+    "route": "/lessons/calculus/291-product-rule"
+  },
+  {
+    "index": 371,
+    "source": "src/modules/lessons/adapters/calculus/QuotientRuleTargetLesson292.tsx",
+    "testId": "calculus-mockup-0371",
+    "route": "/lessons/calculus/292-quotient-rule"
+  },
+  {
+    "index": 381,
+    "source": "src/modules/lessons/adapters/calculus/RelatedRatesTargetLesson302.tsx",
+    "testId": "calculus-mockup-0381",
+    "route": "/lessons/calculus/302-related-rates"
+  },
+  {
+    "index": 386,
+    "source": "src/modules/lessons/adapters/calculus/RiemannSumsTargetLesson307.tsx",
+    "testId": "calculus-mockup-0386",
+    "route": "/lessons/calculus/307-riemann-sums"
+  },
+  {
+    "index": 407,
+    "source": "src/modules/lessons/adapters/calculus/SecondOrderEquationsTargetLesson328.tsx",
+    "testId": "calculus-mockup-0407",
+    "route": "/lessons/calculus/328-second-order-equations"
+  },
+  {
+    "index": 404,
+    "source": "src/modules/lessons/adapters/calculus/SeparableEquationsTargetLesson325.tsx",
+    "testId": "calculus-mockup-0404",
+    "route": "/lessons/calculus/325-separable-equations"
+  },
+  {
+    "index": 398,
+    "source": "src/modules/lessons/adapters/calculus/ShellMethodTargetLesson319.tsx",
+    "testId": "calculus-mockup-0398",
+    "route": "/lessons/calculus/319-shell-method"
+  },
+  {
+    "index": 391,
+    "source": "src/modules/lessons/adapters/calculus/SubstitutionTargetLesson312.tsx",
+    "testId": "calculus-mockup-0391",
+    "route": "/lessons/calculus/312-substitution"
+  },
+  {
+    "index": 400,
+    "source": "src/modules/lessons/adapters/calculus/SurfaceAreaRevolutionTargetLesson321.tsx",
+    "testId": "calculus-mockup-0400",
+    "route": "/lessons/calculus/321-surface-area-of-revolution"
+  },
+  {
+    "index": 366,
+    "source": "src/modules/lessons/adapters/calculus/TangentLineTargetLesson287.tsx",
+    "testId": "calculus-mockup-0366",
+    "route": "/lessons/calculus/287-tangent-line"
+  },
+  {
+    "index": 384,
+    "source": "src/modules/lessons/adapters/calculus/TaylorPolynomialTargetLesson305.tsx",
+    "testId": "calculus-mockup-0384",
+    "route": "/lessons/calculus/305-taylor-polynomial"
+  },
+  {
+    "index": 361,
+    "source": "src/modules/lessons/adapters/calculus/TypesOfDiscontinuityTargetLesson282.tsx",
+    "testId": "calculus-mockup-0361",
+    "route": "/lessons/calculus/282-types-of-discontinuity"
+  },
+  {
+    "index": 396,
+    "source": "src/modules/lessons/adapters/calculus/VolumeSlicingTargetLesson317.tsx",
+    "testId": "calculus-mockup-0396",
+    "route": "/lessons/calculus/317-volume-by-slicing"
+  },
+  {
+    "index": 413,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/450-data-entry-grid"
+  },
+  {
+    "index": 414,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/451-cell-formulas"
+  },
+  {
+    "index": 415,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/452-fill-and-copy"
+  },
+  {
+    "index": 416,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/453-relative-references"
+  },
+  {
+    "index": 417,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/454-absolute-references"
+  },
+  {
+    "index": 418,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/455-sorting"
+  },
+  {
+    "index": 419,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/456-filtering"
+  },
+  {
+    "index": 420,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/457-lists-from-cells"
+  },
+  {
+    "index": 421,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/458-points-from-columns"
+  },
+  {
+    "index": 422,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/459-matrices-from-cells"
+  },
+  {
+    "index": 423,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/460-frequency-tables"
+  },
+  {
+    "index": 424,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/461-summary-statistics"
+  },
+  {
+    "index": 425,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/462-spreadsheet-charts"
+  },
+  {
+    "index": 426,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/463-regression-from-data"
+  },
+  {
+    "index": 427,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/464-dynamic-cell-links"
+  },
+  {
+    "index": 428,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/465-import-csv"
+  },
+  {
+    "index": 429,
+    "source": "src/modules/lessons/adapters/SpreadsheetLessonAdapter.tsx",
+    "testId": "spreadsheet-lesson",
+    "route": "/lessons/data-and-probability/466-export-data"
+  }
+]

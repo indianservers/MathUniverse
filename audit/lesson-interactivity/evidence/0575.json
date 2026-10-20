@@ -1,0 +1,28 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/3d-mathematics/390-3d-vectors",
+  "action": {
+    "control": "Decrease Vector a x",
+    "kind": "button-driven mathematical activity",
+    "evidence": "A mathematical graphic, formula, table or output changed; toolbar icons and input markup excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 345,
+      "scroll": 345
+    },
+    {
+      "width": 768,
+      "client": 723,
+      "scroll": 723
+    },
+    {
+      "width": 1440,
+      "client": 1395,
+      "scroll": 1395
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

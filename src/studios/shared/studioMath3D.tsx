@@ -278,12 +278,12 @@ export function lift2(M: number[][]): number[][] {
 }
 
 export function MathPolyline({ points, color }: { points: Vec3[]; color: string }) {
-  const geom = useMemo(() => new THREE.BufferGeometry().setFromPoints(points.map((p) => v3(p))), [points]);
-  return (
-    <line geometry={geom}>
-      <lineBasicMaterial color={color} />
-    </line>
-  );
+  const line = useMemo(() => new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints(points.map(p => v3(p))),
+    new THREE.LineBasicMaterial({ color }),
+  ), [points, color]);
+  useEffect(() => () => { line.geometry.dispose(); line.material.dispose(); }, [line]);
+  return <primitive object={line} />;
 }
 
 export function EulerHelix({ theta }: { theta: number }) {

@@ -1,3 +1,4 @@
+import "./HyperbolaTargetLesson228.css";
 import {
   ArrowLeft,
   ArrowRight,

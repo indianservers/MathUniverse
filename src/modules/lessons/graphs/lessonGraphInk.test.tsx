@@ -1,8 +1,7 @@
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { LessonGraphInkLegend, lessonGraphInkProps } from "./LessonGraphInk";
-import { execSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 describe("lesson graph ink", () => {
@@ -29,10 +28,10 @@ describe("lesson graph ink", () => {
   });
 
   it("is never imported from studio workspaces", () => {
-    const hits = execSync(
-      "grep -R --include='*.ts' --include='*.tsx' 'LessonGraphInk' src/studios || true",
-      { encoding: "utf8", cwd: join(__dirname, "../../../..") },
-    );
-    expect(hits.trim()).toBe("");
+    const root = join(__dirname, "../../../../src/studios");
+    const hits = readdirSync(root, { recursive: true, encoding: "utf8" })
+      .filter(file => /\.tsx?$/.test(file))
+      .filter(file => readFileSync(join(root, file), "utf8").includes("LessonGraphInk"));
+    expect(hits).toEqual([]);
   });
 });

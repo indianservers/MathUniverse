@@ -629,3 +629,9 @@ body:has(.latex-page)
     display: none;
   }
 }
+
+@media(max-width:900px){[data-testid="algebra-mockup-0038"] .latex-layout,[data-testid="algebra-mockup-0038"] .latex-side,[data-testid="algebra-mockup-0038"] .library-card>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}[data-testid="algebra-mockup-0038"] .latex-layout>*,[data-testid="algebra-mockup-0038"] .latex-side>*,[data-testid="algebra-mockup-0038"] .library-card>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){[data-testid="algebra-mockup-0038"] .latex-side{width:auto;max-width:100%}.latex-layout>*{min-width:0;max-width:100%;grid-column:auto!important;grid-row:auto!important}.latex-shell{height:auto}}
+
+.latex-page .latex-navigation{width:auto!important;max-width:100%!important;margin-left:0!important;margin-right:0!important}@media(max-width:900px){.latex-navigation{height:auto;display:flex;flex-wrap:wrap;gap:10px}}

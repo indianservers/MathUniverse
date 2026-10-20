@@ -1,0 +1,27 @@
+{
+  "status": "browser-verified",
+  "checks": [
+    "classify a radical",
+    "require correct evidence",
+    "correct a misplaced card without resetting",
+    "classify a terminating decimal"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 713,
+      "scroll": 713
+    },
+    {
+      "width": 1440,
+      "client": 1385,
+      "scroll": 1385
+    }
+  ],
+  "errors": []
+}

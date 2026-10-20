@@ -472,7 +472,7 @@ function PlaceValue({ value }: { value: string }) {
   const digits = value.replace("-", "").split(""),
     dot = digits.indexOf(".");
   return (
-    <table>
+    <div className="lesson-table-scroll-353"><table>
       <thead>
         <tr>
           <th>Tens</th>
@@ -493,6 +493,6 @@ function PlaceValue({ value }: { value: string }) {
           <td>…</td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   );
 }

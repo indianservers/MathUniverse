@@ -1,0 +1,1042 @@
+{
+  "included": [
+    {
+      "file": "src/modules/lessons/schoolTargets/aasCongruenceModel10068.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AasCongruenceTargetLesson10068.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AasCongruenceTargetLesson10068.tsx",
+      "mapped": true,
+      "indices": [
+        742
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/alternateInteriorModel10061.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AlternateInteriorTargetLesson10061.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AlternateInteriorTargetLesson10061.tsx",
+      "mapped": true,
+      "indices": [
+        735
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/angleDepressionModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleDepressionTargetLesson10099.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleDepressionTargetLesson10099.tsx",
+      "mapped": true,
+      "indices": [
+        773
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/angleElevationModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleElevationTargetLesson10098.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleElevationTargetLesson10098.tsx",
+      "mapped": true,
+      "indices": [
+        772
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleSemicircleTargetLesson10092.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleSemicircleTargetLesson10092.tsx",
+      "mapped": true,
+      "indices": [
+        766
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AnglesSameSegmentTargetLesson10093.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AnglesSameSegmentTargetLesson10093.tsx",
+      "mapped": true,
+      "indices": [
+        767
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleSubtendedArcTargetLesson10091.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AngleSubtendedArcTargetLesson10091.tsx",
+      "mapped": true,
+      "indices": [
+        765
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/arcAngleModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/asaCongruenceModel10067.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AsaCongruenceTargetLesson10067.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AsaCongruenceTargetLesson10067.tsx",
+      "mapped": true,
+      "indices": [
+        741
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/axiomTheoremModel10056.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AxiomTheoremTargetLesson10056.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/AxiomTheoremTargetLesson10056.tsx",
+      "mapped": true,
+      "indices": [
+        730
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CollinearityCoordinateAreaTargetLesson10088.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CollinearityCoordinateAreaTargetLesson10088.tsx",
+      "mapped": true,
+      "indices": [
+        762
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CombinedSolidDiagram10082.tsx",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CombinedSolidsTargetLesson10082.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CombinedSolidsTargetLesson10082.tsx",
+      "mapped": true,
+      "indices": [
+        756
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/combinedStackModel10082.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/coordinateCollinearityModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/coordinateHeronModel10081.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CoordinateHeronTargetLesson10081.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CoordinateHeronTargetLesson10081.tsx",
+      "mapped": true,
+      "indices": [
+        755
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CoordinateTriangleAreaTargetLesson10087.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CoordinateTriangleAreaTargetLesson10087.tsx",
+      "mapped": true,
+      "indices": [
+        761
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CorrespondingAnglesTargetLesson10060.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CorrespondingAnglesTargetLesson10060.tsx",
+      "mapped": true,
+      "indices": [
+        734
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/correspondingModel10060.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/cyclicQuadrilateralModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CyclicQuadrilateralTargetLesson10094.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/CyclicQuadrilateralTargetLesson10094.tsx",
+      "mapped": true,
+      "indices": [
+        768
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/DistanceFormulaTargetLesson10083.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/DistanceFormulaTargetLesson10083.tsx",
+      "mapped": true,
+      "indices": [
+        757
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/distanceModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/EqualChordsAnglesTargetLesson10089.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/EqualChordsAnglesTargetLesson10089.tsx",
+      "mapped": true,
+      "indices": [
+        763
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/equalChordsModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/equalSidesAnglesModel10071.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/EqualSidesAnglesTargetLesson10071.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/EqualSidesAnglesTargetLesson10071.tsx",
+      "mapped": true,
+      "indices": [
+        745
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/exteriorAngleModel10065.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ExteriorAngleTargetLesson10065.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ExteriorAngleTargetLesson10065.tsx",
+      "mapped": true,
+      "indices": [
+        739
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ExternalSectionFormulaTargetLesson10086.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ExternalSectionFormulaTargetLesson10086.tsx",
+      "mapped": true,
+      "indices": [
+        760
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/externalSectionModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/GroupedMeanAssumedTargetLesson10103.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/GroupedMeanAssumedTargetLesson10103.tsx",
+      "mapped": true,
+      "indices": [
+        777
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/groupedMeanDirectModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/GroupedMeanDirectTargetLesson10102.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/GroupedMeanDirectTargetLesson10102.tsx",
+      "mapped": true,
+      "indices": [
+        776
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/groupedMeanStepModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/GroupedMeanStepTargetLesson10104.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/GroupedMeanStepTargetLesson10104.tsx",
+      "mapped": true,
+      "indices": [
+        778
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/heronDerivationModel10079.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/HeronFormulaTargetLesson10079.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/HeronFormulaTargetLesson10079.tsx",
+      "mapped": true,
+      "indices": [
+        753
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/InternalSectionFormulaTargetLesson10085.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/InternalSectionFormulaTargetLesson10085.tsx",
+      "mapped": true,
+      "indices": [
+        759
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/internalSectionModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/LessThanCumulativeTargetLesson10105.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/LessThanCumulativeTargetLesson10105.tsx",
+      "mapped": true,
+      "indices": [
+        779
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/lessThanOgiveModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/LessThanOgiveTargetLesson10107.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/LessThanOgiveTargetLesson10107.tsx",
+      "mapped": true,
+      "indices": [
+        781
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/linearPairModel10059.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/LinearPairTargetLesson10059.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/LinearPairTargetLesson10059.tsx",
+      "mapped": true,
+      "indices": [
+        733
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/midpointConverseModel10078.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MidpointConverseTargetLesson10078.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MidpointConverseTargetLesson10078.tsx",
+      "mapped": true,
+      "indices": [
+        752
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MidpointFormulaTargetLesson10084.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MidpointFormulaTargetLesson10084.tsx",
+      "mapped": true,
+      "indices": [
+        758
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/midpointModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/midpointTheoremModel10077.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MidpointTheoremTargetLesson10077.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MidpointTheoremTargetLesson10077.tsx",
+      "mapped": true,
+      "indices": [
+        751
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MoreThanCumulativeTargetLesson10106.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MoreThanCumulativeTargetLesson10106.tsx",
+      "mapped": true,
+      "indices": [
+        780
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/MoreThanOgiveTargetLesson10108.tsx",
+      "mapped": true,
+      "indices": [
+        782
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/OppositeCyclicAnglesTargetLesson10095.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/OppositeCyclicAnglesTargetLesson10095.tsx",
+      "mapped": true,
+      "indices": [
+        769
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/oppositeCyclicModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelConverseModel10063.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelConverseTargetLesson10063.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelConverseTargetLesson10063.tsx",
+      "mapped": true,
+      "indices": [
+        737
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelogramAnglesModel10074.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramAnglesTargetLesson10074.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramAnglesTargetLesson10074.tsx",
+      "mapped": true,
+      "indices": [
+        748
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelogramConditionsModel10076.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramConditionsTargetLesson10076.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramConditionsTargetLesson10076.tsx",
+      "mapped": true,
+      "indices": [
+        750
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelogramDiagonalsModel10075.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramDiagonalsTargetLesson10075.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramDiagonalsTargetLesson10075.tsx",
+      "mapped": true,
+      "indices": [
+        749
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/parallelogramSidesModel10073.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramSidesTargetLesson10073.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ParallelogramSidesTargetLesson10073.tsx",
+      "mapped": true,
+      "indices": [
+        747
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/PerpendicularCentreChordTargetLesson10090.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/PerpendicularCentreChordTargetLesson10090.tsx",
+      "mapped": true,
+      "indices": [
+        764
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/perpendicularChordModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/proofStructureModel10057.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ProofStructureTargetLesson10057.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ProofStructureTargetLesson10057.tsx",
+      "mapped": true,
+      "indices": [
+        731
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/rhsCongruenceModel10070.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/RhsCongruenceTargetLesson10070.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/RhsCongruenceTargetLesson10070.tsx",
+      "mapped": true,
+      "indices": [
+        744
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/sameSegmentModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SameSideInteriorTargetLesson10062.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SameSideInteriorTargetLesson10062.tsx",
+      "mapped": true,
+      "indices": [
+        736
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/sameSideModel10062.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/sasCongruenceModel10066.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SasCongruenceTargetLesson10066.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SasCongruenceTargetLesson10066.tsx",
+      "mapped": true,
+      "indices": [
+        740
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/semicircleModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/semiPerimeterModel10080.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SemiPerimeterTargetLesson10080.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SemiPerimeterTargetLesson10080.tsx",
+      "mapped": true,
+      "indices": [
+        754
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/shadowLengthModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ShadowLengthTargetLesson10100.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/ShadowLengthTargetLesson10100.tsx",
+      "mapped": true,
+      "indices": [
+        774
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/sssCongruenceModel10069.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SssCongruenceTargetLesson10069.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/SssCongruenceTargetLesson10069.tsx",
+      "mapped": true,
+      "indices": [
+        743
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TangentLengthsExternalTargetLesson10097.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TangentLengthsExternalTargetLesson10097.tsx",
+      "mapped": true,
+      "indices": [
+        771
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/tangentLengthsModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/tangentPerpendicularModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TangentPerpendicularTargetLesson10096.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TangentPerpendicularTargetLesson10096.tsx",
+      "mapped": true,
+      "indices": [
+        770
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TriangleAngleSumTargetLesson10064.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TriangleAngleSumTargetLesson10064.tsx",
+      "mapped": true,
+      "indices": [
+        738
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/triangleAreaModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/triangleInequalityModel10072.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TriangleInequalityTargetLesson10072.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TriangleInequalityTargetLesson10072.tsx",
+      "mapped": true,
+      "indices": [
+        746
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/triangleSumModel10064.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/twoObserverHeightModel.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TwoObserverHeightTargetLesson10101.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/TwoObserverHeightTargetLesson10101.tsx",
+      "mapped": true,
+      "indices": [
+        775
+      ],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/verticalAnglesModel10058.ts",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": false
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/VerticalAnglesTargetLesson10058.css",
+      "mapped": false,
+      "indices": [],
+      "existsInRelease": true
+    },
+    {
+      "file": "src/modules/lessons/schoolTargets/VerticalAnglesTargetLesson10058.tsx",
+      "mapped": true,
+      "indices": [
+        732
+      ],
+      "existsInRelease": true
+    }
+  ],
+  "outside": [],
+  "criterion": "Dependency closure of school components already browser-verified against the frozen preview"
+}

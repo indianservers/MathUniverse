@@ -582,3 +582,7 @@ body:has(.seq334-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:799px){.seq334-page :is(.seq334-workspace,.seq334-table,.seq334-notes,.seq334-bottom,.seq334-learning){grid-template-columns:minmax(0,1fr);height:auto}.seq334-page .seq334-lab{height:auto}.seq334-page .seq334-workspace > main > header{display:flex;flex-wrap:wrap;height:auto;gap:8px}.seq334-page .seq334-table > div{min-width:0;overflow-x:auto}.seq334-page .seq334-tabs{overflow-x:auto}.seq334-page :is(article,aside){min-width:0;overflow-wrap:anywhere}.seq334-page .presets{display:flex;flex-wrap:wrap;height:auto;gap:8px}}
+
+@media(max-width:799px){.seq334-page .seq334-checks{grid-template-columns:minmax(0,1fr);height:auto}.seq334-page .seq334-checks article > div{display:flex;flex-wrap:wrap;height:auto;gap:8px}}

@@ -257,7 +257,7 @@ export default function PigeonholeTargetLesson564({
       <section className="pig564-theory">
         <article>
           <h3>2. NOTICE THE PATTERN</h3>
-          <table>
+          <div className="pig564-table-scroll"><table>
             <tbody>
               <tr>
                 <th>n</th>
@@ -281,7 +281,7 @@ export default function PigeonholeTargetLesson564({
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
           <p>In every case: fullest hole ≥ ceil(n/k).</p>
         </article>
         <article>

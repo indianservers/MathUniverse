@@ -58,5 +58,7 @@ export function regionIsHighlighted(
   selected: AdditionRegion,
 ) {
   if (selected === "union") return region !== "neither";
+  if (selected === "a") return region === "a" || region === "intersection";
+  if (selected === "b") return region === "b" || region === "intersection";
   return region === selected;
 }

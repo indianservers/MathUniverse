@@ -1,0 +1,48 @@
+{
+  "name": "Math Universe",
+  "short_name": "Math Universe",
+  "description": "Browser-only interactive mathematics visualizations, 2D/3D geometry, CAS tools, syllabus labs, and teacher activities.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
+  "orientation": "any",
+  "categories": ["education", "productivity"],
+  "launch_handler": { "client_mode": "navigate-existing" },
+  "file_handlers": [
+    {
+      "action": "/?portableImport=1",
+      "accept": {
+        "application/vnd.mathapp.workspace": [".mathworkspace"],
+        "application/vnd.mathapp.lesson": [".mathlesson"]
+      }
+    }
+  ],
+  "icons": [
+    {
+      "src": "/math-universe-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/math-universe-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/math-universe-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/math-universe-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

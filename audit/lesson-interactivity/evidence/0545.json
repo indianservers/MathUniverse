@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/advanced-mathematics/360-basis-and-dimension",
+  "action": {
+    "control": "v₁ coordinate 1",
+    "before": "1",
+    "after": "2",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 331,
+      "scroll": 331
+    },
+    {
+      "width": 768,
+      "client": 709,
+      "scroll": 709
+    },
+    {
+      "width": 1440,
+      "client": 1381,
+      "scroll": 1381
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

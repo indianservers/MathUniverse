@@ -130,3 +130,5 @@
 .target-relation-nav > a:last-child { justify-content: flex-end; text-align: right; }
 .target-relation-nav b { display: block; color: #64748b; font-size: 6px; text-transform: uppercase; }
 .target-relation-nav svg { width: 13px; }
+
+@media(max-width:900px){.target-relation-page .target-relation-workspace>header,.target-relation-page .target-relation-main-grid,.target-relation-page .target-relation-learning,.target-relation-page .target-relation-practice>div,.target-relation-page .target-relation-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-relation-page .target-relation-workspace>header>*,.target-relation-page .target-relation-main-grid>*,.target-relation-page .target-relation-learning>*,.target-relation-page .target-relation-practice>div>*,.target-relation-page .target-relation-nav>*{min-width:0;grid-column:auto;grid-row:auto}}

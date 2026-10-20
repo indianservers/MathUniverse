@@ -472,3 +472,7 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media(max-width:900px){.target-equidistant-page .target-equidistant-work>nav:first-of-type{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-equidistant-page .target-equidistant-work>nav:first-of-type>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.target-equidistant-objectbar{grid-template-columns:minmax(0,1fr)!important;height:auto!important}.target-equidistant-tabs{height:auto;display:flex;flex-wrap:wrap}}

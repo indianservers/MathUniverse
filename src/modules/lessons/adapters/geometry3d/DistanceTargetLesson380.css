@@ -296,3 +296,5 @@
     height: 500px;
   }
 }
+
+@media(max-width:799px){.d380-page .d380-warning{display:flex;flex-wrap:wrap;height:auto;gap:10px}.d380-page .d380-warning > *{max-width:100%;overflow-wrap:anywhere}}

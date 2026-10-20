@@ -599,3 +599,5 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+@media(max-width:900px){.absolute-equation{width:auto;max-width:100%}.absolute-symmetry>div,.absolute-practice>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.absolute-practice>header>*{min-width:0;max-width:100%}}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "catalog-numerical-10084-1",
+    "prompt": "In Midpoint Formula, evaluate the labelled model at input 7.",
+    "steps": [
+      "Substitute 7 into the Midpoint Formula rule.",
+      "\\displaystyle 42.",
+      "\\displaystyle \\boxed{42.}"
+    ],
+    "answer": "42"
+  },
+  {
+    "id": "catalog-numerical-10084-2",
+    "prompt": "Compare the Midpoint Formula outputs at 7 and 13. What is the difference?",
+    "steps": [
+      "\\displaystyle Second input 13.",
+      "\\displaystyle 6.",
+      "\\displaystyle \\boxed{6.}"
+    ],
+    "answer": "6"
+  },
+  {
+    "id": "catalog-numerical-10084-3",
+    "prompt": "Compute this Midpoint Formula case with input 2: Can you skip the Midpoint Formula restriction and still trust the chart? Labelled result 2 → no.",
+    "steps": [
+      "The restriction is part of the definition.",
+      "\\displaystyle no.",
+      "\\displaystyle \\boxed{no.}"
+    ],
+    "answer": "no"
+  }
+]

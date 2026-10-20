@@ -482,3 +482,5 @@ body:has(.circ560-page) footer[aria-label="Site footer"] {
     overflow-x: auto;
   }
 }
+
+@media(max-width:700px){.circ560-page .circ560-table { transform:scale(.82); transform-origin:center; }.circ560-page .circ560-stage{height:510px}}

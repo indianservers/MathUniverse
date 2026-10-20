@@ -1,3 +1,4 @@
+import { lessonCatalog } from "../catalog/lessonCatalog";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import AbsoluteValueEquationsTargetLesson121 from "./AbsoluteValueEquationsTargetLesson121";
@@ -5,7 +6,7 @@ import AbsoluteValueEquationsTargetLesson121 from "./AbsoluteValueEquationsTarge
 describe("AbsoluteValueEquationsTargetLesson121", () => {
   it("renders the target's calculated number line, branches, and graded practice", () => {
     const html = renderToStaticMarkup(
-      <AbsoluteValueEquationsTargetLesson121
+      <AbsoluteValueEquationsTargetLesson121 lesson={lessonCatalog.find(item => item.id === 121)!}
         resetToken={0}
         onInteraction={vi.fn()}
       />,

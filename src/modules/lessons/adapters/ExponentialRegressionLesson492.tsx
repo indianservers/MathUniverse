@@ -1,3 +1,4 @@
+import { InteractiveScatterPlot } from "../components/InteractiveScatterPlot";
 import { useState } from "react";
 import { RotateCcw } from "lucide-react";
 import type { LessonAdapterProps } from "../types";
@@ -17,8 +18,9 @@ function ExponentialActivity({
   onInteraction,
 }: Pick<LessonAdapterProps, "onInteraction">) {
   const [points, setPoints] = useState(exponentialDefault),
-    [prediction, setPrediction] = useState(10);
+    [prediction, setPrediction] = useState(10), [practice, setPractice] = useState(false), [answer, setAnswer] = useState(""), [graded, setGraded] = useState<boolean|null>(null);
   const fit = exponentialFit(points);
+  const format=(value:number,places=3)=>fit.defined && Number.isFinite(value)?value.toFixed(places):"Undefined";
   const update = (index: number, axis: "x" | "y", raw: string) => {
     const value = Number(raw);
     if (!Number.isFinite(value)) return;
@@ -53,51 +55,27 @@ function ExponentialActivity({
       <section className="er492-work">
         <section className="er492-chart">
           <h3>Data & model fit</h3>
-          <svg
-            viewBox="0 0 600 350"
-            role="img"
-            aria-label="Exponential regression curve"
-          >
-            {points.map((point, index) => (
-              <circle
-                key={index}
-                cx={40 + point.x * 53}
-                cy={310 - point.y * 10}
-                r="6"
-                fill="#126fc3"
-              />
-            ))}
-            <path
-              d={Array.from({ length: 91 }, (_, index) => {
-                const x = index / 10,
-                  y = fit.a * fit.b ** x;
-                return `${index ? "L" : "M"} ${40 + x * 53} ${310 - y * 10}`;
-              }).join(" ")}
-              fill="none"
-              stroke="#f27d18"
-              strokeWidth="3"
-            />
-          </svg>
+          <InteractiveScatterPlot points={points} label="Exponential regression curve" predict={fit.defined ? x => fit.a * fit.b ** x : undefined} onPointChange={(index, point) => { setPoints(points.map((old, i) => i === index ? point : old)); onInteraction(); }} positiveY />
           <p>Drag points to explore. The model updates in real time.</p>
         </section>
         <aside className="er492-model">
           <h3>Model form</h3>
           <div className="er492-equation">y = abˣ</div>
-          <h3>Key results</h3>
+          <h3>Key results</h3>{!fit.defined && <p role="status">Use positive y values and at least two distinct x values to fit an exponential model.</p>}
           <p>
-            a (initial value)<b>{fit.a.toFixed(3)}</b>
+            a (initial value)<b>{format(fit.a)}</b>
           </p>
           <p>
-            b (growth factor)<b>{fit.b.toFixed(3)}</b>
+            b (growth factor)<b>{format(fit.b)}</b>
           </p>
           <p>
-            r (rate per x)<b>{fit.rate.toFixed(2)}%</b>
+            r (rate per x)<b>{format(fit.rate,2)}%</b>
           </p>
           <p>
-            R²<b>{fit.r2.toFixed(4)}</b>
+            R²<b>{format(fit.r2,4)}</b>
           </p>
           <div className="er492-interpret">
-            For each 1 unit increase in x, y is multiplied by {fit.b.toFixed(3)}
+            For each 1 unit increase in x, y is multiplied by {format(fit.b)}
             .
           </div>
           <h3>Predictions</h3>
@@ -110,7 +88,7 @@ function ExponentialActivity({
               onChange={(event) => setPrediction(Number(event.target.value))}
             />
           </label>
-          <strong>ŷ = {(fit.a * fit.b ** prediction).toFixed(2)}</strong>
+          <strong>ŷ = {format(fit.a * fit.b ** prediction,2)}</strong>
         </aside>
         <aside className="er492-data">
           <h3>Data input</h3>
@@ -161,7 +139,7 @@ function ExponentialActivity({
         <article>
           <h3>Log-linear view</h3>
           <p>Linearize with ln(y) = ln(a) + x ln(b).</p>
-          <p>ln(b) = {Math.log(fit.b).toFixed(3)}</p>
+          <p>ln(b) = {format(Math.log(fit.b))}</p>
         </article>
         <article>
           <h3>Residuals</h3>
@@ -174,7 +152,7 @@ function ExponentialActivity({
               />
             ))}
           </div>
-          <p>RMSE = {Math.sqrt(fit.sse / points.length).toFixed(3)}</p>
+          <p>RMSE = {format(Math.sqrt(fit.sse / points.length))}</p>
         </article>
         <article>
           <h3>Model explained</h3>
@@ -191,7 +169,7 @@ function ExponentialActivity({
           </p>
           <p>
             Doubling time:{" "}
-            {fit.b > 1 ? (Math.log(2) / Math.log(fit.b)).toFixed(2) : "–"}{" "}
+            {fit.defined && fit.b > 1 ? (Math.log(2) / Math.log(fit.b)).toFixed(2) : "–"}{" "}
             units.
           </p>
         </article>
@@ -213,9 +191,9 @@ function ExponentialActivity({
           Fit the model to a new data set, predict a value, and identify growth
           or decay.
         </p>
-        <button type="button" onClick={() => onInteraction()}>
+        <button type="button" onClick={() => {setPractice(true);setAnswer("");setGraded(null);onInteraction();}}>
           Start problem
-        </button>
+        </button>{practice && <div><p>A model is y = 3 × 2ˣ. Predict y at x = 4.</p><label>Your prediction<input type="number" aria-label="Exponential practice prediction" value={answer} onChange={event=>{setAnswer(event.target.value);setGraded(null);onInteraction();}} /></label><button onClick={()=>{setGraded(answer.trim()!=="" && Number(answer)===48);onInteraction();}}>Check prediction</button>{graded!==null && <p role="status">{graded ? "Correct: 3 times 16 is 48." : "Try again: calculate 2 to the fourth power, then multiply by 3."}</p>}</div>}
       </section>
       <footer>
         <button

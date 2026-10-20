@@ -1,0 +1,28 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/symbolic-mathematics/449-cas-to-graph-link",
+  "action": {
+    "control": "×",
+    "kind": "button-driven mathematical activity",
+    "evidence": "A mathematical graphic, formula, table or output changed; toolbar icons and input markup excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 339,
+      "scroll": 339
+    },
+    {
+      "width": 768,
+      "client": 717,
+      "scroll": 717
+    },
+    {
+      "width": 1440,
+      "client": 1389,
+      "scroll": 1389
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

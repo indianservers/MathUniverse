@@ -1,0 +1,15 @@
+export type FEPoint10055={x:number;y:number};
+export const feUnit10055=(a:number)=>({x:Math.cos(a*Math.PI/180),y:Math.sin(a*Math.PI/180)});
+export const feAdd10055=(p:FEPoint10055,u:FEPoint10055,k=1)=>({x:p.x+u.x*k,y:p.y+u.y*k});
+export const feCross10055=(a:FEPoint10055,b:FEPoint10055)=>a.x*b.y-a.y*b.x;
+export const feAngle10055=(v:FEPoint10055,a:FEPoint10055,b:FEPoint10055)=>{const u={x:a.x-v.x,y:a.y-v.y},w={x:b.x-v.x,y:b.y-v.y};return Math.atan2(Math.abs(feCross10055(u,w)),u.x*w.x+u.y*w.y)*180/Math.PI;};
+export function feMeet10055(p:FEPoint10055,u:FEPoint10055,q:FEPoint10055,v:FEPoint10055){const d=feCross10055(u,v);return Math.abs(d)<1e-12?null:feAdd10055(p,u,feCross10055({x:q.x-p.x,y:q.y-p.y},v)/d);}
+export function feClip10055(p:FEPoint10055,u:FEPoint10055){const ts:number[]=[];for(const x of[20,410])if(Math.abs(u.x)>1e-12){const t=(x-p.x)/u.x,y=p.y+t*u.y;if(y>=20&&y<=280)ts.push(t);}for(const y of[20,280])if(Math.abs(u.y)>1e-12){const t=(y-p.y)/u.y,x=p.x+t*u.x;if(x>=20&&x<=410)ts.push(t);}return ts.length>1?[feAdd10055(p,u,Math.min(...ts)),feAdd10055(p,u,Math.max(...ts))]:null;}
+export const feStartP10055={x:220,y:92};
+export function feClampP10055(p:FEPoint10055,angle:number){const u=feUnit10055(angle),n={x:-u.y,y:u.x},d={x:p.x-215,y:p.y-225},s=Math.max(-110,Math.min(110,d.x*u.x+d.y*u.y)),h=Math.max(65,Math.min(155,-d.x*n.x-d.y*n.y));return feAdd10055(feAdd10055({x:215,y:225},u,s),n,-h);}
+export function fePlayfair10055(p:FEPoint10055,angle:number){const base={x:215,y:225},u=feUnit10055(angle),n={x:-u.y,y:u.x},candidate=feUnit10055(angle+35),foot=feAdd10055(base,u,(p.x-base.x)*u.x+(p.y-base.y)*u.y),meeting=feMeet10055(p,candidate,base,u);return{base,u,n,candidate,foot,meeting,lines:{l:feClip10055(base,u),m:feClip10055(p,u),n:feClip10055(p,candidate)}};}
+export function feInterior10055(alpha:number,beta:number,angle=0){const rot=(p:FEPoint10055)=>{const u=feUnit10055(angle),d={x:p.x-215,y:p.y-150};return{x:215+d.x*u.x-d.y*u.y,y:150+d.x*u.y+d.y*u.x};},upper=rot({x:260,y:90}),lower=rot({x:260,y:210}),u=feUnit10055(alpha-90+angle),v=feUnit10055(90-beta+angle),t=feUnit10055(90+angle),sum=alpha+beta,side=sum===180?'parallel':sum<180?'left':'right',meeting=side==='parallel'?null:feMeet10055(upper,u,lower,v);return{upper,lower,u,v,t,meeting,sum,side,alpha:feAngle10055(upper,lower,feAdd10055(upper,u,-100)),beta:feAngle10055(lower,upper,feAdd10055(lower,v,-100)),lines:{l:feClip10055(upper,u),m:feClip10055(lower,v),t:feClip10055(upper,t)}};}
+const B={x:90,y:245},C={x:340,y:245};export const feTriangleStart10055=feMeet10055(B,feUnit10055(-50),C,feUnit10055(-110))!;
+export function feTriangle10055(a:FEPoint10055){const points=[a,B,C],angles=points.map((v,i)=>feAngle10055(v,points[(i+1)%3],points[(i+2)%3]));return{points,angles,sum:angles.reduce((s,a)=>s+a,0)};}
+export const feTriangleClamp10055=(p:FEPoint10055)=>({x:Math.max(90,Math.min(340,p.x)),y:Math.max(35,Math.min(190,p.y))});
+export const feScore10055=(answers:string[])=>answers.filter(a=>a==='Yes').length;

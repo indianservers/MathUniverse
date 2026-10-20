@@ -853,3 +853,5 @@
     padding-bottom: 7px;
   }
 }
+
+@media(max-width:900px){.target-cosine-rule-page .target-cosine-rule-flow{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-cosine-rule-page .target-cosine-rule-flow>*{min-width:0;grid-column:auto;grid-row:auto}}

@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/graphs-and-functions/144-trigonometric-functions",
+  "action": {
+    "control": "Unit-circle angle",
+    "before": "1.0471975511966",
+    "after": "1.17809724509617",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 357,
+      "scroll": 357
+    },
+    {
+      "width": 768,
+      "client": 735,
+      "scroll": 735
+    },
+    {
+      "width": 1440,
+      "client": 1383,
+      "scroll": 1383
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

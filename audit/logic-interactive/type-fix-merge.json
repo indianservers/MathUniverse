@@ -1,0 +1,401 @@
+[
+  {
+    "file": "src/components/workspace/panels/GeometryWorkspacePanel.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/hooks/useCanvasZoomLock.ts",
+    "status": "applied"
+  },
+  {
+    "file": "src/math-robo/intelligence/corrections.ts",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/board/strokeMathRecognizer.ts",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/AbsoluteValueEquationsTargetLesson121.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/AbsoluteValueTargetLesson14.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/AngleBisectorTargetLesson211.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/ChiSquareDistributionLesson530.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/ChiSquareGoodnessOfFitLesson549.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/CompoundAngleTargetLesson267.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/CompoundInequalitiesTargetLesson123.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/CoordinateTransformationsTargetLesson179.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/CosineGraphTargetLesson262.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/CountingChoicesTargetLesson13.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/DistributionSimulationLesson536.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/DoubleHalfAngleTargetLesson268.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/EvenOddFunctionsTargetLesson152.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/ExactTrigValuesTargetLesson260.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/ExponentialDistributionLesson532.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/ExponentialEquationsTargetLesson118.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/FDistributionLesson531.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/FactorTheoremTargetLesson105.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/GammaDistributionLesson533.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/IncreasingDecreasingTargetLesson153.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/InverseTrigTargetLesson265.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/InverseTrigonometryTargetLesson11.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/LinearInequalitiesTargetLesson122.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/LogarithmicEquationsTargetLesson119.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/PValueVisualiserLesson553.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/PValueVisualiserLesson553.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/PolynomialInequalitiesTargetLesson125.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/PolynomialInequalitiesTargetLesson125.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/ProportionTargetLesson84.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/QuadraticInequalitiesTargetLesson124.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/ReciprocalTrigTargetLesson264.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/RecursiveFunctionsTargetLesson155.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/RemainderTheoremTargetLesson104.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/SineGraphTargetLesson261.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/SineRuleTargetLesson270.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/StandardisationLesson535.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/TangentGraphTargetLesson263.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/TrigEquationsTargetLesson269.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/TrigIdentitiesTargetLesson266.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/TrigonometricEquationsTargetLesson120.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/TrigonometryLessonAdapter.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/VectorAdditionTargetLesson186.css",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/VectorAdditionTargetLesson186.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/WeibullDistributionLesson534.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/discrete/MinimumSpanningTreeTargetLesson574.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/geometry3d/CameraControlsTargetLesson410.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/geometry3d/FrustumTargetLesson401.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/oneProportionTestLessonModel.ts",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/oneSampleTTestLessonModel.ts",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/sequence/ArithmeticSeriesTargetLesson340.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/adapters/sequence/GeometricSeriesTargetLesson341.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/BesselTargetLesson2025.css",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/BesselTargetLesson2025.tsx",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/DirectionFieldsTargetLesson10192.css",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/DirectionFieldsTargetLesson10192.tsx",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/FactorisationPracticeTargetLesson10052.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/GeneralParticularSolutionsTargetLesson10191.css",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/GeneralParticularSolutionsTargetLesson10191.tsx",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/GroupedMeanAssumedTargetLesson10103.tsx",
+    "status": "retained-newer-local-numeric-aria-values",
+    "proposal": "C:\\Indian Servers\\Math Universe Visualizations\\audit\\logic-interactive\\merge-review\\src\\modules\\lessons\\schoolTargets\\GroupedMeanAssumedTargetLesson10103.tsx"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/GroupedMeanDirectTargetLesson10102.tsx",
+    "status": "retained-newer-local-numeric-aria-values",
+    "proposal": "C:\\Indian Servers\\Math Universe Visualizations\\audit\\logic-interactive\\merge-review\\src\\modules\\lessons\\schoolTargets\\GroupedMeanDirectTargetLesson10102.tsx"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/GroupedMeanStepTargetLesson10104.tsx",
+    "status": "retained-newer-local-numeric-aria-values",
+    "proposal": "C:\\Indian Servers\\Math Universe Visualizations\\audit\\logic-interactive\\merge-review\\src\\modules\\lessons\\schoolTargets\\GroupedMeanStepTargetLesson10104.tsx"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/HomogeneousFirstOrderTargetLesson10189.css",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/HomogeneousFirstOrderTargetLesson10189.tsx",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/LinearFirstOrderTargetLesson10190.css",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/LinearFirstOrderTargetLesson10190.tsx",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/NumberNamingTargetLesson10002.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/OrderDegreeDifferentialEquationTargetLesson10187.css",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/OrderDegreeDifferentialEquationTargetLesson10187.tsx",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/PerpendicularCentreChordTargetLesson10090.tsx",
+    "status": "merged-preserving-local-edits"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/RemovableDiscontinuityTargetLesson10168.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/RouteMapTargetLesson10038.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/VariableSeparableEquationsTargetLesson10188.css",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/VariableSeparableEquationsTargetLesson10188.tsx",
+    "status": "already-applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/skewLineModel.test.ts",
+    "status": "applied"
+  },
+  {
+    "file": "src/modules/lessons/schoolTargets/unboundedRegionModel.ts",
+    "status": "applied"
+  },
+  {
+    "file": "src/pages/AlgebraStudio.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/pages/AlgebraStudio.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/pages/CalculusEnhancementIdeas.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/pages/Home.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/studios/algebra/algebraStudioMath.test.ts",
+    "status": "applied"
+  },
+  {
+    "file": "src/studios/complex/LociReference.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/studios/discrete/combinatorics/ArrangementsLab.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/studios/discrete/number-sense/numberSenseLine.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/studios/geometry/GeometryStudioHome.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/studios/geometry/construction/constructionMode.ts",
+    "status": "applied"
+  },
+  {
+    "file": "src/studios/geometry/proofs/ProofsLab.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/studios/mockup/labs/DedicatedStudioLabs.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/studios/mockup/modellingStudioIcons.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/studios/mockup/remainingStudioVisualManifest.ts",
+    "status": "applied"
+  },
+  {
+    "file": "src/studios/shared/studioMath3D.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/studios/statistics/SamplingCltLab.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/visual-proofs/proofs/algebra/EquationBalanceMobileProof.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/workspace/geometryCommandController.ts",
+    "status": "applied"
+  },
+  {
+    "file": "src/workspace/mobile/useWorkspaceOverlay.test.tsx",
+    "status": "applied"
+  },
+  {
+    "file": "src/types/d3-random.d.ts",
+    "status": "new-file"
+  }
+]

@@ -710,3 +710,5 @@ body:has(.dbp169-page) footer[aria-label="Site footer"] {
     grid-column: 1;
   }
 }
+
+@media(max-width:900px){.dbp169-page .dbp169-how,.dbp169-page .dbp169-how>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.dbp169-page .dbp169-how>*,.dbp169-page .dbp169-how>div>*{min-width:0;grid-column:auto;grid-row:auto}}

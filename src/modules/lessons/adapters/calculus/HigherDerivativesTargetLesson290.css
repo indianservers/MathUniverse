@@ -679,3 +679,9 @@ body:has(.hdr290-page) {
     min-width: 760px;
   }
 }
+
+@media(max-width:900px){.hdr290-page .hdr290-lab .workspace,.hdr290-page .hdr290-lab .workspace>aside,.hdr290-page .hdr290-lab .workspace>main,.hdr290-page .hdr290-lab .row,.hdr290-page .hdr290-meaning,.hdr290-page .hdr290-info,.hdr290-page .hdr290-bottom{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.hdr290-page .hdr290-lab .workspace>*,.hdr290-page .hdr290-lab .workspace>aside>*,.hdr290-page .hdr290-lab .workspace>main>*,.hdr290-page .hdr290-lab .row>*,.hdr290-page .hdr290-meaning>*,.hdr290-page .hdr290-info>*,.hdr290-page .hdr290-bottom>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.hdr290-page .hdr290-lab{height:auto}.hdr290-page .hdr290-bottom .practice>aside{position:static;width:auto;height:auto;margin-top:10px}.hdr290-page .hdr290-bottom .practice label{width:100%;grid-template-columns:60px minmax(0,1fr)}.hdr290-page .hdr290-bottom .practice input{max-width:100%;min-width:0}.hdr290-page .hdr290-footer{height:auto;padding:12px}.hdr290-page .hdr290-footer nav,.hdr290-page .hdr290-footer small{position:static;display:flex;flex-wrap:wrap;gap:8px}.hdr290-page .hdr290-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.lesson-table-scroll-369{max-width:100%;width:100%;overflow-x:auto}

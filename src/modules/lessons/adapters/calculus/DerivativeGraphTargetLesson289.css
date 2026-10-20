@@ -683,3 +683,7 @@ body:has(.dgr289-page) {
     min-width: 780px;
   }
 }
+
+@media(max-width:900px){.dgr289-page .dgr289-flow,.dgr289-page .dgr289-lab .workspace,.dgr289-page .dgr289-lab .workspace>main,.dgr289-page .dgr289-lab .workspace>aside,.dgr289-page .dgr289-learn{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.dgr289-page .dgr289-flow>*,.dgr289-page .dgr289-lab .workspace>*,.dgr289-page .dgr289-lab .workspace>main>*,.dgr289-page .dgr289-lab .workspace>aside>*,.dgr289-page .dgr289-learn>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.dgr289-page .dgr289-flow article>svg:last-child{position:static}.dgr289-page .dgr289-lab{height:auto}.dgr289-page .dgr289-lab>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.dgr289-page .dgr289-lab .graph>h3,.dgr289-page .dgr289-lab .graph>aside{position:static;width:auto}.dgr289-page .dgr289-footer{height:auto;padding:12px}.dgr289-page .dgr289-footer nav,.dgr289-page .dgr289-footer small{position:static;display:flex;flex-wrap:wrap;gap:8px}.dgr289-page .dgr289-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

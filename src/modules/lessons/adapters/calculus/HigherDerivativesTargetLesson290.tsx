@@ -348,7 +348,7 @@ export default function HigherDerivativesTargetLesson290({
             Given f(x)=x⁴−6x²+3. Find f′(x), f″(x), f‴(x) and their values at
             x=0.
           </p>
-          <table>
+          <div className="lesson-table-scroll-369"><table>
             <thead>
               <tr>
                 <th>Step</th>
@@ -372,7 +372,7 @@ export default function HigherDerivativesTargetLesson290({
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
         </article>
         <article className="practice">
           <h3>▣ Your turn</h3>

@@ -1,3 +1,4 @@
+import { lessonCatalog } from "../catalog/lessonCatalog";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import LogarithmicEquationsTargetLesson119 from "./LogarithmicEquationsTargetLesson119";
@@ -5,7 +6,7 @@ import LogarithmicEquationsTargetLesson119 from "./LogarithmicEquationsTargetLes
 describe("LogarithmicEquationsTargetLesson119", () => {
   it("renders the target domain gate, calculated ladder, and candidate controls", () => {
     const html = renderToStaticMarkup(
-      <LogarithmicEquationsTargetLesson119
+      <LogarithmicEquationsTargetLesson119 lesson={lessonCatalog.find(item => item.id === 119)!}
         resetToken={0}
         onInteraction={vi.fn()}
       />,

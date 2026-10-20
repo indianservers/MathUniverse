@@ -1,0 +1,7 @@
+import{describe,it,expect}from'vitest';
+import{semicircleModel as model,advanceSemicircle as advance}from'./semicircleModel';
+describe('angle in a semicircle',()=>{
+ it('labels actual endpoint distances correctly and fixes radius7 example',()=>{const m=model(68);expect(m.angleA).toBeCloseTo(34,10);expect(m.angleB).toBeCloseTo(56,10);expect(m.ac).toBeGreaterThan(m.bc);expect(m.ac).toBeCloseTo(2*6.31*Math.cos(34*Math.PI/180),10);expect(m.bc).toBeCloseTo(2*6.31*Math.sin(34*Math.PI/180),10);const e=model(Math.acos(2/7)*180/Math.PI,7);expect(e.c.x).toBeCloseTo(2,12);expect(e.c.y).toBeCloseTo(Math.sqrt(45),12);expect(e.ac**2).toBeCloseTo(126,9);expect(e.bc**2).toBeCloseTo(70,9);expect(e.lhs).toBeCloseTo(196,9);});
+ it('checks5283 radius andangle states for circle incidence, orthogonality andPythagoras',()=>{for(const r of[1,6.31,7])for(let i=20;i<=1780;i++){const t=i/10,m=model(t,r),u={x:m.a.x-m.c.x,y:-m.c.y},v={x:m.b.x-m.c.x,y:-m.c.y};expect(Math.hypot(m.c.x,m.c.y)).toBeCloseTo(r,10);expect(u.x*v.x+u.y*v.y).toBeCloseTo(0,9);expect(m.angleC).toBeCloseTo(90,9);expect(m.angleA+m.angleB).toBeCloseTo(90,9);expect(m.lhs).toBeCloseTo(m.rhs,9);expect(m.verified).toBe(true);}});
+ it('reflects animation inside nondegenerate bounds and rejects endpoints',()=>{for(const speed of[1,2,4]){let motion={theta:68,direction:1};for(let i=0;i<1000;i++){motion=advance(motion,speed);expect(motion.theta).toBeGreaterThanOrEqual(2);expect(motion.theta).toBeLessThanOrEqual(178);}}for(const t of[0,180,NaN])expect(()=>model(t)).toThrow();});
+});

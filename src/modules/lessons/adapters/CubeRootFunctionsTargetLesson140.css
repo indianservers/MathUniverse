@@ -712,3 +712,5 @@ body:has(.cube140-page) footer[aria-label="Site footer"] {
     height: auto;
   }
 }
+
+@media(max-width:900px){.cube140-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.cube140-footer>span{width:auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}.cube140-footer>nav{position:static;flex-wrap:wrap}}

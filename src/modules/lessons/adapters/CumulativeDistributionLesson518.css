@@ -382,3 +382,5 @@
     text-align: right;
   }
 }
+
+@media(max-width:900px){.cdf518-lab > header{display:flex;flex-wrap:wrap;height:auto;gap:8px}.cdf518-lab > header fieldset{display:flex;flex-wrap:wrap;height:auto;max-width:100%;gap:6px}}

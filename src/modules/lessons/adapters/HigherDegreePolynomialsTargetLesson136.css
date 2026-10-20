@@ -768,3 +768,9 @@ body:has(.poly136-page) footer[aria-label="Site footer"] {
     height: auto;
   }
 }
+
+@media(max-width:900px){.poly136-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.poly136-footer>span{width:auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}.poly136-footer>nav{position:static;flex-wrap:wrap}}
+
+.poly136-warning>div{min-width:0;overflow-wrap:anywhere}.poly136-warning :is(b,p){white-space:normal;overflow-wrap:anywhere}
+
+.poly136-page strong{max-width:100%;overflow-wrap:anywhere;white-space:normal}

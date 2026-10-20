@@ -9,7 +9,8 @@ import {
 import { type PointerEvent, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./LessThanCumulativeTargetLesson10105.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import MathExpression from "../../../components/ui/MathExpression";
+import {Link} from "react-router-dom";
 
 type FrequencyRow = {
   id: number;
@@ -39,6 +40,7 @@ export default function LessThanCumulativeTargetLesson10105({
     y: number;
     frequency: number;
   } | null>(null);
+  const [editing,setEditing]=useState<number|null>(null),[draft,setDraft]=useState(''),[error,setError]=useState('');
   const [randomCycle, setRandomCycle] = useState(0);
   const [actions, setActions] = useState(0);
   let running = 0;
@@ -48,7 +50,8 @@ export default function LessThanCumulativeTargetLesson10105({
     cumulative: (running += row.frequency),
   }));
   const total = running;
-  const maxValue = Math.max(10, Math.ceil(total / 5) * 5);
+  const raw=total/6,unit=10**Math.floor(Math.log10(raw||1)),tick=([1,2,5,10].find(v=>v*unit>=raw)??10)*unit;
+  const maxValue=total?tick*7:1;
   const act = (fn: () => void) => {
     fn();
     setActions((value) => value + 1);
@@ -57,7 +60,7 @@ export default function LessThanCumulativeTargetLesson10105({
     setRows((current) =>
       current.map((row) =>
         row.id === id
-          ? { ...row, frequency: Math.max(1, Math.min(99, Math.round(value))) }
+          ? { ...row, frequency: Number.isFinite(value)?Math.max(0, Math.min(1000000, Math.round(value))):row.frequency }
           : row,
       ),
     );
@@ -73,7 +76,7 @@ export default function LessThanCumulativeTargetLesson10105({
       setRows(defaults);
       setShowValues(true);
       setShowPoints(true);
-      setRandomCycle(0);
+      setRandomCycle(0);setDragging(null);setEditing(null);setError('');
     });
   const randomize = () =>
     act(() => {
@@ -120,9 +123,10 @@ export default function LessThanCumulativeTargetLesson10105({
       data-random-cycle={randomCycle}
       data-actions={actions}
     >
-      <header className="ltc10105-hero">
+      <div className="ltc10105-hero">
         <div>
           <small>CLASS 10 · STATISTICS</small>
+          <Link className="ltc10105-school" to="/lessons/school">← School lessons</Link>
           <h1>Less-Than Cumulative Frequency</h1>
           <p>
             Less-Than Cumulative Frequency (CF) is the running total of
@@ -142,13 +146,13 @@ export default function LessThanCumulativeTargetLesson10105({
         <button onClick={reset}>
           <RotateCcw /> Reset
         </button>
-      </header>
-      <GroupedDataEditor data={{bounds:[rows[0].lower,...rows.map(row=>row.upper)],frequencies:rows.map(row=>row.frequency)}} defaults={{bounds:[defaults[0].lower,...defaults.map(row=>row.upper)],frequencies:defaults.map(row=>row.frequency)}} onChange={data=>act(()=>setRows(data.frequencies.map((frequency,i)=>({id:i+1,lower:data.bounds[i],upper:data.bounds[i+1],frequency}))))}/>
+      </div>
+
       <main>
         <section className="ltc10105-table">
           <h2>1) EDITABLE FREQUENCY TABLE</h2>
-          <p>Drag any frequency cell to adjust (1–99).</p>
-          <table>
+          <p>Drag a frequency, or double-click / press Enter to type (0–1,000,000).</p>
+          <div className="ltc10105-table-scroll"><table>
             <thead>
               <tr>
                 <th>Class Interval</th>
@@ -170,13 +174,13 @@ export default function LessThanCumulativeTargetLesson10105({
                   </td>
                   <td>{row.upper}</td>
                   <td>
-                    <div
-                      className={`ltc10105-frequency c${index}`}
+                    {editing===row.id?<input autoFocus aria-label={`Edit frequency row ${index+1}`} type="number" min="0" max="1000000" step="1" value={draft} onChange={e=>{setDraft(e.target.value);const v=Number(e.target.value);if(e.target.value.trim()===''||!Number.isInteger(v)||v<0||v>1000000){setError('Use a whole frequency from 0 to 1000000.');return;}setError('');act(()=>setFrequency(row.id,v));}} onBlur={()=>{setEditing(null);setError('');}} onKeyDown={e=>{e.stopPropagation();if(e.key==='Enter'||e.key==='Escape'){setEditing(null);setError('');}}}/>:<div
+                      className={`ltc10105-frequency c${index%6}`}
                       role="slider"
                       tabIndex={0}
                       aria-label={`Frequency row ${index + 1}`}
-                      aria-valuemin={1}
-                      aria-valuemax={99}
+                      aria-valuemin={0}
+                      aria-valuemax={1000000}
                       aria-valuenow={row.frequency}
                       onPointerDown={(event) => {
                         event.currentTarget.setPointerCapture(event.pointerId);
@@ -189,10 +193,13 @@ export default function LessThanCumulativeTargetLesson10105({
                         );
                       }}
                       onPointerMove={(event) => dragFrequency(event, row)}
-                      onPointerUp={() =>
-                        dragging && act(() => setDragging(null))
-                      }
+                      onPointerUp={event=>{dragFrequency(event,row);act(()=>setDragging(null));}}
+                      onPointerCancel={()=>setDragging(null)}
+                      onDoubleClick={()=>{setEditing(row.id);setDraft(String(row.frequency));setError('');}}
                       onKeyDown={(event) => {
+                        event.stopPropagation();
+                        if(event.key==='Enter'){event.preventDefault();setEditing(row.id);setDraft(String(row.frequency));setError('');}
+                        if(event.key==='Home'){event.preventDefault();act(()=>setFrequency(row.id,0));}
                         if (
                           event.key === "ArrowLeft" ||
                           event.key === "ArrowDown"
@@ -210,7 +217,7 @@ export default function LessThanCumulativeTargetLesson10105({
                       }}
                     >
                       ↕ <b>{row.frequency}</b>
-                    </div>
+                    </div>}
                   </td>
                   <td>{row.cumulative}</td>
                   <td>
@@ -229,14 +236,16 @@ export default function LessThanCumulativeTargetLesson10105({
                 <td />
               </tr>
             </tfoot>
-          </table>
+          </table></div>
+          {error&&<p role="alert">{error}</p>}
+          <details className="ltc10105-custom"><summary>Edit grouped data</summary><GroupedDataEditor data={{bounds:[rows[0].lower,...rows.map(row=>row.upper)],frequencies:rows.map(row=>row.frequency)}} defaults={{bounds:[defaults[0].lower,...defaults.map(row=>row.upper)],frequencies:defaults.map(row=>row.frequency)}} onChange={data=>act(()=>setRows(data.frequencies.map((frequency,i)=>({id:i+1,lower:data.bounds[i],upper:data.bounds[i+1],frequency}))))}/></details>
           <footer>
             <Info /> Change any frequency — all later cumulative values update
             automatically.
           </footer>
         </section>
         <section className="ltc10105-bars">
-          <header>
+          <div className="ltc10105-chart-heading">
             <div>
               <h2>2) LESS-THAN CUMULATIVE FREQUENCY (BAR VIEW)</h2>
               <p>Stacked by class in order of upper class boundaries.</p>
@@ -251,22 +260,25 @@ export default function LessThanCumulativeTargetLesson10105({
                 }
               />
             </label>
-          </header>
+          </div>
           <svg
             viewBox="0 0 440 270"
             aria-label="Cumulative frequency bar chart"
           >
+            <g className="ltc10105-ticks">{Array.from({length:8},(_,i)=>{const v=i*maxValue/7,y=220-i/7*180;return <g key={i}><line x1="36" y1={y} x2="40" y2={y}/><text x="31" y={y+4} textAnchor="end">{v>=10000?`${Number((v/1000).toPrecision(3))}k`:Number(v.toPrecision(3))}</text></g>;})}</g>
+            <text x="40" y="22">Less-Than CF (CFᵢ)</text>
+            <text x="235" y="264" textAnchor="middle">Upper class boundary (xᵢ)</text>
             <line x1="40" y1="220" x2="425" y2="220" />
             <line x1="40" y1="35" x2="40" y2="220" />
             {bars.map((bar, index) => (
-              <g key={bar.id} className={`c${index}`}>
+              <g key={bar.id} className={`c${index%6}`} data-bar-id={bar.id} data-cumulative={bar.cumulative}>
                 <rect x={bar.x} y={bar.y} width={Math.max(1,390/rows.length-8)} height={bar.height} />
                 {showValues && (
-                  <text x={bar.x + 18} y={bar.y - 6}>
+                  <text className="ltc10105-value" textAnchor="middle" x={bar.x + (390/rows.length-8)/2} y={bar.y - 6}>
                     {bar.cumulative}
                   </text>
                 )}
-                <text x={bar.x + 15} y="242">
+                <text textAnchor="middle" x={bar.x + (390/rows.length-8)/2} y="242">
                   {bar.upper}
                 </text>
               </g>
@@ -274,12 +286,12 @@ export default function LessThanCumulativeTargetLesson10105({
           </svg>
           <footer>
             <b>RECURRENCE (RUNNING TOTAL RULE)</b>
-            <strong>CFᵢ = CFᵢ₋₁ + fᵢ</strong>
+            <strong><MathExpression value={String.raw`CF_i=CF_{i-1}+f_i`}/></strong>
             <span>with CF₀ = 0</span>
           </footer>
         </section>
         <section className="ltc10105-ogive">
-          <header>
+          <div className="ltc10105-chart-heading">
             <div>
               <h2>3) LESS-THAN OGIVE (STAIRCASE)</h2>
               <p>Monotone staircase using upper class boundaries.</p>
@@ -294,7 +306,7 @@ export default function LessThanCumulativeTargetLesson10105({
               />{" "}
               Show points
             </label>
-          </header>
+          </div>
           <svg
             viewBox="0 0 460 270"
             aria-label="Less-than cumulative frequency ogive"
@@ -309,20 +321,25 @@ export default function LessThanCumulativeTargetLesson10105({
                   y2="220"
                 />
               ))}
-              {Array.from({ length: maxValue / 5 + 1 }, (_, index) => (
+              {Array.from({ length: 8 }, (_, index) => (
                 <line
                   key={`h${index}`}
                   x1="40"
-                  y1={220 - ((index * 5) / maxValue) * 180}
+                  y1={220 - (index / 7) * 180}
                   x2="430"
-                  y2={220 - ((index * 5) / maxValue) * 180}
+                  y2={220 - (index / 7) * 180}
                 />
               ))}
             </g>
+            <g className="ltc10105-ticks">{Array.from({length:8},(_,i)=>{const v=i*maxValue/7,y=220-i/7*180;return <g key={i}><line x1="36" y1={y} x2="40" y2={y}/><text x="31" y={y+4} textAnchor="end">{v>=10000?`${Number((v/1000).toPrecision(3))}k`:Number(v.toPrecision(3))}</text></g>;})}</g>
+            <text x="40" y="22">Less-Than CF (CFᵢ)</text>
+            <text x="235" y="264" textAnchor="middle">Upper class boundary (xᵢ)</text>
+            <line x1="40" y1="220" x2="440" y2="220"/><line x1="40" y1="35" x2="40" y2="220"/>
+            {[rows[0].lower,...rows.map(row=>row.upper)].map(x=><text key={x} textAnchor="middle" x={point(x,0).x} y="242">{x}</text>)}
             <path d={staircase} />
             {showPoints &&
               ogivePoints.map((item, index) => (
-                <g key={index}>
+                <g key={index} data-ogive-point={index}>
                   <circle cx={item.x} cy={item.y} r="4" />
                   <text x={item.x - 7} y={item.y - 8}>
                     {index === 0 ? 0 : cumulative[index - 1].cumulative}
@@ -332,7 +349,7 @@ export default function LessThanCumulativeTargetLesson10105({
           </svg>
           <footer>
             <p>
-              Join the points (0, 0) and (xᵢ, CFᵢ) in order of upper class
+              Start at ({rows[0].lower}, 0), then step up at each (xᵢ, CFᵢ) in order of upper class
               boundaries.
             </p>
             <p>
@@ -386,7 +403,7 @@ export default function LessThanCumulativeTargetLesson10105({
           © 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.
         </small>
       </footer>
-      <LessonTopicStudyBoard lessonId={10105} alwaysVisible />
+
 
     </section>
   );

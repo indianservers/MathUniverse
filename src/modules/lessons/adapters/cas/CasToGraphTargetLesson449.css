@@ -549,3 +549,7 @@ body:has(.cg449-page) {
     min-width: 780px;
   }
 }
+
+@media(max-width:900px){.cg449-page .cg449-flow,.cg449-page .cg449-workspace>header,.cg449-page .cg449-body,.cg449-page .cg449-learning,.cg449-page .cg449-practice,.cg449-page .cg449-practice .practice-controls,.cg449-page .cg449-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.cg449-page .cg449-flow>*,.cg449-page .cg449-workspace>header>*,.cg449-page .cg449-body>*,.cg449-page .cg449-learning>*,.cg449-page .cg449-practice>*,.cg449-page .cg449-practice .practice-controls>*,.cg449-page .cg449-nav>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.cg449-page .cg449-workspace{height:auto}.cg449-page .cg449-flow article>span{position:static}.cg449-page .cg449-cas,.cg449-page .cg449-graph{height:auto}.cg449-page .cg449-cas article>footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.cg449-page .cg449-graph .legend,.cg449-page .cg449-graph>output{position:static;display:block}.cg449-page .cg449-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}.cg449-page input{max-width:100%;min-width:0}}

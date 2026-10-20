@@ -101,11 +101,7 @@ export default function DirectionFieldsTargetLesson10192({
       <section className="df-hero" aria-label="Lesson introduction">
         <small>CLASS 12 · DIFFERENTIAL EQUATIONS</small>
         <h1>{lesson.title}</h1>
-        <p>
-          Dense slope field for y′=x−y. Explore local slope, isoclines, and
-          solution curves. Click an initial point to trace Euler or RK4.
-        </p>
-        <p className="df-default">Default (0, 1) shows the exact solution <MathExpression value="y=x-1+2e^{-x}"/>.</p><div>
+<div>
           <span>25 min</span>
           <span>ADVANCED</span>
           <span>CONCEPT</span>
@@ -115,6 +111,13 @@ export default function DirectionFieldsTargetLesson10192({
         <Link className="df-school" to="/lessons/school/class-12">← School lessons</Link>
       </section>
       <section className="df-lab">
+        <div className="df-intro-copy">
+        <p>
+          Dense slope field for y′=x−y. Explore local slope, isoclines, and
+          solution curves. Click an initial point to trace Euler or RK4.
+        </p>
+        <p className="df-default">Default (0, 1) shows the exact solution <MathExpression value="y=x-1+2e^{-x}"/>.</p>
+        </div>
         <div className="df-title">
           <div>
             <small>▦ &nbsp; INTERACTIVE LAB</small>

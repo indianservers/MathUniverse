@@ -1070,3 +1070,7 @@ body:has(.literal110-page) footer[aria-label="Site footer"] {
     transition: none !important;
   }
 }
+
+@media(max-width:900px){.literal110-lab>header,.literal110-lab>header>nav{height:auto;display:flex;flex-wrap:wrap;gap:8px}.literal110-page .literal110-details{position:static;width:auto;height:auto;max-width:100%;margin-top:8px}.literal110-workspace-grid{height:auto}}
+
+@media(max-width:900px){.literal110-page .literal110-steps{position:relative;width:100%;max-width:100%}.literal110-steps>.start{padding-right:12px}}

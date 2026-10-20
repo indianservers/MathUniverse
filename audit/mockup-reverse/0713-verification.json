@@ -1,0 +1,95 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "wrong"
+    },
+    {
+      "width": 1680,
+      "state": "alternative"
+    },
+    {
+      "width": 1680,
+      "state": "invalid"
+    },
+    {
+      "width": 1680,
+      "state": "blank"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "wrong"
+    },
+    {
+      "width": 1280,
+      "state": "alternative"
+    },
+    {
+      "width": 1280,
+      "state": "invalid"
+    },
+    {
+      "width": 1280,
+      "state": "blank"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "wrong"
+    },
+    {
+      "width": 768,
+      "state": "alternative"
+    },
+    {
+      "width": 768,
+      "state": "invalid"
+    },
+    {
+      "width": 768,
+      "state": "blank"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "wrong"
+    },
+    {
+      "width": 390,
+      "state": "alternative"
+    },
+    {
+      "width": 390,
+      "state": "invalid"
+    },
+    {
+      "width": 390,
+      "state": "blank"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "independent answer versus selected rule",
+    "given-row checks and pending/invalid completion",
+    "supported custom/equivalent and alternate consistent rules",
+    "independent marginal effects/zero-weight SVG",
+    "native touch/keyboard/stepper editing",
+    "literal challenge formulas and real rotated datasets",
+    "tabs/verified neighbors and20 responsive cases"
+  ]
+}

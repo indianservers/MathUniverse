@@ -29,7 +29,7 @@ describe("Algebra Studio reference routes", () => {
   it.each(routes)("renders %s", (route, heading) => {
     const html = renderToString(<MemoryRouter initialEntries={[route]}><AlgebraStudio /></MemoryRouter>);
     expect(html).toContain(heading);
-    expect(html).toContain("Algebra Studio navigation");
+    expect(html).toContain(route === "/algebra/advanced" ? "awb-reference" : "Algebra Studio navigation");
   });
 
   it("keeps the algebra stage as a vertical scroll pane", () => {
@@ -48,7 +48,7 @@ describe("Algebra Studio reference routes", () => {
     const equations = renderToString(<MemoryRouter initialEntries={["/algebra/equations"]}><AlgebraStudio /></MemoryRouter>);
     expect(equations).toContain("Balance Model");
     expect(equations).toContain("Solution on Number Line");
-    expect(equations).toContain("Watch how the scale stays balanced");
+    expect(equations).toContain("Watch both sides change together");
   });
 
   it("links the CAS explorer to the existing CAS workspace", () => {
@@ -79,16 +79,16 @@ describe("Algebra Studio reference routes", () => {
   });
 
   it("renders remaining algebra labs as unique dashboards, not generic three-column shells", () => {
-    const functions = renderToString(<MemoryRouter initialEntries={["/algebra/functions"]}><AlgebraStudio /></MemoryRouter>);
-    expect(functions).toContain("Parent vs transformed graph");
-    expect(functions).toContain("y = a · f(x − h) + k");
+    const functions = renderToString(<MemoryRouter initialEntries={["/algebra/functions?mode=Composition"]}><AlgebraStudio /></MemoryRouter>);
+    expect(functions).toContain("Choose your functions");
+    expect(functions).toContain("Composition order");
     expect(functions).toContain("Function machine");
     const polynomials = renderToString(<MemoryRouter initialEntries={["/algebra/polynomials"]}><AlgebraStudio /></MemoryRouter>);
     expect(polynomials).toContain("Root &amp; degree builder");
     expect(polynomials).toContain("Interactive polynomial graph");
     const systems = renderToString(<MemoryRouter initialEntries={["/algebra/systems"]}><AlgebraStudio /></MemoryRouter>);
-    expect(systems).toContain("Intersection graph");
-    expect(systems).toContain("Unique / none / infinite");
+    expect(systems).toContain("Systems solution methods");
+    expect(systems).toContain("sys-solution-badge");
     const exponents = renderToString(<MemoryRouter initialEntries={["/algebra/exponents-logs"]}><AlgebraStudio /></MemoryRouter>);
     expect(exponents).toContain("y = aˣ and y = log_a x");
     const sequences = renderToString(<MemoryRouter initialEntries={["/algebra/sequences"]}><AlgebraStudio /></MemoryRouter>);
@@ -109,8 +109,8 @@ describe("Algebra Studio reference routes", () => {
 
   it("exposes working lab chrome: modes, undo, help, and challenges", () => {
     const equations = renderToString(<MemoryRouter initialEntries={["/algebra/equations"]}><AlgebraStudio /></MemoryRouter>);
-    expect(equations).toContain("aria-label=\"Undo\"");
-    expect(equations).toContain("aria-label=\"Help\"");
+    expect(equations).toContain("Undo</button>");
+    expect(equations).toContain("aria-label=\"Balance help\"");
     expect(equations).toContain("Auto-balance");
     expect(equations).toContain("Challenge Me");
     const home = renderToString(<MemoryRouter initialEntries={["/algebra"]}><AlgebraStudio /></MemoryRouter>);

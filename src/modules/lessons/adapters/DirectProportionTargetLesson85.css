@@ -800,3 +800,5 @@ body:has(.direct85-page)
 .direct85-table {
   padding-top: 10px;
 }
+
+@media(max-width:900px){html body #main-content .standard-lesson-frame .standard-lesson-content .direct85-page .direct85-lab{overflow-x:auto!important;max-width:100%}}

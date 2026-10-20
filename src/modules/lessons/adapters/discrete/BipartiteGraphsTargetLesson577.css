@@ -696,3 +696,5 @@
     display: none;
   }
 }
+
+@media(max-width:1000px){.bp577-page .bp577-examples{height:auto;grid-template-columns:minmax(0,1fr)}.bp577-page .bp577-examples > article > div{grid-template-columns:minmax(0,1fr);height:auto}.bp577-page .bp577-examples section{min-width:0;overflow-x:auto}}

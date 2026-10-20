@@ -667,3 +667,7 @@ body:has(.ii315-page) {
     min-width: 785px;
   }
 }
+
+@media(max-width:900px){.ii315-page .ii315-lab,.ii315-page .ii315-metrics,.ii315-page .ii315-rule,.ii315-page .ii315-rule>article>div,.ii315-page .ii315-bottom{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.ii315-page .ii315-lab>*,.ii315-page .ii315-metrics>*,.ii315-page .ii315-rule>*,.ii315-page .ii315-rule>article>div>*,.ii315-page .ii315-bottom>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.ii315-page .ii315-model>header{display:flex;flex-wrap:wrap;gap:8px;height:auto}.ii315-page .ii315-model,.ii315-page .ii315-lab>aside{height:auto}.ii315-page .ii315-rule article,.ii315-page .ii315-bottom article{min-width:0;height:auto;padding-block:12px}.ii315-page .ii315-bottom .practice button.hint{position:static}.ii315-page .ii315-footer{height:auto;padding:12px}.ii315-page .ii315-footer nav,.ii315-page .ii315-footer small,.ii315-page .ii315-footer>span{position:static;display:flex;flex-wrap:wrap;gap:8px}}

@@ -156,7 +156,7 @@
   display: grid;
   height: 570px;
   margin-top: 8px;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
   gap: 8px;
 }
 .sa407-lab > article {

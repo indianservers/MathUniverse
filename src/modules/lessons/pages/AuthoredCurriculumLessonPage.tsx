@@ -6,6 +6,8 @@ import { LessonSectionNav, type LessonSection } from "../components/LessonSectio
 import index from "../authored/authoredLessonIndex.generated.json";
 import type { AuthoredLesson, AuthoredPractice, LessonModelResult } from "../authored/authoredLessonTypes";
 import { checkAuthoredAnswer, evaluateAuthoredModel } from "../authored/authoredLessonModels";
+import UpcomingLessonLab from "../upcoming-ui/UpcomingLessonLab";
+import OrdersOfMagnitudeLesson from "../upcoming-ui/OrdersOfMagnitudeLesson";
 
 const batchFiles=import.meta.glob<{default:{lessons:AuthoredLesson[]}}>("../authored/batches/*.generated.json");
 export function getAuthoredCurriculumLesson(id: number) { return index.lessons.find(x=>x.lessonId===id); }
@@ -30,7 +32,8 @@ function AuthoredLessonLoader({id,batch,title}:{id:number;batch:number;title:str
   },[id,batch]);
   if(error)return <main className="p-8"><h1 className="text-2xl font-black">{title}</h1><p role="alert">{error}</p><Link to="/lessons">Browse lessons</Link></main>;
   if(!lesson)return <main className="p-8"><p role="status">Loading lesson {id}…</p></main>;
-  return <AuthoredLessonContent lesson={lesson}/>;
+  if(id===30026)return <OrdersOfMagnitudeLesson/>;
+  return id>=30001&&id<=30040 ? <UpcomingLessonLab lesson={lesson}/> : <AuthoredLessonContent lesson={lesson}/>;
 }
 function AuthoredLessonContent({lesson}:{lesson:AuthoredLesson}) {
   useEffect(()=>{document.title=`${lesson.title} | Math Universe`;const old=document.querySelector<HTMLLinkElement>('link[rel="canonical"]');const link=old??document.createElement("link");link.rel="canonical";link.href=window.location.origin+lesson.route;if(!old)document.head.appendChild(link);return ()=>{if(!old)link.remove();};},[lesson.title,lesson.route]);

@@ -1,0 +1,38 @@
+[
+  {
+    "index": 489,
+    "source": "src/modules/lessons/adapters/NegativeBinomialDistributionLesson526.tsx",
+    "parent": 285,
+    "root": "<div className=\"nb526\" data-testid=\"probability-mockup-0489\" data-target-family=\"probability-and-distributions\">"
+  },
+  {
+    "index": 488,
+    "source": "src/modules/lessons/adapters/GeometricDistributionLesson525.tsx",
+    "parent": 285,
+    "root": "<div className=\"ge525\" data-testid=\"probability-mockup-0488\" data-target-family=\"probability-and-distributions\">"
+  },
+  {
+    "index": 487,
+    "source": "src/modules/lessons/adapters/PoissonDistributionLesson524.tsx",
+    "parent": 285,
+    "root": "<div className=\"po524\" data-testid=\"probability-mockup-0487\" data-target-family=\"probability-and-distributions\">"
+  },
+  {
+    "index": 480,
+    "source": "src/modules/lessons/adapters/ProbabilityPlotLesson517.tsx",
+    "parent": 285,
+    "root": "<div className=\"qq517\" data-testid=\"probability-mockup-0480\" data-target-family=\"probability-and-distributions\">"
+  },
+  {
+    "index": 478,
+    "source": "src/modules/lessons/adapters/LawLargeNumbersLesson515.tsx",
+    "parent": 285,
+    "root": "<div className=\"lln515\" data-testid=\"probability-mockup-0478\" data-target-family=\"probability-and-distributions\">"
+  },
+  {
+    "index": 477,
+    "source": "src/modules/lessons/adapters/ProbabilitySimulationLesson514.tsx",
+    "parent": 285,
+    "root": "<div className=\"ps514\" data-testid=\"probability-mockup-0477\" data-target-family=\"probability-and-distributions\">"
+  }
+]

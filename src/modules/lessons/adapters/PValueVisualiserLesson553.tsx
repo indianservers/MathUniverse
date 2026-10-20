@@ -403,10 +403,12 @@ function DistributionPlot({
           : symmetric
             ? Math.abs(x) >= Math.abs(result.statistic)
             : x <= result.statistic || x >= result.criticalHigh,
-    shade = points
-      .filter(extreme)
-      .map((p) => `${sx(p.x)},${sy(p.y)}`)
-      .join(" ");
+    shadedRuns = points.reduce<{ x: number; y: number }[][]>((runs, point, index) => {
+      if (!extreme(point.x)) return runs;
+      if (index === 0 || !extreme(points[index - 1].x)) runs.push([]);
+      runs[runs.length - 1].push(point);
+      return runs;
+    }, []);
   const drag = (event: PointerEvent<SVGSVGElement>) => {
     if (event.buttons !== 1 && event.type === "pointermove") return;
     const rect = event.currentTarget.getBoundingClientRect(),
@@ -425,10 +427,9 @@ function DistributionPlot({
       onPointerMove={drag}
     >
       <line className="axis" x1="30" x2="750" y1="260" y2="260" />
-      <polygon
-        className="shade"
-        points={`${sx(points.find((p) => extreme(p.x))?.x ?? result.statistic)},260 ${shade} ${sx(points.filter(extreme).at(-1)?.x ?? result.statistic)},260`}
-      />
+      {shadedRuns.map((run, index) => <polygon key={index} className="shade"
+        points={`${sx(run[0].x)},260 ${run.map(point => `${sx(point.x)},${sy(point.y)}`).join(" ")} ${sx(run[run.length - 1].x)},260`}
+      />)}
       <polyline points={line} />
       {Number.isFinite(result.criticalLow) && (
         <line

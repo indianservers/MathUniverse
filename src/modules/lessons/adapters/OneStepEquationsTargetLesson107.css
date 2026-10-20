@@ -1078,3 +1078,5 @@ body:has(.oneStep107-page) footer[aria-label="Site footer"] {
     min-width: 88px;
   }
 }
+
+@media(max-width:600px){.oneStep107-scale .beam{left:20px;width:calc(100% - 40px)}.oneStep107-scale .stand{left:calc(50% - 7px)}.oneStep107-scale .base{left:calc(50% - 30px)}.oneStep107-scale .pan{width:calc(50% - 22px)}.oneStep107-scale .pan.left{left:8px}.oneStep107-scale .pan.right{right:8px}.oneStep107-footer small{white-space:normal;overflow-wrap:anywhere}}

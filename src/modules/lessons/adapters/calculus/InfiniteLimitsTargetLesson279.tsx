@@ -445,7 +445,7 @@ function Practice({
           options.
         </p>
       </header>
-      <table>
+      <div className="lesson-table-scroll-358"><table>
         <thead>
           <tr>
             <th>Function</th>
@@ -507,7 +507,7 @@ function Practice({
             </tr>
           ))}
         </tbody>
-      </table>
+      </table></div>
       <aside className={checked && correct ? "correct" : ""}>
         <b>
           {checked

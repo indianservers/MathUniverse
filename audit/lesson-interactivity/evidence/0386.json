@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/calculus/307-riemann-sums",
+  "action": {
+    "control": "Riemann partition count",
+    "before": "8",
+    "after": "9",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 336,
+      "scroll": 336
+    },
+    {
+      "width": 768,
+      "client": 714,
+      "scroll": 714
+    },
+    {
+      "width": 1440,
+      "client": 1386,
+      "scroll": 1386
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

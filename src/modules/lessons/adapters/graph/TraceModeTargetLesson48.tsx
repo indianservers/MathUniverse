@@ -318,7 +318,7 @@ export default function TraceModeTargetLesson48({
         </section>
         <section className="tm48-nearby">
           <h2>Nearby values</h2>
-          <table>
+          <div className="lesson-table-scroll-140"><table>
             <tbody>
               <tr>
                 <th>x</th>
@@ -337,7 +337,7 @@ export default function TraceModeTargetLesson48({
                 ))}
               </tr>
             </tbody>
-          </table>
+          </table></div>
           <p>● Path history (drag trail) shows recent positions.</p>
         </section>
       </section>

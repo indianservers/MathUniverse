@@ -660,3 +660,5 @@ body:has(.arc320-page) .lesson-adjacent-nav {
     display: none;
   }
 }
+
+@media(max-width:900px){.arc320-page .arc320-work,.arc320-page .arc320-flow,.arc320-page .arc320-cards,.arc320-page .arc320-practice{grid-template-columns:minmax(0,1fr);height:auto}.arc320-page .arc320-plot{min-width:0;height:auto}.arc320-page .arc320-results{height:auto;grid-template-columns:minmax(0,1fr)}.arc320-page .arc320-flow article,.arc320-page .arc320-cards article{min-width:0;padding-block:12px}.arc320-page .arc320-practice output{position:static}.arc320-page .arc320-plot .domain{position:static;display:block;margin-top:8px}.arc320-page .arc320-work>aside{min-width:0}.arc320-page .arc320-work>aside article{height:auto}}

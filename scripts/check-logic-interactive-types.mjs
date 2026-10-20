@@ -1,0 +1,11 @@
+import ts from 'typescript';
+import fs from 'node:fs';
+const roots=process.argv.slice(2);
+const config=ts.readConfigFile('tsconfig.app.json',ts.sys.readFile);
+const options=ts.parseJsonConfigFileContent(config.config,ts.sys,'.').options;
+const program=ts.createProgram([...roots,'src/vite-env.d.ts'],options);
+const diagnostics=roots.flatMap(file=>{const source=program.getSourceFile(file);return source?[...program.getSyntacticDiagnostics(source),...program.getSemanticDiagnostics(source)]:[{messageText:`Missing source: ${file}`}];});
+const text=ts.formatDiagnosticsWithColorAndContext(diagnostics,{getCanonicalFileName:x=>x,getCurrentDirectory:()=>process.cwd(),getNewLine:()=> '\n'});
+fs.writeFileSync('audit/logic-interactive/changed-file-types.json',JSON.stringify({files:roots,diagnostics:diagnostics.length,text},null,2));
+console.log(text||`Changed-file semantic type check passed (${roots.length} files).`);
+process.exitCode=diagnostics.length?1:0;

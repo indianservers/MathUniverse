@@ -590,3 +590,5 @@ body:has(.seq344-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:799px){.seq344-page :is(.seq344-controls,.seq344-main,.seq344-analysis,.seq344-insights,.seq344-check){grid-template-columns:minmax(0,1fr);height:auto}.seq344-page .seq344-lab{height:auto}.seq344-page .seq344-tabs{overflow-x:auto}.seq344-page :is(article,aside){min-width:0;overflow-wrap:anywhere}.seq344-page footer{height:auto;flex-wrap:wrap}}

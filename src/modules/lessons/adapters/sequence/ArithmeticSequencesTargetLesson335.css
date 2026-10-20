@@ -654,3 +654,6 @@ body:has(.seq335-page) footer[aria-label="Site footer"] > div {
     font-size: 8px !important;
   }
 }
+
+@media(max-width:799px){.seq335-page :is(.seq335-explorer,.seq335-pair,.seq335-bottom,.seq335-quick,.seq335-formulas){grid-template-columns:minmax(0,1fr);height:auto}.seq335-page .seq335-tabs{overflow-x:auto}.seq335-page :is(article,aside){min-width:0;overflow-wrap:anywhere}}
+@media(max-width:799px){.seq335-page .seq335-explorer > main{grid-template-columns:minmax(0,1fr);height:auto}.seq335-page .chips{display:flex;flex-wrap:wrap;height:auto;gap:8px}}

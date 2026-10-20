@@ -1,9 +1,12 @@
-import { ArrowLeft, ArrowRight, Check, RotateCcw } from "lucide-react";
-import { useState } from "react";
+import { ArrowLeft, ArrowRight, Check, RotateCcw, Bookmark, Trophy } from "lucide-react";
+import { useId, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./AlternateInteriorTargetLesson10061.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import {aiStart10061,aiModel10061,aiPairs10061} from './alternateInteriorModel10061';
+import {pcLine10063,pcAdd10063,pcClamp10063,type PCState10063,type PCPoint10063} from './parallelConverseModel10063';
+import {paSector10074} from './parallelogramAnglesModel10074';
+const fmt=(n:number)=>Number(n.toFixed(2));
 
 const tabs = ["◉ Interact", "▣ Learn", "▱ Example", "∑ Formula", "⌁ Practice"];
 
@@ -12,27 +15,26 @@ export default function AlternateInteriorTargetLesson10061({
 }: {
   lesson: SchoolSyllabusLesson;
 }) {
-  const [angle, setAngle] = useState(117);
-  const [offset, setOffset] = useState(0);
+  const [geometry,setGeometry]=useState(aiStart10061);
+  const [challengeGeometry,setChallengeGeometry]=useState({...aiStart10061,offset:-20});
   const [parallel, setParallel] = useState(true);
   const [labels, setLabels] = useState(true);
   const [checked, setChecked] = useState(true);
   const [tab, setTab] = useState(0);
   const [pairs, setPairs] = useState([true, true, false, false]);
-  const [challengeMoved, setChallengeMoved] = useState(false);
+  const [challengeMoved, setChallengeMoved] = useState(true);
   const [actions, setActions] = useState(0);
-  const acute = 180 - angle;
-  const valid = parallel && checked;
-  const solved =
-    challengeMoved && pairs[0] && pairs[1] && !pairs[2] && !pairs[3];
+  const [saved,setSaved]=useState(()=>{try{return typeof window!=="undefined"&&localStorage.getItem("math-lesson-10061-saved")==="true";}catch{return false;}});
+  const model=aiModel10061(geometry),angle=model.values[3],acute=model.values[4],valid=model.equal&&checked;
+  const solved=challengeMoved&&aiPairs10061(pairs);
+  const targets=['ai10061-interact','ai10061-learn','ai10061-example','ai10061-formula','ai10061-practice'];
   const act = (fn: () => void) => {
     fn();
     setActions((n) => n + 1);
   };
   const reset = () =>
     act(() => {
-      setAngle(117);
-      setOffset(0);
+      setGeometry(aiStart10061);
       setParallel(true);
       setLabels(true);
       setChecked(true);
@@ -42,10 +44,15 @@ export default function AlternateInteriorTargetLesson10061({
       className="ai10061-page"
       data-testid="school-mockup-0735"
       data-object-model="dedicated-alternate-interior-position-equality-converse-engine"
-      data-angle={angle}
-      data-supplement={acute}
-      data-offset={offset}
-      data-parallel={String(parallel)}
+      data-angle={fmt(angle)}
+      data-geometry={JSON.stringify(geometry)}
+      data-readouts={JSON.stringify(model.values)}
+      data-checked={checked}
+      data-mode={parallel?"parallel":"converse"}
+      data-challenge-moved={challengeMoved}
+      data-supplement={fmt(acute)}
+      data-offset={geometry.offset}
+      data-parallel={String(model.equal)}
       data-labels={String(labels)}
       data-selected={pairs
         .map((v, i) => (v ? i : -1))
@@ -54,7 +61,7 @@ export default function AlternateInteriorTargetLesson10061({
       data-solved={String(solved)}
       data-actions={actions}
     >
-      <header className="ai10061-hero">
+      <div role="banner" className="ai10061-hero">
         <small>CLASS 9 · EUCLIDEAN GEOMETRY</small>
         <h1>Alternate Interior Angles</h1>
         <p>
@@ -70,33 +77,33 @@ export default function AlternateInteriorTargetLesson10061({
         </div>
         <Link to="/lessons/school">
           <ArrowLeft /> School lessons
-        </Link>
-      </header>
-      <nav className="ai10061-tabs">
+        </Link><button className="ai10061-save" aria-label={saved?'Unsave lesson':'Save lesson'} aria-pressed={saved} onClick={()=>{const next=!saved;setSaved(next);try{localStorage.setItem('math-lesson-10061-saved',String(next));}catch{/* Bookmark remains available for this session. */}}}><Bookmark fill={saved?'currentColor':'none'}/></button>
+      </div>
+      <div role="group" aria-label="Lesson sections" className="ai10061-tabs">
         {tabs.map((item, i) => (
           <button
             key={item}
             className={tab === i ? "active" : ""}
-            aria-selected={tab === i}
-            onClick={() => act(() => setTab(i))}
+            aria-pressed={tab === i}
+            onClick={() => act(() => {setTab(i);document.getElementById(targets[i])?.scrollIntoView({behavior:"smooth",block:"start"});})}
           >
             {item}
           </button>
         ))}
-      </nav>
+      </div>
       <main>
-        <section className="ai10061-explorer">
+        <section id="ai10061-interact" className="ai10061-explorer">
           <header>
             <h2>Explore Alternate Interior Angles</h2>
             <p>
               Drag the purple transversal to see how alternate interior angles
-              stay equal.
+              stay equal when ℓ ∥ m.
             </p>
             <div>
               <button onClick={reset}>
                 <RotateCcw /> Reset
               </button>
-              <button onClick={() => act(() => setChecked(true))}>
+              <button aria-label="Check angles" onClick={() => act(() => setChecked(true))}>
                 ☑ Check
               </button>
               <Toggle
@@ -114,13 +121,17 @@ export default function AlternateInteriorTargetLesson10061({
                 <div>
                   <button
                     className={parallel ? "active" : ""}
-                    onClick={() => act(() => setParallel(true))}
+                    aria-pressed={parallel}
+                    aria-label="Lines are parallel"
+                    onClick={() => act(() => {setParallel(true);setGeometry(g=>({...g,m:g.l}));setChecked(false);})}
                   >
                     Lines are parallel
                   </button>
                   <button
                     className={!parallel ? "active" : ""}
-                    onClick={() => act(() => setParallel(false))}
+                    aria-pressed={!parallel}
+                    aria-label="Converse"
+                    onClick={() => act(() => {setParallel(false);setGeometry(g=>({...g,m:g.l===g.m?8:g.m}));setChecked(false);})}
                   >
                     Converse ⓘ
                   </button>
@@ -130,42 +141,33 @@ export default function AlternateInteriorTargetLesson10061({
                 <h3>Angle Readouts</h3>
                 <div className="ai10061-readouts">
                   <span>
-                    ∠3<b>{angle}°</b>
+                    ∠3<b>{fmt(model.values[3])}°</b>
                   </span>
                   <span>
-                    ∠5<b>{parallel ? angle : angle - 9}°</b>
+                    ∠5<b>{fmt(model.values[5])}°</b>
                   </span>
                   <span>
-                    ∠4<b>{acute}°</b>
+                    ∠4<b>{fmt(model.values[4])}°</b>
                   </span>
                   <span>
-                    ∠6<b>{parallel ? acute : acute + 9}°</b>
+                    ∠6<b>{fmt(model.values[6])}°</b>
                   </span>
                 </div>
               </section>
               <section>
                 <h3>Selected Pair</h3>
-                <p className={valid ? "equal" : "unequal"}>
-                  ∠3 and ∠5 <b>{valid ? "Equal ✓" : "Unequal"}</b>
+                <p className={!checked?"ai10061-unchecked":valid?"ai10061-equal":"ai10061-unequal"}>
+                  ∠3 and ∠5 <b>{!checked?"Check values":valid?"Equal ✓":"Unequal"}</b>
                 </p>
               </section>
+              <label className="ai10061-range">Transversal direction<input aria-label="Transversal direction" type="range" min="35" max="145" value={geometry.angle} onChange={e=>act(()=>{setGeometry(g=>({...g,angle:+e.target.value}));setChecked(false);})}/><b>{fmt(geometry.angle)}°</b></label>
+              {!parallel&&<section className="ai10061-converse"><h3>Test the converse</h3><label>Rotate m<input aria-label="Line m tilt" type="range" min="-8" max="8" value={geometry.m} onChange={e=>act(()=>{setGeometry(g=>({...g,m:+e.target.value}));setChecked(false);})}/><b>{fmt(geometry.m)}°</b></label><button onClick={()=>act(()=>{setGeometry(g=>({...g,m:g.l}));setChecked(false);})}>Align m with ℓ</button><p>Equal alternate interior angles prove parallelism. Match the line directions, then check.</p></section>}
+              <p className="ai10061-rounding">Labels round to two decimals. Exact line directions determine equality.</p>
               <p className="purple">● ∠3 and ∠5 (alternate interior)</p>
               <p className="orange">● ∠4 and ∠6 (alternate interior)</p>
             </aside>
             <article>
-              <AlternateDiagram
-                angle={angle}
-                offset={offset}
-                labels={labels}
-                parallel={parallel}
-                onMove={(nextOffset, nextAngle) =>
-                  act(() => {
-                    setOffset(nextOffset);
-                    setAngle(nextAngle);
-                    setChecked(false);
-                  })
-                }
-              />
+              <AlternateDiagram geometry={geometry} labels={labels} free={!parallel} change={g=>act(()=>{setGeometry(pcClamp10063(g));setChecked(false);})} restore={g=>{setGeometry(g);setChecked(checked);}}/>
             </article>
           </div>
           <footer>
@@ -173,9 +175,9 @@ export default function AlternateInteriorTargetLesson10061({
             ∠4 = ∠6.
           </footer>
         </section>
-        <section className="ai10061-theory">
+        <section id="ai10061-learn" className="ai10061-theory">
           <article>
-            <h2>▱ Why it works</h2>
+            <h2 id="ai10061-formula">▱ Why it works</h2>
             <h3>When two parallel lines are cut by a transversal:</h3>
             <p>
               <Check /> Alternate interior angles are between the lines and on
@@ -198,9 +200,9 @@ export default function AlternateInteriorTargetLesson10061({
             </aside>
           </article>
           <article>
-            <h2>▣ Worked Example</h2>
-            <p>If ∠3 = 117°, find ∠5.</p>
-            <MiniAlternate />
+            <h2 id="ai10061-example">▣ Worked Example</h2>
+            <p>For parallel lines, if ∠3 = 117°, find ∠5.</p>
+            <MiniAlternate worked />
             <ol>
               <li>∠3 and ∠5 are alternate interior angles.</li>
               <li>Lines ℓ and m are parallel.</li>
@@ -224,29 +226,22 @@ export default function AlternateInteriorTargetLesson10061({
             <MiniAlternate />
           </article>
         </section>
-        <section className="ai10061-challenge">
+        <section id="ai10061-practice" className="ai10061-challenge">
           <header>
             <h2>Challenge: Find the Alternate Interior Pairs</h2>
             <p>
               Drag the purple transversal anywhere on the parallel lines, then
               select the two pairs of alternate interior angles.
-            </p>
+            </p><button className="ai10061-challenge-reset" onClick={()=>act(()=>{setChallengeGeometry(aiStart10061);setChallengeMoved(false);setPairs([false,false,false,false]);})}>Reset challenge</button>
           </header>
           <div>
-            <AlternateDiagram
-              angle={117}
-              offset={challengeMoved ? 25 : -20}
-              labels
-              parallel
-              onMove={() => act(() => setChallengeMoved(true))}
-              compact
-            />
+            <AlternateDiagram geometry={challengeGeometry} labels compact change={g=>act(()=>{const next=pcClamp10063(g);if(next.angle!==challengeGeometry.angle||next.offset!==challengeGeometry.offset)setChallengeMoved(true);setChallengeGeometry(next);})} restore={g=>{setChallengeGeometry(g);setChallengeMoved(challengeMoved);}}/>
             <section>
               <h3>Step 1: Drag the transversal</h3>
               <p>Move t to any position.</p>
               <button
                 className={challengeMoved ? "done" : ""}
-                onClick={() => act(() => setChallengeMoved(true))}
+                onClick={() => act(() => {setChallengeGeometry(g=>({...g,offset:g.offset>=40?-40:Math.min(40,g.offset+8)}));setChallengeMoved(true);})}
               >
                 <Check />{" "}
                 {challengeMoved
@@ -278,14 +273,14 @@ export default function AlternateInteriorTargetLesson10061({
               )}
             </section>
             <aside className={solved ? "solved" : ""}>
-              <b>🏆</b>
+              <div className="ai10061-trophy"><Trophy/></div>
               <h2>{solved ? "Well done!" : "Keep exploring"}</h2>
               <p>
                 {solved
                   ? "You found both pairs correctly."
                   : "Move the transversal and select two pairs."}
               </p>
-              <span>⌁⌁⌁</span>
+              <svg className="ai10061-celebration" viewBox="0 0 240 100" aria-hidden="true"><path d="M5 45C20 100 70 0 40 20S70 110 120 70S200 30 235 45M100 70C160 20 190 110 150 90S140 45 170 45"/></svg><p className="ai10061-keep">Keep exploring by moving the transversal!</p>
             </aside>
           </div>
         </section>
@@ -317,21 +312,21 @@ export default function AlternateInteriorTargetLesson10061({
               <article key={title}>
                 <i>{icon}</i>
                 <b>{title}</b>
-                <p>{text}</p>
+                <p>{text}</p>{title==="Equality"&&<footer className="ai10061-equality-formula"><span>∠3 = ∠5</span>, <span>∠4 = ∠6</span></footer>}
               </article>
             ))}
           </div>
         </section>
       </main>
-      <nav className="ai10061-adjacent">
+      <nav className="ai10061-nav">
         <Link to="/lessons/school/class-9/class-9-euclidean-geometry-corresponding-angles">
-          <ArrowLeft /> Previous: Corresponding Angles
+          <ArrowLeft /> Corresponding Angles
         </Link>
-        <Link to="/lessons/school">
-          Next: Interior Angles on the Same Side <ArrowRight />
+        <Link to="/lessons/school/class-9/class-9-euclidean-geometry-interior-angles-on-the-same-side">
+          Interior Angles on the Same Side <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10061} view={tab} />
+      <footer className="ai10061-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><div><Link to="/sitemap">Sitemap</Link><Link to="/docs">Docs</Link><Link to="/about">About</Link></div><small>©2026 INDIAN SERVERS PRIVATE LIMITED. RIGHT NOT TO REPRODUCE IT.</small></footer>
 
     </section>
   );
@@ -358,110 +353,12 @@ function Toggle({
     </label>
   );
 }
-function AlternateDiagram({
-  angle,
-  offset,
-  labels,
-  parallel,
-  onMove,
-  compact = false,
-}: {
-  angle: number;
-  offset: number;
-  labels: boolean;
-  parallel: boolean;
-  onMove: (offset: number, angle: number) => void;
-  compact?: boolean;
-}) {
-  const move = (e: React.PointerEvent<SVGCircleElement>) => {
-    if (e.buttons !== 1) return;
-    const svg = e.currentTarget.ownerSVGElement!,
-      box = svg.getBoundingClientRect(),
-      x = ((e.clientX - box.left) / box.width) * 560;
-    onMove(Math.round(x - 280), angle);
-  };
-  return (
-    <svg
-      className={`ai10061-diagram ${compact ? "compact" : ""}`}
-      viewBox="0 0 560 500"
-      aria-label="Interactive alternate interior angle diagram"
-    >
-      <rect className="interior" x="120" y="165" width="330" height="220" />
-      <line className="base" x1="50" y1="165" x2="510" y2="165" />
-      <line
-        className="base"
-        x1="50"
-        y1="385"
-        x2="510"
-        y2={parallel ? 385 : 370}
-      />
-      <line
-        className="transversal"
-        x1={200 + offset}
-        y1="30"
-        x2={390 + offset}
-        y2="470"
-      />
-      <circle
-        className="handle"
-        cx={295 + offset}
-        cy="250"
-        r="13"
-        tabIndex={0}
-        onPointerMove={move}
-        onKeyDown={(e) => {
-          if (e.key === "ArrowRight") onMove(offset + 8, angle);
-          if (e.key === "ArrowLeft") onMove(offset - 8, angle);
-          if (e.key === "ArrowUp") onMove(offset, Math.min(175, angle + 1));
-        }}
-      />
-      {labels && (
-        <>
-          {[
-            [1, 230, 145],
-            [2, 273, 145],
-            [3, 247, 195],
-            [4, 295, 195],
-            [5, 330, 365],
-            [6, 377, 365],
-            [7, 350, 415],
-            [8, 398, 415],
-          ].map(([n, x, y]) => (
-            <text key={n} x={x + offset} y={y}>
-              {n}
-            </text>
-          ))}
-        </>
-      )}
-      <text className="name" x="32" y="155">
-        ℓ
-      </text>
-      <text className="name" x="32" y="376">
-        m
-      </text>
-      <text className="name" x={205 + offset} y="25">
-        t
-      </text>
-    </svg>
-  );
+function AlternateDiagram({geometry,labels=true,free=false,compact=false,change,restore,mini,worked=false}:{geometry:PCState10063;labels?:boolean;free?:boolean;compact?:boolean;change?:(g:PCState10063)=>void;restore?:(g:PCState10063)=>void;mini?:'correct'|'wrong';worked?:boolean}){
+ const ref=useRef<SVGSVGElement>(null),id=useId().replace(/:/g,''),gesture=useRef<{pid:number;before:PCState10063;kind:string;x:number;y:number;moved:boolean;startX?:number;cancel?:((g:PCState10063)=>void)}|null>(null),m=aiModel10061(geometry),negative=(p:PCPoint10063)=>({x:-p.x,y:-p.y}),lines=[pcLine10063({x:300,y:190},m.l)!,pcLine10063({x:300,y:390},m.m)!,pcLine10063(m.origin,m.t)!],rotation=pcAdd10063(m.origin,m.t,-110),lower=pcAdd10063({x:300,y:390},m.m,180);
+ const specs=[{n:1,p:m.upper!,a:negative(m.t),b:negative(m.l),v:m.values[4]},{n:2,p:m.upper!,a:negative(m.t),b:m.l,v:m.values[3]},{n:3,p:m.upper!,a:m.t,b:negative(m.l),v:m.values[3]},{n:4,p:m.upper!,a:m.t,b:m.l,v:m.values[4]},{n:5,p:m.lower!,a:negative(m.t),b:m.m,v:m.values[5]},{n:6,p:m.lower!,a:negative(m.t),b:negative(m.m),v:m.values[6]},{n:7,p:m.lower!,a:m.t,b:negative(m.m),v:m.values[5]},{n:8,p:m.lower!,a:m.t,b:m.m,v:m.values[6]}];
+ const update=(e:React.PointerEvent<SVGElement>,end=false)=>{const d=gesture.current;if(!d||d.pid!==e.pointerId)return;if(Math.hypot(e.clientX-d.x,e.clientY-d.y)>.5)d.moved=true;if(d.moved){const matrix=ref.current?.getScreenCTM();if(matrix){const q=new DOMPoint(e.clientX,e.clientY).matrixTransform(matrix.inverse()),g={...d.before};if(d.kind==='line')g.offset=d.before.offset+q.x-d.startX!;else if(d.kind==='move')g.offset=q.x-300;else if(d.kind==='lower')g.m=Math.atan2(q.y-390,q.x-300)*180/Math.PI;else if(Math.hypot(q.x-m.origin.x,q.y-m.origin.y)>20){let a=Math.atan2(q.y-m.origin.y,q.x-m.origin.x)*180/Math.PI;while(a<0)a+=180;while(a>180)a-=180;g.angle=a;}change?.(pcClamp10063(g));}}if(end)gesture.current=null;};
+ function handle(kind:string,p:PCPoint10063,label:string){return <g key={kind}><circle className="ai10061-halo" cx={p.x} cy={p.y} r="9"/><circle role="slider" aria-label={label} aria-valuetext={String(kind==='move'?geometry.offset:kind==='lower'?geometry.m:geometry.angle)} className="handle" cx={p.x} cy={p.y} r="19" tabIndex={0} onPointerDown={e=>{if(gesture.current)return;e.preventDefault();e.currentTarget.setPointerCapture(e.pointerId);gesture.current={pid:e.pointerId,before:geometry,kind,x:e.clientX,y:e.clientY,moved:false,cancel:restore};}} onPointerMove={e=>update(e)} onPointerUp={e=>update(e,true)} onPointerCancel={e=>{const d=gesture.current;if(d?.pid===e.pointerId){d.cancel?.(d.before);gesture.current=null;}}} onKeyDown={e=>{if(!e.key.startsWith('Arrow'))return;e.preventDefault();const key=kind==='move'?'offset':kind==='lower'?'m':'angle',sign=e.key==='ArrowRight'||e.key==='ArrowUp'?1:-1;change?.(pcClamp10063({...geometry,[key]:geometry[key]+sign*(e.shiftKey?5:1)}));}}/></g>;}
+ const bottom=(x:number)=>390+(x-300)*Math.tan(geometry.m*Math.PI/180),top=(x:number)=>190+(x-300)*Math.tan(geometry.l*Math.PI/180);
+ return <svg ref={ref} className={mini?'ai10061-mini':`ai10061-diagram ${compact?'compact':''}`} viewBox="0 0 600 570" aria-label={mini?mini==='wrong'?'Exterior angle1 and interior angle5 are not an alternate interior pair':worked?'Worked alternate interior example':'Correct alternate interior pair3 and5':compact?'Challenge alternate interior diagram':'Interactive alternate interior angle diagram'} data-geometry={JSON.stringify(geometry)} data-values={JSON.stringify(m.values)}><defs>{['base','purple'].map(color=><marker key={color} id={`ai-${color}-${id}`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill={color==='base'?'#182437':'#7433dc'}/></marker>)}</defs><path className="interior" d={`M160 ${top(160)}L440 ${top(440)}L440 ${bottom(440)}L160 ${bottom(160)}Z`}/>{lines.map((v,i)=><line key={i} data-line={['l','m','t'][i]} className={i===2?'transversal':'base'} x1={v[0].x} y1={v[0].y} x2={v[1].x} y2={v[1].y} markerStart={`url(#ai-${i===2?'purple':'base'}-${id})`} markerEnd={`url(#ai-${i===2?'purple':'base'}-${id})`}/>)}{!mini&&<line className="ai10061-line-hit" data-testid={compact?'challenge-transversal-line':'explorer-transversal-line'} x1={lines[2][0].x} y1={lines[2][0].y} x2={lines[2][1].x} y2={lines[2][1].y} onPointerDown={e=>{if(gesture.current)return;const matrix=ref.current?.getScreenCTM();if(!matrix)return;e.preventDefault();e.currentTarget.setPointerCapture(e.pointerId);const q=new DOMPoint(e.clientX,e.clientY).matrixTransform(matrix.inverse());gesture.current={pid:e.pointerId,before:geometry,kind:'line',x:e.clientX,y:e.clientY,moved:false,startX:q.x,cancel:restore};}} onPointerMove={e=>update(e)} onPointerUp={e=>update(e,true)} onPointerCancel={e=>{const d=gesture.current;if(d?.pid===e.pointerId){d.cancel?.(d.before);gesture.current=null;}}}/>} {specs.map(spec=>{const s=paSector10074(spec.p,pcAdd10063(spec.p,spec.a,200),pcAdd10063(spec.p,spec.b,200),34);if(!s)return null;const active=mini?mini==='wrong'?[1,5].includes(spec.n):[3,5].includes(spec.n):[3,4,5,6].includes(spec.n),color=mini==='wrong'&&spec.n===5?'green':[3,5].includes(spec.n)||mini==='wrong'&&spec.n===1?'purple':'orange',show=mini?active:labels;return <g key={spec.n} className={`ai10061-angle ${active?color:'ai10061-exterior'}`} data-angle-index={spec.n} data-measure={spec.v} data-at={`${spec.p.x},${spec.p.y}`} data-ray-a={`${spec.a.x},${spec.a.y}`} data-ray-b={`${spec.b.x},${spec.b.y}`}>{active&&<path d={s.path}/>} {show&&<text x={s.label.x} y={s.label.y} textAnchor="middle" dominantBaseline="middle">{worked?spec.n===3?'117°':'?':spec.n}</text>}</g>;})}{mini==='wrong'&&<path className="dash" d={`M${m.upper!.x+30} ${m.upper!.y-70}Q540 280 ${m.lower!.x+45} ${m.lower!.y-35}`}/>}<text className="name" x="25" y="176">ℓ</text><text className="name" x="25" y={lines[1][0].y-14}>m</text><text className="name" x={lines[2][0].x+15} y={lines[2][0].y+20}>t</text>{!mini&&<>{handle('move',m.origin,'Move transversal')}{handle('rotate',rotation,'Rotate transversal')}{free&&handle('lower',lower,'Rotate line m')}</>}</svg>;
 }
-function MiniAlternate({ wrong = false }: { wrong?: boolean }) {
-  return (
-    <svg className="ai10061-mini" viewBox="0 0 220 150">
-      <rect x="20" y="45" width="180" height="70" />
-      <line x1="10" y1="45" x2="210" y2="45" />
-      <line x1="10" y1="115" x2="210" y2="115" />
-      <line x1="100" y1="145" x2="135" y2="5" />
-      <path
-        className="purple"
-        d={
-          wrong
-            ? "M125 45H103A23 23 0 0 1 130 22Z"
-            : "M117 45L96 45A23 23 0 0 0 112 68Z"
-        }
-      />
-      <path className="green" d="M100 115H78A23 23 0 0 1 105 92Z" />
-      {wrong && <path className="dash" d="M135 30Q190 60 110 108" />}
-    </svg>
-  );
-}
+function MiniAlternate({wrong=false,worked=false}:{wrong?:boolean;worked?:boolean}){return <AlternateDiagram geometry={aiStart10061} mini={wrong?'wrong':'correct'} worked={worked}/>;}

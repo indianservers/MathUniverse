@@ -622,3 +622,9 @@ body:has(.il277-page) {
     min-width: 780px;
   }
 }
+
+@media(max-width:900px){.il277-page .il277-hero,.il277-page .il277-flow,.il277-page .il277-model,.il277-page .il277-lab .proof,.il277-page .il277-learning{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.il277-page .il277-hero>*,.il277-page .il277-flow>*,.il277-page .il277-model>*,.il277-page .il277-lab .proof>*,.il277-page .il277-learning>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.il277-page .il277-lab{height:auto}.il277-page .il277-lab>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.il277-page .il277-model>div,.il277-page .il277-side{height:auto}.il277-page .il277-graph .handles,.il277-page .il277-graph>p{position:static;width:auto;height:auto;display:flex;flex-wrap:wrap;gap:12px}.il277-page .il277-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+@media(max-width:900px){.il277-page .il277-lab .facts{height:auto;display:flex;flex-wrap:wrap;gap:8px}.il277-page .il277-lab .facts>*{min-width:0;overflow-wrap:anywhere}}

@@ -528,7 +528,7 @@ export default function HyperbolicFunctionsTargetLesson145({
               <h2>
                 Values at <i>t</i> = {t.toFixed(2)}
               </h2>
-              <table>
+              <div className="lesson-table-scroll-202"><table>
                 <thead>
                   <tr>
                     <th>Function</th>
@@ -554,7 +554,7 @@ export default function HyperbolicFunctionsTargetLesson145({
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </table></div>
             </article>
             <article className="hyp145-challenge">
               <h2>Quick challenge</h2>
@@ -651,7 +651,7 @@ export default function HyperbolicFunctionsTargetLesson145({
           <section className="hyp145-compare">
             <h2>Compare with circular trig</h2>
             <div>
-              <table>
+              <div className="lesson-table-scroll-202"><table>
                 <thead>
                   <tr>
                     <th>Circular</th>
@@ -672,7 +672,7 @@ export default function HyperbolicFunctionsTargetLesson145({
                     <td>tanh t</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
               <svg viewBox="0 0 125 105">
                 <line x1="5" x2="120" y1="55" y2="55" />
                 <line x1="62" x2="62" y1="5" y2="100" />

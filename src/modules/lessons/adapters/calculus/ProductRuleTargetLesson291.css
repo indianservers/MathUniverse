@@ -709,3 +709,9 @@ body:has(.prd291-page) {
     min-width: 780px;
   }
 }
+
+@media(max-width:900px){.prd291-page .prd291-flow,.prd291-page .prd291-lab,.prd291-page .prd291-learn,.prd291-page .prd291-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.prd291-page .prd291-flow>*,.prd291-page .prd291-lab>*,.prd291-page .prd291-learn>*,.prd291-page .prd291-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.prd291-page .prd291-lab>*{height:auto}.prd291-page .prd291-lab .legend,.prd291-page .prd291-lab .graph>small{position:static;display:block}.prd291-page .prd291-practice{padding:12px}.prd291-page .prd291-practice>header,.prd291-page .prd291-practice main button{position:static}.prd291-page .prd291-practice>label{grid-template-columns:minmax(0,1fr);border:0;padding:0}.prd291-page .prd291-practice input{max-width:100%;min-width:0}.prd291-page .prd291-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.prd291-page .prd291-table-scroll{max-width:100%;overflow-x:auto}

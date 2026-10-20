@@ -661,3 +661,7 @@ body:has(.td282-page) {
     min-width: 1200px;
   }
 }
+
+@media(max-width:900px){.td282-page .td282-lab,.td282-page .td282-graphs,.td282-page .td282-rules,.td282-page .td282-takeaways,.td282-page .td282-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.td282-page .td282-lab>*,.td282-page .td282-graphs>*,.td282-page .td282-rules>*,.td282-page .td282-takeaways>*,.td282-page .td282-nav>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.td282-page .td282-lab>main{height:auto}.td282-page .td282-lab>main>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.td282-page .td282-card{height:auto}.td282-page .td282-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}.td282-page .td282-card svg{width:100%;height:auto;touch-action:none}.td282-page .td282-card [data-drag]{cursor:grab}}

@@ -429,7 +429,6 @@ const trigSpecs: TrigSpec[] = [
   t(
     "0331",
     274,
-    275,
     "Elevation and Depression",
     "Model heights and distances.",
     "application",

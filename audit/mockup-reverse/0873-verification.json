@@ -4,13 +4,13 @@
   "overflow": [
     {
       "width": 390,
-      "client": 360,
-      "scroll": 360
+      "client": 375,
+      "scroll": 375
     },
     {
       "width": 768,
-      "client": 738,
-      "scroll": 738
+      "client": 753,
+      "scroll": 753
     },
     {
       "width": 1440,

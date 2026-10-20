@@ -10,62 +10,18 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./ProofStructureTargetLesson10057.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-type Fact = {
-  id: string;
-  statement: string;
-  reason: string;
-  kind: string;
-  cardTitle?: string;
-  cardDetail?: string;
-};
-const facts: Fact[] = [
-  { id: "G1", statement: "AB = AC", reason: "Given", kind: "Given" },
-  {
-    id: "D1",
-    statement: "△ABC is isosceles.",
-    reason: "Definition of isosceles triangle",
-    kind: "Definition",
-    cardTitle: "Definition of isosceles triangle",
-  },
-  {
-    id: "T1",
-    statement: "∠B = ∠C",
-    reason: "Isosceles Triangle Theorem",
-    kind: "Axiom / Theorem",
-    cardTitle: "Isosceles Triangle Theorem",
-    cardDetail: "If AB = AC, then ∠B = ∠C.",
-  },
-  {
-    id: "R1",
-    statement: "AB = AB",
-    reason: "Reflexive Property",
-    kind: "Axiom / Theorem",
-    cardTitle: "Reflexive Property",
-    cardDetail: "AB = AB.",
-  },
-  {
-    id: "D2",
-    statement: "An angle is formed by two rays with a common endpoint.",
-    reason: "Definition of ∠",
-    kind: "Definition",
-    cardTitle: "Definition of ∠",
-    cardDetail:
-      "An angle is the figure formed by two rays with a common endpoint.",
-  },
-  { id: "G2", statement: "Given: △ABC", reason: "Given", kind: "Given" },
-];
-const expected = ["G1", "D1", "T1"];
+import{proofFacts10057 as facts,proofExpected10057 as expected,proofInitial10057,proofBroken10057,proofValidate10057,type ProofRow10057}from'./proofStructureModel10057';
+const reasons=[...new Set(facts.map(f=>f.reason))];
 export default function ProofStructureTargetLesson10057({
   lesson: _lesson,
 }: {
   lesson: SchoolSyllabusLesson;
 }) {
-  const [proof, setProof] = useState([...expected]),
+  const [proof, setProof] = useState<ProofRow10057[]>(proofInitial10057),
     [tab, setTab] = useState("Interact"),
     [checked, setChecked] = useState(true),
     [extraGiven, setExtraGiven] = useState(false),
-    [fixes, setFixes] = useState(["wrong", "wrong", "wrong"]),
+    [fixes, setFixes] = useState<ProofRow10057[]>(proofBroken10057),
     [fixChecked, setFixChecked] = useState(false),
     [hints, setHints] = useState(2),
     [actions, setActions] = useState(0);
@@ -73,15 +29,10 @@ export default function ProofStructureTargetLesson10057({
     fn();
     setActions((n) => n + 1);
   };
-  const valid =
-    proof.length === 3 && proof.every((id, i) => id === expected[i]);
-  const add = (id: string) =>
-    act(() => {
-      setChecked(false);
-      setProof((current) =>
-        current.includes(id) ? current : [...current, id],
-      );
-    });
+  const result=proofValidate10057(proof),valid=result.valid,repair=proofValidate10057(fixes);
+  const add=(id:string)=>{if(!facts.some(f=>f.id===id))return;act(()=>{setChecked(false);setProof(current=>current.some(r=>r.id===id)?current:[...current,{id,reason:facts.find(f=>f.id===id)!.reason}]);});};
+  const changeRow=(index:number,reason:string)=>act(()=>{setChecked(false);setProof(rows=>rows.map((row,i)=>i===index?{...row,reason}:row));});
+  const moveRow=(i:number,d:number)=>act(()=>{setChecked(false);setProof(rows=>{const next=[...rows];[next[i],next[i+d]]=[next[i+d],next[i]];return next;});});
   const clear = () =>
     act(() => {
       setProof([]);
@@ -89,25 +40,23 @@ export default function ProofStructureTargetLesson10057({
     });
   const resetChallenge = () =>
     act(() => {
-      setFixes(["wrong", "wrong", "wrong"]);
+      setFixes(proofBroken10057());
       setFixChecked(false);
       setHints(2);
     });
-  const fixScore = fixes.filter(
-    (value, i) => value === ["G1", "D1", "T1"][i],
-  ).length;
+  const fixScore=repair.steps.filter(s=>s.valid).length;
   return (
     <section
       className="ps10057-page"
       data-testid="school-mockup-0731"
       data-object-model="dedicated-ordered-proof-reason-and-repair-engine"
-      data-proof={proof.join(",")}
+      data-proof={proof.map(row=>row.id).join(",")}
       data-valid={String(checked && valid)}
       data-extra-given={String(extraGiven)}
       data-fix-score={fixChecked ? fixScore : "idle"}
       data-actions={actions}
     >
-      <header className="ps10057-hero">
+      <div role="banner" className="ps10057-hero">
         <small>CLASS 9 · EUCLIDEAN GEOMETRY</small>
         <h1>Proof Structure and Logical Statements</h1>
         <p>
@@ -123,31 +72,31 @@ export default function ProofStructureTargetLesson10057({
         <Link to="/lessons/school">
           <ArrowLeft /> School lessons
         </Link>
-      </header>
-      <nav className="ps10057-tabs">
+      </div>
+      <div role="group" aria-label="Lesson sections" className="ps10057-tabs">
         {["Interact", "Learn", "Example", "Formula", "Practice"].map((item) => (
           <button
             key={item}
             className={tab === item ? "active" : ""}
-            aria-selected={tab === item}
-            onClick={() => act(() => setTab(item))}
+            aria-pressed={tab === item}
+            onClick={() => act(() => {setTab(item);document.getElementById(({Interact:"ps10057-interact",Learn:"ps10057-learn",Example:"ps10057-example",Formula:"ps10057-formula",Practice:"ps10057-practice"} as Record<string,string>)[item])?.scrollIntoView({behavior:"smooth",block:"start"});})}
           >
             {item}
           </button>
         ))}
-      </nav>
+      </div>
       <main>
-        <section className="ps10057-builder">
+        <section id="ps10057-interact" className="ps10057-builder">
           <header>
             <div>
               <h2>INTERACTIVE PROOF BUILDER</h2>
               <p>
-                Drag facts on the left to build your proof. Connect each step to
+                Drag or tap a fact to build your proof. Connect each step to
                 a valid reason.
               </p>
             </div>
-            <strong className={valid ? "ok" : "bad"}>
-              <Check /> {valid ? "All steps valid" : "Proof incomplete"}
+            <strong className={checked&&valid ? "ps10057-ok" : "ps10057-bad"}>
+              <Check /> {checked&&valid ? "All steps valid" : checked ? "Review proof" : "Not checked"}
             </strong>
           </header>
           <div className="ps10057-work">
@@ -169,7 +118,7 @@ export default function ProofStructureTargetLesson10057({
                   </p>
                 )}
                 <button onClick={() => act(() => setExtraGiven((v) => !v))}>
-                  ＋ Add given (optional)
+                  {extraGiven?"− Remove optional given":"＋ Add given (optional)"}
                 </button>
               </article>
             </aside>
@@ -184,6 +133,7 @@ export default function ProofStructureTargetLesson10057({
               <div className="ps10057-facts">
                 {facts.map((fact) => (
                   <button
+                    aria-label={`Add fact: ${fact.id}`}
                     key={fact.id}
                     draggable
                     onDragStart={(e) => e.dataTransfer.setData("fact", fact.id)}
@@ -211,18 +161,16 @@ export default function ProofStructureTargetLesson10057({
                   </tr>
                 </thead>
                 <tbody>
-                  {proof.map((id, index) => {
+                  {proof.map((row, index) => {
+                    const id=row.id;
                     const f = facts.find((item) => item.id === id)!;
                     return (
                       <tr key={id}>
                         <td>
                           <i>{index + 1}</i>
                         </td>
-                        <td>{f.statement}</td>
-                        <td>
-                          <i>{index + 1}</i> {f.reason}{" "}
-                          {id === expected[index] && <Check />}
-                        </td>
+                        <td>{f.statement}<div className="ps10057-row-tools"><button aria-label={`Move step ${index+1} up`} disabled={index===0} onClick={()=>moveRow(index,-1)}>↑</button><button aria-label={`Move step ${index+1} down`} disabled={index===proof.length-1} onClick={()=>moveRow(index,1)}>↓</button><button aria-label={`Remove step ${index+1}`} onClick={()=>act(()=>{setChecked(false);setProof(rows=>rows.filter((_,i)=>i!==index));})}>×</button></div></td>
+                        <td><select aria-label={`Reason for step ${index+1}`} value={row.reason} onChange={e=>changeRow(index,e.target.value)}><option value="">Choose reason</option>{reasons.map(r=><option key={r}>{r}</option>)}</select><span className="ps10057-mobile-reason">{row.reason||"Choose a reason"}</span>{checked&&(result.steps[index].valid?<Check/>:<span className="ps10057-step-error">{result.steps[index].message}</span>)}</td>
                       </tr>
                     );
                   })}
@@ -231,7 +179,7 @@ export default function ProofStructureTargetLesson10057({
               <div
                 className="ps10057-drop"
                 onDragOver={(e) => e.preventDefault()}
-                onDrop={(e) => add(e.dataTransfer.getData("fact"))}
+                onDrop={(e) => {e.preventDefault();add(e.dataTransfer.getData("fact"));}}
               >
                 ◴ Drop the next fact here to add a step
               </div>
@@ -245,7 +193,7 @@ export default function ProofStructureTargetLesson10057({
               </footer>
             </article>
           </div>
-          <footer className={checked && valid ? "success" : "pending"}>
+          <footer role="status" className={checked && valid ? "ps10057-success" : "ps10057-pending"}>
             {checked && valid ? (
               <>
                 <Check />
@@ -255,13 +203,13 @@ export default function ProofStructureTargetLesson10057({
                 </span>
               </>
             ) : (
-              "Complete the ordered proof, then check it."
+              checked ? (result.steps.some(s=>!s.valid)?"Review the highlighted reasons and dependencies.":"The steps are justified, but the conclusion ∠B = ∠C has not been established.") : "Build your proof, choose reasons, then check it."
             )}
           </footer>
         </section>
-        <section className="ps10057-example">
+        <section id="ps10057-learn" className="ps10057-example">
           <article>
-            <h2>WORKED EXAMPLE</h2>
+            <h2 id="ps10057-example">WORKED EXAMPLE</h2>
             <p>
               <b>Example:</b> Prove ∠B = ∠C
             </p>
@@ -271,7 +219,7 @@ export default function ProofStructureTargetLesson10057({
               <b>Prove:</b> ∠B = ∠C
             </p>
             <ProofTable />
-            <aside>
+            <aside id="ps10057-formula">
               <Lightbulb />
               <b>Why it works</b>
               <p>
@@ -282,7 +230,7 @@ export default function ProofStructureTargetLesson10057({
               </p>
             </aside>
           </article>
-          <article className="warning">
+          <article className="ps10057-warning">
             <h2>
               <TriangleAlert /> MISCONCEPTION WARNING
             </h2>
@@ -296,13 +244,12 @@ export default function ProofStructureTargetLesson10057({
             </p>
           </article>
         </section>
-        <section className="ps10057-challenge">
+        <section id="ps10057-practice" className="ps10057-challenge">
           <header>
             <div>
               <h2>CHALLENGE: REPAIR THE PROOF</h2>
               <p>
-                This proof contains one circular argument and one missing
-                reason. Fix both issues.
+                This proof assumes the conclusion, misuses a theorem, and omits a reason. Replace each row with a justified step.
               </p>
             </div>
             <button onClick={resetChallenge}>
@@ -322,50 +269,7 @@ export default function ProofStructureTargetLesson10057({
               </tr>
             </thead>
             <tbody>
-              {[
-                ["∠B = ∠C", "Given"],
-                ["△ABC is isosceles.", "Isosceles Triangle Theorem"],
-                ["AB = AC", "Definition of isosceles triangle"],
-              ].map((row, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{row[0]}</td>
-                  <td>{row[1]}</td>
-                  <td>
-                    <select
-                      aria-label={`Repair step ${index + 1}`}
-                      value={fixes[index]}
-                      onChange={(e) =>
-                        act(() => {
-                          setFixChecked(false);
-                          setFixes((current) =>
-                            current.map((v, i) =>
-                              i === index ? e.target.value : v,
-                            ),
-                          );
-                        })
-                      }
-                    >
-                      <option value="wrong">
-                        {
-                          [
-                            "Replace with the correct first statement.",
-                            "This reason uses the conclusion. Replace it.",
-                            "Missing reason. Choose the correct one.",
-                          ][index]
-                        }
-                      </option>
-                      {facts
-                        .filter((f) => expected.includes(f.id))
-                        .map((f) => (
-                          <option key={f.id} value={f.id}>
-                            {f.statement} — {f.reason}
-                          </option>
-                        ))}
-                    </select>
-                  </td>
-                </tr>
-              ))}
+              {fixes.map((row,index)=><tr key={index}><td>{index+1}</td><td>{facts.find(f=>f.id===row.id)?.statement}</td><td>{row.reason||<em>Missing reason</em>}</td><td><select aria-label={`Repair step ${index+1}`} value={facts.some(f=>f.id===row.id&&f.reason===row.reason)?row.id:'wrong'} onChange={e=>act(()=>{const f=facts.find(f=>f.id===e.target.value);if(!f)return;setFixChecked(false);setFixes(rows=>rows.map((r,i)=>i===index?{id:f.id,reason:f.reason}:r));})}><option value="wrong">{['Replace the assumed conclusion.','Replace the misused theorem.','Supply a justified step and reason.'][index]}</option>{facts.map(f=><option key={f.id} value={f.id}>{f.statement} — {f.reason}</option>)}</select>{fixChecked&&<small className={repair.steps[index].valid?'ps10057-repair-ok':'ps10057-step-error'}>{repair.steps[index].valid?'Justified':repair.steps[index].message}</small>}</td></tr>)}
             </tbody>
           </table>
           <footer>
@@ -373,40 +277,36 @@ export default function ProofStructureTargetLesson10057({
               Check my fixes
             </button>
             <button
-              onClick={() => act(() => setHints((h) => Math.max(0, h - 1)))}
+              disabled={hints===0} onClick={() => act(() => setHints((h) => Math.max(0, h - 1)))}
             >
               <Lightbulb /> Hints ({hints})
             </button>
             {fixChecked && (
               <strong>
-                {fixScore === 3
+                {repair.valid
                   ? "All repairs are logically valid."
-                  : `${fixScore}/3 repairs are correct.`}
+                  : `${fixScore}/3 steps justified. ${repair.complete?"Review the remaining steps.":"The goal has not been proved."}`}
               </strong>
             )}
-          </footer>
+          </footer>{hints<2&&<aside className="ps10057-hint" role="note"><p>Start with AB = AC as a given. The desired conclusion cannot be assumed.</p>{hints===0&&<p>Equal sides give the isosceles classification by definition. Then the Isosceles Triangle Theorem gives equal base angles.</p>}</aside>}
         </section>
       </main>
-      <nav className="ps10057-adjacent">
+      <nav className="ps10057-nav">
         <Link to="/lessons/school/class-9/class-9-euclidean-geometry-axiom-versus-theorem">
           <ArrowLeft /> Axiom versus Theorem
         </Link>
-        <Link to="/lessons/school">
+        <Link to="/lessons/school/class-9/class-9-euclidean-geometry-vertically-opposite-angles">
           Vertically Opposite Angles <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard
-        lessonId={10057}
-        view={tab}
-        boundLive={`${proof.length} reasons · ${valid ? "valid order" : "incomplete"}`}
-      />
+      <footer className="ps10057-footer"><div><b>Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p></div><nav><Link to="/sitemap">Sitemap</Link><Link to="/docs">Docs</Link><Link to="/about">About</Link></nav></footer>
 
     </section>
   );
 }
 function IsoscelesDiagram({ marked }: { marked: boolean }) {
   return (
-    <svg className="ps10057-triangle" viewBox="0 0 210 180">
+    <svg className="ps10057-triangle" viewBox="0 0 210 180" role="img" aria-label={marked?"Triangle ABC with equal sides AB and AC marked":"Triangle ABC without equality assumptions"}>
       <path d="M25 155L105 20l80 135Z" />
       <circle cx="105" cy="20" r="3" />
       <circle cx="25" cy="155" r="3" />

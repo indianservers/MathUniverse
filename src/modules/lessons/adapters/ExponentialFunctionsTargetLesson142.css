@@ -650,3 +650,5 @@ body:has(.exp142-page) footer[aria-label="Site footer"] {
     grid-template-columns: 1fr;
   }
 }
+
+@media(max-width:900px){.exp142-main .exp142-output-table{position:static;width:100%;height:auto;overflow-x:auto;margin-top:12px}.exp142-output-table>div{margin-left:0;min-width:300px}.exp142-lab,.exp142-concepts{height:auto;grid-template-rows:auto}.exp142-concepts{grid-column:auto}.exp142-concepts article{height:auto;min-height:129px}}

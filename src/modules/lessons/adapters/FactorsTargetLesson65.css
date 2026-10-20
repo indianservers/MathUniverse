@@ -680,3 +680,5 @@ body:has(.factors65-page)
     margin-top: 14px;
   }
 }
+
+@media(max-width:900px){[data-testid="number-mockup-0047"] .factors65-navigation{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}[data-testid="number-mockup-0047"] .factors65-navigation>*{min-width:0;grid-column:auto;grid-row:auto}}

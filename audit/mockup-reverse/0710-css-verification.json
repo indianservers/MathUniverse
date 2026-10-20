@@ -1,0 +1,172 @@
+{
+  "passed": true,
+  "renders": [
+    {
+      "width": 390,
+      "labels": [
+        {
+          "text": "Interact",
+          "lines": 1,
+          "scroll": 70,
+          "client": 70,
+          "font": "12px"
+        },
+        {
+          "text": "Learn",
+          "lines": 1,
+          "scroll": 70,
+          "client": 70,
+          "font": "12px"
+        },
+        {
+          "text": "Example",
+          "lines": 1,
+          "scroll": 70,
+          "client": 70,
+          "font": "12px"
+        },
+        {
+          "text": "Formula",
+          "lines": 1,
+          "scroll": 70,
+          "client": 70,
+          "font": "12px"
+        },
+        {
+          "text": "Practice",
+          "lines": 1,
+          "scroll": 70,
+          "client": 70,
+          "font": "12px"
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "labels": [
+        {
+          "text": "Interact",
+          "lines": 1,
+          "scroll": 84,
+          "client": 84,
+          "font": "12px"
+        },
+        {
+          "text": "Learn",
+          "lines": 1,
+          "scroll": 61,
+          "client": 61,
+          "font": "12px"
+        },
+        {
+          "text": "Example",
+          "lines": 1,
+          "scroll": 80,
+          "client": 80,
+          "font": "12px"
+        },
+        {
+          "text": "Formula",
+          "lines": 1,
+          "scroll": 82,
+          "client": 82,
+          "font": "12px"
+        },
+        {
+          "text": "Practice",
+          "lines": 1,
+          "scroll": 84,
+          "client": 84,
+          "font": "12px"
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "labels": [
+        {
+          "text": "Interact",
+          "lines": 1,
+          "scroll": 112,
+          "client": 112,
+          "font": "12px"
+        },
+        {
+          "text": "Learn",
+          "lines": 1,
+          "scroll": 89,
+          "client": 89,
+          "font": "12px"
+        },
+        {
+          "text": "Example",
+          "lines": 1,
+          "scroll": 108,
+          "client": 108,
+          "font": "12px"
+        },
+        {
+          "text": "Formula",
+          "lines": 1,
+          "scroll": 110,
+          "client": 110,
+          "font": "12px"
+        },
+        {
+          "text": "Practice",
+          "lines": 1,
+          "scroll": 112,
+          "client": 112,
+          "font": "12px"
+        }
+      ]
+    },
+    {
+      "width": 1680,
+      "labels": [
+        {
+          "text": "Interact",
+          "lines": 1,
+          "scroll": 112,
+          "client": 112,
+          "font": "12px"
+        },
+        {
+          "text": "Learn",
+          "lines": 1,
+          "scroll": 89,
+          "client": 89,
+          "font": "12px"
+        },
+        {
+          "text": "Example",
+          "lines": 1,
+          "scroll": 108,
+          "client": 108,
+          "font": "12px"
+        },
+        {
+          "text": "Formula",
+          "lines": 1,
+          "scroll": 110,
+          "client": 110,
+          "font": "12px"
+        },
+        {
+          "text": "Practice",
+          "lines": 1,
+          "scroll": 112,
+          "client": 112,
+          "font": "12px"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "actual saved CSS served natively, no injected styles",
+    "five single-line unclipped labels at four widths",
+    "no horizontal overflow",
+    "default live output unchanged"
+  ]
+}

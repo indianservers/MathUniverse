@@ -1,3 +1,4 @@
+import "./ParabolaTargetLesson229.css";
 import {
   ArrowLeft,
   ArrowRight,

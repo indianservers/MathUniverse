@@ -657,11 +657,11 @@ export default function VectorAdditionTargetLesson186({
             <article className="va186-result">
               <h3>● Resultant u + v</h3>
               <p>
-                (u+v)ₓ <progress min="-5" max="5" value={result.x} />
+                (u+v)ₓ <meter min={-5} max={5} value={result.x} />
                 <b>{result.x}</b>
               </p>
               <p>
-                (u+v)ᵧ <progress min="-5" max="5" value={result.y} />
+                (u+v)ᵧ <meter min={-5} max={5} value={result.y} />
                 <b>{result.y}</b>
               </p>
               <output>

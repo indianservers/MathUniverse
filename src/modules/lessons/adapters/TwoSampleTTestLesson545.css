@@ -376,3 +376,5 @@
     text-align: right;
   }
 }
+
+@media(max-width:799px){.tw545 > nav{display:flex;flex-wrap:wrap;height:auto;gap:8px}}

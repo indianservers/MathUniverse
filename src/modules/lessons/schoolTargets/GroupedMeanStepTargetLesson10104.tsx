@@ -8,7 +8,9 @@ import {
 import { type PointerEvent, useRef, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./GroupedMeanStepTargetLesson10104.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import{groupedMeanStepModel}from "./groupedMeanStepModel";
+import MathExpression from "../../../components/ui/MathExpression";
+import{Link}from "react-router-dom";
 
 type StepRow = {
   id: number;
@@ -38,49 +40,30 @@ export default function GroupedMeanStepTargetLesson10104({
   const [dragging, setDragging] = useState(false);
   const [actions, setActions] = useState(0);
   const lineRef = useRef<SVGSVGElement>(null);
-  const enriched = rows.map((row) => {
-    const deviation = (row.midpoint - assumed) / classWidth;
-    return {
-      ...row,
-      deviation,
-      product: row.frequency * deviation,
-      width: row.upper - row.lower,
-    };
-  });
-  const totalFrequency = enriched.reduce((sum, row) => sum + row.frequency, 0);
-  const totalStep = enriched.reduce((sum, row) => sum + row.product, 0);
-  const mean = totalFrequency
-    ? assumed + classWidth * (totalStep / totalFrequency)
-    : 0;
-  const widths = enriched.map((row) => row.width);
-  const equalWidth =
-    widths.every((width) => Math.abs(width - widths[0]) < 0.001) &&
-    Math.abs(widths[0] - classWidth) < 0.001;
-  const markerX = 40 + (assumed / 50) * 560;
+  const {enriched,totalFrequency,totalStep,mean,widths,sameWidths,equalWidth}=groupedMeanStepModel(rows,assumed,classWidth);
+  const [draftKey,setDraftKey]=useState<string|null>(null),[draft,setDraft]=useState(''),[error,setError]=useState('');
+  const frame=useRef<{min:number;max:number}|null>(null);
+  const minX=frame.current?.min??Math.min(rows[0].lower,assumed),maxX=frame.current?.max??Math.max(rows.at(-1)!.upper,assumed);
+  const sx=(x:number)=>40+(x-minX)/(maxX-minX)*560;
+  const markerX=sx(assumed),meanText=mean===null?'—':mean.toFixed(2);
 
   const act = (fn: () => void) => {
     fn();
     setActions((value) => value + 1);
   };
-  const setA = (value: number) =>
-    setAssumed(Math.max(0, Math.min(50, round(value, 1))));
-  const setH = (value: number) =>
-    setClassWidth(Math.max(1, Math.min(25, round(value, 1))));
-  const updateRow = (id: number, patch: Partial<StepRow>) =>
-    setRows((current) =>
-      current.map((row) => (row.id === id ? { ...row, ...patch } : row)),
-    );
-  const updateMarker = (event: PointerEvent<SVGSVGElement>) => {
-    const box = lineRef.current?.getBoundingClientRect();
-    if (!box) return;
-    const x = ((event.clientX - box.left) / box.width) * 640;
-    setA(((Math.max(40, Math.min(600, x)) - 40) / 560) * 50);
-  };
+  const setA=(v:number)=>{if(Number.isFinite(v))setAssumed(Math.max(-1e9,Math.min(1e9,round(v,3))));};
+  const setH=(v:number)=>{if(Number.isFinite(v)&&v>0)setClassWidth(Math.min(1e9,v));};
+  const edit=(key:string,text:string,apply:(v:number)=>void,okay:(v:number)=>boolean)=>{setDraftKey(key);setDraft(text);const v=text.trim()===''?NaN:Number(text);if(!Number.isFinite(v)||!okay(v)){setError('Use finite ordered boundaries, whole nonnegative frequencies and a positive scale h.');return;}setError('');act(()=>apply(v));};
+  const inputValue=(key:string,v:number)=>draftKey===key?draft:v;
+  const blur=()=>{setDraftKey(null);setError('');};
+  const updateRow=(id:number,patch:Partial<StepRow>)=>setRows(current=>current.map(row=>row.id===id?{...row,...patch}:row));
+  const updateMarker=(event:PointerEvent<SVGSVGElement>)=>{if(!lineRef.current)return;const m=lineRef.current.getScreenCTM();if(!m)return;const p=new DOMPoint(event.clientX,event.clientY).matrixTransform(m.inverse());setA(minX+Math.max(0,Math.min(1,(p.x-40)/560))*(maxX-minX));};
+
   const reset = () =>
     act(() => {
       setRows(defaults);
       setAssumed(25);
-      setClassWidth(10);
+      setClassWidth(10);setDragging(false);frame.current=null;setDraftKey(null);setError('');
     });
 
   return (
@@ -92,13 +75,15 @@ export default function GroupedMeanStepTargetLesson10104({
       data-class-width={classWidth}
       data-total-frequency={round(totalFrequency)}
       data-total-step={round(totalStep)}
-      data-mean={round(mean)}
+      data-mean={mean===null?"none":mean}
+      data-exact-step={totalStep}
       data-equal-width={String(equalWidth)}
       data-widths={widths.join(",")}
       data-actions={actions}
     >
-      <header className="gms10104-hero">
+      <div className="gms10104-hero">
         <small>CLASS 10 · STATISTICS</small>
+        <Link className="gms10104-school" to="/lessons/school">← School lessons</Link>
         <h1>Grouped Mean by Step Deviation</h1>
         <p>
           A shortcut to find the mean of grouped data using deviation method
@@ -110,10 +95,10 @@ export default function GroupedMeanStepTargetLesson10104({
           <span>CONCEPT</span>
           <span>statistics</span>
         </nav>
-      </header>
+      </div>
       <main>
         <section className="gms10104-lab">
-          <header>
+          <div className="gms10104-heading">
             <div>
               <h2>
                 <SlidersHorizontal /> INTERACTIVE LAB
@@ -127,7 +112,7 @@ export default function GroupedMeanStepTargetLesson10104({
             <button onClick={reset}>
               <RotateCcw /> Reset lab
             </button>
-          </header>
+          </div>
           <div className="gms10104-table">
             <table>
               <thead>
@@ -146,18 +131,22 @@ export default function GroupedMeanStepTargetLesson10104({
                       <input
                         aria-label={`Lower bound row ${index + 1}`}
                         type="number"
-                        value={row.lower}
+                        value={inputValue(`lower-${row.id}`,row.lower)}
+                        onBlur={blur}
+                        step="any"
                         onChange={(event) =>
-                          updateRow(row.id, { lower: +event.target.value })
+                          edit(`lower-${row.id}`,event.target.value,v=>updateRow(row.id,{lower:v}),v=>v<row.upper&&(index===0||v>=rows[index-1].upper))
                         }
                       />
                       <span>–</span>
                       <input
                         aria-label={`Upper bound row ${index + 1}`}
                         type="number"
-                        value={row.upper}
+                        value={inputValue(`upper-${row.id}`,row.upper)}
+                        onBlur={blur}
+                        step="any"
                         onChange={(event) =>
-                          updateRow(row.id, { upper: +event.target.value })
+                          edit(`upper-${row.id}`,event.target.value,v=>updateRow(row.id,{upper:v}),v=>v>row.lower&&(index===rows.length-1||v<=rows[index+1].lower))
                         }
                       />
                     </td>
@@ -166,11 +155,11 @@ export default function GroupedMeanStepTargetLesson10104({
                         aria-label={`Frequency row ${index + 1}`}
                         type="number"
                         min="0"
-                        value={row.frequency}
+                        value={inputValue(`frequency-${row.id}`,row.frequency)}
+                        onBlur={blur}
+                        max="1000000" step="1"
                         onChange={(event) =>
-                          updateRow(row.id, {
-                            frequency: Math.max(0, +event.target.value),
-                          })
+                          edit(`frequency-${row.id}`,event.target.value,v=>updateRow(row.id,{frequency:v}),v=>Number.isInteger(v)&&v>=0&&v<=1e6)
                         }
                       />
                     </td>
@@ -179,9 +168,7 @@ export default function GroupedMeanStepTargetLesson10104({
                         aria-label={`Midpoint row ${index + 1}`}
                         type="number"
                         value={row.midpoint}
-                        onChange={(event) =>
-                          updateRow(row.id, { midpoint: +event.target.value })
-                        }
+                        readOnly title="Midpoint is calculated from the class boundaries"
                       />
                     </td>
                     <td>{round(row.deviation)}</td>
@@ -214,17 +201,20 @@ export default function GroupedMeanStepTargetLesson10104({
               </tfoot>
             </table>
           </div>
+          {error&&<p role="alert">{error}</p>}
           <footer>
             <label>
               Assumed mean A{" "}
               <input
                 aria-label="Assumed mean"
                 type="number"
-                min="0"
-                max="50"
-                value={assumed}
-                onChange={(event) => setA(+event.target.value)}
+                min="-1000000000"
+                max="1000000000" step="any"
+                value={inputValue('A',assumed)}
+                onBlur={blur}
+                onChange={event=>edit('A',event.target.value,setA,v=>Math.abs(v)<=1e9)}
                 onKeyDown={(event) => {
+                  event.stopPropagation();
                   if (event.key === "ArrowLeft") {
                     event.preventDefault();
                     act(() => setA(assumed - 1));
@@ -241,11 +231,13 @@ export default function GroupedMeanStepTargetLesson10104({
               <input
                 aria-label="Common class width"
                 type="number"
-                min="1"
-                max="25"
-                value={classWidth}
-                onChange={(event) => setH(+event.target.value)}
+                min="0.000001"
+                max="1000000000" step="any"
+                value={inputValue('h',classWidth)}
+                onBlur={blur}
+                onChange={event=>edit('h',event.target.value,setH,v=>v>0&&v<=1e9)}
                 onKeyDown={(event) => {
+                  event.stopPropagation();
                   if (event.key === "ArrowLeft") {
                     event.preventDefault();
                     act(() => setH(classWidth - 1));
@@ -257,10 +249,7 @@ export default function GroupedMeanStepTargetLesson10104({
                 }}
               />
             </label>
-            <strong>
-              x̄ = A + h(Σfᵢuᵢ/Σfᵢ) = {assumed} + {classWidth}({round(totalStep)}
-              /{round(totalFrequency)}) = {mean.toFixed(2)}
-            </strong>
+            <strong>{mean===null?'No observations: the mean is undefined.':<MathExpression value={String.raw`\bar{x}=A+h\frac{\sum_{i} f_i u_i}{\sum_{i} f_i}=${assumed}+${classWidth}\left(\frac{${round(totalStep,4)}}{${totalFrequency}}\right)=${meanText}`}/>}</strong>
           </footer>
         </section>
         <section className="gms10104-side">
@@ -270,24 +259,22 @@ export default function GroupedMeanStepTargetLesson10104({
             </h2>
             <svg
               ref={lineRef}
-              viewBox="0 0 640 130"
+              viewBox="0 0 640 100"
               aria-label="Step deviation number line"
               onPointerMove={(event) => dragging && updateMarker(event)}
-              onPointerUp={() => dragging && act(() => setDragging(false))}
-              onPointerLeave={() => dragging && act(() => setDragging(false))}
+              onPointerUp={event=>{if(dragging)updateMarker(event);frame.current=null;act(()=>setDragging(false));}}
+              onPointerCancel={()=>{frame.current=null;setDragging(false);}}
             >
               <line x1="40" y1="58" x2="600" y2="58" />
               {enriched.map((row) => {
-                const x = 40 + (row.midpoint / 50) * 560;
+                const x=sx(row.midpoint);
                 return (
-                  <g key={row.id} onClick={() => act(() => setA(row.midpoint))}>
+                  <g key={row.id} data-deviation-id={row.id} role="button" tabIndex={0} aria-label={`Set assumed mean to midpoint ${row.midpoint}`} onKeyDown={event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();act(()=>setA(row.midpoint));}}} onClick={() => act(() => setA(row.midpoint))}>
                     <circle cx={x} cy="58" r="6" />
-                    <text x={x - 8} y="35">
+                    <text textAnchor="middle" x={x} y="87">
                       {round(row.deviation)}
                     </text>
-                    <text x={x - 5} y="85">
-                      {round(row.midpoint)}
-                    </text>
+
                   </g>
                 );
               })}
@@ -299,14 +286,15 @@ export default function GroupedMeanStepTargetLesson10104({
                 role="slider"
                 tabIndex={0}
                 aria-label="Assumed mean step marker"
-                aria-valuemin="0"
-                aria-valuemax="50"
+                aria-valuemin={minX}
+                aria-valuemax={maxX}
                 aria-valuenow={assumed}
                 onPointerDown={(event) => {
                   event.currentTarget.setPointerCapture(event.pointerId);
-                  act(() => setDragging(true));
+                  frame.current={min:minX,max:maxX};act(() => setDragging(true));
                 }}
                 onKeyDown={(event) => {
+                  event.stopPropagation();
                   if (event.key === "ArrowLeft") {
                     event.preventDefault();
                     act(() => setA(assumed - 1));
@@ -333,7 +321,7 @@ export default function GroupedMeanStepTargetLesson10104({
                 Σfᵢuᵢ <b>{round(totalStep)}</b>
               </span>
               <span>
-                x̄ <b>{mean.toFixed(2)}</b>
+                x̄ <b>{meanText}</b>
               </span>
             </div>
           </article>
@@ -342,38 +330,37 @@ export default function GroupedMeanStepTargetLesson10104({
           >
             {equalWidth ? <CheckCircle2 /> : <AlertTriangle />}
             <div>
-              <header>
+              <div className="gms10104-heading">
                 <h2>Equal-Class-Width Detector</h2>
-                <b>{equalWidth ? "EQUAL WIDTH" : "NOT EQUAL-WIDTH"}</b>
-              </header>
+                <b>{equalWidth ? "EQUAL WIDTH" : sameWidths?"h DOES NOT MATCH":"NOT EQUAL-WIDTH"}</b>
+              </div>
               <p>
                 {equalWidth
                   ? "All class widths match the common class width h. Step deviation is valid."
-                  : "Class widths are not equal. Step deviation requires a common class width h."}
+                  : sameWidths?"The class widths are equal, but h does not match their common width.":"Class widths differ. A shared scale still gives the weighted mean, but loses the equal-width shortcut."}
               </p>
               <aside>
                 Detected class widths <strong>{widths.join(", ")}</strong> →{" "}
-                {equalWidth ? "All equal" : "Not all equal"}
+                {sameWidths ? "All equal" : "Not all equal"}
               </aside>
             </div>
           </article>
           <article className="gms10104-why">
             <Info />
             <div>
-              <h3>Why a common h is required</h3>
+              <h3>Why choose the common class width</h3>
               <p>
                 The step deviation method uses uᵢ=(xᵢ−A)/h so that deviations
                 are measured in the same units.
               </p>
               <p>
-                If class widths differ, uᵢ would not be comparable. Hence this
-                shortcut is not valid.
+                Choosing the common class width makes consecutive midpoints differ by one unit. With unequal widths, the identity still holds for any positive shared h, but the deviations need not be consecutive integers.
               </p>
             </div>
           </article>
         </section>
       </main>
-      <LessonTopicStudyBoard lessonId={10104} alwaysVisible />
+
 
     </section>
   );

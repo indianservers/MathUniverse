@@ -912,3 +912,9 @@ body:has(.rat116-page) footer[aria-label="Site footer"] {
     height: auto;
   }
 }
+
+@media(max-width:900px){.rat116-page .restriction-top,.rat116-page .rat116-step.clearing>div,.rat116-page .rat116-step.solving>div,.rat116-page .rat116-step.checking>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.rat116-page .restriction-top>*,.rat116-page .rat116-step.clearing>div>*,.rat116-page .rat116-step.solving>div>*,.rat116-page .rat116-step.checking>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.rat116-step.clearing,.rat116-step.solving,.rat116-step.checking{height:auto}.restriction-top article{min-height:80px}.rat116-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.rat116-footer>span{width:auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}.rat116-footer>nav{position:static;flex-wrap:wrap}}
+
+@media(max-width:900px){.rat116-toolbar,.rat116-toolbar>footer{height:auto;flex-wrap:wrap;gap:8px}.rat116-toolbar>footer>*{max-width:100%;min-width:0}}

@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/3d-mathematics/402-surface-of-revolution",
+  "action": {
+    "control": "Rotation angle",
+    "before": "360",
+    "after": "359",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 355,
+      "scroll": 355
+    },
+    {
+      "width": 768,
+      "client": 722,
+      "scroll": 722
+    },
+    {
+      "width": 1440,
+      "client": 1394,
+      "scroll": 1394
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

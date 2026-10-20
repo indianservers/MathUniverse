@@ -128,7 +128,7 @@ export default function InverseTrigonometryTargetLesson11({
             ⌘ Share
           </button>
         </nav>
-        <button type="button" onClick={onInteraction}>
+        <button type="button" onClick={() => onInteraction()}>
           ↗ Workspace
         </button>
       </header>
@@ -177,7 +177,7 @@ export default function InverseTrigonometryTargetLesson11({
               RAD
             </button>
           </nav>
-          <button type="button" onClick={onInteraction}>
+          <button type="button" onClick={() => onInteraction()}>
             <Maximize2 />
             Full screen
           </button>

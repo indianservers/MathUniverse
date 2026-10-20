@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "a": -8,
+      "n": 3
+    },
+    {
+      "width": 1680,
+      "a": -8,
+      "n": 4
+    },
+    {
+      "width": 1680,
+      "a": 16,
+      "n": 6
+    },
+    {
+      "width": 1680,
+      "a": "",
+      "n": 3
+    },
+    {
+      "width": 1280,
+      "a": -8,
+      "n": 3
+    },
+    {
+      "width": 1280,
+      "a": -8,
+      "n": 4
+    },
+    {
+      "width": 1280,
+      "a": 16,
+      "n": 6
+    },
+    {
+      "width": 1280,
+      "a": "",
+      "n": 3
+    },
+    {
+      "width": 768,
+      "a": -8,
+      "n": 3
+    },
+    {
+      "width": 768,
+      "a": -8,
+      "n": 4
+    },
+    {
+      "width": 768,
+      "a": 16,
+      "n": 6
+    },
+    {
+      "width": 768,
+      "a": "",
+      "n": 3
+    },
+    {
+      "width": 390,
+      "a": -8,
+      "n": 3
+    },
+    {
+      "width": 390,
+      "a": -8,
+      "n": 4
+    },
+    {
+      "width": 390,
+      "a": 16,
+      "n": 6
+    },
+    {
+      "width": 390,
+      "a": "",
+      "n": 3
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "exact roots and inverse-power distinction",
+    "factor count and domain toggles",
+    "fractions/near-perfect/invalid input",
+    "number-line coordinates and comparison linking",
+    "native drag, keyboard and touch matching",
+    "one-to-one connections and invalid payload",
+    "reason grading and optional reflection",
+    "tabs/navigation/responsive layout"
+  ]
+}

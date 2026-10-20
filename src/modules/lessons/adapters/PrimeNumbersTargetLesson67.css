@@ -620,3 +620,7 @@ body:has(.prime67-page)
     grid-template-columns: 1fr;
   }
 }
+
+@media(max-width:900px){.prime67-legend{height:auto;display:flex;flex-wrap:wrap;gap:8px}}
+
+@media(max-width:900px){.prime67-side,.prime67-factors{min-width:0;max-width:100%;height:auto}.prime67-factors>div{flex-wrap:wrap;gap:10px}.prime67-factors button{flex-shrink:0}}

@@ -529,3 +529,9 @@ body:has(.boolean-page)
     display: none;
   }
 }
+
+@media(max-width:900px){[data-testid="algebra-mockup-0036"] .boolean-shell>main,[data-testid="algebra-mockup-0036"] .boolean-left,[data-testid="algebra-mockup-0036"] .boolean-side,[data-testid="algebra-mockup-0036"] .state-card,[data-testid="algebra-mockup-0036"] .logic-card>div,[data-testid="algebra-mockup-0036"] .visibility-card>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}[data-testid="algebra-mockup-0036"] .boolean-shell>main>*,[data-testid="algebra-mockup-0036"] .boolean-left>*,[data-testid="algebra-mockup-0036"] .boolean-side>*,[data-testid="algebra-mockup-0036"] .state-card>*,[data-testid="algebra-mockup-0036"] .logic-card>div>*,[data-testid="algebra-mockup-0036"] .visibility-card>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.boolean-page .boolean-left,.boolean-page .boolean-side{width:auto;max-width:100%}.boolean-left>section{height:auto;min-height:160px}.boolean-page .state-card{gap:12px}.boolean-page .logic-card>div{gap:12px}}
+
+@media(max-width:900px){.boolean-navigation{height:auto;display:flex;flex-wrap:wrap;gap:12px}.boolean-navigation>a{min-width:0;max-width:100%}}

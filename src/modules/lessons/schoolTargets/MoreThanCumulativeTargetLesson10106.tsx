@@ -9,7 +9,8 @@ import {
 import { type PointerEvent, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./MoreThanCumulativeTargetLesson10106.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import { Link } from "react-router-dom";
+import MathExpression from "../../../components/ui/MathExpression";
 
 const defaultFrequencies = [6, 9, 12, 8, 5];
 const defaultBoundaries = [9.5, 19.5, 29.5, 39.5, 49.5];
@@ -20,7 +21,8 @@ export default function MoreThanCumulativeTargetLesson10106({
   lesson: SchoolSyllabusLesson;
 }) {
   const [bounds,setBounds] = useState([...defaultBoundaries,59.5]);
-  const boundaries=bounds.slice(0,-1);
+  const boundaries=bounds.slice(1);
+  const [editing,setEditing]=useState<number|null>(null),[draft,setDraft]=useState(''),[error,setError]=useState('');
   const [frequencies, setFrequencies] = useState(defaultFrequencies);
   const [drag, setDrag] = useState<{
     index: number;
@@ -44,7 +46,7 @@ export default function MoreThanCumulativeTargetLesson10106({
     setFrequencies((current) =>
       current.map((item, itemIndex) =>
         itemIndex === index
-          ? Math.max(0, Math.min(1000000, Math.round(value)))
+          ? Number.isFinite(value)?Math.max(0, Math.min(1000000, Math.round(value))):item
           : item,
       ),
     );
@@ -64,10 +66,11 @@ export default function MoreThanCumulativeTargetLesson10106({
     act(() => {
       setFrequencies(defaultFrequencies);
       setBounds([...defaultBoundaries,59.5]);
-      setDrag(null);
+      setDrag(null);setEditing(null);setError('');
     });
   const chartX = (index: number) => 40 + (bounds[index]-bounds[0])/(bounds.at(-1)!-bounds[0])*385;
-  const chartY = (value: number) => 230 - (value / Math.max(40, total)) * 180;
+  const yMax=total?Math.ceil(total/4/10**Math.floor(Math.log10(total/4)))*10**Math.floor(Math.log10(total/4))*4:1;
+  const chartY = (value: number) => 230 - (value / yMax) * 180;
   const staircase = moreThan
     .slice(0, -1)
     .map((value, index) => {
@@ -90,8 +93,9 @@ export default function MoreThanCumulativeTargetLesson10106({
       data-total={total}
       data-actions={actions}
     >
-      <header className="mtc10106-hero">
+      <div className="mtc10106-hero">
         <small>CLASS 10 · STATISTICS</small>
+        <Link className="mtc10106-school" to="/lessons/school"><ArrowLeft/> School lessons</Link>
         <h1>More-Than Cumulative Frequency</h1>
         <p>
           More-than cumulative frequency (CF<sub>more</sub>) at a boundary shows
@@ -104,12 +108,12 @@ export default function MoreThanCumulativeTargetLesson10106({
         <button onClick={reset}>
           <RotateCcw /> Reset table
         </button>
-      </header>
+      </div>
 
-      <GroupedDataEditor data={{bounds,frequencies}} defaults={{bounds:[...defaultBoundaries,59.5],frequencies:defaultFrequencies}} onChange={data=>act(()=>{setBounds(data.bounds);setFrequencies(data.frequencies);})}/>
+
       <main className="mtc10106-workspace">
         <section className="mtc10106-table-card">
-          <h2>Editable grouped table (lower class boundaries)</h2>
+          <h2>Editable grouped table (class boundaries)</h2>
           <p className="mtc10106-total">
             Total observations (<i>N</i>) <strong>{total}</strong>
           </p>
@@ -118,14 +122,14 @@ export default function MoreThanCumulativeTargetLesson10106({
               <thead>
                 <tr>
                   <th>Step</th>
-                  <th>Lower class boundary (Lᵢ)</th>
+                  <th>Boundary reached (Lᵢ₊₁)</th>
                   <th>Class interval</th>
                   <th>
-                    Frequency (fᵢ)<small>Drag to edit</small>
+                    Frequency (fᵢ)<small>Drag · double-click to type</small>
                   </th>
                   <th>Remove blocks</th>
                   <th>
-                    Cumulative more-than CF<sub>more</sub> (≥ Lᵢ)
+                    Cumulative more-than CF<sub>more</sub> (≥ boundary)
                   </th>
                   <th>Computation</th>
                 </tr>
@@ -137,7 +141,7 @@ export default function MoreThanCumulativeTargetLesson10106({
                     <br />
                     (Start)
                   </td>
-                  <td>–</td>
+                  <td>{bounds[0]}</td>
                   <td>–</td>
                   <td>–</td>
                   <td>–</td>
@@ -154,16 +158,16 @@ export default function MoreThanCumulativeTargetLesson10106({
                     <td>{index + 1}</td>
                     <td>{row.boundary}</td>
                     <td>
-                      {index + 1}0–{index + 2}0
+                      {bounds[index]}–{bounds[index+1]}
                     </td>
                     <td>
-                      <div
+                      {editing===index?<input autoFocus type="number" aria-label={`Edit frequency row ${index+1}`} min="0" max="1000000" step="1" value={draft} onChange={e=>{setDraft(e.target.value);const v=Number(e.target.value);if(e.target.value.trim()===''||!Number.isInteger(v)||v<0||v>1000000){setError('Use a whole frequency from 0 to 1000000.');return;}setError('');act(()=>setFrequency(index,v));}} onBlur={()=>{setEditing(null);setError('');}} onKeyDown={e=>{e.stopPropagation();if(e.key==='Enter'||e.key==='Escape'){setEditing(null);setError('');}}}/>:<div
                         className="mtc10106-frequency"
                         role="slider"
                         tabIndex={0}
                         aria-label={`Frequency row ${index + 1}`}
                         aria-valuemin={0}
-                        aria-valuemax={20}
+                        aria-valuemax={1000000}
                         aria-valuenow={row.frequency}
                         onPointerDown={(event) => {
                           event.currentTarget.setPointerCapture(
@@ -178,8 +182,12 @@ export default function MoreThanCumulativeTargetLesson10106({
                           );
                         }}
                         onPointerMove={(event) => dragFrequency(event, index)}
-                        onPointerUp={() => drag && act(() => setDrag(null))}
+                        onPointerUp={event=>{dragFrequency(event,index);act(()=>setDrag(null));}}
+                        onPointerCancel={()=>setDrag(null)}
+                        onDoubleClick={()=>{setEditing(index);setDraft(String(row.frequency));setError('');}}
                         onKeyDown={(event) => {
+                          event.stopPropagation();
+                          if(event.key==='Enter'){event.preventDefault();setEditing(index);setDraft(String(row.frequency));setError('');}
                           if (
                             event.key === "ArrowDown" ||
                             event.key === "ArrowLeft"
@@ -199,16 +207,17 @@ export default function MoreThanCumulativeTargetLesson10106({
                         }}
                       >
                         ↕ <b>{row.frequency}</b>
-                      </div>
+                      </div>}
                     </td>
                     <td>
                       <span
                         className="mtc10106-blocks"
                         aria-label={`${row.frequency} observation blocks`}
                       >
-                        {Array.from({ length: row.frequency }, (_, block) => (
+                        {Array.from({ length: Math.min(row.frequency,50) }, (_, block) => (
                           <i key={block} />
                         ))}
+                        {row.frequency>50&&<small>+{row.frequency-50}</small>}
                       </span>
                       <button
                         aria-label={`Clear frequency row ${index + 1}`}
@@ -228,6 +237,8 @@ export default function MoreThanCumulativeTargetLesson10106({
               </tbody>
             </table>
           </div>
+          {error&&<p role="alert">{error}</p>}
+          <details className="mtc10106-custom"><summary>Edit class boundaries and grouped data</summary><GroupedDataEditor data={{bounds,frequencies}} defaults={{bounds:[...defaultBoundaries,59.5],frequencies:defaultFrequencies}} onChange={data=>act(()=>{setBounds(data.bounds);setFrequencies(data.frequencies);})}/></details>
           <footer>
             <span className="mtc10106-cube" /> = 1 observation (removed from the
             remaining total)
@@ -239,27 +250,30 @@ export default function MoreThanCumulativeTargetLesson10106({
 
         <section className="mtc10106-chart-card">
           <h2>
-            Decreasing staircase (CF<sub>more</sub> vs. lower boundary)
+            Decreasing staircase (CF<sub>more</sub> vs. class boundary)
           </h2>
           <svg
             viewBox="0 0 430 290"
             aria-label="More-than cumulative frequency staircase"
           >
             <g className="grid">
-              {[0, 10, 20, 30, 40].map((v) => (
-                <line key={v} x1="40" y1={chartY(v)} x2="425" y2={chartY(v)} />
+              {Array.from({length:5},(_,i)=>i*yMax/4).map((v) => (
+                <g key={v}><line x1="40" y1={chartY(v)} x2="425" y2={chartY(v)} /><text x="31" y={chartY(v)+4} textAnchor="end">{v>=10000?`${v/1000}k`:v}</text></g>
               ))}
             </g>
             <line x1="40" y1="230" x2="425" y2="230" />
             <line x1="40" y1="35" x2="40" y2="230" />
-            <path d={staircase} />
+            <path className="mtc10106-area" d={`${staircase} L425,230 L40,230 Z`} />
+            <path className="mtc10106-step" d={staircase} />
+            <text x="235" y="279" textAnchor="middle">Class boundary, Lᵢ</text>
+            <text x="40" y="22">CFmore (≥ Lᵢ)</text>
             {moreThan.map((value, index) => (
-              <g key={index}>
+              <g className="mtc10106-point" key={index} data-stair-point={index} data-boundary={bounds[index]} data-count={value}>
                 <circle cx={chartX(index)} cy={chartY(value)} r="4" />
-                <text x={chartX(index) - 6} y={chartY(value) - 10}>
+                <text x={chartX(index)+(index===0?17:index===moreThan.length-1?-10:0)} textAnchor="middle" y={chartY(value) - 10}>
                   {value}
                 </text>
-                <text x={chartX(index) - 11} y="250">
+                <text x={chartX(index)} textAnchor="middle" y="250">
                   {bounds[index]}
                 </text>
               </g>
@@ -267,7 +281,7 @@ export default function MoreThanCumulativeTargetLesson10106({
           </svg>
           <footer>
             <p>
-              Each drop equals the class frequency of the interval just above.
+              Each drop removes the frequency between two consecutive boundaries.
             </p>
             <p>
               Drag any frequency in the table — all subsequent counts update
@@ -308,23 +322,17 @@ export default function MoreThanCumulativeTargetLesson10106({
         </section>
         <section className="mtc10106-rule">
           <h2>Rule (at each step i)</h2>
-          <strong>
-            CF<sub>more</sub>(next) = CF<sub>more</sub>(current) − fᵢ
-          </strong>
+          <strong><MathExpression value={String.raw`CF_{more}(L_{i+1})=CF_{more}(L_i)-f_i`}/></strong>
           <p>
-            with CF<sub>more</sub>(0) = <i>N</i>
+            with CF<sub>more</sub>(L₁) = <i>N</i>
           </p>
         </section>
       </main>
       <nav className="mtc10106-nav">
-        <button>
-          <ArrowLeft /> Less-Than Cumulative Frequency
-        </button>
-        <button>
-          Less-Than Ogive <ArrowRight />
-        </button>
+        <Link to="/lessons/school/class-10/class-10-statistics-less-than-cumulative-frequency"><ArrowLeft /> Less-Than Cumulative Frequency</Link>
+        <Link to="/lessons/school/class-10/class-10-statistics-less-than-ogive">Less-Than Ogive <ArrowRight /></Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10106} alwaysVisible />
+
 
     </section>
   );

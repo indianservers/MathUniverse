@@ -1,0 +1,737 @@
+{
+  "status": "passed",
+  "errors": [],
+  "results": [
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 90,
+      "surfacePi": 75
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 4,
+      "h": 10,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 202.66666666666666,
+      "surfacePi": 128
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 4,
+      "h": 10,
+      "rotation": 35,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 202.66666666666666,
+      "surfacePi": 128
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 4,
+      "h": 10,
+      "rotation": -45,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 202.66666666666666,
+      "surfacePi": 128
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 4,
+      "h": 10,
+      "rotation": 45,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 202.66666666666666,
+      "surfacePi": 128
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 4,
+      "h": 10,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 202.66666666666666,
+      "surfacePi": 128
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 4,
+      "h": 10,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": true,
+      "hidden": false,
+      "volumePi": 202.66666666666666,
+      "surfacePi": 128
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 4,
+      "h": 10,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": true,
+      "hidden": true,
+      "volumePi": 202.66666666666666,
+      "surfacePi": 128
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 4,
+      "h": 10,
+      "rotation": 0,
+      "mode": "wireframe",
+      "exploded": true,
+      "hidden": true,
+      "volumePi": 202.66666666666666,
+      "surfacePi": 128
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 4,
+      "h": 10,
+      "rotation": 0,
+      "mode": "net",
+      "exploded": true,
+      "hidden": true,
+      "volumePi": 202.66666666666666,
+      "surfacePi": 128
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 4,
+      "h": 3,
+      "rotation": 0,
+      "mode": "net",
+      "exploded": true,
+      "hidden": false,
+      "volumePi": 90.66666666666666,
+      "surfacePi": 72
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 90,
+      "surfacePi": 75
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 90,
+      "surfacePi": 75
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 90,
+      "surfacePi": 75
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 2.5,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 60.416666666666664,
+      "surfacePi": 58.75
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 90,
+      "surfacePi": 75
+    },
+    {
+      "parts": [
+        "cone",
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 114,
+      "surfacePi": 91.63201123595259
+    },
+    {
+      "parts": [
+        "cone",
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "net",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 114,
+      "surfacePi": 91.63201123595259
+    },
+    {
+      "parts": [
+        "cone",
+        "cylinder",
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 186,
+      "surfacePi": 139.63201123595258
+    },
+    {
+      "parts": [
+        "cone",
+        "cylinder",
+        "cylinder",
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 258,
+      "surfacePi": 187.63201123595258
+    },
+    {
+      "parts": [
+        "cone",
+        "cylinder",
+        "cylinder",
+        "cylinder",
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 330,
+      "surfacePi": 235.63201123595258
+    },
+    {
+      "parts": [
+        "cone",
+        "cylinder",
+        "cylinder",
+        "cylinder",
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 8,
+      "h": 16,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 4778.666666666666,
+      "surfacePi": 1295.1083505599865
+    },
+    {
+      "parts": [
+        "cone",
+        "cylinder",
+        "cylinder",
+        "cylinder",
+        "cylinder"
+      ],
+      "r": 8,
+      "h": 16,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 4437.333333333333,
+      "surfacePi": 1231.1083505599865
+    },
+    {
+      "parts": [
+        "cone",
+        "cylinder",
+        "cylinder",
+        "cylinder"
+      ],
+      "r": 8,
+      "h": 16,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 3413.333333333333,
+      "surfacePi": 975.1083505599865
+    },
+    {
+      "parts": [
+        "cone",
+        "cylinder",
+        "cylinder"
+      ],
+      "r": 8,
+      "h": 16,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 2389.333333333333,
+      "surfacePi": 719.1083505599865
+    },
+    {
+      "parts": [
+        "cone",
+        "cylinder"
+      ],
+      "r": 8,
+      "h": 16,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 1365.3333333333333,
+      "surfacePi": 463.10835055998655
+    },
+    {
+      "parts": [
+        "cone"
+      ],
+      "r": 8,
+      "h": 16,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 341.3333333333333,
+      "surfacePi": 207.10835055998655
+    },
+    {
+      "parts": [],
+      "r": 8,
+      "h": 16,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 0,
+      "surfacePi": 0
+    },
+    {
+      "parts": [
+        "hemisphere"
+      ],
+      "r": 8,
+      "h": 16,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 341.3333333333333,
+      "surfacePi": 192
+    },
+    {
+      "parts": [
+        "hemisphere",
+        "hemisphere"
+      ],
+      "r": 8,
+      "h": 16,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 682.6666666666666,
+      "surfacePi": 256
+    },
+    {
+      "parts": [
+        "hemisphere",
+        "hemisphere"
+      ],
+      "r": 8,
+      "h": 16,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 682.6666666666666,
+      "surfacePi": 256
+    },
+    {
+      "parts": [
+        "hemisphere",
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 8,
+      "h": 16,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 1706.6666666666665,
+      "surfacePi": 512
+    },
+    {
+      "parts": [
+        "hemisphere",
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 8,
+      "h": 16,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 1706.6666666666665,
+      "surfacePi": 512
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 90,
+      "surfacePi": 75
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 90,
+      "surfacePi": 75
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 90,
+      "surfacePi": 75
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 90,
+      "surfacePi": 75
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 90,
+      "surfacePi": 75
+    },
+    {
+      "parts": [
+        "hemisphere",
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 108,
+      "surfacePi": 84
+    },
+    {
+      "parts": [
+        "hemisphere",
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 108,
+      "surfacePi": 84
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 90,
+      "surfacePi": 75
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "net",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 90,
+      "surfacePi": 75
+    },
+    {
+      "parts": [
+        "cylinder",
+        "hemisphere"
+      ],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 90,
+      "surfacePi": 75
+    },
+    {
+      "parts": [],
+      "r": 3,
+      "h": 8,
+      "rotation": 0,
+      "mode": "solid",
+      "exploded": false,
+      "hidden": false,
+      "volumePi": 0,
+      "surfacePi": 0
+    }
+  ],
+  "responsive": [
+    {
+      "variant": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "capsule",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "capsule",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "capsule",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "capsule",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "net",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "net",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "net",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "net",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "empty",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "empty",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "empty",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "empty",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ]
+}

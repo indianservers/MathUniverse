@@ -991,10 +991,10 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function lessons 129 through 152 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      139: "real inputs need x &gt;= 0",
-      140: "negative real inputs are allowed",
-      141: "distance makes a V-shape",
-      142: "equal x-steps multiply outputs",
+      139: "Set radicand nonnegative",
+      140: "cube-root functions allow negative",
+      141: "Absolute-Value",
+      142: "Equal x-steps multiply outputs",
     };
 
     for (const [idText, snippet] of Object.entries(expectedSnippets)) {
@@ -1011,7 +1011,7 @@ describe("GraphLessonAdapter", () => {
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
       expect(html, lesson.title).toContain('data-direct-interaction="true"');
-      expect(html, lesson.title).toContain("Drag graph");
+      expect(html, lesson.title).toMatch(/aria-label="Drag /);
       expect(html, lesson.title).not.toContain("Linked graph: the formula");
     }
   });
@@ -1033,7 +1033,7 @@ describe("GraphLessonAdapter", () => {
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
       expect(html, lesson.title).toContain('data-direct-interaction="true"');
-      expect(html, lesson.title).toContain("Drag graph");
+      expect(html, lesson.title).toMatch(/aria-label="Drag /);
       expect(html, lesson.title).not.toContain("Linked graph: the formula");
     }
   });

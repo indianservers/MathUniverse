@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "shift"
+    },
+    {
+      "width": 1680,
+      "state": "mirror"
+    },
+    {
+      "width": 1680,
+      "state": "swap"
+    },
+    {
+      "width": 1680,
+      "state": "jump"
+    },
+    {
+      "width": 1680,
+      "state": "invalid"
+    },
+    {
+      "width": 1680,
+      "state": "long"
+    },
+    {
+      "width": 1280,
+      "state": "shift"
+    },
+    {
+      "width": 1280,
+      "state": "mirror"
+    },
+    {
+      "width": 1280,
+      "state": "swap"
+    },
+    {
+      "width": 1280,
+      "state": "jump"
+    },
+    {
+      "width": 1280,
+      "state": "invalid"
+    },
+    {
+      "width": 1280,
+      "state": "long"
+    },
+    {
+      "width": 768,
+      "state": "shift"
+    },
+    {
+      "width": 768,
+      "state": "mirror"
+    },
+    {
+      "width": 768,
+      "state": "swap"
+    },
+    {
+      "width": 768,
+      "state": "jump"
+    },
+    {
+      "width": 768,
+      "state": "invalid"
+    },
+    {
+      "width": 768,
+      "state": "long"
+    },
+    {
+      "width": 390,
+      "state": "shift"
+    },
+    {
+      "width": 390,
+      "state": "mirror"
+    },
+    {
+      "width": 390,
+      "state": "swap"
+    },
+    {
+      "width": 390,
+      "state": "jump"
+    },
+    {
+      "width": 390,
+      "state": "invalid"
+    },
+    {
+      "width": 390,
+      "state": "long"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "four literal operations and all matching worked rows/steps",
+    "bidirectional wraparound and zero/25 amount bounds",
+    "actual animation and touch operation switch",
+    "invalid empty/numeric/Unicode/punctuation input preserved",
+    "fixed challenge examples/main independence",
+    "full rule grammar and all-example validation incl equivalent +28",
+    "independent editable answer with pending/wrong/correct transitions",
+    "four deterministic new words clear answers",
+    "bookmark/tabs/navigation",
+    "24 responsive states including24-letter input/output"
+  ]
+}

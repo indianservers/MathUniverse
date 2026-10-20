@@ -560,7 +560,7 @@ function DirectoryLink({ item, label = item.title }: { item: NavItem; label?: st
   );
 }
 
-function navItemMatches(item: NavItem, query: string, category: string) {
+function navItemMatches(item: NavItem, query: string, category: string): boolean {
   if (!query) return true;
   const matchesSelf = `${category} ${item.title} ${item.route} ${item.description ?? ""} ${(item.searchTerms ?? []).join(" ")}`.toLowerCase().includes(query);
   return matchesSelf || (item.children ?? []).some((child) => navItemMatches(child, query, item.title));

@@ -673,3 +673,5 @@ body:has(.sar321-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:900px){.sar321-page .sar321-views,.sar321-page .sar321-controls,.sar321-page .sar321-formulas,.sar321-page .sar321-learn{grid-template-columns:minmax(0,1fr);height:auto}.sar321-page .sar321-stage,.sar321-page .sar321-lab{height:auto}.sar321-page .sar321-views>article{min-width:0;height:auto}.sar321-page .sar321-controls>div{min-width:0;width:auto}.sar321-page .bounds input[type=range],.sar321-page .bounds input[type=range]+input[type=range]{position:static;width:100%;grid-column:1/-1;pointer-events:auto}.sar321-page .sar321-controls .animation{height:auto;margin-bottom:12px}.sar321-page .sar321-formulas article,.sar321-page .sar321-learn article{min-width:0;padding-block:12px}.sar321-page .sar321-practice{height:auto}.sar321-page .sar321-practice>button,.sar321-page .sar321-practice output{position:static;margin-top:10px}}

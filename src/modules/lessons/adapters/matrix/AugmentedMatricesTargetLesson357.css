@@ -624,3 +624,5 @@ body:has(.mat357-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:799px){.mat357-page :is(.mat357-workspace,.mat357-lower,.mat357-tools){grid-template-columns:minmax(0,1fr);height:auto}.mat357-page .mat357-model{height:auto}.mat357-page .mat357-model > header{display:flex;flex-wrap:wrap;gap:8px;height:auto}.mat357-page .mat357-flow{min-width:0;max-width:100%;overflow-x:auto}.mat357-page .mat357-sizes{display:flex;flex-wrap:wrap;height:auto;gap:8px}.mat357-page .mat357-tabs{overflow-x:auto}}

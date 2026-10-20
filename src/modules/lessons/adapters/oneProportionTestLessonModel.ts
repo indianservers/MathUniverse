@@ -3,7 +3,7 @@ import type { TAlternative } from "./oneSampleTTestLessonModel";
 
 export type ProportionTestMethod = "normal" | "exact";
 
-function logGamma(value: number) {
+function logGamma(value: number): number {
   const coefficients = [
     676.5203681218851, -1259.1392167224028, 771.3234287776531,
     -176.6150291621406, 12.507343278686905, -0.13857109526572012,

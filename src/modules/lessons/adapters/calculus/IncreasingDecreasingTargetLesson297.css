@@ -628,3 +628,7 @@ body:has(.inc297-page) {
     min-width: 712px;
   }
 }
+
+@media(max-width:900px){.inc297-page .inc297-flow,.inc297-page .inc297-lab,.inc297-page .inc297-lab>aside,.inc297-page .inc297-info,.inc297-page .inc297-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.inc297-page .inc297-flow>*,.inc297-page .inc297-lab>*,.inc297-page .inc297-lab>aside>*,.inc297-page .inc297-info>*,.inc297-page .inc297-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.inc297-page .inc297-flow svg{position:static}.inc297-page .inc297-lab>main{height:auto}.inc297-page .inc297-lab>main>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.inc297-page .inc297-practice main label{height:auto;grid-template-columns:20px minmax(0,1fr);gap:8px;margin-block:10px}.inc297-page .inc297-practice main label>input{max-width:100%}.inc297-page .inc297-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

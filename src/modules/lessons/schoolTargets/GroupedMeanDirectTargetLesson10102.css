@@ -38,7 +38,7 @@
   font: inherit;
   color: inherit;
 }
-.gmd10102-page svg {
+.gmd10102-page button svg {
   width: 18px;
   height: 18px;
 }
@@ -216,7 +216,7 @@
 .gmd10102-right {
   padding: 12px;
 }
-.gmd10102-right > header {
+.gmd10102-right > .gmd10102-heading {
   padding: 3px 4px 10px;
   border-bottom: 1px solid #17344e;
 }
@@ -227,7 +227,7 @@
 .gmd10102-right > footer b {
   color: #1de0e1;
 }
-.gmd10102-right > header p {
+.gmd10102-right > .gmd10102-heading p {
   margin-top: 8px;
 }
 .gmd10102-right > svg {
@@ -320,7 +320,7 @@
 .gmd10102-hero {height:auto;min-height:184px}
 .gmd10102-hero nav span {background:var(--gmd-selected)}
 .gmd10102-table th,.gmd10102-table td,.gmd10102-formula,
-.gmd10102-right > header,.gmd10102-table tfoot button {border-color:var(--gmd-border)}
+.gmd10102-right > .gmd10102-heading,.gmd10102-table tfoot button {border-color:var(--gmd-border)}
 .gmd10102-table tr.selected {background:var(--gmd-selected);outline-color:var(--gmd-accent)}
 .gmd10102-hero small,.gmd10102-table tr.selected td:first-child,
 .gmd10102-table tr.selected td:nth-child(4),.gmd10102-table tfoot span,
@@ -385,3 +385,12 @@
     margin-top: 12px;
   }
 }
+
+.gmd10102-page{--gmd-text:#dcecff!important;--gmd-bg:#03142a!important;--gmd-panel:#06182e!important;--gmd-border:#29455f!important;--gmd-accent:#27dce3!important;--gmd-selected:#0b2943!important;--gmd-warning:#17152d!important;--gmd-warning-text:#ff6384!important;padding:8px}
+.gmd10102-hero{position:relative;align-items:flex-end;min-height:180px;height:auto}.gmd10102-hero h1{font-weight:800}.gmd10102-school{position:absolute;top:15px;right:22px;color:#27dce3;text-decoration:none;border:1px solid #17778e;border-radius:10px;padding:9px 14px}.gmd10102-hero nav{flex-wrap:wrap}.gmd10102-hero nav span{font-size:12px}
+.gmd10102-table table{min-width:560px}.gmd10102-table td:nth-child(2){white-space:nowrap}.gmd10102-table tr.selected td:nth-child(4){color:#c38aff}.gmd10102-table tr.selected td:nth-child(4) small{color:#25dce3}.gmd10102-formula b{color:#ffd839}.gmd10102-formula{gap:8px;flex-wrap:wrap}.gmd10102-formula article{min-width:125px}.gmd10102-formula .math-expression{font-size:23px}.gmd10102-calculate{max-width:calc(100% - 20px)}
+.gmd10102-right>svg{max-height:none;width:100%;height:auto;max-width:none!important;touch-action:none}.gmd10102-right svg .selected text{fill:#d4a3ff}.gmd10102-right svg .gmd10102-bar-segment{stroke:#06182e;stroke-width:1}.gmd10102-right>footer{gap:12px;flex-wrap:wrap}.gmd10102-right>aside svg{flex-shrink:0}.gmd10102-drag-help{font-size:12px;color:#94adc6;margin:6px 0 12px!important}.gmd10102-confirmation{text-align:center;color:#27dce3;min-height:22px;margin:0 10px 10px!important}.gmd10102-extra{margin-top:12px;border:1px solid #29455f;border-radius:7px;padding:9px}.gmd10102-extra summary{cursor:pointer}.gmd10102-extra .gmd10102-scenarios{margin:8px 0 0}
+@media(max-width:1150px){.gmd10102-page>main{grid-template-columns:1fr}.gmd10102-right>svg{max-height:650px}.gmd10102-hero>div{max-width:75%}}
+@media(max-width:700px){.gmd10102-hero{display:block;padding-top:55px}.gmd10102-hero>div{max-width:none}.gmd10102-hero>button{margin-top:12px}.gmd10102-formula{overflow:visible}.gmd10102-right>aside{padding:12px}.gmd10102-table table{min-width:560px}}
+
+.gmd10102-page .gmd10102-calculate{font-size:18px;font-weight:800}.gmd10102-right .gmd10102-product-zero{stroke:#44617a;stroke-dasharray:3 3}

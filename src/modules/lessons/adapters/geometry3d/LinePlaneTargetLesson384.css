@@ -339,3 +339,5 @@ body:has(.lp384-page) footer[aria-label="Site footer"] > div {
     overflow: visible;
   }
 }
+
+@media(max-width:799px){.lp384-page .lp384-workflow > article > div{display:flex;flex-wrap:wrap;gap:8px;max-width:100%}.lp384-page .lp384-workflow > article{height:auto;min-height:0}}

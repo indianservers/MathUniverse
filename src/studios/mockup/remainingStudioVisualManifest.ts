@@ -96,14 +96,14 @@ function catalogProtect(studio: ProtectedStudioId, page: StudioMockupPage): Prot
 export type RemainingStudioModeSlot = RemainingStudioTarget & { mode: string | null };
 
 export function remainingStudioModeSlots(): RemainingStudioModeSlot[] {
-  return remainingStudioTargets.flatMap((target) => {
+  return remainingStudioTargets.flatMap<RemainingStudioModeSlot>((target) => {
     if (!target.modes.length) return [{ ...target, mode: null }];
     return target.modes.map((mode) => ({ ...target, mode }));
   });
 }
 
 export function protectedStudioModeSlots() {
-  return protectedStudioTargets.flatMap((target) => {
+  return protectedStudioTargets.flatMap<ProtectedStudioTarget & { mode: string | null }>((target) => {
     if (!target.modes.length) return [{ ...target, mode: null }];
     return target.modes.map((mode) => ({ ...target, mode }));
   });

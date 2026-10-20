@@ -1,10 +1,11 @@
+import { lessonCatalog } from "../catalog/lessonCatalog";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import DistributionSimulationLesson536 from "./DistributionSimulationLesson536";
 describe("DistributionSimulationLesson536", () => {
   it("renders a reproducible empirical comparison", () => {
     const html = renderToStaticMarkup(
-      <DistributionSimulationLesson536
+      <DistributionSimulationLesson536 lesson={lessonCatalog.find(item => item.id === 536)!}
         resetToken={0}
         onInteraction={vi.fn()}
       />,

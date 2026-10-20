@@ -657,3 +657,7 @@ body:has(.ext298-page) {
     min-width: 793px;
   }
 }
+
+@media(max-width:900px){.ext298-page .ext298-flow,.ext298-page .ext298-lab .body,.ext298-page .ext298-lab main>footer,.ext298-page .ext298-lab .body>aside,.ext298-page .ext298-info,.ext298-page .ext298-practice,.ext298-page .ext298-practice fieldset{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.ext298-page .ext298-flow>*,.ext298-page .ext298-lab .body>*,.ext298-page .ext298-lab main>footer>*,.ext298-page .ext298-lab .body>aside>*,.ext298-page .ext298-info>*,.ext298-page .ext298-practice>*,.ext298-page .ext298-practice fieldset>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.ext298-page .ext298-flow article{padding-block:12px}.ext298-page .ext298-flow article>svg:last-child{position:static}.ext298-page .ext298-lab{height:auto}.ext298-page .ext298-lab .body>main{height:auto}.ext298-page .ext298-practice fieldset label{height:auto}.ext298-page .ext298-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

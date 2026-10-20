@@ -702,3 +702,7 @@ body:has(.par295-page) {
     min-width: 775px;
   }
 }
+
+@media(max-width:900px){.par295-page .par295-flow,.par295-page .par295-lab,.par295-page .par295-lab>aside,.par295-page .par295-learning,.par295-page .par295-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.par295-page .par295-flow>*,.par295-page .par295-lab>*,.par295-page .par295-lab>aside>*,.par295-page .par295-learning>*,.par295-page .par295-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.par295-page .par295-lab>main{height:auto}.par295-page .par295-lab .t-control,.par295-page .par295-lab .graph-legend{position:static;width:auto}.par295-page .par295-lab .vectors label{grid-template-columns:90px minmax(0,1fr) 45px}.par295-page .par295-lab .vectors input{min-width:0;width:100%}.par295-page .par295-practice fieldset label{height:auto}.par295-page .par295-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

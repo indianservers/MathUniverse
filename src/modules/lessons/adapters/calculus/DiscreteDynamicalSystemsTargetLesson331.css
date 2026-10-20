@@ -576,3 +576,7 @@ body:has(.dds331-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:900px){body:has(.dds331-page){overflow-y:auto}.dds331-page .dds331-lab,.dds331-page .dds331-lab .workspace,.dds331-page .dds331-theory,.dds331-page .dds331-bottom{height:auto;grid-template-columns:minmax(0,1fr)}.dds331-page .workspace>*{min-width:0}.dds331-page .workspace main header{height:auto;flex-wrap:wrap;gap:8px}.dds331-page .workspace main svg{height:auto;min-height:240px}.dds331-page .workspace .table{width:auto;max-height:360px;overflow:auto}.dds331-page .dds331-theory article,.dds331-page .dds331-bottom article{min-width:0;border-left:0;padding-block:12px}.dds331-page .dds331-hero{height:auto}}
+
+@media(max-width:900px){.dds331-page .dds331-lab .player{height:auto;display:flex;flex-wrap:wrap;gap:10px;padding-block:10px}.dds331-page .player label{max-width:100%}.dds331-page .player input{max-width:180px;min-width:0}}

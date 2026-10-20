@@ -522,3 +522,6 @@ body:has(.td604-page) footer[aria-label="Site footer"] {
     min-height: 70px;
   }
 }
+
+.td604-page .td604-challenge aside label span { display: flex; flex-wrap: wrap; max-width: 100%; gap: 6px; }
+.td604-page .td604-challenge aside input { min-width: 0; max-width: 100%; }

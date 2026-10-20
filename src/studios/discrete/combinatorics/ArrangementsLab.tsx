@@ -217,13 +217,13 @@ export default function ArrangementsLab({
                 </div>
               )}
               {kind === "repeated" ? <p className="combo-note">Identical letters share a color family. Swapping two A’s leaves the word unchanged, so we divide by 3! × 2! for BANANA.</p> : null}
-              {kind !== "repeated" && kind !== "circular" ? (
+              {kind !== "repeated" ? (
                 <div>
                   <p className="combo-note">Why the product works</p>
                   <ProductPath factors={remainingChoices} total={kind === "repetition" && repeatOn ? totalRep : kind === "npr" ? totalNpr : totalAll} />
                 </div>
               ) : null}
-              {kind !== "circular" && kind !== "repeated" ? (
+              {kind !== "repeated" ? (
                 <>
                   <Seg value={listMode} onChange={(id) => setListMode(id as typeof listMode)} options={[{ id: "grid", label: "Grid" }, { id: "sequence", label: "Sequence" }, { id: "tree", label: "Tree" }]} />
                   {n > ENUM_PERM_LIMIT ? <p className="combo-note">{listedTotal} total — showing first {ENUM_DISPLAY_CAP} would overflow; count only.</p> : listMode === "tree" ? (

@@ -656,3 +656,5 @@ body:has(.divisibility71-page)
     gap: 10px;
   }
 }
+
+@media(max-width:900px){html body #main-content .standard-lesson-frame .standard-lesson-content .divisibility71-page .divisibility71-lab{overflow-x:auto!important;max-width:100%}.divisibility71-digit-tray{margin-left:12px}.divisibility71-machine{left:0;margin-left:0}}

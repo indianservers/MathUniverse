@@ -1,0 +1,23 @@
+[
+  {
+    "index": 727,
+    "file": "src/modules/lessons/schoolTargets/EuclideanFoundationsTargetLesson10053.css",
+    "review": "review non-append changes",
+    "workspaceBytes": 22860,
+    "releaseBytes": 10391
+  },
+  {
+    "index": 592,
+    "file": "src/modules/lessons/adapters/geometry3d/SurfaceAreaTargetLesson407.css",
+    "review": "review non-append changes",
+    "workspaceBytes": 13296,
+    "releaseBytes": 13271
+  },
+  {
+    "index": 590,
+    "file": "src/modules/lessons/adapters/geometry3d/CrossSectionsTargetLesson405.css",
+    "review": "review non-append changes",
+    "workspaceBytes": 11845,
+    "releaseBytes": 11822
+  }
+]

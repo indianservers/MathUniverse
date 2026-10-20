@@ -732,3 +732,7 @@ body:has(.imp294-page) {
     display: none;
   }
 }
+
+@media(max-width:900px){.imp294-page .imp294-flow,.imp294-page .imp294-lab,.imp294-page .imp294-lab>main,.imp294-page .imp294-lab>aside,.imp294-page .imp294-feedback,.imp294-page .imp294-info,.imp294-page .imp294-worked>div,.imp294-page .imp294-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.imp294-page .imp294-flow>*,.imp294-page .imp294-lab>*,.imp294-page .imp294-lab>main>*,.imp294-page .imp294-lab>aside>*,.imp294-page .imp294-feedback>*,.imp294-page .imp294-info>*,.imp294-page .imp294-worked>div>*,.imp294-page .imp294-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.imp294-page .imp294-flow article>svg:last-child{position:static}.imp294-page .imp294-lab>main>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.imp294-page .imp294-lab .legend,.imp294-page .imp294-lab .point-label{position:static;display:block}.imp294-page .imp294-worked{height:auto}.imp294-page .imp294-practice label{grid-template-columns:minmax(0,1fr)}.imp294-page .imp294-practice input{max-width:100%}.imp294-page .imp294-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

@@ -21,6 +21,7 @@ export type GeoPolygon = { id: string; points: string[]; style?: GeoStyle };
 export type GeoArc = { id: string; center: string; start: string; end: string; sector?: boolean; kind?: "arc" | "angle"; style?: GeoStyle };
 export type GeoLocus = { id: string; label: string; points: { x: number; y: number }[]; style?: GeoStyle; sourcePointId?: string; mode?: "static" | "trace"; maxSamples?: number };
 export type GeoConstraint =
+  | { id: string; type: "affine"; source: string; point: string; matrix: [number, number, number, number, number, number]; offsetPoint?: string; offsetOrigin?: { x: number; y: number } }
   | { id: string; type: "parallel" | "perpendicular"; sourceLine: string; throughPoint: string; line: string }
   | { id: string; type: "midpoint"; a: string; b: string; point: string }
   | { id: string; type: "fixed-length"; anchor: string; point: string; length: number }

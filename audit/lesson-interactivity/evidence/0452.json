@@ -1,0 +1,29 @@
+{
+  "status": "browser-verified",
+  "checks": [
+    "real pointer drag",
+    "keyboard coordinate movement",
+    "edited exact linear data gives r=1",
+    "derived regression line",
+    "correct and incorrect estimate grading",
+    "zero-variation boundary without invalid display"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 325,
+      "scroll": 325
+    },
+    {
+      "width": 768,
+      "client": 703,
+      "scroll": 703
+    },
+    {
+      "width": 1440,
+      "client": 1351,
+      "scroll": 1351
+    }
+  ],
+  "errors": []
+}

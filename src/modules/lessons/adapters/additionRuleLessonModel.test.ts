@@ -34,4 +34,14 @@ describe("addition rule lesson model", () => {
     expect(regionIsHighlighted("intersection", "union")).toBe(true);
     expect(regionIsHighlighted("neither", "union")).toBe(false);
   });
+  it("includes the overlap when selecting either complete event", () => {
+    for (const [exclusive, counts] of [[false, [6, 6, 1, 11, 25]], [true, [6, 1, 0, 7, 29]]] as const) {
+      const selections = ["a", "b", "intersection", "union", "neither"] as const;
+      selections.forEach((selection, index) => {
+        const highlighted = twoDiceOutcomes.filter(outcome => regionIsHighlighted(outcomeRegion(outcome, exclusive), selection));
+        expect(highlighted, `${exclusive}: ${selection}`).toHaveLength(counts[index]);
+      });
+    }
+  });
+
 });

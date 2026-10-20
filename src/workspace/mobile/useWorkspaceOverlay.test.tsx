@@ -19,10 +19,10 @@ describe("mobile workspace overlay", () => {
 describe("outside dismiss", () => {
   it("keeps the open panel when the tap is inside it", () => {
     const root = { contains: () => true } as unknown as HTMLElement;
-    const panel = {
+    const panel = Object.assign(new EventTarget(), {
       closest: (selector: string) =>
         selector.includes("[data-mws-panel]") ? {} : null,
-    };
+    });
     expect(isOutsideDismissTarget(panel, "[data-mws-panel]", root)).toBe(
       false,
     );
@@ -30,7 +30,7 @@ describe("outside dismiss", () => {
 
   it("dismisses when the tap is on the canvas", () => {
     const root = { contains: () => true } as unknown as HTMLElement;
-    const canvas = { closest: () => null };
+    const canvas = Object.assign(new EventTarget(), { closest: () => null });
     expect(isOutsideDismissTarget(canvas, "[data-mws-panel]", root)).toBe(
       true,
     );

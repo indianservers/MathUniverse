@@ -662,3 +662,5 @@ body:has(.numeric-slider-page)
   }
 }
 
+
+@media(max-width:900px){.numeric-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.numeric-footer>:is(p,small,span){width:auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}.numeric-footer>nav{position:static;flex-wrap:wrap}.numeric-footer:after{max-width:100%;white-space:normal;overflow-wrap:anywhere;flex-basis:100%}}

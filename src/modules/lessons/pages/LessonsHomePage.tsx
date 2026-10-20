@@ -131,6 +131,7 @@ export default function LessonsHomePage() {
           <div className="learn-hero-actions">
             <Link className="learn-primary" to="#lesson-search">Explore lessons <ArrowRight className="h-4 w-4" /></Link>
             <Link className="learn-secondary" to="/curriculum"><BookOpen className="h-4 w-4" />Open curriculum</Link>
+            <Link className="learn-secondary" to="/lessons/upcoming"><Sparkles className="h-4 w-4" />Upcoming lessons</Link>
           </div>
           <ContinueLearningCard lesson={featuredLesson} />
         </div>

@@ -485,3 +485,5 @@ body:has(.seq340-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:799px){.seq340-page .seq340-pair{grid-template-columns:minmax(0,1fr);height:auto}.seq340-page .seq340-lab{height:auto}.seq340-page .seq340-pair > article{min-width:0;overflow-x:auto}}

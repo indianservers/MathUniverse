@@ -355,3 +355,5 @@ body:has(.ind361-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:799px){.ind361-page :is(.ind361-lab,.ind361-metrics,.ind361-relation,.ind361-examples,.ind361-challenge){grid-template-columns:minmax(0,1fr);height:auto}.ind361-page .ind361-tabs{overflow-x:auto}.ind361-page :is(article,aside){min-width:0;overflow-wrap:anywhere}.ind361-page .ind361-lab{height:auto}.ind361-page .ind361-lab footer{width:auto;max-width:100%;height:auto;flex-wrap:wrap}}

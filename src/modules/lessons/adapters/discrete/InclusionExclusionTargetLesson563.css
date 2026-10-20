@@ -529,3 +529,5 @@ body:has(.ie563-page) footer[aria-label="Site footer"] > div {
     height: auto;
   }
 }
+
+.ie563-page .ie563-board > main { min-width:0; overflow-x:auto; }

@@ -103,7 +103,7 @@ export default function CosineGraphTargetLesson262({
             <select
               aria-label="Lesson language"
               defaultValue="en"
-              onChange={onInteraction}
+              onChange={() => onInteraction()}
             >
               <option value="en">English (English)</option>
               <option value="hi">हिन्दी (Hindi)</option>

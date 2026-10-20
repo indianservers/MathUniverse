@@ -359,7 +359,7 @@ body:has(.va186-page) footer[aria-label="Site footer"] {
   grid-template-columns: 55px 1fr 25px;
   gap: 7px;
 }
-.va186-result progress {
+.va186-result meter {
   width: 100%;
   accent-color: #7436ed;
 }

@@ -1,0 +1,122 @@
+{
+  "status": "passed",
+  "errors": [],
+  "layouts": [
+    {
+      "variant": "complete",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "complete",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "complete",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "complete",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "empty",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "empty",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "empty",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "empty",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "wrong-lane",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "wrong-lane",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "wrong-lane",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "wrong-lane",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "challenge",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "challenge",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "challenge",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "challenge",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ],
+  "sectorAngles": {
+    "1": 126.86989764584402,
+    "2": 53.13010235415598,
+    "3": 126.86989764584402,
+    "4": 53.13010235415598
+  },
+  "checks": [
+    "all five classification cards",
+    "native drag-and-drop",
+    "unknown drop ignored",
+    "selection and lane movement",
+    "real dependency availability",
+    "exact numeric comparisons and proper-part domain",
+    "blank rejection",
+    "either support order before goal",
+    "nonminimal proof and wrong order rejected for reward",
+    "undo/restart",
+    "touch tap and keyboard",
+    "tabs and neighbor URL"
+  ]
+}

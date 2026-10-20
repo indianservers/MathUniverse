@@ -198,3 +198,6 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.corr489 meter{display:block;width:100%;height:20px}.corr489-graph circle[role=button]{cursor:grab}.corr489-graph circle[role=button]:focus-visible{stroke:#1e40af;stroke-width:3;outline:none}.corr489-practice input{width:140px;max-width:100%;padding:6px;border:1px solid #cbd5e1;border-radius:6px}.corr489-practice button:disabled{opacity:.5}
+@media(max-width:799px){.corr489-work,.corr489-lower,.corr489-metrics,.corr489-steps{grid-template-columns:minmax(0,1fr);height:auto}.corr489-work > aside{min-width:0;overflow-x:auto}}

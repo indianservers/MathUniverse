@@ -561,3 +561,7 @@ body:has(.se442-page)
     overflow: auto;
   }
 }
+
+@media(max-width:900px){.se442-page .se442-flow,.se442-page .se442-controls,.se442-page .se442-formula,.se442-page .se442-main,.se442-page .se442-main>aside,.se442-page .se442-learn,.se442-page .se442-practice>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.se442-page .se442-flow>*,.se442-page .se442-controls>*,.se442-page .se442-formula>*,.se442-page .se442-main>*,.se442-page .se442-main>aside>*,.se442-page .se442-learn>*,.se442-page .se442-practice>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.se442-page .se442-builder,.se442-page .se442-practice{height:auto}.se442-page .se442-flow{transform:none;margin-bottom:10px}.se442-page .se442-flow article>svg:last-child{position:static}.se442-page .se442-main>.plot{height:auto}.se442-page .se442-formula{overflow-x:auto}.se442-page .se442-practice>em,.se442-page .se442-practice>strong{position:static;display:block;margin-top:10px}.se442-page input{max-width:100%;min-width:0}.se442-page .se442-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

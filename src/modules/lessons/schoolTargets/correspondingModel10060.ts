@@ -1,0 +1,6 @@
+import{pcUnit10063,pcAdd10063,pcAngle10063,pcLine10063,type PCPoint10063}from'./parallelConverseModel10063';
+export type CAState10060={angle:number;l:number;m:number};
+export const caInitial10060:CAState10060={angle:64,l:0,m:0};
+export function caBounds10060(angle:number){return{min:Math.max(-32,angle-175),max:Math.min(32,angle-5)};}
+export function caClamp10060(g:CAState10060){const angle=Math.max(5,Math.min(175,g.angle)),b=caBounds10060(angle);return{angle,l:Math.max(b.min,Math.min(b.max,g.l)),m:Math.max(b.min,Math.min(b.max,g.m))};}
+export function caModel10060(g:CAState10060){const t=pcUnit10063(g.angle),l=pcUnit10063(g.l),m=pcUnit10063(g.m),origin={x:300,y:290},a=pcAdd10063(origin,t,-150),b=pcAdd10063(origin,t,150),cross=(u:PCPoint10063,v:PCPoint10063)=>u.x*v.y-u.y*v.x,proper=cross(l,t)>1e-10&&cross(m,t)>1e-10,top=pcAngle10063(t,l),bottom=pcAngle10063(t,m),values=proper?[top,180-top,180-top,top,bottom,180-bottom,180-bottom,bottom]:Array<number|null>(8).fill(null),parallel=proper&&g.l===g.m,spacing=Math.min(Math.abs(cross({x:b.x-a.x,y:b.y-a.y},l)),Math.abs(cross({x:b.x-a.x,y:b.y-a.y},m))),radius=Math.min(34,spacing*.3),numberRadius=Math.min(66,Math.max(18,spacing*.45));return{t,l,m,origin,a,b,proper,values,parallel,radius,numberRadius,lines:[pcLine10063(a,l),pcLine10063(b,m),pcLine10063(origin,t)]};}

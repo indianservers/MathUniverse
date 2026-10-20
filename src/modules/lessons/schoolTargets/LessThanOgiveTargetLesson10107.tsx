@@ -10,7 +10,8 @@ import {
 import { type PointerEvent, useRef, useState } from "react";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./LessThanOgiveTargetLesson10107.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import{lessThanModel,lessAxisMax,moveLessPoint}from "./lessThanOgiveModel";
+import MathExpression from "../../../components/ui/MathExpression";
 
 type Point = { id: number; x: number; cf: number };
 const defaults: Point[] = [
@@ -33,25 +34,14 @@ export default function LessThanOgiveTargetLesson10107({
   const [showGuide, setShowGuide] = useState(true);
   const [showGrid, setShowGrid] = useState(false);
   const [dragging, setDragging] = useState<number | null>(null);
+  const [draftKey,setDraftKey]=useState<string|null>(null),[draft,setDraft]=useState(''),[editError,setEditError]=useState('');
   const [actions, setActions] = useState(0);
   const svgRef = useRef<SVGSVGElement>(null);
-  const total = points.at(-1)?.cf ?? 0;
-  const half = total / 2;
-  const upper = points.findIndex((point) => point.cf >= half);
-  const right = points[Math.max(0, upper)];
-  const left = points[Math.max(0, upper - 1)] ?? right;
-  const median =
-    right && left
-      ? round(
-          left.x +
-            ((half - left.cf) / Math.max(1, right.cf - left.cf)) *
-              (right.x - left.x),
-        )
-      : 0;
-  const minX = points[0]?.x ?? 0;
-  const maxX = points.at(-1)?.x ?? 1;
-  const sx = (x: number) => 55 + ((x - minX) / Math.max(1, maxX - minX)) * 630;
-  const sy = (cf: number) => 300 - (cf / Math.max(35, total)) * 245;
+  const {total,half,median:exactMedian,medianRange,valid}=lessThanModel(points);
+  const median=exactMedian===null?'—':round(exactMedian);
+  const dragFrame=useRef<{min:number;max:number;ymax:number}|null>(null);
+  const minX=dragFrame.current?.min??points[0].x,maxX=dragFrame.current?.max??points[points.length-1].x,ymax=dragFrame.current?.ymax??lessAxisMax(total);
+  const sx=(x:number)=>55+(x-minX)/(maxX-minX)*630,sy=(cf:number)=>300-cf/ymax*245;
   const path = points
     .map((point, index) => `${index ? "L" : "M"}${sx(point.x)},${sy(point.cf)}`)
     .join(" ");
@@ -59,42 +49,24 @@ export default function LessThanOgiveTargetLesson10107({
     fn();
     setActions((value) => value + 1);
   };
-  const updatePoint = (id: number, next: Partial<Point>) =>
-    setPoints((current) => {
-      const index = current.findIndex((point) => point.id === id);
-      if (index < 0) return current;
-      const previous = current[index - 1];
-      const following = current[index + 1];
-      const candidate = { ...current[index], ...next };
-      candidate.x = round(
-        Math.max(
-          previous ? previous.x + 0.5 : 0.5,
-          Math.min(following ? following.x - 0.5 : 99.5, candidate.x),
-        ),
-      );
-      candidate.cf = Math.round(
-        Math.max(
-          previous?.cf ?? 0,
-          Math.min(following?.cf ?? 50, candidate.cf),
-        ),
-      );
-      if(index===0)candidate.cf=0;
-      return current.map((point) => (point.id === id ? candidate : point));
-    });
-  const dragPoint = (event: PointerEvent<SVGCircleElement>, point: Point) => {
-    if (dragging !== point.id || !svgRef.current) return;
-    const rect = svgRef.current.getBoundingClientRect();
-    const px = ((event.clientX - rect.left) / rect.width) * 740;
-    const py = ((event.clientY - rect.top) / rect.height) * 345;
-    updatePoint(point.id, {
-      x: minX + ((px - 55) / 630) * (maxX - minX),
-      cf: ((300 - py) / 245) * Math.max(35, total),
-    });
-  };
+  const updatePoint=(id:number,next:Partial<Point>)=>setPoints(current=>moveLessPoint(current,id,next));
+  const editField=(id:number,field:'x'|'cf',text:string)=>{setDraftKey(`${field}-${id}`);setDraft(text);const value=text.trim()===''?NaN:Number(text),i=points.findIndex(p=>p.id===id),previous=points[i-1],following=points[i+1];const okay=Number.isFinite(value)&&(field==='x'?value>(previous?.x??-Infinity)&&value<(following?.x??Infinity):Number.isInteger(value)&&value>=(previous?.cf??0)&&value<=(following?.cf??1000000000)&&(i>0||value===0));if(!okay){setEditError(field==='x'?'Boundaries must stay strictly increasing.':'Use a nondecreasing whole cumulative count; the first count must stay zero.');return;}setEditError('');act(()=>setPoints(current=>current.map(p=>p.id===id?{...p,[field]:value}:p)));};
+  const dragPoint=(event:PointerEvent<SVGCircleElement>,point:Point)=>{if(dragging!==point.id||!svgRef.current)return;const m=svgRef.current.getScreenCTM();if(!m)return;const pt=new DOMPoint(event.clientX,event.clientY).matrixTransform(m.inverse());updatePoint(point.id,{x:round(minX+(pt.x-55)/630*(maxX-minX),Math.max(1,-Math.floor(Math.log10((maxX-minX)/1000)))),cf:(300-pt.y)/245*ymax});};
   const exportPng = () => {
     const svg = svgRef.current;
     if (!svg) return;
-    const source = new XMLSerializer().serializeToString(svg);
+    const clone = svg.cloneNode(true) as SVGSVGElement;
+    const sourceNodes = [svg, ...svg.querySelectorAll('*')];
+    const copiedNodes = [clone, ...clone.querySelectorAll('*')];
+    sourceNodes.forEach((node, index) => {
+      const style = getComputedStyle(node);
+      const properties = ['fill', 'stroke', 'stroke-width', 'stroke-dasharray', 'opacity', 'font-size', 'font-family', 'font-weight', 'font-style', 'text-anchor', 'visibility', 'display'];
+      copiedNodes[index].setAttribute('style', properties.map(name => `${name}:${style.getPropertyValue(name)}`).join(';'));
+    });
+    clone.setAttribute('width', '740');
+    clone.setAttribute('height', '345');
+    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    const source = new XMLSerializer().serializeToString(clone);
     const image = new Image();
     image.onload = () => {
       const canvas = document.createElement("canvas");
@@ -115,6 +87,8 @@ export default function LessThanOgiveTargetLesson10107({
   };
   const reset = () =>
     act(() => {
+      setDraftKey(null);setEditError('');
+      dragFrame.current=null;
       setPoints(defaults);
       setShowGuide(true);
       setShowGrid(false);
@@ -141,11 +115,12 @@ export default function LessThanOgiveTargetLesson10107({
       data-total={total}
       data-half={half}
       data-median={median}
+      data-exact-median={exactMedian??"none"} data-valid={String(valid)} data-median-range={medianRange?.join(",")??"none"} data-y-max={ymax}
       data-show-guide={String(showGuide)}
       data-show-grid={String(showGrid)}
       data-actions={actions}
     >
-      <header className="lto10107-hero">
+      <div className="lto10107-hero">
         <small>CLASS 10 · STATISTICS</small>
         <h1>Less-Than Ogive</h1>
         <p>
@@ -162,10 +137,10 @@ export default function LessThanOgiveTargetLesson10107({
           <span>CONCEPT</span>
           <span>statistics</span>
         </nav>
-      </header>
-      <GroupedDataEditor data={{bounds:points.map(point=>point.x),frequencies:points.slice(1).map((point,i)=>point.cf-points[i].cf)}} defaults={{bounds:defaults.map(point=>point.x),frequencies:defaults.slice(1).map((point,i)=>point.cf-defaults[i].cf)}} onChange={data=>act(()=>{let cf=0;setPoints(data.bounds.map((x,i)=>({id:i+1,x,cf:i===0?0:(cf+=data.frequencies[i-1])})));})}/>
+      </div>
+
       <main className="lto10107-lab">
-        <header>
+        <div className="lto10107-lab-heading">
           <div>
             <small>INTERACTIVE LAB</small>
             <h2>Data balance lab</h2>
@@ -177,13 +152,14 @@ export default function LessThanOgiveTargetLesson10107({
           <button onClick={reset}>
             <RotateCcw /> Reset lab
           </button>
-        </header>
+        </div>
         <div className="lto10107-grid">
           <div className="lto10107-left">
             <section className="lto10107-table">
               <h3>
                 DATA TABLE <span>(Editable)</span>
               </h3>
+              {editError&&<p role="alert">{editError} The graph retains the last valid values.</p>}
               <table>
                 <thead>
                   <tr>
@@ -201,14 +177,9 @@ export default function LessThanOgiveTargetLesson10107({
                             aria-label={`Upper boundary row ${point.id}`}
                             type="number"
                             step="0.5"
-                            value={point.x}
-                            onChange={(event) =>
-                              act(() =>
-                                updatePoint(point.id, {
-                                  x: Number(event.target.value),
-                                }),
-                              )
-                            }
+                            value={draftKey===`x-${point.id}`?draft:point.x}
+                            onFocus={()=>{setDraftKey(`x-${point.id}`);setDraft(String(point.x));}} onBlur={()=>setDraftKey(null)}
+                            onChange={e=>editField(point.id,'x',e.target.value)}
                           />
                         </label>
                       </td>
@@ -217,15 +188,10 @@ export default function LessThanOgiveTargetLesson10107({
                           aria-label={`Cumulative frequency row ${point.id}`}
                           type="number"
                           min="0"
-                          max="50"
-                          value={point.cf}
-                          onChange={(event) =>
-                            act(() =>
-                              updatePoint(point.id, {
-                                cf: Number(event.target.value),
-                              }),
-                            )
-                          }
+                          max="1000000000"
+                          value={draftKey===`cf-${point.id}`?draft:point.cf}
+                          onFocus={()=>{setDraftKey(`cf-${point.id}`);setDraft(String(point.cf));}} onBlur={()=>setDraftKey(null)}
+                          onChange={e=>editField(point.id,'cf',e.target.value)}
                         />
                       </td>
                     </tr>
@@ -234,14 +200,15 @@ export default function LessThanOgiveTargetLesson10107({
               </table>
               <footer>
                 Total frequency, <i>N</i> = <b>{total}</b>
-                <button onClick={addRow}>
+                <button disabled={points.length>=13} onClick={addRow}>
                   <Plus /> Add row
                 </button>
               </footer>
             </section>
+            <details className="lto10107-custom"><summary>Edit grouped data</summary><GroupedDataEditor data={{bounds:points.map(point=>point.x),frequencies:points.slice(1).map((point,i)=>point.cf-points[i].cf)}} defaults={{bounds:defaults.map(point=>point.x),frequencies:defaults.slice(1).map((point,i)=>point.cf-defaults[i].cf)}} onChange={data=>act(()=>{let cf=0;setPoints(data.bounds.map((x,i)=>({id:i+1,x,cf:i===0?0:(cf+=data.frequencies[i-1])})));})}/></details>
             <section className="lto10107-formula">
               <h3>OGIVE FORMULA</h3>
-              <strong>F(&lt; x) = Σ fᵢ</strong>
+              <strong><MathExpression value={String.raw`F(<x)=\sum_{i=1}^{k}f_i`}/></strong>
               <p>
                 Cumulative total of frequencies up to upper boundary <i>x</i>.
               </p>
@@ -249,7 +216,7 @@ export default function LessThanOgiveTargetLesson10107({
           </div>
           <div className="lto10107-right">
             <section className="lto10107-chart">
-              <header>
+              <div className="lto10107-chart-heading">
                 <h3>LESS-THAN OGIVE ⓘ</h3>
                 <label>
                   <input
@@ -274,22 +241,22 @@ export default function LessThanOgiveTargetLesson10107({
                 <button onClick={exportPng}>
                   <Download /> Export PNG
                 </button>
-              </header>
+              </div>
               <svg
                 ref={svgRef}
                 viewBox="0 0 740 345"
                 aria-label="Interactive less-than ogive"
               >
                 <rect width="740" height="345" fill="#06182f" />
+                <text x="370" y="342" textAnchor="middle">Upper class boundary, x</text><text transform="translate(15 175) rotate(-90)" textAnchor="middle">Less-than cumulative frequency</text>
                 <g className={showGrid ? "grid visible" : "grid"}>
-                  {[0, 5, 10, 15, 20, 25, 30, 35].map((v) => (
-                    <line
-                      key={`h${v}`}
+                  {Array.from({length:8},(_,i)=>Number((i*ymax/7).toFixed(2))).map((v) => (
+                    <g key={`h${v}`}><text x="43" y={sy(v)+4} textAnchor="end">{v>=1000?`${Number((v/1000).toPrecision(3))}k`:v}</text><line
                       x1="55"
                       y1={sy(v)}
                       x2="700"
                       y2={sy(v)}
-                    />
+                    /></g>
                   ))}
                   {points.map((p) => (
                     <line
@@ -304,47 +271,47 @@ export default function LessThanOgiveTargetLesson10107({
                 <line x1="55" y1="300" x2="705" y2="300" />
                 <line x1="55" y1="305" x2="55" y2="40" />
                 <path d={path} />
-                {showGuide && (
+                {showGuide && valid && (
                   <g className="guide">
-                    <line x1="55" y1={sy(half)} x2={sx(median)} y2={sy(half)} />
+                    <line x1="55" y1={sy(half)} x2={sx(exactMedian??minX)} y2={sy(half)} />
                     <line
-                      x1={sx(median)}
+                      x1={sx(exactMedian??minX)}
                       y1={sy(half)}
-                      x2={sx(median)}
+                      x2={sx(exactMedian??minX)}
                       y2="300"
                     />
                     <text x="70" y={sy(half) - 10}>
                       N/2 = {half}
                     </text>
-                    <text x={sx(median) + 17} y={sy(half) + 32}>
-                      Median read-off
-                    </text>
-                    <text x={sx(median) + 17} y={sy(half) + 57}>
-                      x = {median}
-                    </text>
+                    <rect x={sx(exactMedian!)>500?sx(exactMedian!)-190:sx(exactMedian!)+20} y={sy(half)+90>300?sy(half)-85:sy(half)+15} width="175" height="70" rx="9" fill="#020b1cee" stroke="#456078"/>
+                    <text x={(sx(exactMedian!)>500?sx(exactMedian!)-190:sx(exactMedian!)+20)+12} y={(sy(half)+90>300?sy(half)-85:sy(half)+15)+22}>Median read-off</text>
+                    <text x={(sx(exactMedian!)>500?sx(exactMedian!)-190:sx(exactMedian!)+20)+25} y={(sy(half)+90>300?sy(half)-85:sy(half)+15)+53}>x = {median}</text>
+
                   </g>
                 )}
                 {points.map((point) => (
                   <g key={point.id}>
                     <circle
+                      data-ogive-id={point.id} data-x={point.x} data-cf={point.cf}
                       role="slider"
                       tabIndex={0}
                       aria-label={`Ogive point ${point.id}`}
                       aria-valuemin={points[Math.max(0, point.id - 2)]?.cf ?? 0}
-                      aria-valuemax={points[point.id]?.cf ?? 50}
+                      aria-valuemax={points[point.id]?.cf ?? 1000000000}
                       aria-valuenow={point.cf}
                       cx={sx(point.x)}
                       cy={sy(point.cf)}
                       r="6"
                       onPointerDown={(event) => {
+                        dragFrame.current={min:minX,max:maxX,ymax};
                         event.currentTarget.setPointerCapture(event.pointerId);
                         act(() => setDragging(point.id));
                       }}
                       onPointerMove={(event) => dragPoint(event, point)}
-                      onPointerUp={() =>
-                        dragging && act(() => setDragging(null))
-                      }
+                      onPointerUp={event=>{dragPoint(event,point);dragFrame.current=null;act(()=>setDragging(null));}}
+                      onPointerCancel={()=>{dragFrame.current=null;act(()=>setDragging(null));}}
                       onKeyDown={(event) => {
+                        if(event.key.startsWith('Arrow')){event.preventDefault();event.stopPropagation();}
                         if (event.key === "ArrowUp")
                           act(() =>
                             updatePoint(point.id, { cf: point.cf + 1 }),
@@ -368,6 +335,7 @@ export default function LessThanOgiveTargetLesson10107({
                     </text>
                   </g>
                 ))}
+              {showGuide&&valid&&<g className="lto10107-median-marker" data-median-marker="true"><circle cx={sx(exactMedian!)} cy={sy(half)} r="8"/><circle cx={sx(exactMedian!)} cy={sy(half)} r="4"/></g>}
               </svg>
             </section>
             <div className="lto10107-read">
@@ -388,8 +356,8 @@ export default function LessThanOgiveTargetLesson10107({
                 <div>
                   <b>How to read median</b>
                   <p>
-                    Draw a horizontal line at N/2 to meet the ogive, then drop a
-                    vertical line to the x-axis. The x value is the median.
+                    {valid?"Draw a horizontal line at N/2 to meet the ogive, then drop a vertical line to the x-axis. The x value is the median.":"No observations (N = 0): the median is undefined."}
+                    {medianRange&&medianRange[1]>medianRange[0]&&` A flat median interval is [${medianRange.join(", ")}]; the read-off uses its lower endpoint.`}
                   </p>
                 </div>
               </aside>
@@ -397,7 +365,7 @@ export default function LessThanOgiveTargetLesson10107({
           </div>
         </div>
       </main>
-      <LessonTopicStudyBoard lessonId={10107} alwaysVisible />
+
 
     </section>
   );

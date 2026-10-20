@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-place-value-explorer",
+  "action": {
+    "control": "THOUSANDS practice digit",
+    "before": "6",
+    "after": "7",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 359,
+      "scroll": 359
+    },
+    {
+      "width": 768,
+      "client": 715,
+      "scroll": 715
+    },
+    {
+      "width": 1440,
+      "client": 1387,
+      "scroll": 1387
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

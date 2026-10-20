@@ -1,3 +1,4 @@
+import "./AreaTargetLesson231.css";
 import {
   ArrowLeft,
   ArrowRight,

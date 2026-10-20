@@ -27,7 +27,7 @@
 .hf10079-page button {
   cursor: pointer;
 }
-.hf10079-page svg {
+.hf10079-page button>svg,.hf10079-page a>svg,.hf10079-page h2>svg,.hf10079-invalid>svg,.hf10079-cards strong>svg {
   width: 14px;
   height: 14px;
 }
@@ -57,13 +57,13 @@
   gap: 8px;
   margin-top: 13px;
 }
-.hf10079-hero span {
+.hf10079-hero >div>span {
   padding: 5px 10px;
   border-radius: 14px;
   background: #f0f2f6;
   font-weight: 800;
 }
-.hf10079-hero span:nth-child(2) {
+.hf10079-hero >div>span:nth-child(2) {
   color: #6f2bd0;
   background: #f1e9ff;
 }
@@ -185,7 +185,7 @@
   height: 320px;
   touch-action: none;
 }
-.hf10079-diagram svg path:first-child {
+.hf10079-diagram > svg .triangle {
   fill: #fff;
   stroke: #171717;
   stroke-width: 2;
@@ -261,7 +261,7 @@
   gap: 8px;
   margin-top: 10px;
 }
-.hf10079-relations span {
+.hf10079-relations>div>span {
   padding: 9px;
   border: 1px solid #bfa6f2;
   border-radius: 5px;
@@ -429,7 +429,7 @@
   background: #e9dcff;
   color: #6c25c8;
 }
-.hf10079-practice li span {
+.hf10079-practice li>.legacy-step-text {
   padding: 0 7px;
   font:
     italic 9px Georgia,
@@ -553,7 +553,7 @@
   .hf10079-practice-grid {
     grid-template-columns: 1fr;
   }
-  .hf10079-practice li span {
+  .hf10079-practice li>.legacy-step-text {
     white-space: normal;
   }
   .hf10079-lesson-nav {
@@ -567,3 +567,11 @@
     min-width: 0;
   }
 }
+
+.hf10079-page{width:100%;top:0;left:0;padding:8px;font-size:14px;background:#f9fcff}.hf10079-page h2{font-size:16px;font-weight:800}.hf10079-hero{height:auto;min-height:175px;position:relative;padding:22px}.hf10079-hero h1{font-size:30px;font-weight:800;padding-right:150px}.hf10079-hero>small{font-size:11px;letter-spacing:1.2px}.hf10079-hero>div{margin-top:22px;flex-wrap:wrap}.hf10079-hero>div>span{font-size:11px}.hf10079-hero>a{position:absolute;top:22px;right:18px;border:1px solid #cce7f0;border-radius:9px;padding:10px 15px;color:#34415b;text-decoration:none}.hf10079-tabs{height:56px;margin:18px 0;background:#fff}.hf10079-tabs button{display:flex;align-items:center;justify-content:center;gap:10px;font-size:14px}.hf10079-page button>svg,.hf10079-page a>svg,.hf10079-page h2>svg,.hf10079-invalid>svg,.hf10079-cards strong>svg{width:20px;height:20px;fill:none!important;stroke:currentColor!important}.hf10079-page button>svg *,.hf10079-page a>svg *,.hf10079-page h2>svg *,.hf10079-invalid>svg *,.hf10079-cards strong>svg *{fill:none!important;stroke:currentColor!important}.hf10079-page main{margin-top:20px}.hf10079-lab{min-height:0;overflow:visible}.hf10079-controls{grid-template-columns:repeat(3,minmax(80px,100px)) 115px minmax(0,1fr);padding:22px;gap:12px;align-items:end}.hf10079-controls>label:first-child{grid-column:1/5}.hf10079-controls input{width:75px;height:44px;font-size:17px;text-align:center}.hf10079-controls i{font-size:18px}.hf10079-controls>button{height:44px}.hf10079-controls input[aria-invalid=true]{border-color:#ce4545;background:#fff4f1}.hf10079-results{grid-column:5;grid-row:1/3;padding-left:25px;gap:12px;grid-template-columns:minmax(0,1fr) minmax(0,1.8fr)}.hf10079-results b{font-size:16px;gap:10px;min-height:44px;flex-wrap:wrap}.hf10079-results output{min-width:0;overflow-wrap:anywhere}.hf10079-results em{font-size:11px;font-style:normal}.hf10079-workspace{grid-template-columns:minmax(0,40fr) minmax(0,60fr);padding:22px;gap:20px}.hf10079-workspace>article{min-width:0}.hf10079-diagram{padding-right:20px}.hf10079-diagram>svg{height:550px;max-width:none!important}.hf10079-diagram>svg .triangle{fill:#fff!important;stroke:#232323!important;stroke-width:1.6}.hf10079-diagram .base{stroke:#075cde!important;stroke-width:2}.hf10079-diagram .altitude{stroke:#363b46!important;stroke-dasharray:6 5!important}.hf10079-diagram .extension{stroke:#8b98af!important;stroke-dasharray:4 4!important}.hf10079-diagram .right-angle{stroke:#333!important;fill:none!important}.hf10079-diagram .vertex{fill:#0868f0!important;stroke:#fff!important}.hf10079-diagram .vertex:focus{stroke:#f29b22!important;outline:none}.hf10079-diagram .foot{fill:#252b36!important}.hf10079-diagram svg text{fill:#005fde!important}.hf10079-diagram svg .side.c,.hf10079-diagram svg .math{fill:#7527cb!important}.hf10079-diagram svg .side.b,.hf10079-diagram svg .remainder{fill:#0669e8!important}.hf10079-diagram svg .height,.hf10079-diagram svg .d-label{fill:#333!important}.hf10079-diagram svg .no-triangle text{font:12px Arial}.hf10079-geometry-note{min-height:45px;padding:8px 2px;font-size:12px;color:#5a6b83}.hf10079-legend{padding:16px;gap:14px;font-size:13px}.hf10079-legend span:nth-of-type(1),.hf10079-legend span:nth-of-type(5){color:#7628c6}.hf10079-legend span:nth-of-type(2){color:#30343f}.hf10079-legend span:nth-of-type(3),.hf10079-legend span:nth-of-type(6){color:#0869d8}.hf10079-relations{padding:14px;margin-top:18px}.hf10079-relations>button{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;padding:0;border:0;background:transparent;font:inherit;font-weight:700;color:#34415b;text-align:left}.hf10079-relations>div{gap:12px;margin-top:18px}.hf10079-relations>div>span{min-width:0;padding:14px 8px;text-align:center}.hf10079-relations>div>span:nth-child(2){color:#0869d8;border-color:#a3c9f8}.hf10079-relations .math-expression{display:block;margin-top:14px;font-size:17px}.hf10079-derivation{padding-left:0}.hf10079-derivation>p{margin:10px 0 20px;color:#63718b}.hf10079-derivation section{margin:12px 0;min-height:0}.hf10079-derivation section>button{grid-template-columns:25px minmax(0,1fr) 20px;gap:8px;padding:12px;color:#075ece}.hf10079-derivation section:nth-of-type(odd)>button{color:#7530d0}.hf10079-derivation section>button>span{width:24px;height:24px;font-size:14px}.hf10079-derivation section:nth-of-type(even)>button>span{background:#086fd9}.hf10079-step-math{padding:8px 15px 16px;text-align:center}.hf10079-step-math>.math-expression{display:block;margin:8px 0;font-size:19px}.hf10079-derivation section:last-child .math-expression:last-child{background:#f6efff;border:1px solid #c8abf6;padding:12px;color:#742bd0;border-radius:6px}.hf10079-page .math-expression{max-width:100%;overflow-x:auto;overflow-y:hidden}.hf10079-page .katex svg{width:100%!important;height:inherit!important}.hf10079-cards{gap:18px;margin-top:22px}.hf10079-cards>article{min-width:0;padding:22px;min-height:300px}.hf10079-cards h2{display:flex;align-items:center;gap:10px;font-size:16px;margin-bottom:18px}.hf10079-cards li,.hf10079-cards p{margin:14px 0}.hf10079-cards ul{padding-left:18px}.hf10079-cards .why{background:#fafffc}.hf10079-cards .example{background:#fcfdff}.hf10079-cards .mistake{background:#fffefa}.hf10079-cards .math-expression{display:block;margin:18px 0;font-size:18px}.hf10079-cards .wrong{font-size:13px}.hf10079-cards .wrong .math-expression{font-size:15px}.hf10079-cards strong{font-size:17px}.hf10079-practice{height:auto;margin-top:22px;padding:22px;background:linear-gradient(110deg,#fff,#fcf9ff)}.hf10079-practice h2{display:flex;align-items:center;gap:10px;font-size:17px;margin-bottom:12px}.hf10079-practice-grid{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:26px;margin-top:20px;align-items:start}.hf10079-practice-grid>div{min-width:0}.hf10079-practice ol{gap:5px}.hf10079-practice li{grid-template-columns:18px 32px minmax(0,1fr) 30px 30px;gap:5px;padding:7px;min-height:45px;background:#fff;cursor:grab}.hf10079-practice li>.math-expression{font-size:16px;padding:0 8px}.hf10079-practice li>svg{width:15px;height:20px;color:#7c8498;fill:none!important;stroke:currentColor!important}.hf10079-practice li>b{padding:3px;font-size:16px}.hf10079-practice li button{height:30px;border:1px solid #e1e6ef;border-radius:5px;color:#6b38c5}.hf10079-practice li button:disabled{opacity:.3;cursor:default}.hf10079-grade{display:flex;align-items:center;gap:15px;margin-top:16px}.hf10079-grade>button{padding:10px 15px;background:#7b34d5;border:0;border-radius:7px;color:#fff;white-space:nowrap}.hf10079-grade strong{color:#8b650e;font-size:13px;font-weight:500}.hf10079-grade strong.success{color:#14804c}.hf10079-practice aside{padding:20px}.hf10079-practice aside h3{font-size:15px;color:#0a8051}.hf10079-practice aside p{margin:16px 0}.hf10079-practice aside .math-expression{display:block;font-size:19px;margin:18px 0}.hf10079-practice aside button{padding:14px;font-size:14px}.hf10079-lesson-nav{gap:20px;margin-top:22px}.hf10079-lesson-nav a{padding:15px 22px;font-size:14px}.hf10079-footer{margin-top:22px;border:1px solid #dce5ea;border-radius:10px;background:#fff;padding:22px}.hf10079-footer p{margin-top:8px}.hf10079-footer small{display:block;margin-top:22px}.hf10079-page [id]{scroll-margin-top:85px}.hf10079-page button:focus-visible,.hf10079-page a:focus-visible{outline:2px solid #7932d6;outline-offset:3px}
+@media(max-width:1200px){.hf10079-controls{grid-template-columns:repeat(3,90px) 100px}.hf10079-results{grid-column:1/-1;grid-row:auto;border-left:0;border-top:1px solid #dce5ea;padding:12px 0 0}.hf10079-workspace{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);padding:15px;gap:15px}.hf10079-step-math>.math-expression{font-size:16px}.hf10079-relations>div{grid-template-columns:1fr}.hf10079-cards{grid-template-columns:1fr}.hf10079-cards>article{min-height:0}.hf10079-practice-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.hf10079-page{width:100%;font-size:14px}.hf10079-hero{padding:46px 16px 20px}.hf10079-hero h1{font-size:24px;padding-right:0}.hf10079-hero>a{top:10px;padding:6px 12px;font-size:12px}.hf10079-tabs button{font-size:11px;gap:5px}.hf10079-tabs button>svg{width:14px;height:14px}.hf10079-controls{grid-template-columns:repeat(3,minmax(0,1fr));padding:14px;gap:12px}.hf10079-controls>label:first-child{grid-column:1/-1}.hf10079-controls>label:not(:first-child){display:flex;min-width:0}.hf10079-controls input{width:100%;min-width:0}.hf10079-results{grid-template-columns:1fr}.hf10079-results b{font-size:15px}.hf10079-workspace{grid-template-columns:1fr;padding:14px}.hf10079-diagram{padding:0 0 15px;border-right:0;border-bottom:1px solid #dce5ea}.hf10079-diagram>svg{height:320px}.hf10079-legend{font-size:12px;padding:12px;gap:10px}.hf10079-relations>div{grid-template-columns:1fr 1fr}.hf10079-relations>div>span{padding:10px 4px;font-size:12px}.hf10079-relations .math-expression{font-size:14px}.hf10079-derivation{padding-top:14px}.hf10079-step-math{padding:4px 8px 10px}.hf10079-step-math>.math-expression{font-size:15px}.hf10079-cards>article,.hf10079-practice{padding:16px}.hf10079-cards .math-expression{font-size:16px}.hf10079-practice li{grid-template-columns:10px 23px minmax(0,1fr) 28px 28px;gap:3px;padding:5px 2px}.hf10079-practice li>svg{width:10px}.hf10079-practice li>.math-expression{font-size:14px;padding:0 4px}.hf10079-practice li button>svg{width:16px;height:16px}.hf10079-grade{flex-wrap:wrap}.hf10079-practice aside .math-expression{font-size:17px}.hf10079-lesson-nav{flex-direction:column;gap:10px}.hf10079-lesson-nav a{font-size:13px}}
+
+.hf10079-cards .why ul{list-style:disc}.hf10079-cards .why li::marker{color:#15925b}
+
+.hf10079-diagram .foot,.hf10079-diagram>svg text{pointer-events:none}

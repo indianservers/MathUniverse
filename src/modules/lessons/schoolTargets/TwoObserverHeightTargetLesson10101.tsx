@@ -13,11 +13,12 @@ import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./TwoObserverHeightTargetLesson10101.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import{twoObserverScene,tangent}from "./twoObserverHeightModel";
+import MathExpression from "../../../components/ui/MathExpression";
 
 const round = (value: number, places = 2) =>
   Math.round(value * 10 ** places) / 10 ** places;
-const tangent = (degrees: number) => Math.tan((degrees * Math.PI) / 180);
+function MiniDiagram({wrong=false}:{wrong?:boolean}){return <svg className="toh10101-mini-diagram" viewBox="0 0 260 140" role="img" aria-label={wrong?'Incorrect angle assignment':'Two right triangles sharing one height'}><path d="M15 108H235V18" fill="none" stroke="#263550" strokeWidth="1.5"/><path d="M15 108L235 18M130 108L235 18" fill="none" stroke="#287bce" strokeDasharray="4 3"/><path d="M42 108Q42 98 39 97M151 108Q151 95 146 94" fill="none" stroke={wrong?'#bd3044':'#289d58'}/><text x="43" y="103">{wrong?'60°':'β'}</text><text x="153" y="103">{wrong?'30°':'α'}</text><text x="240" y="65">h</text><path d="M15 123H130M130 123H235" stroke="#263550"/><text x="68" y="137">d</text><text x="181" y="137">x</text>{wrong&&<text x="106" y="60" fill="#bd3044" fontSize="24">×</text>}</svg>;}
 
 export default function TwoObserverHeightTargetLesson10101({
   lesson: _lesson,
@@ -34,24 +35,19 @@ export default function TwoObserverHeightTargetLesson10101({
   const [graded, setGraded] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
   const [actions, setActions] = useState(0);
+  const mainRef=useRef<HTMLElement>(null),frozenRise=useRef<number|null>(null);
+  const [gapDraft,setGapDraft]=useState<string|null>(null),[gapError,setGapError]=useState('');
   const sceneRef = useRef<SVGSVGElement>(null);
 
-  const tanNear = tangent(nearAngle);
-  const tanFar = tangent(farAngle);
-  const valid = tanNear > tanFar + 0.01;
-  const nearDistance = valid ? (observerGap * tanFar) / (tanNear - tanFar) : 0;
-  const height = valid ? nearDistance * tanNear : 0;
-  const farDistance = nearDistance + observerGap;
-  const towerX = 620;
-  const groundY = 300;
-  const topY = 50;
-  const visualScale = valid ? Math.min(8.5, 250 / Math.max(height, 1)) : 6;
-  const nearX = Math.max(95, towerX - nearDistance * visualScale);
-  const farX = Math.max(45, towerX - farDistance * visualScale);
+  const {valid,x:nearDistanceValue,h:heightValue,far:farDistanceValue,towerX,groundY,topY,scale:visualScale,nearX,farX}=twoObserverScene(nearAngle,farAngle,observerGap,frozenRise.current);
+  const nearDistance=nearDistanceValue??0,height=heightValue??0,farDistance=farDistanceValue??0;
+  const arc=(x:number,angle:number,r:number)=>`M${x+r} ${groundY} A${r} ${r} 0 0 0 ${x+r*Math.cos(angle*Math.PI/180)} ${groundY-r*Math.sin(angle*Math.PI/180)}`;
+  const cramped=nearX-farX<110;
+  const defaultCase=nearAngle===60&&farAngle===30&&observerGap===20;
   const challengeNear = (30 * tangent(22.5)) / (tangent(45) - tangent(22.5));
   const challengeHeight = challengeNear * tangent(45);
   const challengeCorrect =
-    Math.abs(Number(nearAnswer) - challengeNear) <= 0.02 &&
+    nearAnswer.trim()!==''&&heightAnswer.trim()!==''&&Math.abs(Number(nearAnswer) - challengeNear) <= 0.02 &&
     Math.abs(Number(heightAnswer) - challengeHeight) <= 0.02;
 
   const act = (fn: () => void) => {
@@ -59,15 +55,18 @@ export default function TwoObserverHeightTargetLesson10101({
     setActions((value) => value + 1);
   };
   const setNear = (value: number) => {
+    if(!Number.isFinite(value))return;
     setNearAngle(Math.max(farAngle + 1, Math.min(80, round(value, 1))));
     setGraded(false);
   };
   const setFar = (value: number) => {
+    if(!Number.isFinite(value))return;
     setFarAngle(Math.max(10, Math.min(nearAngle - 1, round(value, 1))));
     setGraded(false);
   };
   const setGap = (value: number) => {
-    setObserverGap(Math.max(5, Math.min(100, round(value))));
+    if(!Number.isFinite(value))return;
+    setObserverGap(Math.max(5, Math.min(100, round(value,1))));
     setGraded(false);
   };
   const reset = () =>
@@ -78,58 +77,18 @@ export default function TwoObserverHeightTargetLesson10101({
       setNearAnswer("");
       setHeightAnswer("");
       setGraded(false);
-      setShowSolution(false);
+      setShowSolution(false);setDragging(null);frozenRise.current=null;setGapDraft(null);setGapError('');setTab(0);
     });
   const updateObserver = (event: PointerEvent<SVGSVGElement>) => {
     if (!dragging) return;
-    const box = sceneRef.current?.getBoundingClientRect();
-    if (!box) return;
-    const x = ((event.clientX - box.left) / box.width) * 700;
-    const angle = (Math.atan2(groundY - topY, towerX - x) * 180) / Math.PI;
+    const m=sceneRef.current?.getScreenCTM();if(!m)return;
+    const pt=new DOMPoint(event.clientX,event.clientY).matrixTransform(m.inverse());
+    const angle=Math.atan2(groundY-topY,Math.max(1,towerX-pt.x))*180/Math.PI;
     if (dragging === "near") setNear(angle);
     else setFar(angle);
   };
 
-  const ObserverHandle = ({
-    kind,
-    x,
-    angle,
-  }: {
-    kind: "near" | "far";
-    x: number;
-    angle: number;
-  }) => (
-    <circle
-      className={`toh10101-handle ${kind}`}
-      cx={x}
-      cy={groundY}
-      r="11"
-      role="slider"
-      tabIndex={0}
-      aria-label={`${kind === "near" ? "Near" : "Far"} observer`}
-      aria-valuemin={kind === "near" ? farAngle + 1 : 10}
-      aria-valuemax={kind === "near" ? 80 : nearAngle - 1}
-      aria-valuenow={angle}
-      onPointerDown={(event) => {
-        event.currentTarget.setPointerCapture(event.pointerId);
-        act(() => setDragging(kind));
-      }}
-      onKeyDown={(event) => {
-        if (event.key === "ArrowLeft") {
-          event.preventDefault();
-          act(() => (kind === "near" ? setNear(angle - 1) : setFar(angle - 1)));
-        }
-        if (event.key === "ArrowRight") {
-          event.preventDefault();
-          act(() => (kind === "near" ? setNear(angle + 1) : setFar(angle + 1)));
-        }
-        if (event.key === "Home") {
-          event.preventDefault();
-          act(() => (kind === "near" ? setNear(60) : setFar(30)));
-        }
-      }}
-    />
-  );
+  const navigateTab=(index:number)=>{act(()=>setTab(index));const selectors=['.toh10101-lab','.toh10101-cards','.toh10101-cards article:nth-child(2)','.toh10101-equations','.toh10101-challenge'];mainRef.current?.querySelector(selectors[index])?.scrollIntoView({behavior:'smooth',block:'start'});};
 
   return (
     <section
@@ -142,14 +101,16 @@ export default function TwoObserverHeightTargetLesson10101({
       data-near-distance={round(nearDistance)}
       data-far-distance={round(farDistance)}
       data-height={round(height, 3)}
+      data-exact-height={heightValue??"none"} data-exact-near={nearDistanceValue??"none"} data-scene-scale={visualScale}
       data-valid={String(valid)}
       data-challenge-near={round(challengeNear)}
       data-challenge-height={round(challengeHeight)}
       data-challenge-correct={String(graded && challengeCorrect)}
       data-actions={actions}
     >
-      <header className="toh10101-hero">
+      <div className="toh10101-hero">
         <small>CLASS 10 · TRIGONOMETRY APPLICATIONS</small>
+        <Link className="toh10101-school" to="/lessons/school">← School lessons</Link>
         <h1>Two-Observer Height Problems</h1>
         <p>
           Determine the height of an inaccessible object using angles of
@@ -162,15 +123,16 @@ export default function TwoObserverHeightTargetLesson10101({
           <span>trigonometry</span>
           <span>two observers</span>
         </div>
-      </header>
+      </div>
 
-      <nav className="toh10101-tabs">
+      <div className="toh10101-tabs" role="group" aria-label="Lesson sections">
         {["Interact", "Learn", "Example", "Formula", "Practice"].map(
           (label, index) => (
             <button
               key={label}
               className={tab === index ? "active" : ""}
-              onClick={() => act(() => setTab(index))}
+              aria-pressed={tab===index}
+              onClick={() => navigateTab(index)}
             >
               {label}
             </button>
@@ -179,9 +141,9 @@ export default function TwoObserverHeightTargetLesson10101({
         <button className="toh10101-reset" onClick={reset}>
           <RotateCcw /> Reset
         </button>
-      </nav>
+      </div>
 
-      <main>
+      <main ref={mainRef}>
         <section className="toh10101-lab">
           <p>
             Drag the observers or adjust the angles. Distances update
@@ -189,16 +151,18 @@ export default function TwoObserverHeightTargetLesson10101({
           </p>
           <svg
             ref={sceneRef}
-            viewBox="0 0 700 350"
+            viewBox="0 0 700 370"
             aria-label="Two observers measuring a tower"
             onPointerMove={(event) => dragging && updateObserver(event)}
-            onPointerUp={() => dragging && act(() => setDragging(null))}
-            onPointerLeave={() => dragging && act(() => setDragging(null))}
+            onPointerUp={event=>{if(dragging)updateObserver(event);frozenRise.current=null;act(()=>setDragging(null));}}
+            onPointerCancel={()=>{frozenRise.current=null;setDragging(null);}}
           >
             <defs>
+              <linearGradient id="toh-sky" x2="0" y2="1"><stop stopColor="#fff"/><stop offset="1" stopColor="#e2f1ff"/></linearGradient>
+              <marker id="toh-dimension" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse"><path d="M0 0 L6 3 L0 6 Z" fill="#263550"/></marker>
               <pattern
                 id="toh-bricks"
-                width="24"
+                width="15"
                 height="16"
                 patternUnits="userSpaceOnUse"
               >
@@ -216,6 +180,8 @@ export default function TwoObserverHeightTargetLesson10101({
               className="toh10101-cloud"
               d="M85 120c8-24 37-23 46-5 13-12 36-3 36 13H74c0-5 5-8 11-8zM250 68c7-21 31-20 39-5 11-10 29-2 30 11h-77c0-4 3-6 8-6z"
             />
+            <rect x="0" y="300" width="700" height="70" fill="#efe4d2"/>
+            <path d={Array.from({length:140},(_,i)=>`M${i*5} 302v-${3+i%4}`).join(' ')} stroke="#76a246" strokeWidth="2"/>
             <line
               className="toh10101-ground"
               x1="0"
@@ -224,37 +190,38 @@ export default function TwoObserverHeightTargetLesson10101({
               y2={groundY}
             />
             <rect
-              x="565"
+              x="585"
               y={topY + 28}
-              width="110"
+              width="70"
               height={groundY - topY - 28}
               fill="url(#toh-bricks)"
               stroke="#78452f"
             />
             <path
               className="toh10101-roof"
-              d={`M550 ${topY + 30}L620 ${topY - 5}l70 35z`}
+              d={`M578 ${topY+30} L620 ${topY} L662 ${topY+30} Z`}
+            />
+            <path d={[590,605,620,635,650].map(x=>`M620 ${topY}L${x} ${topY+30}`).join(' ')} fill="none" stroke="#63311e" strokeWidth="1"/>
+            <rect
+              className="toh10101-window"
+              x="592"
+              y={topY + 40}
+              width="15"
+              height={Math.min(22,(groundY-topY-28)*.25)}
             />
             <rect
               className="toh10101-window"
-              x="580"
+              x="613"
               y={topY + 40}
-              width="24"
-              height="22"
+              width="15"
+              height={Math.min(22,(groundY-topY-28)*.25)}
             />
             <rect
               className="toh10101-window"
-              x="612"
+              x="634"
               y={topY + 40}
-              width="24"
-              height="22"
-            />
-            <rect
-              className="toh10101-window"
-              x="644"
-              y={topY + 40}
-              width="20"
-              height="22"
+              width="15"
+              height={Math.min(22,(groundY-topY-28)*.25)}
             />
             <path
               className="toh10101-door"
@@ -276,69 +243,62 @@ export default function TwoObserverHeightTargetLesson10101({
             />
             <path
               className="toh10101-angle near"
-              d={`M${nearX + 48} ${groundY} A48 48 0 0 0 ${nearX + 24} ${groundY - 42}`}
+              d={arc(nearX,nearAngle,Math.min(44,(towerX-nearX)*.4))}
             />
             <path
               className="toh10101-angle far"
-              d={`M${farX + 55} ${groundY} A55 55 0 0 0 ${farX + 47} ${groundY - 28}`}
+              d={arc(farX,farAngle,Math.min(50,(nearX-farX)*.4))}
             />
-            <ObserverHandle kind="near" x={nearX} angle={nearAngle} />
-            <ObserverHandle kind="far" x={farX} angle={farAngle} />
+            {(['near','far'] as const).map(kind=><circle key={kind} className={`toh10101-handle ${kind}`} cx={kind==='near'?nearX:farX} cy={groundY} r="9" role="slider" tabIndex={0} aria-label={`${kind==='near'?'Near':'Far'} observer`} aria-valuemin={kind==='near'?farAngle+1:10} aria-valuemax={kind==='near'?80:nearAngle-1} aria-valuenow={kind==='near'?nearAngle:farAngle} onPointerDown={event=>{frozenRise.current=groundY-topY;event.currentTarget.setPointerCapture(event.pointerId);act(()=>setDragging(kind));}} onKeyDown={event=>{event.stopPropagation();const angle=kind==='near'?nearAngle:farAngle,setter=kind==='near'?setNear:setFar;if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();act(()=>setter(angle+(event.key==='ArrowRight'?1:-1)));}if(event.key==='Home'){event.preventDefault();act(()=>setter(kind==='near'?60:30));}}}/>)}
             <text
               className="toh10101-label near"
               x={nearX - 25}
-              y={groundY - 25}
+              y={groundY - (cramped?62:25)}
             >
               A (near)
             </text>
-            <text className="toh10101-label far" x={farX - 20} y={groundY - 25}>
+            <text className="toh10101-label far" x={farX - 20} y={groundY - (cramped?30:25)}>
               B (far)
             </text>
             <text
               className="toh10101-angle-text near"
-              x={nearX + 55}
-              y={groundY - 32}
+              x={nearX + 38}
+              y={groundY - (cramped?50:32)}
             >
               {nearAngle.toFixed(1)}°
             </text>
             <text
               className="toh10101-angle-text far"
-              x={farX + 58}
-              y={groundY - 18}
+              x={farX + (cramped?18:40)}
+              y={groundY - (cramped?14:18)}
             >
               {farAngle.toFixed(1)}°
             </text>
-            <text x={(nearX + farX) / 2 - 15} y="330">
-              {observerGap.toFixed(0)} m
-            </text>
-            <text x={(nearX + towerX) / 2 - 25} y="346">
-              x = {nearDistance.toFixed(2)} m
-            </text>
-            <text className="toh10101-height-label" x="654" y="180">
-              h
-            </text>
+            <g className="toh10101-dimensions" fill="none" stroke="#263550" strokeWidth="1"><path d={`M${farX} 310V360 M${nearX} 310V345 M620 310V360`}/><path markerStart="url(#toh-dimension)" markerEnd="url(#toh-dimension)" d={`M${farX} 319H${nearX}`}/><path markerStart="url(#toh-dimension)" markerEnd="url(#toh-dimension)" d={`M${nearX} 335H620`}/><path markerStart="url(#toh-dimension)" markerEnd="url(#toh-dimension)" d={`M${farX} 357H620`}/><path markerStart="url(#toh-dimension)" markerEnd="url(#toh-dimension)" d={`M680 300V${topY}`}/></g>
+            <text textAnchor="middle" x={(nearX+farX)/2} y="316">{observerGap} m</text><text textAnchor="middle" x={(nearX+towerX)/2} y="331">x</text><text textAnchor="middle" x={(farX+towerX)/2} y="354">x + {observerGap}</text><text className="toh10101-height-label" x="684" y={(topY+groundY)/2}>h</text>
+
           </svg>
           <section className="toh10101-controls">
             <article>
               <h3>ANGLE AT A (NEAR)</h3>
-              <strong>{nearAngle.toFixed(1)}°</strong>
+              <strong className="toh10101-gauge near" style={{background:`conic-gradient(#299d58 ${nearAngle/90*360}deg,#dce3e9 0)`}}><span>{nearAngle}°</span></strong>
               <div>
-                <button onClick={() => act(() => setNear(nearAngle - 1))}>
+                <button aria-label="Decrease near angle" onClick={() => act(() => setNear(nearAngle - 1))}>
                   −
                 </button>
-                <button onClick={() => act(() => setNear(nearAngle + 1))}>
+                <button aria-label="Increase near angle" onClick={() => act(() => setNear(nearAngle + 1))}>
                   +
                 </button>
               </div>
             </article>
             <article>
               <h3>ANGLE AT B (FAR)</h3>
-              <strong>{farAngle.toFixed(1)}°</strong>
+              <strong className="toh10101-gauge far" style={{background:`conic-gradient(#8043b3 ${farAngle/90*360}deg,#dce3e9 0)`}}><span>{farAngle}°</span></strong>
               <div>
-                <button onClick={() => act(() => setFar(farAngle - 1))}>
+                <button aria-label="Decrease far angle" onClick={() => act(() => setFar(farAngle - 1))}>
                   −
                 </button>
-                <button onClick={() => act(() => setFar(farAngle + 1))}>
+                <button aria-label="Increase far angle" onClick={() => act(() => setFar(farAngle + 1))}>
                   +
                 </button>
               </div>
@@ -350,9 +310,10 @@ export default function TwoObserverHeightTargetLesson10101({
                   aria-label="Observer distance"
                   type="number"
                   min="5"
-                  max="100"
-                  value={observerGap}
-                  onChange={(event) => act(() => setGap(+event.target.value))}
+                  max="100" step="0.1"
+                  value={gapDraft??observerGap}
+                  onBlur={()=>{setGapDraft(null);setGapError('');}}
+                  onChange={event=>{const text=event.target.value,v=Number(text);setGapDraft(text);if(text.trim()===''||!Number.isFinite(v)||v<5||v>100){setGapError('Distance must be from 5 to 100 metres.');return;}setGapError('');act(()=>setGap(v));}}
                 />{" "}
                 m
               </label>
@@ -360,7 +321,7 @@ export default function TwoObserverHeightTargetLesson10101({
                 aria-label="Observer distance slider"
                 type="range"
                 min="5"
-                max="100"
+                max="100" step="0.1"
                 value={observerGap}
                 onChange={(event) => act(() => setGap(+event.target.value))}
                 onKeyDown={(event) => {
@@ -378,7 +339,7 @@ export default function TwoObserverHeightTargetLesson10101({
             <article className={valid ? "consistent" : "invalid"}>
               <h3>CALCULATED HEIGHT</h3>
               <strong>
-                {valid ? `h = ${height.toFixed(3)} m` : "Angles must differ"}
+                {valid ? defaultCase?<MathExpression value={String.raw`h=10\sqrt{3}\,m`}/>: `h = ${height.toFixed(3)} m` : "Angles must differ"}
               </strong>
               <p>
                 {valid
@@ -398,32 +359,35 @@ export default function TwoObserverHeightTargetLesson10101({
               </span>
             </article>
           </section>
+          {gapError&&<p role="alert">{gapError}</p>}
         </section>
 
         <section className="toh10101-equations">
           <article>
             <h2>LINKED EQUATIONS</h2>
             <p>For observers on the same side:</p>
-            <strong>h = x tan α = (x + d) tan β</strong>
+            <dl className="toh10101-definitions"><div><dt>x</dt><dd>near observer to tower base</dd></div><div><dt>d</dt><dd>observer separation (AB)</dd></div><div><dt>α</dt><dd>near angle at A</dd></div><div><dt>β</dt><dd>far angle at B</dd></div></dl>
+            <strong><MathExpression value={String.raw`h=x\tan \alpha=(x+d)\tan \beta`}/></strong>
             <div className="toh10101-eq-pair">
               <span>
-                From A: h = {nearDistance.toFixed(2)} tan {nearAngle.toFixed(1)}
-                °
+                From observer A (near):<MathExpression value={String.raw`h=x\tan ${nearAngle}^\circ`}/>
+
               </span>
               <span>
-                From B: h = {farDistance.toFixed(2)} tan {farAngle.toFixed(1)}°
+                From observer B (far):<MathExpression value={String.raw`h=(x+${observerGap})\tan ${farAngle}^\circ`}/>
+
               </span>
             </div>
-            <p>x = d tan β / (tan α − tan β) = {nearDistance.toFixed(2)} m</p>
-            <b>h = x tan α = {height.toFixed(3)} m</b>
+            <p><MathExpression value={String.raw`x=\frac{d\tan \beta}{\tan \alpha-\tan \beta}=${nearDistance.toFixed(2)}\,m`}/></p>
+            <b><MathExpression value={String.raw`h=x\tan \alpha=${height.toFixed(3)}\,m`}/></b>
           </article>
           <article>
             <h2>SOLVE STEPS</h2>
             <ol>
-              <li>Write the two tangent equations.</li>
-              <li>Equate both expressions for h.</li>
-              <li>Solve for near distance x.</li>
-              <li>Substitute x to find height.</li>
+              <li>Write the two tangent equations.<p><MathExpression value={String.raw`h=x\tan ${nearAngle}^\circ,\quad h=(x+${observerGap})\tan ${farAngle}^\circ`}/></p></li>
+              <li>Equate both expressions for h.<p><MathExpression value={String.raw`x\tan ${nearAngle}^\circ=(x+${observerGap})\tan ${farAngle}^\circ`}/></p></li>
+              <li>Solve for near distance x.<p><MathExpression value={String.raw`x=${nearDistance.toFixed(3)}\,m`}/></p></li>
+              <li>Substitute x to find height.<p><MathExpression value={String.raw`h=x\tan ${nearAngle}^\circ=${height.toFixed(3)}\,m`}/></p></li>
             </ol>
             <div className="toh10101-answer">
               <Trophy />
@@ -445,11 +409,7 @@ export default function TwoObserverHeightTargetLesson10101({
               the same height h. Tangent relates height to each horizontal
               distance.
             </p>
-            <div className="toh10101-mini">
-              <span>α</span>
-              <span>β</span>
-              <b>h</b>
-            </div>
+            <MiniDiagram/>
             <strong>Key: Larger angle is at the nearer point.</strong>
           </article>
           <article>
@@ -469,15 +429,13 @@ export default function TwoObserverHeightTargetLesson10101({
               Assigning the larger angle to the farther observer reverses the
               geometry and gives a wrong or negative height.
             </p>
-            <div className="toh10101-wrong">
-              30° <span>60°</span>
-            </div>
+            <MiniDiagram wrong/>
             <strong>Larger angle must be at the nearer observer.</strong>
           </article>
         </section>
 
         <section className="toh10101-challenge">
-          <header>
+          <div className="toh10101-heading">
             <h2>
               <Target /> YOUR CHALLENGE
             </h2>
@@ -486,7 +444,7 @@ export default function TwoObserverHeightTargetLesson10101({
               45° and the far angle is 22.5°. Find the near distance and tower
               height.
             </p>
-          </header>
+          </div>
           <div>
             <label>
               Near distance x ={" "}
@@ -522,11 +480,11 @@ export default function TwoObserverHeightTargetLesson10101({
             <button
               onClick={() => act(() => setShowSolution((value) => !value))}
             >
-              <Eye /> Show Solution
+              <Eye /> {showSolution?'Hide Solution':'Show Solution'}
             </button>
           </div>
           {graded && (
-            <p className={challengeCorrect ? "correct" : "incorrect"}>
+            <p role="status" className={challengeCorrect ? "correct" : "incorrect"}>
               {challengeCorrect ? (
                 <>
                   <CheckCircle2 /> Correct: x = h = {challengeHeight.toFixed(2)}{" "}
@@ -550,14 +508,14 @@ export default function TwoObserverHeightTargetLesson10101({
 
         <nav className="toh10101-next">
           <Link to="/lessons/school/class-10/class-10-trigonometry-applications-angle-of-depression">
-            <ArrowLeft /> Previous: Angle Ratio Explorer
+            <ArrowLeft /> Angle of Depression
           </Link>
           <Link to="/lessons/school/class-10/class-10-trigonometry-applications-shadow-length-modelling">
-            Next: Shadow-Length Modelling <ArrowRight />
+            Shadow-Length Modelling <ArrowRight />
           </Link>
         </nav>
       </main>
-      <LessonTopicStudyBoard lessonId={10101} view={tab} />
+      <footer className="toh10101-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, graphing, and classroom activities.</p><small>© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small></footer>
 
     </section>
   );

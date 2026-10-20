@@ -421,3 +421,6 @@ body:has(.mat351-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:799px){.mat351-page :is(.mat351-top,.mat351-bottom){grid-template-columns:minmax(0,1fr);height:auto}.mat351-page .mat351-tabs{overflow-x:auto}.mat351-page :is(article,aside,main){min-width:0;overflow-wrap:anywhere}.mat351-page .mat351-lab{height:auto}}
+@media(max-width:799px){.mat351-page .mat351-steps > div{grid-template-columns:minmax(0,1fr);height:auto}.mat351-page .mat351-steps{height:auto}}

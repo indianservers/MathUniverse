@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "a": "√3 − 1",
+      "c": "√3 − 1"
+    },
+    {
+      "width": 1680,
+      "a": "1",
+      "c": "√3 + 1"
+    },
+    {
+      "width": 1680,
+      "a": "2(√3-1)",
+      "c": "2√3-2"
+    },
+    {
+      "width": 1680,
+      "a": "",
+      "c": ""
+    },
+    {
+      "width": 1280,
+      "a": "√3 − 1",
+      "c": "√3 − 1"
+    },
+    {
+      "width": 1280,
+      "a": "1",
+      "c": "√3 + 1"
+    },
+    {
+      "width": 1280,
+      "a": "2(√3-1)",
+      "c": "2√3-2"
+    },
+    {
+      "width": 1280,
+      "a": "",
+      "c": ""
+    },
+    {
+      "width": 768,
+      "a": "√3 − 1",
+      "c": "√3 − 1"
+    },
+    {
+      "width": 768,
+      "a": "1",
+      "c": "√3 + 1"
+    },
+    {
+      "width": 768,
+      "a": "2(√3-1)",
+      "c": "2√3-2"
+    },
+    {
+      "width": 768,
+      "a": "",
+      "c": ""
+    },
+    {
+      "width": 390,
+      "a": "√3 − 1",
+      "c": "√3 − 1"
+    },
+    {
+      "width": 390,
+      "a": "1",
+      "c": "√3 + 1"
+    },
+    {
+      "width": 390,
+      "a": "2(√3-1)",
+      "c": "2√3-2"
+    },
+    {
+      "width": 390,
+      "a": "",
+      "c": ""
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "exact actual products and equivalence",
+    "same value versus rationalisation",
+    "invalid/zero/alternative factors",
+    "native drag, keyboard, touch and payload whitelist",
+    "selector/hint/input independence",
+    "exact challenge grading versus approximate labels",
+    "actual answer numerical value and irrational divisor rejection",
+    "tabs/navigation and responsive layouts"
+  ]
+}

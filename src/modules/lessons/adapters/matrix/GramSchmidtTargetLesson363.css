@@ -385,3 +385,5 @@ body:has(.gs363-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:799px){.gs363-page :is(.gs363-inputs,.gs363-panels,.gs363-challenge){grid-template-columns:minmax(0,1fr);height:auto}.gs363-page :is(.gs363-tabs){overflow-x:auto}.gs363-page :is(article,aside){min-width:0;overflow-wrap:anywhere}.gs363-page .gs363-lab > header{flex-wrap:wrap;height:auto;gap:8px}.gs363-page .gs363-lab > header nav{width:auto;display:flex;flex-wrap:wrap}}

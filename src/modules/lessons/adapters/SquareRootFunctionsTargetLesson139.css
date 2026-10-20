@@ -814,3 +814,5 @@ body:has(.root139-page) footer[aria-label="Site footer"] {
     height: auto;
   }
 }
+
+@media(max-width:900px){.root139-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.root139-footer>span{width:auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}.root139-footer>nav{position:static;flex-wrap:wrap}}

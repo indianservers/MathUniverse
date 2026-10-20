@@ -589,3 +589,7 @@ body:has(.labels-page)
   ) {
   display: flex;
 }
+
+@media(max-width:900px){.labels-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.labels-footer>:is(p,small,span){width:auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}.labels-footer>nav{position:static;flex-wrap:wrap}}
+
+@media(max-width:900px){.labels-footer:after{max-width:100%;white-space:normal;overflow-wrap:anywhere;flex-basis:100%}}

@@ -487,3 +487,5 @@ body:has(.vi183-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:900px){.vi183-nav,.vi183-nav>div{height:auto;display:flex;flex-wrap:wrap;gap:12px}.vi183-nav>div{width:100%}}

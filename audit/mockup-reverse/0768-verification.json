@@ -1,0 +1,710 @@
+{
+  "status": "passed",
+  "errors": [],
+  "results": [
+    {
+      "vertices": {
+        "A": {
+          "angle": 112,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 1
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94.5,
+        "B": 93,
+        "C": 85.5,
+        "D": 87
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 180
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 112,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 0.8
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 87.08776931454781,
+        "B": 106.43128647859044,
+        "C": 79.4809442068617,
+        "D": 87
+      },
+      "sums": {
+        "AC": 166.5687135214095,
+        "BD": 193.43128647859044
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 180
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 112,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 1
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94.5,
+        "B": 93,
+        "C": 85.5,
+        "D": 87
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 180
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 135,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 1
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94.5,
+        "B": 81.5,
+        "C": 85.5,
+        "D": 98.5
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 180
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 135,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 1
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 0.82
+        }
+      },
+      "angles": {
+        "A": 86.00155469172734,
+        "B": 81.5,
+        "C": 80.41117967722579,
+        "D": 112.08726563104693
+      },
+      "sums": {
+        "AC": 166.41273436895312,
+        "BD": 193.58726563104693
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 180
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 135,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 1
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94.5,
+        "B": 81.5,
+        "C": 85.5,
+        "D": 98.5
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 180
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 135,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 1
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94.5,
+        "B": 81.5,
+        "C": 85.5,
+        "D": 98.5
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 40.000034265350905,
+        "y": 30.000025699013122
+      },
+      "scale": 180
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 135,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 1
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94.5,
+        "B": 81.5,
+        "C": 85.5,
+        "D": 98.5
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 205
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 141,
+          "radius": 1
+        },
+        "B": {
+          "angle": 37,
+          "radius": 1
+        },
+        "C": {
+          "angle": 304,
+          "radius": 1
+        },
+        "D": {
+          "angle": 208,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94.5,
+        "B": 81.5,
+        "C": 85.5,
+        "D": 98.5
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 205
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 103,
+          "radius": 1
+        },
+        "B": {
+          "angle": 18,
+          "radius": 1
+        },
+        "C": {
+          "angle": 287,
+          "radius": 1
+        },
+        "D": {
+          "angle": 190,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94,
+        "B": 92,
+        "C": 86,
+        "D": 88
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 205
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 136,
+          "radius": 1
+        },
+        "B": {
+          "angle": 54,
+          "radius": 1
+        },
+        "C": {
+          "angle": 325,
+          "radius": 1
+        },
+        "D": {
+          "angle": 226,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94,
+        "B": 94.5,
+        "C": 86,
+        "D": 85.5
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 205
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 126,
+          "radius": 1
+        },
+        "B": {
+          "angle": 43,
+          "radius": 1
+        },
+        "C": {
+          "angle": 310,
+          "radius": 1
+        },
+        "D": {
+          "angle": 214,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94.5,
+        "B": 92,
+        "C": 85.5,
+        "D": 88
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 205
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 112,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 1
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94.5,
+        "B": 93,
+        "C": 85.5,
+        "D": 87
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 180
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 112,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 1
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94.5,
+        "B": 93,
+        "C": 85.5,
+        "D": 87
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 180
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 112,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 1
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94.5,
+        "B": 93,
+        "C": 85.5,
+        "D": 87
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 180
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 112,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 1
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 0.82
+        }
+      },
+      "angles": {
+        "A": 88.85175262626473,
+        "B": 93,
+        "C": 80.41117967722579,
+        "D": 97.73706769650948
+      },
+      "sums": {
+        "AC": 169.26293230349052,
+        "BD": 190.73706769650948
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 180
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 112,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 1
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94.5,
+        "B": 93,
+        "C": 85.5,
+        "D": 87
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 180
+    },
+    {
+      "vertices": {
+        "A": {
+          "angle": 112,
+          "radius": 1
+        },
+        "B": {
+          "angle": 31,
+          "radius": 1
+        },
+        "C": {
+          "angle": 298,
+          "radius": 1
+        },
+        "D": {
+          "angle": 202,
+          "radius": 1
+        }
+      },
+      "angles": {
+        "A": 94.5,
+        "B": 93,
+        "C": 85.5,
+        "D": 87
+      },
+      "sums": {
+        "AC": 180,
+        "BD": 180
+      },
+      "pan": {
+        "x": 0,
+        "y": 0
+      },
+      "scale": 205
+    }
+  ],
+  "responsive": [
+    {
+      "variant": "default",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "default",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "default",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "default",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "off-circle",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "off-circle",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "off-circle",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "off-circle",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    },
+    {
+      "variant": "fit",
+      "width": 390,
+      "scroll": 390,
+      "client": 390
+    },
+    {
+      "variant": "fit",
+      "width": 768,
+      "scroll": 768,
+      "client": 768
+    },
+    {
+      "variant": "fit",
+      "width": 1280,
+      "scroll": 1280,
+      "client": 1280
+    },
+    {
+      "variant": "fit",
+      "width": 1680,
+      "scroll": 1680,
+      "client": 1680
+    }
+  ]
+}

@@ -752,3 +752,5 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+@media(max-width:900px){.inverse-practice{height:auto;display:grid;gap:12px}.inverse-practice>label,.inverse-practice>div,.inverse-practice>aside{position:relative;inset:auto;width:auto;max-width:100%;margin-top:8px}.inverse-practice>label{min-height:90px}.inverse-practice>div{min-height:65px}.inverse-practice>div output{position:static;display:inline-block}}

@@ -676,3 +676,7 @@ body:has(.tln287-page) {
     min-width: 780px;
   }
 }
+
+@media(max-width:900px){.tln287-page .tln287-work .model,.tln287-page .tln287-work .model>aside,.tln287-page .tln287-work .flow,.tln287-page .tln287-learn,.tln287-page .tln287-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.tln287-page .tln287-work .model>*,.tln287-page .tln287-work .model>aside>*,.tln287-page .tln287-work .flow>*,.tln287-page .tln287-learn>*,.tln287-page .tln287-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.tln287-page .tln287-work{height:auto}.tln287-page .tln287-work .flow svg{position:static}.tln287-page .tln287-work .graph>b,.tln287-page .tln287-work .legend{position:static;height:auto;display:block}.tln287-page .tln287-practice{padding:12px}.tln287-page .tln287-practice>header{position:static}.tln287-page .tln287-practice>label{grid-template-columns:minmax(0,1fr) 53px;border:0;padding:0;gap:8px}.tln287-page .tln287-practice input{min-width:0;max-width:100%}.tln287-page .tln287-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

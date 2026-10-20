@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/3d-mathematics/393-prism",
+  "action": {
+    "control": "Base, b slider",
+    "before": "6",
+    "after": "7",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 341,
+      "scroll": 341
+    },
+    {
+      "width": 768,
+      "client": 719,
+      "scroll": 719
+    },
+    {
+      "width": 1440,
+      "client": 1391,
+      "scroll": 1391
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

@@ -567,3 +567,5 @@ body:has(.osc328-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:900px){.osc328-page .osc328-lab{height:auto;padding:12px}.osc328-page .osc328-lab>header{position:static;height:auto;margin-bottom:12px}.osc328-page .osc328-controls{position:static;width:auto;margin-bottom:12px}.osc328-page .osc328-lab>main{height:auto;grid-template-rows:auto auto}.osc328-page .osc328-lab .equation{height:auto}.osc328-page .osc328-lab .equation>div{height:auto;grid-template-columns:minmax(0,1fr)}.osc328-page .osc328-lab .plots{height:auto;grid-template-columns:minmax(0,1fr)}.osc328-page .osc328-lab .response>header{height:auto;flex-wrap:wrap}.osc328-page .osc328-lab .response>footer{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}.osc328-page .osc328-insights,.osc328-page .osc328-bottom{height:auto;grid-template-columns:minmax(0,1fr)}.osc328-page .osc328-bottom article{padding-block:12px;min-width:0}.osc328-page .osc328-bottom article>div{grid-template-columns:minmax(0,1fr)}}

@@ -938,3 +938,7 @@
     margin-top: 25px;
   }
 }
+
+@media(max-width:900px){.target-compound-page .target-compound-workspace>div,.target-compound-page .target-compound-workspace>div>aside,.target-compound-page .target-compound-formulas,.target-compound-page .target-compound-learning,.target-compound-page .target-compound-learning>article>div,.target-compound-page .target-compound-practice>div,.target-compound-page .target-compound-practice>div>article>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-compound-page .target-compound-workspace>div>*,.target-compound-page .target-compound-workspace>div>aside>*,.target-compound-page .target-compound-formulas>*,.target-compound-page .target-compound-learning>*,.target-compound-page .target-compound-learning>article>div>*,.target-compound-page .target-compound-practice>div>*,.target-compound-page .target-compound-practice>div>article>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.target-compound-learning>article>div>footer{position:static;height:auto;flex-wrap:wrap}.target-compound-result>div{height:auto;display:flex;flex-wrap:wrap;gap:8px}}

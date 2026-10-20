@@ -222,7 +222,7 @@ export default function LimitsTargetLesson441({
           </aside>
           <section className="lm441-table">
             <h3>TWO-SIDED TABLE (x → {point})</h3>
-            <table>
+            <div className="lesson-table-scroll-347"><table>
               <thead>
                 <tr>
                   <th>x</th>
@@ -246,7 +246,7 @@ export default function LimitsTargetLesson441({
                     </tr>
                   ))}
               </tbody>
-            </table>
+            </table></div>
             <footer>
               <p>→ Approach from left (x &lt; {point})</p>
               <p>→ Approach from right (x &gt; {point})</p>
@@ -361,7 +361,7 @@ export default function LimitsTargetLesson441({
             <p>1 Factor x²-9=(x-3)(x+3)</p>
             <p>2 Cancel (x-3), x≠3</p>
             <p>3 Substitute x=3</p>
-            <table>
+            <div className="lesson-table-scroll-347"><table>
               <tbody>
                 <tr>
                   <td>2.9</td>
@@ -376,7 +376,7 @@ export default function LimitsTargetLesson441({
                   <td>6.01</td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </article>
           <article className={challengeDone ? "done" : ""}>
             <h2>{challengeDone ? "Well done!" : "Check both sides"}</h2>

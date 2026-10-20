@@ -609,3 +609,7 @@ body:has(.pf314-page) {
     min-width: 785px;
   }
 }
+
+@media(max-width:900px){.pf314-page .pf314-hero>section,.pf314-page .pf314-workspace>main,.pf314-page .pf314-given,.pf314-page .pf314-steps,.pf314-page .pf314-workspace>main>aside,.pf314-page .pf314-cards{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.pf314-page .pf314-hero>section>*,.pf314-page .pf314-workspace>main>*,.pf314-page .pf314-given>*,.pf314-page .pf314-steps>*,.pf314-page .pf314-workspace>main>aside>*,.pf314-page .pf314-cards>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.pf314-page .pf314-hero{height:auto}.pf314-page .pf314-hero .meta,.pf314-page .pf314-hero .actions,.pf314-page .pf314-hero>section{position:static;flex-wrap:wrap;margin-block:10px}.pf314-page .pf314-workspace,.pf314-page .pf314-workspace>main>*{height:auto}.pf314-page .pf314-steps article>span{position:static;display:inline-block;margin-top:8px}.pf314-page .pf314-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}}

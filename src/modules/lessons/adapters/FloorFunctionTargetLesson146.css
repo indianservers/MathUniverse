@@ -461,3 +461,5 @@
   border-radius: 5px;
   background: var(--lesson-surface,#17152e);
 }
+
+@media(max-width:900px){.floor146-page .floor146-title,.floor146-page .floor146-layout,.floor146-page .floor146-bottom{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.floor146-page .floor146-title>*,.floor146-page .floor146-layout>*,.floor146-page .floor146-bottom>*{min-width:0;grid-column:auto;grid-row:auto}}

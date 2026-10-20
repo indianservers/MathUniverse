@@ -557,3 +557,6 @@ body:has(.seq336-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:799px){.seq336-page :is(.seq336-intro,.seq336-pair,.seq336-notes,.seq336-quick){grid-template-columns:minmax(0,1fr);height:auto}.seq336-page .seq336-tabs{overflow-x:auto}.seq336-page :is(article,aside){min-width:0;overflow-wrap:anywhere}}
+@media(max-width:799px){.seq336-page .seq336-intro main > aside,.seq336-page .classify{display:flex;flex-wrap:wrap;height:auto;gap:8px}.seq336-page .seq336-steps > div{display:flex;flex-wrap:wrap;gap:8px;height:auto}.seq336-page .seq336-steps span{min-width:90px;flex:1 1 90px}}

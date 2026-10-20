@@ -1,0 +1,7 @@
+{
+  "extends": "../../tsconfig.app.json",
+  "include": [
+    "../../src/modules/lessons/upcoming-ui/OrdersOfMagnitudeLesson.tsx",
+    "../../src/modules/lessons/upcoming-ui/magnitudeModel.ts"
+  ]
+}

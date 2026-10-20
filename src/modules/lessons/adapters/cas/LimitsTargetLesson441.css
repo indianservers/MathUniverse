@@ -605,3 +605,9 @@ body:has(.lm441-page)
     overflow: auto;
   }
 }
+
+@media(max-width:900px){.lm441-page .lm441-main,.lm441-page .lm441-learn,.lm441-page .lm441-info,.lm441-page .lm441-practice>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.lm441-page .lm441-main>*,.lm441-page .lm441-learn>*,.lm441-page .lm441-info>*,.lm441-page .lm441-practice>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+.lesson-table-scroll-347{max-width:100%;width:100%;overflow-x:auto}
+
+@media(max-width:900px){.lm441-page .lm441-work,.lm441-page .lm441-practice{height:auto}.lm441-page .lm441-main>*{height:auto}.lm441-page .lm441-practice article>button{position:static;margin-top:10px}.lm441-page input{max-width:100%;min-width:0}.lm441-page .lm441-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

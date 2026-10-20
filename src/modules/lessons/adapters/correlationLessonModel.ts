@@ -16,13 +16,18 @@ export function correlationStats(points = correlationDefault) {
     xy = points.reduce((s, p) => s + (p.x - x) * (p.y - y), 0),
     xx = points.reduce((s, p) => s + (p.x - x) ** 2, 0),
     yy = points.reduce((s, p) => s + (p.y - y) ** 2, 0);
+  const defined = xx > 0 && yy > 0;
+  const slope = xx > 0 ? xy / xx : NaN;
   return {
+    defined,
+    slope,
+    intercept: y - slope * x,
     n,
     xMean: x,
     yMean: y,
     covariance: xy / n,
     sx: Math.sqrt(xx / n),
     sy: Math.sqrt(yy / n),
-    r: xy / Math.sqrt(xx * yy),
+    r: defined ? Math.max(-1, Math.min(1, xy / Math.sqrt(xx * yy))) : NaN,
   };
 }

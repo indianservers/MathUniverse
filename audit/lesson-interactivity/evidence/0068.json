@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/numbers-and-arithmetic/86-inverse-proportion",
+  "action": {
+    "control": "Constant product",
+    "before": "24",
+    "after": "25",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 357,
+      "scroll": 357
+    },
+    {
+      "width": 768,
+      "client": 735,
+      "scroll": 735
+    },
+    {
+      "width": 1440,
+      "client": 1387,
+      "scroll": 1387
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

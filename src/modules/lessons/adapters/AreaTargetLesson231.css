@@ -1,0 +1,5 @@
+.target-area-page{min-width:0}
+
+@media(max-width:900px){.target-area-page .target-area-workspace{width:auto!important;margin:12px 0!important}.target-area-page .target-area-shoelace{width:100%;max-width:100%}.target-area-page .target-area-learning>article:last-child>aside,.target-area-page .target-area-practice-entry button,.target-area-page .target-area-practice-entry output{position:static;margin-top:8px}.target-area-page .target-area-decomposition>div{grid-template-columns:34px minmax(0,1fr);height:auto}.target-area-page .target-area-decomposition>header{display:flex;flex-wrap:wrap;gap:8px}}
+
+@media(max-width:900px){.target-area-page .target-area-workspace,.target-area-page .target-area-learning,.target-area-page .target-area-practice>div,.target-area-page .target-area-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-area-page .target-area-workspace>*,.target-area-page .target-area-learning>*,.target-area-page .target-area-practice>div>*,.target-area-page .target-area-nav>*{min-width:0;grid-column:auto;grid-row:auto}}

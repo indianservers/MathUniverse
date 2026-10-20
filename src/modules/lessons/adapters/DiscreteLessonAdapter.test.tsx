@@ -1,7 +1,11 @@
-import { renderToStaticMarkup } from "react-dom/server";
+import type { ReactNode } from "react";
+import { MemoryRouter } from "react-router-dom";
+import { renderToStaticMarkup as renderStatic } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import { lessonCatalog } from "../catalog/lessonCatalog";
 import DiscreteLessonAdapter from "./DiscreteLessonAdapter";
+
+const renderToStaticMarkup = (node: ReactNode) => renderStatic(<MemoryRouter>{node}</MemoryRouter>);
 
 describe("discrete lesson adapter", () => {
   it("renders every discrete preset without an unrelated fallback", () => {

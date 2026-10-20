@@ -843,3 +843,7 @@ body:has(.tiles92-page)
 .tiles92-page button.tiles92-tile.compact {
   font-size: 12px;
 }
+
+@media(max-width:900px){[data-testid="algebra-mockup-0149"] .tiles92-zero>div,[data-testid="algebra-mockup-0149"] .tiles92-trace>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}[data-testid="algebra-mockup-0149"] .tiles92-zero>div>*,[data-testid="algebra-mockup-0149"] .tiles92-trace>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.tiles92-builder>header,.tiles92-builder>header>nav{height:auto;display:flex;flex-wrap:wrap;gap:8px}.tiles92-zero,.tiles92-trace{height:auto}}

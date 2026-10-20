@@ -1,0 +1,98 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "solved"
+    },
+    {
+      "width": 1680,
+      "state": "incorrect"
+    },
+    {
+      "width": 1680,
+      "state": "empty"
+    },
+    {
+      "width": 1680,
+      "state": "partial"
+    },
+    {
+      "width": 1680,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 1280,
+      "state": "solved"
+    },
+    {
+      "width": 1280,
+      "state": "incorrect"
+    },
+    {
+      "width": 1280,
+      "state": "empty"
+    },
+    {
+      "width": 1280,
+      "state": "partial"
+    },
+    {
+      "width": 1280,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 768,
+      "state": "solved"
+    },
+    {
+      "width": 768,
+      "state": "incorrect"
+    },
+    {
+      "width": 768,
+      "state": "empty"
+    },
+    {
+      "width": 768,
+      "state": "partial"
+    },
+    {
+      "width": 768,
+      "state": "challenge-solved"
+    },
+    {
+      "width": 390,
+      "state": "solved"
+    },
+    {
+      "width": 390,
+      "state": "incorrect"
+    },
+    {
+      "width": 390,
+      "state": "empty"
+    },
+    {
+      "width": 390,
+      "state": "partial"
+    },
+    {
+      "width": 390,
+      "state": "challenge-solved"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "all eight lines and pending versus complete totals",
+    "eight rotations/reflections accepted",
+    "unique1–9 and immutable centre/givens",
+    "native candidate/cell drag and swaps",
+    "keyboard numbers/delete/backspace and touch tap placement",
+    "hostile payloads and cross-board drops rejected",
+    "three real hints, independent reset and editable grading",
+    "corrected challenge destination values and progress0/3",
+    "bookmark/tabs/navigation",
+    "20 layouts with row-total alignment and no overflow"
+  ]
+}

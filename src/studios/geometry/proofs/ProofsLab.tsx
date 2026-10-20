@@ -1,7 +1,7 @@
 import GeometryLessonCanvas from "../GeometryLessonCanvas";
 import { proofLessonScene } from "../geometryStudioScenes";
 import { useStudioState } from "../../phase1/StudioModelProvider";
-import { useState } from "react";
+import { useState, type PointerEvent } from "react";
 import type { StudioMockupPage } from "../../mockup/studioMockupCatalog";
 import { ChallengeBox, LiveRow, Panel, SliderRow, StatusOk, StepList, clamp } from "../../mockup/studioLabKit";
 import { FigureToolbar, Phase1LabChrome } from "../../phase1/Phase1LabChrome";

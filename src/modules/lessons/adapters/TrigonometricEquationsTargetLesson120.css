@@ -793,3 +793,5 @@ body:has(.trig120-page) .page-transition {
 .trig120-footer a:hover {
   color: #087d91;
 }
+
+@media(max-width:900px){.trig120-lab>header,.trig120-practice,.trig120-practice>p{height:auto;display:flex;flex-wrap:wrap;gap:10px}.trig120-practice>*{min-width:0;max-width:100%}}

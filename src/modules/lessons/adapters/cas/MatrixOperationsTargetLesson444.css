@@ -475,3 +475,7 @@ body:has(.mo444-page) .lesson-workbench.is-target-graphing-workbench {
     min-width: 790px;
   }
 }
+
+@media(max-width:900px){.mo444-page .mo444-flow,.mo444-page .mo444-lab,.mo444-page .mo444-learning,.mo444-page .mo444-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.mo444-page .mo444-flow>*,.mo444-page .mo444-lab>*,.mo444-page .mo444-learning>*,.mo444-page .mo444-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.mo444-page .mo444-flow article:not(:last-child)::after{position:static}.mo444-page .mo444-lab>main,.mo444-page .mo444-lab>aside{height:auto;min-width:0}.mo444-page .mo444-practice .practice-matrix{max-width:100%}.mo444-page .mo444-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}.mo444-page input{max-width:100%;min-width:0}}

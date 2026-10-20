@@ -1231,3 +1231,7 @@ body:has(.synthetic103-page) footer[aria-label="Site footer"] {
 .synthetic103-table > section > i {
   pointer-events: none;
 }
+
+@media(max-width:900px){.synthetic103-page .synthetic103-practice-inputs{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.synthetic103-page .synthetic103-practice-inputs>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.synthetic103-page .synthetic103-answer{width:auto;max-width:100%;height:auto;flex-wrap:wrap;gap:8px}.synthetic103-answer span{padding:8px}}

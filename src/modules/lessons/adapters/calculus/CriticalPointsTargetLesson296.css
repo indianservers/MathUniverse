@@ -646,3 +646,7 @@ body:has(.crit296-page) {
     min-width: 775px;
   }
 }
+
+@media(max-width:900px){.crit296-page .crit296-flow,.crit296-page .crit296-model .body,.crit296-page .crit296-model .candidates,.crit296-page .crit296-model .body>aside,.crit296-page .crit296-bottom{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.crit296-page .crit296-flow>*,.crit296-page .crit296-model .body>*,.crit296-page .crit296-model .candidates>*,.crit296-page .crit296-model .body>aside>*,.crit296-page .crit296-bottom>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.crit296-page .crit296-flow article>svg:last-child{position:static}.crit296-page .crit296-model{height:auto}.crit296-page .crit296-model .body>main{height:auto}.crit296-page .crit296-model .formula{position:static}.crit296-page .crit296-model>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.crit296-page .crit296-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

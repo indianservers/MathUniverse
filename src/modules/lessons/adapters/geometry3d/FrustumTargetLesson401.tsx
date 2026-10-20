@@ -1,5 +1,5 @@
 import { Edges, Line, OrbitControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, type ThreeEvent } from "@react-three/fiber";
 import {
   Box,
   CheckCircle2,
@@ -589,14 +589,11 @@ function FrustumModel({
     if (dimension === "height") onHeight(height - movementY / 28 / scale);
   };
   const handleProps = (dimension: Dimension) => ({
-    onPointerDown: (event: {
-      stopPropagation: () => void;
-      target: { setPointerCapture: (id: number) => void };
-      pointerId: number;
-    }) => {
+    onPointerDown: (event: ThreeEvent<PointerEvent>) => {
       event.stopPropagation();
       drag.current = dimension;
-      event.target.setPointerCapture(event.pointerId);
+      const target = event.target;
+      if (target && "setPointerCapture" in target && typeof target.setPointerCapture === "function") target.setPointerCapture(event.pointerId);
     },
     onPointerMove: (event: {
       stopPropagation: () => void;

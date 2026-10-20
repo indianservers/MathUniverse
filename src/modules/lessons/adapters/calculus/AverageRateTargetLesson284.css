@@ -691,3 +691,7 @@ body:has(.arc284-page) {
     min-width: 790px;
   }
 }
+
+@media(max-width:900px){.arc284-page .arc284-work,.arc284-page .arc284-work .legend,.arc284-page .arc284-work>aside,.arc284-page .arc284-flow,.arc284-page .arc284-learning,.arc284-page .arc284-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.arc284-page .arc284-work>*,.arc284-page .arc284-work .legend>*,.arc284-page .arc284-work>aside>*,.arc284-page .arc284-flow>*,.arc284-page .arc284-learning>*,.arc284-page .arc284-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.arc284-page .arc284-work>main{height:auto}.arc284-page .arc284-work .formula{position:static;width:auto}.arc284-page .arc284-flow article>svg:last-child:not(:nth-of-type(2)){position:static}.arc284-page .arc284-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

@@ -1,18 +1,7 @@
-import {
-  ArrowLeft,
-  ArrowRight,
-  Check,
-  Expand,
-  Lightbulb,
-  RotateCcw,
-  TriangleAlert,
-} from "lucide-react";
-import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
-import "./EuclidPostulatesTargetLesson10054.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
-
+import{ArrowLeft,ArrowRight,Check,Expand,Lightbulb,RotateCcw,TriangleAlert,MousePointer2,Dot,Minus,MoveUpRight,Circle as CircleIcon,Triangle,Ruler,X}from'lucide-react';
+import{useEffect,useRef,useState,useId}from'react';import{Link}from'react-router-dom';import type{SchoolSyllabusLesson}from'../syllabus/lessonSyllabusTypes';
+import{epInitial10054 as initial,epPreset10054 as preset,epModel10054 as model,epMove10054 as move,epScore10054 as matching,type EPState10054 as State,type EPPoint10054 as Point}from'./euclidPostulatesModel10054';
+import{feAdd10055 as add,feInterior10055 as interior}from'./fifthEquivalenceModel10055';import{paSector10074 as sector}from'./parallelogramAnglesModel10074';import './EuclidPostulatesTargetLesson10054.css';
 const postulates = [
   "A straight line can be drawn from any one point to any other point.",
   "A terminated straight line can be produced indefinitely in a straight line.",
@@ -37,488 +26,51 @@ const challengeActions = [
   "A transversal makes same-side interior angles 110° and 60°.",
 ];
 
-export default function EuclidPostulatesTargetLesson10054({
-  lesson: _lesson,
-}: {
-  lesson: SchoolSyllabusLesson;
-}) {
-  const [selected, setSelected] = useState(1);
-  const [tool, setTool] = useState("Select");
-  const [a, setA] = useState({ x: 95, y: 180 });
-  const [b, setB] = useState({ x: 315, y: 180 });
-  const [tab, setTab] = useState("Interact");
-  const [answers, setAnswers] = useState([0, 0, 0, 0, 0]);
-  const [checked, setChecked] = useState(false);
-  const [actions, setActions] = useState(0);
-  const svgRef = useRef<SVGSVGElement>(null);
-  const act = (fn: () => void) => {
-    fn();
-    setActions((n) => n + 1);
-  };
-  const score = answers.filter((answer, index) => answer === index + 1).length;
-  const reset = () =>
-    act(() => {
-      setSelected(1);
-      setTool("Select");
-      setA({ x: 95, y: 180 });
-      setB({ x: 315, y: 180 });
-      setChecked(false);
-    });
-  const nudge = (which: "a" | "b", dx: number, dy: number) =>
-    act(() => {
-      const movePoint = (point: { x: number; y: number }) => ({
-        x: Math.max(25, Math.min(405, point.x + dx)),
-        y: Math.max(35, Math.min(300, point.y + dy)),
-      });
-      if (which === "a") setA(movePoint);
-      else setB(movePoint);
-    });
-  const drag = (
-    which: "a" | "b",
-    event: React.PointerEvent<SVGCircleElement>,
-  ) => {
-    event.currentTarget.setPointerCapture(event.pointerId);
-    const move = (e: PointerEvent) => {
-      const rect = svgRef.current?.getBoundingClientRect();
-      if (!rect) return;
-      const point = {
-        x: Math.max(
-          25,
-          Math.min(405, ((e.clientX - rect.left) / rect.width) * 430),
-        ),
-        y: Math.max(
-          35,
-          Math.min(300, ((e.clientY - rect.top) / rect.height) * 330),
-        ),
-      };
-      if (which === "a") setA(point);
-      else setB(point);
-      setActions((n) => n + 1);
-    };
-    const up = () => {
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerup", up);
-    };
-    window.addEventListener("pointermove", move);
-    window.addEventListener("pointerup", up);
-  };
-  return (
-    <section
-      className="ep10054-page"
-      data-testid="school-mockup-0728"
-      data-object-model="dedicated-five-postulate-construction-and-matching-engine"
-      data-postulate={selected}
-      data-tool={tool}
-      data-a={`${Math.round(a.x)},${Math.round(a.y)}`}
-      data-b={`${Math.round(b.x)},${Math.round(b.y)}`}
-      data-score={checked ? score : "idle"}
-      data-actions={actions}
-    >
-      <header className="ep10054-hero">
-        <div>
-          <small>CLASS 9 · EUCLIDEAN GEOMETRY</small>
-          <h1>Euclid's Five Postulates</h1>
-          <p>
-            Foundational assumptions of Euclidean geometry. Use the explorer to
-            visualize and understand each postulate.
-          </p>
-          <section>
-            <span>30 min</span>
-            <span>Interact</span>
-            <span>Level: Foundation</span>
-            <span>Grade: 9</span>
-            <span>Euclidean Geometry</span>
-          </section>
-        </div>
-        <img
-          src="/assets/lessons/euclid-five-postulates-hero.png"
-          alt="Parchment with Euclidean constructions and a compass"
-        />
-      </header>
-      <nav className="ep10054-tabs">
-        {["Interact", "Learn", "Example", "Formula", "Practice"].map((item) => (
-          <button
-            key={item}
-            className={tab === item ? "active" : ""}
-            aria-selected={tab === item}
-            onClick={() => act(() => setTab(item))}
-          >
-            {item}
-          </button>
-        ))}
-      </nav>
-      <main>
-        <section className="ep10054-explorer">
-          <header>
-            <div>
-              <h2>Explore the Five Postulates</h2>
-              <p>
-                Select a postulate, then use the tools to see it in action.
-                Feedback updates in real time.
-              </p>
-            </div>
-            <button onClick={reset}>
-              <RotateCcw /> Reset
-            </button>
-            <button
-              onClick={() =>
-                document
-                  .querySelector<HTMLElement>(".ep10054-canvas")
-                  ?.requestFullscreen?.()
-              }
-              aria-label="Fullscreen construction"
-            >
-              <Expand />
-            </button>
-          </header>
-          <div className="ep10054-work">
-            <aside>
-              {postulates.map((text, index) => (
-                <button
-                  key={text}
-                  className={selected === index + 1 ? "active" : ""}
-                  onClick={() => act(() => setSelected(index + 1))}
-                >
-                  <i>{index + 1}</i>
-                  <span>
-                    <b>
-                      Postulate {index + 1}
-                      {index === 4 ? " (Parallel)" : ""}
-                    </b>
-                    {text}
-                  </span>
-                  <MiniPostulate n={index + 1} />
-                </button>
-              ))}
-            </aside>
-            <article className="ep10054-canvas">
-              <nav>
-                {tools.map((name) => (
-                  <button
-                    key={name}
-                    className={tool === name ? "active" : ""}
-                    onClick={() => act(() => setTool(name))}
-                  >
-                    <i>
-                      {name === "Point"
-                        ? "●"
-                        : name === "Circle"
-                          ? "○"
-                          : name === "Angle"
-                            ? "△"
-                            : name === "Measure"
-                              ? "⌁"
-                              : "╱"}
-                    </i>
-                    {name}
-                  </button>
-                ))}
-              </nav>
-              <Construction
-                n={selected}
-                a={a}
-                b={b}
-                svgRef={svgRef}
-                drag={drag}
-                nudge={nudge}
-              />
-              <footer>
-                <Check />{" "}
-                {selected === 1
-                  ? "Well done! A straight line has been drawn from A to B."
-                  : `Postulate ${selected} construction is active.`}
-              </footer>
-              <section>
-                <b>
-                  Postulate {selected}: {postulates[selected - 1]}
-                </b>
-                <p>
-                  <Feedback selected={selected} />
-                </p>
-                <p>
-                  <strong>Tip:</strong> Drag the points or choose a tool to
-                  explore the construction.
-                </p>
-              </section>
-            </article>
-          </div>
-        </section>
-        <section className="ep10054-theory">
-          <article>
-            <h2>
-              <Lightbulb /> Why it works
-            </h2>
-            <p>
-              These postulates are basic assumptions about points, lines, and
-              planes. They are not proved, but accepted as true because geometry
-              depends on them.
-            </p>
-            <p>✓ They form the foundation.</p>
-            <p>✓ All theorems are built on them.</p>
-            <p>✓ Postulate 5 is the most subtle.</p>
-          </article>
-          <article>
-            <h2>Worked Example (Postulate 3)</h2>
-            <p>A circle can be drawn with any centre and radius.</p>
-            <div className="ep10054-circle-example">
-              <svg viewBox="0 0 160 130">
-                <circle cx="68" cy="67" r="51" />
-                <line x1="68" y1="67" x2="112" y2="42" />
-                <circle cx="68" cy="67" r="3" />
-                <circle cx="112" cy="42" r="3" />
-                <text x="62" y="80">
-                  O
-                </text>
-                <text x="115" y="40">
-                  P
-                </text>
-                <text x="84" y="53">
-                  5 cm
-                </text>
-              </svg>
-              <p>
-                <b>Construction:</b>
-                <br />
-                1. Mark point O as centre.
-                <br />
-                2. Set radius OP = 5 cm.
-                <br />
-                3. With O as centre and radius 5 cm, draw a circle.
-              </p>
-            </div>
-            <footer>
-              Result: Circle with centre O and radius 5 cm is drawn.
-            </footer>
-          </article>
-          <article className="warning">
-            <h2>
-              <TriangleAlert /> Common Misconception
-            </h2>
-            <p>
-              Postulate 5 does not say “parallel lines never meet.” It is a
-              conditional statement.
-            </p>
-            <svg viewBox="0 0 190 105">
-              <line x1="15" y1="28" x2="180" y2="28" />
-              <line x1="15" y1="82" x2="180" y2="82" />
-              <line x1="100" y1="5" x2="72" y2="102" />
-              <path d="M91 28 A18 18 0 0 1 108 42" />
-              <path d="M78 69 A18 18 0 0 0 94 82" />
-              <text x="110" y="43">
-                60°
-              </text>
-              <text x="98" y="72">
-                70°
-              </text>
-            </svg>
-            <p>
-              Since 60° + 70° = 130° &lt; 180°, the lines will meet on this side
-              when produced indefinitely.
-            </p>
-          </article>
-        </section>
-        <section className="ep10054-challenge">
-          <div>
-            <h2>Challenge</h2>
-            <p>Match each geometric action to the correct postulate.</p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Action</th>
-                  <th>Match to Postulate</th>
-                </tr>
-              </thead>
-              <tbody>
-                {challengeActions.map((text, index) => (
-                  <tr key={text}>
-                    <td>
-                      {String.fromCharCode(97 + index)}) {text}
-                    </td>
-                    <td>
-                      <select
-                        aria-label={`Postulate match ${index + 1}`}
-                        value={answers[index]}
-                        onChange={(e) =>
-                          act(() => {
-                            setChecked(false);
-                            setAnswers((current) =>
-                              current.map((v, i) =>
-                                i === index ? Number(e.target.value) : v,
-                              ),
-                            );
-                          })
-                        }
-                      >
-                        <option value="0">Select postulate</option>
-                        {postulates.map((_, i) => (
-                          <option value={i + 1} key={i}>
-                            Postulate {i + 1}
-                          </option>
-                        ))}
-                      </select>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <aside>
-            <h2>⏱ Answer Check</h2>
-            <p>
-              {checked
-                ? `${score} of 5 matches are correct.`
-                : "Make all matches and click Check."}
-            </p>
-            <button
-              disabled={answers.some((answer) => !answer)}
-              onClick={() => act(() => setChecked(true))}
-            >
-              Check Answers
-            </button>
-          </aside>
-        </section>
-      </main>
-      <nav className="ep10054-adjacent">
-        <Link to="/lessons/school/class-9/class-9-euclidean-geometry-definitions-axioms-and-postulates">
-          <ArrowLeft />
-          <span>
-            Previous Lesson<b>Definitions Axioms and Postulates</b>
-          </span>
-        </Link>
-        <Link to="/lessons/school">
-          <span>
-            Next Lesson<b>Equivalent Forms of the Fifth Postulate</b>
-          </span>
-          <ArrowRight />
-        </Link>
-      </nav>
-      <LessonTopicStudyBoard lessonId={10054} view={tab} />
 
-    </section>
-  );
+const icons=[MousePointer2,Dot,Minus,MoveUpRight,CircleIcon,Triangle,Ruler],fmt=(n:number)=>Number(n.toFixed(2));
+export default function EuclidPostulatesTargetLesson10054({lesson:_lesson}:{lesson:SchoolSyllabusLesson}){
+ const[selected,setSelected]=useState(1),[tool,setTool]=useState('Select'),[g,setG]=useState(initial),[tab,setTab]=useState('Interact'),[answers,setAnswers]=useState([0,0,0,0,0]),[checked,setChecked]=useState(false),[measure,setMeasure]=useState(false),[active,setActive]=useState<'a'|'b'>('a'),[expanded,setExpanded]=useState(false),[actions,setActions]=useState(0);const canvas=useRef<HTMLElement>(null),m=model(g),score=matching(answers),proper=selected<=2?m.proper:true;
+ const act=(fn:()=>void)=>{fn();setActions(n=>n+1);},change=(next:State)=>act(()=>setG(next));const reset=()=>act(()=>{setSelected(1);setTool('Select');setG(initial);setMeasure(false);setActive('a');});
+ useEffect(()=>{const change=()=>setExpanded(Boolean(document.fullscreenElement)),escape=(e:KeyboardEvent)=>{if(e.key==='Escape')setExpanded(false);};document.addEventListener('fullscreenchange',change);window.addEventListener('keydown',escape);return()=>{document.removeEventListener('fullscreenchange',change);window.removeEventListener('keydown',escape);};},[]);
+ const expand=()=>{if(expanded){setExpanded(false);if(document.fullscreenElement)void document.exitFullscreen();}else{setExpanded(true);void canvas.current?.requestFullscreen?.().catch(()=>{});}};
+ const choose=(n:number)=>act(()=>{setSelected(n);setG(preset(n));setTool('Select');setMeasure(false);setActive('a');});
+ const applyTool=(name:string)=>act(()=>{setTool(name);if(name==='Line'||name==='Extend'){const n=name==='Line'?1:2;setSelected(n);setG(old=>move(move(old,n,'a',old.a),n,'b',old.b));}if(name==='Circle'&&selected!==3){setSelected(3);setG(preset(3));}if(name==='Angle'&&selected!==4){setSelected(4);setG(preset(4));}if(name==='Point'&&selected=== 5){setSelected(1);setG(preset(1));}if(name==='Measure')setMeasure(v=>!v);});
+ const feedback=!proper?'Choose two distinct points. Coincident endpoints do not define a line.':selected===1?'Well done! A straight segment joins A to B.':selected===2?'The segment is extended along its own straight path in both directions.':selected===3?`Circle drawn with centre O and radius ${fmt(m.length/10)} units.`:selected===4?'Both constructed right angles measure 90°, regardless of orientation.':m.interior.side==='parallel'?'The same-side sum is 180°. The lines are parallel.':`The same-side sum is ${g.alpha+g.beta}°. The lines meet on the ${m.interior.side}${m.interior.meeting&&(m.interior.meeting.x<20||m.interior.meeting.x>410||m.interior.meeting.y<20||m.interior.meeting.y>280)?' beyond this view':''}.`;
+ return <section className="ep10054-page" data-testid="school-mockup-0728" data-object-model="dedicated-five-postulate-construction-and-matching-engine" data-postulate={selected} data-tool={tool} data-a={`${Math.round(g.a.x)},${Math.round(g.a.y)}`} data-b={`${Math.round(g.b.x)},${Math.round(g.b.y)}`} data-state={JSON.stringify(g)} data-proper={proper} data-measure={measure} data-expanded={expanded} data-score={checked?score:'idle'} data-actions={actions}>
+ <div role="banner" className="ep10054-hero"><div><small>CLASS 9 · EUCLIDEAN GEOMETRY</small><h1>Euclid’s Five Postulates</h1><p>Foundational assumptions of Euclidean geometry. Use the explorer to visualize and understand each postulate.</p><section>{['30 min','Interact','Level: Foundation','Grade: 9','Euclidean Geometry'].map(s=><span key={s}>{s}</span>)}</section></div><svg className="ep10054-hero-art" viewBox="615 100 255 180" role="img" aria-label="Parchment with Euclidean constructions, compass and quill"><defs><clipPath id="ep10054-reference-art"><rect x="615" y="100" width="255" height="180"/></clipPath></defs><image clipPath="url(#ep10054-reference-art)" href="/assets/lessons/euclid-five-postulates-reference.png" width="902" height="1743"/></svg></div>
+ <div role="group" aria-label="Lesson sections" className="ep10054-tabs">{['Interact','Learn','Example','Formula','Practice'].map((s,i)=><button key={s} aria-pressed={tab===s} className={tab===s?'active':''} onClick={()=>act(()=>{setTab(s);document.getElementById(['ep10054-interact','ep10054-learn','ep10054-example','ep10054-formula','ep10054-practice'][i])?.scrollIntoView({behavior:'smooth',block:'start'});})}>{s}</button>)}</div>
+ <main><section id="ep10054-interact" className="ep10054-explorer"><header><div><h2>Explore the Five Postulates</h2><p>Select a postulate, then use the tools to see it in action. Feedback updates in real time.</p></div><button onClick={reset}><RotateCcw/> Reset</button><button aria-label="Fullscreen construction" onClick={expand}><Expand/></button></header><div className="ep10054-work"><aside>{postulates.map((s,i)=><button key={s} aria-label={`Postulate ${i+1}`} aria-pressed={selected===i+1} className={selected===i+1?'active':''} onClick={()=>choose(i+1)}><i>{i+1}</i><span><b>Postulate {i+1}{i===4?' (Parallel)':''}</b>{s}</span><MiniPostulate n={i+1}/></button>)}</aside>
+ <article ref={canvas} className={`ep10054-canvas ${expanded?'ep10054-expanded':''}`}><div role="group" aria-label="Construction tools" className="ep10054-tools">{tools.map((name,i)=>{const Icon=icons[i];return <button key={name} aria-label={`${name} tool`} aria-pressed={name==='Measure'?measure:tool===name} className={(name==='Measure'?measure:tool===name)?'active':''} onClick={()=>applyTool(name)}><Icon/>{name}</button>;})}{expanded&&<button aria-label="Exit fullscreen" onClick={expand}><X/>Close</button>}</div>
+ <Construction n={selected} g={g} tool={tool} active={active} measure={measure} change={change} restore={setG} setActive={setActive}/><footer role="status" className={proper?'ep10054-success':'ep10054-pending'}>{proper?<Check/>:<TriangleAlert/>}{feedback}</footer>
+ <section id="ep10054-formula"><b>Postulate {selected}: {postulates[selected-1]}</b><p>{selected===1?'The segment’s endpoints determine its position.':selected===2?'Moving either endpoint changes both the segment and its collinear extensions.':selected===3?'O is the centre; P is on the circumference. Moving O preserves the radius; moving P changes it.':selected===4?'Rotate each pair of perpendicular arms to compare the angles.': 'Adjust the actual same-side angles. Less than 180° forces a meeting on the marked side; equality gives parallels.'}</p>
+ {selected===4&&<div className="ep10054-properties">{(['rotation1','rotation2']as const).map((name,i)=><label key={name}>Right angle {i+1} rotation<input type="range" aria-label={`Right angle ${i+1} rotation`} min="-180" max="180" step="1" value={g[name]} onChange={e=>change({...g,[name]:+e.target.value})}/><b>{g[name]}°</b></label>)}</div>}
+ {selected=== 5&&<div className="ep10054-properties">{(['alpha','beta']as const).map((name,i)=><label key={name}>{i?'β':'α'}<input type="range" aria-label={`Interior ${name}`} min="40" max="140" step="1" value={g[name]} onChange={e=>change({...g,[name]:+e.target.value})}/><b>{g[name]}°</b></label>)}</div>}
+ {measure&&<p className="ep10054-measurement" role="note">{selected<=2?proper?`AB = ${fmt(m.length/10)} units.`:'Length 0; line undefined.':selected===3?`OP = r = ${fmt(m.length/10)} units; diameter = ${fmt(m.length/5)} units.`:selected===4?'Angle 1 = 90°; angle2 = 90°; difference 0°.':`α = ${g.alpha}°; β = ${g.beta}°; sum = ${g.alpha+g.beta}°.`}</p>}
+ <p className="ep10054-tip"><strong>Tip:</strong> {tool==='Point'?`Tap the grid to place ${selected===3?(active==='a'?'O':'P'):active.toUpperCase()}; the next tap places the other point.`:'Drag the handles, or focus one and use the arrow keys. Shift makes larger steps.'}</p></section></article></div></section>
+ <section id="ep10054-learn" className="ep10054-theory"><article><h2><Lightbulb/> Why it works</h2><p>Postulates are foundational assumptions rather than statements proved from earlier results.</p><p>✓ Together with definitions and common notions, they form Euclidean geometry’s foundation.</p><p>✓ Theorems are built using these foundations.</p><p>✓ Postulate 5 is a conditional statement about when two lines meet.</p></article>
+ <article id="ep10054-example"><h2>Worked Example (Postulate 3)</h2><p>A circle can be drawn with any centre and positive radius.</p><div className="ep10054-circle-example"><CircleExample/><p><b>Construction:</b><br/>1. Mark point O as centre.<br/>2. Set radius OP = 5 cm.<br/>3. With centre O and radius 5 cm, draw a circle.</p></div><footer>Result: Circle with centre O and radius 5 cm is drawn.</footer></article>
+ <article className="ep10054-warning"><h2><TriangleAlert/> Common Misconception</h2><p>Postulate 5 does not say “parallel lines never meet.” It gives a condition that forces two lines to meet.</p><FifthInk alpha={60} beta={70} small/><p>Since 60° + 70° = 130° &lt; 180°, the lines meet on the left, where the marked same-side angles lie.</p></article></section>
+ <section id="ep10054-practice" className="ep10054-challenge"><div><h2>Challenge</h2><p>Match each geometric action to the correct postulate.</p><table><thead><tr><th>Action</th><th>Match to Postulate</th></tr></thead><tbody>{challengeActions.map((s,i)=><tr key={s}><td>{String.fromCharCode(97+i)}) {s}</td><td><select aria-label={`Postulate match ${i+1}`} value={answers[i]} onChange={e=>act(()=>{setChecked(false);setAnswers(old=>old.map((a,j)=>i===j?+e.target.value:a));})}><option value="0">Select postulate</option>{postulates.map((_,j)=><option key={j} value={j+1}>Postulate {j+1}</option>)}</select>{checked&&<small className={answers[i]===i+1?'ep10054-match-correct':'ep10054-match-wrong'}>{answers[i]===i+1?'Correct':`Review Postulate ${i+1}`}</small>}</td></tr>)}</tbody></table></div><aside><h2><Ruler/> Answer Check</h2><p role="status">{checked?`${score} of 5 matches are correct.`:'Make all matches and click Check.'}</p><button disabled={answers.some(a=>!a)} onClick={()=>act(()=>setChecked(true))}>Check Answers</button></aside></section></main>
+ <nav className="ep10054-nav"><Link to="/lessons/school/class-9/class-9-euclidean-geometry-definitions-axioms-and-postulates"><ArrowLeft/> Definitions Axioms and Postulates</Link><Link to="/lessons/school/class-9/class-9-euclidean-geometry-equivalent-forms-of-the-fifth-postulate">Equivalent Forms of the Fifth Postulate <ArrowRight/></Link></nav>
+ <footer className="ep10054-footer"><div><b>Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p></div><nav><Link to="/sitemap">Sitemap</Link><Link to="/docs">Docs</Link><Link to="/about">About</Link></nav><small>©2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small></footer></section>;
 }
+function MiniPostulate({n}:{n:number}){return <svg viewBox="0 0 55 26" aria-hidden="true">{n===3?<><circle cx="28" cy="13" r="11"/><circle className="ep10054-mini-dot" cx="28" cy="13" r="1.5"/></>:n===4?<><path d="M14 3V22H37"/><path d="M14 16H20V22"/></>:n=== 5?<><path d="M6 5L50 10M6 22L50 18M34 1L20 25"/></>:<><line x1="7" y1="13" x2="49" y2="13"/><circle className="ep10054-mini-dot" cx="12" cy="13" r="2"/><circle className="ep10054-mini-dot" cx="43" cy="13" r="2"/></>}</svg>;}
+function CircleExample(){const p={x:68+50*Math.cos(-Math.PI/6),y:67+50*Math.sin(-Math.PI/6)};return <svg viewBox="0 0 160 135" role="img" aria-label="Circle with centre O and radius OP5 centimetres" data-radius="50" data-point={JSON.stringify(p)}><circle cx="68" cy="67" r="50"/><line x1="68" y1="67" x2={p.x} y2={p.y}/><circle className="ep10054-example-dot" cx="68" cy="67" r="3"/><circle className="ep10054-example-dot" cx={p.x} cy={p.y} r="3"/><text x="62" y="83">O</text><text x={p.x+5} y={p.y-3}>P</text><text x="81" y="51">5 cm</text></svg>;}
 
-function Feedback({ selected }: { selected: number }) {
-  return [
-    "You chose two distinct points A and B. A unique straight line AB has been drawn.",
-    "The segment continues beyond its endpoint along the same straight path.",
-    "The distance OP fixes the radius of the circle centered at O.",
-    "Both marked angles measure exactly 90°, so they are equal.",
-    "The same-side interior-angle sum determines whether the lines meet.",
-  ][selected - 1];
+function Construction({n,g,tool,active,measure,change,restore,setActive}:{n:number;g:State;tool:string;active:'a'|'b';measure:boolean;change:(g:State)=>void;restore:(g:State)=>void;setActive:(a:'a'|'b')=>void}){
+ const ref=useRef<SVGSVGElement>(null),id=useId().replace(/:/g,''),m=model(g),gesture=useRef<{pid:number;kind:'a'|'b';before:State;x:number;y:number;offset:Point;moved:boolean}|null>(null);
+ const handles:Point[]=n=== 5?[add(m.interior.upper,m.interior.u,-70),add(m.interior.lower,m.interior.v,-70)]:[g.a,g.b];
+ const local=(x:number,y:number)=>{const matrix=ref.current?.getScreenCTM();return matrix?new DOMPoint(x,y).matrixTransform(matrix.inverse()):null;};
+ const start=(kind:'a'|'b')=>(e:React.PointerEvent<SVGElement>)=>{if(gesture.current||e.button!==0&&e.pointerType!=='touch')return;const p=local(e.clientX,e.clientY);if(!p)return;e.preventDefault();e.stopPropagation();setActive(kind);const h=handles[kind==='a'?0:1];gesture.current={pid:e.pointerId,kind,before:g,x:e.clientX,y:e.clientY,offset:{x:p.x-h.x,y:p.y-h.y},moved:false};e.currentTarget.setPointerCapture(e.pointerId);};
+ const update=(e:React.PointerEvent<SVGElement>,end=false)=>{const z=gesture.current;if(!z||z.pid!==e.pointerId)return;e.stopPropagation();if(Math.hypot(e.clientX-z.x,e.clientY-z.y)>.5)z.moved=true;const p=local(e.clientX,e.clientY);if(z.moved&&p){const q={x:p.x-z.offset.x,y:p.y-z.offset.y};if(n=== 5){const origin=z.kind==='a'?m.interior.upper:m.interior.lower;if(Math.hypot(q.x-origin.x,q.y-origin.y)>20){const before=z.kind==='a'?90+z.before.alpha:-90-z.before.beta;let a=Math.atan2(q.y-origin.y,q.x-origin.x)*180/Math.PI;a+=360*Math.round((before-a)/360);const value=Math.max(40,Math.min(140,Math.round(z.kind==='a'?a-90:-90-a)));change({...z.before,[z.kind==='a'?'alpha':'beta']:value});}}else change(move(z.before,n,z.kind,q));}if(end)gesture.current=null;};
+ const cancel=(e:React.PointerEvent<SVGElement>)=>{const z=gesture.current;if(z?.pid===e.pointerId){restore(z.before);gesture.current=null;}};
+ const keys=(which:'a'|'b')=>(e:React.KeyboardEvent<SVGElement>)=>{if(!e.key.startsWith('Arrow'))return;e.preventDefault();setActive(which);if(n=== 5){const key=which==='a'?'alpha':'beta';change({...g,[key]:Math.max(40,Math.min(140,g[key]+(e.key==='ArrowRight'||e.key==='ArrowUp'?1:-1)*(e.shiftKey?5:1)))});}else{const k=e.shiftKey?10:2,p=g[which];change(move(g,n,which,{x:p.x+(e.key==='ArrowRight'?k:e.key==='ArrowLeft'?-k:0),y:p.y+(e.key==='ArrowDown'?k:e.key==='ArrowUp'?-k:0)}));}};
+ const markers=m.rightAngles.map(r=>[add(r.o,r.u,12),add(add(r.o,r.u,12),r.v,12),add(r.o,r.v,12)].map(p=>`${p.x},${p.y}`).join(' '));
+ return <svg ref={ref} className="ep10054-drawing" viewBox="0 0 430 330" aria-label="Interactive Euclidean construction" data-geometry={JSON.stringify(m)} data-postulate={n} onLostPointerCapture={cancel} onPointerUp={e=>{if(tool!=='Point'||(e.button!==0&&e.pointerType!=='touch')||!(e.target as Element).hasAttribute('data-background'))return;const p=local(e.clientX,e.clientY);if(p){change(move(g,n,active,p));setActive(active==='a'?'b':'a');}}}><defs><pattern id={`grid-${id}`} width="20" height="20" patternUnits="userSpaceOnUse"><path className="ep10054-grid-line" d="M20 0H0V20"/></pattern><marker id={`arrow-${id}`} markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse"><path d="M0 0L6 3L0 6Z" fill="context-stroke" stroke="none"/></marker></defs><rect data-background="true" width="430" height="330" fill={`url(#grid-${id})`}/>
+ {(n===1||n===2)&&m.proper&&<>{n===2&&m.extension&&<line data-line="extension" className="ep10054-extension" x1={m.extension[0].x} y1={m.extension[0].y} x2={m.extension[1].x} y2={m.extension[1].y} markerStart={`url(#arrow-${id})`} markerEnd={`url(#arrow-${id})`}/>}<line data-line="segment" className="ep10054-segment" x1={g.a.x} y1={g.a.y} x2={g.b.x} y2={g.b.y}/>{measure&&<text className="ep10054-measure-label" x={(g.a.x+g.b.x)/2} y={(g.a.y+g.b.y)/2-12} textAnchor="middle">{fmt(m.length/10)} units</text>}</>}
+ {n===3&&<><circle data-circle="main" className="ep10054-circle" cx={g.a.x} cy={g.a.y} r={m.length}/><line data-line="radius" className="ep10054-radius" x1={g.a.x} y1={g.a.y} x2={g.b.x} y2={g.b.y}/>{measure&&<text className="ep10054-measure-label" x={(g.a.x+g.b.x)/2} y={(g.a.y+g.b.y)/2-10}>r ={fmt(m.length/10)}</text>}</>}
+ {n===4&&m.rightAngles.map((r,i)=><g key={i} data-right-angle={JSON.stringify(r)}><line className="ep10054-right-arm" x1={r.o.x} y1={r.o.y} x2={r.arms[0].x} y2={r.arms[0].y}/><line className="ep10054-right-arm" x1={r.o.x} y1={r.o.y} x2={r.arms[1].x} y2={r.arms[1].y}/><polyline className="ep10054-right-mark" points={markers[i]}/><text className="ep10054-measure-label" x={r.o.x+(r.u.x+r.v.x)*32} y={r.o.y+(r.u.y+r.v.y)*32}>90°</text></g>)}
+ {n=== 5&&<FifthInk alpha={g.alpha} beta={g.beta} inner/>}
+ {handles.map((h,i)=>{const which=i===0?'a':'b',name=n===3?(i?'P':'O'):n=== 5?(i?'β':'α'):which.toUpperCase();return <g key={which}><circle className="ep10054-point" cx={h.x} cy={h.y} r="5"/><circle data-point={which} className={`ep10054-handle ${active===which?'ep10054-selected-point':''}`} role="slider" tabIndex={0} aria-label={n=== 5?`Change ${i?'beta':'alpha'}`:`Drag ${name}`} aria-valuenow={n=== 5?g[i?'beta':'alpha']:h.x} aria-valuemin={n=== 5?40:0} aria-valuemax={n=== 5?140:430} aria-valuetext={n=== 5?`${name} ${g[i?'beta':'alpha']} degrees`:`${name}: ${fmt(h.x/10)}, ${fmt(h.y/10)} units`} cx={h.x} cy={h.y} r="17" onPointerDown={start(which)} onPointerMove={e=>update(e)} onPointerUp={e=>update(e,true)} onPointerCancel={cancel} onKeyDown={keys(which)}/>{n!== 5&&<text className="ep10054-point-name" x={h.x+(i?10:-18)} y={h.y+5}>{name}</text>}</g>;})}</svg>;
 }
-function MiniPostulate({ n }: { n: number }) {
-  return (
-    <svg viewBox="0 0 55 26" aria-hidden="true">
-      {n === 3 ? (
-        <>
-          <circle cx="28" cy="13" r="11" />
-          <circle cx="28" cy="13" r="2" />
-        </>
-      ) : n === 4 ? (
-        <>
-          <line x1="14" y1="3" x2="14" y2="22" />
-          <line x1="14" y1="22" x2="37" y2="22" />
-          <rect x="14" y="16" width="6" height="6" />
-        </>
-      ) : n === 5 ? (
-        <>
-          <line x1="6" y1="7" x2="50" y2="7" />
-          <line x1="6" y1="20" x2="50" y2="20" />
-          <line x1="34" y1="1" x2="20" y2="25" />
-        </>
-      ) : (
-        <>
-          <line x1="7" y1="13" x2="49" y2="13" />
-          <circle cx="12" cy="13" r="2" />
-          <circle cx="43" cy="13" r="2" />
-        </>
-      )}
-    </svg>
-  );
-}
-function Construction({
-  n,
-  a,
-  b,
-  svgRef,
-  drag,
-  nudge,
-}: {
-  n: number;
-  a: { x: number; y: number };
-  b: { x: number; y: number };
-  svgRef: React.RefObject<SVGSVGElement>;
-  drag: (which: "a" | "b", event: React.PointerEvent<SVGCircleElement>) => void;
-  nudge: (which: "a" | "b", dx: number, dy: number) => void;
-}) {
-  const keyMove = (which: "a" | "b", key: string) => {
-    if (key === "ArrowLeft") nudge(which, -8, 0);
-    if (key === "ArrowRight") nudge(which, 8, 0);
-    if (key === "ArrowUp") nudge(which, 0, -8);
-    if (key === "ArrowDown") nudge(which, 0, 8);
-  };
-  return (
-    <svg
-      ref={svgRef}
-      className="ep10054-drawing"
-      viewBox="0 0 430 330"
-      aria-label="Interactive Euclidean construction"
-    >
-      <defs>
-        <pattern
-          id="epgrid"
-          width="24"
-          height="24"
-          patternUnits="userSpaceOnUse"
-        >
-          <path d="M24 0H0V24" />
-        </pattern>
-      </defs>
-      <rect width="430" height="330" fill="url(#epgrid)" />
-      {n === 1 && <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} />}{" "}
-      {n === 2 && <line x1="15" y1={a.y} x2="415" y2={a.y} />}{" "}
-      {n === 3 && (
-        <circle cx={a.x} cy={a.y} r={Math.hypot(b.x - a.x, b.y - a.y)} />
-      )}{" "}
-      {n === 4 && (
-        <>
-          <line x1={a.x} y1={a.y} x2={b.x} y2={a.y} />
-          <line x1={a.x} y1={a.y} x2={a.x} y2={b.y} />
-          <rect x={a.x} y={a.y - 16} width="16" height="16" />
-        </>
-      )}{" "}
-      {n === 5 && (
-        <>
-          <line x1="30" y1="105" x2="400" y2="105" />
-          <line x1="30" y1="235" x2="400" y2="235" />
-          <line x1={a.x} y1="40" x2={b.x} y2="295" />
-        </>
-      )}
-      <circle
-        className="handle a"
-        cx={a.x}
-        cy={a.y}
-        r="7"
-        tabIndex={0}
-        onPointerDown={(e) => drag("a", e)}
-        onKeyDown={(e) => keyMove("a", e.key)}
-      />
-      <circle
-        className="handle b"
-        cx={b.x}
-        cy={b.y}
-        r="7"
-        tabIndex={0}
-        onPointerDown={(e) => drag("b", e)}
-        onKeyDown={(e) => keyMove("b", e.key)}
-      />
-      <text x={a.x - 18} y={a.y + 5}>
-        A
-      </text>
-      <text x={b.x + 10} y={b.y + 5}>
-        B
-      </text>
-    </svg>
-  );
-}
+function FifthInk({alpha,beta,inner=false,small=false}:{alpha:number;beta:number;inner?:boolean;small?:boolean}){const m=interior(alpha,beta),rays=[{o:m.upper,a:m.lower,b:add(m.upper,m.u,-120),v:m.alpha,name:'α'},{o:m.lower,a:m.upper,b:add(m.lower,m.v,-120),v:m.beta,name:'β'}],content=<><line className="ep10054-fifth-line" x1={m.lines.l![0].x} y1={m.lines.l![0].y} x2={m.lines.l![1].x} y2={m.lines.l![1].y}/><line className="ep10054-fifth-line" x1={m.lines.m![0].x} y1={m.lines.m![0].y} x2={m.lines.m![1].x} y2={m.lines.m![1].y}/><line className="ep10054-transversal" x1={m.lines.t![0].x} y1={m.lines.t![0].y} x2={m.lines.t![1].x} y2={m.lines.t![1].y}/>{rays.map((r,i)=>{const s=sector(r.o,r.a,r.b,28);return s&&<g key={i}><path data-angle={r.v} className={`ep10054-sector ${i?'blue':'purple'}`} d={s.path}/><text className="ep10054-angle-value" textAnchor="end" x={s.label.x} y={s.label.y+4}>{small?'':r.name+' '}{fmt(r.v)}°</text></g>;})}{m.meeting&&m.meeting.x>=20&&m.meeting.x<=410&&m.meeting.y>=20&&m.meeting.y<=280&&<circle className="ep10054-meeting" cx={m.meeting.x} cy={m.meeting.y} r="4"/>}<text className="ep10054-fifth-note" x="30" y="315">{m.side==='parallel'?'Parallel lines':`Meet on the ${m.side}${m.meeting&&(m.meeting.x<20||m.meeting.x>410||m.meeting.y<20||m.meeting.y>280)?' beyond the view':''}`}</text></>;return inner?<g data-interior={JSON.stringify(m)}>{content}</g>:<svg className="ep10054-fifth-example" viewBox="0 0 430 330" role="img" aria-label="Same-side60 and70 degree angles on lines that meet" data-interior={JSON.stringify(m)}>{content}</svg>;}

@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "full"
+    },
+    {
+      "width": 1680,
+      "state": "solution"
+    },
+    {
+      "width": 1680,
+      "state": "empty"
+    },
+    {
+      "width": 1680,
+      "state": "selected"
+    },
+    {
+      "width": 1280,
+      "state": "full"
+    },
+    {
+      "width": 1280,
+      "state": "solution"
+    },
+    {
+      "width": 1280,
+      "state": "empty"
+    },
+    {
+      "width": 1280,
+      "state": "selected"
+    },
+    {
+      "width": 768,
+      "state": "full"
+    },
+    {
+      "width": 768,
+      "state": "solution"
+    },
+    {
+      "width": 768,
+      "state": "empty"
+    },
+    {
+      "width": 768,
+      "state": "selected"
+    },
+    {
+      "width": 390,
+      "state": "full"
+    },
+    {
+      "width": 390,
+      "state": "solution"
+    },
+    {
+      "width": 390,
+      "state": "empty"
+    },
+    {
+      "width": 390,
+      "state": "selected"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "native drag/move/return/unknown payload",
+    "touch and keyboard placement/evidence",
+    "all valid rational evidence alternatives",
+    "correct/incorrect/pending/remaining count invariant",
+    "all8 justified and pattern/proof definitions",
+    "challenge solution independence, alternatives, edit invalidation and reset",
+    "true rational/irrational number-line coordinates",
+    "tabs/navigation and16 responsive states"
+  ]
+}

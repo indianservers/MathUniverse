@@ -878,3 +878,7 @@
     display: none;
   }
 }
+
+@media(max-width:900px){.target-double-half-page .target-double-half-lab>div,.target-double-half-page .target-double-half-formulas>div,.target-double-half-page .target-double-half-flow,.target-double-half-page .target-double-half-learning,.target-double-half-page .target-double-half-practice>div,.target-double-half-page .target-double-half-practice>div>article>section{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-double-half-page .target-double-half-lab>div>*,.target-double-half-page .target-double-half-formulas>div>*,.target-double-half-page .target-double-half-flow>*,.target-double-half-page .target-double-half-learning>*,.target-double-half-page .target-double-half-practice>div>*,.target-double-half-page .target-double-half-practice>div>article>section>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.target-double-half-flow article>svg:last-child{position:static}.target-double-half-practice article>footer p{position:static;width:auto}.target-double-half-practice>div>aside button,.target-double-half-formulas article>footer{position:static;height:auto;margin-top:8px}.target-double-half-tabs{height:auto;display:flex;flex-wrap:wrap}}

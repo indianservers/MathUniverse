@@ -1,3 +1,4 @@
+import AlgebraEnhancementWorkbench from "../studios/algebra/AlgebraEnhancementWorkbench";
 import CinematicHero from "../studios/heroes/CinematicHero";
 import {
   Eye,
@@ -14,7 +15,6 @@ import { ExpressionsLab, FunctionsLab, PolynomialsLab, SystemsLab, ExponentsLab,
 import EquationsLab from "../studios/algebra/EquationsLab";
 import LabLearningGuide from "../studios/learning-guides/LabLearningGuide";
 import { useProgress } from "../hooks/useProgress";
-import AlgebraEnhancementWorkbench from "../studios/algebra/AlgebraEnhancementWorkbench";
 import { answersMatchChallenge } from "../studios/algebra/algebraStudioMath";
 import { AlgebraStudioNav, routePage, type AlgebraPage } from "../studios/algebra/AlgebraStudioNav";
 import { challengeOfTheDay, dailyChallenges } from "../studios/algebra/algebraStudioCatalog";
@@ -92,7 +92,6 @@ export default function AlgebraStudio() {
         {page === "sequences" && <SequencesLab />}
         {page === "proof" && <ProofLab />}
         {page === "cas" && <CasGateway />}
-        {page === "advanced" && <AlgebraEnhancementWorkbench />}
       </section>
     </main>
   );

@@ -24,7 +24,7 @@
 .asa10091-page input {
   font: inherit;
 }
-.asa10091-page svg {
+.asa10091-page button svg,.asa10091-page h2 svg,.asa10091-page em>svg,.asa10091-nav svg {
   width: 14px;
   height: 14px;
 }
@@ -116,13 +116,13 @@
 .asa10091-lab > aside input[type="range"] {
   width: 100%;
 }
-.asa10091-lab > aside .result strong:first-of-type {
+.asa10091-lab > aside .asa10091-result strong:first-of-type {
   color: #0878c8;
 }
-.asa10091-lab > aside .result strong:nth-of-type(2) {
+.asa10091-lab > aside .asa10091-result strong:nth-of-type(2) {
   color: #7134ce;
 }
-.asa10091-lab > aside .result em {
+.asa10091-lab > aside .asa10091-result em {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -364,3 +364,9 @@
     font-size: 8px;
   }
 }
+
+.asa10091-page{width:100%;top:0;left:0;padding:8px;font-size:14px;background:#f9fcff}.asa10091-hero{position:relative;height:auto;min-height:160px;padding:20px}.asa10091-hero h1{font-size:28px;font-weight:800}.asa10091-hero>div{flex-wrap:wrap}.asa10091-school{position:absolute;right:16px;top:16px;padding:9px 12px;border:1px solid #dce5ea;border-radius:10px;background:#fff;color:#263550;text-decoration:none}.asa10091-tabs{height:48px}.asa10091-tabs button{font-size:13px;color:#263550}.asa10091-page h2{font-size:15px;font-weight:800}.asa10091-page h3{font-size:13px;font-weight:800}.asa10091-lab{grid-template-columns:minmax(235px,1fr) minmax(0,3fr);overflow:visible;min-height:0;gap:14px;padding:12px}.asa10091-lab>aside{border:1px solid #dce5ea;border-radius:10px;min-width:0;overflow:hidden}.asa10091-lab>aside section{padding:16px}.asa10091-lab>aside input{accent-color:#087edd}.asa10091-lab>aside label{display:flex;gap:6px;align-items:center;font-size:13px}.asa10091-lab>aside label input{width:14px;height:14px;flex:none}.asa10091-lab>aside .asa10091-result{background:#f7fbff;border-bottom:0}.asa10091-lab>aside .asa10091-result strong{font-size:19px}.asa10091-lab>article{min-width:0;border:1px solid #dce5ea;border-radius:10px;padding:14px}.asa10091-lab>article>button{color:#263550}.asa10091-lab>article>svg{height:570px;max-width:none!important}.asa10091-page svg text{pointer-events:none}.asa10091-page svg .circle{stroke:#172646!important;fill:#fff!important;stroke-dasharray:none!important}.asa10091-page svg .fixed-arc{stroke:#7637dc!important;stroke-dasharray:none!important;fill:none!important}.asa10091-page svg .radius{stroke:#1978dd!important;stroke-dasharray:none!important;fill:none!important}.asa10091-page svg .chord{stroke:#172034!important;stroke-dasharray:none!important;fill:none!important}.asa10091-page svg .central{stroke:#1681df!important;fill:#70bdff!important;fill-opacity:.2}.asa10091-page svg .inscribed{stroke:#7738d3!important;fill:#b183ec!important;fill-opacity:.2;pointer-events:none}.asa10091-lab svg .point.c{stroke:transparent;stroke-width:18;vector-effect:non-scaling-stroke}.asa10091-lab svg .point.c:focus{stroke:#f0a022;stroke-width:4}.asa10091-lab footer article{min-width:0;line-height:1.9}.asa10091-lab footer .legend-radii{color:#1978dd}.asa10091-lab footer .legend-arc{color:#7637dc}.asa10091-lab footer .legend-chords{color:#172034}.asa10091-cards{grid-template-columns:1fr 1.05fr 1.35fr}.asa10091-cards article{min-width:0;min-height:0;padding:18px}.asa10091-cards article:first-child{background:#fffdfa}.asa10091-cards article:nth-child(2){background:#fafdff}.asa10091-cards .warning{background:#fffdfd!important;border-color:#efb7b8!important}.asa10091-cards .warning .asa10091-comparison{display:grid;grid-template-columns:1fr 1fr;margin-top:15px;padding:0;gap:5px;color:#263550}.asa10091-comparison>section{min-width:0;text-align:center}.asa10091-mini-svg{display:block;width:100%;height:220px;max-width:none!important}.asa10091-mini-svg text{font:13px Georgia,serif}.asa10091-comparison .asa10091-mini-svg{height:auto;aspect-ratio:300/270}.asa10091-comparison small{font-size:12px}.asa10091-cards .math-expression{display:block;font-size:18px;max-width:100%;overflow-x:auto}.asa10091-lower>article{min-width:0;padding:18px}.asa10091-lower>article:first-child>.asa10091-mini-svg{float:right;width:45%;height:220px}.asa10091-lower ol{padding-left:20px}.asa10091-lower>article:first-child>strong{clear:both}.asa10091-lower .record-position{margin-top:12px;padding:8px 12px;border:1px solid #b9d9ea;border-radius:6px;background:#fff;color:#0879ad;font-weight:800}.asa10091-lower .record-position:disabled{opacity:.6;cursor:default}.asa10091-lower table{font-size:13px}.asa10091-lower th{background:#f4f7fa}.asa10091-lower em{font-size:13px}.asa10091-nav{display:grid;grid-template-columns:1fr 1fr;gap:16px}.asa10091-nav a{display:flex;align-items:center;gap:10px;font-weight:800}.asa10091-nav a:last-child{justify-content:flex-end}.asa10091-footer{margin-top:18px;padding:20px;border:1px solid #dce5ea;border-radius:10px;background:#fff}.asa10091-footer small{display:block;margin-top:20px;color:#596a80}
+@media(max-width:1200px){.asa10091-lab{grid-template-columns:minmax(235px,1fr) minmax(0,2.5fr)}.asa10091-cards,.asa10091-lower{grid-template-columns:1fr}.asa10091-lower>article:first-child>.asa10091-mini-svg{width:40%;height:240px}.asa10091-comparison .asa10091-mini-svg{height:230px;aspect-ratio:auto}}
+@media(max-width:700px){.asa10091-page{width:100%;top:0;font-size:14px}.asa10091-hero{padding-top:55px}.asa10091-hero h1{font-size:25px}.asa10091-tabs button{font-size:11px}.asa10091-lab,.asa10091-cards,.asa10091-lower,.asa10091-nav{grid-template-columns:1fr}.asa10091-lab>article{padding-top:45px}.asa10091-lab>article>button{top:8px}.asa10091-lab>article>svg{height:auto;aspect-ratio:620/470}.asa10091-lab>article>footer{grid-template-columns:1fr}.asa10091-nav a{font-size:14px;padding:12px}.asa10091-lower>article:first-child>.asa10091-mini-svg{float:none;width:100%;height:240px}.asa10091-lower table{font-size:11px}.asa10091-lower th,.asa10091-lower td{padding:5px}.asa10091-comparison .asa10091-mini-svg{height:auto;aspect-ratio:300/270}}
+
+.asa10091-page svg .label-a,.asa10091-page svg .label-c{fill:#0879cc}.asa10091-page svg .label-b{fill:#7033ce}.asa10091-cards>article:first-child h2{color:#9b5a19}.asa10091-lower .record-coordinate{display:block;font-size:10px;color:#596a80;margin-top:4px}

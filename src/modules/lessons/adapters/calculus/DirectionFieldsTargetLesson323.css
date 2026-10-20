@@ -684,3 +684,5 @@ body:has(.dir323-page) footer[aria-label="Site footer"] > div {
     display: none;
   }
 }
+
+@media(max-width:900px){.dir323-page .dir323-lab,.dir323-page .dir323-learning{height:auto;grid-template-columns:minmax(0,1fr)}.dir323-page .dir323-plot-wrap{grid-template-rows:auto auto;min-width:0}.dir323-page .dir323-plot-wrap svg{width:100%;height:auto;min-height:280px}.dir323-page .dir323-plot-wrap>footer{height:auto;flex-wrap:wrap;padding-block:10px;gap:8px}.dir323-page .dir323-learning article{min-width:0;padding-block:12px}.dir323-page .dir323-practice{height:auto}.dir323-page .dir323-practice>div{grid-template-columns:minmax(0,1fr)}.dir323-page .dir323-practice>output{position:static}.dir323-page .dir323-hero>button{position:static}.dir323-page .dir323-hero{height:auto}}

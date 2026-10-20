@@ -789,3 +789,5 @@
     overflow-x: hidden;
   }
 }
+
+@media(max-width:799px){.ortho411-page .ortho411-tabs{overflow-x:auto}.ortho411-page .ortho411-render{flex-wrap:wrap;height:auto;gap:8px}}

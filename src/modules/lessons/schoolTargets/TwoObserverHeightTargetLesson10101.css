@@ -24,7 +24,7 @@
 .toh10101-page input {
   font: inherit;
 }
-.toh10101-page svg {
+.toh10101-page button svg,.toh10101-cards h2 svg,.toh10101-challenge h2 svg,.toh10101-answer>svg,.toh10101-controls article>span>svg,.toh10101-next svg {
   width: 14px;
   height: 14px;
 }
@@ -224,8 +224,8 @@
   width: 100%;
   accent-color: #188bd1;
 }
-.toh10101-controls .consistent span,
-.toh10101-controls .invalid span {
+.toh10101-controls .consistent>span,
+.toh10101-controls .invalid>span {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -266,13 +266,13 @@
   gap: 8px;
   margin-top: 12px;
 }
-.toh10101-eq-pair span {
+.toh10101-eq-pair>span {
   padding: 9px;
   border: 1px solid #9bd9b5;
   border-radius: 5px;
   background: #f4fff8;
 }
-.toh10101-eq-pair span:last-child {
+.toh10101-eq-pair>span:last-child {
   border-color: #d7b4eb;
   background: #fff9ff;
 }
@@ -386,7 +386,7 @@
   gap: 5px;
   color: #7132b7;
 }
-.toh10101-challenge header p {
+.toh10101-challenge .toh10101-heading p {
   margin-top: 5px;
 }
 .toh10101-challenge > div {
@@ -519,3 +519,11 @@
     grid-template-columns: 1fr;
   }
 }
+
+.toh10101-page{width:100%;top:0;left:0;padding:8px;background:#f8fbfe;color:#263550;font-size:14px}.toh10101-hero{position:relative;height:auto;min-height:155px;padding:20px}.toh10101-hero h1{font-size:28px;font-weight:800}.toh10101-hero>div{flex-wrap:wrap}.toh10101-school{position:absolute;right:16px;top:14px;color:#263550;text-decoration:none;padding:8px 13px;border:1px solid #d9e4eb;border-radius:10px;background:#fff}.toh10101-hero small{letter-spacing:1px}.toh10101-tabs{height:auto;min-height:48px}.toh10101-tabs button{font-size:13px;color:#4b5874}.toh10101-tabs button.active{color:#0877ae}.toh10101-page>main>section{scroll-margin-top:20px}
+.toh10101-lab>svg{aspect-ratio:700/370;max-height:580px;max-width:none!important;touch-action:none}.toh10101-sky{fill:url(#toh-sky)}.toh10101-ground{stroke-width:3}.toh10101-lab svg .toh10101-angle{fill:none!important}.toh10101-lab svg .toh10101-angle.near{stroke:#299d58}.toh10101-lab svg .toh10101-angle.far{stroke:#8043b3}.toh10101-lab svg .toh10101-angle-text.near{fill:#299d58}.toh10101-lab svg .toh10101-angle-text.far{fill:#8043b3}.toh10101-lab svg text{font-weight:600}.toh10101-lab svg .toh10101-height-label{font-size:20px}.toh10101-controls h3{font-size:12px}.toh10101-controls article>strong{font-size:22px}.toh10101-controls .toh10101-gauge{width:76px;height:76px;border-radius:50%;padding:4px;display:grid;margin:12px auto;place-items:center}.toh10101-gauge span{background:#fff;border-radius:50%;width:68px;height:68px;display:grid;place-items:center;color:#263550}.toh10101-controls>article:nth-child(2) button{color:#8043b3;border-color:#b38adc}.toh10101-controls input{color:#263550;background:#fff}.toh10101-controls .consistent .math-expression{font-size:23px}.toh10101-controls article:last-child>span{width:fit-content;margin:10px auto 0;padding:5px 10px;border:1px solid #91d4b1;border-radius:20px}
+.toh10101-page h2{font-size:15px}.toh10101-equations>article{min-width:0;min-height:0}.toh10101-equations .math-expression{font-size:19px}.toh10101-equations li{margin:14px 0}.toh10101-eq-pair{grid-template-columns:1fr 1fr}.toh10101-cards>article{min-height:0}.toh10101-mini-diagram{width:100%;height:140px;max-width:none!important;margin:12px 0}.toh10101-mini-diagram text{fill:#263550;font:15px Georgia,serif}.toh10101-challenge>div{flex-wrap:wrap;padding-right:160px}.toh10101-challenge input{background:#fff;color:#263550}.toh10101-footer{padding:15px;border:1px solid #d9e4eb;border-radius:8px;background:#fff}.toh10101-footer small{display:block;margin-top:15px;color:#59657b}
+@media(max-width:1100px){.toh10101-cards{grid-template-columns:1fr}.toh10101-challenge aside{position:static;width:fit-content;margin-top:12px}.toh10101-challenge>div{padding-right:0}.toh10101-hero{padding-top:55px}}
+@media(max-width:700px){.toh10101-page{width:100%;font-size:14px}.toh10101-hero h1{font-size:24px}.toh10101-tabs button{font-size:11px}.toh10101-controls{grid-template-columns:1fr 1fr}.toh10101-equations,.toh10101-cards{grid-template-columns:1fr}.toh10101-eq-pair{grid-template-columns:1fr}.toh10101-lab>svg{max-height:none}.toh10101-challenge>div{grid-template-columns:1fr 1fr}.toh10101-challenge label{display:grid}.toh10101-next{grid-template-columns:1fr}.toh10101-hero>div{gap:6px}.toh10101-controls article:last-child strong{font-size:18px}}
+
+.toh10101-challenge>.toh10101-heading{display:block;padding-right:0;margin-top:0}.toh10101-definitions{margin:10px 0}.toh10101-definitions>div{display:flex;gap:10px;margin:4px 0}.toh10101-definitions dt{width:16px;font-style:italic}.toh10101-definitions dd{margin:0}.toh10101-eq-pair>span>.math-expression{display:block;margin-top:10px;font-size:18px}.toh10101-next a:first-child{justify-content:flex-start;gap:10px}.toh10101-next a:last-child{justify-content:flex-end;gap:10px}

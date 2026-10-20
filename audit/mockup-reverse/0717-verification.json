@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 1680,
+      "state": "default"
+    },
+    {
+      "width": 1680,
+      "state": "wrong"
+    },
+    {
+      "width": 1680,
+      "state": "six"
+    },
+    {
+      "width": 1680,
+      "state": "pi"
+    },
+    {
+      "width": 1280,
+      "state": "default"
+    },
+    {
+      "width": 1280,
+      "state": "wrong"
+    },
+    {
+      "width": 1280,
+      "state": "six"
+    },
+    {
+      "width": 1280,
+      "state": "pi"
+    },
+    {
+      "width": 768,
+      "state": "default"
+    },
+    {
+      "width": 768,
+      "state": "wrong"
+    },
+    {
+      "width": 768,
+      "state": "six"
+    },
+    {
+      "width": 768,
+      "state": "pi"
+    },
+    {
+      "width": 390,
+      "state": "default"
+    },
+    {
+      "width": 390,
+      "state": "wrong"
+    },
+    {
+      "width": 390,
+      "state": "six"
+    },
+    {
+      "width": 390,
+      "state": "pi"
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "exact applied intervals and explicit previews",
+    "rendered selection and target coordinates",
+    "wrong-digit exclusion and guide restoration",
+    "undo/reset/6-digit limit and visible deep rows",
+    "all targets and keyboard/native touch controls",
+    "visibility switch",
+    "challenge exact containment, invalid input, reset and progress",
+    "tabs/navigation and responsive geometry"
+  ]
+}

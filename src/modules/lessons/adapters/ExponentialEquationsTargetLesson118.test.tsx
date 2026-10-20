@@ -1,3 +1,4 @@
+import { lessonCatalog } from "../catalog/lessonCatalog";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import ExponentialEquationsTargetLesson118 from "./ExponentialEquationsTargetLesson118";
@@ -5,7 +6,7 @@ import ExponentialEquationsTargetLesson118 from "./ExponentialEquationsTargetLes
 describe("ExponentialEquationsTargetLesson118", () => {
   it("renders the target power ladder, calculated result, and draggable graph point", () => {
     const html = renderToStaticMarkup(
-      <ExponentialEquationsTargetLesson118
+      <ExponentialEquationsTargetLesson118 lesson={lessonCatalog.find(item => item.id === 118)!}
         resetToken={0}
         onInteraction={vi.fn()}
       />,

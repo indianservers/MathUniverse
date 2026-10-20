@@ -1,0 +1,6 @@
+import{describe,it,expect}from'vitest';import{perpendicularChordModel as model,chordMaximum}from'./perpendicularChordModel';
+describe('perpendicular from centre to chord',()=>{
+ it('corrects reference6/10 foot tosqrt11 and models unequal arbitrary-point segments',()=>{const m=model(6,10);expect(m.om).toBeCloseTo(Math.sqrt(11),12);expect(m.am).toBe(5);expect(m.mb).toBe(5);expect(Math.hypot(2,m.om)).toBeCloseTo(Math.sqrt(15),12);});
+ it('checks allowed radius/chord combinations for incidence, perpendicularity andcongruence',()=>{let count=0;for(let ri=30;ri<=100;ri++){const r=ri/10;for(let ci=5;ci<=Math.round(chordMaximum(r)*10);ci++){const c=ci/10,m=model(r,c);expect(m.oa).toBeCloseTo(r,10);expect(m.ob).toBeCloseTo(r,10);expect(m.am+m.mb).toBeCloseTo(c,10);expect(m.angleA).toBeCloseTo(90,10);expect(m.angleB).toBeCloseTo(90,10);expect(m.om).toBeGreaterThan(0);expect(m.congruent).toBe(true);count++;}}expect(count).toBeGreaterThan(8000);});
+ it('keeps range cap strictly inside diameter and rejects invalid geometry',()=>{for(let ri=30;ri<=100;ri++){const r=ri/10;expect(chordMaximum(r)).toBeLessThan(2*r);expect(chordMaximum(r)*10).toBeCloseTo(Math.round(chordMaximum(r)*10),8);}for(const[r,c]of[[6,12],[3,0],[NaN,5]])expect(()=>model(r,c)).toThrow();});
+});

@@ -1,0 +1,24 @@
+{
+  "status": "browser-verified",
+  "checks": [
+    "unit cancellation changes with factor removal and insertion; constructed challenge equals 9 km/h"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 375,
+      "scroll": 375
+    },
+    {
+      "width": 768,
+      "client": 721,
+      "scroll": 721
+    },
+    {
+      "width": 1440,
+      "client": 1393,
+      "scroll": 1393
+    }
+  ],
+  "errors": []
+}

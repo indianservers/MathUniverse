@@ -795,3 +795,5 @@ body:has(.decimal79-page)
     grid-template-columns: repeat(5, minmax(120px, 1fr));
   }
 }
+
+@media(max-width:900px){html body #main-content .standard-lesson-frame .standard-lesson-content .decimal79-page .decimal79-lab{overflow-x:auto!important;max-width:100%}}

@@ -30,9 +30,9 @@ export default function GeometricSeriesTargetLesson341({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
-  const [first, setFirst] = useState(GEOMETRIC_SERIES_DEFAULTS.first),
-    [ratio, setRatio] = useState(GEOMETRIC_SERIES_DEFAULTS.ratio),
-    [count, setCount] = useState(GEOMETRIC_SERIES_DEFAULTS.count),
+  const [first, setFirst] = useState<number>(GEOMETRIC_SERIES_DEFAULTS.first),
+    [ratio, setRatio] = useState<number>(GEOMETRIC_SERIES_DEFAULTS.ratio),
+    [count, setCount] = useState<number>(GEOMETRIC_SERIES_DEFAULTS.count),
     [tab, setTab] = useState(tabs[0]),
     [language, setLanguage] = useState<"en" | "hi">("en"),
     [challenge, setChallenge] = useState(0),

@@ -1019,3 +1019,7 @@ body:has(.fraction109-page) footer[aria-label="Site footer"] {
     transition: none !important;
   }
 }
+
+@media(max-width:900px){.fraction109-page .fraction109-original-row,.fraction109-page .fraction109-multiply-path,.fraction109-page .fraction109-stage.cleared>div,.fraction109-page .fraction109-stage.solve>div,.fraction109-page .fraction109-stage.verify>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.fraction109-page .fraction109-original-row>*,.fraction109-page .fraction109-multiply-path>*,.fraction109-page .fraction109-stage.cleared>div>*,.fraction109-page .fraction109-stage.solve>div>*,.fraction109-page .fraction109-stage.verify>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.fraction109-multiply-path:before,.fraction109-multiply-path span:after{display:none}.fraction109-multiply-path button{position:static;justify-self:center}.fraction109-stage.original,.fraction109-stage.cleared,.fraction109-stage.solve,.fraction109-stage.verify{height:auto;min-height:120px}.fraction109-practice>footer{position:static;height:auto;flex-wrap:wrap;margin-top:10px}}

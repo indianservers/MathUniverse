@@ -706,3 +706,7 @@ body:has(.abc311-page) {
     min-width: 715px;
   }
 }
+
+@media(max-width:900px){.abc311-page .abc311-flow>div,.abc311-page .abc311-lab>main,.abc311-page .abc311-lab>footer,.abc311-page .abc311-concepts,.abc311-page .abc311-practice{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.abc311-page .abc311-flow>div>*,.abc311-page .abc311-lab>main>*,.abc311-page .abc311-lab>footer>*,.abc311-page .abc311-concepts>*,.abc311-page .abc311-practice>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.abc311-page .abc311-flow,.abc311-page .abc311-lab,.abc311-page .abc311-worked{height:auto}.abc311-page .abc311-flow article{padding-block:12px}.abc311-page .abc311-lab>header{height:auto;display:flex;flex-wrap:wrap;gap:8px}.abc311-page .abc311-lab>header span,.abc311-page .abc311-lab>header button,.abc311-page .abc311-worked .abc311-mini{position:static;width:auto;height:auto}.abc311-page .abc311-concepts article{height:auto}.abc311-page .abc311-footer{height:auto;padding:12px}.abc311-page .abc311-footer nav,.abc311-page .abc311-footer small{position:static;display:flex;flex-wrap:wrap;gap:8px}.abc311-page .abc311-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}

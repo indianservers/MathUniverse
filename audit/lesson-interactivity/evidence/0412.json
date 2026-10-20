@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/calculus/333-chaos-and-bifurcation",
+  "action": {
+    "control": "Chaos parameter r",
+    "before": "3.65",
+    "after": "3.651",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 356,
+      "scroll": 356
+    },
+    {
+      "width": 768,
+      "client": 734,
+      "scroll": 734
+    },
+    {
+      "width": 1440,
+      "client": 1406,
+      "scroll": 1406
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

@@ -17,7 +17,7 @@ export function parseConstructionPanel(raw: string | null | undefined): Construc
   if (!raw) return "objects";
   const token = normalize(raw);
   const match = CONSTRUCTION_PANELS.find(
-    (item) => item.id === token || item.label.toLowerCase() === token || item.aliases.includes(token),
+    (item) => item.id === token || item.label.toLowerCase() === token || item.aliases.some(alias => alias === token),
   );
   return match?.id ?? "objects";
 }

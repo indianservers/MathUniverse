@@ -1,0 +1,14 @@
+export type LPPoint10059={x:number;y:number};
+type Decimal={n:bigint;e:number};
+const parse=(value:string|number):Decimal|null=>{const s=String(value).trim();if(s.length>256||!/^\+?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(s))return null;const number=Number(s);if(!Number.isFinite(number)||number<5||number>175)return null;const[m,exp='0']=s.replace(/^\+/,'').toLowerCase().split('e'),[w,f='']=m.split('.'),e=Number(exp)-f.length;if(Math.abs(e)>400)return null;return{n:BigInt((w||'0')+f),e};};
+const align=(a:Decimal,b:Decimal)=>{const e=Math.min(a.e,b.e,0);return{a:a.n*10n**BigInt(a.e-e),b:b.n*10n**BigInt(b.e-e),whole:180n*10n**BigInt(-e),e};};
+const decimal=(n:bigint,e:number)=>{if(n===0n)return'0';const sign=n<0n?'-':'',digits=(n<0n?-n:n).toString();if(e>=0)return sign+digits+'0'.repeat(e);const padded=digits.padStart(1-e,'0'),s=padded.slice(0,e)+'.'+padded.slice(e);return sign+s.replace(/(\.\d*?)0+$/,'$1').replace(/\.$/,'');};
+export function lpValid10059(value:string|number){return parse(value)!==null;}
+export function lpComplement10059(a:string|number){const d=parse(a);if(!d)return'108';const x=align(d,{n:0n,e:0});return decimal(x.whole-x.a,x.e);}
+export const lpClamp10059=(a:number)=>Math.max(5,Math.min(175,a));
+export function lpSnap10059(a:number,snap:boolean){return snap?Math.round(lpClamp10059(a)/5)*5:lpClamp10059(a);}
+export function lpStep10059(a:number,direction:number,snap:boolean,big=false){return lpClamp10059(snap?(direction>0?Math.floor(a/5)+(big?5:1):Math.ceil(a/5)-(big?5:1))*5:a+direction*(big?5:1));}
+export function lpPoint10059(degrees:number,length=220,origin:LPPoint10059={x:300,y:250}){const r=degrees*Math.PI/180;return{x:origin.x+length*Math.cos(r),y:origin.y-length*Math.sin(r)};}
+export function lpSector10059(start:number,degrees:number,r=52,origin:LPPoint10059={x:300,y:250}){const a=lpPoint10059(start,r,origin),b=lpPoint10059(start+degrees,r,origin),label=lpPoint10059(start+degrees/2,r+25,origin);return{path:`M${origin.x} ${origin.y}L${a.x} ${a.y}A${r} ${r} 0 ${degrees>180?1:0} 0 ${b.x} ${b.y}Z`,label};}
+export function lpModel10059(a:string|number,b:string|number){const da=parse(a),db=parse(b);if(!da||!db)return{valid:false,a:null,b:null,sum:null,delta:null,opposite:false,origin:{x:300,y:250},A:null,B:null,C:null,blue:null,orange:null};const x=align(da,db),delta=Number(decimal(x.whole-x.a-x.b,x.e)),alpha=Number(a),beta=Number(b),theta=180-alpha;return{valid:true,a:alpha,b:beta,sum:Number(decimal(x.a+x.b,x.e)),delta,opposite:x.whole===x.a+x.b,origin:{x:300,y:250},A:lpPoint10059(180),B:lpPoint10059(delta),C:lpPoint10059(theta,165),blue:lpSector10059(theta,alpha),orange:lpSector10059(delta,beta)};}
+export function lpFromPointer10059(p:LPPoint10059,kind:'c'|'b',a:number){const dx=p.x-300,dy=250-p.y;if(kind==='c')return lpClamp10059(180-Math.atan2(Math.max(0,dy),dx)*180/Math.PI);let beta=(180-a-Math.atan2(dy,dx)*180/Math.PI+360)%360;if(beta>175)beta=beta>270?5:175;return lpClamp10059(beta);}

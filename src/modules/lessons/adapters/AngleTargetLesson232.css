@@ -1,0 +1,7 @@
+.target-angle-page{min-width:0}
+
+@media(max-width:900px){.target-angle-page .target-angle-workspace{width:auto!important;margin:12px 0!important;padding:10px}.target-angle-page .target-angle-workspace::before{inset:0}.target-angle-page .target-angle-main{height:auto;grid-template-rows:auto 369px auto}.target-angle-page .target-angle-sidebar{min-width:0}.target-angle-page .target-angle-learning article:last-child footer{display:flex;flex-wrap:wrap;gap:8px}}
+
+@media(max-width:900px){.target-angle-page .target-angle-workspace,.target-angle-page .target-angle-main>footer,.target-angle-page .target-angle-learning,.target-angle-page .target-angle-learning>article:first-child>div,.target-angle-page .target-angle-practice>div,.target-angle-page .target-angle-nav{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.target-angle-page .target-angle-workspace>*,.target-angle-page .target-angle-main>footer>*,.target-angle-page .target-angle-learning>*,.target-angle-page .target-angle-learning>article:first-child>div>*,.target-angle-page .target-angle-practice>div>*,.target-angle-page .target-angle-nav>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+.target-angle-page .target-angle-workspace{width:auto!important;max-width:100%!important;margin-left:0!important;margin-right:0!important}.target-angle-page .target-angle-workspace::before{inset:0}

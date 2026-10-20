@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/calculus/294-implicit-differentiation",
+  "action": {
+    "control": "Implicit x",
+    "before": "0",
+    "after": "0.001",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 332,
+      "scroll": 332
+    },
+    {
+      "width": 768,
+      "client": 710,
+      "scroll": 710
+    },
+    {
+      "width": 1440,
+      "client": 1382,
+      "scroll": 1382
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

@@ -2,16 +2,20 @@ import {
   ArrowLeft,
   ArrowRight,
   Check,
+  X,
   Magnet,
   Move,
   RotateCcw,
   RotateCw,
 } from "lucide-react";
-import { useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { useId, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./CorrespondingAnglesTargetLesson10060.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import {caInitial10060,caModel10060,caClamp10060,caBounds10060,type CAState10060} from './correspondingModel10060';
+import {pcAdd10063,type PCPoint10063} from './parallelConverseModel10063';
+import {paSector10074} from './parallelogramAnglesModel10074';
+const fmt=(n:number|null)=>n===null?'Undefined':String(Number(n.toFixed(2)));
 
 const pairs = [
   [1, 5],
@@ -41,106 +45,13 @@ const tools = [
   },
 ] as const;
 
-const TOP_X = 310;
-const TOP_Y = 170;
-const BOTTOM_Y = 410;
-const VIEW_W = 600;
-const VIEW_H = 560;
-const WEDGE_R = 32;
-
-function clampAngle(value: number) {
-  return Math.max(5, Math.min(175, Math.round(value)));
-}
-
-function clampTilt(value: number) {
-  return Math.max(-32, Math.min(32, value));
-}
-
-function toRad(value: number) {
-  return (value * Math.PI) / 180;
-}
-
-function polar(cx: number, cy: number, mathDeg: number, radius: number) {
-  return {
-    x: cx + radius * Math.cos(toRad(mathDeg)),
-    y: cy - radius * Math.sin(toRad(mathDeg)),
-  };
-}
-
-function transUpDeg(angle1: number, skew: number) {
-  return skew + 180 - angle1;
-}
-
-function fourAngles(skew: number, transUp: number) {
-  const first = clampAngle(180 + skew - transUp);
-  const second = 180 - first;
-  return [first, second, second, first] as const;
-}
-
-function extendLine(cx: number, cy: number, mathDeg: number, span: number) {
-  const a = polar(cx, cy, mathDeg, span);
-  const b = polar(cx, cy, mathDeg + 180, span);
-  return { x1: a.x, y1: a.y, x2: b.x, y2: b.y };
-}
-
-function piePath(
-  cx: number,
-  cy: number,
-  fromDeg: number,
-  toDeg: number,
-  radius: number,
-  sweep: 0 | 1,
-) {
-  const start = polar(cx, cy, fromDeg, radius);
-  const end = polar(cx, cy, toDeg, radius);
-  const raw = sweep === 1 ? fromDeg - toDeg : toDeg - fromDeg;
-  const delta = ((raw % 360) + 360) % 360;
-  const large = delta > 180 ? 1 : 0;
-  return `M${cx} ${cy} L${start.x} ${start.y} A${radius} ${radius} 0 ${large} ${sweep} ${end.x} ${end.y} Z`;
-}
-
-function intersectionAtY(
-  originX: number,
-  originY: number,
-  mathDeg: number,
-  y: number,
-) {
-  const sin = Math.sin(toRad(mathDeg));
-  if (Math.abs(sin) < 0.001) return { x: originX, y };
-  const t = (originY - y) / sin;
-  return polar(originX, originY, mathDeg, t);
-}
-
-function svgCoords(svg: SVGSVGElement, event: ReactPointerEvent) {
-  const matrix = svg.getScreenCTM();
-  if (!matrix) {
-    const box = svg.getBoundingClientRect();
-    return {
-      x: ((event.clientX - box.left) / box.width) * VIEW_W,
-      y: ((event.clientY - box.top) / box.height) * VIEW_H,
-    };
-  }
-  return new DOMPoint(event.clientX, event.clientY).matrixTransform(
-    matrix.inverse(),
-  );
-}
-
-function upwardDirection(dx: number, dyMath: number) {
-  let dir = (Math.atan2(dyMath, dx) * 180) / Math.PI;
-  if (Math.sin(toRad(dir)) < 0) dir += 180;
-  dir = ((dir % 360) + 360) % 360;
-  if (dir > 180) dir -= 180;
-  return dir;
-}
-
 export default function CorrespondingAnglesTargetLesson10060({
   lesson: _lesson,
 }: {
   lesson: SchoolSyllabusLesson;
 }) {
-  const [angle, setAngle] = useState(64);
-  const [skew, setSkew] = useState(0);
-  const [skewM, setSkewM] = useState(0);
+  const [geometry,setGeometry]=useState(caInitial10060);
+  const [formula,setFormula]=useState(false);
   const [tool, setTool] = useState("drag");
   const [labels, setLabels] = useState(true);
   const [measures, setMeasures] = useState(true);
@@ -148,27 +59,22 @@ export default function CorrespondingAnglesTargetLesson10060({
   const [tab, setTab] = useState(0);
   const [selectedPairs, setSelectedPairs] = useState<number[]>([0, 1, 2, 3]);
   const [actions, setActions] = useState(0);
-  const acute = clampAngle(angle);
-  const transUp = transUpDeg(acute, skew);
-  const topAngles = fourAngles(skew, transUp);
-  const bottomAngles = fourAngles(skewM, transUp);
-  const values = [...topAngles, ...bottomAngles];
-  const parallel = Math.abs(skew - skewM) < 0.5;
-  const allEqual = pairs.every(([a, b]) => values[a - 1] === values[b - 1]);
+  const model=caModel10060(geometry),{values,parallel}=model,acute=values[0]??0,allEqual=parallel;
+  const bounds=caBounds10060(geometry.angle),minOne=Math.max(5,5-geometry.l),maxOne=Math.min(175,175-geometry.l);
+  const setOne=(v:number)=>setGeometry(g=>caClamp10060({...g,angle:v+g.l}));
+  const comparison=(a:number,b:number)=>allEqual?'=':fmt(values[a-1])===fmt(values[b-1])?'≈':'≠';
+  const targets=['ca10060-interact','ca10060-learn','ca10060-example','ca10060-formula','ca10060-practice'];
   const act = (fn: () => void) => {
     fn();
     setActions((n) => n + 1);
   };
   const snapParallel = () => {
-    setSkew(0);
-    setSkewM(0);
+    setGeometry(g=>({...g,m:g.l}));
     setTool("parallel");
   };
   const reset = () =>
     act(() => {
-      setAngle(64);
-      setSkew(0);
-      setSkewM(0);
+      setGeometry(caInitial10060);setFormula(false);
       setTool("drag");
       setLabels(true);
       setMeasures(true);
@@ -181,15 +87,18 @@ export default function CorrespondingAnglesTargetLesson10060({
       data-testid="school-mockup-0734"
       data-dedicated-lesson="10060"
       data-object-model="dedicated-two-line-transversal-correspondence-parallel-test-engine"
-      data-angle={acute}
-      data-values={values.join(",")}
+      data-angle={fmt(acute)}
+      data-geometry={JSON.stringify(geometry)}
+      data-raw-values={JSON.stringify(values)}
+      data-proper={model.proper}
+      data-values={values.map(fmt).join(",")}
       data-parallel={String(parallel)}
       data-tool={tool}
       data-selected-pairs={selectedPairs.join(",")}
       data-valid={String(allEqual)}
       data-actions={actions}
     >
-      <header className="ca10060-hero">
+      <div role="banner" className="ca10060-hero">
         <small>CLASS 9 · EUCLIDEAN GEOMETRY</small>
         <h1>Corresponding Angles</h1>
         <p>
@@ -205,28 +114,28 @@ export default function CorrespondingAnglesTargetLesson10060({
         <Link to="/lessons/school">
           <ArrowLeft /> School lessons
         </Link>
-      </header>
-      <nav className="ca10060-tabs">
+      </div>
+      <div role="group" aria-label="Lesson sections" className="ca10060-tabs">
         {tabs.map((item, index) => (
           <button
             key={item}
             className={tab === index ? "active" : ""}
-            aria-selected={tab === index}
-            onClick={() => act(() => setTab(index))}
+            aria-pressed={tab === index}
+            onClick={() => act(() => {setTab(index);if(index===3)setFormula(true);setTimeout(()=>document.getElementById(targets[index])?.scrollIntoView({behavior:"smooth",block:"start"}),0);})}
           >
             {item}
           </button>
         ))}
-      </nav>
+      </div>
       <main>
-        <section className="ca10060-explorer">
+        <section id="ca10060-interact" className="ca10060-explorer">
           <header>
             <div>
               <h2>Two-Line Transversal Explorer</h2>
               <p>Drag the lines to explore corresponding angles.</p>
             </div>
-            <strong className={allEqual ? "correct" : "incorrect"}>
-              <Check /> LIVE CHECK: {allEqual ? "CORRECT" : "NOT PARALLEL"}
+            <strong className={allEqual ? "ca10060-live-valid" : "ca10060-live-invalid"}>
+              {allEqual?<Check/>:<X/>} LIVE CHECK: {allEqual ? "CORRECT" : "NOT PARALLEL"}
             </strong>
             <button onClick={reset}>
               <RotateCcw /> Reset
@@ -238,6 +147,7 @@ export default function CorrespondingAnglesTargetLesson10060({
               {tools.map(({ id, icon: Icon, title, detail }) => (
                 <button
                   key={id}
+                  aria-label={title}
                   type="button"
                   className={tool === id ? "active" : ""}
                   aria-pressed={tool === id}
@@ -268,64 +178,34 @@ export default function CorrespondingAnglesTargetLesson10060({
                 change={setHighlights}
               />
               <h3>ANGLE MEASURE</h3>
-              <label>
-                Set ∠1 <b>{acute}°</b>
-                <input
-                  aria-label="Set angle one"
-                  type="range"
-                  min="5"
-                  max="175"
-                  value={acute}
-                  onChange={(e) => act(() => setAngle(+e.target.value))}
-                />
-              </label>
+              <div className="ca10060-angle-control"><span>Set ∠1</span><div><button aria-label="Decrease angle one" disabled={acute<=minOne+1e-9} onClick={()=>act(()=>setOne(acute-1))}>−</button><b>{fmt(acute)}°</b><button aria-label="Increase angle one" disabled={acute>=maxOne-1e-9} onClick={()=>act(()=>setOne(acute+1))}>+</button></div><input aria-label="Set angle one" type="range" min={minOne} max={maxOne} value={acute} onChange={e=>act(()=>setOne(+e.target.value))}/><small>{minOne}° — {maxOne}°</small></div>
+              <p className="ca10060-hint">Drag ℓ or m to rotate that line about its intersection. Arrow keys work on each line and the t handle. Labels round to two decimals.</p>
+              <div className="ca10060-tilts"><label>Line ℓ tilt<input aria-label="Line ℓ tilt" type="range" min={bounds.min} max={bounds.max} value={geometry.l} onChange={e=>act(()=>{setGeometry(g=>caClamp10060({...g,l:+e.target.value}));setTool('drag');})}/><b>{fmt(geometry.l)}°</b></label><label>Line m tilt<input aria-label="Line m tilt" type="range" min={bounds.min} max={bounds.max} value={geometry.m} onChange={e=>act(()=>{setGeometry(g=>caClamp10060({...g,m:+e.target.value}));setTool('drag');})}/><b>{fmt(geometry.m)}°</b></label></div>
             </aside>
             <article>
-              <TransversalDiagram
-                angle={acute}
-                skew={skew}
-                skewM={skewM}
-                tool={tool}
-                labels={labels}
-                measures={measures}
-                highlights={highlights}
-                onAngle={(value) => act(() => setAngle(value))}
-                onTiltL={(nextSkew, nextAngle) =>
-                  act(() => {
-                    setSkew(nextSkew);
-                    setAngle(nextAngle);
-                    setTool("drag");
-                  })
-                }
-                onTiltM={(nextSkew) =>
-                  act(() => {
-                    setSkewM(nextSkew);
-                    setTool("drag");
-                  })
-                }
-              />
+              <TransversalDiagram geometry={geometry} labels={labels} measures={measures} highlights={highlights} change={(g,kind)=>act(()=>{setGeometry(caClamp10060(g));setTool(kind==='rotate'?'rotate':'drag');})} restore={(g,previousTool)=>{setGeometry(g);setTool(previousTool);}} tool={tool} selected={selectedPairs}/>
               <CorrespondenceLegend />
             </article>
           </div>
           <div className="ca10060-checks">
             <section>
               <h3>CORRESPONDING CHECK</h3>
-              <p>All four corresponding pairs are equal.</p>
+              <p>{allEqual?"All four corresponding pairs are equal.":"The positions are corresponding; the measures are unequal."}</p>
               <div>
                 {pairs.map(([a, b]) => (
                   <span
                     key={a}
-                    className={values[a - 1] === values[b - 1] ? "ok" : "bad"}
+                    className={allEqual ? "ca10060-pair-equal" : "ca10060-pair-unequal"}
                   >
-                    <Check /> ∠{a} = ∠{b}
+                    {allEqual?<Check/>:<X/>} ∠{a} {comparison(a,b)} ∠{b}
                     <b>
-                      {values[a - 1]}° = {values[b - 1]}°
+                      {fmt(values[a-1])}° {comparison(a,b)} {fmt(values[b-1])}°
                     </b>
                   </span>
                 ))}
               </div>
             </section>
-            <section>
+            <section className={allEqual?'ca10060-proof-valid':'ca10060-proof-invalid'}>
               <h3>♻ PARALLEL TEST</h3>
               <b>Lines ℓ and m are {allEqual ? "parallel" : "not parallel"}.</b>
               <p>Corresponding angles are {allEqual ? "equal" : "unequal"}.</p>
@@ -335,10 +215,10 @@ export default function CorrespondingAnglesTargetLesson10060({
           <div className="ca10060-results">
             {pairs.map(([a, b]) => (
               <span key={a}>
-                ∠{a} (and ∠{b})<b>{values[a - 1]}°</b>
+                ∠{a} (and ∠{b})<b>{fmt(values[a-1])}°{!allEqual&&` / ${fmt(values[b-1])}°`}</b>
               </span>
             ))}
-            <span className="conclusion">
+            <span className={`conclusion ${allEqual?"":"ca10060-nonparallel"}`}>
               <b>CONCLUSION</b>
               <strong>{allEqual ? "ℓ ∥ m" : "ℓ ∦ m"}</strong>
               <small>
@@ -347,7 +227,7 @@ export default function CorrespondingAnglesTargetLesson10060({
             </span>
           </div>
         </section>
-        <section className="ca10060-theory">
+        <section id="ca10060-learn" className="ca10060-theory">
           <article>
             <h2>💡 WHY IT WORKS</h2>
             <p>When two parallel lines are cut by a transversal:</p>
@@ -362,11 +242,11 @@ export default function CorrespondingAnglesTargetLesson10060({
               <Check /> If corresponding angles are equal, then the lines are
               parallel.
             </p>
-            <button onClick={() => act(() => setTab(3))}>⌁ View Formula</button>
+            <button aria-expanded={formula} onClick={() => act(() => {setTab(3);setFormula(v=>!v);})}>⌁ {formula?"Hide":"View"} Formula</button><div id="ca10060-formula">{formula&&<aside className="ca10060-formula">If ℓ ∥ m: ∠1 = ∠5, ∠2 = ∠6, ∠3 = ∠7, ∠4 = ∠8.<br/>Conversely, one equal corresponding pair proves ℓ ∥ m.</aside>}</div>
           </article>
           <article>
-            <h2>▣ WORKED EXAMPLE</h2>
-            <h3>If ∠1 = 64°, what is ∠5?</h3>
+            <h2 id="ca10060-example">▣ WORKED EXAMPLE</h2>
+            <h3>For ℓ ∥ m, if ∠1 = 64°, what is ∠5?</h3>
             <p>Since ∠1 and ∠5 are corresponding angles,</p>
             <strong>∠1 = ∠5</strong>
             <p>
@@ -383,20 +263,20 @@ export default function CorrespondingAnglesTargetLesson10060({
             <p>Position matters!</p>
             <MiniTransversal wrong />
             <p>
-              ∠1 and ∠3 are on the same side but are not corresponding angles.
+              ∠1 and ∠3 are at the same intersection. They form a linear pair, not a corresponding pair.
             </p>
           </article>
         </section>
-        <section className="ca10060-challenge">
+        <section id="ca10060-practice" className="ca10060-challenge">
           <h2>🏆 CHALLENGE</h2>
           <p>
             Select all four corresponding pairs, then make one pair equal to
             force the lines to be parallel.
           </p>
-          <div>
+          <button className="ca10060-practice-reset" onClick={()=>act(()=>{setSelectedPairs([]);setGeometry({...caInitial10060,m:10});setTool('drag');})}>Reset challenge</button><div>
             <ol>
               <li>Select corresponding pairs.</li>
-              <li>Adjust any one angle to make its pair equal.</li>
+              <li>Rotate line m until a corresponding pair has equal measures.</li>
             </ol>
             <section>
               <b>PROGRESS</b>
@@ -406,6 +286,8 @@ export default function CorrespondingAnglesTargetLesson10060({
                   <button
                     key={i}
                     className={selectedPairs.includes(i) ? "chosen" : ""}
+                    aria-pressed={selectedPairs.includes(i)}
+                    title={`∠${pair[0]} ↔ ∠${pair[1]}`}
                     aria-label={`Select pair ${pair[0]} and ${pair[1]}`}
                     onClick={() =>
                       act(() =>
@@ -422,7 +304,7 @@ export default function CorrespondingAnglesTargetLesson10060({
                 ))}
               </div>
             </section>
-            <section>
+            <section className={selectedPairs.length===4&&allEqual?'ca10060-status-valid':'ca10060-status-pending'}>
               <b>STATUS</b>
               <strong>
                 {selectedPairs.length === 4 && allEqual
@@ -438,15 +320,15 @@ export default function CorrespondingAnglesTargetLesson10060({
           </div>
         </section>
       </main>
-      <nav className="ca10060-adjacent">
+      <nav className="ca10060-nav">
         <Link to="/lessons/school/class-9/class-9-euclidean-geometry-linear-pair-axiom-and-converse">
-          <ArrowLeft /> Previous: Basic Angle Pairs
+          <ArrowLeft /> Linear Pair Axiom and Converse
         </Link>
-        <Link to="/lessons/school">
-          Next: Alternate Interior Angles <ArrowRight />
+        <Link to="/lessons/school/class-9/class-9-euclidean-geometry-alternate-interior-angles">
+          Alternate Interior Angles <ArrowRight />
         </Link>
       </nav>
-      <LessonTopicStudyBoard lessonId={10060} view={tab} />
+      <footer className="ca10060-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p><div><Link to="/sitemap">Sitemap</Link><Link to="/docs">Docs</Link><Link to="/about">About</Link></div><small>©2026 INDIAN SERVERS PRIVATE LIMITED. RIGHT NOT TO REPRODUCE IT.</small></footer>
 
     </section>
   );
@@ -489,295 +371,14 @@ function CorrespondenceLegend() {
     </aside>
   );
 }
-function TransversalDiagram({
-  angle,
-  skew,
-  skewM,
-  tool,
-  labels,
-  measures,
-  highlights,
-  onAngle,
-  onTiltL,
-  onTiltM,
-}: {
-  angle: number;
-  skew: number;
-  skewM: number;
-  tool: string;
-  labels: boolean;
-  measures: boolean;
-  highlights: boolean;
-  onAngle: (value: number) => void;
-  onTiltL: (nextSkew: number, nextAngle: number) => void;
-  onTiltM: (nextSkew: number) => void;
-}) {
-  const svgRef = useRef<SVGSVGElement>(null);
-  const drag = useRef<"rotate" | "lineL" | "lineM" | null>(null);
-  const transUp = transUpDeg(angle, skew);
-  const top = { x: TOP_X, y: TOP_Y };
-  const bottom = intersectionAtY(TOP_X, TOP_Y, transUp, BOTTOM_Y);
-  const lineL = extendLine(top.x, top.y, skew, 280);
-  const lineM = extendLine(bottom.x, bottom.y, skewM, 280);
-  const trans = extendLine(top.x, top.y, transUp, 420);
-  const handle = polar(top.x, top.y, transUp, 148);
-  const handleB = polar(bottom.x, bottom.y, transUp + 180, 70);
-  const lineLeft = skew + 180;
-  const lineRight = skew;
-  const lineMLeft = skewM + 180;
-  const bottomAngles = fourAngles(skewM, transUp);
-  const transDown = transUp + 180;
-  const wedges = [
-    piePath(top.x, top.y, lineLeft, transUp, WEDGE_R, 1),
-    piePath(top.x, top.y, transUp, lineRight, WEDGE_R, 1),
-    piePath(top.x, top.y, transDown, lineLeft, WEDGE_R, 1),
-    piePath(top.x, top.y, lineRight, transDown, WEDGE_R, 1),
-    piePath(bottom.x, bottom.y, lineMLeft, transUp, WEDGE_R, 1),
-    piePath(bottom.x, bottom.y, transUp, skewM, WEDGE_R, 1),
-    piePath(bottom.x, bottom.y, transDown, lineMLeft, WEDGE_R, 1),
-    piePath(bottom.x, bottom.y, skewM, transDown, WEDGE_R, 1),
-  ];
-  const labelAt = (
-    cx: number,
-    cy: number,
-    fromDeg: number,
-    span: number,
-    sweepCW: boolean,
-  ) => {
-    const bisect = fromDeg + (sweepCW ? -span / 2 : span / 2);
-    return polar(cx, cy, bisect, 72);
-  };
-  const numberPts = [
-    labelAt(top.x, top.y, lineLeft, angle, true),
-    labelAt(top.x, top.y, transUp, 180 - angle, true),
-    labelAt(top.x, top.y, transDown, 180 - angle, true),
-    labelAt(top.x, top.y, lineRight, angle, true),
-    labelAt(bottom.x, bottom.y, lineMLeft, bottomAngles[0], true),
-    labelAt(bottom.x, bottom.y, transUp, bottomAngles[1], true),
-    labelAt(bottom.x, bottom.y, transDown, bottomAngles[1], true),
-    labelAt(bottom.x, bottom.y, skewM, bottomAngles[0], true),
-  ];
-  const measure1 = polar(top.x, top.y, lineLeft - angle / 2, 92);
-  const measure2 = polar(top.x, top.y, transUp - (180 - angle) / 2, 92);
-
-  const rotateFromPointer = (event: ReactPointerEvent) => {
-    const svg = svgRef.current;
-    if (!svg) return;
-    const point = svgCoords(svg, event);
-    const nextUp = upwardDirection(point.x - top.x, top.y - point.y);
-    onAngle(clampAngle(180 + skew - nextUp));
-  };
-  const tiltFromPointer = (
-    event: ReactPointerEvent,
-    origin: { x: number; y: number },
-    which: "l" | "m",
-  ) => {
-    const svg = svgRef.current;
-    if (!svg) return;
-    const point = svgCoords(svg, event);
-    let dir = (Math.atan2(origin.y - point.y, point.x - origin.x) * 180) / Math.PI;
-    if (dir > 90) dir -= 180;
-    if (dir < -90) dir += 180;
-    const next = Math.round(clampTilt(dir) * 10) / 10;
-    if (which === "l") onTiltL(next, clampAngle(180 + next - transUp));
-    else onTiltM(next);
-  };
-  const beginDrag =
-    (mode: "rotate" | "lineL" | "lineM") =>
-    (event: ReactPointerEvent<SVGElement>) => {
-      event.preventDefault();
-      event.stopPropagation();
-      drag.current = mode;
-      svgRef.current?.setPointerCapture(event.pointerId);
-      if (mode === "rotate") rotateFromPointer(event);
-      if (mode === "lineL") tiltFromPointer(event, top, "l");
-      if (mode === "lineM") tiltFromPointer(event, bottom, "m");
-    };
-  const moveDrag = (event: ReactPointerEvent<SVGSVGElement>) => {
-    if (!drag.current) return;
-    if (event.buttons !== 1 && event.pointerType !== "touch") return;
-    if (drag.current === "rotate") rotateFromPointer(event);
-    if (drag.current === "lineL") tiltFromPointer(event, top, "l");
-    if (drag.current === "lineM") tiltFromPointer(event, bottom, "m");
-  };
-  const endDrag = (event: ReactPointerEvent<SVGElement>) => {
-    drag.current = null;
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    }
-  };
-  const onCanvasDown = (event: ReactPointerEvent<SVGSVGElement>) => {
-    if (tool !== "rotate") return;
-    if ((event.target as Element).closest(".hit, .handle")) return;
-    beginDrag("rotate")(event);
-  };
-
-  return (
-    <svg
-      ref={svgRef}
-      className="ca10060-diagram"
-      viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
-      aria-label="Interactive corresponding angles diagram"
-      onPointerDown={onCanvasDown}
-      onPointerMove={moveDrag}
-      onPointerUp={endDrag}
-      onPointerCancel={endDrag}
-      onLostPointerCapture={endDrag}
-    >
-      <defs>
-        <pattern
-          id="ca-grid"
-          width="24"
-          height="24"
-          patternUnits="userSpaceOnUse"
-        >
-          <path d="M24 0H0V24" />
-        </pattern>
-      </defs>
-      <rect width={VIEW_W} height={VIEW_H} fill="url(#ca-grid)" />
-      <g className={highlights ? "angles shown" : "angles"}>
-        {wedges.map((d, i) => (
-          <path key={i} className={`a${i}`} d={d} />
-        ))}
-      </g>
-      <line className="line top" {...lineL} />
-      <line className="line bottom" {...lineM} />
-      <line className="transversal" {...trans} />
-      <line
-        className="hit"
-        {...lineL}
-        aria-label="Move line ℓ"
-        role="slider"
-        tabIndex={0}
-        aria-valuemin={-32}
-        aria-valuemax={32}
-        aria-valuenow={Math.round(skew)}
-        onPointerDown={beginDrag("lineL")}
-        onKeyDown={(event) => {
-          if (event.key === "ArrowUp") {
-            event.preventDefault();
-            const next = clampTilt(skew + 2);
-            onTiltL(next, clampAngle(180 + next - transUp));
-          }
-          if (event.key === "ArrowDown") {
-            event.preventDefault();
-            const next = clampTilt(skew - 2);
-            onTiltL(next, clampAngle(180 + next - transUp));
-          }
-        }}
-      />
-      <line
-        className="hit"
-        {...lineM}
-        aria-label="Move line m"
-        role="slider"
-        tabIndex={0}
-        aria-valuemin={-32}
-        aria-valuemax={32}
-        aria-valuenow={Math.round(skewM)}
-        onPointerDown={beginDrag("lineM")}
-        onKeyDown={(event) => {
-          if (event.key === "ArrowUp") {
-            event.preventDefault();
-            onTiltM(clampTilt(skewM + 2));
-          }
-          if (event.key === "ArrowDown") {
-            event.preventDefault();
-            onTiltM(clampTilt(skewM - 2));
-          }
-        }}
-      />
-      <line className="hit" {...trans} onPointerDown={beginDrag("rotate")} />
-      <circle
-        className="handle"
-        cx={handle.x}
-        cy={handle.y}
-        r="14"
-        role="slider"
-        tabIndex={0}
-        aria-label="Rotate transversal"
-        aria-valuemin={5}
-        aria-valuemax={175}
-        aria-valuenow={angle}
-        aria-valuetext={`Angle 1 is ${angle} degrees`}
-        onPointerDown={beginDrag("rotate")}
-        onKeyDown={(event) => {
-          if (event.key === "ArrowRight" || event.key === "ArrowUp") {
-            event.preventDefault();
-            onAngle(clampAngle(angle + 1));
-          }
-          if (event.key === "ArrowLeft" || event.key === "ArrowDown") {
-            event.preventDefault();
-            onAngle(clampAngle(angle - 1));
-          }
-        }}
-      />
-      <circle
-        className="handle"
-        cx={handleB.x}
-        cy={handleB.y}
-        r="11"
-        aria-hidden="true"
-        onPointerDown={beginDrag("rotate")}
-      />
-      {labels &&
-        [1, 2, 3, 4, 5, 6, 7, 8].map((n, i) => {
-          const point = numberPts[i];
-          if (!point) return null;
-          return (
-            <text key={n} x={point.x} y={point.y + 5}>
-              {n}
-            </text>
-          );
-        })}
-      {measures && (
-        <>
-          <text className="measure" x={measure1.x} y={measure1.y}>
-            {angle}°
-          </text>
-          <text className="measure alt" x={measure2.x} y={measure2.y}>
-            {180 - angle}°
-          </text>
-        </>
-      )}
-      <text className="name" x={lineL.x1 < lineL.x2 ? lineL.x1 - 4 : lineL.x2 - 4} y={top.y - 12}>
-        ℓ
-      </text>
-      <text className="name" x={lineM.x1 < lineM.x2 ? lineM.x1 - 4 : lineM.x2 - 4} y={bottom.y - 12}>
-        m
-      </text>
-      <text className="name" x={handle.x + 10} y={handle.y - 8}>
-        t
-      </text>
-    </svg>
-  );
+function TransversalDiagram({geometry,labels=true,measures=true,highlights=true,change,restore,tool='drag',mini,selected=[0,1,2,3]}:{geometry:CAState10060;labels?:boolean;measures?:boolean;highlights?:boolean;change?:(g:CAState10060,kind:string)=>void;restore?:(g:CAState10060,tool:string)=>void;tool?:string;mini?:'worked'|'wrong';selected?:number[]}){
+ const ref=useRef<SVGSVGElement>(null),id=useId().replace(/:/g,''),gesture=useRef<{pid:number;kind:string;before:CAState10060;tool:string;x:number;y:number;moved:boolean;cancel?:((g:CAState10060,tool:string)=>void)}|null>(null),model=caModel10060(geometry),neg=(p:PCPoint10063)=>({x:-p.x,y:-p.y}),{t,l,m,a,b,origin}=model;
+ const specs=[{at:a,u:neg(l),v:neg(t)},{at:a,u:neg(t),v:l},{at:a,u:t,v:neg(l)},{at:a,u:l,v:t},{at:b,u:neg(m),v:neg(t)},{at:b,u:neg(t),v:m},{at:b,u:t,v:neg(m)},{at:b,u:m,v:t}];
+ const start=(kind:string)=>(e:React.PointerEvent<SVGElement>)=>{if(gesture.current)return;e.preventDefault();e.currentTarget.setPointerCapture(e.pointerId);gesture.current={pid:e.pointerId,kind,before:geometry,tool,x:e.clientX,y:e.clientY,moved:false,cancel:restore};};
+ const update=(e:React.PointerEvent<SVGElement>,end=false)=>{const d=gesture.current;if(!d||d.pid!==e.pointerId)return;if(Math.hypot(e.clientX-d.x,e.clientY-d.y)>.5)d.moved=true;if(d.moved){const matrix=ref.current?.getScreenCTM();if(matrix){const q=new DOMPoint(e.clientX,e.clientY).matrixTransform(matrix.inverse()),base=caModel10060(d.before),center=d.kind==='rotate'?base.origin:d.kind==='lineL'?base.a:base.b;let degrees=Math.atan2(q.y-center.y,q.x-center.x)*180/Math.PI;if(d.kind==='rotate'&&Math.hypot(q.x-center.x,q.y-center.y)>20){while(degrees<0)degrees+=180;while(degrees>180)degrees-=180;change?.(caClamp10060({...d.before,angle:degrees}),d.kind);}else if(d.kind!=='rotate'){while(degrees>90)degrees-=180;while(degrees< -90)degrees+=180;change?.(caClamp10060({...d.before,[d.kind==='lineL'?'l':'m']:degrees}),d.kind);}}}if(end)gesture.current=null;};
+ const cancel=(e:React.PointerEvent<SVGElement>)=>{const d=gesture.current;if(d?.pid===e.pointerId){d.cancel?.(d.before,d.tool);gesture.current=null;}};
+ const hitPoints=(segment:PCPoint10063[])=>{const[a,b]=segment,dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy)||1,n={x:-dy/len*11,y:dx/len*11};return[pcAdd10063(a,n),pcAdd10063(b,n),pcAdd10063(b,n,-1),pcAdd10063(a,n,-1)].map(p=>`${p.x},${p.y}`).join(' ');};
+ const key=(kind:string)=>(e:React.KeyboardEvent<SVGElement>)=>{if(!e.key.startsWith('Arrow'))return;e.preventDefault();const sign=e.key==='ArrowRight'||e.key==='ArrowUp'?1:-1,k=kind==='rotate'?'angle':kind==='lineL'?'l':'m';change?.(caClamp10060({...geometry,[k]:geometry[k]+sign*(e.shiftKey?5:1)}),kind);};
+ return <svg ref={ref} className={mini?'ca10060-mini':'ca10060-diagram'} viewBox="0 0 600 570" aria-label={mini?mini==='worked'?'Worked corresponding angles64 degree example':'Angles1 and3 form a linear pair at one intersection':'Interactive corresponding angles diagram'} data-geometry={JSON.stringify(geometry)} data-values={JSON.stringify(model.values)}><defs><pattern id={`ca-grid-${id}`} width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24"/></pattern><marker id={`ca-arrow-${id}`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#1d2a3e"/></marker></defs>{!mini&&<rect width="600" height="570" style={{fill:`url(#ca-grid-${id})`}}/>}{model.lines.map((segment,i)=>segment&&<line key={i} data-line={['l','m','t'][i]} className={i===2?'transversal':'line'} x1={segment[0].x} y1={segment[0].y} x2={segment[1].x} y2={segment[1].y} markerStart={`url(#ca-arrow-${id})`} markerEnd={`url(#ca-arrow-${id})`}/>)}{specs.map((s,i)=>{const sector=paSector10074(s.at,pcAdd10063(s.at,s.u,250),pcAdd10063(s.at,s.v,250),model.radius);if(!sector||!model.proper)return null;const dx=s.u.x+s.v.x,dy=s.u.y+s.v.y,len=Math.hypot(dx,dy)||1,unit={x:dx/len,y:dy/len},compactLayout=model.numberRadius<35,base=i<4?l:m,normal={x:base.y,y:-base.x},above=i%4<2,left=i%4===0||i%4===2,interior=i>=2&&i<=5,extent=Math.abs(unit.x*base.x+unit.y*base.y)>.6?42:2,number=compactLayout?pcAdd10063(pcAdd10063(s.at,base,(left?-1:1)*extent),normal,(above?1:-1)*(interior?Math.min(22,model.radius/.6):22)):pcAdd10063(s.at,unit,model.numberRadius),measure=compactLayout?pcAdd10063(number,normal,26):pcAdd10063(s.at,unit,model.numberRadius+34),leader=pcAdd10063(s.at,unit,model.radius+3),active=mini?mini==='worked'?[0,4].includes(i):[0,2].includes(i):selected.includes(i%4);return <g key={i} className={`ca10060-sector c${i%4} ${highlights?'highlighted':''} ${active?'':'ca10060-muted'}`} data-index={i+1} data-measure={model.values[i]} data-at={`${s.at.x},${s.at.y}`} data-ray-a={`${s.u.x},${s.u.y}`} data-ray-b={`${s.v.x},${s.v.y}`}><path d={sector.path}/>{compactLayout&&labels&&(!mini||active)&&<line className="ca10060-leader" x1={leader.x} y1={leader.y} x2={number.x} y2={number.y}/>} {labels&&(!mini||active)&&<text className="ca10060-number" textAnchor="middle" dominantBaseline="middle" x={number.x} y={number.y}>{i+1}</text>}{measures&&(!mini?i<2:active)&&<text className="measure" textAnchor="middle" dominantBaseline="middle" x={measure.x} y={measure.y}>{fmt(model.values[i])}°</text>}</g>;})}{!mini&&model.lines.map((segment,i)=>segment&&<polygon key={i} className="hit" points={hitPoints(segment)} role={i<2?'slider':undefined} tabIndex={i<2?0:undefined} aria-label={i===0?'Move line ℓ':i===1?'Move line m':undefined} aria-valuenow={i===0?geometry.l:i===1?geometry.m:undefined} aria-valuemin={i<2?caBounds10060(geometry.angle).min:undefined} aria-valuemax={i<2?caBounds10060(geometry.angle).max:undefined} aria-valuetext={i===0?`${geometry.l} degrees`:i===1?`${geometry.m} degrees`:undefined} onPointerDown={start(i===0?'lineL':i===1?'lineM':'rotate')} onPointerMove={e=>update(e)} onPointerUp={e=>update(e,true)} onPointerCancel={cancel} onKeyDown={key(i===0?'lineL':i===1?'lineM':'rotate')}/>)}{!mini&&<><circle className="visible-handle" cx={origin.x-135*t.x} cy={origin.y-135*t.y} r="6"/><circle role="slider" aria-label="Rotate transversal" aria-valuemin={5} aria-valuemax={175} aria-valuenow={geometry.angle} aria-valuetext={`Direction ${geometry.angle} degrees`} className="handle" cx={origin.x-135*t.x} cy={origin.y-135*t.y} r="19" tabIndex={0} onPointerDown={start('rotate')} onPointerMove={e=>update(e)} onPointerUp={e=>update(e,true)} onPointerCancel={cancel} onKeyDown={key('rotate')}/></>}{mini==='wrong'&&<text className="ca10060-cross" x="420" y="300">×</text>}<text className="name" x={model.lines[0]![0].x+4} y={model.lines[0]![0].y-15}>ℓ</text><text className="name" x={model.lines[1]![0].x+4} y={model.lines[1]![0].y+(model.numberRadius<35?28:-15)}>m</text><text className="name" x={Math.abs(t.y)<.35?model.lines[2]![1].x+(t.x>0?-15:15):model.lines[2]![0].x+15} y={Math.abs(t.y)<.35?model.lines[2]![1].y+28:model.lines[2]![0].y+20}>t</text></svg>;
 }
-function MiniTransversal({ wrong = false }: { wrong?: boolean }) {
-  return (
-    <svg className="ca10060-mini" viewBox="0 0 220 150">
-      <line x1="10" y1="45" x2="210" y2="45" />
-      <line x1="10" y1="115" x2="210" y2="115" />
-      <line x1="95" y1="145" x2="135" y2="5" />
-      <path d="M120 45H92A28 28 0 0 1 128 18Z" />
-      <path
-        className={wrong ? "wrong" : "pair"}
-        d={
-          wrong
-            ? "M105 115H77A28 28 0 0 1 112 88Z"
-            : "M105 115H77A28 28 0 0 1 112 88Z"
-        }
-      />
-      <text x="80" y="28">
-        1
-      </text>
-      <text x="73" y="101">
-        {wrong ? "3" : "5"}
-      </text>
-      {wrong && (
-        <text className="x" x="150" y="84">
-          ×
-        </text>
-      )}
-    </svg>
-  );
-}
+function MiniTransversal({wrong=false}:{wrong?:boolean}){return <TransversalDiagram geometry={caInitial10060} mini={wrong?'wrong':'worked'}/>;}

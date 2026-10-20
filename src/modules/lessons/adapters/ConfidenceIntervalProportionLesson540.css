@@ -352,3 +352,6 @@
     text-align: right;
   }
 }
+
+.cp540-compare{min-width:0;overflow-x:auto}
+@media(max-width:799px){.cp540-coverage > header{display:flex;flex-wrap:wrap;height:auto;gap:8px}.cp540-coverage > header > div{min-width:0;flex:1 1 100%}}

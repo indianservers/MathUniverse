@@ -8,57 +8,16 @@ import {
   Save,
   TriangleAlert,
 } from "lucide-react";
-import { useState } from "react";
+import { type PointerEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 import "./EqualSidesAnglesTargetLesson10071.css";
-import { LessonTopicStudyBoard } from "../components/LessonTopicStudyBoard";
+import{eaInitial10071,eaClamp10071 as clamp,eaConstrain10071 as constrained,eaMeasure10071 as measure,eaRelations10071,eaPairs10071}from'./equalSidesAnglesModel10071';
+import{paSector10074}from'./parallelogramAnglesModel10074';
 
 type Point = { x: number; y: number };
-type Measures = {
-  ab: number;
-  ac: number;
-  bc: number;
-  a: number;
-  b: number;
-  c: number;
-};
-const INITIAL: Point = { x: 0, y: 2.43 };
-const clamp = (n: number, min: number, max: number) =>
-  Math.max(min, Math.min(max, n));
-const degrees = (r: number) => (r * 180) / Math.PI;
-function measure(p: Point): Measures {
-  const ab0 = Math.hypot(p.x + 1, p.y),
-    ac0 = Math.hypot(p.x - 1, p.y),
-    bc0 = 2;
-  const a = degrees(
-      Math.acos(
-        clamp((ab0 ** 2 + ac0 ** 2 - bc0 ** 2) / (2 * ab0 * ac0), -1, 1),
-      ),
-    ),
-    b = degrees(Math.atan2(p.y, p.x + 1)),
-    c = 180 - a - b;
-  return {
-    ab: (ab0 / Math.hypot(1, INITIAL.y)) * 6.72,
-    ac: (ac0 / Math.hypot(1, INITIAL.y)) * 6.72,
-    bc: 7.24,
-    a,
-    b,
-    c,
-  };
-}
-function constrained(point: Point, sideLock: number, angleLock: number) {
-  const p = { x: clamp(point.x, -1.35, 1.35), y: clamp(point.y, 0.65, 2.8) };
-  if (sideLock === 1 || angleLock === 1) p.x = 0;
-  else if (sideLock === 2 || angleLock === 3) {
-    p.y = Math.min(p.y, 1.95);
-    p.x = -1 + Math.sqrt(Math.max(0.01, 4 - p.y ** 2));
-  } else if (sideLock === 3 || angleLock === 2) {
-    p.y = Math.min(p.y, 1.95);
-    p.x = 1 - Math.sqrt(Math.max(0.01, 4 - p.y ** 2));
-  }
-  return p;
-}
+type Measures=ReturnType<typeof measure>;
+const INITIAL=eaInitial10071;
 const fmt = (n: number) => n.toFixed(1);
 
 export default function EqualSidesAnglesTargetLesson10071({
@@ -74,12 +33,9 @@ export default function EqualSidesAnglesTargetLesson10071({
     [challengeY, setChallengeY] = useState(2.06),
     [choices, setChoices] = useState([false, false, true, false]),
     [reason, setReason] = useState(""),
-    [saved, setSaved] = useState(false),
+    [saved, setSaved] = useState(()=>{try{return localStorage.getItem('math-rule-10071')==='1';}catch{return false;}}),[graded,setGraded]=useState(false),
     [actions, setActions] = useState(0);
-  const m = measure(apex),
-    cm = measure({ x: 0, y: challengeY }),
-    equalSides = Math.abs(m.ab - m.ac) < 0.02,
-    equalAngles = Math.abs(m.b - m.c) < 0.05;
+  const m=measure(apex,sideLock,angleLock),cm=measure({x:0,y:challengeY},1,1),equalSides=m.eq[0],equalAngles=m.eq[0],relations=m.eq.flatMap((v,i)=>v?[eaRelations10071[i].join(' ⇔ ')]:[]),pairs=eaPairs10071(sideLock,angleLock);
   const act = (fn: () => void) => {
     fn();
     setActions((n) => n + 1);
@@ -108,20 +64,20 @@ export default function EqualSidesAnglesTargetLesson10071({
       className="esa10071-page"
       data-testid="school-mockup-0745"
       data-object-model="dedicated-constrained-apex-isosceles-opposite-parts-engine"
-      data-apex={`${apex.x.toFixed(2)},${apex.y.toFixed(2)}`}
-      data-sides={`${m.ab.toFixed(2)},${m.ac.toFixed(2)},${m.bc.toFixed(2)}`}
-      data-angles={`${m.a.toFixed(1)},${m.b.toFixed(1)},${m.c.toFixed(1)}`}
+      data-apex={`${apex.x},${apex.y}`}
+      data-sides={`${m.ab},${m.ac},${m.bc}`}
+      data-angles={`${m.a},${m.b},${m.c}`}
       data-side-lock={sideLock}
       data-angle-lock={angleLock}
       data-options={options.map(Number).join(",")}
       data-equal={String(equalSides && equalAngles)}
-      data-challenge-y={challengeY.toFixed(2)}
+      data-challenge-y={challengeY} data-relations={m.eq.map(Number).join(",")} data-graded={graded?String(choices.every((v,i)=>v===(i===2))):"ungraded"}
       data-choice={choices.map(Number).join(",")}
       data-reason-length={reason.length}
       data-saved={String(saved)}
       data-actions={actions}
     >
-      <header className="esa10071-hero">
+      <div role="banner" className="esa10071-hero"><Link className="esa10071-school" to="/lessons/school">← School lessons</Link>
         <small>CLASS 9 · TRIANGLE PROOFS</small>
         <h1>Equal Sides and Equal Angles</h1>
         <p>
@@ -134,21 +90,21 @@ export default function EqualSidesAnglesTargetLesson10071({
           <span>PROOF</span>
           <span>geometry2d</span>
         </div>
-      </header>
-      <nav className="esa10071-tabs">
+      </div>
+      <div role="group" aria-label="Lesson sections" className="esa10071-tabs">
         {["Interact", "Learn", "Example", "Formula", "Practice"].map((x, i) => (
           <button
             key={x}
             className={tab === i ? "active" : ""}
-            aria-selected={tab === i}
-            onClick={() => act(() => setTab(i))}
+            aria-pressed={tab === i}
+            onClick={() => act(() => {setTab(i);document.getElementById(['esa10071-interact','esa10071-learn','esa10071-example','esa10071-formula','challenge'][i])?.scrollIntoView({behavior:'smooth',block:'start'});})}
           >
             {x}
           </button>
         ))}
-      </nav>
+      </div>
       <main>
-        <section className="esa10071-lab">
+        <section id="esa10071-interact" className="esa10071-lab">
           <div className="esa10071-canvas">
             <header>
               <h2>
@@ -163,13 +119,10 @@ export default function EqualSidesAnglesTargetLesson10071({
               point={apex}
               measures={m}
               options={options}
-              equalSides={equalSides}
+              name="Main triangle"
               onMove={move}
             />
-            <strong className={equalSides && equalAngles ? "truth" : "pending"}>
-              <Check /> AB {equalSides ? "=" : "≠"} AC ⇔ ∠B{" "}
-              {equalAngles ? "=" : "≠"} ∠C
-            </strong>
+            <strong className={relations.length?"truth":"pending"}><Check/>{relations.length?relations.join(' • '):'Unequal sides have unequal opposite angles.'}</strong>
             <footer>
               <h3>Live Measurements</h3>
               {[
@@ -197,7 +150,7 @@ export default function EqualSidesAnglesTargetLesson10071({
             <section>
               <h3>Lock Equal Sides</h3>
               <p>Keep two sides equal while you drag.</p>
-              <Segmented
+              <Segmented name="Sides"
                 value={sideLock}
                 labels={["Off", "AB = AC", "AB = BC", "AC = BC"]}
                 onChange={setSide}
@@ -206,7 +159,7 @@ export default function EqualSidesAnglesTargetLesson10071({
             <section>
               <h3>Lock Equal Angles</h3>
               <p>Keep two angles equal while you drag.</p>
-              <Segmented
+              <Segmented name="Angles"
                 value={angleLock}
                 labels={["Off", "∠B = ∠C", "∠A = ∠B", "∠A = ∠C"]}
                 onChange={setAngle}
@@ -236,6 +189,7 @@ export default function EqualSidesAnglesTargetLesson10071({
                 </label>
               ))}
             </section>
+            {pairs.length>1&&<p className="esa10071-lock-note" role="status">Both different equality conditions require an equilateral triangle. Turn one lock off to reshape.</p>}
             <button onClick={reset}>
               <RotateCcw /> Reset Triangle
             </button>
@@ -246,12 +200,11 @@ export default function EqualSidesAnglesTargetLesson10071({
           <p>
             <b>What's true right now</b>
             <br />
-            {equalSides ? "AB = AC" : "AB ≠ AC"}, so the opposite angles are{" "}
-            {equalAngles ? "equal: ∠B = ∠C." : "not equal."}
+            {relations.length?relations.join(' • '):'All three sides differ, and their opposite angles differ.'}
           </p>
           <span>Experiment • Observe • Discover</span>
         </section>
-        <section className="esa10071-theory">
+        <section id="esa10071-learn" className="esa10071-theory">
           <article>
             <h2>
               <Lightbulb /> WHY IT WORKS
@@ -264,10 +217,10 @@ export default function EqualSidesAnglesTargetLesson10071({
             <p>
               This follows from the <b>Isosceles Triangle Theorem.</b>
             </p>
-            <a href="#challenge">Learn more →</a>
+            <details className="esa10071-proof"><summary>Learn more: proof →</summary><p>Bisect ∠A and meet BC at D. AB = AC, AD is common, and ∠BAD = ∠CAD. By SAS, △ABD ≅ △ACD, so ∠B = ∠C.</p><p>Conversely, if ∠B = ∠C, compare △ABC and △ACB: equal angles at B/C and the common included side BC = CB give ASA congruence, hence AB = AC.</p></details>
           </article>
           <article>
-            <h2>▦ WORKED EXAMPLE</h2>
+            <h2 id="esa10071-example">▦ WORKED EXAMPLE</h2>
             <p>If AB = AC, then ∠B = ∠C.</p>
             <MiniIso />
             <p>
@@ -287,10 +240,10 @@ export default function EqualSidesAnglesTargetLesson10071({
             <strong>
               <Check /> Correct
             </strong>
-            <MiniIso />
+            <MiniIso variant="correct"/><p>AB is opposite ∠C; AC is opposite ∠B.</p>
             <hr />
             <strong className="bad">⊗ Incorrect</strong>
-            <MiniIso wrong />
+            <MiniIso variant="wrong"/><p>∠B is adjacent to AB. AB corresponds to the angle at C.</p>
           </article>
         </section>
         <section id="challenge" className="esa10071-challenge">
@@ -305,7 +258,7 @@ export default function EqualSidesAnglesTargetLesson10071({
               point={{ x: 0, y: challengeY }}
               measures={cm}
               options={[true, true, true, true]}
-              equalSides
+              name="Challenge triangle"
               onMove={(p) => act(() => setChallengeY(clamp(p.y, 0.8, 2.5)))}
             />
           </div>
@@ -330,13 +283,14 @@ export default function EqualSidesAnglesTargetLesson10071({
                     act(() => {
                       const next = [...choices];
                       next[i] = e.target.checked;
-                      setChoices(next);
+                      setChoices(next);setGraded(false);
                     })
                   }
                 />
                 {label}
               </label>
             ))}
+            <button className="esa10071-check" onClick={()=>setGraded(true)}>Check answer</button>{graded&&<p role="status">{choices.every((v,i)=>v===(i===2))?'Correct: only ∠B and ∠C remain equal for every isosceles shape.':'Select only ∠B and ∠C. All three are equal only in the equilateral special case.'}</p>}
           </section>
           <aside>
             <label>
@@ -357,7 +311,7 @@ export default function EqualSidesAnglesTargetLesson10071({
             </footer>
           </aside>
         </section>
-        <section className="esa10071-rule">
+        <section id="esa10071-formula" className="esa10071-rule">
           <h2>⊙ THE RULE TO REMEMBER</h2>
           <p>
             In a triangle, equal sides have equal opposite angles, and equal
@@ -365,41 +319,23 @@ export default function EqualSidesAnglesTargetLesson10071({
           </p>
           <button
             className={saved ? "saved" : ""}
-            onClick={() => act(() => setSaved((value) => !value))}
+            aria-pressed={saved} onClick={() => act(() => setSaved(value=>{try{localStorage.setItem('math-rule-10071',value?'0':'1');}catch{/* Storage unavailable. */}return !value;}))}
           >
             <Save /> {saved ? "Saved" : "Save rule"}
           </button>
         </section>
       </main>
-      <nav className="esa10071-adjacent">
-        <Link to="/lessons/school/class-9/class-9-triangle-proofs-triangle-inequality">
-          <ArrowLeft />
-          <span>
-            Previous
-            <br />
-            <b>Triangle Inequality</b>
-          </span>
-        </Link>
-        <Link to="/lessons/school/class-9/class-9-triangle-proofs-converse-isosceles-theorem">
-          <span>
-            Next
-            <br />
-            <b>Converse of Isosceles Triangle Theorem</b>
-          </span>
-          <ArrowRight />
-        </Link>
-      </nav>
-      <LessonTopicStudyBoard lessonId={10071} view={tab} />
+      <nav className="esa10071-nav"><Link to="/lessons/school/class-9/class-9-triangle-proofs-rhs-congruence"><ArrowLeft/>RHS Congruence</Link><Link to="/lessons/school/class-9/class-9-triangle-proofs-triangle-inequality">Triangle Inequality<ArrowRight/></Link></nav><footer className="esa10071-footer"><b>Math Universe</b><p>Interactive math labs, visual proofs, graphing, and classroom activities.</p><small>©2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.</small></footer>
 
     </section>
   );
 }
 function Segmented({
-  value,
+  name,value,
   labels,
   onChange,
 }: {
-  value: number;
+  name:string;value: number;
   labels: string[];
   onChange: (n: number) => void;
 }) {
@@ -408,7 +344,7 @@ function Segmented({
       {labels.map((label, i) => (
         <button
           key={label}
-          className={value === i ? "active" : ""}
+          aria-label={`${name}: ${label}`} aria-pressed={value===i} className={value === i ? "active" : ""}
           onClick={() => onChange(i)}
         >
           {label}
@@ -417,138 +353,6 @@ function Segmented({
     </div>
   );
 }
-function IsoscelesDiagram({
-  point,
-  measures,
-  options,
-  equalSides,
-  onMove,
-}: {
-  point: Point;
-  measures: Measures;
-  options: boolean[];
-  equalSides: boolean;
-  onMove: (p: Point) => void;
-}) {
-  const sx = 250 + point.x * 90,
-    sy = 315 - point.y * 95;
-  return (
-    <svg
-      className="esa10071-diagram"
-      viewBox="0 0 500 360"
-      aria-label="Draggable equal sides and angles triangle"
-    >
-      <path className="shape" d={`M70 315L430 315L${sx} ${sy}Z`} />
-      {options[3] && (
-        <>
-          <path
-            className="arc a"
-            d={`M${sx - 30} ${sy + 32}Q${sx} ${sy + 52} ${sx + 30} ${sy + 32}`}
-          />
-          <path className="arc b" d="M70 315H112Q104 284 88 276" />
-          <path className="arc c" d="M430 315H388Q396 284 412 276" />
-        </>
-      )}
-      {options[2] && equalSides && (
-        <>
-          <path
-            className="tick"
-            d={`M${(70 + sx) / 2 - 8} ${(315 + sy) / 2 - 8}l18 16M${(70 + sx) / 2 - 13} ${(315 + sy) / 2 - 2}l18 16`}
-          />
-          <path
-            className="tick"
-            d={`M${(430 + sx) / 2 - 10} ${(315 + sy) / 2 + 8}l18-16M${(430 + sx) / 2 - 15} ${(315 + sy) / 2 + 2}l18-16`}
-          />
-        </>
-      )}
-      <circle
-        className="handle"
-        cx={sx}
-        cy={sy}
-        r="8"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "ArrowUp") onMove({ ...point, y: point.y + 0.05 });
-          if (e.key === "ArrowDown") onMove({ ...point, y: point.y - 0.05 });
-          if (e.key === "ArrowLeft") onMove({ ...point, x: point.x - 0.05 });
-          if (e.key === "ArrowRight") onMove({ ...point, x: point.x + 0.05 });
-        }}
-        onPointerMove={(e) => {
-          if (e.buttons === 1) {
-            const rect =
-              e.currentTarget.ownerSVGElement?.getBoundingClientRect();
-            if (rect)
-              onMove({
-                x:
-                  (((e.clientX - rect.left) / rect.width) * 500) / 90 -
-                  250 / 90,
-                y: (315 - ((e.clientY - rect.top) / rect.height) * 360) / 95,
-              });
-          }
-        }}
-      />
-      <circle cx="70" cy="315" r="6" />
-      <circle cx="430" cy="315" r="6" />
-      <text x={sx - 8} y={sy - 18}>
-        A
-      </text>
-      <text x="45" y="338">
-        B
-      </text>
-      <text x="440" y="338">
-        C
-      </text>
-      {options[0] && (
-        <>
-          <text className="ma" x={sx - 17} y={sy + 58}>
-            {fmt(measures.a)}°
-          </text>
-          <text className="mb" x="103" y="290">
-            {fmt(measures.b)}°
-          </text>
-          <text className="mc" x="350" y="290">
-            {fmt(measures.c)}°
-          </text>
-        </>
-      )}
-      {options[1] && (
-        <>
-          <text className="length" x="128" y="205">
-            {measures.ab.toFixed(2)}
-          </text>
-          <text className="length" x="350" y="205">
-            {measures.ac.toFixed(2)}
-          </text>
-        </>
-      )}
-      <text className="drag" x={sx + 23} y={sy + 9}>
-        Drag me
-      </text>
-    </svg>
-  );
-}
-function MiniIso({ wrong = false }: { wrong?: boolean }) {
-  return (
-    <svg className="esa10071-mini" viewBox="0 0 190 125">
-      <path d="M15 105L175 105L95 15Z" />
-      <path
-        className="arc"
-        d={
-          wrong
-            ? "M175 105H145Q150 80 164 76"
-            : "M15 105H45Q40 80 26 76M175 105H145Q150 80 164 76"
-        }
-      />
-      <path className="tick" d="M48 65l12 10M130 75l12-10" />
-      <text x="88" y="13">
-        A
-      </text>
-      <text x="2" y="120">
-        B
-      </text>
-      <text x="178" y="120">
-        C
-      </text>
-    </svg>
-  );
-}
+function IsoscelesDiagram({point,measures,options,onMove,name}:{point:Point;measures:Measures;options:boolean[];onMove:(p:Point)=>void;name:string}){const svgRef=useRef<SVGSVGElement>(null),gesture=useRef<{point:Point;client:Point;moved:boolean}|null>(null),a={x:200+100*point.x,y:315-100*point.y},b={x:100,y:315},c={x:300,y:315},vertices=[a,b,c],sectors=vertices.map((v,i)=>paSector10074(v,vertices[(i+1)%3],vertices[(i+2)%3],30)),local=(ev:PointerEvent<SVGSVGElement>)=>{const matrix=svgRef.current?.getScreenCTM();if(!matrix)return null;const p=new DOMPoint(ev.clientX,ev.clientY).matrixTransform(matrix.inverse());return{x:(p.x-200)/100,y:(315-p.y)/100};},move=(ev:PointerEvent<SVGSVGElement>)=>{const g=gesture.current;if(!g)return;if(Math.hypot(ev.clientX-g.client.x,ev.clientY-g.client.y)>.5)g.moved=true;if(g.moved){const p=local(ev);if(p)onMove(p);}},equalEdges=[false,false,false];if(measures.eq[0])equalEdges[0]=equalEdges[1]=true;if(measures.eq[1])equalEdges[0]=equalEdges[2]=true;if(measures.eq[2])equalEdges[1]=equalEdges[2]=true;return <svg ref={svgRef} className="esa10071-diagram" viewBox="0 0 400 370" aria-label="Draggable equal sides and angles triangle" data-name={name} onPointerMove={move} onPointerUp={ev=>{move(ev);gesture.current=null;}} onPointerCancel={()=>{if(gesture.current)onMove(gesture.current.point);gesture.current=null;}}><path className="triangle-fill" d={`M${a.x} ${a.y}L100 315H300Z`}/>{[[a,b],[a,c],[b,c]].map(([u,v],i)=><g key={i}><line className={i===2?'base-edge':'equal-edge'} x1={u.x} y1={u.y} x2={v.x} y2={v.y}/>{options[2]&&equalEdges[i]&&<Ticks a={u} b={v}/>} {options[1]&&<text className="length" x={(u.x+v.x)/2+(i===0?-28:i===1?28:0)} y={(u.y+v.y)/2+(i===2?35:0)}>{[measures.ab,measures.ac,measures.bc][i].toFixed(2)}</text>}</g>)}{sectors.map((sector,i)=>sector&&<g key={i}>{options[3]&&<path className={`arc ${['a','b','c'][i]}`} d={sector.path}/>} {options[0]&&<text className={`angle-value m${['a','b','c'][i]}`} x={sector.label.x} y={sector.label.y+4}>{fmt([measures.a,measures.b,measures.c][i])}°</text>}</g>)}<circle className="handle" cx={a.x} cy={a.y} r="7" tabIndex={0} role="slider" aria-label={`${name} apex A`} aria-valuemin={.65} aria-valuemax={2.8} aria-valuenow={point.y} aria-valuetext={`x ${point.x}, y ${point.y}`} onPointerDown={ev=>{ev.currentTarget.setPointerCapture(ev.pointerId);gesture.current={point,client:{x:ev.clientX,y:ev.clientY},moved:false};}} onKeyDown={ev=>{if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(ev.key))return;ev.preventDefault();const n=ev.shiftKey?.2:.05;onMove({x:point.x+(ev.key==='ArrowLeft'?-n:ev.key==='ArrowRight'?n:0),y:point.y+(ev.key==='ArrowUp'?n:ev.key==='ArrowDown'?-n:0)});}}/><circle className="base-point" cx="100" cy="315" r="5"/><circle className="base-point" cx="300" cy="315" r="5"/><text className="vertex a" x={a.x} y={a.y-16}>A</text><text className="vertex" x="86" y="332">B</text><text className="vertex" x="314" y="332">C</text><text className="drag" x={a.x+18} y={a.y}>Drag me</text></svg>;}
+function Ticks({a,b}:{a:Point;b:Point}){const dx=b.x-a.x,dy=b.y-a.y,n=Math.hypot(dx,dy),ux=dx/n,uy=dy/n;return <g className="ticks">{[-2,2].map(t=><line key={t} x1={(a.x+b.x)/2+t*ux-6*uy} y1={(a.y+b.y)/2+t*uy+6*ux} x2={(a.x+b.x)/2+t*ux+6*uy} y2={(a.y+b.y)/2+t*uy-6*ux}/>)}</g>;}
+function MiniIso({variant='worked'}:{variant?:'worked'|'correct'|'wrong'}){const a={x:95,y:18},b={x:25,y:105},c={x:165,y:105},vertices=[a,b,c],marked=variant==='correct'?[1,2]:variant==='wrong'?[1]:[0,1,2];return <svg className={`esa10071-mini ${variant}`} viewBox="0 0 190 135" aria-label={variant==='wrong'?'Wrong: angle B is adjacent to side AB':variant==='correct'?'AB opposite angle C; AC opposite angle B':'Isosceles worked example'}><path className="mini-shape" d="M25 105L95 18L165 105Z"/><line className="mini-base" x1="25" y1="105" x2="165" y2="105"/><Ticks a={a} b={b}/><Ticks a={a} b={c}/>{marked.map(i=>{const s=paSector10074(vertices[i],vertices[(i+1)%3],vertices[(i+2)%3],19);return s?<g key={i}><path className="mini-arc" d={s.path}/>{variant==='worked'&&<text className="variable" x={s.label.x} y={s.label.y+3}>{i===0?'y°':'x°'}</text>}</g>:null;})}{vertices.map((p,i)=><text key={i} className="mini-letter" x={p.x+(i===1?-10:i===2?10:0)} y={p.y+(i===0?-8:15)}>{['A','B','C'][i]}</text>)}</svg>;}

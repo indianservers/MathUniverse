@@ -1,3 +1,4 @@
+import { lessonCatalog } from "../catalog/lessonCatalog";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import TrigonometricEquationsTargetLesson120 from "./TrigonometricEquationsTargetLesson120";
@@ -5,7 +6,7 @@ import TrigonometricEquationsTargetLesson120 from "./TrigonometricEquationsTarge
 describe("TrigonometricEquationsTargetLesson120", () => {
   it("renders the target's linked unit-circle, wave, and periodic solutions", () => {
     const html = renderToStaticMarkup(
-      <TrigonometricEquationsTargetLesson120
+      <TrigonometricEquationsTargetLesson120 lesson={lessonCatalog.find(item => item.id === 120)!}
         resetToken={0}
         onInteraction={vi.fn()}
       />,

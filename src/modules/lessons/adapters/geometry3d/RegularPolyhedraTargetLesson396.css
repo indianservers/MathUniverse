@@ -409,3 +409,5 @@ body:has(.rp396-page) footer[aria-label="Site footer"] {
     margin-top: 10px;
   }
 }
+
+.rp396-page .rp396-data > article { min-width:0; overflow-x:auto; }

@@ -1,0 +1,29 @@
+{
+  "status": "browser-verified",
+  "checks": [
+    "editable sets",
+    "duplicate and universe filtering",
+    "union",
+    "intersection",
+    "difference",
+    "linked Venn result"
+  ],
+  "overflow": [
+    {
+      "width": 390,
+      "client": 375,
+      "scroll": 375
+    },
+    {
+      "width": 768,
+      "client": 732,
+      "scroll": 732
+    },
+    {
+      "width": 1440,
+      "client": 1404,
+      "scroll": 1404
+    }
+  ],
+  "errors": []
+}

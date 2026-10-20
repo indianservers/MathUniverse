@@ -718,3 +718,5 @@ body:has(.dom130-page) footer[aria-label="Site footer"] {
     width: 100%;
   }
 }
+
+@media(max-width:900px){.dom130-footer{height:auto;display:flex;flex-wrap:wrap;gap:8px}.dom130-footer>span{width:auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}.dom130-footer>nav{position:static;flex-wrap:wrap}}

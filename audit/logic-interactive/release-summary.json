@@ -1,0 +1,64 @@
+{
+  "typecheck": {
+    "status": "passed",
+    "initialErrors": 126,
+    "remainingErrors": 0,
+    "command": "NODE_OPTIONS=--max-old-space-size=8192 npm run typecheck"
+  },
+  "build": {
+    "status": "passed",
+    "command": "npm run build"
+  },
+  "affectedTests": {
+    "passed": 117,
+    "failed": 0,
+    "reports": [
+      "affected-test-summary.json",
+      "type-fix-test-files.json"
+    ]
+  },
+  "logicBrowser": {
+    "status": "passed",
+    "checks": [
+      "all 20 gate/assignment combinations",
+      "clickable gate, undo, redo, reset",
+      "truth-table row selection and next assignment",
+      "DNF grading covers correct and incorrect expressions",
+      "equivalence and loaded counterexamples",
+      "SAT edit, empty clause, contradiction, witness, remove clause",
+      "shared figure reload preserves SAT clauses; keyboard input switch"
+    ],
+    "layouts": 15,
+    "errors": []
+  },
+  "changedLessonProductionBrowser": [
+    {
+      "index": 919,
+      "status": "passed"
+    },
+    {
+      "index": 866,
+      "status": "passed"
+    },
+    {
+      "index": 865,
+      "status": "passed"
+    },
+    {
+      "index": 864,
+      "status": "passed"
+    },
+    {
+      "index": 863,
+      "status": "passed"
+    },
+    {
+      "index": 862,
+      "status": "passed"
+    },
+    {
+      "index": 861,
+      "status": "passed"
+    }
+  ]
+}

@@ -51,7 +51,7 @@ function GoodnessActivity({
     touch();
   };
   const update = (
-    setter: (v: number[]) => void,
+    setter: React.Dispatch<React.SetStateAction<number[]>>,
     index: number,
     value: number,
   ) => {

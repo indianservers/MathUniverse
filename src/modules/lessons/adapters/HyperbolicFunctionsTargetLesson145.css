@@ -550,3 +550,9 @@
     grid-template-columns: 1.3fr 1fr;
   }
 }
+
+@media(max-width:900px){.hyp145-page .hyp145-layout,.hyp145-page .hyp145-upper,.hyp145-page .hyp145-lower,.hyp145-page .hyp145-rail,.hyp145-page .hyp145-compare>div{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.hyp145-page .hyp145-layout>*,.hyp145-page .hyp145-upper>*,.hyp145-page .hyp145-lower>*,.hyp145-page .hyp145-rail>*,.hyp145-page .hyp145-compare>div>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.hyp145-tabs{width:auto;height:auto;display:flex;flex-wrap:wrap}.hyp145-plot{height:430px}.hyp145-decomposition p{height:auto;min-height:39px}}
+
+.lesson-table-scroll-202{max-width:100%;width:100%;overflow-x:auto}

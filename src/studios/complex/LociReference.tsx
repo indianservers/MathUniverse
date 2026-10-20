@@ -230,7 +230,7 @@ export default function LociReference({ page }: { page: StudioMockupPage }) {
       if (affine || inv) {
         const z = argandComplex(answer);
         correct =
-          Math.abs(z.re - (affine ? 3 : 2)) < 0.02 && Math.abs(z.im - 2) < 0.02;
+          z !== null && Math.abs(z[0] - (affine ? 3 : 2)) < 0.02 && Math.abs(z[1] - 2) < 0.02;
       } else
         correct = Math.abs(argandNumber(answer) - (line ? -0.5 : 2)) < 0.001;
     } catch {

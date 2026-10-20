@@ -480,3 +480,7 @@ body:has(.mat355-page) footer[aria-label="Site footer"] {
     display: none;
   }
 }
+
+@media(max-width:799px){.mat355-page :is(.mat355-flow,.mat355-notes,.mat355-practice){grid-template-columns:minmax(0,1fr);height:auto}.mat355-page .mat355-tabs{overflow-x:auto}.mat355-page :is(article,aside){min-width:0;overflow-wrap:anywhere}.mat355-page :is(.mat355-workspace,.mat355-gauss){height:auto}.mat355-page .mat355-gauss > div{grid-template-columns:minmax(0,1fr);height:auto}.mat355-page footer{flex-wrap:wrap;height:auto}}
+
+@media(max-width:799px){.mat355-page .mat355-equations{grid-template-columns:minmax(0,1fr);height:auto}.mat355-page .mat355-equations > aside{min-width:0;width:auto}}

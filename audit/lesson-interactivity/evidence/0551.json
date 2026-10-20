@@ -1,0 +1,29 @@
+{
+  "status": "interaction-verified",
+  "route": "/lessons/advanced-mathematics/366-real-and-imaginary-parts",
+  "action": {
+    "control": "Real part   a = Re(z)",
+    "before": "2",
+    "after": "2.1",
+    "evidence": "Activity mathematics changed; inputs, buttons, navigation, hidden panels and supplemental study boards excluded."
+  },
+  "overflow": [
+    {
+      "width": 390,
+      "client": 338,
+      "scroll": 338
+    },
+    {
+      "width": 768,
+      "client": 716,
+      "scroll": 716
+    },
+    {
+      "width": 1440,
+      "client": 1388,
+      "scroll": 1388
+    }
+  ],
+  "errors": [],
+  "scope": "Interactivity and responsive smoke check; does not replace topic-specific mathematical regression tests."
+}

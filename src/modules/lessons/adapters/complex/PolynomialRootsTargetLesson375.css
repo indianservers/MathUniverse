@@ -563,3 +563,5 @@ body:has(.pr375-page) button[aria-label="Open navigation"] {
     display: none !important;
   }
 }
+
+@media(max-width:799px){.pr375-page :is(.pr375-main,.pr375-results,.pr375-learning,.pr375-challenge,.pr375-nav){height:auto;grid-template-columns:minmax(0,1fr)}.pr375-page :is(.pr375-lab,.pr375-explorer){height:auto}.pr375-page .pr375-tabs{overflow-x:auto}.pr375-page :is(article,aside){min-width:0;overflow-wrap:anywhere}}

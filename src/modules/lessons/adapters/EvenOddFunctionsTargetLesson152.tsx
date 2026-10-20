@@ -223,8 +223,8 @@ function SymmetryGraph({
         role="slider"
         tabIndex={0}
         aria-label="Drag symmetry test point"
-        aria-valuemin="-4"
-        aria-valuemax="4"
+        aria-valuemin={-4}
+        aria-valuemax={4}
         aria-valuenow={x}
         onPointerDown={(event) => {
           event.currentTarget.setPointerCapture(event.pointerId);

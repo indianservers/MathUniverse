@@ -711,3 +711,7 @@ body:has(.opt301-page) {
     min-width: 776px;
   }
 }
+
+@media(max-width:900px){.opt301-page .opt301-flow,.opt301-page .opt301-lab>main,.opt301-page .opt301-lab .candidates,.opt301-page .opt301-lab .optimum,.opt301-page .opt301-info{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;height:auto}.opt301-page .opt301-flow>*,.opt301-page .opt301-lab>main>*,.opt301-page .opt301-lab .candidates>*,.opt301-page .opt301-lab .optimum>*,.opt301-page .opt301-info>*{min-width:0;grid-column:auto;grid-row:auto}}
+
+@media(max-width:900px){.opt301-page .opt301-flow article:not(:last-child):after{position:static}.opt301-page .opt301-lab{height:auto}.opt301-page .opt301-lab>footer{height:auto}.opt301-page .opt301-lab>footer>div{display:flex;flex-wrap:wrap;gap:8px;height:auto}.opt301-page .opt301-lab>main>section,.opt301-page .opt301-lab>main>aside{height:auto}.opt301-page .opt301-info>*{height:auto}.opt301-page .opt301-tabs{height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}}
